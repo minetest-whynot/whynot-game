@@ -28,6 +28,12 @@ origin	http://repo.or.cz/minetest_hbhunger (fetch)
 origin	https://github.com/stujones11/minetest-3d_armor (fetch)
 * master 291b34b [origin/master] Auto-refresh armor stands after clearobjects.
 
+origin	https://github.com/minetest-technic/mese_crystals (fetch)
+* master 74a5387 [origin/master] Upload
+
+origin	https://github.com/tenplus1/farming (fetch)
+* master ce0c3e8 [origin/master] updating to newer 0.4.16 functions
+
 origin	https://github.com/minetest-mods/lightning (fetch)
 * master 39bd36c [origin/master] Use particle glow to brighten up the lightning.
 
