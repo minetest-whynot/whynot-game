@@ -7,6 +7,9 @@ origin	https://github.com/minetest-mods/skinsdb (fetch)
 origin	https://github.com/minetest-mods/character_creator (fetch)
 * master e139e0d [origin/master] Support for skinsdb (#11)
 
+origin	https://github.com/GunshipPenguin/sprint (fetch)
+* master cbd817f [origin/master] Fix sprinting without moving
+
 origin	http://repo.or.cz/minetest_show_wielded_item.git (fetch)
 * master 2d4cc42 [origin/master] Initial commit + version 1.0.0
 
@@ -21,6 +24,15 @@ origin	https://github.com/bell07/minetest-smart_inventory (fetch)
 
 origin	http://repo.or.cz/minetest_hbhunger (fetch)
 * master 47845f1 [origin/master] Version 0.6.0
+
+origin	https://github.com/minetest-mods/lightning (fetch)
+* master 39bd36c [origin/master] Use particle glow to brighten up the lightning.
+
+origin	https://github.com/xeranas/weather_pack (fetch)
+* master f8e1640 [origin/master] Update README.md
+
+origin	https://github.com/MarkuBu/ambianceplus (fetch)
+* master 1a44714 [origin/master] Add lava and desert
 
 origin	https://github.com/minetest/minetest_game (fetch)
 * backport-0.4 7a4b1e0 [origin/backport-0.4] Default: Make burntimes more rational and consistent
