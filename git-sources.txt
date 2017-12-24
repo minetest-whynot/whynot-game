@@ -25,6 +25,9 @@ origin	https://github.com/bell07/minetest-smart_inventory (fetch)
 origin	http://repo.or.cz/minetest_hbhunger (fetch)
 * master 47845f1 [origin/master] Version 0.6.0
 
+origin	https://github.com/stujones11/minetest-3d_armor (fetch)
+* master 291b34b [origin/master] Auto-refresh armor stands after clearobjects.
+
 origin	https://github.com/minetest-mods/lightning (fetch)
 * master 39bd36c [origin/master] Use particle glow to brighten up the lightning.
 
