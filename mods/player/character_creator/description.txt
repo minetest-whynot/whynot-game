@@ -1,0 +1,1 @@
+Allows the creation of customized character skins inside the game.
