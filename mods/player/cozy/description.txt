@@ -1,0 +1,1 @@
+Adds sitting down, and lying down player animations.
