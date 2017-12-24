@@ -6,7 +6,7 @@
 -- Credits: xeranas
 ---------------------------------------
 
-if hw_utils == nil then
+if not minetest.global_exists("hw_utils") then
 	hw_utils = {}
 end
 
