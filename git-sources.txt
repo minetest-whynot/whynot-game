@@ -1,0 +1,27 @@
+origin	https://github.com/minetest-mods/playeranim (fetch)
+* master 0cccb53 [origin/master] Character model v3 for MT 5.0 (#15)
+
+origin	https://github.com/minetest-mods/skinsdb (fetch)
+* master 71e05bb [origin/master] Rewrite README to proper markdown and better readability
+
+origin	https://github.com/minetest-mods/character_creator (fetch)
+* master e139e0d [origin/master] Support for skinsdb (#11)
+
+origin	http://repo.or.cz/minetest_show_wielded_item.git (fetch)
+* master 2d4cc42 [origin/master] Initial commit + version 1.0.0
+
+origin	http://repo.or.cz/minetest_hudbars (fetch)
+* master bec8afe [origin/master] Version 1.10.0, update credits
+
+origin	https://github.com/minetest-mods/cozy (fetch)
+* master cd166a7 [origin/master] Initial checkin
+
+origin	https://github.com/bell07/minetest-smart_inventory (fetch)
+* master 004b936 [origin/master] fix relocation of grid view button. Highlight the seach and lookup if mode is active
+
+origin	http://repo.or.cz/minetest_hbhunger (fetch)
+* master 47845f1 [origin/master] Version 0.6.0
+
+origin	https://github.com/minetest/minetest_game (fetch)
+* backport-0.4 7a4b1e0 [origin/backport-0.4] Default: Make burntimes more rational and consistent
+
