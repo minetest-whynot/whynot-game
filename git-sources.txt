@@ -37,6 +37,9 @@ origin	https://github.com/tenplus1/farming (fetch)
 origin	https://github.com/minetest-mods/lightning (fetch)
 * master 39bd36c [origin/master] Use particle glow to brighten up the lightning.
 
+origin	https://github.com/Ezhh/under_sky (fetch)
+* master a15de19 [origin/master] Add cloud removal
+
 origin	https://github.com/xeranas/weather_pack (fetch)
 * master f8e1640 [origin/master] Update README.md
 
