@@ -2,7 +2,7 @@
 local S = farming.intllib
 
 -- place trellis
-function place_grapes(itemstack, placer, pointed_thing, plantname)
+local function place_grapes(itemstack, placer, pointed_thing, plantname)
 
 	local pt = pointed_thing
 

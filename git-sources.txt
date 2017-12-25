@@ -8,7 +8,7 @@ origin	https://github.com/minetest-mods/character_creator (fetch)
 * master e139e0d [origin/master] Support for skinsdb (#11)
 
 origin	https://github.com/GunshipPenguin/sprint (fetch)
-* master cbd817f [origin/master] Fix sprinting without moving
+* master 23b9e7e [origin/master: 1 voraus] fix global variables
 
 origin	http://repo.or.cz/minetest_show_wielded_item.git (fetch)
 * master 2d4cc42 [origin/master] Initial commit + version 1.0.0
@@ -29,10 +29,11 @@ origin	https://github.com/stujones11/minetest-3d_armor (fetch)
 * master 291b34b [origin/master] Auto-refresh armor stands after clearobjects.
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
-* master 74a5387 [origin/master] Upload
+* master c11160f [origin/master: 1 voraus] fix leaked globals
 
+bell07	https://github.com/bell07/farming (fetch)
 origin	https://github.com/tenplus1/farming (fetch)
-* master ce0c3e8 [origin/master] updating to newer 0.4.16 functions
+* master 174cbca [origin/master: 1 voraus] fixes #35 - to avoid overlaps with other mods the funcions and variables should be local
 
 origin	https://github.com/minetest-mods/lightning (fetch)
 * master 39bd36c [origin/master] Use particle glow to brighten up the lightning.
@@ -41,7 +42,7 @@ origin	https://github.com/Ezhh/under_sky (fetch)
 * master a15de19 [origin/master] Add cloud removal
 
 origin	https://github.com/xeranas/weather_pack (fetch)
-* master f8e1640 [origin/master] Update README.md
+* master 15a9304 [origin/master: 1 voraus] fix leaked globals
 
 origin	https://github.com/MarkuBu/ambianceplus (fetch)
 * master 1a44714 [origin/master] Add lava and desert

@@ -7,7 +7,7 @@
 local S = farming.intllib
 
 -- place beans
-function place_beans(itemstack, placer, pointed_thing, plantname)
+local function place_beans(itemstack, placer, pointed_thing, plantname)
 
 	local pt = pointed_thing
 

@@ -173,7 +173,7 @@ minetest.register_ore({
 	y_max          = -256,
 })
 
-function check_lava (pos)
+local function check_lava(pos)
 	local name = minetest.get_node(pos).name
 	if name == "default:lava_source" or name == "default:lava_flowing" then 
 		return 1
@@ -182,7 +182,7 @@ function check_lava (pos)
 	end
 end
 
-function grow_mese_crystal_ore(pos, node)
+local function grow_mese_crystal_ore(pos, node)
 	local pos1 = {x = pos.x, y = pos.y, z = pos.z}
 	pos1.y = pos1.y - 1
 	local name = minetest.get_node(pos1).name
@@ -223,9 +223,7 @@ minetest.register_abm({
 	neighbors = {"default:obsidian", "default:lava_source"},
 	interval = 80,
 	chance = 20,
-	action = function(...)
-		grow_mese_crystal_ore(...)
-	end
+	action = grow_mese_crystal_ore,
 })
 
 minetest.register_craft({

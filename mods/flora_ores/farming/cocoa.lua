@@ -2,7 +2,7 @@
 local S = farming.intllib
 
 -- place cocoa
-function place_cocoa(itemstack, placer, pointed_thing, plantname)
+local function place_cocoa(itemstack, placer, pointed_thing, plantname)
 
 	local pt = pointed_thing
 

@@ -10,6 +10,20 @@ distributed without any warranty.
 local players = {}
 local staminaHud = {}
 
+local function setSprinting(playerName, sprinting) --Sets the state of a player (0=stopped/moving, 1=sprinting)
+	local player = minetest.get_player_by_name(playerName)
+	if players[playerName] then
+		players[playerName]["sprinting"] = sprinting
+		if sprinting == true then
+			player:set_physics_override({speed=SPRINT_SPEED,jump=SPRINT_JUMP})
+		elseif sprinting == false then
+			player:set_physics_override({speed=1.0,jump=1.0})
+		end
+		return true
+	end
+	return false
+end
+
 minetest.register_on_joinplayer(function(player)
 	local playerName = player:get_player_name()
 
@@ -109,17 +123,3 @@ minetest.register_globalstep(function(dtime)
 		end
 	end
 end)
-
-function setSprinting(playerName, sprinting) --Sets the state of a player (0=stopped/moving, 1=sprinting)
-	local player = minetest.get_player_by_name(playerName)
-	if players[playerName] then
-		players[playerName]["sprinting"] = sprinting
-		if sprinting == true then
-			player:set_physics_override({speed=SPRINT_SPEED,jump=SPRINT_JUMP})
-		elseif sprinting == false then
-			player:set_physics_override({speed=1.0,jump=1.0})
-		end
-		return true
-	end
-	return false
-end
