@@ -28,6 +28,9 @@ origin	http://repo.or.cz/minetest_hbhunger (fetch)
 origin	https://github.com/stujones11/minetest-3d_armor (fetch)
 * master 291b34b [origin/master] Auto-refresh armor stands after clearobjects.
 
+origin	https://github.com/Amaz1/flight/ (fetch)
+* master 82ddbce [origin/master] Change license to MIT
+
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
 * master c11160f [origin/master: 1 voraus] fix leaked globals
 
@@ -52,4 +55,7 @@ origin	https://github.com/minetest/minetest_game (fetch)
 
 origin	https://github.com/bell07/minetest-meseor.git (fetch)
 * master 4456298 [origin/master] Merge pull request #1 from bell07/mysetting
+
+origin	https://github.com/GreenXenith/tac_nayn (fetch)
+* master 1b3a509 [origin/master] Change LICENSE.txt
 
