@@ -49,3 +49,6 @@ origin	https://github.com/MarkuBu/ambianceplus (fetch)
 origin	https://github.com/minetest/minetest_game (fetch)
 * backport-0.4 7a4b1e0 [origin/backport-0.4] Default: Make burntimes more rational and consistent
 
+origin	https://github.com/bell07/minetest-meseor.git (fetch)
+* master 4456298 [origin/master] Merge pull request #1 from bell07/mysetting
+
