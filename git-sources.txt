@@ -25,6 +25,9 @@ origin	https://github.com/bell07/minetest-smart_inventory (fetch)
 origin	http://repo.or.cz/minetest_hbhunger (fetch)
 * master 47845f1 [origin/master] Version 0.6.0
 
+origin	https://github.com/minetest-mods/unifieddyes (fetch)
+* master 0d654ea [origin/master] Merge pull request #21 from Jat15/patch-2
+
 origin	https://github.com/stujones11/minetest-3d_armor (fetch)
 * master 291b34b [origin/master] Auto-refresh armor stands after clearobjects.
 
@@ -58,4 +61,7 @@ origin	https://github.com/bell07/minetest-meseor.git (fetch)
 
 origin	https://github.com/GreenXenith/tac_nayn (fetch)
 * master 1b3a509 [origin/master] Change LICENSE.txt
+
+origin	https://github.com/minetest-mods/homedecor_modpack (fetch)
+* master 4d9c4c2 [origin/master] Update init.lua (#400)
 
