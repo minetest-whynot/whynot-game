@@ -51,7 +51,7 @@ origin	https://github.com/xeranas/weather_pack (fetch)
 * master 15a9304 [origin/master: 1 voraus] fix leaked globals
 
 origin	https://github.com/MarkuBu/ambianceplus (fetch)
-* master 1a44714 [origin/master] Add lava and desert
+* master 2ed9879 [origin/master: 1 voraus] remove debug print
 
 origin	https://github.com/minetest/minetest_game (fetch)
 * backport-0.4 7a4b1e0 [origin/backport-0.4] Default: Make burntimes more rational and consistent

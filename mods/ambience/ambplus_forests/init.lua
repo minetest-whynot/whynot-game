@@ -71,8 +71,6 @@ minetest.register_abm({
 	
 	local snowy_biome = minetest.find_node_near(pos, 10, "default:snow") ~= nil
 	
-	print(snowy_biome)
-	
 	pine_sound_status = 0
     local daytime = minetest.get_timeofday()*24000
 
