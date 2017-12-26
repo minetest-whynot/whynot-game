@@ -54,7 +54,7 @@ function doc_addon.get_category_list()
 					local entry = doc.data.categories[category_name].entries[eid]
 					if entry.data.itemstring and
 							minetest.registered_items[entry.data.itemstring] and
-							entry.data.def == minetest.registered_items[entry.data.itemstring] then
+							(entry.data.def == minetest.registered_items[entry.data.itemstring] or entry.data.def.door) then
 						local edata = {cid = category_name, cid_data = category, eid = eid, data = entry}
 						table.insert(entries_data, edata)
 						doc_item_entries[entry.data.itemstring] = edata

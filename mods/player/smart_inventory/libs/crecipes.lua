@@ -47,41 +47,42 @@ function crecipe_class:analyze()
 				self._items[recipe_item]  = {count = 1}
 			end
 		end
-		for recipe_item, iteminfo in pairs(self._items) do
-			if recipe_item:sub(1, 6) ~= "group:" then
-				local itemname = minetest.registered_aliases[recipe_item] or recipe_item
-				if minetest.registered_items[itemname] then
-					iteminfo.items = {[itemname] = minetest.registered_items[itemname]}
-				else
-					minetest.log("[smartfs_inventory] unknown item in recipe: "..itemname.." for result "..self.out_item.name)
-					return false
-				end
+	end
+	for recipe_item, iteminfo in pairs(self._items) do
+		if recipe_item:sub(1, 6) ~= "group:" then
+			local itemname = minetest.registered_aliases[recipe_item] or recipe_item
+			if minetest.registered_items[itemname] then
+				iteminfo.items = {[itemname] = minetest.registered_items[itemname]}
 			else
-				local retitems
-				for groupname in string.gmatch(recipe_item:sub(7), '([^,]+)') do
-					if not retitems then --first entry
-						if cache.itemgroups[groupname] then
-							retitems = table.copy(cache.itemgroups[groupname])
-						else
-							minetest.log("[smartfs_inventory] unknown group description in recipe: "..recipe_item.." / "..groupname.." for result "..self.out_item.name)
-							return false
-						end
+				minetest.log("[smartfs_inventory] unknown item in recipe: "..itemname.." for result "..self.out_item.name)
+				return false
+			end
+		else
+			local retitems
+			for groupname in string.gmatch(recipe_item:sub(7), '([^,]+)') do
+				if not retitems then --first entry
+					if cache.itemgroups[groupname] then
+						retitems = table.copy(cache.itemgroups[groupname])
 					else
-						for itemname, itemdef in pairs(retitems) do
-							if not minetest.registered_items[itemname].groups[groupname] then
-								retitems[itemname] = nil
-							end
-						end
-					end
-					if not retitems or not next(retitems) then
-						minetest.log("[smartfs_inventory] no items matches group: "..recipe_item.." for result "..self.out_item.name)
+						minetest.log("[smartfs_inventory] unknown group description in recipe: "..recipe_item.." / "..groupname.." for result "..self.out_item.name)
 						return false
 					end
+				else
+					for itemname, itemdef in pairs(retitems) do
+						if not minetest.registered_items[itemname].groups[groupname] then
+							retitems[itemname] = nil
+						end
+					end
 				end
-				iteminfo.items = retitems
+				if not retitems or not next(retitems) then
+					minetest.log("[smartfs_inventory] no items matches group: "..recipe_item.." for result "..self.out_item.name)
+					return false
+				end
 			end
+			iteminfo.items = retitems
 		end
 	end
+
 	-- invalid recipe
 	if not self._items then
 		minetest.log("[smartfs_inventory] skip recipe for: "..recipe_item)
