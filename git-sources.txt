@@ -20,7 +20,7 @@ origin	https://github.com/minetest-mods/cozy (fetch)
 * master cd166a7 [origin/master] Initial checkin
 
 origin	https://github.com/bell07/minetest-smart_inventory (fetch)
-* master 004b936 [origin/master] fix relocation of grid view button. Highlight the seach and lookup if mode is active
+* master 8e1d444 [origin/master] doors workaround in revealed check. Do not check the right items table reference for doors
 
 origin	http://repo.or.cz/minetest_hbhunger (fetch)
 * master 47845f1 [origin/master] Version 0.6.0
@@ -51,7 +51,7 @@ origin	https://github.com/xeranas/weather_pack (fetch)
 * master 15a9304 [origin/master: 1 voraus] fix leaked globals
 
 origin	https://github.com/MarkuBu/ambianceplus (fetch)
-* master 2ed9879 [origin/master: 1 voraus] remove debug print
+* master e5ad9cc [origin/master] Merge pull request #2 from bell07/patch-1
 
 origin	https://github.com/minetest/minetest_game (fetch)
 * backport-0.4 7a4b1e0 [origin/backport-0.4] Default: Make burntimes more rational and consistent
@@ -64,4 +64,7 @@ origin	https://github.com/GreenXenith/tac_nayn (fetch)
 
 origin	https://github.com/minetest-mods/homedecor_modpack (fetch)
 * master 4d9c4c2 [origin/master] Update init.lua (#400)
+
+origin	https://github.com/minetest-mods/mydoors (fetch)
+* master 63aef13 [origin/master] Remove mod.conf from root folder.
 
