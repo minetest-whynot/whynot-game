@@ -25,6 +25,9 @@ origin	https://github.com/bell07/minetest-smart_inventory (fetch)
 origin	http://repo.or.cz/minetest_hbhunger (fetch)
 * master 47845f1 [origin/master] Version 0.6.0
 
+origin	https://github.com/Ezhh/abriglass (fetch)
+* master eec4fcd [origin/master] Improve cage glass
+
 origin	https://github.com/minetest-mods/unifieddyes (fetch)
 * master 0d654ea [origin/master] Merge pull request #21 from Jat15/patch-2
 
@@ -37,9 +40,8 @@ origin	https://github.com/Amaz1/flight/ (fetch)
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
 * master c11160f [origin/master: 1 voraus] fix leaked globals
 
-bell07	https://github.com/bell07/farming (fetch)
 origin	https://github.com/tenplus1/farming (fetch)
-* master 174cbca [origin/master: 1 voraus] fixes #35 - to avoid overlaps with other mods the funcions and variables should be local
+* master 38fb55f [origin/master] localize a few functions
 
 origin	https://github.com/minetest-mods/lightning (fetch)
 * master 39bd36c [origin/master] Use particle glow to brighten up the lightning.
@@ -48,7 +50,7 @@ origin	https://github.com/Ezhh/under_sky (fetch)
 * master a15de19 [origin/master] Add cloud removal
 
 origin	https://github.com/xeranas/weather_pack (fetch)
-* master 15a9304 [origin/master: 1 voraus] fix leaked globals
+* master 4b3f576 [origin/master: 2 voraus] Merge remote-tracking branch 'origin/master'
 
 origin	https://github.com/MarkuBu/ambianceplus (fetch)
 * master e5ad9cc [origin/master] Merge pull request #2 from bell07/patch-1
@@ -66,5 +68,5 @@ origin	https://github.com/minetest-mods/homedecor_modpack (fetch)
 * master 4d9c4c2 [origin/master] Update init.lua (#400)
 
 origin	https://github.com/minetest-mods/mydoors (fetch)
-* master 63aef13 [origin/master] Remove mod.conf from root folder.
+* master 54f89f3 [origin/master: 1 voraus] fix leaked globals
 
