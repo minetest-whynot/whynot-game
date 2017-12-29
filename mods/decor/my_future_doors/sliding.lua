@@ -40,7 +40,7 @@ local num = doors[i][5]
 local des = doors[i][6]
 local recipe = recipes[i]
 
-function onplace(itemstack, placer, pointed_thing)
+local function onplace(itemstack, placer, pointed_thing)
 	local pos1 = pointed_thing.above
 	local pos2 = {x=pos1.x, y=pos1.y, z=pos1.z}
 	      pos2.y = pos2.y+1
@@ -81,11 +81,11 @@ function onplace(itemstack, placer, pointed_thing)
 		return itemstack
 end
 
-function afterdestruct(pos, oldnode)
+local function afterdestruct(pos, oldnode)
 	   minetest.set_node({x=pos.x,y=pos.y+1,z=pos.z},{name="air"})
 end
 
-function rightclick(pos, node, player, itemstack, pointed_thing)
+local function rightclick(pos, node, player, itemstack, pointed_thing)
 	local timer = minetest.get_node_timer(pos)
 	local a = minetest.get_node({x=pos.x, y=pos.y, z=pos.z-1})
 	local b = minetest.get_node({x=pos.x, y=pos.y, z=pos.z+1})
@@ -115,11 +115,11 @@ function rightclick(pos, node, player, itemstack, pointed_thing)
 
 end
 
-function afterplace(pos, placer, itemstack, pointed_thing)
+local function afterplace(pos, placer, itemstack, pointed_thing)
 	   minetest.set_node({x=pos.x,y=pos.y+1,z=pos.z},{name=doord,param2=nodeu.param2})
 end
 
-function ontimer(pos, elapsed)
+local function ontimer(pos, elapsed)
 	local node = minetest.get_node(pos)
 	local a = minetest.get_node({x=pos.x, y=pos.y, z=pos.z-1})
 	local b = minetest.get_node({x=pos.x, y=pos.y, z=pos.z+1})
