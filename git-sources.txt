@@ -31,6 +31,9 @@ origin	https://github.com/Ezhh/abriglass (fetch)
 origin	https://github.com/minetest-mods/unifieddyes (fetch)
 * master 0d654ea [origin/master] Merge pull request #21 from Jat15/patch-2
 
+origin	https://github.com/Napiophelios/campfire (fetch)
+* master 400fa91 [origin/master] update for Minetest 0.5.0
+
 origin	https://github.com/stujones11/minetest-3d_armor (fetch)
 * master 291b34b [origin/master] Auto-refresh armor stands after clearobjects.
 
@@ -50,7 +53,7 @@ origin	https://github.com/Ezhh/under_sky (fetch)
 * master a15de19 [origin/master] Add cloud removal
 
 origin	https://github.com/xeranas/weather_pack (fetch)
-* master 4b3f576 [origin/master: 2 voraus] Merge remote-tracking branch 'origin/master'
+* master 7dbab2c [origin/master] Merge pull request #9 from bell07/patch-1
 
 origin	https://github.com/MarkuBu/ambianceplus (fetch)
 * master e5ad9cc [origin/master] Merge pull request #2 from bell07/patch-1

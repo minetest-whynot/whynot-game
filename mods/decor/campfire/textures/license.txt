@@ -1,0 +1,10 @@
+
+
+Textures by Napiophelios
+
+campfire_particle_1.png
+campfire_particle_2.png
+campfire_particle_3.png
+campfire_particle_4.png
+
+Licenses : Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)

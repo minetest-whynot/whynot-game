@@ -1,0 +1,25 @@
+
+
+ ===============================================
+
+Minetest 0.4 mod: fire
+
+License of media (textures and sounds)
+--------------------------------------
+Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)
+http://creativecommons.org/licenses/by-sa/3.0/
+
+Authors of media files
+-----------------------
+
+fire_small.ogg sampled from:
+  http://www.freesound.org/people/dobroide/sounds/4211/
+
+fire_basic_flame_animated.png:
+  Muadtralk
+
+  ===============================================
+
+This file has been modified (reduced gain) and renamed:
+campfire_small.ogg for this mod.
+
