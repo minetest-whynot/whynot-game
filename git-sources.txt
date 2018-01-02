@@ -28,6 +28,9 @@ origin	http://repo.or.cz/minetest_hbhunger (fetch)
 origin	https://github.com/Ezhh/abriglass (fetch)
 * master eec4fcd [origin/master] Improve cage glass
 
+origin	https://github.com/pithydon/curtain (fetch)
+* master cd30988 [origin/master] kill bfd support clean up and license change
+
 origin	https://github.com/minetest-mods/unifieddyes (fetch)
 * master 0d654ea [origin/master] Merge pull request #21 from Jat15/patch-2
 

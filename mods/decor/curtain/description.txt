@@ -1,0 +1,1 @@
+Adds curtains to minetest that roll up.
