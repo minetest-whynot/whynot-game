@@ -28,6 +28,9 @@ origin	http://repo.or.cz/minetest_hbhunger (fetch)
 origin	https://github.com/Ezhh/abriglass (fetch)
 * master eec4fcd [origin/master] Improve cage glass
 
+origin	http://repo.or.cz/minetest_dice2.git (fetch)
+* master 3e2290a [origin/master] Version 1.3 and MIT
+
 origin	https://github.com/pithydon/curtain (fetch)
 * master cd30988 [origin/master] kill bfd support clean up and license change
 

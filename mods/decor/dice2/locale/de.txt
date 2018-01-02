@@ -1,0 +1,4 @@
+White dice = Weißer Spielwürfel
+Red dice = Roter Spielwürfel
+A huge wooden dice with the numbers 1-6, just for fun. = Ein riesiger hölzerner Spielwürfel mit den Zahlen 1-6, nur zum Spaß.
+Rightclick on a placed dice to “throw” it, which rotates it randomly. = Klicken Sie mit der rechten Maustaste auf einen Spielwürfel, um ihn zu »werfen«, was ihn zufällig rotiert.
