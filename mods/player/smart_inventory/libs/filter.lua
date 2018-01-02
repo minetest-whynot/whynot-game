@@ -37,6 +37,9 @@ end
 
 filter_class.get_keyword = filter_class._get_keyword
 
+function filter_class:is_valid(group)
+	return true
+end
 
 local filter = {}
 filter.registered_filter = {}
@@ -62,7 +65,6 @@ filter.group_rename = {
 
 -- group configurations per basename
 --   true means is dimension
---   false means hide all groups with this base
 --   1 means replace the base only ("food_choco_powder" => food:choco_powder")
 filter.base_group_config = {
 	armor = true,
@@ -111,8 +113,6 @@ filter.register_filter({
 				local basegroup_config = filter.base_group_config[basename]
 				if basegroup_config == true then
 					mk = string.gsub(k, "_", ":")
-				elseif basegroup_config == false then
-					mk = nil
 				elseif basegroup_config == 1 then
 					mk = string.gsub(k, "^"..basename.."_", basename..":")
 				else
@@ -336,11 +336,13 @@ filter.register_filter({
 			end
 		end,
 		get_keyword = function(self, group)
-			if group.name ~= self.name then
-				local itemname = group.name:sub(12)
-				if minetest.registered_items[itemname] then
-					return itemname.." "..minetest.registered_items[itemname].description
-				end
+			-- not searchable by ingedient
+			return nil
+		end,
+		is_valid = function(self, groupname)
+			local itemname = groupname:sub(12)
+			if minetest.registered_items[itemname] then
+				return true
 			end
 		end
 })

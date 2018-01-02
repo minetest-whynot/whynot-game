@@ -20,7 +20,7 @@ origin	https://github.com/minetest-mods/cozy (fetch)
 * master cd166a7 [origin/master] Initial checkin
 
 origin	https://github.com/bell07/minetest-smart_inventory (fetch)
-* master 8e1d444 [origin/master] doors workaround in revealed check. Do not check the right items table reference for doors
+* master 65bbf80 [origin/master] new method filter:is_valid(), can be redefined to check if a dimension-group is valid basically to hide the ingredient:default but show ingredient:default:stick for example removed all workarounds
 
 origin	http://repo.or.cz/minetest_hbhunger (fetch)
 * master 47845f1 [origin/master] Version 0.6.0
@@ -42,6 +42,9 @@ origin	https://github.com/minetest-mods/unifieddyes (fetch)
 
 origin	https://github.com/Napiophelios/campfire (fetch)
 * master 400fa91 [origin/master] update for Minetest 0.5.0
+
+origin	http://repo.or.cz/minetest_mtg_plus.git (fetch)
+* master db8fd34 [origin/master] Fix intllib support
 
 origin	https://github.com/cdqwertz/flower_pot (fetch)
 * master 8a62a78 [origin/master] uploaded

@@ -252,7 +252,7 @@ end
 function ui_tools.get_tight_groups(cgroups)
 	local out_list = {}
 	for group1, groupdef1 in pairs(cgroups) do
-		if not string.find(group1, "ingredient:") and groupdef1.keyword then
+		if groupdef1.keyword then
 			out_list[group1] = groupdef1
 			for group2, groupdef2 in pairs(out_list) do
 				if string.len(group1) > string.len(group2) and
@@ -286,16 +286,14 @@ function ui_tools.get_list_grouped(itemtable)
 	for _, entry in ipairs(itemtable) do
 		if cache.citems[entry.item] then
 			for _, group in pairs(cache.citems[entry.item].cgroups) do
-				if cache.cgroups[group.name].keyword then
-					if not grouped[group.name] then
-						local group_info = {}
-						group_info.name = group.name
-						group_info.cgroup = cache.cgroups[group.name]
-						group_info.items = {}
-						grouped[group.name] = group_info
-					end
-					table.insert(grouped[group.name].items, entry)
+				if not grouped[group.name] then
+					local group_info = {}
+					group_info.name = group.name
+					group_info.cgroup = cache.cgroups[group.name]
+					group_info.items = {}
+					grouped[group.name] = group_info
 				end
+				table.insert(grouped[group.name].items, entry)
 			end
 		end
 	end

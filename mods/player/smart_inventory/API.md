@@ -44,6 +44,7 @@ smart_inventory.filter.register_filter({
                 check_item_by_def      = function,
                 get_description   = function,
                 get_keyword       = function,
+                is_valid     = function,
         })
 ```
   - name - unique filter name
@@ -54,7 +55,8 @@ smart_inventory.filter.register_filter({
     - key/value table -> multiple groups assignment. Values could be dimensions as above (`{a,b} results in filtername, filtername:a, filtername:b`)
     - nil -> no group assingment by this filter
   - get_description(fltobj, group) - optional - get human readable description for the dimension string (`filtername:a:b:c`)
-  - get_keyword(fltobj, group) - get string that should be used for searches or nil if the group should not be matched
+  - get_keyword(fltobj, group) - get string that should be used for searches or nil if the group should not used in for searches
+  - is_valid(fltobj, groupname) - Check if the groupname is valid. By default all groups are valid
 
  
 ### Filter Object methods

@@ -92,26 +92,27 @@ function cache.assign_to_group(group_name, itemdef, flt)
 		else
 			abs_group = rel_group
 		end
-
-		-- check if group is new, create it
-		if not cache.cgroups[abs_group] then
-			if parent_ref then
-				parent_ref.childs[abs_group] = string.sub(group_name, parent_stringpos)
+		if flt:is_valid(abs_group) then
+			-- check if group is new, create it
+			if not cache.cgroups[abs_group] then
+				if parent_ref then
+					parent_ref.childs[abs_group] = string.sub(group_name, parent_stringpos)
+				end
+				local group = {
+						name = abs_group,
+						items = {},
+						parent = parent_ref,
+						childs = {},
+					}
+				group.group_desc = flt:get_description(group)
+				group.keyword = flt:get_keyword(group)
+				cache.cgroups[abs_group] = group
 			end
-			local group = {
-					name = abs_group,
-					items = {},
-					parent = parent_ref,
-					childs = {},
-				}
-			group.group_desc = flt:get_description(group)
-			group.keyword = flt:get_keyword(group)
-			cache.cgroups[abs_group] = group
-		end
 
-		-- set relation
-		cache.cgroups[abs_group].items[itemdef.name] = itemdef
-		cache.citems[itemdef.name].cgroups[abs_group] = cache.cgroups[abs_group]
+			-- set relation
+			cache.cgroups[abs_group].items[itemdef.name] = itemdef
+			cache.citems[itemdef.name].cgroups[abs_group] = cache.cgroups[abs_group]
+		end
 	end
 end
 
