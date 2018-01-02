@@ -1,0 +1,12 @@
+default
+doors
+farming
+xpanes
+walls
+stairs
+moreblocks?
+xdecor?
+furniture?
+intllib?
+doc_items?
+awards?
