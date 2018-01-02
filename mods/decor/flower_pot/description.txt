@@ -1,0 +1,17 @@
+This mod adds some flower pots to your world.
+
+Crafting:
+Flower Pot:
+
+| C | - | C |
+| C | - | C |
+| C | C | C |
+
+	C : Clay Brick
+
+| F | D |
+
+	F : Flower Pot (empty)
+	D : Dirt/Sand
+
+created by cd2 (cdqwertz) - cdqwertz.github.io

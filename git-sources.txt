@@ -40,6 +40,9 @@ origin	https://github.com/minetest-mods/unifieddyes (fetch)
 origin	https://github.com/Napiophelios/campfire (fetch)
 * master 400fa91 [origin/master] update for Minetest 0.5.0
 
+origin	https://github.com/cdqwertz/flower_pot (fetch)
+* master 8a62a78 [origin/master] uploaded
+
 origin	https://github.com/stujones11/minetest-3d_armor (fetch)
 * master 291b34b [origin/master] Auto-refresh armor stands after clearobjects.
 
@@ -71,7 +74,7 @@ origin	https://github.com/bell07/minetest-meseor.git (fetch)
 * master 4456298 [origin/master] Merge pull request #1 from bell07/mysetting
 
 origin	https://github.com/GreenXenith/tac_nayn (fetch)
-* master 1b3a509 [origin/master] Change LICENSE.txt
+* master a715715 [origin/master: 1 voraus] avoid globals
 
 origin	https://github.com/minetest-mods/homedecor_modpack (fetch)
 * master 4d9c4c2 [origin/master] Update init.lua (#400)
