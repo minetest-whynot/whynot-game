@@ -82,6 +82,9 @@ origin	https://github.com/minetest/minetest_game (fetch)
 origin	https://github.com/bell07/minetest-meseor.git (fetch)
 * master 4456298 [origin/master] Merge pull request #1 from bell07/mysetting
 
+origin	https://github.com/tenplus1/pbj_pup (fetch)
+* master af498e6 [origin/master] simplify code
+
 origin	https://github.com/GreenXenith/tac_nayn (fetch)
 * master a715715 [origin/master: 1 voraus] avoid globals
 
