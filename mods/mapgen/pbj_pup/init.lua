@@ -71,7 +71,7 @@ minetest.register_craft({
 })
 
 -- Place Nyan or Pup with Rainbow
-function place(pos, facedir, length)
+local function place(pos, facedir, length)
 
 	if facedir > 3 then
 		facedir = 0
@@ -96,7 +96,7 @@ end
 -- Do we generate PB&J Pup and Nyan Cat's in world?
 if minetest.setting_getbool("pbj_pup_generate") ~= false then
 
-	function generate(minp, maxp, seed)
+	local function generate(minp, maxp, seed)
 
 		local height_min = -31000
 		local height_max = -32
