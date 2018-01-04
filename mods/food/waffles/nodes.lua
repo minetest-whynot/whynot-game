@@ -165,6 +165,7 @@ minetest.register_craftitem("waffles:small_waffle", {
 --Toaster and Toast--
 
 --Use homedecor toaster if detected--
+local replace_emptytoaster
 if minetest.get_modpath("homedecor") then
 
 function replace_emptytoaster(pos, node)
