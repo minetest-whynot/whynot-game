@@ -1,0 +1,15 @@
+{
+    "name": "food_sweet",
+    "description": "An expansion pack to the food mod for Minetest",
+    "keywords": [
+        "food_sweet"
+    ],
+    "homepage": "https://github.com/rubenwardy/food_sweet",
+    "forum": "http://forum.minetest.net/viewtopic.php?f=11&t=9039",
+    "screenshots": [
+        "https://cloud.githubusercontent.com/assets/51875/9275655/c362aa46-42dd-11e5-8503-116adefd9dcd.png"
+    ],
+    "authors": [
+        "rubenwardy"
+    ]
+}

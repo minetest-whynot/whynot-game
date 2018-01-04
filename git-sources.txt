@@ -82,6 +82,9 @@ origin	https://github.com/Ezhh/under_sky (fetch)
 origin	https://github.com/xeranas/weather_pack (fetch)
 * master 7dbab2c [origin/master] Merge pull request #9 from bell07/patch-1
 
+origin	https://github.com/rubenwardy/food (fetch)
+* master 3eca18a [origin/master: 1 voraus] change egg recipe to avoid overlap with lemon
+
 origin	https://github.com/MarkuBu/ambianceplus (fetch)
 * master e5ad9cc [origin/master] Merge pull request #2 from bell07/patch-1
 
@@ -102,6 +105,9 @@ origin	https://github.com/minetest-mods/homedecor_modpack (fetch)
 
 origin	https://github.com/GreenXenith/waffles (fetch)
 * master b880be8 [origin/master] added intllib support (with pot catalog files) (#3)
+
+origin	https://github.com/rubenwardy/food_sweet (fetch)
+* master 1719cf7 [origin/master] Fix intllib boilerplate code
 
 origin	https://github.com/minetest-mods/mydoors (fetch)
 * master 54f89f3 [origin/master: 1 voraus] fix leaked globals

@@ -1,0 +1,37 @@
+# template
+# Supported
+Walnut =
+Strawberry =
+Blueberry =
+Rhubarb =
+Lemon =
+
+# Cakes
+Walnut and Coffee Cake =
+Walnut and Coffee Cake Mix =
+Strawberry Cheese Cake =
+Strawberry Cheese Cake Mix =
+Blueberry Cheese Cake =
+Blueberry Cheese Cake Mix =
+Triple Chocolate Cake =
+Triple Chocolate Cake Mix =
+Wedding Cake =
+
+# Crumbles
+Rhubarb Crumble =
+Raw Rhubarb Crumble =
+
+# Cupcake and derivs
+Cupcake =
+Cupcake Mix =
+Chocolate Cupcake =
+Chocolate Cupcake Mix =
+Lemon Drizzle Cupcake =
+Fairy Cake =
+
+# Muffins
+Chocolate Chip Muffin =
+Chocolate Chip Muffin Mix =
+Blueberry Muffin =
+Blueberry Muffin Mix =
+
