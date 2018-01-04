@@ -100,6 +100,9 @@ origin	https://github.com/GreenXenith/tac_nayn (fetch)
 origin	https://github.com/minetest-mods/homedecor_modpack (fetch)
 * master 4d9c4c2 [origin/master] Update init.lua (#400)
 
+origin	https://github.com/GreenXenith/waffles (fetch)
+* master b880be8 [origin/master] added intllib support (with pot catalog files) (#3)
+
 origin	https://github.com/minetest-mods/mydoors (fetch)
 * master 54f89f3 [origin/master: 1 voraus] fix leaked globals
 

@@ -1,0 +1,1 @@
+Adds stuff to make waffles (and the waffles themsleves of course). See README.md for details.

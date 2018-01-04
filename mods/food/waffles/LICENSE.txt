@@ -1,0 +1,4 @@
+Everything is licensed as CC0.
+Textures and models by me.
+Most code by me.
+Thankyou to everyone who helped me with the code.
