@@ -34,6 +34,9 @@ origin	https://github.com/minetest-mods/realchess (fetch)
 origin	https://github.com/minetest-mods/myroofs (fetch)
 * master fe98461 [origin/master] Merge pull request #7 from AntumMT/recipe_fixes
 
+origin	https://github.com/minetest-mods/ts_furniture (fetch)
+* master af4e4aa [origin/master] Change chair recipe Avoids conflicts with homedecor
+
 origin	http://repo.or.cz/minetest_dice2.git (fetch)
 * master 3e2290a [origin/master] Version 1.3 and MIT
 
