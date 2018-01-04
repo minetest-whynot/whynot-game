@@ -1,0 +1,12 @@
+beds
+default
+doors
+stairs
+walls
+csh?
+furniture?
+mcstair?
+moreblocks?
+mymillwork?
+treasurer?
+viaduct?

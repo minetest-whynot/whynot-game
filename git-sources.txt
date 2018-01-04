@@ -37,6 +37,9 @@ origin	http://repo.or.cz/minetest_dice2.git (fetch)
 origin	https://github.com/pithydon/curtain (fetch)
 * master cd30988 [origin/master] kill bfd support clean up and license change
 
+origin	https://github.com/pithydon/princess (fetch)
+* master 92525ff [origin/master] rose bush
+
 origin	https://github.com/HybridDog/heads (fetch)
 * master 27c9b5a [origin/master] play sound positionally
 
@@ -62,7 +65,7 @@ origin	https://github.com/minetest-technic/mese_crystals (fetch)
 * master c11160f [origin/master: 1 voraus] fix leaked globals
 
 origin	https://github.com/tenplus1/farming (fetch)
-* master 38fb55f [origin/master] localize a few functions
+* master 271c171 [origin/master] soil wont change into dirt if plant above
 
 origin	https://github.com/minetest-mods/lightning (fetch)
 * master 39bd36c [origin/master] Use particle glow to brighten up the lightning.
