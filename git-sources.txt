@@ -26,7 +26,7 @@ origin	http://repo.or.cz/minetest_hbhunger (fetch)
 * master 47845f1 [origin/master] Version 0.6.0
 
 origin	https://github.com/Ezhh/abriglass (fetch)
-* master eec4fcd [origin/master] Improve cage glass
+* master 9026f00 [origin/master: 1 voraus] change recipe to avoid overlap to princess mod
 
 origin	https://github.com/minetest-mods/realchess (fetch)
 * master df78a33 [origin/master] Run luacheck and fix warnings.
