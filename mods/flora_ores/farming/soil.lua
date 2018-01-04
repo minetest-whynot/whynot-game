@@ -60,7 +60,7 @@ minetest.register_abm({
 		elseif node.name == "farming:soil_wet" then
 			minetest.set_node(pos, {name = "farming:soil"})
 
-		elseif node.name == "farming:soil" then
+		elseif node.name == "farming:soil" and minetest.get_item_group(nn, "plant") == 0 then
 			minetest.set_node(pos, {name = "default:dirt"})
 		end
 	end,

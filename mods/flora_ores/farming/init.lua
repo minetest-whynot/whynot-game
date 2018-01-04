@@ -15,7 +15,7 @@ farming.select = {
 }
 
 
-local creative_mode_cache = minetest.setting_getbool("creative_mode")
+local creative_mode_cache = minetest.settings:get_bool("creative_mode")
 
 function farming.is_creative(name)
 	return creative_mode_cache or minetest.check_player_privs(name, {creative = true})
