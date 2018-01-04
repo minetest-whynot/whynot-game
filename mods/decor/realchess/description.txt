@@ -1,0 +1,1 @@
+Play a life-like chess game (formspec-based).

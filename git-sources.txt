@@ -28,6 +28,9 @@ origin	http://repo.or.cz/minetest_hbhunger (fetch)
 origin	https://github.com/Ezhh/abriglass (fetch)
 * master eec4fcd [origin/master] Improve cage glass
 
+origin	https://github.com/minetest-mods/realchess (fetch)
+* master df78a33 [origin/master] Run luacheck and fix warnings.
+
 origin	https://github.com/minetest-mods/myroofs (fetch)
 * master fe98461 [origin/master] Merge pull request #7 from AntumMT/recipe_fixes
 
