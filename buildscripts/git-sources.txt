@@ -115,6 +115,9 @@ origin	https://github.com/petermaloney/helicopter (fetch)
 origin	https://github.com/Ezhh/handholds (fetch)
 * master ec840f0 [origin/master] Update readme
 
+origin	https://github.com/stujones11/hovercraft (fetch)
+* master 4d50e68 [origin/master] Ignore Eclipse project files
+
 origin	https://github.com/stujones11/meshnode (fetch)
 * master 4341baf [origin/master] Fix typo.
 

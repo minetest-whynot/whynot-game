@@ -1,0 +1,15 @@
+Hovercraft for Minetest [hovercraft]
+====================================
+
+Source Code: Copyright (C) 2013 Stuart Jones - LGPL
+
+Tetxures: Copyright (C) 2013 Stuart Jones - CC-BY-SA
+
+Models: Copyright (C) 2013 Stuart Jones - CC-BY-SA
+
+Sounds: freesound.org
+
+	Rocket Boost Engine Loop by qubodup - CC0
+	CARTOON-BING-LOW by kantouth - CC-BY-3.0
+	All other sounds: Copyright Stuart Jones - CC-BY-SA
+
