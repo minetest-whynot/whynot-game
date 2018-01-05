@@ -81,7 +81,7 @@ $RSYNC "$PROJ"/game_src/game.conf "$DST"/
 
 ################### Create git logfile ########################
 echo '### Update git-sources.txt'
-GIT_LOGFILE="$DST"/git-sources.txt
+GIT_LOGFILE="$DST"/buildscripts/git-sources.txt
 rm "$GIT_LOGFILE"
 touch "$GIT_LOGFILE"
 find "$SRC" -name ".git" -type d | while read repo; do
@@ -94,4 +94,4 @@ find "$SRC" -name ".git" -type d | while read repo; do
 done
 
 echo '### store used shell scripts'
-$RSYNC "$PROJ"/*.sh "$DST"
+$RSYNC "$PROJ"/*.sh "$DST"/buildscripts

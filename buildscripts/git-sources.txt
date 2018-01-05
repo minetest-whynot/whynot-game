@@ -100,6 +100,9 @@ origin	https://github.com/tenplus1/pbj_pup (fetch)
 origin	https://github.com/GreenXenith/tac_nayn (fetch)
 * master a715715 [origin/master: 1 voraus] avoid globals
 
+origin	https://github.com/stujones11/meshnode (fetch)
+* master 4341baf [origin/master] Fix typo.
+
 origin	https://github.com/minetest-mods/homedecor_modpack (fetch)
 * master 4d9c4c2 [origin/master] Update init.lua (#400)
 
