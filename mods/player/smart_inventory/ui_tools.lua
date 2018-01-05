@@ -131,7 +131,7 @@ function ui_tools.filter_by_revealed(list, playername, by_item_only)
 	if not smart_inventory.doc_items_mod then
 		return list
 	end
-
+	local revealed_items_cache = {}
 	local filtered_list = {}
 	for _, entry in ipairs(list) do
 		-- check recipes
@@ -140,7 +140,7 @@ function ui_tools.filter_by_revealed(list, playername, by_item_only)
 				cache.citems[entry.item] and
 				cache.citems[entry.item].in_output_recipe then
 			for _, recipe in ipairs(cache.citems[entry.item].in_output_recipe) do
-				if crecipes.crecipes[recipe]:is_revealed(playername) then
+				if crecipes.crecipes[recipe]:is_revealed(playername, revealed_items_cache) then
 					revealed_by_recipe = true
 					break
 				end

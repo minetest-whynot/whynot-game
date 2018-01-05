@@ -95,7 +95,7 @@ end
 -----------------------------------------------------
 -- crecipes: Check if the recipe is revealed to the player
 -----------------------------------------------------
-function crecipe_class:is_revealed(playername)
+function crecipe_class:is_revealed(playername, recursiv_checked_items)
 	local recipe_valid = true
 	for _, entry in pairs(self._items) do
 		recipe_valid = false
@@ -104,24 +104,46 @@ function crecipe_class:is_revealed(playername)
 				recipe_valid = true
 				break
 			end
+
+			if cache.citems[itemdef.name].cgroups["shape"] then -- Check shapes recursive
+				recursiv_checked_items = recursiv_checked_items or {}
+				for _, recipe in ipairs(cache.citems[itemdef.name].in_output_recipe) do
+					local crecipe = crecipes.crecipes[recipe]
+					if recursiv_checked_items[crecipe.out_item.name] == nil then
+						recursiv_checked_items[crecipe.out_item.name] = false --avoid re-recursion
+						recursiv_checked_items[crecipe.out_item.name] = crecipe:is_revealed(playername, recursiv_checked_items)
+					end
+					if recursiv_checked_items[crecipe.out_item.name] == true then
+						recipe_valid = true
+						break
+					end
+				end
+				if recipe_valid then
+					break
+				end
+			end
 		end
-		if recipe_valid == false then
-			return false
+		if not recipe_valid then
+			break
 		end
 	end
-	return true
+	return recipe_valid
 end
 
 -----------------------------------------------------
 -- crecipes: Returns recipe without groups, with replacements
 -----------------------------------------------------
-function crecipe_class:get_with_placeholder(player, inventory_tab)
+function crecipe_class:get_with_placeholder(playername, inventory_tab)
 	local recipe = table.copy(self._recipe)
 	recipe.items = table.copy(recipe.items)
+
+	local recursiv_checked_items = table.copy(inventory_tab or {})
+	self:is_revealed(playername, recursiv_checked_items) -- enhance recursiv_checked_items
+
 	for key, recipe_item in pairs(recipe.items) do
 		local item
 
-		-- Check for matching item in inventory
+		-- Check for matching item in inventory and revealed cache
 		if inventory_tab then
 			local itemcount = 0
 			for _, item_in_list in pairs(self._items[recipe_item].items) do
@@ -136,17 +158,27 @@ function crecipe_class:get_with_placeholder(player, inventory_tab)
 			end
 		end
 
-		-- second try, get any revealed item
+		-- second try, revealed by recipe item
 		if not item then
 			for _, item_in_list in pairs(self._items[recipe_item].items) do
-				if doc_addon.is_revealed_item(item_in_list.name, player) then
+				if recursiv_checked_items[item_in_list.name] then
 					item = item_in_list.name
 					break
 				end
 			end
 		end
 
-		-- third try, just get one item
+		-- third try, get any revealed item
+		if not item then
+			for _, item_in_list in pairs(self._items[recipe_item].items) do
+				if doc_addon.is_revealed_item(item_in_list.name, playername) then
+					item = item_in_list.name
+					break
+				end
+			end
+		end
+
+		-- last try, just get one item
 		if not item and self._items[recipe_item].items[1] then
 			item = self._items[recipe_item].items[1].name
 		end
@@ -254,12 +286,22 @@ end
 -----------------------------------------------------
 function crecipes.get_revealed_recipes_with_items(playername, reference_items)
 	local recipelist = {}
+	local revealed_items_cache = {}
 	for itemname, _ in pairs(reference_items) do
 		if cache.citems[itemname] and cache.citems[itemname].in_craft_recipe then
 			for _, recipe in ipairs(cache.citems[itemname].in_craft_recipe) do
 				local crecipe = crecipes.crecipes[recipe]
-				if crecipe and crecipe:is_revealed(playername) then
+				if crecipe and crecipe:is_revealed(playername, revealed_items_cache) then
 					recipelist[recipe] = crecipe
+				end
+				-- lookup one step forward for shapes
+				if cache.citems[crecipe.out_item.name].cgroups["shape"] then
+					for _, recipe2 in ipairs(cache.citems[crecipe.out_item.name].in_craft_recipe) do
+						local crecipe = crecipes.crecipes[recipe2]
+						if crecipe and crecipe:is_revealed(playername, revealed_items_cache) then
+							recipelist[recipe2] = crecipe
+						end
+					end
 				end
 			end
 		end

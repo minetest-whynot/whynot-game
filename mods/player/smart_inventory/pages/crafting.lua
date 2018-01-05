@@ -20,6 +20,7 @@ local function update_crafting_preview(state)
 	local all_recipes
 	local valid_recipes = {}
 	local recipe
+	local revealed_items_cache = {}
 
 	if listentry.recipes then -- preselected recipes (ie. craftable)
 		all_recipes = listentry.recipes
@@ -30,7 +31,7 @@ local function update_crafting_preview(state)
 	end
 
 	for _, recipe in ipairs(all_recipes) do
-		if crecipes.crecipes[recipe]:is_revealed(player) then
+		if crecipes.crecipes[recipe]:is_revealed(player, revealed_items_cache) then
 			table.insert(valid_recipes, recipe)
 		end
 	end

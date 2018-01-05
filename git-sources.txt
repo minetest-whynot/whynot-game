@@ -20,7 +20,7 @@ origin	https://github.com/minetest-mods/cozy (fetch)
 * master cd166a7 [origin/master] Initial checkin
 
 origin	https://github.com/bell07/minetest-smart_inventory (fetch)
-* master 65bbf80 [origin/master] new method filter:is_valid(), can be redefined to check if a dimension-group is valid basically to hide the ingredient:default but show ingredient:default:stick for example removed all workarounds
+* master 7000ff7 [origin/master] doc: Be less strict in reveal information for shaped items. If not revealed shape is in onther recipe, check Recursivelly if the shape could be crafted. In check for "crafteable by" look forward for next items crafteable by shaped items This change is necessary because sometimes the smart_inventory reveal function feels unusable. The change take a boost for unifieddyes dyes mixing colors and some other recipes. You do not need to craft a slab for each material to check if anything is crafteable by the slab..
 
 origin	http://repo.or.cz/minetest_hbhunger (fetch)
 * master 47845f1 [origin/master] Version 0.6.0
