@@ -109,6 +109,9 @@ origin	https://github.com/GreenXenith/tac_nayn (fetch)
 origin	https://github.com/orwell96/engrave/ (fetch)
 * master d7c01a1 [origin/master] Make the formspec a textarea when the player has the engrave_long_names privilege
 
+origin	https://github.com/Ezhh/handholds (fetch)
+* master ec840f0 [origin/master] Update readme
+
 origin	https://github.com/stujones11/meshnode (fetch)
 * master 4341baf [origin/master] Fix typo.
 
