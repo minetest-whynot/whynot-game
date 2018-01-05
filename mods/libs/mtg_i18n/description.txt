@@ -1,0 +1,1 @@
+A Minetest mod adding translations to the default game of Minetest.

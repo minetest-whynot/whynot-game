@@ -82,6 +82,12 @@ origin	https://github.com/Ezhh/under_sky (fetch)
 origin	https://github.com/xeranas/weather_pack (fetch)
 * master 7dbab2c [origin/master] Merge pull request #9 from bell07/patch-1
 
+origin	https://github.com/minetest-mods/mtg_i18n (fetch)
+* master 58395b2 [origin/master] Translated using Weblate (French)
+
+origin	https://github.com/minetest-mods/intllib (fetch)
+* master 9192771 [origin/master] Translated README to Malay.
+
 origin	https://github.com/rubenwardy/food (fetch)
 * master 3eca18a [origin/master: 1 voraus] change egg recipe to avoid overlap with lemon
 

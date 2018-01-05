@@ -14,6 +14,9 @@ echo ' ##### sync minetest_game'
 $RSYNC --exclude=modpack.txt --exclude=farming "$SRC"/minetest_game/mods/* "$DST"/mods/minetest_game
 touch "$DST"/mods/minetest_game/modpack.txt
 
+echo ' ##### sync libs'
+$RSYNC "$SRC"/libs/* "$DST"/mods/libs/
+
 echo ' ##### sync player mods'
 $RSYNC "$SRC"/player/* "$DST"/mods/player/
 
@@ -71,7 +74,6 @@ echo ' ##### sync food'
 $RSYNC "$SRC"/food_modpack/food "$DST"/mods/food/
 $RSYNC "$SRC"/food_modpack/food_basic "$DST"/mods/food/
 $RSYNC "$SRC"/food/* "$DST"/mods/food/
-
 
 ################### Game related files ########################
 echo ' ### Sync game related files'

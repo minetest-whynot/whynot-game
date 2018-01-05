@@ -1,0 +1,1624 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-08-28 21:16+0200\n"
+"PO-Revision-Date: 2017-11-14 18:47+0000\n"
+"Last-Translator: Sandor Tihanyi <stihanyi@gmail.com>\n"
+"Language-Team: Hungarian "
+"<https://hosted.weblate.org/projects/minetest/mtg_i18n/hu/>\n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.18-dev\n"
+
+#: init.lua
+msgid "Air (you hacker you!)"
+msgstr "Levegő"
+
+#: init.lua
+msgid "Simple Bed"
+msgstr "Egyszerű ágy"
+
+#: init.lua
+msgid "Fancy Bed"
+msgstr "Csinos ágy"
+
+#: init.lua
+msgid "Boat"
+msgstr "Csónak"
+
+#: init.lua
+msgid "Bones"
+msgstr "Csontok"
+
+#: init.lua
+msgid "Empty Bucket"
+msgstr "Üres vödör"
+
+#: init.lua
+msgid "Lava Bucket"
+msgstr "Láva vödör"
+
+#: init.lua
+msgid "River Water Bucket"
+msgstr "Folyó vízzel teli vödör"
+
+#: init.lua
+msgid "Water Bucket"
+msgstr "Vízzel teli vödör"
+
+#: init.lua
+msgid "Brake rail"
+msgstr "Vasút fék"
+
+#: init.lua
+msgid "Cart (Sneak+Click to pick up)"
+msgstr "Kiskocsi (Lopakodás (shift) + kattintás kell a felvevéshez)"
+
+#: init.lua
+msgid "Powered rail"
+msgstr "Sín árammal"
+
+#: init.lua
+msgid "Rail"
+msgstr "Sín"
+
+#: init.lua
+msgid "Acacia Bush Leaves"
+msgstr "Akácia bokor levelek"
+
+#: init.lua
+msgid "Acacia Bush Sapling"
+msgstr "Akácia bokor csemete"
+
+#: init.lua
+msgid "Acacia Bush Stem"
+msgstr "Akácia bokor törzs"
+
+#: init.lua
+msgid "Acacia Leaves"
+msgstr "Akácia levelek"
+
+#: init.lua
+msgid "Acacia Tree Sapling"
+msgstr "Akácia csemete"
+
+#: init.lua
+msgid "Acacia Tree"
+msgstr "Akácia fa"
+
+#: init.lua
+msgid "Acacia Wood Planks"
+msgstr "Akácia deszka"
+
+#: init.lua
+msgid "Apple"
+msgstr "Alma"
+
+#: init.lua
+msgid "Aspen Leaves"
+msgstr "Nyárfa levelek"
+
+#: init.lua
+msgid "Aspen Tree Sapling"
+msgstr "Nyárfa csemete"
+
+#: init.lua
+msgid "Aspen Tree"
+msgstr "Nyárfa"
+
+#: init.lua
+msgid "Aspen Wood Planks"
+msgstr "Nyárfa deszkák"
+
+#: init.lua
+msgid "Bronze Axe"
+msgstr "Bronz fejsze"
+
+#: init.lua
+msgid "Diamond Axe"
+msgstr "Gyémánt fejsze"
+
+#: init.lua
+msgid "Mese Axe"
+msgstr "Mese fejsze"
+
+#: init.lua
+msgid "Steel Axe"
+msgstr "Acél fejsze"
+
+#: init.lua
+msgid "Stone Axe"
+msgstr "Kő fejsze"
+
+#: init.lua
+msgid "Wooden Axe"
+msgstr "Fa fejsze"
+
+#: init.lua
+msgid "Book"
+msgstr "Könyv"
+
+#: init.lua
+msgid "Bookshelf"
+msgstr "Könyvespolc"
+
+#: init.lua
+msgid "Book With Text"
+msgstr "Könyv írással"
+
+#: init.lua
+msgid "Brick Block"
+msgstr "Tégla tömb"
+
+#: init.lua
+msgid "Bronze Block"
+msgstr "Bronz tömb"
+
+#: init.lua
+msgid "Bronze Ingot"
+msgstr "Bronz öntvény"
+
+#: init.lua
+msgid "Bush Leaves"
+msgstr "Bokor levelek"
+
+#: init.lua
+msgid "Bush Sapling"
+msgstr "Bokor csemete"
+
+#: init.lua
+msgid "Bush Stem"
+msgstr "Bokor törzs"
+
+#: init.lua
+msgid "Cactus"
+msgstr "Kaktusz"
+
+#: init.lua
+msgid "Locked Chest"
+msgstr "Zárt láda"
+
+#: init.lua
+msgid "Chest"
+msgstr "Láda"
+
+#: init.lua
+msgid "Clay Brick"
+msgstr "Agyag tömb"
+
+#: init.lua
+msgid "Clay Lump"
+msgstr "Agyag rög"
+
+#: init.lua
+msgid "Clay"
+msgstr "Agyag"
+
+#: init.lua
+msgid "Cloud"
+msgstr "Felhő"
+
+#: init.lua
+msgid "Coal Block"
+msgstr "Szén tömb"
+
+#: init.lua
+msgid "Coal Lump"
+msgstr "Szén rög"
+
+#: init.lua
+msgid "Cobblestone"
+msgstr "Macskakő"
+
+#: init.lua
+msgid "Copper Block"
+msgstr "Réz tömb"
+
+#: init.lua
+msgid "Copper Ingot"
+msgstr "Réz öntvény"
+
+#: init.lua
+msgid "Copper Lump"
+msgstr "Réz rög"
+
+#: init.lua
+msgid "Brown Coral"
+msgstr "Barna korall"
+
+#: init.lua
+msgid "Orange Coral"
+msgstr "Narancssárga korall"
+
+#: init.lua
+msgid "Coral Skeleton"
+msgstr "Korall váz"
+
+#: init.lua
+msgid "Desert Cobblestone"
+msgstr "Sivatagi kőkocka"
+
+#: init.lua
+msgid "Desert Sand"
+msgstr "Sivatagi homok"
+
+#: init.lua
+msgid "Desert Sandstone Block"
+msgstr "Sivatagi homokkő tömb"
+
+#: init.lua
+msgid "Desert Sandstone Brick"
+msgstr "Sivatagi homokkő tégla"
+
+#: init.lua
+msgid "Desert Sandstone"
+msgstr "Sivatagi homokkő"
+
+#: init.lua
+msgid "Desert Stone Block"
+msgstr "Sivatagi kő tömb"
+
+#: init.lua
+msgid "Desert Stone Brick"
+msgstr "Sivatagi kő tégla"
+
+#: init.lua
+msgid "Desert Stone"
+msgstr "Sivatagi kő"
+
+#: init.lua
+msgid "Diamond Block"
+msgstr "Gyémánt tömb"
+
+#: init.lua
+msgid "Diamond"
+msgstr "Gyémánt"
+
+#: init.lua
+msgid "Dirt"
+msgstr "Föld"
+
+#: init.lua
+msgid "Dirt with Dry Grass"
+msgstr "Föld száraz fűvel"
+
+#: init.lua
+msgid "Dirt with Grass and Footsteps"
+msgstr "Föld fűvel és lábnyomokkal"
+
+#: init.lua
+msgid "Dirt with Grass"
+msgstr "Föld fűvel"
+
+#: init.lua
+msgid "Dirt with Rainforest Litter"
+msgstr "Föld esőerdő-aljnövényzettel"
+
+#: init.lua
+msgid "Dirt with Snow"
+msgstr "Föld hóval"
+
+#: init.lua
+msgid "Dry Grass"
+msgstr "Száraz fű"
+
+#: init.lua
+msgid "Dry Shrub"
+msgstr "Száraz cserje"
+
+#: init.lua
+msgid "Acacia Fence"
+msgstr "Akácia kerítés"
+
+#: init.lua
+msgid "Aspen Fence"
+msgstr "Nyárfa kerítés"
+
+#: init.lua
+msgid "Junglewood Fence"
+msgstr "Dzsungelfa kerítés"
+
+#: init.lua
+msgid "Pine Fence"
+msgstr "Fenyő kerítés"
+
+#: init.lua
+msgid "Wooden Fence"
+msgstr "Fa kerítés"
+
+#: init.lua
+msgid "Flint"
+msgstr "Kovakő"
+
+#: init.lua
+msgid "Furnace"
+msgstr "Kemence"
+
+#: init.lua
+msgid "Glass"
+msgstr "Üveg"
+
+#: init.lua
+msgid "Gold Block"
+msgstr "Arany tömb"
+
+#: init.lua
+msgid "Gold Ingot"
+msgstr "Arany öntvény"
+
+#: init.lua
+msgid "Gold Lump"
+msgstr "Arany rög"
+
+#: init.lua
+msgid "Grass"
+msgstr "Fű"
+
+#: init.lua
+msgid "Gravel"
+msgstr "Murva"
+
+#: init.lua
+msgid "Ice"
+msgstr "Jég"
+
+#: init.lua
+msgid "Iron Lump"
+msgstr "Vas rög"
+
+#: init.lua
+msgid "Jungle Grass"
+msgstr "Dzsungel fű"
+
+#: init.lua
+msgid "Jungle Leaves"
+msgstr "Dzsungel levelek"
+
+#: init.lua
+msgid "Jungle Sapling"
+msgstr "Dzsungelfa csemete"
+
+#: init.lua
+msgid "Jungle Tree"
+msgstr "Dzsungelfa"
+
+#: init.lua
+msgid "Junglewood Planks"
+msgstr "Dzsungelfa deszka"
+
+#: init.lua
+msgid "Key"
+msgstr "Kulcs"
+
+#: init.lua
+msgid "Steel Ladder"
+msgstr "Acél létra"
+
+#: init.lua
+msgid "Wooden Ladder"
+msgstr "Fa létra"
+
+#: init.lua
+msgid "Flowing Lava"
+msgstr "Folyó láva"
+
+#: init.lua
+msgid "Lava Source"
+msgstr "Láva forrás"
+
+#: init.lua
+msgid "Leaves"
+msgstr "Levelek"
+
+#: init.lua
+msgid "Mese Crystal Fragment"
+msgstr "Mese-kristály darab"
+
+#: init.lua
+msgid "Mese Crystal"
+msgstr "Mese-kristály"
+
+#: init.lua
+msgid "Mese Lamp"
+msgstr "Mese lámpa"
+
+#: init.lua
+#, fuzzy
+msgid "Mese Post Light"
+msgstr "Mese posta lámpa"
+
+#: init.lua
+msgid "Mese Block"
+msgstr "Mese tömb"
+
+#: init.lua
+msgid "Mossy Cobblestone"
+msgstr "Mohás macskakő"
+
+#: init.lua
+msgid "Obsidian Block"
+msgstr "Obszidián tömb"
+
+#: init.lua
+msgid "Obsidian Brick"
+msgstr "Obszidián tégla"
+
+#: init.lua
+msgid "Obsidian Glass"
+msgstr "Obszidián üveg"
+
+#: init.lua
+msgid "Obsidian Shard"
+msgstr "Obszidián szilánk"
+
+#: init.lua
+msgid "Obsidian"
+msgstr "Obszidián"
+
+#: init.lua
+msgid "Paper"
+msgstr "Papír"
+
+#: init.lua
+msgid "Papyrus"
+msgstr "Papirusz"
+
+#: init.lua
+msgid "Bronze Pickaxe"
+msgstr "Bronz csákány"
+
+#: init.lua
+msgid "Diamond Pickaxe"
+msgstr "Gyémánt csákány"
+
+#: init.lua
+msgid "Mese Pickaxe"
+msgstr "Mese csákány"
+
+#: init.lua
+msgid "Steel Pickaxe"
+msgstr "Acél csákány"
+
+#: init.lua
+msgid "Stone Pickaxe"
+msgstr "Kő csákány"
+
+#: init.lua
+msgid "Wooden Pickaxe"
+msgstr "Fa csákány"
+
+#: init.lua
+msgid "Pine Needles"
+msgstr "Tűlevél"
+
+#: init.lua
+msgid "Pine Sapling"
+msgstr "Fenyő csemete"
+
+#: init.lua
+msgid "Pine Tree"
+msgstr "Fenyőfa"
+
+#: init.lua
+msgid "Pine Wood Planks"
+msgstr "Fenyő deszka"
+
+#: init.lua
+msgid "Flowing River Water"
+msgstr "Ömlő patakvíz"
+
+#: init.lua
+msgid "River Water Source"
+msgstr "Patak forrás"
+
+#: init.lua
+msgid "Sand"
+msgstr "Homok"
+
+#: init.lua
+msgid "Sandstone Block"
+msgstr "Homokkő tömb"
+
+#: init.lua
+msgid "Sandstone Brick"
+msgstr "Homokkő tégla"
+
+#: init.lua
+msgid "Sandstone"
+msgstr "Homokkő"
+
+#: init.lua
+msgid "Sapling"
+msgstr "Csemete"
+
+#: init.lua
+msgid "Bronze Shovel"
+msgstr "Bronz ásó"
+
+#: init.lua
+msgid "Diamond Shovel"
+msgstr "Gyémánt ásó"
+
+#: init.lua
+msgid "Mese Shovel"
+msgstr "Mese ásó"
+
+#: init.lua
+msgid "Steel Shovel"
+msgstr "Acél ásó"
+
+#: init.lua
+msgid "Stone Shovel"
+msgstr "Kő ásó"
+
+#: init.lua
+msgid "Wooden Shovel"
+msgstr "Fa ásó"
+
+#: init.lua
+msgid "Steel Sign"
+msgstr "Acél jelzés"
+
+#: init.lua
+msgid "Wooden Sign"
+msgstr "Fa jelzés"
+
+#: init.lua
+msgid "Silver Sand"
+msgstr "Ezüst homok"
+
+#: init.lua
+msgid "Silver Sandstone Block"
+msgstr "Ezüst homokkő tömb"
+
+#: init.lua
+msgid "Silver Sandstone Brick"
+msgstr "Ezüst homokkő tégla"
+
+#: init.lua
+msgid "Silver Sandstone"
+msgstr "Ezüst homokkő"
+
+#: init.lua
+msgid "Skeleton Key"
+msgstr "Csont kulcs"
+
+#: init.lua
+msgid "Snow Block"
+msgstr "Hó tömb"
+
+#: init.lua
+msgid "Snow"
+msgstr "Hó"
+
+#: init.lua
+msgid "Steel Block"
+msgstr "Acél tömb"
+
+#: init.lua
+msgid "Steel Ingot"
+msgstr "Acél öntvény"
+
+#: init.lua
+msgid "Stick"
+msgstr "Bot"
+
+#: init.lua
+msgid "Stone Block"
+msgstr "Kő tömb"
+
+#: init.lua
+msgid "Stone Brick"
+msgstr "Kő tégla"
+
+#: init.lua
+msgid "Stone"
+msgstr "Kő"
+
+#: init.lua
+msgid "Coal Ore"
+msgstr "Szén érc"
+
+#: init.lua
+msgid "Copper Ore"
+msgstr "Réz érc"
+
+#: init.lua
+msgid "Diamond Ore"
+msgstr "Gyémánt érc"
+
+#: init.lua
+msgid "Gold Ore"
+msgstr "Arany érc"
+
+#: init.lua
+msgid "Iron Ore"
+msgstr "Vasérc"
+
+#: init.lua
+msgid "Mese Ore"
+msgstr "Mese érc"
+
+#: init.lua
+msgid "Tin Ore"
+msgstr "Ón érc"
+
+#: init.lua
+msgid "Bronze Sword"
+msgstr "Bronz kard"
+
+#: init.lua
+msgid "Diamond Sword"
+msgstr "Gyémánt kard"
+
+#: init.lua
+msgid "Mese Sword"
+msgstr "Mese kard"
+
+#: init.lua
+msgid "Steel Sword"
+msgstr "Acél kard"
+
+#: init.lua
+msgid "Stone Sword"
+msgstr "Kő kard"
+
+#: init.lua
+msgid "Wooden Sword"
+msgstr "Fa kard"
+
+#: init.lua
+msgid "Tin Block"
+msgstr "Ón tömb"
+
+#: init.lua
+msgid "Tin Ingot"
+msgstr "Ón öntvény"
+
+#: init.lua
+msgid "Tin Lump"
+msgstr "Ón rög"
+
+#: init.lua
+msgid "Torch"
+msgstr "Fáklya"
+
+#: init.lua
+msgid "Tree"
+msgstr "Fa"
+
+#: init.lua
+msgid "Flowing Water"
+msgstr "Folyó víz"
+
+#: init.lua
+msgid "Water Source"
+msgstr "Forrás"
+
+#: init.lua
+msgid "Wooden Planks"
+msgstr "Deszka"
+
+#: init.lua
+msgid "Glass Door"
+msgstr "Üvegajtó"
+
+#: init.lua
+msgid "Obsidian Glass Door"
+msgstr "Obszidiánüveg-ajtó"
+
+#: init.lua
+msgid "Steel Door"
+msgstr "Acél ajtó"
+
+#: init.lua
+msgid "Wooden Door"
+msgstr "Fa ajtó"
+
+#: init.lua
+msgid "Acacia Fence Gate"
+msgstr "Akácia kerítéskapu"
+
+#: init.lua
+msgid "Aspen Fence Gate"
+msgstr "Nyárfa kerítéskapu"
+
+#: init.lua
+msgid "Junglewood Fence Gate"
+msgstr "Dzsungelfa kerítéskapu"
+
+#: init.lua
+msgid "Pine Fence Gate"
+msgstr "Fenyő kerítéskapu"
+
+#: init.lua
+msgid "Wooden Fence Gate"
+msgstr "Fa kerítéskapu"
+
+#: init.lua
+msgid "Hidden Door Segment"
+msgstr "Rejtett ajtórész"
+
+#: init.lua
+msgid "Trapdoor"
+msgstr "Csapóajtó"
+
+#: init.lua
+msgid "Steel Trapdoor"
+msgstr "Acél csapóajtó"
+
+#: init.lua
+msgid "Black dye"
+msgstr "Fekete festék"
+
+#: init.lua
+msgid "Blue dye"
+msgstr "Kék festék"
+
+#: init.lua
+msgid "Brown dye"
+msgstr "Barna festék"
+
+#: init.lua
+msgid "Cyan dye"
+msgstr "Türkiz festék"
+
+#: init.lua
+msgid "Dark green dye"
+msgstr "Sötétzöld festék"
+
+#: init.lua
+msgid "Dark grey dye"
+msgstr "Sötétszürke festék"
+
+#: init.lua
+msgid "Green dye"
+msgstr "Zöld festék"
+
+#: init.lua
+msgid "Grey dye"
+msgstr "Szürke festék"
+
+#: init.lua
+msgid "Magenta dye"
+msgstr "Bíbor festék"
+
+#: init.lua
+msgid "Orange dye"
+msgstr "Narancssárga festék"
+
+#: init.lua
+msgid "Pink dye"
+msgstr "Rózsaszín festék"
+
+#: init.lua
+msgid "Red dye"
+msgstr "Piros festék"
+
+#: init.lua
+msgid "Violet dye"
+msgstr "Ibolyaszín festék"
+
+#: init.lua
+msgid "White dye"
+msgstr "Fehér festék"
+
+#: init.lua
+msgid "Yellow dye"
+msgstr "Sárga festék"
+
+#: init.lua
+msgid "Bread"
+msgstr "Kenyér"
+
+#: init.lua
+msgid "Cotton"
+msgstr "Gyapot"
+
+#: init.lua
+msgid "Desert Sand Soil"
+msgstr "Sivatagi homok talaj"
+
+#: init.lua
+msgid "Wet Desert Sand Soil"
+msgstr "Nedves sivatagi homok talaj"
+
+#: init.lua
+msgid "Flour"
+msgstr "Liszt"
+
+#: init.lua
+msgid "Bronze Hoe"
+msgstr "Bronz kapa"
+
+#: init.lua
+msgid "Diamond Hoe"
+msgstr "Gyémánt kapa"
+
+#: init.lua
+msgid "Mese Hoe"
+msgstr "Mese kapa"
+
+#: init.lua
+msgid "Steel Hoe"
+msgstr "Acél kapa"
+
+#: init.lua
+msgid "Stone Hoe"
+msgstr "Kő kapa"
+
+#: init.lua
+msgid "Wooden Hoe"
+msgstr "Fa kapa"
+
+#: init.lua
+msgid "Cotton seed"
+msgstr "Gyapot mag"
+
+#: init.lua
+msgid "Wheat seed"
+msgstr "Búza mag"
+
+#: init.lua
+msgid "Soil"
+msgstr "Talaj"
+
+#: init.lua
+msgid "Wet Soil"
+msgstr "Nedves talaj"
+
+#: init.lua
+msgid "Straw"
+msgstr "Szalma"
+
+#: init.lua
+msgid "String"
+msgstr "Zsineg"
+
+#: init.lua
+msgid "Wheat"
+msgstr "Búza"
+
+#: init.lua
+msgid "Flint and Steel"
+msgstr "Kova és acél"
+
+#: init.lua
+msgid "Permanent Flame"
+msgstr "Állandó láng"
+
+#: init.lua
+msgid "White dandelion"
+msgstr "Fehér pitypang"
+
+#: init.lua
+msgid "Yellow Dandelion"
+msgstr "Sárga pitypang"
+
+#: init.lua
+msgid "Blue Geranium"
+msgstr "Kék muskátli"
+
+#: init.lua
+msgid "Brown Mushroom"
+msgstr "Barna gomba"
+
+#: init.lua
+msgid "Red Mushroom"
+msgstr "Piros gomba"
+
+#: init.lua
+msgid "Rose"
+msgstr "Rózsa"
+
+#: init.lua
+msgid "Orange Tulip"
+msgstr "Narancssárga tulipán"
+
+#: init.lua
+msgid "Viola"
+msgstr "Ibolya"
+
+#: init.lua
+msgid "Waterlily"
+msgstr "Tavirózsa"
+
+#: init.lua
+#, fuzzy
+msgid "Ignore (you hacker you!)"
+msgstr "Figyelmen kívül hagy"
+
+#: init.lua
+msgid "Screwdriver (left-click rotates face, right-click rotates axis)"
+msgstr ""
+"Csavarhúzó (bal-klikk forgatja szemből, jobb klikk a forgatási tengely "
+"váltáshoz)"
+
+#: init.lua
+msgid "Acacia Wood Slab"
+msgstr "Akácia lap"
+
+#: init.lua
+msgid "Aspen Wood Slab"
+msgstr "Nyárfa lap"
+
+#: init.lua
+msgid "Brick Slab"
+msgstr "Tégla lap"
+
+#: init.lua
+msgid "Bronze Block Slab"
+msgstr "bronz lap"
+
+#: init.lua
+msgid "Cobblestone Slab"
+msgstr "Macskakő lap"
+
+#: init.lua
+msgid "Copper Block Slab"
+msgstr "Réz lap"
+
+#: init.lua
+msgid "Desert Cobblestone Slab"
+msgstr "Sivatagi macskakő lap"
+
+#: init.lua
+msgid "Desert Sandstone Block Slab"
+msgstr "Sivatagi homokkő tömb lap"
+
+#: init.lua
+msgid "Desert Sandstone Brick Slab"
+msgstr "Sivatagi homok tégla lap"
+
+#: init.lua
+msgid "Desert Sandstone Slab"
+msgstr "Sivatagi homokkő lap"
+
+#: init.lua
+msgid "Desert Stone Block Slab"
+msgstr "Sivatagi homok tömb lap"
+
+#: init.lua
+msgid "Desert Stone Brick Slab"
+msgstr "Sivatagi kő tégla lap"
+
+#: init.lua
+msgid "Desert Stone Slab"
+msgstr "Sivatagi kő lap"
+
+#: init.lua
+msgid "Gold Block Slab"
+msgstr "Arany tömb lap"
+
+#: init.lua
+msgid "Ice Slab"
+msgstr "Jég lap"
+
+#: init.lua
+msgid "Jungle Wood Slab"
+msgstr "Dzsungelfa lap"
+
+#: init.lua
+msgid "Mossy Cobblestone Slab"
+msgstr "Mohos macskakő lap"
+
+#: init.lua
+msgid "Obsidian Block Slab"
+msgstr "Obszidián tömb lap"
+
+#: init.lua
+msgid "Obsidian Brick Slab"
+msgstr "Obszidián tégla lap"
+
+#: init.lua
+msgid "Obsidian Slab"
+msgstr "Obszidián lap"
+
+#: init.lua
+msgid "Pine Wood Slab"
+msgstr "Fenyő deszka lap"
+
+#: init.lua
+msgid "Sandstone Block Slab"
+msgstr "Homokkő tömb lap"
+
+#: init.lua
+msgid "Sandstone Brick Slab"
+msgstr "Homokkő tégla lap"
+
+#: init.lua
+msgid "Sandstone Slab"
+msgstr "Homokkő lap"
+
+#: init.lua
+msgid "Silver Sandstone Block Slab"
+msgstr "Ezüst homokkő tömb lap"
+
+#: init.lua
+msgid "Silver Sandstone Brick Slab"
+msgstr "Ezüst homokkő tégla lap"
+
+#: init.lua
+msgid "Silver Sandstone Slab"
+msgstr "Ezüst homokkő lap"
+
+#: init.lua
+msgid "Snow Block Slab"
+msgstr "Hó tömb lap"
+
+#: init.lua
+msgid "Steel Block Slab"
+msgstr "Acél tömb lap"
+
+#: init.lua
+msgid "Stone Block Slab"
+msgstr "Kő tömb lap"
+
+#: init.lua
+msgid "Stone Brick Slab"
+msgstr "Kő tégla lap"
+
+#: init.lua
+msgid "Stone Slab"
+msgstr "Kő lap"
+
+#: init.lua
+msgid "Straw Slab"
+msgstr "Szalma lap"
+
+#: init.lua
+msgid "Tin Block Slab"
+msgstr "Ón tömb lap"
+
+#: init.lua
+msgid "Wooden Slab"
+msgstr "Fa lap"
+
+#: init.lua
+msgid "Acacia Wood Stair"
+msgstr "Akácia falépcső"
+
+#: init.lua
+msgid "Aspen Wood Stair"
+msgstr "Nyárfa lépcső"
+
+#: init.lua
+msgid "Brick Stair"
+msgstr "Tégla lépcső"
+
+#: init.lua
+msgid "Bronze Block Stair"
+msgstr "Bronz lépcső"
+
+#: init.lua
+msgid "Cobblestone Stair"
+msgstr "Macskakő lépcső"
+
+#: init.lua
+msgid "Copper Block Stair"
+msgstr "Réz lépcső"
+
+#: init.lua
+msgid "Desert Cobblestone Stair"
+msgstr "Sivatagi macskakő lépcső"
+
+#: init.lua
+msgid "Desert Sandstone Block Stair"
+msgstr "Sivatagi homokkő tömb lépcső"
+
+#: init.lua
+msgid "Desert Sandstone Brick Stair"
+msgstr "Sivatagi homokkő téglalépcső"
+
+#: init.lua
+msgid "Desert Sandstone Stair"
+msgstr "Sivatagi homokkő lépcső"
+
+#: init.lua
+msgid "Desert Stone Block Stair"
+msgstr "Sivatagi kő tömb lépcső"
+
+#: init.lua
+msgid "Desert Stone Brick Stair"
+msgstr "Sivatagi kő tégla lépcső"
+
+#: init.lua
+msgid "Desert Stone Stair"
+msgstr "Sivatagi kő lépcső"
+
+#: init.lua
+msgid "Gold Block Stair"
+msgstr "Arany lépcső"
+
+#: init.lua
+msgid "Ice Stair"
+msgstr "Jég lépcső"
+
+#: init.lua
+msgid "Jungle Wood Stair"
+msgstr "Dzsungelfa lépcső"
+
+#: init.lua
+msgid "Mossy Cobblestone Stair"
+msgstr "Mohos macskakő lépcső"
+
+#: init.lua
+msgid "Obsidian Block Stair"
+msgstr "Obszidián tömb lépcső"
+
+#: init.lua
+msgid "Obsidian Brick Stair"
+msgstr "Obszidián tégla lépcső"
+
+#: init.lua
+msgid "Obsidian Stair"
+msgstr "Obszidián lépcső"
+
+#: init.lua
+msgid "Pine Wood Stair"
+msgstr "Fenyőfa lépcső"
+
+#: init.lua
+msgid "Sandstone Block Stair"
+msgstr "Homokkő tömb lépcső"
+
+#: init.lua
+msgid "Sandstone Brick Stair"
+msgstr "Homokkő tégla lépcső"
+
+#: init.lua
+msgid "Sandstone Stair"
+msgstr "Homokkő lépcső"
+
+#: init.lua
+msgid "Silver Sandstone Block Stair"
+msgstr "Ezüst homokkő tömb lépcső"
+
+#: init.lua
+msgid "Silver Sandstone Brick Stair"
+msgstr "Ezüst homokkő tégla lépcső"
+
+#: init.lua
+msgid "Silver Sandstone Stair"
+msgstr "Ezüst homokkő lépcső"
+
+#: init.lua
+msgid "Snow Block Stair"
+msgstr "Hótömb lépcső"
+
+#: init.lua
+msgid "Steel Block Stair"
+msgstr "Acél lépcső"
+
+#: init.lua
+msgid "Stone Block Stair"
+msgstr "Kő tömb lépcső"
+
+#: init.lua
+msgid "Stone Brick Stair"
+msgstr "Kő tégla lépcső"
+
+#: init.lua
+msgid "Stone Stair"
+msgstr "Kő lépcső"
+
+#: init.lua
+msgid "Straw Stair"
+msgstr "Szalma lépcső"
+
+#: init.lua
+msgid "Tin Block Stair"
+msgstr "Ón tömb lépcső"
+
+#: init.lua
+msgid "Wooden Stair"
+msgstr "Fa lépcső"
+
+#: init.lua
+msgid "Acacia Wood Stair Inner"
+msgstr "Akácia lépcső belső"
+
+#: init.lua
+msgid "Aspen Wood Stair Inner"
+msgstr "Nyárfa lépcső belső"
+
+#: init.lua
+msgid "Brick Stair Inner"
+msgstr "Tégla lépcső belső"
+
+#: init.lua
+msgid "Bronze Block Stair Inner"
+msgstr "Bronz tömb lépcső belső"
+
+#: init.lua
+msgid "Cobblestone Stair Inner"
+msgstr "Macskakő lépcső belső"
+
+#: init.lua
+msgid "Copper Block Stair Inner"
+msgstr "Réz tömb lépcső belső"
+
+#: init.lua
+msgid "Desert Cobblestone Stair Inner"
+msgstr "Sivatagi macskakő lépcső belső"
+
+#: init.lua
+msgid "Desert Sandstone Block Stair Inner"
+msgstr "Sivatagi homokkő tömb lépcső belső"
+
+#: init.lua
+msgid "Desert Sandstone Brick Stair Inner"
+msgstr "Sivatagi homokkő tégla lépcső belső"
+
+#: init.lua
+msgid "Desert Sandstone Stair Inner"
+msgstr "Sivatagi homokkő lépcső belső"
+
+#: init.lua
+msgid "Desert Stone Block Stair Inner"
+msgstr "Sivatagi kő tömb lépcső belső"
+
+#: init.lua
+msgid "Desert Stone Brick Stair Inner"
+msgstr "Sivatagi kőtégla lépcső belső"
+
+#: init.lua
+msgid "Desert Stone Stair Inner"
+msgstr "Sivatagi kő lépcső belső"
+
+#: init.lua
+msgid "Gold Block Stair Inner"
+msgstr "Arany tömb lépcső belső"
+
+#: init.lua
+msgid "Ice Stair Inner"
+msgstr "Jég lépcső belső"
+
+#: init.lua
+msgid "Jungle Wood Stair Inner"
+msgstr "Dzsungelfa lépcső belső"
+
+#: init.lua
+msgid "Mossy Cobblestone Stair Inner"
+msgstr "Mohos macskakő lépcső belső"
+
+#: init.lua
+msgid "Obsidian Block Stair Inner"
+msgstr "Obszidián tömb lépcső belső"
+
+#: init.lua
+msgid "Obsidian Brick Stair Inner"
+msgstr "Obszidián tégla lépcső belső"
+
+#: init.lua
+msgid "Obsidian Stair Inner"
+msgstr "Obszidián lépcső belső"
+
+#: init.lua
+msgid "Pine Wood Stair Inner"
+msgstr "Fenyőfa lépcső belső"
+
+#: init.lua
+msgid "Sandstone Block Stair Inner"
+msgstr "Homokkő tömb lépcső belső"
+
+#: init.lua
+msgid "Sandstone Brick Stair Inner"
+msgstr "Homokkő tégla lépcső belső"
+
+#: init.lua
+msgid "Sandstone Stair Inner"
+msgstr "Homokkő lépcső belső"
+
+#: init.lua
+msgid "Silver Sandstone Block Stair Inner"
+msgstr "Ezüst homokkő tömb lépcső belső"
+
+#: init.lua
+msgid "Silver Sandstone Brick Stair Inner"
+msgstr "Ezüst homokkő tégla lépcső belső"
+
+#: init.lua
+msgid "Silver Sandstone Stair Inner"
+msgstr "Ezüst homokkő lépcső belső"
+
+#: init.lua
+msgid "Snow Block Stair Inner"
+msgstr "Hótömb lépcső belső"
+
+#: init.lua
+msgid "Steel Block Stair Inner"
+msgstr "Acéltömb lépcső belső"
+
+#: init.lua
+msgid "Stone Block Stair Inner"
+msgstr "Kőtömb lépcső belső"
+
+#: init.lua
+msgid "Stone Brick Stair Inner"
+msgstr "Kőtégla lépcső belső"
+
+#: init.lua
+msgid "Stone Stair Inner"
+msgstr "Kő lépcső belső"
+
+#: init.lua
+msgid "Straw Stair Inner"
+msgstr "Szalma lépcső belső"
+
+#: init.lua
+msgid "Tin Block Stair Inner"
+msgstr "Ón tömb lépcső belső"
+
+#: init.lua
+msgid "Wooden Stair Inner"
+msgstr "Fa lépcső belső"
+
+#: init.lua
+msgid "Acacia Wood Stair Outer"
+msgstr "Akácia lépcső külső"
+
+#: init.lua
+msgid "Aspen Wood Stair Outer"
+msgstr "Nyárfa lépcső külső"
+
+#: init.lua
+msgid "Brick Stair Outer"
+msgstr "Tégla lépcső külső"
+
+#: init.lua
+msgid "Bronze Block Stair Outer"
+msgstr "Bronz tégla lépcső külső"
+
+#: init.lua
+msgid "Cobblestone Stair Outer"
+msgstr "Macskakő lépcső külső"
+
+#: init.lua
+msgid "Copper Block Stair Outer"
+msgstr "Réz tömb lépcső külső"
+
+#: init.lua
+msgid "Desert Cobblestone Stair Outer"
+msgstr "Sivatagi macskakő lépcső külső"
+
+#: init.lua
+msgid "Desert Sandstone Block Stair Outer"
+msgstr "Sivatagi homokkő tömb lépcső külső"
+
+#: init.lua
+msgid "Desert Sandstone Brick Stair Outer"
+msgstr "Sivatagi homokkő tégla lépcső külső"
+
+#: init.lua
+msgid "Desert Sandstone Stair Outer"
+msgstr "Sivatagi homokkő lépcső külső"
+
+#: init.lua
+msgid "Desert Stone Block Stair Outer"
+msgstr "Sivatagi kő tömb lépcső külső"
+
+#: init.lua
+msgid "Desert Stone Brick Stair Outer"
+msgstr "Sivatagi kő tégla lépcső külső"
+
+#: init.lua
+msgid "Desert Stone Stair Outer"
+msgstr "Sivatagi kő lépcső külső"
+
+#: init.lua
+msgid "Gold Block Stair Outer"
+msgstr "Arany tömb lépcső külső"
+
+#: init.lua
+msgid "Ice Stair Outer"
+msgstr "Jég lépcső külső"
+
+#: init.lua
+msgid "Jungle Wood Stair Outer"
+msgstr "Dzsungelfa lépcső külső"
+
+#: init.lua
+msgid "Mossy Cobblestone Stair Outer"
+msgstr "Mohás macskakő lépcső külső"
+
+#: init.lua
+msgid "Obsidian Block Stair Outer"
+msgstr "Obszidián tömb lépcső külső"
+
+#: init.lua
+msgid "Obsidian Brick Stair Outer"
+msgstr "Obszidián tégla lépcső külső"
+
+#: init.lua
+msgid "Obsidian Stair Outer"
+msgstr "Obszidián lépcső külső"
+
+#: init.lua
+msgid "Pine Wood Stair Outer"
+msgstr "Fenyőfa lépcső külső"
+
+#: init.lua
+msgid "Sandstone Block Stair Outer"
+msgstr "Homokkő tömb lépcső külső"
+
+#: init.lua
+msgid "Sandstone Brick Stair Outer"
+msgstr "Homokkő tégla lépcső külső"
+
+#: init.lua
+msgid "Sandstone Stair Outer"
+msgstr "Homokkő lépcső külső"
+
+#: init.lua
+msgid "Silver Sandstone Block Stair Outer"
+msgstr "Ezüst homokkő tömb lépcső külső"
+
+#: init.lua
+msgid "Silver Sandstone Brick Stair Outer"
+msgstr "Ezüst homokkő tégla lépcső külső"
+
+#: init.lua
+msgid "Silver Sandstone Stair Outer"
+msgstr "Ezüst homokkő lépcső külső"
+
+#: init.lua
+msgid "Snow Block Stair Outer"
+msgstr "Hótömb lépcső külső"
+
+#: init.lua
+msgid "Steel Block Stair Outer"
+msgstr "Acél tömb lépcső külső"
+
+#: init.lua
+msgid "Stone Block Stair Outer"
+msgstr "Kőtömb lépcső külső"
+
+#: init.lua
+msgid "Stone Brick Stair Outer"
+msgstr "Kő tégla lépcső külső"
+
+#: init.lua
+msgid "Stone Stair Outer"
+msgstr "Kő lépcső külső"
+
+#: init.lua
+msgid "Straw Stair Outer"
+msgstr "Szalma lépcső külső"
+
+#: init.lua
+msgid "Tin Block Stair Outer"
+msgstr "Bádog tömb lépcső külső"
+
+#: init.lua
+msgid "Wooden Stair Outer"
+msgstr "Fa lépcső külső"
+
+#: init.lua
+msgid "Gun Powder"
+msgstr "Puskapor"
+
+#: init.lua
+msgid "TNT"
+msgstr "TNT"
+
+#: init.lua
+msgid "Unknown Item"
+msgstr "Ismeretlen tárgy"
+
+#: init.lua
+msgid "Drinking Glass (empty)"
+msgstr "Üvegpohár (üres)"
+
+#: init.lua
+msgid "Glass Bottle (empty)"
+msgstr "Üvegpalack (üres)"
+
+#: init.lua
+msgid "Pile of Glass Fragments"
+msgstr "Üvegszilánk halom"
+
+#: init.lua
+msgid "Vessels Shelf"
+msgstr "Edény polc"
+
+#: init.lua
+msgid "Heavy Steel Bottle (empty)"
+msgstr "Nehéz fémpalack (üres)"
+
+#: init.lua
+msgid "Cobblestone Wall"
+msgstr "Macskakő fal"
+
+#: init.lua
+msgid "Desert Cobblestone Wall"
+msgstr "Sivatagi macskakő fal"
+
+#: init.lua
+msgid "Mossy Cobblestone Wall"
+msgstr "Mohás macskakő fal"
+
+#: init.lua
+msgid "Black Wool"
+msgstr "Fekete gyapjú"
+
+#: init.lua
+msgid "Blue Wool"
+msgstr "Kék gyapjú"
+
+#: init.lua
+msgid "Brown Wool"
+msgstr "Barna gyapjú"
+
+#: init.lua
+msgid "Cyan Wool"
+msgstr "Türkiz gyapjú"
+
+#: init.lua
+msgid "Dark Green Wool"
+msgstr "Sötétzöld gyapjú"
+
+#: init.lua
+msgid "Dark Grey Wool"
+msgstr "Sötétszürke gyapjú"
+
+#: init.lua
+msgid "Green Wool"
+msgstr "Zöld gyapjú"
+
+#: init.lua
+msgid "Grey Wool"
+msgstr "Szürke gyapjú"
+
+#: init.lua
+msgid "Magenta Wool"
+msgstr "Bíbor gyapjú"
+
+#: init.lua
+msgid "Orange Wool"
+msgstr "Narancssárga gyapjú"
+
+#: init.lua
+msgid "Pink Wool"
+msgstr "Rózsaszín gyapjú"
+
+#: init.lua
+msgid "Red Wool"
+msgstr "Piros gyapjú"
+
+#: init.lua
+msgid "Violet Wool"
+msgstr "Ibolyaszín gyapjú"
+
+#: init.lua
+msgid "White Wool"
+msgstr "Fehér gyapjú"
+
+#: init.lua
+msgid "Yellow Wool"
+msgstr "Sárga gyapjú"
+
+#: init.lua
+msgid "Iron bar"
+msgstr "Vas rúd"
+
+#: init.lua
+msgid "Glass Pane"
+msgstr "Üvegtábla"
+
+#: init.lua
+msgid "Nyan Cat Rainbow"
+msgstr "Nyan macska szivárvány"
+
+#: init.lua
+msgid "Nyan Cat"
+msgstr "Nyan macska"

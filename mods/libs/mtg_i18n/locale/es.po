@@ -1,0 +1,1692 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-08-28 21:16+0200\n"
+"PO-Revision-Date: 2017-11-02 10:49+0000\n"
+"Last-Translator: David Girón <contacto@duhowpi.net>\n"
+"Language-Team: Spanish "
+"<https://hosted.weblate.org/projects/minetest/mtg_i18n/es/>\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.17\n"
+
+#: init.lua
+msgid "Air (you hacker you!)"
+msgstr "Aire (tu hacker tu!)"
+
+#: init.lua
+msgid "Simple Bed"
+msgstr "Cama Simple"
+
+#: init.lua
+msgid "Fancy Bed"
+msgstr "Cama Sofisticada"
+
+#: init.lua
+msgid "Boat"
+msgstr "Bote"
+
+#: init.lua
+msgid "Bones"
+msgstr "Huesos"
+
+#: init.lua
+msgid "Empty Bucket"
+msgstr "Balde Vacio"
+
+#: init.lua
+msgid "Lava Bucket"
+msgstr "Balde Con Lava"
+
+#: init.lua
+msgid "River Water Bucket"
+msgstr "Balde con Agua de Rio"
+
+#: init.lua
+msgid "Water Bucket"
+msgstr "Balde con Agua"
+
+#: init.lua
+msgid "Brake rail"
+msgstr "Rail de Freno"
+
+#: init.lua
+msgid "Cart (Sneak+Click to pick up)"
+msgstr "Vagoneta (Agacharse+Click para recoger)"
+
+#: init.lua
+msgid "Powered rail"
+msgstr "Rail Energizado"
+
+#: init.lua
+msgid "Rail"
+msgstr "Raíl"
+
+#: init.lua
+msgid "Acacia Bush Leaves"
+msgstr "Hojas de Arbusto de Acacia"
+
+#: init.lua
+msgid "Acacia Bush Sapling"
+msgstr "Retoño de Arbusto de Acacia"
+
+#: init.lua
+msgid "Acacia Bush Stem"
+msgstr "Tallo de Arbusto de Acacia"
+
+#: init.lua
+msgid "Acacia Leaves"
+msgstr "Hojas de Acacia"
+
+#: init.lua
+msgid "Acacia Tree Sapling"
+msgstr "Retoño de Arbol de Acacia"
+
+#: init.lua
+msgid "Acacia Tree"
+msgstr "Arbol de Acacia"
+
+#: init.lua
+msgid "Acacia Wood Planks"
+msgstr "Tablas de Madera de Acacia"
+
+#: init.lua
+msgid "Apple"
+msgstr "Manzana"
+
+#: init.lua
+msgid "Aspen Leaves"
+msgstr "Hojas de Alamo"
+
+#: init.lua
+msgid "Aspen Tree Sapling"
+msgstr "Retoño de Arbol de Alamo"
+
+#: init.lua
+msgid "Aspen Tree"
+msgstr "Arbol de Alamo"
+
+#: init.lua
+msgid "Aspen Wood Planks"
+msgstr "Tablas de Madera de Alamo"
+
+#: init.lua
+msgid "Bronze Axe"
+msgstr "Hacha de Bronce"
+
+#: init.lua
+msgid "Diamond Axe"
+msgstr "Hacha de Diamante"
+
+#: init.lua
+msgid "Mese Axe"
+msgstr "Hacha de Mese"
+
+#: init.lua
+msgid "Steel Axe"
+msgstr "Hacha de Acero"
+
+#: init.lua
+msgid "Stone Axe"
+msgstr "Hacha de Piedra"
+
+#: init.lua
+msgid "Wooden Axe"
+msgstr "Hacha de Madera"
+
+#: init.lua
+msgid "Book"
+msgstr "Libro"
+
+#: init.lua
+msgid "Bookshelf"
+msgstr "Libreria"
+
+#: init.lua
+msgid "Book With Text"
+msgstr "Libro Con Texto"
+
+#: init.lua
+msgid "Brick Block"
+msgstr "Bloque de Ladrillo"
+
+#: init.lua
+msgid "Bronze Block"
+msgstr "Bloque de Bronce"
+
+#: init.lua
+msgid "Bronze Ingot"
+msgstr "Lingote de Bronce"
+
+#: init.lua
+msgid "Bush Leaves"
+msgstr "Hojas de Arbusto"
+
+#: init.lua
+msgid "Bush Sapling"
+msgstr "Retoño de Arbusto"
+
+#: init.lua
+msgid "Bush Stem"
+msgstr "Tallo de Arbusto"
+
+#: init.lua
+msgid "Cactus"
+msgstr "Cactus"
+
+#: init.lua
+msgid "Locked Chest"
+msgstr "Cofre Bloqueado"
+
+#: init.lua
+msgid "Chest"
+msgstr "Cofre"
+
+#: init.lua
+msgid "Clay Brick"
+msgstr "Bloque de Arcilla"
+
+#: init.lua
+msgid "Clay Lump"
+msgstr "Pedazo de Arcilla"
+
+#: init.lua
+msgid "Clay"
+msgstr "Arcilla"
+
+#: init.lua
+msgid "Cloud"
+msgstr "Nube"
+
+#: init.lua
+msgid "Coal Block"
+msgstr "Bloque de Carbon"
+
+#: init.lua
+msgid "Coal Lump"
+msgstr "Pedazo de Carbon"
+
+#: init.lua
+msgid "Cobblestone"
+msgstr "Adoquin"
+
+#: init.lua
+msgid "Copper Block"
+msgstr "Bloque de Cobre"
+
+#: init.lua
+msgid "Copper Ingot"
+msgstr "Lingote de Cobre"
+
+#: init.lua
+msgid "Copper Lump"
+msgstr "Pedazo de Cobre"
+
+#: init.lua
+msgid "Brown Coral"
+msgstr "Coral Cafe"
+
+#: init.lua
+msgid "Orange Coral"
+msgstr "Coral Naranja"
+
+#: init.lua
+msgid "Coral Skeleton"
+msgstr "Esqueleto Coral"
+
+#: init.lua
+msgid "Desert Cobblestone"
+msgstr "Adoquin del Desierto"
+
+#: init.lua
+msgid "Desert Sand"
+msgstr "Arena del Desierto"
+
+#: init.lua
+msgid "Desert Sandstone Block"
+msgstr "Bloque de Piedra Arenosa del Desierto"
+
+#: init.lua
+msgid "Desert Sandstone Brick"
+msgstr "Ladrillo de Piedra Arenosa del Desierto"
+
+#: init.lua
+msgid "Desert Sandstone"
+msgstr "Piedra Arenosa del Desierto"
+
+#: init.lua
+msgid "Desert Stone Block"
+msgstr "Bloque de Piedra del Desierto"
+
+#: init.lua
+msgid "Desert Stone Brick"
+msgstr "Bloque de Piedra del Desierto"
+
+#: init.lua
+msgid "Desert Stone"
+msgstr "Piedra del Desierto"
+
+#: init.lua
+msgid "Diamond Block"
+msgstr "Bloque de Diamante"
+
+#: init.lua
+msgid "Diamond"
+msgstr "Diamante"
+
+#: init.lua
+msgid "Dirt"
+msgstr "Tierra"
+
+#: init.lua
+msgid "Dirt with Dry Grass"
+msgstr "Tierra con Pasto Seco"
+
+#: init.lua
+msgid "Dirt with Grass and Footsteps"
+msgstr "Tierra con Pasto y Pisadas"
+
+#: init.lua
+msgid "Dirt with Grass"
+msgstr "Tierra con Pasto"
+
+#: init.lua
+msgid "Dirt with Rainforest Litter"
+msgstr "Tierra con Basura de Selva Tropical"
+
+#: init.lua
+msgid "Dirt with Snow"
+msgstr "Tierra con Nieve"
+
+#: init.lua
+msgid "Dry Grass"
+msgstr "Pasto Seco"
+
+#: init.lua
+msgid "Dry Shrub"
+msgstr "Arbusto Seco"
+
+#: init.lua
+msgid "Acacia Fence"
+msgstr "Cerca de Acacia"
+
+#: init.lua
+msgid "Aspen Fence"
+msgstr "Cerca de Alamo"
+
+#: init.lua
+msgid "Junglewood Fence"
+msgstr "Cerca de Madera de Jungla"
+
+#: init.lua
+msgid "Pine Fence"
+msgstr "Cerca de Pino"
+
+#: init.lua
+msgid "Wooden Fence"
+msgstr "Cerca de Madera"
+
+#: init.lua
+msgid "Flint"
+msgstr "Pedernal"
+
+#: init.lua
+msgid "Furnace"
+msgstr "Horno"
+
+#: init.lua
+msgid "Glass"
+msgstr "Vidrio"
+
+#: init.lua
+msgid "Gold Block"
+msgstr "Bloque de Oro"
+
+#: init.lua
+msgid "Gold Ingot"
+msgstr "Lingote de Oro"
+
+#: init.lua
+msgid "Gold Lump"
+msgstr "Pedazo de Oro"
+
+#: init.lua
+msgid "Grass"
+msgstr "Pasto"
+
+#: init.lua
+msgid "Gravel"
+msgstr "Gravilla"
+
+#: init.lua
+msgid "Ice"
+msgstr "Hielo"
+
+#: init.lua
+msgid "Iron Lump"
+msgstr "Pedazo de Hierro"
+
+#: init.lua
+msgid "Jungle Grass"
+msgstr "Pasto de Jungla"
+
+#: init.lua
+msgid "Jungle Leaves"
+msgstr "Hojas de Jungla"
+
+#: init.lua
+msgid "Jungle Sapling"
+msgstr "Retoño de Jungla"
+
+#: init.lua
+msgid "Jungle Tree"
+msgstr "Arbol de Jungla"
+
+#: init.lua
+msgid "Junglewood Planks"
+msgstr "Tablas de Madera de Jungla"
+
+#: init.lua
+msgid "Key"
+msgstr "Llave"
+
+#: init.lua
+msgid "Steel Ladder"
+msgstr "Escalera de Acero"
+
+#: init.lua
+msgid "Wooden Ladder"
+msgstr "Escalera de Madera"
+
+#: init.lua
+msgid "Flowing Lava"
+msgstr "Fluido de Lava"
+
+#: init.lua
+msgid "Lava Source"
+msgstr "Fuente de Lava"
+
+#: init.lua
+msgid "Leaves"
+msgstr "Hojas"
+
+#: init.lua
+msgid "Mese Crystal Fragment"
+msgstr "Fragmento de Cristal de Mese"
+
+#: init.lua
+msgid "Mese Crystal"
+msgstr "Cristal de Mese"
+
+#: init.lua
+msgid "Mese Lamp"
+msgstr "Lampara de Mese"
+
+#: init.lua
+msgid "Mese Post Light"
+msgstr "Poste de Luz de Mese"
+
+#: init.lua
+msgid "Mese Block"
+msgstr "Bloque de Mese"
+
+#: init.lua
+msgid "Mossy Cobblestone"
+msgstr "Adoquin Musgoso"
+
+#: init.lua
+msgid "Obsidian Block"
+msgstr "Bloque de Obsidiana"
+
+#: init.lua
+msgid "Obsidian Brick"
+msgstr "Ladrillo de Obsidiana"
+
+#: init.lua
+msgid "Obsidian Glass"
+msgstr "Vidrio de Obsidiana"
+
+#: init.lua
+msgid "Obsidian Shard"
+msgstr "Esquirla de Obsidiana"
+
+#: init.lua
+msgid "Obsidian"
+msgstr "Obsidiana"
+
+#: init.lua
+msgid "Paper"
+msgstr "Papel"
+
+#: init.lua
+msgid "Papyrus"
+msgstr "Papiro"
+
+#: init.lua
+msgid "Bronze Pickaxe"
+msgstr "Pico de Bronce"
+
+#: init.lua
+msgid "Diamond Pickaxe"
+msgstr "Pico de Diamante"
+
+#: init.lua
+msgid "Mese Pickaxe"
+msgstr "Pico de Mese"
+
+#: init.lua
+msgid "Steel Pickaxe"
+msgstr "Pico de Acero"
+
+#: init.lua
+msgid "Stone Pickaxe"
+msgstr "Pico de Piedra"
+
+#: init.lua
+msgid "Wooden Pickaxe"
+msgstr "Pico de Madera"
+
+#: init.lua
+msgid "Pine Needles"
+msgstr "Hojas de Pino"
+
+#: init.lua
+msgid "Pine Sapling"
+msgstr "Retoño de Pino"
+
+#: init.lua
+msgid "Pine Tree"
+msgstr "Arbol de Pino"
+
+#: init.lua
+msgid "Pine Wood Planks"
+msgstr "Tablas de Madera de Pino"
+
+#: init.lua
+msgid "Flowing River Water"
+msgstr "Fluido de Agua de Rio"
+
+#: init.lua
+msgid "River Water Source"
+msgstr "Fuente de Agua de Rio"
+
+#: init.lua
+msgid "Sand"
+msgstr "Arena"
+
+#: init.lua
+msgid "Sandstone Block"
+msgstr "Bloque de Piedra Arenosa"
+
+#: init.lua
+msgid "Sandstone Brick"
+msgstr "Ladrillo de Piedra Arenosa"
+
+#: init.lua
+msgid "Sandstone"
+msgstr "Piedra Arenosa"
+
+#: init.lua
+msgid "Sapling"
+msgstr "Retoño"
+
+#: init.lua
+msgid "Bronze Shovel"
+msgstr "Pala de Bronce"
+
+#: init.lua
+msgid "Diamond Shovel"
+msgstr "Pala de Diamante"
+
+#: init.lua
+msgid "Mese Shovel"
+msgstr "Pala de Mese"
+
+#: init.lua
+msgid "Steel Shovel"
+msgstr "Pala de Acero"
+
+#: init.lua
+msgid "Stone Shovel"
+msgstr "Pala de Piedra"
+
+#: init.lua
+msgid "Wooden Shovel"
+msgstr "Pala de Madera"
+
+#: init.lua
+msgid "Steel Sign"
+msgstr "Señal de Acero"
+
+#: init.lua
+msgid "Wooden Sign"
+msgstr "Señal de Madera"
+
+#: init.lua
+msgid "Silver Sand"
+msgstr "Arena Plateada"
+
+#: init.lua
+msgid "Silver Sandstone Block"
+msgstr "Bloque de Piedra Arenosa Plateada"
+
+#: init.lua
+msgid "Silver Sandstone Brick"
+msgstr "Ladrillo de Piedra Arenosa Plateada"
+
+#: init.lua
+msgid "Silver Sandstone"
+msgstr "Piedra Arenosa Plateada"
+
+#: init.lua
+msgid "Skeleton Key"
+msgstr "Llave Esqueleto"
+
+#: init.lua
+msgid "Snow Block"
+msgstr "Bloque de Nieve"
+
+#: init.lua
+msgid "Snow"
+msgstr "Nieve"
+
+#: init.lua
+msgid "Steel Block"
+msgstr "Bloque de Acero"
+
+#: init.lua
+msgid "Steel Ingot"
+msgstr "Lingote de Acero"
+
+#: init.lua
+msgid "Stick"
+msgstr "Palo"
+
+#: init.lua
+msgid "Stone Block"
+msgstr "Bloque de Piedra"
+
+#: init.lua
+msgid "Stone Brick"
+msgstr "Ladrillo de Piedra"
+
+#: init.lua
+msgid "Stone"
+msgstr "Piedra"
+
+#: init.lua
+msgid "Coal Ore"
+msgstr "Mineral de Carbon"
+
+#: init.lua
+msgid "Copper Ore"
+msgstr "Mineral de Cobre"
+
+#: init.lua
+msgid "Diamond Ore"
+msgstr "Mineral de Carbon"
+
+#: init.lua
+msgid "Gold Ore"
+msgstr "Mineral de Oro"
+
+#: init.lua
+msgid "Iron Ore"
+msgstr "Mineral de Hierro"
+
+#: init.lua
+msgid "Mese Ore"
+msgstr "Mineral de Mese"
+
+#: init.lua
+msgid "Tin Ore"
+msgstr "Mineral de Estaño"
+
+#: init.lua
+msgid "Bronze Sword"
+msgstr "Espada de Bronce"
+
+#: init.lua
+msgid "Diamond Sword"
+msgstr "Espada de Diamante"
+
+#: init.lua
+msgid "Mese Sword"
+msgstr "Espada de Mese"
+
+#: init.lua
+msgid "Steel Sword"
+msgstr "Espada de Acero"
+
+#: init.lua
+msgid "Stone Sword"
+msgstr "Espada de Piedra"
+
+#: init.lua
+msgid "Wooden Sword"
+msgstr "Espada de Piedra"
+
+#: init.lua
+msgid "Tin Block"
+msgstr "Bloque de Estaño"
+
+#: init.lua
+msgid "Tin Ingot"
+msgstr "Lingote de Estaño"
+
+#: init.lua
+msgid "Tin Lump"
+msgstr "Pedazo de Estaño"
+
+#: init.lua
+msgid "Torch"
+msgstr "Antorcha"
+
+#: init.lua
+msgid "Tree"
+msgstr "Arbol"
+
+#: init.lua
+msgid "Flowing Water"
+msgstr "Fluido de Agua"
+
+#: init.lua
+msgid "Water Source"
+msgstr "Fuente de Agua"
+
+#: init.lua
+msgid "Wooden Planks"
+msgstr "Tablas de Madera"
+
+#: init.lua
+msgid "Glass Door"
+msgstr "Puerta de Vidrio"
+
+#: init.lua
+msgid "Obsidian Glass Door"
+msgstr "Puerta de Vidrio de Obsidiana"
+
+#: init.lua
+msgid "Steel Door"
+msgstr "Puerta de Acero"
+
+#: init.lua
+msgid "Wooden Door"
+msgstr "Puerta de Madera"
+
+#: init.lua
+msgid "Acacia Fence Gate"
+msgstr "Puerta de Cerca de Acacia"
+
+#: init.lua
+msgid "Aspen Fence Gate"
+msgstr "Puerta de Cerca de Alamo"
+
+#: init.lua
+msgid "Junglewood Fence Gate"
+msgstr "Puerta de Cerca de Madera de Jungla"
+
+#: init.lua
+msgid "Pine Fence Gate"
+msgstr "Puerta de Cerca de Pino"
+
+#: init.lua
+msgid "Wooden Fence Gate"
+msgstr "Puerta de Cerca de Madera"
+
+#: init.lua
+msgid "Hidden Door Segment"
+msgstr "Segmento de Puerta Oculta"
+
+#: init.lua
+msgid "Trapdoor"
+msgstr "Trampilla"
+
+#: init.lua
+msgid "Steel Trapdoor"
+msgstr "Trampilla de Acero"
+
+#: init.lua
+msgid "Black dye"
+msgstr "Colorante Negro"
+
+#: init.lua
+msgid "Blue dye"
+msgstr "Colorante Azul"
+
+#: init.lua
+msgid "Brown dye"
+msgstr "Colorante Cafe"
+
+#: init.lua
+msgid "Cyan dye"
+msgstr "Colorante Cian"
+
+#: init.lua
+msgid "Dark green dye"
+msgstr "Colorante Verde Oscuro"
+
+#: init.lua
+msgid "Dark grey dye"
+msgstr "Colorante Gris Oscuro"
+
+#: init.lua
+msgid "Green dye"
+msgstr "Colorante Verde"
+
+#: init.lua
+msgid "Grey dye"
+msgstr "Colorante Gris"
+
+#: init.lua
+msgid "Magenta dye"
+msgstr "Colorante Magenta"
+
+#: init.lua
+msgid "Orange dye"
+msgstr "Colorante Naranja"
+
+#: init.lua
+msgid "Pink dye"
+msgstr "Colorante Rosa"
+
+#: init.lua
+msgid "Red dye"
+msgstr "Colorante Rojo"
+
+#: init.lua
+msgid "Violet dye"
+msgstr "Colorante Violeta"
+
+#: init.lua
+msgid "White dye"
+msgstr "Colorante Blanco"
+
+#: init.lua
+msgid "Yellow dye"
+msgstr "Colorante Amarillo"
+
+#: init.lua
+msgid "Bread"
+msgstr "Pan"
+
+#: init.lua
+msgid "Cotton"
+msgstr "Algodon"
+
+#: init.lua
+msgid "Desert Sand Soil"
+msgstr "Barro de Arena de Desierto"
+
+#: init.lua
+msgid "Wet Desert Sand Soil"
+msgstr "Barro Humedo de Arena de Desierto"
+
+#: init.lua
+msgid "Flour"
+msgstr "Harina"
+
+#: init.lua
+msgid "Bronze Hoe"
+msgstr "Azada de Bronce"
+
+#: init.lua
+msgid "Diamond Hoe"
+msgstr "Azada de Diamante"
+
+#: init.lua
+msgid "Mese Hoe"
+msgstr "Azada de Mese"
+
+#: init.lua
+msgid "Steel Hoe"
+msgstr "Azada de Acero"
+
+#: init.lua
+msgid "Stone Hoe"
+msgstr "Azada de Piedra"
+
+#: init.lua
+msgid "Wooden Hoe"
+msgstr "Azada de Madera"
+
+#: init.lua
+msgid "Cotton seed"
+msgstr "Semilla de Algodon"
+
+#: init.lua
+msgid "Wheat seed"
+msgstr "Semilla de Trigo"
+
+#: init.lua
+msgid "Soil"
+msgstr "Barro"
+
+#: init.lua
+msgid "Wet Soil"
+msgstr "Barro Humedo"
+
+#: init.lua
+msgid "Straw"
+msgstr "Paja"
+
+#: init.lua
+msgid "String"
+msgstr "Cadena"
+
+#: init.lua
+msgid "Wheat"
+msgstr "Trigo"
+
+#: init.lua
+msgid "Flint and Steel"
+msgstr "Pedernal y Acero"
+
+#: init.lua
+msgid "Permanent Flame"
+msgstr "Llama Permanente"
+
+#: init.lua
+msgid "White dandelion"
+msgstr "Diente de Leon Blanco"
+
+#: init.lua
+msgid "Yellow Dandelion"
+msgstr "Diente de Leon Amarillo"
+
+#: init.lua
+msgid "Blue Geranium"
+msgstr "Geranio Azul"
+
+#: init.lua
+msgid "Brown Mushroom"
+msgstr "Champiñon Cafe"
+
+#: init.lua
+msgid "Red Mushroom"
+msgstr "Champiñon Rojo"
+
+#: init.lua
+msgid "Rose"
+msgstr "Rosa"
+
+#: init.lua
+msgid "Orange Tulip"
+msgstr "Tulipan Naranja"
+
+#: init.lua
+msgid "Viola"
+msgstr "Violeta"
+
+#: init.lua
+msgid "Waterlily"
+msgstr "Nenufar"
+
+#: init.lua
+msgid "Ignore (you hacker you!)"
+msgstr "Ignore (tu hacker tu!)"
+
+#: init.lua
+msgid "Screwdriver (left-click rotates face, right-click rotates axis)"
+msgstr "Destornillador (click-izquierdo rota cara, click-derecho rota el eje)"
+
+#: init.lua
+msgid "Acacia Wood Slab"
+msgstr "Losa de Madera de Acacia"
+
+#: init.lua
+msgid "Aspen Wood Slab"
+msgstr "Losa de Madera de Alamo"
+
+#: init.lua
+msgid "Brick Slab"
+msgstr "Losa de Ladrillo"
+
+#: init.lua
+msgid "Bronze Block Slab"
+msgstr "Losa de Bloque de Bronce"
+
+#: init.lua
+msgid "Cobblestone Slab"
+msgstr "Losa de Adoquin"
+
+#: init.lua
+msgid "Copper Block Slab"
+msgstr "Losa de Bloque de Cobre"
+
+#: init.lua
+msgid "Desert Cobblestone Slab"
+msgstr "Losa de Adoquin del Desierto"
+
+#: init.lua
+msgid "Desert Sandstone Block Slab"
+msgstr "Losa de Bloque de Piedra Arenosa del Desierto"
+
+#: init.lua
+msgid "Desert Sandstone Brick Slab"
+msgstr "Losa de Ladrillo de Piedra Arenosa del Desierto"
+
+#: init.lua
+msgid "Desert Sandstone Slab"
+msgstr "Losa de Piedra Arenosa del Desierto"
+
+#: init.lua
+msgid "Desert Stone Block Slab"
+msgstr "Losa de Bloque de Piedra del Desierto"
+
+#: init.lua
+msgid "Desert Stone Brick Slab"
+msgstr "Losa de Ladrillo de Piedra del Desierto"
+
+#: init.lua
+msgid "Desert Stone Slab"
+msgstr "Losa de Piedra del Desierto"
+
+#: init.lua
+msgid "Gold Block Slab"
+msgstr "Losa de Bloque de Oro"
+
+#: init.lua
+msgid "Ice Slab"
+msgstr "Losa de Hielo"
+
+#: init.lua
+msgid "Jungle Wood Slab"
+msgstr "Losa de Madera de Jungla"
+
+#: init.lua
+msgid "Mossy Cobblestone Slab"
+msgstr "Losa de Adoquin Musgoso"
+
+#: init.lua
+msgid "Obsidian Block Slab"
+msgstr "Losa de Bloque de Obsidiana"
+
+#: init.lua
+msgid "Obsidian Brick Slab"
+msgstr "Losa de Ladrillo de Obsidiana"
+
+#: init.lua
+msgid "Obsidian Slab"
+msgstr "Losa de Obsidiana"
+
+#: init.lua
+msgid "Pine Wood Slab"
+msgstr "Losa de Madera de Pino"
+
+#: init.lua
+msgid "Sandstone Block Slab"
+msgstr "Losa de Bloque de Piedra Arenosa"
+
+#: init.lua
+msgid "Sandstone Brick Slab"
+msgstr "Losa de Ladrillo de Piedra Arenosa"
+
+#: init.lua
+msgid "Sandstone Slab"
+msgstr "Losa de Piedra Arenosa"
+
+#: init.lua
+msgid "Silver Sandstone Block Slab"
+msgstr "Losa de Bloque de Piedra Arenosa Plateada"
+
+#: init.lua
+msgid "Silver Sandstone Brick Slab"
+msgstr "Losa de Ladrillo de Piedra Arenosa Plateada"
+
+#: init.lua
+msgid "Silver Sandstone Slab"
+msgstr "Losa de Piedra Arenosa Plateada"
+
+#: init.lua
+msgid "Snow Block Slab"
+msgstr "Losa de Bloque de Nieve"
+
+#: init.lua
+msgid "Steel Block Slab"
+msgstr "Losa de Bloque de Acero"
+
+#: init.lua
+msgid "Stone Block Slab"
+msgstr "Losa de Bloque de Piedra"
+
+#: init.lua
+msgid "Stone Brick Slab"
+msgstr "Losa de Ladrillo de Piedra"
+
+#: init.lua
+msgid "Stone Slab"
+msgstr "Losa de Piedra"
+
+#: init.lua
+msgid "Straw Slab"
+msgstr "Losa de Paja"
+
+#: init.lua
+#, fuzzy
+msgid "Tin Block Slab"
+msgstr "Losa de Bloque de Nieve"
+
+#: init.lua
+msgid "Wooden Slab"
+msgstr "Losa de Madera"
+
+#: init.lua
+msgid "Acacia Wood Stair"
+msgstr "Escaleras de Madera de Acacia"
+
+#: init.lua
+msgid "Aspen Wood Stair"
+msgstr "Escalera de Madera de Alamo"
+
+#: init.lua
+msgid "Brick Stair"
+msgstr "Escalera de Ladrillo"
+
+#: init.lua
+msgid "Bronze Block Stair"
+msgstr "Escalera de Bloque de Bronce"
+
+#: init.lua
+msgid "Cobblestone Stair"
+msgstr "Escalera de Adoquin"
+
+#: init.lua
+msgid "Copper Block Stair"
+msgstr "Escalera de Bloque de Cobre"
+
+#: init.lua
+msgid "Desert Cobblestone Stair"
+msgstr "Escalera de Adoquin del Desierto"
+
+#: init.lua
+msgid "Desert Sandstone Block Stair"
+msgstr "Escalera de Bloque de Piedra Arenosa del Desierto"
+
+#: init.lua
+msgid "Desert Sandstone Brick Stair"
+msgstr "Escalera de Ladrillo de Piedra Arenosa del Desierto"
+
+#: init.lua
+msgid "Desert Sandstone Stair"
+msgstr "Escalera de Piedra Arenosa del Desierto"
+
+#: init.lua
+msgid "Desert Stone Block Stair"
+msgstr "Escalera de Bloque de Piedra del Desierto"
+
+#: init.lua
+msgid "Desert Stone Brick Stair"
+msgstr "Escalera de Ladrillo de Piedra del Desierto"
+
+#: init.lua
+msgid "Desert Stone Stair"
+msgstr "Escalera de Piedra del Desierto"
+
+#: init.lua
+msgid "Gold Block Stair"
+msgstr "Escalera de Bloque de Oro"
+
+#: init.lua
+msgid "Ice Stair"
+msgstr "Escalera de Hielo"
+
+#: init.lua
+msgid "Jungle Wood Stair"
+msgstr "Escalera de Madera de Jungla"
+
+#: init.lua
+msgid "Mossy Cobblestone Stair"
+msgstr "Escalera de Adoquin Musgoso"
+
+#: init.lua
+msgid "Obsidian Block Stair"
+msgstr "Escalera de Bloque de Obsidiana"
+
+#: init.lua
+msgid "Obsidian Brick Stair"
+msgstr "Escalera de Ladrillo de Obsidiana"
+
+#: init.lua
+msgid "Obsidian Stair"
+msgstr "Escalera de Obsidiana"
+
+#: init.lua
+msgid "Pine Wood Stair"
+msgstr "Escalera de Madera de Pino"
+
+#: init.lua
+msgid "Sandstone Block Stair"
+msgstr "Escalera de Bloque de Piedra Arenosa"
+
+#: init.lua
+msgid "Sandstone Brick Stair"
+msgstr "Escalera de Ladrillo de Piedra Arenosa"
+
+#: init.lua
+msgid "Sandstone Stair"
+msgstr "Escalera de Piedra Arenosa"
+
+#: init.lua
+msgid "Silver Sandstone Block Stair"
+msgstr "Escalera de Bloque de Piedra Arenosa Plateada"
+
+#: init.lua
+msgid "Silver Sandstone Brick Stair"
+msgstr "Escalera de Ladrillo de Piedra Arenosa Plateada"
+
+#: init.lua
+msgid "Silver Sandstone Stair"
+msgstr "Escalera de Piedra Arenosa Plateada"
+
+#: init.lua
+msgid "Snow Block Stair"
+msgstr "Escalera de Bloque de Nieve"
+
+#: init.lua
+msgid "Steel Block Stair"
+msgstr "Escalera de Bloque de Acero"
+
+#: init.lua
+msgid "Stone Block Stair"
+msgstr "Escalera de Bloque de Piedra"
+
+#: init.lua
+msgid "Stone Brick Stair"
+msgstr "Escalera de Ladrillo de Piedra"
+
+#: init.lua
+msgid "Stone Stair"
+msgstr "Escalera de Piedra"
+
+#: init.lua
+msgid "Straw Stair"
+msgstr "Escalera de Paja"
+
+#: init.lua
+#, fuzzy
+msgid "Tin Block Stair"
+msgstr "Escalera de Bloque de Nieve"
+
+#: init.lua
+msgid "Wooden Stair"
+msgstr "Escalera de Madera"
+
+#: init.lua
+#, fuzzy
+msgid "Acacia Wood Stair Inner"
+msgstr "Escaleras de Madera de Acacia"
+
+#: init.lua
+#, fuzzy
+msgid "Aspen Wood Stair Inner"
+msgstr "Escalera de Madera de Alamo"
+
+#: init.lua
+#, fuzzy
+msgid "Brick Stair Inner"
+msgstr "Escalera de Ladrillo"
+
+#: init.lua
+#, fuzzy
+msgid "Bronze Block Stair Inner"
+msgstr "Escalera de Bloque de Bronce"
+
+#: init.lua
+#, fuzzy
+msgid "Cobblestone Stair Inner"
+msgstr "Escalera de Adoquin"
+
+#: init.lua
+#, fuzzy
+msgid "Copper Block Stair Inner"
+msgstr "Escalera de Bloque de Cobre"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Cobblestone Stair Inner"
+msgstr "Escalera de Adoquin del Desierto"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Sandstone Block Stair Inner"
+msgstr "Escalera de Bloque de Piedra Arenosa del Desierto"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Sandstone Brick Stair Inner"
+msgstr "Escalera de Ladrillo de Piedra Arenosa del Desierto"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Sandstone Stair Inner"
+msgstr "Escalera de Piedra Arenosa del Desierto"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Stone Block Stair Inner"
+msgstr "Escalera de Bloque de Piedra del Desierto"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Stone Brick Stair Inner"
+msgstr "Escalera de Ladrillo de Piedra del Desierto"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Stone Stair Inner"
+msgstr "Escalera de Piedra del Desierto"
+
+#: init.lua
+#, fuzzy
+msgid "Gold Block Stair Inner"
+msgstr "Escalera de Bloque de Oro"
+
+#: init.lua
+#, fuzzy
+msgid "Ice Stair Inner"
+msgstr "Escalera de Hielo"
+
+#: init.lua
+#, fuzzy
+msgid "Jungle Wood Stair Inner"
+msgstr "Escalera de Madera de Jungla"
+
+#: init.lua
+#, fuzzy
+msgid "Mossy Cobblestone Stair Inner"
+msgstr "Escalera de Adoquin Musgoso"
+
+#: init.lua
+#, fuzzy
+msgid "Obsidian Block Stair Inner"
+msgstr "Escalera de Bloque de Obsidiana"
+
+#: init.lua
+#, fuzzy
+msgid "Obsidian Brick Stair Inner"
+msgstr "Escalera de Ladrillo de Obsidiana"
+
+#: init.lua
+#, fuzzy
+msgid "Obsidian Stair Inner"
+msgstr "Escalera de Obsidiana"
+
+#: init.lua
+#, fuzzy
+msgid "Pine Wood Stair Inner"
+msgstr "Escalera de Madera de Pino"
+
+#: init.lua
+#, fuzzy
+msgid "Sandstone Block Stair Inner"
+msgstr "Escalera de Bloque de Piedra Arenosa"
+
+#: init.lua
+#, fuzzy
+msgid "Sandstone Brick Stair Inner"
+msgstr "Escalera de Ladrillo de Piedra Arenosa"
+
+#: init.lua
+#, fuzzy
+msgid "Sandstone Stair Inner"
+msgstr "Escalera de Piedra Arenosa"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Sandstone Block Stair Inner"
+msgstr "Escalera de Bloque de Piedra Arenosa Plateada"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Sandstone Brick Stair Inner"
+msgstr "Escalera de Ladrillo de Piedra Arenosa Plateada"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Sandstone Stair Inner"
+msgstr "Escalera de Piedra Arenosa Plateada"
+
+#: init.lua
+#, fuzzy
+msgid "Snow Block Stair Inner"
+msgstr "Escalera de Bloque de Nieve"
+
+#: init.lua
+#, fuzzy
+msgid "Steel Block Stair Inner"
+msgstr "Escalera de Bloque de Acero"
+
+#: init.lua
+#, fuzzy
+msgid "Stone Block Stair Inner"
+msgstr "Escalera de Bloque de Piedra"
+
+#: init.lua
+#, fuzzy
+msgid "Stone Brick Stair Inner"
+msgstr "Escalera de Ladrillo de Piedra"
+
+#: init.lua
+#, fuzzy
+msgid "Stone Stair Inner"
+msgstr "Escalera de Piedra"
+
+#: init.lua
+#, fuzzy
+msgid "Straw Stair Inner"
+msgstr "Escalera de Paja"
+
+#: init.lua
+#, fuzzy
+msgid "Tin Block Stair Inner"
+msgstr "Escalera de Bloque de Nieve"
+
+#: init.lua
+#, fuzzy
+msgid "Wooden Stair Inner"
+msgstr "Escalera de Madera"
+
+#: init.lua
+#, fuzzy
+msgid "Acacia Wood Stair Outer"
+msgstr "Escaleras de Madera de Acacia"
+
+#: init.lua
+#, fuzzy
+msgid "Aspen Wood Stair Outer"
+msgstr "Escalera de Madera de Alamo"
+
+#: init.lua
+#, fuzzy
+msgid "Brick Stair Outer"
+msgstr "Escalera de Ladrillo"
+
+#: init.lua
+#, fuzzy
+msgid "Bronze Block Stair Outer"
+msgstr "Escalera de Bloque de Bronce"
+
+#: init.lua
+#, fuzzy
+msgid "Cobblestone Stair Outer"
+msgstr "Escalera de Adoquin"
+
+#: init.lua
+#, fuzzy
+msgid "Copper Block Stair Outer"
+msgstr "Escalera de Bloque de Cobre"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Cobblestone Stair Outer"
+msgstr "Escalera de Adoquin del Desierto"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Sandstone Block Stair Outer"
+msgstr "Escalera de Bloque de Piedra Arenosa del Desierto"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Sandstone Brick Stair Outer"
+msgstr "Escalera de Ladrillo de Piedra Arenosa del Desierto"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Sandstone Stair Outer"
+msgstr "Escalera de Piedra Arenosa del Desierto"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Stone Block Stair Outer"
+msgstr "Escalera de Bloque de Piedra del Desierto"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Stone Brick Stair Outer"
+msgstr "Escalera de Ladrillo de Piedra del Desierto"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Stone Stair Outer"
+msgstr "Escalera de Piedra del Desierto"
+
+#: init.lua
+#, fuzzy
+msgid "Gold Block Stair Outer"
+msgstr "Escalera de Bloque de Oro"
+
+#: init.lua
+#, fuzzy
+msgid "Ice Stair Outer"
+msgstr "Escalera de Hielo"
+
+#: init.lua
+#, fuzzy
+msgid "Jungle Wood Stair Outer"
+msgstr "Escalera de Madera de Jungla"
+
+#: init.lua
+#, fuzzy
+msgid "Mossy Cobblestone Stair Outer"
+msgstr "Escalera de Adoquin Musgoso"
+
+#: init.lua
+#, fuzzy
+msgid "Obsidian Block Stair Outer"
+msgstr "Escalera de Bloque de Obsidiana"
+
+#: init.lua
+#, fuzzy
+msgid "Obsidian Brick Stair Outer"
+msgstr "Escalera de Ladrillo de Obsidiana"
+
+#: init.lua
+#, fuzzy
+msgid "Obsidian Stair Outer"
+msgstr "Escalera de Obsidiana"
+
+#: init.lua
+#, fuzzy
+msgid "Pine Wood Stair Outer"
+msgstr "Escalera de Madera de Pino"
+
+#: init.lua
+#, fuzzy
+msgid "Sandstone Block Stair Outer"
+msgstr "Escalera de Bloque de Piedra Arenosa"
+
+#: init.lua
+#, fuzzy
+msgid "Sandstone Brick Stair Outer"
+msgstr "Escalera de Ladrillo de Piedra Arenosa"
+
+#: init.lua
+#, fuzzy
+msgid "Sandstone Stair Outer"
+msgstr "Escalera de Piedra Arenosa"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Sandstone Block Stair Outer"
+msgstr "Escalera de Bloque de Piedra Arenosa Plateada"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Sandstone Brick Stair Outer"
+msgstr "Escalera de Ladrillo de Piedra Arenosa Plateada"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Sandstone Stair Outer"
+msgstr "Escalera de Piedra Arenosa Plateada"
+
+#: init.lua
+#, fuzzy
+msgid "Snow Block Stair Outer"
+msgstr "Escalera de Bloque de Nieve"
+
+#: init.lua
+#, fuzzy
+msgid "Steel Block Stair Outer"
+msgstr "Escalera de Bloque de Acero"
+
+#: init.lua
+#, fuzzy
+msgid "Stone Block Stair Outer"
+msgstr "Escalera de Bloque de Piedra"
+
+#: init.lua
+#, fuzzy
+msgid "Stone Brick Stair Outer"
+msgstr "Escalera de Ladrillo de Piedra"
+
+#: init.lua
+#, fuzzy
+msgid "Stone Stair Outer"
+msgstr "Escalera de Piedra"
+
+#: init.lua
+#, fuzzy
+msgid "Straw Stair Outer"
+msgstr "Escalera de Paja"
+
+#: init.lua
+#, fuzzy
+msgid "Tin Block Stair Outer"
+msgstr "Escalera de Bloque de Nieve"
+
+#: init.lua
+#, fuzzy
+msgid "Wooden Stair Outer"
+msgstr "Escalera de Madera"
+
+#: init.lua
+msgid "Gun Powder"
+msgstr "Polvora"
+
+#: init.lua
+msgid "TNT"
+msgstr "Dinamita"
+
+#: init.lua
+msgid "Unknown Item"
+msgstr "Item Desconocido"
+
+#: init.lua
+msgid "Drinking Glass (empty)"
+msgstr "Vaso para Beber (vacio)"
+
+#: init.lua
+msgid "Glass Bottle (empty)"
+msgstr "Botella de Vidrio (vacia)"
+
+#: init.lua
+msgid "Pile of Glass Fragments"
+msgstr "Monton de Fragmentos de Vidrio"
+
+#: init.lua
+msgid "Vessels Shelf"
+msgstr "Estante de Vasijas"
+
+#: init.lua
+msgid "Heavy Steel Bottle (empty)"
+msgstr "Botella de Acero Pesada (vacia)"
+
+#: init.lua
+msgid "Cobblestone Wall"
+msgstr "Muro de Adoquin"
+
+#: init.lua
+msgid "Desert Cobblestone Wall"
+msgstr "Muro de Adoquin del Desierto"
+
+#: init.lua
+msgid "Mossy Cobblestone Wall"
+msgstr "Muro de Adoquin Musgoso"
+
+#: init.lua
+msgid "Black Wool"
+msgstr "Lana Negra"
+
+#: init.lua
+msgid "Blue Wool"
+msgstr "Lana Azul"
+
+#: init.lua
+msgid "Brown Wool"
+msgstr "Lana Cafe"
+
+#: init.lua
+msgid "Cyan Wool"
+msgstr "Lana Cian"
+
+#: init.lua
+msgid "Dark Green Wool"
+msgstr "Lana Verde Oscura"
+
+#: init.lua
+msgid "Dark Grey Wool"
+msgstr "Lana Gris Oscura"
+
+#: init.lua
+msgid "Green Wool"
+msgstr "Lana Verde"
+
+#: init.lua
+msgid "Grey Wool"
+msgstr "Lana Gris"
+
+#: init.lua
+msgid "Magenta Wool"
+msgstr "Lana Magenta"
+
+#: init.lua
+msgid "Orange Wool"
+msgstr "Lana Naranja"
+
+#: init.lua
+msgid "Pink Wool"
+msgstr "Lana Rosa"
+
+#: init.lua
+msgid "Red Wool"
+msgstr "Lana Roja"
+
+#: init.lua
+msgid "Violet Wool"
+msgstr "Lana Violeta"
+
+#: init.lua
+msgid "White Wool"
+msgstr "Lana Blanca"
+
+#: init.lua
+msgid "Yellow Wool"
+msgstr "Lana Amarilla"
+
+#: init.lua
+msgid "Iron bar"
+msgstr "Reja de Hierro"
+
+#: init.lua
+msgid "Glass Pane"
+msgstr "Panel de Vidrio"
+
+#: init.lua
+msgid "Nyan Cat Rainbow"
+msgstr "Arcoiris de Nyan Cat"
+
+#: init.lua
+msgid "Nyan Cat"
+msgstr "Nyan Cat"

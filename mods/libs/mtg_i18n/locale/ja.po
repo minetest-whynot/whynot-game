@@ -1,0 +1,1795 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Rui914 <mrrst0914@gmail.com>, 2014.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-08-28 21:16+0200\n"
+"PO-Revision-Date: 2017-06-16 13:43+0000\n"
+"Last-Translator: Rui <rui.minetest@gmail.com>\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/minetest/"
+"mtg_i18n/ja/>\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 2.15-dev\n"
+
+#: init.lua
+#, fuzzy
+msgid "Air (you hacker you!)"
+msgstr "空気"
+
+#: init.lua
+msgid "Simple Bed"
+msgstr "簡素なベッド"
+
+#: init.lua
+msgid "Fancy Bed"
+msgstr "お洒落なベッド"
+
+#: init.lua
+msgid "Boat"
+msgstr "ボート"
+
+#: init.lua
+msgid "Bones"
+msgstr "骨"
+
+#: init.lua
+msgid "Empty Bucket"
+msgstr "空のバケツ"
+
+#: init.lua
+msgid "Lava Bucket"
+msgstr "溶岩バケツ"
+
+#: init.lua
+msgid "River Water Bucket"
+msgstr "川の水バケツ"
+
+#: init.lua
+msgid "Water Bucket"
+msgstr "水バケツ"
+
+#: init.lua
+msgid "Brake rail"
+msgstr "ブレーキレール"
+
+#: init.lua
+msgid "Cart (Sneak+Click to pick up)"
+msgstr "トロッコ"
+
+#: init.lua
+msgid "Powered rail"
+msgstr "パワードレール"
+
+#: init.lua
+msgid "Rail"
+msgstr "レール"
+
+#: init.lua
+msgid "Acacia Bush Leaves"
+msgstr ""
+
+#: init.lua
+msgid "Acacia Bush Sapling"
+msgstr ""
+
+#: init.lua
+msgid "Acacia Bush Stem"
+msgstr ""
+
+#: init.lua
+#, fuzzy
+msgid "Acacia Leaves"
+msgstr "葉"
+
+#: init.lua
+msgid "Acacia Tree Sapling"
+msgstr ""
+
+#: init.lua
+msgid "Acacia Tree"
+msgstr ""
+
+#: init.lua
+#, fuzzy
+msgid "Acacia Wood Planks"
+msgstr "原木"
+
+#: init.lua
+msgid "Apple"
+msgstr "リンゴ"
+
+#: init.lua
+#, fuzzy
+msgid "Aspen Leaves"
+msgstr "葉"
+
+#: init.lua
+#, fuzzy
+msgid "Aspen Tree Sapling"
+msgstr "ジャングルの苗木"
+
+#: init.lua
+msgid "Aspen Tree"
+msgstr ""
+
+#: init.lua
+#, fuzzy
+msgid "Aspen Wood Planks"
+msgstr "原木"
+
+#: init.lua
+msgid "Bronze Axe"
+msgstr "青銅の斧"
+
+#: init.lua
+msgid "Diamond Axe"
+msgstr "ダイヤモンドの斧"
+
+#: init.lua
+msgid "Mese Axe"
+msgstr "MESEの斧"
+
+#: init.lua
+msgid "Steel Axe"
+msgstr "鉄の斧"
+
+#: init.lua
+msgid "Stone Axe"
+msgstr "石の斧"
+
+#: init.lua
+msgid "Wooden Axe"
+msgstr "木の斧"
+
+#: init.lua
+msgid "Book"
+msgstr "本"
+
+#: init.lua
+msgid "Bookshelf"
+msgstr "本棚"
+
+#: init.lua
+msgid "Book With Text"
+msgstr ""
+
+#: init.lua
+msgid "Brick Block"
+msgstr "レンガブロック"
+
+#: init.lua
+msgid "Bronze Block"
+msgstr "青銅ブロック"
+
+#: init.lua
+msgid "Bronze Ingot"
+msgstr "青銅インゴット"
+
+#: init.lua
+#, fuzzy
+msgid "Bush Leaves"
+msgstr "葉"
+
+#: init.lua
+#, fuzzy
+msgid "Bush Sapling"
+msgstr "苗木"
+
+#: init.lua
+msgid "Bush Stem"
+msgstr ""
+
+#: init.lua
+msgid "Cactus"
+msgstr "サボテン"
+
+#: init.lua
+msgid "Locked Chest"
+msgstr "鍵のかかったチェスト"
+
+#: init.lua
+msgid "Chest"
+msgstr "チェスト"
+
+#: init.lua
+msgid "Clay Brick"
+msgstr "棒レンガ"
+
+#: init.lua
+msgid "Clay Lump"
+msgstr "粘土"
+
+#: init.lua
+msgid "Clay"
+msgstr "粘土ブロック"
+
+#: init.lua
+msgid "Cloud"
+msgstr "雲"
+
+#: init.lua
+msgid "Coal Block"
+msgstr "石炭ブロック"
+
+#: init.lua
+msgid "Coal Lump"
+msgstr "石炭"
+
+#: init.lua
+msgid "Cobblestone"
+msgstr "丸石"
+
+#: init.lua
+msgid "Copper Block"
+msgstr "銅ブロック"
+
+#: init.lua
+msgid "Copper Ingot"
+msgstr "銅インゴット"
+
+#: init.lua
+msgid "Copper Lump"
+msgstr "銅"
+
+#: init.lua
+#, fuzzy
+msgid "Brown Coral"
+msgstr "茶色の羊毛"
+
+#: init.lua
+#, fuzzy
+msgid "Orange Coral"
+msgstr "橙色の羊毛"
+
+#: init.lua
+msgid "Coral Skeleton"
+msgstr ""
+
+#: init.lua
+msgid "Desert Cobblestone"
+msgstr "砂漠の丸石"
+
+#: init.lua
+msgid "Desert Sand"
+msgstr "砂"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Sandstone Block"
+msgstr "赤レンガ"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Sandstone Brick"
+msgstr "赤レンガ"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Sandstone"
+msgstr "砂岩"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Stone Block"
+msgstr "赤レンガ"
+
+#: init.lua
+msgid "Desert Stone Brick"
+msgstr "赤レンガ"
+
+#: init.lua
+msgid "Desert Stone"
+msgstr "砂岩"
+
+#: init.lua
+msgid "Diamond Block"
+msgstr "ダイアモンドブロック"
+
+#: init.lua
+msgid "Diamond"
+msgstr "ダイヤモンド"
+
+#: init.lua
+msgid "Dirt"
+msgstr "土"
+
+#: init.lua
+#, fuzzy
+msgid "Dirt with Dry Grass"
+msgstr "草ブロック"
+
+#: init.lua
+msgid "Dirt with Grass and Footsteps"
+msgstr "足あと付き草ブロック"
+
+#: init.lua
+msgid "Dirt with Grass"
+msgstr "草ブロック"
+
+#: init.lua
+msgid "Dirt with Rainforest Litter"
+msgstr ""
+
+#: init.lua
+msgid "Dirt with Snow"
+msgstr "雪付き草ブロック"
+
+#: init.lua
+#, fuzzy
+msgid "Dry Grass"
+msgstr "草"
+
+#: init.lua
+msgid "Dry Shrub"
+msgstr "枯れ木"
+
+#: init.lua
+msgid "Acacia Fence"
+msgstr ""
+
+#: init.lua
+#, fuzzy
+msgid "Aspen Fence"
+msgstr "木のフェンス"
+
+#: init.lua
+#, fuzzy
+msgid "Junglewood Fence"
+msgstr "ジャングルの原木"
+
+#: init.lua
+#, fuzzy
+msgid "Pine Fence"
+msgstr "木のフェンス"
+
+#: init.lua
+msgid "Wooden Fence"
+msgstr "木のフェンス"
+
+#: init.lua
+msgid "Flint"
+msgstr ""
+
+#: init.lua
+msgid "Furnace"
+msgstr "かまど"
+
+#: init.lua
+msgid "Glass"
+msgstr "ガラス"
+
+#: init.lua
+msgid "Gold Block"
+msgstr "金ブロック"
+
+#: init.lua
+msgid "Gold Ingot"
+msgstr "金インゴット"
+
+#: init.lua
+msgid "Gold Lump"
+msgstr "金"
+
+#: init.lua
+msgid "Grass"
+msgstr "草"
+
+#: init.lua
+msgid "Gravel"
+msgstr "砂利"
+
+#: init.lua
+msgid "Ice"
+msgstr "氷"
+
+#: init.lua
+msgid "Iron Lump"
+msgstr "鉄"
+
+#: init.lua
+msgid "Jungle Grass"
+msgstr "ジャングルの草"
+
+#: init.lua
+msgid "Jungle Leaves"
+msgstr "ジャングルの葉"
+
+#: init.lua
+msgid "Jungle Sapling"
+msgstr "ジャングルの苗木"
+
+#: init.lua
+msgid "Jungle Tree"
+msgstr "ジャングルの木"
+
+#: init.lua
+msgid "Junglewood Planks"
+msgstr "ジャングルの原木"
+
+#: init.lua
+msgid "Key"
+msgstr ""
+
+#: init.lua
+#, fuzzy
+msgid "Steel Ladder"
+msgstr "鉄の斧"
+
+#: init.lua
+msgid "Wooden Ladder"
+msgstr "はしご"
+
+#: init.lua
+msgid "Flowing Lava"
+msgstr "溶岩流"
+
+#: init.lua
+msgid "Lava Source"
+msgstr "溶岩"
+
+#: init.lua
+msgid "Leaves"
+msgstr "葉"
+
+#: init.lua
+msgid "Mese Crystal Fragment"
+msgstr "MESEクリスタルの欠片"
+
+#: init.lua
+msgid "Mese Crystal"
+msgstr "MESEクリスタル"
+
+#: init.lua
+msgid "Mese Lamp"
+msgstr ""
+
+#: init.lua
+msgid "Mese Post Light"
+msgstr ""
+
+#: init.lua
+msgid "Mese Block"
+msgstr "MESE"
+
+#: init.lua
+msgid "Mossy Cobblestone"
+msgstr "苔石"
+
+#: init.lua
+#, fuzzy
+msgid "Obsidian Block"
+msgstr "黒曜石"
+
+#: init.lua
+#, fuzzy
+msgid "Obsidian Brick"
+msgstr "黒曜石"
+
+#: init.lua
+msgid "Obsidian Glass"
+msgstr "黒曜石ガラス"
+
+#: init.lua
+msgid "Obsidian Shard"
+msgstr "黒曜石の破片"
+
+#: init.lua
+msgid "Obsidian"
+msgstr "黒曜石"
+
+#: init.lua
+msgid "Paper"
+msgstr "紙"
+
+#: init.lua
+msgid "Papyrus"
+msgstr "パピルス"
+
+#: init.lua
+msgid "Bronze Pickaxe"
+msgstr "青銅のピッケル"
+
+#: init.lua
+msgid "Diamond Pickaxe"
+msgstr "ダイヤモンドのピッケル"
+
+#: init.lua
+msgid "Mese Pickaxe"
+msgstr "MESEのピッケル"
+
+#: init.lua
+msgid "Steel Pickaxe"
+msgstr "鉄のピッケル"
+
+#: init.lua
+msgid "Stone Pickaxe"
+msgstr "石のピッケル"
+
+#: init.lua
+msgid "Wooden Pickaxe"
+msgstr "木のピッケル"
+
+#: init.lua
+msgid "Pine Needles"
+msgstr ""
+
+#: init.lua
+#, fuzzy
+msgid "Pine Sapling"
+msgstr "ジャングルの苗木"
+
+#: init.lua
+#, fuzzy
+msgid "Pine Tree"
+msgstr "ジャングルの木"
+
+#: init.lua
+#, fuzzy
+msgid "Pine Wood Planks"
+msgstr "原木"
+
+#: init.lua
+#, fuzzy
+msgid "Flowing River Water"
+msgstr "水流"
+
+#: init.lua
+#, fuzzy
+msgid "River Water Source"
+msgstr "水"
+
+#: init.lua
+msgid "Sand"
+msgstr "砂"
+
+#: init.lua
+#, fuzzy
+msgid "Sandstone Block"
+msgstr "砂岩レンガ"
+
+#: init.lua
+msgid "Sandstone Brick"
+msgstr "砂岩レンガ"
+
+#: init.lua
+msgid "Sandstone"
+msgstr "砂岩"
+
+#: init.lua
+msgid "Sapling"
+msgstr "苗木"
+
+#: init.lua
+msgid "Bronze Shovel"
+msgstr "青銅のシャベル"
+
+#: init.lua
+msgid "Diamond Shovel"
+msgstr "ダイヤモンドのシャベル"
+
+#: init.lua
+msgid "Mese Shovel"
+msgstr "MESEのシャベル"
+
+#: init.lua
+msgid "Steel Shovel"
+msgstr "鉄のシャベル"
+
+#: init.lua
+msgid "Stone Shovel"
+msgstr "石のシャベル"
+
+#: init.lua
+msgid "Wooden Shovel"
+msgstr "木のシャベル"
+
+#: init.lua
+#, fuzzy
+msgid "Steel Sign"
+msgstr "鉄の剣"
+
+#: init.lua
+msgid "Wooden Sign"
+msgstr "看板"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Sand"
+msgstr "砂"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Sandstone Block"
+msgstr "砂岩レンガ"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Sandstone Brick"
+msgstr "砂岩レンガ"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Sandstone"
+msgstr "砂岩"
+
+#: init.lua
+msgid "Skeleton Key"
+msgstr ""
+
+#: init.lua
+msgid "Snow Block"
+msgstr "雪ブロック"
+
+#: init.lua
+msgid "Snow"
+msgstr "雪"
+
+#: init.lua
+msgid "Steel Block"
+msgstr "鉄ブロック"
+
+#: init.lua
+msgid "Steel Ingot"
+msgstr "鉄インゴット"
+
+#: init.lua
+msgid "Stick"
+msgstr "棒"
+
+#: init.lua
+#, fuzzy
+msgid "Stone Block"
+msgstr "石レンガ"
+
+#: init.lua
+msgid "Stone Brick"
+msgstr "石レンガ"
+
+#: init.lua
+msgid "Stone"
+msgstr "石"
+
+#: init.lua
+msgid "Coal Ore"
+msgstr "石炭鉱石"
+
+#: init.lua
+msgid "Copper Ore"
+msgstr "銅鉱石"
+
+#: init.lua
+msgid "Diamond Ore"
+msgstr "ダイヤモンド鉱石"
+
+#: init.lua
+msgid "Gold Ore"
+msgstr "金鉱石"
+
+#: init.lua
+msgid "Iron Ore"
+msgstr "鉄鉱石"
+
+#: init.lua
+msgid "Mese Ore"
+msgstr "MESE鉱石"
+
+#: init.lua
+#, fuzzy
+msgid "Tin Ore"
+msgstr "鉄鉱石"
+
+#: init.lua
+msgid "Bronze Sword"
+msgstr "青銅の剣"
+
+#: init.lua
+msgid "Diamond Sword"
+msgstr "ダイヤモンドの剣"
+
+#: init.lua
+msgid "Mese Sword"
+msgstr "MESEの剣"
+
+#: init.lua
+msgid "Steel Sword"
+msgstr "鉄の剣"
+
+#: init.lua
+msgid "Stone Sword"
+msgstr "石の剣"
+
+#: init.lua
+msgid "Wooden Sword"
+msgstr "木の剣"
+
+#: init.lua
+#, fuzzy
+msgid "Tin Block"
+msgstr "雪ブロック"
+
+#: init.lua
+#, fuzzy
+msgid "Tin Ingot"
+msgstr "青銅インゴット"
+
+#: init.lua
+#, fuzzy
+msgid "Tin Lump"
+msgstr "鉄"
+
+#: init.lua
+msgid "Torch"
+msgstr "松明"
+
+#: init.lua
+msgid "Tree"
+msgstr "木"
+
+#: init.lua
+msgid "Flowing Water"
+msgstr "水流"
+
+#: init.lua
+msgid "Water Source"
+msgstr "水"
+
+#: init.lua
+msgid "Wooden Planks"
+msgstr "原木"
+
+#: init.lua
+msgid "Glass Door"
+msgstr "ガラスのドア"
+
+#: init.lua
+msgid "Obsidian Glass Door"
+msgstr "黒曜石ガラスのドア"
+
+#: init.lua
+msgid "Steel Door"
+msgstr "鉄のドア"
+
+#: init.lua
+msgid "Wooden Door"
+msgstr "木のドア"
+
+#: init.lua
+msgid "Acacia Fence Gate"
+msgstr ""
+
+#: init.lua
+msgid "Aspen Fence Gate"
+msgstr ""
+
+#: init.lua
+#, fuzzy
+msgid "Junglewood Fence Gate"
+msgstr "ジャングルの原木"
+
+#: init.lua
+msgid "Pine Fence Gate"
+msgstr ""
+
+#: init.lua
+#, fuzzy
+msgid "Wooden Fence Gate"
+msgstr "木のフェンス"
+
+#: init.lua
+msgid "Hidden Door Segment"
+msgstr ""
+
+#: init.lua
+msgid "Trapdoor"
+msgstr "トラップドア"
+
+#: init.lua
+#, fuzzy
+msgid "Steel Trapdoor"
+msgstr "鉄のドア"
+
+#: init.lua
+msgid "Black dye"
+msgstr "黒色の染料"
+
+#: init.lua
+msgid "Blue dye"
+msgstr "青色の染料"
+
+#: init.lua
+msgid "Brown dye"
+msgstr "茶色の染料"
+
+#: init.lua
+msgid "Cyan dye"
+msgstr "水色の染料"
+
+#: init.lua
+msgid "Dark green dye"
+msgstr "緑色の染料"
+
+#: init.lua
+msgid "Dark grey dye"
+msgstr "灰色の染料"
+
+#: init.lua
+msgid "Green dye"
+msgstr "黄緑色の染料"
+
+#: init.lua
+msgid "Grey dye"
+msgstr "薄灰色の染料"
+
+#: init.lua
+msgid "Magenta dye"
+msgstr "赤紫色の染料"
+
+#: init.lua
+msgid "Orange dye"
+msgstr "橙色の染料"
+
+#: init.lua
+msgid "Pink dye"
+msgstr "桃色の染料"
+
+#: init.lua
+msgid "Red dye"
+msgstr "赤色の染料"
+
+#: init.lua
+msgid "Violet dye"
+msgstr "紫色の染料"
+
+#: init.lua
+msgid "White dye"
+msgstr "白色の染料"
+
+#: init.lua
+msgid "Yellow dye"
+msgstr "黄色の染料"
+
+#: init.lua
+msgid "Bread"
+msgstr "パン"
+
+#: init.lua
+msgid "Cotton"
+msgstr "コットン"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Sand Soil"
+msgstr "砂"
+
+#: init.lua
+#, fuzzy
+msgid "Wet Desert Sand Soil"
+msgstr "砂"
+
+#: init.lua
+msgid "Flour"
+msgstr "小麦粉"
+
+#: init.lua
+msgid "Bronze Hoe"
+msgstr "銅のクワ"
+
+#: init.lua
+msgid "Diamond Hoe"
+msgstr "ダイヤモンドのクワ"
+
+#: init.lua
+msgid "Mese Hoe"
+msgstr "MESEのクワ"
+
+#: init.lua
+msgid "Steel Hoe"
+msgstr "鉄のクワ"
+
+#: init.lua
+msgid "Stone Hoe"
+msgstr "石のクワ"
+
+#: init.lua
+msgid "Wooden Hoe"
+msgstr "木のクワ"
+
+#: init.lua
+msgid "Cotton seed"
+msgstr "コットンの種"
+
+#: init.lua
+msgid "Wheat seed"
+msgstr "小麦の種"
+
+#: init.lua
+msgid "Soil"
+msgstr "土壌"
+
+#: init.lua
+msgid "Wet Soil"
+msgstr "潤土"
+
+#: init.lua
+msgid "Straw"
+msgstr ""
+
+#: init.lua
+msgid "String"
+msgstr ""
+
+#: init.lua
+msgid "Wheat"
+msgstr "小麦"
+
+#: init.lua
+msgid "Flint and Steel"
+msgstr ""
+
+#: init.lua
+msgid "Permanent Flame"
+msgstr ""
+
+#: init.lua
+msgid "White dandelion"
+msgstr "白いタンポポ"
+
+#: init.lua
+msgid "Yellow Dandelion"
+msgstr "タンポポ"
+
+#: init.lua
+msgid "Blue Geranium"
+msgstr "ゼラニウム"
+
+#: init.lua
+#, fuzzy
+msgid "Brown Mushroom"
+msgstr "茶色の羊毛"
+
+#: init.lua
+#, fuzzy
+msgid "Red Mushroom"
+msgstr "赤色の羊毛"
+
+#: init.lua
+msgid "Rose"
+msgstr "バラ"
+
+#: init.lua
+msgid "Orange Tulip"
+msgstr "チューリップ"
+
+#: init.lua
+msgid "Viola"
+msgstr "ビオラ"
+
+#: init.lua
+msgid "Waterlily"
+msgstr ""
+
+#: init.lua
+msgid "Ignore (you hacker you!)"
+msgstr ""
+
+#: init.lua
+msgid "Screwdriver (left-click rotates face, right-click rotates axis)"
+msgstr "スクリュードライバー"
+
+#: init.lua
+msgid "Acacia Wood Slab"
+msgstr ""
+
+#: init.lua
+msgid "Aspen Wood Slab"
+msgstr ""
+
+#: init.lua
+#, fuzzy
+msgid "Brick Slab"
+msgstr "レンガブロック"
+
+#: init.lua
+#, fuzzy
+msgid "Bronze Block Slab"
+msgstr "青銅ブロック"
+
+#: init.lua
+#, fuzzy
+msgid "Cobblestone Slab"
+msgstr "丸石"
+
+#: init.lua
+#, fuzzy
+msgid "Copper Block Slab"
+msgstr "銅ブロック"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Cobblestone Slab"
+msgstr "砂漠の丸石"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Sandstone Block Slab"
+msgstr "赤レンガ"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Sandstone Brick Slab"
+msgstr "赤レンガ"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Sandstone Slab"
+msgstr "砂岩"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Stone Block Slab"
+msgstr "赤レンガ"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Stone Brick Slab"
+msgstr "赤レンガ"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Stone Slab"
+msgstr "砂岩"
+
+#: init.lua
+#, fuzzy
+msgid "Gold Block Slab"
+msgstr "金ブロック"
+
+#: init.lua
+msgid "Ice Slab"
+msgstr ""
+
+#: init.lua
+#, fuzzy
+msgid "Jungle Wood Slab"
+msgstr "ジャングルの原木"
+
+#: init.lua
+#, fuzzy
+msgid "Mossy Cobblestone Slab"
+msgstr "苔石"
+
+#: init.lua
+#, fuzzy
+msgid "Obsidian Block Slab"
+msgstr "黒曜石の破片"
+
+#: init.lua
+#, fuzzy
+msgid "Obsidian Brick Slab"
+msgstr "黒曜石の破片"
+
+#: init.lua
+#, fuzzy
+msgid "Obsidian Slab"
+msgstr "黒曜石の破片"
+
+#: init.lua
+#, fuzzy
+msgid "Pine Wood Slab"
+msgstr "桃色の羊毛"
+
+#: init.lua
+#, fuzzy
+msgid "Sandstone Block Slab"
+msgstr "砂岩レンガ"
+
+#: init.lua
+#, fuzzy
+msgid "Sandstone Brick Slab"
+msgstr "砂岩レンガ"
+
+#: init.lua
+#, fuzzy
+msgid "Sandstone Slab"
+msgstr "砂岩"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Sandstone Block Slab"
+msgstr "砂岩レンガ"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Sandstone Brick Slab"
+msgstr "砂岩レンガ"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Sandstone Slab"
+msgstr "砂岩"
+
+#: init.lua
+#, fuzzy
+msgid "Snow Block Slab"
+msgstr "雪ブロック"
+
+#: init.lua
+#, fuzzy
+msgid "Steel Block Slab"
+msgstr "鉄ブロック"
+
+#: init.lua
+#, fuzzy
+msgid "Stone Block Slab"
+msgstr "石レンガ"
+
+#: init.lua
+#, fuzzy
+msgid "Stone Brick Slab"
+msgstr "石レンガ"
+
+#: init.lua
+#, fuzzy
+msgid "Stone Slab"
+msgstr "石のシャベル"
+
+#: init.lua
+msgid "Straw Slab"
+msgstr ""
+
+#: init.lua
+#, fuzzy
+msgid "Tin Block Slab"
+msgstr "雪ブロック"
+
+#: init.lua
+#, fuzzy
+msgid "Wooden Slab"
+msgstr "木のシャベル"
+
+#: init.lua
+msgid "Acacia Wood Stair"
+msgstr ""
+
+#: init.lua
+msgid "Aspen Wood Stair"
+msgstr ""
+
+#: init.lua
+msgid "Brick Stair"
+msgstr ""
+
+#: init.lua
+#, fuzzy
+msgid "Bronze Block Stair"
+msgstr "青銅ブロック"
+
+#: init.lua
+#, fuzzy
+msgid "Cobblestone Stair"
+msgstr "丸石"
+
+#: init.lua
+#, fuzzy
+msgid "Copper Block Stair"
+msgstr "銅ブロック"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Cobblestone Stair"
+msgstr "砂漠の丸石"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Sandstone Block Stair"
+msgstr "赤レンガ"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Sandstone Brick Stair"
+msgstr "赤レンガ"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Sandstone Stair"
+msgstr "砂岩"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Stone Block Stair"
+msgstr "赤レンガ"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Stone Brick Stair"
+msgstr "赤レンガ"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Stone Stair"
+msgstr "砂岩"
+
+#: init.lua
+#, fuzzy
+msgid "Gold Block Stair"
+msgstr "金ブロック"
+
+#: init.lua
+msgid "Ice Stair"
+msgstr ""
+
+#: init.lua
+#, fuzzy
+msgid "Jungle Wood Stair"
+msgstr "ジャングルの原木"
+
+#: init.lua
+#, fuzzy
+msgid "Mossy Cobblestone Stair"
+msgstr "苔石"
+
+#: init.lua
+#, fuzzy
+msgid "Obsidian Block Stair"
+msgstr "黒曜石の破片"
+
+#: init.lua
+#, fuzzy
+msgid "Obsidian Brick Stair"
+msgstr "黒曜石の破片"
+
+#: init.lua
+#, fuzzy
+msgid "Obsidian Stair"
+msgstr "黒曜石の破片"
+
+#: init.lua
+msgid "Pine Wood Stair"
+msgstr ""
+
+#: init.lua
+#, fuzzy
+msgid "Sandstone Block Stair"
+msgstr "砂岩レンガ"
+
+#: init.lua
+#, fuzzy
+msgid "Sandstone Brick Stair"
+msgstr "砂岩レンガ"
+
+#: init.lua
+#, fuzzy
+msgid "Sandstone Stair"
+msgstr "砂岩"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Sandstone Block Stair"
+msgstr "砂岩レンガ"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Sandstone Brick Stair"
+msgstr "砂岩レンガ"
+
+#: init.lua
+msgid "Silver Sandstone Stair"
+msgstr ""
+
+#: init.lua
+#, fuzzy
+msgid "Snow Block Stair"
+msgstr "雪ブロック"
+
+#: init.lua
+#, fuzzy
+msgid "Steel Block Stair"
+msgstr "鉄ブロック"
+
+#: init.lua
+#, fuzzy
+msgid "Stone Block Stair"
+msgstr "石レンガ"
+
+#: init.lua
+#, fuzzy
+msgid "Stone Brick Stair"
+msgstr "石レンガ"
+
+#: init.lua
+#, fuzzy
+msgid "Stone Stair"
+msgstr "石の剣"
+
+#: init.lua
+msgid "Straw Stair"
+msgstr ""
+
+#: init.lua
+#, fuzzy
+msgid "Tin Block Stair"
+msgstr "雪ブロック"
+
+#: init.lua
+#, fuzzy
+msgid "Wooden Stair"
+msgstr "看板"
+
+#: init.lua
+#, fuzzy
+msgid "Acacia Wood Stair Inner"
+msgstr "原木"
+
+#: init.lua
+#, fuzzy
+msgid "Aspen Wood Stair Inner"
+msgstr "原木"
+
+#: init.lua
+#, fuzzy
+msgid "Brick Stair Inner"
+msgstr "石レンガ"
+
+#: init.lua
+#, fuzzy
+msgid "Bronze Block Stair Inner"
+msgstr "青銅ブロック"
+
+#: init.lua
+#, fuzzy
+msgid "Cobblestone Stair Inner"
+msgstr "丸石"
+
+#: init.lua
+#, fuzzy
+msgid "Copper Block Stair Inner"
+msgstr "銅ブロック"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Cobblestone Stair Inner"
+msgstr "砂漠の丸石"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Sandstone Block Stair Inner"
+msgstr "赤レンガ"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Sandstone Brick Stair Inner"
+msgstr "赤レンガ"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Sandstone Stair Inner"
+msgstr "砂岩"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Stone Block Stair Inner"
+msgstr "赤レンガ"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Stone Brick Stair Inner"
+msgstr "赤レンガ"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Stone Stair Inner"
+msgstr "砂岩"
+
+#: init.lua
+#, fuzzy
+msgid "Gold Block Stair Inner"
+msgstr "金ブロック"
+
+#: init.lua
+msgid "Ice Stair Inner"
+msgstr ""
+
+#: init.lua
+#, fuzzy
+msgid "Jungle Wood Stair Inner"
+msgstr "ジャングルの原木"
+
+#: init.lua
+#, fuzzy
+msgid "Mossy Cobblestone Stair Inner"
+msgstr "苔石"
+
+#: init.lua
+#, fuzzy
+msgid "Obsidian Block Stair Inner"
+msgstr "黒曜石の破片"
+
+#: init.lua
+#, fuzzy
+msgid "Obsidian Brick Stair Inner"
+msgstr "黒曜石の破片"
+
+#: init.lua
+#, fuzzy
+msgid "Obsidian Stair Inner"
+msgstr "黒曜石の破片"
+
+#: init.lua
+#, fuzzy
+msgid "Pine Wood Stair Inner"
+msgstr "桃色の羊毛"
+
+#: init.lua
+#, fuzzy
+msgid "Sandstone Block Stair Inner"
+msgstr "砂岩レンガ"
+
+#: init.lua
+#, fuzzy
+msgid "Sandstone Brick Stair Inner"
+msgstr "砂岩レンガ"
+
+#: init.lua
+#, fuzzy
+msgid "Sandstone Stair Inner"
+msgstr "砂岩"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Sandstone Block Stair Inner"
+msgstr "砂岩レンガ"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Sandstone Brick Stair Inner"
+msgstr "砂岩レンガ"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Sandstone Stair Inner"
+msgstr "砂岩レンガ"
+
+#: init.lua
+#, fuzzy
+msgid "Snow Block Stair Inner"
+msgstr "雪ブロック"
+
+#: init.lua
+#, fuzzy
+msgid "Steel Block Stair Inner"
+msgstr "鉄ブロック"
+
+#: init.lua
+#, fuzzy
+msgid "Stone Block Stair Inner"
+msgstr "石レンガ"
+
+#: init.lua
+#, fuzzy
+msgid "Stone Brick Stair Inner"
+msgstr "石レンガ"
+
+#: init.lua
+#, fuzzy
+msgid "Stone Stair Inner"
+msgstr "石の剣"
+
+#: init.lua
+msgid "Straw Stair Inner"
+msgstr ""
+
+#: init.lua
+#, fuzzy
+msgid "Tin Block Stair Inner"
+msgstr "雪ブロック"
+
+#: init.lua
+#, fuzzy
+msgid "Wooden Stair Inner"
+msgstr "看板"
+
+#: init.lua
+#, fuzzy
+msgid "Acacia Wood Stair Outer"
+msgstr "原木"
+
+#: init.lua
+#, fuzzy
+msgid "Aspen Wood Stair Outer"
+msgstr "原木"
+
+#: init.lua
+#, fuzzy
+msgid "Brick Stair Outer"
+msgstr "石レンガ"
+
+#: init.lua
+#, fuzzy
+msgid "Bronze Block Stair Outer"
+msgstr "青銅ブロック"
+
+#: init.lua
+#, fuzzy
+msgid "Cobblestone Stair Outer"
+msgstr "丸石"
+
+#: init.lua
+#, fuzzy
+msgid "Copper Block Stair Outer"
+msgstr "銅ブロック"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Cobblestone Stair Outer"
+msgstr "砂漠の丸石"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Sandstone Block Stair Outer"
+msgstr "赤レンガ"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Sandstone Brick Stair Outer"
+msgstr "赤レンガ"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Sandstone Stair Outer"
+msgstr "砂岩"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Stone Block Stair Outer"
+msgstr "赤レンガ"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Stone Brick Stair Outer"
+msgstr "赤レンガ"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Stone Stair Outer"
+msgstr "砂岩"
+
+#: init.lua
+#, fuzzy
+msgid "Gold Block Stair Outer"
+msgstr "金ブロック"
+
+#: init.lua
+msgid "Ice Stair Outer"
+msgstr ""
+
+#: init.lua
+#, fuzzy
+msgid "Jungle Wood Stair Outer"
+msgstr "ジャングルの原木"
+
+#: init.lua
+#, fuzzy
+msgid "Mossy Cobblestone Stair Outer"
+msgstr "苔石"
+
+#: init.lua
+#, fuzzy
+msgid "Obsidian Block Stair Outer"
+msgstr "黒曜石の破片"
+
+#: init.lua
+#, fuzzy
+msgid "Obsidian Brick Stair Outer"
+msgstr "黒曜石の破片"
+
+#: init.lua
+#, fuzzy
+msgid "Obsidian Stair Outer"
+msgstr "黒曜石の破片"
+
+#: init.lua
+#, fuzzy
+msgid "Pine Wood Stair Outer"
+msgstr "桃色の羊毛"
+
+#: init.lua
+#, fuzzy
+msgid "Sandstone Block Stair Outer"
+msgstr "砂岩レンガ"
+
+#: init.lua
+#, fuzzy
+msgid "Sandstone Brick Stair Outer"
+msgstr "砂岩レンガ"
+
+#: init.lua
+#, fuzzy
+msgid "Sandstone Stair Outer"
+msgstr "砂岩"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Sandstone Block Stair Outer"
+msgstr "砂岩レンガ"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Sandstone Brick Stair Outer"
+msgstr "砂岩レンガ"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Sandstone Stair Outer"
+msgstr "砂岩レンガ"
+
+#: init.lua
+#, fuzzy
+msgid "Snow Block Stair Outer"
+msgstr "雪ブロック"
+
+#: init.lua
+#, fuzzy
+msgid "Steel Block Stair Outer"
+msgstr "鉄ブロック"
+
+#: init.lua
+#, fuzzy
+msgid "Stone Block Stair Outer"
+msgstr "石レンガ"
+
+#: init.lua
+#, fuzzy
+msgid "Stone Brick Stair Outer"
+msgstr "石レンガ"
+
+#: init.lua
+#, fuzzy
+msgid "Stone Stair Outer"
+msgstr "石の剣"
+
+#: init.lua
+msgid "Straw Stair Outer"
+msgstr ""
+
+#: init.lua
+#, fuzzy
+msgid "Tin Block Stair Outer"
+msgstr "雪ブロック"
+
+#: init.lua
+#, fuzzy
+msgid "Wooden Stair Outer"
+msgstr "看板"
+
+#: init.lua
+msgid "Gun Powder"
+msgstr ""
+
+#: init.lua
+msgid "TNT"
+msgstr ""
+
+#: init.lua
+msgid "Unknown Item"
+msgstr ""
+
+#: init.lua
+msgid "Drinking Glass (empty)"
+msgstr "ドリンクボトル"
+
+#: init.lua
+msgid "Glass Bottle (empty)"
+msgstr "ガラスのボトル"
+
+#: init.lua
+msgid "Pile of Glass Fragments"
+msgstr "ガラスの欠片"
+
+#: init.lua
+msgid "Vessels Shelf"
+msgstr ""
+
+#: init.lua
+msgid "Heavy Steel Bottle (empty)"
+msgstr "鉄のボトル"
+
+#: init.lua
+#, fuzzy
+msgid "Cobblestone Wall"
+msgstr "丸石"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Cobblestone Wall"
+msgstr "砂漠の丸石"
+
+#: init.lua
+#, fuzzy
+msgid "Mossy Cobblestone Wall"
+msgstr "苔石"
+
+#: init.lua
+msgid "Black Wool"
+msgstr "黒色の羊毛"
+
+#: init.lua
+msgid "Blue Wool"
+msgstr "青色の羊毛"
+
+#: init.lua
+msgid "Brown Wool"
+msgstr "茶色の羊毛"
+
+#: init.lua
+msgid "Cyan Wool"
+msgstr "空色の羊毛"
+
+#: init.lua
+msgid "Dark Green Wool"
+msgstr "緑色の羊毛"
+
+#: init.lua
+msgid "Dark Grey Wool"
+msgstr "灰色の羊毛"
+
+#: init.lua
+msgid "Green Wool"
+msgstr "黄緑色の羊毛"
+
+#: init.lua
+msgid "Grey Wool"
+msgstr "薄灰色の羊毛"
+
+#: init.lua
+msgid "Magenta Wool"
+msgstr "赤紫色の羊毛"
+
+#: init.lua
+msgid "Orange Wool"
+msgstr "橙色の羊毛"
+
+#: init.lua
+msgid "Pink Wool"
+msgstr "桃色の羊毛"
+
+#: init.lua
+msgid "Red Wool"
+msgstr "赤色の羊毛"
+
+#: init.lua
+msgid "Violet Wool"
+msgstr "紫色の羊毛"
+
+#: init.lua
+msgid "White Wool"
+msgstr "白色の羊毛"
+
+#: init.lua
+msgid "Yellow Wool"
+msgstr "黄色の羊毛"
+
+#: init.lua
+#, fuzzy
+msgid "Iron bar"
+msgstr "鉄鉱石"
+
+#: init.lua
+#, fuzzy
+msgid "Glass Pane"
+msgstr "ガラス"
+
+#: init.lua
+msgid "Nyan Cat Rainbow"
+msgstr ""
+
+#: init.lua
+msgid "Nyan Cat"
+msgstr ""
