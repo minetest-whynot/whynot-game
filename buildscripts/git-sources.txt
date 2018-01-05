@@ -106,6 +106,9 @@ origin	https://github.com/tenplus1/pbj_pup (fetch)
 origin	https://github.com/GreenXenith/tac_nayn (fetch)
 * master a715715 [origin/master: 1 voraus] avoid globals
 
+origin	https://github.com/orwell96/engrave/ (fetch)
+* master d7c01a1 [origin/master] Make the formspec a textarea when the player has the engrave_long_names privilege
+
 origin	https://github.com/stujones11/meshnode (fetch)
 * master 4341baf [origin/master] Fix typo.
 
