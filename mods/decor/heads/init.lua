@@ -1,6 +1,6 @@
 -- if you add new heads, you should change headnumber value accordingly
 
-headnumber = 30
+local headnumber = 30
 
 -- register head nodes
 

@@ -2,10 +2,11 @@ origin	https://github.com/minetest-mods/playeranim (fetch)
 * master 0cccb53 [origin/master] Character model v3 for MT 5.0 (#15)
 
 origin	https://github.com/minetest-mods/skinsdb (fetch)
-* master 71e05bb [origin/master] Rewrite README to proper markdown and better readability
+* master c6ee5c2 [origin/master] Merge pull request #2 from bell07/pr_private_skins
 
+bell07	https://github.com/bell07/character_creator (fetch)
 origin	https://github.com/minetest-mods/character_creator (fetch)
-* master e139e0d [origin/master] Support for skinsdb (#11)
+* master c637e8c [origin/master: 1 voraus] Skinsdb update related to https://github.com/minetest-mods/skinsdb/pull/2
 
 origin	https://github.com/GunshipPenguin/sprint (fetch)
 * master 23b9e7e [origin/master: 1 voraus] fix global variables
@@ -20,13 +21,13 @@ origin	https://github.com/minetest-mods/cozy (fetch)
 * master cd166a7 [origin/master] Initial checkin
 
 origin	https://github.com/bell07/minetest-smart_inventory (fetch)
-* master 7000ff7 [origin/master] doc: Be less strict in reveal information for shaped items. If not revealed shape is in onther recipe, check Recursivelly if the shape could be crafted. In check for "crafteable by" look forward for next items crafteable by shaped items This change is necessary because sometimes the smart_inventory reveal function feels unusable. The change take a boost for unifieddyes dyes mixing colors and some other recipes. You do not need to craft a slab for each material to check if anything is crafteable by the slab..
+* master c47a776 [origin/master] skinsdb related update
 
 origin	http://repo.or.cz/minetest_hbhunger (fetch)
 * master 47845f1 [origin/master] Version 0.6.0
 
 origin	https://github.com/Ezhh/abriglass (fetch)
-* master 9026f00 [origin/master: 1 voraus] change recipe to avoid overlap to princess mod
+* master eec4fcd [origin/master] Improve cage glass
 
 origin	https://github.com/minetest-mods/realchess (fetch)
 * master df78a33 [origin/master] Run luacheck and fix warnings.
@@ -43,11 +44,12 @@ origin	http://repo.or.cz/minetest_dice2.git (fetch)
 origin	https://github.com/pithydon/curtain (fetch)
 * master cd30988 [origin/master] kill bfd support clean up and license change
 
+bell07	https://github.com/bell07/princess (fetch)
 origin	https://github.com/pithydon/princess (fetch)
-* master 92525ff [origin/master] rose bush
+* master cad5480 [origin/master: 1 voraus] recipe change use tin instead of clay for princess material fix #1
 
 origin	https://github.com/HybridDog/heads (fetch)
-* master 27c9b5a [origin/master] play sound positionally
+* master a9741f0 [origin/master: 1 voraus] avoid leaked globals
 
 origin	https://github.com/minetest-mods/unifieddyes (fetch)
 * master 0d654ea [origin/master] Merge pull request #21 from Jat15/patch-2
@@ -113,7 +115,7 @@ origin	https://github.com/orwell96/engrave/ (fetch)
 * master d7c01a1 [origin/master] Make the formspec a textarea when the player has the engrave_long_names privilege
 
 origin	https://github.com/petermaloney/helicopter (fetch)
-* master c96e9fb [origin/master] Merge branch 'AntumMT-intllib_update'
+* master dac9cf2 [origin/master: 1 voraus] fix leaked globals
 
 origin	https://github.com/Ezhh/handholds (fetch)
 * master ec840f0 [origin/master] Update readme
@@ -142,8 +144,9 @@ origin	https://github.com/minetest-mods/woodcutting (fetch)
 origin	https://github.com/minetest-mods/homedecor_modpack (fetch)
 * master 4d9c4c2 [origin/master] Update init.lua (#400)
 
+bell07	https://github.com/bell07/waffles (fetch)
 origin	https://github.com/GreenXenith/waffles (fetch)
-* master 1cc43c9 [origin/master: 1 voraus] globals fix
+* master     44f8b33 [origin/master: 2 voraus] fix leaked global "group" removed not necessary "tostring"
 
 origin	https://github.com/rubenwardy/food_sweet (fetch)
 * master 1719cf7 [origin/master] Fix intllib boilerplate code

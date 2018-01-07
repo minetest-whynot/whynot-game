@@ -13,8 +13,8 @@ end
 
 
 function batter.register(filled, original_def)
-	filled = tostring(filled)
-	if filled == "1" then
+	local group
+	if filled == 1 then
 		group = 0
 	else
 		group = 1
@@ -44,7 +44,7 @@ function batter.register(filled, original_def)
 			if node.name == "waffles:wafflemaker_open_empty" then
 
 				minetest.set_node(pos, {name = "waffles:wafflemaker_open_full", param2 = node.param2})
-				if filled == "3" then
+				if filled == 3 then
 					itemstack, was_success = remove_empty_can(user)
 					return itemstack
 				else
