@@ -232,7 +232,7 @@ minetest.register_on_joinplayer(function(player)
 			show_formspec(player)
 		end
 		function skin_obj:get_texture()
-			return get_texture(self:get_meta("player"))
+			return get_texture(minetest.get_player_by_name(self:get_meta("playername")))
 		end
 
 		-- set data
@@ -240,8 +240,7 @@ minetest.register_on_joinplayer(function(player)
 		skin_obj:set_meta("name","Character Creator")
 		--skin_obj:set_meta("author", "???")
 		skin_obj:set_meta("license", "MIT / CC-BY-SA 3.0 Unported")
-		skin_obj:set_meta("assignment","player:"..playername)
-		skin_obj:set_meta("player", player)
+		skin_obj:set_meta("playername",playername)
 		--check if active and start the update (avoid race condition for both register_on_joinplayer)
 		if skinsdb.get_player_skin(player):get_key() == skinname then
 			minetest.after(0, change_skin, player)

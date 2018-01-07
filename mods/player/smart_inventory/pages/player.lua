@@ -169,7 +169,7 @@ local function update_page(state)
 		end
 
 		-- set the skins list
-		state.param.skins_list = skins.get_skinlist("player:"..name, true)
+		state.param.skins_list = skins.get_skinlist_for_player(name)
 		local cur_skin = skins.get_player_skin(player_obj)
 		local skins_grid_data = {}
 		local grid_skins = state:get("skins_grid")
