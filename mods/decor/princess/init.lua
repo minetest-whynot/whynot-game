@@ -454,9 +454,9 @@ minetest.register_craft({
 minetest.register_craft({
 	output = "princess:princess_pink_material",
 	recipe = {
-		{"default:clay_lump", "default:clay_lump", "default:clay_lump"},
-		{"default:clay_lump", "dye:pink", "default:clay_lump"},
-		{"default:clay_lump", "default:clay_lump", "default:clay_lump"}
+		{"default:tin_lump", "default:tin_lump", "default:tin_lump"},
+		{"default:tin_lump", "dye:pink", "default:tin_lump"},
+		{"default:tin_lump", "default:tin_lump", "default:tin_lump"},
 	}
 })
 
@@ -482,9 +482,9 @@ minetest.register_craft({
 minetest.register_craft({
 	output = "princess:princess_white_material",
 	recipe = {
-		{"default:clay_lump", "default:clay_lump", "default:clay_lump"},
-		{"default:clay_lump", "dye:white", "default:clay_lump"},
-		{"default:clay_lump", "default:clay_lump", "default:clay_lump"}
+		{"default:tin_lump", "default:tin_lump", "default:tin_lump"},
+		{"default:tin_lump", "dye:white", "default:tin_lump"},
+		{"default:tin_lump", "default:tin_lump", "default:tin_lump"},
 	}
 })
 

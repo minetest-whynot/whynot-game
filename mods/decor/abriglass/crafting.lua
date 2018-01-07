@@ -193,18 +193,18 @@ end
 minetest.register_craft({
 	output = 'abriglass:oneway_wall_dark 2',
 	recipe = {
-		{'default:tin_lump', 'default:tin_lump', 'default:tin_lump'},
-		{'default:tin_lump', 'dye:black', 'default:tin_lump'},
-		{'default:tin_lump', 'default:tin_lump', 'default:tin_lump'},
+		{'default:clay_lump', 'default:clay_lump', 'default:clay_lump'},
+		{'default:clay_lump', 'dye:black', 'default:clay_lump'},
+		{'default:clay_lump', 'default:clay_lump', 'default:clay_lump'},
 	}
 })
 
 minetest.register_craft({
 	output = 'abriglass:oneway_wall_pale 2',
 	recipe = {
-		{'default:tin_lump', 'default:tin_lump', 'default:tin_lump'},
-		{'default:tin_lump', 'dye:white', 'default:tin_lump'},
-		{'default:tin_lump', 'default:tin_lump', 'default:tin_lump'},
+		{'default:clay_lump', 'default:clay_lump', 'default:clay_lump'},
+		{'default:clay_lump', 'dye:white', 'default:clay_lump'},
+		{'default:clay_lump', 'default:clay_lump', 'default:clay_lump'},
 	}
 })
 
