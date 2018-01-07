@@ -1,0 +1,3 @@
+# If enabled the woodcutting dig not connected leaves
+# after tree nodes removed
+woodcutting_dig_leaves (Dig leaves) bool true

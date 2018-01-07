@@ -1,0 +1,2 @@
+Asynchrounus tree cutter. Mine the first tree node from a 
+tree while the sneak key is pressed to start the woodcutting process.

@@ -136,6 +136,9 @@ origin	https://github.com/bell07/minetest-subspacewalker (fetch)
 origin	https://github.com/dkartaschew/minetest-rainbowswords (fetch)
 * master 5196d61 [origin/master] Update README.md
 
+origin	https://github.com/minetest-mods/woodcutting (fetch)
+* master fa18940 [origin/master] added description.txt
+
 origin	https://github.com/minetest-mods/homedecor_modpack (fetch)
 * master 4d9c4c2 [origin/master] Update init.lua (#400)
 
