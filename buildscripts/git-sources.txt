@@ -127,6 +127,9 @@ origin	https://github.com/minetest-mods/orbs_of_time/ (fetch)
 origin	https://github.com/minetest-mods/ccompass (fetch)
 * master 823bced [origin/master] documentation stuff
 
+origin	https://github.com/bell07/minetest-subspacewalker (fetch)
+* master 0199943 [origin/master] added wear to subpacewalker usage
+
 origin	https://github.com/dkartaschew/minetest-rainbowswords (fetch)
 * master 5196d61 [origin/master] Update README.md
 
