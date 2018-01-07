@@ -127,6 +127,9 @@ origin	https://github.com/minetest-mods/orbs_of_time/ (fetch)
 origin	https://github.com/minetest-mods/ccompass (fetch)
 * master 823bced [origin/master] documentation stuff
 
+origin	https://github.com/dkartaschew/minetest-rainbowswords (fetch)
+* master 5196d61 [origin/master] Update README.md
+
 origin	https://github.com/minetest-mods/homedecor_modpack (fetch)
 * master 4d9c4c2 [origin/master] Update init.lua (#400)
 
