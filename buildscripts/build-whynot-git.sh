@@ -80,6 +80,7 @@ echo ' ### Sync game related files'
 $RSYNC "$SRC"/whynot_compat "$DST"/mods/
 $RSYNC "$PROJ"/game_src/minetest.conf "$DST"/
 $RSYNC "$PROJ"/game_src/game.conf "$DST"/
+$RSYNC "$PROJ"/game_src/menu "$DST"/
 
 ################### Create git logfile ########################
 echo '### Update git-sources.txt'
