@@ -1,0 +1,1 @@
+Adds help texts for the items of Minetest Game, to be used by the Documentation System mod.
