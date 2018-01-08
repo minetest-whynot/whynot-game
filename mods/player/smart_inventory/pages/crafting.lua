@@ -579,7 +579,8 @@ local function crafting_callback(state)
 	inf_state:label(11.5,1.5,"info3", "")
 	inf_state:item_image(10.2,0.3, 1, 1, "craft_result",nil):setVisible(false)
 	if smart_inventory.doc_items_mod then
-		local doc_btn = inf_state:item_image_button(10.2,2.3, 1, 1, "doc_btn","", "doc_identifier:identifier_solid")
+		local doc_btn = inf_state:image_button(10.4,2.3, 0.7, 0.7, "doc_btn","", "doc_button_icon_lores.png")
+		doc_btn:setTooltip("Show documentation for revealed item")
 		doc_btn:setVisible(false)
 		doc_btn:onClick(function(self, state, player)
 			local outitem = state:get("craft_result"):getImage()
@@ -696,9 +697,13 @@ local function crafting_callback(state)
 	local grid = smart_inventory.smartfs_elements.buttons_grid(state, 10.25, 5.15, 8 , 4, "buttons_grid", 0.75,0.75)
 	grid:onClick(function(self, state, index, player)
 		local listentry = state.param.crafting_craftable_list[index]
-		state.param.crafting_recipes_preview_selected = 1
-		state.param.crafting_recipes_preview_listentry = listentry
-		update_crafting_preview(state)
+		if ui_controller.list_variant == "lookup" then
+			do_lookup_item(state, state.location.rootState.location.player, listentry.item)
+		else
+			state.param.crafting_recipes_preview_selected = 1
+			state.param.crafting_recipes_preview_listentry = listentry
+			update_crafting_preview(state)
+		end
 		state.param.crafting_ui_controller:set_ui_variant("info")
 	end)
 

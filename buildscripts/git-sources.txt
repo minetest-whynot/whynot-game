@@ -21,7 +21,7 @@ origin	https://github.com/minetest-mods/cozy (fetch)
 * master cd166a7 [origin/master] Initial checkin
 
 origin	https://github.com/bell07/minetest-smart_inventory (fetch)
-* master c47a776 [origin/master] skinsdb related update
+* master 85c85db [origin/master] crafting: if lookup mode, do lookup for items selected from list. Dies nicer 2-way navigation from recipe item and back from list
 
 origin	http://repo.or.cz/minetest_hbhunger (fetch)
 * master 47845f1 [origin/master] Version 0.6.0
@@ -86,6 +86,15 @@ origin	https://github.com/xeranas/weather_pack (fetch)
 
 origin	https://github.com/minetest-mods/mtg_i18n (fetch)
 * master 58395b2 [origin/master] Translated using Weblate (French)
+
+origin	http://repo.or.cz/minetest_doc_minetest_game.git (fetch)
+* master 2e033d6 [origin/master: 1 voraus] adjust dependencies to optional
+
+origin	http://repo.or.cz/minetest_doc_items.git (fetch)
+* master d40a09b [origin/master] Update for 0.4.16 settings syntax
+
+origin	http://repo.or.cz/minetest_doc.git (fetch)
+* master 7872c71 [origin/master] Replace minetest.debug with minetest.log
 
 origin	https://github.com/minetest-mods/intllib (fetch)
 * master 9192771 [origin/master] Translated README to Malay.

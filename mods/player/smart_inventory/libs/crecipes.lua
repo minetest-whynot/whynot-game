@@ -305,6 +305,14 @@ function crecipes.get_revealed_recipes_with_items(playername, reference_items)
 				end
 			end
 		end
+		if cache.citems[itemname] and cache.citems[itemname].in_output_recipe then
+			for _, recipe in ipairs(cache.citems[itemname].in_output_recipe) do
+				local crecipe = crecipes.crecipes[recipe]
+				if crecipe and crecipe:is_revealed(playername, revealed_items_cache) then
+					recipelist[recipe] = crecipe
+				end
+			end
+		end
 	end
 	return recipelist
 end

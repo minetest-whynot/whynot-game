@@ -130,7 +130,7 @@ end
 
 smart_inventory.register_page({
 	name = "doc",
-	icon = "inventory_plus_doc_inventory_plus.png",
+	icon = "doc_awards_icon_generic.png",
 	tooltip = "Ingame documentation",
 	smartfs_callback = doc_callback,
 	sequence = 30,
