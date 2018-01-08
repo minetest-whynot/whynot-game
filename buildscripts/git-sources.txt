@@ -49,7 +49,7 @@ origin	https://github.com/pithydon/princess (fetch)
 * master cad5480 [origin/master: 1 voraus] recipe change use tin instead of clay for princess material fix #1
 
 origin	https://github.com/HybridDog/heads (fetch)
-* master a9741f0 [origin/master: 1 voraus] avoid leaked globals
+* master b0f32e2 [origin/master] avoid leaked globals
 
 origin	https://github.com/minetest-mods/unifieddyes (fetch)
 * master 0d654ea [origin/master] Merge pull request #21 from Jat15/patch-2
@@ -111,8 +111,9 @@ origin	https://github.com/minetest/minetest_game (fetch)
 origin	https://github.com/bell07/minetest-meseor.git (fetch)
 * master 4456298 [origin/master] Merge pull request #1 from bell07/mysetting
 
+bell07	https://github.com/bell07/pbj_pup (fetch)
 origin	https://github.com/tenplus1/pbj_pup (fetch)
-* master 1def7f3 [origin/master: 1 voraus] globals fix
+* master e42e398 [origin/master: 1 voraus] localize globals
 
 origin	https://github.com/GreenXenith/tac_nayn (fetch)
 * master a715715 [origin/master: 1 voraus] avoid globals
