@@ -74,7 +74,7 @@ origin	https://github.com/minetest-technic/mese_crystals (fetch)
 
 bell07	https://github.com/bell07/farming (fetch)
 origin	https://github.com/tenplus1/farming (fetch)
-* master ab1f04f [origin/master: 1 voraus] additional farming_plus compatibility aliases Found in https://github.com/clinew/farming_plus
+* master 1d3373d [origin/master: 2 voraus] remove double-alias
 
 origin	https://github.com/minetest-mods/lightning (fetch)
 * master 39bd36c [origin/master] Use particle glow to brighten up the lightning.
@@ -101,7 +101,7 @@ origin	https://github.com/minetest-mods/intllib (fetch)
 * master 9192771 [origin/master] Translated README to Malay.
 
 origin	https://github.com/rubenwardy/food (fetch)
-* master 53fc2bd [origin/master: 2 voraus] added farming:coffee_beans compatibility
+* master 5bc501f [origin/master: 1 voraus] change egg recipe to avoid overlap with lemon
 
 origin	https://github.com/MarkuBu/ambianceplus (fetch)
 * master e5ad9cc [origin/master] Merge pull request #2 from bell07/patch-1

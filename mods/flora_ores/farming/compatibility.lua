@@ -162,7 +162,6 @@ else
 	minetest.register_alias("farming_plus:strawberry2_2", "farming:raspberry_2")
 	minetest.register_alias("farming_plus:strawberry2_3", "farming:raspberry_3")
 	minetest.register_alias("farming_plus:strawberry2_4", "farming:raspberry_3")
-	minetest.register_alias("farming_plus:strawberry2", "farming:raspberry_4")
 end
 
 -- Tomato
