@@ -72,8 +72,9 @@ origin	https://github.com/Amaz1/flight/ (fetch)
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
 * master c11160f [origin/master: 1 voraus] fix leaked globals
 
+bell07	https://github.com/bell07/farming (fetch)
 origin	https://github.com/tenplus1/farming (fetch)
-* master 271c171 [origin/master] soil wont change into dirt if plant above
+* master ab1f04f [origin/master: 1 voraus] additional farming_plus compatibility aliases Found in https://github.com/clinew/farming_plus
 
 origin	https://github.com/minetest-mods/lightning (fetch)
 * master 39bd36c [origin/master] Use particle glow to brighten up the lightning.
