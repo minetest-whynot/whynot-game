@@ -74,6 +74,7 @@ if farming and farming.mod == "redo" then
 	food.support("potato", "farming:potato")
 	food.support("tomato", "farming:tomato")
 	food.support("cocoa", "farming:cocoa_beans")
+	food.support("coffee", "farming:coffee_beans")
 	food.support("dark_chocolate", "farming:chocolate_dark")
 	food.support("sugar", "farming:sugar")
 	food.support("cup", "farming:drinking_cup")

@@ -100,7 +100,7 @@ origin	https://github.com/minetest-mods/intllib (fetch)
 * master 9192771 [origin/master] Translated README to Malay.
 
 origin	https://github.com/rubenwardy/food (fetch)
-* master 3eca18a [origin/master: 1 voraus] change egg recipe to avoid overlap with lemon
+* master 53fc2bd [origin/master: 2 voraus] added farming:coffee_beans compatibility
 
 origin	https://github.com/MarkuBu/ambianceplus (fetch)
 * master e5ad9cc [origin/master] Merge pull request #2 from bell07/patch-1
@@ -164,6 +164,10 @@ origin	https://github.com/GreenXenith/waffles (fetch)
 
 origin	https://github.com/rubenwardy/food_sweet (fetch)
 * master 1719cf7 [origin/master] Fix intllib boilerplate code
+
+bell07	https://github.com/bell07/pie (fetch)
+origin	https://github.com/tenplus1/pie (fetch)
+* master cb98c11 [origin/master: 1 voraus] added suport for https://github.com/rubenwardy/food/ grouped recipe items
 
 origin	https://github.com/minetest-mods/mydoors (fetch)
 * master 54f89f3 [origin/master: 1 voraus] fix leaked globals
