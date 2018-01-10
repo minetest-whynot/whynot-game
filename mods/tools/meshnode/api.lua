@@ -37,7 +37,7 @@ local function connects_to_group(pos, groups)
 end
 
 local function get_tile_textures(tiles)
-	local textures = table.copy(tiles)
+	local textures = table.copy(tiles or {})
 	for i, v in pairs(textures) do
 		if type(v) == "table" then
 			textures[i] = v.name or "blank.png"

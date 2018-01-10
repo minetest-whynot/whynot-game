@@ -67,7 +67,7 @@ origin	https://github.com/cdqwertz/flower_pot (fetch)
 * master 8a62a78 [origin/master] uploaded
 
 origin	https://github.com/stujones11/minetest-3d_armor (fetch)
-* master 291b34b [origin/master] Auto-refresh armor stands after clearobjects.
+* master 4fc5197 [origin/master] Fix registered group level display
 
 origin	https://github.com/Amaz1/flight/ (fetch)
 * master 82ddbce [origin/master] Change license to MIT
@@ -142,7 +142,7 @@ rui	https://github.com/Rui-Minetest/maidroid (fetch)
 * master bc5a20e [origin/master: 3 voraus] Merge remote-tracking branch 'rui/patch-2'
 
 origin	https://github.com/stujones11/meshnode (fetch)
-* master 4341baf [origin/master] Fix typo.
+* master d88094f [origin/master] Be more tolerant agains unknown items in meshnode
 
 origin	https://github.com/minetest-mods/orbs_of_time/ (fetch)
 * master a5fb922 [origin/master] Merge pull request #1 from EdwardThorsten/master
