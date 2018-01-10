@@ -20,6 +20,9 @@ origin	http://repo.or.cz/minetest_hudbars (fetch)
 origin	https://github.com/minetest-mods/cozy (fetch)
 * master cd166a7 [origin/master] Initial checkin
 
+origin	https://github.com/bell07/minetest-wielded_light (fetch)
+* master 3cdf6fa [origin/master] Update README.md
+
 origin	https://github.com/bell07/minetest-smart_inventory (fetch)
 * master 85c85db [origin/master] crafting: if lookup mode, do lookup for items selected from list. Dies nicer 2-way navigation from recipe item and back from list
 
