@@ -5,6 +5,9 @@ This minetest subgame show up the diversity of minetest community. The game does
 
 The name describes the way the mods are applied to the game. The game does not have rules for mods to be applied all mods welcome. THey are some rules why a mod cannot applied to the game
 
+### List of already included mods
+Generated file: [mod_sources.txt](https://github.com/bell07/minetest-game-whynot/blob/master/mod_sources.txt)
+
 ## Whynot Rules for mods
 
 ### 1 no take over the game
