@@ -25,6 +25,7 @@ function mod_install {
 			break
 		fi
 	done
+
 #echo "excluded files:" ${excluded[@]}
 	function in_excluded {
 		for entry in "${excluded[@]}"; do
@@ -40,7 +41,6 @@ function mod_install {
 	fi
 #echo "sync_list:" ${sync_list[@]}
 
-## TODO: filter sync_list by excluded
 	for mod in ${sync_list[@]}; do
 		if [ -d "$mod" ] && [ -z "$(in_excluded "$(basename $mod)")" ]; then
 echo "Process repo $mod"
@@ -57,6 +57,13 @@ echo "Process repo $mod"
 			$RSYNC $excluded_string "$SRC"/"$mod" "$DST"/"$group"/
 		fi
 	done
+}
+
+function set_package {
+	LOG="$DST"/"$1"/mod_sources.txt
+	cp "$DST"/build.sh "$DST"/"$1"/
+	rm "$LOG" 2>/dev/null
+	git_repositories=( )
 }
 
 rm "$LOG" 2>/dev/null
