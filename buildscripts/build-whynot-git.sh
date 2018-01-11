@@ -3,12 +3,9 @@
 PROJ=~/Projekte/minetest-whynot-subgame-updater
 
 SRC="$PROJ"/mods_src/  # mods sources
-DST="$PROJ"/whynot-git/ # Subgame staging 
-LIB="$PROJ"/whynot-git/buildscripts/
-
-LOGFILE="$DST"/mod_sources.txt
-rm "$LOGFILE" 2>/dev/null
-
+DST="$PROJ"/whynot-git/mods/ # Subgame staging
+LIB="$PROJ"/whynot-git/buildscripts/ # The bash updater lib
+LOG="$PROJ"/whynot-git/mod_sources.txt
 
 source "$LIB"/build-whynot.lib
 cd "$SRC" # for proper resolving the '*'

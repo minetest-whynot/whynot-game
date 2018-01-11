@@ -47,14 +47,16 @@ echo "Process repo $mod"
 			cd "$mod"
 			GIT_REPO="$(git remote -v | grep '\(fetch\)' )"
 			if [ -z "$(in_git_repositories "$GIT_REPO")" ]; then
-				echo '' >> "$LOGFILE"
-				echo "$GIT_REPO" >> "$LOGFILE"
-				git branch -vv | grep '^[*]' >> "$LOGFILE"
+				echo '' >> "$LOG"
+				echo "$GIT_REPO" >> "$LOG"
+				git branch -vv | grep '^[*]' >> "$LOG"
 				git_repositories=(${git_repositories[@]} "$GIT_REPO")
 			fi
-			echo "Mod: $mod" >> "$LOGFILE"
+			echo "Mod: $mod" >> "$LOG"
 			cd - >/dev/null
- 			$RSYNC $excluded_string "$SRC"/"$mod" "$DST"/mods/"$group"/
+			$RSYNC $excluded_string "$SRC"/"$mod" "$DST"/"$group"/
 		fi
 	done
 }
+
+rm "$LOG" 2>/dev/null
