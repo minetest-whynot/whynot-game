@@ -1,0 +1,278 @@
+
+origin	https://github.com/minetest/minetest_game (fetch)
+* backport-0.4 7a4b1e0 [origin/backport-0.4] Default: Make burntimes more rational and consistent
+Mod: minetest_game/mods/beds
+Mod: minetest_game/mods/boats
+Mod: minetest_game/mods/bones
+Mod: minetest_game/mods/bucket
+Mod: minetest_game/mods/carts
+Mod: minetest_game/mods/creative
+Mod: minetest_game/mods/default
+Mod: minetest_game/mods/doors
+Mod: minetest_game/mods/dye
+Mod: minetest_game/mods/fire
+Mod: minetest_game/mods/flowers
+Mod: minetest_game/mods/give_initial_stuff
+Mod: minetest_game/mods/killme
+Mod: minetest_game/mods/screwdriver
+Mod: minetest_game/mods/sethome
+Mod: minetest_game/mods/sfinv
+Mod: minetest_game/mods/stairs
+Mod: minetest_game/mods/tnt
+Mod: minetest_game/mods/vessels
+Mod: minetest_game/mods/walls
+Mod: minetest_game/mods/wool
+Mod: minetest_game/mods/xpanes
+
+origin	http://repo.or.cz/minetest_doc.git (fetch)
+* master 7872c71 [origin/master] Replace minetest.debug with minetest.log
+Mod: libs/doc
+
+origin	http://repo.or.cz/minetest_doc_items.git (fetch)
+* master d40a09b [origin/master] Update for 0.4.16 settings syntax
+Mod: libs/doc_items
+
+origin	http://repo.or.cz/minetest_doc_minetest_game.git (fetch)
+* master 2e033d6 [origin/master: 1 voraus] adjust dependencies to optional
+Mod: libs/doc_minetest_game
+
+origin	https://github.com/minetest-mods/intllib (fetch)
+* master 9192771 [origin/master] Translated README to Malay.
+Mod: libs/intllib
+
+origin	https://github.com/minetest-mods/mtg_i18n (fetch)
+* master 58395b2 [origin/master] Translated using Weblate (French)
+Mod: libs/mtg_i18n
+
+bell07	https://github.com/bell07/character_creator (fetch)
+origin	https://github.com/minetest-mods/character_creator (fetch)
+* master c637e8c [origin/master: 1 voraus] Skinsdb update related to https://github.com/minetest-mods/skinsdb/pull/2
+Mod: player/character_creator
+
+origin	https://github.com/minetest-mods/cozy (fetch)
+* master cd166a7 [origin/master] Initial checkin
+Mod: player/cozy
+
+origin	http://repo.or.cz/minetest_hbhunger (fetch)
+* master 47845f1 [origin/master] Version 0.6.0
+Mod: player/hbhunger
+
+origin	http://repo.or.cz/minetest_hudbars (fetch)
+* master bec8afe [origin/master] Version 1.10.0, update credits
+Mod: player/hudbars
+
+origin	https://github.com/minetest-mods/playeranim (fetch)
+* master 0cccb53 [origin/master] Character model v3 for MT 5.0 (#15)
+Mod: player/playeranim
+
+origin	http://repo.or.cz/minetest_show_wielded_item.git (fetch)
+* master 2d4cc42 [origin/master] Initial commit + version 1.0.0
+Mod: player/show_wielded_item
+
+origin	https://github.com/minetest-mods/skinsdb (fetch)
+* master c6ee5c2 [origin/master] Merge pull request #2 from bell07/pr_private_skins
+Mod: player/skinsdb
+
+origin	https://github.com/bell07/minetest-smart_inventory (fetch)
+* master 85c85db [origin/master] crafting: if lookup mode, do lookup for items selected from list. Dies nicer 2-way navigation from recipe item and back from list
+Mod: player/smart_inventory
+
+origin	https://github.com/GunshipPenguin/sprint (fetch)
+* master 23b9e7e [origin/master: 1 voraus] fix global variables
+Mod: player/sprint
+
+origin	https://github.com/bell07/minetest-wielded_light (fetch)
+* master 3cdf6fa [origin/master] Update README.md
+Mod: player/wielded_light
+
+origin	https://github.com/minetest-mods/lightning (fetch)
+* master 39bd36c [origin/master] Use particle glow to brighten up the lightning.
+Mod: weather/lightning
+
+origin	https://github.com/Ezhh/under_sky (fetch)
+* master a15de19 [origin/master] Add cloud removal
+Mod: weather/under_sky
+
+origin	https://github.com/xeranas/weather_pack (fetch)
+* master 7dbab2c [origin/master] Merge pull request #9 from bell07/patch-1
+Mod: weather/weather_pack
+
+origin	https://github.com/MarkuBu/ambianceplus (fetch)
+* master e5ad9cc [origin/master] Merge pull request #2 from bell07/patch-1
+Mod: ambienceplus/ambplus_caves
+Mod: ambienceplus/ambplus_deserts
+Mod: ambienceplus/ambplus_forests
+
+origin	https://github.com/stujones11/minetest-3d_armor (fetch)
+* master 4fc5197 [origin/master] Fix registered group level display
+Mod: 3d_armor/3d_armor
+Mod: 3d_armor/3d_armor_stand
+Mod: 3d_armor/shields
+Mod: 3d_armor/wieldview
+
+bell07	https://github.com/bell07/farming (fetch)
+origin	https://github.com/tenplus1/farming (fetch)
+* master 1d3373d [origin/master: 2 voraus] remove double-alias
+Mod: flora_ores/farming
+
+origin	https://github.com/minetest-technic/mese_crystals (fetch)
+* master c11160f [origin/master: 1 voraus] fix leaked globals
+Mod: flora_ores/mese_crystals
+
+origin	https://github.com/bell07/minetest-meseor.git (fetch)
+* master 4456298 [origin/master] Merge pull request #1 from bell07/mysetting
+Mod: mapgen/meseor
+
+bell07	https://github.com/bell07/pbj_pup (fetch)
+origin	https://github.com/tenplus1/pbj_pup (fetch)
+* master e42e398 [origin/master: 1 voraus] localize globals
+Mod: mapgen/pbj_pup
+
+origin	https://github.com/GreenXenith/tac_nayn (fetch)
+* master a715715 [origin/master: 1 voraus] avoid globals
+Mod: mapgen/tac_nayn
+
+origin	https://github.com/minetest-mods/ccompass (fetch)
+* master 823bced [origin/master] documentation stuff
+Mod: tools/ccompass
+
+origin	https://github.com/orwell96/engrave/ (fetch)
+* master d7c01a1 [origin/master] Make the formspec a textarea when the player has the engrave_long_names privilege
+Mod: tools/engrave
+
+origin	https://github.com/Ezhh/handholds (fetch)
+* master ec840f0 [origin/master] Update readme
+Mod: tools/handholds
+
+origin	https://github.com/petermaloney/helicopter (fetch)
+* master dac9cf2 [origin/master: 1 voraus] fix leaked globals
+Mod: tools/helicopter
+
+origin	https://github.com/stujones11/hovercraft (fetch)
+* master 4d50e68 [origin/master] Ignore Eclipse project files
+Mod: tools/hovercraft
+
+origin	https://github.com/tacigar/maidroid (fetch)
+rui	https://github.com/Rui-Minetest/maidroid (fetch)
+* master bc5a20e [origin/master: 3 voraus] Merge remote-tracking branch 'rui/patch-2'
+Mod: tools/maidroid
+
+origin	https://github.com/stujones11/meshnode (fetch)
+* master d88094f [origin/master] Be more tolerant agains unknown items in meshnode
+Mod: tools/meshnode
+
+origin	https://github.com/minetest-mods/orbs_of_time/ (fetch)
+* master a5fb922 [origin/master] Merge pull request #1 from EdwardThorsten/master
+Mod: tools/orbs_of_time
+
+origin	https://github.com/dkartaschew/minetest-rainbowswords (fetch)
+* master 5196d61 [origin/master] Update README.md
+Mod: tools/rainbowswords
+
+origin	https://github.com/bell07/minetest-subspacewalker (fetch)
+* master 0199943 [origin/master] added wear to subpacewalker usage
+Mod: tools/subspacewalker
+
+origin	https://github.com/lisacvuk/minetest-toolranks (fetch)
+* master 3f94d76 [origin/master] added nil check
+Mod: tools/toolranks
+
+origin	https://github.com/minetest-mods/woodcutting (fetch)
+* master fa18940 [origin/master] added description.txt
+Mod: tools/woodcutting
+
+origin	https://github.com/Amaz1/flight/ (fetch)
+* master 82ddbce [origin/master] Change license to MIT
+Mod: flight/flyingcarpet
+
+origin	https://github.com/Ezhh/abriglass (fetch)
+* master eec4fcd [origin/master] Improve cage glass
+Mod: decor/abriglass
+
+origin	https://github.com/Napiophelios/campfire (fetch)
+* master 400fa91 [origin/master] update for Minetest 0.5.0
+Mod: decor/campfire
+
+origin	https://github.com/pithydon/curtain (fetch)
+* master cd30988 [origin/master] kill bfd support clean up and license change
+Mod: decor/curtain
+
+origin	http://repo.or.cz/minetest_dice2.git (fetch)
+* master 3e2290a [origin/master] Version 1.3 and MIT
+Mod: decor/dice2
+
+origin	https://github.com/cdqwertz/flower_pot (fetch)
+* master 8a62a78 [origin/master] uploaded
+Mod: decor/flower_pot
+
+origin	https://github.com/HybridDog/heads (fetch)
+* master b0f32e2 [origin/master] avoid leaked globals
+Mod: decor/heads
+
+origin	http://repo.or.cz/minetest_mtg_plus.git (fetch)
+* master db8fd34 [origin/master] Fix intllib support
+Mod: decor/mtg_plus
+
+origin	https://github.com/minetest-mods/myroofs (fetch)
+* master fe98461 [origin/master] Merge pull request #7 from AntumMT/recipe_fixes
+Mod: decor/myroofs
+
+bell07	https://github.com/bell07/princess (fetch)
+origin	https://github.com/pithydon/princess (fetch)
+* master cad5480 [origin/master: 1 voraus] recipe change use tin instead of clay for princess material fix #1
+Mod: decor/princess
+
+origin	https://github.com/minetest-mods/realchess (fetch)
+* master df78a33 [origin/master] Run luacheck and fix warnings.
+Mod: decor/realchess
+
+origin	https://github.com/minetest-mods/ts_furniture (fetch)
+* master af4e4aa [origin/master] Change chair recipe Avoids conflicts with homedecor
+Mod: decor/ts_furniture
+
+origin	https://github.com/minetest-mods/unifieddyes (fetch)
+* master 0d654ea [origin/master] Merge pull request #21 from Jat15/patch-2
+Mod: decor/unifieddyes
+
+origin	https://github.com/minetest-mods/homedecor_modpack (fetch)
+* master 4d9c4c2 [origin/master] Update init.lua (#400)
+Mod: homedecor_modpack/homedecor_i18n
+Mod: homedecor_modpack/homedecor
+Mod: homedecor_modpack/building_blocks
+Mod: homedecor_modpack/chains
+Mod: homedecor_modpack/fake_fire
+Mod: homedecor_modpack/lavalamp
+Mod: homedecor_modpack/lrfurn
+Mod: homedecor_modpack/plasmascreen
+
+origin	https://github.com/minetest-mods/mydoors (fetch)
+* master 54f89f3 [origin/master: 1 voraus] fix leaked globals
+Mod: mydoors/my_castle_doors
+Mod: mydoors/my_cottage_doors
+Mod: mydoors/my_default_doors
+Mod: mydoors/my_door_wood
+Mod: mydoors/my_fancy_doors
+Mod: mydoors/my_future_doors
+Mod: mydoors/my_hidden_doors
+Mod: mydoors/my_misc_doors
+Mod: mydoors/my_old_doors
+Mod: mydoors/my_old_doors
+
+origin	https://github.com/rubenwardy/food (fetch)
+* master 5bc501f [origin/master: 1 voraus] change egg recipe to avoid overlap with lemon
+Mod: food_modpack/food
+Mod: food_modpack/food_basic
+
+origin	https://github.com/rubenwardy/food_sweet (fetch)
+* master 1719cf7 [origin/master] Fix intllib boilerplate code
+Mod: food/food_sweet
+
+bell07	https://github.com/bell07/pie (fetch)
+origin	https://github.com/tenplus1/pie (fetch)
+* master cb98c11 [origin/master: 1 voraus] added suport for https://github.com/rubenwardy/food/ grouped recipe items
+Mod: food/pie
+
+bell07	https://github.com/bell07/waffles (fetch)
+origin	https://github.com/GreenXenith/waffles (fetch)
+* master     44f8b33 [origin/master: 2 voraus] fix leaked global "group" removed not necessary "tostring"
+Mod: food/waffles
