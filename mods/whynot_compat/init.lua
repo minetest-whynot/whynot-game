@@ -15,3 +15,7 @@ stairs.register_stair_and_slab(
 minetest.register_alias('technic:slab_granite_1', 'stairs:slab_granite')
 
 minetest.register_alias('homedecor:glowlight_small', 'homedecor:glowlight_small_cube')
+
+food.support("orange", "ethereal:orange")
+food.support("strawberry", "ethereal:strawberry")
+food.support("banana", "ethereal:banana")
