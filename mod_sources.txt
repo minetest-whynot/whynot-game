@@ -29,7 +29,7 @@ origin	http://repo.or.cz/minetest_doc.git (fetch)
 Mod: libs/doc
 
 origin	http://repo.or.cz/minetest_doc_items.git (fetch)
-* master d40a09b [origin/master] Update for 0.4.16 settings syntax
+* master b26035e [origin/master: 1 voraus] doc_items: experimental look to chests by punching for reveal
 Mod: libs/doc_items
 
 origin	http://repo.or.cz/minetest_doc_minetest_game.git (fetch)
@@ -259,7 +259,7 @@ Mod: mydoors/my_old_doors
 Mod: mydoors/my_old_doors
 
 origin	https://github.com/rubenwardy/food (fetch)
-* master 5bc501f [origin/master: 1 voraus] change egg recipe to avoid overlap with lemon
+* master c008a2f [origin/master: 2 voraus] removed redundant check for installed mod
 Mod: food_modpack/food
 Mod: food_modpack/food_basic
 
