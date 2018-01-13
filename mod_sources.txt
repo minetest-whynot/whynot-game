@@ -259,6 +259,10 @@ origin	https://github.com/rubenwardy/food (fetch)
 Mod: food_modpack/food
 Mod: food_modpack/food_basic
 
+origin	https://github.com/h-v-smacker/canned_food (fetch)
+* master 1c4692c [origin/master] Typos
+Mod: food/canned_food
+
 origin	https://github.com/rubenwardy/food_sweet (fetch)
 * master 1719cf7 [origin/master] Fix intllib boilerplate code
 Mod: food/food_sweet
