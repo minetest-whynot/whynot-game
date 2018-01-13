@@ -82,7 +82,7 @@ origin	https://github.com/GunshipPenguin/sprint (fetch)
 Mod: player/sprint
 
 origin	https://github.com/bell07/minetest-wielded_light (fetch)
-* master 3cdf6fa [origin/master] Update README.md
+* master 9b1cb76 [origin/master] Added shining API
 Mod: player/wielded_light
 
 origin	https://github.com/minetest-mods/lightning (fetch)
@@ -156,10 +156,6 @@ origin	https://github.com/tacigar/maidroid (fetch)
 rui	https://github.com/Rui-Minetest/maidroid (fetch)
 * master bc5a20e [origin/master: 3 voraus] Merge remote-tracking branch 'rui/patch-2'
 Mod: tools/maidroid
-
-origin	https://github.com/stujones11/meshnode (fetch)
-* master d88094f [origin/master] Be more tolerant agains unknown items in meshnode
-Mod: tools/meshnode
 
 origin	https://github.com/minetest-mods/orbs_of_time/ (fetch)
 * master a5fb922 [origin/master] Merge pull request #1 from EdwardThorsten/master
