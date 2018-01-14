@@ -222,6 +222,10 @@ origin	https://github.com/minetest-mods/realchess (fetch)
 * master df78a33 [origin/master] Run luacheck and fix warnings.
 Mod: decor/realchess
 
+origin	https://github.com/v-rob/slats (fetch)
+* master 723a9c9 [origin/master] Add everything
+Mod: decor/slats
+
 origin	https://github.com/minetest-mods/ts_furniture (fetch)
 * master af4e4aa [origin/master] Change chair recipe Avoids conflicts with homedecor
 Mod: decor/ts_furniture
