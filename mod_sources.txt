@@ -44,6 +44,10 @@ origin	https://github.com/minetest-mods/mtg_i18n (fetch)
 * master 58395b2 [origin/master] Translated using Weblate (French)
 Mod: libs/mtg_i18n
 
+origin	https://github.com/minetest-mods/awards (fetch)
+* master 81aa0f1 [origin/master] Fix broken achievement image (On The Way)
+Mod: player/awards
+
 bell07	https://github.com/bell07/character_creator (fetch)
 origin	https://github.com/minetest-mods/character_creator (fetch)
 * master c637e8c [origin/master: 1 voraus] Skinsdb update related to https://github.com/minetest-mods/skinsdb/pull/2
@@ -74,7 +78,7 @@ origin	https://github.com/minetest-mods/skinsdb (fetch)
 Mod: player/skinsdb
 
 origin	https://github.com/bell07/minetest-smart_inventory (fetch)
-* master 85c85db [origin/master] crafting: if lookup mode, do lookup for items selected from list. Dies nicer 2-way navigation from recipe item and back from list
+* master a041b23 [origin/master] awards support: page added
 Mod: player/smart_inventory
 
 origin	https://github.com/GunshipPenguin/sprint (fetch)

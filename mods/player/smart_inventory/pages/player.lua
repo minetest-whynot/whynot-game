@@ -1,3 +1,6 @@
+smart_inventory.skins_mod = minetest.get_modpath("skinsdb")
+smart_inventory.armor_mod = minetest.get_modpath("3d_armor")
+
 if not smart_inventory.skins_mod and not smart_inventory.armor_mod then
 	return
 end

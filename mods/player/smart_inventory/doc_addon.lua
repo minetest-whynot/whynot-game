@@ -1,3 +1,5 @@
+smart_inventory.doc_items_mod = minetest.get_modpath("doc_items")
+
 local doc_addon = {}
 
 local doc_item_entries = {}
