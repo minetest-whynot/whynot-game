@@ -48,3 +48,14 @@ mod_install decor mydoors/my_old_doors
 mod_install decor mydoors/my_old_doors
 
 mod_install food food_modpack/food food_modpack/food_basic food/*
+
+mod_install mesecons --exclude=mesecons_lucacontroller \
+					--exclude=mesecons_commandblock \
+					--exclude=mesecons_detector \
+					--exclude=mesecons_fpga \
+					--exclude=mesecons_gates \
+					--exclude=mesecons_hydroturbine \
+					--exclude=mesecons_luacontroller \
+					--exclude=mesecons_microcontroller \
+					--exclude=mesecons_stickyblocks \
+			mesecons/*

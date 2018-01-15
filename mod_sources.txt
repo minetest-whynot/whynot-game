@@ -284,3 +284,30 @@ bell07	https://github.com/bell07/waffles (fetch)
 origin	https://github.com/GreenXenith/waffles (fetch)
 * master     44f8b33 [origin/master: 2 voraus] fix leaked global "group" removed not necessary "tostring"
 Mod: food/waffles
+
+origin	https://github.com/minetest-mods/mesecons (fetch)
+* master 02f8d29 [origin/master] Microcontroller craft fallbacks for detectors (#390)
+Mod: mesecons/mesecons
+Mod: mesecons/mesecons_alias
+Mod: mesecons/mesecons_blinkyplant
+Mod: mesecons/mesecons_button
+Mod: mesecons/mesecons_delayer
+Mod: mesecons/mesecons_doors
+Mod: mesecons/mesecons_extrawires
+Mod: mesecons/mesecons_insulated
+Mod: mesecons/mesecons_lamp
+Mod: mesecons/mesecons_lightstone
+Mod: mesecons/mesecons_materials
+Mod: mesecons/mesecons_movestones
+Mod: mesecons/mesecons_mvps
+Mod: mesecons/mesecons_noteblock
+Mod: mesecons/mesecons_pistons
+Mod: mesecons/mesecons_powerplant
+Mod: mesecons/mesecons_pressureplates
+Mod: mesecons/mesecons_random
+Mod: mesecons/mesecons_receiver
+Mod: mesecons/mesecons_solarpanel
+Mod: mesecons/mesecons_switch
+Mod: mesecons/mesecons_torch
+Mod: mesecons/mesecons_walllever
+Mod: mesecons/mesecons_wires
