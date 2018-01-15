@@ -5,7 +5,6 @@ Mod: minetest_game/mods/beds
 Mod: minetest_game/mods/boats
 Mod: minetest_game/mods/bones
 Mod: minetest_game/mods/bucket
-Mod: minetest_game/mods/carts
 Mod: minetest_game/mods/creative
 Mod: minetest_game/mods/default
 Mod: minetest_game/mods/doors
@@ -135,6 +134,10 @@ Mod: mapgen/pbj_pup
 origin	https://github.com/GreenXenith/tac_nayn (fetch)
 * master a715715 [origin/master: 1 voraus] avoid globals
 Mod: mapgen/tac_nayn
+
+origin	https://github.com/SmallJoker/boost_cart (fetch)
+* master f4c1a2e [origin/master] Fix edge case crash due nil old_pos, remove player_api warning
+Mod: tools/boost_cart
 
 origin	https://github.com/minetest-mods/ccompass (fetch)
 * master 823bced [origin/master] documentation stuff
