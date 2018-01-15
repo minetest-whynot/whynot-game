@@ -1,0 +1,9 @@
+Hues: red orange yellow lime green aqua cyan skyblue blue violet magenta redviolet
+Shades: full full50 light med med50 dark dark50
+(both 1-indexed)
+
+For grayscale, use hue 0, shades available: white gray75 gray50 gray25 black
+
+param2 = color*8 + shade
+
+Invalid colors resolve to white.
