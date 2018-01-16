@@ -18,7 +18,7 @@ Maybe later I start to port smart_inventory features to sfinv enhancements becau
 
 Craft and build
 
-the player collects items and reveals recipes. During the crafting additional items revealed and the player see a lot of crafteable decorative stuff like abriglass, homedecor, mydoors, myroofs, princess, ts_furniture, building_blocks, curtain, flower_pot, realchess, campfire, dice2, heads, campfire, dice2, heads,mtg_plus, plasticbox slats, some of them with unifieddyes support
+the player collects items and reveals recipes. During the crafting additional items revealed and the player see a lot of crafteable decorative stuff like abriglass, homedecor, mydoors, myroofs, princess, ts_furniture, building_blocks, curtain, flower_pot, realchess, campfire, dice2, heads, mtg_plus, plasticbox slats, some of them with unifieddyes support
 Some selected mesecons items are available to build automated stuff. 
 
 Tools
