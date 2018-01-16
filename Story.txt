@@ -1,0 +1,41 @@
+Whynot Game story
+
+
+Entering the game
+
+the player sie Mintetest Game like area. After second look he notes the farming mod the tenplus1 version is used. And he hear sounds from ambienceplus, the sky is under_sky and maybe lightning or    weather(_pack) appears.
+The world seems to be bare. In fact they are no other mapgen mods as from minetest_game, and some not intrusive mese_crystals ores, meseor, pbj_pup, tac_nayn.
+Mapgen mods tends to take over the game so I am critical before applying mods changing the mapgen behaviour. I like the bare Minetest Game world that keeps all gameplay ways open to the player.
+But the player can more then the MTG player because of mods like cozy, playeranim  show_wielded_item or sprint. He see the hunger from hbhunger in hudbars.
+
+
+Track the progress in inventory
+
+looking to the inventory the player see the smart_inventory with empty item tables at the first.
+The maybe first question is "Why this inventory"? The 3d_armor, awards, skinsdb, and doc integration does exsits for other mods too. The answer is "because developed by bell07 (me)".
+Maybe later I start to port smart_inventory features to sfinv enhancements because I trust me to develop smart formspecs without the smartfs framework, but not yet. The most important used feature is the integration for revealed items (doc_items) to the crafting helpers. The player see in inventory only Items he know or he can craft. So beside the awards a second progress challenge is to reveal more items and see more new crafteable recipes.
+
+
+Craft and build
+
+the player collects items and reveals recipes. During the crafting additional items revealed and the player see a lot of crafteable decorative stuff like abriglass, homedecor, mydoors, myroofs, princess, ts_furniture, building_blocks, curtain, flower_pot, realchess, campfire, dice2, heads, campfire, dice2, heads,mtg_plus, plasticbox slats, some of them with unifieddyes support
+Some selected mesecons items are available to build automated stuff. 
+
+Tools
+
+During the crafting the player see after some time different tools that make life easier, like 
+ccompass, engrave, flyingcarpet, handholds, helicopter, hovercraft, maidroid, orbs_of_time, rainbowswords, subspacewalker, (boost_cart as mesecons-enabled replacedment for of MTG-carts)
+Some tools enhanced by toolranks, woodcutting, wielded_light
+
+
+Hungry
+
+The player see the hungry status, and see the next task, to get the food. Besides the farming stuff there are  canned_food, rubenwardy's food, pie and waffles available
+
+
+Still missed chellenges
+The game still lack for challenges. The curent state is a sandbox game even in survival. I search for the next mods that matches the "whynot"-criteria.
+
+1: mobs. All mobs mods/frameworks I seen takes over the world and game. I search for mobs mod that allow "mob-free regions". That means, they should be a way to get areas mob-free without removal of default:dirt_with_gras or any other spawning nodes.
+
+2: rare spawning extras: Pyramids, temples, buildings and other that spawns rare in the world at mapgen, like the installed meseor mod does.
