@@ -420,7 +420,7 @@ local function crafting_callback(state)
 		end
 
 		-- auto-switch to the groups
-		if list_variant == "lookup" then
+		if list_variant == "lookup" or list_variant == "reveal_tipp" then
 			state.param.crafting_ui_controller:set_ui_variant("info")
 		else
 			state.param.crafting_ui_controller:set_ui_variant("groups")

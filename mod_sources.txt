@@ -77,7 +77,7 @@ origin	https://github.com/minetest-mods/skinsdb (fetch)
 Mod: player/skinsdb
 
 origin	https://github.com/bell07/minetest-smart_inventory (fetch)
-* master a041b23 [origin/master] awards support: page added
+* master 736bf80 [origin/master] crafting: hopefully final reveal proposal fix
 Mod: player/smart_inventory
 
 origin	https://github.com/GunshipPenguin/sprint (fetch)

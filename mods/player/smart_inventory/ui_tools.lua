@@ -171,56 +171,91 @@ function ui_tools.filter_by_top_reveal(list, playername)
 	local top_rating = 0
 
 	for itemname_check, entry in pairs(craftable_only) do
-		-- add the check item to the pipe as analysis entry point
-		local items_pipe = {{ key = itemname_check, value = 1 }}
-		local touched_items = {[itemname_check] = true}
+		if not cache.citems[itemname_check].cgroups["shape"] then
+--			print("craftable only item check", itemname_check)
+			-- add the check item to the pipe as analysis entry point
+			local items_pipe = {{ key = itemname_check, value = 1 }}
+			local touched_items = {[itemname_check] = true}
 
-		local step_limit = 15
-		-- process the pipe recursive / till pipe is empty
-		while items_pipe[1] do
-			-- limited recusion
-			step_limit = step_limit -1
-			if step_limit == 0 then
-				break
-			end
-
-			local itemname, rating_value = items_pipe[1].key, items_pipe[1].value
-
-			--apply rating value
-			if not cache.citems[itemname].cgroups["shape"] then -- Shapes have no values
-				if not rating[itemname_check] then
-					rating[itemname_check] = rating_value
-				else
-					rating[itemname_check] = rating[itemname_check] + rating_value
+			local step_limit = 15
+			-- process the pipe recursive / till pipe is empty
+			while items_pipe[1] do
+				-- limited recusion
+				step_limit = step_limit -1
+				if step_limit == 0 then
+					break
 				end
-			end
-			rating_value = rating_value * 0.7
-			-- Add recursive sub-entries to the pipe with lower value
-			if cache.citems[itemname] and cache.citems[itemname].in_craft_recipe then
-				for _, recipe in ipairs(cache.citems[itemname].in_craft_recipe) do
-					if crecipes.crecipes[recipe] then
-						local child_itemname = crecipes.crecipes[recipe].out_item.name
-						-- result is not revealed (checked before in filter_by_revealed) and not craftable at the time
-						-- crafting of itemname will maybe open it
---						print("check child", child_itemname, craftable_only[child_itemname])
-						if not touched_items[child_itemname] and not craftable_only[child_itemname] then
-							touched_items[child_itemname] = true
-							table.insert(items_pipe, {key = child_itemname, value = rating_value})
+
+				local itemname, rating_value = items_pipe[1].key, items_pipe[1].value
+
+				--apply rating value
+				if not cache.citems[itemname].cgroups["shape"] then -- Shapes have no values
+					if not rating[itemname_check] then
+						rating[itemname_check] = rating_value
+					else
+						rating[itemname_check] = rating[itemname_check] + rating_value
+					end
+				end
+				rating_value = rating_value * 0.7
+				-- Add recursive sub-entries to the pipe with lower value
+				if cache.citems[itemname] and cache.citems[itemname].in_craft_recipe then
+					for _, recipe in ipairs(cache.citems[itemname].in_craft_recipe) do
+						if crecipes.crecipes[recipe] then
+							local crecipe = crecipes.crecipes[recipe]
+							local child_itemname = crecipe.out_item.name
+							-- result is not revealed (checked before in filter_by_revealed) and not craftable at the time
+							-- crafting of itemname will maybe open it
+--							print("check child", child_itemname, craftable_only[child_itemname])
+							if not touched_items[child_itemname] then
+								touched_items[child_itemname] = true
+								if not craftable_only[child_itemname] then
+								-- Check if the really reveal something
+									local do_reveal = false
+									for rec_name, iteminfo in pairs(crecipe._items) do
+--										print(rec_name, child_itemname, itemname)
+										if rec_name == itemname then
+											-- by name
+--											print("Item in recipe without group", itemname)
+											do_reveal = true
+											break
+										elseif iteminfo.items[itemname] then
+											-- found in group. check if other item in group already revealed
+											do_reveal = true
+											for item_in_group, _ in pairs(iteminfo.items[itemname]) do
+												if item_in_group ~= itemname then
+													if doc_addon.is_revealed_item(item_in_group, playername) then
+--														print("already revealed by ", item_in_group)
+														do_reveal = false
+														break
+													end
+												end
+											end
+											if do_reveal then
+												break
+											end
+										end
+									end
+									if do_reveal then
+--										print("New reveal", child_itemname, rating_value)
+										table.insert(items_pipe, {key = child_itemname, value = rating_value})
+									end
+								end
+							end
 						end
 					end
 				end
+--				print("Pipe item processing done:", itemname, dump(items_pipe[1]))
+				-- remove from pipe
+				table.remove(items_pipe,1)
 			end
---			print("check", itemname, dump(items_pipe), dump(touched_items))
-			-- remove from pipe
-			table.remove(items_pipe,1)
+			if not rating[itemname_check] then
+				rating[itemname_check] = 0
+			end
+			if rating[itemname_check] > top_rating then
+				top_rating = rating[itemname_check]
+			end
+--			print("rating done:", itemname_check, rating[itemname_check])
 		end
-		if not rating[itemname_check] then
-			rating[itemname_check] = 0
-		end
-		if rating[itemname_check] > top_rating then
-			top_rating = rating[itemname_check]
-		end
---		print("rating done:", itemname_check, rating[itemname_check])
 	end
 
 	-- sort
