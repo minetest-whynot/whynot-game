@@ -1,6 +1,6 @@
 
 origin	https://github.com/minetest/minetest_game (fetch)
-* backport-0.4 7a4b1e0 [origin/backport-0.4] Default: Make burntimes more rational and consistent
+* backport-0.4 0739656 [origin/backport-0.4: 1 voraus] Stairs: Allow crafting slabs and stairs into full blocks again
 Mod: minetest_game/mods/beds
 Mod: minetest_game/mods/boats
 Mod: minetest_game/mods/bones
