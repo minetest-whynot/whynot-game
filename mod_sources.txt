@@ -5,6 +5,7 @@ Mod: minetest_game/mods/beds
 Mod: minetest_game/mods/boats
 Mod: minetest_game/mods/bones
 Mod: minetest_game/mods/bucket
+Mod: minetest_game/mods/carts
 Mod: minetest_game/mods/creative
 Mod: minetest_game/mods/default
 Mod: minetest_game/mods/doors

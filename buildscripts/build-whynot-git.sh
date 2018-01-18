@@ -11,7 +11,7 @@ source "$LIB"/build-whynot.lib
 cd "$SRC" # for proper resolving the '*'
 
 ## Sync minetest_game
-mod_install minetest_game --exclude=farming --exclude=carts minetest_game/mods/*
+mod_install minetest_game --exclude=farming minetest_game/mods/*
 
 mod_install libs
 mod_install player
