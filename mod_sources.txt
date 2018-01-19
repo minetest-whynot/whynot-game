@@ -138,7 +138,7 @@ origin	https://github.com/GreenXenith/tac_nayn (fetch)
 Mod: mapgen/tac_nayn
 
 origin	https://github.com/taikedz/everamzah-backpacks (fetch)
-* master 05cdbec [origin/master] update the mobs redo check
+* master 2dc3364 [origin/master: 1 voraus] Avoid "access to undeclared globals" warning
 Mod: tools/backpacks
 
 origin	https://github.com/SmallJoker/boost_cart (fetch)
