@@ -1350,16 +1350,6 @@ minetest.register_on_punchnode(function(pos, node, puncher, pointed_thing)
 	local playername = puncher:get_player_name()
 	if playername ~= nil and playername ~= "" and node ~= nil then
 		reveal_item(playername, node.name)
-		local inv = minetest.get_inventory({type="node", pos=pos})
-		if inv then
-			for _, list in pairs(inv:get_lists()) do
-				for _, stack in ipairs(list) do
-					if not stack:is_empty() then
-						reveal_item(playername, stack:get_name())
-					end
-				end
-			end
-		end
 	end
 end)
 

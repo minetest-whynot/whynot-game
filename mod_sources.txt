@@ -29,7 +29,7 @@ origin	http://repo.or.cz/minetest_doc.git (fetch)
 Mod: libs/doc
 
 origin	http://repo.or.cz/minetest_doc_items.git (fetch)
-* master b26035e [origin/master: 1 voraus] doc_items: experimental look to chests by punching for reveal
+* master d40a09b [origin/master] Update for 0.4.16 settings syntax
 Mod: libs/doc_items
 
 origin	http://repo.or.cz/minetest_doc_minetest_game.git (fetch)
@@ -73,8 +73,9 @@ origin	http://repo.or.cz/minetest_show_wielded_item.git (fetch)
 * master 2d4cc42 [origin/master] Initial commit + version 1.0.0
 Mod: player/show_wielded_item
 
+bell07	https://github.com/bell07/minetest-skinsdb (fetch)
 origin	https://github.com/minetest-mods/skinsdb (fetch)
-* master c6ee5c2 [origin/master] Merge pull request #2 from bell07/pr_private_skins
+* master         c6ee5c2 [origin/master] Merge pull request #2 from bell07/pr_private_skins
 Mod: player/skinsdb
 
 origin	https://github.com/bell07/minetest-smart_inventory (fetch)
@@ -147,6 +148,10 @@ Mod: tools/boost_cart
 origin	https://github.com/minetest-mods/ccompass (fetch)
 * master 823bced [origin/master] documentation stuff
 Mod: tools/ccompass
+
+origin	https://github.com/bell07/minetest-doc_reveal_chest (fetch)
+* master d487a9a [origin/master] initial commit
+Mod: tools/doc_reveal_chest
 
 origin	https://github.com/orwell96/engrave/ (fetch)
 * master d7c01a1 [origin/master] Make the formspec a textarea when the player has the engrave_long_names privilege
