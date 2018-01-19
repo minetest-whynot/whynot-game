@@ -136,6 +136,10 @@ origin	https://github.com/GreenXenith/tac_nayn (fetch)
 * master a715715 [origin/master: 1 voraus] avoid globals
 Mod: mapgen/tac_nayn
 
+origin	https://github.com/taikedz/everamzah-backpacks (fetch)
+* master 05cdbec [origin/master] update the mobs redo check
+Mod: tools/backpacks
+
 origin	https://github.com/SmallJoker/boost_cart (fetch)
 * master f4c1a2e [origin/master] Fix edge case crash due nil old_pos, remove player_api warning
 Mod: tools/boost_cart
@@ -294,7 +298,7 @@ origin	https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin	https://github.com/minetest-mods/mesecons (fetch)
-* master 02f8d29 [origin/master] Microcontroller craft fallbacks for detectors (#390)
+* master fec82ab [origin/master] Sticky block: Add texture, sounds and groups (#397)
 Mod: mesecons/mesecons
 Mod: mesecons/mesecons_alias
 Mod: mesecons/mesecons_blinkyplant
