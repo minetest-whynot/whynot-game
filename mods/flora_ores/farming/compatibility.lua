@@ -38,13 +38,6 @@ minetest.register_alias("farming_plus:carrot_3", "farming:carrot_6")
 minetest.register_alias("farming_plus:carrot", "farming:carrot_8")
 minetest.register_alias("farming_plus:carrot_item", "farming:carrot")
 
-minetest.register_alias("farming_plus:seed_carrot2", "farming:carrot")
-minetest.register_alias("farming_plus:carrot2_1", "farming:carrot_1")
-minetest.register_alias("farming_plus:carrot2_2", "farming:carrot_4")
-minetest.register_alias("farming_plus:carrot2_3", "farming:carrot_6")
-minetest.register_alias("farming_plus:carrot2_4", "farming:carrot_8")
-minetest.register_alias("farming_plus:carrot2", "farming:carrot")
-
 -- Cocoa
 minetest.register_alias("farming_plus:cocoa_sapling", "farming:cocoa_2")
 minetest.register_alias("farming_plus:cocoa_leaves", "default:leaves")
@@ -92,13 +85,6 @@ minetest.register_alias("farming_plus:potato_2", "farming:potato_2")
 minetest.register_alias("farming_plus:potato", "farming:potato_3")
 minetest.register_alias("farming_plus:potato_seed", "farming:potato")
 
-minetest.register_alias("farming_plus:potato2_1", "farming:potato_1")
-minetest.register_alias("farming_plus:potato2_2", "farming:potato_2")
-minetest.register_alias("farming_plus:potato2_3", "farming:potato_3")
-minetest.register_alias("farming_plus:potato2_4", "farming:potato_3")
-minetest.register_alias("farming_plus:potato2", "farming:potato")
-minetest.register_alias("farming_plus:seed_potato2", "farming:potato")
-
 -- Pumpkin
 minetest.register_alias("farming:pumpkin_seed", "farming:pumpkin_slice")
 minetest.register_alias("farming:pumpkin_face", "farming:jackolantern")
@@ -119,12 +105,6 @@ minetest.register_alias("farming_plus:rhubarb_2", "farming:rhubarb_2")
 minetest.register_alias("farming_plus:rhubarb", "farming:rhubarb_3")
 minetest.register_alias("farming_plus:rhubarb_item", "farming:rhubarb")
 
-minetest.register_alias("farming_plus:seed_rhubarb2", "farming:rhubarb")
-minetest.register_alias("farming_plus:rhubarb2_1", "farming:rhubarb_1")
-minetest.register_alias("farming_plus:rhubarb2_2", "farming:rhubarb_2")
-minetest.register_alias("farming_plus:rhubarb2_3", "farming:rhubarb_3")
-minetest.register_alias("farming_plus:rhubarb2", "farming:rhubarb")
-
 -- Strawberry
 if eth then
 	minetest.register_alias("farming_plus:strawberry_item", "ethereal:strawberry")
@@ -133,14 +113,6 @@ if eth then
 	minetest.register_alias("farming_plus:strawberry_2", "ethereal:strawberry_3")
 	minetest.register_alias("farming_plus:strawberry_3", "ethereal:strawberry_5")
 	minetest.register_alias("farming_plus:strawberry", "ethereal:strawberry_7")
-
-	minetest.register_alias("farming_plus:strawberry2", "ethereal:strawberry")
-	minetest.register_alias("farming_plus:seed_strawberry2", "ethereal:strawberry")
-	minetest.register_alias("farming_plus:strawberry2_1", "ethereal:strawberry_1")
-	minetest.register_alias("farming_plus:strawberry2_2", "ethereal:strawberry_3")
-	minetest.register_alias("farming_plus:strawberry2_3", "ethereal:strawberry_5")
-	minetest.register_alias("farming_plus:strawberry2", "ethereal:strawberry_7")
-
 else
 	minetest.register_craftitem(":ethereal:strawberry", {
 		description = "Strawberry",
@@ -156,12 +128,6 @@ else
 	minetest.register_alias("farming_plus:strawberry_3", "farming:raspberry_3")
 	minetest.register_alias("farming_plus:strawberry", "farming:raspberry_4")
 
-	minetest.register_alias("farming_plus:strawberry2", "ethereal:strawberry")
-	minetest.register_alias("farming_plus:seed_strawberry2", "ethereal:strawberry")
-	minetest.register_alias("farming_plus:strawberry2_1", "farming:raspberry_1")
-	minetest.register_alias("farming_plus:strawberry2_2", "farming:raspberry_2")
-	minetest.register_alias("farming_plus:strawberry2_3", "farming:raspberry_3")
-	minetest.register_alias("farming_plus:strawberry2_4", "farming:raspberry_3")
 end
 
 -- Tomato
@@ -172,16 +138,8 @@ minetest.register_alias("farming_plus:tomato_2", "farming:tomato_4")
 minetest.register_alias("farming_plus:tomato_3", "farming:tomato_6")
 minetest.register_alias("farming_plus:tomato", "farming:tomato_8")
 
-minetest.register_alias("farming_plus:seed_tomato2", "farming:tomato")
-minetest.register_alias("farming_plus:tomato2", "farming:tomato")
-minetest.register_alias("farming_plus:tomato2_1", "farming:tomato_2")
-minetest.register_alias("farming_plus:tomato2_2", "farming:tomato_4")
-minetest.register_alias("farming_plus:tomato2_3", "farming:tomato_6")
-minetest.register_alias("farming_plus:tomato2_4", "farming:tomato_7")
-
 -- Weed
 minetest.register_alias("farming:weed", "default:grass_2")
-minetest.register_alias("farming_plus:weed", "default:grass_2")
 
 -- Classic Bushes compatibility
 if minetest.get_modpath("bushes_classic") then

@@ -115,9 +115,8 @@ Mod: 3d_armor/3d_armor_stand
 Mod: 3d_armor/shields
 Mod: 3d_armor/wieldview
 
-bell07	https://github.com/bell07/farming (fetch)
 origin	https://github.com/tenplus1/farming (fetch)
-* master 1d3373d [origin/master: 2 voraus] remove double-alias
+* master 1b71f29 [origin/master] updated german translation (thanks groenkek)
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)

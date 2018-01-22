@@ -123,25 +123,25 @@ msgstr "Spalier (vor dem Pflanzen der Weintrauben auf den\nAckerboden stellen)"
 
 #: hemp.lua
 msgid "Hemp Seed"
-msgstr ""
+msgstr "Hanfsamen"
 
 #: hemp.lua
 msgid "Hemp Leaf"
-msgstr ""
+msgstr "Hanfblatt"
 
 #: hemp.lua
 msgid "Bottle of Hemp Oil"
-msgstr ""
+msgstr "Flasche mit Hanföl"
 
 #: hemp.lua
 msgid "Hemp Fibre"
-msgstr ""
+msgstr "Hanffaser"
 
 #: hemp.lua
 msgid "Hemp Rope"
-msgstr ""
+msgstr "Hanfseil"
 
-#: ????
+#: hoes.lua
 msgid "Hoe"
 msgstr "Hacke"
 

@@ -13,7 +13,7 @@ farming.register_hoe = function(name, def)
 
 	-- Check def table
 	if def.description == nil then
-		def.description = "Hoe"
+		def.description = S("Hoe")
 	end
 
 	if def.inventory_image == nil then
