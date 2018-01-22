@@ -116,7 +116,7 @@ Mod: 3d_armor/shields
 Mod: 3d_armor/wieldview
 
 origin	https://github.com/tenplus1/farming (fetch)
-* master 1b71f29 [origin/master] updated german translation (thanks groenkek)
+* master 0843bd0 [origin/master] added onion, garlic, pepper to mapgen
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
@@ -129,7 +129,7 @@ Mod: mapgen/meseor
 
 bell07	https://github.com/bell07/pbj_pup (fetch)
 origin	https://github.com/tenplus1/pbj_pup (fetch)
-* master e42e398 [origin/master: 1 voraus] localize globals
+* master 12ca731 [origin/master: 2 voraus] Merge remote-tracking branch 'origin/master'
 Mod: mapgen/pbj_pup
 
 origin	https://github.com/GreenXenith/tac_nayn (fetch)

@@ -13,6 +13,7 @@ This mod works by adding your new plant to the {growing=1} group and numbering t
 
 Changelog:
 
+1.30 - Added Garlic, Pepper and Onions thanks to Grizzly Adam for sharing textures
 1.29 - Updating functions so requires Minetest 0.4.16 and above to run
 1.28 - Added chili peppers and bowl of chili, optimized code and fixed a few bugs, added porridge
 1.27 - Added meshoptions to api and wheat plants, added farming.rarity setting to spawn more/less crops on map, have separate cotton/string items (4x cotton = 1x wool, 2x cotton = 2x string)

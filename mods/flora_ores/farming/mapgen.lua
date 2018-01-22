@@ -37,6 +37,8 @@ register_plant("rhubarb_3", 3, 15, "", -1, farming.rhubarb)
 register_plant("blueberry_4", 3, 10, "", -1, farming.blueberry)
 register_plant("beanbush", 18, 35, "", -1, farming.beans)
 register_plant("grapebush", 25, 45, "", -1, farming.grapes)
+register_plant("onion_5", 5, 22, "", -1, farming.onion)
+register_plant("garlic_5", 3, 30, "group:tree", 1, farming.garlic)
 
 
 if minetest.get_mapgen_setting("mg_name") == "v6" then
@@ -90,6 +92,27 @@ minetest.register_decoration({
 	y_min = 5,
 	y_max = 35,
 	decoration = {"farming:chili_8"},
+	spawn_by = "group:tree",
+	num_spawn_by = 1,
+})
+end
+
+if farming.pepper then
+minetest.register_decoration({
+	deco_type = "simple",
+	place_on = {"default:dirt_with_rainforest_litter"},
+	sidelen = 16,
+	noise_params = {
+		offset = 0,
+		scale = farming.rarety, -- 0.06,
+		spread = {x = 100, y = 100, z = 100},
+		seed = 933,
+		octaves = 3,
+		persist = 0.6
+	},
+	y_min = 5,
+	y_max = 35,
+	decoration = {"farming:pepper_5"},
 	spawn_by = "group:tree",
 	num_spawn_by = 1,
 })

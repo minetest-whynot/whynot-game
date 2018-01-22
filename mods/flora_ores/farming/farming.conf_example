@@ -25,6 +25,9 @@ farming.grapes = true
 farming.barley = true
 farming.chili = true
 farming.hemp = true
+farming.onion = true
+farming.garlic = true
+farming.pepper = true
 farming.donuts = true
 
 -- rarety of crops on map, default is 0.006 (higher number = more crops)
