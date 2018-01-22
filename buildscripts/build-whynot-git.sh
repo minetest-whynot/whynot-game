@@ -59,3 +59,5 @@ mod_install mesecons --exclude=mesecons_lucacontroller \
 					--exclude=mesecons_microcontroller \
 					--exclude=mesecons_stickyblocks \
 			mesecons/*
+
+mod_install mobs_redo mobs_redo/*

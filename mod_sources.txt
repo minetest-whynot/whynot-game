@@ -302,7 +302,7 @@ origin	https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin	https://github.com/minetest-mods/mesecons (fetch)
-* master fec82ab [origin/master] Sticky block: Add texture, sounds and groups (#397)
+* master 065e870 [origin/master] Improve LuaController security (#393)
 Mod: mesecons/mesecons
 Mod: mesecons/mesecons_alias
 Mod: mesecons/mesecons_blinkyplant
@@ -327,3 +327,11 @@ Mod: mesecons/mesecons_switch
 Mod: mesecons/mesecons_torch
 Mod: mesecons/mesecons_walllever
 Mod: mesecons/mesecons_wires
+
+origin	https://github.com/tenplus1/mobs_monster (fetch)
+* master 2c75a43 [origin/master] new mobs_fireball image by benrob
+Mod: mobs_redo/mobs_monster
+
+origin	https://github.com/tenplus1/mobs_redo (fetch)
+* master 5e238b1 [origin/master] added fallback to nil min/max for drops
+Mod: mobs_redo/mobs_redo
