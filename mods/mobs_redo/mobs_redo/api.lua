@@ -3,7 +3,7 @@
 
 mobs = {}
 mobs.mod = "redo"
-mobs.version = "20180118"
+mobs.version = "20180122"
 
 
 -- Intllib
@@ -744,7 +744,9 @@ local do_jump = function(self)
 
 			self.object:setvelocity(v)
 
+if get_velocity(self) > 0 then
 			mob_sound(self, self.sounds.jump)
+end
 		else
 			self.facing_fence = true
 		end

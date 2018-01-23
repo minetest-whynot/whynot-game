@@ -129,7 +129,7 @@ Mod: mapgen/meseor
 
 bell07	https://github.com/bell07/pbj_pup (fetch)
 origin	https://github.com/tenplus1/pbj_pup (fetch)
-* master 12ca731 [origin/master: 2 voraus] Merge remote-tracking branch 'origin/master'
+* master e876499 [origin/master: 2 voraus] fix the fix
 Mod: mapgen/pbj_pup
 
 origin	https://github.com/GreenXenith/tac_nayn (fetch)
@@ -333,5 +333,5 @@ origin	https://github.com/tenplus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://github.com/tenplus1/mobs_redo (fetch)
-* master 5e238b1 [origin/master] added fallback to nil min/max for drops
+* master 7d0a919 [origin/master] jump sound only played when mob is moving, not when stuck
 Mod: mobs_redo/mobs_redo

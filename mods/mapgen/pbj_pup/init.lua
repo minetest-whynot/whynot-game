@@ -69,9 +69,9 @@ minetest.register_craft({
 	recipe = "nyancat:nyancat_rainbow",
 	burntime = 1,
 })
-local place, generate
+local generate
 -- Place Nyan or Pup with Rainbow
-function place(pos, facedir, length)
+local function place(pos, facedir, length)
 
 	if facedir > 3 then
 		facedir = 0
