@@ -295,6 +295,10 @@ origin	https://github.com/rubenwardy/food_sweet (fetch)
 * master 1719cf7 [origin/master] Fix intllib boilerplate code
 Mod: food/food_sweet
 
+origin	https://github.com/Philipbenr/mtfoods (fetch)
+* master 7893936 [origin/master] Merge pull request #3 from sys4-fr/master
+Mod: food/mtfoods
+
 bell07	https://github.com/bell07/pie (fetch)
 origin	https://github.com/tenplus1/pie (fetch)
 * master cb98c11 [origin/master: 1 voraus] added suport for https://github.com/rubenwardy/food/ grouped recipe items
