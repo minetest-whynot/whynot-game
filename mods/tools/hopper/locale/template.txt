@@ -1,0 +1,10 @@
+# Template for translations of hopper mod
+# last update: 1st February 2017
+
+#init.lua
+[MOD] Hopper loaded = 
+Hopper (Place onto sides for side-hopper) = 
+Side Hopper (Place into crafting to return normal Hopper) = 
+@1 moves stuff in hopper at @2
+@1 moves stuff to hopper at @2
+@1 moves stuff from hopper at @2

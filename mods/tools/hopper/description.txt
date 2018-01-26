@@ -1,0 +1,1 @@
+Adds hoppers to transport items between chests/furnace etc.

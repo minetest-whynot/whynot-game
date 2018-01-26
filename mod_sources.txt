@@ -164,6 +164,10 @@ origin	https://github.com/petermaloney/helicopter (fetch)
 * master dac9cf2 [origin/master: 1 voraus] fix leaked globals
 Mod: tools/helicopter
 
+origin	https://github.com/tenplus1/hopper (fetch)
+* master 576becb [origin/master] getpos to get_pos
+Mod: tools/hopper
+
 origin	https://github.com/stujones11/hovercraft (fetch)
 * master 4d50e68 [origin/master] Ignore Eclipse project files
 Mod: tools/hovercraft
