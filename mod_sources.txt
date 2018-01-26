@@ -341,5 +341,5 @@ origin	https://github.com/tenplus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://github.com/tenplus1/mobs_redo (fetch)
-* master 7d0a919 [origin/master] jump sound only played when mob is moving, not when stuck
+* master fc40d8d [origin/master] add runaway_from list for shy mobs
 Mod: mobs_redo/mobs_redo

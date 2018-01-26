@@ -3,7 +3,7 @@
 
 mobs = {}
 mobs.mod = "redo"
-mobs.version = "20180122"
+mobs.version = "20180126"
 
 
 -- Intllib
@@ -53,8 +53,11 @@ end
 
 -- Load settings
 local damage_enabled = minetest.settings:get_bool("enable_damage")
+local mobs_spawn = minetest.settings:get_bool("mobs_spawn") ~= false
 local peaceful_only = minetest.settings:get_bool("only_peaceful_mobs")
 local disable_blood = minetest.settings:get_bool("mobs_disable_blood")
+local mobs_drop_items = minetest.settings:get_bool("mobs_drop_items") ~= false
+local mobs_griefing = minetest.settings:get_bool("mobs_griefing") ~= false
 local creative = minetest.settings:get_bool("creative_mode")
 local spawn_protected = minetest.settings:get_bool("mobs_spawn_protected") ~= false
 local remove_far = minetest.settings:get_bool("remove_far_mobs")
@@ -355,6 +358,9 @@ end
 
 -- drop items
 local item_drop = function(self, cooked)
+
+	-- no drops if disabled by setting
+	if not mobs_drop_items then return end
 
 	-- no drops for child mobs
 	if self.child then return end
@@ -981,7 +987,8 @@ end
 -- find and replace what mob is looking for (grass, wheat etc.)
 local replace = function(self, pos)
 
-	if not self.replace_rate
+	if not mobs_griefing
+	or not self.replace_rate
 	or not self.replace_what
 	or self.child == true
 	or self.object:getvelocity().y ~= 0
@@ -1114,7 +1121,7 @@ local smart_mobs = function(self, s, p, dist, dtime)
 			self.path.following = false
 
 			 -- lets make way by digging/building if not accessible
-			if self.pathfinding == 2 then
+			if self.pathfinding == 2 and mobs_griefing then
 
 				-- is player higher than mob?
 				if s.y < p1.y then
@@ -1347,6 +1354,113 @@ local npc_attack = function(self)
 
 	if min_player then
 		do_attack(self, min_player)
+	end
+end
+
+
+-- specific runaway
+local specific_runaway = function(list, what)
+
+	-- no list so do not run
+	if list == nil then
+		return false
+	end
+
+	-- found entity on list to attack?
+	for no = 1, #list do
+
+		if list[no] == what or list[no] == "player" then
+			return true
+		end
+	end
+
+	return false
+end
+
+
+-- find someone to runaway from
+local runaway_from = function(self)
+
+	if not self.runaway_from then
+		return
+	end
+
+	local s = self.object:get_pos()
+	local p, sp, dist
+	local player, obj, min_player
+	local type, name = "", ""
+	local min_dist = self.view_range + 1
+	local objs = minetest.get_objects_inside_radius(s, self.view_range)
+
+	for n = 1, #objs do
+
+		if objs[n]:is_player() then
+
+			if mobs.invis[ objs[n]:get_player_name() ] then
+
+				type = ""
+			else
+				player = objs[n]
+				type = "player"
+				name = "player"
+			end
+		else
+			obj = objs[n]:get_luaentity()
+
+			if obj then
+				player = obj.object
+				type = obj.type
+				name = obj.name or ""
+			end
+		end
+
+		-- find specific mob to runaway from
+		if name ~= "" and name ~= self.name
+		and specific_runaway(self.runaway_from, name) then
+
+			s = self.object:get_pos()
+			p = player:get_pos()
+			sp = s
+
+			-- aim higher to make looking up hills more realistic
+			p.y = p.y + 1
+			sp.y = sp.y + 1
+
+			dist = get_distance(p, s)
+
+			if dist < self.view_range then
+			-- field of view check goes here
+
+				-- choose closest player/mpb to runaway from
+				if line_of_sight(self, sp, p, 2) == true
+				and dist < min_dist then
+					min_dist = dist
+					min_player = player
+				end
+			end
+		end
+	end
+
+	-- attack player
+	if min_player then
+
+		local lp = player:get_pos()
+		local vec = {
+			x = lp.x - s.x,
+			y = lp.y - s.y,
+			z = lp.z - s.z
+		}
+
+		local yaw = (atan(vec.z / vec.x) + 3 * pi / 2) - self.rotate
+
+		if lp.x > s.x then
+			yaw = yaw + pi
+		end
+
+		yaw = set_yaw(self.object, yaw)
+		self.state = "runaway"
+		self.runaway_timer = 0
+		self.following = nil
 	end
 end
 
@@ -2670,6 +2784,8 @@ local mob_step = function(self, dtime)
 
 	do_jump(self)
 
+	runaway_from(self)
+
 end
 
 
@@ -2782,6 +2898,7 @@ minetest.register_entity(name, {
 	dogshoot_count2_max = def.dogshoot_count2_max or (def.dogshoot_count_max or 5),
 	attack_animals = def.attack_animals or false,
 	specific_attack = def.specific_attack,
+	runaway_from = def.runaway_from,
 	owner_loyal = def.owner_loyal,
 	facing_fence = false,
 	_cmi_is_mob = true,
@@ -2848,6 +2965,11 @@ end
 
 function mobs:spawn_specific(name, nodes, neighbors, min_light, max_light,
 	interval, chance, aoc, min_height, max_height, day_toggle, on_spawn)
+
+	-- Do mobs spawn at all?
+	if not mobs_spawn then
+		return
+	end
 
 	-- chance/spawn number override in minetest.conf for registered mob
 	local numbers = minetest.settings:get(name)
@@ -3153,7 +3275,8 @@ end
 -- make explosion with protection and tnt mod check
 function mobs:boom(self, pos, radius)
 
-	if minetest.get_modpath("tnt") and tnt and tnt.boom
+	if mobs_griefing
+	and minetest.get_modpath("tnt") and tnt and tnt.boom
 	and not minetest.is_protected(pos, "") then
 
 		tnt.boom(pos, {
