@@ -42,8 +42,6 @@ minetest.register_alias("farming_plus:rhubarb2_2", "farming:rhubarb_2")
 minetest.register_alias("farming_plus:rhubarb2_3", "farming:rhubarb_3")
 minetest.register_alias("farming_plus:rhubarb2", "farming:rhubarb")
 
-minetest.register_alias("farming_plus:strawberry2", "ethereal:strawberry")
-minetest.register_alias("farming_plus:seed_strawberry2", "ethereal:strawberry")
 minetest.register_alias("farming_plus:strawberry2_1", "farming:raspberry_1")
 minetest.register_alias("farming_plus:strawberry2_2", "farming:raspberry_2")
 minetest.register_alias("farming_plus:strawberry2_3", "farming:raspberry_3")
