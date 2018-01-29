@@ -1459,7 +1459,7 @@ local runaway_from = function(self)
 
 		yaw = set_yaw(self.object, yaw)
 		self.state = "runaway"
-		self.runaway_timer = 0
+		self.runaway_timer = 3
 		self.following = nil
 	end
 end

@@ -39,7 +39,8 @@ functions needed for the mob to work properly which contains the following:
                    set to 0 for jumping mobs only.
    'jump'          when true allows your mob to jump updwards.
    'jump_height'   holds the height your mob can jump, 0 to disable jumping.
-   'step_height'   height of a block that your mob can easily walk up onto.
+   'stepheight'    height of a block that your mob can easily walk up onto,
+                   defaults to 1.1.
    'fly'           when true allows your mob to fly around instead of walking.
    'fly_in'        holds the node name that the mob flies (or swims) around
                    in e.g. "air" or "default:water_source".
@@ -49,7 +50,7 @@ functions needed for the mob to work properly which contains the following:
                    standing.
    'damage'        how many health points the mob does to a player or another
                    mob when melee attacking.
-   'knockback'     when true has mobs falling backwards when hit, the greater
+   'knock_back'    when true has mobs falling backwards when hit, the greater
                    the damage the more they move back.
    'fear_height'   is how high a cliff or edge has to be before the mob stops
                    walking, 0 to turn off height fear.
@@ -73,7 +74,7 @@ functions needed for the mob to work properly which contains the following:
                          hours and only attacking player at night or when
                          provoked.
    'attacks_monsters'    when true has npc's attacking monsters or not.
-   'attack_animal'       when true will have monsters attacking animals.
+   'attack_animals'      when true will have monsters attacking animals.
    'owner_loyal'         when true will have tamed mobs attack anything player
                          punches when nearby.
    'group_attack'        when true has same mob type grouping together to attack
@@ -95,7 +96,7 @@ functions needed for the mob to work properly which contains the following:
                          (1 for shoot, 2 for dogfight)
    'dogshoot_count_max'  contains how many seconds before switching from
                          dogfight to shoot.
-   'dogshoot_count_max2' contains how many seconds before switching from shoot
+   'dogshoot_count2_max' contains how many seconds before switching from shoot
                          to dogfight.
    'shoot_interval'      has the number of seconds between shots.
    'shoot_offset'        holds the y position added as to where the
@@ -143,9 +144,9 @@ functions needed for the mob to work properly which contains the following:
       'wielditem'      how it looks when player holds it in hand.
       'mesh'           uses separate object file to define mob.
    'visual_size'       has the size of the mob, defaults to {x = 1, y = 1}
-   'collision_box'     has the box in which mob can be interacted with the
+   'collisionbox'      has the box in which mob can be interacted with the
                        world e.g. {-0.5, -0.5, -0.5, 0.5, 0.5, 0.5}
-   'selection_box'     has the box in which player can interact with mob
+   'selectionbox'      has the box in which player can interact with mob
    'textures'          holds a table list of textures to be used for mob, or you
                        could use multiple lists inside another table for random
                        selection e.g. { {"texture1.png"}, {"texture2.png"} }

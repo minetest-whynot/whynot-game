@@ -50,7 +50,7 @@ Mod: player/awards
 
 bell07	https://github.com/bell07/character_creator (fetch)
 origin	https://github.com/minetest-mods/character_creator (fetch)
-* master c637e8c [origin/master: 1 voraus] Skinsdb update related to https://github.com/minetest-mods/skinsdb/pull/2
+* master 420a62c [origin/master: 1 voraus] Skinsdb update related to https://github.com/minetest-mods/skinsdb/pull/2
 Mod: player/character_creator
 
 origin	https://github.com/minetest-mods/cozy (fetch)
@@ -133,7 +133,7 @@ origin	https://github.com/tenplus1/pbj_pup (fetch)
 Mod: mapgen/pbj_pup
 
 origin	https://github.com/GreenXenith/tac_nayn (fetch)
-* master a715715 [origin/master: 1 voraus] avoid globals
+* master 87d9bf9 [origin/master] Avoid global functions
 Mod: mapgen/tac_nayn
 
 origin	https://github.com/taikedz/everamzah-backpacks (fetch)
@@ -304,9 +304,8 @@ origin	https://github.com/tenplus1/pie (fetch)
 * master cb98c11 [origin/master: 1 voraus] added suport for https://github.com/rubenwardy/food/ grouped recipe items
 Mod: food/pie
 
-bell07	https://github.com/bell07/waffles (fetch)
 origin	https://github.com/GreenXenith/waffles (fetch)
-* master     44f8b33 [origin/master: 2 voraus] fix leaked global "group" removed not necessary "tostring"
+* master 83182cb [origin/master] fix leaked global "group" and remove not necessary "tostring" (#7)
 Mod: food/waffles
 
 origin	https://github.com/minetest-mods/mesecons (fetch)
@@ -341,5 +340,5 @@ origin	https://github.com/tenplus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://github.com/tenplus1/mobs_redo (fetch)
-* master fc40d8d [origin/master] add runaway_from list for shy mobs
+* master 94e576c [origin/master] tweak runaway from timer
 Mod: mobs_redo/mobs_redo
