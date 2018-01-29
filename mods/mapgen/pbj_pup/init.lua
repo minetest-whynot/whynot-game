@@ -69,7 +69,7 @@ minetest.register_craft({
 	recipe = "nyancat:nyancat_rainbow",
 	burntime = 1,
 })
-local generate
+
 -- Place Nyan or Pup with Rainbow
 local function place(pos, facedir, length)
 
@@ -96,7 +96,7 @@ end
 -- Do we generate PB&J Pup and Nyan Cat's in world?
 if minetest.setting_getbool("pbj_pup_generate") ~= false then
 
-	function generate(minp, maxp, seed)
+	local function generate(minp, maxp, seed)
 
 		local height_min = -31000
 		local height_max = -32
@@ -122,6 +122,7 @@ if minetest.setting_getbool("pbj_pup_generate") ~= false then
 	end
 
 	minetest.register_on_generated(generate)
+	default.generate_nyancats = generate --Legacy
 end
 
 -- Legacy
@@ -131,4 +132,3 @@ minetest.register_alias("pbj_pup:pbj_pup_candies", "nyancat:nyancat_rainbow")
 minetest.register_alias("nyancat", "nyancat:nyancat")
 minetest.register_alias("nyancat_rainbow", "nyancat:nyancat_rainbow")
 default.make_nyancat = place
-default.generate_nyancats = generate

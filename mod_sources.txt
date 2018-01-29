@@ -129,7 +129,7 @@ Mod: mapgen/meseor
 
 bell07	https://github.com/bell07/pbj_pup (fetch)
 origin	https://github.com/tenplus1/pbj_pup (fetch)
-* master e876499 [origin/master: 2 voraus] fix the fix
+* master     0304351 [origin/master: 1 voraus] move default.generate_nyancats to the scope of generate function
 Mod: mapgen/pbj_pup
 
 origin	https://github.com/GreenXenith/tac_nayn (fetch)
