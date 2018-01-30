@@ -79,7 +79,7 @@ origin	https://github.com/minetest-mods/skinsdb (fetch)
 Mod: player/skinsdb
 
 origin	https://github.com/bell07/minetest-smart_inventory (fetch)
-* master 736bf80 [origin/master] crafting: hopefully final reveal proposal fix
+* master c4e86b0 [origin/master] smartfs update to the upstream version (all enhancements merged!)
 Mod: player/smart_inventory
 
 origin	https://github.com/GunshipPenguin/sprint (fetch)
@@ -242,8 +242,9 @@ origin	https://github.com/pithydon/princess (fetch)
 * master cad5480 [origin/master: 1 voraus] recipe change use tin instead of clay for princess material fix #1
 Mod: decor/princess
 
+bell07	https://github.com/bell07/realchess (fetch)
 origin	https://github.com/minetest-mods/realchess (fetch)
-* master df78a33 [origin/master] Run luacheck and fix warnings.
+* master d1a0bc8 [origin/master: 1 voraus] added support for laptop mod https://github.com/Gerold55/minetest-laptop
 Mod: decor/realchess
 
 origin	https://github.com/v-rob/slats (fetch)

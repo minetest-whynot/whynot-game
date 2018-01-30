@@ -255,6 +255,7 @@ smartfs._ldef.nodemeta = {
 							local meta = minetest.get_meta(state.location.pos)
 							meta:set_string("formspec", state:_buildFormspec_(true))
 							meta:set_string("smartfs_name", state.def.name)
+							meta:mark_as_private("smartfs_name")
 						end
 					end, state)
 				end
