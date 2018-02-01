@@ -30,9 +30,35 @@ hopper:add_container({
 	{"side", "default:furnace", "fuel"}, -- replenish furnace fuel from hopper at side
 })
 
+You can also register hopper interaction targets by group, or by a group and a specific group
+value. For example:
 
-We already have support for the wine barrel inside of the Wine mod and protected
+hopper:add_container({
+	{"top", "group:loot_chest", "loot"},
+	{"bottom", "group:loot_chest", "loot"},
+	{"side", "group:loot_chest", "loot"},
+})
+
+Would cause hoppers to interact with the "loot" inventory of all nodes belonging to the group
+"loot_chest", and
+
+hopper:add_container({
+	{"top", "group:protected_container=1", "main"},
+	{"bottom", "group:protected_container=1", "main"},
+	{"side", "group:protected_container=1", "main"},
+})
+
+Would cause hoppers to interact with the "main" inventory of nodes belonging to the group
+"protected_container" provided they had a value of 1 in that group. Hoppers prioritize the most
+specific definition first; they check for registrations for a specific node name, then
+for registrations that apply to a node's group and group value, and then for registrations
+applying to a node's group in general.
+
+Note that if multiple group registrations apply to the same node it's undefined which group
+will take priority. Using the above examples, if there were a node that belonged to *both*
+the groups "loot_chest" and "protected_container=1" there's no way of knowing ahead of time
+whether hoppers would interact with the "loot" or "main" inventories. Try to avoid this situation.
+
+The hopper mod already have support for the wine barrel inside of the Wine mod and protected
 chests inside of Protector Redo, as well as default chests, furnaces and hoppers
 themselves.
-
-Note: Hoppers can transfer into locked chests but not take from them (yet).

@@ -164,8 +164,8 @@ origin	https://github.com/petermaloney/helicopter (fetch)
 * master dac9cf2 [origin/master: 1 voraus] fix leaked globals
 Mod: tools/helicopter
 
-origin	https://github.com/tenplus1/hopper (fetch)
-* master 576becb [origin/master] getpos to get_pos
+origin	https://github.com/minetest-mods/hopper (fetch)
+* master 51b70fb [origin/master] Avoid hoppers to "repair" taken items (#10)
 Mod: tools/hopper
 
 origin	https://github.com/stujones11/hovercraft (fetch)
@@ -310,7 +310,7 @@ origin	https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin	https://github.com/minetest-mods/mesecons (fetch)
-* master 065e870 [origin/master] Improve LuaController security (#393)
+* master 7537b9f [origin/master] Use rotate_simple for insulated wires (#382)
 Mod: mesecons/mesecons
 Mod: mesecons/mesecons_alias
 Mod: mesecons/mesecons_blinkyplant
