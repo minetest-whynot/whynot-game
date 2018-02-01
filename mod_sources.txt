@@ -194,7 +194,7 @@ origin	https://github.com/lisacvuk/minetest-toolranks (fetch)
 Mod: tools/toolranks
 
 origin	https://github.com/minetest-mods/woodcutting (fetch)
-* master fa18940 [origin/master] added description.txt
+* master 05b3e0a [origin/master: 2 voraus] take node from treenodes_sorted only if not skipped skip means try again fix previous commit
 Mod: tools/woodcutting
 
 origin	https://github.com/Amaz1/flight/ (fetch)
