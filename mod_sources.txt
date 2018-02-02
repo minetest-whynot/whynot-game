@@ -234,7 +234,7 @@ origin	https://github.com/minetest-mods/myroofs (fetch)
 Mod: decor/myroofs
 
 origin	https://github.com/cheapie/plasticbox (fetch)
-* master a4e5967 [origin/master] make moreblocks optional (#8)
+* master 292d002 [origin/master: 1 voraus] added reversal recipe
 Mod: decor/plasticbox
 
 bell07	https://github.com/bell07/princess (fetch)

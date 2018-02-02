@@ -30,6 +30,11 @@ minetest.register_craft( {
         },
 })
 
+minetest.register_craft( {
+        output = "homedecor:plastic_sheeting 2",
+        recipe = {{ "plasticbox:plasticbox" }},
+})
+
 minetest.register_lbm({
 	name = "plasticbox:convert_colors",
 	label = "Convert plastic boxes to use param2 color",
