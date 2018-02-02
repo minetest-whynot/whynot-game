@@ -87,6 +87,7 @@ local suppressed_items = {
 	"doors:trapdoor_open",
 	"doors:hidden",
 	"xpanes:pane",
+	"xpanes:obsidian_pane",
 	"xpanes:bar",
 	"default:chest_open",
 	"default:chest_locked_open",
@@ -322,6 +323,7 @@ doc.add_entry_alias("nodes", "doors:trapdoor_steel", "nodes", "doors:trapdoor_st
 doc.add_entry_alias("nodes", "tnt:tnt", "nodes", "tnt:tnt_burning")
 doc.add_entry_alias("nodes", "tnt:gunpowder", "nodes", "tnt:gunpowder_burning")
 doc.add_entry_alias("nodes", "xpanes:pane_flat", "nodes", "xpanes:pane")
+doc.add_entry_alias("nodes", "xpanes:obsidian_pane_flat", "nodes", "xpanes:obsidian_pane")
 doc.add_entry_alias("nodes", "xpanes:bar_flat", "nodes", "xpanes:bar")
 doc.add_entry_alias("nodes", "default:chest", "nodes", "default:chest_open")
 doc.add_entry_alias("nodes", "default:chest_locked", "nodes", "default:chest_locked_open")

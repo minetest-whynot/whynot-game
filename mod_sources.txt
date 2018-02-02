@@ -33,7 +33,7 @@ origin	http://repo.or.cz/minetest_doc_items.git (fetch)
 Mod: libs/doc_items
 
 origin	http://repo.or.cz/minetest_doc_minetest_game.git (fetch)
-* master cd4c4e3 [origin/master: 1 voraus] adjust dependencies to optional
+* master 1f52271 [origin/master: 1 voraus] adjust dependencies to optional
 Mod: libs/doc_minetest_game
 
 origin	https://github.com/minetest-mods/intllib (fetch)

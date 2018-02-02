@@ -297,6 +297,7 @@ local export_longdesc = {
 	["vessels:steel_bottle"] = S("A decorational item which can be placed."),
 	["vessels:shelf"] = S("A vessels shelf provides 16 inventory slots for vessels (like glass bottles)."),
 	["xpanes:pane_1"] = S("Glass panes are thin layers of glass which neatly connect to their neighbors as you build them."),
+	["xpanes:obsidian_pane_1"] = S("Obsidian glass panes are thin layers of obsidian glass which neatly connect to their neighbors as you build them."),
 	["xpanes:bar_1"] = S("Iron bars neatly connect to their neighbors as you build them."),
 	["beds:bed_bottom"] = beddesc,
 	["beds:fancy_bed_bottom"] = beddesc,
