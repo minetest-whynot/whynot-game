@@ -19,6 +19,10 @@ msgstr ""
 "Language: fr\n"
 
 #: api.lua
+msgid "** Peaceful Mode Active - No Monsters Will Spawn"
+msgstr ""
+
+#: api.lua
 msgid "Mob has been protected!"
 msgstr "L'animal a été protégé !"
 
@@ -41,10 +45,6 @@ msgstr "Raté !"
 #: api.lua
 msgid "Already protected!"
 msgstr "Déjà protégé !"
-
-#: api.lua
-msgid "Protected!"
-msgstr "Protégé !"
 
 #: api.lua
 msgid "@1 at full health (@2)"
@@ -97,6 +97,10 @@ msgstr "Rune de protection des animaux"
 #: crafts.lua
 msgid "Saddle"
 msgstr "Selle"
+
+#: crafts.lua
+msgid "Mob Fence"
+msgstr ""
 
 #: spawner.lua
 msgid "Mob Spawner"

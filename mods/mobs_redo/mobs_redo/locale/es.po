@@ -17,6 +17,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: api.lua
+msgid "** Peaceful Mode Active - No Monsters Will Spawn"
+msgstr ""
+
+#: api.lua
 msgid "Mob has been protected!"
 msgstr "El mob ha sido protegido!"
 
@@ -39,10 +43,6 @@ msgstr "Perdido!"
 #: api.lua
 msgid "Already protected!"
 msgstr "Ya está protegido!"
-
-#: api.lua
-msgid "Protected!"
-msgstr "Protegido!"
 
 #: api.lua
 msgid "@1 at full health (@2)"
@@ -95,6 +95,10 @@ msgstr "Runa de protección de Mob"
 #: crafts.lua
 msgid "Saddle"
 msgstr "Montura"
+
+#: crafts.lua
+msgid "Mob Fence"
+msgstr ""
 
 #: spawner.lua
 msgid "Mob Spawner"

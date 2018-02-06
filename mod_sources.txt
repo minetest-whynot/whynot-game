@@ -236,9 +236,8 @@ origin	https://github.com/cheapie/plasticbox (fetch)
 * master 292d002 [origin/master: 1 voraus] added reversal recipe
 Mod: decor/plasticbox
 
-bell07	https://github.com/bell07/princess (fetch)
 origin	https://github.com/pithydon/princess (fetch)
-* master cad5480 [origin/master: 1 voraus] recipe change use tin instead of clay for princess material fix #1
+* master a2ea0c6 [origin/master] Merge pull request #2 from bell07/master
 Mod: decor/princess
 
 bell07	https://github.com/bell07/realchess (fetch)
@@ -336,9 +335,9 @@ Mod: mesecons/mesecons_walllever
 Mod: mesecons/mesecons_wires
 
 origin	https://github.com/tenplus1/mobs_monster (fetch)
-* master 2c75a43 [origin/master] new mobs_fireball image by benrob
+* master c1799f2 [origin/master] Added malay translation (thanks MuhdNurHidayat)
 Mod: mobs_redo/mobs_monster
 
 origin	https://github.com/tenplus1/mobs_redo (fetch)
-* master 94e576c [origin/master] tweak runaway from timer
+* master e0eae71 [origin/master] added malayan translation (thanks MuhdNurHidayat)
 Mod: mobs_redo/mobs_redo

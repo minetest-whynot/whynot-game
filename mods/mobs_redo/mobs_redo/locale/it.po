@@ -19,6 +19,10 @@ msgstr ""
 "X-Generator: Poedit 1.6.10\n"
 
 #: api.lua
+msgid "** Peaceful Mode Active - No Monsters Will Spawn"
+msgstr ""
+
+#: api.lua
 msgid "Mob has been protected!"
 msgstr "Il mob è stato protetto!"
 
@@ -41,10 +45,6 @@ msgstr "Mancat*!"
 #: api.lua
 msgid "Already protected!"
 msgstr "Già protett*!"
-
-#: api.lua
-msgid "Protected!"
-msgstr "Protett*!"
 
 #: api.lua
 msgid "@1 at full health (@2)"
@@ -97,6 +97,10 @@ msgstr "Runa di protezione per mob"
 #: crafts.lua
 msgid "Saddle"
 msgstr "Sella"
+
+#: crafts.lua
+msgid "Mob Fence"
+msgstr ""
 
 #: spawner.lua
 msgid "Mob Spawner"
