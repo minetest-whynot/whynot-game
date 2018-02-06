@@ -48,9 +48,8 @@ origin	https://github.com/minetest-mods/awards (fetch)
 * master 81aa0f1 [origin/master] Fix broken achievement image (On The Way)
 Mod: player/awards
 
-bell07	https://github.com/bell07/character_creator (fetch)
 origin	https://github.com/minetest-mods/character_creator (fetch)
-* master 420a62c [origin/master: 1 voraus] Skinsdb update related to https://github.com/minetest-mods/skinsdb/pull/2
+* master 77f7f16 [origin/master] Skinsdb adjustment (#13)
 Mod: player/character_creator
 
 origin	https://github.com/minetest-mods/cozy (fetch)
@@ -58,11 +57,11 @@ origin	https://github.com/minetest-mods/cozy (fetch)
 Mod: player/cozy
 
 origin	http://repo.or.cz/minetest_hbhunger (fetch)
-* master 47845f1 [origin/master] Version 0.6.0
+* master dd2f4c9 [origin/master] Version 0.7.0
 Mod: player/hbhunger
 
 origin	http://repo.or.cz/minetest_hudbars (fetch)
-* master bec8afe [origin/master] Version 1.10.0, update credits
+* master ba21f47 [origin/master] Version 1.11.0
 Mod: player/hudbars
 
 origin	https://github.com/minetest-mods/playeranim (fetch)

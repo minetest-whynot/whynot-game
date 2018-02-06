@@ -1,0 +1,3 @@
+Health = Kesihatan
+Breath = Nafas
+%s: %d/%d = %s: %d/%d
