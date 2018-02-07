@@ -339,5 +339,5 @@ origin	https://github.com/tenplus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://github.com/tenplus1/mobs_redo (fetch)
-* master e0eae71 [origin/master] added malayan translation (thanks MuhdNurHidayat)
+* master 59fee9a [origin/master] add items as fuel
 Mod: mobs_redo/mobs_redo

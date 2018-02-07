@@ -136,3 +136,34 @@ default.register_fence("mobs:fence_wood", {
 		},
 	},
 })
+
+-- items that can be used as fuel
+minetest.register_craft({
+	type = "fuel",
+	recipe = "mobs:nametag",
+	burntime = 3,
+})
+
+minetest.register_craft({
+	type = "fuel",
+	recipe = "mobs:lasso",
+	burntime = 7,
+})
+
+minetest.register_craft({
+	type = "fuel",
+	recipe = "mobs:net",
+	burntime = 8,
+})
+
+minetest.register_craft({
+	type = "fuel",
+	recipe = "mobs:leather",
+	burntime = 4,
+})
+
+minetest.register_craft({
+	type = "fuel",
+	recipe = "mobs:saddle",
+	burntime = 7,
+})
