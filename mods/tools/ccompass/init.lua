@@ -146,8 +146,8 @@ local function on_use_function(itemstack, player, pointed_thing)
 		minetest.show_formspec(player:get_player_name(), "ccompass",
 				"size[10,2.5]" ..
 				"field[1,1;8,1;name;Destination name:;"..waypoint_name.."]"..
-				"button_exit[0.7,2;5,1;ok;Calibrate]" ..
-				"button_exit[5.7,2;3,1;cancel;Cancel]")
+				"button_exit[0.7,2;3,1;cancel;Cancel]"..
+				"button_exit[3.7,2;5,1;ok;Calibrate]" )
 	end
 	return itemstack
 end

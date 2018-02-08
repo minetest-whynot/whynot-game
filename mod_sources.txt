@@ -108,7 +108,7 @@ Mod: ambienceplus/ambplus_deserts
 Mod: ambienceplus/ambplus_forests
 
 origin	https://github.com/stujones11/minetest-3d_armor (fetch)
-* master 4fc5197 [origin/master] Fix registered group level display
+* master 7226dd6 [origin/master] Add Malay translation
 Mod: 3d_armor/3d_armor
 Mod: 3d_armor/3d_armor_stand
 Mod: 3d_armor/shields
@@ -144,7 +144,7 @@ origin	https://github.com/SmallJoker/boost_cart (fetch)
 Mod: tools/boost_cart
 
 origin	https://github.com/minetest-mods/ccompass (fetch)
-* master 823bced [origin/master] documentation stuff
+* master ed7c8b1 [origin/master] changed the calibrate and cancel buttons order on formspec
 Mod: tools/ccompass
 
 origin	https://github.com/bell07/minetest-doc_reveal_chest (fetch)
@@ -173,7 +173,7 @@ Mod: tools/hovercraft
 
 origin	https://github.com/tacigar/maidroid (fetch)
 rui	https://github.com/Rui-Minetest/maidroid (fetch)
-* master bc5a20e [origin/master: 3 voraus] Merge remote-tracking branch 'rui/patch-2'
+* master 855504a [origin/master: 2 voraus] Use global_exists to test for the existence
 Mod: tools/maidroid
 
 origin	https://github.com/minetest-mods/orbs_of_time/ (fetch)
@@ -193,7 +193,7 @@ origin	https://github.com/lisacvuk/minetest-toolranks (fetch)
 Mod: tools/toolranks
 
 origin	https://github.com/minetest-mods/woodcutting (fetch)
-* master 05b3e0a [origin/master: 2 voraus] take node from treenodes_sorted only if not skipped skip means try again fix previous commit
+* master ddbef79 [origin/master] Merge pull request #2 from minetest-mods/pr_times_fix
 Mod: tools/woodcutting
 
 origin	https://github.com/Amaz1/flight/ (fetch)
