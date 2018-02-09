@@ -115,7 +115,7 @@ Mod: 3d_armor/shields
 Mod: 3d_armor/wieldview
 
 origin	https://github.com/tenplus1/farming (fetch)
-* master 0843bd0 [origin/master] added onion, garlic, pepper to mapgen
+* master c55a63c [origin/master] Added salt
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)

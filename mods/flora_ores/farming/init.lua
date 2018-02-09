@@ -7,7 +7,7 @@
 
 farming = {}
 farming.mod = "redo"
-farming.version = "1.30"
+farming.version = "1.31"
 farming.path = minetest.get_modpath("farming")
 farming.select = {
 	type = "fixed",
@@ -447,7 +447,7 @@ function farming.place_seed(itemstack, placer, pointed_thing, plantname)
 
 		minetest.sound_play("default_place_node", {pos = pt.above, gain = 1.0})
 
-		if not farming.is_creative(placer:get_player_name()) then
+		if not placer or not farming.is_creative(placer:get_player_name()) then
 
 			local name = itemstack:get_name()
 
@@ -598,6 +598,7 @@ farming.hemp = true
 farming.garlic = true
 farming.onion = true
 farming.pepper = true
+farming.pineapple = true
 farming.donuts = true
 farming.rarety = 0.006
 
@@ -652,6 +653,7 @@ if farming.donuts then dofile(farming.path.."/donut.lua") end
 if farming.garlic then dofile(farming.path.."/garlic.lua") end
 if farming.onion then dofile(farming.path.."/onion.lua") end
 if farming.pepper then dofile(farming.path.."/pepper.lua") end
+if farming.pineapple then dofile(farming.path.."/pineapple.lua") end
 
 dofile(farming.path.."/mapgen.lua")
 dofile(farming.path.."/compatibility.lua") -- Farming Plus compatibility
