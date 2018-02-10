@@ -115,7 +115,7 @@ Mod: 3d_armor/shields
 Mod: 3d_armor/wieldview
 
 origin	https://github.com/tenplus1/farming (fetch)
-* master 8172480 [origin/master: 2 voraus] added farming.conf to .gitignore
+* master c55a63c [origin/master] Added salt
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)

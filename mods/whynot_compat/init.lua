@@ -56,3 +56,8 @@ minetest.register_alias("farming_plus:tomato2_3", "farming:tomato_6")
 minetest.register_alias("farming_plus:tomato2_4", "farming:tomato_7")
 
 minetest.register_alias("farming_plus:weed", "default:grass_2")
+
+-- Remove redundant sugar
+-- mtfoods:sugar is already food_sugar
+minetest.unregister_item("farming:sugar")
+minetest.register_alias("farming:sugar", "mtfoods:sugar")
