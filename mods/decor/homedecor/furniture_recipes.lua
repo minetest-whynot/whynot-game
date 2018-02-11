@@ -1,11 +1,60 @@
+if minetest.get_modpath("ts_furniture") then
+	for _, ts_table in ipairs( { "ts_furniture:default_wood_table",
+			"ts_furniture:default_acacia_wood_table",
+			"ts_furniture:default_aspen_wood_table",
+			"ts_furniture:default_junglewood_table",
+			"ts_furniture:default_pine_wood_table"}) do
 
-minetest.register_craft({
-	output = "homedecor:table",
-	recipe = {
-		{ "group:wood","group:wood", "group:wood" },
-		{ "group:stick", "", "group:stick" },
-	},
-})
+		minetest.register_craft({
+			type = "shapeless",
+			output = "homedecor:table",
+			recipe = {
+				ts_table,
+				"default:stick" ,
+				"dye:orange",
+			},
+		})
+
+		minetest.register_craft({
+			type = "shapeless",
+			output = "homedecor:table_mahogany",
+			recipe = {
+				ts_table,
+				"default:stick" ,
+				"dye:brown",
+			},
+		})
+
+		minetest.register_craft({
+			type = "shapeless",
+			output = "homedecor:table_mahogany",
+			recipe = {
+				ts_table,
+				"default:stick" ,
+				"unifieddyes:dark_orange",
+			},
+		})
+
+		minetest.register_craft({
+			type = "shapeless",
+			output = "homedecor:table_white",
+			recipe = {
+				ts_table,
+				"default:stick" ,
+				"dye:white",
+			},
+		})
+	end
+
+else
+	minetest.register_craft({
+		output = "homedecor:table",
+		recipe = {
+			{ "group:wood","group:wood", "group:wood" },
+			{ "group:stick", "", "group:stick" },
+		},
+	})
+end
 
 minetest.register_craft({
 	type = "shapeless",
