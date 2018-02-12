@@ -16,11 +16,17 @@ local function update_grid(state, listname)
 	local list = {}
 	state.param["armor_"..listname.."_list"] = list
 	local name = state.location.rootState.location.player
-	local inventory = minetest.get_player_by_name(name):get_inventory()
-	local invlist = inventory:get_list(listname)
-	if not invlist then --timing issue. The list is not created
+
+	local inventory
+	if listname == "armor" then
+		inventory = minetest.get_inventory({type="detached", name=name.."_armor"})
+	else
+		inventory = minetest.get_player_by_name(name):get_inventory()
+	end
+	if not inventory then  --timing issue. The list is not created
 		return
 	end
+	local invlist = inventory:get_list(listname)
 
 	local list_dedup = {}
 	for stack_index, stack in ipairs(invlist) do
@@ -194,7 +200,8 @@ end
 
 local function move_item_to_armor(state, item)
 	local name = state.location.rootState.location.player
-	local inventory = minetest.get_player_by_name(name):get_inventory()
+	local player = minetest.get_player_by_name(name)
+	local inventory = player:get_inventory()
 	local armor_inv = minetest.get_inventory({type="detached", name=name.."_armor"})
 
 	-- get item to be moved to armor inventory
@@ -216,49 +223,54 @@ local function move_item_to_armor(state, item)
 
 	-- remove all items with the same group
 	local removed_items = {}
-	for stack_index, stack in ipairs(inventory:get_list("armor")) do
+	for stack_index, stack in ipairs(armor_inv:get_list("armor")) do
 		local old_def = stack:get_definition()
 		if old_def then
 			for groupname, groupdef in pairs(old_def.groups) do
 				if new_groups[groupname] then
 					table.insert(removed_items, stack)
-					inventory:set_stack("armor", stack_index, {})
-					armor_inv:set_stack("armor", stack_index, {})
+					armor_inv:set_stack("armor", stack_index, {}) --take old
+					minetest.detached_inventories[name.."_armor"].on_take(armor_inv, "armor", stack_index, stack, player)
+					if armor_inv:set_stack("armor", stack_index, itemstack) then --put new
+						minetest.detached_inventories[name.."_armor"].on_put(armor_inv, "armor", stack_index, itemstack, player)
+						itemstack = ItemStack("")
+					end
 				end
 			end
 		end
+		if stack:is_empty() and not itemstack:is_empty() then
+			if armor_inv:set_stack("armor", stack_index, itemstack) then
+				minetest.detached_inventories[name.."_armor"].on_put(armor_inv, "armor", stack_index, itemstack, player)
+				itemstack = ItemStack("")
+			end
+		end
 	end
-
-	-- move the new item to the armor inventory
-	armor_inv:add_item("armor", itemstack)
-	itemstack = inventory:add_item("armor", itemstack) -- and return if does not match
 
 	-- handle put backs in non-creative to not lost items
 	if creative == false then
 		inventory:set_stack("main", item.stack_index, itemstack)
 		for _, stack in ipairs(removed_items) do
 			stack = inventory:add_item("main", stack)
-			inventory:add_item("armor", stack)
-			armor_inv:add_item("armor", stack)
+			if not stack:is_empty() then
+				armor_inv:add_item("armor", stack)
+			end
 		end
 	end
-	armor:set_player_armor(minetest.get_player_by_name(name))
 end
 
 local function move_item_to_inv(state, item)
 	local name = state.location.rootState.location.player
-	local inventory = minetest.get_player_by_name(name):get_inventory()
+	local player = minetest.get_player_by_name(name)
+	local inventory = player:get_inventory()
 	local armor_inv = minetest.get_inventory({type="detached", name=name.."_armor"})
 	if creative == true then
-		inventory:set_stack("armor", item.stack_index, {})
 		armor_inv:set_stack("armor", item.stack_index, {})
 	else
-		local itemstack = inventory:get_stack("armor", item.stack_index)
+		local itemstack = armor_inv:get_stack("armor", item.stack_index)
 		itemstack = inventory:add_item("main", itemstack)
-		inventory:set_stack("armor", item.stack_index, itemstack)
 		armor_inv:set_stack("armor", item.stack_index, itemstack)
 	end
-	armor:set_player_armor(minetest.get_player_by_name(name))
+	minetest.detached_inventories[name.."_armor"].on_take(armor_inv, "armor", item.stack_index, itemstack, player)
 end
 
 local function player_callback(state)

@@ -78,7 +78,7 @@ origin	https://github.com/minetest-mods/skinsdb (fetch)
 Mod: player/skinsdb
 
 origin	https://github.com/bell07/minetest-smart_inventory (fetch)
-* master c4e86b0 [origin/master] smartfs update to the upstream version (all enhancements merged!)
+* master 1441e49 [origin/master] update to 3d_armor-0.4.11
 Mod: player/smart_inventory
 
 origin	https://github.com/GunshipPenguin/sprint (fetch)
@@ -108,7 +108,7 @@ Mod: ambienceplus/ambplus_deserts
 Mod: ambienceplus/ambplus_forests
 
 origin	https://github.com/stujones11/minetest-3d_armor (fetch)
-* master 7226dd6 [origin/master] Add Malay translation
+* master b9c8681 [origin/master] Bump version to 0.4.11
 Mod: 3d_armor/3d_armor
 Mod: 3d_armor/3d_armor_stand
 Mod: 3d_armor/shields
@@ -257,8 +257,9 @@ origin	https://github.com/minetest-mods/unifieddyes (fetch)
 * master 0d654ea [origin/master] Merge pull request #21 from Jat15/patch-2
 Mod: decor/unifieddyes
 
+bell07	https://github.com/bell07/homedecor_modpack (fetch)
 origin	https://github.com/minetest-mods/homedecor_modpack (fetch)
-* master 4d9c4c2 [origin/master] Update init.lua (#400)
+* master fe9730f [origin/master: 1 voraus] resolve table recipes conflict to ts_furniture
 Mod: homedecor_modpack/homedecor_i18n
 Mod: homedecor_modpack/homedecor
 Mod: homedecor_modpack/building_blocks
