@@ -44,6 +44,10 @@ origin	https://github.com/minetest-mods/mtg_i18n (fetch)
 * master 58395b2 [origin/master] Translated using Weblate (French)
 Mod: libs/mtg_i18n
 
+origin	https://github.com/Chemguy99/armor_addon (fetch)
+* master f3db114 [origin/master] Added more armor types to the repository which include new texture files and a few mods in armor.lua, crafts.lua, and depends.txt files.
+Mod: player/armor_addon
+
 origin	https://github.com/minetest-mods/awards (fetch)
 * master 81aa0f1 [origin/master] Fix broken achievement image (On The Way)
 Mod: player/awards
