@@ -44,6 +44,10 @@ origin	https://github.com/minetest-mods/mtg_i18n (fetch)
 * master 58395b2 [origin/master] Translated using Weblate (French)
 Mod: libs/mtg_i18n
 
+origin	https://github.com/bell07/minetest-whynot_compat (fetch)
+* master 186d5e2 [origin/master] initial version
+Mod: libs/whynot_compat
+
 origin	https://github.com/Chemguy99/armor_addon (fetch)
 * master f3db114 [origin/master] Added more armor types to the repository which include new texture files and a few mods in armor.lua, crafts.lua, and depends.txt files.
 Mod: player/armor_addon
@@ -261,9 +265,8 @@ origin	https://github.com/minetest-mods/unifieddyes (fetch)
 * master 0d654ea [origin/master] Merge pull request #21 from Jat15/patch-2
 Mod: decor/unifieddyes
 
-bell07	https://github.com/bell07/homedecor_modpack (fetch)
 origin	https://github.com/minetest-mods/homedecor_modpack (fetch)
-* master fe9730f [origin/master: 1 voraus] resolve table recipes conflict to ts_furniture
+* master 4d9c4c2 [origin/master] Update init.lua (#400)
 Mod: homedecor_modpack/homedecor_i18n
 Mod: homedecor_modpack/homedecor
 Mod: homedecor_modpack/building_blocks

@@ -20,6 +20,54 @@ if minetest.get_modpath('building_blocks') and not minetest.get_modpath('stairsp
 	minetest.register_alias('technic:slab_granite_1', 'stairs:slab_granite')
 end
 
+-- https://github.com/minetest-mods/homedecor_modpack/pull/402 (rejected)
+-- Solve recipe overlap between homedecor:table and ts_furniture:default_*wood_small_table
+-- Now homedecor:table is crafteable by ts_furniture:default_*wood_table
+if minetest.get_modpath("ts_furniture") and minetest.get_modpath("homedecor") then
+	minetest.clear_craft({output = "homedecor:table"})
+	for _, ts_table in ipairs( { "ts_furniture:default_wood_table",
+			"ts_furniture:default_acacia_wood_table",
+			"ts_furniture:default_aspen_wood_table",
+			"ts_furniture:default_junglewood_table",
+			"ts_furniture:default_pine_wood_table"}) do
+		minetest.register_craft({
+			type = "shapeless",
+			output = "homedecor:table",
+			recipe = {
+				ts_table,
+				"default:stick" ,
+				"dye:orange",
+			},
+		})
+		minetest.register_craft({
+			type = "shapeless",
+			output = "homedecor:table_mahogany",
+			recipe = {
+				ts_table,
+				"default:stick" ,
+				"dye:brown",
+			},
+		})
+		minetest.register_craft({
+			type = "shapeless",
+			output = "homedecor:table_mahogany",
+			recipe = {
+				ts_table,
+				"default:stick" ,
+				"unifieddyes:dark_orange",
+			},
+		})
+		minetest.register_craft({
+			type = "shapeless",
+			output = "homedecor:table_white",
+			recipe = {
+				ts_table,
+				"default:stick" ,
+				"dye:white",
+			},
+		})
+	end
+end
 
 -- https://github.com/minetest-mods/homedecor_modpack/pull/403
 if minetest.get_modpath('homedecor') then
