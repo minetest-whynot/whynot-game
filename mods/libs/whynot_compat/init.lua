@@ -69,11 +69,6 @@ if minetest.get_modpath("ts_furniture") and minetest.get_modpath("homedecor") th
 	end
 end
 
--- https://github.com/minetest-mods/homedecor_modpack/pull/403
-if minetest.get_modpath('homedecor') then
-	minetest.register_alias('homedecor:glowlight_small', 'homedecor:glowlight_small_cube')
-end
-
 -- tenplus1 farming mod contains some ethereal items for compatibility, but without food support
 if minetest.get_modpath('food') and minetest.registered_items['ethereal:orange'] and not minetest.get_modpath('ethereal') then
 	food.support("orange", "ethereal:orange")

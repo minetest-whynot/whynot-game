@@ -45,7 +45,7 @@ origin	https://github.com/minetest-mods/mtg_i18n (fetch)
 Mod: libs/mtg_i18n
 
 origin	https://github.com/bell07/minetest-whynot_compat (fetch)
-* master 186d5e2 [origin/master] initial version
+* master 51b26fa [origin/master] removed homedecor:glowlight_small, fix merged to homedecor
 Mod: libs/whynot_compat
 
 origin	https://github.com/Chemguy99/armor_addon (fetch)
@@ -266,7 +266,7 @@ origin	https://github.com/minetest-mods/unifieddyes (fetch)
 Mod: decor/unifieddyes
 
 origin	https://github.com/minetest-mods/homedecor_modpack (fetch)
-* master 4d9c4c2 [origin/master] Update init.lua (#400)
+* master bfda7c4 [origin/master] fix ceiling lamp recipes (#403)
 Mod: homedecor_modpack/homedecor_i18n
 Mod: homedecor_modpack/homedecor
 Mod: homedecor_modpack/building_blocks
