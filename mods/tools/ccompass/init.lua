@@ -19,6 +19,16 @@ if nodes_setting then
 		ccompass.restrict_target_nodes[z] = true
 	end)
 end
+-- Teleport targets
+ccompass.teleport_nodes = {}
+local teleport_nodes_setting = minetest.settings:get("ccompass_teleport_nodes")
+if teleport_nodes_setting then
+	teleport_nodes_setting:gsub("[^,]+", function(z)
+		ccompass.teleport_nodes[z] = true
+	end)
+else
+	ccompass.teleport_nodes["default:mese"] = true
+end
 
 if minetest.settings:get_bool("ccompass_aliasses") then
 	minetest.register_alias("compass:0", "ccompass:0")
@@ -68,6 +78,30 @@ local function get_destination(player, stack)
 	end
 end
 
+local function teleport_above(playername, target, counter)
+		local player = minetest.get_player_by_name(playername)
+		if not player then
+			return
+		end
+
+		for i = (counter or 1), 160 do
+			local nodename = minetest.get_node(target).name
+			if nodename == "ignore" then
+				minetest.emerge_area(target, target)
+				minetest.after(0.1, teleport_above, playername, target, i)
+				return
+			end
+
+			if nodename ~= 'air' then
+				target.y = target.y + 1
+			else
+				break
+			end
+		end
+		player:setpos(target)
+		return
+end
+
 -- get right image number for players compas
 local function get_compass_stack(player, stack)
 	local target = get_destination(player, stack)
@@ -102,6 +136,15 @@ local function on_use_function(itemstack, player, pointed_thing)
 		return
 	end
 
+	local nodepos = minetest.get_pointed_thing_position(pointed_thing)
+	local node = minetest.get_node(nodepos)
+
+	-- Do teleport to target
+	if ccompass.teleport_nodes[node.name] then
+		teleport_above(player:get_player_name(), get_destination(player, itemstack))
+		return
+	end
+
 	-- recalibration allowed?
 	if not ccompass.recalibrate then
 		local destination = itemstack:get_meta():get_string("target_pos")
@@ -112,9 +155,7 @@ local function on_use_function(itemstack, player, pointed_thing)
 	end
 
 	-- target nodes restricted?
-	local nodepos = minetest.get_pointed_thing_position(pointed_thing)
 	if ccompass.restrict_target then
-		local node = minetest.get_node(nodepos)
 		if not ccompass.restrict_target_nodes[node.name] then
 			minetest.chat_send_player(player:get_player_name(), "Calibration on this node not possible")
 			return

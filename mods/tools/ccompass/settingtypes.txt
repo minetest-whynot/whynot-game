@@ -9,3 +9,6 @@ ccompass_restrict_target_nodes (Nodes list allowed for calibration) string
 
 # Enable aliasses to replace other compass mods
 ccompass_aliasses (Enable compatibility aliasses) bool false
+
+# Nodes able to teleport to destination on punch, separated by ','
+ccompass_teleport_nodes (Nodes list for teleport on punch) string default:mese

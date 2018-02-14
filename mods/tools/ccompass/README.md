@@ -13,7 +13,7 @@ This minetest mod adds a calibratable compass to the minetest. Original mod [her
    The new compass points to the origin / Zero point and is already usable.
 2. Punch the compass to a compatible node (all by default) and enter the target name
 3. Now this compass leads you allways to this location. You can give it away to allow other users to find this place.
-
+4. Punch a teleport compatible node (by default mese block) to teleport back to the calibrated place
 
 ## For server owners:
 The mod support the next settings:
@@ -23,6 +23,7 @@ The mod support the next settings:
     ccompass_restrict_target (Disabled by default): If enabled, only specific nodes are allowed for calibration (usable with any type waypoint nodes for example)
     ccompass_restrict_target_nodes: List of technical node names allowed for compass calibration, separated by ','
     ccompass_aliasses: If enabled the compas:* items will be aliased to the ccompass:* items for compatibility
+    ccompass_teleport_nodes: List of technical node names that triggers the teleport to destination, separated by ','
 
 
 ##  For developers:
@@ -32,6 +33,7 @@ The mod support the next settings:
 	ccompass.recalibrate = true
 	ccompass.restrict_target = true
 	ccompass.restrict_target_nodes["schnitzeljagd:waypoint"] = true
+	ccompass.teleport_nodes["default:diamondblock"] = true
 ```
 
 2. The pointed node metadata will be checked for "waypoint_name" attribute. It this attribute is set, the calibration screen take this string as proposal. This can be used for a game specific calibration node. To get it working working just set in node definition something like

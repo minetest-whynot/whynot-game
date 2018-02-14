@@ -80,13 +80,14 @@ origin	http://repo.or.cz/minetest_show_wielded_item.git (fetch)
 * master 2d4cc42 [origin/master] Initial commit + version 1.0.0
 Mod: player/show_wielded_item
 
+MuhdNurHidayat	https://github.com/MuhdNurHidayat/minetest-skinsdb (fetch)
 bell07	https://github.com/bell07/minetest-skinsdb (fetch)
 origin	https://github.com/minetest-mods/skinsdb (fetch)
-* master         c6ee5c2 [origin/master] Merge pull request #2 from bell07/pr_private_skins
+* master        a14b400 [origin/master: 12 voraus, 1 hinterher] mentioned chat commands in README.md
 Mod: player/skinsdb
 
 origin	https://github.com/bell07/minetest-smart_inventory (fetch)
-* master 1441e49 [origin/master] update to 3d_armor-0.4.11
+* master     1441e49 [origin/master] update to 3d_armor-0.4.11
 Mod: player/smart_inventory
 
 origin	https://github.com/GunshipPenguin/sprint (fetch)
@@ -152,7 +153,7 @@ origin	https://github.com/SmallJoker/boost_cart (fetch)
 Mod: tools/boost_cart
 
 origin	https://github.com/minetest-mods/ccompass (fetch)
-* master ed7c8b1 [origin/master] changed the calibrate and cancel buttons order on formspec
+* master f7e4aaa [origin/master: 1 voraus] added teleporting on mese punch (configurable)
 Mod: tools/ccompass
 
 origin	https://github.com/bell07/minetest-doc_reveal_chest (fetch)
@@ -174,10 +175,6 @@ Mod: tools/helicopter
 origin	https://github.com/minetest-mods/hopper (fetch)
 * master 51b70fb [origin/master] Avoid hoppers to "repair" taken items (#10)
 Mod: tools/hopper
-
-origin	https://github.com/stujones11/hovercraft (fetch)
-* master 4d50e68 [origin/master] Ignore Eclipse project files
-Mod: tools/hovercraft
 
 origin	https://github.com/tacigar/maidroid (fetch)
 rui	https://github.com/Rui-Minetest/maidroid (fetch)
