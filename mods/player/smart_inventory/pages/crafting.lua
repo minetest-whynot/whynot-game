@@ -74,7 +74,7 @@ local function update_crafting_preview(state)
 			state:get("cr_type"):setText(recipe.type)
 			state:get("cr_type"):setText("")
 			cr_type_img:setVisible(true)
-			cr_type_img:setImage("default_furnace_front.png")
+			cr_type_img:setImage("smart_inventory_furnace.png")
 			state:get("ac1"):setVisible(false)
 		else
 			state:get("cr_type"):setText(recipe.type)

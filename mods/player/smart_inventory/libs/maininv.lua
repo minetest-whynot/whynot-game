@@ -35,7 +35,18 @@ end
 
 -- Add a item to inventory
 function maininvClass:add_item(item)
-	self.inventory:add_item("main", item)
+	return self.inventory:add_item("main", item)
+end
+
+function maininvClass:add_sepearate_stack(item)
+	for idx, stack in ipairs(self.inventory:get_list("main")) do
+		if stack:is_empty() then
+			self.inventory:set_stack("main", idx, item)
+			item = ""
+			break
+		end
+	end
+	return item
 end
 
 -- Get inventory content as consolidated table

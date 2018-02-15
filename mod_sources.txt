@@ -83,11 +83,11 @@ Mod: player/show_wielded_item
 MuhdNurHidayat	https://github.com/MuhdNurHidayat/minetest-skinsdb (fetch)
 bell07	https://github.com/bell07/minetest-skinsdb (fetch)
 origin	https://github.com/minetest-mods/skinsdb (fetch)
-* master        a14b400 [origin/master: 12 voraus, 1 hinterher] mentioned chat commands in README.md
+* master   0b47d09 [origin/master: 15 voraus] Merge remote-tracking branch 'origin/master'
 Mod: player/skinsdb
 
 origin	https://github.com/bell07/minetest-smart_inventory (fetch)
-* master     1441e49 [origin/master] update to 3d_armor-0.4.11
+* master     9175f59 [origin/master] creative: add way to obtain full stacks
 Mod: player/smart_inventory
 
 origin	https://github.com/GunshipPenguin/sprint (fetch)

@@ -155,7 +155,7 @@ local function creative_callback(state)
 	end)
 
 	-- functions
-	local searchfield = state:field(1.3, 4.1, 5.8, 0.5, "search")
+	local searchfield = state:field(1.3, 4.1, 4.8, 0.5, "search")
 	searchfield:setCloseOnEnter(false)
 	searchfield:onKeyEnter(function(self, state, player)
 		local search_string = self:getText()
@@ -166,8 +166,11 @@ local function creative_callback(state)
 		update_group_selection(state, 0)
 	end)
 
+	-- action mode toggle
+	state:toggle(6, 3.8,1.5,0.5, "btn_tog_mode", {"Give 1", "Give stack"})
+
 	-- groups toggle
-	local btn_toggle = state:toggle(7, 3.8,2,0.5, "btn_tog", {"Groups", "Hide"})
+	local btn_toggle = state:toggle(7.5, 3.8,1.5,0.5, "btn_tog", {"Groups", "Hide"})
 	btn_toggle:onToggle(function(self, state, player)
 		local id = self:getId()
 		if id == 1 then
@@ -181,7 +184,14 @@ local function creative_callback(state)
 	state:background(9.2, 3.5, 9.5, 6.5, "buttons_grid_bg", "minimap_overlay_square.png")
 	local grid = smart_inventory.smartfs_elements.buttons_grid(state, 9.55, 3.75, 9.0 , 6.5, "buttons_grid", 0.75,0.75)
 	grid:onClick(function(self, state, index, player)
-		state.param.invobj:add_item(state.param.creative_outlist[index].item)
+		local mode = state:get("btn_tog_mode"):getId() or 1
+		local selected = ItemStack(state.param.creative_outlist[index].item)
+		if mode == 1 then -- give 1 item
+			state.param.invobj:add_item(selected)
+		elseif mode == 2 then --give full stack
+			selected:set_count(selected:get_stack_max())
+			state.param.invobj:add_sepearate_stack(selected)
+		end
 	end)
 
 	-- inventory
