@@ -164,6 +164,7 @@ local register_pie = function(pie, desc)
 end
 
 local ingredients = {}
+
 if foodmod then
 	ingredients.sugar = "group:food_sugar"
 	ingredients.milk = "group:food_milk"

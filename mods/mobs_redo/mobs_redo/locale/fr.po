@@ -20,7 +20,7 @@ msgstr ""
 
 #: api.lua
 msgid "** Peaceful Mode Active - No Monsters Will Spawn"
-msgstr ""
+msgstr "** Mode pacifique activé - Aucun monstre ne sera généré"
 
 #: api.lua
 msgid "Mob has been protected!"
@@ -100,30 +100,30 @@ msgstr "Selle"
 
 #: crafts.lua
 msgid "Mob Fence"
-msgstr ""
+msgstr "Clôture à animaux"
 
 #: spawner.lua
 msgid "Mob Spawner"
-msgstr ""
+msgstr "Générateur de mob"
 
 #: spawner.lua
 msgid "Mob MinLight MaxLight Amount PlayerDist"
-msgstr ""
+msgstr "Mob MinLumière MaxLumière Quantité DistanceJoueur"
 
 #: spawner.lua
 msgid "Spawner Not Active (enter settings)"
-msgstr ""
+msgstr "Générateur non actif (entrez les paramètres)"
 
 #: spawner.lua
 msgid "Spawner Active (@1)"
-msgstr ""
+msgstr "Générateur actif (@1)"
 
 #: spawner.lua
 msgid "Mob Spawner settings failed!"
-msgstr ""
+msgstr "Echec des paramètres du générateur"
 
 #: spawner.lua
 msgid ""
 "Syntax: “name min_light[0-14] max_light[0-14] max_mobs_in_area[0 to disable] "
 "distance[1-20] y_offset[-10 to 10]”"
-msgstr ""
+msgstr "Syntaxe : “nom min_lumière[0-14] max_lumière[0-14] max_mobs_dans_zone[0 pour désactiver] distance[1-20] décalage_y[-10 à 10]“"
