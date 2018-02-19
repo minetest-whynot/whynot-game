@@ -25,7 +25,7 @@ Be aware that weather may not be visible for player until player is in right bio
 
 Dependencies
 -----------------------
-Thunder weather requres [lightning](https://github.com/minetest-mods/lightning) mod.
+Thunder weather requires [lightning](https://github.com/minetest-mods/lightning) mod.
 
 License of source code:
 -----------------------

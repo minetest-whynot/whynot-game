@@ -107,7 +107,7 @@ origin	https://github.com/Ezhh/under_sky (fetch)
 Mod: weather/under_sky
 
 origin	https://github.com/xeranas/weather_pack (fetch)
-* master 7dbab2c [origin/master] Merge pull request #9 from bell07/patch-1
+* master 695ef45 [origin/master] fixed typo
 Mod: weather/weather_pack
 
 origin	https://github.com/MarkuBu/ambianceplus (fetch)
@@ -117,7 +117,7 @@ Mod: ambienceplus/ambplus_deserts
 Mod: ambienceplus/ambplus_forests
 
 origin	https://github.com/stujones11/minetest-3d_armor (fetch)
-* master b9c8681 [origin/master] Bump version to 0.4.11
+* master c812e0a [origin/master] Shields: Add option to disable sound effects
 Mod: 3d_armor/3d_armor
 Mod: 3d_armor/3d_armor_stand
 Mod: 3d_armor/shields
@@ -153,7 +153,7 @@ origin	https://github.com/SmallJoker/boost_cart (fetch)
 Mod: tools/boost_cart
 
 origin	https://github.com/minetest-mods/ccompass (fetch)
-* master f7e4aaa [origin/master: 1 voraus] added teleporting on mese punch (configurable)
+* master 12581ad [origin/master: 2 voraus] whitespace fix
 Mod: tools/ccompass
 
 origin	https://github.com/bell07/minetest-doc_reveal_chest (fetch)

@@ -79,27 +79,27 @@ local function get_destination(player, stack)
 end
 
 local function teleport_above(playername, target, counter)
-		local player = minetest.get_player_by_name(playername)
-		if not player then
+	local player = minetest.get_player_by_name(playername)
+	if not player then
+		return
+	end
+
+	for i = (counter or 1), 160 do
+		local nodename = minetest.get_node(target).name
+		if nodename == "ignore" then
+			minetest.emerge_area(target, target)
+			minetest.after(0.1, teleport_above, playername, target, i)
 			return
 		end
 
-		for i = (counter or 1), 160 do
-			local nodename = minetest.get_node(target).name
-			if nodename == "ignore" then
-				minetest.emerge_area(target, target)
-				minetest.after(0.1, teleport_above, playername, target, i)
-				return
-			end
-
-			if nodename ~= 'air' then
-				target.y = target.y + 1
-			else
-				break
-			end
+		if nodename ~= 'air' then
+			target.y = target.y + 1
+		else
+			break
 		end
-		player:setpos(target)
-		return
+	end
+	player:setpos(target)
+	return
 end
 
 -- get right image number for players compas
