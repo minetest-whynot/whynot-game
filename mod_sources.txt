@@ -243,9 +243,8 @@ origin	https://github.com/pithydon/princess (fetch)
 * master a2ea0c6 [origin/master] Merge pull request #2 from bell07/master
 Mod: decor/princess
 
-bell07	https://github.com/bell07/realchess (fetch)
 origin	https://github.com/minetest-mods/realchess (fetch)
-* master d1a0bc8 [origin/master: 1 voraus] added support for laptop mod https://github.com/Gerold55/minetest-laptop
+* master df78a33 [origin/master] Run luacheck and fix warnings.
 Mod: decor/realchess
 
 origin	https://github.com/v-rob/slats (fetch)
