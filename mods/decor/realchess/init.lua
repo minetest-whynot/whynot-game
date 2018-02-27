@@ -15,7 +15,7 @@ end
 function realchess.init(pos)
 	local meta = minetest.get_meta(pos)
 	local inv = meta:get_inventory()
-	
+
 	local formspec = [[ size[8,8.6;]
 			bgcolor[#080808BB;true]
 			background[0,0;8,8;chess_bg.png]
@@ -101,7 +101,7 @@ function realchess.move(pos, from_list, from_index, to_list, to_index, _, player
 		if playerWhite ~= "" and playerWhite ~= playerName then
 			minetest.chat_send_player(playerName, "Someone else plays white pieces!")
 			return 0
-		end		
+		end
 		if lastMove ~= "" and lastMove ~= "black" then
 			minetest.chat_send_player(playerName, "It's not your turn, wait for your opponent to play.")
 			return 0
@@ -161,6 +161,26 @@ function realchess.move(pos, from_list, from_index, to_list, to_index, _, player
 			else
 				return 0
 			end
+
+			-- if x not changed,
+			--   ensure that destination cell is empty
+			-- elseif x changed one unit left or right
+			--   ensure the pawn is killing opponent piece
+			-- else
+			--   move is not legal - abort
+
+			if from_x == to_x then
+				if pieceTo ~= "" then
+					return 0
+				end
+			elseif from_x - 1 == to_x or from_x + 1 == to_x then
+				if not pieceTo:find("black") then
+					return 0
+				end
+			else
+				return 0
+			end
+
 		elseif thisMove == "black" then
 			local pawnBlackMove = inv:get_stack(from_list, xy_to_index(from_x, from_y + 1)):get_name()
 			-- black pawns can go down only
@@ -361,7 +381,7 @@ function realchess.move(pos, from_list, from_index, to_list, to_index, _, player
 						return 0
 					end
 				end
-			end		
+			end
 		elseif from_x < to_x then
 			if from_y == to_y then
 				-- goes right
@@ -387,7 +407,7 @@ function realchess.move(pos, from_list, from_index, to_list, to_index, _, player
 						return 0
 					end
 				end
-			end				
+			end
 		else
 			if from_y == to_y then
 				-- goes left
@@ -413,14 +433,14 @@ function realchess.move(pos, from_list, from_index, to_list, to_index, _, player
 						return 0
 					end
 				end
-			end		
+			end
 		end
 
 	elseif pieceFrom:sub(11,14) == "king" then
 		local dx = from_x - to_x
 		local dy = from_y - to_y
 		local check = true
-		
+
 		if thisMove == "white" then
 			if from_y == 7 and to_y == 7 then
 				if to_x == 1 then
@@ -492,12 +512,12 @@ function realchess.move(pos, from_list, from_index, to_list, to_index, _, player
 			if dy < 0 then dy = -dy end
 			if dx > 1 or dy > 1 then return 0 end
 		end
-		
+
 		if thisMove == "white" then
 			meta:set_int("castlingWhiteL", 0)
 			meta:set_int("castlingWhiteR", 0)
 		elseif thisMove == "black" then
-			meta:set_int("castlingBlackL", 0)		
+			meta:set_int("castlingBlackL", 0)
 			meta:set_int("castlingBlackR", 0)
 		end
 	end

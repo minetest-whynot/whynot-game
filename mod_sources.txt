@@ -115,7 +115,7 @@ Mod: ambienceplus/ambplus_deserts
 Mod: ambienceplus/ambplus_forests
 
 origin	https://github.com/stujones11/minetest-3d_armor (fetch)
-* master c812e0a [origin/master] Shields: Add option to disable sound effects
+* master 579d245 [origin/master] Fix crash with UI but no technic
 Mod: 3d_armor/3d_armor
 Mod: 3d_armor/3d_armor_stand
 Mod: 3d_armor/shields
@@ -243,8 +243,9 @@ origin	https://github.com/pithydon/princess (fetch)
 * master a2ea0c6 [origin/master] Merge pull request #2 from bell07/master
 Mod: decor/princess
 
+bell07	https://github.com/bell07/realchess (fetch)
 origin	https://github.com/minetest-mods/realchess (fetch)
-* master df78a33 [origin/master] Run luacheck and fix warnings.
+* master 7cfc09b [origin/master: 2 voraus] fixed bug the white pawn was able to move to each place on third row
 Mod: decor/realchess
 
 origin	https://github.com/v-rob/slats (fetch)
@@ -271,7 +272,7 @@ Mod: homedecor_modpack/lrfurn
 Mod: homedecor_modpack/plasmascreen
 
 origin	https://github.com/minetest-mods/mydoors (fetch)
-* master 54f89f3 [origin/master: 1 voraus] fix leaked globals
+* master 96d0a55 [origin/master] Merge pull request #10 from bell07/patch-1
 Mod: mydoors/my_castle_doors
 Mod: mydoors/my_cottage_doors
 Mod: mydoors/my_default_doors
