@@ -77,14 +77,14 @@ local canned_food_definitions = {
 		amount = 5,
 		sugar = true
 	},
-	canned_onion = {
-		proper_name = "Canned onions",
+	canned_wild_onion = {
+		proper_name = "Canned wild onions",
 		found_in = "ethereal",
 		obj_name = "ethereal:wild_onion_plant",
 		orig_nutritional_value = 2,
 		amount = 4,
 		sugar = false,
-		transforms = "Pickled onions"
+		transforms = "Pickled wild onions"
 	},
 	blueberry_jam = {
 		proper_name = "Blueberry jam",
@@ -213,7 +213,32 @@ local canned_food_definitions = {
 		amount = 4,
 		sugar = false
 	},
-
+	canned_pineapple = {
+		proper_name = "Canned pineapple rings",
+		found_in = "farming",
+		obj_name = "farming:pineapple_ring",
+		orig_nutritional_value = 1,
+		amount = 5,
+		sugar = false
+	},
+	canned_onion = {
+		proper_name = "Canned onions",
+		found_in = "farming",
+		obj_name = "farming:onion",
+		orig_nutritional_value = 1,
+		amount = 4,
+		sugar = false,
+		transforms = "Pickled onions"
+	},
+	canned_garlic_cloves = {
+		proper_name = "Canned garlic cloves",
+		found_in = "farming",
+		obj_name = "farming:garlic_clove",
+		orig_nutritional_value = 0.5,
+		amount = 8,
+		sugar = false,
+		transforms = "Pickled garlic cloves"
+	},
 }
 
 
