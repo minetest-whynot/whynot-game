@@ -270,7 +270,7 @@ for product, def in pairs(canned_food_definitions) do
 				-- canned food prolongs shelf life IRL, but in minetest food never
 				-- goes bad. Here, we increase the nutritional value instead.
 				on_use = minetest.item_eat(
-						math.floor (def.orig_nutritional_value * def.amount * 0.33)
+						math.floor (def.orig_nutritional_value * def.amount * 1.33)
 						+ (def.sugar and 1 or 0), "vessels:glass_bottle"),
 				-- the empty bottle stays, of course
 				sounds = default.node_sound_glass_defaults(),
@@ -303,7 +303,7 @@ for product, def in pairs(canned_food_definitions) do
 					-- the reward for putting the food in a cellar is even greater 
 					-- than for merely canning it.
 					on_use = minetest.item_eat(
-							(math.floor(def.orig_nutritional_value * def.amount * 0.33)
+							(math.floor(def.orig_nutritional_value * def.amount * 1.33)
 							+ (def.sugar and 1 or 0))*2, "vessels:glass_bottle"),
 					-- the empty bottle stays, of course
 					sounds = default.node_sound_glass_defaults(),
