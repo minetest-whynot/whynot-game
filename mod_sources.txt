@@ -81,7 +81,7 @@ origin	http://repo.or.cz/minetest_show_wielded_item.git (fetch)
 Mod: player/show_wielded_item
 
 origin	https://github.com/minetest-mods/skinsdb (fetch)
-* master 3abb6ae [origin/master] Update Malay translation
+* master 5a640bc [origin/master] Merge pull request #9 from minetest-mods/bugfix_8
 Mod: player/skinsdb
 
 origin	https://github.com/bell07/minetest-smart_inventory (fetch)
