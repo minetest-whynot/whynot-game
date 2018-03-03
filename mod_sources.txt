@@ -260,8 +260,9 @@ origin	https://github.com/minetest-mods/unifieddyes (fetch)
 * master 0d654ea [origin/master] Merge pull request #21 from Jat15/patch-2
 Mod: decor/unifieddyes
 
+bell07	https://github.com/bell07/homedecor_modpack (fetch)
 origin	https://github.com/minetest-mods/homedecor_modpack (fetch)
-* master bfda7c4 [origin/master] fix ceiling lamp recipes (#403)
+* master e0c0e47 [origin/master: 1 voraus] fix players in bed count for multiplayer
 Mod: homedecor_modpack/homedecor_i18n
 Mod: homedecor_modpack/homedecor
 Mod: homedecor_modpack/building_blocks

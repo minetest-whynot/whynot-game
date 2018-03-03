@@ -2,7 +2,6 @@
 -- with changes needed for homedecor's beds.
 
 local pi = math.pi
-local player_in_bed = 0
 local is_sp = minetest.is_singleplayer()
 local enable_respawn = minetest.settings:get_bool("enable_bed_respawn")
 if enable_respawn == nil then
@@ -49,6 +48,14 @@ local function check_in_beds(players)
 	return #players > 0
 end
 
+local function get_player_in_bed()
+	local player_in_bed = 0
+	for k,v in pairs(beds.player) do
+		player_in_bed = player_in_bed + 1
+	end
+	return player_in_bed
+end
+
 local function lay_down(player, pos, bed_pos, state, skip)
 	local name = player:get_player_name()
 	local hud_flags = player:hud_get_flags()
@@ -62,7 +69,6 @@ local function lay_down(player, pos, bed_pos, state, skip)
 		local p = beds.pos[name] or nil
 		if beds.player[name] ~= nil then
 			beds.player[name] = nil
-			player_in_bed = player_in_bed - 1
 		end
 		-- skip here to prevent sending player specific changes (used for leaving players)
 		if skip then
@@ -84,8 +90,6 @@ local function lay_down(player, pos, bed_pos, state, skip)
 	else
 		beds.player[name] = 1
 		beds.pos[name] = pos
-		player_in_bed = player_in_bed + 1
-
 		-- physics, eye_offset, etc
 		player:set_eye_offset({x = 0, y = -13, z = 0}, {x = 0, y = 0, z = 0})
 		local yaw, fdir = get_look_yaw(bed_pos)
@@ -109,6 +113,7 @@ end
 
 local function update_formspecs(finished)
 	local ges = #minetest.get_connected_players()
+	local player_in_bed = get_player_in_bed()
 	local form_n
 	local is_majority = (ges / 2) < player_in_bed
 
