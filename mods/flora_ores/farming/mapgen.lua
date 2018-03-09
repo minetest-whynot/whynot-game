@@ -49,8 +49,8 @@ if minetest.get_mapgen_setting("mg_name") == "v6" then
 	register_plant("pumpkin_8", 1, 20, "group:water", 1, farming.pumpkin)
 else
 	-- v7 maps have a beach so plants growing near water is limited to 6 high
-	register_plant("carrot_8", 1, 6, "", -1, farming.carrot)
-	register_plant("cucumber_4", 1, 6, "", -1, farming.cucumber)
+	register_plant("carrot_8", 1, 15, "", -1, farming.carrot)
+	register_plant("cucumber_4", 1, 10, "", -1, farming.cucumber)
 	register_plant("melon_8", 1, 6, "", -1, farming.melon)
 	register_plant("pumpkin_8", 1, 6, "", -1, farming.pumpkin)
 end
@@ -62,14 +62,14 @@ minetest.register_decoration({
 	sidelen = 16,
 	noise_params = {
 		offset = 0,
-		scale = farming.rarety, -- 0.06,
+		scale = farming.rarety + 0.001, -- 0.06,
 		spread = {x = 100, y = 100, z = 100},
 		seed = 420,
 		octaves = 3,
 		persist = 0.6
 	},
-	y_min = 5,
-	y_max = 35,
+	y_min = 3,
+	y_max = 45,
 	decoration = "farming:hemp_7",
 	spawn_by = "group:tree",
 	num_spawn_by = 1,

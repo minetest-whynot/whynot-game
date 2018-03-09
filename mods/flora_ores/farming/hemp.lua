@@ -94,6 +94,23 @@ minetest.register_craft( {
 	replacements = {{ "bucket:bucket_river_water", "bucket:bucket_empty"}}
 })
 
+-- hemp block
+minetest.register_node("farming:hemp_block", {
+	description = S("Hemp Block"),
+	tiles = {"farming_hemp_block.png"},
+	paramtype = "light",
+	groups = {snappy = 1, oddly_breakable_by_hand = 1, flammable = 2}
+})
+
+minetest.register_craft( {
+	output = "farming:hemp_block",
+	recipe = {
+		{"farming:hemp_fibre", "farming:hemp_fibre", "farming:hemp_fibre"},
+		{"farming:hemp_fibre", "farming:hemp_fibre", "farming:hemp_fibre"},
+		{"farming:hemp_fibre", "farming:hemp_fibre", "farming:hemp_fibre"}
+	},
+})
+
 -- paper
 minetest.register_craft( {
 	output = "default:paper",

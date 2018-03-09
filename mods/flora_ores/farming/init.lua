@@ -582,7 +582,6 @@ farming.tomato = true
 farming.cucumber = true
 farming.corn = true
 farming.coffee = true
-farming.coffee = true
 farming.melon = true
 farming.sugar = true
 farming.pumpkin = true
@@ -600,7 +599,7 @@ farming.onion = true
 farming.pepper = true
 farming.pineapple = true
 farming.donuts = true
-farming.rarety = 0.006
+farming.rarety = 0.001 -- 0.006
 
 
 -- Load new global settings if found inside mod folder

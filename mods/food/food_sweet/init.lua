@@ -37,8 +37,8 @@ if farming and farming.mod == "redo" then
 	food.support("blueberry", "farming:blueberries")
 end
 
-if minetest.setting_get("food_sweet_use_2d")==nil then
-	minetest.setting_set("food_sweet_use_2d", "1")
+if minetest.settings:get("food_sweet_use_2d")==nil then
+	minetest.settings:set("food_sweet_use_2d", "1")
 end
 
 food.module("walnut",function()

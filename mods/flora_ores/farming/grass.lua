@@ -1,5 +1,5 @@
 
-for i = 3, 5 do
+for i = 4, 5 do
 
 	-- Override default grass and have it drop Wheat Seeds
 

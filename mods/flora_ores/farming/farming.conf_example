@@ -12,7 +12,6 @@ farming.tomato = true
 farming.cucumber = true
 farming.corn = true
 farming.coffee = true
-farming.coffee = true
 farming.melon = true
 farming.sugar = true
 farming.pumpkin = true
@@ -31,5 +30,5 @@ farming.pepper = true
 farming.pineapple = true
 farming.donuts = true
 
--- rarety of crops on map, default is 0.006 (higher number = more crops)
-farming.rarety = 0.006
+-- rarety of crops on map, default is 0.001 (higher number = more crops)
+farming.rarety = 0.001

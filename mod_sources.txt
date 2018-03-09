@@ -122,7 +122,7 @@ Mod: 3d_armor/shields
 Mod: 3d_armor/wieldview
 
 origin	https://github.com/tenplus1/farming (fetch)
-* master dec468e [origin/master] added .gitignore
+* master 0f8c1dd [origin/master] increase pepper yield
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
@@ -167,7 +167,7 @@ origin	https://github.com/Ezhh/handholds (fetch)
 Mod: tools/handholds
 
 origin	https://github.com/petermaloney/helicopter (fetch)
-* master dac9cf2 [origin/master: 1 voraus] fix leaked globals
+* master 95c5287 [origin/master] Merge pull request #7 from bell07/patch-1
 Mod: tools/helicopter
 
 origin	https://github.com/minetest-mods/hopper (fetch)
@@ -243,9 +243,8 @@ origin	https://github.com/pithydon/princess (fetch)
 * master a2ea0c6 [origin/master] Merge pull request #2 from bell07/master
 Mod: decor/princess
 
-bell07	https://github.com/bell07/realchess (fetch)
 origin	https://github.com/minetest-mods/realchess (fetch)
-* master 7cfc09b [origin/master: 2 voraus] fixed bug the white pawn was able to move to each place on third row
+* master f9188fe [origin/master] Merge pull request #11 from bell07/pr_white_pawn_fix
 Mod: decor/realchess
 
 origin	https://github.com/v-rob/slats (fetch)
@@ -295,7 +294,7 @@ origin	https://github.com/h-v-smacker/canned_food (fetch)
 Mod: food/canned_food
 
 origin	https://github.com/rubenwardy/food_sweet (fetch)
-* master 1719cf7 [origin/master] Fix intllib boilerplate code
+* master 88b2f0e [origin/master] Use settings:get and settings:set instead of setting_get and setting_set
 Mod: food/food_sweet
 
 origin	https://github.com/Philipbenr/mtfoods (fetch)

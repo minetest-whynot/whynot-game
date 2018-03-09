@@ -1,5 +1,5 @@
 -- when using the latest dev minetest server, attaching a player to an object that is attached to a moving object has issues 
--- when the object moves past 200 in any direction.  because of this I am attaching the player directly to the object if dofancy = false
+-- 	when the object moves past 200 in any direction.  because of this I am attaching the player directly to the object if dofancy = false
 local dofancy = false
 
 -- Boilerplate to support localized strings if intllib mod is installed.
