@@ -81,7 +81,7 @@ origin	http://repo.or.cz/minetest_show_wielded_item.git (fetch)
 Mod: player/show_wielded_item
 
 origin	https://github.com/minetest-mods/skinsdb (fetch)
-* master 5a640bc [origin/master] Merge pull request #9 from minetest-mods/bugfix_8
+* master 9b9daa7 [origin/master: 1 voraus] Compare player assignment non case sensitive
 Mod: player/skinsdb
 
 origin	https://github.com/bell07/minetest-smart_inventory (fetch)
@@ -122,7 +122,7 @@ Mod: 3d_armor/shields
 Mod: 3d_armor/wieldview
 
 origin	https://github.com/tenplus1/farming (fetch)
-* master 0f8c1dd [origin/master] increase pepper yield
+* master bb208f8 [origin/master] trellis and beanpole can be used in itemframes
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)

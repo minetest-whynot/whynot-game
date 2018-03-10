@@ -92,11 +92,32 @@ minetest.register_node("farming:trellis", {
 
 	on_place = function(itemstack, placer, pointed_thing)
 
-		if minetest.is_protected(pointed_thing.under, placer:get_player_name()) then
+		local pt = pointed_thing
+
+		-- check if pointing at a node
+		if not pt or pt.type ~= "node" then
 			return
 		end
 
-		local nodename = minetest.get_node(pointed_thing.under).name
+		local under = minetest.get_node(pt.under)
+
+		-- return if any of the nodes are not registered
+		if not minetest.registered_nodes[under.name] then
+			return
+		end
+
+		-- am I right-clicking on something that has a custom on_place set?
+		-- thanks to Krock for helping with this issue :)
+		local def = minetest.registered_nodes[under.name]
+		if def and def.on_rightclick then
+			return def.on_rightclick(pt.under, under, placer, itemstack)
+		end
+
+		if minetest.is_protected(pt.under, placer:get_player_name()) then
+			return
+		end
+
+		local nodename = under.name
 
 		if minetest.get_item_group(nodename, "soil") < 2 then
 			return
