@@ -227,6 +227,12 @@ origin	https://github.com/HybridDog/heads (fetch)
 * master b0f32e2 [origin/master] avoid leaked globals
 Mod: decor/heads
 
+Grizzly-Adam	https://github.com/Grizzly-Adam/minetest-laptop/ (fetch)
+bell07	https://github.com/bell07/laptop (fetch)
+origin	https://github.com/Gerold55/laptop (fetch)
+* recipe_compat        4b5422a added homedecor recipes support compatible to whynot subgame
+Mod: decor/laptop
+
 origin	http://repo.or.cz/minetest_mtg_plus.git (fetch)
 * master db8fd34 [origin/master] Fix intllib support
 Mod: decor/mtg_plus
