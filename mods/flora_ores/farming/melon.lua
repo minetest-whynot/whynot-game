@@ -5,6 +5,7 @@ local S = farming.intllib
 minetest.register_craftitem("farming:melon_slice", {
 	description = S("Melon Slice"),
 	inventory_image = "farming_melon_slice.png",
+	groups = {food_melon_slice = 1, flammable = 3},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:melon_1")
 	end,
@@ -77,6 +78,9 @@ crop_def.description = S("Melon")
 crop_def.tiles = {"farming_melon_top.png", "farming_melon_top.png", "farming_melon_side.png"}
 crop_def.selection_box = {-.5, -.5, -.5, .5, .5, .5}
 crop_def.walkable = true
-crop_def.groups = {snappy = 1, oddly_breakable_by_hand = 1, flammable = 2, plant = 1}
+crop_def.groups = {
+	food_melon = 1, snappy = 1, oddly_breakable_by_hand = 1,
+	flammable = 2, plant = 1
+}
 crop_def.drop = "farming:melon_slice 9"
 minetest.register_node("farming:melon_8", table.copy(crop_def))

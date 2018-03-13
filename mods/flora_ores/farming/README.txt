@@ -13,7 +13,7 @@ This mod works by adding your new plant to the {growing=1} group and numbering t
 
 Changelog:
 
-1.31 - Added Pineapple which can be found growing in savannah areas (place pineapple in crafting to obtain 5x rings to eat and a top for re-planting), also Salt which is made from cooking a bucket of water
+1.31 - Added Pineapple which can be found growing in savannah areas (place pineapple in crafting to obtain 5x rings to eat and a top for re-planting), also Salt which is made from cooking a bucket of water, added food groups so it's more compatible with Ruben's food mods.
 1.30 - Added Garlic, Pepper and Onions thanks to Grizzly Adam for sharing textures
 1.29 - Updating functions so requires Minetest 0.4.16 and above to run
 1.28 - Added chili peppers and bowl of chili, optimized code and fixed a few bugs, added porridge

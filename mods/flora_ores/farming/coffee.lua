@@ -5,6 +5,7 @@ local S = farming.intllib
 minetest.register_craftitem("farming:coffee_beans", {
 	description = S("Coffee Beans"),
 	inventory_image = "farming_coffee_beans.png",
+	groups = {food_coffee = 1, flammable = 2},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:coffee_1")
 	end,
@@ -57,7 +58,7 @@ minetest.register_node("farming:coffee_cup", {
 minetest.register_craft( {
 	output = "farming:coffee_cup",
 	recipe = {
-		{"farming:drinking_cup", "farming:coffee_beans","bucket:bucket_water"},
+		{"farming:drinking_cup", "group:food_coffee","bucket:bucket_water"},
 	},
 	replacements = {{"bucket:bucket_water", "bucket:bucket_empty"}}
 })

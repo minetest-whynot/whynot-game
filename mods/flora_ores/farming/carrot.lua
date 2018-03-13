@@ -10,6 +10,7 @@ local S = farming.intllib
 minetest.register_craftitem("farming:carrot", {
 	description = S("Carrot"),
 	inventory_image = "farming_carrot.png",
+	groups = {food_carrot = 1, flammable = 2},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:carrot_1")
 	end,
@@ -27,7 +28,7 @@ minetest.register_craft({
 	output = "farming:carrot_gold",
 	recipe = {
 		{"", "default:gold_lump", ""},
-		{"default:gold_lump", "farming:carrot", "default:gold_lump"},
+		{"default:gold_lump", "group:food_carrot", "default:gold_lump"},
 		{"", "default:gold_lump", ""},
 	}
 })

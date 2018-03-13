@@ -10,6 +10,7 @@ local S = farming.intllib
 minetest.register_craftitem("farming:corn", {
 	description = S("Corn"),
 	inventory_image = "farming_corn.png",
+	groups = {food_corn = 1, flammable = 2},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:corn_1")
 	end,
@@ -27,7 +28,7 @@ minetest.register_craft({
 	type = "cooking",
 	cooktime = 10,
 	output = "farming:corn_cob",
-	recipe = "farming:corn"
+	recipe = "group:food_corn"
 })
 
 -- ethanol (thanks to JKMurray for this idea)
@@ -51,8 +52,8 @@ minetest.register_node("farming:bottle_ethanol", {
 minetest.register_craft( {
 	output = "farming:bottle_ethanol",
 	recipe = {
-		{ "vessels:glass_bottle", "farming:corn", "farming:corn"},
-		{ "farming:corn", "farming:corn", "farming:corn"},
+		{ "vessels:glass_bottle", "group:food_corn", "group:food_corn"},
+		{ "group:food_corn", "group:food_corn", "group:food_corn"},
 	}
 })
 

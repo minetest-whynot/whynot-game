@@ -11,6 +11,7 @@ local S = farming.intllib
 minetest.register_craftitem("farming:garlic_clove", {
 	description = S("Garlic clove"),
 	inventory_image = "crops_garlic_clove.png",
+	groups = {food_garlic_clove = 1, flammable = 3},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:garlic_1")
 	end,
@@ -21,7 +22,7 @@ minetest.register_craftitem("farming:garlic", {
 	description = S("Garlic"),
 	inventory_image = "crops_garlic.png",
 	on_use = minetest.item_eat(1),
-	groups = {garlic = 1},
+	groups = {food_garlic = 1, garlic = 1, flammable = 3},
 })
 
 minetest.register_craft({
@@ -52,7 +53,7 @@ minetest.register_node("farming:garlic_braid", {
 		"crops_garlic_braid_side.png^[transformFx","crops_garlic_braid_side.png",
 		"crops_garlic_braid.png","crops_garlic_braid.png"
 	},
-	groups = {vessel = 1, dig_immediate = 3},
+	groups = {vessel = 1, dig_immediate = 3, flammable = 3},
 	sounds = default.node_sound_leaves_defaults(),
 	node_box = {
 		type = "fixed",

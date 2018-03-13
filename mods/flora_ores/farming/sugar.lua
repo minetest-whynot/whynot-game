@@ -6,6 +6,7 @@ local S = farming.intllib
 minetest.register_craftitem("farming:sugar", {
 	description = S("Sugar"),
 	inventory_image = "farming_sugar.png",
+	groups = {food_sugar = 1, flammable = 3},
 })
 
 minetest.register_craft({
@@ -25,7 +26,8 @@ minetest.register_node("farming:salt", {
 	drawtype = "plantlike",
 	paramtype = "light",
 	tiles = {"farming_salt.png"},
-	groups = {vessel = 1, salt = 1, dig_immediate = 3, attached_node = 1},
+	groups = {food_salt = 1, salt = 1, vessel = 1, dig_immediate = 3,
+			attached_node = 1},
 	sounds = default.node_sound_glass_defaults(),
 	selection_box = {
 		type = "fixed",

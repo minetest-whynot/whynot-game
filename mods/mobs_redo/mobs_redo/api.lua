@@ -3,7 +3,7 @@
 
 mobs = {}
 mobs.mod = "redo"
-mobs.version = "20180126"
+mobs.version = "20180312"
 
 
 -- Intllib
@@ -1215,7 +1215,7 @@ local smart_mobs = function(self, s, p, dist, dtime)
 			mob_sound(self, self.sounds.random)
 		else
 			-- yay i found path
-			mob_sound(self, self.sounds.attack)
+			mob_sound(self, self.sounds.war_cry)
 
 			set_velocity(self, self.walk_velocity)
 
@@ -1798,7 +1798,7 @@ local do_states = function(self, dtime)
 		local p = self.attack:get_pos() or s
 		local dist = get_distance(p, s)
 
-		-- stop attacking if player or out of range
+		-- stop attacking if player invisible or out of range
 		if dist > self.view_range
 		or not self.attack
 		or not self.attack:get_pos()
@@ -1830,16 +1830,35 @@ local do_states = function(self, dtime)
 
 			yaw = set_yaw(self.object, yaw)
 
-			-- start timer when inside reach
-			if dist < self.reach and not self.v_start then
+			local node_break_radius = self.explosion_radius or 1
+			local entity_damage_radius = self.explosion_damage_radius
+					or (node_break_radius * 2)
+
+			-- start timer when in reach and line of sight
+			if not self.v_start
+			and dist <= self.reach
+			and line_of_sight(self, s, p, 2) then
+
 				self.v_start = true
 				self.timer = 0
 				self.blinktimer = 0
+				mob_sound(self, self.sounds.fuse)
 --				print ("=== explosion timer started", self.explosion_timer)
+
+			-- stop timer if out of blast radius or direct line of sight
+			elseif self.allow_fuse_reset
+			and self.v_start
+			and (dist > max(self.reach, entity_damage_radius) + 0.5
+					or not line_of_sight(self, s, p, 2)) then
+				self.v_start = false
+				self.timer = 0
+				self.blinktimer = 0
+				self.blinkstatus = false
+				self.object:settexturemod("")
 			end
 
 			-- walk right up to player when timer active
-			if dist < 1.5 and self.v_start then
+			if dist < 1.5 then
 				set_velocity(self, 0)
 			else
 				set_velocity(self, self.run_velocity)
@@ -1851,7 +1870,8 @@ local do_states = function(self, dtime)
 				set_animation(self, "walk")
 			end
 
-			if self.v_start then
+			-- walk right up to player unless the timer is active
+			if self.v_start and (self.stop_to_explode or dist < 1.5) then
 
 				self.timer = self.timer + dtime
 				self.blinktimer = (self.blinktimer or 0) + dtime
@@ -1874,14 +1894,13 @@ local do_states = function(self, dtime)
 				if self.timer > self.explosion_timer then
 
 					local pos = self.object:get_pos()
-					local radius = self.explosion_radius or 1
-					local damage_radius = radius
 
 					-- dont damage anything if area protected or next to water
 					if minetest.find_node_near(pos, 1, {"group:water"})
 					or minetest.is_protected(pos, "") then
 
 						damage_radius = 0
+						node_break_radius = 0
 					end
 
 					self.object:remove()
@@ -1890,8 +1909,8 @@ local do_states = function(self, dtime)
 					and not minetest.is_protected(pos, "") then
 
 						tnt.boom(pos, {
-							radius = radius,
-							damage_radius = damage_radius,
+							radius = node_break_radius,
+							damage_radius = entity_damage_radius,
 							sound = self.sounds.explode,
 						})
 					else
@@ -1902,8 +1921,8 @@ local do_states = function(self, dtime)
 							max_hear_distance = self.sounds.distance or 32
 						})
 
-						entity_physics(pos, damage_radius)
-						effect(pos, 32, "tnt_smoke.png", radius * 3, radius * 5, radius, 1, 0)
+						entity_physics(pos, entity_damage_radius)
+						effect(pos, 32, "tnt_smoke.png", nil, nil, node_break_radius, 1, 0)
 					end
 
 					return
@@ -2889,7 +2908,10 @@ minetest.register_entity(name, {
 	pathfinding = def.pathfinding,
 	immune_to = def.immune_to or {},
 	explosion_radius = def.explosion_radius,
+	explosion_damage_radius = def.explosion_damage_radius,
 	explosion_timer = def.explosion_timer or 3,
+	allow_fuse_reset = def.allow_fuse_reset ~= false,
+	stop_to_explode = def.stop_to_explode ~= false,
 	custom_attack = def.custom_attack,
 	double_melee_attack = def.double_melee_attack,
 	dogshoot_switch = def.dogshoot_switch,

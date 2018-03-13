@@ -23,7 +23,7 @@ minetest.register_node("farming:seed_wheat", {
 minetest.register_craftitem("farming:wheat", {
 	description = S("Wheat"),
 	inventory_image = "farming_wheat.png",
-	groups = {flammable = 4},
+	groups = {food_wheat = 1, flammable = 4},
 })
 
 -- straw
@@ -55,7 +55,7 @@ minetest.register_craft({
 minetest.register_craftitem("farming:flour", {
 	description = S("Flour"),
 	inventory_image = "farming_flour.png",
-	groups = {flammable = 1},
+	groups = {food_flour = 1, flammable = 1},
 })
 
 minetest.register_craft({
@@ -69,7 +69,7 @@ minetest.register_craftitem("farming:bread", {
 	description = S("Bread"),
 	inventory_image = "farming_bread.png",
 	on_use = minetest.item_eat(5),
-	groups = {flammable = 2},
+	groups = {food_bread = 1, flammable = 2},
 })
 
 minetest.register_craft({

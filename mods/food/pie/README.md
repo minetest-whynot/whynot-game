@@ -19,5 +19,6 @@ Change log:
 - 0.3 - Fix cake inside - Added banana cake
 - 0.4 - Added support for stamina mod
 - 0.5 - Added Orange and Bread cake (thanks to CalebDavis)
+- 0.6 - Now uses food_ groups to craft cakes easier
 
 Lucky Blocks: 12

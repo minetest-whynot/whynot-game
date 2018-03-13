@@ -11,9 +11,9 @@ minetest.register_craftitem("farming:donut", {
 minetest.register_craft({
 	output = "farming:donut 3",
 	recipe = {
-		{'', 'farming:wheat', ''},
-		{'farming:wheat', 'farming:sugar', 'farming:wheat'},
-		{'', 'farming:wheat', ''},
+		{'', 'group:food_wheat', ''},
+		{'group:food_wheat', 'group:food_sugar', 'group:food_wheat'},
+		{'', 'group:food_wheat', ''},
 	}
 })
 
@@ -27,7 +27,7 @@ minetest.register_craftitem("farming:donut_chocolate", {
 minetest.register_craft({
 	output = "farming:donut_chocolate",
 	recipe = {
-		{'farming:cocoa_beans'},
+		{'group:food_cocoa'},
 		{'farming:donut'},
 	}
 })
@@ -62,8 +62,8 @@ minetest.after(0, function()
 		output = "farming:porridge",
 		type = "shapeless",
 		recipe = {
-			"farming:barley", "farming:barley", "farming:wheat",
-			"farming:wheat", "mobs:bucket_milk"
+			"group:food_barley", "group:food_barley", "group:food_wheat",
+			"group:food_wheat", "group:food_milk"
 		},
 		replacements = {{"mobs:bucket_milk", "bucket:bucket_empty"}}
 	})
@@ -72,8 +72,8 @@ else
 		output = "farming:porridge",
 		type = "shapeless",
 		recipe = {
-			"farming:barley", "farming:barley", "farming:wheat",
-			"farming:wheat", "bucket:bucket_water"
+			"group:food_barley", "group:food_barley", "group:food_wheat",
+			"group:food_wheat", "bucket:bucket_water"
 		},
 		replacements = {{"bucket:bucket_water", "bucket:bucket_empty"}}
 	})

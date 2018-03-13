@@ -59,6 +59,7 @@ end
 minetest.register_craftitem("farming:cocoa_beans", {
 	description = S("Cocoa Beans"),
 	inventory_image = "farming_cocoa_beans.png",
+	groups = {food_cocoa = 1, flammable = 2},
 	on_place = function(itemstack, placer, pointed_thing)
 		return place_cocoa(itemstack, placer, pointed_thing, "farming:cocoa_1")
 	end,
@@ -81,7 +82,7 @@ minetest.register_craftitem("farming:cookie", {
 minetest.register_craft( {
 	output = "farming:cookie 8",
 	recipe = {
-		{ "farming:wheat", "farming:cocoa_beans", "farming:wheat" },
+		{"group:food_wheat", "group:food_cocoa", "group:food_wheat" },
 	}
 })
 
@@ -95,7 +96,7 @@ minetest.register_craftitem("farming:chocolate_dark", {
 minetest.register_craft( {
 	output = "farming:chocolate_dark",
 	recipe = {
-		{ "farming:cocoa_beans", "farming:cocoa_beans", "farming:cocoa_beans" },
+		{"group:food_cocoa", "group:food_cocoa", "group:food_cocoa"},
 	}
 })
 

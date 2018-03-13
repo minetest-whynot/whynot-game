@@ -10,6 +10,7 @@ local S = farming.intllib
 minetest.register_craftitem("farming:potato", {
 	description = S("Potato"),
 	inventory_image = "farming_potato.png",
+	groups = {food_potato = 1, flammable = 2},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:potato_1")
 	end,
@@ -27,7 +28,7 @@ minetest.register_craft({
 	type = "cooking",
 	cooktime = 10,
 	output = "farming:baked_potato",
-	recipe = "farming:potato"
+	recipe = "group:food_potato"
 })
 
 -- potato definition

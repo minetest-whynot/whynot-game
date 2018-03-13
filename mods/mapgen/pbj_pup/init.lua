@@ -122,6 +122,7 @@ if minetest.setting_getbool("pbj_pup_generate") ~= false then
 	end
 
 	minetest.register_on_generated(generate)
+
 	default.generate_nyancats = generate --Legacy
 end
 

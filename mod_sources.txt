@@ -81,7 +81,7 @@ origin	http://repo.or.cz/minetest_show_wielded_item.git (fetch)
 Mod: player/show_wielded_item
 
 origin	https://github.com/minetest-mods/skinsdb (fetch)
-* master 9b9daa7 [origin/master: 1 voraus] Compare player assignment non case sensitive
+* master 8d708ee [origin/master] Merge pull request #10 from minetest-mods/player_assignment_not_case_sensitive
 Mod: player/skinsdb
 
 origin	https://github.com/bell07/minetest-smart_inventory (fetch)
@@ -122,7 +122,7 @@ Mod: 3d_armor/shields
 Mod: 3d_armor/wieldview
 
 origin	https://github.com/tenplus1/farming (fetch)
-* master bb208f8 [origin/master] trellis and beanpole can be used in itemframes
+* master 14154ce [origin/master] food items now crafted using food_ groups
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
@@ -133,9 +133,8 @@ origin	https://github.com/bell07/minetest-meseor.git (fetch)
 * master 4456298 [origin/master] Merge pull request #1 from bell07/mysetting
 Mod: mapgen/meseor
 
-bell07	https://github.com/bell07/pbj_pup (fetch)
 origin	https://github.com/tenplus1/pbj_pup (fetch)
-* master     0304351 [origin/master: 1 voraus] move default.generate_nyancats to the scope of generate function
+* master f34df6f [origin/master] tweak global (thanks Bell07)
 Mod: mapgen/pbj_pup
 
 origin	https://github.com/GreenXenith/tac_nayn (fetch)
@@ -308,7 +307,7 @@ origin	https://github.com/Philipbenr/mtfoods (fetch)
 Mod: food/mtfoods
 
 origin	https://github.com/tenplus1/pie (fetch)
-* master af7682a [origin/master] added support for food mod (thanks bell07)
+* master b2a4700 [origin/master] uses food_ groups to craft cakes easier
 Mod: food/pie
 
 origin	https://github.com/GreenXenith/waffles (fetch)
@@ -347,5 +346,5 @@ origin	https://github.com/tenplus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://github.com/tenplus1/mobs_redo (fetch)
-* master 8c34c63 [origin/master] updated french locale (thanks alexerate)
+* master d7874dc [origin/master] add food groups for better recipe crafting
 Mod: mobs_redo/mobs_redo

@@ -24,20 +24,21 @@ minetest.register_node("farming:pineapple", {
 		type = "fixed",
 		fixed = {-0.27, -0.37, -0.27, 0.27, 0.44, 0.27}
 	},
-	groups = {fleshy = 3, dig_immediate = 3, flammable = 2},
+	groups = {food_pineapple = 1, fleshy = 3, dig_immediate = 3, flammable = 2},
 })
 
 -- pineapple
 minetest.register_craftitem("farming:pineapple_ring", {
 	description = S("Pineapple Ring"),
 	inventory_image = "farming_pineapple_ring.png",
+	groups = {food_pineapple_ring = 1, flammable = 2},
 	on_use = minetest.item_eat(1),
 })
 
 minetest.register_craft( {
 	output = "farming:pineapple_ring 5",
 	type = "shapeless",
-	recipe = {"farming:pineapple"},
+	recipe = {"group:food_pineapple"},
 	replacements = {{"farming:pineapple", "farming:pineapple_top"}}
 })
 
@@ -51,8 +52,14 @@ minetest.register_craftitem("farming:pineapple_juice", {
 minetest.register_craft({
 	output = "farming:pineapple_juice",
 	type = "shapeless",
-	recipe = {"vessels:drinking_glass", "farming:pineapple_ring",
-			"farming:pineapple_ring", "farming:pineapple_ring"},
+	recipe = {"vessels:drinking_glass", "group:food_pineapple_ring",
+			"group:food_pineapple_ring", "group:food_pineapple_ring"},
+})
+
+minetest.register_craft({
+	output = "farming:pineapple_juice 2",
+	type = "shapeless",
+	recipe = {"vessels:drinking_glass", "group:food_pineapple"},
 })
 
 -- crop definition

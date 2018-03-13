@@ -23,6 +23,7 @@ minetest.register_node("farming:seed_barley", {
 minetest.register_craftitem("farming:barley", {
 	description = S("Barley"),
 	inventory_image = "farming_barley.png",
+	groups = {food_barley = 1, flammable = 2},
 })
 
 -- flour
