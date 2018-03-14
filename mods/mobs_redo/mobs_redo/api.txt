@@ -100,9 +100,6 @@ functions needed for the mob to work properly which contains the following:
    'stop_to_explode'     When set to true (default), mob must stop and wait for
                          explosion_timer in order to explode. If false, mob will
                          continue chasing.
-   'explosion_radius'    has the radius of the explosion which defaults to 1.
-   'explosion_timer'     number of seconds before mob explodes while still
-                         inside view range.
    'arrow'               holds the pre-defined arrow object to shoot when
                          attacking.
    'dogshoot_switch'     allows switching between attack types by using timers

@@ -229,7 +229,7 @@ Mod: decor/heads
 Grizzly-Adam	https://github.com/Grizzly-Adam/minetest-laptop/ (fetch)
 bell07	https://github.com/bell07/laptop (fetch)
 origin	https://github.com/Gerold55/laptop (fetch)
-* recipe_compat        4b5422a added homedecor recipes support compatible to whynot subgame
+* recipe_compat                eb60896 added homedecor recipes support compatible to whynot subgame
 Mod: decor/laptop
 
 origin	http://repo.or.cz/minetest_mtg_plus.git (fetch)
@@ -346,5 +346,5 @@ origin	https://github.com/tenplus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://github.com/tenplus1/mobs_redo (fetch)
-* master d7874dc [origin/master] add food groups for better recipe crafting
+* master 763fbee [origin/master] fix merge errors
 Mod: mobs_redo/mobs_redo

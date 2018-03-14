@@ -3,7 +3,7 @@
 
 mobs = {}
 mobs.mod = "redo"
-mobs.version = "20180312"
+mobs.version = "20180313"
 
 
 -- Intllib
@@ -1857,8 +1857,8 @@ local do_states = function(self, dtime)
 				self.object:settexturemod("")
 			end
 
-			-- walk right up to player when timer active
-			if dist < 1.5 then
+			-- walk right up to player unless the timer is active
+			if self.v_start and (self.stop_to_explode or dist < 1.5) then
 				set_velocity(self, 0)
 			else
 				set_velocity(self, self.run_velocity)
@@ -1870,8 +1870,7 @@ local do_states = function(self, dtime)
 				set_animation(self, "walk")
 			end
 
-			-- walk right up to player unless the timer is active
-			if self.v_start and (self.stop_to_explode or dist < 1.5) then
+			if self.v_start then
 
 				self.timer = self.timer + dtime
 				self.blinktimer = (self.blinktimer or 0) + dtime
@@ -1899,7 +1898,6 @@ local do_states = function(self, dtime)
 					if minetest.find_node_near(pos, 1, {"group:water"})
 					or minetest.is_protected(pos, "") then
 
-						damage_radius = 0
 						node_break_radius = 0
 					end
 
