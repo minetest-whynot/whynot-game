@@ -162,7 +162,7 @@ origin	https://github.com/orwell96/engrave/ (fetch)
 Mod: tools/engrave
 
 origin	https://github.com/Ezhh/handholds (fetch)
-* master ec840f0 [origin/master] Update readme
+* master e86d3b1 [origin/master] Replace deprecated code with new code
 Mod: tools/handholds
 
 origin	https://github.com/petermaloney/helicopter (fetch)
