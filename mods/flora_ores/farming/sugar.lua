@@ -26,7 +26,7 @@ minetest.register_node("farming:salt", {
 	drawtype = "plantlike",
 	paramtype = "light",
 	tiles = {"farming_salt.png"},
-	groups = {food_salt = 1, salt = 1, vessel = 1, dig_immediate = 3,
+	groups = {food_salt = 1, vessel = 1, dig_immediate = 3,
 			attached_node = 1},
 	sounds = default.node_sound_glass_defaults(),
 	selection_box = {

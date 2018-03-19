@@ -22,7 +22,7 @@ minetest.register_craftitem("farming:pepper", {
 	description = S("Pepper"),
 	inventory_image = "crops_pepper.png",
 	on_use = minetest.item_eat(2),
-	groups = {food_pepper = 1, pepper = 1, flammable = 3},
+	groups = {food_pepper = 1, flammable = 3},
 })
 
 minetest.register_craft({
@@ -40,7 +40,7 @@ minetest.register_node("farming:pepper_ground", {
 	paramtype = "light",
 	tiles = {"crops_pepper_ground.png"},
 	groups = {
-		vessel = 1, food_pepper_ground = 1, pepper_ground = 1,
+		vessel = 1, food_pepper_ground = 1,
 		dig_immediate = 3, attached_node = 1
 	},
 	sounds = default.node_sound_glass_defaults(),

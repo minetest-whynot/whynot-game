@@ -1,3 +1,16 @@
+-- add food group to default apple and brown mushroom
+minetest.override_item("default:apple", {
+	groups = {food_apple = 1, fleshy = 3, dig_immediate = 3, flammable = 2,
+		leafdecay = 3, leafdecay_drop = 1},
+})
+
+if minetest.registered_nodes["flowers:mushroom_brown"] then
+minetest.override_item("flowers:mushroom_brown", {
+	light_source = 1,
+	groups = {food_mushroom = 1, snappy = 3, attached_node = 1, flammable = 2},
+})
+end
+
 -- is Ethereal mod installed?
 local eth = minetest.get_modpath("ethereal") or nil
 

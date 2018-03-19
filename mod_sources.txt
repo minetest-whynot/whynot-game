@@ -122,7 +122,7 @@ Mod: 3d_armor/shields
 Mod: 3d_armor/wieldview
 
 origin	https://github.com/tenplus1/farming (fetch)
-* master 14154ce [origin/master] food items now crafted using food_ groups
+* master 6eac704 [origin/master] add mushroom override to add food_ group
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
@@ -229,7 +229,7 @@ Mod: decor/heads
 Grizzly-Adam	https://github.com/Grizzly-Adam/minetest-laptop/ (fetch)
 bell07	https://github.com/bell07/laptop (fetch)
 origin	https://github.com/Gerold55/laptop (fetch)
-* recipe_compat                eb60896 added homedecor recipes support compatible to whynot subgame
+* recipe_compat        eb60896 added homedecor recipes support compatible to whynot subgame
 Mod: decor/laptop
 
 origin	http://repo.or.cz/minetest_mtg_plus.git (fetch)
