@@ -122,7 +122,7 @@ Mod: 3d_armor/shields
 Mod: 3d_armor/wieldview
 
 origin	https://github.com/tenplus1/farming (fetch)
-* master 6eac704 [origin/master] add mushroom override to add food_ group
+* master 3dd1c52 [origin/master] fixed pepper->peppercorn recipe (thanks Drgnrdr)
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)

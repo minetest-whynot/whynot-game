@@ -27,7 +27,7 @@ minetest.register_craftitem("farming:pepper", {
 
 minetest.register_craft({
 	type = "shapeless",
-	output = "group:food_peppercorn",
+	output = "farming:peppercorn",
 	recipe = { "farming:pepper" }
 })
 
