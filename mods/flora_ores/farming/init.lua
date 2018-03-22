@@ -7,7 +7,7 @@
 
 farming = {}
 farming.mod = "redo"
-farming.version = "1.31"
+farming.version = "1.33"
 farming.path = minetest.get_modpath("farming")
 farming.select = {
 	type = "fixed",
@@ -598,6 +598,7 @@ farming.garlic = true
 farming.onion = true
 farming.pepper = true
 farming.pineapple = true
+farming.peas = true
 farming.donuts = true
 farming.rarety = 0.001 -- 0.006
 
@@ -624,6 +625,7 @@ end
 dofile(farming.path.."/soil.lua")
 dofile(farming.path.."/hoes.lua")
 dofile(farming.path.."/grass.lua")
+dofile(farming.path.."/utensils.lua")
 
 -- default crops
 dofile(farming.path.."/wheat.lua")
@@ -653,6 +655,7 @@ if farming.garlic then dofile(farming.path.."/garlic.lua") end
 if farming.onion then dofile(farming.path.."/onion.lua") end
 if farming.pepper then dofile(farming.path.."/pepper.lua") end
 if farming.pineapple then dofile(farming.path.."/pineapple.lua") end
+if farming.peas then dofile(farming.path.."/pea.lua") end
 
 dofile(farming.path.."/mapgen.lua")
 dofile(farming.path.."/compatibility.lua") -- Farming Plus compatibility

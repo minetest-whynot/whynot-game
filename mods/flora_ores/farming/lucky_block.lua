@@ -17,5 +17,14 @@ if minetest.get_modpath("lucky_block") then
 		{"dro", {"farming:hemp_leaf", "farming:hemp_fibre", "farming:seed_hemp"}, 5},
 		{"nod", "fire:permanent_flame", 1},
 		{"dro", {"farming:chili_pepper", "farming:chili_bowl"}, 5},
+		{"dro", {"farming:bowl"}, 3},
+		{"dro", {"farming:saucepan"}, 1},
+		{"dro", {"farming:pot"}, 1},
+		{"dro", {"farming:baking_tray"}, 1},
+		{"dro", {"farming:skillet"}, 1},
+		{"dro", {"farming:mortar_pestle"}, 1},
+		{"dro", {"farming:cutting_board"}, 1},
+		{"dro", {"farming:juicer"}, 1},
+		{"dro", {"farming:mixing_bowl"}, 1},
 	})
 end

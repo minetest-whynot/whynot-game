@@ -39,6 +39,7 @@ register_plant("beanbush", 18, 35, "", -1, farming.beans)
 register_plant("grapebush", 25, 45, "", -1, farming.grapes)
 register_plant("onion_5", 5, 22, "", -1, farming.onion)
 register_plant("garlic_5", 3, 30, "group:tree", 1, farming.garlic)
+register_plant("pea_5", 25, 50, "", -1, farming.peas)
 
 
 if minetest.get_mapgen_setting("mg_name") == "v6" then

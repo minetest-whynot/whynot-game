@@ -16,7 +16,7 @@ minetest.register_craftitem("farming:chili_pepper", {
 minetest.register_craftitem("farming:chili_bowl", {
 	description = S("Bowl of Chili"),
 	inventory_image = "farming_chili_bowl.png",
-	on_use = minetest.item_eat(8),
+	on_use = minetest.item_eat(8, "farming:bowl"),
 })
 
 minetest.register_craft({
@@ -24,7 +24,7 @@ minetest.register_craft({
 	output = "farming:chili_bowl",
 	recipe = {
 		"group:food_chili_pepper", "group:food_barley",
-		"group:food_tomato", "group:food_beans"
+		"group:food_tomato", "group:food_beans", "group:food_bowl"
 	}
 })
 

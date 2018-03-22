@@ -13,6 +13,8 @@ This mod works by adding your new plant to the {growing=1} group and numbering t
 
 Changelog:
 
+1.33 - Added cooking utensils (wooden bowl, saucepan, cooking pot, baking tray, skillet, cutting board, mortar & pestle, juicer, glass mixing bowl) for easier food crafts. 
+1.32 - Added Pea plant (textures by Andrey01) - also added Wooden Bowl and Pea Soup crafts
 1.31 - Added Pineapple which can be found growing in savannah areas (place pineapple in crafting to obtain 5x rings to eat and a top for re-planting), also Salt which is made from cooking a bucket of water, added food groups so it's more compatible with Ruben's food mods.
 1.30 - Added Garlic, Pepper and Onions thanks to Grizzly Adam for sharing textures
 1.29 - Updating functions so requires Minetest 0.4.16 and above to run
@@ -53,7 +55,7 @@ Changelog:
 0.1 - Fixed growing bug
 0.0 - Initial release
 
-Lucky Blocks: 16
+Lucky Blocks: 25
 
 
 License of media (textures):
