@@ -45,7 +45,7 @@ origin	https://github.com/minetest-mods/mtg_i18n (fetch)
 Mod: libs/mtg_i18n
 
 origin	https://github.com/bell07/minetest-whynot_compat (fetch)
-* master 7422d85 [origin/master: 1 voraus] disable waffles vs farming workaround since waffles patched in whynot game
+* master b18b1aa [origin/master] cleanup waffles workaround (in upstream now) fix and cleanup depends.txt
 Mod: libs/whynot_compat
 
 origin	https://github.com/Chemguy99/armor_addon (fetch)
@@ -310,9 +310,8 @@ origin	https://github.com/tenplus1/pie (fetch)
 * master b2a4700 [origin/master] uses food_ groups to craft cakes easier
 Mod: food/pie
 
-bell07	https://github.com/bell07/waffles (fetch)
 origin	https://github.com/GreenXenith/waffles (fetch)
-* master 3e210e7 [origin/master: 5 voraus] disable waffles:breadslice craft if the farming:bread_slice used
+* master d146def [origin/master] Some cleanup and support for farming toast and breadslice (#9)
 Mod: food/waffles
 
 origin	https://github.com/minetest-mods/mesecons (fetch)

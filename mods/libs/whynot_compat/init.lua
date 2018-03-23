@@ -115,18 +115,3 @@ if minetest.get_modpath('farming') and minetest.get_modpath('mtfoods') then
 	minetest.clear_craft({output = "mtfoods:sugar"})
 	minetest.register_alias("mtfoods:sugar", "farming:sugar")
 end
-
---[[
-if minetest.get_modpath('farming') and minetest.get_modpath('waffles') then
-	-- Remove toast and bread redundancy in farming and waffles
-	if minetest.registered_items["farming:toast"] then -- Check version
-		minetest.unregister_item("waffles:toast")
-		minetest.register_alias("waffles:toast", "farming:toast")
-
-		minetest.override_item("farming:bread_slice", {on_use = minetest.registered_items["waffles:breadslice"].on_use })
-		minetest.unregister_item("waffles:breadslice")
-		minetest.clear_craft({output = "waffles:breadslice"}) -- I like more the farming recipe
-		minetest.register_alias("waffles:breadslice", "farming:bread_slice")
-	end
-end
-]]

@@ -176,11 +176,8 @@ if minetest.get_modpath("homedecor") then
 	minetest.register_alias("homedecor:toaster", "waffles:toaster")
 end
 
-minetest.register_craftitem(":farming:bread", {
+minetest.override_item("farming:bread", {
 	description = S("Bread"),
-	inventory_image = "farming_bread.png",
-	on_use = minetest.item_eat(5),
-	groups = {flammable = 2},
 })
 
 local function breadslice_on_use(itemstack, user, pointed_thing)
