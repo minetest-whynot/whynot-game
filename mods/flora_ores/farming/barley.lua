@@ -30,7 +30,11 @@ minetest.register_craftitem("farming:barley", {
 minetest.register_craft({
 	type = "shapeless",
 	output = "farming:flour",
-	recipe = {"farming:barley", "farming:barley", "farming:barley", "farming:barley"}
+	recipe = {
+		"farming:barley", "farming:barley", "farming:barley",
+		"farming:barley", "farming:mortar_pestle"
+	},
+	replacements = {{"farming:mortar_pestle", "farming:mortar_pestle"}},
 })
 
 -- barley definition

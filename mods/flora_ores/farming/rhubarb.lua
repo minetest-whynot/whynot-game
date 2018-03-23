@@ -22,10 +22,11 @@ minetest.register_craftitem("farming:rhubarb_pie", {
 minetest.register_craft({
 	output = "farming:rhubarb_pie",
 	recipe = {
-		{"", "group:food_sugar", ""},
+		{"farming:baking_tray", "group:food_sugar", ""},
 		{"group:food_rhubarb", "group:food_rhubarb", "group:food_rhubarb"},
 		{"group:food_wheat", "group:food_wheat", "group:food_wheat"},
-	}
+	},
+	replacements = {{"farming:baking_tray", "farming:baking_tray"}}
 })
 
 -- rhubarb definition

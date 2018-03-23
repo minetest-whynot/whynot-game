@@ -51,31 +51,26 @@ minetest.register_craft({
 minetest.register_craftitem("farming:porridge", {
 	description = S("Porridge"),
 	inventory_image = "farming_porridge.png",
-	on_use = minetest.item_eat(6),
+	on_use = minetest.item_eat(6, "farming:bowl"),
 })
 
 minetest.after(0, function()
 
+	local fluid = "bucket:bucket_water"
+	local fluid_return = "bucket:bucket_water"
+
 	if minetest.get_modpath("mobs") and mobs and mobs.mod == "redo" then
+		fluid = "group:food_milk"
+		fluid_return = "mobs:bucket_milk"
+	end
 
 	minetest.register_craft({
-		output = "farming:porridge",
 		type = "shapeless",
+		output = "farming:porridge",
 		recipe = {
 			"group:food_barley", "group:food_barley", "group:food_wheat",
-			"group:food_wheat", "group:food_milk"
+			"group:food_wheat", "group:food_bowl", fluid
 		},
-		replacements = {{"mobs:bucket_milk", "bucket:bucket_empty"}}
+		replacements = {{fluid_return, "bucket:bucket_empty"}}
 	})
-else
-	minetest.register_craft({
-		output = "farming:porridge",
-		type = "shapeless",
-		recipe = {
-			"group:food_barley", "group:food_barley", "group:food_wheat",
-			"group:food_wheat", "bucket:bucket_water"
-		},
-		replacements = {{"bucket:bucket_water", "bucket:bucket_empty"}}
-	})
-	end
 end)

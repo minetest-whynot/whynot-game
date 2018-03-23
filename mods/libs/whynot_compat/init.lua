@@ -69,14 +69,6 @@ if minetest.get_modpath("ts_furniture") and minetest.get_modpath("homedecor") th
 	end
 end
 
--- tenplus1 farming mod contains some ethereal items for compatibility, but without food support
-if minetest.get_modpath('food') and minetest.registered_items['ethereal:orange'] and not minetest.get_modpath('ethereal') then
-	food.support("orange", "ethereal:orange")
-	food.support("strawberry", "ethereal:strawberry")
-	food.support("banana", "ethereal:banana")
-end
-
-
 if minetest.get_modpath('farming') and not minetest.get_modpath('farming_plus') then
 -- Migration away to clinew's farming_plus. Aliases to the *2 nodes
 	-- Rejected by ten in https://github.com/tenplus1/farming/pull/39
@@ -118,8 +110,21 @@ end
 
 
 if minetest.get_modpath('farming') and minetest.get_modpath('mtfoods') then
-	-- Remove redundant sugar
-	-- mtfoods:sugar is already food_sugar
-	minetest.unregister_item("farming:sugar")
-	minetest.register_alias("farming:sugar", "mtfoods:sugar")
+	-- Remove redundant sugar in farming and mtfoods
+	minetest.unregister_item("mtfoods:sugar")
+	minetest.clear_craft({output = "mtfoods:sugar"})
+	minetest.register_alias("mtfoods:sugar", "farming:sugar")
+end
+
+if minetest.get_modpath('farming') and minetest.get_modpath('waffles') then
+	-- Remove toast and bread redundancy in farming and waffles
+	if minetest.registered_items["farming:toast"] then -- Check version
+		minetest.unregister_item("waffles:toast")
+		minetest.register_alias("waffles:toast", "farming:toast")
+
+		minetest.override_item("farming:bread_slice", {on_use = minetest.registered_items["waffles:breadslice"].on_use })
+		minetest.unregister_item("waffles:breadslice")
+		minetest.clear_craft({output = "waffles:breadslice"}) -- I like more the farming recipe
+		minetest.register_alias("waffles:breadslice", "farming:bread_slice")
+	end
 end

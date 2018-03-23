@@ -3,7 +3,7 @@
 
 mobs = {}
 mobs.mod = "redo"
-mobs.version = "20180313"
+mobs.version = "20180322"
 
 
 -- Intllib
@@ -2983,6 +2983,12 @@ end
 
 -- global functions
 
+function mobs:spawn_abm_check(pos, node, name)
+	-- global function to add additional spawn checks
+	-- return true to stop spawning mob
+end
+
+
 function mobs:spawn_specific(name, nodes, neighbors, min_light, max_light,
 	interval, chance, aoc, min_height, max_height, day_toggle, on_spawn)
 
@@ -3024,6 +3030,11 @@ function mobs:spawn_specific(name, nodes, neighbors, min_light, max_light,
 			if not mobs.spawning_mobs[name]
 			or not minetest.registered_entities[name] then
 --print ("--- mob doesn't exist", name)
+				return
+			end
+
+			-- additional custom checks for spawning mob
+			if mobs:spawn_abm_check(pos, node, name) == true then
 				return
 			end
 

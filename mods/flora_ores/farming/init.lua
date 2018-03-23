@@ -211,7 +211,7 @@ local function reg_plant_stages(plant_name, stage, force_last)
 end
 
 
-register_plant_node = function(node)
+local register_plant_node = function(node)
 
 	local plant_name, stage = plant_name_stage(node)
 
@@ -554,8 +554,8 @@ farming.register_plant = function(name, def)
 			waving = 1,
 			tiles = {mname .. "_" .. pname .. "_" .. i .. ".png"},
 			paramtype = "light",
-			paramtype2 = def.paramtype2 or nil,
-			place_param2 = def.place_param2 or nil,
+			paramtype2 = def.paramtype2,
+			place_param2 = def.place_param2,
 			walkable = false,
 			buildable_to = true,
 			drop = drop,

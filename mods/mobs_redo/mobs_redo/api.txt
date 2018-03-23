@@ -346,6 +346,17 @@ only use the API of this mod by disabling the spawning of the default mobs in
 this mod.
 
 
+mobs:spawn_abm_check(pos, node, name)
+
+This global function can be changed to contain additional checks for mobs to
+spawn e.g. mobs that spawn only in specific areas and the like.  By returning
+true the mob will not spawn.
+
+    'pos'    holds the position of the spawning mob
+    'node'   contains the node the mob is spawning on top of
+    'name'   is the name of the animal/monster
+
+
 Making Arrows
 -------------
 
