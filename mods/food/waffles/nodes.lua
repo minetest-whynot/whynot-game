@@ -1,13 +1,6 @@
 local S = waffles.intllib
 
 --Waffle Maker and Waffles--
-local function get_waffle(player)
-	local inv = player:get_inventory()
-	inv:add_item("main", "waffles:large_waffle")
-end
-local function replace_emptymaker(pos, node)
-	minetest.set_node(pos, {name = "waffles:wafflemaker_open_empty", param2 = node.param2})
-end
 
 minetest.register_node("waffles:wafflemaker", {
 	description = S("Waffle Maker"),
@@ -92,10 +85,6 @@ minetest.register_node("waffles:wafflemaker_open_full", {
 	end,
 })
 
-local function replace_donemodel(pos, node)
-	minetest.set_node(pos, {name = "waffles:wafflemaker_open_done", param2 = node.param2})
-end
-
 minetest.register_node("waffles:wafflemaker_closed_full", {
 	description = S("Closed Waffle Maker (full)"),
 	drawtype = "mesh",
@@ -142,8 +131,8 @@ minetest.register_node("waffles:wafflemaker_open_done", {
 		},
 	},
 	on_punch = function (pos, node, player, pointed_thing)
-		get_waffle(player)
-		replace_emptymaker(pos, node)
+		player:get_inventory():add_item("main", "waffles:large_waffle")
+		minetest.set_node(pos, {name = "waffles:wafflemaker_open_empty", param2 = node.param2})
 	end
 })
 
@@ -163,42 +152,6 @@ minetest.register_craftitem("waffles:small_waffle", {
 
 
 --Toaster and Toast--
-
---Use homedecor toaster if detected--
-local replace_emptytoaster
-if minetest.get_modpath("homedecor") then
-
-function replace_emptytoaster(pos, node)
-	minetest.set_node(pos, {name = "homedecor:toaster", param2 = node.param2})
-end
-
-minetest.register_node(":homedecor:toaster", {
-	description = S("Toaster"),
-	tiles = { "toaster_with_toast_sides.png" },
-	inventory_image = "waffles_toaster_inv.png",
-	walkable = false,
-	groups = { snappy=3 },
-	paramtype = "light",
-	paramtype2 = "facedir",
-	is_ground_content = false,
-	drawtype = "nodebox",
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.0625, -0.5, -0.125, 0.125, -0.3125, 0.125}, -- NodeBox1
-		},
-	},
-})
-
-minetest.register_alias("waffles:toaster", "homedecor:toaster")
-
-else
-
---This mod registers it's own toaster--
-function replace_emptytoaster(pos, node)
-	minetest.set_node(pos, {name = "waffles:toaster", param2 = node.param2})
-end
-
 minetest.register_node("waffles:toaster", {
 	description = S("Toaster"),
 	tiles = { "toaster_with_toast_sides.png" },
@@ -217,14 +170,10 @@ minetest.register_node("waffles:toaster", {
 	},
 })
 
-minetest.register_alias("homedecor:toaster", "waffles:toaster")
-
-end
-
-local function get_toast(player)
-	local inv = player:get_inventory()
-	inv:add_item("main", "waffles:toast 2")
-	return inv:get_stack("main", player:get_wield_index())
+--Replace homedecor toaster by waffles toaster if detected
+if minetest.get_modpath("homedecor") then
+	minetest.unregister_item("homedecor:toaster")
+	minetest.register_alias("homedecor:toaster", "waffles:toaster")
 end
 
 minetest.register_craftitem(":farming:bread", {
@@ -234,43 +183,53 @@ minetest.register_craftitem(":farming:bread", {
 	groups = {flammable = 2},
 })
 
-minetest.register_craftitem("waffles:breadslice", {
-	description = S("Slice of Bread"),
-	inventory_image = "breadslice.png",
-	groups = {flammable = 2},
-	on_use = function(itemstack, user, pointed_thing)
+local function breadslice_on_use(itemstack, user, pointed_thing)
+	local node, pos
+	if pointed_thing.under then
+		pos = pointed_thing.under
+		node = minetest.get_node(pos)
+	end
 
-		local node, pos
-		if pointed_thing.under then
-			pos = pointed_thing.under
-			node = minetest.get_node(pos)
-		end
+	local pname = user:get_player_name()
 
-		local pname = user:get_player_name()
-
-		if node and pos and (node.name == "homedecor:toaster" or
-				node.name == "waffles:toaster") then
-			if minetest.is_protected(pos, pname) then
-				minetest.record_protection_violation(pos, pname)
-				else
-					if itemstack:get_count() >= 2 then
-						itemstack:take_item(2)
-						minetest.set_node(pos, {name = "waffles:toaster_with_breadslice", param2 = node.param2})
-					return itemstack
-				end
+	if node and pos and (node.name == "homedecor:toaster" or
+			node.name == "waffles:toaster") then
+		if minetest.is_protected(pos, pname) then
+			minetest.record_protection_violation(pos, pname)
+			else
+				if itemstack:get_count() >= 2 then
+					itemstack:take_item(2)
+					minetest.set_node(pos, {name = "waffles:toaster_with_breadslice", param2 = node.param2})
+				return itemstack
 			end
-		else
-			return minetest.do_item_eat(2, nil, itemstack, user, pointed_thing)
 		end
-	end,
-})
+	else
+		return minetest.do_item_eat(2, nil, itemstack, user, pointed_thing)
+	end
+end
 
-minetest.register_craftitem("waffles:toast", {
-	description = S("Toast"),
-	inventory_image = "toast.png",
-	on_use = minetest.item_eat(3),
-	groups = {flammable = 2},
-})
+if minetest.registered_items["farming:bread_slice"] then
+	minetest.override_item("farming:bread_slice", {on_use = breadslice_on_use })
+	minetest.register_alias("waffles:breadslice", "farming:bread_slice")
+else
+	minetest.register_craftitem("waffles:breadslice", {
+		description = S("Slice of Bread"),
+		inventory_image = "breadslice.png",
+		groups = {flammable = 2},
+		on_use = breadslice_on_use,
+	})
+end
+
+if minetest.registered_items["farming:toast"] then
+	minetest.register_alias("waffles:toast", "farming:toast")
+else
+	minetest.register_craftitem("waffles:toast", {
+		description = S("Toast"),
+		inventory_image = "toast.png",
+		on_use = minetest.item_eat(3),
+		groups = {flammable = 2},
+	})
+end
 
 minetest.register_node("waffles:toaster_with_breadslice", {
 	description = S("Toaster with Breadslice"),
@@ -356,18 +315,15 @@ minetest.register_node("waffles:toaster_with_toast", {
 		},
 	},
 	on_punch = function (pos, node, player, pointed_thing)
-		get_toast(player)
-		replace_emptytoaster(pos, node)
+		local inv = player:get_inventory()
+		local left = inv:add_item("main", "waffles:toast 2")
+		if left:is_empty() then
+			minetest.set_node(pos, {name = "waffles:toaster", param2 = node.param2})
+		end
 	end
 })
 
 --Toaster Waffles--
-local function get_toaster_waffle(player)
-	local inv = player:get_inventory()
-	inv:add_item("main", "waffles:toaster_waffle 2")
-	return inv:get_stack("main", player:get_wield_index())
-end
-
 minetest.register_craftitem("waffles:toaster_waffle", {
 	description = S("Toaster Waffle"),
 	inventory_image = "toaster_waffle.png",
@@ -542,7 +498,10 @@ minetest.register_node("waffles:toaster_with_toasted_waffle", {
 		},
 	},
 	on_punch = function (pos, node, player, pointed_thing)
-		get_toaster_waffle(player)
-		replace_emptytoaster(pos, node)
+		local inv = player:get_inventory()
+		local left = inv:add_item("main", "waffles:toaster_waffle 2")
+		if left:is_empty() then
+			minetest.set_node(pos, {name = "waffles:toaster", param2 = node.param2})
+		end
 	end
 })

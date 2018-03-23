@@ -77,12 +77,14 @@ minetest.register_craft({
 	}
 })
 
---Slice of Bread
-minetest.register_craft({
-	output = 'waffles:breadslice 2',
-	type = "shapeless",
-	recipe = {"farming:bread"}
-})
+--Slice of Bread (only if not farming one used)
+if not minetest.registered_items["farming:bread_slice"] then
+	minetest.register_craft({
+		output = 'waffles:breadslice 2',
+		type = "shapeless",
+		recipe = {"farming:bread"}
+	})
+end
 
 --Package of Toaster Waffles
 minetest.register_craft({

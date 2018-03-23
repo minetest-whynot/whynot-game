@@ -45,7 +45,7 @@ origin	https://github.com/minetest-mods/mtg_i18n (fetch)
 Mod: libs/mtg_i18n
 
 origin	https://github.com/bell07/minetest-whynot_compat (fetch)
-* master 7a5bc42 [origin/master] remove obsolete food.support, for farming is in upstream now switch sugar to farming sugar since food support implemented handle bread toast redundancy farming vs. waffles
+* master 7422d85 [origin/master: 1 voraus] disable waffles vs farming workaround since waffles patched in whynot game
 Mod: libs/whynot_compat
 
 origin	https://github.com/Chemguy99/armor_addon (fetch)
@@ -310,8 +310,9 @@ origin	https://github.com/tenplus1/pie (fetch)
 * master b2a4700 [origin/master] uses food_ groups to craft cakes easier
 Mod: food/pie
 
+bell07	https://github.com/bell07/waffles (fetch)
 origin	https://github.com/GreenXenith/waffles (fetch)
-* master 83182cb [origin/master] fix leaked global "group" and remove not necessary "tostring" (#7)
+* master 3e210e7 [origin/master: 5 voraus] disable waffles:breadslice craft if the farming:bread_slice used
 Mod: food/waffles
 
 origin	https://github.com/minetest-mods/mesecons (fetch)

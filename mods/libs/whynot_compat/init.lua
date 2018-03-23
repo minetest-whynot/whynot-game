@@ -116,6 +116,7 @@ if minetest.get_modpath('farming') and minetest.get_modpath('mtfoods') then
 	minetest.register_alias("mtfoods:sugar", "farming:sugar")
 end
 
+--[[
 if minetest.get_modpath('farming') and minetest.get_modpath('waffles') then
 	-- Remove toast and bread redundancy in farming and waffles
 	if minetest.registered_items["farming:toast"] then -- Check version
@@ -128,3 +129,4 @@ if minetest.get_modpath('farming') and minetest.get_modpath('waffles') then
 		minetest.register_alias("waffles:breadslice", "farming:bread_slice")
 	end
 end
+]]
