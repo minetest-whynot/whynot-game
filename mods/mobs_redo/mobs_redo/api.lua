@@ -3,7 +3,7 @@
 
 mobs = {}
 mobs.mod = "redo"
-mobs.version = "20180322"
+mobs.version = "20180324"
 
 
 -- Intllib
@@ -1396,7 +1396,8 @@ local runaway_from = function(self)
 
 		if objs[n]:is_player() then
 
-			if mobs.invis[ objs[n]:get_player_name() ] then
+			if mobs.invis[ objs[n]:get_player_name() ]
+			or self.owner == objs[n]:get_player_name() then
 
 				type = ""
 			else
@@ -1441,7 +1442,6 @@ local runaway_from = function(self)
 		end
 	end
 
-	-- attack player
 	if min_player then
 
 		local lp = player:get_pos()

@@ -25,11 +25,11 @@ Mod: minetest_game/mods/wool
 Mod: minetest_game/mods/xpanes
 
 origin	http://repo.or.cz/minetest_doc.git (fetch)
-* master 7872c71 [origin/master] Replace minetest.debug with minetest.log
+* master 1187c2e [origin/master] Subgame → game
 Mod: libs/doc
 
 origin	http://repo.or.cz/minetest_doc_items.git (fetch)
-* master d40a09b [origin/master] Update for 0.4.16 settings syntax
+* master 24f6b02 [origin/master] Subgame → game
 Mod: libs/doc_items
 
 origin	http://repo.or.cz/minetest_doc_minetest_game.git (fetch)
@@ -122,7 +122,7 @@ Mod: 3d_armor/shields
 Mod: 3d_armor/wieldview
 
 origin	https://github.com/tenplus1/farming (fetch)
-* master a50c8d3 [origin/master] add new stage to cocoa, tweak code
+* master 31bbee3 [origin/master] added wooden scarecrow bottom
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
@@ -315,7 +315,7 @@ origin	https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin	https://github.com/minetest-mods/mesecons (fetch)
-* master d8f82e6 [origin/master] Fix sticky pistons (#403)
+* master f70a308 [origin/master] Replace deprecated methods:
 Mod: mesecons/mesecons
 Mod: mesecons/mesecons_alias
 Mod: mesecons/mesecons_blinkyplant
@@ -346,5 +346,5 @@ origin	https://github.com/tenplus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://github.com/tenplus1/mobs_redo (fetch)
-* master 1bb95d7 [origin/master] add mobs:spawn_abm_check() function
+* master a654a02 [origin/master] animals will not runaway from it's owner (chickens)
 Mod: mobs_redo/mobs_redo

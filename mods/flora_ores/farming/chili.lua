@@ -25,7 +25,7 @@ minetest.register_craft({
 	recipe = {
 		"group:food_chili_pepper", "group:food_barley",
 		"group:food_tomato", "group:food_beans", "group:food_bowl"
-	}
+	},
 })
 
 -- chili can be used for red dye

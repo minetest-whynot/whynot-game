@@ -107,7 +107,6 @@ minetest.register_alias("farming:big_pumpkin_side", "air")
 minetest.register_alias("farming:big_pumpkin_corner", "air")
 minetest.register_alias("farming:big_pumpkin_top", "air")
 minetest.register_alias("farming:scarecrow", "farming:jackolantern")
-minetest.register_alias("farming:scarecrow_bottom", "default:fence_wood")
 minetest.register_alias("farming:scarecrow_light", "farming:jackolantern_on")
 minetest.register_alias("farming:pumpkin_flour", "farming:pumpkin_dough")
 
