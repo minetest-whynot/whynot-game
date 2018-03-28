@@ -25,11 +25,11 @@ Mod: minetest_game/mods/wool
 Mod: minetest_game/mods/xpanes
 
 origin	http://repo.or.cz/minetest_doc.git (fetch)
-* master 1187c2e [origin/master] Subgame → game
+* master d862b50 [origin/master] Version 1.1.1
 Mod: libs/doc
 
 origin	http://repo.or.cz/minetest_doc_items.git (fetch)
-* master 24f6b02 [origin/master] Subgame → game
+* master b6648a4 [origin/master] Version 1.1.2
 Mod: libs/doc_items
 
 origin	http://repo.or.cz/minetest_doc_minetest_game.git (fetch)
