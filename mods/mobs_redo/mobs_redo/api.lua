@@ -3,7 +3,7 @@
 
 mobs = {}
 mobs.mod = "redo"
-mobs.version = "20180324"
+mobs.version = "20180328"
 
 
 -- Intllib
@@ -3728,6 +3728,13 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 
 		if not mob_obj[name]
 		or not mob_obj[name].object then
+			return
+		end
+
+		-- make sure nametag is being used to name mob
+		local item = player:get_wielded_item()
+
+		if item:get_name() ~= "mobs:nametag" then
 			return
 		end
 

@@ -346,5 +346,5 @@ origin	https://github.com/tenplus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://github.com/tenplus1/mobs_redo (fetch)
-* master a654a02 [origin/master] animals will not runaway from it's owner (chickens)
+* master 28dc0d8 [origin/master] add nametag check when renaming
 Mod: mobs_redo/mobs_redo
