@@ -146,5 +146,6 @@ minetest.register_node("farming:cotton_8", table.copy(crop_def))
 farming.register_plant("farming:cotton", {
 	description = "Cotton seed",
 	inventory_image = "farming_cotton_seed.png",
+	groups = {flammable = 2},
 	steps = 8,
 })]]

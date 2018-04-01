@@ -122,7 +122,7 @@ Mod: 3d_armor/shields
 Mod: 3d_armor/wieldview
 
 origin	https://github.com/tenplus1/farming (fetch)
-* master 31bbee3 [origin/master] added wooden scarecrow bottom
+* master c4e88fc [origin/master] added custom groups to register_plant food craftitem
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
@@ -342,9 +342,9 @@ Mod: mesecons/mesecons_walllever
 Mod: mesecons/mesecons_wires
 
 origin	https://github.com/tenplus1/mobs_monster (fetch)
-* master c1799f2 [origin/master] Added malay translation (thanks MuhdNurHidayat)
+* master 64207a7 [origin/master] added french locale (thanks Papou30)
 Mod: mobs_redo/mobs_monster
 
 origin	https://github.com/tenplus1/mobs_redo (fetch)
-* master 28dc0d8 [origin/master] add nametag check when renaming
+* master 7bb3cd8 [origin/master] exploding mobs diffuse range is set using 'reach'
 Mod: mobs_redo/mobs_redo

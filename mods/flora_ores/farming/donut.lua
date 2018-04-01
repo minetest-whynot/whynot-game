@@ -11,9 +11,9 @@ minetest.register_craftitem("farming:donut", {
 minetest.register_craft({
 	output = "farming:donut 3",
 	recipe = {
-		{'', 'group:food_wheat', ''},
-		{'group:food_wheat', 'group:food_sugar', 'group:food_wheat'},
-		{'', 'group:food_wheat', ''},
+		{"", "group:food_wheat", ""},
+		{"group:food_wheat", "group:food_sugar", "group:food_wheat"},
+		{"", "group:food_wheat", ""},
 	}
 })
 
