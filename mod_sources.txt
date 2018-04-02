@@ -80,8 +80,9 @@ origin	http://repo.or.cz/minetest_show_wielded_item.git (fetch)
 * master 2d4cc42 [origin/master] Initial commit + version 1.0.0
 Mod: player/show_wielded_item
 
+bell07	https://github.com/bell07/minetest-skinsdb/ (fetch)
 origin	https://github.com/minetest-mods/skinsdb (fetch)
-* master 8d708ee [origin/master] Merge pull request #10 from minetest-mods/player_assignment_not_case_sensitive
+* master 45edbf8 [origin/master] French translation by Papou30
 Mod: player/skinsdb
 
 origin	https://github.com/bell07/minetest-smart_inventory (fetch)
