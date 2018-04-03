@@ -2846,7 +2846,7 @@ minetest.register_entity(name, {
 	hp_min = max(1, (def.hp_min or 5) * difficulty),
 	hp_max = max(1, (def.hp_max or 10) * difficulty),
 	physical = true,
-	collisionbox = def.collisionbox,
+	collisionbox = def.collisionbox or {-0.25, -0.25, -0.25, 0.25, 0.25, 0.25},
 	selectionbox = def.selectionbox or def.collisionbox,
 	visual = def.visual,
 	visual_size = def.visual_size or {x = 1, y = 1},

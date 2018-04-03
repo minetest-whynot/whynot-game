@@ -347,5 +347,5 @@ origin	https://github.com/tenplus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://github.com/tenplus1/mobs_redo (fetch)
-* master 7bb3cd8 [origin/master] exploding mobs diffuse range is set using 'reach'
+* master 2418e2a [origin/master] add default collisionbox
 Mod: mobs_redo/mobs_redo
