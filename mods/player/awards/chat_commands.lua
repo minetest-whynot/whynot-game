@@ -1,24 +1,10 @@
--- AWARDS
---
--- Copyright (C) 2013-2015 rubenwardy
--- This program is free software; you can redistribute it and/or modify
--- it under the terms of the GNU Lesser General Public License as published by
--- the Free Software Foundation; either version 2.1 of the License, or
--- (at your option) any later version.
--- This program is distributed in the hope that it will be useful,
--- but WITHOUT ANY WARRANTY; without even the implied warranty of
--- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--- GNU Lesser General Public License for more details.
--- You should have received a copy of the GNU Lesser General Public License along
--- with this program; if not, write to the Free Software Foundation, Inc.,
--- 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
---
+-- Copyright (c) 2013-18 rubenwardy. MIT.
 
 local S = awards.gettext
 
 minetest.register_chatcommand("awards", {
 	params = S("[c|clear|disable|enable]"),
-	description = S("Show, clear, disable or enable your achievements"),
+	description = S("Show, clear, disable or enable your awards"),
 	func = function(name, param)
 		if param == "clear" then
 			awards.clear_player(name)
@@ -26,27 +12,34 @@ minetest.register_chatcommand("awards", {
 			S("All your awards and statistics have been cleared. You can now start again."))
 		elseif param == "disable" then
 			awards.disable(name)
-			minetest.chat_send_player(name, S("You have disabled your achievements."))
+			minetest.chat_send_player(name, S("You have disabled awards."))
 		elseif param == "enable" then
 			awards.enable(name)
-			minetest.chat_send_player(name, S("You have enabled your achievements."))
+			minetest.chat_send_player(name, S("You have enabled awards."))
 		elseif param == "c" then
 			awards.show_to(name, name, nil, true)
 		else
 			awards.show_to(name, name, nil, false)
 		end
+
+		if (param == "disable" or param == "enable") and minetest.global_exists("sfinv") then
+			local player = minetest.get_player_by_name(name)
+			if player then
+				sfinv.set_player_inventory_formspec(player)
+			end
+		end
 	end
 })
 
 minetest.register_chatcommand("awd", {
-	params = S("<achievement ID>"),
-	description = S("Show details of an achievement"),
+	params = S("<award ID>"),
+	description = S("Show details of an award"),
 	func = function(name, param)
-		local def = awards.def[param]
+		local def = awards.registered_awards[param]
 		if def then
 			minetest.chat_send_player(name, string.format(S("%s: %s"), def.title, def.description))
 		else
-			minetest.chat_send_player(name, S("Achievement not found."))
+			minetest.chat_send_player(name, S("Award not found."))
 		end
 	end
 })
@@ -56,7 +49,7 @@ minetest.register_chatcommand("awpl", {
 		server = true
 	},
 	params = S("<name>"),
-	description = S("Get the achievements statistics for the given player or yourself"),
+	description = S("Get the awards statistics for the given player or yourself"),
 	func = function(name, param)
 		if not param or param == "" then
 			param = name

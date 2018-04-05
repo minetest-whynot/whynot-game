@@ -53,7 +53,7 @@ origin	https://github.com/Chemguy99/armor_addon (fetch)
 Mod: player/armor_addon
 
 origin	https://github.com/minetest-mods/awards (fetch)
-* master 81aa0f1 [origin/master] Fix broken achievement image (On The Way)
+* master 75c01a1 [origin/master] Replace all mentions of achievements with awards
 Mod: player/awards
 
 origin	https://github.com/minetest-mods/character_creator (fetch)
@@ -86,7 +86,7 @@ origin	https://github.com/minetest-mods/skinsdb (fetch)
 Mod: player/skinsdb
 
 origin	https://github.com/bell07/minetest-smart_inventory (fetch)
-* master     9175f59 [origin/master] creative: add way to obtain full stacks
+* master     560ad2a [origin/master] cache: "ingredient" is not a valid group without itemname
 Mod: player/smart_inventory
 
 origin	https://github.com/GunshipPenguin/sprint (fetch)
@@ -230,7 +230,7 @@ Mod: decor/heads
 Grizzly-Adam	https://github.com/Grizzly-Adam/minetest-laptop/ (fetch)
 bell07	https://github.com/bell07/laptop (fetch)
 origin	https://github.com/Gerold55/laptop (fetch)
-* recipe_compat     e9d8502 [origin/master: 3 voraus] added homedecor recipes support compatible to whynot subgame
+* recipe_compat           e9d8502 [origin/master: 3 voraus] added homedecor recipes support compatible to whynot subgame
 Mod: decor/laptop
 
 origin	http://repo.or.cz/minetest_mtg_plus.git (fetch)
