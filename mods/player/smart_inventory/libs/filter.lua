@@ -341,7 +341,7 @@ filter.register_filter({
 		end,
 		is_valid = function(self, groupname)
 			local itemname = groupname:sub(12)
-			if minetest.registered_items[itemname] then
+			if itemname ~= "" and minetest.registered_items[itemname] then
 				return true
 			end
 		end
