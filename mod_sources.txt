@@ -53,7 +53,7 @@ origin	https://github.com/Chemguy99/armor_addon (fetch)
 Mod: player/armor_addon
 
 origin	https://github.com/minetest-mods/awards (fetch)
-* master 75c01a1 [origin/master] Replace all mentions of achievements with awards
+* master 3727596 [origin/master] Fix notification positioning
 Mod: player/awards
 
 origin	https://github.com/minetest-mods/character_creator (fetch)
