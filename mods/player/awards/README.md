@@ -29,6 +29,9 @@ awards.register_award("mymod:myaward", {
 		type = "trigger_type",
 		-- see specific docs on the trigger to see what else goes here
 	},
+	
+	-- Callback. award_def is this table (plus some additional methods/members added by register_award)
+	on_unlock = function(name, award_def) end,
 })
 ```
 

@@ -53,7 +53,7 @@ origin	https://github.com/Chemguy99/armor_addon (fetch)
 Mod: player/armor_addon
 
 origin	https://github.com/minetest-mods/awards (fetch)
-* master 3727596 [origin/master] Fix notification positioning
+* master 3fc12eb [origin/master] Update README.md
 Mod: player/awards
 
 origin	https://github.com/minetest-mods/character_creator (fetch)
@@ -347,5 +347,5 @@ origin	https://github.com/tenplus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://github.com/tenplus1/mobs_redo (fetch)
-* master 2418e2a [origin/master] add default collisionbox
+* master 0849727 [origin/master] knock_back defaults to true
 Mod: mobs_redo/mobs_redo

@@ -3,7 +3,7 @@
 
 mobs = {}
 mobs.mod = "redo"
-mobs.version = "20180331"
+mobs.version = "20180406"
 
 
 -- Intllib
@@ -2395,7 +2395,7 @@ local mob_punch = function(self, hitter, tflp, tool_capabilities, dir)
 		end) ]]
 
 		-- knock back effect (only on full punch)
-		if self.knock_back > 0
+		if self.knock_back
 		and tflp >= punch_interval then
 
 			local v = self.object:getvelocity()
@@ -2875,7 +2875,7 @@ minetest.register_entity(name, {
 	attacks_monsters = def.attacks_monsters or false,
 	group_attack = def.group_attack or false,
 	passive = def.passive or false,
-	knock_back = def.knock_back or 3,
+	knock_back = def.knock_back ~= false,
 	blood_amount = def.blood_amount or 5,
 	blood_texture = def.blood_texture or "mobs_blood.png",
 	shoot_offset = def.shoot_offset or 0,
