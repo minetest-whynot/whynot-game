@@ -20,14 +20,6 @@ farming.register_hoe = function(name, def)
 		def.inventory_image = "unknown_item.png"
 	end
 
-	if def.recipe == nil then
-		def.recipe = {
-			{"air","air",""},
-			{"","group:stick",""},
-			{"","group:stick",""}
-		}
-	end
-
 	if def.max_uses == nil then
 		def.max_uses = 30
 	end
@@ -38,16 +30,18 @@ farming.register_hoe = function(name, def)
 		inventory_image = def.inventory_image,
 		on_use = function(itemstack, user, pointed_thing)
 			return farming.hoe_on_use(itemstack, user, pointed_thing, def.max_uses)
-		end
+		end,
+		groups = def.groups,
+		sound = {breaks = "default_tool_breaks"},
 	})
 
 	-- Register its recipe
-	if def.material == nil then
+	if def.recipe then
 		minetest.register_craft({
 			output = name:sub(2),
 			recipe = def.recipe
 		})
-	else
+	elseif def.material then
 		minetest.register_craft({
 			output = name:sub(2),
 			recipe = {
@@ -153,22 +147,22 @@ farming.register_hoe(":farming:hoe_steel", {
 farming.register_hoe(":farming:hoe_bronze", {
 	description = S("Bronze Hoe"),
 	inventory_image = "farming_tool_bronzehoe.png",
-	max_uses = 220,
-	material = "default:bronze_ingot"
+	max_uses = 500,
+	groups = {not_in_creative_inventory = 1},
 })
 
 farming.register_hoe(":farming:hoe_mese", {
 	description = S("Mese Hoe"),
 	inventory_image = "farming_tool_mesehoe.png",
 	max_uses = 350,
-	material = "default:mese_crystal"
+	groups = {not_in_creative_inventory = 1},
 })
 
 farming.register_hoe(":farming:hoe_diamond", {
 	description = S("Diamond Hoe"),
 	inventory_image = "farming_tool_diamondhoe.png",
 	max_uses = 500,
-	material = "default:diamond"
+	groups = {not_in_creative_inventory = 1},
 })
 
 -- Toolranks support

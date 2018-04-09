@@ -123,7 +123,7 @@ Mod: 3d_armor/shields
 Mod: 3d_armor/wieldview
 
 origin	https://github.com/tenplus1/farming (fetch)
-* master c4e88fc [origin/master] added custom groups to register_plant food craftitem
+* master 1a2bc35 [origin/master] added hoe bome as lucky block prize
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
@@ -143,7 +143,7 @@ origin	https://github.com/GreenXenith/tac_nayn (fetch)
 Mod: mapgen/tac_nayn
 
 origin	https://github.com/taikedz/everamzah-backpacks (fetch)
-* master 2dc3364 [origin/master: 1 voraus] Avoid "access to undeclared globals" warning
+* master aadab97 [origin/master: 2 voraus] Merge remote-tracking branch 'origin/master'
 Mod: tools/backpacks
 
 origin	https://github.com/SmallJoker/boost_cart (fetch)
@@ -347,5 +347,5 @@ origin	https://github.com/tenplus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://github.com/tenplus1/mobs_redo (fetch)
-* master 0849727 [origin/master] knock_back defaults to true
+* master 044d8f8 [origin/master] default explode radius when mob in water is 1 instead of 0
 Mod: mobs_redo/mobs_redo

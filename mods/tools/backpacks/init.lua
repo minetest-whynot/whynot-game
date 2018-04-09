@@ -178,4 +178,13 @@ if minetest.global_exists("mobs") and ( mobs.redo or mobs.mod == 'redo') then
 			{"mobs:leather", "mobs:leather", "mobs:leather"},
 		}
 	})
+
+	minetest.register_craft({
+		output = "backpacks:backpack_leather",
+		recipe = {
+			{"mobs:rabbit_hide", "mobs:rabbit_hide", "mobs:rabbit_hide"},
+			{"mobs:rabbit_hide", "",                 "mobs:rabbit_hide"},
+			{"mobs:rabbit_hide", "mobs:rabbit_hide", "mobs:rabbit_hide"},
+		}
+	})
 end

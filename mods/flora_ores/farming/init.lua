@@ -660,4 +660,5 @@ if farming.donuts then dofile(farming.path.."/donut.lua") end
 
 dofile(farming.path.."/mapgen.lua")
 dofile(farming.path.."/compatibility.lua") -- Farming Plus compatibility
+dofile(farming.path.."/hoebomb.lua")
 dofile(farming.path.."/lucky_block.lua")

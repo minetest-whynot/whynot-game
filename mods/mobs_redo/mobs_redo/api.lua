@@ -3,7 +3,7 @@
 
 mobs = {}
 mobs.mod = "redo"
-mobs.version = "20180406"
+mobs.version = "20180408"
 
 
 -- Intllib
@@ -145,15 +145,27 @@ end
 
 
 -- set and return valid yaw
-local set_yaw = function(self, yaw)
+local set_yaw = function(self, yaw, delay)
 
 	if not yaw or yaw ~= yaw then
 		yaw = 0
 	end
 
-	self:setyaw(yaw)
+	delay = delay or 0
 
-	return yaw
+	if delay == 0 then
+		self.object:set_yaw(yaw)
+		return yaw
+	end
+
+	self.target_yaw = yaw
+	self.delay = delay
+	return target_yaw
+end
+
+-- global function to set mob yaw
+function mobs:yaw(self, yaw, delay)
+	set_yaw(self, yaw, delay)
 end
 
 
@@ -750,9 +762,9 @@ local do_jump = function(self)
 
 			self.object:setvelocity(v)
 
-if get_velocity(self) > 0 then
-			mob_sound(self, self.sounds.jump)
-end
+			if get_velocity(self) > 0 then
+				mob_sound(self, self.sounds.jump)
+			end
 		else
 			self.facing_fence = true
 		end
@@ -1457,7 +1469,7 @@ local runaway_from = function(self)
 			yaw = yaw + pi
 		end
 
-		yaw = set_yaw(self.object, yaw)
+		yaw = set_yaw(self, yaw, 4)
 		self.state = "runaway"
 		self.runaway_timer = 3
 		self.following = nil
@@ -1543,7 +1555,7 @@ local follow_flop = function(self)
 
 				if p.x > s.x then yaw = yaw + pi end
 
-				yaw = set_yaw(self.object, yaw)
+				yaw = set_yaw(self, yaw, 6)
 
 				-- anyone but standing npc's can move along
 				if dist > self.reach
@@ -1647,7 +1659,7 @@ local do_states = function(self, dtime)
 				yaw = yaw + random(-0.5, 0.5)
 			end
 
-			yaw = set_yaw(self.object, yaw)
+			yaw = set_yaw(self, yaw, 8)
 		end
 
 		set_velocity(self, 0)
@@ -1666,14 +1678,14 @@ local do_states = function(self, dtime)
 				self.state = "walk"
 				set_animation(self, "walk")
 
-				-- fly up/down randomly for flying mobs
+				--[[ fly up/down randomly for flying mobs
 				if self.fly and random(1, 100) <= self.walk_chance then
 
 					local v = self.object:getvelocity()
 					local ud = random(-1, 2) / 9
 
 					self.object:setvelocity({x = v.x, y = ud, z = v.z})
-				end
+				end--]]
 			end
 		end
 
@@ -1721,7 +1733,7 @@ local do_states = function(self, dtime)
 					if lp.x > s.x then yaw = yaw + pi end
 
 					-- look towards land and jump/move in that direction
-					yaw = set_yaw(self.object, yaw)
+					yaw = set_yaw(self, yaw, 6)
 					do_jump(self)
 					set_velocity(self, self.walk_velocity)
 				else
@@ -1740,14 +1752,14 @@ local do_states = function(self, dtime)
 				if lp.x > s.x then yaw = yaw + pi end
 			end
 
-			yaw = set_yaw(self.object, yaw)
+			yaw = set_yaw(self, yaw, 8)
 
 		-- otherwise randomly turn
 		elseif random(1, 100) <= 30 then
 
 			yaw = yaw + random(-0.5, 0.5)
 
-			yaw = set_yaw(self.object, yaw)
+			yaw = set_yaw(self, yaw, 8)
 		end
 
 		-- stand for great fall in front
@@ -1813,6 +1825,7 @@ local do_states = function(self, dtime)
 			self.v_start = false
 			self.timer = 0
 			self.blinktimer = 0
+			self.path.way = nil
 
 			return
 		end
@@ -1828,7 +1841,7 @@ local do_states = function(self, dtime)
 
 			if p.x > s.x then yaw = yaw + pi end
 
-			yaw = set_yaw(self.object, yaw)
+			yaw = set_yaw(self, yaw)
 
 			local node_break_radius = self.explosion_radius or 1
 			local entity_damage_radius = self.explosion_damage_radius
@@ -1898,7 +1911,7 @@ local do_states = function(self, dtime)
 					if minetest.find_node_near(pos, 1, {"group:water"})
 					or minetest.is_protected(pos, "") then
 
-						node_break_radius = 0
+						node_break_radius = 1
 					end
 
 					self.object:remove()
@@ -2016,7 +2029,7 @@ local do_states = function(self, dtime)
 
 			if p.x > s.x then yaw = yaw + pi end
 
-			yaw = set_yaw(self.object, yaw)
+			yaw = set_yaw(self, yaw)
 
 			-- move towards enemy if beyond mob reach
 			if dist > self.reach then
@@ -2119,7 +2132,7 @@ local do_states = function(self, dtime)
 
 			if p.x > s.x then yaw = yaw + pi end
 
-			yaw = set_yaw(self.object, yaw)
+			yaw = set_yaw(self, yaw)
 
 			set_velocity(self, 0)
 
@@ -2194,7 +2207,6 @@ local falling = function(self, pos)
 	end
 
 	-- in water then float up
---	if minetest.registered_nodes[node_ok(pos).name].groups.liquid then
 	if minetest.registered_nodes[node_ok(pos).name].groups.water then
 
 		if self.floats == 1 then
@@ -2446,7 +2458,7 @@ local mob_punch = function(self, hitter, tflp, tool_capabilities, dir)
 			yaw = yaw + pi
 		end
 
-		yaw = set_yaw(self.object, yaw)
+		yaw = set_yaw(self, yaw, 6)
 		self.state = "runaway"
 		self.runaway_timer = 0
 		self.following = nil
@@ -2666,7 +2678,7 @@ local mob_activate = function(self, staticdata, def, dtime)
 
 	-- set anything changed above
 	self.object:set_properties(self)
-	set_yaw(self.object, (random(0, 360) - 180) / 180 * pi)
+	set_yaw(self, (random(0, 360) - 180) / 180 * pi, 6)
 	update_tag(self)
 	set_animation(self, "stand")
 
@@ -2735,6 +2747,46 @@ local mob_step = function(self, dtime)
 	end
 
 	falling(self, pos)
+
+	-- smooth rotation by ThomasMonroe314
+
+	if self.delay and self.delay > 0 then
+
+		local yaw = self.object:get_yaw()
+
+		if self.delay == 1 then
+			yaw = self.target_yaw
+		else
+			local dif = abs(yaw - self.target_yaw)
+
+			if yaw > self.target_yaw then
+
+				if dif > pi then
+					dif = 2 * pi - dif -- need to add
+					yaw = yaw + dif / self.delay
+				else
+					yaw = yaw - dif / self.delay -- need to subtract
+				end
+
+			elseif yaw < self.target_yaw then
+
+				if dif > pi then
+					dif = 2 * pi - dif
+					yaw = yaw - dif / self.delay -- need to subtract
+				else
+					yaw = yaw + dif / self.delay -- need to add
+				end
+			end
+
+			if yaw > (pi * 2) then yaw = yaw - (pi * 2) end
+			if yaw < 0 then yaw = yaw + (pi * 2) end
+		end
+
+		self.delay = self.delay - 1
+		self.object:set_yaw(yaw)
+	end
+
+	-- end rotation
 
 	-- knockback timer
 	if self.pause_timer > 0 then

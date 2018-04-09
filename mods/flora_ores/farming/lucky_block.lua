@@ -10,6 +10,7 @@ if minetest.get_modpath("lucky_block") then
 		{"nod", "farming:jackolantern", 0},
 		{"tro", "farming:jackolantern_on"},
 		{"nod", "default:river_water_source", 1},
+		{"tel"},
 		{"dro", {"farming:trellis", "farming:grapes"}, 5},
 		{"dro", {"farming:bottle_ethanol"}, 1},
 		{"nod", "farming:melon", 0},
@@ -22,9 +23,14 @@ if minetest.get_modpath("lucky_block") then
 		{"dro", {"farming:pot"}, 1},
 		{"dro", {"farming:baking_tray"}, 1},
 		{"dro", {"farming:skillet"}, 1},
+		{"exp", 4},
 		{"dro", {"farming:mortar_pestle"}, 1},
 		{"dro", {"farming:cutting_board"}, 1},
 		{"dro", {"farming:juicer"}, 1},
 		{"dro", {"farming:mixing_bowl"}, 1},
+		{"dro", {"farming:hoe_bronze"}, 1},
+		{"dro", {"farming:hoe_mese"}, 1},
+		{"dro", {"farming:hoe_diamond"}, 1},
+		{"dro", {"farming:hoe_bomb"}, 10},
 	})
 end

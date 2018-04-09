@@ -13,6 +13,7 @@ This mod works by adding your new plant to the {growing=1} group and numbering t
 
 Changelog:
 
+1.35 - Deprecated bronze/mese/diamond hoe's, added hoe bomb and deprecated hoe's as lucky block prizes
 1.34 - Added scarecrow Base (5x sticks in a cross shape)
 1.33 - Added cooking utensils (wooden bowl, saucepan, cooking pot, baking tray, skillet, cutting board, mortar & pestle, juicer, glass mixing bowl) for easier food crafts. 
 1.32 - Added Pea plant (textures by Andrey01) - also added Wooden Bowl and Pea Soup crafts
@@ -56,7 +57,7 @@ Changelog:
 0.1 - Fixed growing bug
 0.0 - Initial release
 
-Lucky Blocks: 25
+Lucky Blocks: 28
 
 
 License of media (textures):
