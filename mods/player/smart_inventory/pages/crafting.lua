@@ -157,7 +157,7 @@ local function update_group_selection(state, rebuild)
 	if state.param.crafting_group_list[sel_id] then
 		state.param.crafting_craftable_list = grouped[state.param.crafting_group_list[sel_id]].items
 		table.sort(state.param.crafting_craftable_list, function(a,b)
-			return a.item < b.item
+			return a.sort_value < b.sort_value
 		end)
 		grid:setList(state.param.crafting_craftable_list)
 		label:setText(groups_sel:getSelectedItem())

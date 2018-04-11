@@ -432,6 +432,17 @@ function ui_tools.get_list_grouped(itemtable)
 end
 
 
+local function unifieddyes_getpaletteidx() end
+if minetest.global_exists("unifieddyes") then
+	function unifieddyes_getpaletteidx(entry)
+		local ret = unifieddyes.getpaletteidx(entry.item, "extended")
+		if ret then
+			local ret2= string.format("%02X", ret)
+			return 'dye '..ret2
+		end
+	end
+end
+
 -----------------------------------------------------
 -- Prepare root lists for all users
 -----------------------------------------------------
@@ -449,6 +460,9 @@ local function prepare_root_lists()
 			item = itemname,
 			is_button = true
 		}
+
+		entry.sort_value = unifieddyes_getpaletteidx(entry) or itemname
+
 		if cache.citems[itemname].cgroups["shape"] then
 			table.insert(ui_tools.root_list_shape, entry)
 		else

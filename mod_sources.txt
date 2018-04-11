@@ -86,7 +86,7 @@ origin	https://github.com/minetest-mods/skinsdb (fetch)
 Mod: player/skinsdb
 
 origin	https://github.com/bell07/minetest-smart_inventory (fetch)
-* master     560ad2a [origin/master] cache: "ingredient" is not a valid group without itemname
+* master     289f7f1 [origin/master] unifieddyes support - sort dyes by extended color value
 Mod: player/smart_inventory
 
 origin	https://github.com/GunshipPenguin/sprint (fetch)
@@ -308,7 +308,7 @@ origin	https://github.com/Philipbenr/mtfoods (fetch)
 Mod: food/mtfoods
 
 origin	https://github.com/tenplus1/pie (fetch)
-* master b2a4700 [origin/master] uses food_ groups to craft cakes easier
+* master edaee03 [origin/master: 1 voraus] pre-fix issue #2
 Mod: food/pie
 
 origin	https://github.com/GreenXenith/waffles (fetch)

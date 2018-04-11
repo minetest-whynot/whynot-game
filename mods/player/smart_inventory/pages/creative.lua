@@ -65,7 +65,7 @@ local function update_group_selection(state, changed_group)
 	-- update grid list
 	if outlist then
 		table.sort(outlist, function(a,b)
-			return a.item < b.item
+			return a.sort_value < b.sort_value
 		end)
 		grid:setList(outlist)
 		state.param.creative_outlist = outlist

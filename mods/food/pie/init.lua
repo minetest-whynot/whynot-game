@@ -1,8 +1,8 @@
 
 -- check for available hunger mods
-local hmod = minetest.get_modpath("hunger")
-local hbmod = minetest.get_modpath("hbhunger")
-local stmod = minetest.get_modpath("stamina")
+local hmod = minetest.global_exists("hunger")
+local hbmod = minetest.global_exists("hbhunger")
+local stmod = minetest.global_exists("stamina")
 
 
 -- eat pie slice function
