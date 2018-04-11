@@ -123,7 +123,7 @@ Mod: 3d_armor/shields
 Mod: 3d_armor/wieldview
 
 origin	https://github.com/tenplus1/farming (fetch)
-* master 1a2bc35 [origin/master] added hoe bome as lucky block prize
+* master ad60e1e [origin/master] add protection check for hoe bomb
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)

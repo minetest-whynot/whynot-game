@@ -12,7 +12,13 @@ end
 
 
 -- hoe bomb function
-local function hoe_area(pos)
+local function hoe_area(pos, player)
+
+	-- check for protection
+	if minetest.is_protected(pos, player:get_player_name()) then
+		minetest.record_protection_violation(pos, player:get_player_name())
+		return
+	end
 
 	local r = 5 -- radius
 
@@ -74,7 +80,7 @@ minetest.register_entity("farming:hoebomb_entity", {
 					-- round up coords to fix glitching through doors
 					self.lastpos = vector.round(self.lastpos)
 
-					hoe_area(self.lastpos)
+					hoe_area(self.lastpos, self.player)
 				end
 
 				self.object:remove()
@@ -128,7 +134,7 @@ minetest.register_craftitem("farming:hoe_bomb", {
 	on_use = function(itemstack, user, pointed_thing)
 
 		if pointed_thing.type == "node" then
-			hoe_area(pointed_thing.above)
+			hoe_area(pointed_thing.above, user)
 		else
 			throw_potion(itemstack, user)
 
