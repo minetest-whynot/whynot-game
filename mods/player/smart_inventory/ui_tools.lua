@@ -446,11 +446,11 @@ end
 local function armor_sort_order(entry) end
 if minetest.global_exists("armor") then
 	function armor_sort_order(entry)
-		if not cache.citems[entry.item].cgroups["armor"] then
+		if not entry.citem.cgroups["armor"] then
 			return
 		end
 		local split = entry.item:split("_")
-		return "armor "..split[#split]..entry.item
+		return "armor "..split[#split] .. entry.item
 	end
 end
 
