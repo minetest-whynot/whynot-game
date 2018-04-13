@@ -12,7 +12,8 @@ function cache.add_item(def)
 
 	-- special handling for doors. In inventory the item should be displayed instead of the node_a/node_b
 	local item_def
-	if def.groups.door then
+
+	if def.groups and def.groups.door then
 		if def.door then
 			item_def = minetest.registered_items[def.door.name]
 		elseif def.drop and type(def.drop) == "string" then

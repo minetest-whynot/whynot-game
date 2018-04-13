@@ -62,7 +62,10 @@ function crecipe_class:analyze()
 			for groupname in string.gmatch(recipe_item:sub(7), '([^,]+)') do
 				if not retitems then --first entry
 					if cache.itemgroups[groupname] then
-						retitems = table.copy(cache.itemgroups[groupname])
+						retitems = {}
+						for k,v in pairs(cache.itemgroups[groupname]) do
+							retitems[k] = v
+						end
 					else
 						minetest.log("[smartfs_inventory] unknown group description in recipe: "..recipe_item.." / "..groupname.." for result "..self.out_item.name)
 						return false
@@ -134,10 +137,21 @@ end
 -- crecipes: Returns recipe without groups, with replacements
 -----------------------------------------------------
 function crecipe_class:get_with_placeholder(playername, inventory_tab)
-	local recipe = table.copy(self._recipe)
-	recipe.items = table.copy(recipe.items)
+	local recipe = {}
+	for k, v in pairs(self._recipe) do
+		recipe[k] = v
+	end
+	recipe.items = {}
+	for k, v in pairs(self._recipe.items) do
+		recipe.items[k] = v
+	end
 
-	local recursiv_checked_items = table.copy(inventory_tab or {})
+	local recursiv_checked_items = {}
+	if inventory_tab then
+		for k, v in pairs(inventory_tab) do
+			recursiv_checked_items[k] = v
+		end
+	end
 	self:is_revealed(playername, recursiv_checked_items) -- enhance recursiv_checked_items
 
 	for key, recipe_item in pairs(recipe.items) do

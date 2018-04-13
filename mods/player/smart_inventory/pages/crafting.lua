@@ -186,18 +186,23 @@ local function update_from_recipelist(state, recipelist, preview_item, replace_n
 
 	for recipe, _ in pairs(recipelist) do
 		local def = crecipes.crecipes[recipe].out_item
-		if duplicate_index_tmp[def.name] then
-			table.insert(duplicate_index_tmp[def.name].recipes, recipe)
+		local itemname = def.name
+		if duplicate_index_tmp[itemname] then
+			table.insert(duplicate_index_tmp[itemname].recipes, recipe)
 		else
-			local entry = table.copy(cache.citems[def.name].ui_item)
+			local entry = {}
+			for k,v in pairs(cache.citems[itemname].ui_item) do
+				entry[k] = v
+			end
+
 			entry.recipes = {}
-			duplicate_index_tmp[def.name] = entry
+			duplicate_index_tmp[itemname] = entry
 			table.insert(entry.recipes, recipe)
 			table.insert(craftable_itemlist, entry)
-			if new_preview_item and def.name == new_preview_item then
+			if new_preview_item and itemname == new_preview_item then
 				new_preview_entry = entry
 			end
-			if old_preview_item and def.name == old_preview_item then
+			if old_preview_item and itemname == old_preview_item then
 				old_preview_entry = entry
 			end
 		end

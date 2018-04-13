@@ -35,7 +35,10 @@ local function update_grid(state, listname)
 		if itemdef then
 			cache.add_item(itemdef) -- analyze groups in case of hidden armor
 			if cache.citems[itemdef.name].cgroups["armor"] then
-				local entry = table.copy(cache.citems[itemdef.name].ui_item)
+				local entry = {}
+				for k, v in pairs(cache.citems[itemdef.name].ui_item) do
+					entry[k] = v
+				end
 				entry.stack_index = stack_index
 				local wear = stack:get_wear()
 				if wear > 0 then
