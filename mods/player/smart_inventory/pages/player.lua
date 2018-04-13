@@ -35,15 +35,9 @@ local function update_grid(state, listname)
 		if itemdef then
 			cache.add_item(itemdef) -- analyze groups in case of hidden armor
 			if cache.citems[itemdef.name].cgroups["armor"] then
+				local entry = table.copy(cache.citems[itemdef.name].ui_item)
+				entry.stack_index = stack_index
 				local wear = stack:get_wear()
-
-				local entry = {
-						itemdef = itemdef,
-						stack_index = stack_index,
-						-- buttons_grid related
-						item = itemdef.name,
-						is_button = true
-					}
 				if wear > 0 then
 					entry.text = tostring(math.floor((1 - wear / 65535) * 100 + 0.5)).." %"
 				end
@@ -58,18 +52,13 @@ local function update_grid(state, listname)
 		for _, itemdef in pairs(cache.cgroups["armor"].items) do
 			if not list_dedup[itemdef.name] and not itemdef.groups.not_in_creative_inventory then
 				list_dedup[itemdef.name] = itemdef
-				table.insert(list, {
-						itemdef = itemdef,
-						-- buttons_grid related
-						item = itemdef.name,
-						is_button = true
-					})
+				table.insert(list, cache.citems[itemdef.name].ui_item)
 			end
 		end
 	end
 
 	table.sort(list, function(a,b)
-		return a.item < b.item
+		return a.sort_value < b.sort_value
 	end)
 	local grid = state:get(listname.."_grid")
 	grid:setList(list)

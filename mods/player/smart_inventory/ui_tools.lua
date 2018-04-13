@@ -432,14 +432,25 @@ function ui_tools.get_list_grouped(itemtable)
 end
 
 
-local function unifieddyes_getpaletteidx() end
+local function unifieddyes_sort_order() end
 if minetest.global_exists("unifieddyes") then
-	function unifieddyes_getpaletteidx(entry)
+	function unifieddyes_sort_order(entry)
 		local ret = unifieddyes.getpaletteidx(entry.item, "extended")
 		if ret then
-			local ret2= string.format("%02X", ret)
+			local ret2 = string.format("%02X", ret)
 			return 'dye '..ret2
 		end
+	end
+end
+
+local function armor_sort_order(entry) end
+if minetest.global_exists("armor") then
+	function armor_sort_order(entry)
+		if not cache.citems[entry.item].cgroups["armor"] then
+			return
+		end
+		local split = entry.item:split("_")
+		return "armor "..split[#split]..entry.item
 	end
 end
 
@@ -461,9 +472,9 @@ local function prepare_root_lists()
 			is_button = true
 		}
 
-		entry.sort_value = unifieddyes_getpaletteidx(entry) or itemname
-
-		if cache.citems[itemname].cgroups["shape"] then
+		entry.sort_value = unifieddyes_sort_order(entry) or armor_sort_order(entry) or itemname
+		citem.ui_item = entry
+		if citem.cgroups["shape"] then
 			table.insert(ui_tools.root_list_shape, entry)
 		else
 			table.insert(ui_tools.root_list, entry)

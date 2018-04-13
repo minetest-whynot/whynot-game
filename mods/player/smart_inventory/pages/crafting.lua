@@ -189,13 +189,8 @@ local function update_from_recipelist(state, recipelist, preview_item, replace_n
 		if duplicate_index_tmp[def.name] then
 			table.insert(duplicate_index_tmp[def.name].recipes, recipe)
 		else
-			local entry = {
-				itemdef = def,
-				recipes = {},
-				-- buttons_grid related
-				item = def.name,
-				is_button = true
-			}
+			local entry = table.copy(cache.citems[def.name].ui_item)
+			entry.recipes = {}
 			duplicate_index_tmp[def.name] = entry
 			table.insert(entry.recipes, recipe)
 			table.insert(craftable_itemlist, entry)

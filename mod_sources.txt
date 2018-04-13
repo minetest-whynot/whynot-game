@@ -86,7 +86,7 @@ origin	https://github.com/minetest-mods/skinsdb (fetch)
 Mod: player/skinsdb
 
 origin	https://github.com/bell07/minetest-smart_inventory (fetch)
-* master     289f7f1 [origin/master] unifieddyes support - sort dyes by extended color value
+* master     7c7dd54 [origin/master: 1 voraus] bugfix for crash with last commit
 Mod: player/smart_inventory
 
 origin	https://github.com/GunshipPenguin/sprint (fetch)
