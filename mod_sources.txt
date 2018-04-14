@@ -296,7 +296,7 @@ Mod: food_modpack/food
 Mod: food_modpack/food_basic
 
 origin	https://github.com/h-v-smacker/canned_food (fetch)
-* master 953e46d [origin/master] fixed formula
+* master 4b7563c [origin/master] canned peas
 Mod: food/canned_food
 
 origin	https://github.com/rubenwardy/food_sweet (fetch)
