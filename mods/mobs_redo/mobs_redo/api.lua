@@ -3,7 +3,7 @@
 
 mobs = {}
 mobs.mod = "redo"
-mobs.version = "20180408"
+mobs.version = "20180414"
 
 
 -- Intllib
@@ -160,7 +160,7 @@ local set_yaw = function(self, yaw, delay)
 
 	self.target_yaw = yaw
 	self.delay = delay
-	return target_yaw
+	return self.target_yaw
 end
 
 -- global function to set mob yaw

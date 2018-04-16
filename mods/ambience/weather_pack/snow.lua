@@ -55,13 +55,13 @@ end
 
 local set_sky_box = function(player_name)
 	local sl = {}
-	sl.layer_type = skylayer.SKY_PLAIN
 	sl.name = SKYCOLOR_LAYER
-	sl.data = {gradient_data={}}
-	sl.data.gradient_data.colors = {
-		{r=0, g=0, b=0},
-		{r=231, g=234, b=239},
-		{r=0, g=0, b=0}
+	sl.sky_data = {
+		gradient_colors = {
+			{r=0, g=0, b=0},
+			{r=231, g=234, b=239},
+			{r=0, g=0, b=0}
+		}
 	}
 	skylayer.add_layer(player_name, sl)
 end

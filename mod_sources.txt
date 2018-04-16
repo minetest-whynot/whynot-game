@@ -107,7 +107,7 @@ origin	https://github.com/Ezhh/under_sky (fetch)
 Mod: weather/under_sky
 
 origin	https://github.com/xeranas/weather_pack (fetch)
-* master 695ef45 [origin/master] fixed typo
+* master 5d8bf1a [origin/master] adjusted clouds number
 Mod: weather/weather_pack
 
 origin	https://github.com/MarkuBu/ambianceplus (fetch)
@@ -297,7 +297,7 @@ Mod: food_modpack/food
 Mod: food_modpack/food_basic
 
 origin	https://github.com/h-v-smacker/canned_food (fetch)
-* master 4b7563c [origin/master] canned peas
+* master d7c515e [origin/master] canned peas img
 Mod: food/canned_food
 
 origin	https://github.com/rubenwardy/food_sweet (fetch)
@@ -309,7 +309,7 @@ origin	https://github.com/Philipbenr/mtfoods (fetch)
 Mod: food/mtfoods
 
 origin	https://github.com/tenplus1/pie (fetch)
-* master edaee03 [origin/master: 1 voraus] pre-fix issue #2
+* master c441cda [origin/master] use globals instead of modpath
 Mod: food/pie
 
 origin	https://github.com/GreenXenith/waffles (fetch)
@@ -348,5 +348,5 @@ origin	https://github.com/tenplus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://github.com/tenplus1/mobs_redo (fetch)
-* master 044d8f8 [origin/master] default explode radius when mob in water is 1 instead of 0
+* master 00f46f6 [origin/master] fix variable bug
 Mod: mobs_redo/mobs_redo

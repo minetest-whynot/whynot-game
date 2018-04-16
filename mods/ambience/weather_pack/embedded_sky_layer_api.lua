@@ -1,107 +1,140 @@
+
+
 -------------------------
--- Sky Layers: API
+-- Sky Layers: Core
 
 -- License: MIT
 -- Credits: xeranas
+-- Thanks: Perkovec for colorise utils (github.com/Perkovec/colorise-lua) 
 -------------------------
 
-skylayer = {}
+local colorise = {}
 
--- flag for enable / disable skylayer temporally if needed
-skylayer.enabled = true
+colorise.rgb2hex = function (rgb)
+	local hexadecimal = '#'
 
--- supported skylayer types
-skylayer.SKY_PLAIN = "plain"
-skylayer.SKY_SOLID_COLOR = "solid_color"
-skylayer.SKY_SKYBOX = "skybox"
+	for key = 1, #rgb do
+	    local value = rgb[key] 
+		local hex = ''
 
--- helps track total dtime
-local timer = 0
+		while(value > 0)do
+			local index = math.fmod(value, 16) + 1
+			value = math.floor(value / 16)
+			hex = string.sub('0123456789ABCDEF', index, index) .. hex			
+		end
 
-local gradient_default_min_value = 0
-local gradient_default_max_value = 1000
+		if(string.len(hex) == 0)then
+			hex = '00'
+		elseif(string.len(hex) == 1)then
+			hex = '0' .. hex
+		end
+		hexadecimal = hexadecimal .. hex
+	end
+
+	return hexadecimal
+end
+
+local core = {}
+
+core.settings = {}
+
+-- flag to disable skylayer at global step
+core.settings.enabled = true
+
+-- default gradient interval values
+core.settings.gradient_default_min_value = 0
+core.settings.gradient_default_max_value = 1000
 
 -- how often sky will be updated in seconds
-skylayer.update_interval = 4
+core.settings.update_interval = 4
+
+-- helps track total dtime
+core.timer = 0
+
+core.default_clouds = nil
 
 -- keeps player related data such as player itself and own sky layers
-local sky_players = {}
+core.sky_players = {}
 
 -- adds player to sky layer affected players list
-local add_player = function(player)
+core.add_player = function(player)
 	local data = {}
 	data.id = player:get_player_name()
 	data.player = player
 	data.skylayers = {}
-	table.insert(sky_players, data)
+	table.insert(core.sky_players, data)
 end
 
 -- remove player from sky layer affected players list
-local remove_player = function(player_name)
-	if #sky_players == 0 then
+core.remove_player = function(player_name)
+	if #core.sky_players == 0 then
 		return
 	end
-
-	for k, player_data in ipairs(sky_players) do
+	for k, player_data in ipairs(core.sky_players) do
 		if player_data.id == player_name then
-			set_default_sky(player_data.player)
-			table.remove(sky_players, k)
+			reset_sky(player_data.player)
+			table.remove(core.sky_players, k)
 			return
 		end
 	end
 end
 
-local get_player_by_name = function(player_name)
+core.get_player_by_name = function(player_name)
 	if player_name == nil then
 		return nil
 	end
-
 	if #minetest.get_connected_players() == 0 then
 		return nil
 	end
-
 	for i, player in ipairs(minetest.get_connected_players()) do
 		if player:get_player_name() == player_name then
 			return player
 		end
 	end
-
 	return nil
 end
 
-local get_player_data = function(player_name)
-	if #sky_players == 0 then
+core.get_player_data = function(player_name)
+	if #core.sky_players == 0 then
 		return nil
 	end
-
-	for k, player_data in ipairs(sky_players) do
+	for k, player_data in ipairs(core.sky_players) do
 		if player_data.id == player_name then
 			return player_data
 		end
 	end	
 end
 
-local create_new_player_data = function(player_name)
-	local player_data = get_player_data(player_name)
+core.create_new_player_data = function(player_name)
+	local player_data = core.get_player_data(player_name)
 	if player_data == nil then
-		local player = get_player_by_name(player_name)
+		local player = core.get_player_by_name(player_name)
 		if player == nil then
 			minetest.log("error", "Fail to resolve player '" .. player_name .. "'")
 			return
 		end
-		add_player(player)
-		return get_player_data(player_name)
+		core.add_player(player)
+		return core.get_player_data(player_name)
 	end
 	return player_data
 end
 
 -- sets default / regular sky for player
-local set_default_sky = function(player)
+core.reset_sky = function(player)
+	core.set_default_sky(player)
+	core.set_default_clouds(player)
+end
+
+core.set_default_sky = function(player)
 	player:set_sky(nil, "regular", nil)
 end
 
+core.set_default_clouds = function(player)
+	player:set_clouds(core.default_clouds)
+end
+
 -- resolves latest skylayer based on added layer time
-local get_latest_layer = function(layers)
+core.get_latest_layer = function(layers)
 	if #layers == 0 then
 		return nil
 	end
@@ -120,7 +153,7 @@ local get_latest_layer = function(layers)
 	return latest_layer
 end
 
-local convert_to_rgb = function(minval, maxval, current_val, colors)
+core.convert_to_rgb = function(minval, maxval, current_val, colors)
 	local max_index = #colors - 1
 	local val = (current_val-minval) / (maxval-minval) * max_index + 1.0
 	local index1 = math.floor(val)
@@ -136,64 +169,154 @@ local convert_to_rgb = function(minval, maxval, current_val, colors)
 	}
 end
 
--- Returns current layer color in {r, g, b} format
-local get_current_layer_color = function(layer_data)
-	-- min timeofday value 0; max timeofday value 1. So sky color gradient range will be between 0 and 1 * skycolor.max_value.
+-- Returns current gradient color in {r, g, b} format
+core.calculate_current_gradient_color = function(gradient_colors, min_val, max_val)
+	if gradient_colors == nil then return nil end
 	local timeofday = minetest.get_timeofday()
-	local min_val = layer_data.gradient_data.min_value
 	if min_val == nil then
-		min_val = gradient_default_min_value
+		min_val = core.settings.gradient_default_min_value
 	end
-	local max_val = layer_data.gradient_data.max_value
 	if max_val == nil then
-		max_val = gradient_default_max_value
+		max_val = core.settings.gradient_default_max_value
 	end
 	local rounded_time = math.floor(timeofday * max_val)
-	local gradient_colors = layer_data.gradient_data.colors
-	local color = convert_to_rgb(min_val, max_val, rounded_time, gradient_colors)
-	return color
+	return core.convert_to_rgb(min_val, max_val, rounded_time, gradient_colors)
 end
 
-local update_plain_sky = function(player, layer_data)
-	local color = get_current_layer_color(layer_data)
-	player:set_sky(color, "plain", nil, false)
+-- Returns current sky color in {r, g, b} format
+core.get_current_layer_color = function(gradient_colors, min_val, max_val)
+	return core.calculate_current_gradient_color(gradient_colors, min_val, max_val)
 end
 
-local update_solid_color_sky = function(player, layer_data)
-	player:set_sky(layer_data.color, "plain", nil, false)
+-- Returns current cloud color in hex format
+core.get_current_cloud_color = function(gradient_colors, min_val, max_val)
+	local rgb_color = core.calculate_current_gradient_color(gradient_colors, min_val, max_val)
+	if rgb_color == nil then return nil end
+	return colorise.rgb2hex({rgb_color.r, rgb_color.g, rgb_color.b}) 
 end
 
-local update_skybox_sky = function(player, layer_data)
-	player:set_sky(layer_data.skybox[1], layer_data.skybox[2], layer_data.skybox[3])
+core.update_sky_details = function(player, sky_layer)
+	local sky_data = sky_layer.sky_data
+
+	if sky_data == nil then 
+		if sky_layer.reset_defaults == true then
+			core.set_default_sky(player)
+			sky_layer.reset_defaults = false
+		end
+		return
+	end
+
+	local sky_color = core.get_current_layer_color(
+		sky_data.gradient_colors, 
+		sky_data.gradient_min_value,
+		sky_data.gradient_max_value)
+	local bgcolor = sky_data.bgcolor
+	if sky_color ~= nil then
+		bgcolor = sky_color
+	end
+	local sky_type = "plain" -- default
+	if sky_data.type ~= nil then
+		sky_type = sky_data.type
+	end
+	local clouds = sky_layer.clouds_data ~= nil
+	if sky_data.clouds ~= nil then
+		clouds = sky_data.clouds
+	end
+	player:set_sky(bgcolor, sky_type, sky_data.textures, clouds)	
 end
 
-local update_sky = function(player, timer)
-	local player_data = get_player_data(player:get_player_name())
+core.update_clouds_details = function(player, sky_layer)
+	clouds_data = sky_layer.clouds_data
+
+	if clouds_data == nil then 
+		if sky_layer.reset_defaults == true then
+			core.set_default_clouds(player)
+			sky_layer.reset_defaults = false
+		end
+		return
+	end
+
+	local cloud_color = core.get_current_cloud_color(
+		clouds_data.gradient_colors, 
+		clouds_data.gradient_min_value,
+		clouds_data.gradient_max_value)
+	if cloud_color == nil then
+		cloud_color = clouds_data.color
+	end
+	player:set_clouds({
+		color = cloud_color,
+		density = clouds_data.density,
+		ambient = clouds_data.ambient,
+		height = clouds_data.height,
+		thickness = clouds_data.thickness,
+		speed = clouds_data.speed})
+end
+
+core.update_sky = function(player, timer)
+	local player_data = core.get_player_data(player:get_player_name())
 	if player_data == nil then return end
 
-	local current_layer = get_latest_layer(player_data.skylayers)
+	local current_layer = core.get_latest_layer(player_data.skylayers)
 	if current_layer == nil then
 		return
 	end
 
-	if current_layer.updated == false or timer >= skylayer.update_interval then
-		current_layer.updated = os.time()
-		
-		if current_layer.layer_type == skylayer.SKY_PLAIN then
-			update_plain_sky(player, current_layer.data)
-			return
-		end
-
-		if current_layer.layer_type == skylayer.SKY_SOLID_COLOR then
-			update_solid_color_sky(player, current_layer.data)
-			return
-		end
-
-		if current_layer.layer_type == skylayer.SKY_SKYBOX then
-			update_skybox_sky(player, current_layer.data)
-			return
-		end
+	if skylayer.update_interval == nil then
+		skylayer.update_interval = core.settings.update_interval
 	end
+
+	if player_data.last_active_layer == nil or player_data.last_active_layer ~= current_layer.name then
+		current_layer.reset_defaults = true
+	end
+	player_data.last_active_layer = current_layer.name
+
+	if current_layer.updated == false or core.timer >= skylayer.update_interval then
+		current_layer.updated = os.time()
+		core.update_sky_details(player, current_layer)
+		core.update_clouds_details(player, current_layer)
+	end
+end
+
+minetest.register_on_joinplayer(function(player)
+	if core.default_clouds == nil then
+		core.default_clouds = player:get_clouds()
+	end
+end)
+
+minetest.register_globalstep(function(dtime)
+	if core.settings.enabled == false then
+		return
+	end
+
+	if #minetest.get_connected_players() == 0 then
+		return
+	end
+
+	-- timer addition calculated outside of players loop 
+	core.timer = core.timer + dtime;
+
+	for k, player in ipairs(minetest.get_connected_players()) do
+		core.update_sky(player, core.timer)
+	end
+
+	-- reset timer outside of loop to make sure that all players sky will be updated
+	if core.timer >= core.settings.update_interval then
+		core.timer = 0
+	end
+end)
+
+-------------------------
+-- Sky Layers: API
+
+-- License: MIT
+-- Credits: xeranas
+-------------------------
+
+skylayer = {}
+
+-- set flag for enable / disable skylayer
+skylayer.is_enabled = function(enabled)
+	core.settings.enabled = enabled
 end
 
 skylayer.add_layer = function(player_name, layer)
@@ -202,9 +325,9 @@ skylayer.add_layer = function(player_name, layer)
 		return
 	end
 
-	local player_data = get_player_data(player_name)
+	local player_data = core.get_player_data(player_name)
 	if player_data == nil then
-		player_data = create_new_player_data(player_name)
+		player_data = core.create_new_player_data(player_name)
 	end
 
 	if player_data == nil then
@@ -217,7 +340,7 @@ skylayer.add_layer = function(player_name, layer)
 end
 
 skylayer.remove_layer = function(player_name, layer_name)
-	local player_data = get_player_data(player_name)
+	local player_data = core.get_player_data(player_name)
 	if player_data == nil or player_data.skylayers == nil then
 		return
 	end
@@ -230,36 +353,12 @@ skylayer.remove_layer = function(player_name, layer_name)
 		if layer.name == layer_name then
 			table.remove(player_data.skylayers, k)
 			if #player_data.skylayers == 0 then
-				local player = get_player_by_name(player_name)
+				local player = core.get_player_by_name(player_name)
 				if player ~= nil then
-					set_default_sky(player)
+					core.reset_sky(player)
 				end
 			end
 			return
 		end
 	end
-
 end
-
-minetest.register_globalstep(function(dtime)
-	if skylayer.enabled == false then
-		return
-	end
-
-	if #minetest.get_connected_players() == 0 then
-		return
-	end
-
-	-- timer addition calculated outside of players loop 
-	timer = timer + dtime;
-
-	for k, player in ipairs(minetest.get_connected_players()) do
-		update_sky(player, timer)
-	end
-
-	-- reset timer outside of loop to make sure that all players sky will be updated
-	if timer >= skylayer.update_interval then
-		timer = 0
-	end
-end)
-

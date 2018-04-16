@@ -4,7 +4,6 @@ local hmod = minetest.global_exists("hunger")
 local hbmod = minetest.global_exists("hbhunger")
 local stmod = minetest.global_exists("stamina")
 
-
 -- eat pie slice function
 local replace_pie = function(node, puncher, pos)
 
