@@ -255,13 +255,14 @@ local function move_item_to_inv(state, item)
 	local player = minetest.get_player_by_name(name)
 	local inventory = player:get_inventory()
 	local armor_inv = minetest.get_inventory({type="detached", name=name.."_armor"})
+	local itemstack = armor_inv:get_stack("armor", item.stack_index)
 	if creative == true then
-		armor_inv:set_stack("armor", item.stack_index, {})
+		-- trash armor item in creative
+		itemstack = ItemStack("")
 	else
-		local itemstack = armor_inv:get_stack("armor", item.stack_index)
 		itemstack = inventory:add_item("main", itemstack)
-		armor_inv:set_stack("armor", item.stack_index, itemstack)
 	end
+	armor_inv:set_stack("armor", item.stack_index, itemstack)
 	minetest.detached_inventories[name.."_armor"].on_take(armor_inv, "armor", item.stack_index, itemstack, player)
 end
 

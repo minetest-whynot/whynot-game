@@ -56,8 +56,9 @@ origin	https://github.com/minetest-mods/awards (fetch)
 * master 3fc12eb [origin/master] Update README.md
 Mod: player/awards
 
+bell07	https://github.com/bell07/character_creator (fetch)
 origin	https://github.com/minetest-mods/character_creator (fetch)
-* master 77f7f16 [origin/master] Skinsdb adjustment (#13)
+* master 4b91592 [origin/master: 1 voraus] Redefinition of change_skin function to proper handle skins updates by skinsdb
 Mod: player/character_creator
 
 origin	https://github.com/minetest-mods/cozy (fetch)
@@ -82,11 +83,11 @@ Mod: player/show_wielded_item
 
 bell07	https://github.com/bell07/minetest-skinsdb/ (fetch)
 origin	https://github.com/minetest-mods/skinsdb (fetch)
-* master 45edbf8 [origin/master] French translation by Papou30
+* V_1_8_skins 2c20692 Added support for 1.8er Skins
 Mod: player/skinsdb
 
 origin	https://github.com/bell07/minetest-smart_inventory (fetch)
-* master     ac93e4b [origin/master] performance update (table.copy is bad)
+* master     4b175f5 [origin/master] bugfix with armor in creative
 Mod: player/smart_inventory
 
 origin	https://github.com/GunshipPenguin/sprint (fetch)

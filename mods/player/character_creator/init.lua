@@ -220,6 +220,21 @@ local function change_skin(player)
 	save_skin(player)
 end
 
+if skinsdb then
+	--change skin redefinition for skinsdb
+	function change_skin(player)
+		local playername = player:get_player_name()
+		local skinname = "character_creator:"..playername
+		local skin_obj = skinsdb.get(skinname) or skinsdb.new(skinname)
+		skin_obj:set_meta("format", "1.0")
+		skin_obj:set_meta("visual_size_x", tonumber(player:get_attribute("character_creator:width")))
+		skin_obj:set_meta("visual_size_y", tonumber(player:get_attribute("character_creator:height")))
+		skin_obj:apply_skin_to_player(player)
+		skinsdb.assign_player_skin(player, "character_creator:"..playername)
+		save_skin(player)
+	end
+end
+
 minetest.register_on_joinplayer(function(player)
 	load_skin(player)
 	if skinsdb then
@@ -353,11 +368,6 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 		if not quit then
 			show_formspec(player)
 		end
-	end
-
-	if skinsdb then
-		-- set selected
-		skinsdb.assign_player_skin(player, "character_creator:"..player:get_player_name())
 	end
 	change_skin(player)
 end)
