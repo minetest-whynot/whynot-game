@@ -268,7 +268,7 @@ Mod: decor/unifieddyes
 
 bell07	https://github.com/bell07/homedecor_modpack (fetch)
 origin	https://github.com/minetest-mods/homedecor_modpack (fetch)
-* master e0c0e47 [origin/master: 1 voraus] fix players in bed count for multiplayer
+* allpatches        9f9003e Merge branch 'master' into allpatches
 Mod: homedecor_modpack/homedecor_i18n
 Mod: homedecor_modpack/homedecor
 Mod: homedecor_modpack/building_blocks

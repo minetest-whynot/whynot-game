@@ -1,21 +1,18 @@
 local S = homedecor_i18n.gettext
 
+local stairs_groups_names = {"cracky","choppy","flammable","crumbly","snappy"}
+
 local function building_blocks_stairs(nodename, def)
-	minetest.register_node(nodename, def)	
+	minetest.register_node(nodename, def)
 	if minetest.get_modpath("moreblocks") or minetest.get_modpath("stairs") then
 		local mod, name = nodename:match("(.*):(.*)")
 		minetest.register_alias(mod .. ":slab_" .. name, "stairs:slab_" .. name)
 		minetest.register_alias(mod .. ":stair_" .. name, "stairs:stair_" .. name)
-		for groupname,value in pairs(def.groups) do
-			if	groupname ~= "cracky" and
-				groupname ~= "choppy" and
-				groupname ~="flammable" and
-				groupname ~="crumbly" and
-				groupname ~="snappy" 
-			then
-				def.groups.groupname = nil
-			end
+		local stairs_groups = {}
+		for _, groupname in ipairs(stairs_groups_names) do
+			stairs_groups[groupname] = def.groups[groupname]
 		end
+
 		if minetest.get_modpath("moreblocks") then
 			stairsplus:register_all(
 				mod,
@@ -24,13 +21,13 @@ local function building_blocks_stairs(nodename, def)
 				{
 					description = def.description,
 					tiles = def.tiles,
-					groups = def.groups,
+					groups = stairs_groups,
 					sounds = def.sounds,
 				}
 			)
 		else
 			stairs.register_stair_and_slab(name,nodename,
-				def.groups,
+				stairs_groups,
 				def.tiles,
 				("%s Stair"):format(def.description),
 				("%s Slab"):format(def.description),
