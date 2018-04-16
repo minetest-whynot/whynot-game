@@ -189,7 +189,7 @@ origin	https://github.com/dkartaschew/minetest-rainbowswords (fetch)
 Mod: tools/rainbowswords
 
 origin	https://github.com/bell07/minetest-subspacewalker (fetch)
-* master 0199943 [origin/master] added wear to subpacewalker usage
+* master 245cca9 [origin/master] Update README.md
 Mod: tools/subspacewalker
 
 origin	https://github.com/lisacvuk/minetest-toolranks (fetch)
@@ -268,7 +268,7 @@ Mod: decor/unifieddyes
 
 bell07	https://github.com/bell07/homedecor_modpack (fetch)
 origin	https://github.com/minetest-mods/homedecor_modpack (fetch)
-* allpatches        9f9003e Merge branch 'master' into allpatches
+* allpatches        85904fd [origin/master: 2 voraus] Proper handle stairs groups fix #410
 Mod: homedecor_modpack/homedecor_i18n
 Mod: homedecor_modpack/homedecor
 Mod: homedecor_modpack/building_blocks
