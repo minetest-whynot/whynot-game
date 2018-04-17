@@ -11,7 +11,7 @@ local register_internal_material = function(subname, groups, tiles, subdesc, sou
 			subname = subname,
 			description = subdesc,
 			tiles = tiles,
-			groups = groups,
+			groups = table.copy(groups),
 			sounds = sounds
 		})
 	end
@@ -19,11 +19,11 @@ local register_internal_material = function(subname, groups, tiles, subdesc, sou
 		stairsplus:register_all("stairs", subname, "princess:"..subname, {
 			description = subdesc,
 			tiles = tiles,
-			groups = groups,
+			groups = table.copy(groups),
 			sounds = sounds
 		})
 	else
-		stairs.register_stair_and_slab(subname, "princess:"..subname, groups, tiles,
+		stairs.register_stair_and_slab(subname, "princess:"..subname, table.copy(groups), tiles,
 				subdesc.." Stairs", subdesc.." Slab", sounds)
 		if minetest.get_modpath("mcstair") then
 			mcstair.add("stairs:stair_"..subname)

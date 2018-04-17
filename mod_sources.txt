@@ -83,7 +83,7 @@ Mod: player/show_wielded_item
 
 bell07	https://github.com/bell07/minetest-skinsdb/ (fetch)
 origin	https://github.com/minetest-mods/skinsdb (fetch)
-* V_1_8_skins 2c20692 Added support for 1.8er Skins
+* V_1_8_skins 2c20692 [origin/master: 1 voraus] Added support for 1.8er Skins
 Mod: player/skinsdb
 
 origin	https://github.com/bell07/minetest-smart_inventory (fetch)
@@ -246,8 +246,9 @@ origin	https://github.com/cheapie/plasticbox (fetch)
 * master 292d002 [origin/master: 1 voraus] added reversal recipe
 Mod: decor/plasticbox
 
+bell07	https://github.com/bell07/princess (fetch)
 origin	https://github.com/pithydon/princess (fetch)
-* master a2ea0c6 [origin/master] Merge pull request #2 from bell07/master
+* master 75185f8 [origin/master: 1 voraus] fix groups table handling
 Mod: decor/princess
 
 origin	https://github.com/minetest-mods/realchess (fetch)
