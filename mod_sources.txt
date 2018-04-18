@@ -53,7 +53,7 @@ origin	https://github.com/Chemguy99/armor_addon (fetch)
 Mod: player/armor_addon
 
 origin	https://github.com/minetest-mods/awards (fetch)
-* master 3fc12eb [origin/master] Update README.md
+* master 0ae58ad [origin/master] Fix locked awards not taking difficulty into account
 Mod: player/awards
 
 bell07	https://github.com/bell07/character_creator (fetch)
