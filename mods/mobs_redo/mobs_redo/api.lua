@@ -3,7 +3,7 @@
 
 mobs = {}
 mobs.mod = "redo"
-mobs.version = "20180414"
+mobs.version = "20180419"
 
 
 -- Intllib
@@ -2822,9 +2822,6 @@ local mob_step = function(self, dtime)
 		self.timer = 1
 	end
 
-	-- node replace check (cow eats grass etc.)
-	replace(self, pos)
-
 	-- mob plays random sound at times
 	if random(1, 100) == 1 then
 		mob_sound(self, self.sounds.random)
@@ -2838,7 +2835,11 @@ local mob_step = function(self, dtime)
 
 		self.env_damage_timer = 0
 
+		-- check for environmental damage (water, fire, lava etc.)
 		do_env_damage(self)
+
+		-- node replace check (cow eats grass etc.)
+		replace(self, pos)
 	end
 
 	monster_attack(self)

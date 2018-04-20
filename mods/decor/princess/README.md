@@ -1,4 +1,4 @@
-princess v1.0
+princess
 
 Princess themed decoration mod.
 

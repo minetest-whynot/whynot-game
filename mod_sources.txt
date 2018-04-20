@@ -246,9 +246,8 @@ origin	https://github.com/cheapie/plasticbox (fetch)
 * master 292d002 [origin/master: 1 voraus] added reversal recipe
 Mod: decor/plasticbox
 
-bell07	https://github.com/bell07/princess (fetch)
 origin	https://github.com/pithydon/princess (fetch)
-* master 75185f8 [origin/master: 1 voraus] fix groups table handling
+* master e71b168 [origin/master] remove version number
 Mod: decor/princess
 
 origin	https://github.com/minetest-mods/realchess (fetch)
@@ -349,5 +348,5 @@ origin	https://github.com/tenplus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://github.com/tenplus1/mobs_redo (fetch)
-* master 00f46f6 [origin/master] fix variable bug
+* master 22cf9b8 [origin/master] fix replace function running too often when mob attacks
 Mod: mobs_redo/mobs_redo
