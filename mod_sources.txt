@@ -267,7 +267,7 @@ origin	https://github.com/minetest-mods/ts_furniture (fetch)
 Mod: decor/ts_furniture
 
 origin	https://github.com/minetest-mods/unifieddyes (fetch)
-* master 0d654ea [origin/master] Merge pull request #21 from Jat15/patch-2
+* master 48cd40a [origin/master] Agrege la traducción al español
 Mod: decor/unifieddyes
 
 bell07	https://github.com/bell07/homedecor_modpack (fetch)
