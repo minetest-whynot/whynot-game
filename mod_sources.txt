@@ -1,6 +1,6 @@
 
 origin	https://github.com/minetest/minetest_game (fetch)
-* backport-0.4 0739656 [origin/backport-0.4: 1 voraus] Stairs: Allow crafting slabs and stairs into full blocks again
+* backport-0.4 0739656 [origin/backport-0.4: ahead 1] Stairs: Allow crafting slabs and stairs into full blocks again
 Mod: minetest_game/mods/beds
 Mod: minetest_game/mods/boats
 Mod: minetest_game/mods/bones
@@ -33,7 +33,7 @@ origin	http://repo.or.cz/minetest_doc_items.git (fetch)
 Mod: libs/doc_items
 
 origin	http://repo.or.cz/minetest_doc_minetest_game.git (fetch)
-* master 1f52271 [origin/master: 1 voraus] adjust dependencies to optional
+* master 1f52271 [origin/master: ahead 1] adjust dependencies to optional
 Mod: libs/doc_minetest_game
 
 origin	https://github.com/minetest-mods/intllib (fetch)
@@ -58,7 +58,7 @@ Mod: player/awards
 
 bell07	https://github.com/bell07/character_creator (fetch)
 origin	https://github.com/minetest-mods/character_creator (fetch)
-* master 4b91592 [origin/master: 1 voraus] Redefinition of change_skin function to proper handle skins updates by skinsdb
+* master 4b91592 [origin/master: ahead 1] Redefinition of change_skin function to proper handle skins updates by skinsdb
 Mod: player/character_creator
 
 origin	https://github.com/minetest-mods/cozy (fetch)
@@ -83,7 +83,7 @@ Mod: player/show_wielded_item
 
 bell07	https://github.com/bell07/minetest-skinsdb/ (fetch)
 origin	https://github.com/minetest-mods/skinsdb (fetch)
-* V_1_8_skins 2c20692 [origin/master: 1 voraus] Added support for 1.8er Skins
+* V_1_8_skins 2c20692 [origin/master: ahead 1] Added support for 1.8er Skins
 Mod: player/skinsdb
 
 origin	https://github.com/bell07/minetest-smart_inventory (fetch)
@@ -91,7 +91,7 @@ origin	https://github.com/bell07/minetest-smart_inventory (fetch)
 Mod: player/smart_inventory
 
 origin	https://github.com/GunshipPenguin/sprint (fetch)
-* master 23b9e7e [origin/master: 1 voraus] fix global variables
+* master 23b9e7e [origin/master: ahead 1] fix global variables
 Mod: player/sprint
 
 origin	https://github.com/bell07/minetest-wielded_light (fetch)
@@ -128,7 +128,7 @@ origin	https://github.com/tenplus1/farming (fetch)
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
-* master c11160f [origin/master: 1 voraus] fix leaked globals
+* master c11160f [origin/master: ahead 1] fix leaked globals
 Mod: flora_ores/mese_crystals
 
 origin	https://github.com/bell07/minetest-meseor.git (fetch)
@@ -144,7 +144,7 @@ origin	https://github.com/GreenXenith/tac_nayn (fetch)
 Mod: mapgen/tac_nayn
 
 origin	https://github.com/taikedz/everamzah-backpacks (fetch)
-* master aadab97 [origin/master: 2 voraus] Merge remote-tracking branch 'origin/master'
+* master aadab97 [origin/master: ahead 2] Merge remote-tracking branch 'origin/master'
 Mod: tools/backpacks
 
 origin	https://github.com/SmallJoker/boost_cart (fetch)
@@ -152,7 +152,7 @@ origin	https://github.com/SmallJoker/boost_cart (fetch)
 Mod: tools/boost_cart
 
 origin	https://github.com/minetest-mods/ccompass (fetch)
-* master 67cbe3c [origin/master: 2 voraus] whitespace fix
+* master 67cbe3c [origin/master: ahead 2] whitespace fix
 Mod: tools/ccompass
 
 origin	https://github.com/bell07/minetest-doc_reveal_chest (fetch)
@@ -175,9 +175,13 @@ origin	https://github.com/minetest-mods/hopper (fetch)
 * master 51b70fb [origin/master] Avoid hoppers to "repair" taken items (#10)
 Mod: tools/hopper
 
+origin	https://github.com/minetest-mods/jumping (fetch)
+* master fdd5bbd [origin/master] beter recipes - use the jumping cushion to build the trampoline recipes have soft-dependency in recipe to farming and wool
+Mod: tools/jumping
+
 origin	https://github.com/tacigar/maidroid (fetch)
 rui	https://github.com/Rui-Minetest/maidroid (fetch)
-* master 855504a [origin/master: 2 voraus] Use global_exists to test for the existence
+* master 855504a [origin/master: ahead 2] Use global_exists to test for the existence
 Mod: tools/maidroid
 
 origin	https://github.com/minetest-mods/orbs_of_time/ (fetch)
@@ -231,7 +235,7 @@ Mod: decor/heads
 Grizzly-Adam	https://github.com/Grizzly-Adam/minetest-laptop/ (fetch)
 bell07	https://github.com/bell07/laptop (fetch)
 origin	https://github.com/Gerold55/laptop (fetch)
-* recipe_compat           e9d8502 [origin/master: 3 voraus] added homedecor recipes support compatible to whynot subgame
+* recipe_compat           e9d8502 [origin/master: ahead 3] added homedecor recipes support compatible to whynot subgame
 Mod: decor/laptop
 
 origin	http://repo.or.cz/minetest_mtg_plus.git (fetch)
@@ -243,7 +247,7 @@ origin	https://github.com/minetest-mods/myroofs (fetch)
 Mod: decor/myroofs
 
 origin	https://github.com/cheapie/plasticbox (fetch)
-* master 292d002 [origin/master: 1 voraus] added reversal recipe
+* master 292d002 [origin/master: ahead 1] added reversal recipe
 Mod: decor/plasticbox
 
 origin	https://github.com/pithydon/princess (fetch)
@@ -268,7 +272,7 @@ Mod: decor/unifieddyes
 
 bell07	https://github.com/bell07/homedecor_modpack (fetch)
 origin	https://github.com/minetest-mods/homedecor_modpack (fetch)
-* allpatches        85904fd [origin/master: 2 voraus] Proper handle stairs groups fix #410
+* allpatches        85904fd [origin/master: ahead 2] Proper handle stairs groups fix #410
 Mod: homedecor_modpack/homedecor_i18n
 Mod: homedecor_modpack/homedecor
 Mod: homedecor_modpack/building_blocks
@@ -292,7 +296,7 @@ Mod: mydoors/my_old_doors
 Mod: mydoors/my_old_doors
 
 origin	https://github.com/rubenwardy/food (fetch)
-* master c008a2f [origin/master: 2 voraus] removed redundant check for installed mod
+* master c008a2f [origin/master: ahead 2] removed redundant check for installed mod
 Mod: food_modpack/food
 Mod: food_modpack/food_basic
 
