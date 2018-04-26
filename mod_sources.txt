@@ -33,7 +33,7 @@ origin	http://repo.or.cz/minetest_doc_items.git (fetch)
 Mod: libs/doc_items
 
 origin	http://repo.or.cz/minetest_doc_minetest_game.git (fetch)
-* master 1f52271 [origin/master: ahead 1] adjust dependencies to optional
+* master 0ed7dd2 [origin/master: ahead 2] Merge remote-tracking branch 'origin/master'
 Mod: libs/doc_minetest_game
 
 origin	https://github.com/minetest-mods/intllib (fetch)
@@ -58,7 +58,7 @@ Mod: player/awards
 
 bell07	https://github.com/bell07/character_creator (fetch)
 origin	https://github.com/minetest-mods/character_creator (fetch)
-* master 4b91592 [origin/master: ahead 1] Redefinition of change_skin function to proper handle skins updates by skinsdb
+* master 7e03b23 [origin/master: ahead 2] fix whynot bug https://github.com/bell07/minetest-game-whynot/issues/3
 Mod: player/character_creator
 
 origin	https://github.com/minetest-mods/cozy (fetch)
@@ -124,7 +124,7 @@ Mod: 3d_armor/shields
 Mod: 3d_armor/wieldview
 
 origin	https://github.com/tenplus1/farming (fetch)
-* master ad60e1e [origin/master] add protection check for hoe bomb
+* master 206910a [origin/master] rarety set to 0.002, melon and coffee now spawn in savannah or jungle areas
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
@@ -235,7 +235,7 @@ Mod: decor/heads
 Grizzly-Adam	https://github.com/Grizzly-Adam/minetest-laptop/ (fetch)
 bell07	https://github.com/bell07/laptop (fetch)
 origin	https://github.com/Gerold55/laptop (fetch)
-* recipe_compat           e9d8502 [origin/master: ahead 3] added homedecor recipes support compatible to whynot subgame
+* master 1d063c0 [origin/master] Merge pull request #121 from bell07/performance_boost
 Mod: decor/laptop
 
 origin	http://repo.or.cz/minetest_mtg_plus.git (fetch)

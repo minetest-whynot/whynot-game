@@ -1,6 +1,6 @@
 
 -- decoration function
-local function register_plant(name, min, max, spawnby, num, enabled)
+local function register_plant(name, min, max, spawnon, spawnby, num, enabled)
 
 	if enabled ~= true then
 		return
@@ -8,7 +8,7 @@ local function register_plant(name, min, max, spawnby, num, enabled)
 
 	minetest.register_decoration({
 		deco_type = "simple",
-		place_on = {"default:dirt_with_grass"},
+		place_on = spawnon or {"default:dirt_with_grass"},
 		sidelen = 16,
 		noise_params = {
 			offset = 0,
@@ -28,32 +28,34 @@ end
 
 
 -- add crops to mapgen
-register_plant("potato_3", 15, 40, "", -1, farming.potato)
-register_plant("tomato_7", 5, 20, "", -1, farming.tomato)
-register_plant("corn_7", 12, 22, "", -1, farming.corn)
-register_plant("coffee_5", 20, 45, "", -1, farming.coffee)
-register_plant("raspberry_4", 3, 10, "", -1, farming.raspberry)
-register_plant("rhubarb_3", 3, 15, "", -1, farming.rhubarb)
-register_plant("blueberry_4", 3, 10, "", -1, farming.blueberry)
-register_plant("beanbush", 18, 35, "", -1, farming.beans)
-register_plant("grapebush", 25, 45, "", -1, farming.grapes)
-register_plant("onion_5", 5, 22, "", -1, farming.onion)
-register_plant("garlic_5", 3, 30, "group:tree", 1, farming.garlic)
-register_plant("pea_5", 25, 50, "", -1, farming.peas)
+register_plant("potato_3", 15, 40, nil, "", -1, farming.potato)
+register_plant("tomato_7", 5, 20, nil, "", -1, farming.tomato)
+register_plant("corn_7", 12, 22, nil, "", -1, farming.corn)
+register_plant("coffee_5", 20, 45, {"default:dirt_with_dry_grass",
+	"default:dirt_with_rainforest_litter"}, "", -1, farming.coffee)
+register_plant("raspberry_4", 3, 10, nil, "", -1, farming.raspberry)
+register_plant("rhubarb_3", 3, 15, nil, "", -1, farming.rhubarb)
+register_plant("blueberry_4", 3, 10, nil, "", -1, farming.blueberry)
+register_plant("beanbush", 18, 35, nil, "", -1, farming.beans)
+register_plant("grapebush", 25, 45, nil, "", -1, farming.grapes)
+register_plant("onion_5", 5, 22, nil, "", -1, farming.onion)
+register_plant("garlic_5", 3, 30, nil, "group:tree", 1, farming.garlic)
+register_plant("pea_5", 25, 50, nil, "", -1, farming.peas)
 
 
 if minetest.get_mapgen_setting("mg_name") == "v6" then
 
-	register_plant("carrot_8", 1, 30, "group:water", 1, farming.carrot)
-	register_plant("cucumber_4", 1, 20, "group:water", 1, farming.cucumber)
-	register_plant("melon_8", 1, 20, "group:water", 1, farming.melon)
-	register_plant("pumpkin_8", 1, 20, "group:water", 1, farming.pumpkin)
+	register_plant("carrot_8", 1, 30, nil, "group:water", 1, farming.carrot)
+	register_plant("cucumber_4", 1, 20, nil, "group:water", 1, farming.cucumber)
+	register_plant("melon_8", 1, 20, nil, "group:water", 1, farming.melon)
+	register_plant("pumpkin_8", 1, 20, nil, "group:water", 1, farming.pumpkin)
 else
 	-- v7 maps have a beach so plants growing near water is limited to 6 high
-	register_plant("carrot_8", 1, 15, "", -1, farming.carrot)
-	register_plant("cucumber_4", 1, 10, "", -1, farming.cucumber)
-	register_plant("melon_8", 1, 6, "", -1, farming.melon)
-	register_plant("pumpkin_8", 1, 6, "", -1, farming.pumpkin)
+	register_plant("carrot_8", 1, 15, nil, "", -1, farming.carrot)
+	register_plant("cucumber_4", 1, 10, nil, "", -1, farming.cucumber)
+	register_plant("melon_8", 1, 6, {"default:dirt_with_dry_grass",
+	"default:dirt_with_rainforest_litter"}, "", -1, farming.melon)
+	register_plant("pumpkin_8", 1, 6, nil, "", -1, farming.pumpkin)
 end
 
 if farming.hemp then
@@ -63,7 +65,7 @@ minetest.register_decoration({
 	sidelen = 16,
 	noise_params = {
 		offset = 0,
-		scale = farming.rarety + 0.001, -- 0.06,
+		scale = farming.rarety, -- 0.06,
 		spread = {x = 100, y = 100, z = 100},
 		seed = 420,
 		octaves = 3,

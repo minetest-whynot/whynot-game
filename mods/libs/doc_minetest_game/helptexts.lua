@@ -136,7 +136,8 @@ local export_longdesc = {
 	["default:dirt_with_snow"] = S("Dirt with snow is a cold block of frozen dirt which doesn't support the growth of any plants. Plants won't die on it, but they don't grow or spread either."),
 	["default:snow"] = S("A thin layer of snow. When it it on top of dirt, the dirt will slowly turn into dirt with snow. When snow lands on dirt with grass, it immediately turns into dirt with snow."),
 	["default:snowblock"] = S("A very thick layer of snow, filling an entire block. Snow this thick can usually only be found in arctic regions. When this block is placed on top of dirt with grass, the dirt with grass turns into dirt with snow."),
-	["default:ice"] = S("Ice is found in arctic regions. It can appear either in huge glacier formations below snow blocks, or above water."),
+	["default:ice"] = S("Ice is found in arctic regions. It can appear either in huge glacier formations below snow blocks, or above water. Ice will not naturally contain tunnels and caves."),
+	["default:cave_ice"] = S("Cave ice is a type of ice which might naturally have tunnels and caves inside. It might be found in ice sheet biomes."),
 	["default:dirt"] = S("Dirt is found often directly under the surface and very common in many regions of the world. When exposed to sunlight, the surface of dirt may change, depending on its neighbors."),
 	["default:sand"] = S("Sand is found in large quantities at beaches, but it occasionally appears in small chunks around the world."),
 	["default:desert_sand"] = S("Usually found in huge quantities at the surface of deserts."),
@@ -171,6 +172,7 @@ local export_longdesc = {
 	["default:aspen_wood"] = buildnode,
 	["default:sapling"] = S("When placed on natural soil (such as dirt) and exposed to sunlight, a sapling will grow into a tree after some time. There's a chance that this tree bears apples."),
 	["default:junglesapling"] = S("When placed on natural soil (such as dirt) and exposed to sunlight, a jungle sapling will grow into a large jungle tree after some time."),
+	["default:emergent_jungle_sapling"] = S("When placed on natural soil (such as dirt) and exposed to sunlight, an emergent jungle sapling will grow into an emergent jungle tree (a taller subspecies of the jungle tree) after some time."),
 	["default:acacia_sapling"] = S("When placed on natural soil (such as dirt) and exposed to sunlight, an acacia sapling will grow into an acacia tree after some time."),
 	["default:aspen_sapling"] = S("When placed on natural soil (such as dirt) and exposed to sunlight, an aspen sapling will grow into an aspen tree after some time."),
 	["default:pine_sapling"] = S("When placed on natural soil (such as dirt) and exposed to sunlight, a pine sapling will grow into a pine tree after some time. If the pine sapling was next to any “snowy” block (e.g. “Snow Block”), the pine tree will be covered with snow."),
@@ -236,10 +238,11 @@ local export_longdesc = {
 
 	["default:book"] = S("A book is used to store notes and to make bookshelves."),
 	["default:book_written"] = S("A book with text contains notes which can be rewritten and copied to books. In the inventory, both title and author of the book are shown."),
-	["default:grass_1"] = S("Grass can be found in large quantities in open plains. It comes in 5 different sizes but doesn't grow."),
+	["default:grass_1"] = S("Grass can be found in large quantities in open plains. It comes in 5 different sizes, but its size never changes."),
+	["default:marram_grass_1"] = S("Marram grass can be in beaches on top of sand. It comes in 3 different sizes but its size never changes."),
 	["default:junglegrass"] = S("This plant is common in jungles."),
-	["default:dry_grass_1"] = S("Dry grass is very common in savannahs and comes in 5 different sizes but doesn't grow."),
-	["default:fern_1"] = S("Ferns can be found in large quantities in coniferous forests. It comes in 3 different sizes but doesn't grow."),
+	["default:dry_grass_1"] = S("Dry grass is very common in savannahs and comes in 5 different sizes but its size never changes."),
+	["default:fern_1"] = S("Ferns can be found in large quantities in coniferous forests. It comes in 3 different sizes but its size never changes."),
 	["default:meselamp"] = S("A bright light source powered by mese crystals. It is brighter than a torch."),
 	["default:mese_post_light"] = S("A bright light source powered by mese crystals. This is a more compact version of the mese lamp. It is brighter than a torch."),
 	["default:mese"] = S("Mese is a rare mineral of alien origin; mese blocks are a highly concentrated form of mese. At extreme depths (-1024 or lower), mese blocks rarely occour naturally in stone as clusters of about 3 mese blocks."),
@@ -296,6 +299,8 @@ local export_longdesc = {
 	["vessels:drinking_glass"] = S("A decorational item which can be placed."),
 	["vessels:steel_bottle"] = S("A decorational item which can be placed."),
 	["vessels:shelf"] = S("A vessels shelf provides 16 inventory slots for vessels (like glass bottles)."),
+	["fireflies:firefly"] = S("Fireflies hover in the air and illuminate the surroundings. They like to appear in the night and disappear in sunlight. They can be catched with a bugnet."),
+	["fireflies:firefly_bottle"] = S("A firefly which has been captured in a bottle. It's a simple decoration which illuminates the surroundings."),
 	["xpanes:pane_1"] = S("Glass panes are thin layers of glass which neatly connect to their neighbors as you build them."),
 	["xpanes:obsidian_pane_1"] = S("Obsidian glass panes are thin layers of obsidian glass which neatly connect to their neighbors as you build them."),
 	["xpanes:bar_1"] = S("Iron bars neatly connect to their neighbors as you build them."),
@@ -399,6 +404,7 @@ local export_longdesc = {
 
 	["binoculars:binoculars"] = S("Binoculars allow you to zoom."),
 	["map:mapping_kit"] = S("A mapping kit allows you to use the minimap (but not the radar mode)."),
+	["fireflies:bug_net"] = S("A bug net allows you to catch small insects, such as fireflies."),
 }
 
 local bonestime = tonumber(minetest.setting_get("share_bones_time"))
@@ -509,6 +515,8 @@ local export_usagehelp = {
 
 	["binoculars:binoculars"] = S("Before you can zoom, this item must be activated. To activate it, hold it in your hand, then use the attack key. Now you can zoom with the zoom key (Z by default) until you lose this item. Alternatively, the binoculars get activated ca. 5 seconds after putting them into your inventory."),
 	["map:mapping_kit"] = S("Before you can use the minimap, this item must be activated. To activate it, hold it in your hand, then use the attack key. Now you can cycle through the minimap modes (surface mode only) with the minimap key (F9 by default) until you lose this item. Alternatively, the mapping kit is activated automatically ca. 5 seconds after putting them into your inventory."),
+	["fireflies:bug_net"] = S("Point an insect and use the attack key to try to capture it."),
+	["fireflies:firefly_bottle"] = S("Rightclick the bottle to release the firefly."),
 }
 
 local export_uses = {

@@ -223,6 +223,9 @@ end
 if skinsdb then
 	--change skin redefinition for skinsdb
 	function change_skin(player)
+		if not player or not skin_indexes[player] then
+			return -- not loaded or disconnected
+		end
 		local playername = player:get_player_name()
 		local skinname = "character_creator:"..playername
 		local skin_obj = skinsdb.get(skinname) or skinsdb.new(skinname)

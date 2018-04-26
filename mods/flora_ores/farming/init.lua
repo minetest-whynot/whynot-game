@@ -601,7 +601,7 @@ farming.pepper = true
 farming.pineapple = true
 farming.peas = true
 farming.donuts = true
-farming.rarety = 0.001 -- 0.006
+farming.rarety = 0.002 -- 0.006
 
 
 -- Load new global settings if found inside mod folder

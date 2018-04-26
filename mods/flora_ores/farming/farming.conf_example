@@ -32,4 +32,4 @@ farming.peas = true
 farming.donuts = true
 
 -- rarety of crops on map, default is 0.001 (higher number = more crops)
-farming.rarety = 0.001
+farming.rarety = 0.002
