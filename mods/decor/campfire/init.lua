@@ -111,6 +111,90 @@ local function effect(pos, texture, vlc, acc, time, size)
     })
 end
 
+-- campfire progress / burning
+local function check_and_burn(pos)
+	local meta = minetest.get_meta(pos)
+	local inv = meta:get_inventory()
+
+	-- Get fuel status
+	local fuel
+	local fuellist = inv:get_list("fuel")
+	if fuellist then
+		fuel = minetest.get_craft_result({method = "fuel", width = 1, items = fuellist})
+	end
+	local fuel_time = meta:get_float("fuel_time") or 0
+	fuel_time = fuel_time + 0.25
+
+	-- Get cooking status
+	local cooked
+	local srclist = inv:get_list("src")
+	if srclist then
+		cooked = minetest.get_craft_result({method = "cooking", width = 1, items = srclist})
+	end
+	local src_time = meta:get_float("src_time") or 0
+	src_time = src_time + 0.25
+
+--
+--	local item_percent = 0
+--	if cooked.time > 0 then
+--		item_percent =  math.floor(src_time / cooked.time * 100)
+--	end
+
+	local is_burning
+	if fuel.time <= 0 then
+		is_burning = false
+	elseif fuel_time < fuel.time then
+		is_burning = true
+	else
+		-- item finished, take the next one
+		local stack = inv:get_stack("fuel", 1)
+		stack:take_item()
+		inv:set_stack("fuel", 1, stack)
+		if stack:is_empty() then
+			is_burning = false
+		else
+			fuel_time = 0
+			is_burning = true
+		end
+	end
+
+	if not is_burning then
+		meta:set_float("fuel_time", 0)
+		minetest.swap_node(pos, {name = 'campfire:campfire', param1 = 0})
+		meta:set_string("infotext","The campfire is out.")
+--		meta:set_string("formspec", campfire.campfire_active_formspec(item_percent))
+		return is_burning
+	end
+
+	meta:set_float("fuel_time", fuel_time)
+	local node = minetest.get_node(pos)
+	if node.name ~= "campfire:campfire_active" or math.random(2) == 1 then
+		minetest.sound_play({name="campfire_small", pos = pos, max_hear_distance = 8, gain = 0.1})
+		minetest.swap_node(pos, {name = 'campfire:campfire_active'})
+	end
+	fire_particles_on(pos)
+	local percent = math.floor(fuel_time / fuel.time * 100)
+	meta:set_string("infotext","Campfire active: "..percent.."%")
+
+
+	-- fire burns, check for cooking finished
+	if cooked and cooked.item and src_time >= cooked.time then
+		if inv:room_for_item("dst",cooked.item) then
+			inv:add_item("dst", cooked.item)
+			local srcstack = inv:get_stack("src", 1)
+			srcstack:take_item()
+			inv:set_stack("src", 1, srcstack)
+		else
+			print("Could not insert '"..cooked.item:to_string().."'")
+		end
+		meta:set_float("src_time", 0)
+	else
+		meta:set_float("src_time", src_time)
+	end
+
+	return is_burning
+end
+
 ---------------
 -- Formspecs
 ---------------
@@ -208,6 +292,11 @@ minetest.register_node("campfire:campfire", {
 		end
 		return true
 	end,
+	on_metadata_inventory_put = function(pos, listname, index, stack, player)
+		if check_and_burn(pos) then
+			minetest.get_node_timer(pos):start(1)
+		end
+	end
 })
 
 minetest.register_node("campfire:campfire_active", {
@@ -255,6 +344,7 @@ minetest.register_node("campfire:campfire_active", {
 	on_destruct = function(pos, oldnode, digger)
         fire_particles_off(pos)
     end,
+    on_timer = check_and_burn,
 })
 
 -- sleeping bag
@@ -281,94 +371,6 @@ beds.register_bed("campfire:sleeping_mat", {
 	},
 })
 end
-
---------
---ABMs
---------
---campfire
-minetest.register_abm({
-	nodenames = {'campfire:campfire','campfire:campfire_active'},
-	interval = 1.0,
-	chance = 1,
-	action = function(pos, node, active_object_count, active_object_count_wider)
-		local meta = minetest.get_meta(pos)
-		local fuel_time = meta:get_float("fuel_time") or 0
-		local src_time = meta:get_float("src_time") or 0
-		local fuel_totaltime = meta:get_float("fuel_totaltime") or 0
-		local inv = meta:get_inventory()
-		local srclist = inv:get_list("src")
-		local cooked = nil
-		if srclist then
-			cooked = minetest.get_craft_result({method = "cooking", width = 1, items = srclist})
-		end
-		local was_active = false
-		if meta:get_float("fuel_time") < meta:get_float("fuel_totaltime") then
-			was_active = true
-			meta:set_float("fuel_time", meta:get_float("fuel_time") + 0.25)
-			meta:set_float("src_time", meta:get_float("src_time") + 0.25)
-			if cooked and cooked.item and meta:get_float("src_time") >= cooked.time then
-				if inv:room_for_item("dst",cooked.item) then
-					inv:add_item("dst", cooked.item)
-					local srcstack = inv:get_stack("src", 1)
-					srcstack:take_item()
-					inv:set_stack("src", 1, srcstack)
-				else
-					print("Could not insert '"..cooked.item:to_string().."'")
-				end
-				meta:set_string("src_time", 0)
-			end
-		end
-
-		if meta:get_float("fuel_time") < meta:get_float("fuel_totaltime") then
-			minetest.sound_play({name="campfire_small"},{pos=pos}, {max_hear_distance = 8},{loop=true},{gain=0.009})
-			fire_particles_on(pos)
-			local percent = math.floor(meta:get_float("fuel_time") /
-			meta:get_float("fuel_totaltime") * 100)
-			meta:set_string("infotext","Campfire active: "..percent.."%")
-			minetest.swap_node(pos, {name = 'campfire:campfire_active'})
-			return
-		end
-
-		local cooked, aftercooked = minetest.get_craft_result({method = "cooking", width = 1, items = srclist})
-		local cookable = true
-		if cooked.time == 0 then
-			cookable = false
-		end
-
-		local item_state = ''
-		local item_percent = 0
-		if cookable then
-			item_percent =  math.floor(src_time / cooked.time * 100)
-			item_state = item_percent .. "%"
-		end
-
-		local fuel = nil
-		local cooked = nil
-		local fuellist = inv:get_list("fuel")
-		local srclist = inv:get_list("src")
-		if srclist then
-			cooked = minetest.get_craft_result({method = "cooking", width = 1, items = srclist})
-		end
-
-		if fuellist then
-			fuel = minetest.get_craft_result({method = "fuel", width = 1, items = fuellist})
-		end
-
-		if fuel.time <= 0 then
-			meta:set_string("infotext","The campfire is out.")
-			minetest.swap_node(pos, {name = 'campfire:campfire'})
-			meta:set_string("formspec", campfire.campfire_active_formspec(item_percent))
-			return
-		end
-		meta:set_string("fuel_totaltime", fuel.time)
-		meta:set_string("fuel_time", 0)
-		local stack = inv:get_stack("fuel", 1)
-		stack:take_item()
-		inv:set_stack("fuel", 1, stack)
-		meta:set_string("formspec", campfire.campfire_active_formspec(item_percent))
-		 fire_particles_off(pos)
-	end,
-})
 
 
 -----------------

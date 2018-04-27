@@ -58,7 +58,7 @@ Mod: player/awards
 
 bell07	https://github.com/bell07/character_creator (fetch)
 origin	https://github.com/minetest-mods/character_creator (fetch)
-* master 7e03b23 [origin/master: ahead 2] fix whynot bug https://github.com/bell07/minetest-game-whynot/issues/3
+* master 0fc401a [origin/master: ahead 2] fix whynot bug https://github.com/bell07/minetest-game-whynot/issues/3
 Mod: player/character_creator
 
 origin	https://github.com/minetest-mods/cozy (fetch)
@@ -212,8 +212,9 @@ origin	https://github.com/Ezhh/abriglass (fetch)
 * master eec4fcd [origin/master] Improve cage glass
 Mod: decor/abriglass
 
+bell07	https://github.com/bell07/campfire (fetch)
 origin	https://github.com/Napiophelios/campfire (fetch)
-* master 400fa91 [origin/master] update for Minetest 0.5.0
+* master b87c582 [origin/master: ahead 1] port ABM to node-timer
 Mod: decor/campfire
 
 origin	https://github.com/pithydon/curtain (fetch)
