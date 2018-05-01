@@ -600,6 +600,7 @@ farming.onion = true
 farming.pepper = true
 farming.pineapple = true
 farming.peas = true
+farming.beetroot = true
 farming.donuts = true
 farming.rarety = 0.002 -- 0.006
 
@@ -655,6 +656,7 @@ if farming.onion then dofile(farming.path.."/onion.lua") end
 if farming.pepper then dofile(farming.path.."/pepper.lua") end
 if farming.pineapple then dofile(farming.path.."/pineapple.lua") end
 if farming.peas then dofile(farming.path.."/pea.lua") end
+if farming.beetroot then dofile(farming.path.."/beetroot.lua") end
 if farming.chili then dofile(farming.path.."/chili.lua") end
 if farming.donuts then dofile(farming.path.."/donut.lua") end
 

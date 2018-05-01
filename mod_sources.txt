@@ -124,7 +124,7 @@ Mod: 3d_armor/shields
 Mod: 3d_armor/wieldview
 
 origin	https://github.com/tenplus1/farming (fetch)
-* master 206910a [origin/master] rarety set to 0.002, melon and coffee now spawn in savannah or jungle areas
+* master 82104e6 [origin/master] added beetroot and beetroot soup
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
@@ -136,7 +136,7 @@ origin	https://github.com/bell07/minetest-meseor.git (fetch)
 Mod: mapgen/meseor
 
 origin	https://github.com/tenplus1/pbj_pup (fetch)
-* master f34df6f [origin/master] tweak global (thanks Bell07)
+* master 811632b [origin/master] added settingtypes.txt
 Mod: mapgen/pbj_pup
 
 origin	https://github.com/GreenXenith/tac_nayn (fetch)
@@ -214,7 +214,7 @@ Mod: decor/abriglass
 
 bell07	https://github.com/bell07/campfire (fetch)
 origin	https://github.com/Napiophelios/campfire (fetch)
-* master b87c582 [origin/master: ahead 1] port ABM to node-timer
+* master 0b2d0c3 [origin/master] Merge pull request #3 from bell07/master
 Mod: decor/campfire
 
 origin	https://github.com/pithydon/curtain (fetch)
@@ -353,5 +353,5 @@ origin	https://github.com/tenplus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://github.com/tenplus1/mobs_redo (fetch)
-* master 22cf9b8 [origin/master] fix replace function running too often when mob attacks
+* master 1a8f503 [origin/master] tweaked jump
 Mod: mobs_redo/mobs_redo

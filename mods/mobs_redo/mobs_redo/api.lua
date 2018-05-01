@@ -3,7 +3,7 @@
 
 mobs = {}
 mobs.mod = "redo"
-mobs.version = "20180419"
+mobs.version = "20180428"
 
 
 -- Intllib
@@ -761,6 +761,16 @@ local do_jump = function(self)
 			set_animation(self, "jump") -- only when defined
 
 			self.object:setvelocity(v)
+
+			-- when in air move forward
+			minetest.after(0.3, function(self, v)
+--				self.object:setvelocity({
+				self.object:set_acceleration({
+					x = v.x * 2,--1.5,
+					y = 0,
+					z = v.z * 2,--1.5
+				})
+			end, self, v)
 
 			if get_velocity(self) > 0 then
 				mob_sound(self, self.sounds.jump)
@@ -3761,11 +3771,9 @@ function mobs:feed_tame(self, clicker, feed_count, breed, tame)
 			.. default.gui_bg_img
 			.. "field[0.5,1;7.5,0;name;" .. minetest.formspec_escape(S("Enter name:")) .. ";" .. tag .. "]"
 			.. "button_exit[2.5,3.5;3,1;mob_rename;" .. minetest.formspec_escape(S("Rename")) .. "]")
-
 	end
 
 	return false
-
 end
 
 
@@ -3812,7 +3820,6 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 		-- reset external variables
 		mob_obj[name] = nil
 		mob_sta[name] = nil
-
 	end
 end)
 
