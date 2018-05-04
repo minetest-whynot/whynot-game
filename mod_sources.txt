@@ -212,7 +212,6 @@ origin	https://github.com/Ezhh/abriglass (fetch)
 * master eec4fcd [origin/master] Improve cage glass
 Mod: decor/abriglass
 
-bell07	https://github.com/bell07/campfire (fetch)
 origin	https://github.com/Napiophelios/campfire (fetch)
 * master 0b2d0c3 [origin/master] Merge pull request #3 from bell07/master
 Mod: decor/campfire
@@ -234,7 +233,6 @@ origin	https://github.com/HybridDog/heads (fetch)
 Mod: decor/heads
 
 Grizzly-Adam	https://github.com/Grizzly-Adam/minetest-laptop/ (fetch)
-bell07	https://github.com/bell07/laptop (fetch)
 origin	https://github.com/Gerold55/laptop (fetch)
 * master 1d063c0 [origin/master] Merge pull request #121 from bell07/performance_boost
 Mod: decor/laptop
@@ -353,5 +351,5 @@ origin	https://github.com/tenplus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://github.com/tenplus1/mobs_redo (fetch)
-* master 1a8f503 [origin/master] tweaked jump
+* master bdfce20 [origin/master] update changelog
 Mod: mobs_redo/mobs_redo

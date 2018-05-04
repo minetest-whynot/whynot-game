@@ -3,7 +3,7 @@
 
 mobs = {}
 mobs.mod = "redo"
-mobs.version = "20180428"
+mobs.version = "20180504"
 
 
 -- Intllib
@@ -1077,13 +1077,18 @@ local day_docile = function(self)
 end
 
 
--- path finding and smart mob routine by rnd
+local los_switcher = false
+local height_switcher = false
+
+-- path finding and smart mob routine by rnd, line_of_sight and other edits by Elkien3
 local smart_mobs = function(self, s, p, dist, dtime)
 
 	local s1 = self.path.lastpos
 
+	local target_pos = self.attack:get_pos()
+
 	-- is it becoming stuck?
-	if abs(s1.x - s.x) + abs(s1.z - s.z) < 1.5 then
+	if abs(s1.x - s.x) + abs(s1.z - s.z) < .5 then
 		self.path.stuck_timer = self.path.stuck_timer + dtime
 	else
 		self.path.stuck_timer = 0
@@ -1091,12 +1096,64 @@ local smart_mobs = function(self, s, p, dist, dtime)
 
 	self.path.lastpos = {x = s.x, y = s.y, z = s.z}
 
-	-- im stuck, search for path
-	if (self.path.stuck_timer > stuck_timeout and not self.path.following)
-	or (self.path.stuck_timer > stuck_path_timeout and self.path.following) then
+	local use_pathfind = false
+	local has_lineofsight = minetest.line_of_sight(
+		{x = s.x, y = (s.y) + .5, z = s.z},
+		{x = target_pos.x, y = (target_pos.y) + 1.5, z = target_pos.z}, .2)
 
+	-- im stuck, search for path
+	if not has_lineofsight then
+
+		if los_switcher == true then
+			use_pathfind = true
+			los_switcher = false
+		end -- cannot see target!
+	else
+		if los_switcher == false then
+
+			los_switcher = true
+			use_pathfind = false
+
+			minetest.after(1, function(self)
+				if has_lineofsight then self.path.following = false end
+			end, self)
+		end -- can see target!
+	end
+
+	if (self.path.stuck_timer > stuck_timeout and not self.path.following) then
+
+		use_pathfind = true
 		self.path.stuck_timer = 0
 
+		minetest.after(1, function(self)
+			if has_lineofsight then self.path.following = false end
+		end, self)
+	end
+
+	if (self.path.stuck_timer > stuck_path_timeout and self.path.following) then
+
+		use_pathfind = true
+		self.path.stuck_timer = 0
+
+		minetest.after(1, function(self)
+			if has_lineofsight then self.path.following = false end
+		end, self)
+	end
+
+	if math.abs(vector.subtract(s,target_pos).y) > self.stepheight then
+
+		if height_switcher then
+			use_pathfind = true
+			height_switcher = false
+		end
+	else
+		if not height_switcher then
+			use_pathfind = false
+			height_switcher = true
+		end
+	end
+
+	if use_pathfind then
 		-- lets try find a path, first take care of positions
 		-- since pathfinder is very sensitive
 		local sheight = self.collisionbox[5] - self.collisionbox[2]
@@ -1124,15 +1181,30 @@ local smart_mobs = function(self, s, p, dist, dtime)
 		local dropheight = 6
 		if self.fear_height ~= 0 then dropheight = self.fear_height end
 
---		self.path.way = minetest.find_path(s, p1, 16, 2, 6, "Dijkstra")
-		self.path.way = minetest.find_path(s, p1, 16, self.stepheight, dropheight, "A*_noprefetch")
-
+		self.path.way = minetest.find_path(s, p1, 16, self.stepheight, dropheight, "Dijkstra")
+--[[
+		if self.path.way and #self.path.way > 0 then
+			print ("-- path length:" .. tonumber(#self.path.way))
+			for _,pos in pairs(self.path.way) do
+				minetest.add_particle({
+				pos = pos,
+				velocity = {x=0, y=0, z=0},
+				acceleration = {x=0, y=0, z=0},
+				expirationtime = 1,
+				size = 4,
+				collisiondetection = false,
+				vertical = false,
+				texture = "heart.png",
+				})
+			end
+		end
+]]
 		-- attempt to unstick mob that is "daydreaming"
-		self.object:setpos({
+		--[[self.object:setpos({
 			x = s.x + 0.1 * (random() * 2 - 1),
 			y = s.y + 1,
 			z = s.z + 0.1 * (random() * 2 - 1)
-		})
+		})--]]
 
 		self.state = ""
 		do_attack(self, self.attack)
@@ -1201,11 +1273,11 @@ local smart_mobs = function(self, s, p, dist, dtime)
 						local ndef1 = minetest.registered_nodes[node1]
 
 						if node1 ~= "air"
-						and node1 ~= "ignore"
-						and ndef1
-						and not ndef1.groups.level
-						and not ndef1.groups.unbreakable
-						and not ndef1.groups.liquid then
+							and node1 ~= "ignore"
+							and ndef1
+							and not ndef1.groups.level
+							and not ndef1.groups.unbreakable
+							and not ndef1.groups.liquid then
 
 							minetest.add_item(p1, ItemStack(node1))
 							minetest.set_node(p1, {name = "air"})
@@ -1238,7 +1310,6 @@ local smart_mobs = function(self, s, p, dist, dtime)
 		else
 			-- yay i found path
 			mob_sound(self, self.sounds.war_cry)
-
 			set_velocity(self, self.walk_velocity)
 
 			-- follow path now that it has it
