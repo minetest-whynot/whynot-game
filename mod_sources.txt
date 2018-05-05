@@ -1,6 +1,6 @@
 
 origin	https://github.com/minetest/minetest_game (fetch)
-* backport-0.4 0739656 [origin/backport-0.4: ahead 1] Stairs: Allow crafting slabs and stairs into full blocks again
+* backport-0.4 08eb8d6 [origin/backport-0.4: ahead 1] Stairs: Allow crafting slabs and stairs into full blocks again
 Mod: minetest_game/mods/beds
 Mod: minetest_game/mods/boats
 Mod: minetest_game/mods/bones
@@ -87,7 +87,7 @@ origin	https://github.com/minetest-mods/skinsdb (fetch)
 Mod: player/skinsdb
 
 origin	https://github.com/bell07/minetest-smart_inventory (fetch)
-* master     4b175f5 [origin/master] bugfix with armor in creative
+* master     753d5bd [origin/master] bugfix - there was a way to duplicate items using lookup field
 Mod: player/smart_inventory
 
 origin	https://github.com/GunshipPenguin/sprint (fetch)
@@ -351,5 +351,5 @@ origin	https://github.com/tenplus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://github.com/tenplus1/mobs_redo (fetch)
-* master bdfce20 [origin/master] update changelog
+* master 33551a1 [origin/master] fix runaway function
 Mod: mobs_redo/mobs_redo

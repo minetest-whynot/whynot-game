@@ -3,7 +3,7 @@
 
 mobs = {}
 mobs.mod = "redo"
-mobs.version = "20180504"
+mobs.version = "20180505"
 
 
 -- Intllib
@@ -1384,25 +1384,21 @@ local monster_attack = function(self)
 		and (type == "player" or type == "npc"
 			or (type == "animal" and self.attack_animals == true)) then
 
-			s = self.object:get_pos()
 			p = player:get_pos()
 			sp = s
+
+			dist = get_distance(p, s)
 
 			-- aim higher to make looking up hills more realistic
 			p.y = p.y + 1
 			sp.y = sp.y + 1
 
-			dist = get_distance(p, s)
 
-			if dist < self.view_range then
-			-- field of view check goes here
-
-				-- choose closest player to attack
-				if line_of_sight(self, sp, p, 2) == true
-				and dist < min_dist then
-					min_dist = dist
-					min_player = player
-				end
+			-- choose closest player to attack
+			if dist < min_dist
+			and line_of_sight(self, sp, p, 2) == true then
+				min_dist = dist
+				min_player = player
 			end
 		end
 	end
@@ -1435,10 +1431,16 @@ local npc_attack = function(self)
 		if obj and obj.type == "monster" then
 
 			p = obj.object:get_pos()
+			sp = s
 
 			dist = get_distance(p, s)
 
-			if dist < min_dist then
+			-- aim higher to make looking up hills more realistic
+			p.y = p.y + 1
+			sp.y = sp.y + 1
+
+			if dist < min_dist
+			and line_of_sight(self, sp, p, 2) == true then
 				min_dist = dist
 				min_player = obj.object
 			end
@@ -1462,7 +1464,7 @@ local specific_runaway = function(list, what)
 	-- found entity on list to attack?
 	for no = 1, #list do
 
-		if list[no] == what or list[no] == "player" then
+		if list[no] == what then
 			return true
 		end
 	end
@@ -1512,7 +1514,6 @@ local runaway_from = function(self)
 		if name ~= "" and name ~= self.name
 		and specific_runaway(self.runaway_from, name) then
 
-			s = self.object:get_pos()
 			p = player:get_pos()
 			sp = s
 
@@ -1522,15 +1523,12 @@ local runaway_from = function(self)
 
 			dist = get_distance(p, s)
 
-			if dist < self.view_range then
-			-- field of view check goes here
 
-				-- choose closest player/mpb to runaway from
-				if line_of_sight(self, sp, p, 2) == true
-				and dist < min_dist then
-					min_dist = dist
-					min_player = player
-				end
+			-- choose closest player/mpb to runaway from
+			if dist < min_dist
+			and line_of_sight(self, sp, p, 2) == true then
+				min_dist = dist
+				min_player = player
 			end
 		end
 	end

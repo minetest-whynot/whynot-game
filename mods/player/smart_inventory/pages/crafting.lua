@@ -300,8 +300,6 @@ local function create_lookup_inv(name)
 			allow_take = function(inv, listname, index, stack, player)
 				return 99
 			end,
-			on_move = function(inv, from_list, from_index, to_list, to_index, count, player)
-			end,
 			on_put = function(inv, listname, index, stack, player)
 				pinv:set_stack(plistname, index, stack)
 				local name = player:get_player_name()
@@ -312,11 +310,23 @@ local function create_lookup_inv(name)
 				state.location.rootState:show()
 
 				-- put back
-				minetest.after(1, function(stack)
+				minetest.after(1, function()
+					-- Check maybe player is away from the game
+					local player = minetest.get_player_by_name(name)
+					if not player then
+						return
+					end
+
+					-- Check the player did not removed item from lookup field
+					local pinv = player:get_inventory()
+					local inv = minetest.get_inventory({type="detached", name=invname})
+					local stack = pinv:get_stack(plistname, 1)
+
+					-- put back
 					local applied = pinv:add_item("main", stack)
 					pinv:set_stack(plistname, 1, applied)
 					inv:set_stack(listname, 1, applied)
-				end, stack)
+				end)
 			end,
 			on_take = function(inv, listname, index, stack, player)
 				pinv:set_stack(plistname, index, nil)
