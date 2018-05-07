@@ -98,23 +98,21 @@ origin	https://github.com/bell07/minetest-wielded_light (fetch)
 * master 9b1cb76 [origin/master] Added shining API
 Mod: player/wielded_light
 
+origin	https://github.com/tenplus1/ambience (fetch)
+* master 09643b8 [origin/master] added settingtypes.txt
+Mod: ambience/ambience
+
 origin	https://github.com/minetest-mods/lightning (fetch)
 * master 39bd36c [origin/master] Use particle glow to brighten up the lightning.
-Mod: weather/lightning
+Mod: ambience/lightning
 
 origin	https://github.com/Ezhh/under_sky (fetch)
 * master a15de19 [origin/master] Add cloud removal
-Mod: weather/under_sky
+Mod: ambience/under_sky
 
 origin	https://github.com/xeranas/weather_pack (fetch)
 * master 5d8bf1a [origin/master] adjusted clouds number
-Mod: weather/weather_pack
-
-origin	https://github.com/MarkuBu/ambianceplus (fetch)
-* master e5ad9cc [origin/master] Merge pull request #2 from bell07/patch-1
-Mod: ambienceplus/ambplus_caves
-Mod: ambienceplus/ambplus_deserts
-Mod: ambienceplus/ambplus_forests
+Mod: ambience/weather_pack
 
 origin	https://github.com/stujones11/minetest-3d_armor (fetch)
 * master 579d245 [origin/master] Fix crash with UI but no technic

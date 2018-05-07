@@ -16,7 +16,7 @@ mod_install minetest_game --exclude=farming minetest_game/mods/*
 mod_install libs
 mod_install player
 
-mod_install ambience weather/* ambienceplus/*
+mod_install ambience
 
 mod_install player 3d_armor/3d_armor 3d_armor/3d_armor_stand 3d_armor/shields 3d_armor/wieldview
 
