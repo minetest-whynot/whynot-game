@@ -1,6 +1,6 @@
 
 origin	https://github.com/minetest/minetest_game (fetch)
-* backport-0.4 08eb8d6 [origin/backport-0.4: ahead 1] Stairs: Allow crafting slabs and stairs into full blocks again
+* backport-0.4 0f318c5 [origin/backport-0.4: ahead 1] Stairs: Allow crafting slabs and stairs into full blocks again
 Mod: minetest_game/mods/beds
 Mod: minetest_game/mods/boats
 Mod: minetest_game/mods/bones
@@ -120,6 +120,10 @@ Mod: 3d_armor/3d_armor
 Mod: 3d_armor/3d_armor_stand
 Mod: 3d_armor/shields
 Mod: 3d_armor/wieldview
+
+origin	https://github.com/Ezhh/endless_apples (fetch)
+* master b4124b1 [origin/master] Update timers
+Mod: flora_ores/endless_apples
 
 origin	https://github.com/tenplus1/farming (fetch)
 * master 82104e6 [origin/master] added beetroot and beetroot soup
