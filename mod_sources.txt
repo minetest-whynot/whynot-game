@@ -58,7 +58,7 @@ Mod: player/awards
 
 bell07	https://github.com/bell07/character_creator (fetch)
 origin	https://github.com/minetest-mods/character_creator (fetch)
-* master 0fc401a [origin/master: ahead 2] fix whynot bug https://github.com/bell07/minetest-game-whynot/issues/3
+* master b4a905b [origin/master: ahead 1] Redefinition of change_skin function to proper handle skins updates by skinsdb
 Mod: player/character_creator
 
 origin	https://github.com/minetest-mods/cozy (fetch)
@@ -94,8 +94,9 @@ origin	https://github.com/GunshipPenguin/sprint (fetch)
 * master 23b9e7e [origin/master: ahead 1] fix global variables
 Mod: player/sprint
 
+bell07	https://github.com/bell07/wielded_light (fetch)
 origin	https://github.com/bell07/minetest-wielded_light (fetch)
-* master 9b1cb76 [origin/master] Added shining API
+* master f8da637 [origin/master: ahead 1] added dropped items shining
 Mod: player/wielded_light
 
 origin	https://github.com/tenplus1/ambience (fetch)
@@ -115,7 +116,7 @@ origin	https://github.com/xeranas/weather_pack (fetch)
 Mod: ambience/weather_pack
 
 origin	https://github.com/stujones11/minetest-3d_armor (fetch)
-* master 579d245 [origin/master] Fix crash with UI but no technic
+* master 4210caf [origin/master] add POVA support (#138)
 Mod: 3d_armor/3d_armor
 Mod: 3d_armor/3d_armor_stand
 Mod: 3d_armor/shields
