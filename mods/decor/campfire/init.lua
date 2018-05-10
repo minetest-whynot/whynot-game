@@ -123,7 +123,8 @@ local function check_and_burn(pos)
 		fuel = minetest.get_craft_result({method = "fuel", width = 1, items = fuellist})
 	end
 	local fuel_time = meta:get_float("fuel_time") or 0
-	fuel_time = fuel_time + 0.25
+	local fully_item_burn_time = 0
+	fuel_time = fuel_time - 0.25
 
 	-- Get cooking status
 	local cooked
@@ -141,21 +142,19 @@ local function check_and_burn(pos)
 --	end
 
 	local is_burning
-	if fuel.time <= 0 then
-		is_burning = false
-	elseif fuel_time < fuel.time then
+	if fuel_time > 0 then      -- still fuel in
 		is_burning = true
-	else
-		-- item finished, take the next one
+		fully_item_burn_time = meta:get_float("fully_item_burn_time")
+	elseif fuel.time == 0 then -- no fuel, but item not burneable
+		is_burning = false
+	else                       -- take the next item
+		fuel_time = fuel.time
+		fully_item_burn_time = fuel.time
+		meta:set_float("fully_item_burn_time", fully_item_burn_time)
+		is_burning = true
 		local stack = inv:get_stack("fuel", 1)
 		stack:take_item()
 		inv:set_stack("fuel", 1, stack)
-		if stack:is_empty() then
-			is_burning = false
-		else
-			fuel_time = 0
-			is_burning = true
-		end
 	end
 
 	if not is_burning then
@@ -173,7 +172,7 @@ local function check_and_burn(pos)
 		minetest.swap_node(pos, {name = 'campfire:campfire_active'})
 	end
 	fire_particles_on(pos)
-	local percent = math.floor(fuel_time / fuel.time * 100)
+	local percent = math.floor(fuel_time / fully_item_burn_time * 100)
 	meta:set_string("infotext","Campfire active: "..percent.."%")
 
 

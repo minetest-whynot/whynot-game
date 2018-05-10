@@ -81,9 +81,8 @@ origin	http://repo.or.cz/minetest_show_wielded_item.git (fetch)
 * master 2d4cc42 [origin/master] Initial commit + version 1.0.0
 Mod: player/show_wielded_item
 
-bell07	https://github.com/bell07/minetest-skinsdb/ (fetch)
 origin	https://github.com/minetest-mods/skinsdb (fetch)
-* V_1_8_skins 2c20692 [origin/master: ahead 1] Added support for 1.8er Skins
+* master b12aefb [origin/master] Merge pull request #11 from bell07/V_1_8_skins
 Mod: player/skinsdb
 
 origin	https://github.com/bell07/minetest-smart_inventory (fetch)
@@ -94,9 +93,8 @@ origin	https://github.com/GunshipPenguin/sprint (fetch)
 * master 23b9e7e [origin/master: ahead 1] fix global variables
 Mod: player/sprint
 
-bell07	https://github.com/bell07/wielded_light (fetch)
-origin	https://github.com/bell07/minetest-wielded_light (fetch)
-* master f8da637 [origin/master: ahead 1] added dropped items shining
+origin	https://github.com/minetest-mods/wielded_light (fetch)
+* master d289a27 [origin/master] Merge pull request #2 from bell07/dropped_items_shining
 Mod: player/wielded_light
 
 origin	https://github.com/tenplus1/ambience (fetch)
@@ -215,8 +213,9 @@ origin	https://github.com/Ezhh/abriglass (fetch)
 * master eec4fcd [origin/master] Improve cage glass
 Mod: decor/abriglass
 
+bell07	https://github.com/bell07/campfire (fetch)
 origin	https://github.com/Napiophelios/campfire (fetch)
-* master 0b2d0c3 [origin/master] Merge pull request #3 from bell07/master
+* master 8c3a2c1 [origin/master: ahead 1] count full backward, take item before burn
 Mod: decor/campfire
 
 origin	https://github.com/pithydon/curtain (fetch)
