@@ -12,3 +12,4 @@ bucket?
 beds?
 flowers?
 3d_armor?
+skinsdb?

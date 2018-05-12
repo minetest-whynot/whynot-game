@@ -54,6 +54,12 @@ function cart_entity:on_rightclick(clicker)
 	elseif not self.driver then
 		self.driver = player_name
 		boost_cart:manage_attachment(clicker, self.object)
+
+		if default.player_set_animation then
+			-- player_api(/default) does not update the animation
+			-- when the player is attached, reset to default animation
+			default.player_set_animation(clicker, "stand")
+		end
 	end
 end
 
@@ -79,6 +85,13 @@ function cart_entity:get_staticdata()
 		railtype = self.railtype,
 		old_dir = self.old_dir
 	})
+end
+
+-- 0.5.x and later: When the driver leaves
+function cart_entity:on_detach_child(child)
+	if child and child:get_player_name() == self.driver then
+		self.driver = nil
+	end
 end
 
 function cart_entity:on_punch(puncher, time_from_last_punch, tool_capabilities, direction)

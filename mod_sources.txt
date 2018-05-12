@@ -81,8 +81,9 @@ origin	http://repo.or.cz/minetest_show_wielded_item.git (fetch)
 * master 2d4cc42 [origin/master] Initial commit + version 1.0.0
 Mod: player/show_wielded_item
 
+bell07	https://github.com/bell07/minetest-skinsdb (fetch)
 origin	https://github.com/minetest-mods/skinsdb (fetch)
-* master b12aefb [origin/master] Merge pull request #11 from bell07/V_1_8_skins
+* master     e6516d2 [origin/master: ahead 1] Visual update fixes if skin change externally (with and without 3d armor) API updated also
 Mod: player/skinsdb
 
 origin	https://github.com/bell07/minetest-smart_inventory (fetch)
@@ -90,11 +91,11 @@ origin	https://github.com/bell07/minetest-smart_inventory (fetch)
 Mod: player/smart_inventory
 
 origin	https://github.com/GunshipPenguin/sprint (fetch)
-* master 23b9e7e [origin/master: ahead 1] fix global variables
+* master d714ce3 [origin/master] Merge pull request #8 from bell07/patch-1
 Mod: player/sprint
 
 origin	https://github.com/minetest-mods/wielded_light (fetch)
-* master d289a27 [origin/master] Merge pull request #2 from bell07/dropped_items_shining
+* master c28547c [origin/master] Merge pull request #3 from lhofhansl/master
 Mod: player/wielded_light
 
 origin	https://github.com/tenplus1/ambience (fetch)
@@ -145,11 +146,11 @@ origin	https://github.com/GreenXenith/tac_nayn (fetch)
 Mod: mapgen/tac_nayn
 
 origin	https://github.com/taikedz/everamzah-backpacks (fetch)
-* master aadab97 [origin/master: ahead 2] Merge remote-tracking branch 'origin/master'
+* master 07eb35d [origin/master] Merge pull request #5 from bell07/patch-1
 Mod: tools/backpacks
 
 origin	https://github.com/SmallJoker/boost_cart (fetch)
-* master 3781f6d [origin/master] Make moreores' copper rail connect again, add metal sounds
+* master c6b9e4b [origin/master] Various improvements and bugfixes
 Mod: tools/boost_cart
 
 origin	https://github.com/minetest-mods/ccompass (fetch)
@@ -268,12 +269,12 @@ origin	https://github.com/minetest-mods/ts_furniture (fetch)
 Mod: decor/ts_furniture
 
 origin	https://github.com/minetest-mods/unifieddyes (fetch)
-* master 48cd40a [origin/master] Agrege la traducción al español
+* master cd130cf [origin/master] Merge pull request #23 from katkaha/dye_aliases
 Mod: decor/unifieddyes
 
 bell07	https://github.com/bell07/homedecor_modpack (fetch)
 origin	https://github.com/minetest-mods/homedecor_modpack (fetch)
-* allpatches        85904fd [origin/master: ahead 2] Proper handle stairs groups fix #410
+* master            2ec5d0f [origin/master: ahead 2] fix players in bed count for multiplayer
 Mod: homedecor_modpack/homedecor_i18n
 Mod: homedecor_modpack/homedecor
 Mod: homedecor_modpack/building_blocks

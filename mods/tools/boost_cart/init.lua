@@ -25,7 +25,7 @@ if not default.player_attached then
 	default.player_attached = {}
 end
 
-minetest.after(0.5, function()
+minetest.after(0, function()
 	boost_cart.old_player_model = not minetest.global_exists("player_api")
 end)
 

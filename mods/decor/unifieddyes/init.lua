@@ -1044,6 +1044,7 @@ minetest.register_alias("dye:medium_orange", "dye:brown")
 
 minetest.register_alias("unifieddyes:black",      "dye:black")
 minetest.register_alias("unifieddyes:dark_grey",  "dye:dark_grey")
+minetest.register_alias("unifieddyes:grey", 	  "dye:grey")
 minetest.register_alias("unifieddyes:light_grey", "dye:light_grey")
 minetest.register_alias("unifieddyes:white",      "dye:white")
 
@@ -1067,6 +1068,7 @@ minetest.register_alias("unifieddyes:carbon_black", "dye:black")
 minetest.register_alias("unifieddyes:aqua", "unifieddyes:spring")
 minetest.register_alias("unifieddyes:skyblue", "unifieddyes:azure")
 minetest.register_alias("unifieddyes:redviolet", "unifieddyes:rose")
+minetest.register_alias("unifieddyes:brown", 	  "dye:brown")
 
 print(S("[UnifiedDyes] Loaded!"))
 

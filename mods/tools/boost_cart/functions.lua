@@ -19,6 +19,9 @@ function boost_cart:manage_attachment(player, obj)
 
 	if status then
 		local y_pos = self.old_player_model and 6 or -4
+		if player:get_properties().visual == "upright_sprite" then
+			y_pos = -4
+		end
 		player:set_attach(obj, "", {x=0, y=y_pos, z=0}, {x=0, y=0, z=0})
 		player:set_eye_offset({x=0, y=-4, z=0},{x=0, y=-4, z=0})
 	else
@@ -208,6 +211,9 @@ function boost_cart:boost_rail(pos, amount)
 end
 
 function boost_cart:register_rail(name, def_overwrite)
+	local sound_func = default.node_sound_metal_defaults
+		or default.node_sound_defaults
+
 	local def = {
 		drawtype = "raillike",
 		paramtype = "light",
@@ -218,7 +224,7 @@ function boost_cart:register_rail(name, def_overwrite)
 			type = "fixed",
 			fixed = {-1/2, -1/2, -1/2, 1/2, -1/2+1/16, 1/2},
 		},
-		sounds = default.node_sound_metal_defaults()
+		sounds = sound_func()
 	}
 	for k, v in pairs(def_overwrite) do
 		def[k] = v
