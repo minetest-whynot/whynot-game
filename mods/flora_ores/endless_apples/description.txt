@@ -1,1 +1,0 @@
-Causes apples on apple trees to regrow (but doesn't regrow apples that were placed by hand).
