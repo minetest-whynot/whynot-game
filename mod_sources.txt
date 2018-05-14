@@ -115,7 +115,7 @@ origin	https://github.com/xeranas/weather_pack (fetch)
 Mod: ambience/weather_pack
 
 origin	https://github.com/stujones11/minetest-3d_armor (fetch)
-* master 4210caf [origin/master] add POVA support (#138)
+* master 21716ff [origin/master] Display correct heal attribute level, fixes #137
 Mod: 3d_armor/3d_armor
 Mod: 3d_armor/3d_armor_stand
 Mod: 3d_armor/shields
@@ -212,7 +212,7 @@ Mod: decor/abriglass
 
 bell07	https://github.com/bell07/campfire (fetch)
 origin	https://github.com/Napiophelios/campfire (fetch)
-* master 8c3a2c1 [origin/master: ahead 1] count full backward, take item before burn
+* master 25f6856 [origin/master] Update README.md
 Mod: decor/campfire
 
 origin	https://github.com/pithydon/curtain (fetch)
@@ -270,7 +270,7 @@ Mod: decor/unifieddyes
 
 bell07	https://github.com/bell07/homedecor_modpack (fetch)
 origin	https://github.com/minetest-mods/homedecor_modpack (fetch)
-* master            2ec5d0f [origin/master: ahead 2] fix players in bed count for multiplayer
+* master            bf1fdad [origin/master: ahead 3] Merge remote-tracking branch 'origin/master'
 Mod: homedecor_modpack/homedecor_i18n
 Mod: homedecor_modpack/homedecor
 Mod: homedecor_modpack/building_blocks
@@ -315,7 +315,7 @@ origin	https://github.com/tenplus1/pie (fetch)
 Mod: food/pie
 
 origin	https://github.com/GreenXenith/waffles (fetch)
-* master d146def [origin/master] Some cleanup and support for farming toast and breadslice (#9)
+* master 15bcdce [origin/master] Update license.
 Mod: food/waffles
 
 origin	https://github.com/minetest-mods/mesecons (fetch)

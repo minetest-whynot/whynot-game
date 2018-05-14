@@ -2,7 +2,7 @@
 # Copyright (C) 2017 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # Automatically generated, 2017.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
@@ -471,6 +471,10 @@ msgstr "Messingbarren"
 #: ../homedecor/crafts.lua
 msgid "Small Flower Pot"
 msgstr "Kleiner Blumentopf"
+
+#: ../homedecor/crafts.lua
+msgid "coin crafting is disabled!"
+msgstr "Fertigung der Münzen ist ausgeschaltet!"
 
 #: ../homedecor/doors_and_gates.lua
 msgid "Mahogany Closet Door (@1 opening)"

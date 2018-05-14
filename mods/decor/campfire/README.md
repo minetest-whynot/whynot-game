@@ -22,18 +22,6 @@ https://github.com/Doc22/campfire-mod
 
 -----------------------------------------------
 
-Node Swap ABM from NateS's More_fire mod
-
-(solves the glitchy formspec transition)
-
-More_fire mod
-
-Licensed : CC by SA
-
-https://github.com/NathanSalapat/more_fire
-
------------------------------------------------
-
 Particles Function adapted from New Campfire mod by Pavel Litvinoff
 
 License of code : GPLv2.1
@@ -41,5 +29,9 @@ License of code : GPLv2.1
 Copyright (C) 2017 Pavel Litvinoff <googolgl@gmail.com>
 
 <https://forum.minetest.net/viewtopic.php?f=9&t=16611>
+
+-----------------------------------------------
+
+Node Timers and miscellaneous code fixes by Bell07
 
 -----------------------------------------------
