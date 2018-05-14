@@ -115,3 +115,6 @@ if minetest.get_modpath('farming') and minetest.get_modpath('mtfoods') then
 	minetest.clear_craft({output = "mtfoods:sugar"})
 	minetest.register_alias("mtfoods:sugar", "farming:sugar")
 end
+
+-- If previously the endless_apples was used, now merged to minetest game default mod
+minetest.register_alias("endless_apples:apple_mark", "default:apple_mark")

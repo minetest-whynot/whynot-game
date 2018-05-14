@@ -45,7 +45,7 @@ origin	https://github.com/minetest-mods/mtg_i18n (fetch)
 Mod: libs/mtg_i18n
 
 origin	https://github.com/bell07/minetest-whynot_compat (fetch)
-* master b18b1aa [origin/master] cleanup waffles workaround (in upstream now) fix and cleanup depends.txt
+* master e5bb3d9 [origin/master] fix endless_apples replaced by minetest_game version
 Mod: libs/whynot_compat
 
 origin	https://github.com/Chemguy99/armor_addon (fetch)
@@ -83,7 +83,7 @@ Mod: player/show_wielded_item
 
 bell07	https://github.com/bell07/minetest-skinsdb (fetch)
 origin	https://github.com/minetest-mods/skinsdb (fetch)
-* master     e6516d2 [origin/master: ahead 1] Visual update fixes if skin change externally (with and without 3d armor) API updated also
+* master     e761999 [origin/master] Merge pull request #13 from bell07/master
 Mod: player/skinsdb
 
 origin	https://github.com/bell07/minetest-smart_inventory (fetch)
@@ -210,7 +210,6 @@ origin	https://github.com/Ezhh/abriglass (fetch)
 * master eec4fcd [origin/master] Improve cage glass
 Mod: decor/abriglass
 
-bell07	https://github.com/bell07/campfire (fetch)
 origin	https://github.com/Napiophelios/campfire (fetch)
 * master 25f6856 [origin/master] Update README.md
 Mod: decor/campfire
@@ -268,9 +267,8 @@ origin	https://github.com/minetest-mods/unifieddyes (fetch)
 * master cd130cf [origin/master] Merge pull request #23 from katkaha/dye_aliases
 Mod: decor/unifieddyes
 
-bell07	https://github.com/bell07/homedecor_modpack (fetch)
 origin	https://github.com/minetest-mods/homedecor_modpack (fetch)
-* master            bf1fdad [origin/master: ahead 3] Merge remote-tracking branch 'origin/master'
+* master c9b09a6 [origin/master: ahead 2] Merge remote-tracking branch 'origin/master'
 Mod: homedecor_modpack/homedecor_i18n
 Mod: homedecor_modpack/homedecor
 Mod: homedecor_modpack/building_blocks
