@@ -83,7 +83,7 @@ Mod: player/show_wielded_item
 
 bell07	https://github.com/bell07/minetest-skinsdb (fetch)
 origin	https://github.com/minetest-mods/skinsdb (fetch)
-* master     e761999 [origin/master] Merge pull request #13 from bell07/master
+* master     bd8a575 [origin/master] Merge pull request #14 from bell07/default_dependency_fix
 Mod: player/skinsdb
 
 origin	https://github.com/bell07/minetest-smart_inventory (fetch)
