@@ -7,7 +7,7 @@
 
 farming = {}
 farming.mod = "redo"
-farming.version = "1.33"
+farming.version = "20180506"
 farming.path = minetest.get_modpath("farming")
 farming.select = {
 	type = "fixed",
@@ -22,16 +22,16 @@ function farming.is_creative(name)
 end
 
 
-local statistics = dofile(farming.path.."/statistics.lua")
+local statistics = dofile(farming.path .. "/statistics.lua")
 
 -- Intllib
-local S = dofile(farming.path.."/intllib.lua")
+local S = dofile(farming.path .. "/intllib.lua")
 farming.intllib = S
 
 
 -- Utility Function
 local time_speed = tonumber(minetest.settings:get("time_speed")) or 72
-local SECS_PER_CYCLE = (time_speed > 0 and 24 * 60 * 60 / time_speed) or 0
+local SECS_PER_CYCLE = (time_speed > 0 and (24 * 60 * 60) / time_speed) or 0
 local function clamp(x, min, max)
 	return (x < min and min) or (x > max and max) or x
 end

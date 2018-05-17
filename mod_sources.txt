@@ -122,7 +122,7 @@ Mod: 3d_armor/shields
 Mod: 3d_armor/wieldview
 
 origin	https://github.com/tenplus1/farming (fetch)
-* master 82104e6 [origin/master] added beetroot and beetroot soup
+* master 6e52f96 [origin/master] add api.txt and tidy code
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
@@ -268,7 +268,7 @@ origin	https://github.com/minetest-mods/unifieddyes (fetch)
 Mod: decor/unifieddyes
 
 origin	https://github.com/minetest-mods/homedecor_modpack (fetch)
-* master c9b09a6 [origin/master: ahead 2] Merge remote-tracking branch 'origin/master'
+* master a4ca53c [origin/master] fix players in bed count for multiplayer (#404)
 Mod: homedecor_modpack/homedecor_i18n
 Mod: homedecor_modpack/homedecor
 Mod: homedecor_modpack/building_blocks
@@ -292,7 +292,7 @@ Mod: mydoors/my_old_doors
 Mod: mydoors/my_old_doors
 
 origin	https://github.com/rubenwardy/food (fetch)
-* master c008a2f [origin/master: ahead 2] removed redundant check for installed mod
+* master 1be3399 [origin/master: ahead 3] Merge remote-tracking branch 'origin/master'
 Mod: food_modpack/food
 Mod: food_modpack/food_basic
 
@@ -301,7 +301,7 @@ origin	https://github.com/h-v-smacker/canned_food (fetch)
 Mod: food/canned_food
 
 origin	https://github.com/rubenwardy/food_sweet (fetch)
-* master 88b2f0e [origin/master] Use settings:get and settings:set instead of setting_get and setting_set
+* master 5c9966d [origin/master] Add mod.conf and screenshot.png
 Mod: food/food_sweet
 
 origin	https://github.com/Philipbenr/mtfoods (fetch)
@@ -317,7 +317,7 @@ origin	https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin	https://github.com/minetest-mods/mesecons (fetch)
-* master f70a308 [origin/master] Replace deprecated methods:
+* master 7013f2e [origin/master] Add screenshot.png
 Mod: mesecons/mesecons
 Mod: mesecons/mesecons_alias
 Mod: mesecons/mesecons_blinkyplant
@@ -348,5 +348,5 @@ origin	https://github.com/tenplus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://github.com/tenplus1/mobs_redo (fetch)
-* master 33551a1 [origin/master] fix runaway function
+* master 60eb37b [origin/master] mobs with self.order = "stand" will no longer move, even when attacking monsters
 Mod: mobs_redo/mobs_redo

@@ -3,7 +3,7 @@
 
 mobs = {}
 mobs.mod = "redo"
-mobs.version = "20180505"
+mobs.version = "20180517"
 
 
 -- Intllib
@@ -125,6 +125,12 @@ end
 -- move mob in facing direction
 local set_velocity = function(self, v)
 
+	-- do not move if mob has been ordered to stay
+	if self.order == "stand" then
+		self.object:setvelocity({x = 0, y = 0, z = 0})
+		return
+	end
+
 	local yaw = (self.object:get_yaw() or 0) + self.rotate
 
 	self.object:setvelocity({
@@ -160,6 +166,7 @@ local set_yaw = function(self, yaw, delay)
 
 	self.target_yaw = yaw
 	self.delay = delay
+
 	return self.target_yaw
 end
 
@@ -575,7 +582,7 @@ local node_ok = function(pos, fallback)
 		return node
 	end
 
-	return minetest.registered_nodes[fallback] -- {name = fallback}
+	return minetest.registered_nodes[fallback]
 end
 
 
@@ -703,7 +710,8 @@ local do_jump = function(self)
 	if not self.jump
 	or self.jump_height == 0
 	or self.fly
-	or self.child then
+	or self.child
+	or self.order == "stand" then
 		return false
 	end
 
@@ -1183,6 +1191,7 @@ local smart_mobs = function(self, s, p, dist, dtime)
 
 		self.path.way = minetest.find_path(s, p1, 16, self.stepheight, dropheight, "Dijkstra")
 --[[
+		-- show path using particles
 		if self.path.way and #self.path.way > 0 then
 			print ("-- path length:" .. tonumber(#self.path.way))
 			for _,pos in pairs(self.path.way) do
@@ -1199,12 +1208,6 @@ local smart_mobs = function(self, s, p, dist, dtime)
 			end
 		end
 ]]
-		-- attempt to unstick mob that is "daydreaming"
-		--[[self.object:setpos({
-			x = s.x + 0.1 * (random() * 2 - 1),
-			y = s.y + 1,
-			z = s.z + 0.1 * (random() * 2 - 1)
-		})--]]
 
 		self.state = ""
 		do_attack(self, self.attack)
@@ -3685,8 +3688,7 @@ function mobs:capture_mob(self, clicker, chance_hand, chance_net, chance_lasso, 
 
 			mob_sound(self, "default_place_node_hard")
 
-
-		else
+		elseif chance ~= 0 then
 			minetest.chat_send_player(name, S("Missed!"))
 
 			mob_sound(self, "mobs_swing")
@@ -3906,10 +3908,8 @@ function mobs:alias_mob(old_name, new_name)
 
 		on_step = function(self)
 
-			local pos = self.object:get_pos()
-
 			if minetest.registered_entities[new_name] then
-				minetest.add_entity(pos, new_name)
+				minetest.add_entity(self.object:get_pos(), new_name)
 			end
 
 			self.object:remove()
