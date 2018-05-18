@@ -122,7 +122,7 @@ Mod: 3d_armor/shields
 Mod: 3d_armor/wieldview
 
 origin	https://github.com/tenplus1/farming (fetch)
-* master 6e52f96 [origin/master] add api.txt and tidy code
+* master b9a9a8e [origin/master] add alias for bushes:strawberry item
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)

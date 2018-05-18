@@ -1,3 +1,7 @@
+
+-- wait until mods are finished loading
+minetest.after(0, function()
+
 -- add food group to default apple and brown mushroom
 minetest.override_item("default:apple", {
 	groups = {food_apple = 1, fleshy = 3, dig_immediate = 3, flammable = 2,
@@ -12,7 +16,7 @@ minetest.override_item("flowers:mushroom_brown", {
 end
 
 -- is Ethereal mod installed?
-local eth = minetest.get_modpath("ethereal") or nil
+local eth = minetest.get_modpath("ethereal")
 
 -- Banana
 if eth then
@@ -140,8 +144,10 @@ else
 	minetest.register_alias("farming_plus:strawberry_2", "farming:raspberry_2")
 	minetest.register_alias("farming_plus:strawberry_3", "farming:raspberry_3")
 	minetest.register_alias("farming_plus:strawberry", "farming:raspberry_4")
-
 end
+
+minetest.register_alias("bushes:strawberry", "ethereal:strawberry")
+
 
 -- Tomato
 minetest.register_alias("farming_plus:tomato_seed", "farming:tomato")
@@ -165,5 +171,6 @@ if minetest.get_modpath("bushes_classic") then
 
 	minetest.register_alias("bushes:blueberry", "farming:blueberries")
 	minetest.register_alias("bushes:raspberry", "farming:raspberries")
-
 end
+
+end)
