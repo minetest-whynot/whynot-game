@@ -1,6 +1,6 @@
 
 origin	https://github.com/minetest/minetest_game (fetch)
-* backport-0.4 d64a13c [origin/backport-0.4: ahead 2] Enable regrowth of apples
+* backport-0.4 2fb926d [origin/backport-0.4: ahead 2] Enable regrowth of apples
 Mod: minetest_game/mods/beds
 Mod: minetest_game/mods/boats
 Mod: minetest_game/mods/bones
