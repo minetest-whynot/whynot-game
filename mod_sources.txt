@@ -33,7 +33,7 @@ origin	http://repo.or.cz/minetest_doc_items.git (fetch)
 Mod: libs/doc_items
 
 origin	http://repo.or.cz/minetest_doc_minetest_game.git (fetch)
-* master 0ed7dd2 [origin/master: ahead 2] Merge remote-tracking branch 'origin/master'
+* master e4b4598 [origin/master: ahead 2] fixed leaked global, reported in forum
 Mod: libs/doc_minetest_game
 
 origin	https://github.com/minetest-mods/intllib (fetch)
@@ -110,18 +110,18 @@ origin	https://github.com/Ezhh/under_sky (fetch)
 Mod: ambience/under_sky
 
 origin	https://github.com/xeranas/weather_pack (fetch)
-* master 5d8bf1a [origin/master] adjusted clouds number
+* master 28744a1 [origin/master] Merge pull request #10 from bell07/patch-1
 Mod: ambience/weather_pack
 
 origin	https://github.com/stujones11/minetest-3d_armor (fetch)
-* master e4b1255 [origin/master] Ammendment to  21b5c685051d5681de7a526ed7b30992556878b5
+* master 7d30bc2 [origin/master] Allow replacing similar armor in the same slot
 Mod: 3d_armor/3d_armor
 Mod: 3d_armor/3d_armor_stand
 Mod: 3d_armor/shields
 Mod: 3d_armor/wieldview
 
 origin	https://github.com/tenplus1/farming (fetch)
-* master 3176cd5 [origin/master] fix register_plant() growth issue
+* master f971ffe [origin/master] fix creative check for hoebomb
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
@@ -141,7 +141,7 @@ origin	https://github.com/GreenXenith/tac_nayn (fetch)
 Mod: mapgen/tac_nayn
 
 origin	https://github.com/taikedz/everamzah-backpacks (fetch)
-* master 07eb35d [origin/master] Merge pull request #5 from bell07/patch-1
+* master b618451 [origin/master: ahead 1] register_wool_backpack should not be global
 Mod: tools/backpacks
 
 origin	https://github.com/SmallJoker/boost_cart (fetch)
@@ -302,8 +302,9 @@ origin	https://github.com/rubenwardy/food_sweet (fetch)
 * master 5c9966d [origin/master] Add mod.conf and screenshot.png
 Mod: food/food_sweet
 
+bell07	https://github.com/bell07/mtfoods (fetch)
 origin	https://github.com/Philipbenr/mtfoods (fetch)
-* master 7893936 [origin/master] Merge pull request #3 from sys4-fr/master
+* master ae3eb42 [origin/master: ahead 1] replace global "ing" by more meaningful global mtfoods.ingredients variable
 Mod: food/mtfoods
 
 origin	https://github.com/tenplus1/pie (fetch)

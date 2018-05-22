@@ -226,7 +226,7 @@ core.update_sky_details = function(player, sky_layer)
 end
 
 core.update_clouds_details = function(player, sky_layer)
-	clouds_data = sky_layer.clouds_data
+	local clouds_data = sky_layer.clouds_data
 
 	if clouds_data == nil then 
 		if sky_layer.reset_defaults == true then

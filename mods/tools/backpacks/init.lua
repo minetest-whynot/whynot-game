@@ -64,7 +64,7 @@ backpacks.allow_metadata_inventory_put = function(pos, listname, index, stack, p
 end
 
 -- Wool backpacks
-function register_wool_backpack(colour,colourname)
+local function register_wool_backpack(colour,colourname)
 	minetest.register_node("backpacks:backpack_wool_"..colour, {
 		description = colourname.." Wool Backpack",
 		tiles = {

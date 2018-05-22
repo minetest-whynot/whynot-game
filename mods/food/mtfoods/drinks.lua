@@ -1,3 +1,5 @@
+local ing = mtfoods.ingredients
+
 -- Flute Glass --
 minetest.register_craftitem("mtfoods:glass_flute", {
 	description = "Glass Flute",

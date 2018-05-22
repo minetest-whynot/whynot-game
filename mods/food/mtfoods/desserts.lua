@@ -97,6 +97,7 @@ minetest.register_craftitem("mtfoods:strawberry_shortcake", {
 --})
 
 -- Crafting --
+local ing = mtfoods.ingredients
 
 minetest.register_craft({
 	output = "mtfoods:dandelion_milk 2",

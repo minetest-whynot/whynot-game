@@ -4,13 +4,6 @@ local MP = minetest.get_modpath(minetest.get_current_modname())
 local S, NS = dofile(MP.."/intllib.lua")
 
 
--- creative check
-local creative_mode_cache = minetest.settings:get_bool("creative_mode")
-function is_creative(name)
-	return creative_mode_cache or minetest.check_player_privs(name, {creative = true})
-end
-
-
 -- hoe bomb function
 local function hoe_area(pos, player)
 
@@ -138,7 +131,7 @@ minetest.register_craftitem("farming:hoe_bomb", {
 		else
 			throw_potion(itemstack, user)
 
-			if not is_creative(user:get_player_name()) then
+			if not farming.is_creative(user:get_player_name()) then
 
 				itemstack:take_item()
 

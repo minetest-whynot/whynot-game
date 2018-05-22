@@ -15,6 +15,7 @@ end
 local v6 = minetest.get_mapgen_setting("mg_name") == "v6"
 
 local basicflametext
+local permaflametext
 if minetest.setting_getbool("enable_fire") == false then
 	basicflametext = S("The basic flame is a damaging but short-lived kind of block. This particular world is rather hostile to fire, so basic flames won't spread and destroy other blocks. They will quickly disappear. A basic flame is also destroyed by nearby water or punching. It hurts you when you stand directly inside a basic flame, but punching it is safe.")
 	permaflametext = S("The permanent flame is a damaging block. Other than the basic flame, the permanent flame will not go away by time alone. A permanent flame is extinguished by punching it, by nearby water or similar blocks, or by removing a coal block below it. Punching is is safe, but it hurts if you stand inside. As this world is hostile to fire, it won't spread.")

@@ -1,6 +1,7 @@
 -- Foods --
 
 --MLT--
+local ing = mtfoods.ingredients
 
 minetest.register_craftitem( "mtfoods:mlt_burger", {
     description = "MLT (Mutton, Lettuce, Tomato)",
