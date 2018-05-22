@@ -7,7 +7,7 @@
 
 farming = {}
 farming.mod = "redo"
-farming.version = "20180506"
+farming.version = "20180519"
 farming.path = minetest.get_modpath("farming")
 farming.select = {
 	type = "fixed",
@@ -273,15 +273,16 @@ minetest.after(0, function()
 end)
 
 
-local abm_func = farming.handle_growth
-
 -- Just in case a growing type or added node is missed (also catches existing
 -- nodes added to map before timers were incorporated).
 minetest.register_abm({
 	nodenames = { "group:growing" },
 	interval = 300,
 	chance = 1,
-	action = abm_func
+	catch_up = false,
+	action = function(pos, node)
+		farming.handle_growth(pos, node)
+	end
 })
 
 
@@ -445,6 +446,8 @@ function farming.place_seed(itemstack, placer, pointed_thing, plantname)
 
 		minetest.set_node(pt.above, {name = plantname, param2 = p2})
 
+--minetest.get_node_timer(pt.above):start(1)
+
 		minetest.sound_play("default_place_node", {pos = pt.above, gain = 1.0})
 
 		if not placer or not farming.is_creative(placer:get_player_name()) then
@@ -494,7 +497,7 @@ farming.register_plant = function(name, def)
 		inventory_image = def.inventory_image,
 		wield_image = def.inventory_image,
 		drawtype = "signlike",
-		groups = {seed = 1, snappy = 3, attached_node = 1},
+		groups = {seed = 1, snappy = 3, attached_node = 1, flammable = 2},
 		paramtype = "light",
 		paramtype2 = "wallmounted",
 		walkable = false,
@@ -559,6 +562,7 @@ farming.register_plant = function(name, def)
 			place_param2 = def.place_param2,
 			walkable = false,
 			buildable_to = true,
+			sunlight_propagates = true,
 			drop = drop,
 			selection_box = farming.select,
 			groups = g,
@@ -567,8 +571,6 @@ farming.register_plant = function(name, def)
 			maxlight = def.maxlight,
 			next_plant = next_plant,
 		})
-
-		register_plant_node(node_name)
 	end
 
 	-- Return info

@@ -2,10 +2,17 @@ The Laptop mod is a group collaboration between Bell07, Toby109tt, veNext, Cross
 
 Apps Included So Far:
 
--- System -- System settings Removable media manager
+-- System -- 
+System settings 
+Removable media manager
 
--- Office -- Calculator Text editor Email
+-- Office -- 
+Calculator
+Sticky Notes
+Email
 
--- Games -- TNTSweeper Tetris
+-- Games -- 
+TNTSweeper
+Tetris
 
-V.0.36
+V.0.38
