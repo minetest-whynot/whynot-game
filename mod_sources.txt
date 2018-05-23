@@ -1,6 +1,6 @@
 
 origin	https://github.com/minetest/minetest_game (fetch)
-* backport-0.4 2fb926d [origin/backport-0.4: ahead 2] Enable regrowth of apples
+* backport-0.4 030295f [origin/backport-0.4: ahead 3] pre-implementation for player in beds counter fix
 Mod: minetest_game/mods/beds
 Mod: minetest_game/mods/boats
 Mod: minetest_game/mods/bones
@@ -33,7 +33,7 @@ origin	http://repo.or.cz/minetest_doc_items.git (fetch)
 Mod: libs/doc_items
 
 origin	http://repo.or.cz/minetest_doc_minetest_game.git (fetch)
-* master e4b4598 [origin/master: ahead 2] fixed leaked global, reported in forum
+* master d69267f [origin/master: ahead 1] set map and binocular optional
 Mod: libs/doc_minetest_game
 
 origin	https://github.com/minetest-mods/intllib (fetch)
@@ -141,7 +141,7 @@ origin	https://github.com/GreenXenith/tac_nayn (fetch)
 Mod: mapgen/tac_nayn
 
 origin	https://github.com/taikedz/everamzah-backpacks (fetch)
-* master b618451 [origin/master: ahead 1] register_wool_backpack should not be global
+* master 25ba17f [origin/master] register_wool_backpack should not be global
 Mod: tools/backpacks
 
 origin	https://github.com/SmallJoker/boost_cart (fetch)
@@ -343,9 +343,9 @@ Mod: mesecons/mesecons_walllever
 Mod: mesecons/mesecons_wires
 
 origin	https://github.com/tenplus1/mobs_monster (fetch)
-* master 64207a7 [origin/master] added french locale (thanks Papou30)
+* master f584247 [origin/master] remove lava flan death fire place
 Mod: mobs_redo/mobs_monster
 
 origin	https://github.com/tenplus1/mobs_redo (fetch)
-* master 60eb37b [origin/master] mobs with self.order = "stand" will no longer move, even when attacking monsters
+* master 82c8386 [origin/master] forgot settingtypes.txt default :P
 Mod: mobs_redo/mobs_redo

@@ -56,7 +56,7 @@ mobs:register_mob("mobs_monster:stone_monster", {
 
 mobs:spawn({
 	name = "mobs_monster:stone_monster",
-	nodes = {"default:stone", "default:desert_stone"},
+	nodes = {"default:stone", "default:desert_stone", "default:sandstone"},
 	max_light = 7,
 	chance = 7000,
 	max_height = 0,

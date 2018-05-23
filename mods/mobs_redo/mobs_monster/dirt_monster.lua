@@ -62,7 +62,7 @@ mobs:spawn({
 	nodes = {spawn_on},
 	min_light = 0,
 	max_light = 7,
-	chance = 7000,
+	chance = 6000,
 	active_object_count = 2,
 	min_height = 0,
 	day_toggle = false,

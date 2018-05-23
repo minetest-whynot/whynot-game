@@ -51,7 +51,7 @@ mobs:register_mob("mobs_monster:lava_flan", {
 		punch_end = 28,
 	},
 	on_die = function(self, pos)
-		minetest.set_node(pos, {name = "fire:basic_flame"})
+
 		self.object:remove()
 
 		minetest.add_particlespawner({
@@ -65,8 +65,8 @@ mobs:register_mob("mobs_monster:lava_flan", {
 			maxacc = {x = 0, y = -10, z = 0},
 			minexptime = 0.1,
 			maxexptime = 1,
-			minsize = 0.5,
-			maxsize = 1.0,
+			minsize = 1.0,
+			maxsize = 2.0,
 			texture = "fire_basic_flame.png",
 		})
 	end,

@@ -563,8 +563,8 @@ External Settings for "minetest.conf"
                             is false)
    'mobs_spawn_protected'   if set to false then mobs will not spawn in protected
                             areas (default is true)
-   'remove_far_mobs'        if true then mobs that are outside players visual
-                            range will be removed (default is false)
+   'remove_far_mobs'        if true then untamed mobs that are outside players
+                             visual range will be removed (default is true)
    'mobname'                can change specific mob chance rate (0 to disable) and
                             spawn number e.g. mobs_animal:cow = 1000,5
    'mob_difficulty'         sets difficulty level (health and hit damage

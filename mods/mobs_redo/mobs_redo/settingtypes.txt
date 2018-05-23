@@ -14,7 +14,7 @@ mobs_griefing (Griefing Mobs) bool true
 mobs_spawn_protected (Spawn Mobs in protected areas) bool true
 
 #    If true Mobs will be removed once a map chunk is out of view
-remove_far_mobs (Remove far Mobs) bool false
+remove_far_mobs (Remove far Mobs) bool true
 
 #    Sets Mob difficulty level by multiplying punch damage
 mob_difficulty (Mob difficulty) float 1.0
