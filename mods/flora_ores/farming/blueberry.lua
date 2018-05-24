@@ -27,6 +27,23 @@ minetest.register_craft({
 	}
 })
 
+-- Blueberry Pie
+
+minetest.register_craftitem("farming:blueberry_pie", {
+	description = S("Blueberry Pie"),
+	inventory_image = "farming_blueberry_pie.png",
+	on_use = minetest.item_eat(6),
+})
+
+minetest.register_craft({
+	output = "farming:blueberry_pie",
+	type = "shapeless",
+	recipe = {
+		"group:food_flour", "group:food_sugar",
+		"group:food_blueberries", "group:food_baking_tray"
+	},
+})
+
 -- blueberry definition
 local crop_def = {
 	drawtype = "plantlike",

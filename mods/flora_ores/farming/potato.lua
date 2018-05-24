@@ -31,6 +31,22 @@ minetest.register_craft({
 	recipe = "group:food_potato"
 })
 
+-- Potato and cucumber Salad
+minetest.register_craftitem("farming:potato_salad", {
+	description = S("Cucumber and Potato Salad"),
+	inventory_image = "farming_potato_salad.png",
+	on_use = minetest.item_eat(10, "farming:bowl"),
+})
+
+minetest.register_craft({
+	output = "farming:potato_salad",
+	recipe = {
+		{"group:food_cucumber"},
+		{"farming:baked_potato"},
+		{"group:food_bowl"},
+	}
+})
+
 -- potato definition
 local crop_def = {
 	drawtype = "plantlike",

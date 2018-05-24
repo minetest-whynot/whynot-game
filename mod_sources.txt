@@ -114,14 +114,14 @@ origin	https://github.com/xeranas/weather_pack (fetch)
 Mod: ambience/weather_pack
 
 origin	https://github.com/stujones11/minetest-3d_armor (fetch)
-* master 7d30bc2 [origin/master] Allow replacing similar armor in the same slot
+* master af4a381 [origin/master] Update screenshot image
 Mod: 3d_armor/3d_armor
 Mod: 3d_armor/3d_armor_stand
 Mod: 3d_armor/shields
 Mod: 3d_armor/wieldview
 
 origin	https://github.com/tenplus1/farming (fetch)
-* master f971ffe [origin/master] fix creative check for hoebomb
+* master 83bd211 [origin/master] shrink salt and pepper shakers
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
@@ -230,7 +230,7 @@ origin	https://github.com/HybridDog/heads (fetch)
 Mod: decor/heads
 
 origin	https://github.com/Gerold55/laptop (fetch)
-* master c100bc3 [origin/master] Update MTBOX.md
+* master      c100bc3 [origin/master] Update MTBOX.md
 Mod: decor/laptop
 
 origin	http://repo.or.cz/minetest_mtg_plus.git (fetch)
@@ -343,7 +343,7 @@ Mod: mesecons/mesecons_walllever
 Mod: mesecons/mesecons_wires
 
 origin	https://github.com/tenplus1/mobs_monster (fetch)
-* master f584247 [origin/master] remove lava flan death fire place
+* master b6dfd80 [origin/master] re-add flame on death for lava flan with air check
 Mod: mobs_redo/mobs_monster
 
 origin	https://github.com/tenplus1/mobs_redo (fetch)

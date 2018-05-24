@@ -52,6 +52,10 @@ mobs:register_mob("mobs_monster:lava_flan", {
 	},
 	on_die = function(self, pos)
 
+		if minetest.get_node(pos).name == "air" then
+			minetest.set_node(pos, {name = "fire:basic_flame"})
+		end
+
 		self.object:remove()
 
 		minetest.add_particlespawner({

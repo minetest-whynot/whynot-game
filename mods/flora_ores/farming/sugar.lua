@@ -24,11 +24,12 @@ minetest.register_node("farming:salt", {
 	inventory_image = "farming_salt.png",
 	wield_image = "farming_salt.png",
 	drawtype = "plantlike",
+	visual_scale = 0.8,
 	paramtype = "light",
 	tiles = {"farming_salt.png"},
 	groups = {food_salt = 1, vessel = 1, dig_immediate = 3,
 			attached_node = 1},
-	sounds = default.node_sound_glass_defaults(),
+	sounds = default.node_sound_defaults(),
 	selection_box = {
 		type = "fixed",
 		fixed = {-0.25, -0.5, -0.25, 0.25, 0.3, 0.25}
