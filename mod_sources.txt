@@ -29,7 +29,7 @@ origin	http://repo.or.cz/minetest_doc.git (fetch)
 Mod: libs/doc
 
 origin	http://repo.or.cz/minetest_doc_items.git (fetch)
-* master b6648a4 [origin/master] Version 1.1.2
+* master ec3ad1b [origin/master] Parse group fake_liquid=1
 Mod: libs/doc_items
 
 origin	http://repo.or.cz/minetest_doc_minetest_game.git (fetch)
@@ -161,7 +161,7 @@ origin	https://github.com/orwell96/engrave/ (fetch)
 Mod: tools/engrave
 
 origin	https://github.com/Ezhh/handholds (fetch)
-* master e86d3b1 [origin/master] Replace deprecated code with new code
+* master 0421f06 [origin/master] Fix typo that causes crash on tool use
 Mod: tools/handholds
 
 origin	https://github.com/petermaloney/helicopter (fetch)
@@ -169,7 +169,7 @@ origin	https://github.com/petermaloney/helicopter (fetch)
 Mod: tools/helicopter
 
 origin	https://github.com/minetest-mods/hopper (fetch)
-* master 0f3df80 [origin/master] update screenshot and documentation
+* master 8246da4 [origin/master] update forum link
 Mod: tools/hopper
 
 origin	https://github.com/minetest-mods/jumping (fetch)
