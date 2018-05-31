@@ -126,6 +126,7 @@ functions needed for the mob to work properly which contains the following:
       {"default:sword_wood",  0} -- causes no damage.
       {"default:gold_lump", -10} -- heals by 10 health points.
       {"default:coal_block", 20} -- 20 damage when hit on head with coal blocks.
+      {"all"} -- stops all weapons causing damage apart from those on list.
 
    'makes_footstep_sound' when true you can hear mobs walking.
    'sounds'               this is a table with sounds of the mob

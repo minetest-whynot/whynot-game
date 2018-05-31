@@ -3,7 +3,7 @@
 
 mobs = {}
 mobs.mod = "redo"
-mobs.version = "20180523"
+mobs.version = "20180530"
 
 
 -- Intllib
@@ -289,13 +289,12 @@ end
 -- are we flying in what we are suppose to? (taikedz)
 local flight_check = function(self, pos_w)
 
-	local nod = self.standing_in
-	local def = minetest.registered_nodes[nod]
+	local def = minetest.registered_nodes[self.standing_in]
 
 	if not def then return false end -- nil check
 
 	if type(self.fly_in) == "string"
-	and nod == self.fly_in then
+	and self.standing_in == self.fly_in then
 
 		return true
 
@@ -303,7 +302,7 @@ local flight_check = function(self, pos_w)
 
 		for _,fly_in in pairs(self.fly_in) do
 
-			if nod == fly_in then
+			if self.standing_in == fly_in then
 
 				return true
 			end
@@ -626,7 +625,7 @@ local do_env_damage = function(self)
 
 		if check_for_death(self, "light", {type = "light"}) then return end
 	end
-
+--[[
 	local y_level = self.collisionbox[2]
 
 	if self.child then
@@ -637,7 +636,7 @@ local do_env_damage = function(self)
 	pos.y = pos.y + y_level + 0.25 -- foot level
 	self.standing_in = node_ok(pos, "air").name
 --	print ("standing in " .. self.standing_in)
-
+]]
 	-- don't fall when on ignore, just stand still
 	if self.standing_in == "ignore" then
 		self.object:setvelocity({x = 0, y = 0, z = 0})
@@ -2289,13 +2288,13 @@ local falling = function(self, pos)
 	end
 
 	-- in water then float up
-	if minetest.registered_nodes[node_ok(pos).name].groups.water then
+	if minetest.registered_nodes[self.standing_in].groups.water then
 
 		if self.floats == 1 then
 
 			self.object:setacceleration({
 				x = 0,
-				y = -self.fall_speed / (max(1, v.y) ^ 2),
+				y = -self.fall_speed / (max(1, v.y) ^ 8), -- 8 was 2
 				z = 0
 			})
 		end
@@ -2395,6 +2394,10 @@ local mob_punch = function(self, hitter, tflp, tool_capabilities, dir)
 
 			damage = self.immune_to[n][2] or 0
 			break
+
+		-- if "all" then no tool does damage unless it's specified in list
+		elseif self.immune_to[n][1] == "all" then
+			damage = self.immune_to[n][2] or 0
 		end
 	end
 
@@ -2751,7 +2754,7 @@ local mob_activate = function(self, staticdata, def, dtime)
 	self.collisionbox = colbox
 	self.selectionbox = selbox
 	self.visual_size = vis_size
-	self.standing_in = ""
+	self.standing_in = "air"
 
 	-- check existing nametag
 	if not self.nametag then
@@ -2828,6 +2831,26 @@ local mob_step = function(self, dtime)
 		end
 	end
 
+	-- get node at foot level every quarter second
+	self.node_timer = (self.node_timer or 0) + dtime
+
+	if self.node_timer > 0.25 then
+
+		self.node_timer = 0
+
+		local y_level = self.collisionbox[2]
+
+		if self.child then
+			y_level = self.collisionbox[2] * 0.5
+		end
+
+		-- what is mob standing in?
+		self.standing_in = node_ok({
+			x = pos.x, y = pos.y + y_level + 0.25, z = pos.z}, "air").name
+--		print ("standing in " .. self.standing_in)
+	end
+
+	-- check if falling, flying, floating
 	falling(self, pos)
 
 	-- smooth rotation by ThomasMonroe314

@@ -643,7 +643,7 @@ if farming.cucumber then dofile(farming.path.."/cucumber.lua") end
 if farming.corn then dofile(farming.path.."/corn.lua") end
 if farming.coffee then dofile(farming.path.."/coffee.lua") end
 if farming.melon then dofile(farming.path.."/melon.lua") end
-if farming.sugar then dofile(farming.path.."/sugar.lua") end
+if farming.sugar then dofile(farming.path.."/food.lua") end
 if farming.pumpkin then dofile(farming.path.."/pumpkin.lua") end
 if farming.cocoa then dofile(farming.path.."/cocoa.lua") end
 if farming.raspberry then dofile(farming.path.."/raspberry.lua") end

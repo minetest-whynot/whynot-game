@@ -176,3 +176,9 @@ minetest.register_craft({
 	recipe = "mobs:saddle",
 	burntime = 7,
 })
+
+minetest.register_craft({
+	type = "fuel",
+	recipe = "mobs:fence_wood",
+	burntime = 7,
+})

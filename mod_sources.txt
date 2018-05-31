@@ -121,7 +121,7 @@ Mod: 3d_armor/shields
 Mod: 3d_armor/wieldview
 
 origin	https://github.com/tenplus1/farming (fetch)
-* master 83bd211 [origin/master] shrink salt and pepper shakers
+* master a2b9d8f [origin/master] fix recipe
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
@@ -343,9 +343,9 @@ Mod: mesecons/mesecons_walllever
 Mod: mesecons/mesecons_wires
 
 origin	https://github.com/tenplus1/mobs_monster (fetch)
-* master b6dfd80 [origin/master] re-add flame on death for lava flan with air check
+* master 585ccba [origin/master] immune_to example for tree monster
 Mod: mobs_redo/mobs_monster
 
 origin	https://github.com/tenplus1/mobs_redo (fetch)
-* master 82c8386 [origin/master] forgot settingtypes.txt default :P
+* master 12a3c89 [origin/master] add "all" to immune_to table, optimized floating code
 Mod: mobs_redo/mobs_redo

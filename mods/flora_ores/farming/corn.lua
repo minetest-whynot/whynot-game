@@ -21,6 +21,7 @@ minetest.register_craftitem("farming:corn", {
 minetest.register_craftitem("farming:corn_cob", {
 	description = S("Corn on the Cob"),
 	inventory_image = "farming_corn_cob.png",
+	groups = {food_corn_cooked = 1, flammable = 2},
 	on_use = minetest.item_eat(5),
 })
 
@@ -29,6 +30,25 @@ minetest.register_craft({
 	cooktime = 10,
 	output = "farming:corn_cob",
 	recipe = "group:food_corn"
+})
+
+-- cornstarch
+minetest.register_craftitem("farming:cornstarch", {
+	description = S("Cornstarch"),
+	inventory_image = "farming_cornstarch.png",
+	groups = {food_cornstarch = 1, flammable = 2},
+})
+
+minetest.register_craft({
+	output = "farming:cornstarch",
+	recipe = {
+		{"group:food_mortar_pestle", "group:food_corn_cooked", "group:food_baking_tray"},
+		{"", "group:food_bowl", ""},
+	},
+	replacements = {
+		{"farming:mortar_pestle", "farming:mortar_pestle"},
+		{"farming:baking_tray", "farming:baking_tray"},
+	}
 })
 
 -- ethanol (thanks to JKMurray for this idea)
