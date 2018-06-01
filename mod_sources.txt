@@ -53,7 +53,7 @@ origin	https://github.com/Chemguy99/armor_addon (fetch)
 Mod: player/armor_addon
 
 origin	https://github.com/minetest-mods/awards (fetch)
-* master 0ae58ad [origin/master] Fix locked awards not taking difficulty into account
+* master 21e1ce6 [origin/master] Fix convert_data crash when craft data is missing
 Mod: player/awards
 
 origin	https://github.com/minetest-mods/character_creator (fetch)
@@ -121,7 +121,7 @@ Mod: 3d_armor/shields
 Mod: 3d_armor/wieldview
 
 origin	https://github.com/tenplus1/farming (fetch)
-* master a2b9d8f [origin/master] fix recipe
+* master 20f827f [origin/master] add protection checks
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
@@ -198,7 +198,7 @@ origin	https://github.com/lisacvuk/minetest-toolranks (fetch)
 Mod: tools/toolranks
 
 origin	https://github.com/minetest-mods/woodcutting (fetch)
-* master ddbef79 [origin/master] Merge pull request #2 from minetest-mods/pr_times_fix
+* master a9d4160 [origin/master] do not remove leaves on processing area border
 Mod: tools/woodcutting
 
 origin	https://github.com/Amaz1/flight/ (fetch)

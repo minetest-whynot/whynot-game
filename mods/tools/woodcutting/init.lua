@@ -246,7 +246,7 @@ function woodcutting_class:process_leaves(pos)
 	local area = VoxelArea:new({MinEdge = minp, MaxEdge = maxp})
 	local data = vm:get_data()
 
-	for i in area:iterp(r_min, r_max) do
+	for i in area:iterp(vector.add(r_min, (self.leaves_distance+1)), vector.subtract(r_max, (self.leaves_distance+1))) do
 		if woodcutting.leaves_content_ids[data[i]] then
 			local leavespos = area:position(i)
 			-- search if no other tree node near the leaves

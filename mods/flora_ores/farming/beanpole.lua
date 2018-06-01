@@ -31,6 +31,11 @@ local function place_beans(itemstack, placer, pointed_thing, plantname)
 		return def.on_rightclick(pt.under, under, placer, itemstack)
 	end
 
+	-- check for protection
+	if minetest.is_protected(pt.under, placer:get_player_name()) then
+		return
+	end
+
 	-- check if pointing at bean pole
 	if under.name ~= "farming:beanpole" then
 		return
@@ -119,7 +124,7 @@ minetest.register_node("farming:beanpole", {
 			return def.on_rightclick(pt.under, under, placer, itemstack)
 		end
 
-		if minetest.is_protected(pt.under, placer:get_player_name()) then
+		if minetest.is_protected(pt.above, placer:get_player_name()) then
 			return
 		end
 

@@ -31,6 +31,11 @@ local function place_cocoa(itemstack, placer, pointed_thing, plantname)
 		return
 	end
 
+	-- check for protection
+	if minetest.is_protected(pt.above, placer:get_player_name()) then
+		return
+	end
+
 	-- add the node and remove 1 item from the itemstack
 	minetest.set_node(pt.above, {name = plantname})
 
