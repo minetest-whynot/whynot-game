@@ -65,7 +65,7 @@ origin	https://github.com/minetest-mods/cozy (fetch)
 Mod: player/cozy
 
 origin	http://repo.or.cz/minetest_hbhunger (fetch)
-* master dd2f4c9 [origin/master] Version 0.7.0
+* master 7b10cdc [origin/master] Mark changelog as old
 Mod: player/hbhunger
 
 origin	http://repo.or.cz/minetest_hudbars (fetch)
@@ -114,14 +114,14 @@ origin	https://github.com/xeranas/weather_pack (fetch)
 Mod: ambience/weather_pack
 
 origin	https://github.com/stujones11/minetest-3d_armor (fetch)
-* master af4a381 [origin/master] Update screenshot image
+* master 579e64a [origin/master] Code tidy
 Mod: 3d_armor/3d_armor
 Mod: 3d_armor/3d_armor_stand
 Mod: 3d_armor/shields
 Mod: 3d_armor/wieldview
 
 origin	https://github.com/tenplus1/farming (fetch)
-* master 20f827f [origin/master] add protection checks
+* master 0a04e8f [origin/master] fix skillet groups
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
@@ -347,5 +347,5 @@ origin	https://github.com/tenplus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://github.com/tenplus1/mobs_redo (fetch)
-* master 12a3c89 [origin/master] add "all" to immune_to table, optimized floating code
+* master c23d58f [origin/master] entity check for minetest.after
 Mod: mobs_redo/mobs_redo

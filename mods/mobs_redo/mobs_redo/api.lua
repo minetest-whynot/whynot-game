@@ -3,7 +3,7 @@
 
 mobs = {}
 mobs.mod = "redo"
-mobs.version = "20180530"
+mobs.version = "20180603"
 
 
 -- Intllib
@@ -508,7 +508,7 @@ local check_for_death = function(self, cause, cmi_cause)
 
 		minetest.after(length, function(self)
 
-			if use_cmi then
+			if use_cmi and self.object:get_luaentity() then
 				cmi.notify_die(self.object, cmi_cause)
 			end
 
@@ -771,12 +771,15 @@ local do_jump = function(self)
 
 			-- when in air move forward
 			minetest.after(0.3, function(self, v)
---				self.object:setvelocity({
-				self.object:set_acceleration({
-					x = v.x * 2,--1.5,
-					y = 0,
-					z = v.z * 2,--1.5
-				})
+
+				if self.object:get_luaentity() then
+
+					self.object:set_acceleration({
+						x = v.x * 2,--1.5,
+						y = 0,
+						z = v.z * 2,--1.5
+					})
+				end
 			end, self, v)
 
 			if get_velocity(self) > 0 then
@@ -952,7 +955,11 @@ local breed = function(self)
 				ent.hornytimer = 41
 
 				-- spawn baby
-				minetest.after(5, function()
+				minetest.after(5, function(self, ent)
+
+					if not self.object:get_luaentity() then
+						return
+					end
 
 					-- custom breed function
 					if self.on_breed then
@@ -1002,7 +1009,7 @@ local breed = function(self)
 					ent2.child = true
 					ent2.tamed = true
 					ent2.owner = self.owner
-				end)
+				end, self, ent)
 
 				num = 0
 
@@ -1122,7 +1129,13 @@ local smart_mobs = function(self, s, p, dist, dtime)
 			use_pathfind = false
 
 			minetest.after(1, function(self)
-				if has_lineofsight then self.path.following = false end
+
+				if self.object:get_luaentity() then
+
+					if has_lineofsight then
+						self.path.following = false
+					end
+				end
 			end, self)
 		end -- can see target!
 	end
@@ -1133,7 +1146,13 @@ local smart_mobs = function(self, s, p, dist, dtime)
 		self.path.stuck_timer = 0
 
 		minetest.after(1, function(self)
-			if has_lineofsight then self.path.following = false end
+
+			if self.object:get_luaentity() then
+
+				if has_lineofsight then
+					self.path.following = false
+				end
+			end
 		end, self)
 	end
 
@@ -1143,7 +1162,13 @@ local smart_mobs = function(self, s, p, dist, dtime)
 		self.path.stuck_timer = 0
 
 		minetest.after(1, function(self)
-			if has_lineofsight then self.path.following = false end
+
+			if self.object:get_luaentity() then
+
+				if has_lineofsight then
+					self.path.following = false
+				end
+			end
 		end, self)
 	end
 
@@ -2483,7 +2508,10 @@ local mob_punch = function(self, hitter, tflp, tool_capabilities, dir)
 		end
 
 		--[[ add healthy afterglow when hit (can cause hit lag with larger textures)
-		core.after(0.1, function()
+		minetest.after(0.1, function()
+
+			if not self.object:get_luaentity() then return end
+
 			self.object:settexturemod("^[colorize:#c9900070")
 
 			core.after(0.3, function()

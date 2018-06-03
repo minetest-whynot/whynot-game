@@ -71,7 +71,7 @@ minetest.register_craft({
 minetest.register_craftitem("farming:skillet", {
 	description = S("Skillet"),
 	inventory_image = "farming_skillet.png",
-	groups = {food_baking_tray = 1, flammable = 2},
+	groups = {food_skillet = 1, flammable = 2},
 })
 
 minetest.register_craft({
