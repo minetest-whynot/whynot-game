@@ -3,7 +3,7 @@
 
 mobs = {}
 mobs.mod = "redo"
-mobs.version = "20180603"
+mobs.version = "20180604"
 
 
 -- Intllib
@@ -3254,24 +3254,6 @@ function mobs:spawn_specific(name, nodes, neighbors, min_light, max_light,
 			-- spawn above node
 			pos.y = pos.y + 1
 
-			-- only spawn away from player
-			local objs = minetest.get_objects_inside_radius(pos, 10)
-
-			for n = 1, #objs do
-
-				if objs[n]:is_player() then
---print ("--- player too close", name)
-					return
-				end
-			end
-
-			-- mobs cannot spawn in protected areas when enabled
-			if not spawn_protected
-			and minetest.is_protected(pos, "") then
---print ("--- inside protected area", name)
-				return
-			end
-
 			-- are we spawning within height limits?
 			if pos.y > max_height
 			or pos.y < min_height then
@@ -3286,6 +3268,24 @@ function mobs:spawn_specific(name, nodes, neighbors, min_light, max_light,
 			or light < min_light then
 --print ("--- light limits not met", name, light)
 				return
+			end
+
+			-- mobs cannot spawn in protected areas when enabled
+			if not spawn_protected
+			and minetest.is_protected(pos, "") then
+--print ("--- inside protected area", name)
+				return
+			end
+
+			-- only spawn away from player
+			local objs = minetest.get_objects_inside_radius(pos, 10)
+
+			for n = 1, #objs do
+
+				if objs[n]:is_player() then
+--print ("--- player too close", name)
+					return
+				end
 			end
 
 			-- do we have enough height clearance to spawn mob?

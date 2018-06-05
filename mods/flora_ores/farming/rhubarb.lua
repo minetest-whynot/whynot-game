@@ -26,7 +26,7 @@ minetest.register_craft({
 		{"group:food_rhubarb", "group:food_rhubarb", "group:food_rhubarb"},
 		{"group:food_wheat", "group:food_wheat", "group:food_wheat"},
 	},
-	replacements = {{"farming:baking_tray", "farming:baking_tray"}}
+	replacements = {{"group:food_baking_tray", "farming:baking_tray"}}
 })
 
 -- rhubarb definition

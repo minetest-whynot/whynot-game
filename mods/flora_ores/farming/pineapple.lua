@@ -56,16 +56,19 @@ minetest.register_craft({
 			"group:food_pineapple_ring", "group:food_pineapple_ring",
 			"farming:juicer"},
 	replacements = {
-		{"farming:juicer", "farming:juicer"},
+		{"group:food_juicer", "farming:juicer"},
 	},
 })
 
 minetest.register_craft({
 	output = "farming:pineapple_juice 2",
 	type = "shapeless",
-	recipe = {"vessels:drinking_glass", "group:food_pineapple", "farming:juicer"},
+	recipe = {
+		"vessels:drinking_glass", "vessels:drinking_glass",
+		"group:food_pineapple", "farming:juicer"
+	},
 	replacements = {
-		{"farming:juicer", "farming:juicer"},
+		{"group:food_juicer", "farming:juicer"},
 	},
 })
 

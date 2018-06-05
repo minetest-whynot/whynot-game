@@ -121,7 +121,7 @@ Mod: 3d_armor/shields
 Mod: 3d_armor/wieldview
 
 origin	https://github.com/tenplus1/farming (fetch)
-* master 0a04e8f [origin/master] fix skillet groups
+* master cdeb93b [origin/master] add texture licenses to license.txt
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
@@ -343,9 +343,9 @@ Mod: mesecons/mesecons_walllever
 Mod: mesecons/mesecons_wires
 
 origin	https://github.com/tenplus1/mobs_monster (fetch)
-* master 585ccba [origin/master] immune_to example for tree monster
+* master da37864 [origin/master] reduce flan spawn
 Mod: mobs_redo/mobs_monster
 
 origin	https://github.com/tenplus1/mobs_redo (fetch)
-* master c23d58f [origin/master] entity check for minetest.after
+* master 4a55638 [origin/master] re-organise spawning checks (lightest first)
 Mod: mobs_redo/mobs_redo

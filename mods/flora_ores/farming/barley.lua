@@ -34,7 +34,7 @@ minetest.register_craft({
 		"farming:barley", "farming:barley", "farming:barley",
 		"farming:barley", "farming:mortar_pestle"
 	},
-	replacements = {{"farming:mortar_pestle", "farming:mortar_pestle"}},
+	replacements = {{"group:food_mortar_pestle", "farming:mortar_pestle"}},
 })
 
 -- barley definition

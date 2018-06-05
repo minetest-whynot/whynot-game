@@ -80,8 +80,8 @@ mobs:register_mob("mobs_monster:lava_flan", {
 mobs:spawn({
 	name = "mobs_monster:lava_flan",
 	nodes = {"default:lava_source"},
-	chance = 1000,
-	active_object_count = 2,
+	chance = 1500,
+	active_object_count = 1,
 	max_height = 0,
 })
 

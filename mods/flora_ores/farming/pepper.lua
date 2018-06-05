@@ -55,7 +55,7 @@ minetest.register_craft( {
 	output = "farming:pepper_ground",
 	type = "shapeless",
 	recipe = {"group:food_peppercorn", "vessels:glass_bottle", "farming:mortar_pestle"},
-	replacements = {{"farming:mortar_pestle", "farming:mortar_pestle"}},
+	replacements = {{"group:food_mortar_pestle", "farming:mortar_pestle"}},
 })
 
 -- crop definition

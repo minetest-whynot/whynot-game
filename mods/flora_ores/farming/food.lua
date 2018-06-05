@@ -72,7 +72,7 @@ minetest.register_craft({
 	},
 	replacements = {
 		{"bucket:bucket_water", "bucket:bucket_empty"},
-		{"farming:pot", "farming:pot"},
+		{"group:food_pot", "farming:pot"},
 	}
 })
 
@@ -93,8 +93,8 @@ minetest.register_craft({
 		{"group:food_cornstarch", "group:food_sugar", "dye:pink"},
 	},
 	replacements = {
-		{"farming:cornstarch", "farming:bowl"},
-		{"farming:rose_water", "vessels:glass_bottle"},
+		{"group:food_cornstarch", "farming:bowl"},
+		{"group:food_rose_water", "vessels:glass_bottle"},
 	},
 })
 

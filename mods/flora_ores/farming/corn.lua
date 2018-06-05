@@ -46,8 +46,8 @@ minetest.register_craft({
 		{"", "group:food_bowl", ""},
 	},
 	replacements = {
-		{"farming:mortar_pestle", "farming:mortar_pestle"},
-		{"farming:baking_tray", "farming:baking_tray"},
+		{"group:food_mortar_pestle", "farming:mortar_pestle"},
+		{"group:food_baking_tray", "farming:baking_tray"},
 	}
 })
 
