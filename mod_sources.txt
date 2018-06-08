@@ -109,7 +109,7 @@ origin	https://github.com/Ezhh/under_sky (fetch)
 * master a15de19 [origin/master] Add cloud removal
 Mod: ambience/under_sky
 
-origin	https://github.com/xeranas/weather_pack (fetch)
+origin	https://gitlab.com/zombiebot/weather_pack (fetch)
 * master 28744a1 [origin/master] Merge pull request #10 from bell07/patch-1
 Mod: ambience/weather_pack
 
@@ -120,8 +120,8 @@ Mod: 3d_armor/3d_armor_stand
 Mod: 3d_armor/shields
 Mod: 3d_armor/wieldview
 
-origin	https://github.com/tenplus1/farming (fetch)
-* master cdeb93b [origin/master] add texture licenses to license.txt
+origin	https://notabug.org/TenPlus1/farming (fetch)
+* master aa6dc61 [origin/master] move texture licenses into license.txt
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
@@ -132,7 +132,7 @@ origin	https://github.com/bell07/minetest-meseor.git (fetch)
 * master 4456298 [origin/master] Merge pull request #1 from bell07/mysetting
 Mod: mapgen/meseor
 
-origin	https://github.com/tenplus1/pbj_pup (fetch)
+origin	https://notabug.org/TenPlus1/pbj_pup (fetch)
 * master 811632b [origin/master] added settingtypes.txt
 Mod: mapgen/pbj_pup
 
@@ -265,8 +265,8 @@ origin	https://github.com/minetest-mods/unifieddyes (fetch)
 * master cd130cf [origin/master] Merge pull request #23 from katkaha/dye_aliases
 Mod: decor/unifieddyes
 
-origin	https://github.com/minetest-mods/homedecor_modpack (fetch)
-* master d6ff137 [origin/master] Add moreblocks:slab_wood for table_lamp (#418)
+origin	https://gitlab.com/VanessaE/homedecor_modpack/ (fetch)
+* master 54ce73b [origin/master] fix the fix ;)
 Mod: homedecor_modpack/homedecor_i18n
 Mod: homedecor_modpack/homedecor
 Mod: homedecor_modpack/building_blocks
@@ -307,7 +307,7 @@ origin	https://github.com/Philipbenr/mtfoods (fetch)
 * master ae3eb42 [origin/master: ahead 1] replace global "ing" by more meaningful global mtfoods.ingredients variable
 Mod: food/mtfoods
 
-origin	https://github.com/tenplus1/pie (fetch)
+origin	https://notabug.org/TenPlus1/pie (fetch)
 * master c441cda [origin/master] use globals instead of modpath
 Mod: food/pie
 
@@ -342,10 +342,10 @@ Mod: mesecons/mesecons_torch
 Mod: mesecons/mesecons_walllever
 Mod: mesecons/mesecons_wires
 
-origin	https://github.com/tenplus1/mobs_monster (fetch)
+origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 * master da37864 [origin/master] reduce flan spawn
 Mod: mobs_redo/mobs_monster
 
-origin	https://github.com/tenplus1/mobs_redo (fetch)
+origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
 * master 4a55638 [origin/master] re-organise spawning checks (lightest first)
 Mod: mobs_redo/mobs_redo
