@@ -7,7 +7,7 @@
 
 farming = {}
 farming.mod = "redo"
-farming.version = "20180519"
+farming.version = "20180609"
 farming.path = minetest.get_modpath("farming")
 farming.select = {
 	type = "fixed",
@@ -586,7 +586,6 @@ farming.cucumber = true
 farming.corn = true
 farming.coffee = true
 farming.melon = true
-farming.sugar = true
 farming.pumpkin = true
 farming.cocoa = true
 farming.raspberry = true
@@ -603,7 +602,6 @@ farming.pepper = true
 farming.pineapple = true
 farming.peas = true
 farming.beetroot = true
-farming.donuts = true
 farming.rarety = 0.002 -- 0.006
 
 
@@ -632,37 +630,44 @@ dofile(farming.path.."/grass.lua")
 dofile(farming.path.."/utensils.lua")
 
 -- default crops
-dofile(farming.path.."/wheat.lua")
-dofile(farming.path.."/cotton.lua")
+dofile(farming.path.."/crops/wheat.lua")
+dofile(farming.path.."/crops/cotton.lua")
 
--- additional crops and food (if enabled)
-if farming.carrot then dofile(farming.path.."/carrot.lua") end
-if farming.potato then dofile(farming.path.."/potato.lua") end
-if farming.tomato then dofile(farming.path.."/tomato.lua") end
-if farming.cucumber then dofile(farming.path.."/cucumber.lua") end
-if farming.corn then dofile(farming.path.."/corn.lua") end
-if farming.coffee then dofile(farming.path.."/coffee.lua") end
-if farming.melon then dofile(farming.path.."/melon.lua") end
-if farming.sugar then dofile(farming.path.."/food.lua") end
-if farming.pumpkin then dofile(farming.path.."/pumpkin.lua") end
-if farming.cocoa then dofile(farming.path.."/cocoa.lua") end
-if farming.raspberry then dofile(farming.path.."/raspberry.lua") end
-if farming.blueberry then dofile(farming.path.."/blueberry.lua") end
-if farming.rhubarb then dofile(farming.path.."/rhubarb.lua") end
-if farming.beans then dofile(farming.path.."/beanpole.lua") end
-if farming.grapes then dofile(farming.path.."/grapes.lua") end
-if farming.barley then dofile(farming.path.."/barley.lua") end
-if farming.hemp then dofile(farming.path.."/hemp.lua") end
-if farming.garlic then dofile(farming.path.."/garlic.lua") end
-if farming.onion then dofile(farming.path.."/onion.lua") end
-if farming.pepper then dofile(farming.path.."/pepper.lua") end
-if farming.pineapple then dofile(farming.path.."/pineapple.lua") end
-if farming.peas then dofile(farming.path.."/pea.lua") end
-if farming.beetroot then dofile(farming.path.."/beetroot.lua") end
-if farming.chili then dofile(farming.path.."/chili.lua") end
-if farming.donuts then dofile(farming.path.."/donut.lua") end
 
+-- helper function
+local function ddoo(file, check)
+
+	if check then
+		dofile(farming.path .. "/crops/" .. file)
+	end
+end
+
+-- add additional crops and food (if enabled)
+ddoo("carrot.lua", farming.carrot)
+ddoo("potato.lua", farming.potato)
+ddoo("tomato.lua", farming.tomato)
+ddoo("cucumber.lua", farming.cucumber)
+ddoo("corn.lua", farming.corn)
+ddoo("coffee.lua", farming.coffee)
+ddoo("melon.lua", farming.melon)
+ddoo("pumpkin.lua", farming.pumpkin)
+ddoo("cocoa.lua", farming.cocoa)
+ddoo("raspberry.lua", farming.raspberry)
+ddoo("blueberry.lua", farming.blueberry)
+ddoo("rhubarb.lua", farming.rhubarb)
+ddoo("beans.lua", farming.beans)
+ddoo("grapes.lua", farming.grapes)
+ddoo("barley.lua", farming.barley)
+ddoo("hemp.lua", farming.hemp)
+ddoo("garlic.lua", farming.garlic)
+ddoo("onion.lua", farming.onion)
+ddoo("pepper.lua", farming.pepper)
+ddoo("pineapple.lua", farming.pineapple)
+ddoo("peas.lua", farming.peas)
+ddoo("beetroot.lua", farming.beetroot)
+ddoo("chili.lua", farming.chili)
+
+dofile(farming.path.."/food.lua")
 dofile(farming.path.."/mapgen.lua")
 dofile(farming.path.."/compatibility.lua") -- Farming Plus compatibility
-dofile(farming.path.."/hoebomb.lua")
 dofile(farming.path.."/lucky_block.lua")

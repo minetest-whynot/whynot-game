@@ -73,7 +73,7 @@ origin	http://repo.or.cz/minetest_hudbars (fetch)
 Mod: player/hudbars
 
 origin	https://github.com/minetest-mods/playeranim (fetch)
-* master 0cccb53 [origin/master] Character model v3 for MT 5.0 (#15)
+* master 560af7e [origin/master] Put dependencies and description in mod.conf depends.txt and description.txt still aren't deleted.
 Mod: player/playeranim
 
 origin	http://repo.or.cz/minetest_show_wielded_item.git (fetch)
@@ -97,7 +97,7 @@ origin	https://github.com/minetest-mods/wielded_light (fetch)
 * master c28547c [origin/master] Merge pull request #3 from lhofhansl/master
 Mod: player/wielded_light
 
-origin	https://github.com/tenplus1/ambience (fetch)
+origin	https://notabug.org/TenPlus1/ambience (fetch)
 * master 09643b8 [origin/master] added settingtypes.txt
 Mod: ambience/ambience
 
@@ -121,7 +121,7 @@ Mod: 3d_armor/shields
 Mod: 3d_armor/wieldview
 
 origin	https://notabug.org/TenPlus1/farming (fetch)
-* master aa6dc61 [origin/master] move texture licenses into license.txt
+* master 8f3f32d [origin/master] # to ###
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
