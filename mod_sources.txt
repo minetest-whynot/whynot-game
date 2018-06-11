@@ -86,7 +86,7 @@ origin	https://github.com/minetest-mods/skinsdb (fetch)
 Mod: player/skinsdb
 
 origin	https://github.com/bell07/minetest-smart_inventory (fetch)
-* master     753d5bd [origin/master] bugfix - there was a way to duplicate items using lookup field
+* master     95f98ea [origin/master] finally (hopeful) rewrite the help-reveal list mode - no shapes exclusion - no recusive search
 Mod: player/smart_inventory
 
 origin	https://github.com/GunshipPenguin/sprint (fetch)
@@ -114,7 +114,7 @@ origin	https://gitlab.com/zombiebot/weather_pack (fetch)
 Mod: ambience/weather_pack
 
 origin	https://github.com/stujones11/minetest-3d_armor (fetch)
-* master 579e64a [origin/master] Code tidy
+* master 656bcf3 [origin/master] Bump version to 0.4.12
 Mod: 3d_armor/3d_armor
 Mod: 3d_armor/3d_armor_stand
 Mod: 3d_armor/shields
@@ -295,7 +295,7 @@ Mod: food_modpack/food
 Mod: food_modpack/food_basic
 
 origin	https://github.com/h-v-smacker/canned_food (fetch)
-* master d7c515e [origin/master] canned peas img
+* master dcfcba2 [origin/master] add beetroot
 Mod: food/canned_food
 
 origin	https://github.com/rubenwardy/food_sweet (fetch)

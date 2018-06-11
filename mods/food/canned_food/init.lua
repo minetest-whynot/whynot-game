@@ -255,6 +255,15 @@ local canned_food_definitions = {
 		amount = 8,
 		sugar = false,
 	},
+	canned_beetroot = {
+		proper_name = "Canned beetroot",
+		found_in = "farming",
+		obj_name = "farming:beetroot",
+		orig_nutritional_value = 1,
+		amount = 5,
+		sugar = false,
+		transforms = "Pickled beetroot"
+	},
 }
 
 

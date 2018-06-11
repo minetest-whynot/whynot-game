@@ -166,113 +166,79 @@ function ui_tools.filter_by_top_reveal(list, playername)
 		end
 	end
 
-	-- rate the items
-	local rating = {}
-	local top_rating = 0
+	local rating_tab = {}
+	local revealed_items_cache = {}
 
-	for itemname_check, entry in pairs(craftable_only) do
-		if not cache.citems[itemname_check].cgroups["shape"] then
---			print("craftable only item check", itemname_check)
-			-- add the check item to the pipe as analysis entry point
-			local items_pipe = {{ key = itemname_check, value = 1 }}
-			local touched_items = {[itemname_check] = true}
+	for itemname, entry in pairs(craftable_only) do
+	-- Check all recipes
+		--print("check", itemname)
+		local rating_value = 0
+		-- Check all items
+		for _, recipe in ipairs(cache.citems[itemname].in_craft_recipe) do
+			if crecipes.crecipes[recipe] then
+				local crecipe = crecipes.crecipes[recipe]
+				if not doc_addon.is_revealed_item(crecipe.out_item.name, playername) then
+					--print("check recipe out:", crecipe.out_item.name)
 
-			local step_limit = 15
-			-- process the pipe recursive / till pipe is empty
-			while items_pipe[1] do
-				-- limited recusion
-				step_limit = step_limit -1
-				if step_limit == 0 then
-					break
-				end
-
-				local itemname, rating_value = items_pipe[1].key, items_pipe[1].value
-
-				--apply rating value
-				if not cache.citems[itemname].cgroups["shape"] then -- Shapes have no values
-					if not rating[itemname_check] then
-						rating[itemname_check] = rating_value
-					else
-						rating[itemname_check] = rating[itemname_check] + rating_value
+					local revealed_by_other_recipe = false
+					for _, recipe in ipairs(cache.citems[crecipe.out_item.name].in_output_recipe) do
+						if crecipes.crecipes[recipe]:is_revealed(playername, revealed_items_cache) then
+							revealed_by_other_recipe = true
+							break
+						end
 					end
-				end
-				rating_value = rating_value * 0.7
-				-- Add recursive sub-entries to the pipe with lower value
-				if cache.citems[itemname] and cache.citems[itemname].in_craft_recipe then
-					for _, recipe in ipairs(cache.citems[itemname].in_craft_recipe) do
-						if crecipes.crecipes[recipe] then
-							local crecipe = crecipes.crecipes[recipe]
-							local child_itemname = crecipe.out_item.name
-							-- result is not revealed (checked before in filter_by_revealed) and not craftable at the time
-							-- crafting of itemname will maybe open it
---							print("check child", child_itemname, craftable_only[child_itemname])
-							if not touched_items[child_itemname] then
-								touched_items[child_itemname] = true
-								if not craftable_only[child_itemname] then
-								-- Check if the really reveal something
-									local do_reveal = false
-									for rec_name, iteminfo in pairs(crecipe._items) do
---										print(rec_name, child_itemname, itemname)
-										if rec_name == itemname then
-											-- by name
---											print("Item in recipe without group", itemname)
-											do_reveal = true
-											break
-										elseif iteminfo.items[itemname] then
-											-- found in group. check if other item in group already revealed
-											do_reveal = true
-											for item_in_group, _ in pairs(iteminfo.items[itemname]) do
-												if item_in_group ~= itemname then
-													if doc_addon.is_revealed_item(item_in_group, playername) then
---														print("already revealed by ", item_in_group)
-														do_reveal = false
-														break
-													end
-												end
-											end
-											if do_reveal then
-												break
-											end
-										end
+
+					if not revealed_by_other_recipe then
+						for recipe_itemname, iteminfo in pairs(crecipe._items) do
+							-- in recipe
+							if recipe_itemname == itemname or minetest.registered_aliases[recipe_itemname] == itemname then
+								rating_value = rating_value + 1
+								--print("by name", recipe_itemname, iteminfo.items[recipe_itemname].name)
+							elseif recipe_itemname:sub(1, 6) == "group:" and iteminfo.items[itemname] then
+								local is_revealed = false
+								for alt_itemname, _ in pairs (iteminfo.items) do
+									if doc_addon.is_revealed_item(alt_itemname, playername) then
+										is_revealed = true
+										break
 									end
-									if do_reveal then
---										print("New reveal", child_itemname, rating_value)
-										table.insert(items_pipe, {key = child_itemname, value = rating_value})
-									end
+								end
+								if not is_revealed then
+									--print("by group", recipe_itemname, itemname)
+									rating_value = rating_value + 1
 								end
 							end
 						end
 					end
 				end
---				print("Pipe item processing done:", itemname, dump(items_pipe[1]))
-				-- remove from pipe
-				table.remove(items_pipe,1)
 			end
-			if not rating[itemname_check] then
-				rating[itemname_check] = 0
-			end
-			if rating[itemname_check] > top_rating then
-				top_rating = rating[itemname_check]
-			end
---			print("rating done:", itemname_check, rating[itemname_check])
+			--print("rating", itemname, rating_value)
+			rating_tab[itemname] = (rating_tab[itemname] or 0) + rating_value
 		end
 	end
 
-	-- sort
+	-- prepare output list
 	local sorted_rating = {}
-	for itemname, rating in pairs(rating) do
-		table.insert(sorted_rating, {itemname = itemname, rating = rating})
+	for itemname, rating in pairs(rating_tab) do
+			table.insert(sorted_rating, {itemname = itemname, rating = rating})
 	end
 	table.sort(sorted_rating, function(a,b) return a.rating > b.rating end)
 
-	-- prepare output list
 	local out_count = 0
 	local filtered_list = {}
+	local top_rating = 0
 	for _, v in ipairs(sorted_rating) do
 		-- top 10 but show all with the same rating
-		if out_count < 10 or v.rating == top_rating then
+		if out_count < 20 or v.rating == top_rating then
 			top_rating = v.rating
-			table.insert(filtered_list, craftable_only[v.itemname])
+			local entry = craftable_only[v.itemname]
+			if v.rating > 0 then
+				entry  = {}
+				for kk, vv in pairs(craftable_only[v.itemname]) do
+					entry[kk] = vv
+				end
+				entry.text = v.rating
+			end
+			table.insert(filtered_list, entry)
 			out_count = out_count + 1
 		else
 			break
