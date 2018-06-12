@@ -502,7 +502,10 @@ local function crafting_callback(state)
 	end
 
 	-- set inventory style
-	state:element("code", {name = "inventory_bg_code", code = "listcolors[#00000069;#5A5A5A;#141318;#30434C;#FFF]"})
+	state:element("code", {name = "additional_code", code =
+			"listcolors[#00000069;#5A5A5A;#141318;#30434C;#FFF]"..
+			"listring[current_player;main]listring[current_player;craft]"
+		})
 
 	--Inventorys / left site
 	state:inventory(1, 5, 8, 4,"main")

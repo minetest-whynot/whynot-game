@@ -86,7 +86,7 @@ origin	https://github.com/minetest-mods/skinsdb (fetch)
 Mod: player/skinsdb
 
 origin	https://github.com/bell07/minetest-smart_inventory (fetch)
-* master     95f98ea [origin/master] finally (hopeful) rewrite the help-reveal list mode - no shapes exclusion - no recusive search
+* master     07e3298 [origin/master] add listring between main and craft inventories
 Mod: player/smart_inventory
 
 origin	https://github.com/GunshipPenguin/sprint (fetch)
@@ -98,7 +98,7 @@ origin	https://github.com/minetest-mods/wielded_light (fetch)
 Mod: player/wielded_light
 
 origin	https://notabug.org/TenPlus1/ambience (fetch)
-* master 09643b8 [origin/master] added settingtypes.txt
+* master a7db0bf [origin/master] fixed ambience_song filename to ambience_music
 Mod: ambience/ambience
 
 origin	https://github.com/minetest-mods/lightning (fetch)
@@ -266,7 +266,7 @@ origin	https://github.com/minetest-mods/unifieddyes (fetch)
 Mod: decor/unifieddyes
 
 origin	https://gitlab.com/VanessaE/homedecor_modpack/ (fetch)
-* master 54ce73b [origin/master] fix the fix ;)
+* master 9e69a6d [origin/master] more set_int fixes
 Mod: homedecor_modpack/homedecor_i18n
 Mod: homedecor_modpack/homedecor
 Mod: homedecor_modpack/building_blocks

@@ -175,7 +175,7 @@ local get_ambience = function(player)
 		-- play at midnight
 		if tod >= 0.0 and tod <= 0.01 and not music_handler then
 
-			music_handler = minetest.sound_play("ambience_song", {
+			music_handler = minetest.sound_play("ambience_music", {
 				to_player = player:get_player_name(),
 				gain = MUSICVOLUME
 			})
