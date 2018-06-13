@@ -120,8 +120,9 @@ Mod: 3d_armor/3d_armor_stand
 Mod: 3d_armor/shields
 Mod: 3d_armor/wieldview
 
+bell07	https://notabug.org/bell07/Farming (fetch)
 origin	https://notabug.org/TenPlus1/farming (fetch)
-* master 8f3f32d [origin/master] # to ###
+* master 3bb1bee [origin/master: ahead 1] fix wrong stairs.register_stair_and_slab() call Make stairs mod dependency optional
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
@@ -277,7 +278,7 @@ Mod: homedecor_modpack/lrfurn
 Mod: homedecor_modpack/plasmascreen
 
 origin	https://github.com/minetest-mods/mydoors (fetch)
-* master 96d0a55 [origin/master] Merge pull request #10 from bell07/patch-1
+* master eef3b5f [origin/master] Merge pull request #9 from Jat15/master
 Mod: mydoors/my_castle_doors
 Mod: mydoors/my_cottage_doors
 Mod: mydoors/my_default_doors

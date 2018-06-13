@@ -51,6 +51,25 @@ minetest.register_craft({
 	}
 })
 
+if stairs then
+	if stairs.mod and stairs.mod == "redo" then
+
+		stairs.register_all("straw", "farming:straw",
+			{snappy = 3, flammable = 4},
+			{"farming_straw.png"},
+			"Straw",
+			default.node_sound_leaves_defaults())
+	else
+
+		stairs.register_stair_and_slab("straw", "farming:straw",
+			{snappy = 3, flammable = 4},
+			{"farming_straw.png"},
+			"Straw Stair",
+			"Straw Slab",
+			default.node_sound_leaves_defaults())
+	end
+end
+
 -- flour
 minetest.register_craftitem("farming:flour", {
 	description = S("Flour"),
