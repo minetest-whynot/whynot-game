@@ -53,7 +53,7 @@ origin	https://github.com/Chemguy99/armor_addon (fetch)
 Mod: player/armor_addon
 
 origin	https://github.com/minetest-mods/awards (fetch)
-* master 21e1ce6 [origin/master] Fix convert_data crash when craft data is missing
+* master 8c0bb00 [origin/master] Improve documentation
 Mod: player/awards
 
 origin	https://github.com/minetest-mods/character_creator (fetch)
@@ -120,9 +120,8 @@ Mod: 3d_armor/3d_armor_stand
 Mod: 3d_armor/shields
 Mod: 3d_armor/wieldview
 
-bell07	https://notabug.org/bell07/Farming (fetch)
 origin	https://notabug.org/TenPlus1/farming (fetch)
-* master 3bb1bee [origin/master: ahead 1] fix wrong stairs.register_stair_and_slab() call Make stairs mod dependency optional
+* master 9d67280 [origin/master] fix hemp block stair naming
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)

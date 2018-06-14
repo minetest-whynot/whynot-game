@@ -51,7 +51,9 @@ minetest.register_craft({
 	}
 })
 
-if stairs then
+-- check and register stairs
+if minetest.global_exists("stairs") then
+
 	if stairs.mod and stairs.mod == "redo" then
 
 		stairs.register_all("straw", "farming:straw",
