@@ -3,7 +3,7 @@
 
 mobs = {}
 mobs.mod = "redo"
-mobs.version = "20180604"
+mobs.version = "20180617"
 
 
 -- Intllib
@@ -1446,7 +1446,7 @@ local npc_attack = function(self)
 		return
 	end
 
-	local p, sp, obj, min_player
+	local p, sp, obj, min_player, dist
 	local s = self.object:get_pos()
 	local min_dist = self.view_range + 1
 	local objs = minetest.get_objects_inside_radius(s, self.view_range)
@@ -2355,7 +2355,7 @@ local mob_punch = function(self, hitter, tflp, tool_capabilities, dir)
 	if self.do_punch then
 
 		-- when false skip going any further
-		if self.do_punch(self, hitter, tflp, tool_caps, dir) == false then
+		if self.do_punch(self, hitter, tflp, tool_capabilities, dir) == false then
 			return
 		end
 	end
@@ -3270,13 +3270,6 @@ function mobs:spawn_specific(name, nodes, neighbors, min_light, max_light,
 				return
 			end
 
-			-- mobs cannot spawn in protected areas when enabled
-			if not spawn_protected
-			and minetest.is_protected(pos, "") then
---print ("--- inside protected area", name)
-				return
-			end
-
 			-- only spawn away from player
 			local objs = minetest.get_objects_inside_radius(pos, 10)
 
@@ -3300,6 +3293,13 @@ function mobs:spawn_specific(name, nodes, neighbors, min_light, max_light,
 --print ("--- inside block", name, node_ok(pos2).name)
 					return
 				end
+			end
+
+			-- mobs cannot spawn in protected areas when enabled
+			if not spawn_protected
+			and minetest.is_protected(pos, "") then
+--print ("--- inside protected area", name)
+				return
 			end
 
 			-- spawn mob half block higher than ground
@@ -3333,21 +3333,20 @@ end
 -- MarkBu's spawn function
 function mobs:spawn(def)
 
-	local name = def.name
-	local nodes = def.nodes or {"group:soil", "group:stone"}
-	local neighbors = def.neighbors or {"air"}
-	local min_light = def.min_light or 0
-	local max_light = def.max_light or 15
-	local interval = def.interval or 30
-	local chance = def.chance or 5000
-	local active_object_count = def.active_object_count or 1
-	local min_height = def.min_height or -31000
-	local max_height = def.max_height or 31000
-	local day_toggle = def.day_toggle
-	local on_spawn = def.on_spawn
-
-	mobs:spawn_specific(name, nodes, neighbors, min_light, max_light, interval,
-		chance, active_object_count, min_height, max_height, day_toggle, on_spawn)
+	mobs:spawn_specific(
+		def.name,
+		def.nodes or {"group:soil", "group:stone"},
+		def.neighbors or {"air"},
+		def.min_light or 0,
+		def.max_light or 15,
+		def.interval or 30,
+		def.chance or 5000,
+		def.active_object_count or 1,
+		def.min_height or -31000,
+		def.max_height or 31000,
+		def.day_toggle,
+		def.on_spawn
+	)
 end
 
 

@@ -178,7 +178,7 @@ Mod: tools/jumping
 
 origin	https://github.com/tacigar/maidroid (fetch)
 rui	https://github.com/Rui-Minetest/maidroid (fetch)
-* master 855504a [origin/master: ahead 2] Use global_exists to test for the existence
+* master 3b414ef [origin/master] Merge pull request #175 from Rui-Minetest/patch-2
 Mod: tools/maidroid
 
 origin	https://github.com/minetest-mods/orbs_of_time/ (fetch)
@@ -347,5 +347,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master 4a55638 [origin/master] re-organise spawning checks (lightest first)
+* master 7b7aa45 [origin/master] have protection check right before spawning mob
 Mod: mobs_redo/mobs_redo
