@@ -27,12 +27,15 @@ local function place_beans(itemstack, placer, pointed_thing, plantname)
 	-- am I right-clicking on something that has a custom on_place set?
 	-- thanks to Krock for helping with this issue :)
 	local def = minetest.registered_nodes[under.name]
-	if def and def.on_rightclick then
+	if placer and def and def.on_rightclick then
 		return def.on_rightclick(pt.under, under, placer, itemstack)
 	end
 
+	-- is player planting crop?
+	local name = placer and placer:get_player_name() or ""
+
 	-- check for protection
-	if minetest.is_protected(pt.under, placer:get_player_name()) then
+	if minetest.is_protected(pt.under, name) then
 		return
 	end
 
@@ -46,7 +49,7 @@ local function place_beans(itemstack, placer, pointed_thing, plantname)
 
 	minetest.sound_play("default_place_node", {pos = pt.under, gain = 1.0})
 
-	if not farming.is_creative(placer:get_player_name()) then
+	if placer or not farming.is_creative(placer:get_player_name()) then
 
 		itemstack:take_item()
 

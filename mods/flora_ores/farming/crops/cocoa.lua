@@ -21,7 +21,7 @@ local function place_cocoa(itemstack, placer, pointed_thing, plantname)
 	-- am I right-clicking on something that has a custom on_place set?
 	-- thanks to Krock for helping with this issue :)
 	local def = minetest.registered_nodes[under.name]
-	if def and def.on_rightclick then
+	if placer and def and def.on_rightclick then
 		return def.on_rightclick(pt.under, under, placer, itemstack)
 	end
 
@@ -31,8 +31,11 @@ local function place_cocoa(itemstack, placer, pointed_thing, plantname)
 		return
 	end
 
+	-- is player planting crop?
+	local name = placer and placer:get_player_name() or ""
+
 	-- check for protection
-	if minetest.is_protected(pt.above, placer:get_player_name()) then
+	if minetest.is_protected(pt.above, name) then
 		return
 	end
 
@@ -41,7 +44,7 @@ local function place_cocoa(itemstack, placer, pointed_thing, plantname)
 
 	minetest.sound_play("default_place_node", {pos = pt.above, gain = 1.0})
 
-	if not farming.is_creative(placer:get_player_name()) then
+	if placer and not farming.is_creative(placer:get_player_name()) then
 
 		itemstack:take_item()
 
@@ -124,7 +127,13 @@ local crop_def = {
 		snappy = 3, flammable = 2, plant = 1, growing = 1,
 		not_in_creative_inventory=1, leafdecay = 1, leafdecay_drop = 1
 	},
-	sounds = default.node_sound_leaves_defaults()
+	sounds = default.node_sound_leaves_defaults(),
+	growth_check = function(pos, node_name)
+		if minetest.find_node_near(pos, 1, {"default:jungletree"}) then
+			return false
+		end
+		return true
+	end,
 }
 
 -- stage 1
@@ -146,6 +155,7 @@ minetest.register_node("farming:cocoa_3", table.copy(crop_def))
 -- stage 4 (final)
 crop_def.tiles = {"farming_cocoa_4.png"}
 crop_def.groups.growing = 0
+crop_def.growth_check = nil
 crop_def.drop = {
 	items = {
 		{items = {'farming:cocoa_beans 2'}, rarity = 1},

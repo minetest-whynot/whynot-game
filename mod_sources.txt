@@ -114,14 +114,14 @@ origin	https://gitlab.com/zombiebot/weather_pack (fetch)
 Mod: ambience/weather_pack
 
 origin	https://github.com/stujones11/minetest-3d_armor (fetch)
-* master 656bcf3 [origin/master] Bump version to 0.4.12
+* master c0d45ce [origin/master] show fire: value
 Mod: 3d_armor/3d_armor
 Mod: 3d_armor/3d_armor_stand
 Mod: 3d_armor/shields
 Mod: 3d_armor/wieldview
 
 origin	https://notabug.org/TenPlus1/farming (fetch)
-* master 9d67280 [origin/master] fix hemp block stair naming
+* master 10abb99 [origin/master] nil check
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
@@ -149,7 +149,7 @@ origin	https://github.com/SmallJoker/boost_cart (fetch)
 Mod: tools/boost_cart
 
 origin	https://github.com/minetest-mods/ccompass (fetch)
-* master 67cbe3c [origin/master: ahead 2] whitespace fix
+* master c5a6e43 [origin/master] Merge pull request #7 from minetest-mods/teleporter
 Mod: tools/ccompass
 
 origin	https://github.com/bell07/minetest-doc_reveal_chest (fetch)
@@ -161,7 +161,7 @@ origin	https://github.com/orwell96/engrave/ (fetch)
 Mod: tools/engrave
 
 origin	https://github.com/Ezhh/handholds (fetch)
-* master 0421f06 [origin/master] Fix typo that causes crash on tool use
+* master c71cfd6 [origin/master] Allow remove_handholds function to correctly handle nodes from other mods
 Mod: tools/handholds
 
 origin	https://github.com/petermaloney/helicopter (fetch)
@@ -177,7 +177,6 @@ origin	https://github.com/minetest-mods/jumping (fetch)
 Mod: tools/jumping
 
 origin	https://github.com/tacigar/maidroid (fetch)
-rui	https://github.com/Rui-Minetest/maidroid (fetch)
 * master 3b414ef [origin/master] Merge pull request #175 from Rui-Minetest/patch-2
 Mod: tools/maidroid
 
@@ -290,7 +289,7 @@ Mod: mydoors/my_old_doors
 Mod: mydoors/my_old_doors
 
 origin	https://github.com/rubenwardy/food (fetch)
-* master 1be3399 [origin/master: ahead 3] Merge remote-tracking branch 'origin/master'
+* master 5e85255 [origin/master: ahead 2] removed redundant check for installed mod
 Mod: food_modpack/food
 Mod: food_modpack/food_basic
 

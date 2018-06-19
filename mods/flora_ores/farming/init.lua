@@ -7,7 +7,7 @@
 
 farming = {}
 farming.mod = "redo"
-farming.version = "20180609"
+farming.version = "20180617"
 farming.path = minetest.get_modpath("farming")
 farming.select = {
 	type = "fixed",
@@ -301,11 +301,16 @@ function farming.plant_growth_timer(pos, elapsed, node_name)
 		return false
 	end
 
-	if stages.plant_name == "farming:cocoa" then
+	-- custom growth check
+	local chk = minetest.registered_nodes[node_name].growth_check
 
-		if not minetest.find_node_near(pos, 1, {"default:jungletree"}) then
+	if chk then
+
+		if chk(pos, node_name) then
 			return true
 		end
+
+	-- otherwise check for wet soil beneath crop
 	else
 		local under = minetest.get_node({ x = pos.x, y = pos.y - 1, z = pos.z })
 
@@ -414,7 +419,7 @@ function farming.place_seed(itemstack, placer, pointed_thing, plantname)
 	-- am I right-clicking on something that has a custom on_place set?
 	-- thanks to Krock for helping with this issue :)
 	local def = minetest.registered_nodes[under.name]
-	if def and def.on_rightclick then
+	if placer and def and def.on_rightclick then
 		return def.on_rightclick(pt.under, under, placer, itemstack)
 	end
 
@@ -439,8 +444,11 @@ function farming.place_seed(itemstack, placer, pointed_thing, plantname)
 		return
 	end
 
+	-- is player planting seed?
+	local name = placer and placer:get_player_name() or ""
+
 	-- if not protected then add node and remove 1 item from the itemstack
-	if not minetest.is_protected(pt.above, placer:get_player_name()) then
+	if not minetest.is_protected(pt.above, name) then
 
 		local p2 = minetest.registered_nodes[plantname].place_param2 or 1
 
@@ -450,7 +458,7 @@ function farming.place_seed(itemstack, placer, pointed_thing, plantname)
 
 		minetest.sound_play("default_place_node", {pos = pt.above, gain = 1.0})
 
-		if not placer or not farming.is_creative(placer:get_player_name()) then
+		if placer and not farming.is_creative(placer:get_player_name()) then
 
 			local name = itemstack:get_name()
 
