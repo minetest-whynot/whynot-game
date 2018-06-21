@@ -20,5 +20,6 @@ Change log:
 - 0.4 - Added support for stamina mod
 - 0.5 - Added Orange and Bread cake (thanks to CalebDavis)
 - 0.6 - Now uses food_ groups to craft cakes easier
+- 0.7 - Added aliases for older pie mod by Mitroman
 
 Lucky Blocks: 12

@@ -11,36 +11,10 @@ minetest.register_craftitem("farming:coffee_beans", {
 	end,
 })
 
-
--- drinking cup
-minetest.register_node("farming:drinking_cup", {
-	description = S("Drinking Cup (empty)"),
-	drawtype = "plantlike",
-	tiles = {"vessels_drinking_cup.png"},
-	inventory_image = "vessels_drinking_cup.png",
-	wield_image = "vessels_drinking_cup.png",
-	paramtype = "light",
-	walkable = false,
-	selection_box = {
-		type = "fixed",
-		fixed = {-0.25, -0.5, -0.25, 0.25, 0.25, 0.25}
-	},
-	groups = {vessel = 1, dig_immediate = 3, attached_node = 1},
-	sounds = default.node_sound_glass_defaults(),
-})
-
-minetest.register_craft( {
-	output = "farming:drinking_cup 5",
-	recipe = {
-		{ "default:glass", "", "default:glass" },
-		{"", "default:glass",""},
-	}
-})
-
 -- cold cup of coffee
 minetest.register_node("farming:coffee_cup", {
-	description = S("Cold Cup of Coffee"),
-	drawtype = "plantlike",
+	description = S("Cup of Coffee"),
+	drawtype = "torchlike", --"plantlike",
 	tiles = {"farming_coffee_cup.png"},
 	inventory_image = "farming_coffee_cup.png",
 	wield_image = "farming_coffee_cup.png",
@@ -51,41 +25,22 @@ minetest.register_node("farming:coffee_cup", {
 		fixed = {-0.25, -0.5, -0.25, 0.25, 0.25, 0.25}
 	},
 	groups = {vessel = 1, dig_immediate = 3, attached_node = 1},
-	on_use = minetest.item_eat(2, "farming:drinking_cup"),
+	on_use = minetest.item_eat(2, "vessels:drinking_glass"),
 	sounds = default.node_sound_glass_defaults(),
 })
+
+minetest.register_alias("farming:coffee_cup_hot", "farming:coffee_cup")
+minetest.register_alias("farming:drinking_cup", "vessels:drinking_glass")
 
 minetest.register_craft( {
 	output = "farming:coffee_cup",
-	recipe = {
-		{"farming:drinking_cup", "group:food_coffee","bucket:bucket_water"},
-	},
-	replacements = {{"bucket:bucket_water", "bucket:bucket_empty"}}
-})
-
-minetest.register_craft({
-	type = "cooking",
-	cooktime = 5,
-	output = "farming:coffee_cup_hot",
-	recipe = "farming:coffee_cup"
-})
-
--- hot cup of coffee
-minetest.register_node("farming:coffee_cup_hot", {
-	description = S("Hot Cup of Coffee"),
-	drawtype = "plantlike",
-	tiles = {"farming_coffee_cup_hot.png"},
-	inventory_image = "farming_coffee_cup_hot.png",
-	wield_image = "farming_coffee_cup_hot.png",
-	paramtype = "light",
-	walkable = false,
-	selection_box = {
-		type = "fixed",
-		fixed = {-0.25, -0.5, -0.25, 0.25, 0.25, 0.25}
-	},
-	groups = {vessel = 1, dig_immediate = 3, attached_node = 1},
-	on_use = minetest.item_eat(3, "farming:drinking_cup"),
-	sounds = default.node_sound_glass_defaults(),
+	type = "shapeless",
+	recipe = {"vessels:drinking_glass", "group:food_coffee",
+		"bucket:bucket_water", "group:food_saucepan"},
+	replacements = {
+		{"bucket:bucket_water", "bucket:bucket_empty"},
+		{"group:food_saucepan", "farming:saucepan"},
+	}
 })
 
 -- coffee definition

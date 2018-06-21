@@ -82,7 +82,7 @@ Mod: player/show_wielded_item
 
 bell07	https://github.com/bell07/minetest-skinsdb (fetch)
 origin	https://github.com/minetest-mods/skinsdb (fetch)
-* master     bd8a575 [origin/master] Merge pull request #14 from bell07/default_dependency_fix
+* master           bd8a575 [origin/master] Merge pull request #14 from bell07/default_dependency_fix
 Mod: player/skinsdb
 
 origin	https://github.com/bell07/minetest-smart_inventory (fetch)
@@ -121,7 +121,7 @@ Mod: 3d_armor/shields
 Mod: 3d_armor/wieldview
 
 origin	https://notabug.org/TenPlus1/farming (fetch)
-* master 10abb99 [origin/master] nil check
+* master b6a970b [origin/master] removed drinking_cup, changed coffee recipe, recycle mixing bowl recipe
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
@@ -161,7 +161,7 @@ origin	https://github.com/orwell96/engrave/ (fetch)
 Mod: tools/engrave
 
 origin	https://github.com/Ezhh/handholds (fetch)
-* master c71cfd6 [origin/master] Allow remove_handholds function to correctly handle nodes from other mods
+* master c9ef9a8 [origin/master] Add silver and desert sandstone handholds
 Mod: tools/handholds
 
 origin	https://github.com/petermaloney/helicopter (fetch)
@@ -307,7 +307,7 @@ origin	https://github.com/Philipbenr/mtfoods (fetch)
 Mod: food/mtfoods
 
 origin	https://notabug.org/TenPlus1/pie (fetch)
-* master c441cda [origin/master] use globals instead of modpath
+* master f5365bc [origin/master] add aliases for older pie mod by Mitroman
 Mod: food/pie
 
 origin	https://github.com/GreenXenith/waffles (fetch)

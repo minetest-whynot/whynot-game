@@ -307,4 +307,17 @@ lucky_block:add_blocks({
 end
 
 
+-- some aliases for older pie mod by Mitroman
+minetest.register_alias("pie:apie_0", "pie:pie_0")
+minetest.register_alias("pie:apie_1", "pie:pie_1")
+minetest.register_alias("pie:apie_2", "pie:pie_2")
+minetest.register_alias("pie:apie_3", "pie:pie_3")
+minetest.register_alias("pie:piebatter", "pie:pie_0")
+minetest.register_alias("pie:apiebatter", "pie:pie_0")
+minetest.register_alias("pie:amuffinbatter", "pie:pie_0")
+minetest.register_alias("pie:applemuffin", "pie:pie_0")
+minetest.register_alias("pie:sugar", "farming:sugar")
+minetest.register_alias("pie:knife", "default:sword_steel")
+
+
 print ("[MOD] Pie loaded")

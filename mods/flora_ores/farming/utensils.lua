@@ -147,3 +147,12 @@ minetest.register_craft({
 		{"", "default:glass", ""},
 	}
 })
+
+minetest.register_craft( {
+	type = "shapeless",
+	output = "vessels:glass_fragments",
+	recipe = {
+		"farming:mixing_bowl",
+		"farming:mixing_bowl",
+	},
+})

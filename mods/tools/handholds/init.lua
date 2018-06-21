@@ -122,6 +122,20 @@ handholds.register_handholds("sandstone", {
 	drop = 'default:sandstone',
 })
 
+handholds.register_handholds("silver_sandstone", {
+	original_mod = "default",
+	description = "Silver Sandstone Handholds",
+	tiles = "default_silver_sandstone.png",
+	drop = 'default:silver_sandstone',
+})
+
+handholds.register_handholds("desert_sandstone", {
+	original_mod = "default",
+	description = "Desert Sandstone Handholds",
+	tiles = "default_desert_sandstone.png",
+	drop = 'default:desert_sandstone',
+})
+
 handholds.register_handholds("ice", {
 	original_mod = "default",
 	description = "Ice Handholds",
@@ -185,6 +199,12 @@ minetest.register_tool("handholds:climbing_pick", {
 			elseif node_name == "default:sandstone" then
 				minetest.set_node(pointed_thing.under,
 					{name = "handholds:sandstone", param2 = rotation})
+			elseif node_name == "default:silver_sandstone" then
+				minetest.set_node(pointed_thing.under,
+					{name = "handholds:silver_sandstone", param2 = rotation})
+			elseif node_name == "default:desert_sandstone" then
+				minetest.set_node(pointed_thing.under,
+					{name = "handholds:desert_sandstone", param2 = rotation})
 			elseif node_name == "default:ice" then
 				minetest.set_node(pointed_thing.under,
 					{name = "handholds:ice", param2 = rotation})
