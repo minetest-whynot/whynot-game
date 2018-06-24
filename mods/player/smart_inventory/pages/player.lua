@@ -1,7 +1,10 @@
 smart_inventory.skins_mod = minetest.get_modpath("skinsdb")
 smart_inventory.armor_mod = minetest.get_modpath("3d_armor")
+smart_inventory.clothing_mod = minetest.get_modpath("clothing")
 
-if not smart_inventory.skins_mod and not smart_inventory.armor_mod then
+if not smart_inventory.skins_mod and
+		not smart_inventory.armor_mod and
+		not smart_inventory.clothing_mod then
 	return
 end
 
@@ -14,48 +17,71 @@ local creative = minetest.setting_getbool("creative_mode")
 local function update_grid(state, listname)
 -- Update the users inventory grid
 	local list = {}
-	state.param["armor_"..listname.."_list"] = list
+	state.param["player_"..listname.."_list"] = list
 	local name = state.location.rootState.location.player
 
-	local inventory
-	if listname == "armor" then
-		inventory = minetest.get_inventory({type="detached", name=name.."_armor"})
+	local invlist_tab = {}
+	if listname == "main" then
+		local inventory = minetest.get_player_by_name(name):get_inventory()
+		invlist = inventory and inventory:get_list("main")
+		table.insert(invlist_tab, invlist)
 	else
-		inventory = minetest.get_player_by_name(name):get_inventory()
+		if smart_inventory.armor_mod then
+			local inventory = minetest.get_inventory({type="detached", name=name.."_armor"})
+			local invlist = inventory and inventory:get_list("armor") or invlist
+			if invlist then
+				table.insert(invlist_tab, invlist)
+			end
+		end
+		if smart_inventory.clothing_mod then
+			local inventory = minetest.get_player_by_name(name):get_inventory()
+			local invlist = inventory and inventory:get_list('clothing')
+			if invlist then
+				table.insert(invlist_tab, invlist)
+			end
+		end
 	end
-	if not inventory then  --timing issue. The list is not created
-		return
-	end
-	local invlist = inventory:get_list(listname)
 
 	local list_dedup = {}
-	for stack_index, stack in ipairs(invlist) do
-		local itemdef = stack:get_definition()
-		local is_armor = false
-		if itemdef then
-			cache.add_item(itemdef) -- analyze groups in case of hidden armor
-			if cache.citems[itemdef.name].cgroups["armor"] then
-				local entry = {}
-				for k, v in pairs(cache.citems[itemdef.name].ui_item) do
-					entry[k] = v
+	for _, invlist in ipairs(invlist_tab) do
+		for stack_index, stack in ipairs(invlist) do
+			local itemdef = stack:get_definition()
+			local is_armor = false
+			if itemdef then
+				cache.add_item(itemdef) -- analyze groups in case of hidden armor
+				if cache.citems[itemdef.name].cgroups["armor"] or cache.citems[itemdef.name].cgroups["clothing"] then
+					local entry = {}
+					for k, v in pairs(cache.citems[itemdef.name].ui_item) do
+						entry[k] = v
+					end
+					entry.stack_index = stack_index
+					local wear = stack:get_wear()
+					if wear > 0 then
+						entry.text = tostring(math.floor((1 - wear / 65535) * 100 + 0.5)).." %"
+					end
+					table.insert(list, entry)
+					list_dedup[itemdef.name] = itemdef
 				end
-				entry.stack_index = stack_index
-				local wear = stack:get_wear()
-				if wear > 0 then
-					entry.text = tostring(math.floor((1 - wear / 65535) * 100 + 0.5)).." %"
-				end
-				table.insert(list, entry)
-				list_dedup[itemdef.name] = itemdef
 			end
 		end
 	end
 
 	-- add all usable in creative available armor to the main list
 	if listname == "main" and creative == true then
-		for _, itemdef in pairs(cache.cgroups["armor"].items) do
-			if not list_dedup[itemdef.name] and not itemdef.groups.not_in_creative_inventory then
-				list_dedup[itemdef.name] = itemdef
-				table.insert(list, cache.citems[itemdef.name].ui_item)
+		if smart_inventory.armor_mod then
+			for _, itemdef in pairs(cache.cgroups["armor"].items) do
+				if not list_dedup[itemdef.name] and not itemdef.groups.not_in_creative_inventory then
+					list_dedup[itemdef.name] = itemdef
+					table.insert(list, cache.citems[itemdef.name].ui_item)
+				end
+			end
+		end
+		if smart_inventory.clothing_mod then
+			for _, itemdef in pairs(cache.cgroups["clothing"].items) do
+				if not list_dedup[itemdef.name] and not itemdef.groups.not_in_creative_inventory then
+					list_dedup[itemdef.name] = itemdef
+					table.insert(list, cache.citems[itemdef.name].ui_item)
+				end
 			end
 		end
 	end
@@ -86,13 +112,16 @@ end
 local function update_page(state)
 	local name = state.location.rootState.location.player
 	local player_obj = minetest.get_player_by_name(name)
-	local skin_obj
-	if smart_inventory.skins_mod then
-		skin_obj = skins.get_player_skin(player_obj)
-	end
-	if smart_inventory.armor_mod then
+	local skin_obj = smart_inventory.skins_mod and skins.get_player_skin(player_obj)
+
+	-- Update grid lines
+	if smart_inventory.armor_mod or smart_inventory.clothing_mod then
 		update_grid(state, "main")
-		update_grid(state, "armor")
+		update_grid(state, "overlay")
+	end
+
+	-- Update preview area and armor informations list
+	if smart_inventory.armor_mod then
 		state:get("preview"):setImage(armor.textures[name].preview)
 		state.location.parentState:get("player_button"):setImage(armor.textures[name].preview)
 		local a_list = state:get("a_list")
@@ -148,7 +177,13 @@ local function update_page(state)
 		local skin_preview = skin_obj:get_preview()
 		state.location.parentState:get("player_button"):setImage(skin_preview)
 		state:get("preview"):setImage(skin_preview)
+	elseif smart_inventory.clothing_mod then
+		update_selected_item(state)
+		state.location.parentState:get("player_button"):setImage('inventory_plus_clothing.png')
+		state:get("preview"):setImage('blank.png') --TODO: build up clothing preview
 	end
+
+	-- Update skins list and skins info area
 	if skin_obj then
 		local m_name = skin_obj:get_meta_string("name")
 		local m_author = skin_obj:get_meta_string("author")
@@ -250,20 +285,56 @@ local function move_item_to_armor(state, item)
 	end
 end
 
+local function move_item_to_clothing(state, item)
+	local name = state.location.rootState.location.player
+	local player = minetest.get_player_by_name(name)
+	local inventory = player:get_inventory()
+
+	for stack_index, stack in ipairs(inventory:get_list("clothing")) do
+		if stack:is_empty() then
+			inventory:set_stack("clothing", stack_index, item.item)
+			clothing:set_player_clothing(player)
+			-- handle put backs in non-creative to not lost items
+			if creative == false then
+				local itemstack = inventory:get_stack("main", item.stack_index)
+				itemstack:take_item()
+				inventory:set_stack("main", item.stack_index, itemstack)
+			end
+			break
+		end
+	end
+
+end
+
 local function move_item_to_inv(state, item)
 	local name = state.location.rootState.location.player
 	local player = minetest.get_player_by_name(name)
 	local inventory = player:get_inventory()
-	local armor_inv = minetest.get_inventory({type="detached", name=name.."_armor"})
-	local itemstack = armor_inv:get_stack("armor", item.stack_index)
-	if creative == true then
-		-- trash armor item in creative
-		itemstack = ItemStack("")
-	else
-		itemstack = inventory:add_item("main", itemstack)
+
+	if cache.cgroups["armor"] and cache.cgroups["armor"].items[item.item] then
+		local armor_inv = minetest.get_inventory({type="detached", name=name.."_armor"})
+		local itemstack = armor_inv:get_stack("armor", item.stack_index)
+		if creative == true then
+			-- trash armor item in creative
+			itemstack = ItemStack("")
+		else
+			itemstack = inventory:add_item("main", itemstack)
+		end
+		armor_inv:set_stack("armor", item.stack_index, itemstack)
+		minetest.detached_inventories[name.."_armor"].on_take(armor_inv, "armor", item.stack_index, itemstack, player)
+
+	elseif cache.cgroups["clothing"] and cache.cgroups["clothing"].items[item.item] then
+		local itemstack = inventory:get_stack("clothing", item.stack_index)
+		if creative == true then
+			-- trash clothing item in creative
+			itemstack = ItemStack("")
+		else
+			itemstack = inventory:add_item("main", itemstack)
+		end
+		inventory:set_stack("clothing", item.stack_index, itemstack)
+		clothing:set_player_clothing(player)
 	end
-	armor_inv:set_stack("armor", item.stack_index, itemstack)
-	minetest.detached_inventories[name.."_armor"].on_take(armor_inv, "armor", item.stack_index, itemstack, player)
+
 end
 
 local function player_callback(state)
@@ -282,21 +353,26 @@ local function player_callback(state)
 
 	state:background(0, 0, 20, 1, "top_bg", "halo.png")
 	state:background(0, 8, 20, 2, "bottom_bg", "halo.png")
-	if smart_inventory.armor_mod then
-		local grid_armor = smart_inventory.smartfs_elements.buttons_grid(state, 0, 0, 8, 1, "armor_grid")
+	if smart_inventory.armor_mod or smart_inventory.clothing_mod then
+		local grid_overlay = smart_inventory.smartfs_elements.buttons_grid(state, 0, 0, 20, 1, "overlay_grid")
 
-		grid_armor:onClick(function(self, state, index, player)
-			if state.param.armor_armor_list[index] then
-				update_selected_item(state, state.param.armor_armor_list[index])
-				move_item_to_inv(state, state.param.armor_armor_list[index])
+		grid_overlay:onClick(function(self, state, index, player)
+			if state.param.player_overlay_list[index] then
+				update_selected_item(state, state.param.player_overlay_list[index])
+				move_item_to_inv(state, state.param.player_overlay_list[index])
 				update_page(state)
 			end
 		end)
 
 		local grid_main = smart_inventory.smartfs_elements.buttons_grid(state, 0, 8, 20, 2, "main_grid")
 		grid_main:onClick(function(self, state, index, player)
-			update_selected_item(state, state.param.armor_main_list[index])
-			move_item_to_armor(state, state.param.armor_main_list[index])
+			update_selected_item(state, state.param.player_main_list[index])
+			local item = state.param.player_main_list[index]
+			if cache.citems[item.item].cgroups["armor"] then
+				move_item_to_armor(state, state.param.player_main_list[index])
+			elseif cache.citems[item.item].cgroups["clothing"]  then
+				move_item_to_clothing(state, state.param.player_main_list[index])
+			end
 			update_page(state)
 		end)
 	end

@@ -35,9 +35,9 @@ The vision is to get items fast searchable and gettable
 ![Screenshot](https://github.com/bell07/minetest-smart_inventory/blob/master/screenshot_player.png)
 The vision is to get all skins and player customizations visual exposed.
 
-### 3d_armor
-In creative mode there are all armor items available for 3d_armor support. The players inventory is not used in this mode. In survival only the armor from players inventory is shown.
-Supported version: current stable 0.4.8
+### 3d_armor / clothing
+In creative mode all useable armor and clothing items available. The players inventory is not used in this mode. In survival only the armor and clothing from players inventory 
+is shown.
 
 ### skins
 tested only with my fork https://github.com/bell07/minetest-skinsdb

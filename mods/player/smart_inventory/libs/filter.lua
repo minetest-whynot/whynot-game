@@ -299,6 +299,16 @@ filter.register_filter({
 		end,
 	})
 
+filter.register_filter({
+		name = 'clothing_cape',
+		check_item_by_def = function(self, def)
+			if def.groups.cape then
+				return 'clothing'
+			end
+		end
+	})
+
+
 -- Burn times
 filter.register_filter({
 		name = "fuel",
@@ -345,7 +355,7 @@ filter.register_filter({
 				return true
 			end
 		end
-})
+	})
 
 ----------------
 return filter

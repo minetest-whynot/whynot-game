@@ -60,6 +60,11 @@ origin	https://github.com/minetest-mods/character_creator (fetch)
 * master ab07f3f [origin/master] Redefinition of change_skin function to proper handle skins updates by skinsdb (#14)
 Mod: player/character_creator
 
+bell07	https://github.com/bell07/clothing (fetch)
+origin	https://github.com/stujones11/clothing (fetch)
+* master 02ba2d2 [origin/master: ahead 2] Merge remote-tracking branch 'origin/master'
+Mod: player/clothing
+
 origin	https://github.com/minetest-mods/cozy (fetch)
 * master cd166a7 [origin/master] Initial checkin
 Mod: player/cozy
@@ -82,11 +87,11 @@ Mod: player/show_wielded_item
 
 bell07	https://github.com/bell07/minetest-skinsdb (fetch)
 origin	https://github.com/minetest-mods/skinsdb (fetch)
-* master           bd8a575 [origin/master] Merge pull request #14 from bell07/default_dependency_fix
+* master     2900d78 [origin/master] Merge pull request #16 from bell07/clothing_support
 Mod: player/skinsdb
 
 origin	https://github.com/bell07/minetest-smart_inventory (fetch)
-* master     07e3298 [origin/master] add listring between main and craft inventories
+* master     c5e25f0 [origin/master] clothing support in skinsdb mode
 Mod: player/smart_inventory
 
 origin	https://github.com/GunshipPenguin/sprint (fetch)
@@ -346,5 +351,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master 7b7aa45 [origin/master] have protection check right before spawning mob
+* master 7ed80b6 [origin/master] add new api with test mob spawner NOT using abm's
 Mod: mobs_redo/mobs_redo
