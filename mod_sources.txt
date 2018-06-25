@@ -91,7 +91,7 @@ origin	https://github.com/minetest-mods/skinsdb (fetch)
 Mod: player/skinsdb
 
 origin	https://github.com/bell07/minetest-smart_inventory (fetch)
-* master     c5e25f0 [origin/master] clothing support in skinsdb mode
+* master     4cd3f8b [origin/master] typo fixes
 Mod: player/smart_inventory
 
 origin	https://github.com/GunshipPenguin/sprint (fetch)
@@ -269,8 +269,9 @@ origin	https://github.com/minetest-mods/unifieddyes (fetch)
 * master cd130cf [origin/master] Merge pull request #23 from katkaha/dye_aliases
 Mod: decor/unifieddyes
 
+bell07	https://gitlab.com/bell07/homedecor_modpack (fetch)
 origin	https://gitlab.com/VanessaE/homedecor_modpack/ (fetch)
-* master 9e69a6d [origin/master] more set_int fixes
+* master 04cb594 [origin/master: ahead 1] bugfix wardrobe save/restore skins for skinsdb
 Mod: homedecor_modpack/homedecor_i18n
 Mod: homedecor_modpack/homedecor
 Mod: homedecor_modpack/building_blocks

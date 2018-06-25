@@ -23,12 +23,12 @@ local function update_grid(state, listname)
 	local invlist_tab = {}
 	if listname == "main" then
 		local inventory = minetest.get_player_by_name(name):get_inventory()
-		invlist = inventory and inventory:get_list("main")
+		local invlist = inventory and inventory:get_list("main")
 		table.insert(invlist_tab, invlist)
 	else
 		if smart_inventory.armor_mod then
 			local inventory = minetest.get_inventory({type="detached", name=name.."_armor"})
-			local invlist = inventory and inventory:get_list("armor") or invlist
+			local invlist = inventory and inventory:get_list("armor")
 			if invlist then
 				table.insert(invlist_tab, invlist)
 			end
