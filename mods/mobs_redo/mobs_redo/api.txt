@@ -71,9 +71,11 @@ functions needed for the mob to work properly which contains the following:
    'docile_by_day'       when true has mobs wandering around during daylight
                          hours and only attacking player at night or when
                          provoked.
-   'attacks_monsters'    when true has npc's attacking monsters or not.
-   'attack_animals'      when true will have monsters attacking animals.
-   'owner_loyal'         when true will have tamed mobs attack anything player
+   'attack_monsters'     when true mob will attack monsters.
+   'attack_animals'      when true mob will attack animals.
+   'attack_npcs'         when true mob will attack npcs within range.
+   'attack_players'      when true mob will attack players nearby.
+   'owner_loyal'         when true non-docile tamed mobs attack anything player
                          punches when nearby.
    'group_attack'        when true has same mob type grouping together to attack
                          offender.

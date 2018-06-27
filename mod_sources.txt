@@ -62,7 +62,7 @@ Mod: player/character_creator
 
 bell07	https://github.com/bell07/clothing (fetch)
 origin	https://github.com/stujones11/clothing (fetch)
-* master 02ba2d2 [origin/master: ahead 2] Merge remote-tracking branch 'origin/master'
+* master 3d55e5d [origin/master] make multiskin optional
 Mod: player/clothing
 
 origin	https://github.com/minetest-mods/cozy (fetch)
@@ -352,5 +352,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master 7ed80b6 [origin/master] add new api with test mob spawner NOT using abm's
+* master e145fe0 [origin/master] update readme
 Mod: mobs_redo/mobs_redo

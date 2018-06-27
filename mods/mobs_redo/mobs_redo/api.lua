@@ -3,7 +3,7 @@
 
 mobs = {}
 mobs.mod = "redo"
-mobs.version = "20180617"
+mobs.version = "20180627"
 
 
 -- Intllib
@@ -127,15 +127,15 @@ local set_velocity = function(self, v)
 
 	-- do not move if mob has been ordered to stay
 	if self.order == "stand" then
-		self.object:setvelocity({x = 0, y = 0, z = 0})
+		self.object:set_velocity({x = 0, y = 0, z = 0})
 		return
 	end
 
 	local yaw = (self.object:get_yaw() or 0) + self.rotate
 
-	self.object:setvelocity({
+	self.object:set_velocity({
 		x = sin(yaw) * -v,
-		y = self.object:getvelocity().y,
+		y = self.object:get_velocity().y,
 		z = cos(yaw) * v
 	})
 end
@@ -144,7 +144,7 @@ end
 -- calculate mob velocity
 local get_velocity = function(self)
 
-	local v = self.object:getvelocity()
+	local v = self.object:get_velocity()
 
 	return (v.x * v.x + v.z * v.z) ^ 0.5
 end
@@ -411,7 +411,7 @@ local item_drop = function(self, cooked)
 
 			if obj and obj:get_luaentity() then
 
-				obj:setvelocity({
+				obj:set_velocity({
 					x = random(-10, 10) / 9,
 					y = 6,
 					z = random(-10, 10) / 9,
@@ -639,7 +639,7 @@ local do_env_damage = function(self)
 ]]
 	-- don't fall when on ignore, just stand still
 	if self.standing_in == "ignore" then
-		self.object:setvelocity({x = 0, y = 0, z = 0})
+		self.object:set_velocity({x = 0, y = 0, z = 0})
 	end
 
 	local nodef = minetest.registered_nodes[self.standing_in]
@@ -719,7 +719,7 @@ local do_jump = function(self)
 	-- something stopping us while moving?
 	if self.state ~= "stand"
 	and get_velocity(self) > 0.5
-	and self.object:getvelocity().y ~= 0 then
+	and self.object:get_velocity().y ~= 0 then
 		return false
 	end
 
@@ -761,13 +761,13 @@ local do_jump = function(self)
 		if not nod.name:find("fence")
 		and not nod.name:find("gate") then
 
-			local v = self.object:getvelocity()
+			local v = self.object:get_velocity()
 
 			v.y = self.jump_height
 
 			set_animation(self, "jump") -- only when defined
 
-			self.object:setvelocity(v)
+			self.object:set_velocity(v)
 
 			-- when in air move forward
 			minetest.after(0.3, function(self, v)
@@ -879,7 +879,7 @@ local breed = function(self)
 				self.on_grown(self)
 			else
 				-- jump when fully grown so as not to fall into ground
-				self.object:setvelocity({
+				self.object:set_velocity({
 					x = 0,
 					y = self.jump_height,
 					z = 0
@@ -1027,7 +1027,7 @@ local replace = function(self, pos)
 	or not self.replace_rate
 	or not self.replace_what
 	or self.child == true
-	or self.object:getvelocity().y ~= 0
+	or self.object:get_velocity().y ~= 0
 	or random(1, self.replace_rate) > 1 then
 		return
 	end
@@ -1283,7 +1283,7 @@ local smart_mobs = function(self, s, p, dist, dtime)
 					end
 
 					s.y = s.y - sheight
-					self.object:setpos({x = s.x, y = s.y + 2, z = s.z})
+					self.object:set_pos({x = s.x, y = s.y + 2, z = s.z})
 
 				else -- dig 2 blocks to make door toward player direction
 
@@ -1366,114 +1366,81 @@ local specific_attack = function(list, what)
 end
 
 
--- monster find someone to attack
-local monster_attack = function(self)
+-- general attack function for all mobs ==========
+local general_attack = function(self)
 
-	if self.type ~= "monster"
-	or not damage_enabled
-	or creative
+	-- return if already attacking, passive or docile during day
+	if self.passive
 	or self.state == "attack"
 	or day_docile(self) then
 		return
 	end
 
 	local s = self.object:get_pos()
-	local p, sp, dist
-	local player, obj, min_player
-	local type, name = "", ""
-	local min_dist = self.view_range + 1
 	local objs = minetest.get_objects_inside_radius(s, self.view_range)
 
+	-- remove entities we aren't interested in
 	for n = 1, #objs do
 
+		local ent = objs[n]:get_luaentity()
+
+		-- are we a player?
 		if objs[n]:is_player() then
 
-			if mobs.invis[ objs[n]:get_player_name() ] then
-
-				type = ""
-			else
-				player = objs[n]
-				type = "player"
-				name = "player"
+			-- if player invisible or mob not setup to attack then remove from list
+			if self.attack_players == false
+			or (self.owner and self.type ~= "monster")
+			or mobs.invis[objs[n]:get_player_name()]
+			or not specific_attack(self.specific_attack, "player") then
+				objs[n] = nil
+--print("- pla", n)
 			end
+
+		-- or are we a mob?
+		elseif ent and ent._cmi_is_mob then
+
+			-- remove mobs not to attack
+			if self.name == ent.name
+			or (not self.attack_animals and ent.type == "animal")
+			or (not self.attack_monsters and ent.type == "monster")
+			or (not self.attack_npcs and ent.type == "npc")
+			or not specific_attack(self.specific_attack, ent.name) then
+				objs[n] = nil
+--print("- mob", n, self.name, ent.name)
+			end
+
+		-- remove all other entities
 		else
-			obj = objs[n]:get_luaentity()
-
-			if obj then
-				player = obj.object
-				type = obj.type
-				name = obj.name or ""
-			end
-		end
-
-		-- find specific mob to attack, failing that attack player/npc/animal
-		if specific_attack(self.specific_attack, name)
-		and (type == "player" or type == "npc"
-			or (type == "animal" and self.attack_animals == true)) then
-
-			p = player:get_pos()
-			sp = s
-
-			dist = get_distance(p, s)
-
-			-- aim higher to make looking up hills more realistic
-			p.y = p.y + 1
-			sp.y = sp.y + 1
-
-
-			-- choose closest player to attack
-			if dist < min_dist
-			and line_of_sight(self, sp, p, 2) == true then
-				min_dist = dist
-				min_player = player
-			end
+--print(" -obj", n)
+			objs[n] = nil
 		end
 	end
 
-	-- attack player
-	if min_player then
-		do_attack(self, min_player)
-	end
-end
-
-
--- npc, find closest monster to attack
-local npc_attack = function(self)
-
-	if self.type ~= "npc"
-	or not self.attacks_monsters
-	or self.state == "attack" then
-		return
-	end
-
-	local p, sp, obj, min_player, dist
-	local s = self.object:get_pos()
+	local p, sp, dist, min_player
 	local min_dist = self.view_range + 1
-	local objs = minetest.get_objects_inside_radius(s, self.view_range)
 
-	for n = 1, #objs do
+	-- go through remaining entities and select closest
+	for _,player in pairs(objs) do
 
-		obj = objs[n]:get_luaentity()
+		p = player:get_pos()
+		sp = s
 
-		if obj and obj.type == "monster" then
+		dist = get_distance(p, s)
 
-			p = obj.object:get_pos()
-			sp = s
+		-- aim higher to make looking up hills more realistic
+		p.y = p.y + 1
+		sp.y = sp.y + 1
 
-			dist = get_distance(p, s)
-
-			-- aim higher to make looking up hills more realistic
-			p.y = p.y + 1
-			sp.y = sp.y + 1
-
-			if dist < min_dist
-			and line_of_sight(self, sp, p, 2) == true then
-				min_dist = dist
-				min_player = obj.object
-			end
+		-- choose closest player to attack that isnt self
+		if dist ~= 0
+		and dist < min_dist
+		and line_of_sight(self, sp, p, 2) == true then
+			min_dist = dist
+			min_player = player
 		end
 	end
 
+	-- attack closest player or mob
 	if min_player then
 		do_attack(self, min_player)
 	end
@@ -1508,9 +1475,8 @@ local runaway_from = function(self)
 	end
 
 	local s = self.object:get_pos()
-	local p, sp, dist
-	local player, obj, min_player
-	local type, name = "", ""
+	local p, sp, dist, pname
+	local player, obj, min_player, name
 	local min_dist = self.view_range + 1
 	local objs = minetest.get_objects_inside_radius(s, self.view_range)
 
@@ -1518,13 +1484,14 @@ local runaway_from = function(self)
 
 		if objs[n]:is_player() then
 
-			if mobs.invis[ objs[n]:get_player_name() ]
-			or self.owner == objs[n]:get_player_name() then
+			pname = objs[n]:get_player_name()
 
-				type = ""
+			if mobs.invis[pname]
+			or self.owner == pname then
+
+				name = ""
 			else
 				player = objs[n]
-				type = "player"
 				name = "player"
 			end
 		else
@@ -1532,7 +1499,6 @@ local runaway_from = function(self)
 
 			if obj then
 				player = obj.object
-				type = obj.type
 				name = obj.name or ""
 			end
 		end
@@ -1550,8 +1516,7 @@ local runaway_from = function(self)
 
 			dist = get_distance(p, s)
 
-
-			-- choose closest player/mpb to runaway from
+			-- choose closest player/mob to runaway from
 			if dist < min_dist
 			and line_of_sight(self, sp, p, 2) == true then
 				min_dist = dist
@@ -1688,7 +1653,7 @@ local follow_flop = function(self)
 		if not flight_check(self, s) then
 
 			self.state = "flop"
-			self.object:setvelocity({x = 0, y = -5, z = 0})
+			self.object:set_velocity({x = 0, y = -5, z = 0})
 
 			set_animation(self, "stand")
 
@@ -1787,10 +1752,10 @@ local do_states = function(self, dtime)
 				--[[ fly up/down randomly for flying mobs
 				if self.fly and random(1, 100) <= self.walk_chance then
 
-					local v = self.object:getvelocity()
+					local v = self.object:get_velocity()
 					local ud = random(-1, 2) / 9
 
-					self.object:setvelocity({x = v.x, y = ud, z = v.z})
+					self.object:set_velocity({x = v.x, y = ud, z = v.z})
 				end--]]
 			end
 		end
@@ -2057,13 +2022,13 @@ local do_states = function(self, dtime)
 				local me_y = floor(p1.y)
 				local p2 = p
 				local p_y = floor(p2.y + 1)
-				local v = self.object:getvelocity()
+				local v = self.object:get_velocity()
 
 				if flight_check(self, s) then
 
 					if me_y < p_y then
 
-						self.object:setvelocity({
+						self.object:set_velocity({
 							x = v.x,
 							y = 1 * self.walk_velocity,
 							z = v.z
@@ -2071,7 +2036,7 @@ local do_states = function(self, dtime)
 
 					elseif me_y > p_y then
 
-						self.object:setvelocity({
+						self.object:set_velocity({
 							x = v.x,
 							y = -1 * self.walk_velocity,
 							z = v.z
@@ -2080,7 +2045,7 @@ local do_states = function(self, dtime)
 				else
 					if me_y < p_y then
 
-						self.object:setvelocity({
+						self.object:set_velocity({
 							x = v.x,
 							y = 0.01,
 							z = v.z
@@ -2088,7 +2053,7 @@ local do_states = function(self, dtime)
 
 					elseif me_y > p_y then
 
-						self.object:setvelocity({
+						self.object:set_velocity({
 							x = v.x,
 							y = -0.01,
 							z = v.z
@@ -2272,7 +2237,7 @@ local do_states = function(self, dtime)
 					vec.y = vec.y * (v / amount)
 					vec.z = vec.z * (v / amount)
 
-					obj:setvelocity(vec)
+					obj:set_velocity(vec)
 				end
 			end
 		end
@@ -2288,12 +2253,12 @@ local falling = function(self, pos)
 	end
 
 	-- floating in water (or falling)
-	local v = self.object:getvelocity()
+	local v = self.object:get_velocity()
 
 	if v.y > 0 then
 
 		-- apply gravity when moving up
-		self.object:setacceleration({
+		self.object:set_acceleration({
 			x = 0,
 			y = -10,
 			z = 0
@@ -2302,14 +2267,14 @@ local falling = function(self, pos)
 	elseif v.y <= 0 and v.y > self.fall_speed then
 
 		-- fall downwards at set speed
-		self.object:setacceleration({
+		self.object:set_acceleration({
 			x = 0,
 			y = self.fall_speed,
 			z = 0
 		})
 	else
 		-- stop accelerating once max fall speed hit
-		self.object:setacceleration({x = 0, y = 0, z = 0})
+		self.object:set_acceleration({x = 0, y = 0, z = 0})
 	end
 
 	-- in water then float up
@@ -2317,7 +2282,7 @@ local falling = function(self, pos)
 
 		if self.floats == 1 then
 
-			self.object:setacceleration({
+			self.object:set_acceleration({
 				x = 0,
 				y = -self.fall_speed / (max(1, v.y) ^ 8), -- 8 was 2
 				z = 0
@@ -2327,7 +2292,7 @@ local falling = function(self, pos)
 
 		-- fall damage onto solid ground
 		if self.fall_damage == 1
-		and self.object:getvelocity().y == 0 then
+		and self.object:get_velocity().y == 0 then
 
 			local d = (self.old_y or 0) - self.object:get_pos().y
 
@@ -2523,7 +2488,7 @@ local mob_punch = function(self, hitter, tflp, tool_capabilities, dir)
 		if self.knock_back
 		and tflp >= punch_interval then
 
-			local v = self.object:getvelocity()
+			local v = self.object:get_velocity()
 			local r = 1.4 - min(punch_interval, 1.4)
 			local kb = r * 5
 			local up = 2
@@ -2544,7 +2509,7 @@ local mob_punch = function(self, hitter, tflp, tool_capabilities, dir)
 				kb = kb * 1.5
 			end
 
-			self.object:setvelocity({
+			self.object:set_velocity({
 				x = dir.x * kb,
 				y = up,
 				z = dir.z * kb
@@ -2583,6 +2548,7 @@ local mob_punch = function(self, hitter, tflp, tool_capabilities, dir)
 	if self.passive == false
 	and self.state ~= "flop"
 	and self.child == false
+	and self.attack_players == true
 	and hitter:get_player_name() ~= self.owner
 	and not mobs.invis[ name ] then
 
@@ -2598,7 +2564,7 @@ local mob_punch = function(self, hitter, tflp, tool_capabilities, dir)
 
 			obj = objs[n]:get_luaentity()
 
-			if obj then
+			if obj and obj._cmi_is_mob then
 
 				-- only alert members of same mob
 				if obj.group_attack == true
@@ -2975,9 +2941,7 @@ local mob_step = function(self, dtime)
 		replace(self, pos)
 	end
 
-	monster_attack(self)
-
-	npc_attack(self)
+	general_attack(self)
 
 	breed(self)
 
@@ -3058,8 +3022,6 @@ minetest.register_entity(name, {
 	follow = def.follow,
 	jump = def.jump ~= false,
 	walk_chance = def.walk_chance or 50,
-	attacks_monsters = def.attacks_monsters or false,
-	group_attack = def.group_attack or false,
 	passive = def.passive or false,
 	knock_back = def.knock_back ~= false,
 	blood_amount = def.blood_amount or 5,
@@ -3102,7 +3064,11 @@ minetest.register_entity(name, {
 	dogshoot_count = 0,
 	dogshoot_count_max = def.dogshoot_count_max or 5,
 	dogshoot_count2_max = def.dogshoot_count2_max or (def.dogshoot_count_max or 5),
+	group_attack = def.group_attack or false,
+	attack_monsters = def.attacks_monsters or def.attack_monsters or false,
 	attack_animals = def.attack_animals or false,
+	attack_players = def.attack_players ~= false,
+	attack_npcs = def.attack_npcs ~= false,
 	specific_attack = def.specific_attack,
 	runaway_from = def.runaway_from,
 	owner_loyal = def.owner_loyal,
