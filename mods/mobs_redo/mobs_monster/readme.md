@@ -29,6 +29,10 @@ Spider
 
 - Found in dark holes inside desertstone (crystal biomes in ethereal), spiders wait for prey to amble past and strike. They are mostly docile during the day though unless hit. Will drop string when killed.
 
+New Spiders
+
+- Snowy spiders are found on higher cold areas, Tarantula's in higher jungle, Cave spider below -20 and Mese spider near areas containing the ore.
+
 Stone Monster
 
 - Found underground in dark caves these mobs seem to be zombie-like in fashion with a tendency to rush a player in the area. can drop torch, iron or coal when killed.

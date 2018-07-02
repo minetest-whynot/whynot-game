@@ -198,7 +198,7 @@ origin	https://github.com/bell07/minetest-subspacewalker (fetch)
 Mod: tools/subspacewalker
 
 origin	https://github.com/lisacvuk/minetest-toolranks (fetch)
-* master 84467b0 [origin/master] Delete CHANGELOG
+* master d1be7c1 [origin/master] add moreores swords
 Mod: tools/toolranks
 
 origin	https://github.com/minetest-mods/woodcutting (fetch)
@@ -234,7 +234,7 @@ origin	https://github.com/HybridDog/heads (fetch)
 Mod: decor/heads
 
 origin	https://github.com/Gerold55/laptop (fetch)
-* master      c100bc3 [origin/master] Update MTBOX.md
+* master      69191b1 [origin/master] Update MTBOX.md
 Mod: decor/laptop
 
 origin	http://repo.or.cz/minetest_mtg_plus.git (fetch)
@@ -300,7 +300,7 @@ Mod: food_modpack/food
 Mod: food_modpack/food_basic
 
 origin	https://github.com/h-v-smacker/canned_food (fetch)
-* master dcfcba2 [origin/master] add beetroot
+* master e595fd0 [origin/master] Create LICENSE
 Mod: food/canned_food
 
 origin	https://github.com/rubenwardy/food_sweet (fetch)
@@ -348,9 +348,9 @@ Mod: mesecons/mesecons_walllever
 Mod: mesecons/mesecons_wires
 
 origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
-* master da37864 [origin/master] reduce flan spawn
+* master cd6b3aa [origin/master] oops, remove extra model
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master e145fe0 [origin/master] update readme
+* master 04ae350 [origin/master] toolrank check bugfix
 Mod: mobs_redo/mobs_redo

@@ -22,6 +22,7 @@ Lucky Blocks: 9
 
 
 Changelog:
+- 1.44- Added ToolRanks support for swords when attacking mobs
 - 1.43- Better 0.4.16 compatibility, added general attack function and settings
 - 1.42- Added "all" option to immune_to table, tidied floating mobs to be less intensive
 - 1.41- Mob pathfinding has been updated thanks to Elkien3
