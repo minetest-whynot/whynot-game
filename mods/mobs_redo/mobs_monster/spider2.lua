@@ -63,11 +63,13 @@ mobs:register_mob("mobs_monster:spider2", {
 				{"default:snow", "default:snowblock", "default:dirt_with_snow"}) then
 			self.base_texture = {"mobs_spider_snowy.png"}
 			self.object:set_properties({textures = self.base_texture})
+			self.docile_by_day = true
 		-- tarantula
 		elseif minetest.find_node_near(pos, 1,
 				{"default:dirt_with_rainforest_litter", "default:jungletree"}) then
 			self.base_texture = {"mobs_spider_orange.png"}
 			self.object:set_properties({textures = self.base_texture})
+			self.docile_by_day = true
 		-- grey spider
 		elseif minetest.find_node_near(pos, 1,
 				{"default:stone", "default:gravel"}) then

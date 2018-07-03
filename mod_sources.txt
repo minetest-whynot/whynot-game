@@ -87,7 +87,7 @@ Mod: player/show_wielded_item
 
 bell07	https://github.com/bell07/minetest-skinsdb (fetch)
 origin	https://github.com/minetest-mods/skinsdb (fetch)
-* master     2900d78 [origin/master] Merge pull request #16 from bell07/clothing_support
+* master     0cb00a3 [origin/master] Merge pull request #17 from Lejo1/mod_storage
 Mod: player/skinsdb
 
 origin	https://github.com/bell07/minetest-smart_inventory (fetch)
@@ -138,7 +138,7 @@ origin	https://github.com/bell07/minetest-meseor.git (fetch)
 Mod: mapgen/meseor
 
 origin	https://notabug.org/TenPlus1/pbj_pup (fetch)
-* master 811632b [origin/master] added settingtypes.txt
+* master 7d30ce9 [origin/master] update to 0.4.16 functions
 Mod: mapgen/pbj_pup
 
 origin	https://github.com/GreenXenith/tac_nayn (fetch)
@@ -233,8 +233,9 @@ origin	https://github.com/HybridDog/heads (fetch)
 * master b0f32e2 [origin/master] avoid leaked globals
 Mod: decor/heads
 
+bell07	https://github.com/bell07/minetest-laptop (fetch)
 origin	https://github.com/Gerold55/laptop (fetch)
-* master      69191b1 [origin/master] Update MTBOX.md
+* master 9461720 [bell07/master] bugfix crash on try to leave the "new mail account" view using back button
 Mod: decor/laptop
 
 origin	http://repo.or.cz/minetest_mtg_plus.git (fetch)
@@ -348,9 +349,9 @@ Mod: mesecons/mesecons_walllever
 Mod: mesecons/mesecons_wires
 
 origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
-* master cd6b3aa [origin/master] oops, remove extra model
+* master aa0124a [origin/master] snow spider and tarantula is docile by day
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master 04ae350 [origin/master] toolrank check bugfix
+* master adc4e71 [origin/master] 0.4.16 functions
 Mod: mobs_redo/mobs_redo

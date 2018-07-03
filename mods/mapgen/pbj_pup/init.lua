@@ -94,7 +94,7 @@ local function place(pos, facedir, length)
 end
 
 -- Do we generate PB&J Pup and Nyan Cat's in world?
-if minetest.setting_getbool("pbj_pup_generate") ~= false then
+if minetest.settings:get_bool("pbj_pup_generate") ~= false then
 
 	local function generate(minp, maxp, seed)
 
