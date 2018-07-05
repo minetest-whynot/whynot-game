@@ -107,6 +107,16 @@ function boost_cart:get_rail_direction(pos_, dir, ctrl, old_switch, railtype)
 		right.z = -dir.x
 	end
 
+	local straight_priority = ctrl and dir.y ~= 0
+
+	-- Normal, to disallow rail switching up- & downhill
+	if straight_priority then
+		cur = self:check_front_up_down(pos, dir, true, railtype)
+		if cur then
+			return cur
+		end
+	end
+
 	if ctrl then
 		if old_switch == 1 then
 			left_check = false
@@ -130,9 +140,11 @@ function boost_cart:get_rail_direction(pos_, dir, ctrl, old_switch, railtype)
 	end
 
 	-- Normal
-	cur = self:check_front_up_down(pos, dir, true, railtype)
-	if cur then
-		return cur
+	if not straight_priority then
+		cur = self:check_front_up_down(pos, dir, true, railtype)
+		if cur then
+			return cur
+		end
 	end
 
 	-- Left, if not already checked
