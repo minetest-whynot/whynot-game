@@ -229,7 +229,7 @@ function cart_entity:on_step(dtime)
 	)
 	local dir_changed = not vector.equals(dir, self.old_dir)
 
-	local new_acc = {x=0, y=0, z=0}
+	local acc = 0
 	if stop_wiggle or vector.equals(dir, {x=0, y=0, z=0}) then
 		vel = {x=0, y=0, z=0}
 		local pos_r = vector.round(pos)
@@ -264,7 +264,7 @@ function cart_entity:on_step(dtime)
 		end
 
 		-- Calculate current cart acceleration
-		local acc = nil
+		acc = nil
 
 		local acc_meta = minetest.get_meta(pos):get_string("cart_acceleration")
 		if acc_meta == "halt" and not self.punched then
@@ -306,21 +306,20 @@ function cart_entity:on_step(dtime)
 		else
 			acc = 0
 		end
-
-		new_acc = vector.multiply(dir, acc)
 	end
 
-	-- Limits
-	local max_vel = boost_cart.speed_max
-	for _,v in pairs({"x","y","z"}) do
-		if math.abs(vel[v]) > max_vel then
-			vel[v] = boost_cart:get_sign(vel[v]) * max_vel
-			new_acc[v] = 0
-			update.vel = true
-		end
+	-- Limit cart speed
+	local vel_len = vector.length(vel)
+	if vel_len > boost_cart.speed_max then
+		vel = vector.multiply(vel, boost_cart.speed_max / vel_len)
+		update.vel = true
+	end
+	if vel_len >= boost_cart.speed_max and acc > 0 then
+		acc = 0
 	end
 
-	self.object:set_acceleration(new_acc)
+	self.object:set_acceleration(vector.multiply(dir, acc))
+
 	self.old_pos = vector.round(pos)
 	local old_y_dir = self.old_dir.y
 	if not vector.equals(dir, {x=0, y=0, z=0}) and not stop_wiggle then

@@ -150,7 +150,7 @@ origin	https://github.com/taikedz/everamzah-backpacks (fetch)
 Mod: tools/backpacks
 
 origin	https://github.com/SmallJoker/boost_cart (fetch)
-* master 3415547 [origin/master] Fix controls not working when going uphill
+* master d486143 [origin/master] Reset acceleration at speed limit
 Mod: tools/boost_cart
 
 origin	https://github.com/minetest-mods/ccompass (fetch)
