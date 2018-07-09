@@ -56,8 +56,9 @@ origin	https://github.com/minetest-mods/awards (fetch)
 * master 8c0bb00 [origin/master] Improve documentation
 Mod: player/awards
 
+bell07	https://github.com/bell07/character_creator (fetch)
 origin	https://github.com/minetest-mods/character_creator (fetch)
-* master ab07f3f [origin/master] Redefinition of change_skin function to proper handle skins updates by skinsdb (#14)
+* master 7a9dc6a [origin/master: ahead 1] bugfix for #15 Each login an custom private skin is registered in skinsdb that needs to be cleaned up on logout. The issue #15 is timing issue that uses the old skin that does refer to the not existing player object in skin_indexes. By the way, the skin_indexes[player] needs to be cleaned too.
 Mod: player/character_creator
 
 bell07	https://github.com/bell07/clothing (fetch)
@@ -353,5 +354,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master adc4e71 [origin/master] 0.4.16 functions
+* master f6b5eff [origin/master] change aoc_range
 Mod: mobs_redo/mobs_redo

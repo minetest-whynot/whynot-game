@@ -3,7 +3,7 @@
 
 mobs = {}
 mobs.mod = "redo"
-mobs.version = "20180701"
+mobs.version = "20180708"
 
 
 -- Intllib
@@ -75,9 +75,7 @@ if peaceful_only then
 end
 
 -- calculate aoc range for mob count
-local aosrb = tonumber(minetest.settings:get("active_object_send_range_blocks"))
-local abr = tonumber(minetest.settings:get("active_block_range"))
-local aoc_range = max(aosrb, abr) * 16
+local aoc_range = tonumber(minetest.settings:get("active_block_range")) * 16
 
 -- pathfinding settings
 local enable_pathfinding = true

@@ -268,6 +268,14 @@ minetest.register_on_joinplayer(function(player)
 	end
 end)
 
+minetest.register_on_leaveplayer(function(player)
+	if skinsdb then
+		local skinname = "character_creator:"..player:get_player_name()
+		skinsdb.meta[skinname] = nil
+	end
+	skin_indexes[player] = nil
+end)
+
 local skin_temp = {}
 minetest.register_on_player_receive_fields(function(player, formname, fields)
 	if formname ~= "character_creator" then
