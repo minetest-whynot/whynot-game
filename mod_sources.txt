@@ -127,7 +127,7 @@ Mod: 3d_armor/shields
 Mod: 3d_armor/wieldview
 
 origin	https://notabug.org/TenPlus1/farming (fetch)
-* master b6a970b [origin/master] removed drinking_cup, changed coffee recipe, recycle mixing bowl recipe
+* master d21559a [origin/master] remove flora groups from certain crops, mistake
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
