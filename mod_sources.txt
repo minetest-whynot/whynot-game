@@ -58,7 +58,7 @@ Mod: player/awards
 
 bell07	https://github.com/bell07/character_creator (fetch)
 origin	https://github.com/minetest-mods/character_creator (fetch)
-* master 7a9dc6a [origin/master: ahead 1] bugfix for #15 Each login an custom private skin is registered in skinsdb that needs to be cleaned up on logout. The issue #15 is timing issue that uses the old skin that does refer to the not existing player object in skin_indexes. By the way, the skin_indexes[player] needs to be cleaned too.
+* master 6f33ce5 [origin/master] bugfix for #15 (#16)
 Mod: player/character_creator
 
 bell07	https://github.com/bell07/clothing (fetch)
@@ -350,7 +350,7 @@ Mod: mesecons/mesecons_walllever
 Mod: mesecons/mesecons_wires
 
 origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
-* master aa0124a [origin/master] snow spider and tarantula is docile by day
+* master 2dee71d [origin/master] remove old spider model and texture
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
