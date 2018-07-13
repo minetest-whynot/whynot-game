@@ -350,7 +350,7 @@ Mod: mesecons/mesecons_walllever
 Mod: mesecons/mesecons_wires
 
 origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
-* master 2dee71d [origin/master] remove old spider model and texture
+* master 95ce817 [origin/master] missed a compatibility entity
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)

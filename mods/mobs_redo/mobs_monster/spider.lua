@@ -129,6 +129,7 @@ mobs:register_egg("mobs_monster:spider", S("Spider"), "mobs_cobweb.png", 1)
 
 
 mobs:alias_mob("mobs_monster:spider2", "mobs_monster:spider") -- compatibility
+mobs:alias_mob("mobs:spider", "mobs_monster:spider")
 
 
 -- cobweb
