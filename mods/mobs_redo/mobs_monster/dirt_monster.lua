@@ -30,7 +30,7 @@ mobs:register_mob("mobs_monster:dirt_monster", {
 	run_velocity = 3,
 	jump = true,
 	drops = {
-		{name = "default:dirt", chance = 1, min = 3, max = 5},
+		{name = "default:dirt", chance = 1, min = 0, max = 2},
 	},
 	water_damage = 1,
 	lava_damage = 5,

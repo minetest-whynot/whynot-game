@@ -58,8 +58,7 @@ minetest.register_node("farming:garlic_braid", {
 	node_box = {
 		type = "fixed",
 		fixed = {
-				{-0.13, -0.45, 0.5, 0.13, 0.45, 0.24,
-			},
+				{-0.13, -0.45, 0.5, 0.13, 0.45, 0.24},
 		},
 	}
 })

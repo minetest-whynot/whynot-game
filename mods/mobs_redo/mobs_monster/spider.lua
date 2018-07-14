@@ -37,7 +37,7 @@ mobs:register_mob("mobs_monster:spider", {
 	view_range = 15,
 	floats = 0,
 	drops = {
-		{name = "farming:string", chance = 1, min = 1, max = 3},
+		{name = "farming:string", chance = 1, min = 0, max = 2},
 	},
 	water_damage = 5,
 	lava_damage = 5,
@@ -87,7 +87,7 @@ mobs:register_mob("mobs_monster:spider", {
 			self.object:set_properties({textures = self.base_texture})
 			self.docile_by_day = true
 			self.drops = {
-				{name = "farming:string", chance = 1, min = 1, max = 2},
+				{name = "farming:string", chance = 1, min = 0, max = 2},
 				{name = "ethereal:crystal_spike", chance = 15, min = 1, max = 2},
 			}
 		end

@@ -32,9 +32,9 @@ mobs:register_mob("mobs_monster:tree_monster", {
 	jump = true,
 	view_range = 15,
 	drops = {
-		{name = "default:sapling", chance = 3, min = 1, max = 2},
-		{name = "default:junglesapling", chance = 3, min = 1, max = 2},
-		{name = "default:apple", chance = 2, min = 1, max=3},
+		{name = "default:sapling", chance = 2, min = 0, max = 2},
+		{name = "default:junglesapling", chance = 2, min = 0, max = 2},
+		{name = "default:apple", chance = 2, min = 1, max = 2},
 	},
 	water_damage = 0,
 	lava_damage = 0,
