@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd ~/Projekte/minetest-whynot-subgame-updater/mods_src
+cd "$(dirname $0)"/../../mods_src
 
 VERBOSE="$1"
 

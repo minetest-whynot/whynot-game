@@ -1,11 +1,10 @@
 #!/bin/bash
 
-PROJ=~/Projekte/minetest-whynot-subgame-updater
-
-SRC="$PROJ"/mods_src/  # mods sources
-DST="$PROJ"/whynot-git/mods/ # Subgame staging
-LIB="$PROJ"/whynot-git/buildscripts/ # The bash updater lib
-LOG="$PROJ"/whynot-git/mod_sources.txt
+LIB="$(realpath $(dirname $0))"  # Absolute path
+PROJ="$(dirname $LIB)"           # Subgame dir (..)
+SRC="$(dirname $PROJ)"/mods_src/ # mods sources (../..)
+DST="$PROJ"/mods/                # Subgame mods
+LOG="$PROJ"/mod_sources.txt
 
 source "$LIB"/build-whynot.lib
 cd "$SRC" # for proper resolving the '*'
