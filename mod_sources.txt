@@ -134,6 +134,10 @@ origin	https://github.com/minetest-technic/mese_crystals (fetch)
 * master c11160f [origin/master: ahead 1] fix leaked globals
 Mod: flora_ores/mese_crystals
 
+origin	https://github.com/h-v-smacker/maple (fetch)
+* master 1829c7a [origin/master] Create LICENSE
+Mod: mapgen/maple
+
 origin	https://github.com/bell07/minetest-meseor.git (fetch)
 * master 4456298 [origin/master] Merge pull request #1 from bell07/mysetting
 Mod: mapgen/meseor
