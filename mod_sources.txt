@@ -88,7 +88,7 @@ Mod: player/show_wielded_item
 
 bell07	https://github.com/bell07/minetest-skinsdb (fetch)
 origin	https://github.com/minetest-mods/skinsdb (fetch)
-* master     0cb00a3 [origin/master] Merge pull request #17 from Lejo1/mod_storage
+* master     fa5b302 [origin/master: ahead 1] add support for names in skin texture file (character_Skinname, player_playername_skinname)
 Mod: player/skinsdb
 
 origin	https://github.com/bell07/minetest-smart_inventory (fetch)
