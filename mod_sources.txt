@@ -53,7 +53,7 @@ origin	https://github.com/Chemguy99/armor_addon (fetch)
 Mod: player/armor_addon
 
 origin	https://github.com/minetest-mods/awards (fetch)
-* master 8c0bb00 [origin/master] Improve documentation
+* master 32150bd [origin/master] Fix crash for invalid award index selection
 Mod: player/awards
 
 bell07	https://github.com/bell07/character_creator (fetch)
@@ -120,7 +120,7 @@ origin	https://gitlab.com/zombiebot/weather_pack (fetch)
 Mod: ambience/weather_pack
 
 origin	https://github.com/stujones11/minetest-3d_armor (fetch)
-* master c0d45ce [origin/master] show fire: value
+* master 05ce530 [origin/master: ahead 1] small nonfunctional fix
 Mod: 3d_armor/3d_armor
 Mod: 3d_armor/3d_armor_stand
 Mod: 3d_armor/shields
