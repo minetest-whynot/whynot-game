@@ -146,6 +146,37 @@ default.register_fence("mobs:fence_wood", {
 	},
 })
 
+-- mob fence top (has enlarged collisionbox to stop mobs getting over)
+	minetest.register_node("mobs:fence_top", {
+		description = S("Mob Fence Top"),
+		drawtype = "nodebox",
+		tiles = {"default_wood.png"},
+		paramtype = "light",
+		is_ground_content = false,
+		groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
+		sounds = default.node_sound_wood_defaults(),
+		node_box = {
+			type = "fixed",
+			fixed = {-0.2, -0.5, -0.2, 0.2, 0, 0.2},
+		},
+		collision_box = {
+			type = "fixed",
+			fixed = {-0.4, -1.5, -0.4, 0.4, 0, 0.4},
+		},
+		selection_box = {
+			type = "fixed",
+			fixed = {-0.4, -1.5, -0.4, 0.4, 0, 0.4},
+		},
+})
+
+minetest.register_craft({
+	output = "mobs:fence_top 12",
+	recipe = {
+		{"group:wood", "group:wood", "group:wood"},
+		{"", "default:fence_wood", ""},
+	}
+})
+
 -- items that can be used as fuel
 minetest.register_craft({
 	type = "fuel",
@@ -181,4 +212,10 @@ minetest.register_craft({
 	type = "fuel",
 	recipe = "mobs:fence_wood",
 	burntime = 7,
+})
+
+minetest.register_craft({
+	type = "fuel",
+	recipe = "mobs:fence_top",
+	burntime = 2,
 })

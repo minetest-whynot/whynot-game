@@ -38,8 +38,9 @@ mobs:register_mob("mobs_monster:dungeon_master", {
 	view_range = 15,
 	drops = {
 		{name = "default:mese_crystal_fragment", chance = 1, min = 0, max = 2},
+		{name = "mobs:leather", chance = 2, min = 0, max = 2},
+		{name = "default:mese_crystal", chance = 3, min = 0, max = 2},
 		{name = "default:diamond", chance = 4, min = 0, max = 1},
-		{name = "default:mese_crystal", chance = 2, min = 0, max = 2},
 		{name = "default:diamondblock", chance = 30, min = 0, max = 1},
 	},
 	water_damage = 1,

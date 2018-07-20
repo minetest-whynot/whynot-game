@@ -3,7 +3,7 @@
 
 mobs = {}
 mobs.mod = "redo"
-mobs.version = "20180708"
+mobs.version = "20180719"
 
 
 -- Intllib
@@ -213,17 +213,17 @@ local get_distance = function(a, b)
 end
 
 
--- check line of sight (BrunoMine)
+-- check line of sight (by BrunoMine, tweaked by Astrobe)
 local line_of_sight = function(self, pos1, pos2, stepsize)
 
 	stepsize = stepsize or 1
 
+	local stepv = vector.multiply(vector.direction(pos1, pos2), stepsize)
+
 	local s, pos = minetest.line_of_sight(pos1, pos2, stepsize)
 
 	-- normal walking and flying mobs can see you through air
-	if s == true then
-		return true
-	end
+	if s == true then return true end
 
 	-- New pos1 to be analyzed
 	local npos1 = {x = pos1.x, y = pos1.y, z = pos1.z}
@@ -236,39 +236,15 @@ local line_of_sight = function(self, pos1, pos2, stepsize)
 	-- Nodename found
 	local nn = minetest.get_node(pos).name
 
-	-- Target Distance (td) to travel
-	local td = get_distance(pos1, pos2)
-
-	-- Actual Distance (ad) traveled
-	local ad = 0
-
 	-- It continues to advance in the line of sight in search of a real
 	-- obstruction which counts as 'normal' nodebox.
 	while minetest.registered_nodes[nn]
 	and (minetest.registered_nodes[nn].walkable == false
 	or minetest.registered_nodes[nn].drawtype == "nodebox") do
 
-		-- Check if you can still move forward
-		if td < ad + stepsize then
-			return true -- Reached the target
-		end
+		npos1 = vector.add(npos1, stepv)
 
-		-- Moves the analyzed pos
-		local d = get_distance(pos1, pos2)
-
-		npos1.x = ((pos2.x - pos1.x) / d * stepsize) + pos1.x
-		npos1.y = ((pos2.y - pos1.y) / d * stepsize) + pos1.y
-		npos1.z = ((pos2.z - pos1.z) / d * stepsize) + pos1.z
-
-		-- NaN checks
-		if d == 0
-		or npos1.x ~= npos1.x
-		or npos1.y ~= npos1.y
-		or npos1.z ~= npos1.z then
-			return false
-		end
-
-		ad = ad + stepsize
+		if get_distance(npos1, pos2) < stepsize then return true end
 
 		-- scan again
 		r, pos = minetest.line_of_sight(npos1, pos2, stepsize)
@@ -277,7 +253,6 @@ local line_of_sight = function(self, pos1, pos2, stepsize)
 
 		-- New Nodename found
 		nn = minetest.get_node(pos).name
-
 	end
 
 	return false
@@ -375,6 +350,11 @@ end
 -- drop items
 local item_drop = function(self, cooked)
 
+	-- check for nil or no drops
+	if not self.drops or #self.drops == 0 then
+		return
+	end
+
 	-- no drops if disabled by setting
 	if not mobs_drop_items then return end
 
@@ -384,13 +364,11 @@ local item_drop = function(self, cooked)
 	local obj, item, num
 	local pos = self.object:get_pos()
 
-	self.drops = self.drops or {} -- nil check
-
 	for n = 1, #self.drops do
 
 		if random(1, self.drops[n].chance) == 1 then
 
-			num = random(self.drops[n].min or 1, self.drops[n].max or 1)
+			num = random(self.drops[n].min or 0, self.drops[n].max or 1)
 			item = self.drops[n].name
 
 			-- cook items when true

@@ -17,11 +17,13 @@ Crafts:
  - Magic Lasso is similar to nets but with a better chance of picking up larger mobs.
  - Shears are used to right-click sheep and return 1-3 wool.
  - Protection Rune lets you protect tamed mobs from harm by other players
+ - Mob Fence and Fence Top (to stop mobs escaping/glitching through fences)
 
 Lucky Blocks: 9
 
 
 Changelog:
+- 1.45- Added Fence Top to add on top of any fence to stop mobs escaping, new line_of_sight tweaked by Astrobe
 - 1.44- Added ToolRanks support for swords when attacking mobs
 - 1.43- Better 0.4.16 compatibility, added general attack function and settings
 - 1.42- Added "all" option to immune_to table, tidied floating mobs to be less intensive

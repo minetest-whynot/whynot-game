@@ -12,6 +12,7 @@ if minetest.get_modpath("lucky_block") then
 		{"dro", {"mobs:shears"}, 1},
 		{"dro", {"mobs:protector"}, 1},
 		{"dro", {"mobs:fence_wood"}, 10},
+		{"dro", {"mobs:fence_top"}, 12},
 		{"lig"},
 	})
 end

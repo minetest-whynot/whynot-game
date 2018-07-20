@@ -327,7 +327,7 @@ origin	https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin	https://github.com/minetest-mods/mesecons (fetch)
-* master 7013f2e [origin/master] Add screenshot.png
+* master 12fb09f [origin/master] Fix crash when error()ing an invalid value on programming (#418)
 Mod: mesecons/mesecons
 Mod: mesecons/mesecons_alias
 Mod: mesecons/mesecons_blinkyplant
@@ -354,9 +354,9 @@ Mod: mesecons/mesecons_walllever
 Mod: mesecons/mesecons_wires
 
 origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
-* master ce7055e [origin/master] edit monster drops
+* master 876d544 [origin/master] tweak dm,stone and tree monster drops
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master f6b5eff [origin/master] change aoc_range
+* master 4badcec [origin/master] add check for no drops
 Mod: mobs_redo/mobs_redo
