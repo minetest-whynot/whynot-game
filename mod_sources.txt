@@ -327,7 +327,7 @@ origin	https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin	https://github.com/minetest-mods/mesecons (fetch)
-* master 12fb09f [origin/master] Fix crash when error()ing an invalid value on programming (#418)
+* master a234006 [origin/master] Fix mesecon receiver duplication (#419)
 Mod: mesecons/mesecons
 Mod: mesecons/mesecons_alias
 Mod: mesecons/mesecons_blinkyplant
