@@ -1,294 +1,294 @@
-# LANGUAGE translation for 3D ARMOR MOD
+# Russian translation for 3D ARMOR MOD
 # Copyright (C) 2018 by Stuart Jones
 # This file is distributed under the same license as the 3D ARMOR MOD package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# CodeXP <codexp@gmx.net>, 2018.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: 3d_armor\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-23 21:24+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"POT-Creation-Date: 2018-07-23 21:21+0200\n"
+"PO-Revision-Date: 2018-07-23 21:30+0200\n"
+"Last-Translator: CodeXP <codexp@gmx.net>\n"
+"Language-Team: \n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../3d_armor/api.lua
 msgid "3d_armor: Player reference is nil @1"
-msgstr ""
+msgstr "3d_armor: Ссылка игрока является nil @1"
 
 #: ../3d_armor/api.lua
 msgid "3d_armor: Player name is nil @1"
-msgstr ""
+msgstr "3d_armor: Имя игрока является nil @1"
 
 #: ../3d_armor/api.lua
 msgid "3d_armor: Detached armor inventory is nil @1"
-msgstr ""
+msgstr "3d_armor: Отдельный инвентарь брони является nil @1"
 
 #: ../3d_armor/armor.lua
 msgid "Admin Helmet"
-msgstr ""
+msgstr "шлем админа"
 
 #: ../3d_armor/armor.lua
 msgid "Admin Chestplate"
-msgstr ""
+msgstr "бронежилет админа"
 
 #: ../3d_armor/armor.lua
 msgid "Admin Leggings"
-msgstr ""
+msgstr "гамаши админа"
 
 #: ../3d_armor/armor.lua
 msgid "Admin Boots"
-msgstr ""
+msgstr "ботинки админа"
 
 #: ../3d_armor/armor.lua
 msgid "Wood Helmet"
-msgstr ""
+msgstr "деревянный шлем"
 
 #: ../3d_armor/armor.lua
 msgid "Wood Chestplate"
-msgstr ""
+msgstr "деревянный бронежилет"
 
 #: ../3d_armor/armor.lua
 msgid "Wood Leggings"
-msgstr ""
+msgstr "деревянные гамаши"
 
 #: ../3d_armor/armor.lua
 msgid "Wood Boots"
-msgstr ""
+msgstr "деревянные ботинки"
 
 #: ../3d_armor/armor.lua
 msgid "Cactus Helmet"
-msgstr ""
+msgstr "кактусовый шлем"
 
 #: ../3d_armor/armor.lua
 msgid "Cactus Chestplate"
-msgstr ""
+msgstr "кактусовый бронежилет"
 
 #: ../3d_armor/armor.lua
 msgid "Cactus Leggings"
-msgstr ""
+msgstr "кактусовые гамаши"
 
 #: ../3d_armor/armor.lua
 msgid "Cactus Boots"
-msgstr ""
+msgstr "кактусовые ботинки"
 
 #: ../3d_armor/armor.lua
 msgid "Steel Helmet"
-msgstr ""
+msgstr "стальной шлем"
 
 #: ../3d_armor/armor.lua
 msgid "Steel Chestplate"
-msgstr ""
+msgstr "стальной бронежилет"
 
 #: ../3d_armor/armor.lua
 msgid "Steel Leggings"
-msgstr ""
+msgstr "стальные гамаши"
 
 #: ../3d_armor/armor.lua
 msgid "Steel Boots"
-msgstr ""
+msgstr "стальные ботинки"
 
 #: ../3d_armor/armor.lua
 msgid "Bronze Helmet"
-msgstr ""
+msgstr "бронзовый шлем"
 
 #: ../3d_armor/armor.lua
 msgid "Bronze Chestplate"
-msgstr ""
+msgstr "бронзовый бронежилет"
 
 #: ../3d_armor/armor.lua
 msgid "Bronze Leggings"
-msgstr ""
+msgstr "бронзовые гамаши"
 
 #: ../3d_armor/armor.lua
 msgid "Bronze Boots"
-msgstr ""
+msgstr "бронзовые ботинки"
 
 #: ../3d_armor/armor.lua
 msgid "Diamond Helmet"
-msgstr ""
+msgstr "алмазный шлем"
 
 #: ../3d_armor/armor.lua
 msgid "Diamond Chestplate"
-msgstr ""
+msgstr "алмазный бронежилет"
 
 #: ../3d_armor/armor.lua
 msgid "Diamond Leggings"
-msgstr ""
+msgstr "алмазные гамаши"
 
 #: ../3d_armor/armor.lua
 msgid "Diamond Boots"
-msgstr ""
+msgstr "алмазные ботинки"
 
 #: ../3d_armor/armor.lua
 msgid "Gold Helmet"
-msgstr ""
+msgstr "золотой шлем"
 
 #: ../3d_armor/armor.lua
 msgid "Gold Chestplate"
-msgstr ""
+msgstr "золотой бронежилет"
 
 #: ../3d_armor/armor.lua
 msgid "Gold Leggings"
-msgstr ""
+msgstr "золотые гамаши"
 
 #: ../3d_armor/armor.lua
 msgid "Gold Boots"
-msgstr ""
+msgstr "золотые ботинки"
 
 #: ../3d_armor/armor.lua
 msgid "Mithril Helmet"
-msgstr ""
+msgstr "мифриловый шлем"
 
 #: ../3d_armor/armor.lua
 msgid "Mithril Chestplate"
-msgstr ""
+msgstr "мифриловый бронежилет"
 
 #: ../3d_armor/armor.lua
 msgid "Mithril Leggings"
-msgstr ""
+msgstr "мифриловые гамаши"
 
 #: ../3d_armor/armor.lua
 msgid "Mithril Boots"
-msgstr ""
+msgstr "мифриловые ботинки"
 
 #: ../3d_armor/armor.lua
 msgid "Crystal Helmet"
-msgstr ""
+msgstr "кристалловый шлем"
 
 #: ../3d_armor/armor.lua
 msgid "Crystal Chestplate"
-msgstr ""
+msgstr "кристалловый бронежилет"
 
 #: ../3d_armor/armor.lua
 msgid "Crystal Leggings"
-msgstr ""
+msgstr "кристалловые гамаши"
 
 #: ../3d_armor/armor.lua
 msgid "Crystal Boots"
-msgstr ""
+msgstr "кристалловые ботинки"
 
 #: ../3d_armor/init.lua ../3d_armor_ui/init.lua
 msgid "Radiation"
-msgstr ""
+msgstr "излучение"
 
 #: ../3d_armor/init.lua ../3d_armor_ui/init.lua
 msgid "Level"
-msgstr ""
+msgstr "уровень"
 
 #: ../3d_armor/init.lua ../3d_armor_ui/init.lua
 msgid "Heal"
-msgstr ""
+msgstr "исцеление"
 
 #: ../3d_armor/init.lua ../3d_armor_ui/init.lua
 msgid "Fire"
-msgstr ""
+msgstr "огонь"
 
 #: ../3d_armor/init.lua
 msgid "Your @1 got destroyed!"
-msgstr ""
+msgstr "твой(и) @1 был(и) разрушен(ы)!"
 
 #: ../3d_armor/init.lua
 msgid "3d_armor: Failed to initialize player"
-msgstr ""
+msgstr "3d_armor: не смог подготовить игрока"
 
 #: ../3d_armor/init.lua
 msgid "[3d_armor] Fire Nodes disabled"
-msgstr ""
+msgstr "[3d_armor] блоки огня отключены"
 
 #: ../3d_armor_ip/init.lua
 msgid "3d_armor_ip: Mod loaded but unused."
-msgstr ""
+msgstr "3d_armor_ip: мод загружен но не используется."
 
 #: ../3d_armor_ip/init.lua
 msgid "Back"
-msgstr ""
+msgstr "назад"
 
 #: ../3d_armor_ip/init.lua ../3d_armor_sfinv/init.lua ../3d_armor_ui/init.lua
 msgid "Armor"
-msgstr ""
+msgstr "бронь"
 
 #: ../3d_armor_sfinv/init.lua
 msgid "3d_armor_sfinv: Mod loaded but unused."
-msgstr ""
+msgstr "3d_armor_sfinv: мод загружен но не используется."
 
 #: ../3d_armor_stand/init.lua
 msgid "Armor stand top"
-msgstr ""
+msgstr "стойка для брони (верх)"
 
 #: ../3d_armor_stand/init.lua
 msgid "Armor stand"
-msgstr ""
+msgstr "стойка для брони"
 
 #: ../3d_armor_stand/init.lua
 msgid "Armor Stand"
-msgstr ""
+msgstr "стойка для брони"
 
 #: ../3d_armor_stand/init.lua
 msgid "Locked Armor stand"
-msgstr ""
+msgstr "защищенная стойка для брони"
 
 #: ../3d_armor_stand/init.lua
 msgid "Armor Stand (owned by @1)"
-msgstr ""
+msgstr "стойка для брони (принадлежит @1)"
 
 #: ../3d_armor_ui/init.lua
 msgid "3d_armor_ui: Mod loaded but unused."
-msgstr ""
+msgstr "3d_armor_ui: мод загружен но не используется."
 
 #: ../3d_armor_ui/init.lua
 msgid "3d Armor"
-msgstr ""
+msgstr "3D бронь"
 
 #: ../3d_armor_ui/init.lua
 msgid "Armor not initialized!"
-msgstr ""
+msgstr "бронь не подготовлена!"
 
 #: ../shields/init.lua
 msgid "Admin Shield"
-msgstr ""
+msgstr "щит админа"
 
 #: ../shields/init.lua
 msgid "Wooden Shield"
-msgstr ""
+msgstr "деревянный щит"
 
 #: ../shields/init.lua
 msgid "Enhanced Wood Shield"
-msgstr ""
+msgstr "улучшенный деревянный щит"
 
 #: ../shields/init.lua
 msgid "Cactus Shield"
-msgstr ""
+msgstr "кактусный щит"
 
 #: ../shields/init.lua
 msgid "Enhanced Cactus Shield"
-msgstr ""
+msgstr "улучшенный кактусный щит"
 
 #: ../shields/init.lua
 msgid "Steel Shield"
-msgstr ""
+msgstr "стальной щит"
 
 #: ../shields/init.lua
 msgid "Bronze Shield"
-msgstr ""
+msgstr "бронзовый щит"
 
 #: ../shields/init.lua
 msgid "Diamond Shield"
-msgstr ""
+msgstr "алмазный щит"
 
 #: ../shields/init.lua
 msgid "Gold Shield"
-msgstr ""
+msgstr "золотой щит"
 
 #: ../shields/init.lua
 msgid "Mithril Shield"
-msgstr ""
+msgstr "мифриловый щит"
 
 #: ../shields/init.lua
 msgid "Crystal Shield"
-msgstr ""
+msgstr "кристалловый щит"

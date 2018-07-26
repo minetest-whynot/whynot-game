@@ -120,7 +120,7 @@ origin	https://gitlab.com/zombiebot/weather_pack (fetch)
 Mod: ambience/weather_pack
 
 origin	https://github.com/stujones11/minetest-3d_armor (fetch)
-* master 05ce530 [origin/master: ahead 1] small nonfunctional fix
+* master c96ba7e [origin/master] Cleanup locales (#155)
 Mod: 3d_armor/3d_armor
 Mod: 3d_armor/3d_armor_stand
 Mod: 3d_armor/shields
@@ -327,7 +327,7 @@ origin	https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin	https://github.com/minetest-mods/mesecons (fetch)
-* master a234006 [origin/master] Fix mesecon receiver duplication (#419)
+* master 444cd0f [origin/master] Replace usage of default.LIGHT_MAX with minetest.LIGHT_MAX
 Mod: mesecons/mesecons
 Mod: mesecons/mesecons_alias
 Mod: mesecons/mesecons_blinkyplant
