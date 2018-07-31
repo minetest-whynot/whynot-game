@@ -86,7 +86,6 @@ local register_pie = function(pie, desc)
 		},
 		inventory_image = pie .. "_inv.png",
 		wield_image = pie .. "_inv.png",
-		groups = {crumbly = 1, level = 2},
 		drawtype = "nodebox",
 		node_box = {
 			type = "fixed",
@@ -108,6 +107,7 @@ local register_pie = function(pie, desc)
 			pie .. "_side.png", pie .. "_side.png", pie .. "_inside.png"
 		},
 		groups = {not_in_creative_inventory = 1},
+		drop = {},
 		drawtype = "nodebox",
 		node_box = {
 			type = "fixed",
@@ -129,6 +129,7 @@ local register_pie = function(pie, desc)
 			pie .. "_side.png", pie .. "_side.png", pie .. "_inside.png"
 		},
 		groups = {not_in_creative_inventory = 1},
+		drop = {},
 		drawtype = "nodebox",
 		node_box = {
 			type = "fixed",
@@ -150,6 +151,7 @@ local register_pie = function(pie, desc)
 			pie .. "_side.png", pie .. "_side.png", pie .. "_inside.png"
 		},
 		groups = {not_in_creative_inventory = 1},
+		drop = {},
 		drawtype = "nodebox",
 		node_box = {
 			type = "fixed",

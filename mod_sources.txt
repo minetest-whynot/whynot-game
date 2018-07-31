@@ -88,7 +88,7 @@ Mod: player/show_wielded_item
 
 bell07	https://github.com/bell07/minetest-skinsdb (fetch)
 origin	https://github.com/minetest-mods/skinsdb (fetch)
-* master     fa5b302 [origin/master: ahead 1] add support for names in skin texture file (character_Skinname, player_playername_skinname)
+* master     fa5b302 [origin/master] add support for names in skin texture file (character_Skinname, player_playername_skinname)
 Mod: player/skinsdb
 
 origin	https://github.com/bell07/minetest-smart_inventory (fetch)
@@ -104,7 +104,7 @@ origin	https://github.com/minetest-mods/wielded_light (fetch)
 Mod: player/wielded_light
 
 origin	https://notabug.org/TenPlus1/ambience (fetch)
-* master a7db0bf [origin/master] fixed ambience_song filename to ambience_music
+* master 3f26525 [origin/master] add missing files
 Mod: ambience/ambience
 
 origin	https://github.com/minetest-mods/lightning (fetch)
@@ -143,11 +143,11 @@ origin	https://github.com/bell07/minetest-meseor.git (fetch)
 Mod: mapgen/meseor
 
 origin	https://notabug.org/TenPlus1/pbj_pup (fetch)
-* master 7d30ce9 [origin/master] update to 0.4.16 functions
+* master 85e1d9a [origin/master] add screenshot
 Mod: mapgen/pbj_pup
 
 origin	https://github.com/GreenXenith/tac_nayn (fetch)
-* master 87d9bf9 [origin/master] Avoid global functions
+* master f07b884 [origin/master] Update license and README.
 Mod: mapgen/tac_nayn
 
 origin	https://github.com/taikedz/everamzah-backpacks (fetch)
@@ -155,7 +155,7 @@ origin	https://github.com/taikedz/everamzah-backpacks (fetch)
 Mod: tools/backpacks
 
 origin	https://github.com/SmallJoker/boost_cart (fetch)
-* master d486143 [origin/master] Reset acceleration at speed limit
+* master 3386942 [origin/master] Add basic documentation
 Mod: tools/boost_cart
 
 origin	https://github.com/minetest-mods/ccompass (fetch)
@@ -319,7 +319,7 @@ origin	https://github.com/Philipbenr/mtfoods (fetch)
 Mod: food/mtfoods
 
 origin	https://notabug.org/TenPlus1/pie (fetch)
-* master f5365bc [origin/master] add aliases for older pie mod by Mitroman
+* master 5fb1a5f [origin/master] add some missing files
 Mod: food/pie
 
 origin	https://github.com/GreenXenith/waffles (fetch)

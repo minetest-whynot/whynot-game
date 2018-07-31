@@ -49,6 +49,30 @@ minetest.register_craft({
 	burntime = 1,
 })
 
+minetest.register_node(":moognu:moognu", {
+	description = "MooGNU",
+	tiles = {
+		"moognu_side.png",
+		"moognu_side.png",
+		"moognu_side.png",
+		"moognu_side.png",
+		"moognu_back.png",
+		"moognu_front.png"},
+	paramtype = "light",
+	light_source = default.LIGHT_MAX,
+	paramtype2 = "facedir",
+	groups = {cracky = 2},
+	is_ground_content = false,
+	legacy_facedir_simple = true,
+	sounds = default.node_sound_defaults(),
+})
+
+minetest.register_craft({
+	type = "fuel",
+	recipe = "moognu:moognu",
+	burntime = 1,
+})
+
 minetest.register_node(":nyancat:nyancat_rainbow", {
 	description = "Rainbow",
 	tiles = {
@@ -79,11 +103,14 @@ local function place(pos, facedir, length)
 
 	local tailvec = minetest.facedir_to_dir(facedir)
 	local p = {x = pos.x, y = pos.y, z = pos.z}
+	local num = math.random(1, 3)
 
-	if math.random(1, 2) == 1 then
+	if num == 1 then
 		minetest.set_node(p, {name = "pbj_pup:pbj_pup", param2 = facedir})
-	else
+	elseif num == 2 then
 		minetest.set_node(p, {name = "nyancat:nyancat", param2 = facedir})
+	else
+		minetest.set_node(p, {name = "moognu:moognu", param2 = facedir})
 	end
 
 	for i = 1, length do
@@ -130,6 +157,4 @@ end
 minetest.register_alias("default:nyancat", "nyancat:nyancat")
 minetest.register_alias("default:nyancat_rainbow", "nyancat:nyancat_rainbow")
 minetest.register_alias("pbj_pup:pbj_pup_candies", "nyancat:nyancat_rainbow")
-minetest.register_alias("nyancat", "nyancat:nyancat")
-minetest.register_alias("nyancat_rainbow", "nyancat:nyancat_rainbow")
 default.make_nyancat = place

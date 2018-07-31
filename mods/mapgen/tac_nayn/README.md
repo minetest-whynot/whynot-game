@@ -6,6 +6,9 @@
 								  |___/        ~By GreenDimond	
 
 
+Nyan Cat, sadly, is no longer a part of MTG. I don't really know if this	
+mod even works any more. Feel free to use it, however :)	
+
 This mod adds Nyan Cat's evil twin, Tac Nayn. Tac Nayn is a black cat.	
 Instead of poptarts, Tac Nayn has waffles. It's "rainbow" is grayscale.		
 Tac Nayn generates the same way as a Nyan Cat. If the waffles mod is enabled,	
