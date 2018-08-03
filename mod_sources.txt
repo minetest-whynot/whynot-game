@@ -191,7 +191,7 @@ origin	https://github.com/tacigar/maidroid (fetch)
 Mod: tools/maidroid
 
 origin	https://github.com/minetest-mods/orbs_of_time/ (fetch)
-* master a5fb922 [origin/master] Merge pull request #1 from EdwardThorsten/master
+* master 0d291b0 [origin/master] MineClone2 support (#2)
 Mod: tools/orbs_of_time
 
 origin	https://github.com/dkartaschew/minetest-rainbowswords (fetch)
@@ -358,5 +358,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master 4badcec [origin/master] add check for no drops
+* master da0238c [origin/master] fix animation flip
 Mod: mobs_redo/mobs_redo

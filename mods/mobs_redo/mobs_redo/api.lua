@@ -3,7 +3,7 @@
 
 mobs = {}
 mobs.mod = "redo"
-mobs.version = "20180719"
+mobs.version = "20180803"
 
 
 -- Intllib
@@ -181,6 +181,29 @@ local set_animation = function(self, anim)
 	or not anim then return end
 
 	self.animation.current = self.animation.current or ""
+
+	-- only set different animation
+	if anim ~= "punch" and anim ~= "shoot"
+	and string.find(self.animation.current, anim) then
+		return
+	end
+
+	-- check for more than one animation
+	local num = 0
+
+	for n = 1, 4 do
+
+		if self.animation[anim .. n .. "_start"]
+		and self.animation[anim .. n .. "_end"] then
+			num = n
+		end
+	end
+
+	-- choose random animation from set
+	if num > 0 then
+		num = random(0, num)
+		anim = anim .. (num ~= 0 and num or "")
+	end
 
 	if anim == self.animation.current
 	or not self.animation[anim .. "_start"]
@@ -1190,6 +1213,7 @@ local smart_mobs = function(self, s, p, dist, dtime)
 		if self.fear_height ~= 0 then dropheight = self.fear_height end
 
 		self.path.way = minetest.find_path(s, p1, 16, self.stepheight, dropheight, "Dijkstra")
+
 --[[
 		-- show path using particles
 		if self.path.way and #self.path.way > 0 then
@@ -2121,12 +2145,12 @@ local do_states = function(self, dtime)
 
 						self.timer = 0
 
-						if self.double_melee_attack
-						and random(1, 2) == 1 then
-							set_animation(self, "punch2")
-						else
+--						if self.double_melee_attack
+--						and random(1, 2) == 1 then
+--							set_animation(self, "punch2")
+--						else
 							set_animation(self, "punch")
-						end
+--						end
 
 						local p2 = p
 						local s2 = s

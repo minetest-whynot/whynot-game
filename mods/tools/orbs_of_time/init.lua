@@ -13,6 +13,7 @@ minetest.register_tool("orbs_of_time:orb_day", {
 	inventory_image = "orbs_orb_day.png",
 	wield_image = "orbs_orb_day_weild.png",
 	stack_max=1,
+	groups = { tool=1 },
 	on_use = function(itemstack, user)
 		minetest.sound_play("orbs_ding", {pos=user:getpos(), loop=false})
 		minetest.set_timeofday(0.5)
@@ -32,6 +33,7 @@ minetest.register_tool("orbs_of_time:orb_night",{
 	inventory_image = "orbs_orb_night.png",
 	wield_image = "orbs_orb_night_weild.png",
 	stack_max=1,
+	groups = { tool=1 },
 	on_use = function(itemstack, user)
 		minetest.sound_play("orbs_ding", {pos=user:getpos(), loop=false})
 		minetest.set_timeofday(0)
@@ -86,38 +88,58 @@ minetest.register_tool("orbs_of_time:orb_dusk",{
 --Crafting
 -----------
 
-minetest.register_craft( {
-  output = "orbs_of_time:orb_day",
-  recipe = {
-    {"default:diamond", "default:diamond","default:diamond"},
-    {"default:diamond", "default:mese_crystal","default:diamond"},
-    {"default:diamond", "default:diamond","default:diamond"}
-   },
+if minetest.get_modpath("mcl_core") then
+	minetest.register_craft({
+		output = "orbs_of_time:orb_day",
+		recipe = {
+			{"mcl_core:diamond", "mcl_core:diamond","mcl_core:diamond"},
+			{"mcl_core:diamond", "mesecons:redstone","mcl_core:diamond"},
+			{"mcl_core:diamond", "mcl_core:diamond","mcl_core:diamond"}
+		 },
+	})
+
+	minetest.register_craft({
+		output = "orbs_of_time:orb_night",
+		recipe = {
+			{"mcl_core:diamond", "mcl_core:diamond","mcl_core:diamond"},
+			{"mcl_core:diamond", "dye:black","mcl_core:diamond"},
+			{"mcl_core:diamond", "mcl_core:diamond","mcl_core:diamond"}
+		},
+	})
+else
+	minetest.register_craft({
+		output = "orbs_of_time:orb_day",
+		recipe = {
+			{"mcl_core:diamond", "mcl_core:diamond","mcl_core:diamond"},
+			{"mcl_core:diamond", "default:mese_crystal","mcl_core:diamond"},
+			{"mcl_core:diamond", "mcl_core:diamond","mcl_core:diamond"}
+		},
+	})
+
+	minetest.register_craft({
+		output = "orbs_of_time:orb_night",
+		recipe = {
+			{"mcl_core:diamond", "mcl_core:diamond","mcl_core:diamond"},
+			{"mcl_core:diamond", "default:obsidian_shard","mcl_core:diamond"},
+			{"mcl_core:diamond", "mcl_core:diamond","mcl_core:diamond"}
+		},
+	})
+end
+
+minetest.register_craft({
+	output = "orbs_of_time:orb_dawn 2",
+	recipe = {
+		{"orbs_of_time:orb_day"},
+		{"orbs_of_time:orb_night"},
+	},
 })
 
 minetest.register_craft({
-  output = "orbs_of_time:orb_night",
-  recipe = {
-   {"default:diamond", "default:diamond","default:diamond"},
-   {"default:diamond", "default:obsidian_shard","default:diamond"},
-   {"default:diamond", "default:diamond","default:diamond"}
-  },
-})
-
-minetest.register_craft({
-  output = "orbs_of_time:orb_dawn 2",
-  recipe = {
-   {"orbs_of_time:orb_day"},
-   {"orbs_of_time:orb_night"},
-  },
-})
-
-minetest.register_craft({
-  output = "orbs_of_time:orb_dusk 2",
-  recipe = {
-   {"orbs_of_time:orb_night"},
-   {"orbs_of_time:orb_day"},
-  },
+	output = "orbs_of_time:orb_dusk 2",
+	recipe = {
+		{"orbs_of_time:orb_night"},
+		{"orbs_of_time:orb_day"},
+	},
 })
 
 -----------

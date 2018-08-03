@@ -172,7 +172,7 @@ functions needed for the mob to work properly which contains the following:
    'rotate'            custom model rotation, 0 = front, 90 = side, 180 = back,
                        270 = other side.
    'double_melee_attack' when true has the api choose between 'punch' and
-                      'punch2' animations.
+                      'punch2' animations. [DEPRECATED]
 
    'animation'       holds a table containing animation names and settings for use with mesh models:
       'stand_start'  start frame for when mob stands still.
@@ -206,6 +206,9 @@ functions needed for the mob to work properly which contains the following:
 
       'speed_normal' is used for animation speed for compatibility with some
                      older mobs.
+
+      Note: Up to 5 different animations can be used per action e.g.
+      stand_start, stand_end, stand1_start, stand1_end .. up to stand4_start
 
 
 Node Replacement
