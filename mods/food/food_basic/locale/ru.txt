@@ -1,0 +1,37 @@
+# Translation by Xanthin and hawkril
+
+Wheat = Пшеница
+Flour = Мука
+Potato = Картофель
+Tomato = Помидор
+Carrot = Морковь
+Orange = Апельсин
+Milk = Молоко
+Egg = Яйцо
+Cocoa Bean = Какао-Бобы
+Raw meat = Сырое мясо
+Venison = Оленина
+Sugar = Сахар
+Chocolate Powder = Шоколадный порошок
+Dark Chocolate = Чёрный шоколад
+Milk Chocolate = Молочный шоколад
+Pasta = Паста
+Bowl = Чашка
+Butter = Масло
+Cheese = Сыр
+Baked Potato = Печёный картофель
+Pasta Bake = Макаронные изделия
+Raw Pasta Bake = Сырая паста
+chicken Soup = Куриный суп
+tomato Soup = Томатный суп
+Uncooked tomato Soup = Сырой томатный суп
+Uncooked chicken Soup = Сырой куриный суп
+apple Juice = Яблочный сок
+cactus Juice = Кактусовый сок
+Rainbow Juice = Радужный сок
+Cake = Торт
+Chocolate Cake = Шоколадный торт
+Carrot Cake = Морковный торт
+Cake Mix = Полуфабрикат торта
+Chocolate Cake Mix = Полуфабрикат шоколадного торта
+Carrot Cake Mix = Полуфабрикат морковного торта

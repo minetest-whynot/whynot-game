@@ -53,7 +53,7 @@ origin	https://github.com/Chemguy99/armor_addon (fetch)
 Mod: player/armor_addon
 
 origin	https://github.com/minetest-mods/awards (fetch)
-* master 32150bd [origin/master] Fix crash for invalid award index selection
+* master 1ab08d6 [origin/master] Add portuguese translations
 Mod: player/awards
 
 bell07	https://github.com/bell07/character_creator (fetch)
@@ -301,7 +301,7 @@ Mod: mydoors/my_old_doors
 Mod: mydoors/my_old_doors
 
 origin	https://github.com/rubenwardy/food (fetch)
-* master 5e85255 [origin/master: ahead 2] removed redundant check for installed mod
+* master aaf74f3 [origin/master: ahead 3] Merge remote-tracking branch 'origin/master'
 Mod: food_modpack/food
 Mod: food_modpack/food_basic
 
