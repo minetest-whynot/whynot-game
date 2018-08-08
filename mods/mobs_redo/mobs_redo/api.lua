@@ -3,7 +3,7 @@
 
 mobs = {}
 mobs.mod = "redo"
-mobs.version = "20180803"
+mobs.version = "20180808"
 
 
 -- Intllib
@@ -182,7 +182,7 @@ local set_animation = function(self, anim)
 
 	self.animation.current = self.animation.current or ""
 
-	-- only set different animation
+	-- only set different animation for attacks when setting to same set
 	if anim ~= "punch" and anim ~= "shoot"
 	and string.find(self.animation.current, anim) then
 		return
@@ -239,6 +239,8 @@ end
 -- check line of sight (by BrunoMine, tweaked by Astrobe)
 local line_of_sight = function(self, pos1, pos2, stepsize)
 
+	if not pos1 or not pos2 then return end
+
 	stepsize = stepsize or 1
 
 	local stepv = vector.multiply(vector.direction(pos1, pos2), stepsize)
@@ -279,6 +281,12 @@ local line_of_sight = function(self, pos1, pos2, stepsize)
 	end
 
 	return false
+end
+
+-- global function
+function mobs:line_of_sight(self, pos1, pos2, stepsize)
+
+	return line_of_sight(self, pos1, pos2, stepsize)
 end
 
 
@@ -1171,7 +1179,7 @@ local smart_mobs = function(self, s, p, dist, dtime)
 		end, self)
 	end
 
-	if math.abs(vector.subtract(s,target_pos).y) > self.stepheight then
+	if abs(vector.subtract(s,target_pos).y) > self.stepheight then
 
 		if height_switcher then
 			use_pathfind = true
@@ -3457,8 +3465,9 @@ end
 
 -- compatibility function
 function mobs:explosion(pos, radius)
-	local self = {sounds = {}}
-	self.sounds.explode = "tnt_explode"
+
+	local self = {sounds = {explode = "tnt_explode"}}
+
 	mobs:boom(self, pos, radius)
 end
 
@@ -3473,6 +3482,7 @@ function mobs:safe_boom(self, pos, radius)
 	})
 
 	entity_physics(pos, radius)
+
 	effect(pos, 32, "tnt_smoke.png", radius * 3, radius * 5, radius, 1, 0)
 end
 
@@ -3945,7 +3955,7 @@ function mobs:alias_mob(old_name, new_name)
 
 		physical = false,
 
-		on_step = function(self)
+		on_activate = function(self)
 
 			if minetest.registered_entities[new_name] then
 				minetest.add_entity(self.object:get_pos(), new_name)

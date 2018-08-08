@@ -358,5 +358,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master da0238c [origin/master] fix animation flip
+* master 42473cb [origin/master] add nil check to line_of_sight
 Mod: mobs_redo/mobs_redo
