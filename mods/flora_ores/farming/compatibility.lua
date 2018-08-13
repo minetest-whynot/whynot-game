@@ -160,7 +160,7 @@ minetest.register_alias("farming_plus:tomato", "farming:tomato_8")
 -- Weed
 minetest.register_alias("farming:weed", "default:grass_2")
 
--- Classic Bushes compatibility
+--[[ Classic Bushes compatibility
 if minetest.get_modpath("bushes_classic") then
 
 	if eth then
@@ -171,6 +171,6 @@ if minetest.get_modpath("bushes_classic") then
 
 	minetest.register_alias("bushes:blueberry", "farming:blueberries")
 	minetest.register_alias("bushes:raspberry", "farming:raspberries")
-end
+end]]
 
 end)

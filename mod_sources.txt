@@ -127,7 +127,7 @@ Mod: 3d_armor/shields
 Mod: 3d_armor/wieldview
 
 origin	https://notabug.org/TenPlus1/farming (fetch)
-* master 8606b41 [origin/master] code tidy
+* master aa73d0b [origin/master] remove bushes_classic alias for berries
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
@@ -268,7 +268,7 @@ origin	https://github.com/v-rob/slats (fetch)
 Mod: decor/slats
 
 origin	https://github.com/minetest-mods/ts_furniture (fetch)
-* master af4e4aa [origin/master] Change chair recipe Avoids conflicts with homedecor
+* master 9bd7735 [origin/master] Player model v3 poikilos patch 1 (#6)
 Mod: decor/ts_furniture
 
 origin	https://github.com/minetest-mods/unifieddyes (fetch)

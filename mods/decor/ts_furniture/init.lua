@@ -3,6 +3,18 @@ ts_furniture = {}
 -- If true, you can sit on chairs and benches, when right-click them.
 ts_furniture.enable_sitting = true
 
+local valid_player_model_versions =  {
+	default_character_v1 = true,  -- ignored
+	default_character_v2 = true,
+	default_character_v3 = true,
+}
+local player_model_version = "default_character_v2"
+
+if minetest.get_modpath("player_api") ~= nil then
+	player_model_version = "default_character_v3"
+end
+
+
 
 -- The following code is from "Get Comfortable [cozy]" (by everamzah; published under WTFPL).
 -- Thomas S. modified it, so that it can be used in this mod
@@ -32,6 +44,9 @@ ts_furniture.sit = function(name, pos)
 		default.player_attached[name] = false
 		default.player_set_animation(player, "stand", 30)
 	else
+		if player_model_version == "default_character_v3" then
+			pos.y = pos.y - 0.6
+		end
 		player:moveto(pos)
 		player:set_eye_offset({ x = 0, y = -7, z = 2 }, { x = 0, y = 0, z = 0 })
 		player:set_physics_override(0, 0, 0)
