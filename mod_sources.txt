@@ -127,7 +127,7 @@ Mod: 3d_armor/shields
 Mod: 3d_armor/wieldview
 
 origin	https://notabug.org/TenPlus1/farming (fetch)
-* master aa73d0b [origin/master] remove bushes_classic alias for berries
+* master ede6267 [origin/master] fix melon drop
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)

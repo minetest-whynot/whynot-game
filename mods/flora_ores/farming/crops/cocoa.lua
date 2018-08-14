@@ -113,7 +113,7 @@ local crop_def = {
 	drawtype = "plantlike",
 	tiles = {"farming_cocoa_1.png"},
 	paramtype = "light",
-	walkable = true,
+	walkable = false,
 	drop = {
 		items = {
 			{items = {'farming:cocoa_beans 1'}, rarity = 2},

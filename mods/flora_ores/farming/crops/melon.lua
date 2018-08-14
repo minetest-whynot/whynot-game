@@ -22,10 +22,10 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
+	type = "shapeless",
 	output = "farming:melon_slice 9",
-	recipe = {
-		{"", "farming:melon_8", ""},
-	}
+	recipe = {"farming:melon_8", "farming:cutting_board"},
+	replacements = {{"farming:cutting_board", "farming:cutting_board"}},
 })
 
 -- melon definition
@@ -82,5 +82,6 @@ crop_def.groups = {
 	food_melon = 1, snappy = 1, oddly_breakable_by_hand = 1,
 	flammable = 2, plant = 1
 }
-crop_def.drop = "farming:melon_slice 9"
+--crop_def.drop = "farming:melon_slice 9"
+crop_def.drop = "farming:melon_8"
 minetest.register_node("farming:melon_8", table.copy(crop_def))

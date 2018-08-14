@@ -5,26 +5,6 @@
 
 local S = farming.intllib
 
--- pumpkin
-minetest.register_node("farming:pumpkin", {
-	description = S("Pumpkin"),
-	tiles = {
-		"farming_pumpkin_top.png",
-		"farming_pumpkin_top.png",
-		"farming_pumpkin_side.png"
-	},
-	groups = {
-		food_pumpkin = 1, choppy = 1, oddly_breakable_by_hand = 1,
-		flammable = 2, plant = 1
-	},
-	drop = {
-		items = {
-			{items = {'farming:pumpkin_slice 9'}, rarity = 1},
-		}
-	},
-	sounds = default.node_sound_wood_defaults(),
-})
-
 -- pumpkin slice
 minetest.register_craftitem("farming:pumpkin_slice", {
 	description = S("Pumpkin Slice"),
@@ -46,10 +26,10 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
+	type = "shapeless",
 	output = "farming:pumpkin_slice 9",
-	recipe = {
-		{"", "farming:pumpkin", ""},
-	}
+	recipe = {"farming:pumpkin", "farming:cutting_board"},
+	replacements = {{"farming:cutting_board", "farming:cutting_board"}},
 })
 
 -- jack 'o lantern
@@ -201,6 +181,7 @@ crop_def.tiles = {"farming_pumpkin_7.png"}
 minetest.register_node("farming:pumpkin_7", table.copy(crop_def))
 
 -- stage 8 (final)
+--[[
 crop_def.tiles = {"farming_pumpkin_8.png"}
 crop_def.groups.growing = 0
 crop_def.drop = {
@@ -209,3 +190,25 @@ crop_def.drop = {
 	}
 }
 minetest.register_node("farming:pumpkin_8", table.copy(crop_def))
+]]
+
+minetest.register_node("farming:pumpkin_8", {
+	description = S("Pumpkin"),
+	tiles = {
+		"farming_pumpkin_top.png",
+		"farming_pumpkin_top.png",
+		"farming_pumpkin_side.png"
+	},
+	groups = {
+		food_pumpkin = 1, choppy = 1, oddly_breakable_by_hand = 1,
+		flammable = 2, plant = 1
+	},
+--	drop = {
+--		items = {
+--			{items = {'farming:pumpkin_slice 9'}, rarity = 1},
+--		}
+--	},
+	sounds = default.node_sound_wood_defaults(),
+})
+
+minetest.register_alias("farming:pumpkin", "farming:pumpkin_8")
