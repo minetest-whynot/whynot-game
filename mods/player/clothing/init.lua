@@ -55,31 +55,87 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	end
 end)
 
+local function is_clothing(item)
+	return minetest.get_item_group(item, "clothing") > 0 or
+		minetest.get_item_group(item, "cape") > 0
+end
+
+local function save_clothing_metadata(player, clothing_inv)
+	local player_inv = player:get_inventory()
+	local is_empty = true
+	local clothes = {}
+	for i = 1, 6 do
+		local stack = clothing_inv:get_stack("clothing", i)
+		-- Move all non-clothes back to the player inventory
+		if not stack:is_empty() and not is_clothing(stack:get_name()) then
+			player_inv:add_item("main",
+				clothing_inv:remove_item("clothing", stack))
+			stack:clear()
+		end
+		if not stack:is_empty() then
+			clothes[i] = stack:to_string()
+			is_empty = false
+		end
+	end
+	if is_empty then
+		player:set_attribute("clothing:inventory", nil)
+	else
+		player:set_attribute("clothing:inventory",
+			minetest.serialize(clothes))
+	end
+end
+
+local function load_clothing_metadata(player, clothing_inv)
+	local player_inv = player:get_inventory()
+	local clothing_meta = player:get_attribute("clothing:inventory")
+	local clothes = clothing_meta and minetest.deserialize(clothing_meta) or {}
+	local dirty_meta = false
+	if not clothing_meta then
+		-- Backwards compatiblity
+		for i = 1, 6 do
+			local stack = player_inv:get_stack("clothing", i)
+			if not stack:is_empty() then
+				clothes[i] = stack:to_string()
+				dirty_meta = true
+			end
+		end
+	end
+	-- Fill detached slots
+	clothing_inv:set_size("clothing", 6)
+	for i = 1, 6 do
+		clothing_inv:set_stack("clothing", i, clothes[i] or "")
+	end
+
+	if dirty_meta then
+		-- Requires detached inventory to be set up
+		save_clothing_metadata(player, clothing_inv)
+	end
+
+	-- Clean up deprecated garbage after saving
+	player_inv:set_size("clothing", 0)
+end
+
 minetest.register_on_joinplayer(function(player)
 	local name = player:get_player_name()
 	local player_inv = player:get_inventory()
 	local clothing_inv = minetest.create_detached_inventory(name.."_clothing",{
 		on_put = function(inv, listname, index, stack, player)
-			player:get_inventory():set_stack(listname, index, stack)
+			save_clothing_metadata(player, inv)
 			clothing:run_callbacks("on_equip", player, index, stack)
 			clothing:set_player_clothing(player)
 		end,
 		on_take = function(inv, listname, index, stack, player)
-			player:get_inventory():set_stack(listname, index, nil)
+			save_clothing_metadata(player, inv)
 			clothing:run_callbacks("on_unequip", player, index, stack)
 			clothing:set_player_clothing(player)
 		end,
 		on_move = function(inv, from_list, from_index, to_list, to_index, count, player)
-			local plaver_inv = player:get_inventory()
-			local stack = inv:get_stack(to_list, to_index)
-			player_inv:set_stack(to_list, to_index, stack)
-			player_inv:set_stack(from_list, from_index, nil)
+			save_clothing_metadata(player, inv)
 			clothing:set_player_clothing(player)
 		end,
 		allow_put = function(inv, listname, index, stack, player)
 			local item = stack:get_name()
-			if minetest.get_item_group(item, "clothing") > 0 or
-					minetest.get_item_group(item, "cape") > 0 then
+			if is_clothing(item) then
 				return 1
 			end
 			return 0
@@ -94,13 +150,10 @@ minetest.register_on_joinplayer(function(player)
 	if clothing.inv_mod == "inventory_plus" then
 		inventory_plus.register_button(player,"clothing", "Clothing")
 	end
-	clothing_inv:set_size("clothing", 6)
-	player_inv:set_size("clothing", 6)
-	for i=1, 6 do
-		local stack = player_inv:get_stack("clothing", i)
-		clothing_inv:set_stack("clothing", i, stack)
-	end
-	minetest.after(1, function(player)
-		clothing:set_player_clothing(player)
-	end, player)
+
+	load_clothing_metadata(player, clothing_inv)
+	minetest.after(1, function(name)
+		-- Ensure the ObjectRef is valid after 1s
+		clothing:set_player_clothing(minetest.get_player_by_name(name))
+	end, name)
 end)

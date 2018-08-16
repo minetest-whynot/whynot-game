@@ -63,7 +63,7 @@ Mod: player/character_creator
 
 bell07	https://github.com/bell07/clothing (fetch)
 origin	https://github.com/stujones11/clothing (fetch)
-* master 3d55e5d [origin/master] make multiskin optional
+* master 6def55c [origin/master] Fix item duplication exploit, disallow waring non-clothes
 Mod: player/clothing
 
 origin	https://github.com/minetest-mods/cozy (fetch)
@@ -127,7 +127,7 @@ Mod: 3d_armor/shields
 Mod: 3d_armor/wieldview
 
 origin	https://notabug.org/TenPlus1/farming (fetch)
-* master ede6267 [origin/master] fix melon drop
+* master 7b52870 [origin/master] add bananaleaves for compatibility if ethereal isnt found
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
