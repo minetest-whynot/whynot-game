@@ -56,12 +56,10 @@ origin	https://github.com/minetest-mods/awards (fetch)
 * master 1ab08d6 [origin/master] Add portuguese translations
 Mod: player/awards
 
-bell07	https://github.com/bell07/character_creator (fetch)
 origin	https://github.com/minetest-mods/character_creator (fetch)
 * master 6f33ce5 [origin/master] bugfix for #15 (#16)
 Mod: player/character_creator
 
-bell07	https://github.com/bell07/clothing (fetch)
 origin	https://github.com/stujones11/clothing (fetch)
 * master 6def55c [origin/master] Fix item duplication exploit, disallow waring non-clothes
 Mod: player/clothing
@@ -88,7 +86,7 @@ Mod: player/show_wielded_item
 
 bell07	https://github.com/bell07/minetest-skinsdb (fetch)
 origin	https://github.com/minetest-mods/skinsdb (fetch)
-* master     fa5b302 [origin/master] add support for names in skin texture file (character_Skinname, player_playername_skinname)
+* master             4c3072b [origin/master] Merge pull request #20 from bell07/remove_updaters
 Mod: player/skinsdb
 
 origin	https://github.com/bell07/minetest-smart_inventory (fetch)
@@ -354,7 +352,7 @@ Mod: mesecons/mesecons_walllever
 Mod: mesecons/mesecons_wires
 
 origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
-* master 876d544 [origin/master] tweak dm,stone and tree monster drops
+* master 84dc34a [origin/master] add webtrap lucky block
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
