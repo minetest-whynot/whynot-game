@@ -52,6 +52,7 @@ local function show_formspec(player)
 	local indexes = skin_indexes[player]
 
 	local formspec = "size[15,9.5]"
+		.. "no_prepend[]"
 		.. "bgcolor[#00000000]"
 		-- Gender
 		.. "button[10,;2.5,.5;male;Male]"
@@ -162,32 +163,32 @@ local function get_texture(player)
 
 	local skin_key = skins_array.skin[indexes.skin]
 	local skin = skins.skin[skin_key]
-	texture = texture .. skin
+	texture = texture .. "(" .. skin .. ")"
 
 	local face_key = skins_array.face[indexes.face]
 	local face = skins.face[face_key][gender][skin_key]
-	texture = texture .. "^" .. face
+	texture = texture .. "^(" .. face .. ")"
 
 	local eyes_key = skins_array.eyes[indexes.eyes]
 	local eyes = skins.eyes[eyes_key]
-	texture = texture .. "^" .. eyes
+	texture = texture .. "^(" .. eyes .. ")"
 
 	local hair_style = skins_array.hair_style[indexes.hair_style]
 	local hair_key = skins_array.hair[indexes.hair]
 	local hair = skins.hair[hair_key][gender][hair_style]
-	texture = texture .. "^" .. hair
+	texture = texture .. "^(" .. hair .. ")"
 
 	local tshirt_key = skins_array.tshirt[indexes.tshirt]
 	local tshirt = skins.tshirt[tshirt_key]
-	texture = texture .. "^" .. tshirt
+	texture = texture .. "^(" .. tshirt .. ")"
 
 	local pants_key = skins_array.pants[indexes.pants]
 	local pants = skins.pants[pants_key]
-	texture = texture .. "^" .. pants
+	texture = texture .. "^(" .. pants .. ")"
 
 	local shoes_key = skins_array.shoes[indexes.shoes]
 	local shoes = skins.shoes[shoes_key]
-	texture = texture .. "^" .. shoes
+	texture = texture .. "^(" .. shoes .. ")"
 	return texture
 end
 

@@ -53,11 +53,11 @@ origin	https://github.com/Chemguy99/armor_addon (fetch)
 Mod: player/armor_addon
 
 origin	https://github.com/minetest-mods/awards (fetch)
-* master 1ab08d6 [origin/master] Add portuguese translations
+* master b856aea [origin/master] Fix typo in custom trigger type example
 Mod: player/awards
 
 origin	https://github.com/minetest-mods/character_creator (fetch)
-* master 6f33ce5 [origin/master] bugfix for #15 (#16)
+* master c3dead4 [origin/master] Add no_prepend to the formspec
 Mod: player/character_creator
 
 origin	https://github.com/stujones11/clothing (fetch)
@@ -86,7 +86,7 @@ Mod: player/show_wielded_item
 
 bell07	https://github.com/bell07/minetest-skinsdb (fetch)
 origin	https://github.com/minetest-mods/skinsdb (fetch)
-* master             4c3072b [origin/master] Merge pull request #20 from bell07/remove_updaters
+* master     4c3072b [origin/master] Merge pull request #20 from bell07/remove_updaters
 Mod: player/skinsdb
 
 origin	https://github.com/bell07/minetest-smart_inventory (fetch)
@@ -117,8 +117,9 @@ origin	https://gitlab.com/zombiebot/weather_pack (fetch)
 * master 28744a1 [origin/master] Merge pull request #10 from bell07/patch-1
 Mod: ambience/weather_pack
 
+bell07	https://github.com/bell07/minetest-3d_armor (fetch)
 origin	https://github.com/stujones11/minetest-3d_armor (fetch)
-* master c96ba7e [origin/master] Cleanup locales (#155)
+* master 7032515 [origin/master] Reverts https://github.com/stujones11/minetest-3d_armor/commit/9ce0ed9f557673ce0c178e3dc9c14f197e1f993c / #152
 Mod: 3d_armor/3d_armor
 Mod: 3d_armor/3d_armor_stand
 Mod: 3d_armor/shields
@@ -258,7 +259,7 @@ origin	https://github.com/pithydon/princess (fetch)
 Mod: decor/princess
 
 origin	https://github.com/minetest-mods/realchess (fetch)
-* master f9188fe [origin/master] Merge pull request #11 from bell07/pr_white_pawn_fix
+* master ebda4aa [origin/master] Change preview image
 Mod: decor/realchess
 
 origin	https://github.com/v-rob/slats (fetch)
@@ -269,13 +270,13 @@ origin	https://github.com/minetest-mods/ts_furniture (fetch)
 * master 9bd7735 [origin/master] Player model v3 poikilos patch 1 (#6)
 Mod: decor/ts_furniture
 
-origin	https://github.com/minetest-mods/unifieddyes (fetch)
-* master cd130cf [origin/master] Merge pull request #23 from katkaha/dye_aliases
+origin	https://gitlab.com/VanessaE/unifieddyes (fetch)
+* master d414502 [origin/master] update API
 Mod: decor/unifieddyes
 
 bell07	https://gitlab.com/bell07/homedecor_modpack (fetch)
 origin	https://gitlab.com/VanessaE/homedecor_modpack/ (fetch)
-* master 04cb594 [origin/master: ahead 1] bugfix wardrobe save/restore skins for skinsdb
+* master e025bd9 [origin/master: ahead 2] Merge remote-tracking branch 'origin/master'
 Mod: homedecor_modpack/homedecor_i18n
 Mod: homedecor_modpack/homedecor
 Mod: homedecor_modpack/building_blocks
@@ -325,7 +326,7 @@ origin	https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin	https://github.com/minetest-mods/mesecons (fetch)
-* master 444cd0f [origin/master] Replace usage of default.LIGHT_MAX with minetest.LIGHT_MAX
+* master 9ff2329 [origin/master] Noteblock: use new fire sounds (#385)
 Mod: mesecons/mesecons
 Mod: mesecons/mesecons_alias
 Mod: mesecons/mesecons_blinkyplant

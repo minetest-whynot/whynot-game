@@ -8,25 +8,6 @@ With thanks to Wuzzy, kaeza, and MrIbby.
 Majority of awards are back ported from Calinou's old fork in Carbone, under same license.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # Introduction
 
 ## Awards and Triggers
@@ -141,7 +122,7 @@ Here's an example.
 
 ```lua
 awards.register_trigger("foo", {
-	type             = "counted",
+	type             = "custom",
 	progress         = "@1/@2 foos",
 	auto_description = { "Do a foo", "Foo @1 times" },
 })
@@ -188,13 +169,16 @@ end
 # API
 
 * awards.register_award(name, def), the def table has the following fields:
-	* `description` - the title of the award. Required.
+	* `title` - title of the award (defaults to name)
+	* `description` - longer description of the award, displayed in Awards tab
 	* `difficulty` - see [Award Difficulty](#award-difficulty).
 	* `requires` - list of awards that need to be unlocked before this one
 		is visible.
+	* `prizes` - list of items to give when you earn the award
+	* `secret` - boolean if this award is secret (i.e. showed on awards list)
 	* `sound` - `SimpleSoundSpec` table to play on unlock.
 		`false` to disable unlock sound.
-	* `image` - the icon image, use default otherwise.
+	* `icon` - the icon image, use default otherwise.
 	* `background` - the background image, use default otherwise.
 	* `trigger` - trigger definition, see [Builtin Trigger Types](#builtin-trigger-types).
 	* `on_unlock(name, def)` - callback on unlock.

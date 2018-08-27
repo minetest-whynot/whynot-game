@@ -1,3 +1,3 @@
-A mod for Minetest to play a life-like chess game (formspec-based).
+A mod for Minetest to play a realistic chess game (GUI-based).
 
-![Preview](http://i.imgur.com/sA3K1rs.png)
+![Preview](https://i.imgur.com/xNwxC5Y.png)
