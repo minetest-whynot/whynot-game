@@ -885,7 +885,7 @@ smartfs.element("button", {
 				self.data.pos.x..","..self.data.pos.y..";"..
 				self.data.size.w..","..self.data.size.h..";"
 		if self.data.image then
-			specstring = specstring..self.data.image..";"
+			specstring = specstring..minetest.formspec_escape(self.data.image)..";"
 		elseif self.data.item then
 			specstring = specstring..self.data.item..";"
 		end
@@ -1096,7 +1096,7 @@ smartfs.element("image", {
 				";"..
 				self.data.size.w..","..self.data.size.h..
 				";"..
-				self.data.value..
+				minetest.formspec_escape(self.data.value)..
 				"]"
 		else
 			return "image["..
@@ -1104,7 +1104,7 @@ smartfs.element("image", {
 				";"..
 				self.data.size.w..","..self.data.size.h..
 				";"..
-				self.data.value..
+				minetest.formspec_escape(self.data.value)..
 				"]"
 		end
 	end,
