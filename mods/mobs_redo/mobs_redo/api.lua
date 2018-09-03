@@ -3,7 +3,7 @@
 
 mobs = {}
 mobs.mod = "redo"
-mobs.version = "20180808"
+mobs.version = "20180831"
 
 
 -- Intllib
@@ -1745,8 +1745,8 @@ local do_states = function(self, dtime)
 		set_animation(self, "stand")
 
 		-- npc's ordered to stand stay standing
-		if self.type ~= "npc"
-		or self.order ~= "stand" then
+--		if self.type ~= "npc"
+		if self.order ~= "stand" then
 
 			if self.walk_chance ~= 0
 			and self.facing_fence ~= true
@@ -2286,7 +2286,8 @@ local falling = function(self, pos)
 	end
 
 	-- in water then float up
-	if minetest.registered_nodes[self.standing_in].groups.water then
+	if self.standing_in
+	and minetest.registered_nodes[self.standing_in].groups.water then
 
 		if self.floats == 1 then
 
@@ -2692,11 +2693,11 @@ local mob_activate = function(self, staticdata, def, dtime)
 	if not self.base_texture then
 
 		-- compatiblity with old simple mobs textures
-		if type(def.textures[1]) == "string" then
+		if def.textures and type(def.textures[1]) == "string" then
 			def.textures = {def.textures}
 		end
 
-		self.base_texture = def.textures[random(1, #def.textures)]
+		self.base_texture = def.textures and def.textures[random(1, #def.textures)]
 		self.base_mesh = def.mesh
 		self.base_size = self.visual_size
 		self.base_colbox = self.collisionbox

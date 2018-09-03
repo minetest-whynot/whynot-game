@@ -15,5 +15,6 @@ Based on Immersive Sounds .36 mod by Neuromancer and optimized to run on servers
 - 1.0 - Added icecrack sound when walking on snow/ice flows, also tidied code
 - 1.1 - Using newer functions, Minetest 0.4.16 and above needed to run
 - 1.2 - Added PlayerPlus compatibility, removed fire sounds, added volume changes
+- 1.3 - Added API for use with other mods, code rewrite
 
 Code license: MIT

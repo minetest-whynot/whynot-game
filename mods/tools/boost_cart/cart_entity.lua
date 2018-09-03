@@ -19,12 +19,14 @@ function boost_cart:on_rail_step(entity, pos, distance)
 end
 
 local cart_entity = {
-	physical = false,
-	collisionbox = {-0.5, -0.5, -0.5, 0.5, 0.5, 0.5},
-	visual = "mesh",
-	mesh = "cart.x",
-	visual_size = {x=1, y=1},
-	textures = {"cart.png"},
+	initial_properties = {
+		physical = false,
+		collisionbox = {-0.5, -0.5, -0.5, 0.5, 0.5, 0.5},
+		visual = "mesh",
+		mesh = "cart.x",
+		visual_size = {x=1, y=1},
+		textures = {"cart.png"},
+	},
 
 	driver = nil,
 	punched = false, -- used to re-send velocity and position
@@ -39,8 +41,8 @@ local cart_entity = {
 
 -- Model and textures
 if boost_cart.mtg_compat then
-	cart_entity.mesh = "carts_cart.b3d"
-	cart_entity.textures = {"carts_cart.png"}
+	cart_entity.initial_properties.mesh = "carts_cart.b3d"
+	cart_entity.initial_properties.textures = {"carts_cart.png"}
 end
 
 function cart_entity:on_rightclick(clicker)
@@ -75,15 +77,19 @@ function cart_entity:on_activate(staticdata, dtime_s)
 		return
 	end
 	self.railtype = data.railtype
-	if data.old_dir then
-		self.old_dir = data.old_dir
+	self.old_dir = data.old_dir or self.old_dir
+	self.old_pos = data.old_pos or self.old_pos
+	-- Correct the position when the cart drives further after the last 'step()'
+	if self.old_pos and boost_cart:is_rail(self.old_pos, self.railtype) then
+		self.object:set_pos(self.old_pos)
 	end
 end
 
 function cart_entity:get_staticdata()
 	return minetest.serialize({
 		railtype = self.railtype,
-		old_dir = self.old_dir
+		old_dir = self.old_dir,
+		old_pos = self.old_pos
 	})
 end
 
