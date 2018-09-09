@@ -19,15 +19,14 @@ minetest.register_craftitem("farming:pumpkin_slice", {
 minetest.register_craft({
 	output = "farming:pumpkin",
 	recipe = {
-		{"farming:pumpkin_slice", "farming:pumpkin_slice", "farming:pumpkin_slice"},
-		{"farming:pumpkin_slice", "farming:pumpkin_slice", "farming:pumpkin_slice"},
-		{"farming:pumpkin_slice", "farming:pumpkin_slice", "farming:pumpkin_slice"},
+		{"farming:pumpkin_slice", "farming:pumpkin_slice"},
+		{"farming:pumpkin_slice", "farming:pumpkin_slice"},
 	}
 })
 
 minetest.register_craft({
 	type = "shapeless",
-	output = "farming:pumpkin_slice 9",
+	output = "farming:pumpkin_slice 4",
 	recipe = {"farming:pumpkin", "farming:cutting_board"},
 	replacements = {{"farming:cutting_board", "farming:cutting_board"}},
 })

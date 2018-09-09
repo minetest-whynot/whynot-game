@@ -138,7 +138,7 @@ local get_ambience = function(player, tod, name)
 		{x = pos.x - radius, y = pos.y - radius, z = pos.z - radius},
 		{x = pos.x + radius, y = pos.y + radius, z = pos.z + radius}, set_nodes)
 
-	-- loop through sets in order and play appropriate sound
+	-- loop through sets in order and choose one that meets it's conditions
 	for n = 1, #sound_set_order do
 
 		local set = sound_sets[ sound_set_order[n] ]
@@ -208,7 +208,7 @@ minetest.register_globalstep(function(dtime)
 				end
 			end
 
-			-- choose random sound from set
+			-- choose random sound from set selected
 			number = random(1, #sound_sets[set_name].sounds)
 			ambience = sound_sets[set_name].sounds[number]
 
