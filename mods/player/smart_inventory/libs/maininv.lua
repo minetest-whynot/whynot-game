@@ -1,6 +1,6 @@
 -- Enhanced main inventory methods
 local maininvClass = {}
-maininvClass.__index = maininvClass
+maininvClass_mt = {__index = maininvClass}
 
 -- Clear the inventory
 function maininvClass:remove_all()
@@ -144,7 +144,7 @@ end
 -- player inventory class
 local maininv = {}
 function maininv.get(playername)
-	local self = setmetatable({}, maininvClass)
+	local self = setmetatable({}, maininvClass_mt)
 	self.playername = playername
 	self.inventory = minetest.get_player_by_name(playername):get_inventory()
 	self.inventory:set_width("craft", 3)

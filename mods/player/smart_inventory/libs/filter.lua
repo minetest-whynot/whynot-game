@@ -4,7 +4,7 @@ local txt = smart_inventory.txt
 -- Filter class
 --------------------------------------------------------------
 local filter_class = {}
-filter_class.__index = filter_class
+local filter_class_mt = {__index = filter_class}
 
 function filter_class:check_item_by_name(itemname)
 	if minetest.registered_items[itemname] then
@@ -52,8 +52,7 @@ function filter.register_filter(def)
 	assert(def.name, "filter needs a name")
 	assert(def.check_item_by_def, "filter function check_item_by_def required")
 	assert(not filter.registered_filter[def.name], "filter already exists")
-	setmetatable(def, filter_class)
-	def.__index = filter_class
+	setmetatable(def, filter_class_mt)
 	filter.registered_filter[def.name] = def
 end
 

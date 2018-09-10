@@ -90,7 +90,7 @@ origin	https://github.com/minetest-mods/skinsdb (fetch)
 Mod: player/skinsdb
 
 origin	https://github.com/bell07/minetest-smart_inventory (fetch)
-* master     da2e1cd [origin/master] smartfs update, fix issue with complex images
+* master     d2328eb [origin/master] proper metatables usage
 Mod: player/smart_inventory
 
 origin	https://github.com/GunshipPenguin/sprint (fetch)

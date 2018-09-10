@@ -9,7 +9,7 @@ crecipes.crecipes = {} --list of all recipes
 -- crecipe: Class
 -----------------------------------------------------
 local crecipe_class = {}
-crecipe_class.__index = crecipe_class
+local crecipe_class_mt = {__index = crecipe_class}
 crecipes.crecipe_class = crecipe_class
 
 -----------------------------------------------------
@@ -285,14 +285,12 @@ end
 -- Recipe object Constructor
 -----------------------------------------------------
 function crecipes.new(recipe)
-	local def = {}
-	def.out_item = nil
-	def._recipe = recipe
-	def.recipe_type = recipe.type
-	def._items = {}
-	setmetatable(def, crecipe_class)
-	def.__index = crecipe_class
-	return def
+	local self = setmetatable({}, crecipe_class_mt)
+	-- self.out_item = nil
+	self._recipe = recipe
+	self.recipe_type = recipe.type
+	self._items = {}
+	return self
 end
 
 -----------------------------------------------------
