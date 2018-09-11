@@ -564,7 +564,7 @@ function unifieddyes.on_use(itemstack, player, pointed_thing)
 	local stackname = itemstack:get_name()
 	local playername = player:get_player_name()
 
-	if pointed_thing and pointed_thing.type == "node" then
+	if pointed_thing and pointed_thing.type == "node" and unifieddyes.select_node(pointed_thing) then
 		if minetest.is_protected(unifieddyes.select_node(pointed_thing), playername)
 		  and not minetest.check_player_privs(playername, "protection_bypass") then
 			minetest.chat_send_player(playername, "Sorry, someone else owns that spot.")
