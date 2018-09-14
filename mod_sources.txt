@@ -53,7 +53,7 @@ origin	https://github.com/Chemguy99/armor_addon (fetch)
 Mod: player/armor_addon
 
 origin	https://github.com/minetest-mods/awards (fetch)
-* master b856aea [origin/master] Fix typo in custom trigger type example
+* master 805720b [origin/master] Fix sfinv page not updating on award unlock
 Mod: player/awards
 
 origin	https://github.com/minetest-mods/character_creator (fetch)
