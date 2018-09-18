@@ -53,7 +53,7 @@ origin	https://github.com/Chemguy99/armor_addon (fetch)
 Mod: player/armor_addon
 
 origin	https://github.com/minetest-mods/awards (fetch)
-* master 805720b [origin/master] Fix sfinv page not updating on award unlock
+* master fb1670a [origin/master] Fix typo in documentation for craft trigger
 Mod: player/awards
 
 origin	https://github.com/minetest-mods/character_creator (fetch)
@@ -61,7 +61,7 @@ origin	https://github.com/minetest-mods/character_creator (fetch)
 Mod: player/character_creator
 
 origin	https://github.com/stujones11/clothing (fetch)
-* master 6def55c [origin/master] Fix item duplication exploit, disallow waring non-clothes
+* master 0ca41e0 [origin/master] Clothing tab in sfinv should be right to the creative
 Mod: player/clothing
 
 origin	https://github.com/minetest-mods/cozy (fetch)
@@ -326,7 +326,7 @@ origin	https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin	https://github.com/minetest-mods/mesecons (fetch)
-* master fa040eb [origin/master] Fix vertical movestone textures (#430)
+* master 028c290 [origin/master] Mark 'code' as private as well
 Mod: mesecons/mesecons
 Mod: mesecons/mesecons_alias
 Mod: mesecons/mesecons_blinkyplant
@@ -357,5 +357,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master 8241133 [origin/master] add custom on_punch for mob arrows
+* master afb7e01 [origin/master] tweak collision function
 Mod: mobs_redo/mobs_redo

@@ -6,7 +6,7 @@ local use_cmi = minetest.global_exists("cmi")
 
 mobs = {
 	mod = "redo",
-	version = "20180909",
+	version = "20180915",
 	intllib = S,
 	invis = minetest.global_exists("invisibility") and invisibility or {},
 }
@@ -108,8 +108,49 @@ local do_attack = function(self, player)
 end
 
 
+-- calculate distance
+local get_distance = function(a, b)
+
+	local x, y, z = a.x - b.x, a.y - b.y, a.z - b.z
+
+	return square(x * x + y * y + z * z)
+end
+
+
+-- collision function based on similar from jordan4ibanez' open_ai mod
+local collision = function(self)
+
+	local pos = self.object:get_pos()
+	local vel = self.object:get_velocity()
+	local x, z = 0, 0
+	local width = -self.collisionbox[1] + self.collisionbox[4] + 0.5
+
+	for _,object in ipairs(minetest.get_objects_inside_radius(pos, width)) do
+
+		if object:is_player()
+		or (object:get_luaentity()._cmi_is_mob == true and object ~= self.object) then
+
+			local pos2 = object:get_pos()
+			local vec  = {x = pos.x - pos2.x, z = pos.z - pos2.z}
+
+			x = x + vec.x
+			z = z + vec.z
+		end
+	end
+
+	return({x, z})
+end
+
+
 -- move mob in facing direction
 local set_velocity = function(self, v)
+
+	local c_x, c_y = 0, 0
+
+	-- can mob be pushed, if so calculate direction
+	if self.pushable then
+		c_x, c_y = unpack(collision(self))
+	end
 
 	-- halt mob if it has been ordered to stay
 	if self.order == "stand" then
@@ -120,9 +161,9 @@ local set_velocity = function(self, v)
 	local yaw = (self.object:get_yaw() or 0) + self.rotate
 
 	self.object:set_velocity({
-		x = sin(yaw) * -v,
+		x = (sin(yaw) * -v) + c_x,
 		y = self.object:get_velocity().y,
-		z = cos(yaw) * v
+		z = (cos(yaw) * v) + c_y,
 	})
 end
 
@@ -211,15 +252,6 @@ end
 -- above function exported for mount.lua
 function mobs:set_animation(self, anim)
 	set_animation(self, anim)
-end
-
-
--- calculate distance
-local get_distance = function(a, b)
-
-	local x, y, z = a.x - b.x, a.y - b.y, a.z - b.z
-
-	return square(x * x + y * y + z * z)
 end
 
 
@@ -3049,6 +3081,7 @@ minetest.register_entity(name, {
 	runaway_from = def.runaway_from,
 	owner_loyal = def.owner_loyal,
 	facing_fence = false,
+	pushable = def.pushable,
 	_cmi_is_mob = true,
 
 	on_spawn = def.on_spawn,
