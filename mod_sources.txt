@@ -126,7 +126,7 @@ Mod: 3d_armor/shields
 Mod: 3d_armor/wieldview
 
 origin	https://notabug.org/TenPlus1/farming (fetch)
-* master d3d1feb [origin/master] melon/pumpkin give 4 slices when cut with chopping board, 2x2 slices = block
+* master d7bc9b1 [origin/master] added crop information to farming.registered_plants table
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
@@ -305,7 +305,7 @@ Mod: food_modpack/food
 Mod: food_modpack/food_basic
 
 origin	https://github.com/h-v-smacker/canned_food (fetch)
-* master e595fd0 [origin/master] Create LICENSE
+* master 6af363d [origin/master] unified inventory integration
 Mod: food/canned_food
 
 origin	https://github.com/rubenwardy/food_sweet (fetch)
@@ -318,7 +318,7 @@ origin	https://github.com/Philipbenr/mtfoods (fetch)
 Mod: food/mtfoods
 
 origin	https://notabug.org/TenPlus1/pie (fetch)
-* master 5fb1a5f [origin/master] add some missing files
+* master 58b1d70 [origin/master] full pie can be picked up using ethereal's crystal shovel
 Mod: food/pie
 
 origin	https://github.com/GreenXenith/waffles (fetch)
@@ -357,5 +357,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master afb7e01 [origin/master] tweak collision function
+* master e17f881 [origin/master] added attack_chance to mob definition
 Mod: mobs_redo/mobs_redo

@@ -224,6 +224,15 @@ crop_def.drop = {
 }
 minetest.register_node("farming:beanpole_5", table.copy(crop_def))
 
+-- add to registered_plants
+farming.registered_plants["farming:beans"] = {
+	crop = "farming:beanpole",
+	seed = "farming:beans",
+	minlight = 13,
+	maxlight = 15,
+	steps = 5
+}
+
 -- wild green bean bush (this is what you find on the map)
 minetest.register_node("farming:beanbush", {
 	drawtype = "plantlike",

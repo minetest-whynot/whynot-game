@@ -5,13 +5,15 @@
 	auto-refill by crabman77
 ]]
 
-farming = {}
-farming.mod = "redo"
-farming.version = "20180617"
-farming.path = minetest.get_modpath("farming")
-farming.select = {
-	type = "fixed",
-	fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5}
+farming = {
+	mod = "redo",
+	version = "20180929",
+	path = minetest.get_modpath("farming"),
+	select = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5}
+	},
+	registered_plants = {}
 }
 
 
@@ -581,6 +583,15 @@ farming.register_plant = function(name, def)
 		})
 	end
 
+-- add to farming.registered_plants
+farming.registered_plants[mname .. ":" .. pname] = {
+	crop = mname .. ":" .. pname,
+	seed = mname .. ":seed_" .. pname,
+	steps = def.steps,
+	minlight = def.minlight,
+	maxlight = def.maxlight
+}
+print(dump(farming.registered_plants[mname .. ":" .. pname]))
 	-- Return info
 	return {seed = mname .. ":seed_" .. pname, harvest = mname .. ":" .. pname}
 end

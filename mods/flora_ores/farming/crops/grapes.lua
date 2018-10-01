@@ -231,6 +231,15 @@ crop_def.drop = {
 }
 minetest.register_node("farming:grapes_8", table.copy(crop_def))
 
+-- add to registered_plants
+farming.registered_plants["farming:grapes"] = {
+	crop = "farming:grapes",
+	seed = "farming:grapes",
+	minlight = 13,
+	maxlight = 15,
+	steps = 8
+}
+
 -- wild grape vine (this is what you find on the map)
 minetest.register_node("farming:grapebush", {
 	drawtype = "plantlike",

@@ -6,7 +6,7 @@ local use_cmi = minetest.global_exists("cmi")
 
 mobs = {
 	mod = "redo",
-	version = "20180915",
+	version = "20181001",
 	intllib = S,
 	invis = minetest.global_exists("invisibility") and invisibility or {},
 }
@@ -117,7 +117,7 @@ local get_distance = function(a, b)
 end
 
 
--- collision function based on similar from jordan4ibanez' open_ai mod
+-- collision function based on jordan4ibanez' open_ai mod
 local collision = function(self)
 
 	local pos = self.object:get_pos()
@@ -1447,7 +1447,7 @@ local general_attack = function(self)
 	end
 
 	-- attack closest player or mob
-	if min_player then
+	if min_player and random(1, 100) > self.attack_chance then
 		do_attack(self, min_player)
 	end
 end
@@ -3030,6 +3030,7 @@ minetest.register_entity(name, {
 	follow = def.follow,
 	jump = def.jump ~= false,
 	walk_chance = def.walk_chance or 50,
+	attack_chance = def.attack_chance or 5,
 	passive = def.passive or false,
 	knock_back = def.knock_back ~= false,
 	blood_amount = def.blood_amount or 5,
@@ -3258,7 +3259,9 @@ function mobs:spawn_specific(name, nodes, neighbors, min_light, max_light,
 
 			-- do we have enough height clearance to spawn mob?
 			local ent = minetest.registered_entities[name]
-			local height = max(0, math.ceil(ent.collisionbox[5] - ent.collisionbox[2]) - 1)
+			local height = max(1, math.ceil(
+				(ent.collisionbox[5] or 0.25) -
+				(ent.collisionbox[2] or -0.25) - 1))
 
 			for n = 0, height do
 

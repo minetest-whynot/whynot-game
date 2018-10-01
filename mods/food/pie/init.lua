@@ -16,6 +16,24 @@ local replace_pie = function(node, puncher, pos)
 	local pie = node.name:split("_")[1]
 	local num = tonumber(node.name:split("_")[2])
 
+	-- are we using crystal shovel to pick up full pie using soft touch?
+	local tool = puncher:get_wielded_item():get_name()
+	if num == 0 and tool == "ethereal:shovel_crystal" then
+
+		local inv = puncher:get_inventory()
+
+		minetest.remove_node(pos)
+
+		if inv:room_for_item("main", {name = pie .. "_0"}) then
+			inv:add_item("main", pie .. "_0")
+		else
+			pos.y = pos.y + 0.5
+			minetest.add_item(pos, {name = pie .. "_0"})
+		end
+
+		return
+	end
+
 	-- eat slice or remove whole pie
 	if num == 3 then
 		node.name = "air"

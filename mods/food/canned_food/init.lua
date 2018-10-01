@@ -19,6 +19,16 @@
 	image files for items must follow the scheme "internal_name_of_the_product.png"
 ]]
 
+if minetest.get_modpath("unified_inventory") and unified_inventory.register_craft_type then
+		unified_inventory.register_craft_type("pickling", {
+				description = "Dark room, wooden shelf",
+				icon = "pickling_icon.png",
+				width = 1,
+				height = 1,
+				uses_crafting_grid = false,
+		})
+end
+
 local canned_food_definitions = {
 	apple_jam = {
 		proper_name = "Apple jam",
@@ -347,6 +357,14 @@ for product, def in pairs(canned_food_definitions) do
 						end
 					end,
 				})
+				
+				if minetest.get_modpath("unified_inventory") and unified_inventory.register_craft then
+					unified_inventory.register_craft({
+						type = "pickling",
+						output = "canned_food:" .. product .."_plus",
+						items = {"canned_food:" .. product},
+					})
+				end
 				
 			end
 			
