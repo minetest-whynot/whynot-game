@@ -6,7 +6,7 @@ local use_cmi = minetest.global_exists("cmi")
 
 mobs = {
 	mod = "redo",
-	version = "20181001",
+	version = "20181005",
 	intllib = S,
 	invis = minetest.global_exists("invisibility") and invisibility or {},
 }
@@ -3115,31 +3115,24 @@ end -- END mobs:register_mob function
 -- count how many mobs of one type are inside an area
 local count_mobs = function(pos, type)
 
-	local num_type = 0
-	local num_total = 0
-	local objs = minetest.get_objects_inside_radius(pos, aoc_range)
+	local total = 0
+	local objs = minetest.get_objects_inside_radius(pos, aoc_range * 2)
+	local ent
 
 	for n = 1, #objs do
 
 		if not objs[n]:is_player() then
 
-			local obj = objs[n]:get_luaentity()
+			ent = objs[n]:get_luaentity()
 
 			-- count mob type and add to total also
-			if obj and obj.name and obj.name == type then
-
-				num_type = num_type + 1
-				num_total = num_total + 1
-
-			-- add to total mobs
-			elseif obj and obj.name and obj.health ~= nil then
-
-				num_total = num_total + 1
+			if ent and ent.name and ent.name == type then
+				total = total + 1
 			end
 		end
 	end
 
-	return num_type, num_total
+	return total
 end
 
 
@@ -3200,10 +3193,17 @@ function mobs:spawn_specific(name, nodes, neighbors, min_light, max_light,
 				return
 			end
 
-			-- do not spawn if too many of same mob in area
-			if active_object_count_wider >= max_per_block
-			or count_mobs(pos, name) >= aoc then
---print ("--- too many entities", name, aoc, active_object_count_wider)
+			-- do not spawn if too many entities in area
+			if active_object_count_wider >= max_per_block then
+--print("--- too many entities in area", active_object_count_wider)
+				return
+			end
+
+			-- get total number of this mob in area
+			local num_mob = count_mobs(pos, name)
+
+			if num_mob >= aoc then
+--print ("--- too many " .. name .. " in area", num_mob .. "/" .. aoc)
 				return
 			end
 

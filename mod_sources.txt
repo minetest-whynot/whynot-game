@@ -357,5 +357,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master e17f881 [origin/master] added attack_chance to mob definition
+* master e545cc8 [origin/master] tweak mob counter per area
 Mod: mobs_redo/mobs_redo
