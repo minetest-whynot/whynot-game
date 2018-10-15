@@ -33,7 +33,7 @@ origin	http://repo.or.cz/minetest_doc_items.git (fetch)
 Mod: libs/doc_items
 
 origin	http://repo.or.cz/minetest_doc_minetest_game.git (fetch)
-* master d69267f [origin/master: ahead 1] set map and binocular optional
+* master e90b8e7 [origin/master: ahead 2] Merge remote-tracking branch 'origin/master'
 Mod: libs/doc_minetest_game
 
 origin	https://github.com/minetest-mods/intllib (fetch)

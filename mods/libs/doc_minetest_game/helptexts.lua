@@ -27,10 +27,11 @@ end
 local flowertext = S("Flowers of this species have their natural habitat in grasslands and forests and are important for the production of dyes.")
 local ladderdesc =  S("A piece of ladder which allows you to move vertically.")
 local fencedesc = S("A fence post. When multiple of these are placed to next to each other, they will automatically build a nice fence structure. You can easily jump over a low fence.")
+local fenceraildesc = S("A floating fence rail, without the fence post. When multiple of these are placed to next to each other, they will automatically build a nice fence rail structure. You can easily jump over a low fence.")
 local fencegatedesc = S("Fence gates can be opened or closed and can be easily jumped over. Other fence posts will connect nicely to fence gates.")
 local fencegateuse = S("Right-click the gate to open or close it.")
 local walldesc = S("A piece of wall. When multiple of these are placed to next to each other, they will automatically build a nice wall structure. You can easily jump over a low wall.")
-local slabdesc = S("A slab is half as high as their full block counterparts and can occupy either the lower or upper half of a block. Low slabs can be easily stepped on without needing to jump. When a slab is placed on another slab of the same type, a new full block is created.")
+local slabdesc = S("A slab is half as high as their full block counterparts and can occupy either the lower or upper half of a block. Low slabs can be easily stepped on without needing to jump.")
 local slabuse = S("To place a low slab, place it on the floor or the bottom half of the side of a block. To place a high slab, place it on the ceiling or the upper half of the side of a block.")
 
 local stairdesc = S("Stairs are useful to reach higher places by walking over them; jumping is not required. Stairs can be placed upside-down, too.")
@@ -65,6 +66,7 @@ local dyedesc = S("Dyes are primarily used for crafting other items, especially 
 
 local wooldesc = S("Wool is a soft decorative block which comes in different colors. Walking on wool is completely silent.")
 
+local butterflydesc = S("Butterflies are peaceful insencts that hover in the air. They can be catched with a bugnet.")
 
 local lavaheight
 -- CHECKME: Height at which lava spawns
@@ -108,6 +110,7 @@ local groupname_vessel = doc.sub.items.get_group_name("vessel")
 local export_longdesc = {
 	[""] = S("You use your bare hand whenever you are not wielding any item. With your hand you can mine the weakest blocks and deal minor damage by punching. Using the hand is often a last resort, as proper mining tools and weapons are usually better than the hand. When you are wielding an item which is not a mining tool or a weapon it will behave as if it were the hand when you start mining or punching. In Creative Mode, the mining capabilities, range and damage of the hand are greatly enhanced."),
 	["default:apple"] = S("Apples can be eaten to restore 2 hit points. Apples are sometimes grown from saplings."),
+	["default:blueberries"] = S("Blueberries can be eaten to restore 2 hit points. They can be collected from blueberry bushes."),
 	["default:furnace"] = S("Cooks or smelts several items, using a furnace fuel, into something else."),
 	["default:chest"] = S("Provides 32 slots of inventory space."),
 	["default:chest_locked"] = S("Provides 32 slots of inventory space, is accessible only to the player who placed it. Locked chests are also immune to explosions."),
@@ -178,6 +181,7 @@ local export_longdesc = {
 	["default:pine_sapling"] = S("When placed on natural soil (such as dirt) and exposed to sunlight, a pine sapling will grow into a pine tree after some time. If the pine sapling was next to any “snowy” block (e.g. “Snow Block”), the pine tree will be covered with snow."),
 	["default:bush_sapling"] = S("When placed on natural soil (such as dirt) and exposed to sunlight, a bush sapling will grow into a bush after some time."),
 	["default:acacia_bush_sapling"] = S("When placed on natural soil (such as dirt) and exposed to sunlight, an acacia bush sapling will grow into an acacia bush after some time."),
+	["default:blueberry_bush_sapling"] = S("When placed on natural soil (such as dirt) and exposed to sunlight, an blueberry bush sapling will grow into a blueberry bush after some time."),
 	["default:leaves"] = S("Leaves are grown from trees—which sometimes bear apples—found in deciduous forests."),
 	["default:jungleleaves"] = S("Jungle leaves are grown from jungle trees found in jungles."),
 	["default:acacia_leaves"] = S("Acacia leaves are grown from acacia trees found in savannahs."),
@@ -185,6 +189,8 @@ local export_longdesc = {
 	["default:pine_needles"] = S("Pine needles are grown from pine trees found in coniferous forests."),
 	["default:bush_leaves"] = S("Bush leaves are grown from bushes found in grasslands, snowy grasslands and deciduous forests."),
 	["default:acacia_bush_leaves"] = S("Acacia bush leaves are grown from acacia bushes found in savannahs."),
+	["default:blueberry_bush_leaves"] = S("Blueberry bush leaves are grown from blueberry bushes found in grasslands."),
+	["default:blueberry_bush_leaves_with_berries"] = S("These blueberry bush leaves carry some tasty blueberries! They can be found in grasslands."),
 	["default:cactus"] = S("A piece of cactus usually found in deserts. Cacti grow on sand, desert sand and other blocks belonging to the “@1” group at a light level of 13 or higher. They can reach a height of up to 4 cactus blocks.", groupname_sand),
 	["default:papyrus"] = S("A papyrus piece usually found near shallow water. Papyrus grows vertically up to a height of 4 blocks on dirt and dirt with grass near a water source (or another block belonging to the @1 group) and requires a light level of 13 or higher. When dug, all papyrus blocks directly connected above it will also be dug.", groupname_water),
 	["default:bookshelf"] = S("A bookshelf provides 16 inventory slots for books."),
@@ -194,6 +200,11 @@ local export_longdesc = {
 	["default:fence_pine_wood"] = fencedesc,
 	["default:fence_acacia_wood"] = fencedesc,
 	["default:fence_aspen_wood"] = fencedesc,
+	["default:fence_rail_wood"] = fenceraildesc,
+	["default:fence_rail_junglewood"] = fenceraildesc,
+	["default:fence_rail_pine_wood"] = fenceraildesc,
+	["default:fence_rail_acacia_wood"] = fenceraildesc,
+	["default:fence_rail_aspen_wood"] = fenceraildesc,
 	["doors:gate_wood_closed"] = fencegatedesc,
 	["doors:gate_junglewood_closed"] = fencegatedesc,
 	["doors:gate_acacia_wood_closed"] = fencegatedesc,
@@ -300,6 +311,9 @@ local export_longdesc = {
 	["vessels:steel_bottle"] = S("A decorational item which can be placed."),
 	["vessels:shelf"] = S("A vessels shelf provides 16 inventory slots for vessels (like glass bottles)."),
 	["fireflies:firefly"] = S("Fireflies hover in the air and illuminate the surroundings. They like to appear in the night and disappear in sunlight. They can be catched with a bugnet."),
+	["butterflies:butterfly_white"] = butterflydesc,
+	["butterflies:butterfly_red"] = butterflydesc,
+	["butterflies:butterfly_violet"] = butterflydesc,
 	["fireflies:firefly_bottle"] = S("A firefly which has been captured in a bottle. It's a simple decoration which illuminates the surroundings."),
 	["xpanes:pane_1"] = S("Glass panes are thin layers of glass which neatly connect to their neighbors as you build them."),
 	["xpanes:obsidian_pane_1"] = S("Obsidian glass panes are thin layers of obsidian glass which neatly connect to their neighbors as you build them."),
@@ -437,6 +451,7 @@ end
 
 local export_usagehelp = {
 	["default:apple"] = eat,
+	["default:blueberries"] = eat,
 	["doors:gate_wood_closed"] = fencegateuse,
 	["doors:gate_junglewood_closed"] = fencegateuse,
 	["doors:gate_acacia_wood_closed"] = fencegateuse,
@@ -462,6 +477,7 @@ local export_usagehelp = {
 	["default:sign_wall_wood"] = signuse,
 	["default:sign_wall_steel"] = signuse,
 	["default:bookshelf"] = S("Right-click to open the bookshelf. You can only store books and other items belonging to the @1 group into the bookshelf. To collect the bookshelf, you must make sure it does not contain anything.", groupname_book),
+	["default:blueberry_bush_leaves_with_berries"] = S("Punch it to obtain the blueberries."),
 	["vessels:shelf"] = S("Right-click to open the vessels shelf. You can only store items which belong to the @1 group (glass bottle, drinking glass, heavy steel bottle). To collect the vessels shelf, it must be empty.", groupname_vessel),
 	["bucket:bucket_empty"] = S("Punch a liquid source to collect the liquid. With the filled bucket, you can right-click somewhere to empty the bucket which will create a liquid source at the position you've clicked at."),
 	["bucket:bucket_water"] = S("Right-click on any block to empty the bucket and put a water source on this spot."),
@@ -568,6 +584,8 @@ local stairslab_materials = {
 	"copperblock",
 	"bronzeblock",
 	"goldblock",
+	"glass",
+	"obsidian_glass",
 }
 for m=1, #stairslab_materials do
 	local mat = stairslab_materials[m]
