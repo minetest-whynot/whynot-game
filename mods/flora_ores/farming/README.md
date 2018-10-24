@@ -59,4 +59,4 @@ This mod works by adding your new plant to the {growing=1} group and numbering t
 - 0.1 - Fixed growing bug
 - 0.0 - Initial release
 
-### Lucky Blocks: 30
+### Lucky Blocks: 38

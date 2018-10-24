@@ -119,14 +119,14 @@ Mod: ambience/weather_pack
 
 bell07	https://github.com/bell07/minetest-3d_armor (fetch)
 origin	https://github.com/stujones11/minetest-3d_armor (fetch)
-* master 7032515 [origin/master] Reverts https://github.com/stujones11/minetest-3d_armor/commit/9ce0ed9f557673ce0c178e3dc9c14f197e1f993c / #152
+* master 945e816 [origin/master] Locale es.po created
 Mod: 3d_armor/3d_armor
 Mod: 3d_armor/3d_armor_stand
 Mod: 3d_armor/shields
 Mod: 3d_armor/wieldview
 
 origin	https://notabug.org/TenPlus1/farming (fetch)
-* master d7bc9b1 [origin/master] added crop information to farming.registered_plants table
+* master efdc816 [origin/master] add new lucky blocks
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
