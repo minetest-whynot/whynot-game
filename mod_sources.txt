@@ -102,7 +102,7 @@ origin	https://github.com/minetest-mods/wielded_light (fetch)
 Mod: player/wielded_light
 
 origin	https://notabug.org/TenPlus1/ambience (fetch)
-* master 1ca4ef9 [origin/master] amend comments
+* master cddaf64 [origin/master] update readme and version to 1.4
 Mod: ambience/ambience
 
 origin	https://github.com/minetest-mods/lightning (fetch)
@@ -119,7 +119,7 @@ Mod: ambience/weather_pack
 
 bell07	https://github.com/bell07/minetest-3d_armor (fetch)
 origin	https://github.com/stujones11/minetest-3d_armor (fetch)
-* master 945e816 [origin/master] Locale es.po created
+* master 4c032e8 [origin/master] Add Portuguese Translations
 Mod: 3d_armor/3d_armor
 Mod: 3d_armor/3d_armor_stand
 Mod: 3d_armor/shields
@@ -239,7 +239,7 @@ Mod: decor/heads
 
 bell07	https://github.com/bell07/minetest-laptop (fetch)
 origin	https://github.com/Gerold55/laptop (fetch)
-* master 9461720 [bell07/master] bugfix crash on try to leave the "new mail account" view using back button
+* master 9a746f7 [bell07/master] Fix printer app removed status caused crash
 Mod: decor/laptop
 
 origin	http://repo.or.cz/minetest_mtg_plus.git (fetch)
@@ -326,7 +326,7 @@ origin	https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin	https://github.com/minetest-mods/mesecons (fetch)
-* master 028c290 [origin/master] Mark 'code' as private as well
+* master df4e880 [origin/master] Fix crash in microcontroller (#439)
 Mod: mesecons/mesecons
 Mod: mesecons/mesecons_alias
 Mod: mesecons/mesecons_blinkyplant
@@ -357,5 +357,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master e545cc8 [origin/master] tweak mob counter per area
+* master 897f4a5 [origin/master] reduce knockback on normal tools without actual setting
 Mod: mobs_redo/mobs_redo

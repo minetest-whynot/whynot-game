@@ -43,78 +43,6 @@ ambience.add_set("splash", {
 	end,
 })
 
--- Small fire sound plays when near flame, will get louder if more than 3
-
-ambience.add_set("smallfire", {
-	frequency = 1000,
-	sounds = {
-		{name = "fire_small", length = 6, gain = 0.1}
-	},
-	sound_check = function(def)
-
-		if fire and fire.mod and fire.mod == "redo" then
-
-			local c = (def.totals["fire:basic_flame"] or 0) +
-					(def.totals["fire:permanent_flame"] or 0)
-
-			if c > 3 and c < 9 then
-				return "smallfire", 0.2
-
-			elseif c > 0 and c < 4 then
-				return "smallfire"
-			end
-		end
-	end,
-	nodes = {"fire:basic_flame", "fire:permanent_flame"}
-})
-
--- Large fire sound plays when near flames, will get louder if more than 16
-
-ambience.add_set("largefire", {
-	frequency = 1000,
-	sounds = {
-		{name = "fire_large", length = 8, gain = 0.4}
-	},
-	sound_check = function(def)
-
-		if fire and fire.mod and fire.mod == "redo" then
-
-			local c = (def.totals["fire:basic_flame"] or 0) +
-					(def.totals["fire:permanent_flame"] or 0)
-
-			if c > 16 then
-				return "largefire", 0.4
-
-			elseif c > 8 then
-				return "largefire"
-			end
-		end
-	end,
-	nodes = {"fire:basic_flame", "fire:permanent_flame"}
-})
-
--- Lava sound plays when near lava, will get louder if more than 50
-
-ambience.add_set("lava", {
-	frequency = 1000,
-	sounds = {
-		{name = "lava", length = 7}
-	},
-	sound_check = function(def)
-
-		local c = (def.totals["default:lava_source"] or 0) +
-			(def.totals["default:lava_flowing"] or 0)
-
-		if c > 50 then
-			return "lava", 0.5
-
-		elseif c > 5 then
-			return "lava"
-		end
-	end,
-	nodes = {"default:lava_source", "default:lava_flowing"}
-})
-
 -- Water sound plays when near flowing water, will get louder if more than 50
 
 ambience.add_set("flowing_water", {
@@ -155,6 +83,78 @@ ambience.add_set("river", {
 		end
 	end,
 	nodes = {"default:river_water_flowing"}
+})
+
+-- Small fire sound plays when near flame, will get louder if more than 3
+
+ambience.add_set("smallfire", {
+	frequency = 1000,
+	sounds = {
+		{name = "fire_small", length = 6, gain = 0.1}
+	},
+	sound_check = function(def)
+
+		if fire and fire.mod and fire.mod == "redo" then
+
+			local c = (def.totals["fire:basic_flame"] or 0)
+				+ (def.totals["fire:permanent_flame"] or 0)
+
+			if c > 3 and c < 9 then
+				return "smallfire", 0.2
+
+			elseif c > 0 and c < 4 then
+				return "smallfire"
+			end
+		end
+	end,
+	nodes = {"fire:basic_flame", "fire:permanent_flame"}
+})
+
+-- Large fire sound plays when near flames, will get louder if more than 16
+
+ambience.add_set("largefire", {
+	frequency = 1000,
+	sounds = {
+		{name = "fire_large", length = 8, gain = 0.4}
+	},
+	sound_check = function(def)
+
+		if fire and fire.mod and fire.mod == "redo" then
+
+			local c = (def.totals["fire:basic_flame"] or 0)
+				+ (def.totals["fire:permanent_flame"] or 0)
+
+			if c > 16 then
+				return "largefire", 0.4
+
+			elseif c > 8 then
+				return "largefire"
+			end
+		end
+	end,
+	nodes = {"fire:basic_flame", "fire:permanent_flame"}
+})
+
+-- Lava sound plays when near lava, will get louder if more than 50
+
+ambience.add_set("lava", {
+	frequency = 1000,
+	sounds = {
+		{name = "lava", length = 7}
+	},
+	sound_check = function(def)
+
+		local c = (def.totals["default:lava_source"] or 0)
+			+ (def.totals["default:lava_flowing"] or 0)
+
+		if c > 50 then
+			return "lava", 0.5
+
+		elseif c > 5 then
+			return "lava"
+		end
+	end,
+	nodes = {"default:lava_source", "default:lava_flowing"}
 })
 
 -- Beach sounds play when around 0-7 player Y position and 150+ water source found
@@ -199,7 +199,7 @@ ambience.add_set("ice", {
 	nodes = {"default:ice"},
 })
 
--- Desert sounds play when near 150+ desert sand or stone
+-- Desert sounds play when near 150+ desert or normal sand
 
 ambience.add_set("desert", {
 	frequency = 20,
@@ -210,17 +210,17 @@ ambience.add_set("desert", {
 	},
 	sound_check = function(def)
 
-		local c = (def.totals["default:desert_sand"] or 0) +
-			(def.totals["default:desert_stone"] or 0)
+		local c = (def.totals["default:desert_sand"] or 0)
+			+ (def.totals["default:sand"] or 0)
 
-		if c > 150 then
+		if c > 150 and def.pos.y > 10 then
 			return "desert"
 		end
 	end,
-	nodes = {"default:desert_sand", "default:desert_stone"}
+	nodes = {"default:desert_sand", "default:sand"}
 })
 
--- Winds play when player is above 60 Y position and near 150+ snow blocks
+-- Winds play when player is above 50 Y position and near 150+ snow blocks
 
 ambience.add_set("high_up", {
 	frequency = 40,
@@ -232,7 +232,7 @@ ambience.add_set("high_up", {
 
 		local c = (def.totals["default:snowblock"] or 0)
 
-		if def.pos.y > 60
+		if def.pos.y > 50
 		or c > 150 then
 			return "high_up"
 		end
@@ -299,7 +299,7 @@ ambience.add_set("jungle_night", {
 	nodes = {"default:jungletree"}
 })
 
--- Nighttime sounds play at night (default sounds near end of list)
+-- Nighttime sounds play at night when around leaves and above ground
 
 ambience.add_set("night", {
 	frequency = 40,
@@ -312,13 +312,20 @@ ambience.add_set("night", {
 	},
 	sound_check = function(def)
 
-		if def.tod < 0.2 or def.tod > 0.8 then
+		local c = (def.totals["default:leaves"] or 0)
+			+ (def.totals["default:bush_leaves"] or 0)
+			+ (def.totals["default:pine_leaves"] or 0)
+			+ (def.totals["default:aspen_leaves"] or 0)
+
+		if (def.tod < 0.2 or def.tod > 0.8)
+		and def.pos.y > -10
+		and c > 5 then
 			return "night"
 		end
 	end,
 })
 
--- Daytime sounds play during day (default sounds near end of list)
+-- Daytime sounds play during day when around leaves and above ground
 
 ambience.add_set("day", {
 	frequency = 40,
@@ -335,8 +342,16 @@ ambience.add_set("day", {
 	},
 	sound_check = function(def)
 
-		if def.tod > 0.2 and def.tod < 0.8 then
+		local c = (def.totals["default:leaves"] or 0)
+			+ (def.totals["default:bush_leaves"] or 0)
+			+ (def.totals["default:pine_leaves"] or 0)
+			+ (def.totals["default:aspen_leaves"] or 0)
+
+		if (def.tod > 0.2 and def.tod < 0.8)
+		and def.pos.y > -10
+		and c > 5 then
 			return "day"
 		end
 	end,
+	nodes = {"group:leaves"}
 })
