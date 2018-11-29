@@ -126,7 +126,7 @@ Mod: 3d_armor/shields
 Mod: 3d_armor/wieldview
 
 origin	https://notabug.org/TenPlus1/farming (fetch)
-* master efdc816 [origin/master] add new lucky blocks
+* master e5aaa33 [origin/master] added carrot juice and recipe
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
@@ -305,7 +305,7 @@ Mod: food_modpack/food
 Mod: food_modpack/food_basic
 
 origin	https://github.com/h-v-smacker/canned_food (fetch)
-* master 6af363d [origin/master] unified inventory integration
+* master b6c36d0 [origin/master] abm -> node timer
 Mod: food/canned_food
 
 origin	https://github.com/rubenwardy/food_sweet (fetch)
@@ -353,9 +353,9 @@ Mod: mesecons/mesecons_walllever
 Mod: mesecons/mesecons_wires
 
 origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
-* master 45c1743 [origin/master] make fireball immortal and reduce collisionbox
+* master d642007 [origin/master] add do_custom function so that spiders can climb walls
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master 897f4a5 [origin/master] reduce knockback on normal tools without actual setting
+* master 43026c3 [origin/master] add self.disable_falling switch for custom routines
 Mod: mobs_redo/mobs_redo

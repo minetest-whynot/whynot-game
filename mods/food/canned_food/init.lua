@@ -276,6 +276,7 @@ local canned_food_definitions = {
 	},
 }
 
+local lbm_list = {}
 
 -- creating all objects with one universal scheme
 for product, def in pairs(canned_food_definitions) do
@@ -283,9 +284,9 @@ for product, def in pairs(canned_food_definitions) do
 	--if minetest.global_exists(def.found_in) then
 		if def.sugar and minetest.get_modpath("farming") or not def.sugar then
 			
-			-- introducing a new item, a bit more nutricious than the source 
-			-- material when sugar is used.
-			minetest.register_node("canned_food:" .. product, {
+			-- general description
+			
+			local nodetable = {
 				description = def.proper_name,
 				drawtype = "plantlike",
 				tiles = {product .. ".png"},
@@ -309,14 +310,44 @@ for product, def in pairs(canned_food_definitions) do
 						+ (def.sugar and 1 or 0), "vessels:glass_bottle"),
 				-- the empty bottle stays, of course
 				sounds = default.node_sound_glass_defaults(),
-			})
+			}
 			
+			
+			if not def.transforms then
+			-- introducing a new item, a bit more nutricious than the source 
+			-- material when sugar is used. Always stays the same.
+				minetest.register_node("canned_food:" .. product, nodetable)
+			
+			else
 			-- Some products involve marinating or salting, however there is no salt
 			-- or vingerar in minetest; instead we imitate this more complex process
 			-- by putting the jar on a wooden shelf in a dark room for a long while.
 			-- The effort is rewarded accordingly.
-			if (def.transforms) then
+			
+				-- adding transformation code
+				nodetable.on_construct = function(pos)
+						local t = minetest.get_node_timer(pos)
+						t:start(180)
+					end
+					
+				nodetable.on_timer = function(pos)
+						-- if light level is 11 or less, and wood is nearby, there is 1 in 10 chance...
+						if minetest.get_node_light(pos) > 11 or 
+						   not minetest.find_node_near(pos, 1, {"group:wood"}) 
+						   or math.random() > 0.1 then
+							return true
+						else
+							minetest.set_node(pos, {name = "canned_food:" .. product .."_plus"})
+							return false
+						end
+					end
+			
+				minetest.register_node("canned_food:" .. product, nodetable)
 				
+				-- add node to the list for LBM
+				table.insert(lbm_list, "canned_food:" .. product)
+				
+				-- a better version
 				minetest.register_node("canned_food:" .. product .."_plus", {
 					description = def.transforms,
 					drawtype = "plantlike",
@@ -344,20 +375,7 @@ for product, def in pairs(canned_food_definitions) do
 					sounds = default.node_sound_glass_defaults(),
 				})
 				
-				minetest.register_abm ({
-					label = def.proper_name .. " transformation",
-					nodenames = {"canned_food:" .. product},
-					neighbors = {"group:wood"},
-					-- chances might need tweaking though
-					interval = 180,
-					chance = 10,
-					action = function(pos)
-						if minetest.get_node_light(pos) < 11 then
-							minetest.set_node(pos, {name = "canned_food:" .. product .."_plus"})
-						end
-					end,
-				})
-				
+				-- register the recipe with unified inventory
 				if minetest.get_modpath("unified_inventory") and unified_inventory.register_craft then
 					unified_inventory.register_craft({
 						type = "pickling",
@@ -395,6 +413,17 @@ for product, def in pairs(canned_food_definitions) do
 	end
 end
 
+
+-- LBM to start timers on existing, ABM-driven nodes
+minetest.register_lbm({
+	name = "canned_food:timer_init",
+	nodenames = lbm_list,
+	run_at_every_load = false,
+	action = function(pos)
+		local t = minetest.get_node_timer(pos)
+		t:start(180)
+	end,
+})
 
 -- The Moor has done his duty, the Moor can go
 canned_food_definitions = nil
