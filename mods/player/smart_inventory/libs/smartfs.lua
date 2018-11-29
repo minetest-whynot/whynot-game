@@ -79,6 +79,8 @@ function smartfs.inventory_mod()
 		return "unified_inventory"
 	elseif minetest.global_exists("inventory_plus") then
 		return "inventory_plus"
+	elseif minetest.global_exists("sfinv") then
+		return "sfinv"
 	else
 		return nil
 	end
@@ -124,14 +126,20 @@ smartfs._ldef.unified_inventory = {
 		unified_inventory.register_page(form.name, {
 			get_formspec = function(player, formspec)
 				local name = player:get_player_name()
-				local statelocation = smartfs._ldef.unified_inventory._make_state_location_(name)
-				local state = smartfs._makeState_(form, nil, statelocation, name)
-				if form.form_setup_callback(state) ~= false then
-					smartfs.inv[name] = state
-					return {formspec = state:_buildFormspec_(false)}
+				local state
+				if smartfs.inv[name] and smartfs.inv[name].def.name == form.name then
+					state = smartfs.inv[name]
 				else
-					return nil
+					local statelocation = smartfs._ldef.unified_inventory._make_state_location_(name)
+					state = smartfs._makeState_(form, nil, statelocation, name)
+					if form.form_setup_callback(state) ~= false then
+						smartfs.inv[name] = state
+					else
+						smartfs.inv[name] = nil
+						return ""
+					end
 				end
+				return {formspec = state:_buildFormspec_(false)}
 			end
 		})
 	end,
@@ -171,6 +179,56 @@ smartfs._ldef.inventory_plus = {
 			_show_ = function(state)
 				inventory_plus.set_inventory_formspec(minetest.get_player_by_name(state.location.player), state:_buildFormspec_(true))
 			end
+		}
+	end
+}
+
+-- Sfinv plugin
+smartfs._ldef.sfinv = {
+	add_to_inventory = function(form, icon, title)
+		sfinv.register_page(form.name, {
+			title = title,
+			get = function(self, player, context)
+				local name = player:get_player_name()
+				local state
+				if smartfs.inv[name] then
+					state = smartfs.inv[name]
+				else
+					local statelocation = smartfs._ldef.sfinv._make_state_location_(name)
+					state = smartfs._makeState_(form, nil, statelocation, name)
+					smartfs.inv[name] = state
+					if form.form_setup_callback(state) ~= false then
+						smartfs.inv[name] = state
+					else
+						return ""
+					end
+				end
+				local fs = state:_buildFormspec_(false)
+				return sfinv.make_formspec(player, context, fs, true)
+			end,
+			on_player_receive_fields = function(self, player, _, fields)
+				local name = player:get_player_name()
+				if smartfs.inv[name] then
+					smartfs.inv[name]:_sfs_on_receive_fields_(name, fields)
+				end
+			end,
+			on_leave = function(self, player)
+				local name = player:get_player_name()
+				if smartfs.inv[name] then
+					smartfs.inv[name].players:disconnect(name)
+					smartfs.inv[name] = nil
+				end
+			end,
+		})
+	end,
+	_make_state_location_ = function(player)
+		return {
+			type = "inventory",
+			inventory_handles_fields = true,
+			player = player,
+			_show_ = function(state)
+				sfinv.set_player_inventory_formspec(minetest.get_player_by_name(state.location.player))
+			end,
 		}
 	end
 }
@@ -347,7 +405,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 				smartfs.opened[name] = nil
 			end
 		end
-	elseif smartfs.inv[name] and smartfs.inv[name].location.type == "inventory" then
+	elseif smartfs.inv[name] and smartfs.inv[name].location.type == "inventory" and not smartfs.inv[name].location.inventory_handles_fields then
 		local state = smartfs.inv[name]
 		state:_sfs_on_receive_fields_(name, fields)
 	end
@@ -400,6 +458,460 @@ function smartfs._attach_to_node_(form, nodepos, params)
 end
 
 ------------------------------------------------------
+-- Smartfs Framework - Element class Methods
+------------------------------------------------------
+local element_class = {}
+
+function element_class:remove()
+	self.root._ele[self.name] = nil
+end
+
+function element_class:setPosition(x,y)
+	self.data.pos = {x=x,y=y}
+end
+
+function element_class:getPosition()
+	return self.data.pos
+end
+
+function element_class:setSize(w,h)
+	self.data.size = {w=w,h=h}
+end
+
+function element_class:getSize()
+	return self.data.size
+end
+
+function element_class:setVisible(visible)
+	if visible == nil then
+		self.data.visible = true
+	else
+		self.data.visible = visible
+	end
+end
+
+function element_class:getVisible()
+	return self.data.visible
+end
+
+function element_class:getAbsName()
+	return self.root:getNamespace()..self.name
+end
+
+function element_class:setBackground(image)
+	self.data.background = image
+end
+
+function element_class:getBackground()
+	return self.data.background
+end
+
+function element_class:getBackgroundString()
+	if self.data.background then
+		local size = self:getSize()
+		if size then
+			return "background["..
+					self.data.pos.x..","..self.data.pos.y..";"..
+					size.w..","..size.h..";"..
+					self.data.background.."]"
+		else
+			return ""
+		end
+	else
+		return ""
+	end
+end
+
+function element_class:setValue(value)
+	self.data.value = value
+end
+
+function element_class:setTooltip(text)
+	self.data.tooltip = minetest.formspec_escape(text)
+end
+
+function element_class:getTooltip()
+	return self.data.tooltip
+end
+
+function element_class:getTooltipString()
+	if self.data.tooltip then
+		return "tooltip["..self:getAbsName()..";"..self:getTooltip().."]"
+	else
+		return ""
+	end
+end
+
+------------------------------------------------------
+-- Smartfs Framework - State class Methods
+------------------------------------------------------
+local state_class = {}
+function state_class:get(name)
+	return self._ele[name]
+end
+
+function state_class:close()
+	self.closed = true
+end
+
+function state_class:getSize()
+	return self._size
+end
+
+function state_class:size(w,h)
+	self._size = {w=w,h=h}
+end
+state_class.setSize = state_class.size
+
+function state_class:getNamespace()
+	local ref = self
+	local namespace = ""
+	while ref.location.type == "container" do
+		namespace = ref.location.containerElement.name.."#"..namespace
+		ref = ref.location.parentState -- step near to the root
+	end
+	return namespace
+end
+
+function state_class:_buildFormspec_(size)
+	local res = ""
+	if self._size and size then
+		res = "size["..self._size.w..","..self._size.h.."]"
+	end
+	for key,val in pairs(self._ele) do
+		if val:getVisible() then
+			res = res .. val:getBackgroundString() .. val:build() .. val:getTooltipString()
+		end
+	end
+	return res
+end
+
+function state_class:_get_element_recursive_(field)
+	local topfield
+	for z in field:gmatch("[^#]+") do
+		topfield = z
+		break
+	end
+	local element = self._ele[topfield]
+	if element and field == topfield then
+		return element
+	elseif element then
+		if element._getSubElement_ then
+			local rel_field = string.sub(field, string.len(topfield)+2)
+			return element:_getSubElement_(rel_field)
+		else
+			return element
+		end
+	else
+		return nil
+	end
+end
+
+-- process onInput hook for the state
+function state_class:_sfs_process_oninput_(fields, player)
+	if self._onInput then
+		self:_onInput(fields, player)
+	end
+	-- recursive all onInput hooks on visible containers
+	for elename, eledef in pairs(self._ele) do
+		if eledef.getContainerState and eledef:getVisible() then
+			eledef:getContainerState():_sfs_process_oninput_(fields, player)
+		end
+	end
+end
+
+-- Receive fields and actions from formspec
+function state_class:_sfs_on_receive_fields_(player, fields)
+	local fields_todo = {}
+	for field, value in pairs(fields) do
+		local element = self:_get_element_recursive_(field)
+		if element then
+			fields_todo[field] = { element = element, value = value }
+		end
+	end
+
+	for field, todo in pairs(fields_todo) do
+		todo.element:setValue(todo.value)
+	end
+
+	self:_sfs_process_oninput_(fields, player)
+
+	for field, todo in pairs(fields_todo) do
+		if todo.element.submit then
+			todo.element:submit(todo.value, player)
+		end
+	end
+	-- handle key_enter
+	if fields.key_enter and fields.key_enter_field then
+		local element = self:_get_element_recursive_(fields.key_enter_field)
+		if element and element.submit_key_enter then
+			element:submit_key_enter(fields[fields.key_enter_field], player)
+		end
+	end
+
+	if not fields.quit and not self.closed and not self.obsolete then
+		self:show()
+	else
+		self.players:disconnect(player)
+		if not fields.quit and self.closed and not self.obsolete then
+			--closed by application (without fields.quit). currently not supported, see: https://github.com/minetest/minetest/pull/4675
+			minetest.show_formspec(player,"","size[5,1]label[0,0;Formspec closing not yet created!]")
+		end
+	end
+	return true
+end
+
+function state_class:onInput(func)
+	self._onInput = func -- (fields, player)
+end
+
+function state_class:load(file)
+	local file = io.open(file, "r")
+	if file then
+		local table = minetest.deserialize(file:read("*all"))
+		if type(table) == "table" then
+			if table.size then
+				self._size = table.size
+			end
+			for key,val in pairs(table.ele) do
+				self:element(val.type,val)
+			end
+			return true
+		end
+	end
+	return false
+end
+
+function state_class:save(file)
+	local res = {ele={}}
+
+	if self._size then
+		res.size = self._size
+	end
+
+	for key,val in pairs(self._ele) do
+		res.ele[key] = val.data
+	end
+
+	local file = io.open(file, "w")
+	if file then
+		file:write(minetest.serialize(res))
+		file:close()
+		return true
+	end
+	return false
+end
+
+function state_class:setparam(key,value)
+	if not key then return end
+	self.param[key] = value
+	return true
+end
+
+function state_class:getparam(key,default)
+	if not key then return end
+	return self.param[key] or default
+end
+
+function state_class:element(typen,data)
+	local type = smartfs._edef[typen]
+	assert(type, "Element type "..typen.." does not exist!")
+	assert(not self._ele[data.name], "Element "..data.name.." already exists")
+
+	local ele = setmetatable({}, {__index = element_class})
+	ele.name = data.name
+	ele.root = self
+	ele.data = data
+	ele.data.type = typen
+	ele.data.visible = true
+	for key, val in pairs(type) do
+		ele[key] = val
+	end
+	self._ele[data.name] = ele
+	type.onCreate(ele)
+	return self._ele[data.name]
+end
+
+------------------------------------------------------
+-- Smartfs Framework - State class Methods - Build time only
+------------------------------------------------------
+function state_class:button(x, y, w, h, name, text, exitf)
+	return self:element("button", {
+		pos    = {x=x,y=y},
+		size   = {w=w,h=h},
+		name   = name,
+		value  = text,
+		closes = exitf or false
+	})
+end
+
+function state_class:image_button(x, y, w, h, name, text, image, exitf)
+	return self:element("button", {
+		pos    = {x=x,y=y},
+		size   = {w=w,h=h},
+		name   = name,
+		value  = text,
+		image  = image,
+		closes = exitf or false
+	})
+end
+
+function state_class:item_image_button(x, y, w, h, name, text, item, exitf)
+	return self:element("button", {
+		pos    = {x=x,y=y},
+		size   = {w=w,h=h},
+		name   = name,
+		value  = text,
+		item   = item,
+		closes = exitf or false
+	})
+end
+
+function state_class:label(x, y, name, text)
+	return self:element("label", {
+		pos   = {x=x,y=y},
+		name  = name,
+		value = text,
+		vertical = false
+	})
+end
+
+function state_class:vertlabel(x, y, name, text)
+	return self:element("label", {
+		pos   = {x=x,y=y},
+		name  = name,
+		value = text,
+		vertical = true
+	})
+end
+
+function state_class:toggle(x, y, w, h, name, list)
+	return self:element("toggle", {
+		pos  = {x=x, y=y},
+		size = {w=w, h=h},
+		name = name,
+		id   = 1,
+		list = list
+	})
+end
+
+function state_class:field(x, y, w, h, name, label)
+	return self:element("field", {
+		pos   = {x=x, y=y},
+		size  = {w=w, h=h},
+		name  = name,
+		value = "",
+		label = label
+	})
+end
+
+function state_class:pwdfield(x, y, w, h, name, label)
+	local res = self:element("field", {
+		pos   = {x=x, y=y},
+		size  = {w=w, h=h},
+		name  = name,
+		value = "",
+		label = label
+	})
+	res:isPassword(true)
+	return res
+end
+
+function state_class:textarea(x, y, w, h, name, label)
+	local res = self:element("field", {
+		pos   = {x=x, y=y},
+		size  = {w=w, h=h},
+		name  = name,
+		value = "",
+		label = label
+	})
+	res:isMultiline(true)
+	return res
+end
+
+function state_class:image(x, y, w, h, name, img)
+	return self:element("image", {
+		pos   = {x=x, y=y},
+		size  = {w=w, h=h},
+		name  = name,
+		value = img,
+		imgtype = "image"
+	})
+end
+
+function state_class:background(x, y, w, h, name, img)
+	return self:element("image", {
+		pos   = {x=x, y=y},
+		size  = {w=w, h=h},
+		name  = name,
+		background = img,
+		imgtype  = "background"
+	})
+end
+
+function state_class:item_image(x, y, w, h, name, img)
+	return self:element("image", {
+		pos   = {x=x, y=y},
+		size  = {w=w, h=h},
+		name  = name,
+		value = img,
+		imgtype  = "item"
+	})
+end
+
+function state_class:checkbox(x, y, name, label, selected)
+	return self:element("checkbox", {
+		pos   = {x=x, y=y},
+		name  = name,
+		value = selected,
+		label = label
+	})
+end
+
+function state_class:listbox(x, y, w, h, name, selected, transparent)
+	return self:element("list", {
+		pos         = {x=x, y=y},
+		size        = {w=w, h=h},
+		name        = name,
+		selected    = selected,
+		transparent = transparent
+	})
+end
+
+function state_class:dropdown(x, y, w, h, name, selected)
+	return self:element("dropdown", {
+		pos         = {x=x, y=y},
+		size        = {w=w, h=h},
+		name        = name,
+		selected    = selected
+	})
+end
+
+function state_class:inventory(x, y, w, h, name)
+	return self:element("inventory", {
+		pos  = {x=x, y=y},
+		size = {w=w, h=h},
+		name = name
+	})
+end
+
+function state_class:container(x, y, name, relative)
+	return self:element("container", {
+		pos  = {x=x, y=y},
+		name = name,
+		relative = false
+	})
+end
+
+function state_class:view(x, y, name, relative)
+	return self:element("container", {
+		pos  = {x=x, y=y},
+		name = name,
+		relative = true
+	})
+end
+
+------------------------------------------------------
 -- Smartfs Framework - create a form object (state)
 ------------------------------------------------------
 function smartfs._makeState_(form, params, location, newplayer)
@@ -425,11 +937,7 @@ function smartfs._makeState_(form, params, location, newplayer)
 		return self
 	end
 
-
-	------------------------------------------------------
-	-- State - create returning state object
-	------------------------------------------------------
-	return {
+	local state = {
 		_ele = {},
 		def = form,
 		players = _make_players_(newplayer),
@@ -437,415 +945,9 @@ function smartfs._makeState_(form, params, location, newplayer)
 		is_inv = (location.type == "inventory"), -- obsolete. Please use location.type="inventory" instead
 		player = newplayer, -- obsolete. Please use location.player
 		param = params or {},
-		get = function(self,name)
-			return self._ele[name]
-		end,
-		close = function(self)
-			self.closed = true
-		end,
-		getSize = function(self)
-			return self._size
-		end,
-		size = function(self,w,h)
-			self._size = {w=w,h=h}
-		end,
-		setSize = function(self,w,h)
-			self._size = {w=w,h=h}
-		end,
-		getNamespace = function(self)
-			local ref = self
-			local namespace = ""
-			while ref.location.type == "container" do
-				namespace = ref.location.containerElement.name.."#"..namespace
-				ref = ref.location.parentState -- step near to the root
-			end
-			return namespace
-		end,
-		_buildFormspec_ = function(self,size)
-			local res = ""
-			if self._size and size then
-				res = "size["..self._size.w..","..self._size.h.."]"
-			end
-			for key,val in pairs(self._ele) do
-				if val:getVisible() then
-					res = res .. val:getBackgroundString() .. val:build() .. val:getTooltipString()
-				end
-			end
-			return res
-		end,
 		show = location._show_,
-		_get_element_recursive_ = function(self, field)
-			local topfield
-			for z in field:gmatch("[^#]+") do
-				topfield = z
-				break
-			end
-			local element = self._ele[topfield]
-			if element and field == topfield then
-				return element
-			elseif element then
-				if element._getSubElement_ then
-					local rel_field = string.sub(field, string.len(topfield)+2)
-					return element:_getSubElement_(rel_field)
-				else
-					return element
-				end
-			else
-				return nil
-			end
-		end,
-		-- process onInput hook for the state
-		_sfs_process_oninput_ = function(self, fields, player)
-			if self._onInput then
-				self:_onInput(fields, player)
-			end
-			-- recursive all onInput hooks on visible containers
-			for elename, eledef in pairs(self._ele) do
-				if eledef.getContainerState and eledef:getVisible() then
-					eledef:getContainerState():_sfs_process_oninput_(fields, player)
-				end
-			end
-		end,
-		-- Receive fields and actions from formspec
-		_sfs_on_receive_fields_ = function(self, player, fields)
-
-			local fields_todo = {}
-			for field, value in pairs(fields) do
-				local element = self:_get_element_recursive_(field)
-				if element then
-					fields_todo[field] = { element = element, value = value }
-				end
-			end
-
-			for field, todo in pairs(fields_todo) do
-				todo.element:setValue(todo.value)
-			end
-
-			self:_sfs_process_oninput_(fields, player)
-
-			for field, todo in pairs(fields_todo) do
-				if todo.element.submit then
-					todo.element:submit(todo.value, player)
-				end
-			end
-			-- handle key_enter
-			if fields.key_enter and fields.key_enter_field then
-				local element = self:_get_element_recursive_(fields.key_enter_field)
-				if element and element.submit_key_enter then
-					element:submit_key_enter(fields[fields.key_enter_field], player)
-				end
-			end
-
-			if not fields.quit and not self.closed and not self.obsolete then
-				self:show()
-			else
-				self.players:disconnect(player)
-				if not fields.quit and self.closed and not self.obsolete then
-					--closed by application (without fields.quit). currently not supported, see: https://github.com/minetest/minetest/pull/4675
-					minetest.show_formspec(player,"","size[5,1]label[0,0;Formspec closing not yet created!]")
-				end
-			end
-			return true
-		end,
-		onInput = function(self, func)
-			self._onInput = func -- (fields, player)
-		end,
-		load = function(self,file)
-			local file = io.open(file, "r")
-			if file then
-				local table = minetest.deserialize(file:read("*all"))
-				if type(table) == "table" then
-					if table.size then
-						self._size = table.size
-					end
-					for key,val in pairs(table.ele) do
-						self:element(val.type,val)
-					end
-					return true
-				end
-			end
-			return false
-		end,
-		save = function(self,file)
-			local res = {ele={}}
-
-			if self._size then
-				res.size = self._size
-			end
-
-			for key,val in pairs(self._ele) do
-				res.ele[key] = val.data
-			end
-
-			local file = io.open(file, "w")
-			if file then
-				file:write(minetest.serialize(res))
-				file:close()
-				return true
-			end
-			return false
-		end,
-		setparam = function(self,key,value)
-			if not key then return end
-			self.param[key] = value
-			return true
-		end,
-		getparam = function(self,key,default)
-			if not key then return end
-			return self.param[key] or default
-		end,
-		element = function(self,typen,data)
-			local type = smartfs._edef[typen]
-			assert(type, "Element type "..typen.." does not exist!")
-			assert(not self._ele[data.name], "Element "..data.name.." already exists")
-
-			data.type = typen
-			local ele = {
-				name = data.name,
-				root = self,
-				data = data,
-				remove = function(self)
-					self.root._ele[self.name] = nil
-				end,
-				setPosition = function(self,x,y)
-					self.data.pos = {x=x,y=y}
-				end,
-				getPosition = function(self)
-					return self.data.pos
-				end,
-				setSize = function(self,w,h)
-					self.data.size = {w=w,h=h}
-				end,
-				getSize = function(self)
-					return self.data.size
-				end,
-				setVisible = function(self, visible)
-					if visible == nil then
-						self.data.visible = true
-					else
-						self.data.visible = visible
-					end
-				end,
-				getVisible = function(self)
-					return self.data.visible
-				end,
-				getAbsName = function(self)
-					return self.root:getNamespace()..self.name
-				end,
-				setBackground = function(self, image)
-					self.data.background = image
-				end,
-				getBackground = function(self)
-					return self.data.background
-				end,
-				getBackgroundString = function(self)
-					if self.data.background then
-						local size = self:getSize()
-						if size then
-							return "background["..
-									self.data.pos.x..","..self.data.pos.y..";"..
-									size.w..","..size.h..";"..
-									self.data.background.."]"
-						else
-							return ""
-						end
-					else
-						return ""
-					end
-				end,
-				setValue = function(self, value)
-					self.data.value = value
-				end,
-				setTooltip = function(self,text)
-					self.data.tooltip = minetest.formspec_escape(text)
-				end,
-				getTooltip = function(self)
-					return self.data.tooltip
-				end,
-				getTooltipString = function(self)
-					if self.data.tooltip then
-						return "tooltip["..self:getAbsName()..";"..self:getTooltip().."]"
-					else
-						return ""
-					end
-				end,
-			}
-
-			ele.data.visible = true --visible by default
-
-			for key, val in pairs(type) do
-				ele[key] = val
-			end
-
-			self._ele[data.name] = ele
-
-			type.onCreate(ele)
-
-			return self._ele[data.name]
-		end,
-
-		------------------------------------------------------
-		-- State - Element Constructors
-		------------------------------------------------------
-		button = function(self, x, y, w, h, name, text, exitf)
-			return self:element("button", {
-				pos    = {x=x,y=y},
-				size   = {w=w,h=h},
-				name   = name,
-				value  = text,
-				closes = exitf or false
-			})
-		end,
-		image_button = function(self, x, y, w, h, name, text, image, exitf)
-			return self:element("button", {
-				pos    = {x=x,y=y},
-				size   = {w=w,h=h},
-				name   = name,
-				value  = text,
-				image  = image,
-				closes = exitf or false
-			})
-		end,
-		item_image_button = function(self, x, y, w, h, name, text, item, exitf)
-			return self:element("button", {
-				pos    = {x=x,y=y},
-				size   = {w=w,h=h},
-				name   = name,
-				value  = text,
-				item   = item,
-				closes = exitf or false
-			})
-		end,
-		label = function(self, x, y, name, text)
-			return self:element("label", {
-				pos   = {x=x,y=y},
-				name  = name,
-				value = text,
-				vertical = false
-			})
-		end,
-		vertlabel = function(self, x, y, name, text)
-			return self:element("label", {
-				pos   = {x=x,y=y},
-				name  = name,
-				value = text,
-				vertical = true
-			})
-		end,
-		toggle = function(self, x, y, w, h, name, list)
-			return self:element("toggle", {
-				pos  = {x=x, y=y},
-				size = {w=w, h=h},
-				name = name,
-				id   = 1,
-				list = list
-			})
-		end,
-		field = function(self, x, y, w, h, name, label)
-			return self:element("field", {
-				pos   = {x=x, y=y},
-				size  = {w=w, h=h},
-				name  = name,
-				value = "",
-				label = label
-			})
-		end,
-		pwdfield = function(self, x, y, w, h, name, label)
-			local res = self:element("field", {
-				pos   = {x=x, y=y},
-				size  = {w=w, h=h},
-				name  = name,
-				value = "",
-				label = label
-			})
-			res:isPassword(true)
-			return res
-		end,
-		textarea = function(self, x, y, w, h, name, label)
-			local res = self:element("field", {
-				pos   = {x=x, y=y},
-				size  = {w=w, h=h},
-				name  = name,
-				value = "",
-				label = label
-			})
-			res:isMultiline(true)
-			return res
-		end,
-		image = function(self, x, y, w, h, name, img)
-			return self:element("image", {
-				pos   = {x=x, y=y},
-				size  = {w=w, h=h},
-				name  = name,
-				value = img,
-				imgtype = "image"
-			})
-		end,
-		background = function(self, x, y, w, h, name, img)
-			return self:element("image", {
-				pos   = {x=x, y=y},
-				size  = {w=w, h=h},
-				name  = name,
-				background = img,
-				imgtype  = "background"
-			})
-		end,
-		item_image = function(self, x, y, w, h, name, img)
-			return self:element("image", {
-				pos   = {x=x, y=y},
-				size  = {w=w, h=h},
-				name  = name,
-				value = img,
-				imgtype  = "item"
-			})
-		end,
-		checkbox = function(self, x, y, name, label, selected)
-			return self:element("checkbox", {
-				pos   = {x=x, y=y},
-				name  = name,
-				value = selected,
-				label = label
-			})
-		end,
-		listbox = function(self, x, y, w, h, name, selected, transparent)
-			return self:element("list", {
-				pos         = {x=x, y=y},
-				size        = {w=w, h=h},
-				name        = name,
-				selected    = selected,
-				transparent = transparent
-			})
-		end,
-		dropdown = function(self, x, y, w, h, name, selected)
-			return self:element("dropdown", {
-				pos         = {x=x, y=y},
-				size        = {w=w, h=h},
-				name        = name,
-				selected    = selected
-			})
-		end,
-		inventory = function(self, x, y, w, h, name)
-			return self:element("inventory", {
-				pos  = {x=x, y=y},
-				size = {w=w, h=h},
-				name = name
-			})
-		end,
-		container = function(self, x, y, name, relative)
-			return self:element("container", {
-				pos  = {x=x, y=y},
-				name = name,
-				relative = false
-			})
-		end,
-		view = function(self, x, y, name, relative)
-			return self:element("container", {
-				pos  = {x=x, y=y},
-				name = name,
-				relative = true
-			})
-		end,
 	}
+	return setmetatable(state, {__index = state_class})
 end
 
 -----------------------------------------------------------------
