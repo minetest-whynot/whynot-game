@@ -3,23 +3,25 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-06 08:42-0700\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2018-12-06 00:15+0000\n"
+"Last-Translator: Lunovox Heavenfinder <lunovox@disroot.org>\n"
+"Language-Team: Portuguese <https://hosted.weblate.org/projects/minetest/mod-"
+"hopper/pt/>\n"
+"Language: pt\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.4-dev\n"
 
 #: doc.lua:11
 msgid "Hopper to transfer items between neighboring blocks' inventories."
-msgstr ""
+msgstr "Funil para transferir itens entre os inventários dos blocos vizinhos."
 
 #: doc.lua:12
 msgid ""
@@ -30,6 +32,12 @@ msgid ""
 "automatically.\n"
 "\n"
 msgstr ""
+"Os itens são transferidos do bloco na extremidade larga da tremonha para o "
+"bloco na extremidade estreita da tremonha a uma taxa de um por segundo. Os "
+"itens também podem ser colocados diretamente no estoque do funil, ou podem "
+"ser colocados no espaço acima de um funil e serão sugados para o inventário "
+"do funil automaticamente.\n"
+"\n"
 
 #: doc.lua:14
 msgid ""
@@ -41,6 +49,14 @@ msgid ""
 "block a side hopper is produced that connects to the clicked-on side.\n"
 "\n"
 msgstr ""
+"Os blocos do funil vêm em formulários \"verticais\" e \"laterais\", mas "
+"quando no inventário de um jogador ambos são representados por um único item "
+"genérico. O tipo de bloco funil que será colocado quando o jogador usa este "
+"item depende do que está apontado - quando o item funil é apontado na face "
+"superior ou inferior de um bloco, um funil vertical é colocado, quando "
+"apontado para o lado de um bloquear um funil lateral é produzido que se "
+"conecta ao lado clicado.\n"
+"\n"
 
 #: doc.lua:16
 msgid ""
@@ -48,6 +64,9 @@ msgid ""
 "interconverted between the two forms via the crafting grid.\n"
 "\n"
 msgstr ""
+"Os blocos do funil vêm nas formas 'vertical' e 'lateral'. Eles podem ser "
+"interconvertidos entre as duas formas através da grade de criação.\n"
+"\n"
 
 #: doc.lua:18
 msgid ""
@@ -65,10 +84,24 @@ msgid ""
 "hopper's own inventory is not not owner-locked, though, so you can use this "
 "as a way to allow other players to deposit items into your locked chests."
 msgstr ""
+"Quando usados com fornos, os funis injetam itens na fenda de estoque de "
+"\"matéria-prima\" do forno quando a extremidade estreita é presa à parte "
+"superior ou inferior e injetam itens na ranhura de estoque \"combustível\" "
+"do forno quando fixados ao lado do forno.\n"
+"\n"
+"Itens que não podem ser colocados no inventário de um bloco de destino "
+"permanecerão no depósito.\n"
+"\n"
+"Os funis têm as mesmas permissões que o jogador que os colocou. Os funis "
+"colocados por você podem pegar itens ou colocar itens em caixas bloqueadas "
+"que você possui, mas os funis colocados por outros jogadores não poderão "
+"fazê-lo. No entanto, o inventário próprio de um depósito não é bloqueado "
+"pelo proprietário, portanto você pode usar isso como uma forma de permitir "
+"que outros jogadores depositem itens em seus baús bloqueados."
 
 #: doc.lua:20
 msgid "A chute to transfer items over longer distances."
-msgstr ""
+msgstr "Um chute para transferir itens por longas distâncias."
 
 #: doc.lua:21
 msgid ""
@@ -80,10 +113,20 @@ msgid ""
 "block's inventory will remain lodged in the chute's buffer until manually "
 "removed or their destination becomes available."
 msgstr ""
+"As calhas funcionam muito bem como tremonhas, mas não possuem sua própria "
+"capacidade de admissão. Os itens só podem ser inseridos em um chute "
+"manualmente ou por um funil conectado a um chute. Eles transferem itens na "
+"direção indicada pela seta em seu segmento estreito a uma taxa de um item "
+"por segundo. Eles têm uma capacidade de buffer de memória pequena e todos os "
+"itens que não podem ser colocados no inventário do bloco de destino "
+"permanecerão alojados no buffer de memória do chute até que sejam removidos "
+"manualmente ou seu destino esteja disponível."
 
 #: doc.lua:23
 msgid "A sorter to redirect certain items to an alternate target."
 msgstr ""
+"Um classificador para redirecionar determinados itens para um destino "
+"alternativo."
 
 #: doc.lua:24
 msgid ""
@@ -108,16 +151,36 @@ msgid ""
 "with targets that are selective about what they accept (for example, a "
 "furnace's fuel slot)."
 msgstr ""
+"Isso é semelhante a um chute, mas tem uma saída secundária usada para "
+"desviar itens específicos para um destino alternativo. Há um conjunto de "
+"espaços de inventário rotulados como \"Filtro\" na parte superior da tela de "
+"inventário do bloco, se você colocar um item em um desses slots, o "
+"classificador registrará o tipo do item (sem realmente tirá-lo de você). Em "
+"seguida, quando os itens passarem pelo inventário do classificador que "
+"corresponde a um dos itens da lista de filtros, ele primeiro tentará enviá-"
+"lo na direção marcada com uma seta nos lados do classificador.\n"
+"\n"
+"Se o item não corresponder à lista de filtros ou se a saída secundária não "
+"puder receber o item por qualquer motivo, o classificador tentará enviar o "
+"item para a outra saída.\n"
+"\n"
+"Além disso, há um botão chamado \"Filtrar tudo\" que informa ao "
+"classificador para não usar a lista de filtros e tentar primeiro desviar "
+"todos os itens para fora do filtro, enviando apenas itens ao longo do "
+"caminho sem filtro se o destino não puder aceitar por qualquer motivo. Esse "
+"recurso é útil para manipular \"estouro\" (quando o estoque do alvo é "
+"preenchido) ou para lidar com destinos que são seletivos sobre o que eles "
+"aceitam (por exemplo, o compartimento de combustível de um forno)."
 
 #: init.lua:61
 msgid "[MOD] Hopper loaded"
-msgstr ""
+msgstr "[Hopper] Carregado com sucesso!"
 
 #: utility.lua:34
 msgid ""
 "Don't\n"
 "Eject"
-msgstr ""
+msgstr "Não\nEjetar"
 
 #: utility.lua:35
 msgid ""
@@ -125,12 +188,15 @@ msgid ""
 "even if there isn't a compatible block positioned to receive it.\n"
 "Click this button to disable this feature."
 msgstr ""
+"Este alimentador está atualmente configurado para ejetar itens de sua saída, "
+"mesmo se não houver um bloco compatível posicionado para recebê-lo. Clique "
+"neste botão para desativar esse recurso."
 
 #: utility.lua:37
 msgid ""
 "Eject\n"
 "Items"
-msgstr ""
+msgstr "Ejetar\nItens"
 
 #: utility.lua:38
 msgid ""
@@ -138,43 +204,46 @@ msgid ""
 "isn't a compatible block positioned to receive it.\n"
 "Click this button to have it eject items instead."
 msgstr ""
+"Este funil está atualmente configurado para segurar o item se não houver um "
+"bloco compatível posicionado para recebê-lo. Clique neste botão para ejetar "
+"itens."
 
 #: nodes\chute.lua:20
 msgid "Hopper Chute"
-msgstr ""
+msgstr "Calha de Funil"
 
 #: nodes\chute.lua:78
 msgid "@1 moves stuff to chute at @2"
-msgstr ""
+msgstr "@1 moveu coisas para calha em @2"
 
 #: nodes\hoppers.lua:60
 msgid "Hopper"
-msgstr ""
+msgstr "Funil"
 
 #: nodes\hoppers.lua:122
 #: nodes\hoppers.lua:214
 msgid "@1 moves stuff in hopper at @2"
-msgstr ""
+msgstr "@1 moveu coisas no funil em @2"
 
 #: nodes\hoppers.lua:127
 #: nodes\hoppers.lua:219
 msgid "@1 moves stuff to hopper at @2"
-msgstr ""
+msgstr "@1 moveu as coisas para o funil em @2"
 
 #: nodes\hoppers.lua:132
 #: nodes\hoppers.lua:224
 msgid "@1 moves stuff from hopper at @2"
-msgstr ""
+msgstr "@1 move as coisas do funil para @2"
 
 #: nodes\hoppers.lua:148
 msgid "Side Hopper"
-msgstr ""
+msgstr "Funil Lateral"
 
 #: nodes\sorter.lua:26
 msgid ""
 "Selective\n"
 "Filter"
-msgstr ""
+msgstr "Filtro\nSeletivo"
 
 #: nodes\sorter.lua:27
 msgid ""
@@ -182,16 +251,19 @@ msgid ""
 "in the direction of the arrow. Click this button\n"
 "to enable an item-type-specific filter."
 msgstr ""
+"Este separador está atualmente configurado para tentar enviar todos os itens "
+"na direção da seta. Clique neste botão para ativar um filtro específico para "
+"um tipo de item."
 
 #: nodes\sorter.lua:29
 msgid "Filter"
-msgstr ""
+msgstr "Filtro"
 
 #: nodes\sorter.lua:30
 msgid ""
 "Filter\n"
 "All"
-msgstr ""
+msgstr "Filtrar\nTudo"
 
 #: nodes\sorter.lua:31
 msgid ""
@@ -200,11 +272,14 @@ msgid ""
 "Click this button to set it to try sending all\n"
 "items that way first."
 msgstr ""
+"Este separador está atualmente configurado para enviar apenas itens listados "
+"na lista de filtros na direção da seta. Clique neste botão para configurá-lo "
+"para tentar enviar todos os itens dessa maneira primeiro."
 
 #: nodes\sorter.lua:51
 msgid "Sorter"
-msgstr ""
+msgstr "Organizador"
 
 #: nodes\sorter.lua:144
 msgid "@1 moves stuff to sorter at @2"
-msgstr ""
+msgstr "@1 move coisas para classificador em @2"

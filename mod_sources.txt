@@ -41,7 +41,7 @@ origin	https://github.com/minetest-mods/intllib (fetch)
 Mod: libs/intllib
 
 origin	https://github.com/minetest-mods/mtg_i18n (fetch)
-* master 58395b2 [origin/master] Translated using Weblate (French)
+* master 5ab9369 [origin/master] Translated using Weblate (Esperanto)
 Mod: libs/mtg_i18n
 
 origin	https://github.com/bell07/minetest-whynot_compat (fetch)
@@ -178,7 +178,7 @@ origin	https://github.com/petermaloney/helicopter (fetch)
 Mod: tools/helicopter
 
 origin	https://github.com/minetest-mods/hopper (fetch)
-* master 8246da4 [origin/master] update forum link
+* master 1ee79fb [origin/master] add pt, br-pt translations
 Mod: tools/hopper
 
 origin	https://github.com/minetest-mods/jumping (fetch)
@@ -326,7 +326,7 @@ origin	https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin	https://github.com/minetest-mods/mesecons (fetch)
-* master df4e880 [origin/master] Fix crash in microcontroller (#439)
+* master 9d239cb [origin/master] Fix typos (#442)
 Mod: mesecons/mesecons
 Mod: mesecons/mesecons_alias
 Mod: mesecons/mesecons_blinkyplant
@@ -357,5 +357,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master 43026c3 [origin/master] add self.disable_falling switch for custom routines
+* master 70d2f63 [origin/master] fix nil error (thanks wziard)
 Mod: mobs_redo/mobs_redo

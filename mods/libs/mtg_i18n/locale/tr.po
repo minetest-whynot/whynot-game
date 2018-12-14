@@ -7,17 +7,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-28 21:16+0200\n"
-"PO-Revision-Date: 2017-10-15 22:49+0000\n"
+"POT-Creation-Date: 2018-12-07 22:13+0100\n"
+"PO-Revision-Date: 2018-12-09 11:08+0000\n"
 "Last-Translator: monolifed <monolifed@gmail.com>\n"
-"Language-Team: Turkish "
-"<https://hosted.weblate.org/projects/minetest/mtg_i18n/tr/>\n"
+"Language-Team: Turkish <https://hosted.weblate.org/projects/minetest/"
+"mtg_i18n/tr/>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 2.17\n"
+"X-Generator: Weblate 3.4-dev\n"
 
 #: init.lua
 msgid "Air (you hacker you!)"
@@ -56,16 +56,16 @@ msgid "Water Bucket"
 msgstr "Su Kovası"
 
 #: init.lua
-msgid "Brake rail"
-msgstr "Fren rayı"
+msgid "Brake Rail"
+msgstr "Fren Rayı"
 
 #: init.lua
 msgid "Cart (Sneak+Click to pick up)"
 msgstr "Vagon (Almak için Sız+Tıkla)"
 
 #: init.lua
-msgid "Powered rail"
-msgstr "Çalışan ray"
+msgid "Powered Rail"
+msgstr "Çalışan Ray"
 
 #: init.lua
 msgid "Rail"
@@ -84,8 +84,8 @@ msgid "Acacia Bush Stem"
 msgstr "Akasya Çalısı Kökü"
 
 #: init.lua
-msgid "Acacia Leaves"
-msgstr "Akasya Yaprakları"
+msgid "Acacia Tree Leaves"
+msgstr "Akasya Ağacı Yaprakları"
 
 #: init.lua
 msgid "Acacia Tree Sapling"
@@ -97,15 +97,15 @@ msgstr "Akasya Ağacı"
 
 #: init.lua
 msgid "Acacia Wood Planks"
-msgstr "Akasya Ahşap Plakalar"
+msgstr "Akasya Ahşabı Plakalar"
 
 #: init.lua
 msgid "Apple"
 msgstr "Elma"
 
 #: init.lua
-msgid "Aspen Leaves"
-msgstr "Kavak Yaprakları"
+msgid "Aspen Tree Leaves"
+msgstr "Kavak Ağacı Yaprakları"
 
 #: init.lua
 msgid "Aspen Tree Sapling"
@@ -117,7 +117,7 @@ msgstr "Kavak Ağacı"
 
 #: init.lua
 msgid "Aspen Wood Planks"
-msgstr "Kavak Ahşap Plakalar"
+msgstr "Kavak Ahşabı Plakalar"
 
 #: init.lua
 msgid "Bronze Axe"
@@ -316,24 +316,24 @@ msgid "Dry Shrub"
 msgstr "Kuru Çalı"
 
 #: init.lua
-msgid "Acacia Fence"
-msgstr "Akasya Çit"
+msgid "Acacia Wood Fence"
+msgstr "Akasya Ahşabı Çit"
 
 #: init.lua
-msgid "Aspen Fence"
-msgstr "Kavak Çit"
+msgid "Aspen Wood Fence"
+msgstr "Kavak Ahşabı Çit"
 
 #: init.lua
-msgid "Junglewood Fence"
-msgstr "Cangıl Ahşap Çit"
+msgid "Jungle Wood Fence"
+msgstr "Cangıl Ahşabı Çit"
 
 #: init.lua
-msgid "Pine Fence"
-msgstr "Çam Çit"
+msgid "Pine Wood Fence"
+msgstr "Çam Ahşabı Çit"
 
 #: init.lua
-msgid "Wooden Fence"
-msgstr "Ahşap Çit"
+msgid "Apple Wood Fence"
+msgstr "Elma Ahşabı Çit"
 
 #: init.lua
 msgid "Flint"
@@ -380,20 +380,20 @@ msgid "Jungle Grass"
 msgstr "Cangıl Çim"
 
 #: init.lua
-msgid "Jungle Leaves"
-msgstr "Cangıl Yaprakları"
+msgid "Jungle Tree Leaves"
+msgstr "Cangıl Ağacı Yaprakları"
 
 #: init.lua
-msgid "Jungle Sapling"
-msgstr "Cangıl Fidanı"
+msgid "Jungle Tree Sapling"
+msgstr "Cangıl Ağacı Fidanı"
 
 #: init.lua
 msgid "Jungle Tree"
 msgstr "Cangıl Ağacı"
 
 #: init.lua
-msgid "Junglewood Planks"
-msgstr "Cangıl Ahşap Plakalar"
+msgid "Jungle Wood Planks"
+msgstr "Cangıl Ahşabı Plakalar"
 
 #: init.lua
 msgid "Key"
@@ -416,8 +416,8 @@ msgid "Lava Source"
 msgstr "Lav Kaynağı"
 
 #: init.lua
-msgid "Leaves"
-msgstr "Yapraklar"
+msgid "Apple Tree Leaves"
+msgstr "Elma Ağacı Yaprakları"
 
 #: init.lua
 msgid "Mese Crystal Fragment"
@@ -500,8 +500,8 @@ msgid "Pine Needles"
 msgstr "Çam İğneleri"
 
 #: init.lua
-msgid "Pine Sapling"
-msgstr "Çam Fidanı"
+msgid "Pine Tree Sapling"
+msgstr "Çam Ağacı Fidanı"
 
 #: init.lua
 msgid "Pine Tree"
@@ -509,7 +509,7 @@ msgstr "Çam Ağacı"
 
 #: init.lua
 msgid "Pine Wood Planks"
-msgstr "Çam Ahşap Plakalar"
+msgstr "Çam Ahşabı Plakalar"
 
 #: init.lua
 msgid "Flowing River Water"
@@ -536,8 +536,8 @@ msgid "Sandstone"
 msgstr "Kumtaşı"
 
 #: init.lua
-msgid "Sapling"
-msgstr "Fidan"
+msgid "Apple Tree Sapling"
+msgstr "Elma Ağacı Fidanı"
 
 #: init.lua
 msgid "Bronze Shovel"
@@ -692,8 +692,8 @@ msgid "Torch"
 msgstr "Meşale"
 
 #: init.lua
-msgid "Tree"
-msgstr "Ağaç"
+msgid "Apple Tree"
+msgstr "Elma Ağacı"
 
 #: init.lua
 msgid "Flowing Water"
@@ -704,8 +704,8 @@ msgid "Water Source"
 msgstr "Su Kaynağı"
 
 #: init.lua
-msgid "Wooden Planks"
-msgstr "Ahşap Plakalar"
+msgid "Apple Wood Planks"
+msgstr "Elma Ahşabı Plakalar"
 
 #: init.lua
 msgid "Glass Door"
@@ -724,96 +724,96 @@ msgid "Wooden Door"
 msgstr "Ahşap Kapı"
 
 #: init.lua
-msgid "Acacia Fence Gate"
-msgstr "Akasya Çit Kapısı"
+msgid "Acacia Wood Fence Gate"
+msgstr "Akasya Ahşabı Çit Kapısı"
 
 #: init.lua
-msgid "Aspen Fence Gate"
-msgstr "Aspen Çit Kapısı"
+msgid "Aspen Wood Fence Gate"
+msgstr "Kavak Ahşabı Çit Kapısı"
 
 #: init.lua
-msgid "Junglewood Fence Gate"
-msgstr "Cangıl Ahşap Çit Kapısı"
+msgid "Jungle Wood Fence Gate"
+msgstr "Cangıl Ahşabı Çit Kapısı"
 
 #: init.lua
-msgid "Pine Fence Gate"
-msgstr "Çam Çit Kapısı"
+msgid "Pine Wood Fence Gate"
+msgstr "Çam Ahşabı Çit Kapısı"
 
 #: init.lua
-msgid "Wooden Fence Gate"
-msgstr "Ahşap Çit Kapısı"
+msgid "Apple Wood Fence Gate"
+msgstr "Elma Ahşabı Çit Kapısı"
 
 #: init.lua
 msgid "Hidden Door Segment"
 msgstr "Gizli Kapı Kesimi"
 
 #: init.lua
-msgid "Trapdoor"
-msgstr "Kapak"
+msgid "Wooden Trapdoor"
+msgstr "Ahşap Kapak"
 
 #: init.lua
 msgid "Steel Trapdoor"
 msgstr "Çelik Kapak"
 
 #: init.lua
-msgid "Black dye"
-msgstr "Siyah boya"
+msgid "Black Dye"
+msgstr "Siyah Boya"
 
 #: init.lua
-msgid "Blue dye"
-msgstr "Mavi boya"
+msgid "Blue Dye"
+msgstr "Mavi Boya"
 
 #: init.lua
-msgid "Brown dye"
-msgstr "Kahverengi boya"
+msgid "Brown Dye"
+msgstr "Kahverengi Boya"
 
 #: init.lua
-msgid "Cyan dye"
-msgstr "Camgöbeği boya"
+msgid "Cyan Dye"
+msgstr "Camgöbeği Boya"
 
 #: init.lua
-msgid "Dark green dye"
-msgstr "Koyu yeşil boya"
+msgid "Dark Green Dye"
+msgstr "Koyu Yeşil Boya"
 
 #: init.lua
-msgid "Dark grey dye"
-msgstr "Koyu gri boya"
+msgid "Dark Grey Dye"
+msgstr "Koyu Gri Boya"
 
 #: init.lua
-msgid "Green dye"
-msgstr "Yeşil boya"
+msgid "Green Dye"
+msgstr "Yeşil Boya"
 
 #: init.lua
-msgid "Grey dye"
-msgstr "Gri boya"
+msgid "Grey Dye"
+msgstr "Gri Boya"
 
 #: init.lua
-msgid "Magenta dye"
-msgstr "Macenta boya"
+msgid "Magenta Dye"
+msgstr "Macenta Boya"
 
 #: init.lua
-msgid "Orange dye"
-msgstr "Turuncu boya"
+msgid "Orange Dye"
+msgstr "Turuncu Boya"
 
 #: init.lua
-msgid "Pink dye"
-msgstr "Pembe boya"
+msgid "Pink Dye"
+msgstr "Pembe Boya"
 
 #: init.lua
-msgid "Red dye"
-msgstr "Kırmızı boya"
+msgid "Red Dye"
+msgstr "Kırmızı Boya"
 
 #: init.lua
-msgid "Violet dye"
-msgstr "Mor boya"
+msgid "Violet Dye"
+msgstr "Mor Boya"
 
 #: init.lua
-msgid "White dye"
-msgstr "Beyaz boya"
+msgid "White Dye"
+msgstr "Beyaz Boya"
 
 #: init.lua
-msgid "Yellow dye"
-msgstr "Sarı boya"
+msgid "Yellow Dye"
+msgstr "Sarı Boya"
 
 #: init.lua
 msgid "Bread"
@@ -860,12 +860,12 @@ msgid "Wooden Hoe"
 msgstr "Ahşap Çapa"
 
 #: init.lua
-msgid "Cotton seed"
-msgstr "Pamuk tohumu"
+msgid "Cotton Seed"
+msgstr "Pamuk Tohumu"
 
 #: init.lua
-msgid "Wheat seed"
-msgstr "Buğday tohumu"
+msgid "Wheat Seed"
+msgstr "Buğday Tohumu"
 
 #: init.lua
 msgid "Soil"
@@ -880,10 +880,6 @@ msgid "Straw"
 msgstr "Saman"
 
 #: init.lua
-msgid "String"
-msgstr "İp"
-
-#: init.lua
 msgid "Wheat"
 msgstr "Buğday"
 
@@ -896,8 +892,8 @@ msgid "Permanent Flame"
 msgstr "Kalıcı Alev"
 
 #: init.lua
-msgid "White dandelion"
-msgstr "Beyaz hindiba"
+msgid "White Dandelion"
+msgstr "Beyaz Hindiba"
 
 #: init.lua
 msgid "Yellow Dandelion"
@@ -916,8 +912,8 @@ msgid "Red Mushroom"
 msgstr "Kırmızı Mantar"
 
 #: init.lua
-msgid "Rose"
-msgstr "Gül"
+msgid "Red Rose"
+msgstr "Kırmızı Gül"
 
 #: init.lua
 msgid "Orange Tulip"
@@ -941,11 +937,11 @@ msgstr "Tornavida (sol-tık yüz döndürür, sağ-tık ekseni döndürür)"
 
 #: init.lua
 msgid "Acacia Wood Slab"
-msgstr "Akasya Ahşap Dilim"
+msgstr "Akasya Ahşabı Dilim"
 
 #: init.lua
 msgid "Aspen Wood Slab"
-msgstr "Kavak Ahşap Dilim"
+msgstr "Kavak Ahşabı Dilim"
 
 #: init.lua
 msgid "Brick Slab"
@@ -1001,7 +997,7 @@ msgstr "Buz Dilim"
 
 #: init.lua
 msgid "Jungle Wood Slab"
-msgstr "Cangıl Ahşap Dilim"
+msgstr "Cangıl Ahşabı Dilim"
 
 #: init.lua
 msgid "Mossy Cobblestone Slab"
@@ -1021,7 +1017,7 @@ msgstr "Obsidyen Dilim"
 
 #: init.lua
 msgid "Pine Wood Slab"
-msgstr "Çam Ahşap Dilim"
+msgstr "Çam Ahşabı Dilim"
 
 #: init.lua
 msgid "Sandstone Block Slab"
@@ -1081,11 +1077,11 @@ msgstr "Ahşap Dilim"
 
 #: init.lua
 msgid "Acacia Wood Stair"
-msgstr "Akasya Ahşap Merdiven"
+msgstr "Akasya Ahşabı Merdiven"
 
 #: init.lua
 msgid "Aspen Wood Stair"
-msgstr "Kavak Ahşap Merdiven"
+msgstr "Kavak Ahşabı Merdiven"
 
 #: init.lua
 msgid "Brick Stair"
@@ -1140,92 +1136,12 @@ msgid "Ice Stair"
 msgstr "Buz Merdiven"
 
 #: init.lua
-msgid "Jungle Wood Stair"
-msgstr "Cangıl Ahşap Merdiven"
-
-#: init.lua
-msgid "Mossy Cobblestone Stair"
-msgstr "Yosunlu Parketaş Merdiven"
-
-#: init.lua
-msgid "Obsidian Block Stair"
-msgstr "Obsidyen Blok Merdiven"
-
-#: init.lua
-msgid "Obsidian Brick Stair"
-msgstr "Obsidyen Tuğla Merdiven"
-
-#: init.lua
-msgid "Obsidian Stair"
-msgstr "Obsidyen Merdiven"
-
-#: init.lua
-msgid "Pine Wood Stair"
-msgstr "Çam Ahşap Merdiven"
-
-#: init.lua
-msgid "Sandstone Block Stair"
-msgstr "Kumtaşı Blok Merdiven"
-
-#: init.lua
-msgid "Sandstone Brick Stair"
-msgstr "Kumtaşı Tuğla Merdiven"
-
-#: init.lua
-msgid "Sandstone Stair"
-msgstr "Kumtaşı Merdiven"
-
-#: init.lua
-msgid "Silver Sandstone Block Stair"
-msgstr "Gümüş Kumtaşı Blok Merdiven"
-
-#: init.lua
-msgid "Silver Sandstone Brick Stair"
-msgstr "Gümüş Kumtaşı Tuğla Merdiven"
-
-#: init.lua
-msgid "Silver Sandstone Stair"
-msgstr "Gümüş Kumtaşı Merdiven"
-
-#: init.lua
-msgid "Snow Block Stair"
-msgstr "Kar Blok Merdiven"
-
-#: init.lua
-msgid "Steel Block Stair"
-msgstr "Çelik Blok Merdiven"
-
-#: init.lua
-msgid "Stone Block Stair"
-msgstr "Taş Blok Merdiven"
-
-#: init.lua
-msgid "Stone Brick Stair"
-msgstr "Taş Tuğla Merdiven"
-
-#: init.lua
-msgid "Stone Stair"
-msgstr "Taş Merdiven"
-
-#: init.lua
-msgid "Straw Stair"
-msgstr "Saman Merdiven"
-
-#: init.lua
-msgid "Tin Block Stair"
-msgstr "Kalay Blok Merdiven"
-
-#: init.lua
-msgid "Wooden Stair"
-msgstr "Ahşap Merdiven"
-
-#: init.lua
 msgid "Acacia Wood Stair Inner"
-msgstr "Akasya Ahşap İç Merdiven"
+msgstr "Akasya Ahşabı İç Merdiven"
 
 #: init.lua
 msgid "Aspen Wood Stair Inner"
-msgstr "Kavak Ahşap İç Merdiven"
+msgstr "Kavak Ahşabı İç Merdiven"
 
 #: init.lua
 msgid "Brick Stair Inner"
@@ -1281,7 +1197,7 @@ msgstr "Buz İç Merdiven"
 
 #: init.lua
 msgid "Jungle Wood Stair Inner"
-msgstr "Cangıl Ahşap İç Merdiven"
+msgstr "Cangıl Ahşabı İç Merdiven"
 
 #: init.lua
 msgid "Mossy Cobblestone Stair Inner"
@@ -1301,7 +1217,7 @@ msgstr "Obsidyen İç Merdiven"
 
 #: init.lua
 msgid "Pine Wood Stair Inner"
-msgstr "Çam Ahşap İç Merdiven"
+msgstr "Çam Ahşabı İç Merdiven"
 
 #: init.lua
 msgid "Sandstone Block Stair Inner"
@@ -1360,12 +1276,32 @@ msgid "Wooden Stair Inner"
 msgstr "Ahşap İç Merdiven"
 
 #: init.lua
+msgid "Jungle Wood Stair"
+msgstr "Cangıl Ahşabı Merdiven"
+
+#: init.lua
+msgid "Mossy Cobblestone Stair"
+msgstr "Yosunlu Parketaş Merdiven"
+
+#: init.lua
+msgid "Obsidian Block Stair"
+msgstr "Obsidyen Blok Merdiven"
+
+#: init.lua
+msgid "Obsidian Brick Stair"
+msgstr "Obsidyen Tuğla Merdiven"
+
+#: init.lua
+msgid "Obsidian Stair"
+msgstr "Obsidyen Merdiven"
+
+#: init.lua
 msgid "Acacia Wood Stair Outer"
-msgstr "Akasya Ahşap Dış Merdiven"
+msgstr "Akasya Ahşabı Dış Merdiven"
 
 #: init.lua
 msgid "Aspen Wood Stair Outer"
-msgstr "Kavak Ahşap Dış Merdiven"
+msgstr "Kavak Ahşabı Dış Merdiven"
 
 #: init.lua
 msgid "Brick Stair Outer"
@@ -1421,7 +1357,7 @@ msgstr "Buz Dış Merdiven"
 
 #: init.lua
 msgid "Jungle Wood Stair Outer"
-msgstr "Cangıl Ahşap Dış Merdiven"
+msgstr "Cangıl Ahşabı Dış Merdiven"
 
 #: init.lua
 msgid "Mossy Cobblestone Stair Outer"
@@ -1441,7 +1377,7 @@ msgstr "Obsidyen Dış Merdiven"
 
 #: init.lua
 msgid "Pine Wood Stair Outer"
-msgstr "Çam Ahşap Dış Merdiven"
+msgstr "Çam Ahşabı Dış Merdiven"
 
 #: init.lua
 msgid "Sandstone Block Stair Outer"
@@ -1500,6 +1436,66 @@ msgid "Wooden Stair Outer"
 msgstr "Ahşap Dış Merdiven"
 
 #: init.lua
+msgid "Pine Wood Stair"
+msgstr "Çam Ahşabı Merdiven"
+
+#: init.lua
+msgid "Sandstone Block Stair"
+msgstr "Kumtaşı Blok Merdiven"
+
+#: init.lua
+msgid "Sandstone Brick Stair"
+msgstr "Kumtaşı Tuğla Merdiven"
+
+#: init.lua
+msgid "Sandstone Stair"
+msgstr "Kumtaşı Merdiven"
+
+#: init.lua
+msgid "Silver Sandstone Block Stair"
+msgstr "Gümüş Kumtaşı Blok Merdiven"
+
+#: init.lua
+msgid "Silver Sandstone Brick Stair"
+msgstr "Gümüş Kumtaşı Tuğla Merdiven"
+
+#: init.lua
+msgid "Silver Sandstone Stair"
+msgstr "Gümüş Kumtaşı Merdiven"
+
+#: init.lua
+msgid "Snow Block Stair"
+msgstr "Kar Blok Merdiven"
+
+#: init.lua
+msgid "Steel Block Stair"
+msgstr "Çelik Blok Merdiven"
+
+#: init.lua
+msgid "Stone Block Stair"
+msgstr "Taş Blok Merdiven"
+
+#: init.lua
+msgid "Stone Brick Stair"
+msgstr "Taş Tuğla Merdiven"
+
+#: init.lua
+msgid "Stone Stair"
+msgstr "Taş Merdiven"
+
+#: init.lua
+msgid "Straw Stair"
+msgstr "Saman Merdiven"
+
+#: init.lua
+msgid "Tin Block Stair"
+msgstr "Kalay Blok Merdiven"
+
+#: init.lua
+msgid "Wooden Stair"
+msgstr "Ahşap Merdiven"
+
+#: init.lua
 msgid "Gun Powder"
 msgstr "Barut"
 
@@ -1512,24 +1508,24 @@ msgid "Unknown Item"
 msgstr "Bilinmeyen Öge"
 
 #: init.lua
-msgid "Drinking Glass (empty)"
-msgstr "Bardak (boş)"
+msgid "Empty Drinking Glass"
+msgstr "Boş İçme Bardağı"
 
 #: init.lua
-msgid "Glass Bottle (empty)"
-msgstr "Cam Şişe (boş)"
+msgid "Empty Glass Bottle"
+msgstr "Boş Cam Şişe"
 
 #: init.lua
-msgid "Pile of Glass Fragments"
-msgstr "Cam Parçaları Yığını"
+msgid "Glass Fragments"
+msgstr "Cam Parçaları"
 
 #: init.lua
 msgid "Vessels Shelf"
 msgstr "Şişelik"
 
 #: init.lua
-msgid "Heavy Steel Bottle (empty)"
-msgstr "Ağır Çelik Şişe (boş)"
+msgid "Empty Heavy Steel Bottle"
+msgstr "Boş Ağır Çelik Şişe"
 
 #: init.lua
 msgid "Cobblestone Wall"
@@ -1604,8 +1600,8 @@ msgid "Yellow Wool"
 msgstr "Sarı Yün"
 
 #: init.lua
-msgid "Iron bar"
-msgstr "Demir parmaklık"
+msgid "Iron Bar"
+msgstr "Demir Parmaklık"
 
 #: init.lua
 msgid "Glass Pane"
@@ -1618,3 +1614,24 @@ msgstr "Nyan Kedi Gökkuşağı"
 #: init.lua
 msgid "Nyan Cat"
 msgstr "Nyan Kedi"
+
+#~ msgid "Leaves"
+#~ msgstr "Yapraklar"
+
+#~ msgid "Sapling"
+#~ msgstr "Fidan"
+
+#~ msgid "Tree"
+#~ msgstr "Ağaç"
+
+#~ msgid "Wooden Planks"
+#~ msgstr "Ahşap Plakalar"
+
+#~ msgid "Trapdoor"
+#~ msgstr "Kapak"
+
+#~ msgid "String"
+#~ msgstr "İp"
+
+#~ msgid "Rose"
+#~ msgstr "Gül"

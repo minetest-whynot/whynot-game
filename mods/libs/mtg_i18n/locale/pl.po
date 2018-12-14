@@ -7,18 +7,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-28 21:16+0200\n"
-"PO-Revision-Date: 2017-09-26 16:47+0000\n"
+"POT-Creation-Date: 2018-12-07 22:13+0100\n"
+"PO-Revision-Date: 2018-09-08 19:22+0000\n"
 "Last-Translator: krzysdz <krzysdz@konto.pl>\n"
-"Language-Team: Polish "
-"<https://hosted.weblate.org/projects/minetest/mtg_i18n/pl/>\n"
+"Language-Team: Polish <https://hosted.weblate.org/projects/minetest/mtg_i18n/"
+"pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 2.17-dev\n"
+"X-Generator: Weblate 3.2-dev\n"
 
 #: init.lua
 msgid "Air (you hacker you!)"
@@ -57,7 +57,8 @@ msgid "Water Bucket"
 msgstr "Wiadro wody"
 
 #: init.lua
-msgid "Brake rail"
+#, fuzzy
+msgid "Brake Rail"
 msgstr "Hamujący tor"
 
 #: init.lua
@@ -65,7 +66,8 @@ msgid "Cart (Sneak+Click to pick up)"
 msgstr "Wózek (Skradanie+Klik aby podnieś)"
 
 #: init.lua
-msgid "Powered rail"
+#, fuzzy
+msgid "Powered Rail"
 msgstr "Zasilany tor"
 
 #: init.lua
@@ -85,7 +87,8 @@ msgid "Acacia Bush Stem"
 msgstr "Łodyga krzaku akacji"
 
 #: init.lua
-msgid "Acacia Leaves"
+#, fuzzy
+msgid "Acacia Tree Leaves"
 msgstr "Liście akacji"
 
 #: init.lua
@@ -105,7 +108,8 @@ msgid "Apple"
 msgstr "Jabłko"
 
 #: init.lua
-msgid "Aspen Leaves"
+#, fuzzy
+msgid "Aspen Tree Leaves"
 msgstr "Liście osiki"
 
 #: init.lua
@@ -317,23 +321,28 @@ msgid "Dry Shrub"
 msgstr "Wysuszony krzak"
 
 #: init.lua
-msgid "Acacia Fence"
+#, fuzzy
+msgid "Acacia Wood Fence"
 msgstr "Płot akacjowy"
 
 #: init.lua
-msgid "Aspen Fence"
+#, fuzzy
+msgid "Aspen Wood Fence"
 msgstr "Płot osikowy"
 
 #: init.lua
-msgid "Junglewood Fence"
+#, fuzzy
+msgid "Jungle Wood Fence"
 msgstr "Płot z drewna dżunglowego"
 
 #: init.lua
-msgid "Pine Fence"
+#, fuzzy
+msgid "Pine Wood Fence"
 msgstr "Płot sosnowy"
 
 #: init.lua
-msgid "Wooden Fence"
+#, fuzzy
+msgid "Apple Wood Fence"
 msgstr "Płot drewniany"
 
 #: init.lua
@@ -381,11 +390,13 @@ msgid "Jungle Grass"
 msgstr "Trawa jungli"
 
 #: init.lua
-msgid "Jungle Leaves"
+#, fuzzy
+msgid "Jungle Tree Leaves"
 msgstr "Liście jungli"
 
 #: init.lua
-msgid "Jungle Sapling"
+#, fuzzy
+msgid "Jungle Tree Sapling"
 msgstr "Sadzonka jungli"
 
 #: init.lua
@@ -393,7 +404,8 @@ msgid "Jungle Tree"
 msgstr "Drzewo jungli"
 
 #: init.lua
-msgid "Junglewood Planks"
+#, fuzzy
+msgid "Jungle Wood Planks"
 msgstr "Deski drzewa jungli"
 
 #: init.lua
@@ -417,8 +429,9 @@ msgid "Lava Source"
 msgstr "Źródło lawy"
 
 #: init.lua
-msgid "Leaves"
-msgstr "Liście"
+#, fuzzy
+msgid "Apple Tree Leaves"
+msgstr "Liście osiki"
 
 #: init.lua
 msgid "Mese Crystal Fragment"
@@ -501,7 +514,8 @@ msgid "Pine Needles"
 msgstr "Igła sosnowa"
 
 #: init.lua
-msgid "Pine Sapling"
+#, fuzzy
+msgid "Pine Tree Sapling"
 msgstr "Sadzonka sosny"
 
 #: init.lua
@@ -537,8 +551,9 @@ msgid "Sandstone"
 msgstr "Piaskowiec"
 
 #: init.lua
-msgid "Sapling"
-msgstr "Sadzonka"
+#, fuzzy
+msgid "Apple Tree Sapling"
+msgstr "Sadzonka drzewa osikowego"
 
 #: init.lua
 msgid "Bronze Shovel"
@@ -693,8 +708,9 @@ msgid "Torch"
 msgstr "Pochodnia"
 
 #: init.lua
-msgid "Tree"
-msgstr "Drzewo"
+#, fuzzy
+msgid "Apple Tree"
+msgstr "Drzewo osiki"
 
 #: init.lua
 msgid "Flowing Water"
@@ -705,8 +721,9 @@ msgid "Water Source"
 msgstr "Źródełko wody"
 
 #: init.lua
-msgid "Wooden Planks"
-msgstr "Drewniane deski"
+#, fuzzy
+msgid "Apple Wood Planks"
+msgstr "Deski osikowe"
 
 #: init.lua
 msgid "Glass Door"
@@ -725,23 +742,28 @@ msgid "Wooden Door"
 msgstr "Drewniane drzwi"
 
 #: init.lua
-msgid "Acacia Fence Gate"
+#, fuzzy
+msgid "Acacia Wood Fence Gate"
 msgstr "Akacjowa furtka ogrodzenia"
 
 #: init.lua
-msgid "Aspen Fence Gate"
+#, fuzzy
+msgid "Aspen Wood Fence Gate"
 msgstr "Osikowa furtka ogrodzenia"
 
 #: init.lua
-msgid "Junglewood Fence Gate"
+#, fuzzy
+msgid "Jungle Wood Fence Gate"
 msgstr "Dżunglowa furtka ogrodzenia"
 
 #: init.lua
-msgid "Pine Fence Gate"
+#, fuzzy
+msgid "Pine Wood Fence Gate"
 msgstr "Sosnowa furtka ogrodzenia"
 
 #: init.lua
-msgid "Wooden Fence Gate"
+#, fuzzy
+msgid "Apple Wood Fence Gate"
 msgstr "Drewniana furtka ogrodzenia"
 
 #: init.lua
@@ -749,71 +771,87 @@ msgid "Hidden Door Segment"
 msgstr "Ukryta część drzwi"
 
 #: init.lua
-msgid "Trapdoor"
-msgstr "Zapadnia"
+#, fuzzy
+msgid "Wooden Trapdoor"
+msgstr "Drewniane drzwi"
 
 #: init.lua
 msgid "Steel Trapdoor"
 msgstr "Stalowa zapadnia"
 
 #: init.lua
-msgid "Black dye"
+#, fuzzy
+msgid "Black Dye"
 msgstr "Czarny barwnik"
 
 #: init.lua
-msgid "Blue dye"
+#, fuzzy
+msgid "Blue Dye"
 msgstr "Niebieski barwnik"
 
 #: init.lua
-msgid "Brown dye"
+#, fuzzy
+msgid "Brown Dye"
 msgstr "Brązowy barwnik"
 
 #: init.lua
-msgid "Cyan dye"
+#, fuzzy
+msgid "Cyan Dye"
 msgstr "Turkusowy barwnik"
 
 #: init.lua
-msgid "Dark green dye"
+#, fuzzy
+msgid "Dark Green Dye"
 msgstr "Ciemnozielony barwnik"
 
 #: init.lua
-msgid "Dark grey dye"
+#, fuzzy
+msgid "Dark Grey Dye"
 msgstr "Ciemnoniebieski barwnik"
 
 #: init.lua
-msgid "Green dye"
+#, fuzzy
+msgid "Green Dye"
 msgstr "Zielony barwnik"
 
 #: init.lua
-msgid "Grey dye"
+#, fuzzy
+msgid "Grey Dye"
 msgstr "Szary barwnik"
 
 #: init.lua
-msgid "Magenta dye"
+#, fuzzy
+msgid "Magenta Dye"
 msgstr "Purpurowy barwnik"
 
 #: init.lua
-msgid "Orange dye"
+#, fuzzy
+msgid "Orange Dye"
 msgstr "Pomarańczowy barwnik"
 
 #: init.lua
-msgid "Pink dye"
+#, fuzzy
+msgid "Pink Dye"
 msgstr "Różowy barwnik"
 
 #: init.lua
-msgid "Red dye"
+#, fuzzy
+msgid "Red Dye"
 msgstr "Czerwony barwnik"
 
 #: init.lua
-msgid "Violet dye"
+#, fuzzy
+msgid "Violet Dye"
 msgstr "Fioletowy barwnik"
 
 #: init.lua
-msgid "White dye"
+#, fuzzy
+msgid "White Dye"
 msgstr "Biały barwnik"
 
 #: init.lua
-msgid "Yellow dye"
+#, fuzzy
+msgid "Yellow Dye"
 msgstr "Żółty barwnik"
 
 #: init.lua
@@ -861,11 +899,13 @@ msgid "Wooden Hoe"
 msgstr "Drewniana motyka"
 
 #: init.lua
-msgid "Cotton seed"
+#, fuzzy
+msgid "Cotton Seed"
 msgstr "Nasiono bawełny"
 
 #: init.lua
-msgid "Wheat seed"
+#, fuzzy
+msgid "Wheat Seed"
 msgstr "Ziarno pszenicy"
 
 #: init.lua
@@ -881,10 +921,6 @@ msgid "Straw"
 msgstr "Źdźbło"
 
 #: init.lua
-msgid "String"
-msgstr "Nić"
-
-#: init.lua
 msgid "Wheat"
 msgstr "Pszenica"
 
@@ -897,7 +933,8 @@ msgid "Permanent Flame"
 msgstr "Stały płomień"
 
 #: init.lua
-msgid "White dandelion"
+#, fuzzy
+msgid "White Dandelion"
 msgstr "Biały mlecz"
 
 #: init.lua
@@ -913,13 +950,13 @@ msgid "Brown Mushroom"
 msgstr "Brązowy grzyb"
 
 #: init.lua
-#, fuzzy
 msgid "Red Mushroom"
-msgstr "Muchomor czerwony"
+msgstr "Muchomor"
 
 #: init.lua
-msgid "Rose"
-msgstr "Róża"
+#, fuzzy
+msgid "Red Rose"
+msgstr "Czerwony barwnik"
 
 #: init.lua
 #, fuzzy
@@ -1145,93 +1182,6 @@ msgid "Ice Stair"
 msgstr "Lodowe schody"
 
 #: init.lua
-msgid "Jungle Wood Stair"
-msgstr "Schody z drewna dżunglowego"
-
-#: init.lua
-msgid "Mossy Cobblestone Stair"
-msgstr "Schody z omszałego bruku"
-
-#: init.lua
-msgid "Obsidian Block Stair"
-msgstr "Schody z obsydianowego bloku"
-
-#: init.lua
-msgid "Obsidian Brick Stair"
-msgstr "Schody z obsydianowej cegły"
-
-#: init.lua
-msgid "Obsidian Stair"
-msgstr "Obsydianowe schody"
-
-#: init.lua
-msgid "Pine Wood Stair"
-msgstr "Sosnowe schody"
-
-#: init.lua
-#, fuzzy
-msgid "Sandstone Block Stair"
-msgstr "Schody z bloku piaskowca"
-
-#: init.lua
-#, fuzzy
-msgid "Sandstone Brick Stair"
-msgstr "Schody z cegły piaskowca"
-
-#: init.lua
-#, fuzzy
-msgid "Sandstone Stair"
-msgstr "Schody z piaskowca"
-
-#: init.lua
-msgid "Silver Sandstone Block Stair"
-msgstr "Schody z bloku srebrnego piaskowca"
-
-#: init.lua
-#, fuzzy
-msgid "Silver Sandstone Brick Stair"
-msgstr "Schody z cegieł srebrnego piaskowca"
-
-#: init.lua
-msgid "Silver Sandstone Stair"
-msgstr "Schody ze srebrnego piaskowca"
-
-#: init.lua
-#, fuzzy
-msgid "Snow Block Stair"
-msgstr "Schody ze śnieżnego bloku"
-
-#: init.lua
-#, fuzzy
-msgid "Steel Block Stair"
-msgstr "Schody z bloku stali"
-
-#: init.lua
-msgid "Stone Block Stair"
-msgstr "Schody z kamiennego bloku"
-
-#: init.lua
-msgid "Stone Brick Stair"
-msgstr "Ceglane kamienne schody"
-
-#: init.lua
-msgid "Stone Stair"
-msgstr "Kamienne schody"
-
-#: init.lua
-msgid "Straw Stair"
-msgstr "Schody ze źdźbła"
-
-#: init.lua
-#, fuzzy
-msgid "Tin Block Stair"
-msgstr "Schody ze śnieżnego bloku"
-
-#: init.lua
-msgid "Wooden Stair"
-msgstr "Drewniane schody"
-
-#: init.lua
 #, fuzzy
 msgid "Acacia Wood Stair Inner"
 msgstr "Akacjowe schody"
@@ -1405,6 +1355,26 @@ msgstr "Schody ze śnieżnego bloku"
 #, fuzzy
 msgid "Wooden Stair Inner"
 msgstr "Drewniane schody"
+
+#: init.lua
+msgid "Jungle Wood Stair"
+msgstr "Schody z drewna dżunglowego"
+
+#: init.lua
+msgid "Mossy Cobblestone Stair"
+msgstr "Schody z omszałego bruku"
+
+#: init.lua
+msgid "Obsidian Block Stair"
+msgstr "Schody z obsydianowego bloku"
+
+#: init.lua
+msgid "Obsidian Brick Stair"
+msgstr "Schody z obsydianowej cegły"
+
+#: init.lua
+msgid "Obsidian Stair"
+msgstr "Obsydianowe schody"
 
 #: init.lua
 #, fuzzy
@@ -1582,6 +1552,73 @@ msgid "Wooden Stair Outer"
 msgstr "Drewniane schody"
 
 #: init.lua
+msgid "Pine Wood Stair"
+msgstr "Sosnowe schody"
+
+#: init.lua
+#, fuzzy
+msgid "Sandstone Block Stair"
+msgstr "Schody z bloku piaskowca"
+
+#: init.lua
+#, fuzzy
+msgid "Sandstone Brick Stair"
+msgstr "Schody z cegły piaskowca"
+
+#: init.lua
+#, fuzzy
+msgid "Sandstone Stair"
+msgstr "Schody z piaskowca"
+
+#: init.lua
+msgid "Silver Sandstone Block Stair"
+msgstr "Schody z bloku srebrnego piaskowca"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Sandstone Brick Stair"
+msgstr "Schody z cegieł srebrnego piaskowca"
+
+#: init.lua
+msgid "Silver Sandstone Stair"
+msgstr "Schody ze srebrnego piaskowca"
+
+#: init.lua
+#, fuzzy
+msgid "Snow Block Stair"
+msgstr "Schody ze śnieżnego bloku"
+
+#: init.lua
+#, fuzzy
+msgid "Steel Block Stair"
+msgstr "Schody z bloku stali"
+
+#: init.lua
+msgid "Stone Block Stair"
+msgstr "Schody z kamiennego bloku"
+
+#: init.lua
+msgid "Stone Brick Stair"
+msgstr "Ceglane kamienne schody"
+
+#: init.lua
+msgid "Stone Stair"
+msgstr "Kamienne schody"
+
+#: init.lua
+msgid "Straw Stair"
+msgstr "Schody ze źdźbła"
+
+#: init.lua
+#, fuzzy
+msgid "Tin Block Stair"
+msgstr "Schody ze śnieżnego bloku"
+
+#: init.lua
+msgid "Wooden Stair"
+msgstr "Drewniane schody"
+
+#: init.lua
 msgid "Gun Powder"
 msgstr "Proch"
 
@@ -1596,16 +1633,17 @@ msgstr "Nieznany obiekt"
 
 #: init.lua
 #, fuzzy
-msgid "Drinking Glass (empty)"
+msgid "Empty Drinking Glass"
 msgstr "Pusta szklanka"
 
 #: init.lua
 #, fuzzy
-msgid "Glass Bottle (empty)"
+msgid "Empty Glass Bottle"
 msgstr "Pusta szklana butla"
 
 #: init.lua
-msgid "Pile of Glass Fragments"
+#, fuzzy
+msgid "Glass Fragments"
 msgstr "Okruchy szkła"
 
 #: init.lua
@@ -1614,7 +1652,8 @@ msgid "Vessels Shelf"
 msgstr "Półka na naczynia"
 
 #: init.lua
-msgid "Heavy Steel Bottle (empty)"
+#, fuzzy
+msgid "Empty Heavy Steel Bottle"
 msgstr "Ciężka stalowa butla(pusta)"
 
 #: init.lua
@@ -1694,7 +1733,8 @@ msgid "Yellow Wool"
 msgstr "Żółta wełna"
 
 #: init.lua
-msgid "Iron bar"
+#, fuzzy
+msgid "Iron Bar"
 msgstr "Sztabka żelaza"
 
 #: init.lua
@@ -1710,3 +1750,24 @@ msgstr "Tęczowy kot Nyan"
 #, fuzzy
 msgid "Nyan Cat"
 msgstr "Kot Nyan"
+
+#~ msgid "Leaves"
+#~ msgstr "Liście"
+
+#~ msgid "Sapling"
+#~ msgstr "Sadzonka"
+
+#~ msgid "Tree"
+#~ msgstr "Drzewo"
+
+#~ msgid "Wooden Planks"
+#~ msgstr "Drewniane deski"
+
+#~ msgid "Trapdoor"
+#~ msgstr "Zapadnia"
+
+#~ msgid "String"
+#~ msgstr "Nić"
+
+#~ msgid "Rose"
+#~ msgstr "Róża"

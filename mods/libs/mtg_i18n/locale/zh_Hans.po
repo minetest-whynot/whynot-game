@@ -7,10 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-28 21:16+0200\n"
-"PO-Revision-Date: 2017-07-03 19:35+0000\n"
-"Last-Translator: Muhammad Nur Hidayat Yasuyoshi <muhdnurhidayat96@yahoo."
-"com>\n"
+"POT-Creation-Date: 2018-12-07 22:13+0100\n"
+"PO-Revision-Date: 2018-05-13 09:37+0000\n"
+"Last-Translator: huzhanrong <480298199@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "minetest/mtg_i18n/zh_Hans/>\n"
 "Language: zh_Hans\n"
@@ -18,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2.16-dev\n"
+"X-Generator: Weblate 3.0-dev\n"
 
 #: init.lua
 msgid "Air (you hacker you!)"
@@ -57,7 +56,8 @@ msgid "Water Bucket"
 msgstr "水桶"
 
 #: init.lua
-msgid "Brake rail"
+#, fuzzy
+msgid "Brake Rail"
 msgstr "停止的充能铁轨"
 
 #: init.lua
@@ -65,7 +65,8 @@ msgid "Cart (Sneak+Click to pick up)"
 msgstr "矿车（潜行＋点击＝捡起来）"
 
 #: init.lua
-msgid "Powered rail"
+#, fuzzy
+msgid "Powered Rail"
 msgstr "加速的充能铁轨"
 
 #: init.lua
@@ -74,27 +75,28 @@ msgstr "铁轨"
 
 #: init.lua
 msgid "Acacia Bush Leaves"
-msgstr ""
+msgstr "相思树叶"
 
 #: init.lua
 msgid "Acacia Bush Sapling"
-msgstr ""
+msgstr "相思树树苗"
 
 #: init.lua
 msgid "Acacia Bush Stem"
-msgstr ""
+msgstr "相思灌木茎"
 
 #: init.lua
-msgid "Acacia Leaves"
-msgstr ""
+#, fuzzy
+msgid "Acacia Tree Leaves"
+msgstr "相思树树叶"
 
 #: init.lua
 msgid "Acacia Tree Sapling"
-msgstr ""
+msgstr "相思树树苗"
 
 #: init.lua
 msgid "Acacia Tree"
-msgstr ""
+msgstr "相思树"
 
 #: init.lua
 msgid "Acacia Wood Planks"
@@ -102,19 +104,20 @@ msgstr "金合欢木板"
 
 #: init.lua
 msgid "Apple"
-msgstr ""
+msgstr "苹果"
 
 #: init.lua
-msgid "Aspen Leaves"
-msgstr ""
+#, fuzzy
+msgid "Aspen Tree Leaves"
+msgstr "白杨叶"
 
 #: init.lua
 msgid "Aspen Tree Sapling"
-msgstr ""
+msgstr "白杨树树苗"
 
 #: init.lua
 msgid "Aspen Tree"
-msgstr ""
+msgstr "白杨树"
 
 #: init.lua
 msgid "Aspen Wood Planks"
@@ -138,7 +141,7 @@ msgstr "钢斧"
 
 #: init.lua
 msgid "Stone Axe"
-msgstr ""
+msgstr "石斧"
 
 #: init.lua
 msgid "Wooden Axe"
@@ -146,19 +149,19 @@ msgstr "木斧"
 
 #: init.lua
 msgid "Book"
-msgstr ""
+msgstr "书"
 
 #: init.lua
 msgid "Bookshelf"
-msgstr ""
+msgstr "书架"
 
 #: init.lua
 msgid "Book With Text"
-msgstr ""
+msgstr "带文本的书籍"
 
 #: init.lua
 msgid "Brick Block"
-msgstr ""
+msgstr "砖块"
 
 #: init.lua
 msgid "Bronze Block"
@@ -170,43 +173,43 @@ msgstr "青铜锭"
 
 #: init.lua
 msgid "Bush Leaves"
-msgstr ""
+msgstr "布什树叶"
 
 #: init.lua
 msgid "Bush Sapling"
-msgstr ""
+msgstr "灌木树苗"
 
 #: init.lua
 msgid "Bush Stem"
-msgstr ""
+msgstr "灌木茎"
 
 #: init.lua
 msgid "Cactus"
-msgstr ""
+msgstr "仙人掌"
 
 #: init.lua
 msgid "Locked Chest"
-msgstr ""
+msgstr "锁上的箱子"
 
 #: init.lua
 msgid "Chest"
-msgstr ""
+msgstr "胸"
 
 #: init.lua
 msgid "Clay Brick"
-msgstr ""
+msgstr "粘土砖"
 
 #: init.lua
 msgid "Clay Lump"
-msgstr ""
+msgstr "粘土块"
 
 #: init.lua
 msgid "Clay"
-msgstr ""
+msgstr "粘土"
 
 #: init.lua
 msgid "Cloud"
-msgstr ""
+msgstr "云"
 
 #: init.lua
 msgid "Coal Block"
@@ -218,63 +221,63 @@ msgstr "煤炭"
 
 #: init.lua
 msgid "Cobblestone"
-msgstr ""
+msgstr "鹅卵石"
 
 #: init.lua
 msgid "Copper Block"
-msgstr ""
+msgstr "铜块"
 
 #: init.lua
 msgid "Copper Ingot"
-msgstr ""
+msgstr "铜锭"
 
 #: init.lua
 msgid "Copper Lump"
-msgstr ""
+msgstr "铜块"
 
 #: init.lua
 msgid "Brown Coral"
-msgstr ""
+msgstr "棕色珊瑚"
 
 #: init.lua
 msgid "Orange Coral"
-msgstr ""
+msgstr "橙色珊瑚"
 
 #: init.lua
 msgid "Coral Skeleton"
-msgstr ""
+msgstr "珊瑚骨架"
 
 #: init.lua
 msgid "Desert Cobblestone"
-msgstr ""
+msgstr "沙漠鹅卵石"
 
 #: init.lua
 msgid "Desert Sand"
-msgstr ""
+msgstr "沙尘"
 
 #: init.lua
 msgid "Desert Sandstone Block"
-msgstr ""
+msgstr "沙漠砂岩块"
 
 #: init.lua
 msgid "Desert Sandstone Brick"
-msgstr ""
+msgstr "沙漠砂岩砖"
 
 #: init.lua
 msgid "Desert Sandstone"
-msgstr ""
+msgstr "沙漠砂岩"
 
 #: init.lua
 msgid "Desert Stone Block"
-msgstr ""
+msgstr "沙漠石块"
 
 #: init.lua
 msgid "Desert Stone Brick"
-msgstr ""
+msgstr "沙漠石砖"
 
 #: init.lua
 msgid "Desert Stone"
-msgstr ""
+msgstr "沙漠石"
 
 #: init.lua
 msgid "Diamond Block"
@@ -286,67 +289,72 @@ msgstr "钻石"
 
 #: init.lua
 msgid "Dirt"
-msgstr ""
+msgstr "土"
 
 #: init.lua
 msgid "Dirt with Dry Grass"
-msgstr ""
+msgstr "干草土"
 
 #: init.lua
 msgid "Dirt with Grass and Footsteps"
-msgstr ""
+msgstr "草和足迹的泥土"
 
 #: init.lua
 msgid "Dirt with Grass"
-msgstr ""
+msgstr "草坪"
 
 #: init.lua
 msgid "Dirt with Rainforest Litter"
-msgstr ""
+msgstr "雨林垃圾的污垢"
 
 #: init.lua
 msgid "Dirt with Snow"
-msgstr ""
+msgstr "被雪覆盖的土"
 
 #: init.lua
 msgid "Dry Grass"
-msgstr ""
+msgstr "干草"
 
 #: init.lua
 msgid "Dry Shrub"
-msgstr ""
+msgstr "干灌木"
 
 #: init.lua
-msgid "Acacia Fence"
-msgstr ""
+#, fuzzy
+msgid "Acacia Wood Fence"
+msgstr "相思篱笆"
 
 #: init.lua
-msgid "Aspen Fence"
-msgstr ""
+#, fuzzy
+msgid "Aspen Wood Fence"
+msgstr "白杨围栏"
 
 #: init.lua
-msgid "Junglewood Fence"
+#, fuzzy
+msgid "Jungle Wood Fence"
 msgstr "丛林木栅栏"
 
 #: init.lua
-msgid "Pine Fence"
-msgstr ""
+#, fuzzy
+msgid "Pine Wood Fence"
+msgstr "松木围栏"
 
 #: init.lua
-msgid "Wooden Fence"
+#, fuzzy
+msgid "Apple Wood Fence"
 msgstr "原木栅栏"
 
 #: init.lua
 msgid "Flint"
-msgstr ""
+msgstr "燧 石"
 
 #: init.lua
 msgid "Furnace"
-msgstr ""
+msgstr "熔炉"
 
 #: init.lua
 msgid "Glass"
-msgstr ""
+msgstr "草"
 
 #: init.lua
 msgid "Gold Block"
@@ -362,15 +370,15 @@ msgstr "金粒"
 
 #: init.lua
 msgid "Grass"
-msgstr ""
+msgstr "草"
 
 #: init.lua
 msgid "Gravel"
-msgstr ""
+msgstr "碎石"
 
 #: init.lua
 msgid "Ice"
-msgstr ""
+msgstr "冰"
 
 #: init.lua
 msgid "Iron Lump"
@@ -378,27 +386,30 @@ msgstr "铁粒"
 
 #: init.lua
 msgid "Jungle Grass"
-msgstr ""
+msgstr "丛林草"
 
 #: init.lua
-msgid "Jungle Leaves"
-msgstr ""
+#, fuzzy
+msgid "Jungle Tree Leaves"
+msgstr "丛林树叶"
 
 #: init.lua
-msgid "Jungle Sapling"
-msgstr ""
+#, fuzzy
+msgid "Jungle Tree Sapling"
+msgstr "丛林树苗"
 
 #: init.lua
 msgid "Jungle Tree"
-msgstr ""
+msgstr "丛林树"
 
 #: init.lua
-msgid "Junglewood Planks"
+#, fuzzy
+msgid "Jungle Wood Planks"
 msgstr "丛林木板"
 
 #: init.lua
 msgid "Key"
-msgstr ""
+msgstr "钥匙"
 
 #: init.lua
 msgid "Steel Ladder"
@@ -410,15 +421,16 @@ msgstr "梯子"
 
 #: init.lua
 msgid "Flowing Lava"
-msgstr ""
+msgstr "流动的熔岩"
 
 #: init.lua
 msgid "Lava Source"
-msgstr ""
+msgstr "熔岩源"
 
 #: init.lua
-msgid "Leaves"
-msgstr ""
+#, fuzzy
+msgid "Apple Tree Leaves"
+msgstr "白杨叶"
 
 #: init.lua
 msgid "Mese Crystal Fragment"
@@ -442,35 +454,35 @@ msgstr "美些块"
 
 #: init.lua
 msgid "Mossy Cobblestone"
-msgstr ""
+msgstr "被苔藓覆盖的鹅卵石"
 
 #: init.lua
 msgid "Obsidian Block"
-msgstr ""
+msgstr "黑曜石块"
 
 #: init.lua
 msgid "Obsidian Brick"
-msgstr ""
+msgstr "黑曜砖"
 
 #: init.lua
 msgid "Obsidian Glass"
-msgstr ""
+msgstr "黑曜玻璃"
 
 #: init.lua
 msgid "Obsidian Shard"
-msgstr ""
+msgstr "黑曜石碎片"
 
 #: init.lua
 msgid "Obsidian"
-msgstr ""
+msgstr "曜"
 
 #: init.lua
 msgid "Paper"
-msgstr ""
+msgstr "纸"
 
 #: init.lua
 msgid "Papyrus"
-msgstr ""
+msgstr "莎草纸"
 
 #: init.lua
 msgid "Bronze Pickaxe"
@@ -490,7 +502,7 @@ msgstr "钢镐"
 
 #: init.lua
 msgid "Stone Pickaxe"
-msgstr ""
+msgstr "石镐"
 
 #: init.lua
 msgid "Wooden Pickaxe"
@@ -498,15 +510,16 @@ msgstr "木镐"
 
 #: init.lua
 msgid "Pine Needles"
-msgstr ""
+msgstr "松针"
 
 #: init.lua
-msgid "Pine Sapling"
-msgstr ""
+#, fuzzy
+msgid "Pine Tree Sapling"
+msgstr "松树树苗"
 
 #: init.lua
 msgid "Pine Tree"
-msgstr ""
+msgstr "松树"
 
 #: init.lua
 msgid "Pine Wood Planks"
@@ -522,23 +535,24 @@ msgstr "河水源"
 
 #: init.lua
 msgid "Sand"
-msgstr ""
+msgstr "沙子"
 
 #: init.lua
 msgid "Sandstone Block"
-msgstr ""
+msgstr "砂石镐"
 
 #: init.lua
 msgid "Sandstone Brick"
-msgstr ""
+msgstr "砂石砖"
 
 #: init.lua
 msgid "Sandstone"
-msgstr ""
+msgstr "砂石"
 
 #: init.lua
-msgid "Sapling"
-msgstr ""
+#, fuzzy
+msgid "Apple Tree Sapling"
+msgstr "白杨树树苗"
 
 #: init.lua
 msgid "Bronze Shovel"
@@ -558,7 +572,7 @@ msgstr "钢锹"
 
 #: init.lua
 msgid "Stone Shovel"
-msgstr ""
+msgstr "石铲"
 
 #: init.lua
 msgid "Wooden Shovel"
@@ -574,31 +588,31 @@ msgstr "告示牌"
 
 #: init.lua
 msgid "Silver Sand"
-msgstr ""
+msgstr "银色的沙子"
 
 #: init.lua
 msgid "Silver Sandstone Block"
-msgstr ""
+msgstr "银色砂岩块"
 
 #: init.lua
 msgid "Silver Sandstone Brick"
-msgstr ""
+msgstr "银砂岩砖"
 
 #: init.lua
 msgid "Silver Sandstone"
-msgstr ""
+msgstr "银砂岩"
 
 #: init.lua
 msgid "Skeleton Key"
-msgstr ""
+msgstr "骨架键"
 
 #: init.lua
 msgid "Snow Block"
-msgstr ""
+msgstr "雪块"
 
 #: init.lua
 msgid "Snow"
-msgstr ""
+msgstr "雪"
 
 #: init.lua
 msgid "Steel Block"
@@ -610,19 +624,19 @@ msgstr "钢锭"
 
 #: init.lua
 msgid "Stick"
-msgstr ""
+msgstr "粘"
 
 #: init.lua
 msgid "Stone Block"
-msgstr ""
+msgstr "石块"
 
 #: init.lua
 msgid "Stone Brick"
-msgstr ""
+msgstr "石砖"
 
 #: init.lua
 msgid "Stone"
-msgstr ""
+msgstr "石头"
 
 #: init.lua
 msgid "Coal Ore"
@@ -630,7 +644,7 @@ msgstr "煤矿石"
 
 #: init.lua
 msgid "Copper Ore"
-msgstr ""
+msgstr "铜矿"
 
 #: init.lua
 msgid "Diamond Ore"
@@ -650,7 +664,7 @@ msgstr "美些矿石"
 
 #: init.lua
 msgid "Tin Ore"
-msgstr ""
+msgstr "锡矿石"
 
 #: init.lua
 msgid "Bronze Sword"
@@ -670,7 +684,7 @@ msgstr "钢剑"
 
 #: init.lua
 msgid "Stone Sword"
-msgstr ""
+msgstr "石剑"
 
 #: init.lua
 msgid "Wooden Sword"
@@ -678,23 +692,24 @@ msgstr "木剑"
 
 #: init.lua
 msgid "Tin Block"
-msgstr ""
+msgstr "锡块"
 
 #: init.lua
 msgid "Tin Ingot"
-msgstr ""
+msgstr "锡锭"
 
 #: init.lua
 msgid "Tin Lump"
-msgstr ""
+msgstr "锡块"
 
 #: init.lua
 msgid "Torch"
-msgstr ""
+msgstr "火把"
 
 #: init.lua
-msgid "Tree"
-msgstr ""
+#, fuzzy
+msgid "Apple Tree"
+msgstr "白杨树"
 
 #: init.lua
 msgid "Flowing Water"
@@ -705,16 +720,17 @@ msgid "Water Source"
 msgstr "水源"
 
 #: init.lua
-msgid "Wooden Planks"
-msgstr "原木板"
+#, fuzzy
+msgid "Apple Wood Planks"
+msgstr "白杨木板"
 
 #: init.lua
 msgid "Glass Door"
-msgstr ""
+msgstr "玻璃门"
 
 #: init.lua
 msgid "Obsidian Glass Door"
-msgstr ""
+msgstr "黑曜玻璃门"
 
 #: init.lua
 msgid "Steel Door"
@@ -725,116 +741,137 @@ msgid "Wooden Door"
 msgstr "木门"
 
 #: init.lua
-msgid "Acacia Fence Gate"
-msgstr ""
+#, fuzzy
+msgid "Acacia Wood Fence Gate"
+msgstr "洋槐围栏门"
 
 #: init.lua
-msgid "Aspen Fence Gate"
-msgstr ""
+#, fuzzy
+msgid "Aspen Wood Fence Gate"
+msgstr "白杨围栏门"
 
 #: init.lua
-msgid "Junglewood Fence Gate"
+#, fuzzy
+msgid "Jungle Wood Fence Gate"
 msgstr "丛林木栅栏门"
 
 #: init.lua
-msgid "Pine Fence Gate"
-msgstr ""
+#, fuzzy
+msgid "Pine Wood Fence Gate"
+msgstr "松木围栏门"
 
 #: init.lua
-msgid "Wooden Fence Gate"
+#, fuzzy
+msgid "Apple Wood Fence Gate"
 msgstr "栅栏门"
 
 #: init.lua
 msgid "Hidden Door Segment"
-msgstr ""
+msgstr "隐藏的门块"
 
 #: init.lua
-msgid "Trapdoor"
-msgstr ""
+#, fuzzy
+msgid "Wooden Trapdoor"
+msgstr "木门"
 
 #: init.lua
 msgid "Steel Trapdoor"
 msgstr "钢活板门"
 
 #: init.lua
-msgid "Black dye"
-msgstr ""
+#, fuzzy
+msgid "Black Dye"
+msgstr "黑色染料"
 
 #: init.lua
-msgid "Blue dye"
-msgstr ""
+#, fuzzy
+msgid "Blue Dye"
+msgstr "蓝色染料"
 
 #: init.lua
-msgid "Brown dye"
-msgstr ""
+#, fuzzy
+msgid "Brown Dye"
+msgstr "棕色染料"
 
 #: init.lua
-msgid "Cyan dye"
-msgstr ""
+#, fuzzy
+msgid "Cyan Dye"
+msgstr "青色染料"
 
 #: init.lua
-msgid "Dark green dye"
-msgstr ""
+#, fuzzy
+msgid "Dark Green Dye"
+msgstr "深绿色染料"
 
 #: init.lua
-msgid "Dark grey dye"
-msgstr ""
+#, fuzzy
+msgid "Dark Grey Dye"
+msgstr "深灰色染料"
 
 #: init.lua
-msgid "Green dye"
-msgstr ""
+#, fuzzy
+msgid "Green Dye"
+msgstr "绿色染料"
 
 #: init.lua
-msgid "Grey dye"
-msgstr ""
+#, fuzzy
+msgid "Grey Dye"
+msgstr "灰色染料"
 
 #: init.lua
-msgid "Magenta dye"
-msgstr ""
+#, fuzzy
+msgid "Magenta Dye"
+msgstr "洋红染料"
 
 #: init.lua
-msgid "Orange dye"
-msgstr ""
+#, fuzzy
+msgid "Orange Dye"
+msgstr "橙色染料"
 
 #: init.lua
-msgid "Pink dye"
-msgstr ""
+#, fuzzy
+msgid "Pink Dye"
+msgstr "粉红色染料"
 
 #: init.lua
-msgid "Red dye"
-msgstr ""
+#, fuzzy
+msgid "Red Dye"
+msgstr "红色染料"
 
 #: init.lua
-msgid "Violet dye"
-msgstr ""
+#, fuzzy
+msgid "Violet Dye"
+msgstr "蓝紫色染料"
 
 #: init.lua
-msgid "White dye"
-msgstr ""
+#, fuzzy
+msgid "White Dye"
+msgstr "白色染料"
 
 #: init.lua
-msgid "Yellow dye"
-msgstr ""
+#, fuzzy
+msgid "Yellow Dye"
+msgstr "黄色染料"
 
 #: init.lua
 msgid "Bread"
-msgstr ""
+msgstr "面包"
 
 #: init.lua
 msgid "Cotton"
-msgstr ""
+msgstr "棉花"
 
 #: init.lua
 msgid "Desert Sand Soil"
-msgstr ""
+msgstr "沙漠砂土"
 
 #: init.lua
 msgid "Wet Desert Sand Soil"
-msgstr ""
+msgstr "湿沙漠砂土"
 
 #: init.lua
 msgid "Flour"
-msgstr ""
+msgstr "面粉"
 
 #: init.lua
 msgid "Bronze Hoe"
@@ -854,39 +891,37 @@ msgstr "钢锄"
 
 #: init.lua
 msgid "Stone Hoe"
-msgstr ""
+msgstr "石锄"
 
 #: init.lua
 msgid "Wooden Hoe"
 msgstr "木锄"
 
 #: init.lua
-msgid "Cotton seed"
-msgstr ""
+#, fuzzy
+msgid "Cotton Seed"
+msgstr "棉花籽"
 
 #: init.lua
-msgid "Wheat seed"
-msgstr ""
+#, fuzzy
+msgid "Wheat Seed"
+msgstr "小麦种子"
 
 #: init.lua
 msgid "Soil"
-msgstr ""
+msgstr "土壤"
 
 #: init.lua
 msgid "Wet Soil"
-msgstr ""
+msgstr "湿土"
 
 #: init.lua
 msgid "Straw"
-msgstr ""
-
-#: init.lua
-msgid "String"
-msgstr ""
+msgstr "秸秆"
 
 #: init.lua
 msgid "Wheat"
-msgstr ""
+msgstr "小麦"
 
 #: init.lua
 msgid "Flint and Steel"
@@ -894,39 +929,41 @@ msgstr "打火石"
 
 #: init.lua
 msgid "Permanent Flame"
-msgstr ""
+msgstr "不灭之火"
 
 #: init.lua
-msgid "White dandelion"
-msgstr ""
+#, fuzzy
+msgid "White Dandelion"
+msgstr "白蒲公英"
 
 #: init.lua
 msgid "Yellow Dandelion"
-msgstr ""
+msgstr "黄色蒲公英"
 
 #: init.lua
 msgid "Blue Geranium"
-msgstr ""
+msgstr "蓝天竺葵"
 
 #: init.lua
 msgid "Brown Mushroom"
-msgstr ""
+msgstr "棕菇"
 
 #: init.lua
 msgid "Red Mushroom"
-msgstr ""
+msgstr "红蘑菇"
 
 #: init.lua
-msgid "Rose"
-msgstr ""
+#, fuzzy
+msgid "Red Rose"
+msgstr "红色染料"
 
 #: init.lua
 msgid "Orange Tulip"
-msgstr ""
+msgstr "橙色郁金香"
 
 #: init.lua
 msgid "Viola"
-msgstr ""
+msgstr "三色紫罗兰"
 
 #: init.lua
 msgid "Waterlily"
@@ -934,11 +971,11 @@ msgstr "睡莲"
 
 #: init.lua
 msgid "Ignore (you hacker you!)"
-msgstr ""
+msgstr "忽略 (你黑客!)"
 
 #: init.lua
 msgid "Screwdriver (left-click rotates face, right-click rotates axis)"
-msgstr ""
+msgstr "螺丝刀 (左击旋转面, 右键单击旋转轴)"
 
 #: init.lua
 msgid "Acacia Wood Slab"
@@ -950,7 +987,7 @@ msgstr "白杨木台阶"
 
 #: init.lua
 msgid "Brick Slab"
-msgstr ""
+msgstr "砖板"
 
 #: init.lua
 msgid "Bronze Block Slab"
@@ -958,39 +995,39 @@ msgstr "青铜块台阶"
 
 #: init.lua
 msgid "Cobblestone Slab"
-msgstr ""
+msgstr "鹅卵石板"
 
 #: init.lua
 msgid "Copper Block Slab"
-msgstr ""
+msgstr "铜块板"
 
 #: init.lua
 msgid "Desert Cobblestone Slab"
-msgstr ""
+msgstr "沙漠鹅卵石板"
 
 #: init.lua
 msgid "Desert Sandstone Block Slab"
-msgstr ""
+msgstr "沙漠砂岩块板"
 
 #: init.lua
 msgid "Desert Sandstone Brick Slab"
-msgstr ""
+msgstr "沙漠砂岩块板"
 
 #: init.lua
 msgid "Desert Sandstone Slab"
-msgstr ""
+msgstr "沙漠砂岩板"
 
 #: init.lua
 msgid "Desert Stone Block Slab"
-msgstr ""
+msgstr "沙漠石块板"
 
 #: init.lua
 msgid "Desert Stone Brick Slab"
-msgstr ""
+msgstr "沙漠石砖板"
 
 #: init.lua
 msgid "Desert Stone Slab"
-msgstr ""
+msgstr "沙漠石板"
 
 #: init.lua
 msgid "Gold Block Slab"
@@ -998,7 +1035,7 @@ msgstr "金块台阶"
 
 #: init.lua
 msgid "Ice Slab"
-msgstr ""
+msgstr "冰板"
 
 #: init.lua
 msgid "Jungle Wood Slab"
@@ -1006,19 +1043,19 @@ msgstr "丛林木台阶"
 
 #: init.lua
 msgid "Mossy Cobblestone Slab"
-msgstr ""
+msgstr "苔藓鹅卵石板"
 
 #: init.lua
 msgid "Obsidian Block Slab"
-msgstr ""
+msgstr "黑曜石块板"
 
 #: init.lua
 msgid "Obsidian Brick Slab"
-msgstr ""
+msgstr "黑曜石砖板"
 
 #: init.lua
 msgid "Obsidian Slab"
-msgstr ""
+msgstr "黑曜石板"
 
 #: init.lua
 msgid "Pine Wood Slab"
@@ -1026,31 +1063,31 @@ msgstr "松木台阶"
 
 #: init.lua
 msgid "Sandstone Block Slab"
-msgstr ""
+msgstr "砂岩板"
 
 #: init.lua
 msgid "Sandstone Brick Slab"
-msgstr ""
+msgstr "砂岩砖板"
 
 #: init.lua
 msgid "Sandstone Slab"
-msgstr ""
+msgstr "砂岩板"
 
 #: init.lua
 msgid "Silver Sandstone Block Slab"
-msgstr ""
+msgstr "银砂岩块板"
 
 #: init.lua
 msgid "Silver Sandstone Brick Slab"
-msgstr ""
+msgstr "银砂岩块板"
 
 #: init.lua
 msgid "Silver Sandstone Slab"
-msgstr ""
+msgstr "银砂岩板"
 
 #: init.lua
 msgid "Snow Block Slab"
-msgstr ""
+msgstr "雪块板"
 
 #: init.lua
 msgid "Steel Block Slab"
@@ -1058,24 +1095,23 @@ msgstr "钢块台阶"
 
 #: init.lua
 msgid "Stone Block Slab"
-msgstr ""
+msgstr "石块板"
 
 #: init.lua
 msgid "Stone Brick Slab"
-msgstr ""
+msgstr "石砖板"
 
 #: init.lua
 msgid "Stone Slab"
-msgstr ""
+msgstr "石板"
 
 #: init.lua
 msgid "Straw Slab"
-msgstr ""
+msgstr "稻草板"
 
 #: init.lua
-#, fuzzy
 msgid "Tin Block Slab"
-msgstr "青铜块台阶"
+msgstr "用锡块制成的板"
 
 #: init.lua
 msgid "Wooden Slab"
@@ -1091,7 +1127,7 @@ msgstr "白杨木楼梯"
 
 #: init.lua
 msgid "Brick Stair"
-msgstr ""
+msgstr "砖制台阶"
 
 #: init.lua
 msgid "Bronze Block Stair"
@@ -1099,39 +1135,39 @@ msgstr "青铜块楼梯"
 
 #: init.lua
 msgid "Cobblestone Stair"
-msgstr ""
+msgstr "鹅卵石台阶"
 
 #: init.lua
 msgid "Copper Block Stair"
-msgstr ""
+msgstr "铜块台阶"
 
 #: init.lua
 msgid "Desert Cobblestone Stair"
-msgstr ""
+msgstr "沙漠鹅卵石台阶"
 
 #: init.lua
 msgid "Desert Sandstone Block Stair"
-msgstr ""
+msgstr "沙漠砂岩块台阶"
 
 #: init.lua
 msgid "Desert Sandstone Brick Stair"
-msgstr ""
+msgstr "沙漠砂岩块台阶"
 
 #: init.lua
 msgid "Desert Sandstone Stair"
-msgstr ""
+msgstr "沙漠砂岩台阶"
 
 #: init.lua
 msgid "Desert Stone Block Stair"
-msgstr ""
+msgstr "沙漠砂岩块台阶"
 
 #: init.lua
 msgid "Desert Stone Brick Stair"
-msgstr ""
+msgstr "沙漠砂岩块台阶"
 
 #: init.lua
 msgid "Desert Stone Stair"
-msgstr ""
+msgstr "沙漠石台阶"
 
 #: init.lua
 msgid "Gold Block Stair"
@@ -1139,7 +1175,147 @@ msgstr "金块楼梯"
 
 #: init.lua
 msgid "Ice Stair"
-msgstr ""
+msgstr "冰制台阶"
+
+#: init.lua
+msgid "Acacia Wood Stair Inner"
+msgstr "隐藏的金合欢木台阶"
+
+#: init.lua
+msgid "Aspen Wood Stair Inner"
+msgstr "隐藏的白杨木台阶"
+
+#: init.lua
+msgid "Brick Stair Inner"
+msgstr "隐藏的砖制台阶"
+
+#: init.lua
+msgid "Bronze Block Stair Inner"
+msgstr "青铜块楼梯内"
+
+#: init.lua
+msgid "Cobblestone Stair Inner"
+msgstr "鹅卵石台阶内"
+
+#: init.lua
+msgid "Copper Block Stair Inner"
+msgstr "隐藏的青铜块楼梯"
+
+#: init.lua
+msgid "Desert Cobblestone Stair Inner"
+msgstr "隐藏的沙漠鹅卵石台阶"
+
+#: init.lua
+msgid "Desert Sandstone Block Stair Inner"
+msgstr "隐藏的沙漠砂岩块台阶"
+
+#: init.lua
+msgid "Desert Sandstone Brick Stair Inner"
+msgstr "隐藏的沙漠砂岩砖台阶"
+
+#: init.lua
+msgid "Desert Sandstone Stair Inner"
+msgstr "隐藏的沙漠砂岩台阶"
+
+#: init.lua
+msgid "Desert Stone Block Stair Inner"
+msgstr "隐藏的沙漠石块台阶"
+
+#: init.lua
+msgid "Desert Stone Brick Stair Inner"
+msgstr "隐藏的石砖台阶"
+
+#: init.lua
+msgid "Desert Stone Stair Inner"
+msgstr "隐藏的沙漠石制台阶"
+
+#: init.lua
+msgid "Gold Block Stair Inner"
+msgstr "隐藏的金块台阶"
+
+#: init.lua
+msgid "Ice Stair Inner"
+msgstr "隐藏的冰台阶"
+
+#: init.lua
+msgid "Jungle Wood Stair Inner"
+msgstr "隐藏的丛林木台阶"
+
+#: init.lua
+msgid "Mossy Cobblestone Stair Inner"
+msgstr "隐藏的被苔藓覆盖的鹅卵石台阶"
+
+#: init.lua
+msgid "Obsidian Block Stair Inner"
+msgstr "隐藏的黑曜石块台阶"
+
+#: init.lua
+msgid "Obsidian Brick Stair Inner"
+msgstr "隐藏的黑曜砖台阶"
+
+#: init.lua
+msgid "Obsidian Stair Inner"
+msgstr "隐藏的黑曜石制台阶"
+
+#: init.lua
+msgid "Pine Wood Stair Inner"
+msgstr "隐藏的松树木台阶"
+
+#: init.lua
+msgid "Sandstone Block Stair Inner"
+msgstr "隐藏的钢块台阶"
+
+#: init.lua
+msgid "Sandstone Brick Stair Inner"
+msgstr "隐藏的砂岩砖制台阶"
+
+#: init.lua
+msgid "Sandstone Stair Inner"
+msgstr "隐藏的砂岩制台阶"
+
+#: init.lua
+msgid "Silver Sandstone Block Stair Inner"
+msgstr "隐藏的银砂岩块台阶"
+
+#: init.lua
+msgid "Silver Sandstone Brick Stair Inner"
+msgstr "隐藏的银砂岩砖台阶"
+
+#: init.lua
+msgid "Silver Sandstone Stair Inner"
+msgstr "隐藏的银砂岩制台阶"
+
+#: init.lua
+msgid "Snow Block Stair Inner"
+msgstr "隐藏的金块台阶"
+
+#: init.lua
+msgid "Steel Block Stair Inner"
+msgstr "隐藏的钢块台阶"
+
+#: init.lua
+msgid "Stone Block Stair Inner"
+msgstr "隐藏的石块台阶"
+
+#: init.lua
+msgid "Stone Brick Stair Inner"
+msgstr "隐藏的石砖制台阶"
+
+#: init.lua
+msgid "Stone Stair Inner"
+msgstr "隐藏的石制台阶"
+
+#: init.lua
+msgid "Straw Stair Inner"
+msgstr "隐藏的稻草台阶"
+
+#: init.lua
+msgid "Tin Block Stair Inner"
+msgstr "隐藏的青铜块台阶"
+
+#: init.lua
+msgid "Wooden Stair Inner"
+msgstr "隐藏的原木台阶"
 
 #: init.lua
 msgid "Jungle Wood Stair"
@@ -1147,19 +1323,159 @@ msgstr "丛林木楼梯"
 
 #: init.lua
 msgid "Mossy Cobblestone Stair"
-msgstr ""
+msgstr "被苔藓覆盖的鹅卵石楼梯"
 
 #: init.lua
 msgid "Obsidian Block Stair"
-msgstr ""
+msgstr "黑曜石块台阶"
 
 #: init.lua
 msgid "Obsidian Brick Stair"
-msgstr ""
+msgstr "黑曜砖台阶"
 
 #: init.lua
 msgid "Obsidian Stair"
-msgstr ""
+msgstr "黑曜石台阶"
+
+#: init.lua
+msgid "Acacia Wood Stair Outer"
+msgstr "金合欢木台阶的表面"
+
+#: init.lua
+msgid "Aspen Wood Stair Outer"
+msgstr "白杨木台阶表面"
+
+#: init.lua
+msgid "Brick Stair Outer"
+msgstr "砖制台阶表面"
+
+#: init.lua
+msgid "Bronze Block Stair Outer"
+msgstr "青铜块楼梯表面"
+
+#: init.lua
+msgid "Cobblestone Stair Outer"
+msgstr "鹅卵石楼梯表面"
+
+#: init.lua
+msgid "Copper Block Stair Outer"
+msgstr "青铜块楼梯表面"
+
+#: init.lua
+msgid "Desert Cobblestone Stair Outer"
+msgstr "沙漠鹅卵石楼梯表面"
+
+#: init.lua
+msgid "Desert Sandstone Block Stair Outer"
+msgstr "沙漠砂岩块楼梯表面"
+
+#: init.lua
+msgid "Desert Sandstone Brick Stair Outer"
+msgstr "沙漠砂岩砖台阶表面"
+
+#: init.lua
+msgid "Desert Sandstone Stair Outer"
+msgstr "沙漠砂岩台阶表面"
+
+#: init.lua
+msgid "Desert Stone Block Stair Outer"
+msgstr "沙漠石块台阶表面"
+
+#: init.lua
+msgid "Desert Stone Brick Stair Outer"
+msgstr "沙漠石砖制楼梯表面"
+
+#: init.lua
+msgid "Desert Stone Stair Outer"
+msgstr "沙漠石制楼梯表面"
+
+#: init.lua
+msgid "Gold Block Stair Outer"
+msgstr "金块楼梯表面"
+
+#: init.lua
+msgid "Ice Stair Outer"
+msgstr "冰楼梯表面"
+
+#: init.lua
+msgid "Jungle Wood Stair Outer"
+msgstr "丛林木表面"
+
+#: init.lua
+msgid "Mossy Cobblestone Stair Outer"
+msgstr "被苔藓覆盖的鹅卵石楼梯表面"
+
+#: init.lua
+msgid "Obsidian Block Stair Outer"
+msgstr "黑曜石砌块楼梯表面"
+
+#: init.lua
+msgid "Obsidian Brick Stair Outer"
+msgstr "黑曜石砖楼梯表面"
+
+#: init.lua
+msgid "Obsidian Stair Outer"
+msgstr "黑曜石楼梯表面"
+
+#: init.lua
+msgid "Pine Wood Stair Outer"
+msgstr "松树木楼梯的外部"
+
+#: init.lua
+msgid "Sandstone Block Stair Outer"
+msgstr "砂石块楼梯外"
+
+#: init.lua
+msgid "Sandstone Brick Stair Outer"
+msgstr "砂石砖楼梯外"
+
+#: init.lua
+msgid "Sandstone Stair Outer"
+msgstr "砂石楼梯外"
+
+#: init.lua
+msgid "Silver Sandstone Block Stair Outer"
+msgstr "银砂岩块楼梯外"
+
+#: init.lua
+msgid "Silver Sandstone Brick Stair Outer"
+msgstr "银砂石砖楼梯外"
+
+#: init.lua
+msgid "Silver Sandstone Stair Outer"
+msgstr "银色砂岩台阶外部"
+
+#: init.lua
+msgid "Snow Block Stair Outer"
+msgstr "雪块台阶外部"
+
+#: init.lua
+msgid "Steel Block Stair Outer"
+msgstr "钢块楼梯外部"
+
+#: init.lua
+msgid "Stone Block Stair Outer"
+msgstr "石块楼梯外部"
+
+#: init.lua
+msgid "Stone Brick Stair Outer"
+msgstr "石砖楼梯外部"
+
+#: init.lua
+msgid "Stone Stair Outer"
+msgstr "石制楼梯外部"
+
+#: init.lua
+msgid "Straw Stair Outer"
+msgstr "稻草楼梯外部"
+
+#: init.lua
+msgid "Tin Block Stair Outer"
+msgstr "锡块楼梯外部"
+
+#: init.lua
+msgid "Wooden Stair Outer"
+msgstr "木楼梯外部"
 
 #: init.lua
 msgid "Pine Wood Stair"
@@ -1167,31 +1483,31 @@ msgstr "松木楼梯"
 
 #: init.lua
 msgid "Sandstone Block Stair"
-msgstr ""
+msgstr "砂岩块台阶"
 
 #: init.lua
 msgid "Sandstone Brick Stair"
-msgstr ""
+msgstr "砂岩砖台阶"
 
 #: init.lua
 msgid "Sandstone Stair"
-msgstr ""
+msgstr "砂岩制台阶"
 
 #: init.lua
 msgid "Silver Sandstone Block Stair"
-msgstr ""
+msgstr "银色砂岩块台阶"
 
 #: init.lua
 msgid "Silver Sandstone Brick Stair"
-msgstr ""
+msgstr "银色砂岩砖台阶"
 
 #: init.lua
 msgid "Silver Sandstone Stair"
-msgstr ""
+msgstr "银色砂岩台阶"
 
 #: init.lua
 msgid "Snow Block Stair"
-msgstr ""
+msgstr "雪块楼梯"
 
 #: init.lua
 msgid "Steel Block Stair"
@@ -1199,461 +1515,172 @@ msgstr "钢块楼梯"
 
 #: init.lua
 msgid "Stone Block Stair"
-msgstr ""
+msgstr "石块楼梯"
 
 #: init.lua
 msgid "Stone Brick Stair"
-msgstr ""
+msgstr "石砖台阶"
 
 #: init.lua
 msgid "Stone Stair"
-msgstr ""
+msgstr "石台阶"
 
 #: init.lua
 msgid "Straw Stair"
-msgstr ""
+msgstr "稻草台阶"
 
 #: init.lua
-#, fuzzy
 msgid "Tin Block Stair"
-msgstr "青铜块楼梯"
+msgstr "用锡块制成的台阶"
 
 #: init.lua
 msgid "Wooden Stair"
 msgstr "原木楼梯"
 
 #: init.lua
-#, fuzzy
-msgid "Acacia Wood Stair Inner"
-msgstr "金合欢木楼梯"
-
-#: init.lua
-#, fuzzy
-msgid "Aspen Wood Stair Inner"
-msgstr "白杨木楼梯"
-
-#: init.lua
-msgid "Brick Stair Inner"
-msgstr ""
-
-#: init.lua
-#, fuzzy
-msgid "Bronze Block Stair Inner"
-msgstr "青铜块楼梯"
-
-#: init.lua
-msgid "Cobblestone Stair Inner"
-msgstr ""
-
-#: init.lua
-#, fuzzy
-msgid "Copper Block Stair Inner"
-msgstr "青铜块楼梯"
-
-#: init.lua
-msgid "Desert Cobblestone Stair Inner"
-msgstr ""
-
-#: init.lua
-#, fuzzy
-msgid "Desert Sandstone Block Stair Inner"
-msgstr "青铜块楼梯"
-
-#: init.lua
-msgid "Desert Sandstone Brick Stair Inner"
-msgstr ""
-
-#: init.lua
-msgid "Desert Sandstone Stair Inner"
-msgstr ""
-
-#: init.lua
-#, fuzzy
-msgid "Desert Stone Block Stair Inner"
-msgstr "青铜块楼梯"
-
-#: init.lua
-msgid "Desert Stone Brick Stair Inner"
-msgstr ""
-
-#: init.lua
-msgid "Desert Stone Stair Inner"
-msgstr ""
-
-#: init.lua
-#, fuzzy
-msgid "Gold Block Stair Inner"
-msgstr "金块楼梯"
-
-#: init.lua
-msgid "Ice Stair Inner"
-msgstr ""
-
-#: init.lua
-#, fuzzy
-msgid "Jungle Wood Stair Inner"
-msgstr "丛林木楼梯"
-
-#: init.lua
-msgid "Mossy Cobblestone Stair Inner"
-msgstr ""
-
-#: init.lua
-#, fuzzy
-msgid "Obsidian Block Stair Inner"
-msgstr "金块楼梯"
-
-#: init.lua
-msgid "Obsidian Brick Stair Inner"
-msgstr ""
-
-#: init.lua
-msgid "Obsidian Stair Inner"
-msgstr ""
-
-#: init.lua
-#, fuzzy
-msgid "Pine Wood Stair Inner"
-msgstr "松木楼梯"
-
-#: init.lua
-#, fuzzy
-msgid "Sandstone Block Stair Inner"
-msgstr "钢块楼梯"
-
-#: init.lua
-msgid "Sandstone Brick Stair Inner"
-msgstr ""
-
-#: init.lua
-msgid "Sandstone Stair Inner"
-msgstr ""
-
-#: init.lua
-#, fuzzy
-msgid "Silver Sandstone Block Stair Inner"
-msgstr "青铜块楼梯"
-
-#: init.lua
-msgid "Silver Sandstone Brick Stair Inner"
-msgstr ""
-
-#: init.lua
-msgid "Silver Sandstone Stair Inner"
-msgstr ""
-
-#: init.lua
-#, fuzzy
-msgid "Snow Block Stair Inner"
-msgstr "金块楼梯"
-
-#: init.lua
-#, fuzzy
-msgid "Steel Block Stair Inner"
-msgstr "钢块楼梯"
-
-#: init.lua
-#, fuzzy
-msgid "Stone Block Stair Inner"
-msgstr "钢块楼梯"
-
-#: init.lua
-#, fuzzy
-msgid "Stone Brick Stair Inner"
-msgstr "钢块楼梯"
-
-#: init.lua
-msgid "Stone Stair Inner"
-msgstr ""
-
-#: init.lua
-msgid "Straw Stair Inner"
-msgstr ""
-
-#: init.lua
-#, fuzzy
-msgid "Tin Block Stair Inner"
-msgstr "青铜块楼梯"
-
-#: init.lua
-#, fuzzy
-msgid "Wooden Stair Inner"
-msgstr "原木楼梯"
-
-#: init.lua
-#, fuzzy
-msgid "Acacia Wood Stair Outer"
-msgstr "金合欢木楼梯"
-
-#: init.lua
-#, fuzzy
-msgid "Aspen Wood Stair Outer"
-msgstr "白杨木楼梯"
-
-#: init.lua
-msgid "Brick Stair Outer"
-msgstr ""
-
-#: init.lua
-#, fuzzy
-msgid "Bronze Block Stair Outer"
-msgstr "青铜块楼梯"
-
-#: init.lua
-msgid "Cobblestone Stair Outer"
-msgstr ""
-
-#: init.lua
-#, fuzzy
-msgid "Copper Block Stair Outer"
-msgstr "青铜块楼梯"
-
-#: init.lua
-msgid "Desert Cobblestone Stair Outer"
-msgstr ""
-
-#: init.lua
-#, fuzzy
-msgid "Desert Sandstone Block Stair Outer"
-msgstr "青铜块楼梯"
-
-#: init.lua
-msgid "Desert Sandstone Brick Stair Outer"
-msgstr ""
-
-#: init.lua
-msgid "Desert Sandstone Stair Outer"
-msgstr ""
-
-#: init.lua
-#, fuzzy
-msgid "Desert Stone Block Stair Outer"
-msgstr "青铜块楼梯"
-
-#: init.lua
-msgid "Desert Stone Brick Stair Outer"
-msgstr ""
-
-#: init.lua
-msgid "Desert Stone Stair Outer"
-msgstr ""
-
-#: init.lua
-#, fuzzy
-msgid "Gold Block Stair Outer"
-msgstr "金块楼梯"
-
-#: init.lua
-msgid "Ice Stair Outer"
-msgstr ""
-
-#: init.lua
-#, fuzzy
-msgid "Jungle Wood Stair Outer"
-msgstr "丛林木楼梯"
-
-#: init.lua
-msgid "Mossy Cobblestone Stair Outer"
-msgstr ""
-
-#: init.lua
-#, fuzzy
-msgid "Obsidian Block Stair Outer"
-msgstr "金块楼梯"
-
-#: init.lua
-msgid "Obsidian Brick Stair Outer"
-msgstr ""
-
-#: init.lua
-msgid "Obsidian Stair Outer"
-msgstr ""
-
-#: init.lua
-#, fuzzy
-msgid "Pine Wood Stair Outer"
-msgstr "松木楼梯"
-
-#: init.lua
-#, fuzzy
-msgid "Sandstone Block Stair Outer"
-msgstr "钢块楼梯"
-
-#: init.lua
-msgid "Sandstone Brick Stair Outer"
-msgstr ""
-
-#: init.lua
-msgid "Sandstone Stair Outer"
-msgstr ""
-
-#: init.lua
-#, fuzzy
-msgid "Silver Sandstone Block Stair Outer"
-msgstr "青铜块楼梯"
-
-#: init.lua
-msgid "Silver Sandstone Brick Stair Outer"
-msgstr ""
-
-#: init.lua
-msgid "Silver Sandstone Stair Outer"
-msgstr ""
-
-#: init.lua
-#, fuzzy
-msgid "Snow Block Stair Outer"
-msgstr "金块楼梯"
-
-#: init.lua
-#, fuzzy
-msgid "Steel Block Stair Outer"
-msgstr "钢块楼梯"
-
-#: init.lua
-#, fuzzy
-msgid "Stone Block Stair Outer"
-msgstr "钢块楼梯"
-
-#: init.lua
-#, fuzzy
-msgid "Stone Brick Stair Outer"
-msgstr "钢块楼梯"
-
-#: init.lua
-msgid "Stone Stair Outer"
-msgstr ""
-
-#: init.lua
-msgid "Straw Stair Outer"
-msgstr ""
-
-#: init.lua
-#, fuzzy
-msgid "Tin Block Stair Outer"
-msgstr "青铜块楼梯"
-
-#: init.lua
-#, fuzzy
-msgid "Wooden Stair Outer"
-msgstr "原木楼梯"
-
-#: init.lua
 msgid "Gun Powder"
-msgstr ""
+msgstr "火药"
 
 #: init.lua
 msgid "TNT"
-msgstr ""
+msgstr "黄色炸药"
 
 #: init.lua
 msgid "Unknown Item"
-msgstr ""
+msgstr "未知物品"
 
 #: init.lua
-msgid "Drinking Glass (empty)"
-msgstr ""
+#, fuzzy
+msgid "Empty Drinking Glass"
+msgstr "玻璃杯（空）"
 
 #: init.lua
-msgid "Glass Bottle (empty)"
-msgstr ""
+#, fuzzy
+msgid "Empty Glass Bottle"
+msgstr "玻璃瓶 (空)"
 
 #: init.lua
-msgid "Pile of Glass Fragments"
-msgstr ""
+#, fuzzy
+msgid "Glass Fragments"
+msgstr "玻璃碎片堆"
 
 #: init.lua
 msgid "Vessels Shelf"
-msgstr ""
+msgstr "容器架"
 
 #: init.lua
-msgid "Heavy Steel Bottle (empty)"
+#, fuzzy
+msgid "Empty Heavy Steel Bottle"
 msgstr "重钢瓶（空）"
 
 #: init.lua
 msgid "Cobblestone Wall"
-msgstr ""
+msgstr "鹅卵石墙"
 
 #: init.lua
 msgid "Desert Cobblestone Wall"
-msgstr ""
+msgstr "沙漠鹅卵石墙"
 
 #: init.lua
 msgid "Mossy Cobblestone Wall"
-msgstr ""
+msgstr "被苔藓覆盖的鹅卵石墙"
 
 #: init.lua
 msgid "Black Wool"
-msgstr ""
+msgstr "黑羊毛"
 
 #: init.lua
 msgid "Blue Wool"
-msgstr ""
+msgstr "蓝色羊毛"
 
 #: init.lua
 msgid "Brown Wool"
-msgstr ""
+msgstr "棕羊毛"
 
 #: init.lua
 msgid "Cyan Wool"
-msgstr ""
+msgstr "青色羊毛"
 
 #: init.lua
 msgid "Dark Green Wool"
-msgstr ""
+msgstr "深绿色羊毛"
 
 #: init.lua
 msgid "Dark Grey Wool"
-msgstr ""
+msgstr "深灰色羊毛"
 
 #: init.lua
 msgid "Green Wool"
-msgstr ""
+msgstr "绿色羊毛"
 
 #: init.lua
 msgid "Grey Wool"
-msgstr ""
+msgstr "灰色羊毛"
 
 #: init.lua
 msgid "Magenta Wool"
-msgstr ""
+msgstr "洋红色羊毛"
 
 #: init.lua
 msgid "Orange Wool"
-msgstr ""
+msgstr "橙色羊毛"
 
 #: init.lua
 msgid "Pink Wool"
-msgstr ""
+msgstr "粉红色羊毛"
 
 #: init.lua
 msgid "Red Wool"
-msgstr ""
+msgstr "红羊毛"
 
 #: init.lua
 msgid "Violet Wool"
-msgstr ""
+msgstr "蓝紫色羊毛"
 
 #: init.lua
 msgid "White Wool"
-msgstr ""
+msgstr "白色羊毛"
 
 #: init.lua
 msgid "Yellow Wool"
-msgstr ""
+msgstr "黄色羊毛"
 
 #: init.lua
-msgid "Iron bar"
+#, fuzzy
+msgid "Iron Bar"
 msgstr "铁栏杆"
 
 #: init.lua
 msgid "Glass Pane"
-msgstr ""
+msgstr "玻璃窗格"
 
 #: init.lua
 msgid "Nyan Cat Rainbow"
 msgstr ""
+"五彩缤纷的\n"
+"彩虹猫"
 
 #: init.lua
 msgid "Nyan Cat"
-msgstr ""
+msgstr "彩虹猫"
+
+#~ msgid "Leaves"
+#~ msgstr "树叶"
+
+#~ msgid "Sapling"
+#~ msgstr "树苗"
+
+#~ msgid "Tree"
+#~ msgstr "树"
+
+#~ msgid "Wooden Planks"
+#~ msgstr "原木板"
+
+#~ msgid "Trapdoor"
+#~ msgstr "活板门"
+
+#~ msgid "String"
+#~ msgstr "字符串"
+
+#~ msgid "Rose"
+#~ msgstr "玫瑰"

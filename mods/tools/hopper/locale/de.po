@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-01 09:43-0600\n"
+"POT-Creation-Date: 2018-12-06 08:42-0700\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: hopper\doc.lua:11
+#: doc.lua:11
 msgid "Hopper to transfer items between neighboring blocks' inventories."
 msgstr ""
 
-#: hopper\doc.lua:12
+#: doc.lua:12
 msgid ""
 "Items are transfered from the block at the wide end of the hopper to the "
 "block at the narrow end of the hopper at a rate of one per second. Items can "
@@ -31,7 +31,7 @@ msgid ""
 "\n"
 msgstr ""
 
-#: hopper\doc.lua:14
+#: doc.lua:14
 msgid ""
 "Hopper blocks come in both 'vertical' and 'side' forms, but when in a "
 "player's inventory both are represented by a single generic item. The type "
@@ -42,14 +42,14 @@ msgid ""
 "\n"
 msgstr ""
 
-#: hopper\doc.lua:16
+#: doc.lua:16
 msgid ""
 "Hopper blocks come in both 'vertical' and 'side' forms. They can be "
 "interconverted between the two forms via the crafting grid.\n"
 "\n"
 msgstr ""
 
-#: hopper\doc.lua:18
+#: doc.lua:18
 msgid ""
 "When used with furnaces, hoppers inject items into the furnace's \"raw "
 "material\" inventory slot when the narrow end is attached to the top or "
@@ -66,11 +66,11 @@ msgid ""
 "as a way to allow other players to deposit items into your locked chests."
 msgstr ""
 
-#: hopper\doc.lua:20
+#: doc.lua:20
 msgid "A chute to transfer items over longer distances."
 msgstr ""
 
-#: hopper\doc.lua:21
+#: doc.lua:21
 msgid ""
 "Chutes operate much like hoppers but do not have their own intake "
 "capability. Items can only be inserted into a chute manually or by a hopper "
@@ -81,11 +81,11 @@ msgid ""
 "removed or their destination becomes available."
 msgstr ""
 
-#: hopper\doc.lua:23
+#: doc.lua:23
 msgid "A sorter to redirect certain items to an alternate target."
 msgstr ""
 
-#: hopper\doc.lua:24
+#: doc.lua:24
 msgid ""
 "This is similar to a chute but has a secondary output that is used to shunt "
 "specific items to an alternate destination. There is a set of inventory "
@@ -109,92 +109,92 @@ msgid ""
 "furnace's fuel slot)."
 msgstr ""
 
-#: hopper\init.lua:61
+#: init.lua:61
 msgid "[MOD] Hopper loaded"
 msgstr "[MOD] Trichter geladen"
 
-#: hopper\utility.lua:34
+#: utility.lua:34
 msgid ""
 "Don't\n"
 "Eject"
 msgstr ""
 
-#: hopper\utility.lua:35
+#: utility.lua:35
 msgid ""
 "This hopper is currently set to eject items from its output\n"
 "even if there isn't a compatible block positioned to receive it.\n"
 "Click this button to disable this feature."
 msgstr ""
 
-#: hopper\utility.lua:37
+#: utility.lua:37
 msgid ""
 "Eject\n"
 "Items"
 msgstr ""
 
-#: hopper\utility.lua:38
+#: utility.lua:38
 msgid ""
 "This hopper is currently set to hold on to item if there\n"
 "isn't a compatible block positioned to receive it.\n"
 "Click this button to have it eject items instead."
 msgstr ""
 
-#: hopper\nodes\chute.lua:20
+#: nodes\chute.lua:20
 msgid "Hopper Chute"
 msgstr ""
 
-#: hopper\nodes\chute.lua:78
+#: nodes\chute.lua:78
 #, fuzzy
 msgid "@1 moves stuff to chute at @2"
 msgstr "@1 verlagert Dinge in einen Trichter bei @2"
 
-#: hopper\nodes\hoppers.lua:60
+#: nodes\hoppers.lua:60
 msgid "Hopper"
 msgstr "Trichter"
 
-#: hopper\nodes\hoppers.lua:122
-#: hopper\nodes\hoppers.lua:214
+#: nodes\hoppers.lua:122
+#: nodes\hoppers.lua:214
 msgid "@1 moves stuff in hopper at @2"
 msgstr "@1 bewegt Dinge in einem Trichter bei @2"
 
-#: hopper\nodes\hoppers.lua:127
-#: hopper\nodes\hoppers.lua:219
+#: nodes\hoppers.lua:127
+#: nodes\hoppers.lua:219
 msgid "@1 moves stuff to hopper at @2"
 msgstr "@1 verlagert Dinge in einen Trichter bei @2"
 
-#: hopper\nodes\hoppers.lua:132
-#: hopper\nodes\hoppers.lua:224
+#: nodes\hoppers.lua:132
+#: nodes\hoppers.lua:224
 msgid "@1 moves stuff from hopper at @2"
 msgstr "@1 nimmt Dinge aus einem Trichter bei @2"
 
-#: hopper\nodes\hoppers.lua:148
+#: nodes\hoppers.lua:148
 msgid "Side Hopper"
 msgstr "Seitentrichter"
 
-#: hopper\nodes\sorter.lua:22
-#: hopper\nodes\sorter.lua:39
+#: nodes\sorter.lua:26
 msgid ""
 "Selective\n"
 "Filter"
 msgstr ""
 
-#: hopper\nodes\sorter.lua:23
-#: hopper\nodes\sorter.lua:40
+#: nodes\sorter.lua:27
 msgid ""
 "This sorter is currently set to try sending all items\n"
 "in the direction of the arrow. Click this button\n"
 "to enable an item-type-specific filter."
 msgstr ""
 
-#: hopper\nodes\sorter.lua:25
-#: hopper\nodes\sorter.lua:43
+#: nodes\sorter.lua:29
+msgid "Filter"
+msgstr ""
+
+#: nodes\sorter.lua:30
 msgid ""
 "Filter\n"
 "All"
 msgstr ""
 
-#: hopper\nodes\sorter.lua:26
-#: hopper\nodes\sorter.lua:44
+#: nodes\sorter.lua:31
 msgid ""
 "This sorter is currently set to only send items listed\n"
 "in the filter list in the direction of the arrow.\n"
@@ -202,15 +202,11 @@ msgid ""
 "items that way first."
 msgstr ""
 
-#: hopper\nodes\sorter.lua:42
-msgid "Filter"
-msgstr ""
-
-#: hopper\nodes\sorter.lua:64
+#: nodes\sorter.lua:51
 msgid "Sorter"
 msgstr ""
 
-#: hopper\nodes\sorter.lua:143
+#: nodes\sorter.lua:144
 #, fuzzy
 msgid "@1 moves stuff to sorter at @2"
 msgstr "@1 verlagert Dinge in einen Trichter bei @2"

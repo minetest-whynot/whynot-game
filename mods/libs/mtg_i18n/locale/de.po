@@ -7,21 +7,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mtg_i18n\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-28 21:16+0200\n"
-"PO-Revision-Date: 2017-11-09 10:46+0000\n"
-"Last-Translator: Wolfshippie <floderhippie@gmail.com>\n"
-"Language-Team: German "
-"<https://hosted.weblate.org/projects/minetest/mtg_i18n/de/>\n"
+"POT-Creation-Date: 2018-12-07 22:13+0100\n"
+"PO-Revision-Date: 2018-12-07 21:30+0000\n"
+"Last-Translator: LNJ <git@lnj.li>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/minetest/mtg_i18n/"
+"de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.18-dev\n"
+"X-Generator: Weblate 3.4-dev\n"
 
 #: init.lua
 msgid "Air (you hacker you!)"
-msgstr "Luft (Du Hacker, Du!)"
+msgstr "Luft (Sie Hacker!)"
 
 #: init.lua
 msgid "Simple Bed"
@@ -56,15 +56,15 @@ msgid "Water Bucket"
 msgstr "Wassereimer"
 
 #: init.lua
-msgid "Brake rail"
+msgid "Brake Rail"
 msgstr "Bremsschiene"
 
 #: init.lua
 msgid "Cart (Sneak+Click to pick up)"
-msgstr "Lore (Schleichen + Klicken zum Aufnehmen)"
+msgstr "Lore (Schleichen+Klicken zum Mitnehmen)"
 
 #: init.lua
-msgid "Powered rail"
+msgid "Powered Rail"
 msgstr "Antriebsschiene"
 
 #: init.lua
@@ -84,7 +84,7 @@ msgid "Acacia Bush Stem"
 msgstr "Akazienbuschstamm"
 
 #: init.lua
-msgid "Acacia Leaves"
+msgid "Acacia Tree Leaves"
 msgstr "Akazienblätter"
 
 #: init.lua
@@ -104,7 +104,7 @@ msgid "Apple"
 msgstr "Apfel"
 
 #: init.lua
-msgid "Aspen Leaves"
+msgid "Aspen Tree Leaves"
 msgstr "Espenblätter"
 
 #: init.lua
@@ -316,24 +316,24 @@ msgid "Dry Shrub"
 msgstr "Trockener Strauch"
 
 #: init.lua
-msgid "Acacia Fence"
-msgstr "Akazienzaun"
+msgid "Acacia Wood Fence"
+msgstr "Akazienholzzaun"
 
 #: init.lua
-msgid "Aspen Fence"
-msgstr "Espenzaun"
+msgid "Aspen Wood Fence"
+msgstr "Espenholzzaun"
 
 #: init.lua
-msgid "Junglewood Fence"
+msgid "Jungle Wood Fence"
 msgstr "Tropenholzzaun"
 
 #: init.lua
-msgid "Pine Fence"
-msgstr "Kiefernzaun"
+msgid "Pine Wood Fence"
+msgstr "Kiefernholzzaun"
 
 #: init.lua
-msgid "Wooden Fence"
-msgstr "Holzzaun"
+msgid "Apple Wood Fence"
+msgstr "Apfelholzzaun"
 
 #: init.lua
 msgid "Flint"
@@ -380,19 +380,19 @@ msgid "Jungle Grass"
 msgstr "Tropengras"
 
 #: init.lua
-msgid "Jungle Leaves"
-msgstr "Tropenblätter"
+msgid "Jungle Tree Leaves"
+msgstr "Tropenbaumblätter"
 
 #: init.lua
-msgid "Jungle Sapling"
-msgstr "Tropensetzling"
+msgid "Jungle Tree Sapling"
+msgstr "Tropenbaumsetzling"
 
 #: init.lua
 msgid "Jungle Tree"
 msgstr "Tropenbaumstamm"
 
 #: init.lua
-msgid "Junglewood Planks"
+msgid "Jungle Wood Planks"
 msgstr "Tropenholzbretter"
 
 #: init.lua
@@ -416,8 +416,8 @@ msgid "Lava Source"
 msgstr "Lavaquelle"
 
 #: init.lua
-msgid "Leaves"
-msgstr "Blätter"
+msgid "Apple Tree Leaves"
+msgstr "Apfelbaumblätter"
 
 #: init.lua
 msgid "Mese Crystal Fragment"
@@ -500,7 +500,7 @@ msgid "Pine Needles"
 msgstr "Kiefernnadeln"
 
 #: init.lua
-msgid "Pine Sapling"
+msgid "Pine Tree Sapling"
 msgstr "Kiefernsetzling"
 
 #: init.lua
@@ -536,8 +536,8 @@ msgid "Sandstone"
 msgstr "Sandstein"
 
 #: init.lua
-msgid "Sapling"
-msgstr "Setzling"
+msgid "Apple Tree Sapling"
+msgstr "Apfelbaumsetzling"
 
 #: init.lua
 msgid "Bronze Shovel"
@@ -692,8 +692,8 @@ msgid "Torch"
 msgstr "Fackel"
 
 #: init.lua
-msgid "Tree"
-msgstr "Baumstamm"
+msgid "Apple Tree"
+msgstr "Apfelbaumstamm"
 
 #: init.lua
 msgid "Flowing Water"
@@ -704,8 +704,8 @@ msgid "Water Source"
 msgstr "Wasserquelle"
 
 #: init.lua
-msgid "Wooden Planks"
-msgstr "Holzbretter"
+msgid "Apple Wood Planks"
+msgstr "Apfelholzbretter"
 
 #: init.lua
 msgid "Glass Door"
@@ -724,23 +724,23 @@ msgid "Wooden Door"
 msgstr "Holztür"
 
 #: init.lua
-msgid "Acacia Fence Gate"
+msgid "Acacia Wood Fence Gate"
 msgstr "Akazienzauntor"
 
 #: init.lua
-msgid "Aspen Fence Gate"
+msgid "Aspen Wood Fence Gate"
 msgstr "Espenzauntor"
 
 #: init.lua
-msgid "Junglewood Fence Gate"
+msgid "Jungle Wood Fence Gate"
 msgstr "Tropenholzzauntor"
 
 #: init.lua
-msgid "Pine Fence Gate"
+msgid "Pine Wood Fence Gate"
 msgstr "Kiefernzauntor"
 
 #: init.lua
-msgid "Wooden Fence Gate"
+msgid "Apple Wood Fence Gate"
 msgstr "Holzzauntor"
 
 #: init.lua
@@ -748,71 +748,71 @@ msgid "Hidden Door Segment"
 msgstr "Versteckes Türsegment"
 
 #: init.lua
-msgid "Trapdoor"
-msgstr "Falltür"
+msgid "Wooden Trapdoor"
+msgstr "Hölzerne Falltür"
 
 #: init.lua
 msgid "Steel Trapdoor"
 msgstr "Stahlfalltür"
 
 #: init.lua
-msgid "Black dye"
+msgid "Black Dye"
 msgstr "Schwarzer Farbstoff"
 
 #: init.lua
-msgid "Blue dye"
+msgid "Blue Dye"
 msgstr "Blauer Farbstoff"
 
 #: init.lua
-msgid "Brown dye"
+msgid "Brown Dye"
 msgstr "Brauner Farbstoff"
 
 #: init.lua
-msgid "Cyan dye"
-msgstr "Türkiser Farbstoff"
+msgid "Cyan Dye"
+msgstr "Cyanfarbstoff"
 
 #: init.lua
-msgid "Dark green dye"
+msgid "Dark Green Dye"
 msgstr "Dunkelgrüner Farbstoff"
 
 #: init.lua
-msgid "Dark grey dye"
+msgid "Dark Grey Dye"
 msgstr "Dunkelgrauer Farbstoff"
 
 #: init.lua
-msgid "Green dye"
+msgid "Green Dye"
 msgstr "Grüner Farbstoff"
 
 #: init.lua
-msgid "Grey dye"
+msgid "Grey Dye"
 msgstr "Grauer Farbstoff"
 
 #: init.lua
-msgid "Magenta dye"
+msgid "Magenta Dye"
 msgstr "Magenta Farbstoff"
 
 #: init.lua
-msgid "Orange dye"
-msgstr "Orange Farbstoff"
+msgid "Orange Dye"
+msgstr "Orangener Farbstoff"
 
 #: init.lua
-msgid "Pink dye"
+msgid "Pink Dye"
 msgstr "Rosa Farbstoff"
 
 #: init.lua
-msgid "Red dye"
+msgid "Red Dye"
 msgstr "Roter Farbstoff"
 
 #: init.lua
-msgid "Violet dye"
+msgid "Violet Dye"
 msgstr "Violetter Farbstoff"
 
 #: init.lua
-msgid "White dye"
+msgid "White Dye"
 msgstr "Weißer Farbstoff"
 
 #: init.lua
-msgid "Yellow dye"
+msgid "Yellow Dye"
 msgstr "Gelber Farbstoff"
 
 #: init.lua
@@ -860,11 +860,11 @@ msgid "Wooden Hoe"
 msgstr "Holzhacke"
 
 #: init.lua
-msgid "Cotton seed"
+msgid "Cotton Seed"
 msgstr "Baumwollsamen"
 
 #: init.lua
-msgid "Wheat seed"
+msgid "Wheat Seed"
 msgstr "Weizensamen"
 
 #: init.lua
@@ -880,10 +880,6 @@ msgid "Straw"
 msgstr "Stroh"
 
 #: init.lua
-msgid "String"
-msgstr "Faden"
-
-#: init.lua
 msgid "Wheat"
 msgstr "Weizen"
 
@@ -896,7 +892,7 @@ msgid "Permanent Flame"
 msgstr "Permanente Flamme"
 
 #: init.lua
-msgid "White dandelion"
+msgid "White Dandelion"
 msgstr "Weißer Löwenzahn"
 
 #: init.lua
@@ -916,8 +912,8 @@ msgid "Red Mushroom"
 msgstr "Roter Pilz"
 
 #: init.lua
-msgid "Rose"
-msgstr "Rose"
+msgid "Red Rose"
+msgstr "Roter Farbstoff"
 
 #: init.lua
 msgid "Orange Tulip"
@@ -1141,86 +1137,6 @@ msgid "Ice Stair"
 msgstr "Eistreppe"
 
 #: init.lua
-msgid "Jungle Wood Stair"
-msgstr "Tropenholztreppe"
-
-#: init.lua
-msgid "Mossy Cobblestone Stair"
-msgstr "Bemooste Pflastersteintreppe"
-
-#: init.lua
-msgid "Obsidian Block Stair"
-msgstr "Obsidianblocktreppe"
-
-#: init.lua
-msgid "Obsidian Brick Stair"
-msgstr "Obsidianziegeltreppe"
-
-#: init.lua
-msgid "Obsidian Stair"
-msgstr "Obsidiantreppe"
-
-#: init.lua
-msgid "Pine Wood Stair"
-msgstr "Kiefernholztreppe"
-
-#: init.lua
-msgid "Sandstone Block Stair"
-msgstr "Sandsteinblocktreppe"
-
-#: init.lua
-msgid "Sandstone Brick Stair"
-msgstr "Sandsteinziegeltreppe"
-
-#: init.lua
-msgid "Sandstone Stair"
-msgstr "Sandsteintreppe"
-
-#: init.lua
-msgid "Silver Sandstone Block Stair"
-msgstr "Silbersandsteinblocktreppe"
-
-#: init.lua
-msgid "Silver Sandstone Brick Stair"
-msgstr "Silbersandsteinziegeltreppe"
-
-#: init.lua
-msgid "Silver Sandstone Stair"
-msgstr "Silbersandsteintreppe"
-
-#: init.lua
-msgid "Snow Block Stair"
-msgstr "Schneeblocktreppe"
-
-#: init.lua
-msgid "Steel Block Stair"
-msgstr "Stahlblocktreppe"
-
-#: init.lua
-msgid "Stone Block Stair"
-msgstr "Steinblocktreppe"
-
-#: init.lua
-msgid "Stone Brick Stair"
-msgstr "Steinziegeltreppe"
-
-#: init.lua
-msgid "Stone Stair"
-msgstr "Steintreppe"
-
-#: init.lua
-msgid "Straw Stair"
-msgstr "Strohtreppe"
-
-#: init.lua
-msgid "Tin Block Stair"
-msgstr "Zinnblocktreppe"
-
-#: init.lua
-msgid "Wooden Stair"
-msgstr "Holztreppe"
-
-#: init.lua
 msgid "Acacia Wood Stair Inner"
 msgstr "Innere Akazienholztreppe"
 
@@ -1359,6 +1275,26 @@ msgstr "Innere Zinnblocktreppe"
 #: init.lua
 msgid "Wooden Stair Inner"
 msgstr "Innere Holztreppe"
+
+#: init.lua
+msgid "Jungle Wood Stair"
+msgstr "Tropenholztreppe"
+
+#: init.lua
+msgid "Mossy Cobblestone Stair"
+msgstr "Bemooste Pflastersteintreppe"
+
+#: init.lua
+msgid "Obsidian Block Stair"
+msgstr "Obsidianblocktreppe"
+
+#: init.lua
+msgid "Obsidian Brick Stair"
+msgstr "Obsidianziegeltreppe"
+
+#: init.lua
+msgid "Obsidian Stair"
+msgstr "Obsidiantreppe"
 
 #: init.lua
 msgid "Acacia Wood Stair Outer"
@@ -1501,6 +1437,66 @@ msgid "Wooden Stair Outer"
 msgstr "Äußere Holztreppe"
 
 #: init.lua
+msgid "Pine Wood Stair"
+msgstr "Kiefernholztreppe"
+
+#: init.lua
+msgid "Sandstone Block Stair"
+msgstr "Sandsteinblocktreppe"
+
+#: init.lua
+msgid "Sandstone Brick Stair"
+msgstr "Sandsteinziegeltreppe"
+
+#: init.lua
+msgid "Sandstone Stair"
+msgstr "Sandsteintreppe"
+
+#: init.lua
+msgid "Silver Sandstone Block Stair"
+msgstr "Silbersandsteinblocktreppe"
+
+#: init.lua
+msgid "Silver Sandstone Brick Stair"
+msgstr "Silbersandsteinziegeltreppe"
+
+#: init.lua
+msgid "Silver Sandstone Stair"
+msgstr "Silbersandsteintreppe"
+
+#: init.lua
+msgid "Snow Block Stair"
+msgstr "Schneeblocktreppe"
+
+#: init.lua
+msgid "Steel Block Stair"
+msgstr "Stahlblocktreppe"
+
+#: init.lua
+msgid "Stone Block Stair"
+msgstr "Steinblocktreppe"
+
+#: init.lua
+msgid "Stone Brick Stair"
+msgstr "Steinziegeltreppe"
+
+#: init.lua
+msgid "Stone Stair"
+msgstr "Steintreppe"
+
+#: init.lua
+msgid "Straw Stair"
+msgstr "Strohtreppe"
+
+#: init.lua
+msgid "Tin Block Stair"
+msgstr "Zinnblocktreppe"
+
+#: init.lua
+msgid "Wooden Stair"
+msgstr "Holztreppe"
+
+#: init.lua
 msgid "Gun Powder"
 msgstr "Schwarzpulver"
 
@@ -1513,24 +1509,24 @@ msgid "Unknown Item"
 msgstr "Unbekannter Gegenstand"
 
 #: init.lua
-msgid "Drinking Glass (empty)"
-msgstr "Trinkglas (leer)"
+msgid "Empty Drinking Glass"
+msgstr "Leeres Trinkglas"
 
 #: init.lua
-msgid "Glass Bottle (empty)"
-msgstr "Glasflasche (leer)"
+msgid "Empty Glass Bottle"
+msgstr "Leere Glasflasche"
 
 #: init.lua
-msgid "Pile of Glass Fragments"
-msgstr "Haufen aus Glasfragmenten"
+msgid "Glass Fragments"
+msgstr "Glasscherben"
 
 #: init.lua
 msgid "Vessels Shelf"
 msgstr "Gefäßregal"
 
 #: init.lua
-msgid "Heavy Steel Bottle (empty)"
-msgstr "Schwere Stahlflasche (leer)"
+msgid "Empty Heavy Steel Bottle"
+msgstr "Leere, Schwere Stahlflasche"
 
 #: init.lua
 msgid "Cobblestone Wall"
@@ -1605,7 +1601,7 @@ msgid "Yellow Wool"
 msgstr "Gelbe Wolle"
 
 #: init.lua
-msgid "Iron bar"
+msgid "Iron Bar"
 msgstr "Eisengitter"
 
 #: init.lua
@@ -1619,3 +1615,24 @@ msgstr "Nyan-Cat-Regenbogen"
 #: init.lua
 msgid "Nyan Cat"
 msgstr "Nyan Cat"
+
+#~ msgid "Leaves"
+#~ msgstr "Blätter"
+
+#~ msgid "Sapling"
+#~ msgstr "Setzling"
+
+#~ msgid "Tree"
+#~ msgstr "Baumstamm"
+
+#~ msgid "Wooden Planks"
+#~ msgstr "Holzbretter"
+
+#~ msgid "Trapdoor"
+#~ msgstr "Falltür"
+
+#~ msgid "String"
+#~ msgstr "Faden"
+
+#~ msgid "Rose"
+#~ msgstr "Rose"

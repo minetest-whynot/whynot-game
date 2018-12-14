@@ -7,17 +7,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-30 15:08+0200\n"
-"PO-Revision-Date: 2017-11-12 13:45+0000\n"
-"Last-Translator: Edgar <Edgar@anotherfoxguy.com>\n"
-"Language-Team: Dutch "
-"<https://hosted.weblate.org/projects/minetest/mtg_i18n/nl/>\n"
+"POT-Creation-Date: 2018-12-07 22:13+0100\n"
+"PO-Revision-Date: 2018-01-25 11:35+0000\n"
+"Last-Translator: dave90dave <dave.hulst@gmail.com>\n"
+"Language-Team: Dutch <https://hosted.weblate.org/projects/minetest/mtg_i18n/"
+"nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.18-dev\n"
+"X-Generator: Weblate 2.19-dev\n"
 
 #: init.lua
 msgid "Air (you hacker you!)"
@@ -58,7 +58,7 @@ msgstr "Emmer met water"
 
 #: init.lua
 #, fuzzy
-msgid "Brake rail"
+msgid "Brake Rail"
 msgstr "Rem spoor"
 
 #: init.lua
@@ -67,7 +67,7 @@ msgid "Cart (Sneak+Click to pick up)"
 msgstr "Kar (Sneak+Klik om op the pakken)"
 
 #: init.lua
-msgid "Powered rail"
+msgid "Powered Rail"
 msgstr ""
 
 #: init.lua
@@ -90,7 +90,8 @@ msgid "Acacia Bush Stem"
 msgstr "Acacia Struiken Stam"
 
 #: init.lua
-msgid "Acacia Leaves"
+#, fuzzy
+msgid "Acacia Tree Leaves"
 msgstr "Acacia Bladeren"
 
 #: init.lua
@@ -112,7 +113,7 @@ msgstr "Appel"
 
 #: init.lua
 #, fuzzy
-msgid "Aspen Leaves"
+msgid "Aspen Tree Leaves"
 msgstr "Espen Bladeren"
 
 #: init.lua
@@ -328,24 +329,28 @@ msgid "Dry Shrub"
 msgstr "Droge Struik"
 
 #: init.lua
-msgid "Acacia Fence"
+#, fuzzy
+msgid "Acacia Wood Fence"
 msgstr "Acacia Hek"
 
 #: init.lua
-msgid "Aspen Fence"
+#, fuzzy
+msgid "Aspen Wood Fence"
 msgstr "Aspen Hek"
 
 #: init.lua
-msgid "Junglewood Fence"
+#, fuzzy
+msgid "Jungle Wood Fence"
 msgstr "Junglehouten Hek"
 
 #: init.lua
 #, fuzzy
-msgid "Pine Fence"
+msgid "Pine Wood Fence"
 msgstr "Grenen Schutting"
 
 #: init.lua
-msgid "Wooden Fence"
+#, fuzzy
+msgid "Apple Wood Fence"
 msgstr "Houten Hek"
 
 #: init.lua
@@ -393,11 +398,13 @@ msgid "Jungle Grass"
 msgstr "Jungle Gras"
 
 #: init.lua
-msgid "Jungle Leaves"
+#, fuzzy
+msgid "Jungle Tree Leaves"
 msgstr "Jungle Bladeren"
 
 #: init.lua
-msgid "Jungle Sapling"
+#, fuzzy
+msgid "Jungle Tree Sapling"
 msgstr "Jungle Kiemplant"
 
 #: init.lua
@@ -405,7 +412,8 @@ msgid "Jungle Tree"
 msgstr "Jungle Boom"
 
 #: init.lua
-msgid "Junglewood Planks"
+#, fuzzy
+msgid "Jungle Wood Planks"
 msgstr "Jungle Houten Planken"
 
 #: init.lua
@@ -429,8 +437,9 @@ msgid "Lava Source"
 msgstr "Lava Bron"
 
 #: init.lua
-msgid "Leaves"
-msgstr "Bladeren"
+#, fuzzy
+msgid "Apple Tree Leaves"
+msgstr "Espen Bladeren"
 
 #: init.lua
 msgid "Mese Crystal Fragment"
@@ -518,8 +527,9 @@ msgid "Pine Needles"
 msgstr "Dennennaalden"
 
 #: init.lua
-msgid "Pine Sapling"
-msgstr ""
+#, fuzzy
+msgid "Pine Tree Sapling"
+msgstr "Acacia Boom Kiemplant"
 
 #: init.lua
 msgid "Pine Tree"
@@ -556,8 +566,9 @@ msgid "Sandstone"
 msgstr "Zandsteen"
 
 #: init.lua
-msgid "Sapling"
-msgstr "Kiemplant"
+#, fuzzy
+msgid "Apple Tree Sapling"
+msgstr "Acacia Boom Kiemplant"
 
 #: init.lua
 msgid "Bronze Shovel"
@@ -719,8 +730,9 @@ msgid "Torch"
 msgstr "Fakkel"
 
 #: init.lua
-msgid "Tree"
-msgstr "Boom"
+#, fuzzy
+msgid "Apple Tree"
+msgstr "Aspen Boom"
 
 #: init.lua
 msgid "Flowing Water"
@@ -731,8 +743,9 @@ msgid "Water Source"
 msgstr "Waterbron"
 
 #: init.lua
-msgid "Wooden Planks"
-msgstr "Houten Planken"
+#, fuzzy
+msgid "Apple Wood Planks"
+msgstr "Aspen houten planken"
 
 #: init.lua
 msgid "Glass Door"
@@ -753,27 +766,27 @@ msgstr "Houten Deur"
 
 #: init.lua
 #, fuzzy
-msgid "Acacia Fence Gate"
+msgid "Acacia Wood Fence Gate"
 msgstr "Acacia Poort"
 
 #: init.lua
 #, fuzzy
-msgid "Aspen Fence Gate"
+msgid "Aspen Wood Fence Gate"
 msgstr "Aspen Poort"
 
 #: init.lua
 #, fuzzy
-msgid "Junglewood Fence Gate"
+msgid "Jungle Wood Fence Gate"
 msgstr "Junglewood Poort"
 
 #: init.lua
 #, fuzzy
-msgid "Pine Fence Gate"
+msgid "Pine Wood Fence Gate"
 msgstr "Grenen Poort"
 
 #: init.lua
 #, fuzzy
-msgid "Wooden Fence Gate"
+msgid "Apple Wood Fence Gate"
 msgstr "Houten Hek Poort"
 
 #: init.lua
@@ -782,71 +795,87 @@ msgid "Hidden Door Segment"
 msgstr "Verborgen Deur Segment"
 
 #: init.lua
-msgid "Trapdoor"
-msgstr "Luik"
+#, fuzzy
+msgid "Wooden Trapdoor"
+msgstr "Houten Deur"
 
 #: init.lua
 msgid "Steel Trapdoor"
 msgstr "Stalen Luik"
 
 #: init.lua
-msgid "Black dye"
+#, fuzzy
+msgid "Black Dye"
 msgstr "Zwarte kleurstof"
 
 #: init.lua
-msgid "Blue dye"
+#, fuzzy
+msgid "Blue Dye"
 msgstr "Blauwe kleurstof"
 
 #: init.lua
-msgid "Brown dye"
+#, fuzzy
+msgid "Brown Dye"
 msgstr "Bruine kleurstof"
 
 #: init.lua
-msgid "Cyan dye"
+#, fuzzy
+msgid "Cyan Dye"
 msgstr "Cyaan kleurstof"
 
 #: init.lua
-msgid "Dark green dye"
+#, fuzzy
+msgid "Dark Green Dye"
 msgstr "Donker groene kleurstof"
 
 #: init.lua
-msgid "Dark grey dye"
+#, fuzzy
+msgid "Dark Grey Dye"
 msgstr "Donker grijze kleurstof"
 
 #: init.lua
-msgid "Green dye"
+#, fuzzy
+msgid "Green Dye"
 msgstr "Groene kleurstof"
 
 #: init.lua
-msgid "Grey dye"
+#, fuzzy
+msgid "Grey Dye"
 msgstr "Grijze kleurstof"
 
 #: init.lua
-msgid "Magenta dye"
+#, fuzzy
+msgid "Magenta Dye"
 msgstr "Magenta kleurstof"
 
 #: init.lua
-msgid "Orange dye"
+#, fuzzy
+msgid "Orange Dye"
 msgstr "Oranje kleurstof"
 
 #: init.lua
-msgid "Pink dye"
+#, fuzzy
+msgid "Pink Dye"
 msgstr "Roze kleurstof"
 
 #: init.lua
-msgid "Red dye"
+#, fuzzy
+msgid "Red Dye"
 msgstr "Rode kleurstof"
 
 #: init.lua
-msgid "Violet dye"
+#, fuzzy
+msgid "Violet Dye"
 msgstr "Paarse kleurstof"
 
 #: init.lua
-msgid "White dye"
+#, fuzzy
+msgid "White Dye"
 msgstr "Witte kleurstof"
 
 #: init.lua
-msgid "Yellow dye"
+#, fuzzy
+msgid "Yellow Dye"
 msgstr "Gele kleurstof"
 
 #: init.lua
@@ -896,12 +925,13 @@ msgid "Wooden Hoe"
 msgstr "Houten schoffel"
 
 #: init.lua
-msgid "Cotton seed"
+#, fuzzy
+msgid "Cotton Seed"
 msgstr "Katoen zaad"
 
 #: init.lua
 #, fuzzy
-msgid "Wheat seed"
+msgid "Wheat Seed"
 msgstr "Tarwe zaad"
 
 #: init.lua
@@ -929,7 +959,8 @@ msgid "Permanent Flame"
 msgstr "Permanente Vlam"
 
 #: init.lua
-msgid "White dandelion"
+#, fuzzy
+msgid "White Dandelion"
 msgstr "Witte paardenbloemen"
 
 #: init.lua
@@ -949,8 +980,9 @@ msgid "Red Mushroom"
 msgstr "Rode Paddenstoel"
 
 #: init.lua
-msgid "Rose"
-msgstr "Roos"
+#, fuzzy
+msgid "Red Rose"
+msgstr "Rode kleurstof"
 
 #: init.lua
 msgid "Orange Tulip"
@@ -1027,7 +1059,7 @@ msgstr "Woestijn Zandstenen Plaat"
 
 #: init.lua
 msgid "Desert Stone Block Slab"
-msgstr ""
+msgstr "Zandstenen plaat"
 
 #: init.lua
 msgid "Desert Stone Brick Slab"
@@ -1035,7 +1067,7 @@ msgstr ""
 
 #: init.lua
 msgid "Desert Stone Slab"
-msgstr ""
+msgstr "Zandstenen plaat"
 
 #: init.lua
 #, fuzzy
@@ -1093,7 +1125,7 @@ msgstr "Zandstenen Plaat"
 
 #: init.lua
 msgid "Silver Sandstone Block Slab"
-msgstr ""
+msgstr "Zilveren zandstenen plaat"
 
 #: init.lua
 msgid "Silver Sandstone Brick Slab"
@@ -1101,7 +1133,7 @@ msgstr ""
 
 #: init.lua
 msgid "Silver Sandstone Slab"
-msgstr ""
+msgstr "Zilveren zandsteenplaat"
 
 #: init.lua
 #, fuzzy
@@ -1115,11 +1147,11 @@ msgstr "Stalen Blok Plaat"
 
 #: init.lua
 msgid "Stone Block Slab"
-msgstr ""
+msgstr "Blokstenen plaat"
 
 #: init.lua
 msgid "Stone Brick Slab"
-msgstr ""
+msgstr "Blokstenen plaat"
 
 #: init.lua
 msgid "Stone Slab"
@@ -1129,6 +1161,11 @@ msgstr "Stenen Plaat"
 #, fuzzy
 msgid "Straw Slab"
 msgstr "Stro Plaat"
+
+#: init.lua
+#, fuzzy
+msgid "Tin Block Slab"
+msgstr "Sneeuw Blok Plaat"
 
 #: init.lua
 #, fuzzy
@@ -1169,7 +1206,7 @@ msgstr "Woestijn Keistenen Traptreden"
 
 #: init.lua
 msgid "Desert Sandstone Block Stair"
-msgstr ""
+msgstr "Zandstenen trap"
 
 #: init.lua
 msgid "Desert Sandstone Brick Stair"
@@ -1201,6 +1238,181 @@ msgid "Ice Stair"
 msgstr "Ijs Traptreden"
 
 #: init.lua
+#, fuzzy
+msgid "Acacia Wood Stair Inner"
+msgstr "Acacia Houten traptreden"
+
+#: init.lua
+#, fuzzy
+msgid "Aspen Wood Stair Inner"
+msgstr "Aspen Houten Trap"
+
+#: init.lua
+#, fuzzy
+msgid "Brick Stair Inner"
+msgstr "Bakstenen Trap"
+
+#: init.lua
+#, fuzzy
+msgid "Bronze Block Stair Inner"
+msgstr "Bronzen Blok Traptreden"
+
+#: init.lua
+#, fuzzy
+msgid "Cobblestone Stair Inner"
+msgstr "Keistenen Trap"
+
+#: init.lua
+#, fuzzy
+msgid "Copper Block Stair Inner"
+msgstr "Koperen Trap"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Cobblestone Stair Inner"
+msgstr "Woestijn Keistenen Traptreden"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Sandstone Block Stair Inner"
+msgstr "Zandstenen trap"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Sandstone Brick Stair Inner"
+msgstr "Zandstenen trap"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Sandstone Stair Inner"
+msgstr "Woestijn Zandstenen Traptreden"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Stone Block Stair Inner"
+msgstr "Zandstenen trap"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Stone Brick Stair Inner"
+msgstr "Zandstenen trap"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Stone Stair Inner"
+msgstr "Woestijn Stenen Traptreden"
+
+#: init.lua
+#, fuzzy
+msgid "Gold Block Stair Inner"
+msgstr "Gouden Blok Traptreden"
+
+#: init.lua
+#, fuzzy
+msgid "Ice Stair Inner"
+msgstr "Ijs Traptreden"
+
+#: init.lua
+#, fuzzy
+msgid "Jungle Wood Stair Inner"
+msgstr "Jungle Houten Traptreden"
+
+#: init.lua
+#, fuzzy
+msgid "Mossy Cobblestone Stair Inner"
+msgstr "Mossige Keistenen Traptreden"
+
+#: init.lua
+#, fuzzy
+msgid "Obsidian Block Stair Inner"
+msgstr "Obsidiaan Blok Traptreden"
+
+#: init.lua
+#, fuzzy
+msgid "Obsidian Brick Stair Inner"
+msgstr "Obsidiaan Bakstenen Traptreden"
+
+#: init.lua
+#, fuzzy
+msgid "Obsidian Stair Inner"
+msgstr "Obsidiaanse Traptreden"
+
+#: init.lua
+#, fuzzy
+msgid "Pine Wood Stair Inner"
+msgstr "Grenen Houten Trap"
+
+#: init.lua
+#, fuzzy
+msgid "Sandstone Block Stair Inner"
+msgstr "Zandstenen baksteen trap"
+
+#: init.lua
+#, fuzzy
+msgid "Sandstone Brick Stair Inner"
+msgstr "Zandstenen baksteen trap"
+
+#: init.lua
+#, fuzzy
+msgid "Sandstone Stair Inner"
+msgstr "Zandstenen Traptreden"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Sandstone Block Stair Inner"
+msgstr "Zilveren zandsteen trap"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Sandstone Brick Stair Inner"
+msgstr "Zilver Zandstenen Bakstenen Traptreden"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Sandstone Stair Inner"
+msgstr "Zilver Zandstenen Traptreden"
+
+#: init.lua
+#, fuzzy
+msgid "Snow Block Stair Inner"
+msgstr "Sneeuw Blok Traptreden"
+
+#: init.lua
+#, fuzzy
+msgid "Steel Block Stair Inner"
+msgstr "Stalen Blok Traptreden"
+
+#: init.lua
+#, fuzzy
+msgid "Stone Block Stair Inner"
+msgstr "Stenen Blok Traptreden"
+
+#: init.lua
+#, fuzzy
+msgid "Stone Brick Stair Inner"
+msgstr "Bakstenen trap"
+
+#: init.lua
+#, fuzzy
+msgid "Stone Stair Inner"
+msgstr "Stenen Traptreden"
+
+#: init.lua
+#, fuzzy
+msgid "Straw Stair Inner"
+msgstr "Stro Traptreden"
+
+#: init.lua
+#, fuzzy
+msgid "Tin Block Stair Inner"
+msgstr "Sneeuw Blok Traptreden"
+
+#: init.lua
+#, fuzzy
+msgid "Wooden Stair Inner"
+msgstr "Houten Traptreden"
+
+#: init.lua
 msgid "Jungle Wood Stair"
 msgstr "Jungle Houten Traptreden"
 
@@ -1225,6 +1437,181 @@ msgstr "Obsidiaanse Traptreden"
 
 #: init.lua
 #, fuzzy
+msgid "Acacia Wood Stair Outer"
+msgstr "Acacia Houten traptreden"
+
+#: init.lua
+#, fuzzy
+msgid "Aspen Wood Stair Outer"
+msgstr "Aspen Houten Trap"
+
+#: init.lua
+#, fuzzy
+msgid "Brick Stair Outer"
+msgstr "Bakstenen Trap"
+
+#: init.lua
+#, fuzzy
+msgid "Bronze Block Stair Outer"
+msgstr "Bronzen Blok Traptreden"
+
+#: init.lua
+#, fuzzy
+msgid "Cobblestone Stair Outer"
+msgstr "Keistenen Trap"
+
+#: init.lua
+#, fuzzy
+msgid "Copper Block Stair Outer"
+msgstr "Koperen Trap"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Cobblestone Stair Outer"
+msgstr "Woestijn Keistenen Traptreden"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Sandstone Block Stair Outer"
+msgstr "Zandstenen trap"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Sandstone Brick Stair Outer"
+msgstr "Zandstenen trap"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Sandstone Stair Outer"
+msgstr "Woestijn Zandstenen Traptreden"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Stone Block Stair Outer"
+msgstr "Zandstenen trap"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Stone Brick Stair Outer"
+msgstr "Zandstenen trap"
+
+#: init.lua
+#, fuzzy
+msgid "Desert Stone Stair Outer"
+msgstr "Woestijn Stenen Traptreden"
+
+#: init.lua
+#, fuzzy
+msgid "Gold Block Stair Outer"
+msgstr "Gouden Blok Traptreden"
+
+#: init.lua
+#, fuzzy
+msgid "Ice Stair Outer"
+msgstr "Ijs Traptreden"
+
+#: init.lua
+#, fuzzy
+msgid "Jungle Wood Stair Outer"
+msgstr "Jungle Houten Traptreden"
+
+#: init.lua
+#, fuzzy
+msgid "Mossy Cobblestone Stair Outer"
+msgstr "Mossige Keistenen Traptreden"
+
+#: init.lua
+#, fuzzy
+msgid "Obsidian Block Stair Outer"
+msgstr "Obsidiaan Blok Traptreden"
+
+#: init.lua
+#, fuzzy
+msgid "Obsidian Brick Stair Outer"
+msgstr "Obsidiaan Bakstenen Traptreden"
+
+#: init.lua
+#, fuzzy
+msgid "Obsidian Stair Outer"
+msgstr "Obsidiaanse Traptreden"
+
+#: init.lua
+#, fuzzy
+msgid "Pine Wood Stair Outer"
+msgstr "Grenen Houten Trap"
+
+#: init.lua
+#, fuzzy
+msgid "Sandstone Block Stair Outer"
+msgstr "Zandstenen baksteen trap"
+
+#: init.lua
+#, fuzzy
+msgid "Sandstone Brick Stair Outer"
+msgstr "Zandstenen baksteen trap"
+
+#: init.lua
+#, fuzzy
+msgid "Sandstone Stair Outer"
+msgstr "Zandstenen Traptreden"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Sandstone Block Stair Outer"
+msgstr "Zilveren zandsteen trap"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Sandstone Brick Stair Outer"
+msgstr "Zilver Zandstenen Bakstenen Traptreden"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Sandstone Stair Outer"
+msgstr "Zilver Zandstenen Traptreden"
+
+#: init.lua
+#, fuzzy
+msgid "Snow Block Stair Outer"
+msgstr "Sneeuw Blok Traptreden"
+
+#: init.lua
+#, fuzzy
+msgid "Steel Block Stair Outer"
+msgstr "Stalen Blok Traptreden"
+
+#: init.lua
+#, fuzzy
+msgid "Stone Block Stair Outer"
+msgstr "Stenen Blok Traptreden"
+
+#: init.lua
+#, fuzzy
+msgid "Stone Brick Stair Outer"
+msgstr "Bakstenen trap"
+
+#: init.lua
+#, fuzzy
+msgid "Stone Stair Outer"
+msgstr "Stenen Traptreden"
+
+#: init.lua
+#, fuzzy
+msgid "Straw Stair Outer"
+msgstr "Stro Traptreden"
+
+#: init.lua
+#, fuzzy
+msgid "Tin Block Stair Outer"
+msgstr "Sneeuw Blok Traptreden"
+
+#: init.lua
+#, fuzzy
+msgid "Wooden Stair Outer"
+msgstr "Houten Traptreden"
+
+#: init.lua
+#, fuzzy
 msgid "Pine Wood Stair"
 msgstr "Grenen Houten Trap"
 
@@ -1234,7 +1621,7 @@ msgstr ""
 
 #: init.lua
 msgid "Sandstone Brick Stair"
-msgstr ""
+msgstr "Zandstenen baksteen trap"
 
 #: init.lua
 msgid "Sandstone Stair"
@@ -1242,7 +1629,7 @@ msgstr "Zandstenen Traptreden"
 
 #: init.lua
 msgid "Silver Sandstone Block Stair"
-msgstr ""
+msgstr "Zilveren zandsteen trap"
 
 #: init.lua
 #, fuzzy
@@ -1271,7 +1658,7 @@ msgstr "Stenen Blok Traptreden"
 
 #: init.lua
 msgid "Stone Brick Stair"
-msgstr ""
+msgstr "Bakstenen trap"
 
 #: init.lua
 msgid "Stone Stair"
@@ -1280,6 +1667,11 @@ msgstr "Stenen Traptreden"
 #: init.lua
 msgid "Straw Stair"
 msgstr "Stro Traptreden"
+
+#: init.lua
+#, fuzzy
+msgid "Tin Block Stair"
+msgstr "Sneeuw Blok Traptreden"
 
 #: init.lua
 msgid "Wooden Stair"
@@ -1298,15 +1690,18 @@ msgid "Unknown Item"
 msgstr "Onbekend Item"
 
 #: init.lua
-msgid "Drinking Glass (empty)"
+#, fuzzy
+msgid "Empty Drinking Glass"
 msgstr "Drinkglas (leeg)"
 
 #: init.lua
-msgid "Glass Bottle (empty)"
+#, fuzzy
+msgid "Empty Glass Bottle"
 msgstr "Glazen fles (leeg)"
 
 #: init.lua
-msgid "Pile of Glass Fragments"
+#, fuzzy
+msgid "Glass Fragments"
 msgstr "Stapel van Glasscherven"
 
 #: init.lua
@@ -1314,7 +1709,8 @@ msgid "Vessels Shelf"
 msgstr ""
 
 #: init.lua
-msgid "Heavy Steel Bottle (empty)"
+#, fuzzy
+msgid "Empty Heavy Steel Bottle"
 msgstr "Zware Stalen Fles (leeg)"
 
 #: init.lua
@@ -1396,7 +1792,7 @@ msgstr "Gele Wol"
 
 #: init.lua
 #, fuzzy
-msgid "Iron bar"
+msgid "Iron Bar"
 msgstr "Ijzeren staven"
 
 #: init.lua
@@ -1410,3 +1806,21 @@ msgstr "Nyan Cat Regenboog"
 #: init.lua
 msgid "Nyan Cat"
 msgstr "Nyan Cat"
+
+#~ msgid "Leaves"
+#~ msgstr "Bladeren"
+
+#~ msgid "Sapling"
+#~ msgstr "Kiemplant"
+
+#~ msgid "Tree"
+#~ msgstr "Boom"
+
+#~ msgid "Wooden Planks"
+#~ msgstr "Houten Planken"
+
+#~ msgid "Trapdoor"
+#~ msgstr "Luik"
+
+#~ msgid "Rose"
+#~ msgstr "Roos"

@@ -7,17 +7,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-28 21:16+0200\n"
-"PO-Revision-Date: 2017-10-21 16:46+0000\n"
+"POT-Creation-Date: 2018-12-07 22:13+0100\n"
+"PO-Revision-Date: 2018-12-09 11:08+0000\n"
 "Last-Translator: Muhammad Nur Hidayat Yasuyoshi <mnh48mail@gmail.com>\n"
-"Language-Team: Malay "
-"<https://hosted.weblate.org/projects/minetest/mtg_i18n/ms/>\n"
+"Language-Team: Malay <https://hosted.weblate.org/projects/minetest/mtg_i18n/"
+"ms/>\n"
 "Language: ms\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2.17\n"
+"X-Generator: Weblate 3.4-dev\n"
 
 #: init.lua
 msgid "Air (you hacker you!)"
@@ -56,7 +56,7 @@ msgid "Water Bucket"
 msgstr "Baldi Air"
 
 #: init.lua
-msgid "Brake rail"
+msgid "Brake Rail"
 msgstr "Landasan Brek"
 
 #: init.lua
@@ -64,7 +64,7 @@ msgid "Cart (Sneak+Click to pick up)"
 msgstr "Pedati (Selinap+Klik untuk ambil balik)"
 
 #: init.lua
-msgid "Powered rail"
+msgid "Powered Rail"
 msgstr "Landasan Berkuasa"
 
 #: init.lua
@@ -84,8 +84,8 @@ msgid "Acacia Bush Stem"
 msgstr "Batang Belukar Akasia"
 
 #: init.lua
-msgid "Acacia Leaves"
-msgstr "Daun Akasia"
+msgid "Acacia Tree Leaves"
+msgstr "Daun Pokok Akasia"
 
 #: init.lua
 msgid "Acacia Tree Sapling"
@@ -104,8 +104,8 @@ msgid "Apple"
 msgstr "Epal"
 
 #: init.lua
-msgid "Aspen Leaves"
-msgstr "Daun Aspen"
+msgid "Aspen Tree Leaves"
+msgstr "Daun Pokok Aspen"
 
 #: init.lua
 msgid "Aspen Tree Sapling"
@@ -316,24 +316,24 @@ msgid "Dry Shrub"
 msgstr "Pokok Renek Kering"
 
 #: init.lua
-msgid "Acacia Fence"
-msgstr "Pagar Akasia"
+msgid "Acacia Wood Fence"
+msgstr "Pagar Kayu Akasia"
 
 #: init.lua
-msgid "Aspen Fence"
-msgstr "Pagar Aspen"
+msgid "Aspen Wood Fence"
+msgstr "Pagar Kayu Aspen"
 
 #: init.lua
-msgid "Junglewood Fence"
+msgid "Jungle Wood Fence"
 msgstr "Pagar Kayu Hutan"
 
 #: init.lua
-msgid "Pine Fence"
-msgstr "Pagar Pain"
+msgid "Pine Wood Fence"
+msgstr "Pagar Kayu Pain"
 
 #: init.lua
-msgid "Wooden Fence"
-msgstr "Pagar Kayu"
+msgid "Apple Wood Fence"
+msgstr "Pagar Kayu Epal"
 
 #: init.lua
 msgid "Flint"
@@ -380,11 +380,11 @@ msgid "Jungle Grass"
 msgstr "Rumput Hutan"
 
 #: init.lua
-msgid "Jungle Leaves"
+msgid "Jungle Tree Leaves"
 msgstr "Daun Pokok Hutan"
 
 #: init.lua
-msgid "Jungle Sapling"
+msgid "Jungle Tree Sapling"
 msgstr "Anak Pokok Hutan"
 
 #: init.lua
@@ -392,7 +392,7 @@ msgid "Jungle Tree"
 msgstr "Kayu Pokok Hutan"
 
 #: init.lua
-msgid "Junglewood Planks"
+msgid "Jungle Wood Planks"
 msgstr "Papan Kayu Hutan"
 
 #: init.lua
@@ -416,8 +416,8 @@ msgid "Lava Source"
 msgstr "Sumber Lava"
 
 #: init.lua
-msgid "Leaves"
-msgstr "Daun Pokok"
+msgid "Apple Tree Leaves"
+msgstr "Daun Pokok Epal"
 
 #: init.lua
 msgid "Mese Crystal Fragment"
@@ -500,7 +500,7 @@ msgid "Pine Needles"
 msgstr "Daun Pain"
 
 #: init.lua
-msgid "Pine Sapling"
+msgid "Pine Tree Sapling"
 msgstr "Anak Pokok Pain"
 
 #: init.lua
@@ -536,8 +536,8 @@ msgid "Sandstone"
 msgstr "Batu Pasir"
 
 #: init.lua
-msgid "Sapling"
-msgstr "Anak Pokok"
+msgid "Apple Tree Sapling"
+msgstr "Anak Pokok Epal"
 
 #: init.lua
 msgid "Bronze Shovel"
@@ -692,8 +692,8 @@ msgid "Torch"
 msgstr "Obor"
 
 #: init.lua
-msgid "Tree"
-msgstr "Kayu Pokok"
+msgid "Apple Tree"
+msgstr "Kayu Epal"
 
 #: init.lua
 msgid "Flowing Water"
@@ -704,8 +704,8 @@ msgid "Water Source"
 msgstr "Sumber Air"
 
 #: init.lua
-msgid "Wooden Planks"
-msgstr "Papan Kayu"
+msgid "Apple Wood Planks"
+msgstr "Papan Kayu Epal"
 
 #: init.lua
 msgid "Glass Door"
@@ -724,95 +724,95 @@ msgid "Wooden Door"
 msgstr "Pintu Kayu"
 
 #: init.lua
-msgid "Acacia Fence Gate"
-msgstr "Pintu Pagar Akasia"
+msgid "Acacia Wood Fence Gate"
+msgstr "Pintu Pagar Kayu Akasia"
 
 #: init.lua
-msgid "Aspen Fence Gate"
-msgstr "Pintu Pagar Aspen"
+msgid "Aspen Wood Fence Gate"
+msgstr "Pintu Pagar Kayu Aspen"
 
 #: init.lua
-msgid "Junglewood Fence Gate"
+msgid "Jungle Wood Fence Gate"
 msgstr "Pintu Pagar Kayu Hutan"
 
 #: init.lua
-msgid "Pine Fence Gate"
-msgstr "Pintu Pagar Pain"
+msgid "Pine Wood Fence Gate"
+msgstr "Pintu Pagar Kayu Pain"
 
 #: init.lua
-msgid "Wooden Fence Gate"
-msgstr "Pintu Pagar Kayu"
+msgid "Apple Wood Fence Gate"
+msgstr "Pintu Pagar Kayu Epal"
 
 #: init.lua
 msgid "Hidden Door Segment"
 msgstr "Segmen Pintu Tersembunyi"
 
 #: init.lua
-msgid "Trapdoor"
-msgstr "Pintu Kolong"
+msgid "Wooden Trapdoor"
+msgstr "Pintu Kolong Kayu"
 
 #: init.lua
 msgid "Steel Trapdoor"
 msgstr "Pintu Kolong Keluli"
 
 #: init.lua
-msgid "Black dye"
+msgid "Black Dye"
 msgstr "Pewarna Hitam"
 
 #: init.lua
-msgid "Blue dye"
+msgid "Blue Dye"
 msgstr "Pewarna Biru"
 
 #: init.lua
-msgid "Brown dye"
+msgid "Brown Dye"
 msgstr "Pewarna Perang"
 
 #: init.lua
-msgid "Cyan dye"
+msgid "Cyan Dye"
 msgstr "Pewarna Sian"
 
 #: init.lua
-msgid "Dark green dye"
+msgid "Dark Green Dye"
 msgstr "Pewarna Hijau Tua"
 
 #: init.lua
-msgid "Dark grey dye"
+msgid "Dark Grey Dye"
 msgstr "Pewarna Kelabu Tua"
 
 #: init.lua
-msgid "Green dye"
+msgid "Green Dye"
 msgstr "Pewarna Hijau"
 
 #: init.lua
-msgid "Grey dye"
+msgid "Grey Dye"
 msgstr "Pewarna Kelabu"
 
 #: init.lua
-msgid "Magenta dye"
+msgid "Magenta Dye"
 msgstr "Pewarna Magenta"
 
 #: init.lua
-msgid "Orange dye"
+msgid "Orange Dye"
 msgstr "Pewarna Jingga"
 
 #: init.lua
-msgid "Pink dye"
+msgid "Pink Dye"
 msgstr "Pewarna Merah Jambu"
 
 #: init.lua
-msgid "Red dye"
+msgid "Red Dye"
 msgstr "Pewarna Merah"
 
 #: init.lua
-msgid "Violet dye"
+msgid "Violet Dye"
 msgstr "Pewarna Ungu"
 
 #: init.lua
-msgid "White dye"
+msgid "White Dye"
 msgstr "Pewarna Putih"
 
 #: init.lua
-msgid "Yellow dye"
+msgid "Yellow Dye"
 msgstr "Pewarna Kuning"
 
 #: init.lua
@@ -860,11 +860,11 @@ msgid "Wooden Hoe"
 msgstr "Cangkul Kayu"
 
 #: init.lua
-msgid "Cotton seed"
+msgid "Cotton Seed"
 msgstr "Benih Kapas"
 
 #: init.lua
-msgid "Wheat seed"
+msgid "Wheat Seed"
 msgstr "Benih Gandum"
 
 #: init.lua
@@ -880,10 +880,6 @@ msgid "Straw"
 msgstr "Jerami"
 
 #: init.lua
-msgid "String"
-msgstr "Rentetan"
-
-#: init.lua
 msgid "Wheat"
 msgstr "Gandum"
 
@@ -896,7 +892,7 @@ msgid "Permanent Flame"
 msgstr "Api Abadi"
 
 #: init.lua
-msgid "White dandelion"
+msgid "White Dandelion"
 msgstr "Dandelion Putih"
 
 #: init.lua
@@ -916,8 +912,8 @@ msgid "Red Mushroom"
 msgstr "Cendawan Merah"
 
 #: init.lua
-msgid "Rose"
-msgstr "Ros"
+msgid "Red Rose"
+msgstr "Ros Merah"
 
 #: init.lua
 msgid "Orange Tulip"
@@ -941,143 +937,143 @@ msgstr "Pemutar Skru (klik-kiri putar muka, klik-kanan putar paksi)"
 
 #: init.lua
 msgid "Acacia Wood Slab"
-msgstr "Bidur Kayu Akasia"
+msgstr "Papak Kayu Akasia"
 
 #: init.lua
 msgid "Aspen Wood Slab"
-msgstr "Bidur Kayu Aspen"
+msgstr "Papak Kayu Aspen"
 
 #: init.lua
 msgid "Brick Slab"
-msgstr "Bidur Bata"
+msgstr "Papak Bata"
 
 #: init.lua
 msgid "Bronze Block Slab"
-msgstr "Bidur Bongkah Gangsa"
+msgstr "Papak Bongkah Gangsa"
 
 #: init.lua
 msgid "Cobblestone Slab"
-msgstr "Bidur Batu Buntar"
+msgstr "Papak Batu Buntar"
 
 #: init.lua
 msgid "Copper Block Slab"
-msgstr "Bidur Bongkah Tembaga"
+msgstr "Papak Bongkah Tembaga"
 
 #: init.lua
 msgid "Desert Cobblestone Slab"
-msgstr "Bidur Batu Buntar Gurun"
+msgstr "Papak Batu Buntar Gurun"
 
 #: init.lua
 msgid "Desert Sandstone Block Slab"
-msgstr "Bidur Bongkah Batu Pasir Gurun"
+msgstr "Papak Bongkah Batu Pasir Gurun"
 
 #: init.lua
 msgid "Desert Sandstone Brick Slab"
-msgstr "Bidur Bata Batu Pasir Gurun"
+msgstr "Papak Bata Batu Pasir Gurun"
 
 #: init.lua
 msgid "Desert Sandstone Slab"
-msgstr "Bidur Batu Pasir Gurun"
+msgstr "Papak Batu Pasir Gurun"
 
 #: init.lua
 msgid "Desert Stone Block Slab"
-msgstr "Bidur Bongkah Batu Gurun"
+msgstr "Papak Bongkah Batu Gurun"
 
 #: init.lua
 msgid "Desert Stone Brick Slab"
-msgstr "Bidur Bata Batu Gurun"
+msgstr "Papak Bata Batu Gurun"
 
 #: init.lua
 msgid "Desert Stone Slab"
-msgstr "Bidur Batu Gurun"
+msgstr "Papak Batu Gurun"
 
 #: init.lua
 msgid "Gold Block Slab"
-msgstr "Bidur Bongkah Emas"
+msgstr "Papak Bongkah Emas"
 
 #: init.lua
 msgid "Ice Slab"
-msgstr "Bidur Ais"
+msgstr "Papak Ais"
 
 #: init.lua
 msgid "Jungle Wood Slab"
-msgstr "Bidur Kayu Hutan"
+msgstr "Papak Kayu Hutan"
 
 #: init.lua
 msgid "Mossy Cobblestone Slab"
-msgstr "Bidur Batu Buntar Berlumut"
+msgstr "Papak Batu Buntar Berlumut"
 
 #: init.lua
 msgid "Obsidian Block Slab"
-msgstr "Bidur Bongkah Obsidia"
+msgstr "Papak Bongkah Obsidia"
 
 #: init.lua
 msgid "Obsidian Brick Slab"
-msgstr "Bidur Bata Obsidia"
+msgstr "Papak Bata Obsidia"
 
 #: init.lua
 msgid "Obsidian Slab"
-msgstr "Bidur Obsidia"
+msgstr "Papak Obsidia"
 
 #: init.lua
 msgid "Pine Wood Slab"
-msgstr "Bidur Kayu Pain"
+msgstr "Papak Kayu Pain"
 
 #: init.lua
 msgid "Sandstone Block Slab"
-msgstr "Bidur Bongkah Batu Pasir"
+msgstr "Papak Bongkah Batu Pasir"
 
 #: init.lua
 msgid "Sandstone Brick Slab"
-msgstr "Bidur Bata Batu Pasir"
+msgstr "Papak Bata Batu Pasir"
 
 #: init.lua
 msgid "Sandstone Slab"
-msgstr "Bidur Batu Pasir"
+msgstr "Papak Batu Pasir"
 
 #: init.lua
 msgid "Silver Sandstone Block Slab"
-msgstr "Bidur Bongkah Batu Pasir Perak"
+msgstr "Papak Bongkah Batu Pasir Perak"
 
 #: init.lua
 msgid "Silver Sandstone Brick Slab"
-msgstr "Bidur Bata Batu Pasir Perak"
+msgstr "Papak Bata Batu Pasir Perak"
 
 #: init.lua
 msgid "Silver Sandstone Slab"
-msgstr "Bidur Batu Pasir Perak"
+msgstr "Papak Batu Pasir Perak"
 
 #: init.lua
 msgid "Snow Block Slab"
-msgstr "Bidur Bongkah Salji"
+msgstr "Papak Bongkah Salji"
 
 #: init.lua
 msgid "Steel Block Slab"
-msgstr "Bidur Bongkah Keluli"
+msgstr "Papak Bongkah Keluli"
 
 #: init.lua
 msgid "Stone Block Slab"
-msgstr "Bidur Bongkah Batu"
+msgstr "Papak Bongkah Batu"
 
 #: init.lua
 msgid "Stone Brick Slab"
-msgstr "Bidur Bata Batu"
+msgstr "Papak Bata Batu"
 
 #: init.lua
 msgid "Stone Slab"
-msgstr "Bidur Batu"
+msgstr "Papak Batu"
 
 #: init.lua
 msgid "Straw Slab"
-msgstr "Bidur Jerami"
+msgstr "Papak Jerami"
 
 #: init.lua
 msgid "Tin Block Slab"
-msgstr "Bidur Bongkah Timah"
+msgstr "Papak Bongkah Timah"
 
 #: init.lua
 msgid "Wooden Slab"
-msgstr "Bidur Kayu"
+msgstr "Papak Kayu"
 
 #: init.lua
 msgid "Acacia Wood Stair"
@@ -1138,86 +1134,6 @@ msgstr "Tangga Bongkah Emas"
 #: init.lua
 msgid "Ice Stair"
 msgstr "Tangga Ais"
-
-#: init.lua
-msgid "Jungle Wood Stair"
-msgstr "Tangga Kayu Hutan"
-
-#: init.lua
-msgid "Mossy Cobblestone Stair"
-msgstr "Tangga Batu Buntar Berlumut"
-
-#: init.lua
-msgid "Obsidian Block Stair"
-msgstr "Tangga Bongkah Obsidia"
-
-#: init.lua
-msgid "Obsidian Brick Stair"
-msgstr "Tangga Bata Obsidia"
-
-#: init.lua
-msgid "Obsidian Stair"
-msgstr "Tangga Obsidia"
-
-#: init.lua
-msgid "Pine Wood Stair"
-msgstr "Tangga Kayu Pain"
-
-#: init.lua
-msgid "Sandstone Block Stair"
-msgstr "Tangga Bongkah Batu Pasir"
-
-#: init.lua
-msgid "Sandstone Brick Stair"
-msgstr "Tangga Bata Batu Pasir"
-
-#: init.lua
-msgid "Sandstone Stair"
-msgstr "Tangga Batu Pasir"
-
-#: init.lua
-msgid "Silver Sandstone Block Stair"
-msgstr "Tangga Bongkah Batu Pasir Perak"
-
-#: init.lua
-msgid "Silver Sandstone Brick Stair"
-msgstr "Tangga Bata Batu Pasir Perak"
-
-#: init.lua
-msgid "Silver Sandstone Stair"
-msgstr "Tangga Batu Pasir Perak"
-
-#: init.lua
-msgid "Snow Block Stair"
-msgstr "Tangga Bongkah Salji"
-
-#: init.lua
-msgid "Steel Block Stair"
-msgstr "Tangga Bongkah Keluli"
-
-#: init.lua
-msgid "Stone Block Stair"
-msgstr "Tangga Bongkah Batu"
-
-#: init.lua
-msgid "Stone Brick Stair"
-msgstr "Tangga Bata Batu"
-
-#: init.lua
-msgid "Stone Stair"
-msgstr "Tangga Batu"
-
-#: init.lua
-msgid "Straw Stair"
-msgstr "Tangga Jerami"
-
-#: init.lua
-msgid "Tin Block Stair"
-msgstr "Tangga Bongkah Timah"
-
-#: init.lua
-msgid "Wooden Stair"
-msgstr "Tangga Kayu"
 
 #: init.lua
 msgid "Acacia Wood Stair Inner"
@@ -1360,6 +1276,26 @@ msgid "Wooden Stair Inner"
 msgstr "Tangga Kayu Dalaman"
 
 #: init.lua
+msgid "Jungle Wood Stair"
+msgstr "Tangga Kayu Hutan"
+
+#: init.lua
+msgid "Mossy Cobblestone Stair"
+msgstr "Tangga Batu Buntar Berlumut"
+
+#: init.lua
+msgid "Obsidian Block Stair"
+msgstr "Tangga Bongkah Obsidia"
+
+#: init.lua
+msgid "Obsidian Brick Stair"
+msgstr "Tangga Bata Obsidia"
+
+#: init.lua
+msgid "Obsidian Stair"
+msgstr "Tangga Obsidia"
+
+#: init.lua
 msgid "Acacia Wood Stair Outer"
 msgstr "Tangga Kayu Akasia Luaran"
 
@@ -1500,6 +1436,66 @@ msgid "Wooden Stair Outer"
 msgstr "Tangga Kayu Luaran"
 
 #: init.lua
+msgid "Pine Wood Stair"
+msgstr "Tangga Kayu Pain"
+
+#: init.lua
+msgid "Sandstone Block Stair"
+msgstr "Tangga Bongkah Batu Pasir"
+
+#: init.lua
+msgid "Sandstone Brick Stair"
+msgstr "Tangga Bata Batu Pasir"
+
+#: init.lua
+msgid "Sandstone Stair"
+msgstr "Tangga Batu Pasir"
+
+#: init.lua
+msgid "Silver Sandstone Block Stair"
+msgstr "Tangga Bongkah Batu Pasir Perak"
+
+#: init.lua
+msgid "Silver Sandstone Brick Stair"
+msgstr "Tangga Bata Batu Pasir Perak"
+
+#: init.lua
+msgid "Silver Sandstone Stair"
+msgstr "Tangga Batu Pasir Perak"
+
+#: init.lua
+msgid "Snow Block Stair"
+msgstr "Tangga Bongkah Salji"
+
+#: init.lua
+msgid "Steel Block Stair"
+msgstr "Tangga Bongkah Keluli"
+
+#: init.lua
+msgid "Stone Block Stair"
+msgstr "Tangga Bongkah Batu"
+
+#: init.lua
+msgid "Stone Brick Stair"
+msgstr "Tangga Bata Batu"
+
+#: init.lua
+msgid "Stone Stair"
+msgstr "Tangga Batu"
+
+#: init.lua
+msgid "Straw Stair"
+msgstr "Tangga Jerami"
+
+#: init.lua
+msgid "Tin Block Stair"
+msgstr "Tangga Bongkah Timah"
+
+#: init.lua
+msgid "Wooden Stair"
+msgstr "Tangga Kayu"
+
+#: init.lua
 msgid "Gun Powder"
 msgstr "Serbuk Senjata Api"
 
@@ -1512,24 +1508,24 @@ msgid "Unknown Item"
 msgstr "Item Tidak Diketahui"
 
 #: init.lua
-msgid "Drinking Glass (empty)"
-msgstr "Gelas Minuman (Kosong)"
+msgid "Empty Drinking Glass"
+msgstr "Gelas Minuman Kosong"
 
 #: init.lua
-msgid "Glass Bottle (empty)"
-msgstr "Botol Kaca (Kosong)"
+msgid "Empty Glass Bottle"
+msgstr "Botol Kaca Kosong"
 
 #: init.lua
-msgid "Pile of Glass Fragments"
-msgstr "Timbunan Cebisan Kaca"
+msgid "Glass Fragments"
+msgstr "Cebisan Kaca"
 
 #: init.lua
 msgid "Vessels Shelf"
 msgstr "Rak Bekas Kaca"
 
 #: init.lua
-msgid "Heavy Steel Bottle (empty)"
-msgstr "Botol Keluli Berat (Kosong)"
+msgid "Empty Heavy Steel Bottle"
+msgstr "Botol Keluli Berat Kosong"
 
 #: init.lua
 msgid "Cobblestone Wall"
@@ -1604,7 +1600,7 @@ msgid "Yellow Wool"
 msgstr "Bulu Biri-Biri Kuning"
 
 #: init.lua
-msgid "Iron bar"
+msgid "Iron Bar"
 msgstr "Jeriji Besi"
 
 #: init.lua
@@ -1618,3 +1614,24 @@ msgstr "Pelangi Nyan Cat"
 #: init.lua
 msgid "Nyan Cat"
 msgstr "Nyan Cat"
+
+#~ msgid "Leaves"
+#~ msgstr "Daun Pokok"
+
+#~ msgid "Sapling"
+#~ msgstr "Anak Pokok"
+
+#~ msgid "Tree"
+#~ msgstr "Kayu Pokok"
+
+#~ msgid "Wooden Planks"
+#~ msgstr "Papan Kayu"
+
+#~ msgid "Trapdoor"
+#~ msgstr "Pintu Kolong"
+
+#~ msgid "String"
+#~ msgstr "Rentetan"
+
+#~ msgid "Rose"
+#~ msgstr "Ros"
