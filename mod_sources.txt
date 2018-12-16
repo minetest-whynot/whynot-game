@@ -216,6 +216,10 @@ origin	https://github.com/Ezhh/abriglass (fetch)
 * master eec4fcd [origin/master] Improve cage glass
 Mod: decor/abriglass
 
+origin	https://gitlab.com/VanessaE/basic_materials (fetch)
+* master a5fdb72 [origin/master] fix goldwire typo
+Mod: decor/basic_materials
+
 origin	https://github.com/Napiophelios/campfire (fetch)
 * master 25f6856 [origin/master] Update README.md
 Mod: decor/campfire
