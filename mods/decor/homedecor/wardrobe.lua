@@ -27,7 +27,7 @@ if skinsdb_mod_path then
 			skin_obj:set_texture("homedecor_clothes_"..skin_name..".png")
 			skin_obj:set_meta("name", "Wardrobe "..skin_name)
 			skin_obj:set_meta("author", 'Calinou and Jordach')
-			skin_obj:set_meta("license", 'WTFPL')
+			skin_obj:set_meta("license", 'CC-by-SA-4.0')
 			local file = io.open(homedecor.modpath.."/textures/homedecor_clothes_"..skin_name..".png", "r")
 			skin_obj:set_meta("format", skins.get_skin_format(file))
 			file:close()

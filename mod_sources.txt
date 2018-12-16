@@ -57,7 +57,7 @@ origin	https://github.com/minetest-mods/awards (fetch)
 Mod: player/awards
 
 origin	https://github.com/minetest-mods/character_creator (fetch)
-* master c3dead4 [origin/master] Add no_prepend to the formspec
+* master 8fba5d6 [origin/master] Add validity check for skin part switching
 Mod: player/character_creator
 
 origin	https://github.com/stujones11/clothing (fetch)
@@ -90,7 +90,7 @@ origin	https://github.com/minetest-mods/skinsdb (fetch)
 Mod: player/skinsdb
 
 origin	https://github.com/bell07/minetest-smart_inventory (fetch)
-* master        7479ded [origin/master] awards: patch awards resizing formspec elements
+* master        eae8d1f [origin/master] simple new unifieddyes support
 Mod: player/smart_inventory
 
 origin	https://github.com/GunshipPenguin/sprint (fetch)
@@ -270,16 +270,15 @@ origin	https://github.com/minetest-mods/ts_furniture (fetch)
 Mod: decor/ts_furniture
 
 origin	https://gitlab.com/VanessaE/unifieddyes (fetch)
-* no_colorstacks da24c09 check if pointed thing actually works in on_use
+* master         5039a8c [origin/master] Merge branch 'patch-1' into 'master'
 Mod: decor/unifieddyes
 
 bell07	https://gitlab.com/bell07/homedecor_modpack (fetch)
 origin	https://gitlab.com/VanessaE/homedecor_modpack/ (fetch)
-* no_colorstacks 04cb594 [bell07/master] bugfix wardrobe save/restore skins for skinsdb
+* master         d3b0429 [origin/master: ahead 1] bugfix wardrobe save/restore skins for skinsdb
 Mod: homedecor_modpack/homedecor_i18n
 Mod: homedecor_modpack/homedecor
 Mod: homedecor_modpack/building_blocks
-Mod: homedecor_modpack/chains
 Mod: homedecor_modpack/fake_fire
 Mod: homedecor_modpack/lavalamp
 Mod: homedecor_modpack/lrfurn

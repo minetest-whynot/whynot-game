@@ -337,6 +337,11 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	-- Switch skin
 	do
 		local function switch_skin(data_name, next_index)
+			if not indexes[data_name]
+					or not skins_array[data_name] then
+				return -- Supplied invalid data
+			end
+
 			local index = indexes[data_name] + next_index
 			local max = #skins_array[data_name]
 

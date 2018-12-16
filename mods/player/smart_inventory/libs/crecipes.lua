@@ -17,22 +17,24 @@ crecipes.crecipe_class = crecipe_class
 -----------------------------------------------------
 function crecipe_class:analyze()
 	-- check recipe output
-	if self._recipe.output ~= "" then
-		local out_itemname = self._recipe.output:gsub('"','')
-		out_itemname = minetest.registered_aliases[out_itemname] or out_itemname
-		self.out_item = minetest.registered_items[out_itemname]
-		if not self.out_item then
-			for z in out_itemname:gmatch("[^%s]+") do
-				local item = minetest.registered_aliases[z] or z
-				if minetest.registered_items[item] then
-					self.out_item = minetest.registered_items[item]
-				end
-				break
-			end
-		end
-	else
+
+	if self._recipe.type == "cooking" then
+		return false --fuel not supported
+	end
+
+	if self._recipe.output == "" then
+		minetest.log("[smartfs_inventory] broken recipe without output "..dump(self._recipe))
 		return false
 	end
+
+	local outstack = ItemStack(self._recipe.output)
+	if outstack:get_meta():get_int("palette_index") > 0 then
+		minetest.log("verbose", "[smartfs_inventory] ignore unifieddyes recipe "..self._recipe.output)
+		return -- not supported
+	end
+
+	self.out_item = outstack:get_definition()
+
 	if not self.out_item or not self.out_item.name then
 		minetest.log("[smartfs_inventory] unknown recipe result "..self._recipe.output)
 		return false
