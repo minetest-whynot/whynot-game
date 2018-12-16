@@ -90,7 +90,7 @@ origin	https://github.com/minetest-mods/skinsdb (fetch)
 Mod: player/skinsdb
 
 origin	https://github.com/bell07/minetest-smart_inventory (fetch)
-* master        36c75ed [origin/master] updated smartfs
+* master        7479ded [origin/master] awards: patch awards resizing formspec elements
 Mod: player/smart_inventory
 
 origin	https://github.com/GunshipPenguin/sprint (fetch)
@@ -117,7 +117,6 @@ origin	https://gitlab.com/zombiebot/weather_pack (fetch)
 * master 28744a1 [origin/master] Merge pull request #10 from bell07/patch-1
 Mod: ambience/weather_pack
 
-bell07	https://github.com/bell07/minetest-3d_armor (fetch)
 origin	https://github.com/stujones11/minetest-3d_armor (fetch)
 * master 4c032e8 [origin/master] Add Portuguese Translations
 Mod: 3d_armor/3d_armor
