@@ -6,7 +6,7 @@ local use_cmi = minetest.global_exists("cmi")
 
 mobs = {
 	mod = "redo",
-	version = "20181209",
+	version = "20181217",
 	intllib = S,
 	invis = minetest.global_exists("invisibility") and invisibility or {},
 }
@@ -3729,7 +3729,7 @@ function mobs:capture_mob(self, clicker, chance_hand, chance_net, chance_lasso,
 
 		minetest.chat_send_player(name, S("Not tamed!"))
 
-		return true -- false
+		return false
 	end
 
 	-- cannot pick up if not owner
@@ -3738,7 +3738,7 @@ function mobs:capture_mob(self, clicker, chance_hand, chance_net, chance_lasso,
 
 		minetest.chat_send_player(name, S("@1 is owner!", self.owner))
 
-		return true -- false
+		return false
 	end
 
 	if clicker:get_inventory():room_for_item("main", mobname) then
@@ -3807,10 +3807,14 @@ function mobs:capture_mob(self, clicker, chance_hand, chance_net, chance_lasso,
 
 			mob_sound(self, "default_place_node_hard")
 
+			return new_stack
+
 		elseif chance ~= 0 then
 			minetest.chat_send_player(name, S("Missed!"))
 
 			mob_sound(self, "mobs_swing")
+
+			return false
 		end
 	end
 

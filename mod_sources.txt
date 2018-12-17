@@ -279,7 +279,7 @@ Mod: decor/unifieddyes
 
 bell07	https://gitlab.com/bell07/homedecor_modpack (fetch)
 origin	https://gitlab.com/VanessaE/homedecor_modpack/ (fetch)
-* master         d3b0429 [origin/master: ahead 1] bugfix wardrobe save/restore skins for skinsdb
+* master         ac71c0f [origin/master] Merge branch 'master' into 'master'
 Mod: homedecor_modpack/homedecor_i18n
 Mod: homedecor_modpack/homedecor
 Mod: homedecor_modpack/building_blocks
@@ -359,5 +359,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master 70d2f63 [origin/master] fix nil error (thanks wziard)
+* master aeb802a [origin/master] forgot to revert testing returns, oopsie! fixed!
 Mod: mobs_redo/mobs_redo
