@@ -125,7 +125,7 @@ Mod: 3d_armor/shields
 Mod: 3d_armor/wieldview
 
 origin	https://notabug.org/TenPlus1/farming (fetch)
-* master e5aaa33 [origin/master] added carrot juice and recipe
+* master fec763e [origin/master] blueberry pie recipe now returns baking tray
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
@@ -279,7 +279,7 @@ Mod: decor/unifieddyes
 
 bell07	https://gitlab.com/bell07/homedecor_modpack (fetch)
 origin	https://gitlab.com/VanessaE/homedecor_modpack/ (fetch)
-* master         ac71c0f [origin/master] Merge branch 'master' into 'master'
+* master         82cca59 [origin/master: ahead 1] enable beds, even not optimal working
 Mod: homedecor_modpack/homedecor_i18n
 Mod: homedecor_modpack/homedecor
 Mod: homedecor_modpack/building_blocks

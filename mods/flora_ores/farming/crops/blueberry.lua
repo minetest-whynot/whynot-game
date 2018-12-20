@@ -42,6 +42,7 @@ minetest.register_craft({
 		"group:food_flour", "group:food_sugar",
 		"group:food_blueberries", "group:food_baking_tray"
 	},
+	replacements = {{"group:food_baking_tray", "farming:baking_tray"}}
 })
 
 -- blueberry definition
