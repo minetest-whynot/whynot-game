@@ -23,6 +23,7 @@ Lucky Blocks: 9
 
 
 Changelog:
+- 1.49- Added mobs:force_capture(self, player) function, api functions now use metatables thanks to bell07
 - 1.48- Add mobs:set_velocity(self, velocity) global function
 - 1.47- Mob damage changes, min and max light level for damage added, ignition sources checked for lava damage
 - 1.46- Mobs only drop rare items when killed by player (drops.min = 0 makes them rare), code tweak, pathfinding no longer sees through walkable nodes

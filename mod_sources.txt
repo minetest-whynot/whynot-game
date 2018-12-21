@@ -355,9 +355,9 @@ Mod: mesecons/mesecons_walllever
 Mod: mesecons/mesecons_wires
 
 origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
-* master d642007 [origin/master] add do_custom function so that spiders can climb walls
+* master eeb6a8e [origin/master] added mobs:force_capture() example to sand monster
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master aeb802a [origin/master] forgot to revert testing returns, oopsie! fixed!
+* master 487e037 [origin/master] added mobs:force_capture() function, api now uses metatables thanks to bell07
 Mod: mobs_redo/mobs_redo

@@ -455,6 +455,11 @@ replace with another item entirely.
    'replacewith'  once captured replace mob with this item instead (overrides
                   new mob eggs with saved information)
 
+mobs:force_capture(self, clicker)
+
+Same as above but does no checks, it simply captures any and all mobs and places
+inside a spawn egg containing all of the mob information.
+
 
 Feeding and Taming/Breeding
 ---------------------------
