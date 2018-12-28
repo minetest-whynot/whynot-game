@@ -189,7 +189,7 @@ origin	https://github.com/tacigar/maidroid (fetch)
 Mod: tools/maidroid
 
 origin	https://github.com/minetest-mods/orbs_of_time/ (fetch)
-* master 0d291b0 [origin/master] MineClone2 support (#2)
+* master bf7613b [origin/master] fix non-MCL2 recipes
 Mod: tools/orbs_of_time
 
 origin	https://github.com/dkartaschew/minetest-rainbowswords (fetch)
@@ -328,7 +328,7 @@ origin	https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin	https://github.com/minetest-mods/mesecons (fetch)
-* master 9d239cb [origin/master] Fix typos (#442)
+* master 302a289 [origin/master] Document inactive block behaviour (#447)
 Mod: mesecons/mesecons
 Mod: mesecons/mesecons_alias
 Mod: mesecons/mesecons_blinkyplant

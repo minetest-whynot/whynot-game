@@ -110,18 +110,18 @@ else
 	minetest.register_craft({
 		output = "orbs_of_time:orb_day",
 		recipe = {
-			{"mcl_core:diamond", "mcl_core:diamond","mcl_core:diamond"},
-			{"mcl_core:diamond", "default:mese_crystal","mcl_core:diamond"},
-			{"mcl_core:diamond", "mcl_core:diamond","mcl_core:diamond"}
+			{"default:diamond", "default:diamond","default:diamond"},
+			{"default:diamond", "default:mese_crystal_fragment","default:diamond"},
+			{"default:diamond", "default:diamond","default:diamond"}
 		},
 	})
 
 	minetest.register_craft({
 		output = "orbs_of_time:orb_night",
 		recipe = {
-			{"mcl_core:diamond", "mcl_core:diamond","mcl_core:diamond"},
-			{"mcl_core:diamond", "default:obsidian_shard","mcl_core:diamond"},
-			{"mcl_core:diamond", "mcl_core:diamond","mcl_core:diamond"}
+			{"default:diamond", "default:diamond","default:diamond"},
+			{"default:diamond", "default:obsidian_shard","default:diamond"},
+			{"default:diamond", "default:diamond","default:diamond"}
 		},
 	})
 end
