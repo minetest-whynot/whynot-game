@@ -328,7 +328,7 @@ origin	https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin	https://github.com/minetest-mods/mesecons (fetch)
-* master 302a289 [origin/master] Document inactive block behaviour (#447)
+* master 737f366 [origin/master] LuaC: add lightweight interrupts (#449)
 Mod: mesecons/mesecons
 Mod: mesecons/mesecons_alias
 Mod: mesecons/mesecons_blinkyplant
@@ -359,5 +359,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master 487e037 [origin/master] added mobs:force_capture() function, api now uses metatables thanks to bell07
+* master 78ef560 [origin/master] fix nametag bug when self.follow is nil
 Mod: mobs_redo/mobs_redo

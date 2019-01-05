@@ -6,7 +6,7 @@ local use_cmi = minetest.global_exists("cmi")
 
 mobs = {
 	mod = "redo",
-	version = "20181220",
+	version = "20181229",
 	intllib = S,
 	invis = minetest.global_exists("invisibility") and invisibility or {},
 }
@@ -537,7 +537,6 @@ function mob_class:update_tag()
 		nametag = self.nametag,
 		nametag_color = col
 	})
-
 end
 
 
@@ -974,6 +973,7 @@ local entity_physics = function(pos, radius)
 		obj_pos = objs[n]:get_pos()
 
 		dist = get_distance(pos, obj_pos)
+
 		if dist < 1 then dist = 1 end
 
 		local damage = floor((4 / dist) * radius)
@@ -3111,7 +3111,6 @@ function mob_class:on_step(dtime)
 	self:do_jump()
 
 	self:do_runaway_from(self)
-
 end
 
 
@@ -3947,12 +3946,9 @@ local mob_sta = {}
 -- feeding, taming and breeding (thanks blert2112)
 function mobs:feed_tame(self, clicker, feed_count, breed, tame)
 
-	if not self.follow then
-		return false
-	end
-
 	-- can eat/tame with item in hand
-	if self:follow_holding(clicker) then
+	if self.follow
+	and self:follow_holding(clicker) then
 
 		-- if not in creative then take item
 		if not mobs.is_creative(clicker:get_player_name()) then
@@ -3995,6 +3991,7 @@ function mobs:feed_tame(self, clicker, feed_count, breed, tame)
 
 		-- feed and tame
 		self.food = (self.food or 0) + 1
+
 		if self.food >= feed_count then
 
 			self.food = 0
@@ -4002,8 +3999,6 @@ function mobs:feed_tame(self, clicker, feed_count, breed, tame)
 			if breed and self.hornytimer == 0 then
 				self.horny = true
 			end
-
-			self.gotten = false
 
 			if tame then
 
