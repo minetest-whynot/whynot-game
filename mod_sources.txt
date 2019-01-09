@@ -125,7 +125,7 @@ Mod: 3d_armor/shields
 Mod: 3d_armor/wieldview
 
 origin	https://notabug.org/TenPlus1/farming (fetch)
-* master fec763e [origin/master] blueberry pie recipe now returns baking tray
+* master f908ccf [origin/master] add jaffa cake
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
@@ -359,5 +359,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master 78ef560 [origin/master] fix nametag bug when self.follow is nil
+* master 980a47b [origin/master] fix : to .
 Mod: mobs_redo/mobs_redo

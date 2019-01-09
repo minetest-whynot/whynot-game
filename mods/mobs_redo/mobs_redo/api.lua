@@ -6,7 +6,7 @@ local use_cmi = minetest.global_exists("cmi")
 
 mobs = {
 	mod = "redo",
-	version = "20181229",
+	version = "20190107",
 	intllib = S,
 	invis = minetest.global_exists("invisibility") and invisibility or {},
 }
@@ -2921,7 +2921,7 @@ function mob_class:mob_activate(staticdata, def, dtime)
 
 	-- run after_activate
 	if def.after_activate then
-		def:after_activate(staticdata, def, dtime)
+		def.after_activate(self, staticdata, def, dtime)
 	end
 
 	if use_cmi then
@@ -3294,7 +3294,8 @@ function mobs:spawn_specific(name, nodes, neighbors, min_light, max_light,
 		end
 
 		minetest.log("action",
-			string.format("[mobs] Chance setting for %s changed to %s (total: %s)", name, chance, aoc))
+			string.format("[mobs] Chance setting for %s changed to %s (total: %s)",
+				name, chance, aoc))
 
 	end
 

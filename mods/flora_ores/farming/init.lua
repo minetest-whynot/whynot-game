@@ -591,7 +591,7 @@ farming.registered_plants[mname .. ":" .. pname] = {
 	minlight = def.minlight,
 	maxlight = def.maxlight
 }
-print(dump(farming.registered_plants[mname .. ":" .. pname]))
+--print(dump(farming.registered_plants[mname .. ":" .. pname]))
 	-- Return info
 	return {seed = mname .. ":seed_" .. pname, harvest = mname .. ":" .. pname}
 end
@@ -621,6 +621,7 @@ farming.pepper = true
 farming.pineapple = true
 farming.peas = true
 farming.beetroot = true
+farming.grains = true
 farming.rarety = 0.002 -- 0.006
 
 
@@ -685,6 +686,7 @@ ddoo("pineapple.lua", farming.pineapple)
 ddoo("peas.lua", farming.peas)
 ddoo("beetroot.lua", farming.beetroot)
 ddoo("chili.lua", farming.chili)
+ddoo("ryeoatrice.lua", farming.grains)
 
 dofile(farming.path.."/food.lua")
 dofile(farming.path.."/mapgen.lua")

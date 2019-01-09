@@ -110,5 +110,13 @@ farming.registered_plants["farming:barley"] = {
 	seed = "farming:seed_barley",
 	minlight = 13,
 	maxlight = 15,
-	steps = 8
+	steps = 7
 }
+
+-- Fuel
+
+minetest.register_craft({
+	type = "fuel",
+	recipe = "farming:barley",
+	burntime = 1,
+})

@@ -128,3 +128,8 @@ Created by TenPlus1
   farming_rhubarb.png
   farming_rhubarb_pie.png
   farming_hemp*.png
+
+Created by ademant (CC-BY-3.0)
+  farming_rye*.png
+  farming_oat*.png
+  farming_rice*.png
