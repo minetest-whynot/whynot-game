@@ -98,7 +98,7 @@ origin	https://github.com/GunshipPenguin/sprint (fetch)
 Mod: player/sprint
 
 origin	https://github.com/minetest-mods/wielded_light (fetch)
-* master            62c92f5 [origin/master] try other position +-1 if current position not useable
+* master            791ebfa [origin/master] use setmetatable instead of table copy like in minetest game / default dropped item
 Mod: player/wielded_light
 
 origin	https://notabug.org/TenPlus1/ambience (fetch)
