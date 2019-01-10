@@ -60,8 +60,9 @@ origin	https://github.com/minetest-mods/character_creator (fetch)
 * master 8fba5d6 [origin/master] Add validity check for skin part switching
 Mod: player/character_creator
 
+bell07	https://github.com/bell07/clothing (fetch)
 origin	https://github.com/stujones11/clothing (fetch)
-* master 0ca41e0 [origin/master] Clothing tab in sfinv should be right to the creative
+* master 3d3555b [origin/master: ahead 1] fix for #16
 Mod: player/clothing
 
 origin	https://github.com/minetest-mods/cozy (fetch)
@@ -90,7 +91,7 @@ origin	https://github.com/minetest-mods/skinsdb (fetch)
 Mod: player/skinsdb
 
 origin	https://github.com/bell07/minetest-smart_inventory (fetch)
-* master        eae8d1f [origin/master] simple new unifieddyes support
+* master        9f24dbf [origin/master] player page: update clothing integration
 Mod: player/smart_inventory
 
 origin	https://github.com/GunshipPenguin/sprint (fetch)

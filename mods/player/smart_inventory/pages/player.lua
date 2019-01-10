@@ -19,10 +19,10 @@ local function update_grid(state, listname)
 	local list = {}
 	state.param["player_"..listname.."_list"] = list
 	local name = state.location.rootState.location.player
-
+	local player = minetest.get_player_by_name(name)
 	local invlist_tab = {}
 	if listname == "main" then
-		local inventory = minetest.get_player_by_name(name):get_inventory()
+		local inventory = player:get_inventory()
 		local invlist = inventory and inventory:get_list("main")
 		table.insert(invlist_tab, invlist)
 	else
@@ -34,11 +34,13 @@ local function update_grid(state, listname)
 			end
 		end
 		if smart_inventory.clothing_mod then
-			local inventory = minetest.get_player_by_name(name):get_inventory()
-			local invlist = inventory and inventory:get_list('clothing')
-			if invlist then
-				table.insert(invlist_tab, invlist)
+			local clothing_meta = player:get_attribute("clothing:inventory")
+			state.param.player_clothing_data = clothing_meta and minetest.deserialize(clothing_meta) or {}
+			local invlist = {}
+			for i=1,6 do
+				table.insert(invlist, ItemStack(state.param.player_clothing_data[i]))
 			end
+			table.insert(invlist_tab, invlist)
 		end
 	end
 
@@ -86,9 +88,6 @@ local function update_grid(state, listname)
 		end
 	end
 
-	table.sort(list, function(a,b)
-		return a.sort_value < b.sort_value
-	end)
 	local grid = state:get(listname.."_grid")
 	grid:setList(list)
 end
@@ -290,20 +289,27 @@ local function move_item_to_clothing(state, item)
 	local player = minetest.get_player_by_name(name)
 	local inventory = player:get_inventory()
 
-	for stack_index, stack in ipairs(inventory:get_list("clothing")) do
-		if stack:is_empty() then
-			inventory:set_stack("clothing", stack_index, item.item)
-			clothing:set_player_clothing(player)
-			-- handle put backs in non-creative to not lost items
-			if creative == false then
-				local itemstack = inventory:get_stack("main", item.stack_index)
-				itemstack:take_item()
-				inventory:set_stack("main", item.stack_index, itemstack)
-			end
-			break
+	local clothes = state.param.player_clothing_data
+	local clothes_ordered = {}
+
+	for i=1, 6 do
+		if clothes[i] then
+			table.insert(clothes_ordered, clothes[i])
 		end
 	end
 
+	if #clothes_ordered < 6 then
+		table.insert(clothes_ordered, item.item)
+		player:set_attribute("clothing:inventory", minetest.serialize(clothes_ordered))
+		clothing:set_player_clothing(player)
+		state.param.player_clothing_data = clothes_ordered
+		-- handle put backs in non-creative to not lost items
+		if creative == false then
+			local itemstack = inventory:get_stack("main", item.stack_index)
+			itemstack:take_item()
+			inventory:set_stack("main", item.stack_index, itemstack)
+		end
+	end
 end
 
 local function move_item_to_inv(state, item)
@@ -324,14 +330,17 @@ local function move_item_to_inv(state, item)
 		minetest.detached_inventories[name.."_armor"].on_take(armor_inv, "armor", item.stack_index, itemstack, player)
 
 	elseif cache.cgroups["clothing"] and cache.cgroups["clothing"].items[item.item] then
-		local itemstack = inventory:get_stack("clothing", item.stack_index)
-		if creative == true then
-			-- trash clothing item in creative
-			itemstack = ItemStack("")
+		local clothes = state.param.player_clothing_data
+
+		if creative ~= true and clothes[item.stack_index] then
+			local itemstack = inventory:add_item("main", ItemStack(clothes[item.stack_index]))
+			if itemstack:is_empty() then
+				clothes[item.stack_index] = nil
+			end
 		else
-			itemstack = inventory:add_item("main", itemstack)
+			clothes[item.stack_index] = nil
 		end
-		inventory:set_stack("clothing", item.stack_index, itemstack)
+		player:set_attribute("clothing:inventory", minetest.serialize(clothes))
 		clothing:set_player_clothing(player)
 	end
 

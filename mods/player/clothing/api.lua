@@ -54,18 +54,18 @@ clothing.set_player_clothing = function(self, player)
 		return
 	end
 	local name = player:get_player_name()
-	local player_inv = player:get_inventory()
-	if not name or not player_inv then
-		return
-	end
+
 	local layer = {
 		clothing = {},
 		cape = {},
 	}
+
+	local clothing_meta = player:get_attribute("clothing:inventory")
+	local clothes = clothing_meta and minetest.deserialize(clothing_meta) or {}
+
 	local capes = {}
 	for i=1, 6 do
-		local stack = player_inv:get_stack("clothing", i)
-		local item = stack:get_name()
+		local stack = ItemStack(clothes[i])
 		if stack:get_count() == 1 then
 			local def = stack:get_definition()
 			if def.uv_image then
