@@ -126,7 +126,7 @@ Mod: 3d_armor/shields
 Mod: 3d_armor/wieldview
 
 origin	https://notabug.org/TenPlus1/farming (fetch)
-* master f908ccf [origin/master] add jaffa cake
+* master f872075 [origin/master] tweaked grains growing vars
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
