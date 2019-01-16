@@ -60,9 +60,8 @@ origin	https://github.com/minetest-mods/character_creator (fetch)
 * master 8fba5d6 [origin/master] Add validity check for skin part switching
 Mod: player/character_creator
 
-bell07	https://github.com/bell07/clothing (fetch)
 origin	https://github.com/stujones11/clothing (fetch)
-* master 3d3555b [origin/master: ahead 1] fix for #16
+* master d7d1ccc [origin/master] fix for #16
 Mod: player/clothing
 
 origin	https://github.com/minetest-mods/cozy (fetch)
@@ -150,7 +149,7 @@ origin	https://github.com/GreenXenith/tac_nayn (fetch)
 Mod: mapgen/tac_nayn
 
 origin	https://github.com/taikedz/everamzah-backpacks (fetch)
-* master 25ba17f [origin/master] register_wool_backpack should not be global
+* master 7f617df [origin/master] removing rabbit_hide as it does not seem to be standard mobs_redo content
 Mod: tools/backpacks
 
 origin	https://github.com/SmallJoker/boost_cart (fetch)
@@ -243,7 +242,7 @@ Mod: decor/heads
 
 bell07	https://github.com/bell07/minetest-laptop (fetch)
 origin	https://github.com/Gerold55/laptop (fetch)
-* master 9a746f7 [bell07/master] Fix printer app removed status caused crash
+* master c546694 [bell07/master] mail: fix envelop on read mails
 Mod: decor/laptop
 
 origin	http://repo.or.cz/minetest_mtg_plus.git (fetch)
