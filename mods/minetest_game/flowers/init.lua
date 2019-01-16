@@ -59,7 +59,7 @@ end
 flowers.datas = {
 	{
 		"rose",
-		"Rose",
+		"Red Rose",
 		{-2 / 16, -0.5, -2 / 16, 2 / 16, 5 / 16, 2 / 16},
 		{color_red = 1, flammable = 1}
 	},
@@ -72,8 +72,14 @@ flowers.datas = {
 	{
 		"dandelion_yellow",
 		"Yellow Dandelion",
-		{-2 / 16, -0.5, -2 / 16, 2 / 16, 4 / 16, 2 / 16},
+		{-4 / 16, -0.5, -4 / 16, 4 / 16, -2 / 16, 4 / 16},
 		{color_yellow = 1, flammable = 1}
+	},
+	{
+		"chrysanthemum_green",
+		"Green Chrysanthemum",
+		{-4 / 16, -0.5, -4 / 16, 4 / 16, -1 / 16, 4 / 16},
+		{color_green = 1, flammable = 1}
 	},
 	{
 		"geranium",
@@ -89,9 +95,15 @@ flowers.datas = {
 	},
 	{
 		"dandelion_white",
-		"White dandelion",
+		"White Dandelion",
 		{-5 / 16, -0.5, -5 / 16, 5 / 16, -2 / 16, 5 / 16},
 		{color_white = 1, flammable = 1}
+	},
+	{
+		"tulip_black",
+		"Black Tulip",
+		{-2 / 16, -0.5, -2 / 16, 2 / 16, 3 / 16, 2 / 16},
+		{color_black = 1, flammable = 1}
 	},
 }
 
@@ -127,12 +139,9 @@ function flowers.flower_spread(pos, node)
 
 	local pos0 = vector.subtract(pos, 4)
 	local pos1 = vector.add(pos, 4)
-	-- Maximum flower density created by mapgen is 13 per 9x9 area.
-	-- The limit of 7 below was tuned by in-game testing to result in a maximum
-	-- flower density by ABM spread of 13 per 9x9 area.
-	-- Warning: Setting this limit theoretically without in-game testing
-	-- results in a maximum flower density by ABM spread that is far too high.
-	if #minetest.find_nodes_in_area(pos0, pos1, "group:flora") > 7 then
+	-- Testing shows that a threshold of 3 results in an appropriate maximum
+	-- density of approximately 7 flora per 9x9 area.
+	if #minetest.find_nodes_in_area(pos0, pos1, "group:flora") > 3 then
 		return
 	end
 
@@ -142,11 +151,14 @@ function flowers.flower_spread(pos, node)
 	if num_soils >= 1 then
 		for si = 1, math.min(3, num_soils) do
 			local soil = soils[math.random(num_soils)]
+			local soil_name = minetest.get_node(soil).name
 			local soil_above = {x = soil.x, y = soil.y + 1, z = soil.z}
 			light = minetest.get_node_light(soil_above)
 			if light and light >= 13 and
+					-- Only spread to same surface node
+					soil_name == under.name and
 					-- Desert sand is in the soil group
-					minetest.get_node(soil).name ~= "default:desert_sand" then
+					soil_name ~= "default:desert_sand" then
 				minetest.set_node(soil_above, {name = node.name})
 			end
 		end
@@ -197,7 +209,7 @@ minetest.register_node("flowers:mushroom_brown", {
 	sunlight_propagates = true,
 	walkable = false,
 	buildable_to = true,
-	groups = {snappy = 3, attached_node = 1, flammable = 1},
+	groups = {food_mushroom = 1, snappy = 3, attached_node = 1, flammable = 1},
 	sounds = default.node_sound_leaves_defaults(),
 	on_use = minetest.item_eat(1),
 	selection_box = {
@@ -265,7 +277,6 @@ minetest.register_node("flowers:waterlily", {
 	liquids_pointable = true,
 	walkable = false,
 	buildable_to = true,
-	sunlight_propagates = true,
 	floodable = true,
 	groups = {snappy = 3, flower = 1, flammable = 1},
 	sounds = default.node_sound_leaves_defaults(),

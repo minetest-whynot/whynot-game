@@ -36,10 +36,15 @@ function sfinv.get_nav_fs(player, context, nav, current_idx)
 	end
 end
 
-local theme_main = "bgcolor[#080808BB;true]" .. default.gui_bg ..
-		default.gui_bg_img
-
-local theme_inv = default.gui_slots .. [[
+local theme_inv = [[
+		image[0,4.75;1,1;gui_hb_bg.png]
+		image[1,4.75;1,1;gui_hb_bg.png]
+		image[2,4.75;1,1;gui_hb_bg.png]
+		image[3,4.75;1,1;gui_hb_bg.png]
+		image[4,4.75;1,1;gui_hb_bg.png]
+		image[5,4.75;1,1;gui_hb_bg.png]
+		image[6,4.75;1,1;gui_hb_bg.png]
+		image[7,4.75;1,1;gui_hb_bg.png]
 		list[current_player;main;0,4.7;8,1;]
 		list[current_player;main;0,5.85;8,3;8]
 	]]
@@ -47,13 +52,10 @@ local theme_inv = default.gui_slots .. [[
 function sfinv.make_formspec(player, context, content, show_inv, size)
 	local tmp = {
 		size or "size[8,8.6]",
-		theme_main,
 		sfinv.get_nav_fs(player, context, context.nav_titles, context.nav_idx),
+		show_inv and theme_inv or "",
 		content
 	}
-	if show_inv then
-		tmp[#tmp + 1] = theme_inv
-	end
 	return table.concat(tmp, "")
 end
 
@@ -137,6 +139,11 @@ function sfinv.set_page(player, pagename)
 		page:on_enter(player, context)
 	end
 	sfinv.set_player_inventory_formspec(player, context)
+end
+
+function sfinv.get_page(player)
+	local context = sfinv.contexts[player:get_player_name()]
+	return context and context.page or sfinv.get_homepage_name(player)
 end
 
 minetest.register_on_joinplayer(function(player)

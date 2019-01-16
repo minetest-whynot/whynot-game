@@ -85,17 +85,21 @@ clothing.set_player_clothing = function(self, player)
 	if cape_out == "" then
 		cape_out = "blank.png"
 	end
-	if minetest.global_exists("multiskin") then
-		local skin = multiskin.skins[name]
-		if skin then
-			skin.clothing = clothing_out
-			skin.cape = cape_out
-			multiskin.update_player_visuals(player)
-		end
-	else
-		clothing.player_textures[name] = clothing.player_textures[name] or {}
-		clothing.player_textures[name].clothing = clothing_out
-		clothing.player_textures[name].cape = cape_out
-	end
+
+	clothing.player_textures[name] = clothing.player_textures[name] or {}
+	clothing.player_textures[name].clothing = clothing_out
+	clothing.player_textures[name].cape = cape_out
+	player_api.update_textures(player)
 	self:run_callbacks("on_update", player)
 end
+
+player_api.register_skin_modifier(function(textures, player, player_model, player_skin)
+	local name = player:get_player_name()
+	local clothing_textures = clothing.player_textures[name]
+	if not clothing_textures then
+		return
+	end
+	textures.cape = clothing_textures.cape
+	textures.clothing = clothing_textures.clothing
+end)
+

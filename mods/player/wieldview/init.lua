@@ -11,14 +11,13 @@ if not node_tiles then
 end
 
 wieldview = {
-	wielded_item = {},
 	transform = {},
 }
 
 dofile(minetest.get_modpath(minetest.get_current_modname()).."/transform.lua")
 
 wieldview.get_item_texture = function(self, item)
-	local texture = "3d_armor_trans.png"
+	local texture = "blank.png"
 	if item ~= "" then
 		if minetest.registered_items[item] then
 			if minetest.registered_items[item].inventory_image ~= "" then
@@ -43,7 +42,7 @@ wieldview.get_item_texture = function(self, item)
 	return texture
 end
 
-wieldview.update_wielded_item = function(self, player)
+wieldview.update_wielded_item_textures = function(self, player, textures)
 	if not player then
 		return
 	end
@@ -53,29 +52,28 @@ wieldview.update_wielded_item = function(self, player)
 	if not item then
 		return
 	end
-	if self.wielded_item[name] then
-		if self.wielded_item[name] == item then
-			return
-		end
-		armor.textures[name].wielditem = self:get_item_texture(item)
-		armor:update_player_visuals(player)
-	end
-	self.wielded_item[name] = item
+	textures.wielditem = self:get_item_texture(item)
 end
 
-minetest.register_on_joinplayer(function(player)
-	local name = player:get_player_name()
-	wieldview.wielded_item[name] = ""
-	minetest.after(0, function(player)
-		wieldview:update_wielded_item(player)
-	end, player)
+player_api.register_skin_modifier(function(textures, player, model_name, skin_name, model_name)
+	wieldview:update_wielded_item_textures(player, textures)
 end)
+
 
 minetest.register_globalstep(function(dtime)
 	time = time + dtime
 	if time > update_time then
 		for _,player in ipairs(minetest.get_connected_players()) do
-			wieldview:update_wielded_item(player)
+			-- -- Proper API usage but overhead because of all hooks calculated
+			--player_api.update_textures(player)
+			-- -- Therefore hacky solution
+			local current = player_api.get_animation(player)
+			local model = player_api.registered_models[current.model]
+
+			wieldview:update_wielded_item_textures(player, current.textures)
+			current.textures[4] = current.textures.wielditem
+			current.textures.wielditem = nil
+			player:set_properties({textures = current.textures })
 		end
 		time = 0
 	end

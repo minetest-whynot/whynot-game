@@ -1,6 +1,8 @@
 -- Minetest 0.4 mod: bones
 -- See README.txt for licensing and other information.
 
+bones = {}
+
 local function is_owner(pos, name)
 	local owner = minetest.get_meta(pos):get_string("owner")
 	if owner == "" or owner == name or minetest.check_player_privs(name, "protection_bypass") then
@@ -11,9 +13,6 @@ end
 
 local bones_formspec =
 	"size[8,9]" ..
-	default.gui_bg ..
-	default.gui_bg_img ..
-	default.gui_slots ..
 	"list[current_name;main;0,0.3;8,4;]" ..
 	"list[current_player;main;0,4.85;8,1;]" ..
 	"list[current_player;main;0,6.08;8,3;8]" ..
@@ -157,12 +156,24 @@ end
 local drop = function(pos, itemstack)
 	local obj = minetest.add_item(pos, itemstack:take_item(itemstack:get_count()))
 	if obj then
-		obj:setvelocity({
+		obj:set_velocity({
 			x = math.random(-10, 10) / 9,
 			y = 5,
 			z = math.random(-10, 10) / 9,
 		})
 	end
+end
+
+local player_inventory_lists = { "main", "craft" }
+bones.player_inventory_lists = player_inventory_lists
+
+local function is_all_empty(player_inv)
+	for _, list_name in ipairs(player_inventory_lists) do
+		if not player_inv:is_empty(list_name) then
+			return false
+		end
+	end
+	return true
 end
 
 minetest.register_on_dieplayer(function(player)
@@ -172,20 +183,31 @@ minetest.register_on_dieplayer(function(player)
 		bones_mode = "bones"
 	end
 
+	local bones_position_message = minetest.settings:get_bool("bones_position_message") == true
+	local player_name = player:get_player_name()
+	local pos = vector.round(player:get_pos())
+	local pos_string = minetest.pos_to_string(pos)
+
 	-- return if keep inventory set or in creative mode
 	if bones_mode == "keep" or (creative and creative.is_enabled_for
 			and creative.is_enabled_for(player:get_player_name())) then
+		minetest.log("action", player_name .. " dies at " .. pos_string ..
+			". No bones placed")
+		if bones_position_message then
+			minetest.chat_send_player(player_name, player_name .. " died at " .. pos_string .. ".")
+		end
 		return
 	end
 
 	local player_inv = player:get_inventory()
-	if player_inv:is_empty("main") and
-		player_inv:is_empty("craft") then
+	if is_all_empty(player_inv) then
+		minetest.log("action", player_name .. " dies at " .. pos_string ..
+			". No bones placed")
+		if bones_position_message then
+			minetest.chat_send_player(player_name, player_name .. " died at " .. pos_string .. ".")
+		end
 		return
 	end
-
-	local pos = vector.round(player:getpos())
-	local player_name = player:get_player_name()
 
 	-- check if it's possible to place bones, if not find space near player
 	if bones_mode == "bones" and not may_replace(pos, player) then
@@ -198,43 +220,47 @@ minetest.register_on_dieplayer(function(player)
 	end
 
 	if bones_mode == "drop" then
-
-		-- drop inventory items
-		for i = 1, player_inv:get_size("main") do
-			drop(pos, player_inv:get_stack("main", i))
+		for _, list_name in ipairs(player_inventory_lists) do
+			for i = 1, player_inv:get_size(list_name) do
+				drop(pos, player_inv:get_stack(list_name, i))
+			end
+			player_inv:set_list(list_name, {})
 		end
-		player_inv:set_list("main", {})
-
-		-- drop crafting grid items
-		for i = 1, player_inv:get_size("craft") do
-			drop(pos, player_inv:get_stack("craft", i))
-		end
-		player_inv:set_list("craft", {})
-
 		drop(pos, ItemStack("bones:bones"))
+		minetest.log("action", player_name .. " dies at " .. pos_string ..
+			". Inventory dropped")
+		if bones_position_message then
+			minetest.chat_send_player(player_name, player_name .. " died at " .. pos_string ..
+				", and dropped their inventory.")
+		end
 		return
 	end
 
 	local param2 = minetest.dir_to_facedir(player:get_look_dir())
 	minetest.set_node(pos, {name = "bones:bones", param2 = param2})
 
+	minetest.log("action", player_name .. " dies at " .. pos_string ..
+		". Bones placed")
+	if bones_position_message then
+		minetest.chat_send_player(player_name, player_name .. " died at " .. pos_string ..
+			", and bones were placed.")
+	end
+
 	local meta = minetest.get_meta(pos)
 	local inv = meta:get_inventory()
 	inv:set_size("main", 8 * 4)
-	inv:set_list("main", player_inv:get_list("main"))
 
-	for i = 1, player_inv:get_size("craft") do
-		local stack = player_inv:get_stack("craft", i)
-		if inv:room_for_item("main", stack) then
-			inv:add_item("main", stack)
-		else
-			--drop if no space left
-			drop(pos, stack)
+	for _, list_name in ipairs(player_inventory_lists) do
+		for i = 1, player_inv:get_size(list_name) do
+			local stack = player_inv:get_stack(list_name, i)
+			if inv:room_for_item("main", stack) then
+				inv:add_item("main", stack)
+			else -- no space left
+				drop(pos, stack)
+			end
 		end
+		player_inv:set_list(list_name, {})
 	end
-
-	player_inv:set_list("main", {})
-	player_inv:set_list("craft", {})
 
 	meta:set_string("formspec", bones_formspec)
 	meta:set_string("owner", player_name)

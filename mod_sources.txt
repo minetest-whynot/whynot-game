@@ -1,22 +1,29 @@
 
+bell07	https://github.com/bell07/minetest_game (fetch)
 origin	https://github.com/minetest/minetest_game (fetch)
-* backport-0.4 030295f [origin/backport-0.4: ahead 3] pre-implementation for player in beds counter fix
+* master                7cdf6d8 [origin/master: ahead 2] fixes #2111 do not set players in bed counter up if player already in bed before
 Mod: minetest_game/mods/beds
+Mod: minetest_game/mods/binoculars
 Mod: minetest_game/mods/boats
 Mod: minetest_game/mods/bones
 Mod: minetest_game/mods/bucket
+Mod: minetest_game/mods/butterflies
 Mod: minetest_game/mods/carts
 Mod: minetest_game/mods/creative
 Mod: minetest_game/mods/default
 Mod: minetest_game/mods/doors
+Mod: minetest_game/mods/dungeon_loot
 Mod: minetest_game/mods/dye
 Mod: minetest_game/mods/fire
+Mod: minetest_game/mods/fireflies
 Mod: minetest_game/mods/flowers
+Mod: minetest_game/mods/game_commands
 Mod: minetest_game/mods/give_initial_stuff
-Mod: minetest_game/mods/killme
+Mod: minetest_game/mods/map
 Mod: minetest_game/mods/screwdriver
 Mod: minetest_game/mods/sethome
 Mod: minetest_game/mods/sfinv
+Mod: minetest_game/mods/spawn
 Mod: minetest_game/mods/stairs
 Mod: minetest_game/mods/tnt
 Mod: minetest_game/mods/vessels
@@ -24,17 +31,33 @@ Mod: minetest_game/mods/walls
 Mod: minetest_game/mods/wool
 Mod: minetest_game/mods/xpanes
 
+origin	https://github.com/minetest-mods/craftguide/ (fetch)
+* master       ed11bf3 [origin/master] Fix tooltip
+Mod: libs/craftguide
+
+origin	https://github.com/bell07/minetest_craftguide_reveal.git (fetch)
+* master 9e6346d [origin/master] be robust for revealed unknown items
+Mod: libs/craftguide_reveal
+
 origin	http://repo.or.cz/minetest_doc.git (fetch)
 * master d862b50 [origin/master] Version 1.1.1
 Mod: libs/doc
+
+origin	http://repo.or.cz/minetest_doc_basics.git (fetch)
+* master 84364af [origin/master] Add Italian translation (not 100% complete yet)
+Mod: libs/doc_basics
 
 origin	http://repo.or.cz/minetest_doc_items.git (fetch)
 * master ec3ad1b [origin/master] Parse group fake_liquid=1
 Mod: libs/doc_items
 
 origin	http://repo.or.cz/minetest_doc_minetest_game.git (fetch)
-* master e90b8e7 [origin/master: ahead 2] Merge remote-tracking branch 'origin/master'
+* master 9d5edf9 [origin/master] Update help texts (14/10/2018)
 Mod: libs/doc_minetest_game
+
+origin	https://github.com/bell07/minetest-doc_reveal_chest (fetch)
+* master d487a9a [origin/master] initial commit
+Mod: libs/doc_reveal_chest
 
 origin	https://github.com/minetest-mods/intllib (fetch)
 * master 9192771 [origin/master] Translated README to Malay.
@@ -56,14 +79,6 @@ origin	https://github.com/minetest-mods/awards (fetch)
 * master fb1670a [origin/master] Fix typo in documentation for craft trigger
 Mod: player/awards
 
-origin	https://github.com/minetest-mods/character_creator (fetch)
-* master 8fba5d6 [origin/master] Add validity check for skin part switching
-Mod: player/character_creator
-
-origin	https://github.com/stujones11/clothing (fetch)
-* master d7d1ccc [origin/master] fix for #16
-Mod: player/clothing
-
 origin	https://github.com/minetest-mods/cozy (fetch)
 * master cd166a7 [origin/master] Initial checkin
 Mod: player/cozy
@@ -72,7 +87,11 @@ origin	http://repo.or.cz/minetest_hbhunger (fetch)
 * master 7b10cdc [origin/master] Mark changelog as old
 Mod: player/hbhunger
 
-origin	http://repo.or.cz/minetest_hudbars (fetch)
+origin	https://github.com/minetest-mods/hbsprint (fetch)
+* master 7170277 [origin/master] Don't starve in creative to prevent crash
+Mod: player/hbsprint
+
+origin	https://repo.or.cz/minetest_hudbars.git (fetch)
 * master ba21f47 [origin/master] Version 1.11.0
 Mod: player/hudbars
 
@@ -84,22 +103,34 @@ origin	http://repo.or.cz/minetest_show_wielded_item.git (fetch)
 * master 2d4cc42 [origin/master] Initial commit + version 1.0.0
 Mod: player/show_wielded_item
 
-bell07	https://github.com/bell07/minetest-skinsdb (fetch)
-origin	https://github.com/minetest-mods/skinsdb (fetch)
-* master     4c3072b [origin/master] Merge pull request #20 from bell07/remove_updaters
-Mod: player/skinsdb
-
-origin	https://github.com/bell07/minetest-smart_inventory (fetch)
-* master        9f24dbf [origin/master] player page: update clothing integration
-Mod: player/smart_inventory
-
-origin	https://github.com/GunshipPenguin/sprint (fetch)
-* master d714ce3 [origin/master] Merge pull request #8 from bell07/patch-1
-Mod: player/sprint
-
 origin	https://github.com/minetest-mods/wielded_light (fetch)
 * master            791ebfa [origin/master] use setmetatable instead of table copy like in minetest game / default dropped item
 Mod: player/wielded_light
+
+origin	https://github.com/bell07/minetest-player_api_modpack (fetch)
+* master 17682fb [origin/master: ahead 1] character_creator: added support for sfinv_buttons
+Mod: player_api_modpack/3d_armor
+Mod: player_api_modpack/character_creator
+Mod: player_api_modpack/clothing
+Mod: player_api_modpack/multiskin_model
+Mod: player_api_modpack/player_api
+Mod: player_api_modpack/skin_admin
+Mod: player_api_modpack/skinsdb5
+Mod: player_api_modpack/wieldview
+
+origin	https://github.com/stujones11/minetest-3d_armor (fetch)
+* master 4c032e8 [origin/master] Add Portuguese Translations
+Mod: 3d_armor/3d_armor_stand
+Mod: 3d_armor/shields
+Mod: 3d_armor/3d_armor_sfinv
+
+origin	https://github.com/bell07/minetest-smart_sfinv (fetch)
+* master d973c11 [origin/master] localize leaked global
+Mod: smart_sfinv_modpack/sfinv_buttons
+Mod: smart_sfinv_modpack/smart_sfinv_api
+Mod: smart_sfinv_modpack/smart_sfinv_creative_bymod
+Mod: smart_sfinv_modpack/smart_sfinv_creative_sitebar
+Mod: smart_sfinv_modpack/smart_sfinv_tweaks
 
 origin	https://notabug.org/TenPlus1/ambience (fetch)
 * master cddaf64 [origin/master] update readme and version to 1.4
@@ -116,13 +147,6 @@ Mod: ambience/under_sky
 origin	https://gitlab.com/zombiebot/weather_pack (fetch)
 * master 28744a1 [origin/master] Merge pull request #10 from bell07/patch-1
 Mod: ambience/weather_pack
-
-origin	https://github.com/stujones11/minetest-3d_armor (fetch)
-* master 4c032e8 [origin/master] Add Portuguese Translations
-Mod: 3d_armor/3d_armor
-Mod: 3d_armor/3d_armor_stand
-Mod: 3d_armor/shields
-Mod: 3d_armor/wieldview
 
 origin	https://notabug.org/TenPlus1/farming (fetch)
 * master f872075 [origin/master] tweaked grains growing vars
@@ -159,10 +183,6 @@ Mod: tools/boost_cart
 origin	https://github.com/minetest-mods/ccompass (fetch)
 * master c5a6e43 [origin/master] Merge pull request #7 from minetest-mods/teleporter
 Mod: tools/ccompass
-
-origin	https://github.com/bell07/minetest-doc_reveal_chest (fetch)
-* master d487a9a [origin/master] initial commit
-Mod: tools/doc_reveal_chest
 
 origin	https://github.com/orwell96/engrave/ (fetch)
 * master d7c01a1 [origin/master] Make the formspec a textarea when the player has the engrave_long_names privilege

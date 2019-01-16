@@ -1,4 +1,6 @@
 default
+player_api
+multiskin_model
 player_monoids?
 armor_monoid?
 pova?

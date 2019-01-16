@@ -1,11 +1,6 @@
 character_creator = {}
 character_creator.skins = dofile(minetest.get_modpath("character_creator") .. "/skins.lua")
 
-local skinsdb
-if minetest.get_modpath("skinsdb") and minetest.global_exists("skins") then
-	skinsdb = skins
-end
-
 local skin_default = {
 	gender     = "Male",
 	height     = 1,
@@ -98,6 +93,9 @@ local function show_formspec(player)
 		-- Done
 		.. "button_exit[10,9;2.5,.5;done;Done]"
 		.. "button_exit[12.5,9;2.5,.5;cancel;Cancel]"
+
+	local playername = player:get_player_name()
+	player_api.set_skin(player,  "character_creator:"..playername)
 
 	minetest.show_formspec(player:get_player_name(), "character_creator", formspec)
 end
@@ -193,87 +191,46 @@ local function get_texture(player)
 end
 
 local function change_skin(player)
-	local texture = get_texture(player)
-
-	local width  = tonumber(player:get_attribute("character_creator:width"))
-	local height = tonumber(player:get_attribute("character_creator:height"))
-
-	player:set_properties({
-		visual_size = {
-			x = width,
-			y = height
-		}
-	})
-
-	local name = player:get_player_name()
-
-	if minetest.get_modpath("multiskin") then
-		multiskin.layers[name].skin = texture
-		armor:set_player_armor(player)
-		multiskin:set_player_textures(player, {textures = {texture}})
-	elseif minetest.get_modpath("3d_armor") then
-		armor.textures[name].skin = texture
-		armor:set_player_armor(player)
-	else
-		player:set_properties({textures = {texture}})
-	end
-
+	local playername = player:get_player_name()
+	local skin_obj = player_api.registered_skins["character_creator:"..playername]
+	skin_obj.texture = get_texture(player)
 	save_skin(player)
+	player_api.update_textures(player)
 end
 
-if skinsdb then
-	--change skin redefinition for skinsdb
-	function change_skin(player)
-		local playername = player:get_player_name()
-		local skinname = "character_creator:"..playername
-		local skin_obj = skinsdb.get(skinname) or skinsdb.new(skinname)
-		skin_obj:set_meta("format", "1.0")
-		skin_obj:set_meta("visual_size_x", tonumber(player:get_attribute("character_creator:width")))
-		skin_obj:set_meta("visual_size_y", tonumber(player:get_attribute("character_creator:height")))
-		skin_obj:apply_skin_to_player(player)
-		skinsdb.assign_player_skin(player, "character_creator:"..playername)
-		save_skin(player)
+player_api.register_skin_modifier(function(textures, player, player_model, player_skin)
+	if player_skin:sub(1,18) == 'character_creator:' then
+		player:set_properties({
+			visual_size = {
+				x = tonumber(player:get_attribute("character_creator:width")),
+				y = tonumber(player:get_attribute("character_creator:height"))
+			},
+		})
 	end
-end
+end)
 
 minetest.register_on_joinplayer(function(player)
+	local playername = player:get_player_name()
+	local skinname = "character_creator:"..playername
 	load_skin(player)
-	if skinsdb then
-		local playername = player:get_player_name()
-		local skinname = "character_creator:"..playername
-		local skin_obj = skinsdb.get(skinname) or skinsdb.new(skinname)
-		-- redefinitions
-		function skin_obj:set_skin(player)
-			if not player or not skin_indexes[player] then
-				return -- not loaded or disconnected
-			end
-			change_skin(player)
-			show_formspec(player)
-		end
-		function skin_obj:get_texture()
-			return get_texture(minetest.get_player_by_name(self:get_meta("playername")))
-		end
+	player_api.register_skin(skinname, {
+		playername = playername,
+		description = "Character creator",
+		license = "MIT / CC-BY-SA 3.0 Unported",
+		in_inventory_list = false,
+	})
+	change_skin(player)
 
-		-- set data
-		skin_obj:set_preview("inventory_plus_character_creator.png")
-		skin_obj:set_meta("name","Character Creator")
-		--skin_obj:set_meta("author", "???")
-		skin_obj:set_meta("license", "MIT / CC-BY-SA 3.0 Unported")
-		skin_obj:set_meta("playername",playername)
-		--check if active and start the update (avoid race condition for both register_on_joinplayer)
-		if skinsdb.get_player_skin(player):get_key() == skinname then
-			minetest.after(0, change_skin, player)
-		end
-	else
-		minetest.after(0, change_skin, player)
+	-- If case the player_api on_joinplayer was processed before
+	-- the default skin was applied, so we need to override it again
+	if player_api.get_skin(player) == skinname then
+		player_api.set_skin(player, skinname)
 	end
 end)
 
 minetest.register_on_leaveplayer(function(player)
-	if skinsdb then
-		local skinname = "character_creator:"..player:get_player_name()
-		skinsdb.meta[skinname] = nil
-	end
+	local playername = player:get_player_name()
+	player_api.registered_skins["character_creator:"..playername] = nil
 	skin_indexes[player] = nil
 end)
 
@@ -381,22 +338,19 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			skin_temp[player] = nil
 			quit = true
 		end
-
+		change_skin(player)
 		if not quit then
 			show_formspec(player)
 		end
 	end
-	change_skin(player)
 end)
 
 minetest.register_chatcommand("character_creator", {
 	func = function(name)
-		minetest.after(0.5, function()
-			local player = minetest.get_player_by_name(name)
-			if player then
-				show_formspec(player)
-			end
-		end)
+		local player = minetest.get_player_by_name(name)
+		if player then
+			show_formspec(player)
+		end
 	end
 })
 
@@ -415,4 +369,10 @@ elseif minetest.global_exists("inventory_plus") then
 			show_formspec(player)
 		end
 	end)
+elseif minetest.get_modpath("sfinv_buttons") then
+	sfinv_buttons.register_button("character_creator", {
+		image = "inventory_plus_character_creator.png",
+		title = "Character Creator",
+		action = show_formspec,
+	})
 end

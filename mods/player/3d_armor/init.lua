@@ -62,25 +62,24 @@ for material, _ in pairs(armor.materials) do
 	end
 end
 
+-- Skin modifier
+
+player_api.register_skin_modifier(function(textures, player, player_model, player_skin)
+	local name = player:get_player_name()
+	local player_armor = armor.textures[name] and armor.textures[name].armor
+	if textures.armor and player_armor then
+		textures.armor = textures.armor..'^'..player_armor
+	else
+		textures.armor = textures.armor or player_armor or "blank.png"
+	end
+end)
+
 -- Mod Compatibility
 
 if minetest.get_modpath("technic") then
 	armor.formspec = armor.formspec..
 		"label[5,2.5;"..F(S("Radiation"))..":  armor_group_radiation]"
 	armor:register_armor_group("radiation")
-end
-local skin_mods = {"skins", "u_skins", "simple_skins", "wardrobe"}
-for _, mod in pairs(skin_mods) do
-	local path = minetest.get_modpath(mod)
-	if path then
-		local dir_list = minetest.get_dir_list(path.."/textures")
-		for _, fn in pairs(dir_list) do
-			if fn:find("_preview.png$") then
-				armor:add_preview(fn)
-			end
-		end
-		armor.skin_mod = mod
-	end
 end
 if not minetest.get_modpath("moreores") then
 	armor.materials.mithril = nil
@@ -235,64 +234,12 @@ local function init_player_armor(player)
 	for group, _ in pairs(armor.registered_groups) do
 		armor.def[name].groups[group] = 0
 	end
-	local skin = armor:get_player_skin(name)
-	armor.textures[name] = {
-		skin = skin,
-		armor = "3d_armor_trans.png",
-		wielditem = "3d_armor_trans.png",
-		preview = armor.default_skin.."_preview.png",
-	}
-	local texture_path = minetest.get_modpath("player_textures")
-	if texture_path then
-		local dir_list = minetest.get_dir_list(texture_path.."/textures")
-		for _, fn in pairs(dir_list) do
-			if fn == "player_"..name..".png" then
-				armor.textures[name].skin = fn
-				break
-			end
-		end
-	end
+	armor.textures[name] = {}
 	armor:set_player_armor(player)
 	return true
 end
 
--- Armor Player Model
-
-default.player_register_model("3d_armor_character.b3d", {
-	animation_speed = 30,
-	textures = {
-		armor.default_skin..".png",
-		"3d_armor_trans.png",
-		"3d_armor_trans.png",
-	},
-	animations = {
-		stand = {x=0, y=79},
-		lay = {x=162, y=166},
-		walk = {x=168, y=187},
-		mine = {x=189, y=198},
-		walk_mine = {x=200, y=219},
-		sit = {x=81, y=160},
-	},
-})
-
-minetest.register_on_player_receive_fields(function(player, formname, fields)
-	local name = armor:get_valid_player(player, "[on_player_receive_fields]")
-	if not name then
-		return
-	end
-	for field, _ in pairs(fields) do
-		if string.find(field, "skins_set") then
-			minetest.after(0, function(player)
-				local skin = armor:get_player_skin(name)
-				armor.textures[name].skin = skin
-				armor:set_player_armor(player)
-			end, player)
-		end
-	end
-end)
-
 minetest.register_on_joinplayer(function(player)
-	default.player_set_model(player, "3d_armor_character.b3d")
 	minetest.after(0, function(player)
 		if init_player_armor(player) == false then
 			pending_players[player] = 0

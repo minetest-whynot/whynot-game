@@ -148,7 +148,7 @@ minetest.register_craftitem("bucket:bucket_empty", {
 				if inv:room_for_item("main", {name=liquiddef.itemname}) then
 					inv:add_item("main", liquiddef.itemname)
 				else
-					local pos = user:getpos()
+					local pos = user:get_pos()
 					pos.y = math.floor(pos.y + 0.5)
 					minetest.add_item(pos, liquiddef.itemname)
 				end
@@ -188,6 +188,12 @@ bucket.register_liquid(
 	"Water Bucket",
 	{water_bucket = 1}
 )
+
+-- River water source is 'liquid_renewable = false' to avoid horizontal spread
+-- of water sources in sloping rivers that can cause water to overflow
+-- riverbanks and cause floods.
+-- River water source is instead made renewable by the 'force renew' option
+-- used here.
 
 bucket.register_liquid(
 	"default:river_water_source",

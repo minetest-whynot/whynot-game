@@ -10,14 +10,20 @@ source "$LIB"/build-whynot.lib
 cd "$SRC" # for proper resolving the '*'
 
 ## Sync minetest_game
-mod_install minetest_game --exclude=farming minetest_game/mods/*
+mod_install minetest_game --exclude=farming --exclude=player_api minetest_game/mods/*
 
 mod_install libs
+
 mod_install player
+mod_install player --exclude=skins player_api_modpack/* #skinsdb5 should be used, therefore skins masked
+
+mod_install player 3d_armor/3d_armor_stand
+mod_install player 3d_armor/shields
+mod_install player 3d_armor/3d_armor_sfinv
+
+mod_install player smart_sfinv_modpack/*
 
 mod_install ambience
-
-mod_install player 3d_armor/3d_armor 3d_armor/3d_armor_stand 3d_armor/shields 3d_armor/wieldview
 
 mod_install flora_ores
 mod_install mapgen

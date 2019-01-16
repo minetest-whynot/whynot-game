@@ -1,10 +1,8 @@
 -- our API object
 doors = {}
 
--- private data
-local _doors = {}
-_doors.registered_doors = {}
-_doors.registered_trapdoors = {}
+doors.registered_doors = {}
+doors.registered_trapdoors = {}
 
 local function replace_old_owner_information(pos)
 	local meta = minetest.get_meta(pos)
@@ -18,7 +16,7 @@ end
 -- returns an object to a door object or nil
 function doors.get(pos)
 	local node_name = minetest.get_node(pos).name
-	if _doors.registered_doors[node_name] then
+	if doors.registered_doors[node_name] then
 		-- A normal upright door
 		return {
 			pos = pos,
@@ -26,23 +24,23 @@ function doors.get(pos)
 				if self:state() then
 					return false
 				end
-				return _doors.door_toggle(self.pos, nil, player)
+				return doors.door_toggle(self.pos, nil, player)
 			end,
 			close = function(self, player)
 				if not self:state() then
 					return false
 				end
-				return _doors.door_toggle(self.pos, nil, player)
+				return doors.door_toggle(self.pos, nil, player)
 			end,
 			toggle = function(self, player)
-				return _doors.door_toggle(self.pos, nil, player)
+				return doors.door_toggle(self.pos, nil, player)
 			end,
 			state = function(self)
 				local state = minetest.get_meta(self.pos):get_int("state")
 				return state %2 == 1
 			end
 		}
-	elseif _doors.registered_trapdoors[node_name] then
+	elseif doors.registered_trapdoors[node_name] then
 		-- A trapdoor
 		return {
 			pos = pos,
@@ -50,16 +48,16 @@ function doors.get(pos)
 				if self:state() then
 					return false
 				end
-				return _doors.trapdoor_toggle(self.pos, nil, player)
+				return doors.trapdoor_toggle(self.pos, nil, player)
 			end,
 			close = function(self, player)
 				if not self:state() then
 					return false
 				end
-				return _doors.trapdoor_toggle(self.pos, nil, player)
+				return doors.trapdoor_toggle(self.pos, nil, player)
 			end,
 			toggle = function(self, player)
-				return _doors.trapdoor_toggle(self.pos, nil, player)
+				return doors.trapdoor_toggle(self.pos, nil, player)
 			end,
 			state = function(self)
 				return minetest.get_node(self.pos).name:sub(-5) == "_open"
@@ -130,7 +128,7 @@ local transform = {
 	},
 }
 
-function _doors.door_toggle(pos, node, clicker)
+function doors.door_toggle(pos, node, clicker)
 	local meta = minetest.get_meta(pos)
 	node = node or minetest.get_node(pos)
 	local def = minetest.registered_nodes[node.name]
@@ -162,6 +160,14 @@ function _doors.door_toggle(pos, node, clicker)
 	end
 
 	local dir = node.param2
+
+	-- It's possible param2 is messed up, so, validate before using
+	-- the input data. This indicates something may have rotated
+	-- the door, even though that is not supported.
+	if not transform[state + 1] or not transform[state + 1][dir + 1] then
+		return false
+	end
+
 	if state % 2 == 0 then
 		minetest.sound_play(def.door.sounds[1],
 			{pos = pos, gain = 0.3, max_hear_distance = 10})
@@ -365,10 +371,11 @@ function doors.register(name, def)
 		name = name,
 		sounds = { def.sound_close, def.sound_open },
 	}
-
-	def.on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
-		_doors.door_toggle(pos, node, clicker)
-		return itemstack
+	if not def.on_rightclick then
+		def.on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
+			doors.door_toggle(pos, node, clicker)
+			return itemstack
+		end
 	end
 	def.after_dig_node = function(pos, node, meta, digger)
 		minetest.remove_node({x = pos.x, y = pos.y + 1, z = pos.z})
@@ -406,6 +413,7 @@ function doors.register(name, def)
 
 			return secret, "a locked door", owner
 		end
+		def.node_dig_prediction = ""
 	else
 		def.on_blast = function(pos, intensity)
 			minetest.remove_node(pos)
@@ -435,8 +443,8 @@ function doors.register(name, def)
 	def.mesh = "door_b.obj"
 	minetest.register_node(":" .. name .. "_b", def)
 
-	_doors.registered_doors[name .. "_a"] = true
-	_doors.registered_doors[name .. "_b"] = true
+	doors.registered_doors[name .. "_a"] = true
+	doors.registered_doors[name .. "_b"] = true
 end
 
 doors.register("door_wood", {
@@ -523,7 +531,7 @@ end
 
 ----trapdoor----
 
-function _doors.trapdoor_toggle(pos, node, clicker)
+function doors.trapdoor_toggle(pos, node, clicker)
 	node = node or minetest.get_node(pos)
 
 	replace_old_owner_information(pos)
@@ -556,7 +564,7 @@ function doors.register_trapdoor(name, def)
 	local name_opened = name.."_open"
 
 	def.on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
-		_doors.trapdoor_toggle(pos, node, clicker)
+		doors.trapdoor_toggle(pos, node, clicker)
 		return itemstack
 	end
 
@@ -603,6 +611,7 @@ function doors.register_trapdoor(name, def)
 
 			return secret, "a locked trapdoor", owner
 		end
+		def.node_dig_prediction = ""
 	else
 		def.on_blast = function(pos, intensity)
 			minetest.remove_node(pos)
@@ -658,12 +667,12 @@ function doors.register_trapdoor(name, def)
 	minetest.register_node(name_opened, def_opened)
 	minetest.register_node(name_closed, def_closed)
 
-	_doors.registered_trapdoors[name_opened] = true
-	_doors.registered_trapdoors[name_closed] = true
+	doors.registered_trapdoors[name_opened] = true
+	doors.registered_trapdoors[name_closed] = true
 end
 
 doors.register_trapdoor("doors:trapdoor", {
-	description = "Trapdoor",
+	description = "Wooden Trapdoor",
 	inventory_image = "doors_trapdoor.png",
 	wield_image = "doors_trapdoor.png",
 	tile_front = "doors_trapdoor.png",
@@ -779,14 +788,14 @@ function doors.register_fencegate(name, def)
 end
 
 doors.register_fencegate("doors:gate_wood", {
-	description = "Wooden Fence Gate",
+	description = "Apple Wood Fence Gate",
 	texture = "default_wood.png",
 	material = "default:wood",
 	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2}
 })
 
 doors.register_fencegate("doors:gate_acacia_wood", {
-	description = "Acacia Fence Gate",
+	description = "Acacia Wood Fence Gate",
 	texture = "default_acacia_wood.png",
 	material = "default:acacia_wood",
 	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2}
@@ -800,14 +809,14 @@ doors.register_fencegate("doors:gate_junglewood", {
 })
 
 doors.register_fencegate("doors:gate_pine_wood", {
-	description = "Pine Fence Gate",
+	description = "Pine Wood Fence Gate",
 	texture = "default_pine_wood.png",
 	material = "default:pine_wood",
 	groups = {choppy = 3, oddly_breakable_by_hand = 2, flammable = 3}
 })
 
 doors.register_fencegate("doors:gate_aspen_wood", {
-	description = "Aspen Fence Gate",
+	description = "Aspen Wood Fence Gate",
 	texture = "default_aspen_wood.png",
 	material = "default:aspen_wood",
 	groups = {choppy = 3, oddly_breakable_by_hand = 2, flammable = 3}

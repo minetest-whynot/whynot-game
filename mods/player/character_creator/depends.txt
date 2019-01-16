@@ -1,5 +1,4 @@
-3d_armor?
-multiskin?
+player_api
 inventory_plus?
 unified_inventory?
-skinsdb?
+sfinv_buttons?

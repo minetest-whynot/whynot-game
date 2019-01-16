@@ -50,6 +50,13 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
+	output = "default:pine_wood",
+	recipe = {
+		{"default:pine_bush_stem"},
+	}
+})
+
+minetest.register_craft({
 	output = 'default:stick 4',
 	recipe = {
 		{'group:wood'},
@@ -763,13 +770,34 @@ minetest.register_craft({
 	}
 })
 
+minetest.register_craft({
+	output = "default:emergent_jungle_sapling",
+	recipe = {
+		{"default:junglesapling", "default:junglesapling", "default:junglesapling"},
+		{"default:junglesapling", "default:junglesapling", "default:junglesapling"},
+		{"default:junglesapling", "default:junglesapling", "default:junglesapling"},
+	}
+})
+
+minetest.register_craft({
+	output = "default:large_cactus_seedling",
+	recipe = {
+		{"", "default:cactus", ""},
+		{"default:cactus", "default:cactus", "default:cactus"},
+		{"", "default:cactus", ""},
+	}
+})
+
+
 --
 -- Crafting (tool repair)
 --
+
 minetest.register_craft({
 	type = "toolrepair",
 	additional_wear = -0.02,
 })
+
 
 --
 -- Cooking recipes
@@ -848,6 +876,7 @@ minetest.register_craft({
 	recipe = 'default:key',
 	cooktime = 5,
 })
+
 
 --
 -- Fuels
@@ -942,6 +971,12 @@ minetest.register_craft({
 
 minetest.register_craft({
 	type = "fuel",
+	recipe = "default:pine_bush_sapling",
+	burntime = 2,
+})
+
+minetest.register_craft({
+	type = "fuel",
 	recipe = "default:aspen_sapling",
 	burntime = 4,
 })
@@ -962,6 +997,12 @@ minetest.register_craft({
 	type = "fuel",
 	recipe = "default:junglesapling",
 	burntime = 6,
+})
+
+minetest.register_craft({
+	type = "fuel",
+	recipe = "default:emergent_jungle_sapling",
+	burntime = 7,
 })
 
 
@@ -998,6 +1039,37 @@ minetest.register_craft({
 
 minetest.register_craft({
 	type = "fuel",
+	recipe = "default:fence_rail_aspen_wood",
+	burntime = 3,
+})
+
+minetest.register_craft({
+	type = "fuel",
+	recipe = "default:fence_rail_pine_wood",
+	burntime = 4,
+})
+
+minetest.register_craft({
+	type = "fuel",
+	recipe = "default:fence_rail_wood",
+	burntime = 5,
+})
+
+minetest.register_craft({
+	type = "fuel",
+	recipe = "default:fence_rail_acacia_wood",
+	burntime = 6,
+})
+
+minetest.register_craft({
+	type = "fuel",
+	recipe = "default:fence_rail_junglewood",
+	burntime = 7,
+})
+
+
+minetest.register_craft({
+	type = "fuel",
 	recipe = "default:bush_stem",
 	burntime = 7,
 })
@@ -1006,6 +1078,12 @@ minetest.register_craft({
 	type = "fuel",
 	recipe = "default:acacia_bush_stem",
 	burntime = 8,
+})
+
+minetest.register_craft({
+	type = "fuel",
+	recipe = "default:pine_bush_stem",
+	burntime = 6,
 })
 
 minetest.register_craft({
@@ -1024,6 +1102,12 @@ minetest.register_craft({
 	type = "fuel",
 	recipe = "default:cactus",
 	burntime = 15,
+})
+
+minetest.register_craft({
+	type = "fuel",
+	recipe = "default:large_cactus_seedling",
+	burntime = 5,
 })
 
 minetest.register_craft({
@@ -1095,6 +1179,18 @@ minetest.register_craft({
 minetest.register_craft({
 	type = "fuel",
 	recipe = "default:dry_grass_1",
+	burntime = 2,
+})
+
+minetest.register_craft({
+	type = "fuel",
+	recipe = "default:fern_1",
+	burntime = 2,
+})
+
+minetest.register_craft({
+	type = "fuel",
+	recipe = "default:marram_grass_1",
 	burntime = 2,
 })
 

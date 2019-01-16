@@ -17,8 +17,8 @@ vessels
 walls
 wool
 xpanes
-map?
-binoculars?
+map
+binoculars
 mesecons?
 doc_items
 doc_basics?

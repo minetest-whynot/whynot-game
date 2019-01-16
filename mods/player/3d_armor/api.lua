@@ -1,7 +1,6 @@
 -- support for i18n
 local S = armor_i18n.gettext
 
-local skin_previews = {}
 local use_player_monoids = minetest.global_exists("player_monoids")
 local use_armor_monoid = minetest.global_exists("armor_monoid")
 local use_pova_mod = minetest.get_modpath("pova")
@@ -19,15 +18,6 @@ local armor_def = setmetatable({}, {
 		})
 	end,
 })
-local armor_textures = setmetatable({}, {
-	__index = function()
-		return setmetatable({}, {
-			__index = function()
-				return "blank.png"
-			end
-		})
-	end
-})
 
 armor = {
 	timer = 0,
@@ -42,7 +32,7 @@ armor = {
 		"list[current_player;main;0,4.7;8,1;]"..
 		"list[current_player;main;0,5.85;8,3;8]",
 	def = armor_def,
-	textures = armor_textures,
+	textures = {},
 	default_skin = "character",
 	materials = {
 		wood = "group:wood",
@@ -158,21 +148,6 @@ armor.run_callbacks = function(self, callback, player, index, stack)
 			func(player, index, stack)
 		end
 	end
-end
-
-armor.update_player_visuals = function(self, player)
-	if not player then
-		return
-	end
-	local name = player:get_player_name()
-	if self.textures[name] then
-		default.player_set_textures(player, {
-			self.textures[name].skin,
-			self.textures[name].armor,
-			self.textures[name].wielditem,
-		})
-	end
-	self:run_callbacks("on_update", player)
 end
 
 armor.set_player_armor = function(self, player)
@@ -304,7 +279,8 @@ armor.set_player_armor = function(self, player)
 	self.def[name].level = self.def[name].groups.fleshy or 0
 	self.def[name].state = state
 	self.def[name].count = count
-	self:update_player_visuals(player)
+	player_api.update_textures(player)
+	self:run_callbacks("on_update", player)
 end
 
 armor.punch = function(self, player, hitter, time_from_last_punch, tool_capabilities)
@@ -393,27 +369,14 @@ armor.damage = function(self, player, index, stack, use)
 	end
 end
 
-armor.get_player_skin = function(self, name)
-	if (self.skin_mod == "skins" or self.skin_mod == "simple_skins") and skins.skins[name] then
-		return skins.skins[name]..".png"
-	elseif self.skin_mod == "u_skins" and u_skins.u_skins[name] then
-		return u_skins.u_skins[name]..".png"
-	elseif self.skin_mod == "wardrobe" and wardrobe.playerSkins and wardrobe.playerSkins[name] then
-		return wardrobe.playerSkins[name]
-	end
-	return armor.default_skin..".png"
-end
-
-armor.add_preview = function(self, preview)
-	skin_previews[preview] = true
-end
-
 armor.get_preview = function(self, name)
-	local preview = string.gsub(armor:get_player_skin(name), ".png", "_preview.png")
-	if skin_previews[preview] then
-		return preview
+	local player = minetest.get_player_by_name(name)
+	if player then
+		local current_skin = player_api.get_skin(player)
+		return player_api.registered_skins[current_skin].preview or 'character_preview.png'
+	else
+		return 'character_preview.png'
 	end
-	return "character_preview.png"
 end
 
 armor.get_armor_formspec = function(self, name, listring)
@@ -481,10 +444,6 @@ armor.save_armor_inventory = function(self, player)
 		player:set_attribute("3d_armor_inventory",
 			self:serialize_inventory_list(inv:get_list("armor")))
 	end
-end
-
-armor.update_inventory = function(self, player)
-	-- DEPRECATED: Legacy inventory support
 end
 
 armor.set_inventory_stack = function(self, player, i, stack)

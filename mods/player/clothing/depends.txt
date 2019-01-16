@@ -1,4 +1,4 @@
-multiskin?
+multiskin_model
 sfinv?
 creative?
 inventory_plus?

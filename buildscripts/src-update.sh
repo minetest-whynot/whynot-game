@@ -1,6 +1,10 @@
 #!/bin/bash
 
-cd "$(dirname $0)"/../../mods_src
+if [ -n "$2" ]; then
+	cd "$2" # update given directory only
+else
+	cd "$(dirname $0)"/../../mods_src
+fi
 
 VERBOSE="$1"
 
