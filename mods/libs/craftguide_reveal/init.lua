@@ -38,8 +38,7 @@ local function revealed_show_recipe(recipe, playername)
 	return true
 end
 
-
-function craftguide.progressive_filter_recipes(recipes, player)
+craftguide.set_progressive_filter(function(recipes, player)
 	local filtered = {}
 	for i = 1, #recipes do
 		local recipe = recipes[i]
@@ -48,4 +47,4 @@ function craftguide.progressive_filter_recipes(recipes, player)
 		end
 	end
 	return filtered
-end
+end)

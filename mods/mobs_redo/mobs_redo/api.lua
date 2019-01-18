@@ -6,7 +6,7 @@ local use_cmi = minetest.global_exists("cmi")
 
 mobs = {
 	mod = "redo",
-	version = "20190107",
+	version = "20190117",
 	intllib = S,
 	invis = minetest.global_exists("invisibility") and invisibility or {},
 }
@@ -453,8 +453,41 @@ function mobs:line_of_sight(entity, pos1, pos2, stepsize)
 end
 
 
+function mob_class:attempt_flight_correction()
+
+	if self:flight_check() then return true end
+
+	-- We are not flying in what we are supposed to.
+	-- See if we can find intended flight medium and return to it
+	local pos = self.object:get_pos()
+	local searchnodes = self.fly_in
+
+	if type(searchnodes) == "string" then
+		searchnodes = {self.fly_in}
+	end
+
+	local r = 1
+	local flyable_nodes = minetest.find_nodes_in_area(
+		{x = pos.x - r, y = pos.y - r, z = pos.z - r},
+		{x = pos.x + r, y = pos.y + r, z = pos.z + r},
+		searchnodes)
+
+	if #flyable_nodes < 1 then
+		return false
+	end
+
+	local escape_target = flyable_nodes[math.random(1,#flyable_nodes)]
+	local escape_direction = vector.direction(pos, escape_target)
+
+	self.object:set_velocity(
+		vector.multiply(escape_direction, self.run_velocity))
+
+	return true
+end
+
+
 -- are we flying in what we are suppose to? (taikedz)
-function mob_class:flight_check(pos_w)
+function mob_class:flight_check()
 
 	local def = minetest.registered_nodes[self.standing_in]
 
@@ -1808,8 +1841,10 @@ function mob_class:follow_flop()
 
 	-- swimmers flop when out of their element, and swim again when back in
 	if self.fly then
+
 		local s = self.object:get_pos()
-		if not self:flight_check(s) then
+
+		if not self:attempt_flight_correction() then
 
 			self.state = "flop"
 			self.object:set_velocity({x = 0, y = -5, z = 0})
@@ -2172,7 +2207,7 @@ function mob_class:do_states(dtime)
 				local p_y = floor(p2.y + 1)
 				local v = self.object:get_velocity()
 
-				if self:flight_check(s) then
+				if self:flight_check() then
 
 					if me_y < p_y then
 

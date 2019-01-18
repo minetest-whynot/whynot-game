@@ -32,11 +32,11 @@ Mod: minetest_game/mods/wool
 Mod: minetest_game/mods/xpanes
 
 origin	https://github.com/minetest-mods/craftguide/ (fetch)
-* master       ed11bf3 [origin/master] Fix tooltip
+* master       61ae85a [origin/master] Progressive mode: Add functions in API to add/set/get filters
 Mod: libs/craftguide
 
 origin	https://github.com/bell07/minetest_craftguide_reveal.git (fetch)
-* master 9e6346d [origin/master] be robust for revealed unknown items
+* master dbbd4e2 [origin/master] adjust craftguide API change
 Mod: libs/craftguide_reveal
 
 origin	http://repo.or.cz/minetest_doc.git (fetch)
@@ -379,5 +379,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master 980a47b [origin/master] fix : to .
+* master d3f5ead [origin/master] add new flight check function by taikedz
 Mod: mobs_redo/mobs_redo
