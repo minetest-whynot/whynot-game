@@ -32,11 +32,11 @@ Mod: minetest_game/mods/wool
 Mod: minetest_game/mods/xpanes
 
 origin	https://github.com/minetest-mods/craftguide/ (fetch)
-* master       61ae85a [origin/master] Progressive mode: Add functions in API to add/set/get filters
+* master       e6268a3 [origin/master] Empty data when player leaves
 Mod: libs/craftguide
 
 origin	https://github.com/bell07/minetest_craftguide_reveal.git (fetch)
-* master dbbd4e2 [origin/master] adjust craftguide API change
+* master f9e442d [origin/master] adjust API change
 Mod: libs/craftguide_reveal
 
 origin	http://repo.or.cz/minetest_doc.git (fetch)
@@ -64,7 +64,7 @@ origin	https://github.com/minetest-mods/intllib (fetch)
 Mod: libs/intllib
 
 origin	https://github.com/minetest-mods/mtg_i18n (fetch)
-* master 5ab9369 [origin/master] Translated using Weblate (Esperanto)
+* master e7d2927 [origin/master] Added translation using Weblate (Chinese (Traditional))
 Mod: libs/mtg_i18n
 
 origin	https://github.com/bell07/minetest-whynot_compat (fetch)
@@ -119,7 +119,7 @@ Mod: player_api_modpack/skinsdb5
 Mod: player_api_modpack/wieldview
 
 origin	https://github.com/stujones11/minetest-3d_armor (fetch)
-* master 4c032e8 [origin/master] Add Portuguese Translations
+* master 7e2d942 [origin/master] fix formatting
 Mod: 3d_armor/3d_armor_stand
 Mod: 3d_armor/shields
 Mod: 3d_armor/3d_armor_sfinv
