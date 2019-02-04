@@ -17,6 +17,7 @@ minetest.register_craftitem("farming:smoothie_raspberry", {
 	description = S("Raspberry Smoothie"),
 	inventory_image = "farming_raspberry_smoothie.png",
 	on_use = minetest.item_eat(2, "vessels:drinking_glass"),
+	groups = {vessel = 1},
 })
 
 minetest.register_craft({

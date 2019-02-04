@@ -44,6 +44,9 @@ functions needed for the mob to work properly which contains the following:
    'fly'           when true allows your mob to fly around instead of walking.
    'fly_in'        holds the node name that the mob flies (or swims) around
                    in e.g. "air" or "default:water_source".
+   'stay_near'     when set allows mobs the chance to stay around certain nodes.
+      'nodes'      string or table of nodes to stay nearby e.g. "farming:straw"
+      'chance'     chance of searching for above node(s), default is 10.
    'runaway'       if true causes animals to turn and run away when hit.
    'pushable'      when true mobs can be pushed by player or other mobs.
    'view_range'    how many nodes in distance the mob can see a player.

@@ -457,7 +457,7 @@ function farming.place_seed(itemstack, placer, pointed_thing, plantname)
 		minetest.set_node(pt.above, {name = plantname, param2 = p2})
 
 --minetest.get_node_timer(pt.above):start(1)
-farming.handle_growth(pt.above)--, node)
+--farming.handle_growth(pt.above)--, node)
 
 		minetest.sound_play("default_place_node", {pos = pt.above, gain = 1.0})
 

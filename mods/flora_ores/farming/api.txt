@@ -56,3 +56,9 @@ growth_check = function(pos, node_name)
 	end
 	return true -- condition not met, skip next growth stage until next check
 end,
+
+### Scythe items that will not drop
+
+This is a function to add items to a list that scythes will not drop, e.g. farming:trellis or farming:beanpole.
+
+farming.add_to_scythe_not_drops(item_name)

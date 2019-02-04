@@ -6,7 +6,7 @@ local use_cmi = minetest.global_exists("cmi")
 
 mobs = {
 	mod = "redo",
-	version = "20190117",
+	version = "20190124",
 	intllib = S,
 	invis = minetest.global_exists("invisibility") and invisibility or {},
 }
@@ -466,17 +466,16 @@ function mob_class:attempt_flight_correction()
 		searchnodes = {self.fly_in}
 	end
 
-	local r = 1
 	local flyable_nodes = minetest.find_nodes_in_area(
-		{x = pos.x - r, y = pos.y - r, z = pos.z - r},
-		{x = pos.x + r, y = pos.y + r, z = pos.z + r},
+		{x = pos.x - 1, y = pos.y - 1, z = pos.z - 1},
+		{x = pos.x + 1, y = pos.y + 1, z = pos.z + 1},
 		searchnodes)
 
 	if #flyable_nodes < 1 then
 		return false
 	end
 
-	local escape_target = flyable_nodes[math.random(1,#flyable_nodes)]
+	local escape_target = flyable_nodes[math.random(1, #flyable_nodes)]
 	local escape_direction = vector.direction(pos, escape_target)
 
 	self.object:set_velocity(
@@ -517,6 +516,57 @@ function mob_class:flight_check()
 	end
 
 	return false
+end
+
+
+-- if self.stay_near set then check periodically for nodes and turn to face/move
+function mob_class:do_stay_near()
+
+	if not self.stay_near then return false end
+
+	local pos = self.object:get_pos()
+	local searchnodes = self.stay_near[1]
+	local chance = self.stay_near[2] or 10
+
+	if random(1, chance) > 1 then
+		return false
+	end
+
+	if type(searchnodes) == "string" then
+		searchnodes = {self.stay_near[1]}
+	end
+
+	local r = self.view_range
+	local nearby_nodes = minetest.find_nodes_in_area(
+		{x = pos.x - r, y = pos.y - 1, z = pos.z - r},
+		{x = pos.x + r, y = pos.y + 1, z = pos.z + r},
+		searchnodes)
+
+	if #nearby_nodes < 1 then
+		return false
+	end
+
+	local target = nearby_nodes[math.random(1, #nearby_nodes)]
+	local direction = vector.direction(pos, target)
+
+	local vec = {
+		x = target.x - pos.x,
+		z = target.z - pos.z
+	}
+
+	yaw = (atan(vec.z / vec.x) + pi / 2) - self.rotate
+
+	if target.x > pos.x then
+		yaw = yaw + pi
+	end
+
+	yaw = self:set_yaw(yaw, 4)
+
+	self:set_animation("walk")
+
+	self:set_velocity(self.walk_velocity)
+
+	return true
 end
 
 
@@ -1525,7 +1575,7 @@ function mob_class:smart_mobs(s, p, dist, dtime)
 			self.path.stuck_timer = stuck_timeout - 2
 
 			-- frustration! cant find the damn path :(
-			self:mob_sound(self.sounds.random)
+			--self:mob_sound(self.sounds.random)
 		else
 			-- yay i found path
 			self:mob_sound(self.sounds.war_cry)
@@ -2604,7 +2654,7 @@ function mob_class:on_punch(hitter, tflp, tool_capabilities, dir)
 
 	if tr then
 		if weapon_def.original_description then
-			weapon:add_wear(toolranks.new_afteruse(weapon, hitter, nil, {wear = wear}))
+			toolranks.new_afteruse(weapon, hitter, nil, {wear = wear})
 		end
 	else
 		weapon:add_wear(wear)
@@ -3146,6 +3196,8 @@ function mob_class:on_step(dtime)
 	self:do_jump()
 
 	self:do_runaway_from(self)
+
+	self:do_stay_near()
 end
 
 
@@ -3255,6 +3307,7 @@ minetest.register_entity(name, setmetatable({
 	runaway_from = def.runaway_from,
 	owner_loyal = def.owner_loyal,
 	pushable = def.pushable,
+	stay_near = def.stay_near,
 
 	on_spawn = def.on_spawn,
 

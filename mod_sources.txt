@@ -1,7 +1,7 @@
 
 bell07	https://github.com/bell07/minetest_game (fetch)
 origin	https://github.com/minetest/minetest_game (fetch)
-* master                7cdf6d8 [origin/master: ahead 2] fixes #2111 do not set players in bed counter up if player already in bed before
+* master                7a4867d [origin/master: ahead 4] Merge remote-tracking branch 'origin/master'
 Mod: minetest_game/mods/beds
 Mod: minetest_game/mods/binoculars
 Mod: minetest_game/mods/boats
@@ -32,11 +32,11 @@ Mod: minetest_game/mods/wool
 Mod: minetest_game/mods/xpanes
 
 origin	https://github.com/minetest-mods/craftguide/ (fetch)
-* master       e6268a3 [origin/master] Empty data when player leaves
+* master       4289dea [origin/master] Separate recipe filters and progressive mode
 Mod: libs/craftguide
 
 origin	https://github.com/bell07/minetest_craftguide_reveal.git (fetch)
-* master f9e442d [origin/master] adjust API change
+* master e119121 [origin/master] update again craftguide API change
 Mod: libs/craftguide_reveal
 
 origin	http://repo.or.cz/minetest_doc.git (fetch)
@@ -76,7 +76,7 @@ origin	https://github.com/Chemguy99/armor_addon (fetch)
 Mod: player/armor_addon
 
 origin	https://github.com/minetest-mods/awards (fetch)
-* master fb1670a [origin/master] Fix typo in documentation for craft trigger
+* master 1ffa8f1 [origin/master] Add missing german translations
 Mod: player/awards
 
 origin	https://github.com/minetest-mods/cozy (fetch)
@@ -149,7 +149,7 @@ origin	https://gitlab.com/zombiebot/weather_pack (fetch)
 Mod: ambience/weather_pack
 
 origin	https://notabug.org/TenPlus1/farming (fetch)
-* master f872075 [origin/master] tweaked grains growing vars
+* master feab0cc [origin/master] add farming.add_to_scythe_not_drops(item) function for expansion
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
@@ -379,5 +379,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master d3f5ead [origin/master] add new flight check function by taikedz
+* master 8da3bb5 [origin/master] add do_stay_near function, fix annoying pathfinding sounds and toolrank wear
 Mod: mobs_redo/mobs_redo
