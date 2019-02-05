@@ -1,7 +1,7 @@
 
 bell07	https://github.com/bell07/minetest_game (fetch)
 origin	https://github.com/minetest/minetest_game (fetch)
-* master                7a4867d [origin/master: ahead 4] Merge remote-tracking branch 'origin/master'
+* master                9e62cf1 [origin/master: ahead 5] Merge remote-tracking branch 'origin/master'
 Mod: minetest_game/mods/beds
 Mod: minetest_game/mods/binoculars
 Mod: minetest_game/mods/boats
@@ -32,7 +32,7 @@ Mod: minetest_game/mods/wool
 Mod: minetest_game/mods/xpanes
 
 origin	https://github.com/minetest-mods/craftguide/ (fetch)
-* master       4289dea [origin/master] Separate recipe filters and progressive mode
+* master       fd4ed51 [origin/master] Minor cleaning
 Mod: libs/craftguide
 
 origin	https://github.com/bell07/minetest_craftguide_reveal.git (fetch)

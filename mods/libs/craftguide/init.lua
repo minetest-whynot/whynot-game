@@ -26,7 +26,7 @@ local S = dofile(mt.get_modpath("craftguide") .. "/intllib.lua")
 local maxn, sort, concat = table.maxn, table.sort, table.concat
 local vector_add, vector_mul = vector.add, vector.multiply
 local min, max, floor, ceil = math.min, math.max, math.floor, math.ceil
-local fmt = string.format
+local fmt, pairs, next = string.format, pairs, next
 
 local DEFAULT_SIZE = 10
 local MIN_LIMIT, MAX_LIMIT = 10, 12
@@ -152,6 +152,7 @@ end
 
 local function cache_recipes(output)
 	local recipes = mt.get_all_craft_recipes(output) or {}
+
 	for i = 1, #craftguide.custom_crafts do
 		local custom_craft = craftguide.custom_crafts[i]
 		if custom_craft.output:match("%S*") == output then
@@ -309,7 +310,8 @@ local function get_recipe_fs(data, iY)
 
 	if custom_recipe or shapeless or recipe.type == "cooking" then
 		local icon = custom_recipe and custom_recipe.icon or
-				shapeless and "shapeless" or "furnace"
+			     shapeless and "shapeless" or "furnace"
+
 		if not custom_recipe then
 			icon = "craftguide_" .. icon .. ".png^[resize:16x16"
 		end
@@ -402,16 +404,17 @@ local function make_formspec(name)
 	data.pagemax = max(1, ceil(#data.items / ipp))
 
 	local fs = {}
+
 	if not sfinv_only then
-		fs[#fs + 1] = "size[" .. (data.iX - 0.35) .. "," .. (iY + 4) .. ";]"
+		fs[#fs + 1] = fmt("size[%f,%f;]", data.iX - 0.35, iY + 4)
 		fs[#fs + 1] = "no_prepend[]"
 		fs[#fs + 1] = "background[1,1;1,1;craftguide_bg.png;true]"
 		fs[#fs + 1] = "tooltip[size_inc;" .. S("Increase window size") .. "]"
 		fs[#fs + 1] = "tooltip[size_dec;" .. S("Decrease window size") .. "]"
 		fs[#fs + 1] = "image_button[" .. (data.iX * 0.47) ..
-				",0.12;0.8,0.8;craftguide_zoomin_icon.png;size_inc;]"
+			",0.12;0.8,0.8;craftguide_zoomin_icon.png;size_inc;]"
 		fs[#fs + 1] = "image_button[" .. ((data.iX * 0.47) + 0.6) ..
-				",0.12;0.8,0.8;craftguide_zoomout_icon.png;size_dec;]"
+			",0.12;0.8,0.8;craftguide_zoomout_icon.png;size_dec;]"
 	end
 
 	fs[#fs + 1] = [[
@@ -441,6 +444,7 @@ local function make_formspec(name)
 	end
 
 	local first_item = (data.pagenum - 1) * ipp
+
 	for i = first_item, first_item + ipp - 1 do
 		local item = data.items[i + 1]
 		if not item then
@@ -476,6 +480,7 @@ end
 
 local function search(data)
 	local filter = data.filter
+
 	if searches[filter] then
 		data.items = searches[filter]
 		return
@@ -521,13 +526,14 @@ end
 
 local function get_item_usages(item)
 	local usages = {}
+
 	for _, recipes in pairs(recipes_cache) do
-		for i = 1, #recipes do
-			local recipe = recipes[i]
-			if item_in_recipe(item, recipe) then
-				usages[#usages + 1] = recipe
-			end
+	for i = 1, #recipes do
+		local recipe = recipes[i]
+		if item_in_recipe(item, recipe) then
+			usages[#usages + 1] = recipe
 		end
+	end
 	end
 
 	if fuel_cache[item] then
