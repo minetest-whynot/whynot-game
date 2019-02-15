@@ -13,13 +13,15 @@ local searches = {}
 local progressive_mode = mt.settings:get_bool("craftguide_progressive_mode")
 local sfinv_only = mt.settings:get_bool("craftguide_sfinv_only") and rawget(_G, "sfinv")
 
+local colorize = mt.colorize
+local fs_esc = mt.formspec_escape
 local reg_items = mt.registered_items
 local get_result = mt.get_craft_result
 local show_formspec = mt.show_formspec
+local get_player_by_name = mt.get_player_by_name
 local serialize, deserialize = mt.serialize, mt.deserialize
 
--- Intllib
-local S = dofile(mt.get_modpath("craftguide") .. "/intllib.lua")
+local S = mt.get_translator("craftguide")
 
 -- Lua 5.3 removed `table.maxn`, use this alternative in case of breakage:
 -- https://github.com/kilbith/xdecor/blob/master/handlers/helpers.lua#L1
@@ -48,25 +50,48 @@ local group_stereotypes = {
 	mesecon_conductor_craftable = "mesecons:wire_00000000_off",
 }
 
+local item_lists = {
+	"main",
+	"craft",
+	"craftpreview",
+}
+
 local function table_merge(t, t2)
+	t, t2 = t or {}, t2 or {}
+	local c = #t
+
 	for i = 1, #t2 do
-		t[#t + 1] = t2[i]
+		c = c + 1
+		t[c] = t2[i]
 	end
 
 	return t
 end
 
-local function table_clean(t)
-	local hash, ct = {}, {}
+local function table_diff(t, t2)
+	local hash = {}
+
 	for i = 1, #t do
 		local v = t[i]
-		if not hash[v] then
-			ct[#ct + 1] = v
-			hash[v] = true
+		hash[v] = true
+	end
+
+	for i = 1, #t2 do
+		local v = t2[i]
+		hash[v] = nil
+	end
+
+	local ret, c = {}, 0
+
+	for i = 1, #t do
+		local v = t[i]
+		if hash[v] then
+			c = c + 1
+			ret[c] = v
 		end
 	end
 
-	return ct
+	return ret
 end
 
 local function __func()
@@ -84,11 +109,6 @@ function craftguide.register_craft_type(name, def)
 	end
 end
 
-craftguide.register_craft_type("digging", {
-	description = S("Digging"),
-	icon = "default_tool_steelpick.png",
-})
-
 function craftguide.register_craft(def)
 	local func = "craftguide." .. __func() .. "(): "
 	assert(def.type, func .. "'type' field missing")
@@ -98,13 +118,6 @@ function craftguide.register_craft(def)
 
 	craftguide.custom_crafts[#craftguide.custom_crafts + 1] = def
 end
-
-craftguide.register_craft({
-	type   = "digging",
-	width  = 1,
-	output = "default:cobble",
-	items  = {"default:stone"},
-})
 
 local recipe_filters = {}
 
@@ -132,18 +145,67 @@ local function apply_recipe_filters(recipes, player)
 	return recipes
 end
 
+local function item_has_groups(item_groups, groups)
+	for i = 1, #groups do
+		local group = groups[i]
+		if not item_groups[group] then
+			return
+		end
+	end
+
+	return true
+end
+
+local function extract_groups(str)
+	return str:sub(7):split(",")
+end
+
+local function item_in_recipe(item, recipe)
+	local item_groups = reg_items[item].groups
+	for _, recipe_item in pairs(recipe.items) do
+		if recipe_item == item then
+			return true
+		elseif recipe_item:sub(1,6) == "group:" then
+			local groups = extract_groups(recipe_item)
+			if item_has_groups(item_groups, groups) then
+				return true
+			end
+		end
+	end
+end
+
+local function get_item_usages(item)
+	local usages, c = {}, 0
+
+	for _, recipes in pairs(recipes_cache) do
+	for i = 1, #recipes do
+		local recipe = recipes[i]
+		if item_in_recipe(item, recipe) then
+			c = c + 1
+			usages[c] = recipe
+		end
+	end
+	end
+
+	if fuel_cache[item] then
+		usages[#usages + 1] = {type = "fuel", width = 1, items = {item}}
+	end
+
+	return usages
+end
+
 local function get_filtered_items(player)
-	local items = {}
+	local items, c = {}, 0
 
 	for i = 1, #init_items do
 		local item = init_items[i]
 		local recipes = recipes_cache[item]
+		local fuel = fuel_cache[item]
 
-		if recipes then
-			recipes = apply_recipe_filters(recipes, player)
-			if #recipes > 0 then
-				items[#items + 1] = item
-			end
+		if recipes and #apply_recipe_filters(recipes, player) > 0 or
+		   fuel and #apply_recipe_filters(get_item_usages(item), player) > 0 then
+			c = c + 1
+			items[c] = item
 		end
 	end
 
@@ -152,11 +214,13 @@ end
 
 local function cache_recipes(output)
 	local recipes = mt.get_all_craft_recipes(output) or {}
+	local c = 0
 
 	for i = 1, #craftguide.custom_crafts do
 		local custom_craft = craftguide.custom_crafts[i]
 		if custom_craft.output:match("%S*") == output then
-			recipes[#recipes + 1] = custom_craft
+			c = c + 1
+			recipes[c] = custom_craft
 		end
 	end
 
@@ -164,6 +228,31 @@ local function cache_recipes(output)
 		recipes_cache[output] = recipes
 		return true
 	end
+end
+
+local function get_recipes(item, data, player)
+	local is_fuel = fuel_cache[item]
+	local recipes = recipes_cache[item]
+
+	if recipes then
+		recipes = apply_recipe_filters(recipes, player)
+	end
+
+	local no_recipes = not recipes or #recipes == 0
+	if no_recipes and not is_fuel then
+		return
+	elseif is_fuel and no_recipes then
+		data.show_usages = true
+	end
+
+	if data.show_usages then
+		recipes = apply_recipe_filters(get_item_usages(item), player)
+		if #recipes == 0 then
+			return
+		end
+	end
+
+	return recipes
 end
 
 local function get_burntime(item)
@@ -176,21 +265,6 @@ local function cache_fuel(item)
 		fuel_cache[item] = burntime
 		return true
 	end
-end
-
-local function extract_groups(str)
-	return str:sub(7):split(",")
-end
-
-local function item_has_groups(item_groups, groups)
-	for i = 1, #groups do
-		local group = groups[i]
-		if not item_groups[group] then
-			return
-		end
-	end
-
-	return true
 end
 
 local function groups_to_item(groups)
@@ -218,26 +292,26 @@ local function get_tooltip(item, groups, cooktime, burntime)
 	if groups then
 		local groupstr = {}
 		for i = 1, #groups do
-			groupstr[#groupstr + 1] = mt.colorize("yellow", groups[i])
+			groupstr[#groupstr + 1] = colorize("yellow", groups[i])
 		end
 
 		groupstr = concat(groupstr, ", ")
-		tooltip = S("Any item belonging to the group(s):") .. " " .. groupstr
+		tooltip = S("Any item belonging to the group(s): @1", groupstr)
 	else
 		tooltip = reg_items[item].description
 	end
 
 	if cooktime then
-		tooltip = tooltip .. "\n" .. S("Cooking time:") .. " " ..
-			mt.colorize("yellow", cooktime)
+		tooltip = tooltip .. "\n" ..
+			S("Cooking time: @1", colorize("yellow", cooktime))
 	end
 
 	if burntime then
-		tooltip = tooltip .. "\n" .. S("Burning time:") .. " " ..
-			mt.colorize("yellow", burntime)
+		tooltip = tooltip .. "\n" ..
+			S("Burning time: @1", colorize("yellow", burntime))
 	end
 
-	return "tooltip[" .. item .. ";" .. tooltip .. "]"
+	return "tooltip[" .. item .. ";" .. fs_esc(tooltip) .. "]"
 end
 
 local function get_recipe_fs(data, iY)
@@ -261,7 +335,7 @@ local function get_recipe_fs(data, iY)
 		fs[#fs + 1] = fmt(fmt_label,
 			(data.iX / 2) - 2,
 			iY + 2.2,
-			S("Recipe is too big to be displayed (@1x@2)", width, rows))
+			fs_esc(S("Recipe is too big to be displayed (@1x@2)", width, rows)))
 
 		return concat(fs)
 	end
@@ -297,7 +371,7 @@ local function get_recipe_fs(data, iY)
 			btn_size,
 			item,
 			item:match("%S*"),
-			label)
+			fs_esc(label))
 
 		local burntime = fuel_cache[item]
 
@@ -331,7 +405,7 @@ local function get_recipe_fs(data, iY)
 			iY + (sfinv_only and 2.2 or 1.7),
 			0.5,
 			0.5,
-			tooltip)
+			fs_esc(tooltip))
 	end
 
 	local arrow_X  = rightest + (s_btn_size or 1.1)
@@ -361,7 +435,7 @@ local function get_recipe_fs(data, iY)
 			1.1,
 			1.1,
 			recipe.output,
-			output_name)
+			fs_esc(output_name))
 
 		if burntime then
 			fs[#fs + 1] = get_tooltip(output_name, nil, nil, burntime)
@@ -388,9 +462,9 @@ local function get_recipe_fs(data, iY)
 		2.2,
 		1,
 		"alternate",
-		data.show_usages and S("Usage") or S("Recipe"),
+		data.show_usages and fs_esc(S("Usage")) or fs_esc(S("Recipe")),
 		data.rnum,
-		S("of"),
+		fs_esc(S("of")),
 		#data.recipes)
 
 	return concat(fs)
@@ -407,14 +481,18 @@ local function make_formspec(name)
 
 	if not sfinv_only then
 		fs[#fs + 1] = fmt("size[%f,%f;]", data.iX - 0.35, iY + 4)
-		fs[#fs + 1] = "no_prepend[]"
-		fs[#fs + 1] = "background[1,1;1,1;craftguide_bg.png;true]"
-		fs[#fs + 1] = "tooltip[size_inc;" .. S("Increase window size") .. "]"
-		fs[#fs + 1] = "tooltip[size_dec;" .. S("Decrease window size") .. "]"
+		fs[#fs + 1] = [[
+			no_prepend[]
+			background[1,1;1,1;craftguide_bg.png;true]
+		]]
+
+		fs[#fs + 1] = "tooltip[size_inc;" .. fs_esc(S("Increase window size")) .. "]"
+		fs[#fs + 1] = "tooltip[size_dec;" .. fs_esc(S("Decrease window size")) .. "]"
+
 		fs[#fs + 1] = "image_button[" .. (data.iX * 0.47) ..
-			",0.12;0.8,0.8;craftguide_zoomin_icon.png;size_inc;]"
+				",0.12;0.8,0.8;craftguide_zoomin_icon.png;size_inc;]"
 		fs[#fs + 1] = "image_button[" .. ((data.iX * 0.47) + 0.6) ..
-			",0.12;0.8,0.8;craftguide_zoomout_icon.png;size_dec;]"
+				",0.12;0.8,0.8;craftguide_zoomout_icon.png;size_dec;]"
 	end
 
 	fs[#fs + 1] = [[
@@ -423,28 +501,38 @@ local function make_formspec(name)
 		field_close_on_enter[filter;false]
 	]]
 
-	fs[#fs + 1] = "tooltip[search;" .. S("Search") .. "]"
-	fs[#fs + 1] = "tooltip[clear;" .. S("Reset") .. "]"
-	fs[#fs + 1] = "tooltip[prev;" .. S("Previous page") .. "]"
-	fs[#fs + 1] = "tooltip[next;" .. S("Next page") .. "]"
+	fs[#fs + 1] = "tooltip[search;" .. fs_esc(S("Search")) .. "]"
+	fs[#fs + 1] = "tooltip[clear;" .. fs_esc(S("Reset")) .. "]"
+	fs[#fs + 1] = "tooltip[prev;" .. fs_esc(S("Previous page")) .. "]"
+	fs[#fs + 1] = "tooltip[next;" .. fs_esc(S("Next page")) .. "]"
+
 	fs[#fs + 1] = "image_button[" .. (data.iX - (sfinv_only and 2.6 or 3.1)) ..
 			",0.12;0.8,0.8;craftguide_prev_icon.png;prev;]"
-	fs[#fs + 1] = "label[" .. (data.iX - (sfinv_only and 1.7 or 2.2)) .. ",0.22;" ..
-			mt.colorize("yellow", data.pagenum) .. " / " .. data.pagemax .. "]"
-	fs[#fs + 1] = "image_button[" .. (data.iX - (sfinv_only and 0.7 or 1.2) -
-			(data.iX >= 11 and 0.08 or 0)) ..
+
+	fs[#fs + 1] = fmt(fmt_label,
+			data.iX - (sfinv_only and 1.7 or 2.2),
+			0.22,
+			colorize("yellow", data.pagenum) .. " / " .. data.pagemax)
+
+	fs[#fs + 1] = "image_button[" .. (data.iX -
+			(sfinv_only and 0.7 or 1.2) - (data.iX >= 11 and 0.08 or 0)) ..
 			",0.12;0.8,0.8;craftguide_next_icon.png;next;]"
-	fs[#fs + 1] = "field[0.3,0.32;2.5,1;filter;;" .. mt.formspec_escape(data.filter) .. "]"
+
+	fs[#fs + 1] = "field[0.3,0.32;2.5,1;filter;;" .. fs_esc(data.filter) .. "]"
 
 	if #data.items == 0 then
-		fs[#fs + 1] = fmt(fmt_label,
-			(data.iX / 2) - 1,
-			2,
-			S("No item to show"))
+		local no_item = S("No item to show")
+		local pos = (data.iX / 2) - 1
+
+		if next(recipe_filters) and #init_items > 0 and data.filter == "" then
+			no_item = S("Collect items to reveal more recipes")
+			pos = pos - 1
+		end
+
+		fs[#fs + 1] = fmt(fmt_label, pos, 2, fs_esc(no_item))
 	end
 
 	local first_item = (data.pagenum - 1) * ipp
-
 	for i = first_item, first_item + ipp - 1 do
 		local item = data.items[i + 1]
 		if not item then
@@ -490,9 +578,9 @@ local function search(data)
 
 	for i = 1, #data.items_raw do
 		local item = data.items_raw[i]
-		local item_desc = reg_items[item].description:lower()
+		local desc = reg_items[item].description:lower()
 
-		if item:find(filter, 1, true) or item_desc:find(filter, 1, true) then
+		if (item .. desc):find(filter, 1, true) then
 			c = c + 1
 			filtered_list[c] = item
 		end
@@ -510,51 +598,23 @@ local function search(data)
 	data.items = filtered_list
 end
 
-local function item_in_recipe(item, recipe)
-	local item_groups = reg_items[item].groups
-	for _, recipe_item in pairs(recipe.items) do
-		if recipe_item == item then
-			return true
-		elseif recipe_item:sub(1,6) == "group:" then
-			local groups = extract_groups(recipe_item)
-			if item_has_groups(item_groups, groups) then
-				return true
-			end
-		end
-	end
-end
-
-local function get_item_usages(item)
-	local usages = {}
-
-	for _, recipes in pairs(recipes_cache) do
-	for i = 1, #recipes do
-		local recipe = recipes[i]
-		if item_in_recipe(item, recipe) then
-			usages[#usages + 1] = recipe
-		end
-	end
-	end
-
-	if fuel_cache[item] then
-		usages[#usages + 1] = {type = "fuel", width = 1, items = {item}}
-	end
-
-	return usages
-end
-
 local function get_inv_items(player)
 	local inv = player:get_inventory()
-	local main, craft = inv:get_list("main"), inv:get_list("craft")
-	local stacks = table_merge(main, craft)
+	local stacks = {}
 
-	local inv_items = {}
+	for i = 1, #item_lists do
+		stacks = table_merge(stacks, inv:get_list(item_lists[i]))
+	end
+
+	local inv_items, c = {}, 0
+
 	for i = 1, #stacks do
 		local stack = stacks[i]
 		if not stack:is_empty() then
 			local name = stack:get_name()
 			if reg_items[name] then
-				inv_items[#inv_items + 1] = name
+				c = c + 1
+				inv_items[c] = name
 			end
 		end
 	end
@@ -562,26 +622,7 @@ local function get_inv_items(player)
 	return inv_items
 end
 
-local function item_in_inv(item, inv_items)
-	local inv_items_size = #inv_items
-	if item:sub(1,6) == "group:" then
-		local groups = extract_groups(item)
-		for i = 1, inv_items_size do
-			local item_groups = reg_items[inv_items[i]].groups
-			if item_has_groups(item_groups, groups) then
-				return true
-			end
-		end
-	else
-		for i = 1, inv_items_size do
-			if inv_items[i] == item then
-				return true
-			end
-		end
-	end
-end
-
-local function init_data(player, name)
+local function init_data(name)
 	player_data[name] = {
 		filter  = "",
 		pagenum = 1,
@@ -594,6 +635,7 @@ end
 local function reset_data(data)
 	data.filter      = ""
 	data.pagenum     = 1
+	data.rnum        = 1
 	data.query_item  = nil
 	data.show_usages = nil
 	data.recipes     = nil
@@ -651,6 +693,7 @@ local function on_receive_fields(player, fields)
 		end
 
 		data.pagenum = data.pagenum - (fields.prev and 1 or -1)
+
 		if data.pagenum > data.pagemax then
 			data.pagenum = 1
 		elseif data.pagenum == 0 then
@@ -680,47 +723,40 @@ local function on_receive_fields(player, fields)
 			item = item:sub(1,-5)
 		end
 
-		local is_fuel = fuel_cache[item]
-		local recipes = recipes_cache[item]
-
-		if recipes then
-			recipes = apply_recipe_filters(recipes, player)
-		end
-
-		local no_recipes = not recipes or #recipes == 0
-		if no_recipes and not is_fuel then
-			return
-		end
-
 		if item ~= data.query_item then
 			data.show_usages = nil
 		else
 			data.show_usages = not data.show_usages
 		end
 
-		if is_fuel and no_recipes then
-			data.show_usages = true
-		end
-
-		if data.show_usages then
-			recipes = apply_recipe_filters(get_item_usages(item), player)
-
-			if #recipes == 0 then
-				return
-			end
+		local recipes = get_recipes(item, data, player)
+		if not recipes then
+			return
 		end
 
 		data.query_item = item
-		data.recipes = recipes
-		data.rnum = 1
+		data.recipes    = recipes
+		data.rnum       = 1
 
 		show_fs(player, name)
 	end
 end
 
+mt.register_on_mods_loaded(get_init_items)
+
+mt.register_on_joinplayer(function(player)
+	local name = player:get_player_name()
+	init_data(name)
+end)
+
+mt.register_on_leaveplayer(function(player)
+	local name = player:get_player_name()
+	player_data[name] = nil
+end)
+
 if sfinv_only then
 	sfinv.register_page("craftguide:craftguide", {
-		title = "Craft Guide",
+		title = S("Craft Guide"),
 
 		get = function(self, player, context)
 			local name = player:get_player_name()
@@ -730,10 +766,10 @@ if sfinv_only then
 		end,
 
 		on_enter = function(self, player, context)
-			local name = player:get_player_name()
-			local data = player_data[name]
-
 			if next(recipe_filters) then
+				local name = player:get_player_name()
+				local data = player_data[name]
+
 				data.items_raw = get_filtered_items(player)
 				search(data)
 			end
@@ -752,9 +788,9 @@ else
 
 	local function on_use(user)
 		local name = user:get_player_name()
-		local data = player_data[name]
 
 		if next(recipe_filters) then
+			local data = player_data[name]
 			data.items_raw = get_filtered_items(user)
 			search(data)
 		end
@@ -802,8 +838,9 @@ else
 
 	mt.register_craft({
 		output = "craftguide:book",
-		type = "shapeless",
-		recipe = {"default:book"}
+		recipe = {
+			{"default:book"}
+		}
 	})
 
 	mt.register_craft({
@@ -814,8 +851,9 @@ else
 
 	mt.register_craft({
 		output = "craftguide:sign",
-		type = "shapeless",
-		recipe = {"default:sign_wall_wood"}
+		recipe = {
+			{"default:sign_wall_wood"}
+		}
 	})
 
 	mt.register_craft({
@@ -836,73 +874,27 @@ else
 	end
 end
 
-if not next(recipe_filters) then
-	mt.register_chatcommand("craft", {
-		description = S("Show recipe(s) of the pointed node"),
-		func = function(name)
-			local player = mt.get_player_by_name(name)
-			local ppos   = player:get_pos()
-			local dir    = player:get_look_dir()
-			local eye_h  = {x = ppos.x, y = ppos.y + 1.625, z = ppos.z}
-			local node_name
-
-			for i = 1, 10 do
-				local look_at = vector_add(eye_h, vector_mul(dir, i))
-				local node = mt.get_node(look_at)
-
-				if node.name ~= "air" then
-					node_name = node.name
-					break
-				end
-			end
-
-			if not node_name then
-				return false, mt.colorize("red", "[craftguide] ") ..
-						S("No node pointed")
-			end
-
-			local data = player_data[name]
-			reset_data(data)
-
-			local recipes = recipes_cache[node_name]
-			local no_recipes = not next(recipes)
-			local is_fuel = fuel_cache[node_name]
-
-			if no_recipes and not is_fuel then
-				return false, mt.colorize("red", "[craftguide] ") ..
-					S("No recipe for this node:") .. " " ..
-					mt.colorize("yellow", node_name)
-			end
-
-			if is_fuel and no_recipes then
-				recipes = get_item_usages(node_name)
-
-				if #recipes > 0 then
-					data.show_usages = true
-				end
-			end
-
-			data.query_item = node_name
-			data.recipes = recipes
-
-			return true, show_fs(player, name)
-		end,
-	})
-end
-
-mt.register_on_mods_loaded(get_init_items)
-
-mt.register_on_joinplayer(function(player)
-	local name = player:get_player_name()
-	init_data(player, name)
-end)
-
-mt.register_on_leaveplayer(function(player)
-	local name = player:get_player_name()
-	player_data[name] = nil
-end)
-
 if progressive_mode then
+	local function item_in_inv(item, inv_items)
+		local inv_items_size = #inv_items
+
+		if item:sub(1,6) == "group:" then
+			local groups = extract_groups(item)
+			for i = 1, inv_items_size do
+				local item_groups = reg_items[inv_items[i]].groups
+				if item_has_groups(item_groups, groups) then
+					return true
+				end
+			end
+		else
+			for i = 1, inv_items_size do
+				if inv_items[i] == item then
+					return true
+				end
+			end
+		end
+	end
+
 	local function recipe_in_inv(recipe, inv_items)
 		for _, item in pairs(recipe.items) do
 			if not item_in_inv(item, inv_items) then
@@ -915,38 +907,57 @@ if progressive_mode then
 
 	local function progressive_filter(recipes, player)
 		local name = player:get_player_name()
-		local discovered = player_data[name].inv_items
-		local inv_items = get_inv_items(player)
-		discovered = table_clean(table_merge(discovered, inv_items))
+		local data = player_data[name]
 
-		if #discovered == 0 then
+		if #data.inv_items == 0 then
 			return {}
 		end
 
-		local filtered = {}
+		local filtered, c = {}, 0
 		for i = 1, #recipes do
 			local recipe = recipes[i]
-			if recipe_in_inv(recipe, discovered) then
-				filtered[#filtered + 1] = recipe
+			if recipe_in_inv(recipe, data.inv_items) then
+				c = c + 1
+				filtered[c] = recipe
 			end
 		end
 
 		return filtered
 	end
 
+	-- Workaround. Need an engine call to detect when the contents
+	-- of the player inventory changed, instead.
+	mt.register_globalstep(function()
+		local players = mt.get_connected_players()
+		for i = 1, #players do
+			local player = players[i]
+			local name   = player:get_player_name()
+			local data   = player_data[name]
+			local inv_items = get_inv_items(player)
+			local diff      = table_diff(inv_items, data.inv_items)
+
+			if #diff > 0 then
+				data.inv_items = table_merge(diff, data.inv_items)
+			end
+		end
+	end)
+
 	craftguide.add_recipe_filter("Default progressive filter", progressive_filter)
 
 	mt.register_on_joinplayer(function(player)
 		local meta = player:get_meta()
-		local inv_items = deserialize(meta:get_string("inv_items")) or {}
 		local name = player:get_player_name()
-		player_data[name].inv_items = inv_items
+		local data = player_data[name]
+
+		data.inv_items = deserialize(meta:get_string("inv_items")) or {}
 	end)
 
 	local function save_meta(player)
 		local meta = player:get_meta()
 		local name = player:get_player_name()
-		meta:set_string("inv_items", serialize(player_data[name].inv_items))
+		local data = player_data[name]
+
+		meta:set_string("inv_items", serialize(data.inv_items))
 	end
 
 	mt.register_on_leaveplayer(save_meta)
@@ -954,9 +965,87 @@ if progressive_mode then
 	mt.register_on_shutdown(function()
 		local players = mt.get_connected_players()
 		for i = 1, #players do
-			save_meta(players[i])
+			local player = players[i]
+			save_meta(player)
 		end
 	end)
+end
+
+mt.register_chatcommand("craft", {
+	description = S("Show recipe(s) of the pointed node"),
+	func = function(name)
+		local player = get_player_by_name(name)
+		local ppos   = player:get_pos()
+		local dir    = player:get_look_dir()
+		local eye_h  = {x = ppos.x, y = ppos.y + 1.625, z = ppos.z}
+		local node_name
+
+		for i = 1, 10 do
+			local look_at = vector_add(eye_h, vector_mul(dir, i))
+			local node = mt.get_node(look_at)
+
+			if node.name ~= "air" then
+				node_name = node.name
+				break
+			end
+		end
+
+		local red = colorize("red", "[craftguide] ")
+
+		if not node_name then
+			return false, red .. S("No node pointed")
+		end
+
+		local data = player_data[name]
+		reset_data(data)
+
+		local recipes = recipes_cache[node_name]
+		local is_fuel = fuel_cache[node_name]
+
+		if recipes then
+			recipes = apply_recipe_filters(recipes, player)
+		end
+
+		if not recipes or #recipes == 0 then
+			local ylw = colorize("yellow", node_name)
+			local msg = red .. "%s: " .. ylw
+
+			if is_fuel then
+				recipes = get_item_usages(node_name)
+				if #recipes > 0 then
+					data.show_usages = true
+				end
+			elseif recipes_cache[node_name] then
+				return false, fmt(msg, S("You don't know a recipe for this node"))
+			else
+				return false, fmt(msg, S("No recipe for this node"))
+			end
+		end
+
+		data.query_item = node_name
+		data.recipes    = recipes
+
+		return true, show_fs(player, name)
+	end,
+})
+
+function craftguide.show(name, item, show_usages)
+	local func = "craftguide." .. __func() .. "(): "
+	assert(name, func .. "player name missing")
+
+	local data   = player_data[name]
+	local player = get_player_by_name(name)
+	local query_item = data.query_item
+
+	reset_data(data)
+
+	item = reg_items[item] and item or query_item
+
+	data.query_item  = item
+	data.show_usages = show_usages
+	data.recipes     = get_recipes(item, data, player)
+
+	show_fs(player, name)
 end
 
 --[[ Custom recipes (>3x3) test code

@@ -433,7 +433,7 @@ minetest.register_tool("farming:scythe_mithril", {
 
 		-- Run script hook
 		for _, callback in pairs(core.registered_on_dignodes) do
-			callback(pos, node.name)
+			callback(pos, node)
 		end
 
 		-- play sound

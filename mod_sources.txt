@@ -1,7 +1,7 @@
 
 bell07	https://github.com/bell07/minetest_game (fetch)
 origin	https://github.com/minetest/minetest_game (fetch)
-* master                9e62cf1 [origin/master: ahead 5] Merge remote-tracking branch 'origin/master'
+* master                15f89d6 [origin/master: ahead 6] Merge remote-tracking branch 'origin/master'
 Mod: minetest_game/mods/beds
 Mod: minetest_game/mods/binoculars
 Mod: minetest_game/mods/boats
@@ -32,7 +32,7 @@ Mod: minetest_game/mods/wool
 Mod: minetest_game/mods/xpanes
 
 origin	https://github.com/minetest-mods/craftguide/ (fetch)
-* master       fd4ed51 [origin/master] Minor cleaning
+* master d6432f5 [origin/master] Add a comment on the item polling
 Mod: libs/craftguide
 
 origin	https://github.com/bell07/minetest_craftguide_reveal.git (fetch)
@@ -108,7 +108,7 @@ origin	https://github.com/minetest-mods/wielded_light (fetch)
 Mod: player/wielded_light
 
 origin	https://github.com/bell07/minetest-player_api_modpack (fetch)
-* master 17682fb [origin/master: ahead 1] character_creator: added support for sfinv_buttons
+* master e14f972 [origin/master] set preview for default sam in skinsdb
 Mod: player_api_modpack/3d_armor
 Mod: player_api_modpack/character_creator
 Mod: player_api_modpack/clothing
@@ -149,7 +149,7 @@ origin	https://gitlab.com/zombiebot/weather_pack (fetch)
 Mod: ambience/weather_pack
 
 origin	https://notabug.org/TenPlus1/farming (fetch)
-* master feab0cc [origin/master] add farming.add_to_scythe_not_drops(item) function for expansion
+* master a7694d2 [origin/master] fix bug in scythe callbacks, thanks BuckarooBanzay
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
@@ -294,7 +294,7 @@ origin	https://github.com/minetest-mods/ts_furniture (fetch)
 Mod: decor/ts_furniture
 
 origin	https://gitlab.com/VanessaE/unifieddyes (fetch)
-* master         5039a8c [origin/master] Merge branch 'patch-1' into 'master'
+* master         f59c8af [origin/master] Merge branch 'master' into 'master'
 Mod: decor/unifieddyes
 
 bell07	https://gitlab.com/bell07/homedecor_modpack (fetch)
@@ -375,7 +375,7 @@ Mod: mesecons/mesecons_walllever
 Mod: mesecons/mesecons_wires
 
 origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
-* master eeb6a8e [origin/master] added mobs:force_capture() example to sand monster
+* master 86e5f4e [origin/master] tweaked tool damage for sand, stone and tree monsters
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)

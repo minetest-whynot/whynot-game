@@ -32,3 +32,10 @@ end)
 
 -- Read current mod textures- and meta- folder
 player_api.read_textures_and_meta()
+
+-- Set preview for sam
+local sam = player_api.registered_skins['character']
+if sam.texture == "character.png" and sam.description == "Sam" then
+	sam.preview = "character_default_preview.png"
+end
+

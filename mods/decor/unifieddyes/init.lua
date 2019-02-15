@@ -1431,7 +1431,7 @@ for _,i in ipairs(unifieddyes.base_color_crafts) do
 
 			minetest.register_craft( {
 				type = "shapeless",
-				output = "dye:"..j[1]..color..j[2].." "..yield,
+				output = "dye:"..j[1]..color..j[2].." "..j[6],
 				recipe = {
 					"dye:"..color,
 					firstdye,

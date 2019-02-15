@@ -118,3 +118,8 @@ end
 
 -- If previously the endless_apples was used, now merged to minetest game default mod
 minetest.register_alias("endless_apples:apple_mark", "default:apple_mark")
+
+-- Remove the demo skin upright_sprite
+if minetest.get_modpath('player_api') and player_api.registered_skins then
+	player_api.registered_skins['sprite'] = nil
+end
