@@ -37,14 +37,14 @@ function sfinv.get_nav_fs(player, context, nav, current_idx)
 end
 
 local theme_inv = [[
-		image[0,4.75;1,1;gui_hb_bg.png]
-		image[1,4.75;1,1;gui_hb_bg.png]
-		image[2,4.75;1,1;gui_hb_bg.png]
-		image[3,4.75;1,1;gui_hb_bg.png]
-		image[4,4.75;1,1;gui_hb_bg.png]
-		image[5,4.75;1,1;gui_hb_bg.png]
-		image[6,4.75;1,1;gui_hb_bg.png]
-		image[7,4.75;1,1;gui_hb_bg.png]
+		image[0,4.7;1,1;gui_hb_bg.png]
+		image[1,4.7;1,1;gui_hb_bg.png]
+		image[2,4.7;1,1;gui_hb_bg.png]
+		image[3,4.7;1,1;gui_hb_bg.png]
+		image[4,4.7;1,1;gui_hb_bg.png]
+		image[5,4.7;1,1;gui_hb_bg.png]
+		image[6,4.7;1,1;gui_hb_bg.png]
+		image[7,4.7;1,1;gui_hb_bg.png]
 		list[current_player;main;0,4.7;8,1;]
 		list[current_player;main;0,5.85;8,3;8]
 	]]

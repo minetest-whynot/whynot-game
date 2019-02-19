@@ -1,7 +1,7 @@
 
 bell07	https://github.com/bell07/minetest_game (fetch)
 origin	https://github.com/minetest/minetest_game (fetch)
-* master                15f89d6 [origin/master: ahead 6] Merge remote-tracking branch 'origin/master'
+* master                89cc222 [origin/master: ahead 2] fixes #2111 do not set players in bed counter up if player already in bed before
 Mod: minetest_game/mods/beds
 Mod: minetest_game/mods/binoculars
 Mod: minetest_game/mods/boats
@@ -32,7 +32,7 @@ Mod: minetest_game/mods/wool
 Mod: minetest_game/mods/xpanes
 
 origin	https://github.com/minetest-mods/craftguide/ (fetch)
-* master d6432f5 [origin/master] Add a comment on the item polling
+* master bfe9909 [origin/master] Cleanup and optimizations
 Mod: libs/craftguide
 
 origin	https://github.com/bell07/minetest_craftguide_reveal.git (fetch)
@@ -68,7 +68,7 @@ origin	https://github.com/minetest-mods/mtg_i18n (fetch)
 Mod: libs/mtg_i18n
 
 origin	https://github.com/bell07/minetest-whynot_compat (fetch)
-* master e5bb3d9 [origin/master] fix endless_apples replaced by minetest_game version
+* master 8cff1c0 [origin/master] remove demo spite skin from enhanced player_api
 Mod: libs/whynot_compat
 
 origin	https://github.com/Chemguy99/armor_addon (fetch)
