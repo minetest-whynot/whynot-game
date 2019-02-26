@@ -192,14 +192,30 @@ local function extract_groups(str)
 end
 
 local function item_in_recipe(item, recipe)
-	local item_groups = reg_items[item].groups
 	for _, recipe_item in pairs(recipe.items) do
 		if recipe_item == item then
 			return true
-		elseif sub(recipe_item, 1, 6) == "group:" then
+		end
+	end
+end
+
+local function table_replace(table, value, new_value)
+	for k, v in pairs(table) do
+		if v == value then
+			table[k] = new_value
+		end
+	end
+end
+
+local function groups_item_in_recipe(item, recipe)
+	local item_groups = reg_items[item].groups
+	for _, recipe_item in pairs(recipe.items) do
+		if sub(recipe_item, 1, 6) == "group:" then
 			local groups = extract_groups(recipe_item)
 			if item_has_groups(item_groups, groups) then
-				return true
+				local usage = table.copy(recipe)
+				table_replace(usage.items, recipe_item, item)
+				return usage
 			end
 		end
 	end
@@ -214,6 +230,12 @@ local function get_item_usages(item)
 		if item_in_recipe(item, recipe) then
 			c = c + 1
 			usages[c] = recipe
+		else
+			recipe = groups_item_in_recipe(item, recipe)
+			if recipe then
+				c = c + 1
+				usages[c] = recipe
+			end
 		end
 	end
 	end
@@ -249,8 +271,6 @@ local function item_in_inv(item, inv_items)
 end
 
 local function get_filtered_items(player)
-	local name = player:get_player_name()
-	local data = player_data[name]
 	local items, c = {}, 0
 
 	for i = 1, #init_items do
@@ -259,8 +279,7 @@ local function get_filtered_items(player)
 		local usages = usages_cache[item]
 
 		if recipes and #apply_recipe_filters(recipes, player) > 0 or
-		  (usages and (progressive_mode and item_in_inv(item, data.inv_items)) and
-		   #apply_recipe_filters(usages_cache[item], player) > 0) then
+				usages and #apply_recipe_filters(usages, player) > 0 then
 			c = c + 1
 			items[c] = item
 		end
@@ -392,16 +411,17 @@ local function get_recipe_fs(data, iY)
 	local rows = ceil(maxn(recipe.items) / width)
 	local rightest, btn_size, s_btn_size = 0, 1.1
 
-	fs[#fs + 1] = fmt("button[%f,%f;%f,%f;%s;%s %u %s %u]",
-		data.iX - (sfinv_only and 2.2 or 2.6),
-		iY + (sfinv_only and 3.9 or 3.3),
+	local btn_lab = data.show_usages and
+		ESC(S("Usage @1 of @2", data.rnum, #data.recipes)) or
+		ESC(S("Recipe @1 of @2", data.rnum, #data.recipes))
+
+	fs[#fs + 1] = fmt(FMT.button,
+		sfinv_only and 5.8 or data.iX - 2.6,
+		sfinv_only and 7.9 or iY + 3.3,
 		2.2,
 		1,
 		"alternate",
-		data.show_usages and ESC(S("Usage")) or ESC(S("Recipe")),
-		data.rnum,
-		ESC(S("of")),
-		#data.recipes)
+		btn_lab)
 
 	if width > GRID_LIMIT or rows > GRID_LIMIT then
 		fs[#fs + 1] = fmt(FMT.label,
@@ -464,7 +484,7 @@ local function get_recipe_fs(data, iY)
 
 		fs[#fs + 1] = fmt(FMT.image,
 			rightest + 1.2,
-			iY + (sfinv_only and 2.2 or 1.7),
+			sfinv_only and 6.2 or iY + 1.7,
 			0.5,
 			0.5,
 			icon)
@@ -474,7 +494,7 @@ local function get_recipe_fs(data, iY)
 
 		fs[#fs + 1] = fmt("tooltip[%f,%f;%f,%f;%s]",
 			rightest + 1.2,
-			iY + (sfinv_only and 2.2 or 1.7),
+			sfinv_only and 6.2 or iY + 1.7,
 			0.5,
 			0.5,
 			ESC(tooltip))
@@ -485,7 +505,7 @@ local function get_recipe_fs(data, iY)
 
 	fs[#fs + 1] = fmt(FMT.image,
 		arrow_X,
-		iY + (sfinv_only and 2.85 or 2.35),
+		sfinv_only and 6.85 or iY + 2.35,
 		0.9,
 		0.7,
 		"craftguide_arrow.png")
@@ -493,7 +513,7 @@ local function get_recipe_fs(data, iY)
 	if recipe.type == "fuel" then
 		fs[#fs + 1] = fmt(FMT.image,
 			output_X,
-			iY + (sfinv_only and 2.68 or 2.18),
+			sfinv_only and 6.68 or iY + 2.18,
 			1.1,
 			1.1,
 			"craftguide_fire.png")
@@ -503,7 +523,7 @@ local function get_recipe_fs(data, iY)
 
 		fs[#fs + 1] = fmt(FMT.item_image_button,
 			output_X,
-			iY + (sfinv_only and 2.7 or 2.2),
+			sfinv_only and 6.7 or iY + 2.2,
 			1.1,
 			1.1,
 			recipe.output,
@@ -515,14 +535,14 @@ local function get_recipe_fs(data, iY)
 
 			fs[#fs + 1] = fmt(FMT.image,
 				output_X + 1,
-				iY + (sfinv_only and 2.83 or 2.33),
+				sfinv_only and 6.83 or iY + 2.33,
 				0.6,
 				0.4,
 				"craftguide_arrow.png")
 
 			fs[#fs + 1] = fmt(FMT.image,
 				output_X + 1.6,
-				iY + (sfinv_only and 2.68 or 2.18),
+				sfinv_only and 6.68 or iY + 2.18,
 				0.6,
 				0.6,
 				"craftguide_fire.png")
@@ -577,7 +597,7 @@ local function make_formspec(name)
 		ESC(S("Next page")))
 
 	fs[#fs + 1] = fmt("label[%f,%f;%s / %u]",
-		data.iX - (sfinv_only and 1.7 or 2.2),
+		sfinv_only and 6.3 or data.iX - 2.2,
 		0.22,
 		colorize("yellow", data.pagenum),
 		data.pagemax)
@@ -585,8 +605,8 @@ local function make_formspec(name)
 	fs[#fs + 1] = fmt([[
 		image_button[%f,0.12;0.8,0.8;craftguide_prev_icon.png;prev;]
 		image_button[%f,0.12;0.8,0.8;craftguide_next_icon.png;next;] ]],
-		data.iX - (sfinv_only and 2.6 or 3.1),
-		data.iX - (sfinv_only and 0.7 or 1.2) - (data.iX >= 11 and 0.08 or 0))
+		sfinv_only and 5.5 or data.iX - 3.1,
+		sfinv_only and 7.3 or (data.iX - 1.2) - (data.iX >= 11 and 0.08 or 0))
 
 	fs[#fs + 1] = fmt("field[0.3,0.32;2.5,1;filter;;%s]", ESC(data.filter))
 
@@ -924,7 +944,7 @@ else
 
 		on_construct = function(pos)
 			local meta = M.get_meta(pos)
-			meta:set_string("infotext", S("Crafting Guide Sign"))
+			meta:set_string("infotext", "Crafting Guide Sign")
 		end,
 
 		on_rightclick = function(pos, node, user, itemstack)

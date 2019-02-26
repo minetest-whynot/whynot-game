@@ -32,7 +32,8 @@ Mod: minetest_game/mods/wool
 Mod: minetest_game/mods/xpanes
 
 origin	https://github.com/minetest-mods/craftguide/ (fetch)
-* master 7f44517 [origin/master] Fix alternate button not shown for too large recipes
+pauloue	https://github.com/pauloue/craftguide (fetch)
+* master 3c98e5d [origin/master: ahead 1] Replace group with item in item's usages
 Mod: libs/craftguide
 
 origin	https://github.com/bell07/minetest_craftguide_reveal.git (fetch)
@@ -375,7 +376,7 @@ Mod: mesecons/mesecons_walllever
 Mod: mesecons/mesecons_wires
 
 origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
-* master 86e5f4e [origin/master] tweaked tool damage for sand, stone and tree monsters
+* master 6cf5b95 [origin/master] lava pick heals lava flan when hit, increased water damage
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
