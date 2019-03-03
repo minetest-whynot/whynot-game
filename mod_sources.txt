@@ -33,7 +33,7 @@ Mod: minetest_game/mods/xpanes
 
 origin	https://github.com/minetest-mods/craftguide/ (fetch)
 pauloue	https://github.com/pauloue/craftguide (fetch)
-* master 3c98e5d [origin/master: ahead 1] Replace group with item in item's usages
+* master 3f7ad71 [origin/master] Add an API for search filters
 Mod: libs/craftguide
 
 origin	https://github.com/bell07/minetest_craftguide_reveal.git (fetch)

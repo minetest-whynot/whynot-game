@@ -23,10 +23,15 @@ local serialize, deserialize = M.serialize, M.deserialize
 local ESC = M.formspec_escape
 local S = M.get_translator("craftguide")
 
-local maxn, sort, concat, insert = table.maxn, table.sort, table.concat, table.insert
+local maxn, sort, concat, insert, copy =
+	table.maxn, table.sort, table.concat, table.insert,
+	table.copy
+
+local fmt, find, gmatch, match, sub, split, lower =
+	string.format, string.find, string.gmatch, string.match,
+	string.sub, string.split, string.lower
+
 local min, max, floor, ceil = math.min, math.max, math.floor, math.ceil
-local fmt, find, match, sub, split =
-	string.format, string.find, string.match, string.sub, string.split
 local pairs, next, unpack = pairs, next, unpack
 local vec_add, vec_mul = vector.add, vector.multiply
 
@@ -76,6 +81,14 @@ local function table_merge(t, t2)
 	return t
 end
 
+local function table_replace(t, val, new)
+	for k, v in pairs(t) do
+		if v == val then
+			t[k] = new
+		end
+	end
+end
+
 local function table_diff(t, t2)
 	local hash = {}
 
@@ -89,17 +102,17 @@ local function table_diff(t, t2)
 		hash[v] = nil
 	end
 
-	local ret, c = {}, 0
+	local diff, c = {}, 0
 
 	for i = 1, #t do
 		local v = t[i]
 		if hash[v] then
 			c = c + 1
-			ret[c] = v
+			diff[c] = v
 		end
 	end
 
-	return ret
+	return diff
 end
 
 local function __func()
@@ -129,16 +142,24 @@ end
 
 local recipe_filters = {}
 
-function craftguide.add_recipe_filter(name, func)
-	recipe_filters[name] = func
+function craftguide.add_recipe_filter(name, f)
+	local func = "craftguide." .. __func() .. "(): "
+	assert(name, func .. "filter name missing")
+	assert(f and type(f) == "function", func .. "filter function missing")
+
+	recipe_filters[name] = f
 end
 
 function craftguide.remove_recipe_filter(name)
 	recipe_filters[name] = nil
 end
 
-function craftguide.set_recipe_filter(name, func)
-	recipe_filters = {[name] = func}
+function craftguide.set_recipe_filter(name, f)
+	local func = "craftguide." .. __func() .. "(): "
+	assert(name, func .. "filter name missing")
+	assert(f and type(f) == "function", func .. "filter function missing")
+
+	recipe_filters = {[name] = f}
 end
 
 function craftguide.get_recipe_filters()
@@ -151,6 +172,24 @@ local function apply_recipe_filters(recipes, player)
 	end
 
 	return recipes
+end
+
+local search_filters = {}
+
+function craftguide.add_search_filter(name, f)
+	local func = "craftguide." .. __func() .. "(): "
+	assert(name, func .. "filter name missing")
+	assert(f and type(f) == "function", func .. "filter function missing")
+
+	search_filters[name] = f
+end
+
+function craftguide.remove_search_filter(name)
+	search_filters[name] = nil
+end
+
+function craftguide.get_search_filters()
+	return search_filters
 end
 
 local formspec_elements = {}
@@ -199,21 +238,13 @@ local function item_in_recipe(item, recipe)
 	end
 end
 
-local function table_replace(table, value, new_value)
-	for k, v in pairs(table) do
-		if v == value then
-			table[k] = new_value
-		end
-	end
-end
-
 local function groups_item_in_recipe(item, recipe)
 	local item_groups = reg_items[item].groups
 	for _, recipe_item in pairs(recipe.items) do
 		if sub(recipe_item, 1, 6) == "group:" then
 			local groups = extract_groups(recipe_item)
 			if item_has_groups(item_groups, groups) then
-				local usage = table.copy(recipe)
+				local usage = copy(recipe)
 				table_replace(usage.items, recipe_item, item)
 				return usage
 			end
@@ -247,29 +278,6 @@ local function get_item_usages(item)
 	return usages
 end
 
-local function item_in_inv(item, inv_items)
-	local inv_items_size = #inv_items
-
-	if sub(item, 1, 6) == "group:" then
-		local groups = extract_groups(item)
-		for i = 1, inv_items_size do
-			local inv_item = reg_items[inv_items[i]]
-			if inv_item then
-				local item_groups = inv_item.groups
-				if item_has_groups(item_groups, groups) then
-					return true
-				end
-			end
-		end
-	else
-		for i = 1, inv_items_size do
-			if inv_items[i] == item then
-				return true
-			end
-		end
-	end
-end
-
 local function get_filtered_items(player)
 	local items, c = {}, 0
 
@@ -279,7 +287,7 @@ local function get_filtered_items(player)
 		local usages = usages_cache[item]
 
 		if recipes and #apply_recipe_filters(recipes, player) > 0 or
-				usages and #apply_recipe_filters(usages, player) > 0 then
+		   usages and #apply_recipe_filters(usages, player) > 0 then
 			c = c + 1
 			items[c] = item
 		end
@@ -667,6 +675,21 @@ local show_fs = function(player, name)
 	end
 end
 
+craftguide.add_search_filter("groups", function(item, groups)
+	local itemdef = reg_items[item]
+	local has_groups = true
+
+	for i = 1, #groups do
+		local group = groups[i]
+		if not itemdef.groups[group] then
+			has_groups = nil
+			break
+		end
+	end
+
+	return has_groups
+end)
+
 local function search(data)
 	local filter = data.filter
 
@@ -679,9 +702,27 @@ local function search(data)
 
 	for i = 1, #data.items_raw do
 		local item = data.items_raw[i]
-		local desc = reg_items[item].description:lower()
+		local def  = reg_items[item]
+		local desc = lower(def.description)
+		local search_in = item .. desc
+		local pattern = "%+([%w_]+)=([%w_,]+)"
+		local to_add
 
-		if find(item .. desc, filter, 1, true) then
+		if find(filter, pattern) then
+			local prepend = match(filter, "^(.-)%+")
+			for filter_name, values in gmatch(filter, pattern) do
+				local func = search_filters[filter_name]
+				if func then
+					values = split(values, ",")
+					to_add = func(item, values) and (not prepend or
+						find(search_in, prepend, 1, true))
+				end
+			end
+		else
+			to_add = find(search_in, filter, 1, true)
+		end
+
+		if to_add then
 			c = c + 1
 			filtered_list[c] = item
 		end
@@ -793,7 +834,7 @@ local function on_receive_fields(player, fields)
 
 	elseif (fields.key_enter_field == "filter" or fields.search) and
 			fields.filter ~= "" then
-		local fltr = fields.filter:lower()
+		local fltr = lower(fields.filter)
 		if data.filter == fltr then
 			return
 		end
@@ -991,6 +1032,29 @@ else
 end
 
 if progressive_mode then
+	local function item_in_inv(item, inv_items)
+		local inv_items_size = #inv_items
+
+		if sub(item, 1, 6) == "group:" then
+			local groups = extract_groups(item)
+			for i = 1, inv_items_size do
+				local inv_item = reg_items[inv_items[i]]
+				if inv_item then
+					local item_groups = inv_item.groups
+					if item_has_groups(item_groups, groups) then
+						return true
+					end
+				end
+			end
+		else
+			for i = 1, inv_items_size do
+				if inv_items[i] == item then
+					return true
+				end
+			end
+		end
+	end
+
 	local function recipe_in_inv(recipe, inv_items)
 		for _, item in pairs(recipe.items) do
 			if not item_in_inv(item, inv_items) then
