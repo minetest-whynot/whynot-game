@@ -1,7 +1,7 @@
 
 bell07	https://github.com/bell07/minetest_game (fetch)
 origin	https://github.com/minetest/minetest_game (fetch)
-* master                89cc222 [origin/master: ahead 2] fixes #2111 do not set players in bed counter up if player already in bed before
+* master                f790385 [origin/stable-5: ahead 2] fixes #2111 do not set players in bed counter up if player already in bed before
 Mod: minetest_game/mods/beds
 Mod: minetest_game/mods/binoculars
 Mod: minetest_game/mods/boats
@@ -32,8 +32,7 @@ Mod: minetest_game/mods/wool
 Mod: minetest_game/mods/xpanes
 
 origin	https://github.com/minetest-mods/craftguide/ (fetch)
-pauloue	https://github.com/pauloue/craftguide (fetch)
-* master 3f7ad71 [origin/master] Add an API for search filters
+* master e0e57b4 [origin/master] Quick fix
 Mod: libs/craftguide
 
 origin	https://github.com/bell07/minetest_craftguide_reveal.git (fetch)
