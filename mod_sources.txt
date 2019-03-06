@@ -1,7 +1,8 @@
 
 bell07	https://github.com/bell07/minetest_game (fetch)
 origin	https://github.com/minetest/minetest_game (fetch)
-* master                f790385 [origin/stable-5: ahead 2] fixes #2111 do not set players in bed counter up if player already in bed before
+sofar	https://github.com/sofar/minetest_game (fetch)
+* master                3828914 [origin/stable-5: ahead 3] Fix builtin item metatable.
 Mod: minetest_game/mods/beds
 Mod: minetest_game/mods/binoculars
 Mod: minetest_game/mods/boats
@@ -108,7 +109,7 @@ origin	https://github.com/minetest-mods/wielded_light (fetch)
 Mod: player/wielded_light
 
 origin	https://github.com/bell07/minetest-player_api_modpack (fetch)
-* master e14f972 [origin/master] set preview for default sam in skinsdb
+* master 14d0d79 [origin/master] update armor preview after skin change
 Mod: player_api_modpack/3d_armor
 Mod: player_api_modpack/character_creator
 Mod: player_api_modpack/clothing
@@ -119,7 +120,7 @@ Mod: player_api_modpack/skinsdb5
 Mod: player_api_modpack/wieldview
 
 origin	https://github.com/stujones11/minetest-3d_armor (fetch)
-* master 7e2d942 [origin/master] fix formatting
+* master 1d22612 [origin/master] Bump version to 0.4.13
 Mod: 3d_armor/3d_armor_stand
 Mod: 3d_armor/shields
 Mod: 3d_armor/3d_armor_sfinv
@@ -300,7 +301,7 @@ Mod: decor/unifieddyes
 
 bell07	https://gitlab.com/bell07/homedecor_modpack (fetch)
 origin	https://gitlab.com/VanessaE/homedecor_modpack/ (fetch)
-* master         82cca59 [origin/master: ahead 1] enable beds, even not optimal working
+* master         5b54ffd [origin/master: ahead 1] enable beds, even not optimal working
 Mod: homedecor_modpack/homedecor_i18n
 Mod: homedecor_modpack/homedecor
 Mod: homedecor_modpack/building_blocks
@@ -323,7 +324,7 @@ Mod: mydoors/my_old_doors
 Mod: mydoors/my_old_doors
 
 origin	https://github.com/rubenwardy/food (fetch)
-* master aaf74f3 [origin/master: ahead 3] Merge remote-tracking branch 'origin/master'
+* master ae376e8 [origin/master: ahead 2] removed redundant check for installed mod
 Mod: food_modpack/food
 Mod: food_modpack/food_basic
 

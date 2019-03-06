@@ -59,7 +59,6 @@ local function lay_down(player, pos, bed_pos, state, skip)
 	if state ~= nil and not state then
 		local p = beds.pos[name] or nil
 		beds.player[name] = nil
-		beds.bed_position[name] = nil
 		-- skip here to prevent sending player specific changes (used for leaving players)
 		if skip then
 			return
@@ -79,8 +78,8 @@ local function lay_down(player, pos, bed_pos, state, skip)
 	-- lay down
 	else
 		beds.pos[name] = pos
-		beds.player[name] = 1
 		beds.bed_position[name] = bed_pos
+		beds.player[name] = 1
 
 		-- physics, eye_offset, etc
 		player:set_eye_offset({x = 0, y = -13, z = 0}, {x = 0, y = 0, z = 0})
@@ -99,11 +98,11 @@ local function lay_down(player, pos, bed_pos, state, skip)
 end
 
 local function get_player_in_bed_count()
-	local player_in_bed = 0
-	for k,v in pairs(beds.player) do
-		player_in_bed = player_in_bed + 1
+	local c = 0
+	for _, _ in pairs(beds.player) do
+		c = c + 1
 	end
-	return player_in_bed
+	return c
 end
 
 local function update_formspecs(finished)

@@ -159,7 +159,7 @@ end
 
 local function init_player_armor(player)
 	local name = player:get_player_name()
-	local pos = player:getpos()
+	local pos = player:get_pos()
 	if not name or not pos then
 		return false
 	end
@@ -273,7 +273,7 @@ if armor.config.drop == true or armor.config.destroy == true then
 		end
 		armor:save_armor_inventory(player)
 		armor:set_player_armor(player)
-		local pos = player:getpos()
+		local pos = player:get_pos()
 		if pos and armor.config.destroy == false then
 			minetest.after(armor.config.bones_delay, function()
 				local meta = nil
@@ -374,7 +374,7 @@ if armor.config.water_protect == true or armor.config.fire_protect == true then
 		end
 		for _,player in pairs(minetest.get_connected_players()) do
 			local name = player:get_player_name()
-			local pos = player:getpos()
+			local pos = player:get_pos()
 			local hp = player:get_hp()
 			if not name or not pos or not hp then
 				return
@@ -414,3 +414,8 @@ if armor.config.water_protect == true or armor.config.fire_protect == true then
 		armor.timer = 0
 	end)
 end
+
+-- Update the armor and
+player_api.register_on_skin_change(function(player, model_name, skin_name)
+	armor:set_player_armor(player)
+end)
