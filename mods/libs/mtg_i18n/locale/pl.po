@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-07 22:13+0100\n"
-"PO-Revision-Date: 2019-01-11 11:07+0000\n"
+"PO-Revision-Date: 2019-02-10 09:54+0000\n"
 "Last-Translator: Mateusz Mendel <mendelm9@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/minetest/mtg_i18n/"
 "pl/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 3.4-dev\n"
+"X-Generator: Weblate 3.5-dev\n"
 
 #: init.lua
 msgid "Air (you hacker you!)"
@@ -57,7 +57,6 @@ msgid "Water Bucket"
 msgstr "Wiadro wody"
 
 #: init.lua
-#, fuzzy
 msgid "Brake Rail"
 msgstr "Hamujący tor"
 
@@ -1146,177 +1145,177 @@ msgstr "Lodowe schody"
 #: init.lua
 #, fuzzy
 msgid "Acacia Wood Stair Inner"
-msgstr "Akacjowe schody"
+msgstr "Akacjowe schody wewnętrzne"
 
 #: init.lua
 #, fuzzy
 msgid "Aspen Wood Stair Inner"
-msgstr "Osikowe schody"
+msgstr "Osikowe schody wewnętrzne"
 
 #: init.lua
 #, fuzzy
 msgid "Brick Stair Inner"
-msgstr "Ceglane schody"
+msgstr "Ceglane schody wewnętrzne"
 
 #: init.lua
 #, fuzzy
 msgid "Bronze Block Stair Inner"
-msgstr "Schody bloku z brązu"
+msgstr "Schody bloku z brązu wewnętrzne"
 
 #: init.lua
 #, fuzzy
 msgid "Cobblestone Stair Inner"
-msgstr "Brukowe schody"
+msgstr "Brukowe schody wewnętrzne"
 
 #: init.lua
 #, fuzzy
 msgid "Copper Block Stair Inner"
-msgstr "Schody z miedzianego bloku"
+msgstr "Schody z miedzianego bloku wewnętrzne"
 
 #: init.lua
 #, fuzzy
 msgid "Desert Cobblestone Stair Inner"
-msgstr "Schody z pustynnego bruku"
+msgstr "Schody z pustynnego bruku wewnętrzne"
 
 #: init.lua
 #, fuzzy
 msgid "Desert Sandstone Block Stair Inner"
-msgstr "Schody z bloku pustynnego piaskowca"
+msgstr "Wewnętrzne schody z bloku pustynnego piaskowca"
 
 #: init.lua
 #, fuzzy
 msgid "Desert Sandstone Brick Stair Inner"
-msgstr "Ceglane schody z pustynnego piaskowca"
+msgstr "Wewnętrzne ceglane schody z pustynnego piaskowca"
 
 #: init.lua
 #, fuzzy
 msgid "Desert Sandstone Stair Inner"
-msgstr "Schody z pustynnego piaskowca"
+msgstr "Wewnętrzne schody z pustynnego piaskowca"
 
 #: init.lua
 #, fuzzy
 msgid "Desert Stone Block Stair Inner"
-msgstr "Schody z bloku pustynnego kamienia"
+msgstr "Wewnętrzne schody z bloku pustynnego kamienia"
 
 #: init.lua
 #, fuzzy
 msgid "Desert Stone Brick Stair Inner"
-msgstr "Ceglane schody z pustynnego kamienia"
+msgstr "Wewnętrzne ceglane schody z pustynnego kamienia"
 
 #: init.lua
 #, fuzzy
 msgid "Desert Stone Stair Inner"
-msgstr "Schody z pustynnego kamienia"
+msgstr "Wewnętrzne schody z pustynnego kamienia"
 
 #: init.lua
 #, fuzzy
 msgid "Gold Block Stair Inner"
-msgstr "Schody z bloku złota"
+msgstr "Wewnętrzne schody z bloku złota"
 
 #: init.lua
 #, fuzzy
 msgid "Ice Stair Inner"
-msgstr "Lodowe schody"
+msgstr "Wewnętrzne lodowe schody"
 
 #: init.lua
 #, fuzzy
 msgid "Jungle Wood Stair Inner"
-msgstr "Schody z drewna dżunglowego"
+msgstr "Wewnętrzne schody z drewna dżunglowego"
 
 #: init.lua
 #, fuzzy
 msgid "Mossy Cobblestone Stair Inner"
-msgstr "Schody z omszałego bruku"
+msgstr "Wewnętrzne schody z omszałego bruku"
 
 #: init.lua
 #, fuzzy
 msgid "Obsidian Block Stair Inner"
-msgstr "Schody z obsydianowego bloku"
+msgstr "Wewnętrzne schody z obsydianowego bloku"
 
 #: init.lua
 #, fuzzy
 msgid "Obsidian Brick Stair Inner"
-msgstr "Schody z obsydianowej cegły"
+msgstr "Wewnętrzne schody z obsydianowej cegły"
 
 #: init.lua
 #, fuzzy
 msgid "Obsidian Stair Inner"
-msgstr "Obsydianowe schody"
+msgstr "Wewnętrzne obsydianowe schody"
 
 #: init.lua
 #, fuzzy
 msgid "Pine Wood Stair Inner"
-msgstr "Sosnowe schody"
+msgstr "Wewnętrzne sosnowe schody"
 
 #: init.lua
 #, fuzzy
 msgid "Sandstone Block Stair Inner"
-msgstr "Schody z bloku piaskowca"
+msgstr "Wewnętrzne schody z bloku piaskowca"
 
 #: init.lua
 #, fuzzy
 msgid "Sandstone Brick Stair Inner"
-msgstr "Schody z cegły piaskowca"
+msgstr "Wewnętrzne schody z cegły piaskowca"
 
 #: init.lua
 #, fuzzy
 msgid "Sandstone Stair Inner"
-msgstr "Schody z piaskowca"
+msgstr "Wewnętrzne schody z piaskowca"
 
 #: init.lua
 #, fuzzy
 msgid "Silver Sandstone Block Stair Inner"
-msgstr "Schody z bloku srebrnego piaskowca"
+msgstr "Wewnętrzne schody z bloku srebrnego piaskowca"
 
 #: init.lua
 #, fuzzy
 msgid "Silver Sandstone Brick Stair Inner"
-msgstr "Schody z cegieł srebrnego piaskowca"
+msgstr "Wewnętrzne ceglane schody ze srebrnego piaskowca"
 
 #: init.lua
 #, fuzzy
 msgid "Silver Sandstone Stair Inner"
-msgstr "Schody ze srebrnego piaskowca"
+msgstr "Wewnętrzne schody ze srebrnego piaskowca"
 
 #: init.lua
 #, fuzzy
 msgid "Snow Block Stair Inner"
-msgstr "Schody ze śnieżnego bloku"
+msgstr "Wewnętrzne schody ze śnieżnego bloku"
 
 #: init.lua
 #, fuzzy
 msgid "Steel Block Stair Inner"
-msgstr "Schody z bloku stali"
+msgstr "Wewnętrzne schody z bloku stali"
 
 #: init.lua
 #, fuzzy
 msgid "Stone Block Stair Inner"
-msgstr "Schody z kamiennego bloku"
+msgstr "Wewnętrzne schody z kamiennego bloku"
 
 #: init.lua
 #, fuzzy
 msgid "Stone Brick Stair Inner"
-msgstr "Ceglane kamienne schody"
+msgstr "Wewnętrzne ceglane kamienne schody"
 
 #: init.lua
 #, fuzzy
 msgid "Stone Stair Inner"
-msgstr "Kamienne schody"
+msgstr "Wewnętrzne kamienne schody"
 
 #: init.lua
 #, fuzzy
 msgid "Straw Stair Inner"
-msgstr "Schody ze źdźbła"
+msgstr "Wewnętrzne schody ze źdźbła"
 
 #: init.lua
 #, fuzzy
 msgid "Tin Block Stair Inner"
-msgstr "Schody z cynowego bloku"
+msgstr "Wewnętrzne schody z cynowego bloku"
 
 #: init.lua
 #, fuzzy
 msgid "Wooden Stair Inner"
-msgstr "Drewniane schody"
+msgstr "Wewnętrzne drewniane schody"
 
 #: init.lua
 msgid "Jungle Wood Stair"
@@ -1341,17 +1340,17 @@ msgstr "Obsydianowe schody"
 #: init.lua
 #, fuzzy
 msgid "Acacia Wood Stair Outer"
-msgstr "Akacjowe schody"
+msgstr "Zewnętrzne akacjowe schody"
 
 #: init.lua
 #, fuzzy
 msgid "Aspen Wood Stair Outer"
-msgstr "Osikowe schody"
+msgstr "Zewnętrzne osikowe schody"
 
 #: init.lua
 #, fuzzy
 msgid "Brick Stair Outer"
-msgstr "Ceglane schody"
+msgstr "Zewnętrzne ceglane schody"
 
 #: init.lua
 #, fuzzy

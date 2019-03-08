@@ -7,6 +7,5 @@ stairs
 moreblocks?
 xdecor?
 furniture?
-intllib?
 doc_items?
 awards?

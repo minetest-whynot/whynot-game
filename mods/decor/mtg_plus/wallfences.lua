@@ -1,10 +1,4 @@
--- Boilerplate to support localized strings if intllib mod is installed.
-local S
-if minetest.get_modpath("intllib") then
-	S = intllib.Getter()
-else
-	S = function(s) return s end
-end
+local S = minetest.get_translator("mtg_plus")
 
 -- Walls
 walls.register("mtg_plus:wall_sandstone_cobble", S("Cobbled Sandstone Wall"), "mtg_plus_sandstone_cobble.png", "mtg_plus:sandstone_cobble", default.node_sound_stone_defaults())

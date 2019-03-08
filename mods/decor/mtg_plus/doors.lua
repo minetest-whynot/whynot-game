@@ -1,10 +1,4 @@
--- Boilerplate to support localized strings if intllib mod is installed.
-local S
-if minetest.get_modpath("intllib") then
-	S = intllib.Getter()
-else
-	S = function(s) return s end
-end
+local S = minetest.get_translator("mtg_plus")
 
 local door_simple = S("A door covers a vertical area of two blocks to block the way. It can be opened and closed by any player.")
 local door_simple_use = S("Right-click the door to open or close it.")
