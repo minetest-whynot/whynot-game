@@ -33,7 +33,7 @@ Mod: minetest_game/mods/wool
 Mod: minetest_game/mods/xpanes
 
 origin	https://github.com/minetest-mods/craftguide/ (fetch)
-* master 054a7ab [origin/master] Update russian translations
+* master 9df355b [origin/master] Add more assert checks
 Mod: libs/craftguide
 
 origin	https://github.com/bell07/minetest_craftguide_reveal.git (fetch)
@@ -185,6 +185,10 @@ Mod: tools/boost_cart
 origin	https://github.com/minetest-mods/ccompass (fetch)
 * master c5a6e43 [origin/master] Merge pull request #7 from minetest-mods/teleporter
 Mod: tools/ccompass
+
+origin	https://github.com/bell07/minetest-compost (fetch)
+* master 0a1c82f [origin/master] Garden Soil (squashed changes ThorfinnS+bell07)
+Mod: tools/compost
 
 origin	https://github.com/orwell96/engrave/ (fetch)
 * master d7c01a1 [origin/master] Make the formspec a textarea when the player has the engrave_long_names privilege

@@ -1,0 +1,8 @@
+# Set the composting duration to get 1 soil or dirt
+compost_duration_seconds (Composting duration in seconds) int 300
+
+# Set rarity for extra vegetable gifts in result. 0 disables the gifts
+compost_extra_result_rarity (Extra gifts rarity) int 300
+
+# If enabled, the node 'compost:garden_soil' is enabled as composting result
+compost_garden_soil (Generate garden soil instead of dirt) bool true

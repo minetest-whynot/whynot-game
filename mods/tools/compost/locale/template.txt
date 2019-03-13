@@ -1,0 +1,4 @@
+Compost Bin =
+Empty Compost Bin =
+To start composting, place some organic matter inside. =
+progress: @1% =

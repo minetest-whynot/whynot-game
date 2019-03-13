@@ -13,6 +13,7 @@ local fuel_cache    = {}
 local progressive_mode = M.settings:get_bool("craftguide_progressive_mode")
 local sfinv_only = M.settings:get_bool("craftguide_sfinv_only") and rawget(_G, "sfinv")
 
+local after = M.after
 local colorize = M.colorize
 local reg_items = M.registered_items
 local get_result = M.get_craft_result
@@ -119,23 +120,31 @@ local function __func()
 	return debug.getinfo(2, "n").name
 end
 
+local function is_str(x)
+	return type(x) == "string"
+end
+
+local function is_func(x)
+	return type(x) == "function"
+end
+
 local custom_crafts, craft_types = {}, {}
 
 function craftguide.register_craft_type(name, def)
 	local func = "craftguide." .. __func() .. "(): "
-	assert(name, func .. "'name' field missing")
-	assert(def.description, func .. "'description' field missing")
-	assert(def.icon, func .. "'icon' field missing")
+	assert(is_str(name), func .. "'name' field missing")
+	assert(is_str(def.description), func .. "'description' field missing")
+	assert(is_str(def.icon), func .. "'icon' field missing")
 
 	craft_types[name] = def
 end
 
 function craftguide.register_craft(def)
 	local func = "craftguide." .. __func() .. "(): "
-	assert(def.type, func .. "'type' field missing")
-	assert(def.width, func .. "'width' field missing")
-	assert(def.output, func .. "'output' field missing")
-	assert(def.items, func .. "'items' field missing")
+	assert(is_str(def.type), func .. "'type' field missing")
+	assert(is_str(def.width), func .. "'width' field missing")
+	assert(is_str(def.output), func .. "'output' field missing")
+	assert(is_str(def.items), func .. "'items' field missing")
 
 	custom_crafts[#custom_crafts + 1] = def
 end
@@ -144,8 +153,8 @@ local recipe_filters = {}
 
 function craftguide.add_recipe_filter(name, f)
 	local func = "craftguide." .. __func() .. "(): "
-	assert(name, func .. "filter name missing")
-	assert(f and type(f) == "function", func .. "filter function missing")
+	assert(is_str(name), func .. "filter name missing")
+	assert(is_func(f), func .. "filter function missing")
 
 	recipe_filters[name] = f
 end
@@ -156,8 +165,8 @@ end
 
 function craftguide.set_recipe_filter(name, f)
 	local func = "craftguide." .. __func() .. "(): "
-	assert(name, func .. "filter name missing")
-	assert(f and type(f) == "function", func .. "filter function missing")
+	assert(is_str(name), func .. "filter name missing")
+	assert(is_func(f), func .. "filter function missing")
 
 	recipe_filters = {[name] = f}
 end
@@ -178,8 +187,8 @@ local search_filters = {}
 
 function craftguide.add_search_filter(name, f)
 	local func = "craftguide." .. __func() .. "(): "
-	assert(name, func .. "filter name missing")
-	assert(f and type(f) == "function", func .. "filter function missing")
+	assert(is_str(name), func .. "filter name missing")
+	assert(is_func(f), func .. "filter function missing")
 
 	search_filters[name] = f
 end
@@ -196,8 +205,9 @@ local formspec_elements = {}
 
 function craftguide.add_formspec_element(name, def)
 	local func = "craftguide." .. __func() .. "(): "
-	assert(def.element, func .. "'element' field not defined")
-	assert(def.type, func .. "'type' field not defined")
+	assert(is_str(name), func .. "formspec element name missing")
+	assert(is_str(def.element), func .. "'element' field not defined")
+	assert(is_str(def.type), func .. "'type' field not defined")
 	assert(FMT[def.type], func .. "'" .. def.type .. "' type not supported by the API")
 
 	formspec_elements[name] = {
@@ -699,12 +709,12 @@ local function search(data)
 	end
 
 	local filtered_list, c = {}, 0
-	local pattern = "^(.-)%+([%w_]+)=([%w_,]+)"
-	local search_filter = next(search_filters) and match(filter, pattern)
+	local extras = "^(.-)%+([%w_]+)=([%w_,]+)"
+	local search_filter = next(search_filters) and match(filter, extras)
 	local filters = {}
 
 	if search_filter then
-		for filter_name, values in gmatch(filter, sub(pattern, 6, -1)) do
+		for filter_name, values in gmatch(filter, sub(extras, 6, -1)) do
 			if search_filters[filter_name] then
 				values = split(values, ",")
 				filters[filter_name] = values
@@ -722,7 +732,7 @@ local function search(data)
 		if search_filter then
 			for filter_name, values in pairs(filters) do
 				local func = search_filters[filter_name]
-				to_add = func(item, values) and (not search_filter or
+				to_add = func(item, values) and (search_filter == "" or
 					find(search_in, search_filter, 1, true))
 			end
 		else
@@ -752,8 +762,8 @@ local function get_inv_items(player)
 	local stacks = {}
 
 	for i = 1, #item_lists do
-		local l = inv:get_list(item_lists[i])
-		stacks = table_merge(stacks, l)
+		local list = inv:get_list(item_lists[i])
+		table_merge(stacks, list)
 	end
 
 	local inv_items, c = {}, 0
@@ -871,7 +881,6 @@ local function on_receive_fields(player, fields)
 		data.pagenum = 1
 		data.iX = data.iX + (fields.size_inc and 1 or -1)
 		show_fs(player, name)
-
 	else
 		local item
 		for field in pairs(fields) do
@@ -1108,7 +1117,7 @@ if progressive_mode then
 			end
 		end
 
-		M.after(POLL_FREQ, poll_new_items)
+		after(POLL_FREQ, poll_new_items)
 	end
 
 	poll_new_items()
