@@ -373,7 +373,8 @@ armor.get_preview = function(self, name)
 	local player = minetest.get_player_by_name(name)
 	if player then
 		local current_skin = player_api.get_skin(player)
-		return player_api.registered_skins[current_skin].preview or 'character_preview.png'
+		return current_skin and player_api.registered_skins[current_skin] and
+				player_api.registered_skins[current_skin].preview or 'character_preview.png'
 	else
 		return 'character_preview.png'
 	end

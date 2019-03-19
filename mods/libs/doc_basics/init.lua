@@ -10,13 +10,7 @@
 -- TODO: Better (official) support for customizable creative page
 ]]
 
--- Boilerplate to support localized strings if intllib mod is installed.
-local S
-if minetest.get_modpath("intllib") then
-	S = intllib.Getter()
-else
-	S = function(s) return s end
-end
+local S = minetest.get_translator("doc_basics")
 
 doc.add_category("basics",
 {
@@ -53,7 +47,7 @@ S("• [I] for the inventory").."\n"..
 S("• First items in inventory appear in hotbar below").."\n"..
 S("• [F9] for the minimap").."\n"..
 S("• Put items into crafting grid (usually 3×3 grid) to craft").."\n"..
-S("• Use a crafting guide mod to learn crafting recipes or visit <http://wiki.minetest.net/wiki/Crafting>").."\n"..
+S("• Use a crafting guide mod to learn crafting recipes or visit <https://wiki.minetest.net/wiki/Crafting>").."\n"..
 S("• Read entries in this help to learn the rest").."\n"..
 S("• [Esc] to close this window")
 }})
@@ -70,9 +64,8 @@ S("A core feature of Minetest is the built-in modding capability. Mods modify ex
 
 S("Minetest can be played alone or online together with multiple players. Online play will work out of the box with any mods, with no need for additional software as they are entirely provided by the server.").."\n\n"..
 
-S("Minetest is usually bundled with a simple default game, named “Minetest Game” (shown in images 1 and 2). You probably already have it. Other games for Minetest can be downloaded from the official Minetest forums <https://forum.minetest.net/viewforum.php?f=48>.").."\n\n"..
+S("Minetest is usually bundled with a simple default game, named “Minetest Game” (shown in images 1 and 2). You probably already have it. Other games for Minetest can be downloaded from the official Minetest forums <https://forum.minetest.net/viewforum.php?f=48>."),
 
-S("Minetest as well as Minetest Game are both unfinished at the moment, so please forgive us when not everything works out perfectly."),
 		images = {{image="doc_basics_gameplay_mtg_1.png"}, {image="doc_basics_gameplay_mtg_2.png"}, {image="doc_basics_gameplay_carbone_ng.png"}, {image="doc_basics_gameplay_lott.png"}, {image="doc_basics_gameplay_pixture.png"}, {image="doc_basics_gameplay_outback.png"}, {image="doc_basics_gameplay_moontest.png"},
 {image="doc_basics_gameplay_hades.png"}, {image="doc_basics_gameplay_xtraores_xtension.png"},}
 }})
@@ -86,8 +79,6 @@ S("To sneak, hold down the sneak key (default: [Shift]). When you release it, yo
 S("• Sneak: [Shift]").."\n\n"..
 
 S("Sneaking only works when you stand on solid ground, are not in a liquid and don't climb.").."\n\n"..
-
-S("If you jump while holding the sneak key, you also jump slightly higher than usual.").."\n\n"..
 
 S("Sneaking might be disabled by mods. In this case, you still walk slower by sneaking, but you will no longer be stopped at ledges."),
 		images = { { image = "doc_basics_sneak.png" } },
@@ -120,10 +111,10 @@ S("• H: Toggle noclip mode, makes you go through walls in fly mode (requires �
 S("• E: Walk fast in fast mode").."\n\n"..
 
 S("World interaction:").."\n"..
-S("• Left mouse button: Punch / mine blocks / take items").."\n"..
+S("• Left mouse button: Punch / mine blocks").."\n"..
 S("• Right mouse button: Build or use pointed block").."\n"..
 S("• Shift+Right mouse button: Build").."\n"..
-S("• Roll mouse wheel: Select next/previous item in hotbar").."\n"..
+S("• Roll mouse wheel / B / N: Select next/previous item in hotbar").."\n"..
 S("• 0-9: Select item in hotbar directly").."\n"..
 S("• Q: Drop item stack").."\n"..
 S("• Shift+Q: Drop 1 item").."\n"..
@@ -133,9 +124,8 @@ S("Inventory interaction:").."\n"..
 S("See the entry “Basics > Inventory”.").."\n\n"..
 
 S("Camera:").."\n"..
-S("• Z: Zoom (requires “zoom” privilege)").."\n"..
-S("• F7: Toggle camera mode").."\n"..
-S("• F8: Toggle cinematic mode").."\n\n"..
+S("• Z: Zoom").."\n"..
+S("• F7: Toggle camera mode").."\n\n"..
 
 S("Interface:").."\n"..
 S("• Esc: Open menu window (pauses in single-player mode) or close window").."\n"..
@@ -156,8 +146,7 @@ S("• +: Increase minimal viewing distance").."\n"..
 S("• -: Decrease minimal viewing distance").."\n"..
 S("• F3: Enable/disable fog").."\n"..
 S("• F5: Enable/disable debug screen which also shows your coordinates").."\n"..
-S("• F6: Only useful for developers. Enables/disables profiler").."\n"..
-S("• P: Only useful for developers. Writes current stack traces")
+S("• F6: Only useful for developers. Enables/disables profiler")
 }})
 
 doc.add_entry("basics", "players", {
@@ -166,15 +155,16 @@ doc.add_entry("basics", "players", {
 		text =
 S("Players (actually: “player characters”) are the characters which users control.").."\n\n"..
 
-S("Players are living beings which occupy a space of about 1×2×1 cubes. They start with 20 health points (HP) and 10 breath points (BP).").."\n"..
+S("Players are living beings. They start with a number of health points (HP) and a number of breath points (BP).").."\n"..
 S("Players are capable of walking, sneaking, jumping, climbing, swimming, diving, mining, building, fighting and using tools and blocks.").."\n"..
 
-S("Players can take damage for a variety of reasons, here are some:\
-• Taking fall damage\
-• Touching a block which causes direct damage\
-• Drowning\
-• Being attacked by another player\
-• Being attacked by a computer enemy").."\n\n"..
+S("Players can take damage for a variety of reasons, here are some:").."\n\n"..
+
+S("• Taking fall damage").."\n"..
+S("• Touching a block which causes direct damage").."\n"..
+S("• Drowning").."\n"..
+S("• Being attacked by another player").."\n"..
+S("• Being attacked by a computer enemy").."\n\n"..
 
 S("At a health of 0, the player dies. The player can just respawn in the world.").."\n"..
 S("Other consequences of death depend on the game. The player could lose all items, or lose the round in a competitive game.").."\n\n"..
@@ -195,12 +185,12 @@ S("Items are things you can carry along and store in inventories. They can be us
 
 S("An item stack is a collection of items of the same type which fits into a single item slot. Item stacks can be dropped on the ground. Items which drop into the same coordinates will form an item stack.").."\n\n"..
 
-S("Items have several properties, including the following:\
-\
-• Maximum stack size: Number of items which fit on 1 item stack\
-• Pointing range: How close things must be to be pointed while wielding this item\
-• Group memberships: See “Basics > Groups”\
-• May be used for crafting or cooking").."\n\n"..
+S("Items have several properties, including the following:").."\n\n"..
+
+S("• Maximum stack size: Number of items which fit on 1 item stack").."\n"..
+S("• Pointing range: How close things must be to be pointed while wielding this item").."\n"..
+S("• Group memberships: See “Basics > Groups”").."\n"..
+S("• May be used for crafting or cooking").."\n\n"..
 
 S("A dropped item stack can be collected by punching it."),
 		images = {{image="doc_basics_inventory_detail.png"}, {image="doc_basics_items_dropped.png"}},
@@ -211,9 +201,9 @@ doc.add_entry("basics", "tools", {
 	data = { text =
 S("Some items may serve as a tool when wielded. Any item which has some special use which can be directly used by its wielder is considered a tool.").."\n\n"..
 
-S("A common tool in Minetest are, of course, mining tools. These are important to break all kinds of blocks. Weapons are a kind of tool in Minetest. There are of course many other possible tools. Special actions of tools are usually done by left-click or right-click.").."\n\n"..
+S("A common subset of tools is mining tools. These are important to break all kinds of blocks. Weapons are a kind of tool. There are of course many other possible tools. Special actions of tools are usually done by left-click or right-click.").."\n\n"..
 
-S("When nothing is wielded, players use their hand which may act as tool and weapon. The hand is capable of collecting dropped items by punching.").."\n\n"..
+S("When nothing is wielded, players use their hand which may act as tool and weapon.").."\n\n"..
 
 S("Many tools will wear off when using them and may eventually get destroyed. The damage is displayed in a damage bar below the tool icon. If no damage bar is shown, the tool is in mint condition. Tools may be repairable by crafting, see “Basics > Crafting”."),
 		images = {{image="doc_basics_tools.png"}, {image="doc_basics_tools_mining.png"}},
@@ -242,7 +232,7 @@ doc.add_entry("basics", "point", {
 	name = S("Pointing"),
 	data = {
 		text =
-S("“Pointing” means looking at something in range with the crosshair. Pointing is needed for interaction, like mining, punching, using, etc. Pointable things include blocks, dropped items, players, computer enemies and objects.").."\n\n"..
+S("“Pointing” means looking at something in range with the crosshair. Pointing is needed for interaction, like mining, punching, using, etc. Pointable things include blocks, players, computer enemies and objects.").."\n\n"..
 
 S("To point something, it must be in the pointing range (also just called “range”) of your wielded item. There's a default range when you are not wielding anything. A pointed thing will be outlined or highlighted (depending on your settings). Pointing is not possible with the 3rd person front camera.").."\n\n"..
 
@@ -254,18 +244,17 @@ doc.add_entry("basics", "cam", {
 	name = S("Camera"),
 	data = {
 		text =
-S("Minetest has 3 different views which determine the way you see the world. The modes are:\
-\
-• 1: First-person view (default)\
-• 2: Third-person view from behind\
-• 3: Third-person view from the front").."\n\n"..
+S("There are 3 different views which determine the way you see the world. The modes are:").."\n\n"..
+
+S("• 1: First-person view (default)").."\n"..
+S("• 2: Third-person view from behind").."\n"..
+S("• 3: Third-person view from the front").."\n\n"..
 
 S("You can change the camera mode by pressing [F7].").."\n"..
-S("There is also Cinematic Mode which can be toggled with [F8]. With Cinematic Mode enabled, the camera movements become more smooth. Some players don't like it, it is a matter of taste.").."\n"..
-S("By holding down [Z], you can zoom the view at your crosshair. You need the “zoom” privilege to do this.").."\n\n"..
+S("You might be able to zoom with [Z] to zoom the view at the crosshair. This allows you to look further.").."\n"..
+S("Zooming is a gameplay feature that might be enabled or disabled by the game. By default, zooming is enabled when in Creative Mode but disabled otherwise.").."\n\n"..
 
 S("• Switch camera mode: [F7]").."\n"..
-S("• Toggle Cinematic Mode: [F8]").."\n"..
 S("• Zoom: [Z]"),
 		images = {{image="doc_basics_camera_ego.png"}, {image="doc_basics_camera_behind.png"}, {image="doc_basics_camera_front.png"}}
 }})
@@ -274,7 +263,7 @@ doc.add_entry("basics", "nodes", {
 	name = S("Blocks"),
 	data = {
 		text =
-S("The world of Minetest is made entirely out of blocks (voxels, to be precise). Blocks can be added or removed with the correct tools.").."\n\n"..
+S("The world is made entirely out of blocks (voxels, to be precise). Blocks can be added or removed with the correct tools.").."\n\n"..
 
 S("Blocks can have a wide range of different properties which determine mining times, behavior, looks, shape, and much more. Their properties include:").."\n\n"..
 
@@ -305,7 +294,7 @@ S("Mineable blocks have mining properties (based on groups) and a toughness leve
 
 S("In order to mine a block, these conditions need to be met:").."\n"..
 S("• The block and tool share at least one mining property for which they have a matching rating").."\n"..
-S("• The tool's toughness level is equal or less than the block's toughness level").."\n\n"..
+S("• The tool's toughness level is equal or greater than the block's toughness level").."\n\n"..
 
 S("Example: A block with the mining property “cracky”, rating 3 and toughness level 0 can only be broken by a tool which is able to break “cracky” blocks at rating 3 and it must have a toughness level of 0 or larger.").."\n\n"..
 
@@ -366,10 +355,10 @@ S("• Renewability: Renewable liquids can create new sources").."\n"..
 S("• Flowing range: How many flowing liquids are created at maximum per liquid source, it determines how far the liquid will spread. Possible are ranges from 0 to 8. At 0, no flowing liquids will be created. Image 5 shows a liquid of flowing range 2").."\n"..
 S("• Viscosity: How slow players move through it and how slow the liquid spreads").."\n\n"..
 
-S("Renewable liquids create new liquid sources at open spaces (image 2). A new liquid source is created when:\
-• Two renewable liquid blocks of the same type touch each other diagonally\
-• These blocks are also on the same height\
-• One of the two “corners” is open space which allows liquids to flow in").."\n\n"..
+S("Renewable liquids create new liquid sources at open spaces (image 2). A new liquid source is created when:").."\n"..
+S("• Two renewable liquid blocks of the same type touch each other diagonally").."\n"..
+S("• These blocks are also on the same height").."\n"..
+S("• One of the two “corners” is open space which allows liquids to flow in").."\n\n"..
 
 S("When those criteria are met, the open space is filled with a new liquid source of the same type (image 3).").."\n\n"..
 
@@ -411,12 +400,12 @@ S("A description on how to craft an item is called a “crafting recipe”. You 
 
 S("Crafting recipes consist of at least one input item and exactly one stack of output items. When performing a single craft, it will consume exactly one item from each stack of the crafting grid, unless the crafting recipe defines replacements.").."\n\n"..
 
-S("There are multiple types of crafting recipes:\
-\
-• Shaped (image 2): Items need to be placed in a particular shape\
-• Shapeless (images 3 and 4): Items need to be placed somewhere in input (both images show the same recipe)\
-• Cooking: Explained in “Basics > Cooking”\
-• Repairing (image 5): Place two damaged tools into the crafting grid anywhere to get a tool which is repaired by a certain percentage. This recipe may not be available in all games").."\n\n"..
+S("There are multiple types of crafting recipes:").."\n\n"..
+
+S("• Shaped (image 2): Items need to be placed in a particular shape").."\n"..
+S("• Shapeless (images 3 and 4): Items need to be placed somewhere in input (both images show the same recipe)").."\n"..
+S("• Cooking: Explained in “Basics > Cooking”").."\n"..
+S("• Repairing (image 5): Place two damaged tools into the crafting grid anywhere to get a tool which is repaired by a certain percentage. This recipe may not be available in all games").."\n\n"..
 
 S("In some crafting recipes, some input items do not need to be a concrete item, instead they need to be a member of a group (see “Basics > Groups”). These recipes offer a bit more freedom in the input items. Images 6-8 show the same group-based recipe. Here, 8 items of the “stone” group are required, which is true for all of the shown items.").."\n\n"..
 
@@ -444,10 +433,10 @@ doc.add_entry("basics", "hotbar", {
 	data = {
 		text =
 S("At the bottom of the screen you see some squares. This is called the “hotbar”. The hotbar allows you to quickly access the first items from your player inventory.").."\n"..
-S("You can change the selected item with the mouse wheel or the number keys.").."\n\n"..
+S("You can change the selected item with the mouse wheel or the keyboard.").."\n\n"..
 
-S("• Select previous item in hotbar: [Mouse wheel up]").."\n"..
-S("• Select next item in hotbar: [Mouse wheel down]").."\n"..
+S("• Select previous item in hotbar: [Mouse wheel up] or [B]").."\n"..
+S("• Select next item in hotbar: [Mouse wheel down] or [N]").."\n"..
 S("• Select item in hotbar directly: [0]-[9]").."\n\n"..
 
 S("The selected item is also your wielded item."),
@@ -476,7 +465,7 @@ S("• Toggle minimap rotation mode: [Shift]+[F9]"),
 }})
 
 doc.add_entry("basics", "inventory", {
-	name="Inventory",
+	name=S("Inventory"),
 	data = {
 		text =
 S("Inventories are used to store item stacks. There are other uses, such as crafting. An inventory consists of a rectangular grid of item slots. Each item slot can either be empty or hold one item stack. Item stacks can be moved freely between most slots.").."\n"..
@@ -488,11 +477,12 @@ S("Inventory controls:").."\n\n"..
 S("Taking: You can take items from an occupied slot if the cursor holds nothing.").."\n"..
 S("• Left click: take entire item stack").."\n"..
 S("• Right click: take half from the item stack (rounded up)").."\n"..
-S("• Middle click: take 10 items from the item stack").."\n\n"..
+S("• Middle click: take 10 items from the item stack").."\n"..
+S("• Mouse wheel down: take 1 item from the item stack").."\n\n"..
 
 S("Putting: You can put items onto a slot if the cursor holds 1 or more items and the slot is either empty or contains an item stack of the same item type.").."\n"..
 S("• Left click: put entire item stack").."\n"..
-S("• Right click: put 1 item of the item stack").."\n"..
+S("• Right click or mouse wheel up: put 1 item of the item stack").."\n"..
 S("• Middle click: put 10 items of the item stack").."\n\n"..
 
 S("Exchanging: You can exchange items if the cursor holds 1 or more items and the destination slot is occupied by a different item type.").."\n"..
@@ -510,13 +500,13 @@ doc.add_entry("advanced", "online", {
 	data = { text=
 S("You may want to check out these online resources related to Minetest:").."\n\n"..
 
-S("Official homepage of Minetest: <http://minetest.net/>").."\n"..
+S("Official homepage of Minetest: <https://minetest.net/>").."\n"..
 S("The main place to find the most recent version of Minetest.").."\n\n"..
 
-S("Community wiki: <http://wiki.minetest.net/>").."\n"..
+S("Community wiki: <https://wiki.minetest.net/>").."\n"..
 S("A community-based documentation website for Minetest. Anyone with an account can edit it! It also features a documentation of Minetest Game.").."\n\n"..
 
-S("Web forums: <http://forums.minetest.net/>").."\n"..
+S("Web forums: <https://forums.minetest.net/>").."\n"..
 S("A web-based discussion platform where you can discuss everything related to Minetest. This is also a place where player-made mods and games are published and discussed. The discussions are mainly in English, but there is also space for discussion in other languages.").."\n\n"..
 
 S("Chat: <irc://irc.freenode.net#minetest>").."\n"..
@@ -542,7 +532,7 @@ doc.add_entry("basics", "glossary", {
 	name = S("Glossary"),
 	data = {
 		text =
-S("This is a list of commonly used terms in Minetest:").."\n\n"..
+S("This is a list of commonly used terms:").."\n\n"..
 
 S("Controls:").."\n"..
 S("• Wielding: Holding an item in hand").."\n"..
@@ -616,13 +606,18 @@ S("• Damage enabled (enable_damage): Enables the health and breath attributes 
 S("• Creative Mode (creative_mode): Enables sandbox-style gameplay focusing on creativity rather than a challenging gameplay. The meaning depends on the game; usual changes are: Reduced dig times, easy access to almost all items, tools never wear off, etc.").."\n"..
 S("• PvP (enable_pvp): Short for “Player vs Player”. If enabled, players can deal damage to each other").."\n\n"..
 
-S("For a full list of all available settings, use the “Advanced settings” dialog in the main menu.")
+S("For a full list of all available settings, use the “All Settings” dialog in the main menu.")
 }})
 
 doc.add_entry("advanced", "movement_modes", {
 	name = S("Movement modes"),
 	data = { text =
-S("If you have the required privileges, you can use up to three special movement modes. Using these may be considered cheating.").."\n\n"..
+S("You can enable some special movement modes that change how you move.").."\n\n"..
+
+S("Pitch movement mode:").."\n"..
+S("• Description: If this mode is activated, the movement keys will move you relative to your current view pitch (vertical look angle) when you're in a liquid or in fly mode.").."\n"..
+S("• Default key: [L]").."\n"..
+S("• No privilege required").."\n\n"..
 
 S("Fast mode:").."\n"..
 S("• Description: Allows you to move much faster. Hold down the the “Use” key [E] to move faster. In the client configuration, you can further customize fast mode.").."\n"..
@@ -731,7 +726,7 @@ S("Players with the “privs” privilege can modify privileges at will:").."\n\
 S("• /grant <player> <privilege>: Grant <privilege> to <player>").."\n"..
 S("• /revoke <player> <privilege>: Revoke <privilege> from <player>").."\n\n"..
 
-S("In single-player mode, you can use “/grant singleplayer all” to unlock all abilities (which is often considered cheating).")
+S("In single-player mode, you can use “/grantme all” to unlock all abilities.")
 }})
 
 doc.add_entry("basics", "light", {
@@ -760,7 +755,7 @@ S("Note that “transparency” here only means that the block is able to carry 
 doc.add_entry("advanced", "coordinates", {
 	name = S("Coordinates"),
 	data = { text =
-S("The Minetest world is a large cube. And because of this, a position in the world can be easily expressed with Cartesian coordinates. That is, for each position in the world, there are 3 values X, Y and Z.").."\n\n"..
+S("The world is a large cube. And because of this, a position in the world can be easily expressed with Cartesian coordinates. That is, for each position in the world, there are 3 values X, Y and Z.").."\n\n"..
 
 S("Like this: (5, 45, -12)").."\n\n"..
 
@@ -776,5 +771,5 @@ S("• Follow the sun, then go right: Z increases").."\n"..
 S("• Follow the sun, then go left: Z decreases").."\n"..
 S("• The side length of a full cube is 1").."\n\n"..
 
-S("You can view your current position in the debug screen (open with [F5]). This is considered cheating in some games.")
+S("You can view your current position in the debug screen (open with [F5]).")
 }})

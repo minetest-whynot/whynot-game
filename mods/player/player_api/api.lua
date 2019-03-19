@@ -161,15 +161,10 @@ player_api.textures_skin_suffix_blacklist = textures_skin_suffix_blacklist
 function player_api.read_textures_and_meta(hook)
 	local modpath = minetest.get_modpath(minetest.get_current_modname())
 	for _, fn in pairs(minetest.get_dir_list(modpath..'/textures/')) do
-		local nameparts = string.gsub(fn, "[.]", "_"):split("_")
+		local nameparts = fn:sub(1, -5):split("_")
 		if not textures_skin_prefix[nameparts[1]] then
 			goto continue
 		end
-
-		if nameparts[#nameparts]:lower() ~= 'png' then
-			goto continue
-		end
-		table.remove(nameparts, #nameparts)
 
 		if textures_skin_suffix_blacklist[nameparts[#nameparts]] then
 			goto continue
@@ -207,7 +202,7 @@ function player_api.read_textures_and_meta(hook)
 			if nameparts[2] then
 				table.remove(nameparts, 1)
 			end
-			skin.description = table.concat(nameparts,'_')
+			skin.description = table.concat(nameparts,' ')
 		end
 
 		if hook then

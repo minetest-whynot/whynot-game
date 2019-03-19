@@ -97,7 +97,7 @@ function skinsdb5.get_skin_selection_formspec(player, context, y_delta)
 		end
 		formspec = formspec
 			.."button[0,"..(y_delta+4.0)..";1,.5;skins_page$"..page_prev..";<<]"
-			.."dropdown[0.9,"..(y_delta+3.88)..";6.5,.5;skins_selpg;"..page_list..";"..page.."]"
+			.."dropdown[0.9,"..(y_delta+3.88)..";6.5,.5;skins_selpg;"..page_list..";"..context.skins_page.."]"
 			.."button[7,"..(y_delta+4.0)..";1,.5;skins_page$"..page_next..";>>]"
 	end
 	return formspec

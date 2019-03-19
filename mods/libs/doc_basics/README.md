@@ -6,7 +6,7 @@ categories:
 * Basics: Basic gameplay information (e.g. how to craft)
 * Advanced usage: Advanced Minetest information (not gameplay-releavant) for power users (e.g. how to use commands)
 
-Version: 1.0.1
+Version: 1.1.0
 
 ## License
 Everything in this mod is licensed under the MIT License.

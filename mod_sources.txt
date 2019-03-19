@@ -33,7 +33,7 @@ Mod: minetest_game/mods/wool
 Mod: minetest_game/mods/xpanes
 
 origin	https://github.com/minetest-mods/craftguide/ (fetch)
-* master 9df355b [origin/master] Add more assert checks
+* master 4c0371c [origin/master] Progressive mode: Fix crash on player leaving
 Mod: libs/craftguide
 
 origin	https://github.com/bell07/minetest_craftguide_reveal.git (fetch)
@@ -41,15 +41,15 @@ origin	https://github.com/bell07/minetest_craftguide_reveal.git (fetch)
 Mod: libs/craftguide_reveal
 
 origin	http://repo.or.cz/minetest_doc.git (fetch)
-* master d862b50 [origin/master] Version 1.1.1
+* master 9c2f7f6 [origin/master] Version 1.2.1
 Mod: libs/doc
 
 origin	http://repo.or.cz/minetest_doc_basics.git (fetch)
-* master 84364af [origin/master] Add Italian translation (not 100% complete yet)
+* master 47d379b [origin/master] Version 1.1.0
 Mod: libs/doc_basics
 
 origin	http://repo.or.cz/minetest_doc_items.git (fetch)
-* master ec3ad1b [origin/master] Parse group fake_liquid=1
+* master 311db3b [origin/master] Version 1.2.0
 Mod: libs/doc_items
 
 origin	http://repo.or.cz/minetest_doc_minetest_game.git (fetch)
@@ -109,7 +109,7 @@ origin	https://github.com/minetest-mods/wielded_light (fetch)
 Mod: player/wielded_light
 
 origin	https://github.com/bell07/minetest-player_api_modpack (fetch)
-* master 14d0d79 [origin/master] update armor preview after skin change
+* master d36b7ac [origin/master: ahead 1] misc fixes
 Mod: player_api_modpack/3d_armor
 Mod: player_api_modpack/character_creator
 Mod: player_api_modpack/clothing
@@ -227,7 +227,7 @@ origin	https://github.com/bell07/minetest-subspacewalker (fetch)
 Mod: tools/subspacewalker
 
 origin	https://github.com/lisacvuk/minetest-toolranks (fetch)
-* master d1be7c1 [origin/master] add moreores swords
+* master ea54263 [origin/master] Crash fix - check if description is nil before trying to search it. (#3)
 Mod: tools/toolranks
 
 origin	https://github.com/minetest-mods/woodcutting (fetch)
@@ -354,7 +354,7 @@ origin	https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin	https://github.com/minetest-mods/mesecons (fetch)
-* master 737f366 [origin/master] LuaC: add lightweight interrupts (#449)
+* master 073c92d [origin/master] Revert "Fix sticky pistons (#403)" (#458)
 Mod: mesecons/mesecons
 Mod: mesecons/mesecons_alias
 Mod: mesecons/mesecons_blinkyplant
