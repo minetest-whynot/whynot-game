@@ -50,3 +50,7 @@ For custom entities, you may also want to add support for `doc_identifier`.
 
 ## License of everything
 MIT License
+
+## Translation credits
+German: Wuzzy
+Portuguese: BrunoMine

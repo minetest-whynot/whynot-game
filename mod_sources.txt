@@ -33,7 +33,7 @@ Mod: minetest_game/mods/wool
 Mod: minetest_game/mods/xpanes
 
 origin	https://github.com/minetest-mods/craftguide/ (fetch)
-* master 4c0371c [origin/master] Progressive mode: Fix crash on player leaving
+* master 0271f61 [origin/master] Change tooltip format
 Mod: libs/craftguide
 
 origin	https://github.com/bell07/minetest_craftguide_reveal.git (fetch)
@@ -41,15 +41,15 @@ origin	https://github.com/bell07/minetest_craftguide_reveal.git (fetch)
 Mod: libs/craftguide_reveal
 
 origin	http://repo.or.cz/minetest_doc.git (fetch)
-* master 9c2f7f6 [origin/master] Version 1.2.1
+* master 50cf654 [origin/master] Add translation credits
 Mod: libs/doc
 
 origin	http://repo.or.cz/minetest_doc_basics.git (fetch)
-* master 47d379b [origin/master] Version 1.1.0
+* master 7e9aea1 [origin/master] Add translation credits
 Mod: libs/doc_basics
 
 origin	http://repo.or.cz/minetest_doc_items.git (fetch)
-* master 311db3b [origin/master] Version 1.2.0
+* master dbb3e16 [origin/master] Add translation credits
 Mod: libs/doc_items
 
 origin	http://repo.or.cz/minetest_doc_minetest_game.git (fetch)
@@ -151,7 +151,7 @@ origin	https://gitlab.com/zombiebot/weather_pack (fetch)
 Mod: ambience/weather_pack
 
 origin	https://notabug.org/TenPlus1/farming (fetch)
-* master a7694d2 [origin/master] fix bug in scythe callbacks, thanks BuckarooBanzay
+* master ee993f9 [origin/master] 1 in 3 chance of raw potato being poisonous
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
@@ -303,7 +303,6 @@ origin	https://gitlab.com/VanessaE/unifieddyes (fetch)
 * master         f59c8af [origin/master] Merge branch 'master' into 'master'
 Mod: decor/unifieddyes
 
-bell07	https://gitlab.com/bell07/homedecor_modpack (fetch)
 origin	https://gitlab.com/VanessaE/homedecor_modpack/ (fetch)
 * master         5b54ffd [origin/master: ahead 1] enable beds, even not optimal working
 Mod: homedecor_modpack/homedecor_i18n

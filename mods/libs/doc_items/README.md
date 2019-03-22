@@ -66,3 +66,7 @@ Read `API.md` to learn more.
 
 ## License
 Everything in this mod is licensed under the MIT License.
+
+## Translation credits
+German: Wuzzy
+Portuguese: BrunoMine

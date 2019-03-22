@@ -48,13 +48,13 @@ local FMT = {
 	label   = "label[%f,%f;%s]",
 	image   = "image[%f,%f;%f,%f;%s]",
 	button  = "button[%f,%f;%f,%f;%s;%s]",
-	tooltip = "tooltip[%s;%s]",
+	tooltip = "tooltip[%f,%f;%f,%f;%s]",
 	item_image = "item_image[%f,%f;%f,%f;%s]",
 	image_button = "image_button[%f,%f;%f,%f;%s;%s;%s]",
 	item_image_button = "item_image_button[%f,%f;%f,%f;%s;%s;%s]",
 }
 
-local group_stereotypes = {
+craftguide.group_stereotypes = {
 	wool         = "wool:white",
 	dye          = "dye:white",
 	water_bucket = "bucket:bucket_water",
@@ -124,6 +124,14 @@ local function is_str(x)
 	return type(x) == "string"
 end
 
+local function is_num(x)
+	return type(x) == "number"
+end
+
+local function is_table(x)
+	return type(x) == "table"
+end
+
 local function is_func(x)
 	return type(x) == "function"
 end
@@ -142,9 +150,9 @@ end
 function craftguide.register_craft(def)
 	local func = "craftguide." .. __func() .. "(): "
 	assert(is_str(def.type), func .. "'type' field missing")
-	assert(is_str(def.width), func .. "'width' field missing")
+	assert(is_num(def.width), func .. "'width' field missing")
 	assert(is_str(def.output), func .. "'output' field missing")
-	assert(is_str(def.items), func .. "'items' field missing")
+	assert(is_table(def.items), func .. "'items' field missing")
 
 	custom_crafts[#custom_crafts + 1] = def
 end
@@ -365,9 +373,11 @@ local function groups_to_item(groups)
 	if #groups == 1 then
 		local group = groups[1]
 		local def_gr = "default:" .. group
+		local stereotypes = craftguide.group_stereotypes
+		local stereotype = stereotypes and stereotypes[group]
 
-		if group_stereotypes[group] then
-			return group_stereotypes[group]
+		if stereotype then
+			return stereotype
 		elseif reg_items[def_gr] then
 			return def_gr
 		end
@@ -409,7 +419,7 @@ local function get_tooltip(item, groups, cooktime, burntime)
 			S("Burning time: @1", colorize("yellow", burntime))
 	end
 
-	return fmt(FMT.tooltip, item, ESC(tooltip))
+	return fmt("tooltip[%s;%s]", item, ESC(tooltip))
 end
 
 local function get_recipe_fs(data, iY)
