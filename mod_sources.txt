@@ -2,7 +2,7 @@
 bell07	https://github.com/bell07/minetest_game (fetch)
 origin	https://github.com/minetest/minetest_game (fetch)
 sofar	https://github.com/sofar/minetest_game (fetch)
-* master                3828914 [origin/stable-5: ahead 3] Fix builtin item metatable.
+* master                be5ef28 [origin/stable-5: ahead 4] Merge remote-tracking branch 'origin/stable-5'
 Mod: minetest_game/mods/beds
 Mod: minetest_game/mods/binoculars
 Mod: minetest_game/mods/boats
@@ -304,7 +304,7 @@ origin	https://gitlab.com/VanessaE/unifieddyes (fetch)
 Mod: decor/unifieddyes
 
 origin	https://gitlab.com/VanessaE/homedecor_modpack/ (fetch)
-* master         5b54ffd [origin/master: ahead 1] enable beds, even not optimal working
+* master         1a66349 [origin/master: ahead 2] Merge remote-tracking branch 'origin/master'
 Mod: homedecor_modpack/homedecor_i18n
 Mod: homedecor_modpack/homedecor
 Mod: homedecor_modpack/building_blocks
@@ -384,5 +384,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master 8da3bb5 [origin/master] add do_stay_near function, fix annoying pathfinding sounds and toolrank wear
+* master a1d4e9b [origin/master] add mobs:mob_reset_stick
 Mod: mobs_redo/mobs_redo

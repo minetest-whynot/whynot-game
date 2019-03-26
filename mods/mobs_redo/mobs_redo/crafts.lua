@@ -219,3 +219,51 @@ minetest.register_craft({
 	recipe = "mobs:fence_top",
 	burntime = 2,
 })
+
+-- this tool spawns same mob and adds owner, protected, nametag info
+-- then removes original entity, this is used for fixing any issues.
+
+minetest.register_tool(":mobs:mob_reset_stick", {
+	description = "Mob Reset Stick",
+	inventory_image = "default_stick.png^[colorize:#ff000050",
+	stack_max = 1,
+	groups = {not_in_creative_inventory = 1},
+
+	on_use = function(itemstack, user, pointed_thing)
+
+		local privs = minetest.get_player_privs(user:get_player_name())
+
+		if pointed_thing.type ~= "object" then
+			return
+		end
+
+		local obj = pointed_thing.ref
+
+		if obj then
+
+			local self = obj:get_luaentity()
+			local obj2 = minetest.add_entity(obj:get_pos(), self.name)
+
+			if obj2 then
+
+				local ent2 = obj2:get_luaentity()
+
+				ent2.protected = self.protected
+				ent2.owner = self.owner
+				ent2.nametag = self.nametag
+				ent2.gotten = self.gotten
+				ent2.tamed = self.tamed
+				ent2.health = self.health
+
+				if self.child then
+					obj2:set_velocity({x = 0, y = self.jump_height, z = 0})
+				end
+
+				obj2:set_properties({nametag = self.nametag})
+
+				obj:remove()
+			end
+		end
+	end,
+})
+

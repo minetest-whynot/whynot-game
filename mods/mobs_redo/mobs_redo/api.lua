@@ -2963,7 +2963,7 @@ function mob_class:mob_activate(staticdata, def, dtime)
 	end
 
 	if self.health == 0 then
-		self.health = random (self.hp_min, self.hp_max)
+		self.health = random(self.hp_min, self.hp_max)
 	end
 
 	-- pathfinding init
