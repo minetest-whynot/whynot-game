@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-07 22:13+0100\n"
-"PO-Revision-Date: 2019-02-12 06:10+0000\n"
-"Last-Translator: DartPower <SIMPSON-NEKEK@mail.ru>\n"
+"PO-Revision-Date: 2019-03-15 09:03+0000\n"
+"Last-Translator: Andrei Stepanov <adem4ik@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/minetest/"
 "mtg_i18n/ru/>\n"
 "Language: ru\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
 "4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 3.5-dev\n"
+"X-Generator: Weblate 3.6-dev\n"
 
 #: init.lua
 msgid "Air (you hacker you!)"
@@ -317,17 +317,14 @@ msgid "Dry Shrub"
 msgstr "Сухой куст"
 
 #: init.lua
-#, fuzzy
 msgid "Acacia Wood Fence"
 msgstr "Забор из акации"
 
 #: init.lua
-#, fuzzy
 msgid "Aspen Wood Fence"
 msgstr "Забор из осины"
 
 #: init.lua
-#, fuzzy
 msgid "Jungle Wood Fence"
 msgstr "Забор из дерева джунглей"
 
@@ -336,9 +333,8 @@ msgid "Pine Wood Fence"
 msgstr "Сосновый забор"
 
 #: init.lua
-#, fuzzy
 msgid "Apple Wood Fence"
-msgstr "Забор из дерева яблони"
+msgstr "Забор из яблони"
 
 #: init.lua
 msgid "Flint"
@@ -385,12 +381,10 @@ msgid "Jungle Grass"
 msgstr "Трава джунглей"
 
 #: init.lua
-#, fuzzy
 msgid "Jungle Tree Leaves"
-msgstr "Листья джунглей"
+msgstr "Листья деревьев джунглей"
 
 #: init.lua
-#, fuzzy
 msgid "Jungle Tree Sapling"
 msgstr "Саженец дерева джунглей"
 
@@ -399,7 +393,6 @@ msgid "Jungle Tree"
 msgstr "Дерево джунглей"
 
 #: init.lua
-#, fuzzy
 msgid "Jungle Wood Planks"
 msgstr "Доски дерева джунглей"
 
@@ -424,9 +417,8 @@ msgid "Lava Source"
 msgstr "Источник лавы"
 
 #: init.lua
-#, fuzzy
 msgid "Apple Tree Leaves"
-msgstr "Осиновые листья"
+msgstr "Листья яблони"
 
 #: init.lua
 msgid "Mese Crystal Fragment"
@@ -509,9 +501,8 @@ msgid "Pine Needles"
 msgstr "Сосновая хвоя"
 
 #: init.lua
-#, fuzzy
 msgid "Pine Tree Sapling"
-msgstr "Росток сосны"
+msgstr "Саженец сосны"
 
 #: init.lua
 msgid "Pine Tree"
@@ -546,9 +537,8 @@ msgid "Sandstone"
 msgstr "Песчаник"
 
 #: init.lua
-#, fuzzy
 msgid "Apple Tree Sapling"
-msgstr "Саженец осинового дерева"
+msgstr "Саженец яблони"
 
 #: init.lua
 msgid "Bronze Shovel"
@@ -703,9 +693,8 @@ msgid "Torch"
 msgstr "Факел"
 
 #: init.lua
-#, fuzzy
 msgid "Apple Tree"
-msgstr "Осина"
+msgstr "Яблоня"
 
 #: init.lua
 msgid "Flowing Water"
@@ -716,9 +705,8 @@ msgid "Water Source"
 msgstr "Источник воды"
 
 #: init.lua
-#, fuzzy
 msgid "Apple Wood Planks"
-msgstr "Осиновые доски"
+msgstr "Доски из яблони"
 
 #: init.lua
 msgid "Glass Door"
@@ -737,117 +725,96 @@ msgid "Wooden Door"
 msgstr "Деревянная дверь"
 
 #: init.lua
-#, fuzzy
 msgid "Acacia Wood Fence Gate"
 msgstr "Ворота из акации"
 
 #: init.lua
-#, fuzzy
 msgid "Aspen Wood Fence Gate"
 msgstr "Ворота из осины"
 
 #: init.lua
-#, fuzzy
 msgid "Jungle Wood Fence Gate"
 msgstr "Ворота из дерева джунглей"
 
 #: init.lua
-#, fuzzy
 msgid "Pine Wood Fence Gate"
 msgstr "Ворота из сосны"
 
 #: init.lua
-#, fuzzy
 msgid "Apple Wood Fence Gate"
-msgstr "Деревянные ворота"
+msgstr "Ворота из яблони"
 
 #: init.lua
 msgid "Hidden Door Segment"
 msgstr "Скрытый сегмент двери"
 
 #: init.lua
-#, fuzzy
 msgid "Wooden Trapdoor"
-msgstr "Деревянная дверь"
+msgstr "Деревянный люк"
 
 #: init.lua
 msgid "Steel Trapdoor"
 msgstr "Стальной люк"
 
 #: init.lua
-#, fuzzy
 msgid "Black Dye"
-msgstr "Черная краска"
+msgstr "Чёрная краска"
 
 #: init.lua
-#, fuzzy
 msgid "Blue Dye"
 msgstr "Синяя краска"
 
 #: init.lua
-#, fuzzy
 msgid "Brown Dye"
 msgstr "Коричневая краска"
 
 #: init.lua
-#, fuzzy
 msgid "Cyan Dye"
-msgstr "Голубая краска"
+msgstr "Бирюзовая краска"
 
 #: init.lua
-#, fuzzy
 msgid "Dark Green Dye"
-msgstr "Темно-зеленая краска"
+msgstr "Тёмно-зелёная краска"
 
 #: init.lua
-#, fuzzy
 msgid "Dark Grey Dye"
-msgstr "Темно-серая краска"
+msgstr "Тёмно-серая краска"
 
 #: init.lua
-#, fuzzy
 msgid "Green Dye"
-msgstr "Зеленая краска"
+msgstr "Зелёная краска"
 
 #: init.lua
-#, fuzzy
 msgid "Grey Dye"
 msgstr "Серая краска"
 
 #: init.lua
-#, fuzzy
 msgid "Magenta Dye"
 msgstr "Пурпурная краска"
 
 #: init.lua
-#, fuzzy
 msgid "Orange Dye"
 msgstr "Оранжевая краска"
 
 #: init.lua
-#, fuzzy
 msgid "Pink Dye"
 msgstr "Розовая краска"
 
 #: init.lua
-#, fuzzy
 msgid "Red Dye"
 msgstr "Красная краска"
 
 #: init.lua
-#, fuzzy
 msgid "Violet Dye"
 msgstr "Фиолетовая краска"
 
 #: init.lua
-#, fuzzy
 msgid "White Dye"
 msgstr "Белая краска"
 
 #: init.lua
-#, fuzzy
 msgid "Yellow Dye"
-msgstr "Желтая краска"
+msgstr "Жёлтая краска"
 
 #: init.lua
 msgid "Bread"
@@ -894,12 +861,10 @@ msgid "Wooden Hoe"
 msgstr "Деревянная мотыга"
 
 #: init.lua
-#, fuzzy
 msgid "Cotton Seed"
 msgstr "Семена хлопка"
 
 #: init.lua
-#, fuzzy
 msgid "Wheat Seed"
 msgstr "Семена пшеницы"
 
@@ -928,7 +893,6 @@ msgid "Permanent Flame"
 msgstr "Постоянное пламя"
 
 #: init.lua
-#, fuzzy
 msgid "White Dandelion"
 msgstr "Белый одуванчик"
 
@@ -949,9 +913,8 @@ msgid "Red Mushroom"
 msgstr "Мухомор"
 
 #: init.lua
-#, fuzzy
 msgid "Red Rose"
-msgstr "Красная краска"
+msgstr "Красная розы"
 
 #: init.lua
 msgid "Orange Tulip"
@@ -1546,28 +1509,24 @@ msgid "Unknown Item"
 msgstr "Неизвестная вещь"
 
 #: init.lua
-#, fuzzy
 msgid "Empty Drinking Glass"
-msgstr "Стакан (пустой)"
+msgstr "Пустой стакан"
 
 #: init.lua
-#, fuzzy
 msgid "Empty Glass Bottle"
-msgstr "Стеклянная бутылка (пустая)"
+msgstr "Пустая стеклянная бутылка"
 
 #: init.lua
-#, fuzzy
 msgid "Glass Fragments"
-msgstr "Кучка стеклянных фрагментов"
+msgstr "Осколки стекла"
 
 #: init.lua
 msgid "Vessels Shelf"
 msgstr "Полка для сундуков"
 
 #: init.lua
-#, fuzzy
 msgid "Empty Heavy Steel Bottle"
-msgstr "Тяжелая стальная бутылка (пустая)"
+msgstr "Пустая тяжёлая стальная бутылка"
 
 #: init.lua
 msgid "Cobblestone Wall"
@@ -1642,9 +1601,8 @@ msgid "Yellow Wool"
 msgstr "Желтая шерсть"
 
 #: init.lua
-#, fuzzy
 msgid "Iron Bar"
-msgstr "Железный слиток"
+msgstr "Железный прут"
 
 #: init.lua
 msgid "Glass Pane"

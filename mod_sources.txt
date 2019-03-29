@@ -2,7 +2,7 @@
 bell07	https://github.com/bell07/minetest_game (fetch)
 origin	https://github.com/minetest/minetest_game (fetch)
 sofar	https://github.com/sofar/minetest_game (fetch)
-* master                be5ef28 [origin/stable-5: ahead 4] Merge remote-tracking branch 'origin/stable-5'
+* master                638ca16 [origin/stable-5: ahead 3] Fix builtin item metatable.
 Mod: minetest_game/mods/beds
 Mod: minetest_game/mods/binoculars
 Mod: minetest_game/mods/boats
@@ -65,7 +65,7 @@ origin	https://github.com/minetest-mods/intllib (fetch)
 Mod: libs/intllib
 
 origin	https://github.com/minetest-mods/mtg_i18n (fetch)
-* master 1171ac9 [origin/master] Translated using Weblate (Russian)
+* master 8f017b9 [origin/master] Translated using Weblate (Russian)
 Mod: libs/mtg_i18n
 
 origin	https://github.com/bell07/minetest-whynot_compat (fetch)
@@ -183,7 +183,7 @@ origin	https://github.com/SmallJoker/boost_cart (fetch)
 Mod: tools/boost_cart
 
 origin	https://github.com/minetest-mods/ccompass (fetch)
-* master c5a6e43 [origin/master] Merge pull request #7 from minetest-mods/teleporter
+* master 4ae8d69 [origin/master] adjust angle calculation for player:get_look_horizontal()
 Mod: tools/ccompass
 
 origin	https://github.com/bell07/minetest-compost (fetch)
@@ -384,5 +384,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master a1d4e9b [origin/master] add mobs:mob_reset_stick
+* master 26a520e [origin/master] sneak and punch mob with mob reset stick to add custom texture
 Mod: mobs_redo/mobs_redo

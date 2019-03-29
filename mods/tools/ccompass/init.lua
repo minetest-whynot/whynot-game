@@ -106,13 +106,13 @@ end
 local function get_compass_stack(player, stack)
 	local target = get_destination(player, stack)
 	local pos = player:getpos()
-	local dir = player:get_look_yaw()
+	local dir = player:get_look_horizontal()
 	local angle_north = math.deg(math.atan2(target.x - pos.x, target.z - pos.z))
 	if angle_north < 0 then
 		angle_north = angle_north + 360
 	end
-	local angle_dir = 90 - math.deg(dir)
-	local angle_relative = (angle_north - angle_dir) % 360
+	local angle_dir = math.deg(dir)
+	local angle_relative = (angle_north + angle_dir) % 360
 	local compass_image = math.floor((angle_relative/30) + 0.5)%12
 
 	-- create new stack with metadata copied
