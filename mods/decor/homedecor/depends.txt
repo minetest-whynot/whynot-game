@@ -13,7 +13,7 @@ bees?
 bucket?
 beds?
 flowers?
-3d_armor?
-skinsdb?
+player_api?
+multiskin_model?
 mesecons?
 darkage?

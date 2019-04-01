@@ -15,7 +15,7 @@ mod_install minetest_game --exclude=farming --exclude=player_api minetest_game/m
 mod_install libs
 
 mod_install player
-mod_install player --exclude=skins player_api_modpack/* #skinsdb5 should be used, therefore skins masked
+mod_install player --exclude=skins --exclude=homedecor player_api_modpack/* #skinsdb5 should be used, therefore skins masked
 
 mod_install player 3d_armor/3d_armor_stand
 mod_install player 3d_armor/shields
@@ -33,7 +33,7 @@ mod_install tools flight/flyingcarpet
 
 mod_install decor
 mod_install decor homedecor_modpack/homedecor_i18n
-mod_install decor homedecor_modpack/homedecor
+mod_install decor player_api_modpack/homedecor   #from player_api_modpack for wardrobe
 mod_install decor homedecor_modpack/building_blocks #grate and marble in recipes
 mod_install decor homedecor_modpack/chains
 mod_install decor homedecor_modpack/fake_fire

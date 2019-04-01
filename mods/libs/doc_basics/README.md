@@ -12,5 +12,6 @@ Version: 1.1.0
 Everything in this mod is licensed under the MIT License.
 
 ## Translation credits
+French: Karamel
 German: Wuzzy
 Italian: H4mlet

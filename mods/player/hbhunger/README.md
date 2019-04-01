@@ -1,12 +1,12 @@
 # Hunger with HUD bar [`hbhunger`]
 
-* Version: 0.7.1
+* Version: 1.0.0
 
 ## Using the mod
 
 This mod adds a mechanic for hunger.
 This mod depends on the HUD bars mod [`hudbars`], version 1.4.1 or any later version
-starting with “1.”.
+starting with “1.” or “2.”.
 
 ## About hunger
 This mod adds a hunger mechanic to the game. Players get a new attribute called “satiation”:

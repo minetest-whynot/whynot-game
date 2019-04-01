@@ -6,7 +6,7 @@ local use_cmi = minetest.global_exists("cmi")
 
 mobs = {
 	mod = "redo",
-	version = "20190124",
+	version = "20190402",
 	intllib = S,
 	invis = minetest.global_exists("invisibility") and invisibility or {},
 }
@@ -2892,6 +2892,12 @@ function mob_class:mob_activate(staticdata, def, dtime)
 			self[_] = stat
 		end
 	end
+
+	-- force current model into mob
+	self.mesh = def.mesh
+	self.base_mesh = def.mesh
+	self.collisionbox = def.collisionbox
+	self.selectionbox = def.selectionbox
 
 	-- select random texture, set model and size
 	if not self.base_texture then

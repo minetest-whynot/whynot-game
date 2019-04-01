@@ -1,9 +1,4 @@
-local S
-if (minetest.get_modpath("intllib")) then
-	S = intllib.Getter()
-else
-	S = function ( s ) return s end
-end
+local S = minetest.get_translator("hbhunger")
 
 if minetest.settings:get_bool("enable_damage") then
 

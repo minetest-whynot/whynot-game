@@ -2,7 +2,7 @@
 bell07	https://github.com/bell07/minetest_game (fetch)
 origin	https://github.com/minetest/minetest_game (fetch)
 sofar	https://github.com/sofar/minetest_game (fetch)
-* master                638ca16 [origin/stable-5: ahead 3] Fix builtin item metatable.
+* master                2389120 [origin/stable-5: ahead 5] Merge remote-tracking branch 'origin/stable-5'
 Mod: minetest_game/mods/beds
 Mod: minetest_game/mods/binoculars
 Mod: minetest_game/mods/boats
@@ -41,15 +41,15 @@ origin	https://github.com/bell07/minetest_craftguide_reveal.git (fetch)
 Mod: libs/craftguide_reveal
 
 origin	http://repo.or.cz/minetest_doc.git (fetch)
-* master 50cf654 [origin/master] Add translation credits
+* master ea4eece [origin/master] Add French translation
 Mod: libs/doc
 
 origin	http://repo.or.cz/minetest_doc_basics.git (fetch)
-* master 7e9aea1 [origin/master] Add translation credits
+* master fbb1327 [origin/master] Add newline before console input history
 Mod: libs/doc_basics
 
 origin	http://repo.or.cz/minetest_doc_items.git (fetch)
-* master dbb3e16 [origin/master] Add translation credits
+* master 6dd1aaf [origin/master] Clarify show itemstrings setting
 Mod: libs/doc_items
 
 origin	http://repo.or.cz/minetest_doc_minetest_game.git (fetch)
@@ -85,7 +85,7 @@ origin	https://github.com/minetest-mods/cozy (fetch)
 Mod: player/cozy
 
 origin	http://repo.or.cz/minetest_hbhunger (fetch)
-* master 7b10cdc [origin/master] Mark changelog as old
+* master 957decb [origin/master] Version 1.0.0
 Mod: player/hbhunger
 
 origin	https://github.com/minetest-mods/hbsprint (fetch)
@@ -93,7 +93,7 @@ origin	https://github.com/minetest-mods/hbsprint (fetch)
 Mod: player/hbsprint
 
 origin	https://repo.or.cz/minetest_hudbars.git (fetch)
-* master ba21f47 [origin/master] Version 1.11.0
+* master 085a2aa [origin/master] Version 2.0.0
 Mod: player/hudbars
 
 origin	https://github.com/minetest-mods/playeranim (fetch)
@@ -109,7 +109,7 @@ origin	https://github.com/minetest-mods/wielded_light (fetch)
 Mod: player/wielded_light
 
 origin	https://github.com/bell07/minetest-player_api_modpack (fetch)
-* master d36b7ac [origin/master: ahead 1] misc fixes
+* master 0418c3c [origin/master] added homedecor / ported wardrobe
 Mod: player_api_modpack/3d_armor
 Mod: player_api_modpack/character_creator
 Mod: player_api_modpack/clothing
@@ -151,7 +151,7 @@ origin	https://gitlab.com/zombiebot/weather_pack (fetch)
 Mod: ambience/weather_pack
 
 origin	https://notabug.org/TenPlus1/farming (fetch)
-* master ee993f9 [origin/master] 1 in 3 chance of raw potato being poisonous
+* master 1c8dfd0 [origin/master] updated readme
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
@@ -304,9 +304,15 @@ origin	https://gitlab.com/VanessaE/unifieddyes (fetch)
 Mod: decor/unifieddyes
 
 origin	https://gitlab.com/VanessaE/homedecor_modpack/ (fetch)
-* master         1a66349 [origin/master: ahead 2] Merge remote-tracking branch 'origin/master'
+* master 554ec80 [origin/master] use basic_materials motor
 Mod: homedecor_modpack/homedecor_i18n
-Mod: homedecor_modpack/homedecor
+
+origin	https://github.com/bell07/minetest-player_api_modpack (fetch)
+* master 0418c3c [origin/master] added homedecor / ported wardrobe
+Mod: player_api_modpack/homedecor
+
+origin	https://gitlab.com/VanessaE/homedecor_modpack/ (fetch)
+* master 554ec80 [origin/master] use basic_materials motor
 Mod: homedecor_modpack/building_blocks
 Mod: homedecor_modpack/fake_fire
 Mod: homedecor_modpack/lavalamp
@@ -384,5 +390,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master 26a520e [origin/master] sneak and punch mob with mob reset stick to add custom texture
+* master 55dda6d [origin/master] force defined model on activation instead of stored
 Mod: mobs_redo/mobs_redo
