@@ -1,8 +1,7 @@
 
 bell07	https://github.com/bell07/minetest_game (fetch)
 origin	https://github.com/minetest/minetest_game (fetch)
-sofar	https://github.com/sofar/minetest_game (fetch)
-* master                2389120 [origin/stable-5: ahead 5] Merge remote-tracking branch 'origin/stable-5'
+* master                1d05a6e [origin/stable-5: ahead 5] Fix beds being undiggable after laying down
 Mod: minetest_game/mods/beds
 Mod: minetest_game/mods/binoculars
 Mod: minetest_game/mods/boats
@@ -171,7 +170,7 @@ origin	https://notabug.org/TenPlus1/pbj_pup (fetch)
 Mod: mapgen/pbj_pup
 
 origin	https://github.com/GreenXenith/tac_nayn (fetch)
-* master f07b884 [origin/master] Update license and README.
+* master c84756c [origin/master: ahead 1] disable generation for pbj_pup_generate = false
 Mod: mapgen/tac_nayn
 
 origin	https://github.com/taikedz/everamzah-backpacks (fetch)
@@ -279,8 +278,8 @@ origin	https://github.com/minetest-mods/myroofs (fetch)
 * master fe98461 [origin/master] Merge pull request #7 from AntumMT/recipe_fixes
 Mod: decor/myroofs
 
-origin	https://github.com/cheapie/plasticbox (fetch)
-* master 292d002 [origin/master: ahead 1] added reversal recipe
+origin	https://github.com/sbrl/plasticbox (fetch)
+* master 6760eff [origin/master] Create README.md
 Mod: decor/plasticbox
 
 origin	https://github.com/pithydon/princess (fetch)
@@ -351,7 +350,7 @@ origin	https://github.com/Philipbenr/mtfoods (fetch)
 Mod: food/mtfoods
 
 origin	https://notabug.org/TenPlus1/pie (fetch)
-* master 58b1d70 [origin/master] full pie can be picked up using ethereal's crystal shovel
+* master 03e65ca [origin/master] update license.txt
 Mod: food/pie
 
 origin	https://github.com/GreenXenith/waffles (fetch)
