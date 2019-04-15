@@ -41,7 +41,7 @@ minetest.register_node("basic_materials:concrete_block", {
 
 minetest.register_craft({
 	type = "shapeless",
-	output = "basic_materials:oil_extract 3",
+	output = "basic_materials:oil_extract 1",
 	recipe = {
 		"group:leaves",
 		"group:leaves",

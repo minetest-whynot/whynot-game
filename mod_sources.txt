@@ -88,7 +88,7 @@ origin	http://repo.or.cz/minetest_hbhunger (fetch)
 Mod: player/hbhunger
 
 origin	https://github.com/minetest-mods/hbsprint (fetch)
-* master 7170277 [origin/master] Don't starve in creative to prevent crash
+* master ad6c57d [origin/master] Fix bug not checking for hudbars properly
 Mod: player/hbsprint
 
 origin	https://repo.or.cz/minetest_hudbars.git (fetch)
@@ -242,7 +242,7 @@ origin	https://github.com/Ezhh/abriglass (fetch)
 Mod: decor/abriglass
 
 origin	https://gitlab.com/VanessaE/basic_materials (fetch)
-* master a5fdb72 [origin/master] fix goldwire typo
+* master 58516dc [origin/master] reduce yield of leaves -> oil
 Mod: decor/basic_materials
 
 origin	https://github.com/Napiophelios/campfire (fetch)
@@ -358,7 +358,7 @@ origin	https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin	https://github.com/minetest-mods/mesecons (fetch)
-* master 073c92d [origin/master] Revert "Fix sticky pistons (#403)" (#458)
+* master b0158f5 [origin/master] Too many glasses in noteblock
 Mod: mesecons/mesecons
 Mod: mesecons/mesecons_alias
 Mod: mesecons/mesecons_blinkyplant
