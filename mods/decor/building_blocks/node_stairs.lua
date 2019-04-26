@@ -1,4 +1,4 @@
-local S = homedecor_i18n.gettext
+local S = homedecor.gettext
 
 local stairs_groups_names = {"cracky","choppy","flammable","crumbly","snappy"}
 
@@ -33,7 +33,7 @@ local function building_blocks_stairs(nodename, def)
 				("%s Slab"):format(def.description),
 				def.sounds
 			)
-		end	
+		end
 	end
 end
 

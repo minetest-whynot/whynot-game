@@ -1,4 +1,4 @@
-local S = homedecor_i18n.gettext
+local S = homedecor.gettext
 
 if minetest.get_modpath("moreblocks") or minetest.get_modpath("stairs") then
 	minetest.register_alias("building_blocks:slab_tar", "stairs:slab_Tar")

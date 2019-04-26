@@ -1,2 +1,3 @@
 default
-homedecor
+homedecor_common
+homedecor_electronics

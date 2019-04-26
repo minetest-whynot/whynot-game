@@ -1,0 +1,7 @@
+homedecor_common
+default
+basic_materials
+dye
+creative
+currency?
+bucket?

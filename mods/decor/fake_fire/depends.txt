@@ -1,2 +1,2 @@
 default
-homedecor
+homedecor_common

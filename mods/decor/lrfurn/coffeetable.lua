@@ -1,5 +1,5 @@
 
-local S = homedecor_i18n.gettext
+local S = homedecor.gettext
 
 minetest.register_alias("lrfurn:coffeetable_back", "lrfurn:coffeetable")
 minetest.register_alias("lrfurn:coffeetable_front", "air")

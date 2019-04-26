@@ -15,7 +15,7 @@ mod_install minetest_game --exclude=farming --exclude=player_api minetest_game/m
 mod_install libs
 
 mod_install player
-mod_install player --exclude=skins --exclude=homedecor player_api_modpack/* #skinsdb5 should be used, therefore skins masked
+mod_install player --exclude=skins player_api_modpack/* #skinsdb5 should be used, therefore skins masked
 
 mod_install player 3d_armor/3d_armor_stand
 mod_install player 3d_armor/shields
@@ -32,14 +32,41 @@ mod_install tools
 mod_install tools flight/flyingcarpet
 
 mod_install decor
-mod_install decor homedecor_modpack/homedecor_i18n
-mod_install decor player_api_modpack/homedecor   #from player_api_modpack for wardrobe
 mod_install decor homedecor_modpack/building_blocks #grate and marble in recipes
 mod_install decor homedecor_modpack/chains
 mod_install decor homedecor_modpack/fake_fire
 mod_install decor homedecor_modpack/lavalamp
 mod_install decor homedecor_modpack/lrfurn
 mod_install decor homedecor_modpack/plasmascreen
+
+## the homedecor blob was in whynot, therefore applied all at the first
+## Next step is to check each mod for whynot rules
+mod_install decor homedecor_modpack/homedecor_bathroom
+mod_install decor homedecor_modpack/homedecor_bedroom
+mod_install decor homedecor_modpack/homedecor_books
+mod_install decor homedecor_modpack/homedecor_climate_control
+mod_install decor homedecor_modpack/homedecor_clocks
+mod_install decor homedecor_modpack/homedecor_cobweb
+mod_install decor homedecor_modpack/homedecor_common
+mod_install decor homedecor_modpack/homedecor_doors_and_gates
+mod_install decor homedecor_modpack/homedecor_electrical
+mod_install decor homedecor_modpack/homedecor_electronics
+mod_install decor homedecor_modpack/homedecor_exterior
+mod_install decor homedecor_modpack/homedecor_fences
+mod_install decor homedecor_modpack/homedecor_foyer
+mod_install decor homedecor_modpack/homedecor_furniture
+mod_install decor homedecor_modpack/homedecor_furniture_medieval
+mod_install decor homedecor_modpack/homedecor_gastronomy
+mod_install decor homedecor_modpack/homedecor_kitchen
+mod_install decor homedecor_modpack/homedecor_laundry
+mod_install decor homedecor_modpack/homedecor_lighting
+mod_install decor homedecor_modpack/homedecor_misc
+mod_install decor homedecor_modpack/homedecor_office
+mod_install decor homedecor_modpack/homedecor_pictures_and_paintings
+mod_install decor homedecor_modpack/homedecor_roofing
+mod_install decor homedecor_modpack/homedecor_tables
+mod_install decor homedecor_modpack/homedecor_trash_cans
+mod_install decor homedecor_modpack/homedecor_windows_and_treatments
 
 mod_install decor mydoors/my_castle_doors
 mod_install decor mydoors/my_cottage_doors

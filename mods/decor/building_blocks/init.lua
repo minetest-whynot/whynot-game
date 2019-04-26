@@ -1,4 +1,4 @@
-local S = homedecor_i18n.gettext
+local S = homedecor.gettext
 local modpath = minetest.get_modpath("building_blocks")
 
 dofile(modpath.."/alias.lua")

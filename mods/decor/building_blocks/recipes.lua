@@ -1,4 +1,4 @@
-local S = homedecor_i18n.gettext
+local S = homedecor.gettext
 
 if minetest.get_modpath("moreblocks") then
 	minetest.register_craft({
