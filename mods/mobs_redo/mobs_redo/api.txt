@@ -35,6 +35,7 @@ functions needed for the mob to work properly which contains the following:
                    otherwise they amble onwards.
    'walk_velocity' is the speed that your mob can walk around.
    'run_velocity'  is the speed your mob can run with, usually when attacking.
+   'stand_chance'  has a 0-100 chance value your mob will stand from walking.
    'walk_chance'   has a 0-100 chance value your mob will walk from standing,
                    set to 0 for jumping mobs only.
    'jump'          when true allows your mob to jump updwards.
@@ -632,7 +633,7 @@ mobs:register_mob("mob_horse:horse", {
 	visual_size = {x = 1.20, y = 1.20},
 	mesh = "mobs_horse.x",
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1.25, 0.4},
-	animation = { 
+	animation = {
 		speed_normal = 15,
 		speed_run = 30,
 		stand_start = 25,

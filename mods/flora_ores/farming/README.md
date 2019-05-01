@@ -13,6 +13,7 @@ This mod works by adding your new plant to the {growing=1} group and numbering t
 
 ### Changelog:
 
+- 1.41 - Each crop has it's own spawn rate (can be changed in farming.conf)
 - 1.40 - Added Mithril Scythe to quick harvest and replant crops on right-click.  Added Hoe's for MoreOres with Toolrank support.
 - 1.39 - Added Rice, Rye and Oats thanks to Ademants Grains mod.  Added Jaffa Cake and multigrain bread.
 - 1.38 - Pumpkin grows into block, use chopping board to cut into 4x slices, same with melon block, 2x2 slices makes a block, cocoa pods are no longer walkable

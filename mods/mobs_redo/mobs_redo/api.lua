@@ -6,7 +6,7 @@ local use_cmi = minetest.global_exists("cmi")
 
 mobs = {
 	mod = "redo",
-	version = "20190402",
+	version = "20190430",
 	intllib = S,
 	invis = minetest.global_exists("invisibility") and invisibility or {},
 }
@@ -106,6 +106,7 @@ local mob_class = {
 	jump = true,
 	knock_back = true,
 	walk_chance = 50,
+	stand_chance = 30,
 	attack_chance = 5,
 	passive = false,
 	blood_amount = 5,
@@ -277,15 +278,15 @@ end
 
 
 -- set defined animation
-function mob_class:set_animation(anim)
+function mob_class:set_animation(anim, force)
 
 	if not self.animation
 	or not anim then return end
 
 	self.animation.current = self.animation.current or ""
 
-	-- only set different animation for attacks when setting to same set
-	if anim ~= "punch" and anim ~= "shoot"
+	-- only set different animation for attacks when using same set
+	if force ~= true and anim ~= "punch" and anim ~= "shoot"
 	and string.find(self.animation.current, anim) then
 		return
 	end
@@ -2070,11 +2071,11 @@ function mob_class:do_states(dtime)
 
 		if self.facing_fence == true
 		or temp_is_cliff
-		or random(1, 100) <= 30 then
+		or random(1, 100) <= self.stand_chance then
 
 			self:set_velocity(0)
 			self.state = "stand"
-			self:set_animation("stand")
+			self:set_animation("stand", true)
 		else
 			self:set_velocity(self.walk_velocity)
 
@@ -3274,6 +3275,7 @@ minetest.register_entity(name, setmetatable({
 	follow = def.follow,
 	jump = def.jump,
 	walk_chance = def.walk_chance,
+	stand_chance = def.stand_chance,
 	attack_chance = def.attack_chance,
 	passive = def.passive,
 	knock_back = def.knock_back,

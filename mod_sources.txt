@@ -151,7 +151,7 @@ origin	https://gitlab.com/zombiebot/weather_pack (fetch)
 Mod: ambience/weather_pack
 
 origin	https://notabug.org/TenPlus1/farming (fetch)
-* master 1c8dfd0 [origin/master] updated readme
+* master aeb6b82 [origin/master] update .conf example
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
@@ -243,7 +243,7 @@ origin	https://github.com/Ezhh/abriglass (fetch)
 Mod: decor/abriglass
 
 origin	https://gitlab.com/VanessaE/basic_materials (fetch)
-* master 58516dc [origin/master] reduce yield of leaves -> oil
+* master 620b9aa [origin/master] yield was TOO low on oil
 Mod: decor/basic_materials
 
 origin	https://github.com/Napiophelios/campfire (fetch)
@@ -408,5 +408,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master 55dda6d [origin/master] force defined model on activation instead of stored
+* master ddbd403 [origin/master] add stand_chance and animation force flag
 Mod: mobs_redo/mobs_redo

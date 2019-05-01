@@ -1,10 +1,14 @@
 
 -- decoration function
-local function register_plant(name, min, max, spawnon, spawnby, num, enabled)
+local function register_plant(name, min, max, spawnon, spawnby, num, rarety)
 
-	if enabled ~= true then
+	-- do not place on mapgen if no value given (or not true)
+	if not rarety then
 		return
 	end
+
+	-- set rarety value or default to farming.rarety if not a number
+	rarety = tonumber(rarety) or farming.rarety
 
 	minetest.register_decoration({
 		deco_type = "simple",
@@ -12,7 +16,7 @@ local function register_plant(name, min, max, spawnon, spawnby, num, enabled)
 		sidelen = 16,
 		noise_params = {
 			offset = 0,
-			scale = farming.rarety, -- 0.006,
+			scale = rarety,
 			spread = {x = 100, y = 100, z = 100},
 			seed = 329,
 			octaves = 3,
@@ -55,7 +59,7 @@ else
 	register_plant("carrot_8", 1, 15, nil, "", -1, farming.carrot)
 	register_plant("cucumber_4", 1, 10, nil, "", -1, farming.cucumber)
 	register_plant("melon_8", 1, 6, {"default:dirt_with_dry_grass",
-	"default:dirt_with_rainforest_litter"}, "", -1, farming.melon)
+		"default:dirt_with_rainforest_litter"}, "", -1, farming.melon)
 	register_plant("pumpkin_8", 1, 6, nil, "", -1, farming.pumpkin)
 end
 
@@ -66,7 +70,7 @@ minetest.register_decoration({
 	sidelen = 16,
 	noise_params = {
 		offset = 0,
-		scale = farming.rarety, -- 0.06,
+		scale = tonumber(farming.hemp) or farming.rarety,
 		spread = {x = 100, y = 100, z = 100},
 		seed = 420,
 		octaves = 3,
@@ -87,7 +91,7 @@ minetest.register_decoration({
 	sidelen = 16,
 	noise_params = {
 		offset = 0,
-		scale = farming.rarety, -- 0.06,
+		scale = tonumber(farming.chili) or farming.rarety,
 		spread = {x = 100, y = 100, z = 100},
 		seed = 760,
 		octaves = 3,
@@ -108,7 +112,7 @@ minetest.register_decoration({
 	sidelen = 16,
 	noise_params = {
 		offset = 0,
-		scale = farming.rarety, -- 0.06,
+		scale = tonumber(farming.pepper) or farming.rarety,
 		spread = {x = 100, y = 100, z = 100},
 		seed = 933,
 		octaves = 3,
@@ -129,7 +133,7 @@ minetest.register_decoration({
 	sidelen = 16,
 	noise_params = {
 		offset = 0,
-		scale = farming.rarety, -- 0.06,
+		scale = tonumber(farming.pineapple) or farming.rarety,
 		spread = {x = 100, y = 100, z = 100},
 		seed = 917,
 		octaves = 3,

@@ -7,7 +7,7 @@
 
 farming = {
 	mod = "redo",
-	version = "20190111",
+	version = "20190427",
 	path = minetest.get_modpath("farming"),
 	select = {
 		type = "fixed",
@@ -599,31 +599,31 @@ end
 
 
 -- default settings
-farming.carrot = true
-farming.potato = true
-farming.tomato = true
-farming.cucumber = true
-farming.corn = true
-farming.coffee = true
-farming.melon = true
-farming.pumpkin = true
+farming.carrot = 0.001
+farming.potato = 0.001
+farming.tomato = 0.001
+farming.cucumber = 0.001
+farming.corn = 0.001
+farming.coffee = 0.001
+farming.melon = 0.001
+farming.pumpkin = 0.001
 farming.cocoa = true
-farming.raspberry = true
-farming.blueberry = true
-farming.rhubarb = true
-farming.beans = true
-farming.grapes = true
+farming.raspberry = 0.001
+farming.blueberry = 0.001
+farming.rhubarb = 0.001
+farming.beans = 0.001
+farming.grapes = 0.001
 farming.barley = true
-farming.chili = true
-farming.hemp = true
-farming.garlic = true
-farming.onion = true
-farming.pepper = true
-farming.pineapple = true
-farming.peas = true
-farming.beetroot = true
+farming.chili = 0.002
+farming.hemp = 0.002
+farming.garlic = 0.001
+farming.onion = 0.001
+farming.pepper = 0.002
+farming.pineapple = 0.001
+farming.peas = 0.001
+farming.beetroot = 0.001
 farming.grains = true
-farming.rarety = 0.002 -- 0.006
+farming.rarety = 0.002
 
 
 -- Load new global settings if found inside mod folder
