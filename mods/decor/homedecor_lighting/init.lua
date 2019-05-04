@@ -126,7 +126,7 @@ minetest.register_node(":homedecor:glowlight_small_cube", {
 })
 
 homedecor.register("plasma_lamp", {
-	description = S("Plasma Lamp"),
+	description = S("Plasma Lamp/Light"),
 	drawtype = "mesh",
 	mesh = "plasma_lamp.obj",
 	tiles = {
@@ -273,7 +273,7 @@ local ol_cbox = {
 }
 
 homedecor.register("oil_lamp", {
-	description = S("Oil lamp (hurricane)"),
+	description = S("Oil lamp/Light (hurricane)"),
 	mesh = "homedecor_oil_lamp.obj",
 	tiles = {
 		"homedecor_generic_metal_brass.png",
@@ -293,7 +293,7 @@ homedecor.register("oil_lamp", {
 })
 
 homedecor.register("oil_lamp_tabletop", {
-	description = S("Oil Lamp (tabletop)"),
+	description = S("Oil Lamp/Light (tabletop)"),
 	mesh = "homedecor_oil_lamp_tabletop.obj",
 	tiles = {"homedecor_oil_lamp_tabletop.png"},
 	inventory_image = "homedecor_oil_lamp_tabletop_inv.png",
@@ -312,7 +312,7 @@ local gl_cbox = {
 minetest.register_alias("homedecor:wall_lantern", "homedecor:ground_lantern")
 
 homedecor.register("ground_lantern", {
-	description = S("Ground Lantern"),
+	description = S("Ground Lantern/Light"),
 	mesh = "homedecor_ground_lantern.obj",
 	tiles = { "homedecor_light.png", "homedecor_generic_metal_wrought_iron.png" },
 	use_texture_alpha = true,
@@ -330,7 +330,7 @@ local hl_cbox = {
 }
 
 homedecor.register("hanging_lantern", {
-	description = S("Hanging Lantern"),
+	description = S("Hanging Lantern/Light"),
 	mesh = "homedecor_hanging_lantern.obj",
 	tiles = { "homedecor_generic_metal_wrought_iron.png", "homedecor_light.png" },
 	use_texture_alpha = true,
@@ -353,7 +353,7 @@ homedecor.register("ceiling_lantern", {
 	tiles = { "homedecor_light.png", "homedecor_generic_metal_wrought_iron.png" },
 	use_texture_alpha = true,
 	inventory_image = "homedecor_ceiling_lantern_inv.png",
-	description = S("Ceiling Lantern"),
+	description = S("Ceiling Lantern/Light"),
 	groups = {snappy=3},
 	light_source = 11,
 	selection_box = cl_cbox,
@@ -367,7 +367,7 @@ if minetest.get_modpath("darkage") then
 	sm_light = default.LIGHT_MAX-5
 else
 	homedecor.register("lattice_lantern_large", {
-		description = S("Lattice lantern (large)"),
+		description = S("Lattice lantern/Light (large)"),
 		tiles = { 'homedecor_lattice_lantern_large.png' },
 		groups = { snappy = 3 },
 		light_source = default.LIGHT_MAX,
@@ -438,7 +438,7 @@ local function reg_lamp(suffix, nxt, light, brightness)
 	local wool_brighten = (light or 0) * 15
 
 	homedecor.register("table_lamp_"..suffix, {
-		description = S("Table Lamp"),
+		description = S("Table Lamp/Light"),
 		mesh = "homedecor_table_lamp.obj",
 		tiles = {
 			"wool_grey.png^[colorize:#ffffff:"..wool_brighten,
@@ -471,7 +471,7 @@ local function reg_lamp(suffix, nxt, light, brightness)
 	})
 
 	homedecor.register("standing_lamp_"..suffix, {
-		description = S("Standing Lamp"),
+		description = S("Standing Lamp/Light"),
 		mesh = "homedecor_standing_lamp.obj",
 		tiles = {
 			"wool_grey.png^[colorize:#ffffff:"..wool_brighten,
@@ -522,7 +522,7 @@ local dlamp_cbox = {
 }
 
 homedecor.register("desk_lamp", {
-	description = S("Desk Lamp"),
+	description = S("Desk Lamp/Light"),
 	mesh = "homedecor_desk_lamp.obj",
 	tiles = {
 		"homedecor_generic_metal.png",
@@ -547,7 +547,7 @@ homedecor.register("desk_lamp", {
 -- "kitchen"/"dining room" ceiling lamp
 
 homedecor.register("ceiling_lamp", {
-	description = S("Ceiling Lamp"),
+	description = S("Ceiling Lamp/Light"),
 	mesh = "homedecor_ceiling_lamp.obj",
 	tiles = {
 		"homedecor_generic_metal_brass.png",
@@ -565,7 +565,7 @@ homedecor.register("ceiling_lamp", {
 })
 
 homedecor.register("ceiling_lamp_off", {
-	description = S("Ceiling Lamp (off)"),
+	description = S("Ceiling Lamp/Light (off)"),
 	mesh = "homedecor_ceiling_lamp.obj",
 	tiles = {
 		"homedecor_generic_metal_brass.png",

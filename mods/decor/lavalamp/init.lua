@@ -4,7 +4,7 @@ local S = homedecor.gettext
 lavalamp = {}
 
 minetest.register_node("lavalamp:lavalamp", {
-	description = S("Lava Lamp"),
+	description = S("Lava Lamp/Light"),
 	drawtype = "mesh",
 	mesh = "lavalamp.obj",
 	tiles = {
@@ -46,7 +46,7 @@ minetest.register_node("lavalamp:lavalamp", {
 })
 
 minetest.register_node("lavalamp:lavalamp_off", {
-	description = S("Lava Lamp (off)"),
+	description = S("Lava Lamp/Light (off)"),
 	drawtype = "mesh",
 	mesh = "lavalamp.obj",
 	tiles = {
