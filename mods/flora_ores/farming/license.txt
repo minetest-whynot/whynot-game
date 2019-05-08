@@ -139,3 +139,6 @@ Created by PilzAdam and edited by SpaghettiToastBook (CC0):
 
 Created by VanessaE and edited by SpaghettiToastBook (CC0):
   farming_flour_multigrain.png
+
+Created by mDiyo (Natura), modified by TenPlus1 (License: CC BY-SA 3.0):
+  farming_barley.png
