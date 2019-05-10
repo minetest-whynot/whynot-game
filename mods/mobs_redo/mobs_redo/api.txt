@@ -576,7 +576,7 @@ Certain variables need to be set before using the above functions:
    'self.driver_scale'      sets driver scale for mobs larger than {x=1, y=1}
 
 
-mobs:line_of_sight(self, pos1, pos2, stepsize)
+mobs:line_of_sight(self, pos1, pos2, stepsize) [DEPRECATED]
 
 This function is for use within the mobs definition for special use cases and
 returns true if a mob can see the player or victim.
@@ -585,6 +585,10 @@ returns true if a mob can see the player or victim.
    'pos1' position of mob
    'pos2' position of vistim or player
    'stepsize' usually set to 1
+
+Use this instead:
+
+    mob_class:line_of_sight(pos1, pos2, stepsize)
 
 
 External Settings for "minetest.conf"

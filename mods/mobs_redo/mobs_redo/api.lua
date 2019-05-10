@@ -6,7 +6,7 @@ local use_cmi = minetest.global_exists("cmi")
 
 mobs = {
 	mod = "redo",
-	version = "20190430",
+	version = "20190508",
 	intllib = S,
 	invis = minetest.global_exists("invisibility") and invisibility or {},
 }
@@ -330,7 +330,7 @@ end
 
 
 -- check line of sight (BrunoMine)
-function mob_class:line_of_sight(pos1, pos2, stepsize)
+local line_of_sight = function(self, pos1, pos2, stepsize)
 
 	stepsize = stepsize or 1
 
@@ -401,7 +401,7 @@ end
 
 
 -- check line of sight (by BrunoMine, tweaked by Astrobe)
-function mob_class:NEW_line_of_sight(pos1, pos2, stepsize)
+local new_line_of_sight = function(self, pos1, pos2, stepsize)
 
 	if not pos1 or not pos2 then return end
 
@@ -447,10 +447,46 @@ function mob_class:NEW_line_of_sight(pos1, pos2, stepsize)
 	return false
 end
 
+-- check line of sight using raycasting (thanks Astrobe)
+local ray_line_of_sight = function(self, pos1, pos2)
+
+	local ray = minetest.raycast(pos1, pos2, true, false)
+	local thing = ray:next()
+
+	while thing do
+
+		if thing.type == "object"
+		and thing.ref ~= self.object
+		and not thing.ref:is_player() then return false end
+
+		if thing.type == "node" then
+
+			local name = minetest.get_node(thing.under).name
+
+			if minetest.registered_items[name].walkable then return false end
+		end
+
+		thing = ray:next()
+	end
+
+	return true
+end
+
+-- detect if using minetest 5.0 by searching for permafrost node
+local is_50 = minetest.registered_nodes["default:permafrost"]
+
+function mob_class:line_of_sight(pos1, pos2, stepsize)
+
+	if is_50 then -- only use if minetest 5.0 is detected
+		return ray_line_of_sight(self, pos1, pos2)
+	end
+
+	return line_of_sight(self, pos1, pos2, stepsize)
+end
+
 -- global function
 function mobs:line_of_sight(entity, pos1, pos2, stepsize)
-
-	return mob_class.line_of_sight(entity, pos1, pos2, stepsize)
+	return mob_class.line_of_sight(pos1, pos2, stepsize)
 end
 
 

@@ -46,6 +46,8 @@ minetest.register_node("farming:jackolantern", {
 	groups = {choppy = 1, oddly_breakable_by_hand = 1, flammable = 2},
 	sounds = default.node_sound_wood_defaults(),
 	on_punch = function(pos, node, puncher)
+		local name = puncher:get_player_name() or ""
+		if minetest.is_protected(pos, name) then return end
 		node.name = "farming:jackolantern_on"
 		minetest.swap_node(pos, node)
 	end,
@@ -69,6 +71,8 @@ minetest.register_node("farming:jackolantern_on", {
 	sounds = default.node_sound_wood_defaults(),
 	drop = "farming:jackolantern",
 	on_punch = function(pos, node, puncher)
+		local name = puncher:get_player_name() or ""
+		if minetest.is_protected(pos, name) then return end
 		node.name = "farming:jackolantern"
 		minetest.swap_node(pos, node)
 	end,

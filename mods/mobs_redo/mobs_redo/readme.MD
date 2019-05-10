@@ -23,6 +23,7 @@ Lucky Blocks: 9
 
 
 Changelog:
+- 1.50 - Added new line_of_sight function that uses raycasting if mt5.0 is found (thanks Astrobe)
 - 1.49- Added mobs:force_capture(self, player) function, api functions now use metatables thanks to bell07
 - 1.48- Add mobs:set_velocity(self, velocity) global function
 - 1.47- Mob damage changes, min and max light level for damage added, ignition sources checked for lava damage
@@ -62,7 +63,7 @@ Changelog:
 - 1.13- Added capture function (thanks blert2112) chance of picking up mob with hand; net; magic lasso, replaced some .x models with newer .b3d one's
 - 1.12- Added animal ownership so that players cannot steal your tamed animals
 - 1.11- Added flying mobs (and swimming), fly=true and fly_in="air" or "deafult:water_source" for fishy
-- 1,10- Footstep removed (use replace), explosion routine added for exploding mobs. 
+- 1,10- Footstep removed (use replace), explosion routine added for exploding mobs.
 - 1.09- reworked breeding routine, added mob rotation value, added footstep feature, added jumping mobs with sounds feature, added magic lasso for picking up animals
 - 1.08- Mob throwing attack has been rehauled so that they can damage one another, also drops and on_die function added
 - 1.07- Npc's can now be set to follow player or stand by using self.order and self.owner variables
