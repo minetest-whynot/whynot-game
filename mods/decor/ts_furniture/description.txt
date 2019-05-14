@@ -1,1 +1,1 @@
-This mod adds basic furniture (Chairs, Tables, Small Tables, Tiny Tables, Benches).
+Adds basic furniture (Chairs, Tables, Small Tables, Tiny Tables, Benches).

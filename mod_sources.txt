@@ -151,7 +151,7 @@ origin	https://gitlab.com/zombiebot/weather_pack (fetch)
 Mod: ambience/weather_pack
 
 origin	https://notabug.org/TenPlus1/farming (fetch)
-* master 6d5e74e [origin/master] default minlight for crop growth is now 12
+* master bacc98d [origin/master] fix water check for soil (3 horizontal, 1 below)
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
@@ -296,7 +296,7 @@ origin	https://github.com/v-rob/slats (fetch)
 Mod: decor/slats
 
 origin	https://github.com/minetest-mods/ts_furniture (fetch)
-* master 9bd7735 [origin/master] Player model v3 poikilos patch 1 (#6)
+* master 119a7f8 [origin/master] Add support for ethereal
 Mod: decor/ts_furniture
 
 origin	https://gitlab.com/VanessaE/unifieddyes (fetch)
@@ -369,7 +369,7 @@ origin	https://github.com/Philipbenr/mtfoods (fetch)
 Mod: food/mtfoods
 
 origin	https://notabug.org/TenPlus1/pie (fetch)
-* master 03e65ca [origin/master] update license.txt
+* master 3461c54 [origin/master] new pie inventory image (thanks lux_pp)
 Mod: food/pie
 
 origin	https://github.com/GreenXenith/waffles (fetch)
@@ -408,5 +408,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master 392974e [origin/master] added new line_of_sight that uses raycasting when mt5.0 is found (thanks Astrobe)
+* master 975175e [origin/master] fix mobs:line_of_sight() global function to use entity reference
 Mod: mobs_redo/mobs_redo

@@ -6,7 +6,7 @@ local use_cmi = minetest.global_exists("cmi")
 
 mobs = {
 	mod = "redo",
-	version = "20190508",
+	version = "20190513",
 	intllib = S,
 	invis = minetest.global_exists("invisibility") and invisibility or {},
 }
@@ -486,7 +486,7 @@ end
 
 -- global function
 function mobs:line_of_sight(entity, pos1, pos2, stepsize)
-	return mob_class.line_of_sight(pos1, pos2, stepsize)
+	return entity:line_of_sight(pos1, pos2, stepsize)
 end
 
 

@@ -24,8 +24,11 @@ THE SOFTWARE.
 Textures licensed under CC-BY-SA 3.0
 http://creativecommons.org/licenses/by-sa/3.0/
 
-TenPlus1:
-  pie_*.png
+lux_pp, Poikilos
+  pie_inv.png
+
+TenPlus1
+  pie_*.png (if not mentioned above)
   choc_*.png
   bana_*.png
   coff_*.png
@@ -33,6 +36,6 @@ TenPlus1:
   rvel_*.png
   scsk_*.png
 
-CalebDavis:
+CalebDavis
   brpd_*.png
   orange_*.png
