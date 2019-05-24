@@ -24,14 +24,14 @@ end
 minetest.register_craft( {
         output = "plasticbox:plasticbox 4",
         recipe = {
-                { "homedecor:plastic_sheeting", "homedecor:plastic_sheeting", "homedecor:plastic_sheeting" },
-                { "homedecor:plastic_sheeting", "", "homedecor:plastic_sheeting" },
-                { "homedecor:plastic_sheeting", "homedecor:plastic_sheeting", "homedecor:plastic_sheeting" }
+                { "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" },
+                { "basic_materials:plastic_sheet", "", "basic_materials:plastic_sheet" },
+                { "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" }
         },
 })
 
 minetest.register_craft( {
-        output = "homedecor:plastic_sheeting 2",
+        output = "basic_materials:plastic_sheet 2",
         recipe = {{ "plasticbox:plasticbox" }},
 })
 
