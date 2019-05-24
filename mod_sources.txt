@@ -151,7 +151,7 @@ origin	https://gitlab.com/zombiebot/weather_pack (fetch)
 Mod: ambience/weather_pack
 
 origin	https://notabug.org/TenPlus1/farming (fetch)
-* master bacc98d [origin/master] fix water check for soil (3 horizontal, 1 below)
+* master d67b466 [origin/master] changed ipairs to pairs to cover all crops
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
@@ -408,5 +408,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master 975175e [origin/master] fix mobs:line_of_sight() global function to use entity reference
+* master e4ca52f [origin/master] fix nil check
 Mod: mobs_redo/mobs_redo

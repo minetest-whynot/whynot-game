@@ -269,7 +269,7 @@ end
 
 minetest.after(0, function()
 
-	for _, node_def in ipairs(minetest.registered_nodes) do
+	for _, node_def in pairs(minetest.registered_nodes) do
 		register_plant_node(node_def)
 	end
 end)

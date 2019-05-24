@@ -6,7 +6,7 @@ local use_cmi = minetest.global_exists("cmi")
 
 mobs = {
 	mod = "redo",
-	version = "20190513",
+	version = "20190520",
 	intllib = S,
 	invis = minetest.global_exists("invisibility") and invisibility or {},
 }
@@ -463,7 +463,8 @@ local ray_line_of_sight = function(self, pos1, pos2)
 
 			local name = minetest.get_node(thing.under).name
 
-			if minetest.registered_items[name].walkable then return false end
+			if minetest.registered_items[name]
+			and minetest.registered_items[name].walkable then return false end
 		end
 
 		thing = ray:next()
