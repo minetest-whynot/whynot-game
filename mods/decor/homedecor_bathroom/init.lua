@@ -347,7 +347,10 @@ homedecor.register("shower_head", {
 	on_rotate = screwdriver.disallow,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		local below = minetest.get_node_or_nil({x=pos.x, y=pos.y-2.0, z=pos.z})
-		if below and below.name == "homedecor:shower_tray" then
+		if below and (
+			below.name == "homedecor:shower_tray" or
+			below.name == "homedecor:bathtub_clawfoot_brass_taps" or
+			below.name == "homedecor:bathtub_clawfoot_chrome_taps" ) then
 			local particledef = {
 				outlet      = { x = 0, y = -0.42, z = 0.1 },
 				velocity_x  = { min = -0.15, max = 0.15 },
@@ -364,6 +367,27 @@ homedecor.register("shower_head", {
 	end
 })
 
+local tub_sbox = {
+	type = "fixed",
+	fixed = { -0.5, -0.5, -0.5, 1.5, 0.3125, 0.5 },
+}
+
+local tub_cbox = {
+	type = "fixed",
+	fixed = {
+		{-0.4375, -0.0625, -0.5, 1.4375, 0.5, -0.4375}, -- NodeBox1
+		{-0.4375, -0.0625, 0.4375, 1.4375, 0.5, 0.5}, -- NodeBox2
+		{-0.5, 0.1875, -0.4375, -0.4375, 0.5, 0.4375}, -- NodeBox3
+		{1.4375, -0.0625, -0.4375, 1.5, 0.5, 0.4375}, -- NodeBox4
+		{-0.3125, -0.3125, -0.4375, -0.125, -0.0625, 0.4375}, -- NodeBox5
+		{1.375, -0.3125, -0.4375, 1.4375, -0.0625, 0.4375}, -- NodeBox6
+		{-0.125, -0.3125, 0.375, 1.375, -0.0625, 0.4375}, -- NodeBox7
+		{-0.125, -0.3125, -0.4375, 1.375, -0.0625, -0.375}, -- NodeBox8
+		{-0.125, -0.5, -0.375, 1.375, -0.3125, 0.375}, -- NodeBox9
+		{-0.4375, -0.0625, -0.4375, -0.3125, 0.1875, 0.4375}, -- NodeBox10
+	}
+}
+
 homedecor.register("bathtub_clawfoot_brass_taps", {
 	drawtype = "mesh",
 	mesh = "homedecor_bathtub_clawfoot.obj",
@@ -377,10 +401,8 @@ homedecor.register("bathtub_clawfoot_brass_taps", {
 	},
 	description = S("Bathtub, clawfoot, with brass taps"),
 	groups = {cracky=3},
-	selection_box = {
-		type = "fixed",
-		fixed = { -0.5, -0.5, -0.5, 1.5, 0.3125, 0.5 },
-	},
+	selection_box = tub_sbox,
+	node_box = tub_cbox,
 	sounds = default.node_sound_stone_defaults(),
 })
 
@@ -397,10 +419,8 @@ homedecor.register("bathtub_clawfoot_chrome_taps", {
 	},
 	description = S("Bathtub, clawfoot, with chrome taps"),
 	groups = {cracky=3},
-	selection_box = {
-		type = "fixed",
-		fixed = { -0.5, -0.5, -0.5, 1.5, 0.3125, 0.5 },
-	},
+	selection_box = tub_sbox,
+	node_box = tub_cbox,
 	sounds = default.node_sound_stone_defaults(),
 })
 
@@ -531,8 +551,8 @@ minetest.register_craft({
 minetest.register_craft( {
 		output = "homedecor:bathroom_tiles_light 4",
 		recipe = {
-			{ "group:marble", "group:marble", "" },
-			{ "group:marble", "group:marble", "dye:white" }
+			{ "group:marble", "group:marble" },
+			{ "group:marble", "group:marble" }
 		},
 })
 
@@ -593,3 +613,67 @@ minetest.register_craft({
 		{ "group:stick", "basic_materials:plastic_sheet", "group:stick" }
 	},
 })
+
+minetest.register_craft({
+	output = "homedecor:toilet",
+	recipe = {
+		{ "","","bucket:bucket_water"},
+		{ "group:marble","group:marble", "group:marble" },
+		{ "", "bucket:bucket_empty", "" },
+	},
+})
+
+minetest.register_craft({
+	output = "homedecor:sink",
+	recipe = {
+		{ "group:marble","bucket:bucket_empty", "group:marble" },
+		{ "", "group:marble", "" }
+	},
+})
+
+minetest.register_craft({
+	output = "homedecor:taps",
+	recipe = {
+		{ "default:steel_ingot","bucket:bucket_water", "default:steel_ingot" },
+	},
+})
+
+minetest.register_craft({
+	output = "homedecor:taps_brass",
+	recipe = {
+		{ "basic_materials:brass_ingot","bucket:bucket_water", "basic_materials:brass_ingot" },
+	},
+})
+
+minetest.register_craft({
+	output = "homedecor:shower_tray",
+	recipe = {
+		{ "group:marble","bucket:bucket_empty", "group:marble" },
+	},
+})
+
+minetest.register_craft({
+	output = "homedecor:shower_head",
+	recipe = {
+		{"default:steel_ingot", "bucket:bucket_water"},
+	},
+})
+
+minetest.register_craft({
+	output = "homedecor:bathtub_clawfoot_brass_taps",
+	recipe = {
+		{ "homedecor:taps_brass", "", "" },
+		{ "group:marble", "", "group:marble" },
+		{ "default:steel_ingot", "group:marble", "default:steel_ingot"},
+	},
+})
+
+minetest.register_craft({
+	output = "homedecor:bathtub_clawfoot_chrome_taps",
+	recipe = {
+		{ "homedecor:taps", "", "" },
+		{ "group:marble", "", "group:marble" },
+		{"default:steel_ingot", "group:marble", "default:steel_ingot"},
+	},
+})
+

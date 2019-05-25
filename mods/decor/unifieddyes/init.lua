@@ -668,10 +668,12 @@ function unifieddyes.on_airbrush(itemstack, player, pointed_thing)
 			minetest.chat_send_player(player_name, "*** No node selected")
 		else
 			local hexcolor = unifieddyes.get_color_from_dye_name(painting_with)
-			local r = tonumber(string.sub(hexcolor,1,2),16)
-			local g = tonumber(string.sub(hexcolor,3,4),16)
-			local b = tonumber(string.sub(hexcolor,5,6),16)
-			player:set_sky({r=r,g=g,b=b,a=255},"plain")
+			if hexcolor then
+				local r = tonumber(string.sub(hexcolor,1,2),16)
+				local g = tonumber(string.sub(hexcolor,3,4),16)
+				local b = tonumber(string.sub(hexcolor,5,6),16)
+				player:set_sky({r=r,g=g,b=b,a=255},"plain")
+			end
 		end
 		return
 	end

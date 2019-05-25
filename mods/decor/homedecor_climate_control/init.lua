@@ -143,7 +143,19 @@ homedecor.register("radiator", {
 })
 
 -- crafting
+minetest.register_craftitem(":homedecor:fan_blades", {
+	description = S("Fan blades"),
+	inventory_image = "homedecor_fan_blades.png"
+})
 
+minetest.register_craft( {
+    output = "homedecor:fan_blades 2",
+    recipe = {
+		{ "", "basic_materials:plastic_sheet", "" },
+		{ "", "default:steel_ingot", "" },
+		{ "basic_materials:plastic_sheet", "", "basic_materials:plastic_sheet" }
+    },
+})
 
 minetest.register_craft({
     output = "homedecor:air_conditioner",

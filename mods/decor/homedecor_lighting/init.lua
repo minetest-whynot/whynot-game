@@ -836,6 +836,64 @@ minetest.register_node(":homedecor:chandelier_brass", {
 	sounds =  default.node_sound_stone_defaults(),
 })
 
+minetest.register_node(":homedecor:rope_light_on_floor", {
+	description = "Rope lighting (on floor)",
+	inventory_image =  "homedecor_rope_light_on_floor.png",
+	paramtype = "light",
+	light_source = default.LIGHT_MAX-3,
+	walkable = false,
+	sunlight_propagates = true,
+	tiles = { "homedecor_table_standing_lamp_lightbulb.png" },
+	drawtype = "nodebox",
+	node_box = {
+		type = "connected",
+		fixed = {},
+		connect_front = { -1/16, -8/16, -8/16, 1/16, -6/16, 1/16 },
+		connect_left =  { -8/16, -8/16, -1/16, 1/16, -6/16, 1/16 },
+		connect_back =  { -1/16, -8/16, -1/16, 1/16, -6/16, 8/16 },
+		connect_right = { -1/16, -8/16, -1/16, 8/16, -6/16, 1/16 },
+		disconnected_sides = {
+			{ -6/16, -8/16, -6/16, -4/16, -6/16,  6/16 },
+			{  4/16, -8/16, -6/16,  6/16, -6/16,  6/16 },
+			{ -6/16, -8/16, -6/16,  6/16, -6/16, -4/16 },
+			{ -6/16, -8/16,  4/16,  6/16, -6/16,  6/16 }
+		},
+	},
+	connects_to = { "homedecor:rope_light_on_floor" },
+	mesh = "homedecor_chandelier.obj",
+	groups = {cracky=3},
+	sounds =  default.node_sound_stone_defaults(),
+})
+
+minetest.register_node(":homedecor:rope_light_on_ceiling", {
+	description = "Rope lighting (on ceiling)",
+	inventory_image =  "homedecor_rope_light_on_ceiling.png",
+	paramtype = "light",
+	light_source = default.LIGHT_MAX-3,
+	walkable = false,
+	sunlight_propagates = true,
+	tiles = { "homedecor_table_standing_lamp_lightbulb.png" },
+	drawtype = "nodebox",
+	node_box = {
+		type = "connected",
+		fixed = {},
+		connect_front = { -1/16, 8/16, -8/16, 1/16, 6/16, 1/16 },
+		connect_left =  { -8/16, 8/16, -1/16, 1/16, 6/16, 1/16 },
+		connect_back =  { -1/16, 8/16, -1/16, 1/16, 6/16, 8/16 },
+		connect_right = { -1/16, 8/16, -1/16, 8/16, 6/16, 1/16 },
+		disconnected_sides = {
+			{ -6/16, 8/16, -6/16, -4/16, 6/16,  6/16 },
+			{  4/16, 8/16, -6/16,  6/16, 6/16,  6/16 },
+			{ -6/16, 8/16, -6/16,  6/16, 6/16, -4/16 },
+			{ -6/16, 8/16,  4/16,  6/16, 6/16,  6/16 }
+		},
+	},
+	connects_to = { "homedecor:rope_light_on_ceiling" },
+	mesh = "homedecor_chandelier.obj",
+	groups = {cracky=3},
+	sounds =  default.node_sound_stone_defaults(),
+})
+
 -- crafting
 
 minetest.register_craft({
@@ -1186,6 +1244,79 @@ minetest.register_craft({
 		{ "", "basic_materials:chain_steel_top_brass", ""},
 		{ "default:glass", "homedecor:glowlight_small_cube", "default:glass"}
 	},
+})
+
+minetest.register_craft({
+	output = "homedecor:standing_lamp_off",
+	recipe = {
+		{"homedecor:table_lamp_off"},
+		{"group:stick"},
+		{"group:stick"},
+	},
+})
+
+unifieddyes.register_color_craft({
+	output = "homedecor:standing_lamp_off",
+	palette = "extended",
+	type = "shapeless",
+	neutral_node = "homedecor:standing_lamp_off",
+	recipe = {
+		"NEUTRAL_NODE",
+		"MAIN_DYE"
+	}
+})
+
+minetest.register_craft({
+	type = "fuel",
+	recipe = "homedecor:table_lamp_off",
+	burntime = 10,
+})
+
+minetest.register_craft({
+	output = "homedecor:table_lamp_off",
+	recipe = {
+		{ "wool:white", "default:torch", "wool:white"},
+		{ "", "group:stick", ""},
+		{ "", "stairs:slab_wood", "" },
+	},
+})
+
+minetest.register_craft({
+	output = "homedecor:table_lamp_off",
+	recipe = {
+		{ "cottages:wool", "default:torch", "cottages:wool"},
+		{ "", "group:stick", ""},
+		{ "", "stairs:slab_wood", "" },
+	},
+})
+
+minetest.register_craft({
+	output = "homedecor:table_lamp_off",
+	recipe = {
+		{ "wool:white", "default:torch", "wool:white"},
+		{ "", "group:stick", ""},
+		{ "", "moreblocks:slab_wood", "" },
+	},
+})
+
+minetest.register_craft({
+	output = "homedecor:table_lamp_off",
+	recipe = {
+		{ "cottages:wool", "default:torch", "cottages:wool"},
+		{ "", "group:stick", ""},
+		{ "", "moreblocks:slab_wood", "" },
+	},
+})
+
+unifieddyes.register_color_craft({
+	output = "homedecor:table_lamp_off",
+	palette = "extended",
+	type = "shapeless",
+	neutral_node = "homedecor:table_lamp_off",
+	recipe = {
+		"NEUTRAL_NODE",
+		"MAIN_DYE"
+	}
 })
 
 -- aliases

@@ -425,13 +425,12 @@ minetest.register_craft({
 	}
 })
 
-
 minetest.register_craft( {
     output = "homedecor:dishwasher",
     recipe = {
-		{ "basic_materials:ic", "homedecor:fence_chainlink", "default:steel_ingot",  },
-		{ "default:steel_ingot", "homedecor:shower_head", "basic_materials:motor" },
-		{ "default:steel_ingot", "basic_materials:heating_element", "bucket:bucket_water" }
+		{ "basic_materials:ic",  "building_blocks:slab_grate_1",    "default:steel_ingot",  },
+		{ "default:steel_ingot", "homedecor:shower_head",           "basic_materials:motor" },
+		{ "default:steel_ingot", "basic_materials:heating_element", "bucket:bucket_water"   }
     },
 })
 
@@ -514,6 +513,15 @@ minetest.register_craft( {
 			{ "", "default:steel_ingot" },
 			{ "default:steel_ingot", "" },
 			{ "homedecor:taps", "" }
+        },
+})
+
+minetest.register_craft( {
+        output = "homedecor:kitchen_faucet",
+        recipe = {
+			{ "default:steel_ingot","" },
+			{ "", "default:steel_ingot" },
+			{ "", "homedecor:taps" }
         },
 })
 

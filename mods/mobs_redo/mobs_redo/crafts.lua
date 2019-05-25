@@ -226,7 +226,7 @@ minetest.register_craft({
 local tex_obj
 
 minetest.register_tool(":mobs:mob_reset_stick", {
-	description = "Mob Reset Stick",
+	description = S("Mob Reset Stick"),
 	inventory_image = "default_stick.png^[colorize:#ff000050",
 	stack_max = 1,
 	groups = {not_in_creative_inventory = 1},

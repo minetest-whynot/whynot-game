@@ -151,7 +151,7 @@ origin	https://gitlab.com/zombiebot/weather_pack (fetch)
 Mod: ambience/weather_pack
 
 origin	https://notabug.org/TenPlus1/farming (fetch)
-* master d67b466 [origin/master] changed ipairs to pairs to cover all crops
+* master 5decae8 [origin/master] remove duplicate line
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
@@ -243,7 +243,7 @@ origin	https://github.com/Ezhh/abriglass (fetch)
 Mod: decor/abriglass
 
 origin	https://gitlab.com/VanessaE/basic_materials (fetch)
-* master 620b9aa [origin/master] yield was TOO low on oil
+* master 78d8cfc [origin/master] fix motor recipe add replacements for copper wire
 Mod: decor/basic_materials
 
 origin	https://github.com/Napiophelios/campfire (fetch)
@@ -301,11 +301,11 @@ origin	https://github.com/minetest-mods/ts_furniture (fetch)
 Mod: decor/ts_furniture
 
 origin	https://gitlab.com/VanessaE/unifieddyes (fetch)
-* master         f59c8af [origin/master] Merge branch 'master' into 'master'
+* master         10ab87b [origin/master] prevent crash in setting sky color if get color from name return nil
 Mod: decor/unifieddyes
 
 origin	https://gitlab.com/VanessaE/homedecor_modpack/ (fetch)
-* master 859ecb3 [origin/master: ahead 2] enable the beds 3x time
+* master d953d51 [origin/master: ahead 3] Merge remote-tracking branch 'origin/master'
 Mod: homedecor_modpack/building_blocks
 Mod: homedecor_modpack/fake_fire
 Mod: homedecor_modpack/lavalamp
@@ -409,5 +409,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master e4ca52f [origin/master] fix nil check
+* master 1de0c34 [origin/master] code tidy
 Mod: mobs_redo/mobs_redo
