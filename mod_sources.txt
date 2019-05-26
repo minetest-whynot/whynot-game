@@ -281,7 +281,7 @@ Mod: decor/myroofs
 
 bell07	https://github.com/bell07/plasticbox (fetch)
 origin	https://github.com/sbrl/plasticbox (fetch)
-* master acdf8d7 [origin/master: ahead 1] change homedecor:plastic_sheeting to new basic_materials:plastic_sheet
+* master a46d746 [origin/master] Update README
 Mod: decor/plasticbox
 
 origin	https://github.com/pithydon/princess (fetch)
@@ -305,7 +305,7 @@ origin	https://gitlab.com/VanessaE/unifieddyes (fetch)
 Mod: decor/unifieddyes
 
 origin	https://gitlab.com/VanessaE/homedecor_modpack/ (fetch)
-* master d953d51 [origin/master: ahead 3] Merge remote-tracking branch 'origin/master'
+* master dde038b [origin/master: ahead 4] Merge remote-tracking branch 'origin/master'
 Mod: homedecor_modpack/building_blocks
 Mod: homedecor_modpack/fake_fire
 Mod: homedecor_modpack/lavalamp

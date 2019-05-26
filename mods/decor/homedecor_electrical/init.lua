@@ -1,6 +1,40 @@
 
 local S = homedecor.gettext
 
+function homedecor.toggle_switch(pos, node, clicker, itemstack, pointed_thing)
+	if minetest.is_protected(pos, clicker:get_player_name()) then
+		minetest.record_protection_violation(pos,
+		sender:get_player_name())
+		return false
+	end
+	local sep = string.find(node.name, "_o", -5)
+	local onoff = string.sub(node.name, sep + 1)
+	local newname = string.sub(node.name, 1, sep - 1)..((onoff == "off") and "_on" or "_off")
+	minetest.swap_node(pos, {name = newname, param2 = node.param2})
+	return true
+end
+
+local on_rc
+local switch_receptor
+
+if minetest.get_modpath("mesecons") then
+	on_rc = function(pos, node, clicker, itemstack, pointed_thing)
+		local t = homedecor.toggle_switch(pos, node, clicker, itemstack, pointed_thing)
+		if not t then return end
+		if string.find(node.name, "_on", -5) then
+			mesecon.receptor_off(pos, mesecon.rules.buttonlike_get(node))
+		else
+			mesecon.receptor_on(pos, mesecon.rules.buttonlike_get(node))
+		end
+	end
+	switch_receptor = {
+		receptor = {
+			state = mesecon.state[onoff],
+			rules = mesecon.rules.buttonlike_get
+		}
+	}
+end
+
 homedecor.register("power_outlet", {
 	description = S("Power Outlet"),
 	tiles = {
@@ -28,35 +62,52 @@ homedecor.register("power_outlet", {
 	walkable = false
 })
 
-homedecor.register("light_switch", {
-	description = S("Light switch"),
-	tiles = {
-		"homedecor_light_switch_edges.png",
-		"homedecor_light_switch_edges.png",
-		"homedecor_light_switch_edges.png",
-		"homedecor_light_switch_edges.png",
-		"homedecor_light_switch_back.png",
-		"homedecor_light_switch_front.png"
-	},
-	inventory_image = "homedecor_light_switch_inv.png",
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{ -0.125,   -0.5,    0.4375,  0.125,   -0.1875, 0.5 },
-			{ -0.03125, -0.3125, 0.40625, 0.03125, -0.25,   0.5 },
+for _, onoff in ipairs ({"on", "off"}) do
 
-		}
-	},
-	selection_box = {
-		type = "fixed",
-		fixed = {
-			{ -0.1875,   -0.5625,    0.375,  0.1875,   -0.1250, 0.5 },
-		}
-	},
-	groups = {cracky=3,dig_immediate=2},
-	walkable = false
-})
+	local model = {
+		{ -0.125,   -0.1875, 0.4375,  0.125,   0.125,  0.5 },
+		{ -0.03125,  0,      0.40625, 0.03125, 0.0625, 0.5 },
+	}
 
+	if onoff == "on" then
+		model = {
+			{ -0.125,   -0.1875, 0.4375,  0.125,    0.125,  0.5 },
+			{ -0.03125, -0.125,  0.40625, 0.03125, -0.0625, 0.5 },
+		}
+	end
+
+	homedecor.register("light_switch_"..onoff, {
+		description = S("Light switch"),
+		tiles = {
+			"homedecor_light_switch_edges.png",
+			"homedecor_light_switch_edges.png",
+			"homedecor_light_switch_edges.png",
+			"homedecor_light_switch_edges.png",
+			"homedecor_light_switch_back.png",
+			"homedecor_light_switch_front_"..onoff..".png"
+		},
+		inventory_image = "homedecor_light_switch_inv.png",
+		node_box = {
+			type = "fixed",
+			fixed = model
+		},
+		selection_box = {
+			type = "fixed",
+			fixed = {
+				{ -0.1875,   -0.25,    0.375,  0.1875,   0.1875, 0.5 },
+			}
+		},
+		groups = {cracky=3, dig_immediate=2, mesecon_needs_receiver=1, not_in_creative_inventory = (onoff == "on") and 1 or nil},
+		walkable = false,
+		drop = {
+			items = {
+				{items = {"homedecor:light_switch_off"}, inherit_color = true },
+			}
+		},
+		mesecons = switch_receptor,
+		on_rightclick = on_rc
+	})
+end
 
 homedecor.register("doorbell", {
 	tiles = { "homedecor_doorbell.png" },
@@ -92,7 +143,7 @@ minetest.register_craft( {
 })
 
 minetest.register_craft( {
-        output = "homedecor:light_switch",
+        output = "homedecor:light_switch_off",
         recipe = {
 			{"", "basic_materials:plastic_sheet", "basic_materials:copper_strip"},
 			{"basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:copper_strip"},
@@ -106,3 +157,7 @@ minetest.register_craft( {
 			{ "homedecor:light_switch", "basic_materials:energy_crystal_simple", "homedecor:speaker_driver" }
         },
 })
+
+-- aliases
+
+minetest.register_alias("homedecor:light_switch", "homedecor:light_switch_on")
