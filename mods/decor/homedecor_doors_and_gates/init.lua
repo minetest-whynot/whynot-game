@@ -114,6 +114,28 @@ local door_list = {
 }
 
 local old_doors = {}
+local mesecons
+
+-- This part blatantly copied from Mesecons, and modified :-)
+if minetest.get_modpath("mesecons") then
+	mesecons = {
+		effector = {
+			action_on = function(pos, node)
+				local door = doors.get(pos)
+				if door then
+					door:open()
+				end
+			end,
+			action_off = function(pos, node)
+				local door = doors.get(pos)
+				if door then
+					door:close()
+				end
+			end,
+			rules = mesecon.rules.pplate
+		}
+	}
+end
 
 for _, door in ipairs(door_list) do
 	doors.register(door.name, {
@@ -123,7 +145,8 @@ for _, door in ipairs(door_list) do
 			groups = table.copy(door.groups),
 			sounds = door.sounds.main,
 			sound_open = door.sounds.open,
-			sound_close = door.sounds.close
+			sound_close = door.sounds.close,
+			mesecons = mesecons
 	})
 	if door.alpha then
 		minetest.override_item("doors:"..door.name.."_a", {
@@ -252,7 +275,7 @@ for i, g in ipairs(gate_list) do
 		end,
         mesecons = {
             effector = {
-				rules = m_rules,
+				rules = mesecon.rules.pplate,
                 action_on = function(pos,node) homedecor.flip_gate(pos,node,nil,gate, "closed") end
             }
         }
@@ -281,7 +304,7 @@ for i, g in ipairs(gate_list) do
         return itemstack
 	end
     def.mesecons.effector = {
-		rules = m_rules,
+		rules = mesecon.rules.pplate,
         action_off = function(pos,node) homedecor.flip_gate(pos,node,nil,gate, "open") end
     }
 

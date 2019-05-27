@@ -33,14 +33,14 @@ mod_install tools flight/flyingcarpet
 
 mod_install decor
 mod_install decor homedecor_modpack/building_blocks #grate and marble in recipes
-mod_install decor homedecor_modpack/chains
+# no computers - I use laptop mod
 mod_install decor homedecor_modpack/fake_fire
+# no inbox, itemframes
 mod_install decor homedecor_modpack/lavalamp
-mod_install decor homedecor_modpack/lrfurn
 mod_install decor homedecor_modpack/plasmascreen
-
 ## the homedecor blob was in whynot, therefore applied all at the first
 ## Next step is to check each mod for whynot rules
+# no 3d_extras
 mod_install decor homedecor_modpack/homedecor_bathroom
 mod_install decor homedecor_modpack/homedecor_bedroom
 mod_install decor homedecor_modpack/homedecor_books
@@ -64,8 +64,10 @@ mod_install decor homedecor_modpack/homedecor_misc
 mod_install decor homedecor_modpack/homedecor_office
 mod_install decor homedecor_modpack/homedecor_pictures_and_paintings
 mod_install decor homedecor_modpack/homedecor_roofing
+mod_install decor homedecor_modpack/homedecor_seating
 mod_install decor homedecor_modpack/homedecor_tables
 mod_install decor homedecor_modpack/homedecor_trash_cans
+# warderobe is from player_api fork
 mod_install decor homedecor_modpack/homedecor_windows_and_treatments
 
 mod_install decor mydoors/my_castle_doors

@@ -90,41 +90,6 @@ homedecor.register("calendar", {
 	end
 })
 
-local ofchairs_sbox = {
-	type = "fixed",
-	fixed = { -8/16, -8/16, -8/16, 8/16, 29/32, 8/16 }
-}
-local ofchairs_cbox = {
-	type = "fixed",
-	fixed = {
-		{ -5/16,   1/16, -7/16,  5/16,   4/16,  7/16 }, -- seat
-		{ -5/16,   4/16,  4/16,  5/16,  29/32, 15/32 }, -- seatback
-		{ -1/16, -11/32, -1/16,  1/16,   1/16,  1/16 }, -- cylinder
-		{ -8/16,  -8/16, -8/16,  8/16, -11/32,  8/16 }  -- legs/wheels
-	}
-}
-
-local chairs = {
-	{ "basic",   S("Basic office chair") },
-	{ "upscale", S("Upscale office chair") },
-}
-
-for _, c in pairs(chairs) do
-	local name, desc = unpack(c)
-	homedecor.register("office_chair_"..name, {
-		description = desc,
-		drawtype = "mesh",
-		tiles = { "homedecor_office_chair_"..name..".png" },
-		mesh = "homedecor_office_chair_"..name..".obj",
-		groups = { snappy = 3 },
-		sounds = default.node_sound_wood_defaults(),
-		selection_box = ofchairs_sbox,
-		collision_box = ofchairs_cbox,
-		expand = { top = "placeholder" },
-		on_rotate = screwdriver.rotate_simple
-	})
-end
-
 -- crafting
 
 
@@ -153,24 +118,6 @@ minetest.register_craft({
 		{ "default:wood", "homedecor:drawer_small", "default:wood" },
 		{ "", "default:wood", "" },
     },
-})
-
-minetest.register_craft({
-	output = "homedecor:office_chair_basic",
-	recipe = {
-		{ "", "", "wool:black" },
-		{ "", "wool:black", "default:steel_ingot" },
-		{ "group:stick", "homedecor:pole_wrought_iron", "group:stick" }
-	},
-})
-
-minetest.register_craft({
-	output = "homedecor:office_chair_upscale",
-	recipe = {
-		{ "dye:black", "building_blocks:sticks", "group:wool" },
-		{ "basic_materials:plastic_sheet", "group:wool", "default:steel_ingot" },
-		{ "building_blocks:sticks", "homedecor:pole_wrought_iron", "building_blocks:sticks" }
-	},
 })
 
 minetest.register_craft({

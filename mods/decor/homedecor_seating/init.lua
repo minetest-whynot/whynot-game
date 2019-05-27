@@ -1,4 +1,8 @@
+-- Home decor seating
+-- forked from the previous lrfurn mod
+
 local S = homedecor.gettext
+local modpath = minetest.get_modpath("homedecor_seating")
 
 lrfurn = {}
 screwdriver = screwdriver or {}
@@ -68,8 +72,7 @@ function lrfurn.fix_sofa_rotation_nsew(pos, placer, itemstack, pointed_thing)
 	minetest.swap_node(pos, { name = node.name, param2 = fdir+colorbits })
 end
 
-dofile(minetest.get_modpath("lrfurn").."/longsofas.lua")
-dofile(minetest.get_modpath("lrfurn").."/sofas.lua")
-dofile(minetest.get_modpath("lrfurn").."/armchairs.lua")
-dofile(minetest.get_modpath("lrfurn").."/coffeetable.lua")
-dofile(minetest.get_modpath("lrfurn").."/endtable.lua")
+dofile(modpath.."/longsofas.lua")
+dofile(modpath.."/sofas.lua")
+dofile(modpath.."/armchairs.lua")
+dofile(modpath.."/misc.lua")

@@ -6,7 +6,7 @@ local sofa_cbox = {
 	wall_side = {-0.5, -0.5, -0.5, 0.5, 0.5, 1.5}
 }
 
-minetest.register_node("lrfurn:sofa", {
+minetest.register_node(":lrfurn:sofa", {
 	description = S("Sofa"),
 	drawtype = "mesh",
 	mesh = "lrfurn_sofa_short.obj",
@@ -90,7 +90,7 @@ for _, color in ipairs(lrfurn.colors) do
 end
 
 minetest.register_lbm({
-	name = "lrfurn:convert_sofas",
+	name = ":lrfurn:convert_sofas",
 	label = "Convert lrfurn short sofas to use param2 color",
 	run_at_every_load = false,
 	nodenames = lrfurn.old_static_sofas,

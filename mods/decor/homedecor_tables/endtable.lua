@@ -1,7 +1,8 @@
+-- formerly lrfurn endtable component
 
 local S = homedecor.gettext
 
-minetest.register_node("lrfurn:endtable", {
+minetest.register_node(":lrfurn:endtable", {
 	description = S("End Table"),
 	drawtype = "nodebox",
 	tiles = {"lrfurn_coffeetable_back.png", "lrfurn_coffeetable_back.png",  "lrfurn_coffeetable_back.png",  "lrfurn_coffeetable_back.png",  "lrfurn_coffeetable_back.png",  "lrfurn_coffeetable_back.png"},

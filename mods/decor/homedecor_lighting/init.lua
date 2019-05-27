@@ -2,6 +2,15 @@
 
 local S = homedecor.gettext
 
+local function is_protected(pos, clicker)
+	if minetest.is_protected(pos, clicker:get_player_name()) then
+		minetest.record_protection_violation(pos,
+		clicker:get_player_name())
+		return true
+	end
+	return false
+end
+
 local actions = {
 	action_off = function(pos, node)
 		local sep = string.find(node.name, "_o", -5)
@@ -77,6 +86,98 @@ if minetest.get_modpath("mesecons") then
 
 end
 
+-- digilines compatibility
+-- the following functions are based on the so-named ones in Jeija's digilines mod
+
+local on_digiline_receive_std = function(pos, node, channel, msg)
+	local meta = minetest.get_meta(pos)
+	local setchan = meta:get_string("channel")
+	if setchan ~= channel then return end
+	local num = tonumber(msg)
+	if msg == "colon" or msg == "period" or msg == "off" or (num and (num >= 0 and num <= 9)) then
+			minetest.swap_node(pos, { name = "led_marquee:marquee_"..msg, param2 = node.param2})
+	end
+end
+
+local on_digiline_receive_string = function(pos, node, channel, msg)
+	local meta = minetest.get_meta(pos)
+	local setchan = meta:get_string("channel")
+
+	if setchan ~= channel then return end
+	if msg and msg ~= "" and type(msg) == "string" then
+		if msg == "off"
+		  or msg == "low"
+		  or msg == "med"
+		  or msg == "hi"
+		  or msg == "max" then
+			local basename = string.sub(node.name, 1, string.find(node.name, "_", -5) - 1)
+			minetest.swap_node(pos, {name = basename.."_"..msg, param2 = node.param2})
+		end
+	end
+end
+
+local repl = {
+	["off"] ="low",
+	["low"] ="med",
+	["med"] ="hi",
+	["hi"]  ="max",
+	["max"] ="off",
+}
+
+local player_last_clicked = {}
+
+local dl_onreceive
+local dl_digiline
+local dl_on_punch
+local function dl_on_rightclick(pos, node, clicker, itemstack, pointed_thing)
+	if is_protected(pos, clicker) then return end
+	local delim = string.find(node.name, "_", -5)
+	local basename = string.sub(node.name, 1, delim - 1)
+	local suffix = string.sub(node.name, delim + 1)
+	minetest.set_node(pos, {name = basename.."_"..repl[suffix], param2 = node.param2})
+end
+
+if minetest.get_modpath("digilines") then
+	minetest.register_on_player_receive_fields(function(player, formname, fields)
+		local name = player:get_player_name()
+		local pos = player_last_clicked[name]
+		if pos and formname == "homedecor:lamp_set_channel" then
+			if is_protected(pos, player) then return end
+			if (fields.channel) then
+				local meta = minetest.get_meta(pos)
+				meta:set_string("channel", fields.channel)
+			end
+		end
+	end)
+
+	dl_digiline = {
+		effector = {
+			action = on_digiline_receive_string,
+		},
+		rules = rules_xz
+	}
+
+	function dl_on_punch(pos, node, puncher, pointed_thing)
+		if is_protected(pos, puncher) then return end
+
+		if puncher:get_player_control().sneak then
+			local name = puncher:get_player_name()
+			player_last_clicked[name] = pos
+			local meta = minetest.get_meta(pos)
+			local form = "field[channel;Channel;]"
+			minetest.show_formspec(name, "homedecor:lamp_set_channel", form)
+		end
+	end
+
+	function dl_on_rightclick(pos, node, clicker, itemstack, pointed_thing)
+		if is_protected(pos, clicker) then return end
+		local delim = string.find(node.name, "_", -5)
+		local basename = string.sub(node.name, 1, delim - 1)
+		local suffix = string.sub(node.name, delim + 1)
+		minetest.swap_node(pos, {name = basename.."_"..repl[suffix], param2 = node.param2})
+	end
+end
+
 local brightness_tab = {
 	0xffd0d0d0,
 	0xffd8d8d8,
@@ -86,11 +187,7 @@ local brightness_tab = {
 }
 
 function homedecor.toggle_light(pos, node, clicker, itemstack, pointed_thing)
-	if minetest.is_protected(pos, clicker:get_player_name()) then
-		minetest.record_protection_violation(pos,
-		sender:get_player_name())
-		return
-	end
+	if is_protected(pos, clicker) then return end
 	local sep = string.find(node.name, "_o", -5)
 	local onoff = string.sub(node.name, sep + 1)
 	local newname = string.sub(node.name, 1, sep - 1)..((onoff == "off") and "_on" or "_off")
@@ -921,14 +1018,6 @@ minetest.register_node(":homedecor:chandelier_brass", {
 
 -- table lamps and standing lamps
 
-local repl = {
-	["off"] ="low",
-	["low"] ="med",
-	["med"] ="hi",
-	["hi"]  ="max",
-	["max"] ="off",
-}
-
 local lamp_colors = {
 	"white",
 	"blue",
@@ -973,16 +1062,14 @@ local function reg_lamp(suffix, nxt, light, brightness)
 		groups = {cracky=2,oddly_breakable_by_hand=1, ud_param2_colorable = 1,
 			not_in_creative_inventory=((light ~= nil) and 1) or nil,
 		},
-		on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
-			node.name = "homedecor:table_lamp_"..repl[suffix]
-			minetest.set_node(pos, node)
-		end,
-		on_construct = unifieddyes.on_construct,
 		drop = {
 			items = {
 				{items = {"homedecor:table_lamp_hi"}, inherit_color = true },
 			}
 		},
+		digiline = dl_digiline,
+		on_rightclick = dl_on_rightclick,
+		on_punch = dl_on_punch
 	})
 
 	homedecor.register("standing_lamp_"..suffix, {
@@ -1006,17 +1093,15 @@ local function reg_lamp(suffix, nxt, light, brightness)
 		selection_box = slamp_cbox,
 		sounds = default.node_sound_wood_defaults(),
 		on_rotate = screwdriver.rotate_simple,
-		on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
-			node.name = "homedecor:standing_lamp_"..repl[suffix]
-			minetest.set_node(pos, node)
-		end,
-		on_construct = unifieddyes.on_construct,
 		--expand = { top="air" },
 		drop = {
 			items = {
 				{items = {"homedecor:standing_lamp_hi"}, inherit_color = true },
 			}
-		}
+		},
+		digiline = dl_digiline,
+		on_rightclick = dl_on_rightclick,
+		on_punch = dl_on_punch
 	})
 
 	-- for old maps that had the original 3dforniture mod
@@ -1635,6 +1720,7 @@ minetest.register_alias("homedecor:plasma_ball",           "homedecor:plasma_bal
 minetest.register_alias("homedecor:wall_lantern",          "homedecor:ground_lantern")
 minetest.register_alias("homedecor:ground_lantern",        "homedecor:ground_lantern_on")
 minetest.register_alias("homedecor:hanging_lantern",       "homedecor:hanging_lantern_on")
+minetest.register_alias("homedecor:ceiling_lamp",          "homedecor:ceiling_lamp_on")
 minetest.register_alias("homedecor:ceiling_lantern",       "homedecor:ceiling_lantern_on")
 minetest.register_alias("homedecor:lattice_lantern_large", "homedecor:lattice_lantern_large_on")
 minetest.register_alias("homedecor:lattice_lantern_small", "homedecor:lattice_lantern_small_on")

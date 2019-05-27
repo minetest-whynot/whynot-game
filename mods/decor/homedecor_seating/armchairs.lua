@@ -8,7 +8,7 @@ local armchair_cbox = {
 	}
 }
 
-minetest.register_node("lrfurn:armchair", {
+minetest.register_node(":lrfurn:armchair", {
 	description = S("Armchair"),
 	drawtype = "mesh",
 	mesh = "lrfurn_armchair.obj",
@@ -37,6 +37,28 @@ minetest.register_node("lrfurn:armchair", {
 		return itemstack
 	end
 })
+
+homedecor.register("armchair", {
+	description = S("Armchair"),
+	mesh = "forniture_armchair.obj",
+	tiles = {
+		"wool_white.png",
+		{ name = "wool_dark_grey.png", color = 0xffffffff },
+		{ name = "default_wood.png", color = 0xffffffff }
+	},
+	inventory_image = "homedecor_armchair_inv.png",
+	paramtype2 = "colorwallmounted",
+	palette = "unifieddyes_palette_colorwallmounted.png",
+	groups = {snappy=3, ud_param2_colorable = 1},
+	sounds = default.node_sound_wood_defaults(),
+	node_box = ac_cbox,
+	after_place_node = function(pos, placer, itemstack, pointed_thing)
+		unifieddyes.fix_rotation_nsew(pos, placer, itemstack, pointed_thing)
+	end,
+	on_rotate = unifieddyes.fix_after_screwdriver_nsew,
+})
+
+-- crafts
 
 minetest.register_craft({
 	output = "lrfurn:armchair",
@@ -67,6 +89,34 @@ unifieddyes.register_color_craft({
 	}
 })
 
+minetest.register_craft({
+	output = "homedecor:armchair 2",
+	recipe = {
+	{ "wool:white",""},
+	{ "group:wood","group:wood" },
+	{ "wool:white","wool:white" },
+	},
+})
+
+unifieddyes.register_color_craft({
+	output = "homedecor:armchair",
+	palette = "wallmounted",
+	type = "shapeless",
+	neutral_node = "homedecor:armchair",
+	recipe = {
+		"NEUTRAL_NODE",
+		"MAIN_DYE"
+	}
+})
+
+minetest.register_craft({
+	type = "fuel",
+	recipe = "homedecor:armchair",
+	burntime = 30,
+})
+
+minetest.register_alias('armchair', 'homedecor:armchair')
+
 -- convert old static nodes to param2 color
 
 lrfurn.old_static_armchairs = {}
@@ -76,7 +126,7 @@ for _, color in ipairs(lrfurn.colors) do
 end
 
 minetest.register_lbm({
-	name = "lrfurn:convert_armchairs",
+	name = ":lrfurn:convert_armchairs",
 	label = "Convert lrfurn armchairs to use param2 color",
 	run_at_every_load = false,
 	nodenames = lrfurn.old_static_armchairs,

@@ -34,99 +34,6 @@ homedecor.register("barbecue", {
 
 minetest.register_alias("homedecor:barbecue_meat", "air")
 
-local bl1_sbox = {
-	type = "fixed",
-	fixed = { -0.5, -0.5, -0.25, 1.5, 0.5, 0.5 }
-}
-
-local bl1_cbox = {
-	type = "fixed",
-	fixed = {
-		{-0.5, -0.5, -0.25, 1.5, 0, 0.5 },
-		{-0.5, -0.5, 0.45, 1.5, 0.5, 0.5 },
-	}
-}
-
-homedecor.register("bench_large_1", {
-	mesh = "homedecor_bench_large_1.obj",
-	tiles = {
-		"homedecor_generic_wood_old.png",
-		"homedecor_generic_metal_wrought_iron.png"
-	},
-	description = S("Garden Bench (style 1)"),
-	inventory_image = "homedecor_bench_large_1_inv.png",
-	groups = { snappy = 3 },
-	expand = { right="placeholder" },
-	sounds = default.node_sound_wood_defaults(),
-	selection_box = bl1_sbox,
-	node_box = bl1_cbox,
-	on_rotate = screwdriver.disallow
-})
-
-minetest.register_alias("homedecor:bench_large_1_left", "homedecor:bench_large_1")
-minetest.register_alias("homedecor:bench_large_1_right", "air")
-
-local bl2_sbox = {
-	type = "fixed",
-	fixed = { -0.5, -0.5, -0.25, 1.5, 0.5, 0.5 }
-}
-
-local bl2_cbox = {
-	type = "fixed",
-	fixed = {
-		{-0.5, -0.5, -0.25, 1.5, 0, 0.5 },
-		{-0.5, -0.5, 0.45, 1.5, 0.5, 0.5 },
-	}
-}
-
-homedecor.register("bench_large_2", {
-	description = S("Garden Bench (style 2)"),
-	mesh = "homedecor_bench_large_2.obj",
-	tiles = { "homedecor_generic_wood_old.png" },
-	inventory_image = "homedecor_bench_large_2_inv.png",
-	groups = {snappy=3},
-	selection_box = bl2_sbox,
-	node_box = bl2_cbox,
-	expand = { right="placeholder" },
-	sounds = default.node_sound_wood_defaults(),
-	on_rotate = screwdriver.disallow
-})
-
-minetest.register_alias("homedecor:bench_large_2_left", "homedecor:bench_large_2")
-minetest.register_alias("homedecor:bench_large_2_right", "air")
-
-local dc_cbox = {
-	type = "fixed",
-	fixed = { -0.5, -0.5, -0.5, 0.5, 0, 1 }
-}
-
-homedecor.register("deckchair", {
-	mesh = "homedecor_deckchair.obj",
-	tiles = {"homedecor_deckchair.png"},
-	description = S("Deck Chair"),
-	groups = { snappy = 3 },
-	expand = { forward="placeholder" },
-	sounds = default.node_sound_wood_defaults(),
-	selection_box = dc_cbox,
-	collision_box = dc_cbox,
-	on_rotate = screwdriver.disallow
-})
-
-minetest.register_alias("homedecor:deckchair_foot", "homedecor:deckchair")
-minetest.register_alias("homedecor:deckchair_head", "air")
-
-homedecor.register("deckchair_striped_blue", {
-	mesh = "homedecor_deckchair.obj",
-	tiles = {"homedecor_deckchair_striped_blue.png"},
-	description = S("Deck Chair (blue striped)"),
-	groups = { snappy = 3 },
-	expand = { forward="placeholder" },
-	sounds = default.node_sound_wood_defaults(),
-	selection_box = dc_cbox,
-	collision_box = dc_cbox,
-	on_rotate = screwdriver.disallow
-})
-
 homedecor.register("doghouse", {
 	mesh = "homedecor_doghouse.obj",
 	tiles = {
@@ -146,21 +53,6 @@ homedecor.register("doghouse", {
 
 minetest.register_alias("homedecor:doghouse_roof", "air")
 minetest.register_alias("homedecor:doghouse_base", "homedecor:doghouse")
-
-homedecor.register("simple_bench", {
-	tiles = { "homedecor_generic_wood_old.png" },
-	description = S("Simple Bench"),
-	groups = {snappy=3},
-	node_box = {
-	type = "fixed",
-	fixed = {
-			{-0.5, -0.15, 0,  0.5,  -0.05, 0.4},
-			{-0.4, -0.5,  0.1, -0.3, -0.15, 0.3},
-			{ 0.3, -0.5,  0.1,  0.4, -0.15, 0.3},
-			}
-	},
-	sounds = default.node_sound_wood_defaults(),
-})
 
 homedecor.register("stonepath", {
 	description = S("Garden stone path"),
@@ -424,72 +316,6 @@ minetest.register_craft( {
 			{ "group:stone", "", "group:stone" }
         },
 })
-
-
-
-minetest.register_craft( {
-        output = "homedecor:bench_large_1",
-        recipe = {
-			{ "group:wood", "group:wood", "group:wood" },
-			{ "group:wood", "group:wood", "group:wood" },
-			{ "homedecor:pole_wrought_iron", "", "homedecor:pole_wrought_iron" }
-        },
-})
-
-minetest.register_craft( {
-        output = "homedecor:bench_large_2_left",
-        recipe = {
-			{ "homedecor:shutter_oak", "homedecor:shutter_oak", "homedecor:shutter_oak" },
-			{ "group:wood", "group:wood", "group:wood" },
-			{ "stairs:slab_wood", "", "stairs:slab_wood" }
-        },
-})
-
-minetest.register_craft( {
-        output = "homedecor:bench_large_2_left",
-        recipe = {
-			{ "homedecor:shutter_oak", "homedecor:shutter_oak", "homedecor:shutter_oak" },
-			{ "group:wood", "group:wood", "group:wood" },
-			{ "moreblocks:slab_wood", "", "moreblocks:slab_wood" }
-        },
-})
-
-
-minetest.register_craft( {
-        output = "homedecor:simple_bench",
-        recipe = {
-			{ "stairs:slab_wood", "stairs:slab_wood", "stairs:slab_wood" },
-			{ "stairs:slab_wood", "", "stairs:slab_wood" }
-        },
-})
-
-minetest.register_craft( {
-        output = "homedecor:simple_bench",
-        recipe = {
-			{ "moreblocks:slab_wood", "moreblocks:slab_wood", "moreblocks:slab_wood" },
-			{ "moreblocks:slab_wood", "", "moreblocks:slab_wood" }
-        },
-})
-
-
-minetest.register_craft({
-	output = "homedecor:deckchair",
-	recipe = {
-		{ "group:stick", "building_blocks:terrycloth_towel", "group:stick" },
-		{ "group:stick", "building_blocks:terrycloth_towel", "group:stick" },
-		{ "group:stick", "building_blocks:terrycloth_towel", "group:stick" }
-	},
-})
-
-minetest.register_craft({
-	output = "homedecor:deckchair_striped_blue",
-	type = "shapeless",
-	recipe = {
-		"homedecor:deckchair",
-		"dye:blue"
-	}
-})
-
 
 minetest.register_craft({
 	output = "homedecor:stonepath 16",

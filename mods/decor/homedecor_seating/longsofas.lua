@@ -6,7 +6,7 @@ local longsofa_cbox = {
 	wall_side   = {-0.5, -0.5, -0.5, 0.5, 0.5, 2.5},
 }
 
-minetest.register_node("lrfurn:longsofa", {
+minetest.register_node(":lrfurn:longsofa", {
 	description = S("Long Sofa"),
 	drawtype = "mesh",
 	mesh = "lrfurn_sofa_long.obj",
@@ -90,7 +90,7 @@ for _, color in ipairs(lrfurn.colors) do
 end
 
 minetest.register_lbm({
-	name = "lrfurn:convert_longsofas",
+	name = ":lrfurn:convert_longsofas",
 	label = "Convert lrfurn long sofas to use param2 color",
 	run_at_every_load = false,
 	nodenames = lrfurn.old_static_longsofas,
