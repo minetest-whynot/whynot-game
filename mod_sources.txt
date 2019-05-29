@@ -120,7 +120,7 @@ Mod: player_api_modpack/skinsdb5
 Mod: player_api_modpack/wieldview
 
 origin	https://github.com/stujones11/minetest-3d_armor (fetch)
-* master 1d22612 [origin/master] Bump version to 0.4.13
+* master 47ecef4 [origin/master] Update licenses
 Mod: 3d_armor/3d_armor_stand
 Mod: 3d_armor/shields
 Mod: 3d_armor/3d_armor_sfinv
@@ -304,7 +304,7 @@ origin	https://gitlab.com/VanessaE/unifieddyes (fetch)
 Mod: decor/unifieddyes
 
 origin	https://gitlab.com/VanessaE/homedecor_modpack/ (fetch)
-* master f07f543 [origin/master: ahead 2] enable the beds 3x time
+* master b1bb2aa [origin/master: ahead 3] Merge remote-tracking branch 'origin/master'
 Mod: homedecor_modpack/building_blocks
 Mod: homedecor_modpack/fake_fire
 Mod: homedecor_modpack/lavalamp
@@ -408,5 +408,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master 1de0c34 [origin/master] code tidy
+* master 7179dc8 [origin/master] add mob check for mob_reset_stick
 Mod: mobs_redo/mobs_redo

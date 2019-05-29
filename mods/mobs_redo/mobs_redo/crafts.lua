@@ -242,6 +242,7 @@ minetest.register_tool(":mobs:mob_reset_stick", {
 		local control = user:get_player_control()
 		local sneak = control and control.sneak
 
+		-- spawn same mob with saved stats, with random texture
 		if obj and not sneak then
 
 			local self = obj:get_luaentity()
@@ -269,6 +270,7 @@ minetest.register_tool(":mobs:mob_reset_stick", {
 			end
 		end
 
+		-- display form to enter texture name ending in .png
 		if obj and sneak then
 
 			tex_obj = obj
@@ -294,7 +296,9 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 
 		local name = player:get_player_name()
 
-		if not tex_obj then
+		-- does mob still exist?
+		if not tex_obj
+		or not tex_obj:get_luaentity() then
 			return
 		end
 
