@@ -6,10 +6,17 @@ minetest.register_node("plasticbox:plasticbox", {
 	sounds = default.node_sound_stone_defaults(),
 	paramtype2 = "color",
 	palette = "unifieddyes_palette_extended.png",
-	after_dig_node = unifieddyes.after_dig_node,
-	place_param2 = 240,
-	on_construct = unifieddyes.on_construct,
-	after_place_node = unifieddyes.recolor_on_place,
+})
+
+unifieddyes.register_color_craft({
+	output = "plasticbox:plasticbox",
+	palette = "extended",
+	type = "shapeless",
+	neutral_node = "plasticbox:plasticbox",
+	recipe = {
+		"NEUTRAL_NODE",
+		"MAIN_DYE"
+	}
 })
 
 if minetest.global_exists("stairsplus") then
