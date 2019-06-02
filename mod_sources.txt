@@ -279,8 +279,9 @@ origin	https://github.com/minetest-mods/myroofs (fetch)
 * master fe98461 [origin/master] Merge pull request #7 from AntumMT/recipe_fixes
 Mod: decor/myroofs
 
+bell07	https://github.com/bell07/plasticbox (fetch)
 origin	https://github.com/sbrl/plasticbox (fetch)
-* master 770feab [origin/master: ahead 1] Update unfieddyes integration
+* master dad7dc1 [origin/master] Add changelog
 Mod: decor/plasticbox
 
 origin	https://github.com/pithydon/princess (fetch)
@@ -304,7 +305,7 @@ origin	https://gitlab.com/VanessaE/unifieddyes (fetch)
 Mod: decor/unifieddyes
 
 origin	https://gitlab.com/VanessaE/homedecor_modpack/ (fetch)
-* master b1bb2aa [origin/master: ahead 3] Merge remote-tracking branch 'origin/master'
+* master bcafea5 [origin/master: ahead 4] Merge remote-tracking branch 'origin/master'
 Mod: homedecor_modpack/building_blocks
 Mod: homedecor_modpack/fake_fire
 Mod: homedecor_modpack/lavalamp

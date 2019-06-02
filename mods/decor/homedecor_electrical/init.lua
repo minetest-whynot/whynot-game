@@ -2,9 +2,10 @@
 local S = homedecor.gettext
 
 function homedecor.toggle_switch(pos, node, clicker, itemstack, pointed_thing)
-	if minetest.is_protected(pos, clicker:get_player_name()) then
-		minetest.record_protection_violation(pos,
-		sender:get_player_name())
+	if not clicker then return false end
+	local playername = clicker:get_player_name()
+	if minetest.is_protected(pos, playername) then
+		minetest.record_protection_violation(pos, playername)
 		return false
 	end
 	local sep = string.find(node.name, "_o", -5)
