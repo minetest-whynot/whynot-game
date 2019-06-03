@@ -24,6 +24,10 @@ farming.register_hoe = function(name, def)
 		def.max_uses = 30
 	end
 
+	-- add hoe group
+	def.groups = def.groups or {}
+	def.groups.hoe = 1
+
 	-- Register the tool
 	minetest.register_tool(name, {
 		description = def.description,

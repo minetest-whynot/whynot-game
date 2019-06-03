@@ -40,41 +40,41 @@ local door_list = {
 		custom_model = "homedecor_door_fancy"
 	},
 
-	{	name = "wood_glass_oak",
-		description = "Glass and Wood, Oak-colored",
+	{	name = "french_oak",
+		description = "French door, Oak-colored",
 		groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
 		sounds = {
 			main = default.node_sound_glass_defaults(),
 		},
 		backface = true,
 		alpha = true,
-		custom_model = "homedecor_door_wood_glass"
+		custom_model = "homedecor_door_french"
 	},
 
-	{	name = "wood_glass_mahogany",
-		description = "Glass and Wood, Mahogany-colored",
+	{	name = "french_mahogany",
+		description = "French door, Mahogany-colored",
 		groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
 		sounds = {
 			main = default.node_sound_glass_defaults(),
 		},
 		backface = true,
 		alpha = true,
-		custom_model = "homedecor_door_wood_glass"
+		custom_model = "homedecor_door_french"
 	},
 
-	{	name = "wood_glass_white",
-		description = "Glass and Wood, White",
+	{	name = "french_white",
+		description = "French door, White",
 		groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
 		sounds = {
 			main = default.node_sound_glass_defaults(),
 		},
 		backface = true,
 		alpha = true,
-		custom_model = "homedecor_door_wood_glass"
+		custom_model = "homedecor_door_french"
 	},
 
-	{	name = "bedroom",
-		description = "White Bedroom Door",
+	{	name = "basic_panel",
+		description = "Basic white panel Door",
 		groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
 		sounds = {
 			main = default.node_sound_wood_defaults(),
@@ -95,8 +95,8 @@ local door_list = {
 		custom_model = "homedecor_door_wrought_iron"
 	},
 
-	{	name = "woodglass2",
-		description = "Wooden door with glass insert, type 2",
+	{	name = "carolina",
+		description = "Wooden Carolina door",
 		groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
 		sounds = {
 			main = default.node_sound_wood_defaults(),
@@ -166,7 +166,7 @@ end
 local hd_3d = minetest.get_modpath("homedecor_3d_extras")
 
 for _, door in ipairs(door_list) do
-	doors.register(door.name, {
+	doors.register("homedecor_"..door.name, {
 			tiles = {{ name = "homedecor_door_"..door.name..".png", backface_culling = door.backface }},
 			description = door.description,
 			inventory_image = "homedecor_door_"..door.name.."_inv.png",
@@ -177,9 +177,8 @@ for _, door in ipairs(door_list) do
 			mesecons = mesecons
 	})
 
-	local nn_a = "doors:"..door.name.."_a"
-	local nn_b = "doors:"..door.name.."_b"
-
+	local nn_a = "doors:homedecor_"..door.name.."_a"
+	local nn_b = "doors:homedecor_"..door.name.."_b"
 
 	if door.alpha then
 		local def = hd_doors_clone_node(nn_a)
@@ -204,6 +203,9 @@ for _, door in ipairs(door_list) do
 
 	old_doors[#old_doors + 1] = "homedecor:door_"..door.name.."_left"
 	old_doors[#old_doors + 1] = "homedecor:door_"..door.name.."_right"
+
+	minetest.register_alias("doors:"..door.name.."_a", "doors:homedecor_"..door.name.."_a")
+	minetest.register_alias("doors:"..door.name.."_b", "doors:homedecor_"..door.name.."_b")
 end
 
 -- Gates
@@ -696,14 +698,35 @@ minetest.register_craft({
 
 -- aliases
 
-minetest.register_alias("homedecor:jpn_door_top", "air")
-minetest.register_alias("homedecor:jpn_door_bottom", "homedecor:door_japanese_closed")
+minetest.register_alias("homedecor:jpn_door_top",               "air")
+minetest.register_alias("homedecor:jpn_door_top_open",          "air")
 
-minetest.register_alias("homedecor:jpn_door_top_open", "air")
-minetest.register_alias("homedecor:jpn_door_bottom_open", "homedecor:door_japanese_open")
+minetest.register_alias("homedecor:jpn_door_bottom",            "homedecor:door_japanese_closed")
+minetest.register_alias("homedecor:jpn_door_bottom_open",       "homedecor:door_japanese_open")
 
-minetest.register_alias("homedecor:door_glass_right", "doors:door_glass_b")
-minetest.register_alias("homedecor:door_glass_left", "doors:door_glass_a")
+minetest.register_alias("homedecor:door_glass_right",           "doors:door_glass_b")
+minetest.register_alias("homedecor:door_glass_left",            "doors:door_glass_a")
+
+minetest.register_alias("doors:wood_glass_oak_a",               "doors:homedecor_french_oak_a")
+minetest.register_alias("doors:wood_glass_oak_b",               "doors:homedecor_french_oak_b")
+
+minetest.register_alias("doors:wood_glass_white_a",             "doors:homedecor_french_white_a")
+minetest.register_alias("doors:wood_glass_white_b",             "doors:homedecor_french_white_b")
+
+minetest.register_alias("doors:wood_glass_mahogany_a",          "doors:homedecor_french_mahogany_a")
+minetest.register_alias("doors:wood_glass_mahogany_b",          "doors:homedecor_french_mahogany_b")
+
+minetest.register_alias("doors:homedecor_woodglass2_a",         "doors:homedecor_carolina_a")
+minetest.register_alias("doors:homedecor_woodglass2_b",         "doors:homedecor_carolina_b")
+
+minetest.register_alias("doors:woodglass2_a",                   "doors:homedecor_carolina_a")
+minetest.register_alias("doors:woodglass2_b",                   "doors:homedecor_carolina_b")
+
+minetest.register_alias("doors:homedecor_bedroom_a",            "doors:homedecor_basic_panel_a")
+minetest.register_alias("doors:homedecor_bedroom_b",            "doors:homedecor_basic_panel_b")
+
+minetest.register_alias("doors:bedroom_a",                      "doors:homedecor_basic_panel_a")
+minetest.register_alias("doors:bedroom_b",                      "doors:homedecor_basic_panel_b")
 
 -- flip old homedecor doors around, since they use minetest_game doors API now
 

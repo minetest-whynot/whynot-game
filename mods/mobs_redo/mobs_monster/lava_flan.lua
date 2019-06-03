@@ -162,8 +162,9 @@ minetest.register_tool(":mobs:pick_lava", {
 		groupcaps={
 			cracky = {times={[1]=1.80, [2]=0.80, [3]=0.40}, uses=40, maxlevel=3},
 		},
-		damage_groups = {fleshy=6,fire=1},
+		damage_groups = {fleshy = 6, fire = 1},
 	},
+	groups = {pickaxe = 1}
 })
 
 minetest.register_craft({
