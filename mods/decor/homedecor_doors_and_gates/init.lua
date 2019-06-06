@@ -716,6 +716,15 @@ minetest.register_alias("doors:wood_glass_white_b",             "doors:homedecor
 minetest.register_alias("doors:wood_glass_mahogany_a",          "doors:homedecor_french_mahogany_a")
 minetest.register_alias("doors:wood_glass_mahogany_b",          "doors:homedecor_french_mahogany_b")
 
+minetest.register_alias("doors:homedecor_wood_glass_oak_a",     "doors:homedecor_french_oak_a")
+minetest.register_alias("doors:homedecor_wood_glass_oak_b",     "doors:homedecor_french_oak_b")
+
+minetest.register_alias("doors:homedecor_wood_glass_white_a",   "doors:homedecor_french_white_a")
+minetest.register_alias("doors:homedecor_wood_glass_white_b",   "doors:homedecor_french_white_b")
+
+minetest.register_alias("doors:homedecor_wood_glass_mahogany_a", "doors:homedecor_french_mahogany_a")
+minetest.register_alias("doors:homedecor_wood_glass_mahogany_b", "doors:homedecor_french_mahogany_b")
+
 minetest.register_alias("doors:homedecor_woodglass2_a",         "doors:homedecor_carolina_a")
 minetest.register_alias("doors:homedecor_woodglass2_b",         "doors:homedecor_carolina_b")
 
@@ -730,8 +739,23 @@ minetest.register_alias("doors:bedroom_b",                      "doors:homedecor
 
 -- flip old homedecor doors around, since they use minetest_game doors API now
 
+old_doors[#old_doors + 1] = "homedecor:door_wood_glass_oak_left"
+old_doors[#old_doors + 1] = "homedecor:door_wood_glass_oak_right"
+
+old_doors[#old_doors + 1] = "homedecor:door_wood_glass_white_left"
+old_doors[#old_doors + 1] = "homedecor:door_wood_glass_white_right"
+
+old_doors[#old_doors + 1] = "homedecor:door_wood_glass_mahogany_left"
+old_doors[#old_doors + 1] = "homedecor:door_wood_glass_mahogany_right"
+
+old_doors[#old_doors + 1] = "homedecor:door_woodglass2_left"
+old_doors[#old_doors + 1] = "homedecor:door_woodglass2_right"
+
+old_doors[#old_doors + 1] = "homedecor:door_bedroom_left"
+old_doors[#old_doors + 1] = "homedecor:door_bedroom_right"
+
 minetest.register_lbm({
-	name = ":homedecor:convert_doors",
+	name = ":homedecor:convert_doors_3",
 	label = "Convert Homedecor doors to mtg doors API",
 	nodenames = old_doors,
 	run_at_every_load = false,
@@ -740,10 +764,12 @@ minetest.register_lbm({
 		local newparam2 = (node.param2 + 2) % 4
 		local e = string.find(node.name, "_", -7)
 		local dir = string.sub(node.name, e+1)
-		local newname = "doors:"..string.sub(node.name, 16, e-1)
+		local newname = "doors:homedecor_"..string.sub(node.name, 16, e-1)
 		if dir == "right" then
+			print("Want to replace "..node.name.." with "..newname.."_a")
 			minetest.set_node(pos, {name = newname.."_a", param2 = newparam2 })
 		else
+			print("Want to replace "..node.name.." with "..newname.."_b")
 			minetest.set_node(pos, {name = newname.."_b", param2 = newparam2 })
 		end
 		minetest.set_node({x=pos.x, y=pos.y+1, z=pos.z}, {name = "doors:hidden"})

@@ -12,7 +12,8 @@ else
 	skinsdb5.S = function(s) return s end
 end
 
-dofile(modpath.."/skinlist.lua")
+dofile(modpath.."/api.lua")
+dofile(modpath.."/preview.lua")
 dofile(modpath.."/formspecs.lua")
 dofile(modpath.."/chatcommands.lua")
 -- Unified inventory page/integration
@@ -32,10 +33,3 @@ end)
 
 -- Read current mod textures- and meta- folder
 player_api.read_textures_and_meta()
-
--- Set preview for sam
-local sam = player_api.registered_skins['character']
-if sam.texture == "character.png" and sam.description == "Sam" then
-	sam.preview = "character_default_preview.png"
-end
-
