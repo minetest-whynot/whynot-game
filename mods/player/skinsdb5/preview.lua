@@ -49,3 +49,12 @@ function skinsdb5.get_preview(texture, format)
 	return minetest.formspec_escape(skin)
 end
 
+player_api.register_on_skin_change(function(player, model_name, skin_name)
+	local skin = player_api.registered_skins[skin_name]
+	if not skin.preview then
+		local texture = skin.texture or (skin.textures and skin.textures[1])
+		if texture then
+			skin.preview = skinsdb5.get_preview(texture, skin.format)
+		end
+	end
+end)

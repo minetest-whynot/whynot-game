@@ -1785,6 +1785,7 @@ unifieddyes.register_color_craft({
 minetest.register_alias("chains:chain_top",                    "homedecor:chain_steel_top")
 minetest.register_alias("chains:chain_top_brass",              "homedecor:chain_brass_top")
 
+minetest.register_alias("chains:chandelier",                   "homedecor:chandelier_steel")
 minetest.register_alias("chains:chandelier_steel",             "homedecor:chandelier_steel")
 minetest.register_alias("chains:chandelier_brass",             "homedecor:chandelier_brass")
 

@@ -104,7 +104,7 @@ function player_api.update_textures(player)
 end
 
 -- Called when a player's skin is changed
-function player_api.set_skin(player, skin_name, is_default)
+function player_api.set_skin(player, skin_name, is_default, is_force)
 	local name = player:get_player_name()
 	local skin = skins[skin_name]
 	if not skin then
@@ -112,7 +112,7 @@ function player_api.set_skin(player, skin_name, is_default)
 		skin = skins[skin_name]
 		is_default = true
 	end
-	if player_skin[name] == skin_name then
+	if player_skin[name] == skin_name and not is_force then
 		return
 	end
 
