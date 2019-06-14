@@ -163,18 +163,18 @@ function player_api.read_textures_and_meta(hook)
 	for _, fn in pairs(minetest.get_dir_list(modpath..'/textures/')) do
 		local nameparts = fn:sub(1, -5):split("_")
 		if not textures_skin_prefix[nameparts[1]] then
-			goto continue
+			return
 		end
 
 		if textures_skin_suffix_blacklist[nameparts[#nameparts]] then
-			goto continue
+			return
 		end
 
 		local skin = {texture = fn}
 		local skin_id = table.concat(nameparts,'_')
 		if nameparts[1] == "player" then
 			if not nameparts[2] then
-				goto continue
+				return
 			end
 			skin.playername = nameparts[2]
 		end
@@ -210,7 +210,6 @@ function player_api.read_textures_and_meta(hook)
 		end
 		player_api.register_skin(skin_id, skin)
 
-		::continue::
 	end
 end
 
