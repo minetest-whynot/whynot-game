@@ -212,7 +212,8 @@ function mobs.drive(entity, moving_anim, stand_anim, can_fly, dtime)
 		end
 
 		-- fix mob rotation
-		entity.object:set_yaw(entity.driver:get_look_horizontal() - entity.rotate)
+		local horz = entity.driver:get_look_horizontal() or 0
+		entity.object:set_yaw(horz - entity.rotate)
 
 		if can_fly then
 
@@ -259,7 +260,7 @@ function mobs.drive(entity, moving_anim, stand_anim, can_fly, dtime)
 
 		return
 	end
-	
+
 	-- set moving animation
 	if moving_anim then
 		mobs:set_animation(entity, moving_anim)

@@ -108,7 +108,7 @@ origin	https://github.com/minetest-mods/wielded_light (fetch)
 Mod: player/wielded_light
 
 origin	https://github.com/bell07/minetest-player_api_modpack (fetch)
-* master 69f3c55 [origin/master] Proper update preview on character_creator changes
+* master 9965bf6 [origin/master] Merge pull request #1 from mmattes/fix_removed_goto
 Mod: player_api_modpack/3d_armor
 Mod: player_api_modpack/character_creator
 Mod: player_api_modpack/clothing
@@ -304,7 +304,7 @@ origin	https://gitlab.com/VanessaE/unifieddyes (fetch)
 Mod: decor/unifieddyes
 
 origin	https://gitlab.com/VanessaE/homedecor_modpack/ (fetch)
-* master 7d005fc [origin/master: ahead 9] Merge remote-tracking branch 'origin/master'
+* master 1a43d78 [origin/master: ahead 10] Merge remote-tracking branch 'origin/master'
 Mod: homedecor_modpack/building_blocks
 Mod: homedecor_modpack/fake_fire
 Mod: homedecor_modpack/lavalamp
@@ -408,5 +408,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master 7179dc8 [origin/master] add mob check for mob_reset_stick
+* master f040ee5 [origin/master] fix nil value when mob not available
 Mod: mobs_redo/mobs_redo
