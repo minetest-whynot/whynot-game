@@ -108,6 +108,31 @@ minetest.register_craft( {
 	}
 })
 
+-- chocolate block
+minetest.register_node("farming:chocolate_block", {
+	description = S("Chocolate Block"),
+	tiles = {"farming_chocolate_block.png"},
+	is_ground_content = false,
+	groups = {cracky = 2, oddly_breakable_by_hand = 2},
+	sounds = default.node_sound_stone_defaults(),
+})
+
+minetest.register_craft({
+	output = "farming:chocolate_block 3",
+	recipe = {
+		{"farming:chocolate_dark", "farming:chocolate_dark", "farming:chocolate_dark"},
+		{"farming:chocolate_dark", "farming:chocolate_dark", "farming:chocolate_dark"},
+		{"farming:chocolate_dark", "farming:chocolate_dark", "farming:chocolate_dark"},
+	}
+})
+
+minetest.register_craft({
+	output = "farming:chocolate_dark 9",
+	recipe = {
+		{"farming:chocolate_block"},
+	}
+})
+
 -- cocoa definition
 local crop_def = {
 	drawtype = "plantlike",

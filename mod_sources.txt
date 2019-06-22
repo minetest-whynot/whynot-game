@@ -1,7 +1,7 @@
 
 bell07	https://github.com/bell07/minetest_game (fetch)
 origin	https://github.com/minetest/minetest_game (fetch)
-* master                1d05a6e [origin/stable-5: ahead 5] Fix beds being undiggable after laying down
+* master                11acea6 [origin/stable-5: ahead 5] Fix beds being undiggable after laying down
 Mod: minetest_game/mods/beds
 Mod: minetest_game/mods/binoculars
 Mod: minetest_game/mods/boats
@@ -108,7 +108,7 @@ origin	https://github.com/minetest-mods/wielded_light (fetch)
 Mod: player/wielded_light
 
 origin	https://github.com/bell07/minetest-player_api_modpack (fetch)
-* master 9965bf6 [origin/master] Merge pull request #1 from mmattes/fix_removed_goto
+* master 3a3808f [origin/master] fix the "player.png" was appearing as skin. Some code rearrangements
 Mod: player_api_modpack/3d_armor
 Mod: player_api_modpack/character_creator
 Mod: player_api_modpack/clothing
@@ -151,7 +151,7 @@ origin	https://gitlab.com/zombiebot/weather_pack (fetch)
 Mod: ambience/weather_pack
 
 origin	https://notabug.org/TenPlus1/farming (fetch)
-* master c770314 [origin/master] add hoe group to hoes
+* master f187396 [origin/master] add chocolate block
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
@@ -304,7 +304,7 @@ origin	https://gitlab.com/VanessaE/unifieddyes (fetch)
 Mod: decor/unifieddyes
 
 origin	https://gitlab.com/VanessaE/homedecor_modpack/ (fetch)
-* master 1a43d78 [origin/master: ahead 10] Merge remote-tracking branch 'origin/master'
+* master 2798458 [origin/master: ahead 11] Merge remote-tracking branch 'origin/master'
 Mod: homedecor_modpack/building_blocks
 Mod: homedecor_modpack/fake_fire
 Mod: homedecor_modpack/lavalamp
