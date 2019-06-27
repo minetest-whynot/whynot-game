@@ -118,7 +118,7 @@ minetest.register_node("farming:chocolate_block", {
 })
 
 minetest.register_craft({
-	output = "farming:chocolate_block 3",
+	output = "farming:chocolate_block",
 	recipe = {
 		{"farming:chocolate_dark", "farming:chocolate_dark", "farming:chocolate_dark"},
 		{"farming:chocolate_dark", "farming:chocolate_dark", "farming:chocolate_dark"},

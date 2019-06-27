@@ -7,7 +7,7 @@
 
 farming = {
 	mod = "redo",
-	version = "20190427",
+	version = "20190625",
 	path = minetest.get_modpath("farming"),
 	select = {
 		type = "fixed",
@@ -614,8 +614,8 @@ farming.rhubarb = 0.001
 farming.beans = 0.001
 farming.grapes = 0.001
 farming.barley = true
-farming.chili = 0.002
-farming.hemp = 0.002
+farming.chili = 0.003
+farming.hemp = 0.003
 farming.garlic = 0.001
 farming.onion = 0.001
 farming.pepper = 0.002

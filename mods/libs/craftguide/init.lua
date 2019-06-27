@@ -1,7 +1,7 @@
 craftguide = {}
 
 local M = minetest
-local player_data = {}
+local pdata = {}
 
 -- Caches
 local init_items    = {}
@@ -18,6 +18,8 @@ local colorize = M.colorize
 local reg_items = M.registered_items
 local get_result = M.get_craft_result
 local show_formspec = M.show_formspec
+local get_players = M.get_connected_players
+local get_all_recipes = M.get_all_craft_recipes
 local get_player_by_name = M.get_player_by_name
 local serialize, deserialize = M.serialize, M.deserialize
 
@@ -41,7 +43,6 @@ local MIN_LIMIT, MAX_LIMIT = 10, 12
 DEFAULT_SIZE = min(MAX_LIMIT, max(MIN_LIMIT, DEFAULT_SIZE))
 
 local GRID_LIMIT = 5
-local POLL_FREQ  = 0.25
 
 local FMT = {
 	box     = "box[%f,%f;%f,%f;%s]",
@@ -271,7 +272,7 @@ local function groups_item_in_recipe(item, recipe)
 	end
 end
 
-local function get_item_usages(item)
+local function get_usages(item)
 	local usages, c = {}, 0
 
 	for _, recipes in pairs(recipes_cache) do
@@ -316,7 +317,7 @@ local function get_filtered_items(player)
 end
 
 local function cache_recipes(output)
-	local recipes = M.get_all_craft_recipes(output) or {}
+	local recipes = get_all_recipes(output) or {}
 	local c = 0
 
 	for i = 1, #custom_crafts do
@@ -329,7 +330,13 @@ local function cache_recipes(output)
 
 	if #recipes > 0 then
 		recipes_cache[output] = recipes
-		return true
+	end
+end
+
+local function cache_usages(item)
+	local usages = get_usages(item)
+	if #usages > 0 then
+		usages_cache[item] = usages
 	end
 end
 
@@ -350,7 +357,7 @@ local function get_recipes(item, data, player)
 
 	if data.show_usages then
 		recipes = apply_recipe_filters(usages_cache[item], player)
-		if #recipes == 0 then
+		if recipes and #recipes == 0 then
 			return
 		end
 	end
@@ -584,7 +591,7 @@ local function get_recipe_fs(data, iY)
 end
 
 local function make_formspec(name)
-	local data = player_data[name]
+	local data = pdata[name]
 	local iY = sfinv_only and 4 or data.iX - 5
 	local ipp = data.iX * iY
 
@@ -771,7 +778,7 @@ local function search(data)
 end
 
 local function init_data(name)
-	player_data[name] = {
+	pdata[name] = {
 		filter    = "",
 		pagenum   = 1,
 		iX        = sfinv_only and 8 or DEFAULT_SIZE,
@@ -790,33 +797,43 @@ local function reset_data(data)
 	data.items       = data.items_raw
 end
 
-local function cache_usages()
-	for i = 1, #init_items do
-		local item = init_items[i]
-		usages_cache[item] = get_item_usages(item)
-	end
+local function check_item(def)
+	return not (def.groups.not_in_craft_guide == 1 or
+		def.groups.not_in_creative_inventory == 1) and
+		def.description and def.description ~= ""
 end
 
 local function get_init_items()
-	local c = 0
+	local items, c = {}, 0
+
 	for name, def in pairs(reg_items) do
-		local is_fuel = cache_fuel(name)
-		if not (def.groups.not_in_craft_guide == 1 or
-				def.groups.not_in_creative_inventory == 1) and
-				def.description and def.description ~= "" and
-				(cache_recipes(name) or is_fuel) then
+		if check_item(def) then
+			cache_fuel(name)
+			cache_recipes(name)
+
+			c = c + 1
+			items[c] = name
+		end
+	end
+
+	c = 0
+
+	for i = 1, #items do
+		local name = items[i]
+		cache_usages(name)
+
+		if recipes_cache[name] or usages_cache[name] then
 			c = c + 1
 			init_items[c] = name
 		end
 	end
 
 	sort(init_items)
-	cache_usages()
 end
 
 local function on_receive_fields(player, fields)
 	local name = player:get_player_name()
-	local data = player_data[name]
+	local data = pdata[name]
 
 	for elem_name, def in pairs(formspec_elements) do
 		if fields[elem_name] and def.action then
@@ -924,7 +941,7 @@ if sfinv_only then
 		on_enter = function(self, player, context)
 			if next(recipe_filters) then
 				local name = player:get_player_name()
-				local data = player_data[name]
+				local data = pdata[name]
 
 				data.items_raw = get_filtered_items(player)
 				search(data)
@@ -946,7 +963,7 @@ else
 		local name = user:get_player_name()
 
 		if next(recipe_filters) then
-			local data = player_data[name]
+			local data = pdata[name]
 			data.items_raw = get_filtered_items(user)
 			search(data)
 		end
@@ -1031,6 +1048,9 @@ else
 end
 
 if progressive_mode then
+	local PLAYERS = {}
+	local POLL_FREQ = 0.25
+
 	local function item_in_inv(item, inv_items)
 		local inv_items_size = #inv_items
 
@@ -1066,7 +1086,7 @@ if progressive_mode then
 
 	local function progressive_filter(recipes, player)
 		local name = player:get_player_name()
-		local data = player_data[name]
+		local data = pdata[name]
 
 		if #data.inv_items == 0 then
 			return {}
@@ -1112,13 +1132,13 @@ if progressive_mode then
 	-- Workaround. Need an engine call to detect when the contents
 	-- of the player inventory changed, instead.
 	local function poll_new_items()
-		local players = M.get_connected_players()
-		for i = 1, #players do
-			local player = players[i]
+		for i = 1, #PLAYERS do
+			local player = PLAYERS[i]
 			local name   = player:get_player_name()
-			local data   = player_data[name]
+			local data   = pdata[name]
+
 			local inv_items = get_inv_items(player)
-			local diff      = table_diff(inv_items, data.inv_items)
+			local diff = table_diff(inv_items, data.inv_items)
 
 			if #diff > 0 then
 				data.inv_items = table_merge(diff, data.inv_items)
@@ -1133,9 +1153,11 @@ if progressive_mode then
 	craftguide.add_recipe_filter("Default progressive filter", progressive_filter)
 
 	M.register_on_joinplayer(function(player)
+		PLAYERS = get_players()
+
 		local meta = player:get_meta()
 		local name = player:get_player_name()
-		local data = player_data[name]
+		local data = pdata[name]
 
 		data.inv_items = deserialize(meta:get_string("inv_items")) or {}
 	end)
@@ -1143,17 +1165,19 @@ if progressive_mode then
 	local function save_meta(player)
 		local meta = player:get_meta()
 		local name = player:get_player_name()
-		local data = player_data[name]
+		local data = pdata[name]
 
 		meta:set_string("inv_items", serialize(data.inv_items))
 	end
 
-	M.register_on_leaveplayer(save_meta)
+	M.register_on_leaveplayer(function(player)
+		PLAYERS = get_players()
+		save_meta(player)
+	end)
 
 	M.register_on_shutdown(function()
-		local players = M.get_connected_players()
-		for i = 1, #players do
-			local player = players[i]
+		for i = 1, #PLAYERS do
+			local player = PLAYERS[i]
 			save_meta(player)
 		end
 	end)
@@ -1161,17 +1185,17 @@ end
 
 M.register_on_leaveplayer(function(player)
 	local name = player:get_player_name()
-	player_data[name] = nil
+	pdata[name] = nil
 end)
 
 M.register_chatcommand("craft", {
 	description = S("Show recipe(s) of the pointed node"),
 	func = function(name)
 		local player = get_player_by_name(name)
-		local ppos   = player:get_pos()
 		local dir    = player:get_look_dir()
+		local ppos   = player:get_pos()
+		      ppos.y = ppos.y + 1.625
 
-		ppos.y = ppos.y + 1.625
 		local node_name
 
 		for i = 1, 10 do
@@ -1190,7 +1214,7 @@ M.register_chatcommand("craft", {
 			return false, red .. S("No node pointed")
 		end
 
-		local data = player_data[name]
+		local data = pdata[name]
 		reset_data(data)
 
 		local recipes = recipes_cache[node_name]
@@ -1217,7 +1241,7 @@ M.register_chatcommand("craft", {
 		end
 
 		data.query_item = node_name
-		data.recipes    = recipes
+		data.recipes = recipes
 
 		return true, show_fs(player, name)
 	end,
@@ -1227,7 +1251,7 @@ function craftguide.show(name, item, show_usages)
 	local func = "craftguide." .. __func() .. "(): "
 	assert(is_str(name), func .. "player name missing")
 
-	local data   = player_data[name]
+	local data = pdata[name]
 	local player = get_player_by_name(name)
 	local query_item = data.query_item
 
