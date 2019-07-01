@@ -36,7 +36,7 @@ origin	https://github.com/minetest-mods/craftguide/ (fetch)
 Mod: libs/craftguide
 
 origin	https://github.com/bell07/minetest_craftguide_reveal.git (fetch)
-* master e119121 [origin/master] update again craftguide API change
+* master e30a65c [origin/master] fix crash if no recipe given
 Mod: libs/craftguide_reveal
 
 origin	http://repo.or.cz/minetest_doc.git (fetch)

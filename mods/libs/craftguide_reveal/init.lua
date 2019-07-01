@@ -39,6 +39,9 @@ local function revealed_show_recipe(recipe, playername)
 end
 
 craftguide.set_recipe_filter('reveal', function(recipes, player)
+	if not recipes then
+		return
+	end
 	local filtered = {}
 	for i = 1, #recipes do
 		local recipe = recipes[i]
