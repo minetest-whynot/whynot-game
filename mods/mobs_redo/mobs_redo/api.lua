@@ -6,7 +6,7 @@ local use_cmi = minetest.global_exists("cmi")
 
 mobs = {
 	mod = "redo",
-	version = "20190520",
+	version = "20190630",
 	intllib = S,
 	invis = minetest.global_exists("invisibility") and invisibility or {},
 }
@@ -474,7 +474,7 @@ local ray_line_of_sight = function(self, pos1, pos2)
 end
 
 -- detect if using minetest 5.0 by searching for permafrost node
-local is_50 = minetest.registered_nodes["default:permafrost"]
+local is_50 = nil -- minetest.registered_nodes["default:permafrost"]
 
 function mob_class:line_of_sight(pos1, pos2, stepsize)
 
@@ -3374,11 +3374,13 @@ end -- END mobs:register_mob function
 
 
 -- count how many mobs of one type are inside an area
+-- will also return true for second value if player is inside area
 local count_mobs = function(pos, type)
 
 	local total = 0
 	local objs = minetest.get_objects_inside_radius(pos, aoc_range * 2)
 	local ent
+	local players
 
 	for n = 1, #objs do
 
@@ -3390,10 +3392,12 @@ local count_mobs = function(pos, type)
 			if ent and ent.name and ent.name == type then
 				total = total + 1
 			end
+		else
+			players = true
 		end
 	end
 
-	return total
+	return total, players
 end
 
 
@@ -3462,7 +3466,12 @@ function mobs:spawn_specific(name, nodes, neighbors, min_light, max_light,
 			end
 
 			-- get total number of this mob in area
-			local num_mob = count_mobs(pos, name)
+			local num_mob, is_pla = count_mobs(pos, name)
+
+			if not is_pla then
+--print ("--- no players within active area, will not spawn " .. name)
+				return
+			end
 
 			if num_mob >= aoc then
 --print ("--- too many " .. name .. " in area", num_mob .. "/" .. aoc)
@@ -3509,7 +3518,7 @@ function mobs:spawn_specific(name, nodes, neighbors, min_light, max_light,
 			end
 
 			-- only spawn away from player
-			local objs = minetest.get_objects_inside_radius(pos, 10)
+			local objs = minetest.get_objects_inside_radius(pos, 8)
 
 			for n = 1, #objs do
 

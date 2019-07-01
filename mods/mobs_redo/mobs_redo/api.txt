@@ -624,8 +624,14 @@ Players can override the spawn chance for each mob registered by adding a line
 to their minetest.conf file with a new value, the lower the value the more each
 mob will spawn e.g.
 
-mobs_animal:sheep_chance 11000
-mobs_monster:sand_monster_chance 100
+mobs_animal:sheep 11000
+mobs_monster:sand_monster 100
+
+...you can also change how many of a certain mob appear in an active mapblock by
+adding a comma and then a new value e.g.
+
+mobs_animal:cow 8000,4            <-- 4 cows per mapblock at 8000 spawn chance
+mobs_monster:dirt_monster ,20     <-- 20 dirt monsters per mapblock
 
 
 Rideable Horse Example Mob

@@ -32,7 +32,7 @@ Mod: minetest_game/mods/wool
 Mod: minetest_game/mods/xpanes
 
 origin	https://github.com/minetest-mods/craftguide/ (fetch)
-* master e710fcd [origin/master] Small optimization
+* master 97676d0 [origin/master] Fix possible crash
 Mod: libs/craftguide
 
 origin	https://github.com/bell07/minetest_craftguide_reveal.git (fetch)
@@ -377,7 +377,7 @@ origin	https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin	https://github.com/minetest-mods/mesecons (fetch)
-* master b0158f5 [origin/master] Too many glasses in noteblock
+* master 8baa789 [origin/master] Optimize images (#464)
 Mod: mesecons/mesecons
 Mod: mesecons/mesecons_alias
 Mod: mesecons/mesecons_blinkyplant
@@ -408,5 +408,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master f040ee5 [origin/master] fix nil value when mob not available
+* master 38232d5 [origin/master] only spawn mob if player is within active area (useful for world anchors and force loaded areas)
 Mod: mobs_redo/mobs_redo
