@@ -177,12 +177,6 @@ function player_api.read_textures_and_meta(hook)
 						end
 					end
 				end
-				if not skin.description then
-					if nameparts[2] then
-						table.remove(nameparts, 1)
-					end
-					skin.description = table.concat(nameparts,' ')
-				end
 
 				-- Check if preview exists
 				local file2 = io.open(modpath.."/textures/"..skin_id.."_preview.png", "r")
@@ -196,11 +190,17 @@ function player_api.read_textures_and_meta(hook)
 					skin.playername = nameparts[2]
 				end
 
+				if not skin.description then
+					if nameparts[2] then
+						table.remove(nameparts, 1)
+					end
+					skin.description = table.concat(nameparts,' ')
+				end
+
 				-- process hook
 				if hook then
 					hook(modpath..'/textures/'..fn, skin)
 				end
-
 				player_api.register_skin(skin_id, skin)
 			end
 		end
