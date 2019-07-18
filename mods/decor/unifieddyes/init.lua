@@ -195,6 +195,44 @@ minetest.register_on_placenode(
 	end
 )
 
+-- The complementary function:  strip-off the color if the node being dug is still white/neutral
+
+local function move_item(item, pos, inv)
+	if not creative_mode or not inv:contains_item("main", item, true) then
+		inv:add_item("main", item)
+	end
+	minetest.remove_node(pos)
+end
+
+function unifieddyes.on_dig(pos, node, digger)
+
+	local playername = digger:get_player_name()
+	if minetest.is_protected(pos, playername) then 
+		minetest.record_protection_violation(pos, playername)
+		return
+	end
+
+	local oldparam2 = minetest.get_node(pos).param2
+	local def = minetest.registered_items[node.name]
+	local del_color
+
+	if def.paramtype2 == "color" and oldparam2 == 240 and def.palette == "unifieddyes_palette_extended.png" then
+		del_color = true
+	elseif def.paramtype2 == "colorwallmounted" and math.floor(oldparam2 / 8) == 0 and def.palette == "unifieddyes_palette_colorwallmounted.png" then
+		del_color = true
+	elseif def.paramtype2 == "colorfacedir" and math.floor(oldparam2 / 32) == 0 and string.find(def.palette, "unifieddyes_palette_") then
+		del_color = true
+	end
+
+	local inv = digger:get_inventory()
+
+	if del_color then
+		if inv:room_for_item("main", node.name) then move_item(node.name, pos, inv) end
+	else
+		return minetest.node_dig(pos, node, digger)
+	end
+end
+
 -- just stubs to keep old mods from crashing when expecting auto-coloring
 -- or getting back the dye on dig.
 

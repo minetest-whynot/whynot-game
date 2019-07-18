@@ -98,6 +98,7 @@ local digiline_on_punch
 if minetest.get_modpath("digilines") then
 
 	local on_digiline_receive_string = function(pos, node, channel, msg)
+		if not msg or not channel then return end
 		local meta = minetest.get_meta(pos)
 		local setchan = meta:get_string("channel")
 		if setchan ~= channel then return end
@@ -285,6 +286,7 @@ for brightness_level = 0, 14 do
 		after_place_node = function(pos, placer, itemstack, pointed_thing)
 			unifieddyes.fix_rotation(pos, placer, itemstack, pointed_thing)
 		end,
+		on_dig = unifieddyes.on_dig,
 		on_rightclick = homedecor.toggle_light,
 		drop = {
 			items = {
@@ -350,6 +352,7 @@ for brightness_level = 0, 14 do
 		after_place_node = function(pos, placer, itemstack, pointed_thing)
 			unifieddyes.fix_rotation(pos, placer, itemstack, pointed_thing)
 		end,
+		on_dig = unifieddyes.on_dig,
 		on_rightclick = homedecor.toggle_light,
 		drop = {
 			items = {
@@ -416,6 +419,7 @@ for brightness_level = 0, 14 do
 		after_place_node = function(pos, placer, itemstack, pointed_thing)
 			unifieddyes.fix_rotation(pos, placer, itemstack, pointed_thing)
 		end,
+		on_dig = unifieddyes.on_dig,
 		on_rightclick = homedecor.toggle_light,
 		drop = {
 			items = {
@@ -636,6 +640,7 @@ for brightness_level = 0, 14 do
 		after_place_node = function(pos, placer, itemstack, pointed_thing)
 			unifieddyes.fix_rotation_nsew(pos, placer, itemstack, pointed_thing)
 		end,
+		on_dig = unifieddyes.on_dig,
 		on_rotate = unifieddyes.fix_after_screwdriver_nsew,
 		light_source = brightness_level,
 		on_rightclick = homedecor.toggle_light,
@@ -713,7 +718,8 @@ for brightness_level = 0, 14 do
 		digiline =      homedecor.digiline_alldir_light,
 		mesecons =      homedecor.mesecon_wall_light,
 		on_rightclick = homedecor.toggle_light,
-		on_punch =      digiline_on_punch
+		on_punch =      digiline_on_punch,
+		on_dig = unifieddyes.on_dig,
 	})
 
 	homedecor.register("standing_lamp_"..brightness_level, {
@@ -744,7 +750,8 @@ for brightness_level = 0, 14 do
 		digiline =      homedecor.digiline_alldir_light,
 		mesecons =      homedecor.mesecon_wall_light,
 		on_rightclick = homedecor.toggle_light,
-		on_punch =      digiline_on_punch
+		on_punch =      digiline_on_punch,
+		on_dig = unifieddyes.on_dig,
 	})
 end
 

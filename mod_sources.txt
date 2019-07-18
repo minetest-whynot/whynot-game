@@ -146,8 +146,8 @@ origin	https://github.com/Ezhh/under_sky (fetch)
 * master a15de19 [origin/master] Add cloud removal
 Mod: ambience/under_sky
 
-origin	https://gitlab.com/zombiebot/weather_pack (fetch)
-* master 28744a1 [origin/master] Merge pull request #10 from bell07/patch-1
+origin	https://gitlab.com/zombiebot/weather_pack.git (fetch)
+* master c698762 [origin/master] added snow particles for snowstorm
 Mod: ambience/weather_pack
 
 origin	https://notabug.org/TenPlus1/farming (fetch)
@@ -300,11 +300,11 @@ origin	https://github.com/minetest-mods/ts_furniture (fetch)
 Mod: decor/ts_furniture
 
 origin	https://gitlab.com/VanessaE/unifieddyes (fetch)
-* master         6c8a0b2 [origin/master] Add Russian translations
+* master         9ff40a7 [origin/master] Add a helper function to reset a node's/item's color info if a neutral node somehow ends up with different itemstack meta when placed and then later dug.  Prevents look-alike stacks.
 Mod: decor/unifieddyes
 
 origin	https://gitlab.com/VanessaE/homedecor_modpack/ (fetch)
-* master 6cb82cb [origin/master: ahead 12] Merge remote-tracking branch 'origin/master'
+* master 1a45cd3 [origin/master: ahead 1] enable the beds 3x time
 Mod: homedecor_modpack/building_blocks
 Mod: homedecor_modpack/fake_fire
 Mod: homedecor_modpack/lavalamp

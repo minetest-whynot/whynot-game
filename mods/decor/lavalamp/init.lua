@@ -38,6 +38,7 @@ minetest.register_node("lavalamp:lavalamp", {
 	groups = {snappy=2,cracky=3,oddly_breakable_by_hand=3, ud_param2_colorable = 1},
 	sounds = default.node_sound_glass_defaults(),
 	on_construct = unifieddyes.on_construct,
+	on_dig = unifieddyes.on_dig,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		node.name = "lavalamp:lavalamp_off"
 		minetest.swap_node(pos, node)

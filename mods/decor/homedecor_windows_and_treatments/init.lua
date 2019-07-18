@@ -115,6 +115,7 @@ minetest.register_node(":homedecor:curtain_closed", {
 	after_place_node = function(pos, placer, itemstack, pointed_thing)
 		unifieddyes.fix_rotation(pos, placer, itemstack, pointed_thing)
 	end,
+	on_dig = unifieddyes.on_dig,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		minetest.set_node(pos, { name = "homedecor:curtain_open", param2 = node.param2 })
 		return itemstack
@@ -137,6 +138,7 @@ minetest.register_node(":homedecor:curtain_open", {
 	after_place_node = function(pos, placer, itemstack, pointed_thing)
 		unifieddyes.fix_rotation(pos, placer, itemstack, pointed_thing)
 	end,
+	on_dig = unifieddyes.on_dig,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		minetest.set_node(pos, { name = "homedecor:curtain_closed", param2 = node.param2 })
 		return itemstack
@@ -243,6 +245,7 @@ homedecor.register("shutter", {
 	after_place_node = function(pos, placer, itemstack, pointed_thing)
 		unifieddyes.fix_rotation(pos, placer, itemstack, pointed_thing)
 	end,
+	on_dig = unifieddyes.on_dig,
 })
 
 homedecor.register("shutter_colored", {
@@ -260,6 +263,7 @@ homedecor.register("shutter_colored", {
 	after_place_node = function(pos, placer, itemstack, pointed_thing)
 		unifieddyes.fix_rotation(pos, placer, itemstack, pointed_thing)
 	end,
+	on_dig = unifieddyes.on_dig,
 })
 
 minetest.register_alias("homedecor:shutter_purple", "homedecor:shutter_violet")

@@ -59,6 +59,7 @@ homedecor.register("bed_regular", {
 	after_dig_node = function(pos, oldnode, oldmetadata, digger)
 		homedecor.unextend_bed(pos)
 	end,
+	on_dig = unifieddyes.on_dig,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		local itemname = itemstack:get_name()
 		if itemname == "homedecor:bed_regular" then
@@ -92,6 +93,7 @@ homedecor.register("bed_extended", {
 	after_dig_node = function(pos, oldnode, oldmetadata, digger)
 		homedecor.unextend_bed(pos)
 	end,
+	on_dig = unifieddyes.on_dig,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		homedecor.beds_on_rightclick(pos, node, clicker)
 		return itemstack
@@ -128,6 +130,7 @@ homedecor.register("bed_kingsize", {
 			inv:add_item("main", "homedecor:bed_regular 2")
 		end
 	end,
+	on_dig = unifieddyes.on_dig,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		homedecor.beds_on_rightclick(pos, node, clicker)
 		return itemstack

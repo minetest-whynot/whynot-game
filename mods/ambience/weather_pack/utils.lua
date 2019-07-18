@@ -77,54 +77,11 @@ hw_utils.get_random_pos = function(player, offset)
 	return {x=random_pos_x, y=random_pos_y, z=random_pos_z}
 end
 
-local np_temp = {
-	offset = 50,
-	scale = 50,
-	spread = {x = 1000, y = 1000, z = 1000},
-	seed = 5349,
-	octaves = 3,
-	persist = 0.5,
-	lacunarity = 2.0
-}
-
-local np_humid = {
-	offset = 50,
-	scale = 50,
-	spread = {x = 1000, y = 1000, z = 1000},
-	seed = 842,
-	octaves = 3,
-	persist = 0.5,
-	lacunarity = 2.0
-}
-
-local np_biome_v6 = {
-	offset = 0, 
-	scale = 1.0,
-	spread = {x = 500.0, y = 500.0, z = 500.0},
-	seed = 9130,
-	octaves = 3,
-	persist = 0.50,
-	lacunarity = 2.0
-}
-
-local np_humidity_v6 = {
-	offset = 0.5,
-	scale = 0.5,
-	spread = {x = 500.0, y = 500.0, z = 500.0},
-	seed = 72384,
-	octaves = 4,
-	persist = 0.66,
-	lacunarity = 2.0
-}
-
 local is_biome_frozen = function(position)
-	local posx = math.floor(position.x)
-	local posz = math.floor(position.z)
-	local noise_obj = minetest.get_perlin(np_temp)
-	local noise_temp = noise_obj:get2d({x = posx, y = posz})
-
+	local heat = minetest.get_heat(position)
+	print("karstis: " .. heat)
 	-- below 35 heat biome considered to be frozen type
-	return noise_temp < 35
+	return heat < 35
 end
 
 hw_utils.is_biome_frozen = function(position)
@@ -134,23 +91,11 @@ hw_utils.is_biome_frozen = function(position)
 	return is_biome_frozen(position)
 end
 
-local is_biome_dry_v6 = function(position)
-	local posx = math.floor(position.x)
-	local posz = math.floor(position.z)
-	local noise_obj = minetest.get_perlin(np_biome_v6)
-	local noise_biome = noise_obj:get2d({x = posx, y = posz})
-	-- TODO futher investigation needed towards on biome check for v6 mapgen
-	return noise_biome > 0.45
-end
-
 local is_biome_dry = function(position)
-	local posx = math.floor(position.x)
-	local posz = math.floor(position.z)
-	local noise_obj = minetest.get_perlin(np_humid)
-	local noise_humid = noise_obj:get2d({x = posx, y = posz})
-
-	-- below 50 humid biome considered to be dry type (at least by this mod)
-	return noise_humid < 50
+	local humidity = minetest.get_humidity(position)
+	local heat = minetest.get_heat(position)
+	print("DREGME: " .. humidity)
+	return humidity < 50 and heat > 65
 end
 
 hw_utils.is_biome_dry = function(position)
@@ -161,15 +106,11 @@ hw_utils.is_biome_dry = function(position)
 end
 
 local is_biome_tropic = function(position)
-	local posx = math.floor(position.x)
-	local posz = math.floor(position.z)
-	local noise_obj = minetest.get_perlin(np_humid)
-	local noise_humid = noise_obj:get2d({x = posx, y = posz})
-	noise_obj = minetest.get_perlin(np_temp)
-	local noise_temp = noise_obj:get2d({x = posx, y = posz})
+	local humidity = minetest.get_humidity(position)
+	local heat = minetest.get_heat(position)
 
 	-- humid and temp values are taked by testing flying around world (not sure actually)
-	return noise_humid > 55 and noise_temp > 80
+	return humidity > 55 and heat > 70
 end
 
 hw_utils.is_biome_tropic = function(position)

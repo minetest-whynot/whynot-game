@@ -265,7 +265,7 @@ minetest.register_globalstep(function(dtime)
 
 		-- Loop through connected players
 		for ii, player in ipairs(minetest.get_connected_players()) do
-			
+
 			-- Weaher is active checking if it about to end
 			if weather_.active then 
 				if weather_is_ending(weather_, dtime) or deactivate_weather then
@@ -273,14 +273,14 @@ minetest.register_globalstep(function(dtime)
 					remove_player(weather_.affected_players, player:get_player_name())
 					deactivate_weather = true -- should remain true until all players will be removed from weather
 				
-				-- Weather still active updating it
+					-- Weather still active updating it
 				else
 					render_if_in_area(weather_, dtime, player)
 				end
 
 			-- Weaher is not active checking if it about to start
 			else
-				if weather_.is_starting(dtime, player:getpos()) then
+				if weather_is_starting(weather_, dtime, player:getpos()) then
 					activate_weather = true
 				end
 			end	
