@@ -78,23 +78,27 @@ hw_utils.get_random_pos = function(player, offset)
 end
 
 local is_biome_frozen = function(position)
+	if legacy_MT_version then
+		return false;
+	end
 	local heat = minetest.get_heat(position)
-	print("karstis: " .. heat)
 	-- below 35 heat biome considered to be frozen type
 	return heat < 35
 end
 
 hw_utils.is_biome_frozen = function(position)
 	if mg_name == "v6" then
-		return false -- v6 not supported yet.
+		return false -- v6 not supported.
 	end
 	return is_biome_frozen(position)
 end
 
 local is_biome_dry = function(position)
+	if legacy_MT_version then
+		return false;
+	end
 	local humidity = minetest.get_humidity(position)
 	local heat = minetest.get_heat(position)
-	print("DREGME: " .. humidity)
 	return humidity < 50 and heat > 65
 end
 
@@ -106,6 +110,9 @@ hw_utils.is_biome_dry = function(position)
 end
 
 local is_biome_tropic = function(position)
+	if legacy_MT_version then
+		return false;
+	end
 	local humidity = minetest.get_humidity(position)
 	local heat = minetest.get_heat(position)
 

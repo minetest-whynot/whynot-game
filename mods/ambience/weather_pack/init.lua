@@ -11,6 +11,12 @@ if minetest.get_modpath("happy_weather_api") == nil then
 	dofile(modpath.."/commands.lua")
 end
 
+legacy_MT_version = false
+if minetest.get_humidity == nil then
+	minetest.log("warning", "MOD [weather_pack]: Old Minetest version detected, some mod features will not work.")
+	legacy_MT_version = true
+end
+
 -- Happy Weather utilities
 dofile(modpath.."/utils.lua")
 

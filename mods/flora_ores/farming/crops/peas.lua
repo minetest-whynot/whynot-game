@@ -79,11 +79,10 @@ crop_def.tiles = {"farming_pea_5.png"}
 crop_def.groups.growing = 0
 crop_def.drop = {
 	max_items = 5, items = {
-		{items = {'farming:pea_pod'}, rarity = 1},
-		{items = {'farming:pea_pod'}, rarity = 2},
-		{items = {'farming:pea_pod'}, rarity = 3},
-		{items = {'farming:pea_pod'}, rarity = 4},
-		{items = {'farming:pea_pod'}, rarity = 5},
+		{items = {"farming:pea_pod"}, rarity = 1},
+		{items = {"farming:pea_pod"}, rarity = 2},
+		{items = {"farming:pea_pod"}, rarity = 3},
+		{items = {"farming:pea_pod"}, rarity = 5},
 	}
 }
 minetest.register_node("farming:pea_5", table.copy(crop_def))

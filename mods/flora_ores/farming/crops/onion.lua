@@ -58,11 +58,11 @@ crop_def.tiles = {"crops_onion_plant_5.png"}
 crop_def.groups.growing = 0
 crop_def.drop = {
 	max_items = 5, items = {
-		{items = {'farming:onion'}, rarity = 1},
-		{items = {'farming:onion'}, rarity = 1},
-		{items = {'farming:onion'}, rarity = 2},
-		{items = {'farming:onion'}, rarity = 2},
-		{items = {'farming:onion'}, rarity = 5},
+		{items = {"farming:onion"}, rarity = 1},
+		{items = {"farming:onion"}, rarity = 1},
+		{items = {"farming:onion"}, rarity = 2},
+		{items = {"farming:onion"}, rarity = 2},
+		{items = {"farming:onion"}, rarity = 5},
 	}
 }
 minetest.register_node("farming:onion_5", table.copy(crop_def))

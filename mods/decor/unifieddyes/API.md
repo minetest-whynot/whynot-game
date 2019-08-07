@@ -12,7 +12,8 @@ minetest.register_node("mymod:colored_node", {
 	paramtype2 = "color",
 	palette = "unifieddyes_palette_extended.png",
 	groups = {snappy = 1, cracky = 2, ud_param2_colorable = 1}
-	airbrush_replacement_node = "mymod:my_other_colored_node"
+	airbrush_replacement_node = "mymod:my_other_colored_node",
+	on_dig = unifieddyes.on_dig
 })
 ```
 
@@ -34,6 +35,10 @@ If your node if of the kind where you need the split palette, but you need to pu
 `airbrush_replacement_node`:  The node to swap in when the airbrush is used on this node.  For example, you could `minetest.override_item()` on some default node to add this field, pointing to a colorable node of your own, so that when the default node is painted, it's replaced with yours in the new color.
 
 #### Function calls
+
+**`unifieddyes.on_dig(pos, node, digger)`**
+
+Set in a node definition's `on_dig` callback, this makes sure that if the player digs a neutral node, i.e. a colorable node that was left uncolored/white after placing, they receive a version of that item that has been stripped of its itemstack color setting, so that it is identical to what would have been in their inventory when that node was originally placed.  This prevents the engine splitting stacks of that item due to technically-different but visually-identical itemstack coloring.  This function is only needed in the definition of colorable versions of a node, not any uncolored counterparts.  For example, if you have a mod that has a simple, wooden chair, and the mod turns it into one with a colored seat cushion when you airbrush or craft it with dye, then only that latter colored-seat version needs this function.
 
 **`unifieddyes.fix_rotation(pos, placer, itemstack, pointed_thing)`
 `unifieddyes.fix_rotation_nsew(pos, placer, itemstack, pointed_thing)`**
@@ -120,7 +125,6 @@ Makes a colored itemstack out of the given `itemstack` and `color` (as a dye, e.
 
 Does just what it sounds like - it registers all the nodes that are needed for a given base node (`def`) to be able to use the split palette, each named according to `name`, with the palette hue appended.  If a custom drop is needed, it can be passed along (only a string is allowed here, specifying a single item).  
 
-
 #### Tables
 
 In addition to the above API calls, Unified Dyes provides several useful tables
@@ -144,8 +148,8 @@ If your mod used the old paradigm where you craft a neutral-colored item, place 
 ```lua
 	place_param2 = 240,
 	after_dig_node = unifieddyes.after_dig_node,
-	after_place_node = unifieddyes.recolor_on_place,
-	ud_replacement_node = "mod:some_node"
+	ud_replacement_node = "mod:some_node",
+	on_dig = unifieddyes.on_dig
 ```
 
 * Add the `airbrush_replacement_node` key to the node definition, if needed.

@@ -69,7 +69,7 @@ minetest.register_craft({
 })
 
 -- hemp fibre
-minetest.register_craftitem("farming:hemp_fibre", { 
+minetest.register_craftitem("farming:hemp_fibre", {
 	description = S("Hemp Fibre"),
 	inventory_image = "farming_hemp_fibre.png",
 })
@@ -219,8 +219,8 @@ minetest.register_node("farming:hemp_5", table.copy(crop_def))
 crop_def.tiles = {"farming_hemp_6.png"}
 crop_def.drop = {
 	items = {
-		{items = {'farming:hemp_leaf'}, rarity = 2},
-		{items = {'farming:seed_hemp'}, rarity = 1},
+		{items = {"farming:hemp_leaf"}, rarity = 2},
+		{items = {"farming:seed_hemp"}, rarity = 1},
 	}
 }
 minetest.register_node("farming:hemp_6", table.copy(crop_def))
@@ -229,10 +229,10 @@ minetest.register_node("farming:hemp_6", table.copy(crop_def))
 crop_def.tiles = {"farming_hemp_7.png"}
 crop_def.drop = {
 	items = {
-		{items = {'farming:hemp_leaf'}, rarity = 1},
-		{items = {'farming:hemp_leaf'}, rarity = 3},
-		{items = {'farming:seed_hemp'}, rarity = 1},
-		{items = {'farming:seed_hemp'}, rarity = 3},
+		{items = {"farming:hemp_leaf"}, rarity = 1},
+		{items = {"farming:hemp_leaf"}, rarity = 3},
+		{items = {"farming:seed_hemp"}, rarity = 1},
+		{items = {"farming:seed_hemp"}, rarity = 3},
 	}
 }
 minetest.register_node("farming:hemp_7", table.copy(crop_def))
@@ -242,10 +242,10 @@ crop_def.tiles = {"farming_hemp_8.png"}
 crop_def.groups.growing = 0
 crop_def.drop = {
 	items = {
-		{items = {'farming:hemp_leaf 2'}, rarity = 1},
-		{items = {'farming:hemp_leaf'}, rarity = 2},
-		{items = {'farming:seed_hemp'}, rarity = 1},
-		{items = {'farming:seed_hemp'}, rarity = 2},
+		{items = {"farming:hemp_leaf 2"}, rarity = 1},
+		{items = {"farming:hemp_leaf"}, rarity = 2},
+		{items = {"farming:seed_hemp"}, rarity = 1},
+		{items = {"farming:seed_hemp"}, rarity = 2},
 	}
 }
 minetest.register_node("farming:hemp_8", table.copy(crop_def))

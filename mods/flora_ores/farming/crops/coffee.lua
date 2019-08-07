@@ -80,9 +80,9 @@ crop_def.tiles = {"farming_coffee_5.png"}
 crop_def.groups.growing = 0
 crop_def.drop = {
 	items = {
-		{items = {'farming:coffee_beans 2'}, rarity = 1},
-		{items = {'farming:coffee_beans 2'}, rarity = 2},
-		{items = {'farming:coffee_beans 2'}, rarity = 3},
+		{items = {"farming:coffee_beans 2"}, rarity = 1},
+		{items = {"farming:coffee_beans 2"}, rarity = 2},
+		{items = {"farming:coffee_beans 2"}, rarity = 3},
 	}
 }
 minetest.register_node("farming:coffee_5", table.copy(crop_def))

@@ -75,8 +75,8 @@ minetest.register_node("farming:barley_4", table.copy(crop_def))
 crop_def.tiles = {"farming_barley_5.png"}
 crop_def.drop = {
 	items = {
-		{items = {'farming:barley'}, rarity = 2},
-		{items = {'farming:seed_barley'}, rarity = 2},
+		{items = {"farming:barley"}, rarity = 2},
+		{items = {"farming:seed_barley"}, rarity = 2},
 	}
 }
 minetest.register_node("farming:barley_5", table.copy(crop_def))
@@ -85,8 +85,8 @@ minetest.register_node("farming:barley_5", table.copy(crop_def))
 crop_def.tiles = {"farming_barley_6.png"}
 crop_def.drop = {
 	items = {
-		{items = {'farming:barley'}, rarity = 2},
-		{items = {'farming:seed_barley'}, rarity = 1},
+		{items = {"farming:barley"}, rarity = 2},
+		{items = {"farming:seed_barley"}, rarity = 1},
 	}
 }
 minetest.register_node("farming:barley_6", table.copy(crop_def))
@@ -96,10 +96,10 @@ crop_def.tiles = {"farming_barley_7.png"}
 crop_def.groups.growing = 0
 crop_def.drop = {
 	items = {
-		{items = {'farming:barley'}, rarity = 1},
-		{items = {'farming:barley'}, rarity = 3},
-		{items = {'farming:seed_barley'}, rarity = 1},
-		{items = {'farming:seed_barley'}, rarity = 3},
+		{items = {"farming:barley"}, rarity = 1},
+		{items = {"farming:barley"}, rarity = 3},
+		{items = {"farming:seed_barley"}, rarity = 1},
+		{items = {"farming:seed_barley"}, rarity = 3},
 	}
 }
 minetest.register_node("farming:barley_7", table.copy(crop_def))

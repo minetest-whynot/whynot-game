@@ -141,7 +141,7 @@ local crop_def = {
 	walkable = false,
 	drop = {
 		items = {
-			{items = {'farming:cocoa_beans 1'}, rarity = 2},
+			{items = {"farming:cocoa_beans 1"}, rarity = 2},
 		}
 	},
 	selection_box = {
@@ -172,7 +172,7 @@ minetest.register_node("farming:cocoa_2", table.copy(crop_def))
 crop_def.tiles = {"farming_cocoa_3.png"}
 crop_def.drop = {
 	items = {
-		{items = {'farming:cocoa_beans 1'}, rarity = 1},
+		{items = {"farming:cocoa_beans 1"}, rarity = 1},
 	}
 }
 minetest.register_node("farming:cocoa_3", table.copy(crop_def))
@@ -183,9 +183,9 @@ crop_def.groups.growing = 0
 crop_def.growth_check = nil
 crop_def.drop = {
 	items = {
-		{items = {'farming:cocoa_beans 2'}, rarity = 1},
-		{items = {'farming:cocoa_beans 1'}, rarity = 2},
-		{items = {'farming:cocoa_beans 1'}, rarity = 4},
+		{items = {"farming:cocoa_beans 2"}, rarity = 1},
+		{items = {"farming:cocoa_beans 1"}, rarity = 2},
+		{items = {"farming:cocoa_beans 1"}, rarity = 4},
 	}
 }
 minetest.register_node("farming:cocoa_4", table.copy(crop_def))

@@ -11,8 +11,8 @@ local snowstorm = {}
 -- Weather identification code
 snowstorm.code = "snowstorm"
 snowstorm.last_check = 0
-snowstorm.check_interval = 5
-snowstorm.chance = 1
+snowstorm.check_interval = 300
+snowstorm.chance = 0.05
 
 -- Keeps sound handler references
 local sound_handlers = {}

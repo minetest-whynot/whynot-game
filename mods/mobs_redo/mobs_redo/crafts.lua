@@ -92,10 +92,10 @@ minetest.register_tool("mobs:shears", {
 })
 
 minetest.register_craft({
-	output = 'mobs:shears',
+	output = "mobs:shears",
 	recipe = {
-		{'', 'default:steel_ingot', ''},
-		{'', 'group:stick', 'default:steel_ingot'},
+		{"", "default:steel_ingot", ""},
+		{"", "group:stick", "default:steel_ingot"},
 	}
 })
 

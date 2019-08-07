@@ -32,7 +32,7 @@ Mod: minetest_game/mods/wool
 Mod: minetest_game/mods/xpanes
 
 origin	https://github.com/minetest-mods/craftguide/ (fetch)
-* master 97676d0 [origin/master] Fix possible crash
+* master 9124770 [origin/master] Merge pull request #85 from shacknetisp/fix_group_handling
 Mod: libs/craftguide
 
 origin	https://github.com/bell07/minetest_craftguide_reveal.git (fetch)
@@ -147,11 +147,11 @@ origin	https://github.com/Ezhh/under_sky (fetch)
 Mod: ambience/under_sky
 
 origin	https://gitlab.com/zombiebot/weather_pack.git (fetch)
-* master c698762 [origin/master] added snow particles for snowstorm
+* master 2a8c2d0 [origin/master] MT 0.4.16 compatibility fixes and code clean-up.
 Mod: ambience/weather_pack
 
 origin	https://notabug.org/TenPlus1/farming (fetch)
-* master 4465c49 [origin/master] fix crafting bug
+* master faed117 [origin/master] code tidy ' to "
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
@@ -300,7 +300,7 @@ origin	https://github.com/minetest-mods/ts_furniture (fetch)
 Mod: decor/ts_furniture
 
 origin	https://gitlab.com/VanessaE/unifieddyes (fetch)
-* master         9ff40a7 [origin/master] Add a helper function to reset a node's/item's color info if a neutral node somehow ends up with different itemstack meta when placed and then later dug.  Prevents look-alike stacks.
+* master         0082b15 [origin/master] remove an obsolete function reference
 Mod: decor/unifieddyes
 
 origin	https://gitlab.com/VanessaE/homedecor_modpack/ (fetch)
@@ -404,9 +404,9 @@ Mod: mesecons/mesecons_walllever
 Mod: mesecons/mesecons_wires
 
 origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
-* master 822450e [origin/master] add pickaxe group to lava pick
+* master e6d4b18 [origin/master] code tidy ' to "
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master 38232d5 [origin/master] only spawn mob if player is within active area (useful for world anchors and force loaded areas)
+* master c7838e5 [origin/master] code tidy ' to "
 Mod: mobs_redo/mobs_redo

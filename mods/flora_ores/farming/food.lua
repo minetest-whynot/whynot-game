@@ -139,8 +139,8 @@ minetest.register_craftitem("farming:donut_chocolate", {
 minetest.register_craft({
 	output = "farming:donut_chocolate",
 	recipe = {
-		{'group:food_cocoa'},
-		{'farming:donut'},
+		{"group:food_cocoa"},
+		{"farming:donut"},
 	}
 })
 
@@ -153,8 +153,8 @@ minetest.register_craftitem("farming:donut_apple", {
 minetest.register_craft({
 	output = "farming:donut_apple",
 	recipe = {
-		{'default:apple'},
-		{'farming:donut'},
+		{"default:apple"},
+		{"farming:donut"},
 	}
 })
 

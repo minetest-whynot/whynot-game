@@ -79,7 +79,7 @@ minetest.register_craftitem("farming:grapes", {
 minetest.register_craft({
 	output = "dye:violet",
 	recipe = {
-		{'farming:grapes'},
+		{"farming:grapes"},
 	}
 })
 
@@ -157,9 +157,9 @@ minetest.register_node("farming:trellis", {
 minetest.register_craft({
 	output = "farming:trellis",
 	recipe = {
-		{'default:stick', 'default:stick', 'default:stick'},
-		{'default:stick', 'default:stick', 'default:stick'},
-		{'default:stick', 'default:stick', 'default:stick'},
+		{"default:stick", "default:stick", "default:stick"},
+		{"default:stick", "default:stick", "default:stick"},
+		{"default:stick", "default:stick", "default:stick"},
 	}
 })
 
@@ -180,7 +180,7 @@ local crop_def = {
 	sunlight_propagates = true,
 	drop = {
 		items = {
-			{items = {'farming:trellis'}, rarity = 1},
+			{items = {"farming:trellis"}, rarity = 1},
 		}
 	},
 	selection_box = farming.select,
@@ -223,10 +223,10 @@ crop_def.tiles = {"farming_grapes_8.png"}
 crop_def.groups.growing = 0
 crop_def.drop = {
 	items = {
-		{items = {'farming:trellis'}, rarity = 1},
-		{items = {'farming:grapes 3'}, rarity = 1},
-		{items = {'farming:grapes 1'}, rarity = 2},
-		{items = {'farming:grapes 1'}, rarity = 3},
+		{items = {"farming:trellis"}, rarity = 1},
+		{items = {"farming:grapes 3"}, rarity = 1},
+		{items = {"farming:grapes 1"}, rarity = 2},
+		{items = {"farming:grapes 1"}, rarity = 3},
 	}
 }
 minetest.register_node("farming:grapes_8", table.copy(crop_def))
@@ -251,9 +251,9 @@ minetest.register_node("farming:grapebush", {
 	sunlight_propagates = true,
 	drop = {
 		items = {
-			{items = {'farming:grapes 1'}, rarity = 1},
-			{items = {'farming:grapes 1'}, rarity = 2},
-			{items = {'farming:grapes 1'}, rarity = 3},
+			{items = {"farming:grapes 1"}, rarity = 1},
+			{items = {"farming:grapes 1"}, rarity = 2},
+			{items = {"farming:grapes 1"}, rarity = 3},
 		}
 	},
 	selection_box = farming.select,

@@ -97,8 +97,8 @@ minetest.register_node("farming:carrot_6", table.copy(crop_def))
 crop_def.tiles = {"farming_carrot_7.png"}
 crop_def.drop = {
 	items = {
-		{items = {'farming:carrot'}, rarity = 1},
-		{items = {'farming:carrot 2'}, rarity = 3},
+		{items = {"farming:carrot"}, rarity = 1},
+		{items = {"farming:carrot 2"}, rarity = 3},
 	}
 }
 minetest.register_node("farming:carrot_7", table.copy(crop_def))
@@ -108,8 +108,8 @@ crop_def.tiles = {"farming_carrot_8.png"}
 crop_def.groups.growing = 0
 crop_def.drop = {
 	items = {
-		{items = {'farming:carrot 2'}, rarity = 1},
-		{items = {'farming:carrot 3'}, rarity = 2},
+		{items = {"farming:carrot 2"}, rarity = 1},
+		{items = {"farming:carrot 3"}, rarity = 2},
 	}
 }
 minetest.register_node("farming:carrot_8", table.copy(crop_def))

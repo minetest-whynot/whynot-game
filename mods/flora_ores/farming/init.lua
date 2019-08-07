@@ -7,7 +7,7 @@
 
 farming = {
 	mod = "redo",
-	version = "20190625",
+	version = "20190728",
 	path = minetest.get_modpath("farming"),
 	select = {
 		type = "fixed",
@@ -461,7 +461,8 @@ function farming.place_seed(itemstack, placer, pointed_thing, plantname)
 
 		minetest.sound_play("default_place_node", {pos = pt.above, gain = 1.0})
 
-		if placer and not farming.is_creative(placer:get_player_name()) then
+		if placer and itemstack
+		and not farming.is_creative(placer:get_player_name()) then
 
 			local name = itemstack:get_name()
 
