@@ -1,3 +1,15 @@
+local function skins_sort(skinslist)
+	table.sort(skinslist, function(a,b)
+		local a_sortid = a.sort_id or ""
+		local b_sortid = b.sort_id or ""
+		if a_sortid ~= b_sortid then
+			return a_sortid < b_sortid
+		else
+			return tostring(a.description or a.name or "") < tostring(b.description or b.name or "")
+		end
+	 end)
+end
+
 -- Get skinlist for player. If no player given, public skins only selected
 function skinsdb5.get_skinlist_for_player(playername)
 	local skinslist = {}
@@ -7,8 +19,7 @@ function skinsdb5.get_skinlist_for_player(playername)
 			table.insert(skinslist, skin)
 		end
 	end
-	table.sort(skinslist, function(a,b) return tostring(a.sort_id or
-			a.description or a.name or "") < tostring(b.sort_id or b.description or b.name or "") end)
+	skins_sort(skinslist)
 	return skinslist
 end
 
@@ -21,7 +32,6 @@ function skinsdb5.get_skinlist_with_meta(key, value)
 			table.insert(skinslist, skin)
 		end
 	end
-	table.sort(skinslist, function(a,b) return (tostring(a.sort_id) or
-			a.description or a.name or "") < (tostring(b.sort_id) or b.description or b.name or "") end)
+	skins_sort(skinslist)
 	return skinslist
 end
