@@ -8,6 +8,10 @@ The name describes the way the mods are applied to the game. The game does not h
 ### List of already included mods
 Generated file: [mod_sources.txt](https://github.com/bell07/minetest-game-whynot/blob/master/mod_sources.txt)
 
+### License statement
+Each mods does have own free license.
+The whynot related work (buiding scripts) are GPL-V3 
+
 ## Whynot Rules for mods
 
 ### 1 no take over the game
