@@ -1,0 +1,2 @@
+# Requires some additional processing to check all items in the world each server step
+trash_can_throw_in (Allow throwing trash into the trash can) bool true

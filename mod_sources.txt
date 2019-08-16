@@ -230,6 +230,11 @@ origin	https://github.com/lisacvuk/minetest-toolranks (fetch)
 * master ea54263 [origin/master] Crash fix - check if description is nil before trying to search it. (#3)
 Mod: tools/toolranks
 
+bell07	https://github.com/bell07/trash_can (fetch)
+origin	https://github.com/minetest-mods/trash_can (fetch)
+* master 7f0f45e [origin/master: ahead 2] add setting to disable hacky throw-in function
+Mod: tools/trash_can
+
 origin	https://github.com/minetest-mods/woodcutting (fetch)
 * master a9d4160 [origin/master] do not remove leaves on processing area border
 Mod: tools/woodcutting
