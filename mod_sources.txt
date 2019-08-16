@@ -304,7 +304,7 @@ origin	https://gitlab.com/VanessaE/unifieddyes (fetch)
 Mod: decor/unifieddyes
 
 origin	https://gitlab.com/VanessaE/homedecor_modpack/ (fetch)
-* master 1a45cd3 [origin/master: ahead 1] enable the beds 3x time
+* master 57ea852 [origin/master: ahead 2] Merge remote-tracking branch 'origin/master'
 Mod: homedecor_modpack/building_blocks
 Mod: homedecor_modpack/fake_fire
 Mod: homedecor_modpack/lavalamp
@@ -408,5 +408,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master c7838e5 [origin/master] code tidy ' to "
+* master 2ca012e [origin/master] replace deprecated settexturemod with set_texture_mod
 Mod: mobs_redo/mobs_redo

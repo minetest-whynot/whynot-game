@@ -586,8 +586,8 @@ minetest.register_craft( {
         output = "doors:homedecor_french_mahogany 2",
         recipe = {
 			"dye:brown",
-			"doors:homedecor_wood_glass_oak_a",
-			"doors:homedecor_wood_glass_oak_a"
+			"doors:homedecor_french_oak",
+			"doors:homedecor_french_oak"
         },
 })
 
@@ -596,8 +596,8 @@ minetest.register_craft( {
         output = "doors:homedecor_french_white 2",
         recipe = {
 			"dye:white",
-			"doors:homedecor_wood_glass_oak_a",
-			"doors:homedecor_wood_glass_oak_a"
+			"doors:homedecor_french_oak",
+			"doors:homedecor_french_oak"
         },
 })
 
