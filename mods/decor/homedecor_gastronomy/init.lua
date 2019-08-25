@@ -164,18 +164,7 @@ homedecor.register("beer_mug", {
 	on_use = function(itemstack, user, pointed_thing)
 		local inv = user:get_inventory()
 		if not creative.is_enabled_for(user:get_player_name()) then
-			if inv:room_for_item("main", "vessels:drinking_glass 1") then
-				inv:add_item("main", "vessels:drinking_glass 1")
-			else
-				local pos = user:get_pos()
-				local dir = user:get_look_dir()
-				local fdir = minetest.dir_to_facedir(dir)
-				local pos_fwd = {	x = pos.x + homedecor.fdir_to_fwd[fdir+1][1],
-									y = pos.y + 1,
-									z = pos.z + homedecor.fdir_to_fwd[fdir+1][2] }
-				minetest.add_item(pos_fwd, "vessels:drinking_glass 1")
-			end
-			minetest.do_item_eat(2, nil, itemstack, user, pointed_thing)
+			minetest.do_item_eat(2, "vessels:drinking_glass 1", itemstack, user, pointed_thing)
 			return itemstack
 		end
 	end

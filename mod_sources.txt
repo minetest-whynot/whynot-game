@@ -76,7 +76,7 @@ origin	https://github.com/Chemguy99/armor_addon (fetch)
 Mod: player/armor_addon
 
 origin	https://github.com/minetest-mods/awards (fetch)
-* master 1ffa8f1 [origin/master] Add missing german translations
+* master 8f46d5b [origin/master] Add icons for awards
 Mod: player/awards
 
 origin	https://github.com/minetest-mods/cozy (fetch)
@@ -236,7 +236,7 @@ origin	https://github.com/minetest-mods/trash_can (fetch)
 Mod: tools/trash_can
 
 origin	https://github.com/minetest-mods/woodcutting (fetch)
-* master a9d4160 [origin/master] do not remove leaves on processing area border
+* master                     258d798 [origin/master] Merge pull request #3 from coil0/wear-limit
 Mod: tools/woodcutting
 
 origin	https://github.com/Amaz1/flight/ (fetch)
@@ -309,7 +309,7 @@ origin	https://gitlab.com/VanessaE/unifieddyes (fetch)
 Mod: decor/unifieddyes
 
 origin	https://gitlab.com/VanessaE/homedecor_modpack/ (fetch)
-* master 57ea852 [origin/master: ahead 2] Merge remote-tracking branch 'origin/master'
+* master 77ad817 [origin/master: ahead 3] Merge remote-tracking branch 'origin/master'
 Mod: homedecor_modpack/building_blocks
 Mod: homedecor_modpack/fake_fire
 Mod: homedecor_modpack/lavalamp
@@ -382,7 +382,7 @@ origin	https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin	https://github.com/minetest-mods/mesecons (fetch)
-* master 8baa789 [origin/master] Optimize images (#464)
+* master 1a9704f [origin/master] Add digiline commands for operating node detector (#472)
 Mod: mesecons/mesecons
 Mod: mesecons/mesecons_alias
 Mod: mesecons/mesecons_blinkyplant
@@ -413,5 +413,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master 2ca012e [origin/master] replace deprecated settexturemod with set_texture_mod
+* master d6bd538 [origin/master] if mob standing in solid block then jump to escape
 Mod: mobs_redo/mobs_redo

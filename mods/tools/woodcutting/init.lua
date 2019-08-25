@@ -5,6 +5,7 @@ woodcutting.settings = {
 	leaves_distance = 2,  -- do not touch leaves around the not removed trees with this distance
 	player_distance = 80, -- Allow cutting tree nodes with this maximum distance away from player
 	dig_leaves = true,    -- Dig dacayable leaves after tree node is digged
+	wear_limit = 65535,   -- Maximum tool wear that allows cutting
 
 	on_new_process_hook = function(process) return true end,             -- do not start the process if set to nil or return false
 	on_step_hook = function(process) return true end,                    -- if false is returned finish the process
@@ -36,6 +37,7 @@ function woodcutting.new_process(playername, template)
 	process.tree_distance = process.tree_distance or woodcutting.settings.tree_distance
 	process.leaves_distance = process.leaves_distance or woodcutting.settings.leaves_distance
 	process.player_distance = process.player_distance or woodcutting.settings.player_distance
+	process.wear_limit = process.wear_limit or woodcutting.settings.wear_limit
 
 	if process.dig_leaves == nil then --bool value with default value true
 		if woodcutting.settings.dig_leaves == nil then
@@ -133,6 +135,7 @@ end
 ----------------------------------
 function woodcutting_class:check_processing_allowed(pos)
 	return vector.distance(pos, self._player:get_pos()) < self.player_distance
+		and self._player:get_wielded_item():get_wear() <= self.wear_limit
 end
 
 ----------------------------------

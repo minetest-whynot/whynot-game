@@ -6,7 +6,7 @@ local use_cmi = minetest.global_exists("cmi")
 
 mobs = {
 	mod = "redo",
-	version = "20190813",
+	version = "20190823",
 	intllib = S,
 	invis = minetest.global_exists("invisibility") and invisibility or {},
 }
@@ -3127,6 +3127,17 @@ function mob_class:on_step(dtime)
 		self.standing_in = node_ok({
 			x = pos.x, y = pos.y + y_level + 0.25, z = pos.z}, "air").name
 --		print ("standing in " .. self.standing_in)
+
+		-- if standing inside solid block then jump to escape
+		if minetest.registered_nodes[self.standing_in].walkable and
+			minetest.registered_nodes[self.standing_in].drawtype == "normal" then
+
+				self.object:set_velocity({
+					x = 0,
+					y = self.jump_height,
+					z = 0
+				})
+		end
 
 		-- check for mob expiration (0.25 instead of dtime since were in a timer)
 		self:mob_expire(pos, 0.25)

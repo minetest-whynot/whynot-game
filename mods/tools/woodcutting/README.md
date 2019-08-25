@@ -28,6 +28,7 @@ woodcutting.settings = {
 	leaves_distance = 2,  -- do not touch leaves around the not removed trees with this distance
 	player_distance = 80, -- Allow cutting tree nodes with this maximum distance away from player
 	dig_leaves = true,    -- Dig dacayable leaves after tree node is digged - can be changed trough woodcutting_dig_leaves in minetest.conf
+	wear_limit = 65535,   -- Maximum tool wear that allows cutting
 }
 ```
 
@@ -49,6 +50,7 @@ See (default) Settings
   - process.leaves_distance - used in process:process_leaves(pos) - can be adjusted each step in on_after_dig_hook()
   - process.player_distance - used in process:check_processing_allowed(pos) - can be adjusted each step in on_step_hook()
   - process.dig_leaves      - used at end of on_dignode function - can be adjusted each step in on_after_dig_hook()
+  - process.wear_limit      - used in process:check_processing_allowed(pos) - can be adjusted each step in on_step_hook()
 
 #### Methods
 Note:this methods could be redefined in on_new_process_hook, in a different way for each new process

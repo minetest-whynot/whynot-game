@@ -16,8 +16,6 @@ function homedecor.toggle_switch(pos, node, clicker, itemstack, pointed_thing)
 end
 
 local on_rc
-local switch_receptor
-
 if minetest.get_modpath("mesecons") then
 	on_rc = function(pos, node, clicker, itemstack, pointed_thing)
 		local t = homedecor.toggle_switch(pos, node, clicker, itemstack, pointed_thing)
@@ -28,12 +26,6 @@ if minetest.get_modpath("mesecons") then
 			mesecon.receptor_on(pos, mesecon.rules.buttonlike_get(node))
 		end
 	end
-	switch_receptor = {
-		receptor = {
-			state = mesecon.state[onoff],
-			rules = mesecon.rules.buttonlike_get
-		}
-	}
 end
 
 homedecor.register("power_outlet", {
@@ -64,6 +56,16 @@ homedecor.register("power_outlet", {
 })
 
 for _, onoff in ipairs ({"on", "off"}) do
+
+	local switch_receptor
+	if minetest.get_modpath("mesecons") then
+		switch_receptor = {
+			receptor = {
+				state = mesecon.state[onoff],
+				rules = mesecon.rules.buttonlike_get
+			}
+		}
+	end
 
 	local model = {
 		{ -0.125,   -0.1875, 0.4375,  0.125,   0.125,  0.5 },
