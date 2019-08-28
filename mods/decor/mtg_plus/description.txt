@@ -1,1 +1,0 @@
-Adds various simple decorative blocks, doors, panes and other items to Minetest Game, focusing on snow, ice, luxury, bamboo and more.

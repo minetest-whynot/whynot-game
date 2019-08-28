@@ -108,7 +108,7 @@ origin	https://github.com/minetest-mods/wielded_light (fetch)
 Mod: player/wielded_light
 
 origin	https://github.com/bell07/minetest-player_api_modpack (fetch)
-* master 8c61a26 [origin/master] improve skins sorting
+* master c142845 [origin/master] fix character_creator was olways set as current skin on join
 Mod: player_api_modpack/3d_armor
 Mod: player_api_modpack/character_creator
 Mod: player_api_modpack/clothing
@@ -230,9 +230,8 @@ origin	https://github.com/lisacvuk/minetest-toolranks (fetch)
 * master ea54263 [origin/master] Crash fix - check if description is nil before trying to search it. (#3)
 Mod: tools/toolranks
 
-bell07	https://github.com/bell07/trash_can (fetch)
 origin	https://github.com/minetest-mods/trash_can (fetch)
-* master 7f0f45e [origin/master: ahead 2] add setting to disable hacky throw-in function
+* master f046558 [origin/master] Add setting trash_can_throw_in (#5)
 Mod: tools/trash_can
 
 origin	https://github.com/minetest-mods/woodcutting (fetch)
@@ -277,7 +276,7 @@ origin	https://github.com/Gerold55/laptop (fetch)
 Mod: decor/laptop
 
 origin	http://repo.or.cz/minetest_mtg_plus.git (fetch)
-* master ca413dc [origin/master] Use new translation system
+* master 1fe71a5 [origin/master] Update screenshot
 Mod: decor/mtg_plus
 
 origin	https://github.com/minetest-mods/myroofs (fetch)
@@ -309,7 +308,7 @@ origin	https://gitlab.com/VanessaE/unifieddyes (fetch)
 Mod: decor/unifieddyes
 
 origin	https://gitlab.com/VanessaE/homedecor_modpack/ (fetch)
-* master 77ad817 [origin/master: ahead 3] Merge remote-tracking branch 'origin/master'
+* master 26fb4f6 [origin/master: ahead 4] Merge remote-tracking branch 'origin/master'
 Mod: homedecor_modpack/building_blocks
 Mod: homedecor_modpack/fake_fire
 Mod: homedecor_modpack/lavalamp
@@ -382,7 +381,7 @@ origin	https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin	https://github.com/minetest-mods/mesecons (fetch)
-* master 1a9704f [origin/master] Add digiline commands for operating node detector (#472)
+* master 1bf862f [origin/master] Use `modpack.conf` instead of legacy `modpack.txt` (#475)
 Mod: mesecons/mesecons
 Mod: mesecons/mesecons_alias
 Mod: mesecons/mesecons_blinkyplant

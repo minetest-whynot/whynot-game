@@ -47,7 +47,7 @@ minetest.register_node("mtg_plus:ice_window", {
 	drawtype = "glasslike",
 	tiles = {"mtg_plus_ice_window.png"},
 	sunlight_propagates = true,
-	groups = {cracky = 3, puts_out_fire = 1, cools_lava = 1},
+	groups = {cracky = 3, cools_lava = 1, slippery = 3 },
 	is_ground_content = false,
 	paramtype = "light",
 	sounds = default.node_sound_glass_defaults(),

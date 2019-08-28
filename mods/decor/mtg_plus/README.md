@@ -5,7 +5,7 @@ The focus lies on:
 * Snow and ice
 * Panes
 * Doors
-* Gold and luxury
+* Metals
 
 ## Special stuff
 Most new items are purely decorational and self-explanationary, but a few items are somewhat unique:
@@ -14,7 +14,6 @@ Most new items are purely decorational and self-explanationary, but a few items 
 * Aggregated Diamond Block: Not even a diamond pickaxe can break it. But TNT will do
 * Ice-themed doors and trapdoors: Solid doors for which (like for ice) light goes through
 * Goldwood: Fireproof wood
-* Golden Decor Apple: Decorational item, can't be eaten
 
 ## Compability
 This mod is optionally compatible with:
@@ -22,12 +21,8 @@ This mod is optionally compatible with:
 * `xdecor`: For adding more recipes for compability
 * `moreblocks`: For adding recipes involving the sweeper
 * `furniture`: For adding furniture for goldwood and the cobblestone variants
-* `intllib`: For providing translations. Current translations:
-    * German
 * `doc_items`: For providing item descriptions (incomplete)
-
-## API
-Programmers can add more stuff by using the very simple API. See `API.md`.
+* `awards`: More achievements
 
 ## Credits and licenses
 This mod is free software.

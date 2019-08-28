@@ -25,7 +25,7 @@ minetest.register_node(":homedecor:cobweb_corner", {
 	end
 })
 
-minetest.register_node(":Lhomedecor:cobweb_centered", {
+minetest.register_node(":homedecor:cobweb_centered", {
 	description = S("Cobweb"),
 	drawtype = "nodebox",
 	tiles = { "homedecor_cobweb.png" },

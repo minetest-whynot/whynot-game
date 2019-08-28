@@ -231,7 +231,7 @@ minetest.register_node("mtg_plus:ice_block", {
 	description = S("Ice Block"),
 	_doc_items_longdesc = build,
 	tiles = {"mtg_plus_ice_block.png"},
-	groups = {cracky = 3, puts_out_fire = 1, cools_lava = 1},
+	groups = {cracky = 3, cools_lava = 1, slippery = 3 },
 	is_ground_content = false,
 	paramtype = "light",
 	sounds = default.node_sound_glass_defaults(),
@@ -250,7 +250,7 @@ minetest.register_node("mtg_plus:ice_tile4", {
 	description = S("Ice Tile"),
 	_doc_items_longdesc = build,
 	tiles = {"mtg_plus_ice_tile4.png"},
-	groups = {cracky = 3, level = 1, puts_out_fire = 1, cools_lava = 1},
+	groups = {cracky = 3, level = 1, cools_lava = 1, slippery = 3 },
 	is_ground_content = false,
 	paramtype = "light",
 	sounds = default.node_sound_glass_defaults(),
@@ -266,7 +266,7 @@ minetest.register_node("mtg_plus:ice_tile16", {
 	description = S("Dense Ice Tile"),
 	_doc_items_longdesc = build,
 	tiles = {"mtg_plus_ice_tile16.png"},
-	groups = {cracky = 3, level = 2, puts_out_fire = 1, cools_lava = 1},
+	groups = {cracky = 3, level = 2, cools_lava = 1, slippery = 2 },
 	is_ground_content = false,
 	sounds = default.node_sound_glass_defaults(),
 })
@@ -281,7 +281,7 @@ minetest.register_node("mtg_plus:snow_brick", {
 	description = S("Soft Snow Brick"),
 	_doc_items_longdesc = build,
 	tiles = {"mtg_plus_snow_brick.png"},
-	groups = {crumbly = 2, puts_out_fire = 1, cools_lava = 1, snowy = 1},
+	groups = {crumbly = 2, cools_lava = 1, snowy = 1},
 	is_ground_content = false,
 	sounds = default.node_sound_dirt_defaults({
 		footstep={name="default_snow_footstep", gain = 0.15},
@@ -305,7 +305,7 @@ minetest.register_node("mtg_plus:hard_snow_brick", {
 	description = S("Hard Snow Brick"),
 	_doc_items_longdesc = build,
 	tiles = {"mtg_plus_hard_snow_brick.png"},
-	groups = {crumbly = 1, cracky = 2, puts_out_fire = 1, cools_lava = 1, snowy = 1},
+	groups = {crumbly = 1, cracky = 2, cools_lava = 1, snowy = 1},
 	is_ground_content = false,
 	sounds = default.node_sound_dirt_defaults({
 		dig={name="default_snow_footstep", gain = 0.2},
@@ -323,7 +323,7 @@ minetest.register_node("mtg_plus:ice_snow_brick", {
 	description = S("Icy Snow Brick"),
 	_doc_items_longdesc = build,
 	tiles = {"mtg_plus_ice_snow_brick.png"},
-	groups = {cracky = 2, puts_out_fire = 1, cools_lava = 1},
+	groups = {cracky = 2, cools_lava = 1, slippery=1},
 	is_ground_content = false,
 	sounds = default.node_sound_stone_defaults(),
 })
@@ -339,7 +339,7 @@ minetest.register_node("mtg_plus:ice_brick", {
 	_doc_items_longdesc = build,
 	tiles = {"mtg_plus_ice_brick.png"},
 	paramtype = "light",
-	groups = {cracky = 3, puts_out_fire = 1, cools_lava = 1},
+	groups = {cracky = 3, cools_lava = 1, slippery = 3},
 	is_ground_content = false,
 	sounds = default.node_sound_glass_defaults(),
 })

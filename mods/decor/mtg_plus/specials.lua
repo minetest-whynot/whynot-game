@@ -51,7 +51,6 @@ minetest.register_node("mtg_plus:goldwood", {
 	groups = {choppy = 2, wood = 1},
 	sounds = default.node_sound_wood_defaults(),
 })
--- FIXME: Goldwood can be used as furnace fuel because of group:wood recipe
 
 minetest.register_craft({
 	output = "mtg_plus:goldwood",
@@ -59,29 +58,8 @@ minetest.register_craft({
 	recipe = { "group:wood", "default:gold_ingot" },
 })
 
--- Special: Being an absurd luxury. :D
-minetest.register_node("mtg_plus:goldapple", {
-	description = S("Golden Decor Apple"),
-	_doc_items_longdesc = S("A decorative golden object which is shaped like an apple. It is inedible."),
-	drawtype = "plantlike",
-	visual_scale = 1.0,
-	tiles = {"mtg_plus_goldapple.png"},
-	inventory_image = "mtg_plus_goldapple.png",
-	paramtype = "light",
-	sunlight_propagates = true,
-	walkable = false,
-	is_ground_content = false,
-	selection_box = {
-		type = "fixed",
-		fixed = {-0.2, -0.5, -0.2, 0.2, 0, 0.2}
-	},
-	groups = { dig_immediate = 3, attached_node = 1 },
-	sounds = default.node_sound_defaults(),
-})
-
-
-minetest.register_craft({
-	output = "mtg_plus:goldapple",
-	type = "shapeless",
-	recipe = { "default:apple", "default:gold_ingot" },
+-- Prevent goldwood from being used as furnace fuel
+minetest.clear_craft({
+	type = "fuel",
+	recipe = "mtg_plus:goldwood",
 })

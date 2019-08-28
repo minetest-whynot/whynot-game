@@ -2,14 +2,6 @@ local S = minetest.get_translator("mtg_plus")
 
 -- Stairs/slabs
 
--- Add tin block stair and tin block slab which are oddly not present in Minetest Game 0.4.16.
--- NOTE: It is likely that these block will be added into stock Minetest Game one day.
--- This automatically checks if the node is already registered to avoid duplicates.
--- TODO: Remove this section anyway when Minetest Game adds these blocks.
-if minetest.registered_nodes["stairs:slab_tinblock"] == nil then
-	stairs.register_stair_and_slab("tinblock", "default:tinblock", minetest.registered_nodes["default:tinblock"].groups, minetest.registered_nodes["default:tinblock"].tiles, S("Tin Block Stair"), S("Tin Block Slab"), minetest.registered_nodes["default:tinblock"].sounds)
-end
-
 -- Add custom stairs and slabs
 local stairslab_ignore_groups = { "wood", "stone", "soil", }
 
@@ -43,5 +35,5 @@ simple_stair_slab("gravel_cobble", S("Cobbled Gravel Stair"), S("Cobbled Gravel 
 stairs.register_slab("flint_block", "mtg_plus:flint_block", {cracky=2}, {"mtg_plus_flint_block.png", "mtg_plus_flint_block.png", "mtg_plus_flint_block_slab.png", "mtg_plus_flint_block_slab.png", "mtg_plus_flint_block_slab.png", "mtg_plus_flint_block_slab.png"}, S("Flint Block Slab"), minetest.registered_items["mtg_plus:flint_block"].sounds)
 stairs.register_stair("flint_block", "mtg_plus:flint_block", {cracky=2}, {"mtg_plus_flint_block_slab.png", "mtg_plus_flint_block.png", "mtg_plus_flint_block_stair1.png", "mtg_plus_flint_block_stair2.png", "mtg_plus_flint_block.png", "mtg_plus_flint_block_slab.png"}, S("Flint Block Stair"), minetest.registered_items["mtg_plus:flint_block"].sounds)
 
-stairs.register_slab("ice_block", "mtg_plus:ice_block", {cracky=3, puts_out_fire=1, cools_lava=1}, {"mtg_plus_ice_block.png", "mtg_plus_ice_block.png", "mtg_plus_ice_block_slab.png", "mtg_plus_ice_block_slab.png", "mtg_plus_ice_block_slab.png", "mtg_plus_ice_block_slab.png"}, S("Ice Block Slab"), minetest.registered_items["mtg_plus:ice_block"].sounds)
-stairs.register_stair("ice_block", "mtg_plus:ice_block", {cracky=3, puts_out_fire=1, cools_lava=1}, {"mtg_plus_ice_block_slab.png", "mtg_plus_ice_block.png", "mtg_plus_ice_block_stair1.png", "mtg_plus_ice_block_stair2.png", "mtg_plus_ice_block.png", "mtg_plus_ice_block_slab.png"}, S("Ice Block Stair"), minetest.registered_items["mtg_plus:ice_block"].sounds)
+stairs.register_slab("ice_block", "mtg_plus:ice_block", {cracky=3, cools_lava=1, slippery=3}, {"mtg_plus_ice_block.png", "mtg_plus_ice_block.png", "mtg_plus_ice_block_slab.png", "mtg_plus_ice_block_slab.png", "mtg_plus_ice_block_slab.png", "mtg_plus_ice_block_slab.png"}, S("Ice Block Slab"), minetest.registered_items["mtg_plus:ice_block"].sounds)
+stairs.register_stair("ice_block", "mtg_plus:ice_block", {cracky=3, cools_lava=1, slippery=3}, {"mtg_plus_ice_block_slab.png", "mtg_plus_ice_block.png", "mtg_plus_ice_block_stair1.png", "mtg_plus_ice_block_stair2.png", "mtg_plus_ice_block.png", "mtg_plus_ice_block_slab.png"}, S("Ice Block Stair"), minetest.registered_items["mtg_plus:ice_block"].sounds)

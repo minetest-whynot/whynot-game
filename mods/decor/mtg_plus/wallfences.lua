@@ -11,6 +11,7 @@ walls.register("mtg_plus:wall_gravel_cobble", S("Cobbled Gravel Wall"), "mtg_plu
 do
 	local groups = minetest.registered_items["mtg_plus:wall_ice_tile16"].groups
 	groups.stone = nil
+	groups.slippery = 1
 	minetest.override_item("mtg_plus:wall_ice_tile16", { groups = groups })
 
 	groups = minetest.registered_items["mtg_plus:wall_sandstone_cobble"].groups
@@ -26,4 +27,17 @@ default.register_fence("mtg_plus:fence_goldwood", {
 	material = "mtg_plus:goldwood",
 	sounds = minetest.registered_nodes["mtg_plus:goldwood"].sounds,
 	groups = {choppy=2, },
+})
+
+default.register_fence_rail("mtg_plus:fence_rail_goldwood", {
+	description = S("Goldwood Fence Rail"),
+	_doc_items_longdesc = S("This is a fence rail made out of precious goldwood. It will neatly connect to its neighbors, but without creating fence posts. It can be jumped over."),
+	texture = "mtg_plus_fence_rail_goldwood.png",
+	inventory_image = "default_fence_rail_overlay.png^mtg_plus_goldwood.png^" ..
+		"default_fence_rail_overlay.png^[makealpha:255,126,126",
+	wield_image = "default_fence_rail_overlay.png^mtg_plus_goldwood.png^" ..
+		"default_fence_rail_overlay.png^[makealpha:255,126,126",
+	material = "mtg_plus:goldwood",
+	groups = {choppy = 2, },
+	sounds = minetest.registered_nodes["mtg_plus:goldwood"].sounds,
 })

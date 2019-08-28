@@ -103,20 +103,22 @@ end
 local function load_skin(player)
 	skin_indexes[player] = {}
 
-	if not player:get_attribute("character_creator:gender") then
-		player:set_attribute("character_creator:gender", skin_default.gender)
+	local player_meta = player:get_meta()
+
+	if not player_meta:contains("character_creator:gender") then
+		player_meta:set_string("character_creator:gender", skin_default.gender)
 	end
 
-	if not player:get_attribute("character_creator:width") then
-		player:set_attribute("character_creator:width", skin_default.width)
+	if not player_meta:contains("character_creator:width") then
+		player_meta:set_float("character_creator:width", skin_default.width)
 	end
 
-	if not player:get_attribute("character_creator:height") then
-		player:set_attribute("character_creator:height", skin_default.height)
+	if not player_meta:contains("character_creator:height") then
+		player_meta:set_float("character_creator:height", skin_default.height)
 	end
 
 	local function load_data(data_name)
-		local key   = player:get_attribute("character_creator:" .. data_name)
+		local key   = player_meta:get_string("character_creator:" .. data_name)
 		local index = table.indexof(skins_array[data_name], key)
 		if index == -1 then
 			index = table.indexof(skins_array[data_name], skin_default[data_name])
@@ -137,11 +139,13 @@ local function load_skin(player)
 end
 
 local function save_skin(player)
+	local player_meta = player:get_meta()
+
 	local function save_data(data_name)
 		local indexes = skin_indexes[player]
 		local index   = indexes[data_name]
 		local key     = skins_array[data_name][index]
-		player:set_attribute("character_creator:" .. data_name, key)
+		player_meta:set_string("character_creator:" .. data_name, key)
 	end
 
 	save_data("skin")
@@ -155,9 +159,10 @@ local function save_skin(player)
 end
 
 local function get_texture(player)
+	local player_meta = player:get_meta()
 	local indexes = skin_indexes[player]
 	local texture = ""
-	local gender = player:get_attribute("character_creator:gender")
+	local gender = player_meta:get_string("character_creator:gender")
 
 	local skin_key = skins_array.skin[indexes.skin]
 	local skin = skins.skin[skin_key]
@@ -196,15 +201,15 @@ local function change_skin(player)
 	skin_obj.texture = get_texture(player)
 	skin_obj.preview = nil --rebuild
 	save_skin(player)
-	player_api.set_skin(player, "character_creator:"..playername, false, true)
 end
 
 player_api.register_skin_modifier(function(textures, player, player_model, player_skin)
+	local player_meta = player:get_meta()
 	if player_skin:sub(1,18) == 'character_creator:' then
 		player:set_properties({
 			visual_size = {
-				x = tonumber(player:get_attribute("character_creator:width")),
-				y = tonumber(player:get_attribute("character_creator:height"))
+				x = player_meta:get_float("character_creator:width"),
+				y = player_meta:get_float("character_creator:height")
 			},
 		})
 	end
@@ -241,12 +246,14 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 		return
 	end
 
+	local player_meta = player:get_meta()
 	local indexes = skin_indexes[player]
+
 	if not skin_temp[player] then
 		skin_temp[player] = {
-			gender = player:get_attribute("character_creator:gender"),
-			width = player:get_attribute("character_creator:width"),
-			height = player:get_attribute("character_creator:height"),
+			gender = player_meta:get_string("character_creator:gender"),
+			width = player_meta:get_float("character_creator:width"),
+			height = player_meta:get_float("character_creator:height"),
 			indexes = table.copy(indexes)
 		}
 	end
@@ -254,41 +261,41 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	-- Gender
 	do
 		if fields.male then
-			player:set_attribute("character_creator:gender", "Male")
-			player:set_attribute("character_creator:width", 1)
-			player:set_attribute("character_creator:height", 1)
+			player_meta:set_string("character_creator:gender", "Male")
+			player_meta:set_float("character_creator:width", 1)
+			player_meta:set_float("character_creator:height", 1)
 		end
 
 		if fields.female then
-			player:set_attribute("character_creator:gender", "Female")
-			player:set_attribute("character_creator:width", 0.95)
-			player:set_attribute("character_creator:height", 1)
+			player_meta:set_string("character_creator:gender", "Female")
+			player_meta:set_float("character_creator:width", 0.95)
+			player_meta:set_float("character_creator:height", 1)
 		end
 	end
 
 	-- Height
 	do
-		local height = tonumber(player:get_attribute("character_creator:height"))
+		local height = tonumber(player_meta:get_float("character_creator:height"))
 
 		if fields.taller and height < 1.25 then
-			player:set_attribute("character_creator:height", height + 0.05)
+			player_meta:set_float("character_creator:height", height + 0.05)
 		end
 
 		if fields.shorter and height > 0.75 then
-			player:set_attribute("character_creator:height", height - 0.05)
+			player_meta:set_float("character_creator:height", height - 0.05)
 		end
 	end
 
 	-- Width
 	do
-		local width = tonumber(player:get_attribute("character_creator:width"))
+		local width = tonumber(player_meta:get_float("character_creator:width"))
 
 		if fields.wider and width < 1.25 then
-			player:set_attribute("character_creator:width", width + 0.05)
+			player_meta:set_float("character_creator:width", width + 0.05)
 		end
 
 		if fields.thinner and width > 0.75 then
-			player:set_attribute("character_creator:width", width - 0.05)
+			player_meta:set_float("character_creator:width", width - 0.05)
 		end
 	end
 
@@ -329,9 +336,9 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 
 		if fields.cancel then
 			local temp = skin_temp[player]
-			player:set_attribute("character_creator:gender", temp.gender)
-			player:set_attribute("character_creator:width", temp.width)
-			player:set_attribute("character_creator:height", temp.height)
+			player_meta:set_string("character_creator:gender", temp.gender)
+			player_meta:set_float("character_creator:width", temp.width)
+			player_meta:set_float("character_creator:height", temp.height)
 			skin_indexes[player] = table.copy(temp.indexes)
 			skin_temp[player] = nil
 			quit = true
@@ -340,6 +347,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 			quit = true
 		end
 		change_skin(player)
+		player_api.set_skin(player, "character_creator:"..player:get_player_name(), false, true)
 		if not quit then
 			show_formspec(player)
 		end

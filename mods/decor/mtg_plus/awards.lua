@@ -1,16 +1,6 @@
 local S = minetest.get_translator("mtg_plus")
 
 if minetest.get_modpath("awards") then
-	awards.register_achievement("mtg_plus_cup_gold", {
-		title = S("Self-proclaimed Winner"),
-		description = S("Craft a golden cup."),
-		icon = "mtg_plus_cup_gold.png",
-		trigger = {
-			type = "craft",
-			item = "mtg_plus:cup_gold",
-			target = 1
-		}
-	})
 	awards.register_achievement("mtg_plus_goldwood", {
 		title = S("Rich Carpenter"),
 		description = S("Craft 100 goldwood."),

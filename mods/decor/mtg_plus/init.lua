@@ -14,7 +14,6 @@ dofile(path.."/wallfences.lua") -- Walls and fences
 dofile(path.."/xpanes.lua") -- Panes (xpanes mod)
 dofile(path.."/doors.lua") -- Doors and trapdoors
 dofile(path.."/ladders.lua") -- Ladders
-dofile(path.."/cups.lua") -- Cups (with API)
 
 -- Support for other mods
 dofile(path.."/extras.lua") -- Additional blocks and crafts for optional mods
