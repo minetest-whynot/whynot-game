@@ -68,7 +68,7 @@ minetest.register_node("mobs:spawner", {
 			minetest.chat_send_player(name,
 				S("Syntax: “name min_light[0-14] max_light[0-14] max_mobs_in_area[0 to disable] distance[1-20] y_offset[-10 to 10]”"))
 		end
-	end,
+	end
 })
 
 
@@ -174,6 +174,5 @@ minetest.register_abm({
 				minetest.add_entity(pos2, mob)
 			end
 		end
-
 	end
 })

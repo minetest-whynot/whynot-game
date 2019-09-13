@@ -32,11 +32,11 @@ Mod: minetest_game/mods/wool
 Mod: minetest_game/mods/xpanes
 
 origin	https://github.com/minetest-mods/craftguide/ (fetch)
-* master 9124770 [origin/master] Merge pull request #85 from shacknetisp/fix_group_handling
+* master 9dcccad [origin/master] Minor fix
 Mod: libs/craftguide
 
 origin	https://github.com/bell07/minetest_craftguide_reveal.git (fetch)
-* master e30a65c [origin/master] fix crash if no recipe given
+* master 6c1e749 [origin/master] fix craftguide API changes
 Mod: libs/craftguide_reveal
 
 origin	http://repo.or.cz/minetest_doc.git (fetch)
@@ -80,7 +80,7 @@ origin	https://github.com/minetest-mods/awards (fetch)
 Mod: player/awards
 
 origin	https://github.com/minetest-mods/cozy (fetch)
-* master cd166a7 [origin/master] Initial checkin
+* master 26e9a32 [origin/master] Use player_monoids API if available (#2)
 Mod: player/cozy
 
 origin	http://repo.or.cz/minetest_hbhunger (fetch)
@@ -88,7 +88,7 @@ origin	http://repo.or.cz/minetest_hbhunger (fetch)
 Mod: player/hbhunger
 
 origin	https://github.com/minetest-mods/hbsprint (fetch)
-* master ad6c57d [origin/master] Fix bug not checking for hudbars properly
+* master ee2cc8b [origin/master] Fixed sprinting in water and stamina regen with multiple players (#15)
 Mod: player/hbsprint
 
 origin	https://repo.or.cz/minetest_hudbars.git (fetch)
@@ -235,7 +235,7 @@ origin	https://github.com/minetest-mods/trash_can (fetch)
 Mod: tools/trash_can
 
 origin	https://github.com/minetest-mods/woodcutting (fetch)
-* master                     258d798 [origin/master] Merge pull request #3 from coil0/wear-limit
+* master                     df96750 [origin/master] Merge pull request #5 from BlockySurvival/master
 Mod: tools/woodcutting
 
 origin	https://github.com/Amaz1/flight/ (fetch)
@@ -276,7 +276,7 @@ origin	https://github.com/Gerold55/laptop (fetch)
 Mod: decor/laptop
 
 origin	http://repo.or.cz/minetest_mtg_plus.git (fetch)
-* master 1fe71a5 [origin/master] Update screenshot
+* master cdd7ab4 [origin/master] Version 1.0.0
 Mod: decor/mtg_plus
 
 origin	https://github.com/minetest-mods/myroofs (fetch)
@@ -308,7 +308,7 @@ origin	https://gitlab.com/VanessaE/unifieddyes (fetch)
 Mod: decor/unifieddyes
 
 origin	https://gitlab.com/VanessaE/homedecor_modpack/ (fetch)
-* master 26fb4f6 [origin/master: ahead 4] Merge remote-tracking branch 'origin/master'
+* master 6ed3c2e [origin/master: ahead 5] Merge remote-tracking branch 'origin/master'
 Mod: homedecor_modpack/building_blocks
 Mod: homedecor_modpack/fake_fire
 Mod: homedecor_modpack/lavalamp
@@ -412,5 +412,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master d6bd538 [origin/master] if mob standing in solid block then jump to escape
+* master b588452 [origin/master] drops can now be a function, also code tidy
 Mod: mobs_redo/mobs_redo

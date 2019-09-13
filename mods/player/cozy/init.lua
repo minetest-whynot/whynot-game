@@ -1,17 +1,45 @@
+local has_monoids = minetest.global_exists("player_monoids")
+
+local function freeze(player)
+        local player_name = player:get_player_name()
+        if has_monoids then
+                player_monoids.speed:add_change(player, 0, "cozy:speed")
+                player_monoids.jump:add_change(player, 0, "cozy:jump")
+                player_monoids.gravity:add_change(player, 0, "cozy:gravity")
+        else
+                player:set_physics_override({speed = 0, jump = 0, gravity = 0})
+        end
+        default.player_attached[player_name] = true
+end
+
+local function unfreeze(player)
+        local player_name = player:get_player_name()
+        if has_monoids then
+                player_monoids.speed:del_change(player, "cozy:speed")
+                player_monoids.jump:del_change(player, "cozy:jump")
+                player_monoids.gravity:del_change(player, "cozy:gravity")
+        else
+                player:set_physics_override({speed = 1, jump = 1, gravity = 1})
+        end
+        default.player_attached[player_name] = nil
+        default.player_set_animation(player, "stand", 30)
+        player:set_eye_offset({x=0, y=0, z=0}, {x=0, y=0, z=0})
+end
+
 minetest.register_globalstep(function(dtime)
         local players = minetest.get_connected_players()
         for i=1, #players do
-                local name = players[i]:get_player_name()
-                if default.player_attached[name] and not players[i]:get_attach() and
-                                (players[i]:get_player_control().up == true or
-                                players[i]:get_player_control().down == true or
-                                players[i]:get_player_control().left == true or
-                                players[i]:get_player_control().right == true or
-                                players[i]:get_player_control().jump == true) then
-                        players[i]:set_eye_offset({x=0, y=0, z=0}, {x=0, y=0, z=0})
-                        players[i]:set_physics_override(1, 1, 1)
-                        default.player_attached[name] = false
-                        default.player_set_animation(players[i], "stand", 30)
+                local player = players[i]
+                local name = player:get_player_name()
+                local control = player:get_player_control()
+                if default.player_attached[name] and not player:get_attach() and (
+                        control.up == true or
+                        control.down == true or
+                        control.left == true or
+                        control.right == true or
+                        control.jump == true
+                ) then
+                        unfreeze(player)
                 end
         end
 end)
@@ -21,15 +49,11 @@ minetest.register_chatcommand("sit", {
         func = function(name)
                 local player = minetest.get_player_by_name(name)
                 if default.player_attached[name] then
-                        player:set_eye_offset({x=0, y=0, z=0}, {x=0, y=0, z=0})
-                        player:set_physics_override(1, 1, 1)
-                        default.player_attached[name] = false
-                        default.player_set_animation(player, "stand", 30)
+                        unfreeze(player)
                 else
-                        player:set_eye_offset({x=0, y=-7, z=2}, {x=0, y=0, z=0})
-                        player:set_physics_override(0, 0, 0)
-                        default.player_attached[name] = true
+                        freeze(player)
                         default.player_set_animation(player, "sit", 30)
+                        player:set_eye_offset({x=0, y=-7, z=2}, {x=0, y=0, z=0})
                 end
         end
 })
@@ -39,15 +63,11 @@ minetest.register_chatcommand("lay", {
         func = function(name)
                 local player = minetest.get_player_by_name(name)
                 if default.player_attached[name] then
-                        player:set_eye_offset({x=0, y=0, z=0}, {x=0, y=0, z=0})
-                        player:set_physics_override(1, 1, 1)
-                        default.player_attached[name] = false
-                        default.player_set_animation(player, "stand", 30)
+                        unfreeze(player)
                 else
-                        player:set_eye_offset({x=0, y=-13, z=0}, {x=0, y=0, z=0})
-                        player:set_physics_override(0, 0, 0)
-                        default.player_attached[name] = true
+                        freeze(player)
                         default.player_set_animation(player, "lay", 0)
+                        player:set_eye_offset({x=0, y=-13, z=0}, {x=0, y=0, z=0})
                 end
         end
 })

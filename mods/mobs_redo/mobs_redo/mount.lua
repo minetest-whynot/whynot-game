@@ -247,7 +247,6 @@ function mobs.drive(entity, moving_anim, stand_anim, can_fly, dtime)
 					acce_y = acce_y + (acce_y * 3) + 1
 				end
 			end
-
 		end
 	end
 

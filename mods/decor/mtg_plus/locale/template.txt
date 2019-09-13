@@ -164,3 +164,4 @@ Pine Wood Ladder=
 Aspen Wood Ladder=
 Jungle Wood Ladder=
 Goldwood Ladder=
+A piece of wall creates simple barriers that connect to neighbor blocks. Walls can be jumped over.=

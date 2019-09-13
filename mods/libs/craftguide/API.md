@@ -2,6 +2,9 @@
 
 ### Custom recipes
 
+Custom recipes are nonconventional crafts outside the main crafting grid.
+They can be registered in-game dynamically and have a size beyond 3x3 items.
+
 #### Registering a custom crafting type (example)
 
 ```Lua
@@ -11,14 +14,42 @@ craftguide.register_craft_type("digging", {
 })
 ```
 
-#### Registering a custom crafting recipe (example)
+#### Registering a custom crafting recipe (examples)
 
 ```Lua
 craftguide.register_craft({
 	type   = "digging",
-	width  = 1,
-	output = "default:cobble 2",
+	result = "default:cobble 2",
 	items  = {"default:stone"},
+})
+```
+
+```Lua
+craftguide.register_craft({
+	result = "default:cobble 16",
+	items = {
+		"default:stone, default:stone, default:stone",
+		"default:stone,              , default:stone",
+		"default:stone, default:stone, default:stone",
+	}
+})
+```
+
+Recipes can also be registered in a Minecraft-like way:
+
+```Lua
+craftguide.register_craft({
+	grid = {
+		"X  #",
+		" ## ",
+		"X#X#",
+		"X  X",
+	},
+	key = {
+		['#'] = "default:wood",
+		['X'] = "default:glass",
+	},
+	result = "default:mese 3",
 })
 ```
 
@@ -54,10 +85,6 @@ end)
 #### `craftguide.remove_recipe_filter(name)`
 
 Removes the recipe filter with the given name.
-
-#### `craftguide.set_recipe_filter(name, function(recipe, player))`
-
-Removes all recipe filters and adds a new one.
 
 #### `craftguide.get_recipe_filters()`
 
@@ -119,49 +146,6 @@ Returns a map of search filters, indexed by name.
 
 ---
 
-### Custom formspec elements
-
-#### `craftguide.add_formspec_element(name, def)`
-
-Adds a formspec element to the current formspec.
-Supported types: `box`, `label`, `image`, `button`, `tooltip`, `item_image`, `image_button`, `item_image_button`
-
-Example:
-
-```lua
-craftguide.add_formspec_element("export", {
-	type = "button",
-	element = function(data)
-		-- Should return a table of parameters according to the formspec element type.
-		-- Note: for all buttons, the 'name' parameter *must not* be specified!
-		if data.recipes then
-			return {
-				data.iX - 3.7,   -- X
-				sfinv_only and 7.9 or 8, -- Y
-				1.6,             -- W
-				1,               -- H
-				ESC(S("Export")) -- label
-			}
-		end
-	end,
-	-- Optional.
-	action = function(player, data)
-		-- When the button is pressed.
-		print("Exported!")
-	end
-})
-```
-
-#### `craftguide.remove_formspec_element(name)`
-
-Removes the formspec element with the given name.
-
-#### `craftguide.get_formspec_elements()`
-
-Returns a map of formspec elements, indexed by name.
-
----
-
 ### Miscellaneous
 
 #### `craftguide.show(player_name, item, show_usages)`
@@ -180,3 +164,14 @@ You can add a stereotype like so:
 ```Lua
 craftguide.group_stereotypes.radioactive = "mod:item"
 ```
+
+#### `craftguide.background`
+
+You can set a custom background theme by overriding this variable:
+
+```Lua
+craftguide.background = "<file_name.png>:<middle>"
+
+```
+
+`middle` (number) refers to a 9-sliced background. Read the engine's Lua API documentation for more info.

@@ -17,8 +17,6 @@ local autohide      = minetest.settings:get_bool("hudbars_autohide_stamina") ~= 
 
 local sprint_timer_step = 0.5
 local sprint_timer = 0
-local stamina_timer = 0
-local breath_timer = 0
 
 local mod_hudbars = minetest.get_modpath("hudbars") or false
 local mod_player_monoids = minetest.get_modpath("player_monoids") or false
@@ -153,12 +151,12 @@ end)
 
 minetest.register_globalstep(function(dtime)
   sprint_timer = sprint_timer + dtime
-  stamina_timer = stamina_timer + dtime
-  breath_timer = breath_timer + dtime
   if sprint_timer >= sprint_timer_step then
     for _,player in ipairs(minetest.get_connected_players()) do
       local ctrl = player:get_player_control()
       local key_press = false
+      player:get_meta():set_float("hbsprint_stamina_timer", player:get_meta():get_float("hbsprint_stamina_timer") + sprint_timer)
+      player:get_meta():set_float("hbsprint_breath_timer", player:get_meta():get_float("hbsprint_breath_timer") + sprint_timer)
       if key == "Use" and dir then
         key_press = ctrl.aux1 and ctrl.up and not ctrl.left and not ctrl.right
       elseif key == "Use" and not dir then
@@ -184,8 +182,8 @@ minetest.register_globalstep(function(dtime)
         end
         if ground ~= nil then
           local ground_def = minetest.registered_nodes[ground.name]
-          if ground_def then
-            walkable = minetest.registered_nodes[ground.name].walkable
+          if ground_def and (minetest.registered_nodes[ground.name].walkable or minetest.registered_nodes[ground.name].liquidtype ~= "none") then
+            walkable = true
           end
         end
         if player_stamina > 0 and hunger > starve_limit and walkable then
@@ -194,9 +192,9 @@ minetest.register_globalstep(function(dtime)
           if stamina then drain_stamina(player) end
           if starve then drain_hunger(player, hunger, name) end
           if breath then
-            if breath_timer >= 2 then
+            if player:get_meta():get_float("hbsprint_breath_timer") >= 2 then
               drain_breath(player)
-              breath_timer = 0
+              player:get_meta():set_float("hbsprint_breath_timer", 0)
             end
           end
           if particles then create_particles(player, name, pos, ground) end
@@ -207,9 +205,9 @@ minetest.register_globalstep(function(dtime)
       else
         stop_sprint(player)
         player:get_meta():set_string("hbsprint:sprinting", "false")
-        if stamina_timer >= replenish then
+        if player:get_meta():get_float("hbsprint_stamina_timer") >= replenish then
           if stamina then replenish_stamina(player) end
-          stamina_timer = 0
+          player:get_meta():set_float("hbsprint_stamina_timer", 0)
         end
       end
     end

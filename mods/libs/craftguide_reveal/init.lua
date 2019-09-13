@@ -38,7 +38,8 @@ local function revealed_show_recipe(recipe, playername)
 	return true
 end
 
-craftguide.set_recipe_filter('reveal', function(recipes, player)
+craftguide.remove_recipe_filter("Default progressive filter")
+craftguide.add_recipe_filter('reveal', function(recipes, player)
 	if not recipes then
 		return
 	end

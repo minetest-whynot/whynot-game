@@ -1,22 +1,20 @@
 woodcutting = {}
 
+local mod_storage = minetest.get_mod_storage()
+local disabled_by_player = {}
+
 woodcutting.settings = {
-	tree_distance = 1,    -- Apply tree nodes with this distance to the queue. 1 means touching tree nodes only
-	leaves_distance = 2,  -- do not touch leaves around the not removed trees with this distance
-	player_distance = 80, -- Allow cutting tree nodes with this maximum distance away from player
-	dig_leaves = true,    -- Dig dacayable leaves after tree node is digged
-	wear_limit = 65535,   -- Maximum tool wear that allows cutting
+	tree_distance = tonumber(minetest.settings:get("woodcutting_tree_distance")) or 1,
+	leaves_distance = tonumber(minetest.settings:get("woodcutting_leaves_distance")) or 2,
+	player_distance = tonumber(minetest.settings:get("woodcutting_player_distance")) or 80,
+	dig_leaves = minetest.settings:get_bool("woodcutting_dig_leaves", true),
+	wear_limit = tonumber(minetest.settings:get("woodcutting_wear_limit")) or 65535,
 
 	on_new_process_hook = function(process) return true end,             -- do not start the process if set to nil or return false
 	on_step_hook = function(process) return true end,                    -- if false is returned finish the process
 	on_before_dig_hook = function(process, pos) return true end,         -- if false is returned the node is not digged
 	on_after_dig_hook = function(process, pos, oldnode) return true end, -- if false is returned do nothing after digging node
 }
-
-local _woodcutting_dig_leaves = minetest.settings:get_bool("woodcutting_dig_leaves")
-if _woodcutting_dig_leaves ~= nil then
-	woodcutting.settings.dig_leaves = _woodcutting_dig_leaves
-end
 
 woodcutting.tree_content_ids = {}
 woodcutting.leaves_content_ids = {}
@@ -314,8 +312,12 @@ minetest.register_on_dignode(function(pos, oldnode, digger)
 		return
 	end
 
-	-- Get the process or create new one
 	local playername = digger:get_player_name()
+	if disabled_by_player[playername] then
+		return
+	end
+
+	-- Get the process or create new one
 	local sneak = digger:get_player_control().sneak
 	local process = woodcutting.get_process(playername)
 	if not process and sneak then
@@ -381,4 +383,42 @@ minetest.register_on_dieplayer(function(player)
 	end
 end)
 
---dofile(minetest.get_modpath(minetest.get_current_modname()).."/hook_examples.lua")
+----------------------------
+-- Command to toggle whether cutting is enabled, per-player
+----------------------------
+minetest.register_chatcommand("toggle_woodcutting", {
+	description = "Toggle whether woodcutting is enabled",
+	func = function(player_name)
+		local is_currently_disabled = disabled_by_player[player_name]
+		if is_currently_disabled then
+			disabled_by_player[player_name] = nil
+			mod_storage:set_string(player_name .. "_disabled", "")
+			return true, "Woodcutting is now enabled."
+		else
+			disabled_by_player[player_name] = true
+			mod_storage:set_string(player_name .. "_disabled", "true")
+			local process = woodcutting.get_process(player_name)
+			if process then
+				process:stop_process()
+			end
+			return true, "Woodcutting is now disabled."
+		end
+	end
+})
+
+minetest.register_on_joinplayer(function(player)
+	-- load player settings
+	local player_name = player:get_player_name()
+	if mod_storage:get_string(player_name .. "_disabled") == "true" then
+		disabled_by_player[player_name] = true
+	end
+end)
+
+minetest.register_on_leaveplayer(function(player)
+	local player_name = player:get_player_name()
+	disabled_by_player[player_name] = nil
+	local process = woodcutting.get_process(player_name)
+	if process then
+		process:stop_process()
+	end
+end)

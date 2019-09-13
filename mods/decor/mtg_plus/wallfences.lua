@@ -8,15 +8,23 @@ walls.register("mtg_plus:wall_jungle_cobble", S("Jungle Cobblestone Wall"), "mtg
 walls.register("mtg_plus:wall_ice_tile16", S("Dense Ice Tile Wall"), "mtg_plus_ice_tile16.png", "mtg_plus:ice_tile16", default.node_sound_glass_defaults())
 walls.register("mtg_plus:wall_gravel_cobble", S("Cobbled Gravel Wall"), "mtg_plus_gravel_cobble.png", "mtg_plus:gravel_cobble", default.node_sound_stone_defaults())
 
+
 do
+	local longdesc = S("A piece of wall creates simple barriers that connect to neighbor blocks. Walls can be jumped over.")
+
 	local groups = minetest.registered_items["mtg_plus:wall_ice_tile16"].groups
 	groups.stone = nil
 	groups.slippery = 1
-	minetest.override_item("mtg_plus:wall_ice_tile16", { groups = groups })
+	minetest.override_item("mtg_plus:wall_ice_tile16", { groups = groups, _doc_items_longdesc = longdesc })
 
 	groups = minetest.registered_items["mtg_plus:wall_sandstone_cobble"].groups
 	groups.stone = nil
-	minetest.override_item("mtg_plus:wall_sandstone_cobble", { groups = groups })
+	minetest.override_item("mtg_plus:wall_sandstone_cobble", { groups = groups, _doc_items_longdesc = longdesc })
+
+	minetest.override_item("mtg_plus:wall_desert_sandstone_cobble", { _doc_items_longdesc = longdesc })
+	minetest.override_item("mtg_plus:wall_silver_sandstone_cobble", { _doc_items_longdesc = longdesc })
+	minetest.override_item("mtg_plus:wall_jungle_cobble", { _doc_items_longdesc = longdesc })
+	minetest.override_item("mtg_plus:wall_gravel_cobble", { _doc_items_longdesc = longdesc })
 end
 
 -- Fences

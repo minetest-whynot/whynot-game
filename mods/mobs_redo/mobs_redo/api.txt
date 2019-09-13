@@ -158,6 +158,11 @@ functions needed for the mob to work properly which contains the following:
       'min'    minimum number of items dropped, set to 0 for rare drops.
       'max'    maximum number of items dropped.
    Note: If weapon has {fire=1} damage group set then cooked items will drop.
+   Note2: A function can now be passed which can also return drops table, e.g.
+      drops = function(pos)
+         -- do something
+         return { {name = "farming:bread"}, {name = "default:dirt", chance = 2} }
+      end
 
    'visual'            holds the look of the mob you wish to create:
       'cube'           looks like a normal node

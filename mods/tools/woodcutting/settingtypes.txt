@@ -1,3 +1,16 @@
 # If enabled the woodcutting dig not connected leaves
 # after tree nodes removed
-woodcutting_dig_leaves (Dig leaves) bool true
+woodcutting_dig_leaves (Woodcutting: Dig leaves) bool true
+
+# Apply tree nodes with this distance to the queue. 1 means touching tree nodes only
+woodcutting_tree_distance (Woodcutting: Tree distance) int 1
+
+# Do not touch leaves around non-removed trees with this distance
+woodcutting_leaves_distance (Woodcutting: Leaves distance) int 2
+
+# Allow cutting tree nodes with this maximum distance away from player
+woodcutting_player_distance (Woodcutting: Player distance) int 80
+
+# Maximum tool wear that allows cutting
+woodcutting_wear_limit (Woodcutting: Wear limit) int 65535
+

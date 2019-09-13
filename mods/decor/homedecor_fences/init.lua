@@ -1,19 +1,5 @@
 -- This file adds fences of various types
 
-local signs_modpath = minetest.get_modpath("signs_lib")
-
-local sign_post_model = {
-	type = "fixed",
-	fixed = {
-			{-0.4375, -0.25, -0.1875, 0.4375, 0.375, -0.125},
-			{-0.125, -0.5, -0.125, 0.125, 0.5, 0.125},
-	}
-}
-
-if signs_modpath then
-	sign_post_model = signs_lib.sign_post_model.nodebox
-end
-
 local S = homedecor.gettext
 
 local materials = {
@@ -23,43 +9,17 @@ local materials = {
 
 for _, m in ipairs(materials) do
 
-local desc, name = unpack(m)
+	local desc, name = unpack(m)
 
-homedecor.register("fence_"..name, {
-	description = S("Fence/railing (@1)", desc),
-	drawtype = "fencelike",
-	tiles = {"homedecor_generic_metal_"..name..".png"},
-	inventory_image = "homedecor_fence_"..name..".png",
-	selection_box = homedecor.nodebox.bar_y(1/7),
-	groups = {snappy=3},
-	sounds = default.node_sound_wood_defaults(),
-})
-
--- brass/wrought iron with signs:
-
-homedecor.register("fence_"..name.."_with_sign", {
-	description = S("Fence/railing with sign (@1)", desc),
-	tiles = {
-		"homedecor_sign_"..name.."_post_top.png",
-		"homedecor_sign_"..name.."_post_bottom.png",
-		"homedecor_sign_"..name.."_post_side.png",
-		"homedecor_sign_"..name.."_post_side.png",
-		"homedecor_sign_"..name.."_post_back.png",
-		"homedecor_sign_"..name.."_post_front.png",
-	},
-	wield_image = "homedecor_sign_"..name.."_post.png",
-	node_box = sign_post_model,
-	groups = {snappy=3,not_in_creative_inventory=1},
-	sounds = default.node_sound_wood_defaults(),
-	sunlight_propagates = true,
-	drop = {
-		max_items = 2,
-		items = {
-			{ items = { "default:sign_wall" }},
-			{ items = { "homedecor:fence_"..name }},
-		},
-	},
-})
+	homedecor.register("fence_"..name, {
+		description = S("Fence/railing (@1)", desc),
+		drawtype = "fencelike",
+		tiles = {"homedecor_generic_metal_"..name..".png"},
+		inventory_image = "homedecor_fence_"..name..".png",
+		selection_box = homedecor.nodebox.bar_y(1/7),
+		groups = {snappy=3},
+		sounds = default.node_sound_wood_defaults(),
+	})
 
 end
 
@@ -303,9 +263,17 @@ homedecor.register("fence_wrought_iron_2_corner", {
 	},
 })
 
-if signs_modpath then
-	signs_lib.register_fence_with_sign("homedecor:fence_brass", "homedecor:fence_brass_with_sign")
-	signs_lib.register_fence_with_sign("homedecor:fence_wrought_iron", "homedecor:fence_wrought_iron_with_sign")
+-- insert the old wood signs-on-metal-fences into signs_lib's conversion LBM
+if minetest.get_modpath("basic_signs") then
+	table.insert(signs_lib.old_fenceposts_with_signs, "homedecor:fence_brass_with_sign")
+	signs_lib.old_fenceposts["homedecor:fence_brass_with_sign"] = "homedecor:fence_brass"
+	signs_lib.old_fenceposts_replacement_signs["homedecor:fence_brass_with_sign"] = "default:sign_wall_wood_onpole"
+
+	table.insert(signs_lib.old_fenceposts_with_signs, "homedecor:fence_wrought_iron_with_sign")
+	signs_lib.old_fenceposts["homedecor:fence_wrought_iron_with_sign"] = "homedecor:fence_wrought_iron"
+	signs_lib.old_fenceposts_replacement_signs["homedecor:fence_wrought_iron_with_sign"] = "default:sign_wall_wood_onpole"
+
+	signs_lib.allowed_poles["homedecor:pole_brass"] = true
 end
 
 -- crafting

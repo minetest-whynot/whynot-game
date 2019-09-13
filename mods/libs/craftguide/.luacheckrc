@@ -10,3 +10,8 @@ read_globals = {
 	"string",
 	"table",
 }
+
+globals = {
+	"craftguide",
+	"core",
+}
