@@ -1,6 +1,6 @@
 # Hunger with HUD bar [`hbhunger`]
 
-* Version: 1.0.0
+* Version: 1.0.1
 
 ## Using the mod
 

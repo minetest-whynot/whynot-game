@@ -58,9 +58,17 @@ local function make_label(format_string, format_string_config, label, start_valu
 		if order[o] == "label" then
 			table.insert(params, label)
 		elseif order[o] == "value" then
-			table.insert(params, start_value)
+			if format_string_config.format_value then
+				table.insert(params, string.format(format_string_config.format_value, start_value))
+			else
+				table.insert(params, start_value)
+			end
 		elseif order[o] == "max_value" then
-			table.insert(params, max_value)
+			if format_string_config.format_max_value then
+				table.insert(params, string.format(format_string_config.format_max_value, max_value))
+			else
+				table.insert(params, max_value)
+			end
 		end
 	end
 	local ret
@@ -148,7 +156,16 @@ function hb.register_hudbar(identifier, text_color, label, textures, default_sta
 		format_string = N("@1: @2/@3")
 	end
 	if format_string_config == nil then
-		format_string_config = { order = { "label", "value", "max_value" } }
+		format_string_config = {}
+	end
+	if format_string_config.order == nil then
+		format_string_config.order = { "label", "value", "max_value" }
+	end
+	if format_string_config.format_value == nil then
+		format_string_config.format_value = "%d"
+	end
+	if format_string_config.format_max_value == nil then
+		format_string_config.format_max_value = "%d"
 	end
 
 	hudtable.add_all = function(player, hudtable, start_value, start_max, start_hidden)
@@ -211,7 +228,13 @@ function hb.register_hudbar(identifier, text_color, label, textures, default_sta
 		local bar_image, bar_size
 		if hb.settings.bar_type == "progress_bar" then
 			bar_image = textures.bar
-			bar_size = {x=2, y=16}
+			-- NOTE: Intentionally set to nil. For some reason, on some systems,
+			-- the progress bar is displaced when the bar_size is set explicitly here.
+			-- On the other hand, setting this to nil is deprecated in MT 5.0.0 due to
+			-- a debug log warning, but nothing is explained in lua_api.txt.
+			-- This section is a potential bug magnet, please watch with care!
+			-- The size of the bar image is expected to be exactly 2×16 pixels.
+			bar_size = nil
 		elseif hb.settings.bar_type == "statbar_classic" or hb.settings.bar_type == "statbar_modern" then
 			bar_image = textures.icon
 			bar_size = {x=24, y=24}

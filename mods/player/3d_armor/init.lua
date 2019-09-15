@@ -2,7 +2,6 @@ local modname = minetest.get_current_modname()
 local modpath = minetest.get_modpath(modname)
 local worldpath = minetest.get_worldpath()
 local last_punch_time = {}
-local pending_players = {}
 local timer = 0
 
 -- support for i18n
@@ -160,9 +159,7 @@ end
 local function init_player_armor(player)
 	local name = player:get_player_name()
 	local pos = player:get_pos()
-	if not name or not pos then
-		return false
-	end
+
 	local armor_inv = minetest.create_detached_inventory(name.."_armor", {
 		on_put = function(inv, listname, index, stack, player)
 			validate_armor_inventory(player)
@@ -235,25 +232,18 @@ local function init_player_armor(player)
 		armor.def[name].groups[group] = 0
 	end
 	armor.textures[name] = {}
-	armor:set_player_armor(player)
-	return true
 end
 
-minetest.register_on_joinplayer(function(player)
-	minetest.after(0, function(player)
-		if init_player_armor(player) == false then
-			pending_players[player] = 0
-		end
-	end, player)
-end)
+local orig_init_on_joinplayer = player_api.init_on_joinplayer
+function player_api.init_on_joinplayer(player)
+	init_player_armor(player)
+	orig_init_on_joinplayer(player)
+end
 
 minetest.register_on_leaveplayer(function(player)
 	local name = player:get_player_name()
-	if name then
-		armor.def[name] = nil
-		armor.textures[name] = nil
-	end
-	pending_players[player] = nil
+	armor.def[name] = nil
+	armor.textures[name] = nil
 end)
 
 if armor.config.drop == true or armor.config.destroy == true then
@@ -335,26 +325,7 @@ minetest.register_on_player_hpchange(function(player, hp_change)
 	return hp_change
 end, true)
 
-minetest.register_globalstep(function(dtime)
-	timer = timer + dtime
-	if timer > armor.config.init_delay then
-		for player, count in pairs(pending_players) do
-			local remove = init_player_armor(player) == true
-			pending_players[player] = count + 1
-			if remove == false and count > armor.config.init_times then
-				minetest.log("warning", S("3d_armor: Failed to initialize player"))
-				remove = true
-			end
-			if remove == true then
-				pending_players[player] = nil
-			end
-		end
-		timer = 0
-	end
-end)
-
 -- Fire Protection and water breating, added by TenPlus1
-
 if armor.config.fire_protect == true then
 	-- override hot nodes so they do not hurt player anywhere but mod
 	for _, row in pairs(armor.fire_nodes) do

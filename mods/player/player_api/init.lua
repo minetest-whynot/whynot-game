@@ -37,18 +37,3 @@ player_api.register_skin("sprite", {
 
 player_api.default_model = "character.b3d"
 player_api.default_skin = "character"
-
--- Update appearance when the player joins
-minetest.register_on_joinplayer(function(player)
-	player_api.player_attached[player:get_player_name()] = false
-	player_api.set_skin(player, player_api.get_skin(player))
-	player:set_local_animation(
-		{x = 0,   y = 79},
-		{x = 168, y = 187},
-		{x = 189, y = 198},
-		{x = 200, y = 219},
-		30
-	)
-	player:hud_set_hotbar_image("gui_hotbar.png")
-	player:hud_set_hotbar_selected_image("gui_hotbar_selected.png")
-end)

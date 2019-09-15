@@ -215,7 +215,8 @@ player_api.register_skin_modifier(function(textures, player, player_model, playe
 	end
 end)
 
-minetest.register_on_joinplayer(function(player)
+local orig_init_on_joinplayer = player_api.init_on_joinplayer
+function player_api.init_on_joinplayer(player)
 	local playername = player:get_player_name()
 	local skinname = "character_creator:"..playername
 	load_skin(player)
@@ -226,13 +227,8 @@ minetest.register_on_joinplayer(function(player)
 		in_inventory_list = false,
 	})
 	change_skin(player)
-
-	-- If case the player_api on_joinplayer was processed before
-	-- the default skin was applied, so we need to override it again
-	if player_api.get_skin(player) == skinname then
-		player_api.set_skin(player, skinname)
-	end
-end)
+	orig_init_on_joinplayer(player)
+end
 
 minetest.register_on_leaveplayer(function(player)
 	local playername = player:get_player_name()

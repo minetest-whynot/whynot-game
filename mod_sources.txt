@@ -35,8 +35,8 @@ origin	https://github.com/minetest-mods/craftguide/ (fetch)
 * master 9dcccad [origin/master] Minor fix
 Mod: libs/craftguide
 
-origin	https://github.com/bell07/minetest_craftguide_reveal.git (fetch)
-* master 6c1e749 [origin/master] fix craftguide API changes
+origin	https://github.com/minetest-mods/craftguide_reveal (fetch)
+* master 3c6cc32 [origin/master] Create LICENSE
 Mod: libs/craftguide_reveal
 
 origin	http://repo.or.cz/minetest_doc.git (fetch)
@@ -84,7 +84,7 @@ origin	https://github.com/minetest-mods/cozy (fetch)
 Mod: player/cozy
 
 origin	http://repo.or.cz/minetest_hbhunger (fetch)
-* master 957decb [origin/master] Version 1.0.0
+* master 564413a [origin/master] Version 1.0.1
 Mod: player/hbhunger
 
 origin	https://github.com/minetest-mods/hbsprint (fetch)
@@ -92,7 +92,7 @@ origin	https://github.com/minetest-mods/hbsprint (fetch)
 Mod: player/hbsprint
 
 origin	https://repo.or.cz/minetest_hudbars.git (fetch)
-* master 085a2aa [origin/master] Version 2.0.0
+* master 8c80745 [origin/master] Version 2.1.0
 Mod: player/hudbars
 
 origin	https://github.com/minetest-mods/playeranim (fetch)
@@ -108,7 +108,7 @@ origin	https://github.com/minetest-mods/wielded_light (fetch)
 Mod: player/wielded_light
 
 origin	https://github.com/bell07/minetest-player_api_modpack (fetch)
-* master c142845 [origin/master] fix character_creator was olways set as current skin on join
+* master 402562a [origin/master] unify on_joinplayer processing
 Mod: player_api_modpack/3d_armor
 Mod: player_api_modpack/character_creator
 Mod: player_api_modpack/clothing
@@ -162,8 +162,8 @@ origin	https://github.com/h-v-smacker/maple (fetch)
 * master 1829c7a [origin/master] Create LICENSE
 Mod: mapgen/maple
 
-origin	https://github.com/bell07/minetest-meseor.git (fetch)
-* master 4456298 [origin/master] Merge pull request #1 from bell07/mysetting
+origin	https://github.com/minetest-mods/meseor (fetch)
+* master 60ca3ed [origin/master] Update the license in the README.txt as well.
 Mod: mapgen/meseor
 
 origin	https://notabug.org/TenPlus1/pbj_pup (fetch)

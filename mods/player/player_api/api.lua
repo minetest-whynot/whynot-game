@@ -221,6 +221,25 @@ function player_api.set_animation(player, anim_name, speed)
 	player:set_animation(anim, speed or model.animation_speed, animation_blend)
 end
 
+function player_api.init_on_joinplayer(player)
+	player_api.player_attached[player:get_player_name()] = false
+	player_api.set_skin(player, player_api.get_skin(player), true, true)
+	player:set_local_animation(
+		{x = 0,   y = 79},
+		{x = 168, y = 187},
+		{x = 189, y = 198},
+		{x = 200, y = 219},
+		30
+	)
+	player:hud_set_hotbar_image("gui_hotbar.png")
+	player:hud_set_hotbar_selected_image("gui_hotbar_selected.png")
+end
+
+minetest.register_on_joinplayer(function(player)
+	-- Wrapped call to be able to redefine the init function
+	player_api.init_on_joinplayer(player)
+end)
+
 minetest.register_on_leaveplayer(function(player)
 	local name = player:get_player_name()
 	player_model[name] = nil

@@ -70,6 +70,8 @@ for more information.
 * `format_string_config`: Required if `format_string` is set. This allows to change which parameters to use in the format string. It's a table with these fields:
  * `textdomain`: Text domain of the format string, used by `minetest.translate`
  * `order`: Table that contains the order of the placeholders. It's also possible to remove placeholders. Default order: `{ "label", "value", "max_value" }`
+ * `format_value`: Format string to apply when displaying `value`. Syntax is same as in `string.format`. Default: `"%d"`
+ * `format_max_value`: Same as `format_value` but is applied to `max_value`
 
 #### Example
 Example (mostly) from `hbarmor` mod:
