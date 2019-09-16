@@ -197,9 +197,13 @@ minetest.register_on_placenode(
 
 -- The complementary function:  strip-off the color if the node being dug is still white/neutral
 
-local function move_item(item, pos, inv)
-	if not creative_mode or not inv:contains_item("main", item, true) then
+local function move_item(item, pos, inv, digger)
+	local creative = creative_mode or minetest.check_player_privs(digger, "creative")
+	if inv:room_for_item("main", item)
+	  and (not creative or not inv:contains_item("main", item, true)) then
 		inv:add_item("main", item)
+	elseif not creative then
+		minetest.item_drop(item, digger, pos)
 	end
 	minetest.remove_node(pos)
 end
@@ -227,7 +231,7 @@ function unifieddyes.on_dig(pos, node, digger)
 	local inv = digger:get_inventory()
 
 	if del_color then
-		if inv:room_for_item("main", node.name) then move_item(node.name, pos, inv) end
+		move_item(node.name, pos, inv, digger)
 	else
 		return minetest.node_dig(pos, node, digger)
 	end

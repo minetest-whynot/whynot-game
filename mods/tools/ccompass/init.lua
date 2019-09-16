@@ -113,7 +113,7 @@ local function get_compass_stack(player, stack)
 	end
 	local angle_dir = math.deg(dir)
 	local angle_relative = (angle_north + angle_dir) % 360
-	local compass_image = math.floor((angle_relative/30) + 0.5)%12
+	local compass_image = math.floor((angle_relative/22.5) + 0.5)%16
 
 	-- create new stack with metadata copied
 	local metadata = stack:get_meta():to_table()
@@ -225,8 +225,8 @@ minetest.register_globalstep(function(dtime)
 end)
 
 -- register items
-for i = 0, 11 do
-	local image = "ccompass_"..i..".png"
+for i = 0, 15 do
+	local image = "ccompass_16_"..i..".png"
 	local groups = {}
 	if i > 0 then
 		groups.not_in_creative_inventory = 1

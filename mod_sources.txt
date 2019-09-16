@@ -32,7 +32,7 @@ Mod: minetest_game/mods/wool
 Mod: minetest_game/mods/xpanes
 
 origin	https://github.com/minetest-mods/craftguide/ (fetch)
-* master 9dcccad [origin/master] Minor fix
+* master 768e06e [origin/master] why the hell the page number not colorized anymore?
 Mod: libs/craftguide
 
 origin	https://github.com/minetest-mods/craftguide_reveal (fetch)
@@ -76,7 +76,7 @@ origin	https://github.com/Chemguy99/armor_addon (fetch)
 Mod: player/armor_addon
 
 origin	https://github.com/minetest-mods/awards (fetch)
-* master 8f46d5b [origin/master] Add icons for awards
+* master da3d9b3 [origin/master] Add awards for death, pipeworks, and mesecons
 Mod: player/awards
 
 origin	https://github.com/minetest-mods/cozy (fetch)
@@ -183,7 +183,7 @@ origin	https://github.com/SmallJoker/boost_cart (fetch)
 Mod: tools/boost_cart
 
 origin	https://github.com/minetest-mods/ccompass (fetch)
-* master 4ae8d69 [origin/master] adjust angle calculation for player:get_look_horizontal()
+* master 22b444d [origin/master] Move 16dirs version to master (#14)
 Mod: tools/ccompass
 
 origin	https://github.com/bell07/minetest-compost (fetch)
@@ -304,7 +304,7 @@ origin	https://github.com/minetest-mods/ts_furniture (fetch)
 Mod: decor/ts_furniture
 
 origin	https://gitlab.com/VanessaE/unifieddyes (fetch)
-* master         0082b15 [origin/master] remove an obsolete function reference
+* master         9271f07 [origin/master] fix incorrect drop behavior when stipping bogus color in the case of full inv.
 Mod: decor/unifieddyes
 
 origin	https://gitlab.com/VanessaE/homedecor_modpack/ (fetch)
