@@ -32,7 +32,7 @@ Mod: minetest_game/mods/wool
 Mod: minetest_game/mods/xpanes
 
 origin	https://github.com/minetest-mods/craftguide/ (fetch)
-* master 768e06e [origin/master] why the hell the page number not colorized anymore?
+* master 60b09a2 [origin/master] Ensure that no fuel usages are not shown
 Mod: libs/craftguide
 
 origin	https://github.com/minetest-mods/craftguide_reveal (fetch)
@@ -84,7 +84,7 @@ origin	https://github.com/minetest-mods/cozy (fetch)
 Mod: player/cozy
 
 origin	http://repo.or.cz/minetest_hbhunger (fetch)
-* master 564413a [origin/master] Version 1.0.1
+* master ebf40de [origin/master] Add Russian locale by lmk
 Mod: player/hbhunger
 
 origin	https://github.com/minetest-mods/hbsprint (fetch)
@@ -92,7 +92,7 @@ origin	https://github.com/minetest-mods/hbsprint (fetch)
 Mod: player/hbsprint
 
 origin	https://repo.or.cz/minetest_hudbars.git (fetch)
-* master 8c80745 [origin/master] Version 2.1.0
+* master 99ebd71 [origin/master] Update credits
 Mod: player/hudbars
 
 origin	https://github.com/minetest-mods/playeranim (fetch)
