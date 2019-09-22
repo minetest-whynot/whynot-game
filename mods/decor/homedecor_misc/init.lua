@@ -130,21 +130,22 @@ for _, f in ipairs(flowers_list) do
 end
 
 homedecor.register("pole_brass", {
-    description = S("Brass Pole"),
+	description = S("Brass Pole"),
 	mesh = "homedecor_round_pole.obj",
-    tiles = {"homedecor_generic_metal_brass.png^homedecor_generic_metal_lines_overlay.png",},
-    inventory_image = "homedecor_pole_brass_inv.png",
-    wield_image = "homedecor_pole_brass_inv.png",
-    selection_box = {
-            type = "fixed",
-            fixed = { -0.125, -0.5, -0.125, 0.125, 0.5, 0.125 },
-    },
-    collision_box = {
-            type = "fixed",
-            fixed = { -0.125, -0.5, -0.125, 0.125, 0.5, 0.125 },
-    },
-    groups = {snappy=3},
-    sounds = default.node_sound_wood_defaults(),
+	tiles = {"homedecor_generic_metal_brass.png^homedecor_generic_metal_lines_overlay.png",},
+	inventory_image = "homedecor_pole_brass_inv.png",
+	wield_image = "homedecor_pole_brass_inv.png",
+	selection_box = {
+		type = "fixed",
+		fixed = { -0.125, -0.5, -0.125, 0.125, 0.5, 0.125 },
+	},
+	collision_box = {
+		type = "fixed",
+		fixed = { -0.125, -0.5, -0.125, 0.125, 0.5, 0.125 },
+	},
+	groups = {snappy=3},
+	sounds = default.node_sound_wood_defaults(),
+	check_for_pole = true
 })
 
 homedecor.register("pole_wrought_iron", {

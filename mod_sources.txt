@@ -308,7 +308,7 @@ origin	https://gitlab.com/VanessaE/unifieddyes (fetch)
 Mod: decor/unifieddyes
 
 origin	https://gitlab.com/VanessaE/homedecor_modpack/ (fetch)
-* master 6ed3c2e [origin/master: ahead 5] Merge remote-tracking branch 'origin/master'
+* master 9757490 [origin/master: ahead 6] Merge remote-tracking branch 'origin/master'
 Mod: homedecor_modpack/building_blocks
 Mod: homedecor_modpack/fake_fire
 Mod: homedecor_modpack/lavalamp
@@ -381,7 +381,7 @@ origin	https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin	https://github.com/minetest-mods/mesecons (fetch)
-* master 1bf862f [origin/master] Use `modpack.conf` instead of legacy `modpack.txt` (#475)
+* master 15e7436 [origin/master] Respect protection in MVPS (#466)
 Mod: mesecons/mesecons
 Mod: mesecons/mesecons_alias
 Mod: mesecons/mesecons_blinkyplant

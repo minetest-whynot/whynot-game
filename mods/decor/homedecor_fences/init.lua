@@ -264,7 +264,7 @@ homedecor.register("fence_wrought_iron_2_corner", {
 })
 
 -- insert the old wood signs-on-metal-fences into signs_lib's conversion LBM
-if minetest.get_modpath("basic_signs") then
+if minetest.get_modpath("signs_lib") then
 	table.insert(signs_lib.old_fenceposts_with_signs, "homedecor:fence_brass_with_sign")
 	signs_lib.old_fenceposts["homedecor:fence_brass_with_sign"] = "homedecor:fence_brass"
 	signs_lib.old_fenceposts_replacement_signs["homedecor:fence_brass_with_sign"] = "default:sign_wall_wood_onpole"
@@ -272,8 +272,6 @@ if minetest.get_modpath("basic_signs") then
 	table.insert(signs_lib.old_fenceposts_with_signs, "homedecor:fence_wrought_iron_with_sign")
 	signs_lib.old_fenceposts["homedecor:fence_wrought_iron_with_sign"] = "homedecor:fence_wrought_iron"
 	signs_lib.old_fenceposts_replacement_signs["homedecor:fence_wrought_iron_with_sign"] = "default:sign_wall_wood_onpole"
-
-	signs_lib.allowed_poles["homedecor:pole_brass"] = true
 end
 
 -- crafting

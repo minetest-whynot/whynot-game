@@ -80,7 +80,7 @@ local furnace_can_dig = function(pos,player)
 end
 
 function homedecor.register_furnace(name, furnacedef)
-	furnacedef.fire_fg = furnacedef.fire_bg or "default_furnace_fire_fg.png"
+	furnacedef.fire_fg = furnacedef.fire_fg or "default_furnace_fire_fg.png"
 	furnacedef.fire_bg = furnacedef.fire_bg or "default_furnace_fire_bg.png"
 
 	furnacedef.output_slots = furnacedef.output_slots or 4
