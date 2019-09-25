@@ -1,1 +1,0 @@
-Adds a calibratable compass to the minetest

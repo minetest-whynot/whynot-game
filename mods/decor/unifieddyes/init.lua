@@ -203,7 +203,7 @@ local function move_item(item, pos, inv, digger)
 	  and (not creative or not inv:contains_item("main", item, true)) then
 		inv:add_item("main", item)
 	elseif not creative then
-		minetest.item_drop(item, digger, pos)
+		minetest.item_drop(ItemStack(item), digger, pos)
 	end
 	minetest.remove_node(pos)
 end

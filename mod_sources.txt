@@ -32,7 +32,7 @@ Mod: minetest_game/mods/wool
 Mod: minetest_game/mods/xpanes
 
 origin	https://github.com/minetest-mods/craftguide/ (fetch)
-* master 60b09a2 [origin/master] Ensure that no fuel usages are not shown
+* master f184341 [origin/master] String checking
 Mod: libs/craftguide
 
 origin	https://github.com/minetest-mods/craftguide_reveal (fetch)
@@ -163,7 +163,7 @@ origin	https://github.com/h-v-smacker/maple (fetch)
 Mod: mapgen/maple
 
 origin	https://github.com/minetest-mods/meseor (fetch)
-* master 60ca3ed [origin/master] Update the license in the README.txt as well.
+* master bd1d96e [origin/master] Use mod.conf for dependencies (#3)
 Mod: mapgen/meseor
 
 origin	https://notabug.org/TenPlus1/pbj_pup (fetch)
@@ -183,7 +183,7 @@ origin	https://github.com/SmallJoker/boost_cart (fetch)
 Mod: tools/boost_cart
 
 origin	https://github.com/minetest-mods/ccompass (fetch)
-* master 22b444d [origin/master] Move 16dirs version to master (#14)
+* master 7117c01 [origin/master] Use mod.conf for description (#15)
 Mod: tools/ccompass
 
 origin	https://github.com/bell07/minetest-compost (fetch)
@@ -235,7 +235,7 @@ origin	https://github.com/minetest-mods/trash_can (fetch)
 Mod: tools/trash_can
 
 origin	https://github.com/minetest-mods/woodcutting (fetch)
-* master                     df96750 [origin/master] Merge pull request #5 from BlockySurvival/master
+* master                     17ebc11 [origin/master] Merge pull request #6 from Panquesito7/master
 Mod: tools/woodcutting
 
 origin	https://github.com/Amaz1/flight/ (fetch)
@@ -304,7 +304,7 @@ origin	https://github.com/minetest-mods/ts_furniture (fetch)
 Mod: decor/ts_furniture
 
 origin	https://gitlab.com/VanessaE/unifieddyes (fetch)
-* master         9271f07 [origin/master] fix incorrect drop behavior when stipping bogus color in the case of full inv.
+* master         c6883a8 [origin/master] Merge branch 'fix_drop_fix' into 'master'
 Mod: decor/unifieddyes
 
 origin	https://gitlab.com/VanessaE/homedecor_modpack/ (fetch)
@@ -381,7 +381,7 @@ origin	https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin	https://github.com/minetest-mods/mesecons (fetch)
-* master 15e7436 [origin/master] Respect protection in MVPS (#466)
+* master d6b2a39 [origin/master] Set mvps_protection_mode default to the documented value (#484, base: #466)
 Mod: mesecons/mesecons
 Mod: mesecons/mesecons_alias
 Mod: mesecons/mesecons_blinkyplant
