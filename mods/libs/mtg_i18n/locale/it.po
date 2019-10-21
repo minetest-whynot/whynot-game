@@ -1,15 +1,15 @@
 # ITALIAN LOCALE FILE FOR THE MTG_i18N MODULE
 # Copyright (C) 2017 LNJ
 # This file is distributed under the same license as the MTG_i18N package.
-# Hamlet <h4mlet@riseup.net>, 2017.
+# Hamlet <54187342+h4ml3t@users.noreply.github.com>, 2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Italian locale file for the MTG_i18n module\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-07 22:13+0100\n"
-"PO-Revision-Date: 2017-10-09 16:47+0000\n"
-"Last-Translator: Hamlet <h4mlet@riseup.net>\n"
+"PO-Revision-Date: 2019-09-20 15:23+0200\n"
+"Last-Translator: Hamlet <54187342+h4ml3t@users.noreply.github.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/minetest/"
 "mtg_i18n/it/>\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.17-dev\n"
+"X-Generator: Poedit 2.2.1\n"
 
 #: init.lua
 msgid "Air (you hacker you!)"
@@ -29,11 +29,11 @@ msgstr "Letto semplice"
 
 #: init.lua
 msgid "Fancy Bed"
-msgstr "Letto elegante"
+msgstr "Letto decorato"
 
 #: init.lua
 msgid "Boat"
-msgstr "zattera"
+msgstr "Barca"
 
 #: init.lua
 msgid "Bones"
@@ -56,16 +56,14 @@ msgid "Water Bucket"
 msgstr "Secchio d'acqua"
 
 #: init.lua
-#, fuzzy
 msgid "Brake Rail"
 msgstr "Binario freno"
 
 #: init.lua
 msgid "Cart (Sneak+Click to pick up)"
-msgstr "Vagone (Maiusc+Click per prenderlo)"
+msgstr "Vagone (Strisciare+Click per raccoglierlo)"
 
 #: init.lua
-#, fuzzy
 msgid "Powered Rail"
 msgstr "Binario alimentato"
 
@@ -79,20 +77,19 @@ msgstr "Foglie di cespuglio d'acacia"
 
 #: init.lua
 msgid "Acacia Bush Sapling"
-msgstr "Pianticella di cespuglio d'acacia"
+msgstr "Alberello di cespuglio d'acacia"
 
 #: init.lua
 msgid "Acacia Bush Stem"
 msgstr "Fusto di cespuglio d'acacia"
 
 #: init.lua
-#, fuzzy
 msgid "Acacia Tree Leaves"
 msgstr "Foglie d'acacia"
 
 #: init.lua
 msgid "Acacia Tree Sapling"
-msgstr "Pianticella d'acacia"
+msgstr "Alberello d'acacia"
 
 #: init.lua
 msgid "Acacia Tree"
@@ -107,13 +104,12 @@ msgid "Apple"
 msgstr "Mela"
 
 #: init.lua
-#, fuzzy
 msgid "Aspen Tree Leaves"
 msgstr "Foglie di pioppo"
 
 #: init.lua
 msgid "Aspen Tree Sapling"
-msgstr "Pianticella di pioppo"
+msgstr "Alberello di pioppo"
 
 #: init.lua
 msgid "Aspen Tree"
@@ -153,15 +149,15 @@ msgstr "Libro"
 
 #: init.lua
 msgid "Bookshelf"
-msgstr "Scaffale"
+msgstr "Libreria"
 
 #: init.lua
 msgid "Book With Text"
-msgstr "Libro scritto"
+msgstr "Libro con testo"
 
 #: init.lua
 msgid "Brick Block"
-msgstr "Blocco di mattoni"
+msgstr "Blocco di mattone"
 
 #: init.lua
 msgid "Bronze Block"
@@ -177,7 +173,7 @@ msgstr "Foglie di cespuglio"
 
 #: init.lua
 msgid "Bush Sapling"
-msgstr "Pianticella di cespuglio"
+msgstr "Alberello di cespuglio"
 
 #: init.lua
 msgid "Bush Stem"
@@ -257,11 +253,11 @@ msgstr "Sabbia del deserto"
 
 #: init.lua
 msgid "Desert Sandstone Block"
-msgstr "Blocco di arenaria del deserto"
+msgstr "Blocco d'arenaria del deserto"
 
 #: init.lua
 msgid "Desert Sandstone Brick"
-msgstr "Mattoni di arenaria del deserto"
+msgstr "Mattone d'arenaria del deserto"
 
 #: init.lua
 msgid "Desert Sandstone"
@@ -273,7 +269,7 @@ msgstr "Blocco di pietra del deserto"
 
 #: init.lua
 msgid "Desert Stone Brick"
-msgstr "Mattoni di pietra del deserto"
+msgstr "Mattone di pietra del deserto"
 
 #: init.lua
 msgid "Desert Stone"
@@ -305,7 +301,7 @@ msgstr "Terra con erba"
 
 #: init.lua
 msgid "Dirt with Rainforest Litter"
-msgstr "Terra con humus della foresta pluviale"
+msgstr "Terra con detriti della foresta pluviale"
 
 #: init.lua
 msgid "Dirt with Snow"
@@ -320,29 +316,24 @@ msgid "Dry Shrub"
 msgstr "Arbusto secco"
 
 #: init.lua
-#, fuzzy
 msgid "Acacia Wood Fence"
-msgstr "Staccionata d'acacia"
+msgstr "Recinzione di legno d'acacia"
 
 #: init.lua
-#, fuzzy
 msgid "Aspen Wood Fence"
-msgstr "Staccionata di pioppo"
+msgstr "Recinzione di legno di pioppo"
 
 #: init.lua
-#, fuzzy
 msgid "Jungle Wood Fence"
-msgstr "Staccionata di legno della giungla"
+msgstr "Recinzione di legno della giungla"
 
 #: init.lua
-#, fuzzy
 msgid "Pine Wood Fence"
-msgstr "Staccionata di pino"
+msgstr "Recinzione di legno di pino"
 
 #: init.lua
-#, fuzzy
 msgid "Apple Wood Fence"
-msgstr "Staccionata di legno"
+msgstr "Recinzione di legno di melo"
 
 #: init.lua
 msgid "Flint"
@@ -389,21 +380,18 @@ msgid "Jungle Grass"
 msgstr "Erba della giungla"
 
 #: init.lua
-#, fuzzy
 msgid "Jungle Tree Leaves"
-msgstr "Foglie della giungla"
+msgstr "Foglie di albero della giungla"
 
 #: init.lua
-#, fuzzy
 msgid "Jungle Tree Sapling"
-msgstr "Pianticella di albero della giungla"
+msgstr "Alberello della giungla"
 
 #: init.lua
 msgid "Jungle Tree"
 msgstr "Albero della giungla"
 
 #: init.lua
-#, fuzzy
 msgid "Jungle Wood Planks"
 msgstr "Assi di legno della giungla"
 
@@ -428,9 +416,8 @@ msgid "Lava Source"
 msgstr "Fonte di lava"
 
 #: init.lua
-#, fuzzy
 msgid "Apple Tree Leaves"
-msgstr "Foglie di pioppo"
+msgstr "Foglie di melo"
 
 #: init.lua
 msgid "Mese Crystal Fragment"
@@ -458,19 +445,19 @@ msgstr "Ciottoli muschiosi"
 
 #: init.lua
 msgid "Obsidian Block"
-msgstr "Blocco di ossidiana"
+msgstr "Blocco d'ossidiana"
 
 #: init.lua
 msgid "Obsidian Brick"
-msgstr "Mattoni di ossidiana"
+msgstr "Mattone d'ossidiana"
 
 #: init.lua
 msgid "Obsidian Glass"
-msgstr "Vetro di ossidiana"
+msgstr "Vetro d'ossidiana"
 
 #: init.lua
 msgid "Obsidian Shard"
-msgstr "Scheggia di ossidiana"
+msgstr "Scheggia d'ossidiana"
 
 #: init.lua
 msgid "Obsidian"
@@ -513,9 +500,8 @@ msgid "Pine Needles"
 msgstr "Aghi di pino"
 
 #: init.lua
-#, fuzzy
 msgid "Pine Tree Sapling"
-msgstr "Pianticella di pino"
+msgstr "Alberello di pino"
 
 #: init.lua
 msgid "Pine Tree"
@@ -543,40 +529,39 @@ msgstr "Blocco d'arenaria"
 
 #: init.lua
 msgid "Sandstone Brick"
-msgstr "Mattoni d'arenaria"
+msgstr "Mattone d'arenaria"
 
 #: init.lua
 msgid "Sandstone"
 msgstr "Arenaria"
 
 #: init.lua
-#, fuzzy
 msgid "Apple Tree Sapling"
-msgstr "Pianticella di pioppo"
+msgstr "Alberello di melo"
 
 #: init.lua
 msgid "Bronze Shovel"
-msgstr "Badile di bronzo"
+msgstr "Pala di bronzo"
 
 #: init.lua
 msgid "Diamond Shovel"
-msgstr "Badile di diamante"
+msgstr "Pala di diamante"
 
 #: init.lua
 msgid "Mese Shovel"
-msgstr "Badile di mese"
+msgstr "Pala di mese"
 
 #: init.lua
 msgid "Steel Shovel"
-msgstr "Badile d'acciaio"
+msgstr "Pala d'acciaio"
 
 #: init.lua
 msgid "Stone Shovel"
-msgstr "Badile di pietra"
+msgstr "Pala di pietra"
 
 #: init.lua
 msgid "Wooden Shovel"
-msgstr "Badile di legno"
+msgstr "Pala di legno"
 
 #: init.lua
 msgid "Steel Sign"
@@ -592,11 +577,11 @@ msgstr "Sabbia argentata"
 
 #: init.lua
 msgid "Silver Sandstone Block"
-msgstr "Blocco di arenaria argentata"
+msgstr "Blocco d'arenaria argentata"
 
 #: init.lua
 msgid "Silver Sandstone Brick"
-msgstr "Mattoni di arenaria argentata"
+msgstr "Mattone d'arenaria argentata"
 
 #: init.lua
 msgid "Silver Sandstone"
@@ -604,7 +589,7 @@ msgstr "Arenaria argentata"
 
 #: init.lua
 msgid "Skeleton Key"
-msgstr "Chiave dello scheletro"
+msgstr "Chiave dello Scheletro"
 
 #: init.lua
 msgid "Snow Block"
@@ -632,7 +617,7 @@ msgstr "Blocco di pietra"
 
 #: init.lua
 msgid "Stone Brick"
-msgstr "Mattoni di pietra"
+msgstr "Mattone di pietra"
 
 #: init.lua
 msgid "Stone"
@@ -640,31 +625,31 @@ msgstr "Pietra"
 
 #: init.lua
 msgid "Coal Ore"
-msgstr "Vena di carbone"
+msgstr "Minerale di carbone"
 
 #: init.lua
 msgid "Copper Ore"
-msgstr "Vena di rame"
+msgstr "Minerale di rame"
 
 #: init.lua
 msgid "Diamond Ore"
-msgstr "Vena di diamante"
+msgstr "Minerale di diamante"
 
 #: init.lua
 msgid "Gold Ore"
-msgstr "Vena d'oro"
+msgstr "Minerale d'oro"
 
 #: init.lua
 msgid "Iron Ore"
-msgstr "Vena di ferro"
+msgstr "Minerale di ferro"
 
 #: init.lua
 msgid "Mese Ore"
-msgstr "Vena di mese"
+msgstr "Minerale di mese"
 
 #: init.lua
 msgid "Tin Ore"
-msgstr "Vena di stagno"
+msgstr "Minerale di stagno"
 
 #: init.lua
 msgid "Bronze Sword"
@@ -707,9 +692,8 @@ msgid "Torch"
 msgstr "Torcia"
 
 #: init.lua
-#, fuzzy
 msgid "Apple Tree"
-msgstr "Pioppo"
+msgstr "Melo"
 
 #: init.lua
 msgid "Flowing Water"
@@ -717,12 +701,11 @@ msgstr "Acqua corrente"
 
 #: init.lua
 msgid "Water Source"
-msgstr "Sorgente d'acqua"
+msgstr "Fonte d'acqua"
 
 #: init.lua
-#, fuzzy
 msgid "Apple Wood Planks"
-msgstr "Assi di legno di pioppo"
+msgstr "Assi di legno di melo"
 
 #: init.lua
 msgid "Glass Door"
@@ -741,115 +724,94 @@ msgid "Wooden Door"
 msgstr "Porta di legno"
 
 #: init.lua
-#, fuzzy
 msgid "Acacia Wood Fence Gate"
-msgstr "Cancelletto d'acacia"
+msgstr "Cancello della recinzione di legno d'acacia"
 
 #: init.lua
-#, fuzzy
 msgid "Aspen Wood Fence Gate"
-msgstr "Cancelletto di pioppo"
+msgstr "Cancello della recinzione di legno di pioppo"
 
 #: init.lua
-#, fuzzy
 msgid "Jungle Wood Fence Gate"
-msgstr "Cancelletto di albero della giungla"
+msgstr "Cancello della recinzione di legno della giungla"
 
 #: init.lua
-#, fuzzy
 msgid "Pine Wood Fence Gate"
-msgstr "Cancelletto di pino"
+msgstr "Cancello della recinzione di legno di pino"
 
 #: init.lua
-#, fuzzy
 msgid "Apple Wood Fence Gate"
-msgstr "Cancelletto di legno"
+msgstr "Cancello della recinzione di legno di melo"
 
 #: init.lua
 msgid "Hidden Door Segment"
-msgstr "Segmento nascosto della porta"
+msgstr "Segmento della porta nascosto"
 
 #: init.lua
-#, fuzzy
 msgid "Wooden Trapdoor"
-msgstr "Porta di legno"
+msgstr "Botola di legno"
 
 #: init.lua
 msgid "Steel Trapdoor"
 msgstr "Botola d'acciaio"
 
 #: init.lua
-#, fuzzy
 msgid "Black Dye"
 msgstr "Tintura nera"
 
 #: init.lua
-#, fuzzy
 msgid "Blue Dye"
 msgstr "Tintura blu"
 
 #: init.lua
-#, fuzzy
 msgid "Brown Dye"
 msgstr "Tintura marrone"
 
 #: init.lua
-#, fuzzy
 msgid "Cyan Dye"
 msgstr "Tintura ciano"
 
 #: init.lua
-#, fuzzy
 msgid "Dark Green Dye"
-msgstr "Tintura verde scuro"
+msgstr "Tintura verde scura"
 
 #: init.lua
-#, fuzzy
 msgid "Dark Grey Dye"
-msgstr "Tintura grigio scuro"
+msgstr "Tintura grigia scura"
 
 #: init.lua
-#, fuzzy
 msgid "Green Dye"
 msgstr "Tintura verde"
 
 #: init.lua
-#, fuzzy
 msgid "Grey Dye"
 msgstr "Tintura grigia"
 
 #: init.lua
-#, fuzzy
 msgid "Magenta Dye"
 msgstr "Tintura magenta"
 
 #: init.lua
-#, fuzzy
 msgid "Orange Dye"
 msgstr "Tintura arancione"
 
 #: init.lua
-#, fuzzy
 msgid "Pink Dye"
 msgstr "Tintura rosa"
 
 #: init.lua
-#, fuzzy
 msgid "Red Dye"
 msgstr "Tintura rossa"
 
 #: init.lua
-#, fuzzy
 msgid "Violet Dye"
 msgstr "Tintura viola"
 
 #: init.lua
-#, fuzzy
 msgid "White Dye"
 msgstr "Tintura bianca"
 
 #: init.lua
-#, fuzzy
 msgid "Yellow Dye"
 msgstr "Tintura gialla"
 
@@ -863,11 +825,11 @@ msgstr "Cotone"
 
 #: init.lua
 msgid "Desert Sand Soil"
-msgstr "Terreno coltivabile di sabbia del deserto"
+msgstr "Terreno di sabbia del deserto"
 
 #: init.lua
 msgid "Wet Desert Sand Soil"
-msgstr "Terreno coltivabile irrigato di sabbia del deserto"
+msgstr "Terreno di sabbia del deserto bagnato"
 
 #: init.lua
 msgid "Flour"
@@ -898,22 +860,20 @@ msgid "Wooden Hoe"
 msgstr "Zappa di legno"
 
 #: init.lua
-#, fuzzy
 msgid "Cotton Seed"
-msgstr "Semi di cotone"
+msgstr "Seme di cotone"
 
 #: init.lua
-#, fuzzy
 msgid "Wheat Seed"
-msgstr "Semi di grano"
+msgstr "Seme di grano"
 
 #: init.lua
 msgid "Soil"
-msgstr "Terreno coltivabile"
+msgstr "Terreno"
 
 #: init.lua
 msgid "Wet Soil"
-msgstr "Terreno coltivabile irrigato"
+msgstr "Terreno bagnato"
 
 #: init.lua
 msgid "Straw"
@@ -929,10 +889,9 @@ msgstr "Acciarino"
 
 #: init.lua
 msgid "Permanent Flame"
-msgstr "Fiamma eterna"
+msgstr "Fiamma permanente"
 
 #: init.lua
-#, fuzzy
 msgid "White Dandelion"
 msgstr "Dente di leone bianco"
 
@@ -953,9 +912,8 @@ msgid "Red Mushroom"
 msgstr "Fungo rosso"
 
 #: init.lua
-#, fuzzy
 msgid "Red Rose"
-msgstr "Tintura rossa"
+msgstr "Rosa rossa"
 
 #: init.lua
 msgid "Orange Tulip"
@@ -971,11 +929,13 @@ msgstr "Ninfea"
 
 #: init.lua
 msgid "Ignore (you hacker you!)"
-msgstr "Ignore (hacker!)"
+msgstr "Ignora (hacker!)"
 
 #: init.lua
 msgid "Screwdriver (left-click rotates face, right-click rotates axis)"
-msgstr "Cacciavite (click sx ruota la faccia, click dx ruota l'asse)"
+msgstr ""
+"Cacciavite (click sinistro ruota la faccia, click destro ruota "
+"l'asse)"
 
 #: init.lua
 msgid "Acacia Wood Slab"
@@ -987,7 +947,7 @@ msgstr "Lastra di legno di pioppo"
 
 #: init.lua
 msgid "Brick Slab"
-msgstr "Lastra di mattoni"
+msgstr "Latra di mattone"
 
 #: init.lua
 msgid "Bronze Block Slab"
@@ -1003,19 +963,19 @@ msgstr "Lastra di blocco di rame"
 
 #: init.lua
 msgid "Desert Cobblestone Slab"
-msgstr "Latra di ciottoli del deserto"
+msgstr "Lastra di ciottoli del deserto"
 
 #: init.lua
 msgid "Desert Sandstone Block Slab"
-msgstr "Lastra di blocco di arenaria del deserto"
+msgstr "Lastra di blocco d'arenaria del deserto"
 
 #: init.lua
 msgid "Desert Sandstone Brick Slab"
-msgstr "Lastra di mattoni di arenaria del deserto"
+msgstr "Lastra di mattone d'arenaria del deserto"
 
 #: init.lua
 msgid "Desert Sandstone Slab"
-msgstr "Lastra di arenaria del deserto"
+msgstr "Lastra d'arenaria del deserto"
 
 #: init.lua
 msgid "Desert Stone Block Slab"
@@ -1023,7 +983,7 @@ msgstr "Lastra di blocco di pietra del deserto"
 
 #: init.lua
 msgid "Desert Stone Brick Slab"
-msgstr "Lastra di mattoni di pietra del deserto"
+msgstr "Lastra di mattone di pietra del deserto"
 
 #: init.lua
 msgid "Desert Stone Slab"
@@ -1051,7 +1011,7 @@ msgstr "Lastra di blocco d'ossidiana"
 
 #: init.lua
 msgid "Obsidian Brick Slab"
-msgstr "Lastra di mattoni d'ossidiana"
+msgstr "Lastra di mattone d'ossidiana"
 
 #: init.lua
 msgid "Obsidian Slab"
@@ -1067,7 +1027,7 @@ msgstr "Lastra di blocco d'arenaria"
 
 #: init.lua
 msgid "Sandstone Brick Slab"
-msgstr "Lastra di mattoni d'arenaria"
+msgstr "Lastra di mattone d'arenaria"
 
 #: init.lua
 msgid "Sandstone Slab"
@@ -1079,7 +1039,7 @@ msgstr "Lastra di blocco d'arenaria argentata"
 
 #: init.lua
 msgid "Silver Sandstone Brick Slab"
-msgstr "Lastra di mattoni d'arenaria argentata"
+msgstr "Lastra di mattone d'arenaria argentata"
 
 #: init.lua
 msgid "Silver Sandstone Slab"
@@ -1099,7 +1059,7 @@ msgstr "Lastra di blocco di pietra"
 
 #: init.lua
 msgid "Stone Brick Slab"
-msgstr "Lastra di mattoni di pietra"
+msgstr "Lastra di mattone di pietra"
 
 #: init.lua
 msgid "Stone Slab"
@@ -1127,7 +1087,7 @@ msgstr "Scala di legno di pioppo"
 
 #: init.lua
 msgid "Brick Stair"
-msgstr "Scala di mattoni"
+msgstr "Scala di mattone"
 
 #: init.lua
 msgid "Bronze Block Stair"
@@ -1151,7 +1111,7 @@ msgstr "Scala di blocco d'arenaria del deserto"
 
 #: init.lua
 msgid "Desert Sandstone Brick Stair"
-msgstr "Scala di mattoni d'arenaria del deserto"
+msgstr "Scala di mattone d'arenaria del deserto"
 
 #: init.lua
 msgid "Desert Sandstone Stair"
@@ -1163,7 +1123,7 @@ msgstr "Scala di blocco di pietra del deserto"
 
 #: init.lua
 msgid "Desert Stone Brick Stair"
-msgstr "Scala di mattoni di pietra del deserto"
+msgstr "Scala di mattone di pietra del deserto"
 
 #: init.lua
 msgid "Desert Stone Stair"
@@ -1179,143 +1139,143 @@ msgstr "Scala di ghiaccio"
 
 #: init.lua
 msgid "Acacia Wood Stair Inner"
-msgstr "Scala di legno d'acacia (angolo interno)"
+msgstr "Scala di legno d'acacia interna"
 
 #: init.lua
 msgid "Aspen Wood Stair Inner"
-msgstr "Scala di legno di pioppo (angolo interno)"
+msgstr "Scala di legno di pioppo interna"
 
 #: init.lua
 msgid "Brick Stair Inner"
-msgstr "Scala di mattoni (angolo interno)"
+msgstr "Scala di mattone interna"
 
 #: init.lua
 msgid "Bronze Block Stair Inner"
-msgstr "Scala di blocco di bronzo (angolo interno)"
+msgstr "Scala di blocco di bronzo interna"
 
 #: init.lua
 msgid "Cobblestone Stair Inner"
-msgstr "Scala di ciottoli (angolo interno)"
+msgstr "Scala di ciottoli interna"
 
 #: init.lua
 msgid "Copper Block Stair Inner"
-msgstr "Scala di blocco di rame (angolo interno)"
+msgstr "Scala di blocco di rame interna"
 
 #: init.lua
 msgid "Desert Cobblestone Stair Inner"
-msgstr "Scala di ciottoli del deserto (angolo interno)"
+msgstr "Scala di ciottoli del deserto interna"
 
 #: init.lua
 msgid "Desert Sandstone Block Stair Inner"
-msgstr "Scala di blocco d'arenaria del deserto (angolo interno)"
+msgstr "Scala di blocco d'arenaria del deserto interna"
 
 #: init.lua
 msgid "Desert Sandstone Brick Stair Inner"
-msgstr "Scala di mattoni d'arenaria del deserto (angolo interno)"
+msgstr "Scala di mattone d'arenaria del deserto interna"
 
 #: init.lua
 msgid "Desert Sandstone Stair Inner"
-msgstr "Scala d'arenaria del deserto (angolo interno)"
+msgstr "Scala d'arenaria del deserto interna"
 
 #: init.lua
 msgid "Desert Stone Block Stair Inner"
-msgstr "Scala di blocco di pietra del deserto (angolo interno)"
+msgstr "Scala di blocco di pietra del deserto interna"
 
 #: init.lua
 msgid "Desert Stone Brick Stair Inner"
-msgstr "Scala di mattoni di pietra del deserto (angolo interno)"
+msgstr "Scala di mattone di pietra del deserto interna"
 
 #: init.lua
 msgid "Desert Stone Stair Inner"
-msgstr "Scala di pietra del deserto (angolo interno)"
+msgstr "Scala di pietra del deserto interna"
 
 #: init.lua
 msgid "Gold Block Stair Inner"
-msgstr "Scala di blocco d'oro (angolo interno)"
+msgstr "Scala di blocco d'oro interna"
 
 #: init.lua
 msgid "Ice Stair Inner"
-msgstr "Scala di ghiaccio (angolo interno)"
+msgstr "Scala di ghiaccio interna"
 
 #: init.lua
 msgid "Jungle Wood Stair Inner"
-msgstr "Scala di legno della giungla (angolo interno)"
+msgstr "Scala di legno della giungla interna"
 
 #: init.lua
 msgid "Mossy Cobblestone Stair Inner"
-msgstr "Scala di ciottoli muschiosi (angolo interno)"
+msgstr "Scala di ciottoli muschiosi interna"
 
 #: init.lua
 msgid "Obsidian Block Stair Inner"
-msgstr "Scala di blocco d'ossidiana (angolo interno)"
+msgstr "Scala di blocco d'ossidiana interna"
 
 #: init.lua
 msgid "Obsidian Brick Stair Inner"
-msgstr "Scala di mattoni d'ossidiana (angolo interno)"
+msgstr "Scala di mattone d'ossidiana interna"
 
 #: init.lua
 msgid "Obsidian Stair Inner"
-msgstr "Scala d'ossidiana (angolo interno)"
+msgstr "Scala d'ossidiana interna"
 
 #: init.lua
 msgid "Pine Wood Stair Inner"
-msgstr "Scala di legno di pino (angolo interno)"
+msgstr "Scala di legno di pino interna"
 
 #: init.lua
 msgid "Sandstone Block Stair Inner"
-msgstr "Scala di blocco d'arenaria (angolo interno)"
+msgstr "Scala di blocco d'arenaria interna"
 
 #: init.lua
 msgid "Sandstone Brick Stair Inner"
-msgstr "Scala di mattoni d'arenaria (angolo interno)"
+msgstr "Scala di mattone d'arenaria interna"
 
 #: init.lua
 msgid "Sandstone Stair Inner"
-msgstr "Scala d'arenaria (angolo interno)"
+msgstr "Scala d'arenaria interna"
 
 #: init.lua
 msgid "Silver Sandstone Block Stair Inner"
-msgstr "Scala di blocco d'arenaria argentea (angolo interno)"
+msgstr "Scala di blocco d'arenaria argentata interna"
 
 #: init.lua
 msgid "Silver Sandstone Brick Stair Inner"
-msgstr "Scala di mattoni d'arenaria argentea (angolo interno)"
+msgstr "Scala di mattone d'arenaria argentata interna"
 
 #: init.lua
 msgid "Silver Sandstone Stair Inner"
-msgstr "Scala d'arenaria argentea (angolo interno)"
+msgstr "Scala d'arenaria argentata interna"
 
 #: init.lua
 msgid "Snow Block Stair Inner"
-msgstr "Scala di blocco di neve (angolo interno)"
+msgstr "Scala di blocco di neve interna"
 
 #: init.lua
 msgid "Steel Block Stair Inner"
-msgstr "Scala di blocco d'acciaio (angolo interno)"
+msgstr "Scala di blocco d'acciaio interna"
 
 #: init.lua
 msgid "Stone Block Stair Inner"
-msgstr "Scala di blocco di pietra (angolo interno)"
+msgstr "Scala di blocco di pietra interna"
 
 #: init.lua
 msgid "Stone Brick Stair Inner"
-msgstr "Scala di mattoni di pietra (angolo interno)"
+msgstr "Scala di mattone di pietra interna"
 
 #: init.lua
 msgid "Stone Stair Inner"
-msgstr "Scala di pietra (angolo interno)"
+msgstr "Scala di pietra interna"
 
 #: init.lua
 msgid "Straw Stair Inner"
-msgstr "Scala di paglia (angolo interno)"
+msgstr "Scala di paglia interna"
 
 #: init.lua
 msgid "Tin Block Stair Inner"
-msgstr "Scala di blocco di stagno (angolo interno)"
+msgstr "Scala di blocco di stagno interna"
 
 #: init.lua
 msgid "Wooden Stair Inner"
-msgstr "Scala di legno (angolo interno)"
+msgstr "Scala di legno interna"
 
 #: init.lua
 msgid "Jungle Wood Stair"
@@ -1331,7 +1291,7 @@ msgstr "Scala di blocco d'ossidiana"
 
 #: init.lua
 msgid "Obsidian Brick Stair"
-msgstr "Scala di mattoni d'ossidiana"
+msgstr "Scala di mattone d'ossidiana"
 
 #: init.lua
 msgid "Obsidian Stair"
@@ -1339,143 +1299,143 @@ msgstr "Scala d'ossidiana"
 
 #: init.lua
 msgid "Acacia Wood Stair Outer"
-msgstr "Scala di legno d'acacia (angolo esterno)"
+msgstr "Scala di legno d'acacia esterna"
 
 #: init.lua
 msgid "Aspen Wood Stair Outer"
-msgstr "Scala di legno di pioppo (angolo esterno)"
+msgstr "Scala di legno di pioppo esterna"
 
 #: init.lua
 msgid "Brick Stair Outer"
-msgstr "Scala di mattoni (angolo esterno)"
+msgstr "Scala di mattone esterna"
 
 #: init.lua
 msgid "Bronze Block Stair Outer"
-msgstr "Scala di blocco di bronzo (angolo esterno)"
+msgstr "Scala di blocco di bronzo esterna"
 
 #: init.lua
 msgid "Cobblestone Stair Outer"
-msgstr "Scala di ciottoli (angolo esterno)"
+msgstr "Scala di ciottoli esterna"
 
 #: init.lua
 msgid "Copper Block Stair Outer"
-msgstr "Scala di blocco di rame (angolo esterno)"
+msgstr "Scala di blocco di rame esterna"
 
 #: init.lua
 msgid "Desert Cobblestone Stair Outer"
-msgstr "Scala di ciottoli del deserto (angolo esterno)"
+msgstr "Scala di ciottoli del deserto esterna"
 
 #: init.lua
 msgid "Desert Sandstone Block Stair Outer"
-msgstr "Scala di blocco d'arenaria del deserto (angolo esterno)"
+msgstr "Scala di blocco d'arenaria del deserto esterna"
 
 #: init.lua
 msgid "Desert Sandstone Brick Stair Outer"
-msgstr "Scala di mattoni d'arenaria del deserto (angolo esterno)"
+msgstr "Scala di mattone d'arenaria del deserto esterna"
 
 #: init.lua
 msgid "Desert Sandstone Stair Outer"
-msgstr "Scala d'arenaria del deserto (angolo esterno)"
+msgstr "Scala d'arenaria del deserto esterna"
 
 #: init.lua
 msgid "Desert Stone Block Stair Outer"
-msgstr "Scala di blocco di pietra del deserto (angolo esterno)"
+msgstr "Scala di blocco di pietra del deserto esterna"
 
 #: init.lua
 msgid "Desert Stone Brick Stair Outer"
-msgstr "Scala di mattoni di pietra del deserto (angolo esterno)"
+msgstr "Scala di mattone di pietra del deserto esterna"
 
 #: init.lua
 msgid "Desert Stone Stair Outer"
-msgstr "Scala di pietra del deserto (angolo esterno)"
+msgstr "Scala di pietra del deserto esterna"
 
 #: init.lua
 msgid "Gold Block Stair Outer"
-msgstr "Scala di blocco d'oro (angolo esterno)"
+msgstr "Scala di blocco d'oro esterna"
 
 #: init.lua
 msgid "Ice Stair Outer"
-msgstr "Scala di ghiaccio (angolo esterno)"
+msgstr "Scala di ghiaccio esterna"
 
 #: init.lua
 msgid "Jungle Wood Stair Outer"
-msgstr "Scala di legno della giungla (angolo esterno)"
+msgstr "Scala di legno della giungla esterna"
 
 #: init.lua
 msgid "Mossy Cobblestone Stair Outer"
-msgstr "Scala di ciottoli muschiosi (angolo esterno)"
+msgstr "Scala di ciottoli muschiosi esterna"
 
 #: init.lua
 msgid "Obsidian Block Stair Outer"
-msgstr "Scala di blocco d'ossidiana (angolo esterno)"
+msgstr "Scala di blocco d'ossidiana esterna"
 
 #: init.lua
 msgid "Obsidian Brick Stair Outer"
-msgstr "Scala di mattoni d'ossidiana (angolo esterno)"
+msgstr "Scala di mattone d'ossidiana esterna"
 
 #: init.lua
 msgid "Obsidian Stair Outer"
-msgstr "Scala d'ossidiana (angolo esterno)"
+msgstr "Scala d'ossidiana esterna"
 
 #: init.lua
 msgid "Pine Wood Stair Outer"
-msgstr "Scala di legno di pino (angolo esterno)"
+msgstr "Scala di legno di pino esterna"
 
 #: init.lua
 msgid "Sandstone Block Stair Outer"
-msgstr "Scala di blocco d'arenaria (angolo esterno)"
+msgstr "Scala di blocco d'arenaria esterna"
 
 #: init.lua
 msgid "Sandstone Brick Stair Outer"
-msgstr "Scala di mattoni d'arenaria (angolo esterno)"
+msgstr "Scala di mattone d'arenaria esterna"
 
 #: init.lua
 msgid "Sandstone Stair Outer"
-msgstr "Scala d'arenaria (angolo esterno)"
+msgstr "Scala d'arenaria esterna"
 
 #: init.lua
 msgid "Silver Sandstone Block Stair Outer"
-msgstr "Scala di blocco d'arenaria argentea (angolo esterno)"
+msgstr "Scala di blocco d'arenaria argentata esterna"
 
 #: init.lua
 msgid "Silver Sandstone Brick Stair Outer"
-msgstr "Scala di mattoni d'arenaria argentea (angolo esterno)"
+msgstr "Scala di mattone d'arenaria argentata esterna"
 
 #: init.lua
 msgid "Silver Sandstone Stair Outer"
-msgstr "Scala d'arenaria argentea (angolo esterno)"
+msgstr "Scala d'arenaria argentata esterna"
 
 #: init.lua
 msgid "Snow Block Stair Outer"
-msgstr "Scala di blocco di neve (angolo esterno)"
+msgstr "Scala di blocco di neve esterna"
 
 #: init.lua
 msgid "Steel Block Stair Outer"
-msgstr "Scala di blocco d'acciaio (angolo esterno)"
+msgstr "Scala di blocco d'acciaio esterna"
 
 #: init.lua
 msgid "Stone Block Stair Outer"
-msgstr "Scala di blocco di pietra (angolo esterno)"
+msgstr "Scala di blocco di pietra esterna"
 
 #: init.lua
 msgid "Stone Brick Stair Outer"
-msgstr "Scala di mattoni di pietra (angolo esterno)"
+msgstr "Scala di mattone di pietra esterna"
 
 #: init.lua
 msgid "Stone Stair Outer"
-msgstr "Scala di pietra (angolo esterno)"
+msgstr "Scala di pietra esterna"
 
 #: init.lua
 msgid "Straw Stair Outer"
-msgstr "Scala di paglia (angolo esterno)"
+msgstr "Scala di paglia esterna"
 
 #: init.lua
 msgid "Tin Block Stair Outer"
-msgstr "Scala di blocco di stagno (angolo esterno)"
+msgstr "Scala di blocco di stagno esterna"
 
 #: init.lua
 msgid "Wooden Stair Outer"
-msgstr "Scala di legno (angolo esterno)"
+msgstr "Scala di legno esterna"
 
 #: init.lua
 msgid "Pine Wood Stair"
@@ -1487,7 +1447,7 @@ msgstr "Scala di blocco d'arenaria"
 
 #: init.lua
 msgid "Sandstone Brick Stair"
-msgstr "Scala di mattoni d'arenaria"
+msgstr "Scala di mattone d'arenaria"
 
 #: init.lua
 msgid "Sandstone Stair"
@@ -1495,15 +1455,15 @@ msgstr "Scala d'arenaria"
 
 #: init.lua
 msgid "Silver Sandstone Block Stair"
-msgstr "Scala di blocco d'arenaria argentea"
+msgstr "Scala di blocco d'arenaria argentata"
 
 #: init.lua
 msgid "Silver Sandstone Brick Stair"
-msgstr "Scala di mattoni d'arenaria argentea"
+msgstr "Scala di mattone d'arenaria argentata"
 
 #: init.lua
 msgid "Silver Sandstone Stair"
-msgstr "Scala d'arenaria argentea"
+msgstr "Scala d'arenaria argentata"
 
 #: init.lua
 msgid "Snow Block Stair"
@@ -1519,7 +1479,7 @@ msgstr "Scala di blocco di pietra"
 
 #: init.lua
 msgid "Stone Brick Stair"
-msgstr "Scala di mattoni di pietra"
+msgstr "Scala di mattone di pietra"
 
 #: init.lua
 msgid "Stone Stair"
@@ -1550,28 +1510,24 @@ msgid "Unknown Item"
 msgstr "Oggetto sconosciuto"
 
 #: init.lua
-#, fuzzy
 msgid "Empty Drinking Glass"
-msgstr "Bicchiere (vuoto)"
+msgstr "Bicchiere vuoto"
 
 #: init.lua
-#, fuzzy
 msgid "Empty Glass Bottle"
-msgstr "Bottiglia (vuota)"
+msgstr "Bottiglia di vetro vuota"
 
 #: init.lua
-#, fuzzy
 msgid "Glass Fragments"
-msgstr "Mucchietto di frammenti di vetro"
+msgstr "Frammenti di vetro"
 
 #: init.lua
 msgid "Vessels Shelf"
-msgstr "Scaffale per bottiglie"
+msgstr "Scaffale per contenitori"
 
 #: init.lua
-#, fuzzy
 msgid "Empty Heavy Steel Bottle"
-msgstr "Bottiglia d'acciaio pesante (vuota)"
+msgstr "Bottiglia d'acciaio pesante vuota"
 
 #: init.lua
 msgid "Cobblestone Wall"
@@ -1603,11 +1559,11 @@ msgstr "Lana ciano"
 
 #: init.lua
 msgid "Dark Green Wool"
-msgstr "Lana verde scuro"
+msgstr "Lana verde scura"
 
 #: init.lua
 msgid "Dark Grey Wool"
-msgstr "Lana grigio scuro"
+msgstr "Lana grigia scura"
 
 #: init.lua
 msgid "Green Wool"
@@ -1646,7 +1602,6 @@ msgid "Yellow Wool"
 msgstr "Lana gialla"
 
 #: init.lua
-#, fuzzy
 msgid "Iron Bar"
 msgstr "Sbarre di ferro"
 
@@ -1656,7 +1611,7 @@ msgstr "Pannello di vetro"
 
 #: init.lua
 msgid "Nyan Cat Rainbow"
-msgstr "Arcobaleno del gatto Nyan"
+msgstr "Arcobaleno del Gatto Nyan"
 
 #: init.lua
 msgid "Nyan Cat"
