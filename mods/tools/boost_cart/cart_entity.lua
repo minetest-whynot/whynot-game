@@ -1,6 +1,4 @@
 
-local HAVE_MESECONS_ENABLED = minetest.global_exists("mesecon")
-
 function boost_cart:on_rail_step(entity, pos, distance)
 	-- Play rail sound
 	if entity.sound_counter <= 0 then
@@ -13,7 +11,7 @@ function boost_cart:on_rail_step(entity, pos, distance)
 	end
 	entity.sound_counter = entity.sound_counter - distance
 
-	if HAVE_MESECONS_ENABLED then
+	if boost_cart.MESECONS then
 		boost_cart:signal_detector_rail(pos)
 	end
 end
@@ -40,7 +38,7 @@ local cart_entity = {
 }
 
 -- Model and textures
-if boost_cart.mtg_compat then
+if boost_cart.MTG_CARTS then
 	cart_entity.initial_properties.mesh = "carts_cart.b3d"
 	cart_entity.initial_properties.textures = {"carts_cart.png"}
 end
@@ -289,7 +287,7 @@ function cart_entity:on_step(dtime)
 				acc = speed_mod * 10
 			end
 		end
-		if acc == nil and boost_cart.mtg_compat then
+		if acc == nil and boost_cart.MTG_CARTS then
 			-- MTG Cart API adaption
 			local rail_node = minetest.get_node(vector.round(pos))
 			local railparam = carts.railparams[rail_node.name]
@@ -380,18 +378,14 @@ function cart_entity:on_step(dtime)
 
 	-- Change player model rotation, depending on the Y direction
 	if player and dir.y ~= old_y_dir then
-		local feet = {x=0, y=0, z=0}
+		local feet = {x=0, y=-4, z=0}
 		local eye = {x=0, y=-4, z=0}
-		feet.y = boost_cart.old_player_model and 6 or -4
+
 		if dir.y ~= 0 then
 			-- TODO: Find a better way to calculate this
-			if boost_cart.old_player_model then
-				feet.y = feet.y + 2
-				feet.z = -dir.y * 6
-			else
-				feet.y = feet.y + 4
-				feet.z = -dir.y * 2
-			end
+			feet.y = feet.y + 4
+			feet.z = -dir.y * 2
+
 			eye.z = -dir.y * 8
 		end
 		player:set_attach(self.object, "", feet,
@@ -414,7 +408,7 @@ end
 minetest.register_entity(":carts:cart", cart_entity)
 
 -- Register item to place the entity
-if not boost_cart.mtg_compat then
+if not boost_cart.MTG_CARTS then
 	minetest.register_craftitem(":carts:cart", {
 		description = "Cart (Sneak+Click to pick up)",
 		inventory_image = minetest.inventorycube(

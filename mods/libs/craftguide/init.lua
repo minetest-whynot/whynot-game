@@ -66,7 +66,7 @@ local fmt, find, gmatch, match, sub, split, upper, lower =
 	string.sub, string.split, string.upper, string.lower
 
 local min, max, floor, ceil = math.min, math.max, math.floor, math.ceil
-local pairs, next, type, tostring = pairs, next, type, tostring
+local pairs, next, type, tostring, io = pairs, next, type, tostring, io
 local vec_add, vec_mul = vector.add, vector.multiply
 
 local ROWS  = 9
@@ -89,6 +89,11 @@ local PNG = {
 	book     = "craftguide_book.png",
 	sign     = "craftguide_sign.png",
 	selected = "craftguide_selected.png",
+
+	search_hover = "craftguide_search_icon_hover.png",
+	clear_hover  = "craftguide_clear_icon_hover.png",
+	prev_hover   = "craftguide_next_icon_hover.png^\\[transformFX",
+	next_hover   = "craftguide_next_icon_hover.png",
 }
 
 local FMT = {
@@ -100,8 +105,19 @@ local FMT = {
 	item_image = "item_image[%f,%f;%f,%f;%s]",
 	image_button = "image_button[%f,%f;%f,%f;%s;%s;%s]",
 	item_image_button = "item_image_button[%f,%f;%f,%f;%s;%s;%s]",
-	arrow = "image_button[%f,%f;0.8,0.8;%s;%s;;;false;%s^\\[colorize:yellow:255]",
+	arrow = "image_button[%f,%f;0.8,0.8;%s;%s;;;false;%s]",
 }
+
+local function mul_elem(elem, n)
+	local fstr, elems = "", {}
+
+	for i = 1, n do
+		fstr = fstr .. "%s"
+		elems[i] = elem
+	end
+
+	return fmt(fstr, unpack(elems))
+end
 
 craftguide.group_stereotypes = {
 	dye = "dye:white",
@@ -184,8 +200,8 @@ local function table_eq(T1, T2)
 			return t1 == t2
 		end
 
-		if avoid_loops[t1] then return
-			avoid_loops[t1] == t2
+		if avoid_loops[t1] then
+			return avoid_loops[t1] == t2
 		end
 
 		avoid_loops[t1] = t2
@@ -922,14 +938,29 @@ local function get_panels(data, fs)
 
 		if rn > 1 then
 			local btn_suffix = is_recipe and "recipe" or "usage"
+			local prev_name = fmt("prev_%s", btn_suffix)
+			local next_name = fmt("next_%s", btn_suffix)
 			local x_arrow = XOFFSET + (sfinv_only and 1.7 or 1)
 			local y_arrow = YOFFSET + (sfinv_only and 3.25 or 1.4 + spacing)
 
-			fs[#fs + 1] = fmt(FMT.arrow .. FMT.arrow,
-				x_arrow + (is_recipe and xof_r or xof_u), y_arrow, PNG.prev,
-					fmt("prev_%s", btn_suffix), PNG.prev,
-				x_arrow + 1.8, y_arrow, PNG.next,
-					fmt("next_%s", btn_suffix), PNG.next)
+			if CORE_VERSION >= 520 then
+				fs[#fs + 1] = fmt([[
+					style[%s;border=false;bgimg=%s;bgimg_hovered=%s]
+					style[%s;border=false;bgimg=%s;bgimg_hovered=%s]
+				]],
+				prev_name, PNG.prev, PNG.prev_hover,
+				next_name, PNG.next, PNG.next_hover)
+
+				fs[#fs + 1] = fmt(mul_elem(FMT.button, 2),
+					x_arrow + (is_recipe and xof_r or xof_u),
+						y_arrow, 0.8, 0.8, prev_name, "",
+					x_arrow + 1.8, y_arrow, 0.8, 0.8, next_name, "")
+			else
+				fs[#fs + 1] = fmt(mul_elem(FMT.arrow, 2),
+					x_arrow + (is_recipe and xof_r or xof_u),
+						y_arrow, PNG.prev, prev_name, PNG.prev_hover,
+					x_arrow + 1.8, y_arrow, PNG.next, next_name, PNG.next_hover)
+			end
 		end
 
 		local rcp = is_recipe and v[data.rnum] or v[data.unum]
@@ -968,22 +999,41 @@ local function make_formspec(name)
 		]],
 		sfinv_only and 2.76 or 2.72, ESC(data.filter))
 
-	fs[#fs + 1] = fmt([[
-		image_button[%f,-0.05;0.85,0.85;%s;search;;;false;%s^\[colorize:yellow:255]
-		image_button[%f,-0.05;0.85,0.85;%s;clear;;;false;%s^\[colorize:red:255]
+	if CORE_VERSION >= 520 then
+		fs[#fs + 1] = fmt([[
+			style[search;border=false;bgimg=%s;bgimg_hovered=%s]
+			style[clear;border=false;bgimg=%s;bgimg_hovered=%s]
+			style[prev_page;border=false;bgimg=%s;bgimg_hovered=%s]
+			style[next_page;border=false;bgimg=%s;bgimg_hovered=%s]
 		]],
-		sfinv_only and 2.6 or 2.54, PNG.search, PNG.search,
-		sfinv_only and 3.3 or 3.25, PNG.clear, PNG.clear)
+		PNG.search, PNG.search_hover,
+		PNG.clear, PNG.clear_hover,
+		PNG.prev, PNG.prev_hover,
+		PNG.next, PNG.next_hover)
+
+		fs[#fs + 1] = fmt(mul_elem(FMT.button, 4),
+			sfinv_only and 2.6 or 2.54, -0.12, 0.85, 1, "search", "",
+			sfinv_only and 3.3 or 3.25, -0.12, 0.85, 1, "clear", "",
+			sfinv_only and 5.45 or (ROWS * 6.83) / 11, -0.12, 0.85, 1, "prev_page", "",
+			sfinv_only and 7.2  or (ROWS * 8.75) / 11, -0.12, 0.85, 1, "next_page", "")
+	else
+		fs[#fs + 1] = fmt([[
+			image_button[%f,-0.12;0.85,1;%s;search;;;false;%s]
+			image_button[%f,-0.12;0.85,1;%s;clear;;;false;%s]
+			]],
+			sfinv_only and 2.6 or 2.54, PNG.search, PNG.search_hover,
+			sfinv_only and 3.3 or 3.25, PNG.clear, PNG.clear_hover)
+
+		fs[#fs + 1] = fmt(mul_elem(FMT.arrow, 2),
+			sfinv_only and 5.45 or (ROWS * 6.83) / 11,
+				-0.05, PNG.prev, "prev_page", PNG.prev,
+			sfinv_only and 7.2  or (ROWS * 8.75) / 11,
+				-0.05, PNG.next, "next_page", PNG.next)
+	end
 
 	fs[#fs + 1] = fmt("label[%f,%f;%s / %u]",
 		sfinv_only and 6.35 or (ROWS * 7.85) / 11,
 			0.06, clr("yellow", data.pagenum), data.pagemax)
-
-	fs[#fs + 1] = fmt(FMT.arrow .. FMT.arrow,
-		sfinv_only and 5.45 or (ROWS * 6.83) / 11,
-			-0.05, PNG.prev, "prev_page", PNG.prev,
-		sfinv_only and 7.2  or (ROWS * 8.75) / 11,
-			-0.05, PNG.next, "next_page", PNG.next)
 
 	if #data.items == 0 then
 		local no_item = S("No item to show")
@@ -1034,21 +1084,6 @@ local show_fs = function(player, name)
 	end
 end
 
-craftguide.add_search_filter("groups", function(item, groups)
-	local itemdef = reg_items[item]
-	local has_groups = true
-
-	for i = 1, #groups do
-		local group = groups[i]
-		if not itemdef.groups[group] then
-			has_groups = nil
-			break
-		end
-	end
-
-	return has_groups
-end)
-
 craftguide.register_craft_type("digging", {
 	description = ESC(S("Digging")),
 	icon = "default_tool_steelpick.png",
@@ -1058,6 +1093,16 @@ craftguide.register_craft_type("digging_chance", {
 	description = ESC(S("Digging Chance")),
 	icon = "default_tool_mesepick.png",
 })
+
+local function sfind(str, filter)
+	if filter == "" then
+		return 0
+	end
+
+	if find(str, filter, 1, true) then
+		return #str - #filter
+	end
+end
 
 local function search(data)
 	local filter = data.filter
@@ -1080,28 +1125,28 @@ local function search(data)
 		end
 	end
 
-	local filtered_list, c = {}, 0
+	local filtered_list, order, c = {}, {}, 0
 
 	for i = 1, #data.items_raw do
 		local item = data.items_raw[i]
 		local def  = reg_items[item]
 		local desc = (def and def.description) and lower(def.description) or ""
-		local search_in = fmt("%s %s", item, desc)
 		local to_add
 
 		if search_filter then
 			for filter_name, values in pairs(filters) do
 				local func = search_filters[filter_name]
 				to_add = func(item, values) and (search_filter == "" or
-					find(search_in, search_filter, 1, true))
+					(sfind(item, search_filter) or sfind(desc, search_filter)))
 			end
 		else
-			to_add = find(search_in, filter, 1, true)
+			to_add = sfind(item, filter) or sfind(desc, filter)
 		end
 
 		if to_add then
 			c = c + 1
 			filtered_list[c] = item
+			order[item] = to_add
 		end
 	end
 
@@ -1114,8 +1159,27 @@ local function search(data)
 		end
 	end
 
+	sort(filtered_list, function(a, b)
+		return order[a] < order[b]
+	end)
+
 	data.items = filtered_list
 end
+
+craftguide.add_search_filter("groups", function(item, groups)
+	local def = reg_items[item]
+	local has_groups = true
+
+	for i = 1, #groups do
+		local group = groups[i]
+		if not def.groups[group] then
+			has_groups = nil
+			break
+		end
+	end
+
+	return has_groups
+end)
 
 --[[	As `core.get_craft_recipe` and `core.get_all_craft_recipes` do not
 	return the replacements and toolrepair, we have to override
@@ -1278,8 +1342,9 @@ end
 
 local function handle_aliases(hash)
 	for oldname, newname in pairs(reg_aliases) do
-		recipes_cache[oldname] = recipes_cache[oldname] or get_all_recipes(oldname)
+		cache_recipes(oldname)
 		local recipes = recipes_cache[oldname]
+
 		if recipes then
 			if not recipes_cache[newname] then
 				recipes_cache[newname] = {}
@@ -1319,11 +1384,38 @@ local function show_item(def)
 		def.description and def.description ~= ""
 end
 
-local function get_init_items()
-	print("[craftguide] Caching data. This may take a while...")
+local function tablelen(t)
+	local c = 0
+	for _ in pairs(t) do
+		c = c + 1
+	end
 
+	return c
+end
+
+local function get_init_items()
+	local ic, it, last_str = 0, tablelen(reg_items), ""
 	local hash = {}
+
+	local function iop(str)
+		io.write(("\b \b"):rep(#last_str))
+		io.write(str)
+		io.flush()
+		last_str = str
+	end
+
+	local full_char, empty_char = "▰", "▱"
+
 	for name, def in pairs(reg_items) do
+		ic = ic + 1
+		local percent, bar, len = (ic * 100) / it, "", 20
+
+		for i = 1, len do
+			bar = bar .. (i <= percent / (100 / len) and full_char or empty_char)
+		end
+
+		iop(fmt("[craftguide] Caching data  %s  %u%%\r", bar, percent))
+
 		if show_item(def) then
 			if not fuel_cache[name] then
 				cache_fuel(name)
@@ -1346,7 +1438,7 @@ local function get_init_items()
 	handle_aliases(hash)
 	sort(init_items)
 
-	if http and true_str(craftguide.http_post_data) then
+	if http and true_str(craftguide.export_url) then
 		local post_data = {
 			recipes = recipes_cache,
 			usages  = usages_cache,
@@ -1354,10 +1446,12 @@ local function get_init_items()
 		}
 
 		http.fetch_async({
-			url = craftguide.http_post_data,
+			url = craftguide.export_url,
 			post_data = write_json(post_data),
 		})
 	end
+
+	print()
 end
 
 local function init_data(name)

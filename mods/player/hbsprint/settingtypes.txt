@@ -4,9 +4,6 @@ sprint_speed (Sprint speed multiplier) float 1.3
 #Sprint jump multiplier
 sprint_jump (Sprint jump multiplier) float 1.1
 
-#Use a key to sprint
-sprint_key (Sprint key) enum Use Use
-
 #Require player to move forward only to be able to sprint
 sprint_forward_only (Sprint forward only) bool true
 

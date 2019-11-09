@@ -1,7 +1,7 @@
 
 bell07	https://github.com/bell07/minetest_game (fetch)
 origin	https://github.com/minetest/minetest_game (fetch)
-* master                11acea6 [origin/stable-5: ahead 5] Fix beds being undiggable after laying down
+* master                fceceb8 [origin/stable-5: ahead 1] Fix builtin item metatable.
 Mod: minetest_game/mods/beds
 Mod: minetest_game/mods/binoculars
 Mod: minetest_game/mods/boats
@@ -32,11 +32,11 @@ Mod: minetest_game/mods/wool
 Mod: minetest_game/mods/xpanes
 
 origin	https://github.com/minetest-mods/craftguide/ (fetch)
-* master f184341 [origin/master] String checking
+* master 0d2af52 [origin/master] Add forgotten files
 Mod: libs/craftguide
 
 origin	https://github.com/minetest-mods/craftguide_reveal (fetch)
-* master 3c6cc32 [origin/master] Create LICENSE
+* master ddd1483 [origin/master] Merge pull request #1 from Panquesito7/master
 Mod: libs/craftguide_reveal
 
 origin	http://repo.or.cz/minetest_doc.git (fetch)
@@ -64,7 +64,7 @@ origin	https://github.com/minetest-mods/intllib (fetch)
 Mod: libs/intllib
 
 origin	https://github.com/minetest-mods/mtg_i18n (fetch)
-* master 8f017b9 [origin/master] Translated using Weblate (Russian)
+* master 13d3626 [origin/master] Use mod.conf for dependencies and description (#14)
 Mod: libs/mtg_i18n
 
 origin	https://github.com/bell07/minetest-whynot_compat (fetch)
@@ -80,15 +80,15 @@ origin	https://github.com/minetest-mods/awards (fetch)
 Mod: player/awards
 
 origin	https://github.com/minetest-mods/cozy (fetch)
-* master 26e9a32 [origin/master] Use player_monoids API if available (#2)
+* master b51cd03 [origin/master] Use mod.conf for dependencies, and description (#3)
 Mod: player/cozy
 
 origin	http://repo.or.cz/minetest_hbhunger (fetch)
-* master ebf40de [origin/master] Add Russian locale by lmk
+* master 91d6d3d [origin/master] Play sound at eater, add random pitch
 Mod: player/hbhunger
 
 origin	https://github.com/minetest-mods/hbsprint (fetch)
-* master ee2cc8b [origin/master] Fixed sprinting in water and stamina regen with multiple players (#15)
+* master 2547242 [origin/master] Fix typo in autohide setting, default to true again
 Mod: player/hbsprint
 
 origin	https://repo.or.cz/minetest_hudbars.git (fetch)
@@ -139,7 +139,7 @@ origin	https://notabug.org/TenPlus1/ambience (fetch)
 Mod: ambience/ambience
 
 origin	https://github.com/minetest-mods/lightning (fetch)
-* master 39bd36c [origin/master] Use particle glow to brighten up the lightning.
+* master 01f2b9c [origin/master] Use mod.conf for dependencies and description
 Mod: ambience/lightning
 
 origin	https://github.com/Ezhh/under_sky (fetch)
@@ -151,7 +151,7 @@ origin	https://gitlab.com/zombiebot/weather_pack.git (fetch)
 Mod: ambience/weather_pack
 
 origin	https://notabug.org/TenPlus1/farming (fetch)
-* master faed117 [origin/master] code tidy ' to "
+* master df1cee3 [origin/master] code tidy
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
@@ -163,7 +163,7 @@ origin	https://github.com/h-v-smacker/maple (fetch)
 Mod: mapgen/maple
 
 origin	https://github.com/minetest-mods/meseor (fetch)
-* master bd1d96e [origin/master] Use mod.conf for dependencies (#3)
+* master b0a99d3 [origin/master] Update
 Mod: mapgen/meseor
 
 origin	https://notabug.org/TenPlus1/pbj_pup (fetch)
@@ -179,7 +179,7 @@ origin	https://github.com/taikedz/everamzah-backpacks (fetch)
 Mod: tools/backpacks
 
 origin	https://github.com/SmallJoker/boost_cart (fetch)
-* master e4edb96 [origin/master] Use initial_properties, backup old_pos for loading
+* master ae33bd7 [origin/master] Bump to 5.0.0 and fix the copper rail
 Mod: tools/boost_cart
 
 origin	https://github.com/minetest-mods/ccompass (fetch)
@@ -276,7 +276,7 @@ origin	https://github.com/Gerold55/laptop (fetch)
 Mod: decor/laptop
 
 origin	http://repo.or.cz/minetest_mtg_plus.git (fetch)
-* master cdd7ab4 [origin/master] Version 1.0.0
+* master d10ec7c [origin/master] Version 1.1.0
 Mod: decor/mtg_plus
 
 origin	https://github.com/minetest-mods/myroofs (fetch)
@@ -381,7 +381,7 @@ origin	https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin	https://github.com/minetest-mods/mesecons (fetch)
-* master d6b2a39 [origin/master] Set mvps_protection_mode default to the documented value (#484, base: #466)
+* master bfd952b [origin/master] Delayer: Combine shared definitions, add protection (#490)
 Mod: mesecons/mesecons
 Mod: mesecons/mesecons_alias
 Mod: mesecons/mesecons_blinkyplant

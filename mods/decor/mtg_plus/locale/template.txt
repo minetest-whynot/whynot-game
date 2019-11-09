@@ -108,7 +108,6 @@ Icy Snow Brick Stair=
 Icy Steel Door=
 Icy steel doors are a combination of ice doors and steel doors which can only be opened and closed by their owners. They are solid, but some of the light hitting icy steel doors can still go through.=
 Icy Steel Trapdoor=
-Iron Bar Door=
 Jungle Cobblestone=
 Jungle Cobblestone Slab=
 Jungle Cobblestone Stair=

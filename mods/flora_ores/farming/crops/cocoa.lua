@@ -21,7 +21,7 @@ local function place_cocoa(itemstack, placer, pointed_thing, plantname)
 	-- am I right-clicking on something that has a custom on_place set?
 	-- thanks to Krock for helping with this issue :)
 	local def = minetest.registered_nodes[under.name]
-	if placer and def and def.on_rightclick then
+	if placer and itemstack and def and def.on_rightclick then
 		return def.on_rightclick(pt.under, under, placer, itemstack)
 	end
 

@@ -9,7 +9,7 @@ local function freeze(player)
         else
                 player:set_physics_override({speed = 0, jump = 0, gravity = 0})
         end
-        default.player_attached[player_name] = true
+        player_api.player_attached[player_name] = true
 end
 
 local function unfreeze(player)
@@ -21,8 +21,8 @@ local function unfreeze(player)
         else
                 player:set_physics_override({speed = 1, jump = 1, gravity = 1})
         end
-        default.player_attached[player_name] = nil
-        default.player_set_animation(player, "stand", 30)
+        player_api.player_attached[player_name] = nil
+        player_api.set_animation(player, "stand", 30)
         player:set_eye_offset({x=0, y=0, z=0}, {x=0, y=0, z=0})
 end
 
@@ -32,7 +32,7 @@ minetest.register_globalstep(function(dtime)
                 local player = players[i]
                 local name = player:get_player_name()
                 local control = player:get_player_control()
-                if default.player_attached[name] and not player:get_attach() and (
+                if player_api.player_attached[name] and not player:get_attach() and (
                         control.up == true or
                         control.down == true or
                         control.left == true or
@@ -48,11 +48,11 @@ minetest.register_chatcommand("sit", {
         description = "Sit down",
         func = function(name)
                 local player = minetest.get_player_by_name(name)
-                if default.player_attached[name] then
+                if player_api.player_attached[name] then
                         unfreeze(player)
                 else
                         freeze(player)
-                        default.player_set_animation(player, "sit", 30)
+                        player_api.set_animation(player, "sit", 30)
                         player:set_eye_offset({x=0, y=-7, z=2}, {x=0, y=0, z=0})
                 end
         end
@@ -62,11 +62,11 @@ minetest.register_chatcommand("lay", {
         description = "Lay down",
         func = function(name)
                 local player = minetest.get_player_by_name(name)
-                if default.player_attached[name] then
+                if player_api.player_attached[name] then
                         unfreeze(player)
                 else
                         freeze(player)
-                        default.player_set_animation(player, "lay", 0)
+                        player_api.set_animation(player, "lay", 0)
                         player:set_eye_offset({x=0, y=-13, z=0}, {x=0, y=0, z=0})
                 end
         end

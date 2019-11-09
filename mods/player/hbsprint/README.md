@@ -12,12 +12,14 @@ A flexible sprint mod supporting stamina, hunger and coexistance with other phys
 
 ## Notes
 hbSprint can be played with Minetest 0.4.16 or above.
-It has no dependencies, but it supports on [hudbars](http://repo.or.cz/w/minetest_hudbars.git), [hbhunger](http://repo.or.cz/w/minetest_hbhunger.git) and [player_monoids](https://github.com/minetest-mods/player_monoids).
+It has no dependencies, but supports [hudbars](https://repo.or.cz/minetest_hudbars.git) and [player_monoids](https://github.com/minetest-mods/player_monoids).
+
+Compatible hunger mods: [hbhunger](https://repo.or.cz/minetest_hbhunger.git) or [hunger_ng](https://gitlab.com/4w/hunger_ng).
 
 ## List of features
 
 - Displays and drains stamina (by default, if hudbars is present). Hides stamina bar if full.
-- Displays and drains satiation (by default, if hbhunger is present)
+- Displays and drains satiation (by default, if compatible hunger mod found)
 - Drains air faster while sprinting on walkable ground but in water (by default)
 - Requires only forward key to be pressed, not left and right (by default)
 - Requires walkable ground (no water surface sprinting)
@@ -32,6 +34,6 @@ It has no dependencies, but it supports on [hudbars](http://repo.or.cz/w/minetes
 You can report bugs or suggest ideas by [filing an issue](http://github.com/tacotexmex/hbsprint/issues/new).
 
 ## Links
-* [Download ZIP](https://github.com/tacotexmex/hbsprint/archive/master.zip)
-* [Source](https://github.com/tacotexmex/hbsprint/)
+* [Download ZIP](https://github.com/minetest-mods/hbsprint/archive/master.zip)
+* [Source](https://github.com/minetest-mods/hbsprint)
 * [Forum thread](https://forum.minetest.net/viewtopic.php?f=9&t=18069&p=282981)

@@ -1,10 +1,11 @@
-Compatible with Minetest 0.4.3 and later
-Depends default
-License LGPL-2.1
+ meseor
+========
+
+Compatible with Minetest 5.0.0 and later
+Dependencies: default
+License: LGPL-2.1
 
 * Warning, this mod can seriously damage maps, it is not 'on generated', instead impact is triggered by abm on dirt, grass, desert sand and sand. Unless testing in a new world you should edit the impact area and safe area in the init.lua.
-
-* This first version is the fastest and simplest, also being compatible back to 0.4.3. Perhaps i will develop a more complex version for 0.4.6 including the new stuff like mese crystals, obsidian etc.
 
 * Default parameters are for one impact every few minutes for your instant gratification, for normal use you might want to increase the abm interval and chance parameters. Personally i just add 1 or 2 zeros on the end of MSRCHA.
 

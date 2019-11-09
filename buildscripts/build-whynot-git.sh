@@ -10,7 +10,10 @@ source "$LIB"/build-whynot.lib
 cd "$SRC" # for proper resolving the '*'
 
 ## Sync minetest_game
-mod_install minetest_game --exclude=farming --exclude=player_api minetest_game/mods/*
+# exclude farming =>Tenplus1/farming is used
+# exclude player_api => bell07/player_api_modpack is used
+# exclude env_sounds => Tenplus1/ambience is used
+mod_install minetest_game --exclude=farming --exclude=player_api --exclude=env_sounds minetest_game/mods/*
 
 mod_install libs
 

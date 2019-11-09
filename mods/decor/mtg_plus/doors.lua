@@ -58,42 +58,6 @@ minetest.register_craft({
 	burntime = 4,
 })
 
-doors.register("door_iron_bar", {
-	tiles = {{ name = "mtg_plus_door_iron_bar.png", backface_culling = true }},
-	description = S("Iron Bar Door"),
-	_doc_items_longdesc = door_simple,
-	_doc_items_usagehelp = door_simple_use,
-	_doc_items_image = "mtg_plus_door_iron_bar_item.png",
-	inventory_image = "mtg_plus_door_iron_bar_item.png",
-	sound_open = "mtg_plus_door_iron_bar_open",
-	sound_close = "mtg_plus_door_iron_bar_close",
-	sounds = metal_sounds,
-	groups = { snappy = 2, bendy = 1, cracky = 1, melty = 2, },
-	recipe = {
-		{"xpanes:bar_flat",},
-		{"xpanes:bar_flat",},
-	}
-})
-
-if minetest.get_modpath("xdecor") then
-	-- xdecor compability
-	minetest.register_craft({
-		output = "doors:prison_door",
-		recipe = {
-			{ "doors:door_iron_bar" },
-			{ "doors:door_iron_bar" },
-			{ "doors:door_iron_bar" },
-		}
-	})
-
-	minetest.register_craft({
-		output = "doors:door_iron_bar 3",
-		recipe = {
-			{ "doors:prison_door" },
-		}
-	})
-end
-
 doors.register("door_ice", {
 	tiles = {{ name = "mtg_plus_door_ice.png", backface_culling = true }},
 	description = S("Ice Door"),

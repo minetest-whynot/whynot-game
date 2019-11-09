@@ -1,12 +1,15 @@
 
+if not minetest.features.object_use_texture_alpha then
+	error("[boost_cart] Your Minetest version is no longer supported."
+		.. " (Version < 5.0.0)")
+end
+
 boost_cart = {}
 boost_cart.modpath = minetest.get_modpath("boost_cart")
-
-
-if not minetest.settings then
-	error("[boost_cart] Your Minetest version is no longer supported."
-		.. " (Version <= 0.4.15)")
-end
+boost_cart.MESECONS = minetest.global_exists("mesecon")
+boost_cart.MTG_CARTS = minetest.global_exists("carts") and carts.pathfinder
+boost_cart.PLAYER_API = minetest.global_exists("player_api")
+boost_cart.player_attached = {}
 
 local function getNum(setting)
 	return tonumber(minetest.settings:get(setting))
@@ -20,27 +23,22 @@ boost_cart.punch_speed_max = getNum("boost_cart.punch_speed_max") or 7
 boost_cart.path_distance_max = 3
 
 
--- Support for non-default games
-if not default.player_attached then
-	default.player_attached = {}
+if boost_cart.PLAYER_API then
+	-- This is a table reference!
+	boost_cart.player_attached = player_api.player_attached
 end
-
-minetest.after(0, function()
-	boost_cart.old_player_model = not minetest.global_exists("player_api")
-end)
 
 dofile(boost_cart.modpath.."/functions.lua")
 dofile(boost_cart.modpath.."/rails.lua")
 
-if minetest.global_exists("mesecon") then
+if boost_cart.MESECONS then
 	dofile(boost_cart.modpath.."/detector.lua")
 --else
 --	minetest.register_alias("carts:powerrail", "boost_cart:detectorrail")
 --	minetest.register_alias("carts:powerrail", "boost_cart:detectorrail_on")
 end
 
-boost_cart.mtg_compat = minetest.global_exists("carts") and carts.pathfinder
-if boost_cart.mtg_compat then
+if boost_cart.MTG_CARTS then
 	minetest.log("action", "[boost_cart] Overwriting definitions of similar carts mod")
 end
 dofile(boost_cart.modpath.."/cart_entity.lua")

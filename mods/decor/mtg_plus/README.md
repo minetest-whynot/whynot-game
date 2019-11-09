@@ -7,8 +7,8 @@ The focus lies on:
 * Doors
 * Metals
 
-Current version: 1.0.0
-For Minetest 5.0.0 or later
+Current version: 1.1.0
+For Minetest/Minetest Game 5.1.0 or later
 
 ## Special stuff
 Most new items are purely decorational and self-explanationary, but a few items are somewhat unique:
