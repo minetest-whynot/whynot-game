@@ -6,7 +6,7 @@ local use_cmi = minetest.global_exists("cmi")
 
 mobs = {
 	mod = "redo",
-	version = "20190912",
+	version = "20191116",
 	intllib = S,
 	invis = minetest.global_exists("invisibility") and invisibility or {}
 }
@@ -586,11 +586,7 @@ function mob_class:do_stay_near()
 
 	local target = nearby_nodes[math.random(1, #nearby_nodes)]
 	local direction = vector.direction(pos, target)
-
-	local vec = {
-		x = target.x - pos.x,
-		z = target.z - pos.z
-	}
+	local vec = {x = target.x - pos.x, z = target.z - pos.z}
 
 	yaw = (atan(vec.z / vec.x) + pi / 2) - self.rotate
 
@@ -2026,7 +2022,7 @@ function mob_class:do_states(dtime)
 		and self.walk_chance ~= 0
 		and self.facing_fence ~= true
 		and random(1, 100) <= self.walk_chance
-		and self:is_at_cliff() == false then
+		and self.at_cliff == false then
 
 			self:set_velocity(self.walk_velocity)
 			self.state = "walk"
@@ -2107,10 +2103,8 @@ function mob_class:do_states(dtime)
 		end
 
 		-- stand for great fall in front
-		local temp_is_cliff = self:is_at_cliff()
-
 		if self.facing_fence == true
-		or temp_is_cliff
+		or self.at_cliff
 		or random(1, 100) <= self.stand_chance then
 
 			self:set_velocity(0)
@@ -2136,7 +2130,7 @@ function mob_class:do_states(dtime)
 
 		-- stop after 5 seconds or when at cliff
 		if self.runaway_timer > 5
-		or self:is_at_cliff()
+		or self.at_cliff
 		or self.order == "stand" then
 			self.runaway_timer = 0
 			self:set_velocity(0)
@@ -2386,7 +2380,7 @@ function mob_class:do_states(dtime)
 					self:smart_mobs(s, p, dist, dtime)
 				end
 
-				if self:is_at_cliff() then
+				if self.at_cliff then
 
 					self:set_velocity(0)
 					self:set_animation("stand")
@@ -3134,6 +3128,13 @@ function mob_class:on_step(dtime)
 					y = self.jump_height,
 					z = 0
 				})
+		end
+
+		-- check and stop if standing at cliff and fear of heights
+		self.at_cliff = self:is_at_cliff()
+
+		if self.at_cliff then
+			self:set_velocity(0)
 		end
 
 		-- check for mob expiration (0.25 instead of dtime since were in a timer)
@@ -4246,6 +4247,11 @@ end)
 
 -- compatibility function for old entities to new modpack entities
 function mobs:alias_mob(old_name, new_name)
+
+	-- check old_name entity doesnt already exist
+	if minetest.registered_entities[old_name] then
+		return
+	end
 
 	-- spawn egg
 	minetest.register_alias(old_name, new_name)

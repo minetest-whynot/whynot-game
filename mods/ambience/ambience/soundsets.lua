@@ -43,6 +43,10 @@ ambience.add_set("splash", {
 	end,
 })
 
+-- check for env_sounds mod, if not found enable water flowing sounds
+
+if not minetest.get_modpath("env_sounds") then
+
 -- Water sound plays when near flowing water, will get louder if more than 50
 
 ambience.add_set("flowing_water", {
@@ -84,6 +88,9 @@ ambience.add_set("river", {
 	end,
 	nodes = {"default:river_water_flowing"}
 })
+else
+	print ("[Ambience] found env_sounds, flowing water sounds disabled")
+end
 
 -- Small fire sound plays when near flame, will get louder if more than 3
 

@@ -32,7 +32,7 @@ Mod: minetest_game/mods/wool
 Mod: minetest_game/mods/xpanes
 
 origin	https://github.com/minetest-mods/craftguide/ (fetch)
-* master 0d2af52 [origin/master] Add forgotten files
+* master 89059f2 [origin/master] Reorder formspec elements
 Mod: libs/craftguide
 
 origin	https://github.com/minetest-mods/craftguide_reveal (fetch)
@@ -135,7 +135,7 @@ Mod: smart_sfinv_modpack/smart_sfinv_creative_sitebar
 Mod: smart_sfinv_modpack/smart_sfinv_tweaks
 
 origin	https://notabug.org/TenPlus1/ambience (fetch)
-* master cddaf64 [origin/master] update readme and version to 1.4
+* master 99710ce [origin/master] add check for env_sounds to disable water flowing sfx
 Mod: ambience/ambience
 
 origin	https://github.com/minetest-mods/lightning (fetch)
@@ -381,7 +381,7 @@ origin	https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin	https://github.com/minetest-mods/mesecons (fetch)
-* master bfd952b [origin/master] Delayer: Combine shared definitions, add protection (#490)
+* master 9b58f8d [origin/master] FPGA: Add 'unary' value to talbe. Document
 Mod: mesecons/mesecons
 Mod: mesecons/mesecons_alias
 Mod: mesecons/mesecons_blinkyplant
@@ -412,5 +412,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master b588452 [origin/master] drops can now be a function, also code tidy
+* master b9ad166 [origin/master] check cliff drop every 1/4 second instead of 1 second
 Mod: mobs_redo/mobs_redo
