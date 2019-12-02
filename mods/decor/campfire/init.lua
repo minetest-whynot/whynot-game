@@ -20,6 +20,12 @@ Copyright (C) 2017 Pavel Litvinoff <googolgl@gmail.com>
 
 campfire = {}
 
+
+-- Used for localization
+
+local S = minetest.get_translator("campfire")
+
+
 ---------------------
 --Particle Functions
 ---------------------
@@ -160,7 +166,7 @@ local function check_and_burn(pos)
 	if not is_burning then
 		meta:set_float("fuel_time", 0)
 		minetest.swap_node(pos, {name = 'campfire:campfire', param1 = 0})
-		meta:set_string("infotext","The campfire is out.")
+		meta:set_string("infotext", S("The campfire is out."))
 --		meta:set_string("formspec", campfire.campfire_active_formspec(item_percent))
 		return is_burning
 	end
@@ -173,7 +179,7 @@ local function check_and_burn(pos)
 	end
 	fire_particles_on(pos)
 	local percent = math.floor(fuel_time / fully_item_burn_time * 100)
-	meta:set_string("infotext","Campfire active: "..percent.."%")
+	meta:set_string("infotext", S("Campfire active: ")..percent.."%")
 
 
 	-- fire burns, check for cooking finished
@@ -184,7 +190,7 @@ local function check_and_burn(pos)
 			srcstack:take_item()
 			inv:set_stack("src", 1, srcstack)
 		else
-			print("Could not insert '"..cooked.item:to_string().."'")
+			print(S("Could not insert '")..cooked.item:to_string().."'")
 		end
 		meta:set_float("src_time", 0)
 	else
@@ -197,13 +203,16 @@ end
 ---------------
 -- Formspecs
 ---------------
+
+local s_FuelText = S(" < Add Fuel")
+
 function campfire.campfire_active_formspec(pos)
 local formspec =
    "size[8,6]"..
    default.gui_bg..
    default.gui_bg_img..
    default.gui_slots..
-   "label[1,0.5; < Add Fuel]"..
+   "label[1,0.5;" .. s_FuelText .. "]"..
    "list[current_name;fuel;0,0.25;1,1;]"..
    "list[current_name;src;4,0.25;1,1;]"..
    "image[5,0.25;1,1;gui_furnace_arrow_bg.png^[transformR270]"..
@@ -223,7 +232,7 @@ campfire.campfire_formspec =
    default.gui_bg..
    default.gui_bg_img..
    default.gui_slots..
-   "label[1,0.5; < Add Fuel]"..
+   "label[1,0.5;" .. s_FuelText .. "]"..
    "list[current_name;fuel;0,0.25;1,1;]"..
    "list[current_name;src;4,0.25;1,1;]"..
    "image[5,0.25;1,1;gui_furnace_arrow_bg.png^[transformR270]"..
@@ -240,7 +249,7 @@ campfire.campfire_formspec =
 --Nodes
 ---------
 minetest.register_node("campfire:campfire", {
-	description = "Campfire",
+	description = S("Campfire"),
 	drawtype = "nodebox",
 	tiles = {'default_gravel.png^[colorize:#1f1f1f:100'},
 	inventory_image = "[combine:16x16:0,0=fire_basic_flame.png:0,12=default_gravel.png",
@@ -269,11 +278,11 @@ minetest.register_node("campfire:campfire", {
 		type = "fixed",
 		fixed = {-0.4375, -0.5, -0.4375, 0.4375, -0.3125, 0.4375},
 	},
-	
+
 	on_construct = function(pos)
 		local meta = minetest.get_meta(pos)
 		meta:set_string('formspec', campfire.campfire_formspec)
-		meta:set_string('infotext', 'Campfire');
+		meta:set_string('infotext', S('Campfire'));
 		local inv = meta:get_inventory()
 		inv:set_size('fuel', 1)
 		inv:set_size("src", 1)
@@ -349,7 +358,7 @@ minetest.register_node("campfire:campfire_active", {
 -- sleeping bag
 if minetest.global_exists("beds") then
 beds.register_bed("campfire:sleeping_mat", {
-	description = "Sleeping Bag",
+	description = S("Sleeping Bag"),
 	 inventory_image = "[combine:16x16:0,0=wool_white.png:0,6=wool_brown.png",
 	wield_image = "[combine:16x16:0,0=wool_white.png:0,6=wool_brown.png",
 	tiles = {

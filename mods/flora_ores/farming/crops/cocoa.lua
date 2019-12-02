@@ -67,7 +67,7 @@ end
 minetest.register_craftitem("farming:cocoa_beans", {
 	description = S("Cocoa Beans"),
 	inventory_image = "farming_cocoa_beans.png",
-	groups = {food_cocoa = 1, flammable = 2},
+	groups = {seed = 2, food_cocoa = 1, flammable = 2},
 	on_place = function(itemstack, placer, pointed_thing)
 		return place_cocoa(itemstack, placer, pointed_thing, "farming:cocoa_1")
 	end,

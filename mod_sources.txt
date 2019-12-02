@@ -32,7 +32,7 @@ Mod: minetest_game/mods/wool
 Mod: minetest_game/mods/xpanes
 
 origin	https://github.com/minetest-mods/craftguide/ (fetch)
-* master 89059f2 [origin/master] Reorder formspec elements
+* master 303aa3e [origin/master] Style cleaning
 Mod: libs/craftguide
 
 origin	https://github.com/minetest-mods/craftguide_reveal (fetch)
@@ -151,7 +151,7 @@ origin	https://gitlab.com/zombiebot/weather_pack.git (fetch)
 Mod: ambience/weather_pack
 
 origin	https://notabug.org/TenPlus1/farming (fetch)
-* master df1cee3 [origin/master] code tidy
+* master 02d10c3 [origin/master] added seed=2 group to plantable food items
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
@@ -179,7 +179,7 @@ origin	https://github.com/taikedz/everamzah-backpacks (fetch)
 Mod: tools/backpacks
 
 origin	https://github.com/SmallJoker/boost_cart (fetch)
-* master ae33bd7 [origin/master] Bump to 5.0.0 and fix the copper rail
+* master cc293e9 [origin/master] Fix model animations after detach, remove README.txt
 Mod: tools/boost_cart
 
 origin	https://github.com/minetest-mods/ccompass (fetch)
@@ -251,7 +251,7 @@ origin	https://gitlab.com/VanessaE/basic_materials (fetch)
 Mod: decor/basic_materials
 
 origin	https://github.com/Napiophelios/campfire (fetch)
-* master 25f6856 [origin/master] Update README.md
+* master 1058f1d [origin/master] Merge pull request #5 from h4ml3t/development
 Mod: decor/campfire
 
 origin	https://github.com/pithydon/curtain (fetch)

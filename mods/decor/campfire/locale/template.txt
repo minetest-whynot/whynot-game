@@ -1,0 +1,8 @@
+# textdomain:campfire
+
+Campfire=
+Sleeping Bag=
+The campfire is out.=
+Campfire active: =
+Could not insert '=
+ < Add Fuel=

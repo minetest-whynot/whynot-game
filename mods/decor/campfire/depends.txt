@@ -1,5 +1,0 @@
-default
-fire
-tnt
-beds?
-wool?

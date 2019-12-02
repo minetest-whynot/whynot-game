@@ -343,20 +343,11 @@ farming.add_to_scythe_not_drops = function(item)
 end
 
 minetest.register_tool("farming:scythe_mithril", {
-	description = S("Mithril Scythe (Right-click crop to harvest and replant)"),
+	description = S("Mithril Scythe (Use to harvest and replant crops)"),
 	inventory_image = "farming_scythe_mithril.png",
-	tool_capabilities = {
-		full_punch_interval = 0.8,
-		max_drop_level = 2,
-		groupcaps = {
-			fleshy = {times = {[2] = 0.65, [3] = 0.25}, uses = 150, maxlevel = 2},
-			snappy = {times = {[2] = 0.70, [3] = 0.25}, uses = 150, maxlevel = 2},
-		},
-		damage_groups = {fleshy = 8},
-	},
 	sound = {breaks = "default_tool_breaks"},
 
-	on_place = function(itemstack, placer, pointed_thing)
+	on_use = function(itemstack, placer, pointed_thing)
 
 		if pointed_thing.type ~= "node" then
 			return

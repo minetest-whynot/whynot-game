@@ -13,11 +13,12 @@ function boost_cart:manage_attachment(player, obj)
 	local wants_attach = obj ~= nil
 	local attached = player:get_attach() ~= nil
 
-	local player_name = player:get_player_name()
-	boost_cart.player_attached[player_name] = attached or wants_attach
 	if attached == wants_attach then
 		return
 	end
+
+	local player_name = player:get_player_name()
+	boost_cart.player_attached[player_name] = wants_attach
 
 	if wants_attach then
 		player:set_attach(obj, "", {x=0, y=-4, z=0}, {x=0, y=0, z=0})
