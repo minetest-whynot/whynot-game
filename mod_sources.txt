@@ -31,8 +31,9 @@ Mod: minetest_game/mods/walls
 Mod: minetest_game/mods/wool
 Mod: minetest_game/mods/xpanes
 
+bell07	https://github.com/bell07/craftguide (fetch)
 origin	https://github.com/minetest-mods/craftguide/ (fetch)
-* master 303aa3e [origin/master] Style cleaning
+* master 05da994 [origin/master: ahead 1] Fix comparing items with their aliases
 Mod: libs/craftguide
 
 origin	https://github.com/minetest-mods/craftguide_reveal (fetch)
