@@ -1,7 +1,7 @@
 
 bell07	https://github.com/bell07/minetest_game (fetch)
 origin	https://github.com/minetest/minetest_game (fetch)
-* master                fceceb8 [origin/stable-5: ahead 1] Fix builtin item metatable.
+* master                 fceceb8 [origin/stable-5: ahead 1] Fix builtin item metatable.
 Mod: minetest_game/mods/beds
 Mod: minetest_game/mods/binoculars
 Mod: minetest_game/mods/boats
@@ -31,9 +31,8 @@ Mod: minetest_game/mods/walls
 Mod: minetest_game/mods/wool
 Mod: minetest_game/mods/xpanes
 
-bell07	https://github.com/bell07/craftguide (fetch)
 origin	https://github.com/minetest-mods/craftguide/ (fetch)
-* master 05da994 [origin/master: ahead 1] Fix comparing items with their aliases
+* master 00a79d2 [origin/master] Fix comparing items with their aliases (#95)
 Mod: libs/craftguide
 
 origin	https://github.com/minetest-mods/craftguide_reveal (fetch)
@@ -109,7 +108,7 @@ origin	https://github.com/minetest-mods/wielded_light (fetch)
 Mod: player/wielded_light
 
 origin	https://github.com/bell07/minetest-player_api_modpack (fetch)
-* master 402562a [origin/master] unify on_joinplayer processing
+* master fdc3003 [origin/master] misc upstream updates
 Mod: player_api_modpack/3d_armor
 Mod: player_api_modpack/character_creator
 Mod: player_api_modpack/clothing
