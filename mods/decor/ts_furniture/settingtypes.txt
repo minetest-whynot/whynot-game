@@ -1,0 +1,1 @@
+ts_furniture.enable_sitting (Enable sitting) bool true

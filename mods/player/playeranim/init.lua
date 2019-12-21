@@ -1,3 +1,8 @@
+
+if not minetest.settings then
+	error("Mod playeranim requires Minetest 0.4.16 or newer")
+end
+
 local ANIMATION_SPEED = tonumber(minetest.settings:get("playeranim.animation_speed")) or 2.4
 local ANIMATION_SPEED_SNEAK = tonumber(minetest.settings:get("playeranim.animation_speed_sneak")) or 0.8
 local BODY_ROTATION_DELAY = math.max(math.floor(tonumber(minetest.settings:get("playeranim.body_rotation_delay")) or 7), 1)
@@ -9,7 +14,8 @@ local BONE_POSITION, BONE_ROTATION = (function()
 	return dofile(modpath .. "/model.lua")
 end)()
 
-local get_animation = player_api and player_api.get_animation or default.player_get_animation
+local get_animation = minetest.global_exists("player_api")
+	and player_api.get_animation or default.player_get_animation
 if not get_animation then
 	error("player_api.get_animation or default.player_get_animation is not found")
 end

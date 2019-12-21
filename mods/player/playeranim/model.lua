@@ -7,22 +7,8 @@ local RARM = "Arm_Right"
 local LLEG = "Leg_Left"
 local RLEG = "Leg_Right"
 
--- Version of player model
-local DEFAULT_PLAYER_MODEL_VERSION = "MTG_4_Jun_2017"
-
-local VALID_PLAYER_MODEL_VERSIONS = {
-	MTG_4_Jun_2017 = true,
-	MTG_4_Nov_2017 = true,
-}
-
-local LEGACY_PLAYER_MODEL_VERSIONS = {
-	default_character_v1 = true,
-	default_character_v2 = true,
-	default_character_v3 = true,
-}
-
 local BONE_POSITIONS = {
-	MTG_4_Jun_2017 = {
+	MTG_0_4_x = {
 		[BODY] = {x = 0,   y = -3.5, z = 0},
 		[HEAD] = {x = 0,   y = 6.5,  z = 0},
 		[CAPE] = {x = 0,   y = 6.5,  z = 1.2},
@@ -34,7 +20,7 @@ local BONE_POSITIONS = {
 		body_sit = {x = 0, y = -5.5, z = 0},
 		body_lay = {x = 0, y = -5.5, z = 0},
 	},
-	MTG_4_Nov_2017 = {
+	MTG_5_0_x = {
 		[BODY] = {x = 0,   y = 6.25, z = 0},
 		[HEAD] = {x = 0,   y = 6.5,  z = 0},
 		[CAPE] = {x = 0,   y = 6.5,  z = 1.2},
@@ -49,7 +35,7 @@ local BONE_POSITIONS = {
 }
 
 local BONE_ROTATIONS = {
-	MTG_4_Jun_2017 = {
+	MTG_0_4_x = {
 		[BODY] = {x = 0, y = 0, z = 0},
 		[HEAD] = {x = 0, y = 0, z = 0},
 		[CAPE] = {x = 0, y = 0, z = 0},
@@ -61,7 +47,7 @@ local BONE_ROTATIONS = {
 		body_sit = {x = 0,   y = 0, z = 0},
 		body_lay = {x = 270, y = 0, z = 0},
 	},
-	MTG_4_Nov_2017 = {
+	MTG_5_0_x = {
 		[BODY] = {x = 0, y = 0, z = 0},
 		[HEAD] = {x = 0, y = 0, z = 0},
 		[CAPE] = {x = 0, y = 0, z = 0},
@@ -75,23 +61,10 @@ local BONE_ROTATIONS = {
 	},
 }
 
-local PLAYER_MODEL_VERSION = (function()
-	local version = minetest.settings:get("playeranim.model_version")
-	if version == nil or version == "" then
-		version = DEFAULT_PLAYER_MODEL_VERSION
-	end
+local model = minetest.global_exists("player_api") and "MTG_5_0_x" or "MTG_0_4_x"
 
-	if LEGACY_PLAYER_MODEL_VERSIONS[version] then
-		error("The model version '" .. version .. "' is no longer suppported")
-	elseif not VALID_PLAYER_MODEL_VERSIONS[version] then
-		error("Invalid value for playeranim.model_version in minetest.conf: " .. version)
-	end
-
-	return version
-end)()
-
-local BONE_POSITION = BONE_POSITIONS[PLAYER_MODEL_VERSION]
-local BONE_ROTATION = BONE_ROTATIONS[PLAYER_MODEL_VERSION]
+local BONE_POSITION = BONE_POSITIONS[model]
+local BONE_ROTATION = BONE_ROTATIONS[model]
 if not BONE_POSITION or not BONE_ROTATION then
 	error("Internal error: invalid player_model_version: " .. PLAYER_MODEL_VERSION)
 end

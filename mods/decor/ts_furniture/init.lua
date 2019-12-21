@@ -1,27 +1,32 @@
 ts_furniture = {}
 
 -- If true, you can sit on chairs and benches, when right-click them.
-ts_furniture.enable_sitting = true
+ts_furniture.enable_sitting = minetest.settings:get_bool("ts_furniture.enable_sitting", true)
 
--- The following code is from "Get Comfortable [cozy]" (by everamzah; published under WTFPL).
--- Thomas S. modified it, so that it can be used in this mod
-minetest.register_globalstep(function(dtime)
-	local players = minetest.get_connected_players()
-	for i = 1, #players do
-		local name = players[i]:get_player_name()
-		if default.player_attached[name] and not players[i]:get_attach() and
-				(players[i]:get_player_control().up == true or
-						players[i]:get_player_control().down == true or
-						players[i]:get_player_control().left == true or
-						players[i]:get_player_control().right == true or
-						players[i]:get_player_control().jump == true) then
-			players[i]:set_eye_offset({ x = 0, y = 0, z = 0 }, { x = 0, y = 0, z = 0 })
-			players[i]:set_physics_override(1, 1, 1)
-			default.player_attached[name] = false
-			default.player_set_animation(players[i], "stand", 30)
-		end
-	end
-end)
+-- Used for localization
+local S = minetest.get_translator("ts_furniture")
+
+if ts_furniture.enable_sitting and not minetest.get_modpath('cozy') then
+    -- The following code is from "Get Comfortable [cozy]" (by everamzah; published under WTFPL).
+    -- Thomas S. modified it, so that it can be used in this mod
+    minetest.register_globalstep(function(dtime)
+        local players = minetest.get_connected_players()
+        for i = 1, #players do
+            local name = players[i]:get_player_name()
+            if default.player_attached[name] and not players[i]:get_attach() and
+                    (players[i]:get_player_control().up == true or
+                            players[i]:get_player_control().down == true or
+                            players[i]:get_player_control().left == true or
+                            players[i]:get_player_control().right == true or
+                            players[i]:get_player_control().jump == true) then
+                players[i]:set_eye_offset({ x = 0, y = 0, z = 0 }, { x = 0, y = 0, z = 0 })
+                players[i]:set_physics_override(1, 1, 1)
+                default.player_attached[name] = false
+                default.player_set_animation(players[i], "stand", 30)
+            end
+        end
+    end)
+end
 
 ts_furniture.sit = function(name, pos)
 	local player = minetest.get_player_by_name(name)
@@ -154,7 +159,7 @@ function ts_furniture.register_furniture(recipe, description, texture)
 		end
 
 		minetest.register_node(":" .. node_name, {
-			description = description .. " " .. def.description,
+			description = S(description .. " " .. def.description),
 			drawtype = "nodebox",
 			paramtype = "light",
 			paramtype2 = "facedir",

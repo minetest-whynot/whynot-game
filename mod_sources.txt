@@ -32,7 +32,7 @@ Mod: minetest_game/mods/wool
 Mod: minetest_game/mods/xpanes
 
 origin	https://github.com/minetest-mods/craftguide/ (fetch)
-* master 00a79d2 [origin/master] Fix comparing items with their aliases (#95)
+* master 3c3733a [origin/master] Minor cleaning
 Mod: libs/craftguide
 
 origin	https://github.com/minetest-mods/craftguide_reveal (fetch)
@@ -96,7 +96,7 @@ origin	https://repo.or.cz/minetest_hudbars.git (fetch)
 Mod: player/hudbars
 
 origin	https://github.com/minetest-mods/playeranim (fetch)
-* master 560af7e [origin/master] Put dependencies and description in mod.conf depends.txt and description.txt still aren't deleted.
+* master 41f23cf [origin/master] Autodetect the player model version, remove playeranim.model_version
 Mod: player/playeranim
 
 origin	http://repo.or.cz/minetest_show_wielded_item.git (fetch)
@@ -146,8 +146,8 @@ origin	https://github.com/Ezhh/under_sky (fetch)
 * master a15de19 [origin/master] Add cloud removal
 Mod: ambience/under_sky
 
-origin	https://gitlab.com/zombiebot/weather_pack.git (fetch)
-* master 2a8c2d0 [origin/master] MT 0.4.16 compatibility fixes and code clean-up.
+origin	https://gitlab.com/rautars/weather_pack (fetch)
+* master fa9e156 [origin/master] Decrease chance for weather flickering effect (#9)
 Mod: ambience/weather_pack
 
 origin	https://notabug.org/TenPlus1/farming (fetch)
@@ -300,7 +300,7 @@ origin	https://github.com/v-rob/slats (fetch)
 Mod: decor/slats
 
 origin	https://github.com/minetest-mods/ts_furniture (fetch)
-* master 119a7f8 [origin/master] Add support for ethereal
+* master 95d6e9c [origin/master] Add support for localization.
 Mod: decor/ts_furniture
 
 origin	https://gitlab.com/VanessaE/unifieddyes (fetch)

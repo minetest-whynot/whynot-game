@@ -1,10 +1,3 @@
-#    Version of player model.
-#
-#    Player models supported by this mod:
-#    . -- `MTG_4_Jun_2017` (minetest_game after 4 Jun 2017, 0.4.16)
-#    . -- `MTG_4_Nov_2017` (minetest_game after 4 Nov 2017, 0.5.0)
-playeranim.model_version (Version of player model) enum MTG_4_Jun_2017 MTG_4_Jun_2017,MTG_4_Nov_2017
-
 #    The number of frame delay of sideways body rotation. (between 1 and 20).
 playeranim.body_rotation_delay (The delay of sideways body rotation) int 7 1 20
 

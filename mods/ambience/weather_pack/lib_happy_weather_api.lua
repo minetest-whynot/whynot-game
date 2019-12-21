@@ -11,6 +11,7 @@ happy_weather = {}
 -- Local variables which helps organize active and deactive weahers
 local registered_weathers = {}
 local active_weathers = {}
+local meta_plawpos = {} -- meta about Player Last Active Weaher Position
 
 ------------------------------------
 -- Local helper / utility methods --
@@ -78,6 +79,44 @@ local is_player_affected = function(affected_players, player_name)
 		end
 	end
 end
+
+
+local remove_meta_plawpos = function(weather_code, player_name)
+	if #meta_plawpos == 0 then
+		return
+	end
+
+	for k, meta_ in ipairs(meta_plawpos) do
+		if (meta_.name == player_name and meta_.code == weather_code) then
+			table.remove(meta_plawpos, k)
+		end
+	end
+end
+
+local add_meta_plawpos = function(weather_code, player)
+	local meta = {}
+	meta.code = weather_code
+	meta.pos = player:getpos()
+	meta.name = player:get_player_name()
+	
+	remove_meta_plawpos(weather_code, player:get_player_name())
+	table.insert(meta_plawpos, meta)
+end
+
+local get_meta_plawpos = function(weather_code, player_name)
+	if #meta_plawpos == 0 then
+		return nil
+	end
+
+	for k, meta_ in ipairs(meta_plawpos) do
+		if (meta_.name == player_name and meta_.code == weather_code) then
+			return meta_.pos
+		end
+	end
+
+	return nil
+end
+
 
 ---------------------------
 -- Weather API functions --
@@ -179,7 +218,7 @@ local weather_remove_player = function(weather_obj, player)
 	weather_obj.remove_player(player)
 end
 
--- Weather remove_player method nil-safe wrapper
+-- Weather in_area method nil-safe wrapper
 local weather_in_area = function(weather_obj, position)
 	if weather_obj.in_area == nil then
 		return true
@@ -224,14 +263,36 @@ local prepare_starting = function(weather_obj)
 	add_active_weather(weather_obj)
 end
 
+local MAX_DISTANCE_FROM_WEATHER = 35
+
+-- This function aims to remove weather flickering effect when player walks on biome edge.
+-- To accomlish that extra distance is applied before removing player from weather affection.
+local is_outside_recent_weather = function(weather_code, player)
+	local pos = get_meta_plawpos(weather_code, player:get_player_name())
+	if pos == nil then
+		return false
+	end
+
+	local ppos = player:getpos()
+	local d = ((ppos.x - pos.x)^2 + (ppos.y - pos.y)^2 + (ppos.z - pos.z)^2)^0.5
+	return MAX_DISTANCE_FROM_WEATHER - d < 0
+end
+
+
 -- While still active weather can or can not affect players based on area they are
 local render_if_in_area = function(weather_obj, dtime, player)
 	if is_player_affected(weather_obj.affected_players, player:get_player_name()) then
 		if weather_in_area(weather_obj, player:getpos()) then
 			weather_render(weather_obj, dtime, player)
+			add_meta_plawpos(weather_obj.code, player)
 		else
-			weather_remove_player(weather_obj, player)
-			remove_player(weather_obj.affected_players, player:get_player_name())
+			if (is_outside_recent_weather(weather_obj.code, player)) then
+				weather_remove_player(weather_obj, player)
+				remove_player(weather_obj.affected_players, player:get_player_name())
+			-- render weather until player will be completely outside weather range
+			else
+				weather_render(weather_obj, dtime, player)
+			end
 		end
 	else
 		if weather_in_area(weather_obj, player:getpos()) then
@@ -273,7 +334,7 @@ minetest.register_globalstep(function(dtime)
 					remove_player(weather_.affected_players, player:get_player_name())
 					deactivate_weather = true -- should remain true until all players will be removed from weather
 				
-					-- Weather still active updating it
+				-- Weather still active updating it
 				else
 					render_if_in_area(weather_, dtime, player)
 				end

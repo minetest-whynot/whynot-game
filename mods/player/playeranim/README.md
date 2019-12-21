@@ -12,15 +12,8 @@ Created by [Rui](https://github.com/Rui-Minetest), this document was written by 
 ### Version of player model
 
 Player models supported by this mod:
-- `MTG_4_Jun_2017` (minetest_game after 4 Jun 2017, 0.4.16)
-- `MTG_4_Nov_2017` (minetest_game after 4 Nov 2017, 0.5.0)
-
-As there is no automatic way to determine which version is used, this must be configured with advanced settings menu, or by manually editing `playeranim.model_version` entry in minetest.conf.  
-The default value is `MTG_4_Jun_2017`.
-
-Symptoms of having configured the incorrect player model:
-- In rest, arms are raised up, and are either detached from the body, or are too close to the body
-- Cape (if visible) points upward
+- minetest_game after 4 Jun 2017, Minetest 0.4.16
+- minetest_game after 4 Nov 2017, Minetest 0.5.0-dev
 
 ### The delay of sideways body rotation
 

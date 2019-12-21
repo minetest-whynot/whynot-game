@@ -57,6 +57,10 @@ local S = CORE_VERSION >= 500 and core.get_translator("craftguide") or
 		end)
 	end
 
+local ES = function(...)
+	return ESC(S(...))
+end
+
 local maxn, sort, concat, copy, insert, remove =
 	table.maxn, table.sort, table.concat, table.copy,
 	table.insert, table.remove
@@ -134,7 +138,7 @@ local function err(str)
 end
 
 local function msg(name, str)
-	return chat_send(name, fmt("[craftguide] %s", clr("#FFFF00", str)))
+	return chat_send(name, fmt("[craftguide] %s", clr("#f00", str)))
 end
 
 local function is_str(x)
@@ -157,7 +161,7 @@ local function is_group(item)
 	return sub(item, 1, 6) == "group:"
 end
 
-local function clean_item(item)
+local function clean_name(item)
 	if sub(item, 1, 1) == ":" then
 		item = sub(item, 2)
 	end
@@ -276,7 +280,7 @@ local craft_types = {}
 
 function craftguide.register_craft_type(name, def)
 	if not true_str(name) then
-		return err("craftguide.register_craft_type(): name missing")
+		return err"craftguide.register_craft_type(): name missing"
 	end
 
 	if not is_str(def.description) then
@@ -295,8 +299,8 @@ function craftguide.register_craft(def)
 
 	if true_str(def.url) then
 		if not http then
-			return err("No HTTP support for this mod. " ..
-				"Add it to the `secure.http_mods` or `secure.trusted_mods` setting.")
+			return err"No HTTP support for this mod. " ..
+				"Add it to the `secure.http_mods` or `secure.trusted_mods` setting."
 		end
 
 		http.fetch({url = def.url}, function(result)
@@ -312,7 +316,7 @@ function craftguide.register_craft(def)
 	end
 
 	if not is_table(def) or not next(def) then
-		return err("craftguide.register_craft(): craft definition missing")
+		return err"craftguide.register_craft(): craft definition missing"
 	end
 
 	if #def > 1 then
@@ -328,7 +332,7 @@ function craftguide.register_craft(def)
 	end
 
 	if not true_str(def.output) then
-		return err("craftguide.register_craft(): output missing")
+		return err"craftguide.register_craft(): output missing"
 	end
 
 	if not is_table(def.items) then
@@ -398,9 +402,9 @@ local recipe_filters = {}
 
 function craftguide.add_recipe_filter(name, f)
 	if not true_str(name) then
-		return err("craftguide.add_recipe_filter(): name missing")
+		return err"craftguide.add_recipe_filter(): name missing"
 	elseif not is_func(f) then
-		return err("craftguide.add_recipe_filter(): function missing")
+		return err"craftguide.add_recipe_filter(): function missing"
 	end
 
 	recipe_filters[name] = f
@@ -408,9 +412,9 @@ end
 
 function craftguide.set_recipe_filter(name, f)
 	if not is_str(name) then
-		return err("craftguide.set_recipe_filter(): name missing")
+		return err"craftguide.set_recipe_filter(): name missing"
 	elseif not is_func(f) then
-		return err("craftguide.set_recipe_filter(): function missing")
+		return err"craftguide.set_recipe_filter(): function missing"
 	end
 
 	recipe_filters = {[name] = f}
@@ -436,9 +440,9 @@ local search_filters = {}
 
 function craftguide.add_search_filter(name, f)
 	if not true_str(name) then
-		return err("craftguide.add_search_filter(): name missing")
+		return err"craftguide.add_search_filter(): name missing"
 	elseif not is_func(f) then
-		return err("craftguide.add_search_filter(): function missing")
+		return err"craftguide.add_search_filter(): function missing"
 	end
 
 	search_filters[name] = f
@@ -580,6 +584,7 @@ local function get_recipes(item, data, player)
 	local clean_item = reg_aliases[item] or item
 	local recipes = recipes_cache[clean_item]
 	local usages = usages_cache[clean_item]
+
 	if recipes then
 		recipes = apply_recipe_filters(recipes, player)
 	end
@@ -650,7 +655,7 @@ local function get_tooltip(name, info)
 
 		for i = 1, #info.groups do
 			c = c + 1
-			groupstr[c] = clr("yellow", info.groups[i])
+			groupstr[c] = clr("#ff0", info.groups[i])
 		end
 
 		groupstr = concat(groupstr, ", ")
@@ -664,31 +669,32 @@ local function get_tooltip(name, info)
 	end
 
 	if info.cooktime then
-		tooltip = add(S("Cooking time: @1", clr("yellow", info.cooktime)))
+		tooltip = add(S("Cooking time: @1", clr("#ff0", info.cooktime)))
 	end
 
 	if info.burntime then
-		tooltip = add(S("Burning time: @1", clr("yellow", info.burntime)))
+		tooltip = add(S("Burning time: @1", clr("#ff0", info.burntime)))
 	end
 
 	if info.replace then
-		local desc = clr("yellow", get_desc(info.replace))
-		tooltip = add(S("Replaced by @1 on crafting", desc))
+		local desc = clr("#ff0", get_desc(info.replace))
 
 		if info.cooktime then
 			tooltip = add(S("Replaced by @1 on smelting", desc))
 		elseif info.burntime then
 			tooltip = add(S("Replaced by @1 on burning", desc))
+		else
+			tooltip = add(S("Replaced by @1 on crafting", desc))
 		end
 	end
 
 	if info.repair then
-		tooltip = add(S("Repairable by step of @1", clr("yellow", toolrepair .. "%")))
+		tooltip = add(S("Repairable by step of @1", clr("#ff0", toolrepair .. "%")))
 	end
 
 	if info.rarity then
 		local chance = (1 / info.rarity) * 100
-		tooltip = add(S("@1 of chance to drop", clr("yellow", chance .. "%")))
+		tooltip = add(S("@1 of chance to drop", clr("#ff0", chance .. "%")))
 	end
 
 	return fmt("tooltip[%s;%s]", name, ESC(tooltip))
@@ -731,7 +737,7 @@ local function get_output_fs(fs, L)
 			1.1, 1.1, PNG.fire)
 	else
 		local item = L.recipe.output
-		item = clean_item(item)
+		item = clean_name(item)
 		local name = match(item, "%S*")
 
 		if CORE_VERSION >= 510 then
@@ -788,7 +794,7 @@ local function get_grid_fs(fs, rcp, spacing)
 		fs[#fs + 1] = fmt(FMT.label,
 			XOFFSET + (sfinv_only and -1.5 or -1.6),
 			YOFFSET + (sfinv_only and 0.5 or spacing),
-			ESC(S("Recipe's too big to be displayed (@1x@2)", width, rows)))
+			ES("Recipe's too big to be displayed (@1x@2)", width, rows))
 
 		return concat(fs)
 	end
@@ -801,7 +807,7 @@ local function get_grid_fs(fs, rcp, spacing)
 
 	for i = 1, width * rows do
 		local item = rcp.items[i] or ""
-		item = clean_item(item)
+		item = clean_name(item)
 		local name = match(item, "%S*")
 
 		local X = ceil((i - 1) % width - width) + XOFFSET
@@ -889,8 +895,7 @@ local function get_panels(data, fs)
 	local x = 0.33
 
 	if sfinv_only then
-		panels = data.show_usages and
-			{usages = data.usages} or {recipes = data.recipes}
+		panels = data.show_usages and {usages = data.usages} or {recipes = data.recipes}
 	end
 
 	for k, v in pairs(panels) do
@@ -907,35 +912,33 @@ local function get_panels(data, fs)
 
 		local rn = #v
 		local _rn = tostring(rn)
-		local xof_u = tostring(data.unum) .. _rn
-		local xof_r = tostring(data.rnum) .. _rn
-		xof_u = max(-0.3, -((#xof_u - 3) * 0.15))
-		xof_r = max(-0.3, -((#xof_r - 3) * 0.15))
+		local xu = tostring(data.unum) .. _rn
+		local xr = tostring(data.rnum) .. _rn
+		xu = max(-0.3, -((#xu - 3) * 0.15))
+		xr = max(-0.3, -((#xr - 3) * 0.15))
 
 		local is_recipe = k == "recipes"
-		local btn_lab
+		local lbl
 
 		if not sfinv_only and rn == 0 then
-			btn_lab = clr("red", is_recipe and
-				ESC(S"No recipes") or ESC(S"No usages"))
+			lbl = clr("#f00", is_recipe and ES"No recipes" or ES"No usages")
 
 		elseif (not sfinv_only and is_recipe) or
 				(sfinv_only and not data.show_usages) then
-			btn_lab = ESC(S("Recipe @1 of @2", data.rnum, rn))
+			lbl = ES("Recipe @1 of @2", data.rnum, rn)
 
 		elseif not sfinv_only or (sfinv_only and data.show_usages) then
-			btn_lab = ESC(S("Usage @1 of @2", data.unum, rn))
+			lbl = ES("Usage @1 of @2", data.unum, rn)
 
 		elseif sfinv_only then
-			btn_lab = data.show_usages and
-				ESC(S("Usage @1 of @2", data.unum, rn)) or
-				ESC(S("Recipe @1 of @2", data.rnum, rn))
+			lbl = data.show_usages and
+				ES("Usage @1 of @2", data.unum, rn) or
+				ES("Recipe @1 of @2", data.rnum, rn)
 		end
 
 		fs[#fs + 1] = fmt(FMT.label,
-			XOFFSET + (sfinv_only and 2.3 or 1.6) + (is_recipe and xof_r or xof_u),
-			YOFFSET + (sfinv_only and 3.35 or 1.5 + spacing),
-			btn_lab)
+			XOFFSET + (sfinv_only and 2.3 or 1.6) + (is_recipe and xr or xu),
+			YOFFSET + (sfinv_only and 3.35 or 1.5 + spacing), lbl)
 
 		if rn > 1 then
 			local btn_suffix = is_recipe and "recipe" or "usage"
@@ -945,20 +948,13 @@ local function get_panels(data, fs)
 			local y_arrow = YOFFSET + (sfinv_only and 3.25 or 1.4 + spacing)
 
 			if CORE_VERSION >= 520 then
-				fs[#fs + 1] = fmt([[
-					style[%s;border=false;bgimg=%s;bgimg_hovered=%s]
-					style[%s;border=false;bgimg=%s;bgimg_hovered=%s]
-				]],
-				prev_name, PNG.prev, PNG.prev_hover,
-				next_name, PNG.next, PNG.next_hover)
-
-				fs[#fs + 1] = fmt(mul_elem(FMT.button, 2),
-					x_arrow + (is_recipe and xof_r or xof_u),
-						y_arrow, 0.8, 0.8, prev_name, "",
-					x_arrow + 1.8, y_arrow, 0.8, 0.8, next_name, "")
+				fs[#fs + 1] = fmt(mul_elem(FMT.arrow, 2),
+					x_arrow + (is_recipe and xr or xu), y_arrow,
+						PNG.prev, prev_name, "",
+					x_arrow + 1.8, y_arrow, PNG.next, next_name, "")
 			else
 				fs[#fs + 1] = fmt(mul_elem(FMT.arrow, 2),
-					x_arrow + (is_recipe and xof_r or xof_u),
+					x_arrow + (is_recipe and xr or xu),
 						y_arrow, PNG.prev, prev_name, PNG.prev_hover,
 					x_arrow + 1.8, y_arrow, PNG.next, next_name, PNG.next_hover)
 			end
@@ -973,8 +969,6 @@ end
 
 local function make_formspec(name)
 	local data = pdata[name]
-	data.pagemax = max(1, ceil(#data.items / IPP))
-
 	local fs = {}
 
 	if not sfinv_only then
@@ -982,9 +976,10 @@ local function make_formspec(name)
 			size[%f,%f]
 			no_prepend[]
 			bgcolor[#0000]
+			style_type[image_button;border=false]
+			style_type[item_image_button;border=false;bgimg_hovered=%s]
 		]],
-		ROWS + (data.query_item and 6.7 or 0) - 1.2,
-		LINES - 0.3)
+		ROWS + (data.query_item and 6.7 or 0) - 1.2, LINES - 0.3, PNG.selected)
 
 		fs[#fs + 1] = CORE_VERSION >= 510 and
 			fmt("background9[-0.15,-0.2;%f,%f;%s;false;%d]",
@@ -994,47 +989,48 @@ local function make_formspec(name)
 	end
 
 	fs[#fs + 1] = fmt([[
-		style_type[item_image_button;border=false]
 		field[0.25,0.2;%f,1;filter;;%s]
 		field_close_on_enter[filter;false]
-		]],
-		sfinv_only and 2.76 or 2.72, ESC(data.filter))
+	]],
+	sfinv_only and 2.76 or 2.72, ESC(data.filter))
 
 	if CORE_VERSION >= 520 then
 		fs[#fs + 1] = fmt([[
-			style[search;border=false;bgimg=%s;bgimg_hovered=%s]
-			style[clear;border=false;bgimg=%s;bgimg_hovered=%s]
-			style[prev_page;border=false;bgimg=%s;bgimg_hovered=%s]
-			style[next_page;border=false;bgimg=%s;bgimg_hovered=%s]
+			style[search;fgimg=%s;fgimg_hovered=%s]
+			style[clear;fgimg=%s;fgimg_hovered=%s]
+			style[prev_page;fgimg=%s;fgimg_hovered=%s]
+			style[next_page;fgimg=%s;fgimg_hovered=%s]
 		]],
 		PNG.search, PNG.search_hover,
-		PNG.clear, PNG.clear_hover,
-		PNG.prev, PNG.prev_hover,
-		PNG.next, PNG.next_hover)
+		PNG.clear,  PNG.clear_hover,
+		PNG.prev,   PNG.prev_hover,
+		PNG.next,   PNG.next_hover)
 
-		fs[#fs + 1] = fmt(mul_elem(FMT.button, 4),
-			sfinv_only and 2.6 or 2.54, -0.12, 0.85, 1, "search", "",
-			sfinv_only and 3.3 or 3.25, -0.12, 0.85, 1, "clear", "",
-			sfinv_only and 5.45 or (ROWS * 6.83) / 11, -0.12, 0.85, 1, "prev_page", "",
-			sfinv_only and 7.2  or (ROWS * 8.75) / 11, -0.12, 0.85, 1, "next_page", "")
+		fs[#fs + 1] = fmt(mul_elem(FMT.image_button, 4),
+			sfinv_only and 2.6 or 2.54, -0.06, 0.85, 0.85, "", "search", "",
+			sfinv_only and 3.3 or 3.25, -0.06, 0.85, 0.85, "", "clear", "",
+			sfinv_only and 5.45 or (ROWS * 6.83) / 11, -0.06, 0.85, 0.85, "", "prev_page", "",
+			sfinv_only and 7.2  or (ROWS * 8.75) / 11, -0.06, 0.85, 0.85, "", "next_page", "")
 	else
 		fs[#fs + 1] = fmt([[
-			image_button[%f,-0.12;0.85,1;%s;search;;;false;%s]
-			image_button[%f,-0.12;0.85,1;%s;clear;;;false;%s]
+			image_button[%f,-0.06;0.85,0.85;%s;search;;;false;%s]
+			image_button[%f,-0.06;0.85,0.85;%s;clear;;;false;%s]
 			]],
 			sfinv_only and 2.6 or 2.54, PNG.search, PNG.search_hover,
 			sfinv_only and 3.3 or 3.25, PNG.clear, PNG.clear_hover)
 
 		fs[#fs + 1] = fmt(mul_elem(FMT.arrow, 2),
-			sfinv_only and 5.45 or (ROWS * 6.83) / 11,
-				-0.05, PNG.prev, "prev_page", PNG.prev,
-			sfinv_only and 7.2 or (ROWS * 8.75) / 11,
-				-0.05, PNG.next, "next_page", PNG.next)
+			sfinv_only and 5.45 or (ROWS * 6.83) / 11, -0.05,
+				PNG.prev, "prev_page", PNG.prev,
+			sfinv_only and 7.2 or (ROWS * 8.75) / 11, -0.05,
+				PNG.next, "next_page", PNG.next)
 	end
+
+	data.pagemax = max(1, ceil(#data.items / IPP))
 
 	fs[#fs + 1] = fmt("label[%f,%f;%s / %u]",
 		sfinv_only and 6.35 or (ROWS * 7.85) / 11,
-			0.06, clr("yellow", data.pagenum), data.pagemax)
+			0.06, clr("#ff0", data.pagenum), data.pagemax)
 
 	if #data.items == 0 then
 		local no_item = S"No item to show"
@@ -1086,12 +1082,12 @@ local show_fs = function(player, name)
 end
 
 craftguide.register_craft_type("digging", {
-	description = ESC(S"Digging"),
+	description = ES"Digging",
 	icon = "default_tool_steelpick.png",
 })
 
 craftguide.register_craft_type("digging_chance", {
-	description = ESC(S"Digging Chance"),
+	description = ES"Digging Chance",
 	icon = "default_tool_mesepick.png",
 })
 
@@ -1253,6 +1249,20 @@ core.register_craft = function(def)
 			recipes_cache[name] = recipes_cache[name] or {}
 			insert(recipes_cache[name], 1, def)
 		end
+	end
+end
+
+local old_clear_craft = core.clear_craft
+
+core.clear_craft = function(def)
+	old_clear_craft(def)
+
+	if true_str(def) then
+		recipes_cache[def] = nil
+		fuel_cache[def] = nil
+
+	elseif is_table(def) then
+		return -- TODO
 	end
 end
 
@@ -1905,7 +1915,7 @@ if progressive_mode then
 				hud_elem_type = "text",
 				position      = {x = 0.84, y = 1.04},
 				alignment     = {x = 1,    y = 1},
-				number        = 0xFFFFFF,
+				number        = 0xfff,
 				text          = "",
 			}),
 		}
@@ -1956,7 +1966,7 @@ end)
 
 function craftguide.show(name, item, show_usages)
 	if not true_str(name)then
-		return err("craftguide.show(): player name missing")
+		return err"craftguide.show(): player name missing"
 	end
 
 	local data = pdata[name]
