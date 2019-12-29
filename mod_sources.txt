@@ -48,7 +48,7 @@ origin	http://repo.or.cz/minetest_doc_basics.git (fetch)
 Mod: libs/doc_basics
 
 origin	http://repo.or.cz/minetest_doc_items.git (fetch)
-* master 6dd1aaf [origin/master] Clarify show itemstrings setting
+* master 1702e90 [origin/master] Translate slippery
 Mod: libs/doc_items
 
 origin	http://repo.or.cz/minetest_doc_minetest_game.git (fetch)
@@ -300,7 +300,7 @@ origin	https://github.com/v-rob/slats (fetch)
 Mod: decor/slats
 
 origin	https://github.com/minetest-mods/ts_furniture (fetch)
-* master 95d6e9c [origin/master] Add support for localization.
+* master 1154283 [origin/master] Make globalstep optional, Cleanup code, fix Deprecated API
 Mod: decor/ts_furniture
 
 origin	https://gitlab.com/VanessaE/unifieddyes (fetch)

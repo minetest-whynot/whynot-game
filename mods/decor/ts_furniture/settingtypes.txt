@@ -1,1 +1,2 @@
 ts_furniture.enable_sitting (Enable sitting) bool true
+ts_furniture.globalstep (Enable globalstep) bool true
