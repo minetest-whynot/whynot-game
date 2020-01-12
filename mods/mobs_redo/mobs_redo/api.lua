@@ -6,7 +6,7 @@ local use_cmi = minetest.global_exists("cmi")
 
 mobs = {
 	mod = "redo",
-	version = "20191116",
+	version = "20200112",
 	intllib = S,
 	invis = minetest.global_exists("invisibility") and invisibility or {}
 }
@@ -1338,17 +1338,22 @@ function mob_class:replace(pos)
 
 -- print ("replace node = ".. minetest.get_node(pos).name, pos.y)
 
-		local oldnode = {name = what}
-		local newnode = {name = with}
-		local on_replace_return
-
 		if self.on_replace then
-			on_replace_return = self:on_replace(pos, oldnode, newnode)
+
+			local oldnode = what
+			local newnode = with
+
+			-- convert any group: replacements to actual node name
+			if oldnode:find("group:") then
+				oldnode = minetest.get_node(pos).name
+			end
+
+			if self:on_replace(pos, oldnode, newnode) == false then
+				return
+			end
 		end
 
-		if on_replace_return ~= false then
-			minetest.set_node(pos, {name = with})
-		end
+		minetest.set_node(pos, {name = with})
 	end
 end
 
@@ -3290,6 +3295,7 @@ minetest.register_entity(name, setmetatable({
 	jump_height = def.jump_height,
 	drawtype = def.drawtype, -- DEPRECATED, use rotate instead
 	rotate = math.rad(def.rotate or 0), --  0=front, 90=side, 180=back, 270=side2
+	glow = def.glow,
 	lifetimer = def.lifetimer,
 	hp_min = max(1, (def.hp_min or 5) * difficulty),
 	hp_max = max(1, (def.hp_max or 10) * difficulty),

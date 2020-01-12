@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-07 22:13+0100\n"
-"PO-Revision-Date: 2018-05-13 09:37+0000\n"
-"Last-Translator: huzhanrong <480298199@qq.com>\n"
+"PO-Revision-Date: 2019-04-28 09:48+0000\n"
+"Last-Translator: 青草 <qingcaomc@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "minetest/mtg_i18n/zh_Hans/>\n"
 "Language: zh_Hans\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.0-dev\n"
+"X-Generator: Weblate 3.6.1\n"
 
 #: init.lua
 msgid "Air (you hacker you!)"
@@ -56,18 +56,16 @@ msgid "Water Bucket"
 msgstr "水桶"
 
 #: init.lua
-#, fuzzy
 msgid "Brake Rail"
-msgstr "停止的充能铁轨"
+msgstr "减速铁轨"
 
 #: init.lua
 msgid "Cart (Sneak+Click to pick up)"
 msgstr "矿车（潜行＋点击＝捡起来）"
 
 #: init.lua
-#, fuzzy
 msgid "Powered Rail"
-msgstr "加速的充能铁轨"
+msgstr "动力铁轨"
 
 #: init.lua
 msgid "Rail"
@@ -86,9 +84,8 @@ msgid "Acacia Bush Stem"
 msgstr "相思灌木茎"
 
 #: init.lua
-#, fuzzy
 msgid "Acacia Tree Leaves"
-msgstr "相思树树叶"
+msgstr "金合欢树树叶"
 
 #: init.lua
 msgid "Acacia Tree Sapling"
@@ -107,9 +104,8 @@ msgid "Apple"
 msgstr "苹果"
 
 #: init.lua
-#, fuzzy
 msgid "Aspen Tree Leaves"
-msgstr "白杨叶"
+msgstr "白杨树树叶"
 
 #: init.lua
 msgid "Aspen Tree Sapling"
@@ -320,27 +316,22 @@ msgid "Dry Shrub"
 msgstr "干灌木"
 
 #: init.lua
-#, fuzzy
 msgid "Acacia Wood Fence"
-msgstr "相思篱笆"
+msgstr "金合欢栅栏"
 
 #: init.lua
-#, fuzzy
 msgid "Aspen Wood Fence"
-msgstr "白杨围栏"
+msgstr "白杨栅栏"
 
 #: init.lua
-#, fuzzy
 msgid "Jungle Wood Fence"
 msgstr "丛林木栅栏"
 
 #: init.lua
-#, fuzzy
 msgid "Pine Wood Fence"
-msgstr "松木围栏"
+msgstr "松木栅栏"
 
 #: init.lua
-#, fuzzy
 msgid "Apple Wood Fence"
 msgstr "原木栅栏"
 
@@ -389,12 +380,10 @@ msgid "Jungle Grass"
 msgstr "丛林草"
 
 #: init.lua
-#, fuzzy
 msgid "Jungle Tree Leaves"
-msgstr "丛林树叶"
+msgstr "丛林树树叶"
 
 #: init.lua
-#, fuzzy
 msgid "Jungle Tree Sapling"
 msgstr "丛林树苗"
 
@@ -403,7 +392,6 @@ msgid "Jungle Tree"
 msgstr "丛林树"
 
 #: init.lua
-#, fuzzy
 msgid "Jungle Wood Planks"
 msgstr "丛林木板"
 
@@ -428,9 +416,8 @@ msgid "Lava Source"
 msgstr "熔岩源"
 
 #: init.lua
-#, fuzzy
 msgid "Apple Tree Leaves"
-msgstr "白杨叶"
+msgstr "白杨树树叶"
 
 #: init.lua
 msgid "Mese Crystal Fragment"
@@ -513,7 +500,6 @@ msgid "Pine Needles"
 msgstr "松针"
 
 #: init.lua
-#, fuzzy
 msgid "Pine Tree Sapling"
 msgstr "松树树苗"
 
@@ -550,7 +536,6 @@ msgid "Sandstone"
 msgstr "砂石"
 
 #: init.lua
-#, fuzzy
 msgid "Apple Tree Sapling"
 msgstr "白杨树树苗"
 
@@ -707,7 +692,6 @@ msgid "Torch"
 msgstr "火把"
 
 #: init.lua
-#, fuzzy
 msgid "Apple Tree"
 msgstr "白杨树"
 
@@ -720,7 +704,6 @@ msgid "Water Source"
 msgstr "水源"
 
 #: init.lua
-#, fuzzy
 msgid "Apple Wood Planks"
 msgstr "白杨木板"
 
@@ -741,27 +724,22 @@ msgid "Wooden Door"
 msgstr "木门"
 
 #: init.lua
-#, fuzzy
 msgid "Acacia Wood Fence Gate"
-msgstr "洋槐围栏门"
+msgstr "金合欢栅栏门"
 
 #: init.lua
-#, fuzzy
 msgid "Aspen Wood Fence Gate"
-msgstr "白杨围栏门"
+msgstr "白杨栅栏门"
 
 #: init.lua
-#, fuzzy
 msgid "Jungle Wood Fence Gate"
 msgstr "丛林木栅栏门"
 
 #: init.lua
-#, fuzzy
 msgid "Pine Wood Fence Gate"
-msgstr "松木围栏门"
+msgstr "松木栅栏门"
 
 #: init.lua
-#, fuzzy
 msgid "Apple Wood Fence Gate"
 msgstr "栅栏门"
 
@@ -779,77 +757,62 @@ msgid "Steel Trapdoor"
 msgstr "钢活板门"
 
 #: init.lua
-#, fuzzy
 msgid "Black Dye"
 msgstr "黑色染料"
 
 #: init.lua
-#, fuzzy
 msgid "Blue Dye"
 msgstr "蓝色染料"
 
 #: init.lua
-#, fuzzy
 msgid "Brown Dye"
 msgstr "棕色染料"
 
 #: init.lua
-#, fuzzy
 msgid "Cyan Dye"
 msgstr "青色染料"
 
 #: init.lua
-#, fuzzy
 msgid "Dark Green Dye"
 msgstr "深绿色染料"
 
 #: init.lua
-#, fuzzy
 msgid "Dark Grey Dye"
 msgstr "深灰色染料"
 
 #: init.lua
-#, fuzzy
 msgid "Green Dye"
 msgstr "绿色染料"
 
 #: init.lua
-#, fuzzy
 msgid "Grey Dye"
 msgstr "灰色染料"
 
 #: init.lua
-#, fuzzy
 msgid "Magenta Dye"
 msgstr "洋红染料"
 
 #: init.lua
-#, fuzzy
 msgid "Orange Dye"
 msgstr "橙色染料"
 
 #: init.lua
-#, fuzzy
 msgid "Pink Dye"
 msgstr "粉红色染料"
 
 #: init.lua
-#, fuzzy
 msgid "Red Dye"
 msgstr "红色染料"
 
 #: init.lua
-#, fuzzy
 msgid "Violet Dye"
 msgstr "蓝紫色染料"
 
 #: init.lua
-#, fuzzy
 msgid "White Dye"
 msgstr "白色染料"
 
 #: init.lua
-#, fuzzy
 msgid "Yellow Dye"
 msgstr "黄色染料"
 
@@ -898,12 +861,10 @@ msgid "Wooden Hoe"
 msgstr "木锄"
 
 #: init.lua
-#, fuzzy
 msgid "Cotton Seed"
-msgstr "棉花籽"
+msgstr "棉花种子"
 
 #: init.lua
-#, fuzzy
 msgid "Wheat Seed"
 msgstr "小麦种子"
 
@@ -932,7 +893,6 @@ msgid "Permanent Flame"
 msgstr "不灭之火"
 
 #: init.lua
-#, fuzzy
 msgid "White Dandelion"
 msgstr "白蒲公英"
 
@@ -953,9 +913,8 @@ msgid "Red Mushroom"
 msgstr "红蘑菇"
 
 #: init.lua
-#, fuzzy
 msgid "Red Rose"
-msgstr "红色染料"
+msgstr "红玫瑰"
 
 #: init.lua
 msgid "Orange Tulip"
@@ -1646,7 +1605,6 @@ msgid "Yellow Wool"
 msgstr "黄色羊毛"
 
 #: init.lua
-#, fuzzy
 msgid "Iron Bar"
 msgstr "铁栏杆"
 

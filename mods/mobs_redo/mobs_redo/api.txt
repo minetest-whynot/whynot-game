@@ -186,6 +186,7 @@ functions needed for the mob to work properly which contains the following:
                        self.gotten is true for mobs.
    'rotate'            custom model rotation, 0 = front, 90 = side, 180 = back,
                        270 = other side.
+   'glow'              has mob glow without light source, 0 to 15 or nil to disable
    'double_melee_attack' when true has the api choose between 'punch' and
                       'punch2' animations. [DEPRECATED]
 
@@ -321,42 +322,44 @@ for each mob.
 Spawning Mobs in World
 ----------------------
 
+    mobs:spawn({
+       name = "mobs_monster:tree_monster",
+       nodes = {"group:leaves"},
+       max_light = 7,
+    })
+
+Spawn functions require the following settings, some of which already have a
+default setting and can be omitted:
+
+    'name'                is the name of the animal/monster
+    'nodes'               is a list of nodenames on that the animal/monster can
+                          spawn on top of (defaults to {"group:dirt", "group:stone"}
+    'neighbors'           is a list of nodenames on that the animal/monster will
+                          spawn beside (default is {"air"})
+    'interval'            is same as in register_abm() (default is 30)
+    'chance'              is same as in register_abm() (default is 5000)
+    'min_light'           is the minimum light level (default is 0)
+    'max_light'           is the maximum light (default is 15)
+    'min_height'          is the minimum height a mob can spawn (default: -31000)
+    'max_height'          is the maximum height a mob can spawn (default is 31000)
+    'active_object_count' number of this type of mob to spawn at one time inside
+                          map area (default is 1)
+    'day_toggle'          true for day spawning, false for night or nil for
+                          anytime
+    'on_spawn'            is a custom function which runs after mob has spawned
+                          and gives self and pos values.
+
+The older spawn functions are still active and working but have no defaults like
+the mobs:spawn, so it is recommended to use the above instead.
+
 mobs:register_spawn(name, nodes, max_light, min_light, chance,
    active_object_count, max_height, day_toggle)
 
 mobs:spawn_specfic(name, nodes, neighbors, min_light, max_light, interval,
    chance, active_object_count, min_height, max_height, day_toggle, on_spawn)
 
-These functions register a spawn algorithm for the mob. Without this function
-the call the mobs won't spawn.
-
-    'name'                is the name of the animal/monster
-    'nodes'               is a list of nodenames on that the animal/monster can
-                          spawn on top of
-    'neighbors'           is a list of nodenames on that the animal/monster will
-                          spawn beside (default is {"air"} for
-                          mobs:register_spawn)
-    'max_light'           is the maximum of light
-    'min_light'           is the minimum of light
-    'interval'            is same as in register_abm() (default is 30 for
-                          mobs:register_spawn)
-    'chance'              is same as in register_abm()
-    'active_object_count' number of this type of mob to spawn at one time inside
-                          map area
-    'min_height'          is the minimum height the mob can spawn
-    'max_height'          is the maximum height the mob can spawn
-    'day_toggle'          true for day spawning, false for night or nil for
-                          anytime
-    'on_spawn'            is a custom function which runs after mob has spawned
-                          and gives self and pos values.
-
 A simpler way to handle mob spawns has been added with the mobs:spawn(def)
 command which uses above names to make settings clearer:
-
-    mobs:spawn({name = "mobs_monster:tree_monster",
-       nodes = {"group:leaves"},
-       max_light = 7,
-    })
 
 
 For each mob that spawns with this function is a field in mobs.spawning_mobs.

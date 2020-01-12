@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-07 22:13+0100\n"
-"PO-Revision-Date: 2019-02-08 15:10+0000\n"
+"PO-Revision-Date: 2019-12-11 13:37+0000\n"
 "Last-Translator: Tirifto <tirifto@posteo.cz>\n"
 "Language-Team: Esperanto <https://hosted.weblate.org/projects/minetest/"
 "mtg_i18n/eo/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.5-dev\n"
+"X-Generator: Weblate 3.10-dev\n"
 
 #: init.lua
 msgid "Air (you hacker you!)"
@@ -625,31 +625,31 @@ msgstr "Ŝtono"
 
 #: init.lua
 msgid "Coal Ore"
-msgstr "Karberco"
+msgstr "Karba minaĵo"
 
 #: init.lua
 msgid "Copper Ore"
-msgstr "Kuprerco"
+msgstr "Kupra minaĵo"
 
 #: init.lua
 msgid "Diamond Ore"
-msgstr "Diamanterco"
+msgstr "Diamanta minaĵo"
 
 #: init.lua
 msgid "Gold Ore"
-msgstr "Orerco"
+msgstr "Ora minaĵo"
 
 #: init.lua
 msgid "Iron Ore"
-msgstr "Fererco"
+msgstr "Fera minaĵo"
 
 #: init.lua
 msgid "Mese Ore"
-msgstr "Meseerco"
+msgstr "Mesea minaĵo"
 
 #: init.lua
 msgid "Tin Ore"
-msgstr "Stanerco"
+msgstr "Stana minaĵo"
 
 #: init.lua
 msgid "Bronze Sword"

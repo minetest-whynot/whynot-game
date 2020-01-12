@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: Italian locale file for the MTG_i18n module\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-07 22:13+0100\n"
-"PO-Revision-Date: 2019-09-20 15:23+0200\n"
-"Last-Translator: Hamlet <54187342+h4ml3t@users.noreply.github.com>\n"
+"PO-Revision-Date: 2019-11-13 06:04+0000\n"
+"Last-Translator: Jacques Lagrange <Jacques.Reads@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/minetest/"
 "mtg_i18n/it/>\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Weblate 3.10-dev\n"
 
 #: init.lua
 msgid "Air (you hacker you!)"
@@ -57,7 +57,7 @@ msgstr "Secchio d'acqua"
 
 #: init.lua
 msgid "Brake Rail"
-msgstr "Binario freno"
+msgstr "Freno rotaia"
 
 #: init.lua
 msgid "Cart (Sneak+Click to pick up)"
@@ -85,7 +85,7 @@ msgstr "Fusto di cespuglio d'acacia"
 
 #: init.lua
 msgid "Acacia Tree Leaves"
-msgstr "Foglie d'acacia"
+msgstr "Foglie di albero di acacia"
 
 #: init.lua
 msgid "Acacia Tree Sapling"
@@ -105,7 +105,7 @@ msgstr "Mela"
 
 #: init.lua
 msgid "Aspen Tree Leaves"
-msgstr "Foglie di pioppo"
+msgstr "Foglie di albero di pioppo"
 
 #: init.lua
 msgid "Aspen Tree Sapling"
@@ -317,23 +317,23 @@ msgstr "Arbusto secco"
 
 #: init.lua
 msgid "Acacia Wood Fence"
-msgstr "Recinzione di legno d'acacia"
+msgstr "Staccionata di legno d'acacia"
 
 #: init.lua
 msgid "Aspen Wood Fence"
-msgstr "Recinzione di legno di pioppo"
+msgstr "Staccionata di legno di pioppo"
 
 #: init.lua
 msgid "Jungle Wood Fence"
-msgstr "Recinzione di legno della giungla"
+msgstr "Staccionata di legno di albero della giungla"
 
 #: init.lua
 msgid "Pine Wood Fence"
-msgstr "Recinzione di legno di pino"
+msgstr "Staccionata di legno di pino"
 
 #: init.lua
 msgid "Apple Wood Fence"
-msgstr "Recinzione di legno di melo"
+msgstr "Staccionata di legno di melo"
 
 #: init.lua
 msgid "Flint"
@@ -393,7 +393,7 @@ msgstr "Albero della giungla"
 
 #: init.lua
 msgid "Jungle Wood Planks"
-msgstr "Assi di legno della giungla"
+msgstr "Assi di legno di albero della giungla"
 
 #: init.lua
 msgid "Key"
@@ -725,23 +725,23 @@ msgstr "Porta di legno"
 
 #: init.lua
 msgid "Acacia Wood Fence Gate"
-msgstr "Cancello della recinzione di legno d'acacia"
+msgstr "Cancello di legno d'acacia"
 
 #: init.lua
 msgid "Aspen Wood Fence Gate"
-msgstr "Cancello della recinzione di legno di pioppo"
+msgstr "Cancelletto di legno di melo"
 
 #: init.lua
 msgid "Jungle Wood Fence Gate"
-msgstr "Cancello della recinzione di legno della giungla"
+msgstr "Cancelletto di legno di albero della giungla"
 
 #: init.lua
 msgid "Pine Wood Fence Gate"
-msgstr "Cancello della recinzione di legno di pino"
+msgstr "Cancelletto di legno di pino"
 
 #: init.lua
 msgid "Apple Wood Fence Gate"
-msgstr "Cancello della recinzione di legno di melo"
+msgstr "Cancelletto di legno di melo"
 
 #: init.lua
 msgid "Hidden Door Segment"
@@ -757,63 +757,63 @@ msgstr "Botola d'acciaio"
 
 #: init.lua
 msgid "Black Dye"
-msgstr "Tintura nera"
+msgstr "Colorante nero"
 
 #: init.lua
 msgid "Blue Dye"
-msgstr "Tintura blu"
+msgstr "Colorante blu"
 
 #: init.lua
 msgid "Brown Dye"
-msgstr "Tintura marrone"
+msgstr "Colorante marrone"
 
 #: init.lua
 msgid "Cyan Dye"
-msgstr "Tintura ciano"
+msgstr "Colorante ciano"
 
 #: init.lua
 msgid "Dark Green Dye"
-msgstr "Tintura verde scura"
+msgstr "Colorante verde scuro"
 
 #: init.lua
 msgid "Dark Grey Dye"
-msgstr "Tintura grigia scura"
+msgstr "Colorante grigio scuro"
 
 #: init.lua
 msgid "Green Dye"
-msgstr "Tintura verde"
+msgstr "Colorante verde"
 
 #: init.lua
 msgid "Grey Dye"
-msgstr "Tintura grigia"
+msgstr "Colorante grigio"
 
 #: init.lua
 msgid "Magenta Dye"
-msgstr "Tintura magenta"
+msgstr "Colorante magenta"
 
 #: init.lua
 msgid "Orange Dye"
-msgstr "Tintura arancione"
+msgstr "Colorante arancione"
 
 #: init.lua
 msgid "Pink Dye"
-msgstr "Tintura rosa"
+msgstr "Colorante rosa"
 
 #: init.lua
 msgid "Red Dye"
-msgstr "Tintura rossa"
+msgstr "Colorante rosso"
 
 #: init.lua
 msgid "Violet Dye"
-msgstr "Tintura viola"
+msgstr "Colorante viola"
 
 #: init.lua
 msgid "White Dye"
-msgstr "Tintura bianca"
+msgstr "Colorante bianco"
 
 #: init.lua
 msgid "Yellow Dye"
-msgstr "Tintura gialla"
+msgstr "Colorante giallo"
 
 #: init.lua
 msgid "Bread"
@@ -893,7 +893,7 @@ msgstr "Fiamma permanente"
 
 #: init.lua
 msgid "White Dandelion"
-msgstr "Dente di leone bianco"
+msgstr "Tarassaco bianco"
 
 #: init.lua
 msgid "Yellow Dandelion"

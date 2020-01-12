@@ -620,8 +620,8 @@ minetest.register_craft( {
 	type = "shapeless",
         output = "doors:homedecor_closet_mahogany 2",
         recipe = {
-			"doors:homedecor_closet_oak_a",
-			"doors:homedecor_closet_oak_a",
+			"doors:homedecor_closet_oak",
+			"doors:homedecor_closet_oak",
 			"dye:brown"
         },
 })
@@ -643,7 +643,7 @@ minetest.register_craft( {
 	output = "doors:homedecor_basic_panel",
 	recipe = {
 		{ "dye:white", "dye:white", "" },
-		{ "doors:homedecor_wood_plain_a", "basic_materials:brass_ingot", "" },
+		{ "doors:homedecor_wood_plain", "basic_materials:brass_ingot", "" },
 		{ "", "", "" },
 	},
 })

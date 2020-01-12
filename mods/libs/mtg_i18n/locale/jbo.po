@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-07 22:13+0100\n"
-"PO-Revision-Date: 2018-05-10 21:02+0000\n"
-"Last-Translator: Wuzzy <almikes@aol.com>\n"
+"PO-Revision-Date: 2019-05-26 19:22+0000\n"
+"Last-Translator: Ian Townsend <iantownsend@disroot.org>\n"
 "Language-Team: Lojban <https://hosted.weblate.org/projects/minetest/mtg_i18n/"
 "jbo/>\n"
 "Language: jbo\n"
@@ -16,43 +16,43 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.0-dev\n"
+"X-Generator: Weblate 3.7-dev\n"
 
 #: init.lua
 msgid "Air (you hacker you!)"
-msgstr "lo vacri to do zerjonse zo'o toi"
+msgstr "vacri to do zerjonse zo'o toi"
 
 #: init.lua
 msgid "Simple Bed"
-msgstr "lo sampu ckana"
+msgstr "sampu ckana"
 
 #: init.lua
 msgid "Fancy Bed"
-msgstr "lo melbi ckana"
+msgstr "se jadni ckana"
 
 #: init.lua
 msgid "Boat"
-msgstr "lo bloti"
+msgstr "bloti"
 
 #: init.lua
 msgid "Bones"
-msgstr "lo bongu"
+msgstr "gunma lo'i bongu"
 
 #: init.lua
 msgid "Empty Bucket"
-msgstr "lo baktu be noda"
+msgstr "baktu no da"
 
 #: init.lua
 msgid "Lava Bucket"
-msgstr "lo baktu be lo likro'i"
+msgstr "baktu lo likro'i"
 
 #: init.lua
 msgid "River Water Bucket"
-msgstr "lo baktu be lo rirxe djacu"
+msgstr "baktu lo rirxe djacu"
 
 #: init.lua
 msgid "Water Bucket"
-msgstr "lo baktu be lo djacu"
+msgstr "baktu lo djacu"
 
 #: init.lua
 #, fuzzy
@@ -60,6 +60,7 @@ msgid "Brake Rail"
 msgstr "lo terjabre teryre'e"
 
 #: init.lua
+#, fuzzy
 msgid "Cart (Sneak+Click to pick up)"
 msgstr ""
 "lo carce to da'i iklki fe la masno cadzu ku jo'u lo selpevysmacu tezu'e lo "
@@ -71,10 +72,12 @@ msgid "Powered Rail"
 msgstr "lo se dikca teryre'e"
 
 #: init.lua
+#, fuzzy
 msgid "Rail"
 msgstr "lo teryre'e"
 
 #: init.lua
+#, fuzzy
 msgid "Acacia Bush Leaves"
 msgstr "lo atkaci,ia dzitricu pezli"
 
@@ -613,99 +616,100 @@ msgstr "lo snime bliku"
 
 #: init.lua
 msgid "Snow"
-msgstr "lo snime"
+msgstr "snime"
 
 #: init.lua
 msgid "Steel Block"
-msgstr "lo gasta bliku"
+msgstr "bliku lo gasta"
 
 #: init.lua
 msgid "Steel Ingot"
-msgstr "lo gasta manfybli"
+msgstr "gasta"
 
 #: init.lua
 msgid "Stick"
-msgstr "lo grana"
+msgstr "grana"
 
 #: init.lua
 msgid "Stone Block"
-msgstr "lo rokci bliku"
+msgstr "bliku lo rokci"
 
 #: init.lua
+#, fuzzy
 msgid "Stone Brick"
 msgstr "lo morna rokci"
 
 #: init.lua
 msgid "Stone"
-msgstr "lo rokci"
+msgstr "rokci"
 
 #: init.lua
 msgid "Coal Ore"
-msgstr "lo kolme kunro'i"
+msgstr "kunra lo kolme"
 
 #: init.lua
 msgid "Copper Ore"
-msgstr "lo tunka kunro'i"
+msgstr "kunra lo tunka"
 
 #: init.lua
 msgid "Diamond Ore"
-msgstr "lo tabjme kunro'i"
+msgstr "kunra lo tabjme"
 
 #: init.lua
 msgid "Gold Ore"
-msgstr "lo solji kunro'i"
+msgstr "kunra lo solji"
 
 #: init.lua
 msgid "Iron Ore"
-msgstr "lo tirse kunro'i"
+msgstr "kunra lo tirse"
 
 #: init.lua
 msgid "Mese Ore"
-msgstr "lo za'e kunrmese kunro'i"
+msgstr "kunra lo za'e kunrmese"
 
 #: init.lua
 msgid "Tin Ore"
-msgstr "lo tinci kunro'i"
+msgstr "kunra lo tinci"
 
 #: init.lua
 msgid "Bronze Sword"
-msgstr "lo ransu cladakyxa'i"
+msgstr "cladakyxa'i fi lo ransu"
 
 #: init.lua
 msgid "Diamond Sword"
-msgstr "lo tabjme cladakyxa'i"
+msgstr "cladakyxa'i fi lo tabjme"
 
 #: init.lua
 msgid "Mese Sword"
-msgstr "lo za'e kunrmese cladakyxa'i"
+msgstr "cladakyxa'i fi lo za'e kunrmese"
 
 #: init.lua
 msgid "Steel Sword"
-msgstr "lo gasta cladakyxa'i"
+msgstr "cladakyxa'i fi lo gasta"
 
 #: init.lua
 msgid "Stone Sword"
-msgstr "lo rokci cladakyxa'i"
+msgstr "cladakyxa'i fi lo rokci"
 
 #: init.lua
 msgid "Wooden Sword"
-msgstr "lo mudri cladakyxa'i"
+msgstr "cladakyxa'i fi lo mudri"
 
 #: init.lua
 msgid "Tin Block"
-msgstr "lo tinci bliku"
+msgstr "bliku lo tinci"
 
 #: init.lua
 msgid "Tin Ingot"
-msgstr "lo tinci manfybli"
+msgstr "manfybli lo tinci"
 
 #: init.lua
 msgid "Tin Lump"
-msgstr "lo tinci bakfu"
+msgstr "tinci"
 
 #: init.lua
 msgid "Torch"
-msgstr "lo fagytergu'i"
+msgstr "fagytergu'i"
 
 #: init.lua
 #, fuzzy
@@ -727,19 +731,19 @@ msgstr "lo ricrpopulu mudri tanbo"
 
 #: init.lua
 msgid "Glass Door"
-msgstr "lo blaci vrogai"
+msgstr "blaci vrogai"
 
 #: init.lua
 msgid "Obsidian Glass Door"
-msgstr "lo je'erma'ablaci blaci vrogai"
+msgstr "je'erma'ablaci blaci vrogai"
 
 #: init.lua
 msgid "Steel Door"
-msgstr "lo gasta vrogai"
+msgstr "gasta vrogai"
 
 #: init.lua
 msgid "Wooden Door"
-msgstr "lo mudri vrogai"
+msgstr "mudri vrogai"
 
 #: init.lua
 #, fuzzy
@@ -768,255 +772,240 @@ msgstr "lo mudri garbimvrogai"
 
 #: init.lua
 msgid "Hidden Door Segment"
-msgstr "lo se mipri ke vrogai pagbu"
+msgstr "pagbu lo se mipri vrogai"
 
 #: init.lua
-#, fuzzy
 msgid "Wooden Trapdoor"
-msgstr "lo mudri vrogai"
+msgstr "mudri lolvrogai"
 
 #: init.lua
 msgid "Steel Trapdoor"
-msgstr "lo gasta lolvrogai"
+msgstr "gasta lolvrogai"
 
 #: init.lua
-#, fuzzy
 msgid "Black Dye"
-msgstr "lo xekri xinmo"
+msgstr "xinmo lo xekri"
 
 #: init.lua
-#, fuzzy
 msgid "Blue Dye"
-msgstr "lo blanu xinmo"
+msgstr "xinmo lo blanu"
 
 #: init.lua
-#, fuzzy
 msgid "Brown Dye"
-msgstr "lo bunre xinmo"
+msgstr "xinmo lo bunre"
 
 #: init.lua
-#, fuzzy
 msgid "Cyan Dye"
-msgstr "lo cicna xinmo"
+msgstr "xinmo lo cicna"
 
 #: init.lua
-#, fuzzy
 msgid "Dark Green Dye"
-msgstr "lo xekri crino xinmo"
+msgstr "xinmo lo xekri crino"
 
 #: init.lua
-#, fuzzy
 msgid "Dark Grey Dye"
-msgstr "lo xekri grusi xinmo"
+msgstr "xinmo lo xekri grusi"
 
 #: init.lua
-#, fuzzy
 msgid "Green Dye"
-msgstr "lo crino xinmo"
+msgstr "xinmo lo crino"
 
 #: init.lua
-#, fuzzy
 msgid "Grey Dye"
-msgstr "lo grusi xinmo"
+msgstr "xinmo lo grusi"
 
 #: init.lua
-#, fuzzy
 msgid "Magenta Dye"
-msgstr "lo nukni xinmo"
+msgstr "xinmo lo nukni"
 
 #: init.lua
-#, fuzzy
 msgid "Orange Dye"
-msgstr "lo narju xinmo"
+msgstr "xinmo lo narju"
 
 #: init.lua
-#, fuzzy
 msgid "Pink Dye"
-msgstr "lo xunblabi xinmo"
+msgstr "xinmo lo xunblabi"
 
 #: init.lua
-#, fuzzy
 msgid "Red Dye"
-msgstr "lo xunre xinmo"
+msgstr "xinmo lo xunre"
 
 #: init.lua
-#, fuzzy
 msgid "Violet Dye"
-msgstr "lo zirpu xinmo"
+msgstr "xinmo lo zirpu"
 
 #: init.lua
-#, fuzzy
 msgid "White Dye"
-msgstr "lo blabi xinmo"
+msgstr "xinmo lo blabi"
 
 #: init.lua
-#, fuzzy
 msgid "Yellow Dye"
-msgstr "lo pelxu xinmo"
+msgstr "xinmo lo pelxu"
 
 #: init.lua
 msgid "Bread"
-msgstr "lo nanba"
+msgstr "nanba"
 
 #: init.lua
 msgid "Cotton"
-msgstr "lo mapni"
+msgstr "mapni"
 
 #: init.lua
 msgid "Desert Sand Soil"
-msgstr "lo ferti ke cantu'a canre"
+msgstr "ferti canre lo cantu'a"
 
 #: init.lua
 msgid "Wet Desert Sand Soil"
-msgstr "lo cilmo ke ferti ke cantu'a canre"
+msgstr "cilmo ke ferti canre lo cantu'a"
 
 #: init.lua
 msgid "Flour"
-msgstr "lo grupu'o"
+msgstr "grupu'o"
 
 #: init.lua
 msgid "Bronze Hoe"
-msgstr "le ransu te plixa"
+msgstr "ransu te plixa"
 
 #: init.lua
 msgid "Diamond Hoe"
-msgstr "le tabjme te plixa"
+msgstr "tabjme te plixa"
 
 #: init.lua
 msgid "Mese Hoe"
-msgstr "le za'e kunrmese te plixa"
+msgstr "za'e kunrmese te plixa"
 
 #: init.lua
 msgid "Steel Hoe"
-msgstr "le gasta te plixa"
+msgstr "gasta te plixa"
 
 #: init.lua
 msgid "Stone Hoe"
-msgstr "le rokci te plixa"
+msgstr "rokci te plixa"
 
 #: init.lua
 msgid "Wooden Hoe"
-msgstr "le mudri te plixa"
+msgstr "mudri te plixa"
 
 #: init.lua
-#, fuzzy
 msgid "Cotton Seed"
-msgstr "lo mapni tsiju"
+msgstr "tsiju lo mapni"
 
 #: init.lua
-#, fuzzy
 msgid "Wheat Seed"
-msgstr "lo maxri tsiju"
+msgstr "tsiju lo maxri"
 
 #: init.lua
 msgid "Soil"
-msgstr "lo ferti dertu"
+msgstr "ferti dertu"
 
 #: init.lua
 msgid "Wet Soil"
-msgstr "lo cilmo ke ferti dertu"
+msgstr "cilmo ke ferti dertu"
 
 #: init.lua
 msgid "Straw"
-msgstr "lo sudysrasu"
+msgstr "sudysrasu"
 
 #: init.lua
 msgid "Wheat"
-msgstr "lo maxri"
+msgstr "maxri"
 
 #: init.lua
 msgid "Flint and Steel"
-msgstr "lo fagri rokci"
+msgstr "fagri rokci"
 
 #: init.lua
 msgid "Permanent Flame"
-msgstr "lo vitno fagri"
+msgstr "vitno fagri"
 
 #: init.lua
-#, fuzzy
 msgid "White Dandelion"
-msgstr "lo blabi spartaraksaku"
+msgstr "blabi spartaraksaku"
 
 #: init.lua
 msgid "Yellow Dandelion"
-msgstr "lo pelxu spartaraksaku"
+msgstr "pelxu spartaraksaku"
 
 #: init.lua
+#, fuzzy
 msgid "Blue Geranium"
 msgstr "lo blanu plargoni"
 
 #: init.lua
 msgid "Brown Mushroom"
-msgstr "lo bunre ledgrute"
+msgstr "bunre ledgrute"
 
 #: init.lua
 msgid "Red Mushroom"
-msgstr "lo xunre ledgrute"
+msgstr "xunre ledgrute"
 
 #: init.lua
-#, fuzzy
 msgid "Red Rose"
-msgstr "lo xunre xinmo"
+msgstr "xunre rozgu"
 
 #: init.lua
 msgid "Orange Tulip"
-msgstr "lo narju tujli"
+msgstr "narju tujli"
 
 #: init.lua
 msgid "Viola"
-msgstr "lo spatrvi'ola"
+msgstr "spatrvi'ola"
 
 #: init.lua
 msgid "Waterlily"
-msgstr "lo spatrnimfe'a"
+msgstr "spatrnimfe'a"
 
 #: init.lua
 msgid "Ignore (you hacker you!)"
-msgstr "le se tolju'i to do zerjonse zo'o toi"
+msgstr "se tolju'i to do zerjonse zo'o toi"
 
 #: init.lua
+#, fuzzy
 msgid "Screwdriver (left-click rotates face, right-click rotates axis)"
 msgstr "lo lupcartci to da'i iklki lo se pevysmacu tezu'e lo nu cargau toi"
 
 #: init.lua
+#, fuzzy
 msgid "Acacia Wood Slab"
 msgstr "lo atkaci,ia mudri ke xadba bliku"
 
 #: init.lua
+#, fuzzy
 msgid "Aspen Wood Slab"
 msgstr "lo ricrpopulu mudri ke xadba bliku"
 
 #: init.lua
 msgid "Brick Slab"
-msgstr "lo kitybli ke xadba bliku"
+msgstr "xadba bliku lo kitybli"
 
 #: init.lua
 msgid "Bronze Block Slab"
-msgstr "lo ransu ke xadba bliku"
+msgstr "xadba bliku lo ransu"
 
 #: init.lua
 msgid "Cobblestone Slab"
-msgstr "lo lolro'iboi ke xadba bliku"
+msgstr "xadba bliku lo lolro'iboi"
 
 #: init.lua
 msgid "Copper Block Slab"
-msgstr "lo tunka bliku ke xadba bliku"
+msgstr "xadba bliku lo tunka"
 
 #: init.lua
 msgid "Desert Cobblestone Slab"
-msgstr "lo cantu'a lolro'iboi ke xadba bliku"
+msgstr "xadba bliku lo cantu'a lolro'iboi"
 
 #: init.lua
 msgid "Desert Sandstone Block Slab"
-msgstr "lo cantu'a canro'i bliku ke xadba bliku"
+msgstr "xadba bliku lo canro'i be lo cantu'a ku bliku"
 
 #: init.lua
+#, fuzzy
 msgid "Desert Sandstone Brick Slab"
 msgstr "lo morna ke cantu'a canro'i ke xadba bliku"
 
 #: init.lua
 msgid "Desert Sandstone Slab"
-msgstr "lo cantu'a canro'i ke xadba bliku"
+msgstr "xadba bliku lo canro'i be fi lo cantu'a"
 
 #: init.lua
 msgid "Desert Stone Block Slab"

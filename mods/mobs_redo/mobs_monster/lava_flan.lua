@@ -77,6 +77,7 @@ mobs:register_mob("mobs_monster:lava_flan", {
 			texture = "fire_basic_flame.png",
 		})
 	end,
+	glow = 10,
 })
 
 

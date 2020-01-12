@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-12-07 22:13+0100\n"
-"PO-Revision-Date: 2019-01-08 20:06+0000\n"
-"Last-Translator: Balázs Vámos <vamos.balazs@outlook.com>\n"
+"PO-Revision-Date: 2019-12-16 22:21+0000\n"
+"Last-Translator: Ács Zoltán <acszoltan111@gmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/minetest/"
 "mtg_i18n/hu/>\n"
 "Language: hu\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.4-dev\n"
+"X-Generator: Weblate 3.10-dev\n"
 
 #: init.lua
 msgid "Air (you hacker you!)"
@@ -57,11 +57,11 @@ msgstr "Vízzel teli vödör"
 
 #: init.lua
 msgid "Brake Rail"
-msgstr "Vasút fék"
+msgstr "Féksín"
 
 #: init.lua
 msgid "Cart (Sneak+Click to pick up)"
-msgstr "Kiskocsi (Lopakodás (shift) + kattintás kell a felvevéshez)"
+msgstr "Csille (shift + kattintás kell a felvevéshez)"
 
 #: init.lua
 msgid "Powered Rail"
@@ -153,15 +153,15 @@ msgstr "Könyvespolc"
 
 #: init.lua
 msgid "Book With Text"
-msgstr "Könyv írással"
+msgstr "Könyv szöveggel"
 
 #: init.lua
 msgid "Brick Block"
-msgstr "Tégla tömb"
+msgstr "Tégla blokk"
 
 #: init.lua
 msgid "Bronze Block"
-msgstr "Bronz tömb"
+msgstr "Bronz blokk"
 
 #: init.lua
 msgid "Bronze Ingot"
@@ -193,9 +193,10 @@ msgstr "Láda"
 
 #: init.lua
 msgid "Clay Brick"
-msgstr "Agyag tömb"
+msgstr "Tégla"
 
 #: init.lua
+#, fuzzy
 msgid "Clay Lump"
 msgstr "Agyag rög"
 
@@ -209,19 +210,21 @@ msgstr "Felhő"
 
 #: init.lua
 msgid "Coal Block"
-msgstr "Szén tömb"
+msgstr "Szén blokk"
 
 #: init.lua
+#, fuzzy
 msgid "Coal Lump"
 msgstr "Szén rög"
 
 #: init.lua
+#, fuzzy
 msgid "Cobblestone"
-msgstr "Macskakő"
+msgstr "Zúzottkő"
 
 #: init.lua
 msgid "Copper Block"
-msgstr "Réz tömb"
+msgstr "Réz blokk"
 
 #: init.lua
 msgid "Copper Ingot"
@@ -253,7 +256,7 @@ msgstr "Sivatagi homok"
 
 #: init.lua
 msgid "Desert Sandstone Block"
-msgstr "Sivatagi homokkő tömb"
+msgstr "Sivatagi homokkő blokk"
 
 #: init.lua
 msgid "Desert Sandstone Brick"
@@ -265,11 +268,11 @@ msgstr "Sivatagi homokkő"
 
 #: init.lua
 msgid "Desert Stone Block"
-msgstr "Sivatagi kő tömb"
+msgstr "Sivatagi kő blokk"
 
 #: init.lua
 msgid "Desert Stone Brick"
-msgstr "Sivatagi kő tégla"
+msgstr "Sivatagi kőtégla"
 
 #: init.lua
 msgid "Desert Stone"
@@ -277,7 +280,7 @@ msgstr "Sivatagi kő"
 
 #: init.lua
 msgid "Diamond Block"
-msgstr "Gyémánt tömb"
+msgstr "Gyémánt blokk"
 
 #: init.lua
 msgid "Diamond"
@@ -349,7 +352,7 @@ msgstr "Üveg"
 
 #: init.lua
 msgid "Gold Block"
-msgstr "Arany tömb"
+msgstr "Arany blokk"
 
 #: init.lua
 msgid "Gold Ingot"
@@ -365,7 +368,7 @@ msgstr "Fű"
 
 #: init.lua
 msgid "Gravel"
-msgstr "Murva"
+msgstr "Sóder"
 
 #: init.lua
 msgid "Ice"
@@ -416,8 +419,9 @@ msgid "Lava Source"
 msgstr "Láva forrás"
 
 #: init.lua
+#, fuzzy
 msgid "Apple Tree Leaves"
-msgstr "Nyárfa levelek"
+msgstr "Almafa levelek"
 
 #: init.lua
 msgid "Mese Crystal Fragment"
@@ -432,20 +436,21 @@ msgid "Mese Lamp"
 msgstr "Mese lámpa"
 
 #: init.lua
+#, fuzzy
 msgid "Mese Post Light"
-msgstr "Mese posta lámpa"
+msgstr "Mese jelzőfény"
 
 #: init.lua
 msgid "Mese Block"
-msgstr "Mese tömb"
+msgstr "Mese blokk"
 
 #: init.lua
 msgid "Mossy Cobblestone"
-msgstr "Mohás macskakő"
+msgstr "Mohás zúzottkő"
 
 #: init.lua
 msgid "Obsidian Block"
-msgstr "Obszidián tömb"
+msgstr "Obszidián blokk"
 
 #: init.lua
 msgid "Obsidian Brick"
@@ -512,12 +517,14 @@ msgid "Pine Wood Planks"
 msgstr "Fenyő deszka"
 
 #: init.lua
+#, fuzzy
 msgid "Flowing River Water"
-msgstr "Ömlő patakvíz"
+msgstr "Folyó folyóvíz"
 
 #: init.lua
+#, fuzzy
 msgid "River Water Source"
-msgstr "Patak forrás"
+msgstr "Folyó forrás"
 
 #: init.lua
 msgid "Sand"
@@ -525,7 +532,7 @@ msgstr "Homok"
 
 #: init.lua
 msgid "Sandstone Block"
-msgstr "Homokkő tömb"
+msgstr "Homokkő blokk"
 
 #: init.lua
 msgid "Sandstone Brick"
@@ -564,12 +571,14 @@ msgid "Wooden Shovel"
 msgstr "Fa ásó"
 
 #: init.lua
+#, fuzzy
 msgid "Steel Sign"
-msgstr "Acél jelzés"
+msgstr "Acél tábla"
 
 #: init.lua
+#, fuzzy
 msgid "Wooden Sign"
-msgstr "Fa jelzés"
+msgstr "Fa tábla"
 
 #: init.lua
 msgid "Silver Sand"
@@ -593,7 +602,7 @@ msgstr "Csont kulcs"
 
 #: init.lua
 msgid "Snow Block"
-msgstr "Hó tömb"
+msgstr "Hó blokk"
 
 #: init.lua
 msgid "Snow"
@@ -601,7 +610,7 @@ msgstr "Hó"
 
 #: init.lua
 msgid "Steel Block"
-msgstr "Acél tömb"
+msgstr "Acél blokk"
 
 #: init.lua
 msgid "Steel Ingot"
@@ -613,7 +622,7 @@ msgstr "Bot"
 
 #: init.lua
 msgid "Stone Block"
-msgstr "Kő tömb"
+msgstr "Kő blokk"
 
 #: init.lua
 msgid "Stone Brick"
@@ -677,7 +686,7 @@ msgstr "Fa kard"
 
 #: init.lua
 msgid "Tin Block"
-msgstr "Ón tömb"
+msgstr "Ón blokk"
 
 #: init.lua
 msgid "Tin Ingot"
@@ -693,7 +702,7 @@ msgstr "Fáklya"
 
 #: init.lua
 msgid "Apple Tree"
-msgstr "Nyárfa"
+msgstr "Almafa"
 
 #: init.lua
 msgid "Flowing Water"
@@ -705,7 +714,7 @@ msgstr "Forrás"
 
 #: init.lua
 msgid "Apple Wood Planks"
-msgstr "Nyárfa deszkák"
+msgstr "Almafa deszkák"
 
 #: init.lua
 msgid "Glass Door"
@@ -713,7 +722,7 @@ msgstr "Üvegajtó"
 
 #: init.lua
 msgid "Obsidian Glass Door"
-msgstr "Obszidiánüveg-ajtó"
+msgstr "Obszidián-üvegajtó"
 
 #: init.lua
 msgid "Steel Door"
@@ -741,7 +750,7 @@ msgstr "Fenyő kerítéskapu"
 
 #: init.lua
 msgid "Apple Wood Fence Gate"
-msgstr "Fa kerítéskapu"
+msgstr "Almafa kerítéskapu"
 
 #: init.lua
 msgid "Hidden Door Segment"
@@ -749,7 +758,7 @@ msgstr "Rejtett ajtórész"
 
 #: init.lua
 msgid "Wooden Trapdoor"
-msgstr "Fa ajtó"
+msgstr "Almafa csapóajtó"
 
 #: init.lua
 msgid "Steel Trapdoor"
@@ -885,13 +894,15 @@ msgstr "Búza"
 
 #: init.lua
 msgid "Flint and Steel"
-msgstr "Kova és acél"
+msgstr "Kovakő és acél"
 
 #: init.lua
+#, fuzzy
 msgid "Permanent Flame"
-msgstr "Állandó láng"
+msgstr "Örökláng"
 
 #: init.lua
+#, fuzzy
 msgid "White Dandelion"
 msgstr "Fehér pitypang"
 
@@ -932,32 +943,39 @@ msgid "Ignore (you hacker you!)"
 msgstr "Figyelmen kívül hagy"
 
 #: init.lua
+#, fuzzy
 msgid "Screwdriver (left-click rotates face, right-click rotates axis)"
 msgstr ""
 "Csavarhúzó (bal-klikk forgatja szemből, jobb klikk a forgatási tengely "
 "váltáshoz)"
 
 #: init.lua
+#, fuzzy
 msgid "Acacia Wood Slab"
 msgstr "Akácia lap"
 
 #: init.lua
+#, fuzzy
 msgid "Aspen Wood Slab"
 msgstr "Nyárfa lap"
 
 #: init.lua
+#, fuzzy
 msgid "Brick Slab"
 msgstr "Tégla lap"
 
 #: init.lua
+#, fuzzy
 msgid "Bronze Block Slab"
 msgstr "bronz lap"
 
 #: init.lua
+#, fuzzy
 msgid "Cobblestone Slab"
 msgstr "Macskakő lap"
 
 #: init.lua
+#, fuzzy
 msgid "Copper Block Slab"
 msgstr "Réz lap"
 
@@ -1095,7 +1113,7 @@ msgstr "Bronz lépcső"
 
 #: init.lua
 msgid "Cobblestone Stair"
-msgstr "Macskakő lépcső"
+msgstr "Zúzottkő lépcső"
 
 #: init.lua
 msgid "Copper Block Stair"
@@ -1103,11 +1121,11 @@ msgstr "Réz lépcső"
 
 #: init.lua
 msgid "Desert Cobblestone Stair"
-msgstr "Sivatagi macskakő lépcső"
+msgstr "Sivatagi zúzottkő lépcső"
 
 #: init.lua
 msgid "Desert Sandstone Block Stair"
-msgstr "Sivatagi homokkő tömb lépcső"
+msgstr "Sivatagi homokkő blokk lépcső"
 
 #: init.lua
 msgid "Desert Sandstone Brick Stair"
@@ -1531,15 +1549,15 @@ msgstr "Nehéz fémpalack (üres)"
 
 #: init.lua
 msgid "Cobblestone Wall"
-msgstr "Macskakő fal"
+msgstr "Zúzottkő fal"
 
 #: init.lua
 msgid "Desert Cobblestone Wall"
-msgstr "Sivatagi macskakő fal"
+msgstr "Sivatagi zúzottkő fal"
 
 #: init.lua
 msgid "Mossy Cobblestone Wall"
-msgstr "Mohás macskakő fal"
+msgstr "Mohás zúzottkő fal"
 
 #: init.lua
 msgid "Black Wool"
@@ -1611,11 +1629,11 @@ msgstr "Üvegtábla"
 
 #: init.lua
 msgid "Nyan Cat Rainbow"
-msgstr "Nyan macska szivárvány"
+msgstr "Nyan Cat szivárvány"
 
 #: init.lua
 msgid "Nyan Cat"
-msgstr "Nyan macska"
+msgstr "Nyan Cat"
 
 #~ msgid "Leaves"
 #~ msgstr "Levelek"
