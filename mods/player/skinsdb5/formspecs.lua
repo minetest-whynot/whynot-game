@@ -1,4 +1,4 @@
-local S = skinsdb5.S
+local S = minetest.get_translator("skinsdb")
 
 function skinsdb5.get_formspec_context(player)
 	if player then
@@ -25,7 +25,8 @@ function skinsdb5.get_skin_info_formspec(skin_name)
 		formspec = formspec.."image[0,.75;1,2;"..skin.preview.."]"
 	end
 	if texture then
-		formspec = formspec.."label[6,.5;"..S("Raw texture")..":]image[6,1;2,1;"..texture.."]"
+		local raw_size = skin.format == "1.8" and "2,2" or "2,1"
+		formspec = formspec.."label[6,.5;"..S("Raw texture")..":]image[6,1;"..raw_size..";"..texture.."]"
 	end
 	formspec = formspec.."label[2,.5;"..S("Name")..": "..minetest.formspec_escape(skin.description or skin.name).."]"
 	if skin.author then
