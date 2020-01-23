@@ -32,7 +32,7 @@ Mod: minetest_game/mods/wool
 Mod: minetest_game/mods/xpanes
 
 origin	https://github.com/minetest-mods/craftguide/ (fetch)
-* master c9773f1 [origin/master] Fix crash
+* master f9f9988 [origin/master] Fix crash in progressive mode
 Mod: libs/craftguide
 
 origin	https://github.com/minetest-mods/craftguide_reveal (fetch)
@@ -62,10 +62,6 @@ Mod: libs/doc_reveal_chest
 origin	https://github.com/minetest-mods/intllib (fetch)
 * master 9192771 [origin/master] Translated README to Malay.
 Mod: libs/intllib
-
-origin	https://github.com/minetest-mods/mtg_i18n (fetch)
-* master 271cbfb [origin/master] Merge remote-tracking branch 'weblate/master'
-Mod: libs/mtg_i18n
 
 origin	https://github.com/bell07/minetest-whynot_compat (fetch)
 * master 8cff1c0 [origin/master] remove demo spite skin from enhanced player_api
@@ -108,7 +104,7 @@ origin	https://github.com/minetest-mods/wielded_light (fetch)
 Mod: player/wielded_light
 
 origin	https://github.com/bell07/minetest-player_api_modpack (fetch)
-* master fdc3003 [origin/master] misc upstream updates
+* master a0b3a26 [origin/master] update skinsdb5 from upstream port dependencies to mod.conf
 Mod: player_api_modpack/3d_armor
 Mod: player_api_modpack/character_creator
 Mod: player_api_modpack/clothing
