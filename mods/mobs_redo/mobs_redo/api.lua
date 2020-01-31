@@ -6,7 +6,7 @@ local use_cmi = minetest.global_exists("cmi")
 
 mobs = {
 	mod = "redo",
-	version = "20200112",
+	version = "20200123",
 	intllib = S,
 	invis = minetest.global_exists("invisibility") and invisibility or {}
 }
@@ -4267,13 +4267,17 @@ function mobs:alias_mob(old_name, new_name)
 
 		physical = false,
 
-		on_activate = function(self)
+		on_activate = function(self, staticdata)
 
 			if minetest.registered_entities[new_name] then
-				minetest.add_entity(self.object:get_pos(), new_name)
+				minetest.add_entity(self.object:get_pos(), new_name, staticdata)
 			end
 
 			self.object:remove()
+		end,
+
+		get_staticdata = function(self)
+			return self
 		end
 	})
 end

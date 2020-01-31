@@ -408,5 +408,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master c5b7423 [origin/master] on_replace returns node names, even when groups used
+* master 92ab4ee [origin/master] mob alias now transfers staticdata (thanks MoNTE48)
 Mod: mobs_redo/mobs_redo
