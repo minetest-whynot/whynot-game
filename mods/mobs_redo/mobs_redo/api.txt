@@ -420,7 +420,8 @@ Spawn Eggs
 
 mobs:register_egg(name, description, background, addegg, no_creative)
 
-This function registers a spawn egg which can be used by admin to properly spawn in a mob.
+This function registers a spawn egg which can be used to properly spawn in a mob.
+Animals are spawned as tamed unless sneak/shift is held while spawning.
 
    'name'        this is the name of your new mob to spawn e.g. "mob:sheep"
    'description' the name of the new egg you are creating e.g. "Spawn Sheep"
