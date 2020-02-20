@@ -23,7 +23,7 @@ Lucky Blocks: 9
 
 
 Changelog:
-- 1.50 - Added new line_of_sight function that uses raycasting if mt5.0 is found (thanks Astrobe), dont spawn mobs if world anchor nearby (technic or simple_anchor mods)
+- 1.50 - Added new line_of_sight function that uses raycasting if mt5.0 is found (thanks Astrobe), dont spawn mobs if world anchor nearby (technic or simple_anchor mods), chinese local added
 - 1.49- Added mobs:force_capture(self, player) function, api functions now use metatables thanks to bell07
 - 1.48- Add mobs:set_velocity(self, velocity) global function
 - 1.47- Mob damage changes, min and max light level for damage added, ignition sources checked for lava damage

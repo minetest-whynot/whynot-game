@@ -1,0 +1,35 @@
+# Template for translations of mobs_monster mod
+# last update: 2016/June/10
+
+#dirtmonster.lua
+Dirt Monster = 泥土怪
+
+#dungeonmaster.lua
+Dungeon Master = 地穴之主
+
+#init.lua
+[MOD] Mobs Redo 'Monsters' loaded = [模组] Mobs Redo 'Monsters' 已加载
+
+#lava_flan.lua
+Lava Flan = 岩浆饼
+Lava orb = 岩浆球
+Lava Pickaxe = 岩浆镐
+
+#mese_monster.lua
+Mese Monster = 黄石怪
+
+#oerkki.lua
+Oerkki = 奥尔基
+
+#sandmonster.lua
+Sand Monster = 沙怪
+
+#spider.lua
+Spider = 蜘蛛
+Cobweb = 蜘蛛网
+
+#stonemonster.lua
+Stone Monster = 石头怪
+
+#treemonster.lua
+Tree Monster = 树怪

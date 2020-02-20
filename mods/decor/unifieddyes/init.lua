@@ -33,13 +33,7 @@ unifieddyes = {}
 
 local creative_mode = minetest.settings:get_bool("creative_mode")
 
--- Boilerplate to support localized strings if intllib mod is installed.
-local S
-if minetest.get_modpath("intllib") then
-	S = intllib.Getter()
-else
-	S = function(s) return s end
-end
+local S = minetest.get_translator("unifieddyes")
 
 -- the names of the various colors here came from http://www.procato.com/rgb+index/
 
@@ -963,7 +957,7 @@ function unifieddyes.show_airbrush_form(player)
 	local nodepalette = "extended"
 	local showall = unifieddyes.player_showall[player_name]
 
-	t[1] = "size[14.5,8.5]label[7,-0.3;Select a color:]"
+	t[1] = "size[14.5,8.5]label[7,-0.3;"..S("Select a color:").."]"
 	local selindic = "unifieddyes_select_overlay.png^unifieddyes_question.png]"
 
 	local last_right_click = unifieddyes.player_last_right_clicked[player_name]
@@ -972,7 +966,7 @@ function unifieddyes.show_airbrush_form(player)
 			if last_right_click.def.palette == "unifieddyes_palette_colorwallmounted.png" then
 				nodepalette = "wallmounted"
 			elseif last_right_click.def.palette == "unifieddyes_palette_extended.png" then
-				t[#t+1] = "label[0.5,8.25;(Right-clicked a node that supports all 256 colors, showing them all)]"
+				t[#t+1] = "label[0.5,8.25;"..S("(Right-clicked a node that supports all 256 colors, showing them all)").."]"
 				showall = true
 			elseif last_right_click.def.palette ~= "unifieddyes_palette_extended.png"
 			  and last_right_click.def.palette ~= "unifieddyes_palette_colorwallmounted.png"
@@ -986,7 +980,7 @@ function unifieddyes.show_airbrush_form(player)
 	  or not last_right_click.def.groups.ud_param2_colorable
 	  or not last_right_click.def.palette
 	  or not string.find(last_right_click.def.palette, "unifieddyes_palette_") then
-		t[#t+1] = "label[0.5,8.25;(Right-clicked a node not supported by the Airbrush, showing all colors)]"
+		t[#t+1] = "label[0.5,8.25;"..S("(Right-clicked a node not supported by the Airbrush, showing all colors)").."]"
 	end
 
 	local explist = last_right_click.def.explist
@@ -1083,7 +1077,7 @@ function unifieddyes.show_airbrush_form(player)
 		t[#t+1] = color_button_size
 		t[#t+1] = "unifieddyes_onhand_overlay.png]label[10.7,"
 		t[#t+1] = (vps*5.51+vs)
-		t[#t+1] = ";Dyes]"
+		t[#t+1] = ";"..S("Dyes").."]"
 		t[#t+1] = "label[10.7,"
 		t[#t+1] = (vps*5.67+vs)
 		t[#t+1] = ";on hand]"
@@ -1098,7 +1092,7 @@ function unifieddyes.show_airbrush_form(player)
 	if painting_with then
 		t[#t+1] = "label[10.7,"
 		t[#t+1] = (vps*4.90+vs)
-		t[#t+1] = ";Your selection:]"
+		t[#t+1] = ";"..S("Your selection:").."]"
 		t[#t+1] = "label[10.7,"
 		t[#t+1] = (vps*5.07+vs)
 		t[#t+1] = ";"
@@ -1111,19 +1105,19 @@ function unifieddyes.show_airbrush_form(player)
 	else
 		t[#t+1] = "label[10.7,"
 		t[#t+1] = (vps*5.07+vs)
-		t[#t+1] = ";Your selection]"
+		t[#t+1] = ";"..S("Your selection").."]"
 	end
 
-	t[#t+1] = "button_exit[10.5,8;2,1;cancel;Cancel]button_exit[12.5,8;2,1;accept;Accept]"
+	t[#t+1] = "button_exit[10.5,8;2,1;cancel;"..S("Cancel").."]button_exit[12.5,8;2,1;accept;"..S("Accept").."]"
 
 
 	if last_right_click and last_right_click.def and nodepalette ~= "extended" then
 		if showall then
-			t[#t+1] = "button[0,8;2,1;show_avail;Show Available]"
-			t[#t+1] = "label[2,8.25;(Currently showing all 256 colors)]"
+			t[#t+1] = "button[0,8;2,1;show_avail;"..S("Show Available").."]"
+			t[#t+1] = "label[2,8.25;"..S("(Currently showing all 256 colors)").."]"
 		else
-			t[#t+1] = "button[0,8;2,1;show_all;Show All Colors]"
-			t[#t+1] = "label[2,8.25;(Currently only showing what the right-clicked node can use)]"
+			t[#t+1] = "button[0,8;2,1;show_all;"..S("Show All Colors").."]"
+			t[#t+1] = "label[2,8.25;"..S("(Currently only showing what the right-clicked node can use)").."]"
 		end
 	end
 

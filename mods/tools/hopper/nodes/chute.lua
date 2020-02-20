@@ -1,7 +1,4 @@
--- internationalization boilerplate
-local MP = minetest.get_modpath(minetest.get_current_modname())
-local S, NS = dofile(MP.."/intllib.lua")
-
+local S = minetest.get_translator("hopper")
 local function get_chute_formspec(pos)
 	local spos = hopper.get_string_pos(pos)
 	local formspec =

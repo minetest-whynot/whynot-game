@@ -5,8 +5,7 @@ if not minetest.get_modpath("doc") then
 end
 
 -- internationalization boilerplate
-local MP = minetest.get_modpath(minetest.get_current_modname())
-local S, NS = dofile(MP.."/intllib.lua")
+local S = minetest.get_translator("hopper")
 
 hopper.doc.hopper_long_desc = S("Hopper to transfer items between neighboring blocks' inventories.")
 hopper.doc.hopper_usage = S("Items are transfered from the block at the wide end of the hopper to the block at the narrow end of the hopper at a rate of one per second. Items can also be placed directly into the hopper's inventory, or they can be dropped into the space above a hopper and will be sucked into the hopper's inventory automatically.\n\n")

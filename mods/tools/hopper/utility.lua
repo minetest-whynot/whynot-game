@@ -1,7 +1,4 @@
--- internationalization boilerplate
-local MP = minetest.get_modpath(minetest.get_current_modname())
-local S, NS = dofile(MP.."/intllib.lua")
-
+local S = minetest.get_translator("hopper")
 -- Target inventory retrieval
 
 -- looks first for a registration matching the specific node name, then for a registration
