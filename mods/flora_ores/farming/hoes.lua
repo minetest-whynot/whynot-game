@@ -63,8 +63,9 @@ function farming.hoe_on_use(itemstack, user, pointed_thing, uses)
 
 	local pt = pointed_thing
 
-	-- check if pointing at a node
-	if not pt or pt.type ~= "node" then
+	-- am I going to hoe the top of a dirt node?
+	if not pt or pt.type ~= "node"
+	or pt.above.y ~= pt.under.y + 1 then
 		return
 	end
 
@@ -100,7 +101,8 @@ function farming.hoe_on_use(itemstack, user, pointed_thing, uses)
 
 	minetest.sound_play("default_dig_crumbly", {pos = pt.under, gain = 0.5})
 
-	local wear = 65535 / (uses -1)
+	local wdef = itemstack:get_definition()
+	local wear = 65535 / (uses - 1)
 
 	if farming.is_creative(user:get_player_name()) then
 		if tr then
@@ -114,6 +116,11 @@ function farming.hoe_on_use(itemstack, user, pointed_thing, uses)
 		itemstack = toolranks.new_afteruse(itemstack, user, under, {wear = wear})
 	else
 		itemstack:add_wear(wear)
+	end
+
+	if itemstack:get_count() == 0 and wdef.sound and wdef.sound.breaks then
+		minetest.sound_play(wdef.sound.breaks, {pos = pt.above,
+			gain = 0.5}, true)
 	end
 
 	return itemstack

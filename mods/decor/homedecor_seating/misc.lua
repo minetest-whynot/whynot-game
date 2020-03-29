@@ -212,7 +212,7 @@ minetest.register_craft( {
         recipe = {
 			{ "group:wood", "group:wood", "group:wood" },
 			{ "group:wood", "group:wood", "group:wood" },
-			{ "homedecor:pole_wrought_iron", "", "homedecor:pole_wrought_iron" }
+			{ "basic_materials:steel_bar", "", "basic_materials:steel_bar" }
         },
 })
 
@@ -316,7 +316,7 @@ minetest.register_craft({
 	recipe = {
 		{ "", "", "wool:black" },
 		{ "", "wool:black", "default:steel_ingot" },
-		{ "group:stick", "homedecor:pole_wrought_iron", "group:stick" }
+		{ "group:stick", "basic_materials:steel_bar", "group:stick" }
 	},
 })
 
@@ -325,7 +325,7 @@ minetest.register_craft({
 	recipe = {
 		{ "dye:black", "building_blocks:sticks", "group:wool" },
 		{ "basic_materials:plastic_sheet", "group:wool", "default:steel_ingot" },
-		{ "building_blocks:sticks", "homedecor:pole_wrought_iron", "building_blocks:sticks" }
+		{ "building_blocks:sticks", "basic_materials:steel_bar", "building_blocks:sticks" }
 	},
 })
 

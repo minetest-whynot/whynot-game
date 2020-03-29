@@ -58,4 +58,4 @@ if minetest.get_modpath("lucky_block") then
 	})
 end
 
-print (S("[MOD] Hopper loaded"))
+minetest.log("action", "[hopper] Hopper mod loaded")

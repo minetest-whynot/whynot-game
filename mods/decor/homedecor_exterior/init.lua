@@ -349,7 +349,7 @@ minetest.register_craft({
 	recipe = {
 		{ "","homedecor:fence_chainlink","" },
 		{ "default:steel_ingot","fake_fire:embers","default:steel_ingot" },
-		{ "homedecor:pole_wrought_iron","default:steel_ingot","homedecor:pole_wrought_iron" }
+		{ "basic_materials:steel_bar","default:steel_ingot","basic_materials:steel_bar" }
 	},
 })
 

@@ -36,7 +36,8 @@ register_plant("potato_3", 15, 40, nil, "", -1, farming.potato)
 register_plant("tomato_7", 5, 20, nil, "", -1, farming.tomato)
 register_plant("corn_7", 12, 22, nil, "", -1, farming.corn)
 register_plant("coffee_5", 20, 45, {"default:dirt_with_dry_grass",
-	"default:dirt_with_rainforest_litter"}, "", -1, farming.coffee)
+	"default:dirt_with_rainforest_litter",
+	"default:dry_dirt_with_dry_grass"}, "", -1, farming.coffee)
 register_plant("raspberry_4", 3, 10, nil, "", -1, farming.raspberry)
 register_plant("rhubarb_3", 3, 15, nil, "", -1, farming.rhubarb)
 register_plant("blueberry_4", 3, 10, nil, "", -1, farming.blueberry)
@@ -129,7 +130,7 @@ end
 if farming.pineapple then
 minetest.register_decoration({
 	deco_type = "simple",
-	place_on = {"default:dirt_with_dry_grass"},
+	place_on = {"default:dirt_with_dry_grass", "default:dry_dirt_with_dry_grass"},
 	sidelen = 16,
 	noise_params = {
 		offset = 0,

@@ -920,7 +920,7 @@ minetest.register_craft({
 minetest.register_craft({
 	output = "homedecor:sportbench",
 	recipe = {
-		{ "stairs:slab_steelblock","homedecor:pole_wrought_iron","stairs:slab_steelblock" },
+		{ "stairs:slab_steelblock","basic_materials:steel_bar","stairs:slab_steelblock" },
 		{ "default:steel_ingot","wool:black","default:steel_ingot" },
 		{ "default:steel_ingot","wool:black","default:steel_ingot" }
 	},

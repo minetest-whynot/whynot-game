@@ -38,6 +38,14 @@ local canned_food_definitions = {
 		amount = 3,
 		sugar = false -- must not use sugar to be available in vanilla
 	},
+	wild_blueberry_jam = {
+		proper_name = "Wild blueberry jam",
+		found_in = "default",
+		obj_name = "default:blueberries",
+		orig_nutritional_value = 2,
+		amount = 6,
+		sugar = false -- must not use sugar to be available in vanilla
+	},
 	dandelion_jam = {
 		proper_name = "Dandelion jam",
 		found_in = "flowers",
@@ -100,6 +108,14 @@ local canned_food_definitions = {
 		proper_name = "Blueberry jam",
 		found_in = "farming",
 		obj_name = "farming:blueberries",
+		orig_nutritional_value = 1,
+		amount = 6,
+		sugar = true
+	},
+	blackberry_jam = {
+		proper_name = "Blackberry jam",
+		found_in = "farming",
+		obj_name = "farming:blackberry",
 		orig_nutritional_value = 1,
 		amount = 6,
 		sugar = true

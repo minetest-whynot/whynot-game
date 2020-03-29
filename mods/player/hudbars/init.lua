@@ -316,6 +316,9 @@ function hb.change_hudbar(player, identifier, new_value, new_max_value, new_icon
 
 	local name = player:get_player_name()
 	local hudtable = hb.get_hudtable(identifier)
+	if not hudtable.hudstate[name] then
+		return false
+	end
 	local value_changed, max_changed = false, false
 
 	if new_value ~= nil then

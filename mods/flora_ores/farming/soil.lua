@@ -22,6 +22,9 @@ minetest.register_node("farming:soil_wet", {
 -- sand is not soil, change existing sand-soil to use normal soil
 minetest.register_alias("farming:desert_sand_soil", "farming:soil")
 minetest.register_alias("farming:desert_sand_soil_wet", "farming:soil_wet")
+-- also change new dry soil to use normal soil
+minetest.register_alias("farming:dry_soil", "farming:soil")
+minetest.register_alias("farming:dry_soil_wet", "farming:soil_wet")
 
 -- if water near soil then change to wet soil
 minetest.register_abm({

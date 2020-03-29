@@ -1,0 +1,26 @@
+# textdomain: orbs_of_time
+
+
+### init.lua ###
+
+Orb of Dawn=
+Orb of Dusk=
+Orb of Midday=
+Orb of Midnight=
+
+This magical orb grants you the power to banish the Sun to the bottom of the world.=
+
+This magical orb grants you the power to bring the Sun to eastern horizon.=
+
+This magical orb grants you the power to bring the Sun to the zenith of the sky.=
+
+This magical orb grants you the power to send the Sun to western horizon.=
+
+When weilded, use this item and day will break. The day will then progress normally from there. This orb can be used eight times - once for each diamond that was used to craft it.=
+
+When weilded, use this item and night will fall. The night will then progress normally from there. This orb can be used eight times - once for each diamond that was used to craft it.=
+
+When weilded, use this item and the Moon will jump to its highest point. The night will then progress normally from there. This orb can be used eight times - once for each diamond that was used to craft it.=
+
+When weilded, use this item and the Sun will jump to its highest point. The day will then progress normally from there. This orb can be used eight times - once for each diamond that was used to craft it.=
+

@@ -245,6 +245,18 @@ minetest.register_craft( {
 	},
 })
 
+if not minetest.get_modpath("moreores") then
+    -- Without moreores, there still should be a way to create brass.
+    minetest.register_craft( {
+        output = "basic_materials:brass_ingot 9",
+        recipe = {
+	    {"default:copper_ingot", "default:tin_ingot", "default:copper_ingot"},
+	    {"default:gold_ingot", "default:copper_ingot", "default:gold_ingot"},
+	    {"default:copper_ingot", "default:tin_ingot", "default:copper_ingot"},
+        },
+    })
+end
+
 minetest.register_craft( {
 	type = "shapeless",
 	output = "basic_materials:brass_ingot 9",

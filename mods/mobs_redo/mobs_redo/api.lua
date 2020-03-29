@@ -6,7 +6,7 @@ local use_cmi = minetest.global_exists("cmi")
 
 mobs = {
 	mod = "redo",
-	version = "20200207",
+	version = "20200326",
 	intllib = S,
 	invis = minetest.global_exists("invisibility") and invisibility or {}
 }
@@ -230,10 +230,15 @@ function mob_class:set_velocity(v)
 
 	local yaw = (self.object:get_yaw() or 0) + self.rotate
 
+	-- nil check for velocity
+	v = v or 0
+
 	-- set velocity with hard limit of 10
+	local vel = self.object:get_velocity()
+
 	self.object:set_velocity({
 		x = max(-10, min((sin(yaw) * -v) + c_x, 10)),
-		y = max(-10, min(self.object:get_velocity().y, 10)),
+		y = max(-10, min((vel and vel.y or 0), 10)),
 		z = max(-10, min((cos(yaw) * v) + c_y, 10))
 	})
 end
@@ -732,7 +737,7 @@ function mob_class:check_for_death(cmi_cause)
 
 	-- has health actually changed?
 	if self.health == self.old_health and self.health > 0 then
-		return
+		return false
 	end
 
 	self.old_health = self.health
@@ -835,6 +840,11 @@ function mob_class:is_at_cliff()
 		return false
 	end
 
+	-- if object no longer exists then return
+	if not self.object:get_luaentity() then
+		return false
+	end
+
 	local yaw = self.object:get_yaw()
 	local dir_x = -sin(yaw) * (self.collisionbox[4] + 0.5)
 	local dir_z = cos(yaw) * (self.collisionbox[4] + 0.5)
@@ -891,7 +901,7 @@ function mob_class:do_env_damage()
 	-- remove mob if standing inside ignore node
 	if self.standing_in == "ignore" then
 		self.object:remove()
-		return
+		return true
 	end
 
 	-- is mob light sensative, or scared of the dark :P
@@ -906,7 +916,7 @@ function mob_class:do_env_damage()
 
 			effect(pos, 5, "tnt_smoke.png")
 
-			if self:check_for_death({type = "light"}) then return end
+			if self:check_for_death({type = "light"}) then return true end
 		end
 	end
 
@@ -925,7 +935,7 @@ function mob_class:do_env_damage()
 			effect(pos, 5, "bubble.png", nil, nil, 1, nil)
 
 			if self:check_for_death({type = "environment",
-					pos = pos, node = self.standing_in}) then return end
+					pos = pos, node = self.standing_in}) then return true end
 		end
 
 	-- lava or fire or ignition source
@@ -941,8 +951,8 @@ function mob_class:do_env_damage()
 
 			effect(pos, 5, "fire_basic_flame.png", nil, nil, 1, nil)
 
-			if self:check_for_death({type = "environment",
-					pos = pos, node = self.standing_in, hot = true}) then return end
+			if self:check_for_death({type = "environment", pos = pos,
+					node = self.standing_in, hot = true}) then return true end
 		end
 
 	-- damage_per_second node check
@@ -953,7 +963,7 @@ function mob_class:do_env_damage()
 		effect(pos, 5, "tnt_smoke.png")
 
 		if self:check_for_death({type = "environment",
-				pos = pos, node = self.standing_in}) then return end
+				pos = pos, node = self.standing_in}) then return true end
 	end
 --[[
 	--- suffocation inside solid node
@@ -965,10 +975,10 @@ function mob_class:do_env_damage()
 		self.health = self.health - self.suffocation
 
 		if self:check_for_death({type = "environment",
-				pos = pos, node = self.standing_in}) then return end
+				pos = pos, node = self.standing_in}) then return true end
 	end
 ]]
-	self:check_for_death({type = "unknown"})
+	return self:check_for_death({type = "unknown"})
 end
 
 
@@ -3154,7 +3164,7 @@ function mob_class:on_step(dtime)
 
 	if self.delay and self.delay > 0 then
 
-		local yaw = self.object:get_yaw()
+		local yaw = self.object:get_yaw() or 0
 
 		if self.delay == 1 then
 			yaw = self.target_yaw
@@ -3238,7 +3248,7 @@ function mob_class:on_step(dtime)
 		self.env_damage_timer = 0
 
 		-- check for environmental damage (water, fire, lava etc.)
-		self:do_env_damage()
+		if self:do_env_damage() then return end
 
 		-- node replace check (cow eats grass etc.)
 		self:replace(pos)
@@ -3270,7 +3280,8 @@ function mob_class:on_blast(damage)
 		damage_groups = {fleshy = damage},
 	}, nil)
 
-	return false, true, {}
+	-- return no damage, no knockback, no item drops, mob api handles all
+	return false, false, {}
 end
 
 
