@@ -6,28 +6,12 @@ local register_internal_material = function(subname, groups, tiles, subdesc, sou
 		groups = groups,
 		sounds = sounds
 	})
-	if minetest.get_modpath("csh") then
-		csh.register_material("princess:"..subname, {
-			subname = subname,
-			description = subdesc,
-			tiles = tiles,
-			groups = table.copy(groups),
-			sounds = sounds
-		})
-	end
-	if minetest.get_modpath("moreblocks") then
-		stairsplus:register_all("stairs", subname, "princess:"..subname, {
-			description = subdesc,
-			tiles = tiles,
-			groups = table.copy(groups),
-			sounds = sounds
-		})
-	else
-		stairs.register_stair_and_slab(subname, "princess:"..subname, table.copy(groups), tiles,
-				subdesc.." Stairs", subdesc.." Slab", sounds)
-		if minetest.get_modpath("mcstair") then
-			mcstair.add("stairs:stair_"..subname)
-		end
+	stairs.register_stair_and_slab(subname, "princess:"..subname, table.copy(groups), tiles,
+			subdesc.." Stairs", subdesc.." Slab", sounds)
+	if minetest.get_modpath("mcstair") then
+		mcstair.register(subname)
+		minetest.register_alias("stairs:stair_"..subname.."_outer", "stairs:stair_outer_"..subname)
+		minetest.register_alias("stairs:stair_"..subname.."_inner", "stairs:stair_inner_"..subname)
 	end
 end
 

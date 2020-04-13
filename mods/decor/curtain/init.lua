@@ -56,7 +56,7 @@ for _,v in ipairs(color_table) do
 		},
 		selection_box = {
 			type = "fixed",
-			fixed = {-0.5, -0.5, 0.3125, 0.5, 0.5, 0.5},
+			fixed = {-0.5, 0, 0.3125, 0.5, 0.5, 0.5},
 		},
 		sounds = default.node_sound_defaults(),
 		groups = {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,not_in_creative_inventory=1},
@@ -105,7 +105,7 @@ for _,v in ipairs(color_table) do
 		},
 		selection_box = {
 			type = "fixed",
-			fixed = {-0.5, -1.5, 0.3125, 0.5, 0.5, 0.5},
+			fixed = {-0.5, 0, 0.3125, 0.5, 0.5, 0.5},
 		},
 		sounds = default.node_sound_defaults(),
 		groups = {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,not_in_creative_inventory=1},

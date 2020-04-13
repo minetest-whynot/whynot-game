@@ -1,7 +1,7 @@
 
 bell07	https://github.com/bell07/minetest_game (fetch)
 origin	https://github.com/minetest/minetest_game (fetch)
-* master                 fceceb8 [origin/stable-5: ahead 1] Fix builtin item metatable.
+* master                 56167a6 [origin/stable-5: ahead 2] Merge remote-tracking branch 'origin/stable-5'
 Mod: minetest_game/mods/beds
 Mod: minetest_game/mods/binoculars
 Mod: minetest_game/mods/boats
@@ -28,11 +28,12 @@ Mod: minetest_game/mods/stairs
 Mod: minetest_game/mods/tnt
 Mod: minetest_game/mods/vessels
 Mod: minetest_game/mods/walls
+Mod: minetest_game/mods/weather
 Mod: minetest_game/mods/wool
 Mod: minetest_game/mods/xpanes
 
 origin	https://github.com/minetest-mods/craftguide/ (fetch)
-* master 7793019 [origin/master] Adapt to new engine API
+* master 689840d [origin/master] Remove progress bar because of too much issues
 Mod: libs/craftguide
 
 origin	https://github.com/minetest-mods/craftguide_reveal (fetch)
@@ -40,7 +41,7 @@ origin	https://github.com/minetest-mods/craftguide_reveal (fetch)
 Mod: libs/craftguide_reveal
 
 origin	http://repo.or.cz/minetest_doc.git (fetch)
-* master 4fb5d6d [origin/master] Move style_type to entry part only
+* master b7750f3 [origin/master] Use ephemeral sounds
 Mod: libs/doc
 
 origin	http://repo.or.cz/minetest_doc_basics.git (fetch)
@@ -48,7 +49,7 @@ origin	http://repo.or.cz/minetest_doc_basics.git (fetch)
 Mod: libs/doc_basics
 
 origin	http://repo.or.cz/minetest_doc_items.git (fetch)
-* master 1702e90 [origin/master] Translate slippery
+* master fc2145a [origin/master] Pick original description if tt mod is used
 Mod: libs/doc_items
 
 origin	http://repo.or.cz/minetest_doc_minetest_game.git (fetch)
@@ -72,7 +73,7 @@ origin	https://github.com/Chemguy99/armor_addon (fetch)
 Mod: player/armor_addon
 
 origin	https://github.com/minetest-mods/awards (fetch)
-* master da3d9b3 [origin/master] Add awards for death, pipeworks, and mesecons
+* master ce58720 [origin/master] Fix group total, fix item increment count argument, add player checks, resize award icon, fix log output
 Mod: player/awards
 
 origin	https://github.com/minetest-mods/cozy (fetch)
@@ -84,11 +85,11 @@ origin	http://repo.or.cz/minetest_hbhunger (fetch)
 Mod: player/hbhunger
 
 origin	https://github.com/minetest-mods/hbsprint (fetch)
-* master 2547242 [origin/master] Fix typo in autohide setting, default to true again
+* master 2547242 [origin/master: ahead 45, behind 48] Fix typo in autohide setting, default to true again
 Mod: player/hbsprint
 
 origin	https://repo.or.cz/minetest_hudbars.git (fetch)
-* master 7993fea [origin/master] Version 2.2.2
+* master a250d2a [origin/master] Add z-index to HUD elements
 Mod: player/hudbars
 
 origin	https://github.com/minetest-mods/playeranim (fetch)
@@ -96,7 +97,7 @@ origin	https://github.com/minetest-mods/playeranim (fetch)
 Mod: player/playeranim
 
 origin	http://repo.or.cz/minetest_show_wielded_item.git (fetch)
-* master 2d4cc42 [origin/master] Initial commit + version 1.0.0
+* master 83f1997 [origin/master] Add z_index to HUD definition
 Mod: player/show_wielded_item
 
 origin	https://github.com/minetest-mods/wielded_light (fetch)
@@ -147,7 +148,7 @@ origin	https://gitlab.com/rautars/weather_pack (fetch)
 Mod: ambience/weather_pack
 
 origin	https://notabug.org/TenPlus1/farming (fetch)
-* master 0a3b446 [origin/master] add compatibility for new dry_soil nodes
+* master 17359d5 [origin/master] fix pumpkin drop with scythe
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
@@ -227,7 +228,7 @@ origin	https://github.com/lisacvuk/minetest-toolranks (fetch)
 Mod: tools/toolranks
 
 origin	https://github.com/minetest-mods/trash_can (fetch)
-* master e2b6b0f [origin/master] Update mod.conf (#6)
+* master c6ef1d7 [origin/master] Add MineClone2 compatibility (#10)
 Mod: tools/trash_can
 
 origin	https://github.com/minetest-mods/woodcutting (fetch)
@@ -251,11 +252,11 @@ origin	https://github.com/Napiophelios/campfire (fetch)
 Mod: decor/campfire
 
 origin	https://github.com/pithydon/curtain (fetch)
-* master cd30988 [origin/master] kill bfd support clean up and license change
+* master 600e39f [origin/master] Change selection box.
 Mod: decor/curtain
 
 origin	http://repo.or.cz/minetest_dice2.git (fetch)
-* master 3e2290a [origin/master] Version 1.3 and MIT
+* master 1feb5bb [origin/master] Add TRUE ephemeral sounds
 Mod: decor/dice2
 
 origin	https://github.com/cdqwertz/flower_pot (fetch)
@@ -284,7 +285,7 @@ origin	https://github.com/sbrl/plasticbox (fetch)
 Mod: decor/plasticbox
 
 origin	https://github.com/pithydon/princess (fetch)
-* master e71b168 [origin/master] remove version number
+* master dd4fff0 [origin/master] mcstair update
 Mod: decor/princess
 
 origin	https://github.com/minetest-mods/realchess (fetch)
@@ -404,9 +405,9 @@ Mod: mesecons/mesecons_walllever
 Mod: mesecons/mesecons_wires
 
 origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
-* master 2663922 [origin/master] chinese local added (thanks IFRFSX)
+* master ffc1362 [origin/master] add sanity check to spiders
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master 9c60e96 [origin/master] add value for nil yaw
+* master bff3132 [origin/master] re-enable raycasting line of sight (should work now)
 Mod: mobs_redo/mobs_redo

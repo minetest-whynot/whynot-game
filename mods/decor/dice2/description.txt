@@ -1,1 +1,0 @@
-Decorational dice blocks. They are facing a random direction when placed and change their facing direction when rightclicked.

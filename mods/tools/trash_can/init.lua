@@ -1,3 +1,33 @@
+-- standard compatibility switcher block.
+
+local moditems = {}  -- switcher
+local mineclone_path = minetest.get_modpath("mcl_core") and mcl_core
+
+if mineclone_path then -- means MineClone 2 is loaded
+	moditems.iron_item = "mcl_core:iron_ingot" -- MCL version of iron ingot
+	moditems.coal_item = "mcl_core:coalblock"  -- MCL version of coal block
+	moditems.green_dye = "mcl_dye:green"       -- MCL version of green dye
+	moditems.sounds = mcl_sounds.node_sound_defaults
+	moditems.trashcan_infotext = nil
+	moditems.dumpster_infotext = nil
+	-- trying to imitate MCL boxart (no getter API)
+	moditems.boxart = "bgcolor[#d0d0d0;false]listcolors[#9d9d9d;#9d9d9d;#5c5c5c;#000000;#ffffff]"
+	moditems.trashbin_groups = {pickaxey=1,axey=1,handy=1,swordy=1,flammable=1,destroy_by_lava_flow=1,craftitem=1}
+	moditems.dumpster_groups = {pickaxey=1,axey=1,handy=1,swordy=1,flammable=0,destroy_by_lava_flow=0,craftitem=1}
+
+else -- fallback, assume default (Minetest Game) is loaded
+	moditems.iron_item = "default:steel_ingot" -- MTG iron ingot
+	moditems.coal_item = "default:coalblock"   -- MTG coal block
+	moditems.green_dye = "dye:dark_green"      -- MTG version of green dye
+	moditems.sounds = default.node_sound_defaults
+	moditems.trashcan_infotext = "Trash Can"
+	moditems.dumpster_infotext = "Dumpster"
+	moditems.boxart = ""
+	moditems.trashbin_groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3}
+	moditems.dumpster_groups = {cracky=3,oddly_breakable_by_hand=1}
+end
+
+
 --
 -- Functions
 --
@@ -33,10 +63,9 @@ local function get_dumpster_sound()
 		dig = {name="metal_bang", gain=0.6},
 		dug = {name="default_dug_node", gain=1.0}
 	}
-	default.node_sound_defaults(sndtab)
+	moditems.sounds(sndtab)
 	return sndtab
 end
-
 --
 -- Nodeboxes
 --
@@ -81,21 +110,19 @@ minetest.register_node("trash_can:trash_can_wooden",{
 		type = "fixed",
 		fixed = trash_can_nodebox
 	},
-	groups = {
-		snappy=1,
-		choppy=2,
-		oddly_breakable_by_hand=2,
-		flammable=3
-	},
+	groups = moditems.trashbin_groups,
+	_mcl_blast_resistance = 5,
+	_mcl_hardness = 1,
 	on_construct = function(pos)
 		local meta = minetest.get_meta(pos)
 		meta:set_string("formspec",
 			"size[8,9]" ..
 			"button[0,0;2,1;empty;Empty Trash]" ..
 			"list[context;trashlist;3,1;2,3;]" ..
-			"list[current_player;main;0,5;8,4;]"
+			"list[current_player;main;0,5;8,4;]" ..
+			moditems.boxart
 		)
-		meta:set_string("infotext", "Trash Can")
+		meta:set_string("infotext", moditems.trashcan_infotext)
 		local inv = meta:get_inventory()
 		inv:set_size("main", 8*4)
 		inv:set_size("trashlist", 2*3)
@@ -152,22 +179,20 @@ minetest.register_node("trash_can:dumpster", {
 		type = "fixed",
 		fixed = dumpster_nodebox,
 	},
-	groups = {
-		cracky = 3,
-		oddly_breakable_by_hand = 1,
-	},
-
+	_mcl_blast_resistance = 10,
+	_mcl_hardness = 3,
+	groups = moditems.dumpster_groups,
 	sounds = get_dumpster_sound(),
-
 	on_construct = function(pos)
 		local meta = minetest.get_meta(pos)
 		meta:set_string("formspec",
 			"size[8,9]" ..
 			"button[0,0;2,1;empty;Empty Trash]" ..
 			"list[context;main;1,1;6,3;]" ..
-			"list[current_player;main;0,5;8,4;]"
+			"list[current_player;main;0,5;8,4;]"..
+			moditems.boxart
 		)
-		meta:set_string("infotext", "Dumpster")
+		meta:set_string("infotext", moditems.dumpster_infotext)
 		local inv = meta:get_inventory()
 		inv:set_size("main", 8*4)
 	end,
@@ -201,7 +226,7 @@ minetest.register_node("trash_can:dumpster", {
 			inv:set_list("main", {})
 			minetest.sound_play("trash", {to_player=sender:get_player_name(), gain = 2.0})
 		end
-	end
+	end,
 })
 
 --
@@ -222,9 +247,9 @@ minetest.register_craft({
 minetest.register_craft({
 	output = 'trash_can:dumpster',
 	recipe = {
-		{'default:coalblock', 'default:coalblock', 'default:coalblock'},
-		{'default:steel_ingot', 'dye:dark_green', 'default:steel_ingot'},
-		{'default:steel_ingot', 'default:steel_ingot', 'default:steel_ingot'},
+		{moditems.coal_item,moditems.coal_item,moditems.coal_item},
+		{moditems.iron_item,moditems.green_dye,moditems.iron_item},
+		{moditems.iron_item,moditems.iron_item,moditems.iron_item},
 	}
 })
 

@@ -56,8 +56,10 @@ local fmt, find, gmatch, match, sub, split, upper, lower =
 	string.sub, string.split, string.upper, string.lower
 
 local min, max, floor, ceil = math.min, math.max, math.floor, math.ceil
-local pairs, next, type, tostring, io = pairs, next, type, tostring, io
+local pairs, next, type, tostring, unpack = pairs, next, type, tostring, unpack
 local vec_add, vec_mul = vector.add, vector.multiply
+
+local FORMSPEC_MINIMAL_VERSION = 3
 
 local ROWS  = 9
 local LINES = sfinv_only and 5 or 9
@@ -79,6 +81,7 @@ local PNG = {
 	fire_anim = "craftguide_fire_anim.png",
 	book      = "craftguide_book.png",
 	sign      = "craftguide_sign.png",
+	nothing   = "craftguide_no.png",
 	selected  = "craftguide_selected.png",
 	furnace_anim = "craftguide_furnace_anim.png",
 
@@ -274,7 +277,7 @@ local craft_types = {}
 
 function craftguide.register_craft_type(name, def)
 	if not true_str(name) then
-		return err"craftguide.register_craft_type(): name missing"
+		return err "craftguide.register_craft_type(): name missing"
 	end
 
 	if not is_str(def.description) then
@@ -293,8 +296,9 @@ function craftguide.register_craft(def)
 
 	if true_str(def.url) then
 		if not http then
-			return err"No HTTP support for this mod. " ..
-				"Add it to the `secure.http_mods` or `secure.trusted_mods` setting."
+			return err "craftguide.register_craft(): Unable to reach " ..
+				def.url .. ". No HTTP support for this mod: " ..
+				"add it to the `secure.http_mods` or `secure.trusted_mods` setting."
 		end
 
 		http.fetch({url = def.url}, function(result)
@@ -310,7 +314,7 @@ function craftguide.register_craft(def)
 	end
 
 	if not is_table(def) or not next(def) then
-		return err"craftguide.register_craft(): craft definition missing"
+		return err "craftguide.register_craft(): craft definition missing"
 	end
 
 	if #def > 1 then
@@ -326,7 +330,7 @@ function craftguide.register_craft(def)
 	end
 
 	if not true_str(def.output) then
-		return err"craftguide.register_craft(): output missing"
+		return err "craftguide.register_craft(): output missing"
 	end
 
 	if not is_table(def.items) then
@@ -396,9 +400,9 @@ local recipe_filters = {}
 
 function craftguide.add_recipe_filter(name, f)
 	if not true_str(name) then
-		return err"craftguide.add_recipe_filter(): name missing"
+		return err "craftguide.add_recipe_filter(): name missing"
 	elseif not is_func(f) then
-		return err"craftguide.add_recipe_filter(): function missing"
+		return err "craftguide.add_recipe_filter(): function missing"
 	end
 
 	recipe_filters[name] = f
@@ -406,9 +410,9 @@ end
 
 function craftguide.set_recipe_filter(name, f)
 	if not is_str(name) then
-		return err"craftguide.set_recipe_filter(): name missing"
+		return err "craftguide.set_recipe_filter(): name missing"
 	elseif not is_func(f) then
-		return err"craftguide.set_recipe_filter(): function missing"
+		return err "craftguide.set_recipe_filter(): function missing"
 	end
 
 	recipe_filters = {[name] = f}
@@ -434,9 +438,9 @@ local search_filters = {}
 
 function craftguide.add_search_filter(name, f)
 	if not true_str(name) then
-		return err"craftguide.add_search_filter(): name missing"
+		return err "craftguide.add_search_filter(): name missing"
 	elseif not is_func(f) then
-		return err"craftguide.add_search_filter(): function missing"
+		return err "craftguide.add_search_filter(): function missing"
 	end
 
 	search_filters[name] = f
@@ -465,6 +469,7 @@ end
 
 local function item_in_recipe(item, recipe)
 	local clean_item = reg_aliases[item] or item
+
 	for _, recipe_item in pairs(recipe.items) do
 		local clean_recipe_item = reg_aliases[recipe_item] or recipe_item
 		if clean_recipe_item == clean_item then
@@ -602,7 +607,7 @@ local function get_recipes(item, data, player)
 	local no_usages = not usages or #usages == 0
 
 	return not no_recipes and recipes or nil,
-	       not no_usages  and usages or nil
+	       not no_usages  and usages  or nil
 end
 
 local function groups_to_items(groups, get_all)
@@ -730,7 +735,7 @@ local function get_output_fs(data, fs, L)
 		local pos_x = L.rightest + L.btn_size + 0.1
 		local pos_y = YOFFSET + (sfinv_only and 0.25 or -0.45)
 
-		if data.fs_version >= 3 and sub(icon, 1, 18) == "craftguide_furnace" then
+		if sub(icon, 1, 18) == "craftguide_furnace" then
 			fs[#fs + 1] = fmt(FMT.animated_image,
 				pos_x, pos_y + L.spacing, 0.5, 0.5, PNG.furnace_anim, 8, 180)
 		else
@@ -751,25 +756,17 @@ local function get_output_fs(data, fs, L)
 		0.9, 0.7, PNG.arrow)
 
 	if L.recipe.type == "fuel" then
-		if data.fs_version >= 3 then
-			fs[#fs + 1] = fmt(FMT.animated_image,
-				output_X, YOFFSET + (sfinv_only and 0.7 or 0) + L.spacing,
-				1.1, 1.1, PNG.fire_anim, 8, 180)
-		else
-			fs[#fs + 1] = fmt(FMT.image,
-				output_X, YOFFSET + (sfinv_only and 0.7 or 0) + L.spacing,
-				1.1, 1.1, PNG.fire)
-		end
+		fs[#fs + 1] = fmt(FMT.animated_image,
+			output_X, YOFFSET + (sfinv_only and 0.7 or 0) + L.spacing,
+			1.1, 1.1, PNG.fire_anim, 8, 180)
 	else
 		local item = L.recipe.output
 		item = clean_name(item)
 		local name = match(item, "%S*")
 
-		if data.fs_version >= 3 then
-			fs[#fs + 1] = fmt(FMT.image,
-				output_X, YOFFSET + (sfinv_only and 0.7 or 0) + L.spacing,
-				1.1, 1.1, PNG.selected)
-		end
+		fs[#fs + 1] = fmt(FMT.image,
+			output_X, YOFFSET + (sfinv_only and 0.7 or 0) + L.spacing,
+			1.1, 1.1, PNG.selected)
 
 		local _name = sfinv_only and name or fmt("_%s", name)
 
@@ -793,15 +790,9 @@ local function get_output_fs(data, fs, L)
 				output_X + 1, YOFFSET + (sfinv_only and 0.7 or 0.1) + L.spacing,
 				0.6, 0.4, PNG.arrow)
 
-			if data.fs_version >= 3 then
-				fs[#fs + 1] = fmt(FMT.animated_image,
-					output_X + 1.6, YOFFSET + (sfinv_only and 0.55 or 0) + L.spacing,
-					0.6, 0.6, PNG.fire_anim, 8, 180)
-			else
-				fs[#fs + 1] = fmt(FMT.image,
-					output_X + 1.6, YOFFSET + (sfinv_only and 0.55 or 0) + L.spacing,
-					0.6, 0.6, PNG.fire)
-			end
+			fs[#fs + 1] = fmt(FMT.animated_image,
+				output_X + 1.6, YOFFSET + (sfinv_only and 0.55 or 0) + L.spacing,
+				0.6, 0.6, PNG.fire_anim, 8, 180)
 		end
 	end
 end
@@ -885,7 +876,7 @@ local function get_grid_fs(data, fs, rcp, spacing)
 			end
 		end
 
-		if data.fs_version >= 3 and not large_recipe then
+		if not large_recipe then
 			fs[#fs + 1] = fmt(FMT.image,
 				X, Y + (sfinv_only and 0.7 or 0), btn_size, btn_size, PNG.selected)
 		end
@@ -923,19 +914,17 @@ local function get_grid_fs(data, fs, rcp, spacing)
 end
 
 local function get_panels(data, fs)
-	local start_y = data.fs_version >= 3 and (sfinv_only and 0.33 or 0) or 0.33
+	local start_y = sfinv_only and 0.33 or 0
 
 	local panels = {
 		{dat = data.usages or {}, height = 3.5},
 		{dat = data.recipes or {}, height = 3.5},
 	}
 
-	if data.fs_version >= 3 and not sfinv_only then
-		panels.favs = {dat = {}, height = 2.19}
-
-	elseif sfinv_only then
-		panels = data.show_usages and
-			{{dat = data.usages}} or {{dat = data.recipes}}
+	if not sfinv_only then
+		panels.favs = {height = 2.19}
+	else
+		panels = data.show_usages and {{dat = data.usages}} or {{dat = data.recipes}}
 	end
 
 	for k, v in pairs(panels) do
@@ -946,7 +935,7 @@ local function get_panels(data, fs)
 			fs[#fs + 1] = fmt("background9[8.1,%f;6.6,%f;%s;false;%d]",
 				-0.2 + spacing, v.height, PNG.bg_full, 10)
 
-			if data.fs_version >= 3 and k == 2 then
+			if k == 2 then
 				local fav = is_fav(data)
 				local nfavs = #data.favs
 
@@ -966,7 +955,7 @@ local function get_panels(data, fs)
 			end
 		end
 
-		local rn = #v.dat
+		local rn = v.dat and #v.dat or -1
 		local _rn = tostring(rn)
 		local xu = tostring(data.unum) .. _rn
 		local xr = tostring(data.rnum) .. _rn
@@ -974,10 +963,15 @@ local function get_panels(data, fs)
 		xr = max(-0.3, -((#xr - 3) * 0.05))
 
 		local is_recipe = sfinv_only and not data.show_usages or k == 2
-		local lbl
+		local lbl = ""
 
 		if not sfinv_only and rn == 0 then
-			lbl = clr("#f00", is_recipe and ES"No recipes" or ES"No usages")
+			fs[#fs + 1] = fmt(FMT.image,
+				XOFFSET - 0.7, YOFFSET - 0.4 + spacing, 2, 2, PNG.nothing)
+
+			fs[#fs + 1] = fmt(FMT.tooltip,
+				XOFFSET - 0.7, YOFFSET - 0.4 + spacing, 2, 2,
+				is_recipe and ES"No recipes" or ES"No usages")
 
 		elseif (not sfinv_only and is_recipe) or
 				(sfinv_only and not data.show_usages) then
@@ -1003,25 +997,18 @@ local function get_panels(data, fs)
 			local x_arrow = XOFFSET + (sfinv_only and 1.7 or 1)
 			local y_arrow = YOFFSET + (sfinv_only and 3.3 or 1.4 + spacing)
 
-			if data.fs_version >= 3 then
-				fs[#fs + 1] = fmt(mul_elem(FMT.arrow, 2),
-					x_arrow + (is_recipe and xr or xu), y_arrow,
-						PNG.prev, prev_name, "",
-					x_arrow + 1.8, y_arrow, PNG.next, next_name, "")
-			else
-				fs[#fs + 1] = fmt(mul_elem(FMT.arrow, 2),
-					x_arrow + (is_recipe and xr or xu),
-						y_arrow, PNG.prev, prev_name, PNG.prev_hover,
-					x_arrow + 1.8, y_arrow, PNG.next, next_name, PNG.next_hover)
-			end
+			fs[#fs + 1] = fmt(mul_elem(FMT.arrow, 2),
+				x_arrow + (is_recipe and xr or xu), y_arrow,
+					PNG.prev, prev_name, "",
+				x_arrow + 1.8, y_arrow, PNG.next, next_name, "")
 		end
 
-		local rcp = is_recipe and v.dat[data.rnum] or v.dat[data.unum]
+		local rcp = v.dat and (is_recipe and v.dat[data.rnum] or v.dat[data.unum])
 		if rcp then
 			get_grid_fs(data, fs, rcp, spacing)
 		end
 
-		if k == "favs" and data.fs_version >= 3 and not sfinv_only then
+		if k == "favs" and not sfinv_only then
 			fs[#fs + 1] = fmt(FMT.label, 8.3, spacing - 0.1, ES"Bookmarks")
 
 			for i = 1, #data.favs do
@@ -1064,40 +1051,25 @@ local function make_fs(data)
 	]],
 	ESC(data.filter))
 
-	if data.fs_version >= 3 then
-		fs[#fs + 1] = fmt([[
-			style_type[image_button;border=false]
-			style_type[item_image_button;border=false;bgimg_hovered=%s;bgimg_pressed=%s]
-			style[search;fgimg=%s;fgimg_hovered=%s]
-			style[clear;fgimg=%s;fgimg_hovered=%s]
-			style[prev_page;fgimg=%s;fgimg_hovered=%s;fgimg_pressed=%s]
-			style[next_page;fgimg=%s;fgimg_hovered=%s;fgimg_pressed=%s]
-		]],
-		PNG.selected, PNG.selected,
-		PNG.search, PNG.search_hover,
-		PNG.clear, PNG.clear_hover,
-		PNG.prev, PNG.prev_hover, PNG.prev_hover,
-		PNG.next, PNG.next_hover, PNG.next_hover)
+	fs[#fs + 1] = fmt([[
+		style_type[image_button;border=false]
+		style_type[item_image_button;border=false;bgimg_hovered=%s;bgimg_pressed=%s]
+		style[search;fgimg=%s;fgimg_hovered=%s]
+		style[clear;fgimg=%s;fgimg_hovered=%s]
+		style[prev_page;fgimg=%s;fgimg_hovered=%s;fgimg_pressed=%s]
+		style[next_page;fgimg=%s;fgimg_hovered=%s;fgimg_pressed=%s]
+	]],
+	PNG.selected, PNG.selected,
+	PNG.search, PNG.search_hover,
+	PNG.clear, PNG.clear_hover,
+	PNG.prev, PNG.prev_hover, PNG.prev_hover,
+	PNG.next, PNG.next_hover, PNG.next_hover)
 
-		fs[#fs + 1] = fmt(mul_elem(FMT.image_button, 4),
-			sfinv_only and 2.6 or 2.54, -0.06, 0.85, 0.85, "", "search", "",
-			sfinv_only and 3.3 or 3.25, -0.06, 0.85, 0.85, "", "clear", "",
-			sfinv_only and 5.45 or (ROWS * 6.83) / 11, -0.06, 0.85, 0.85, "", "prev_page", "",
-			sfinv_only and 7.2  or (ROWS * 8.75) / 11, -0.06, 0.85, 0.85, "", "next_page", "")
-	else
-		fs[#fs + 1] = fmt([[
-			image_button[%f,-0.06;0.85,0.85;%s;search;;;false;%s]
-			image_button[%f,-0.06;0.85,0.85;%s;clear;;;false;%s]
-			]],
-			sfinv_only and 2.6 or 2.54, PNG.search, PNG.search_hover,
-			sfinv_only and 3.3 or 3.25, PNG.clear, PNG.clear_hover)
-
-		fs[#fs + 1] = fmt(mul_elem(FMT.arrow, 2),
-			sfinv_only and 5.45 or (ROWS * 6.83) / 11, -0.05,
-				PNG.prev, "prev_page", PNG.prev_hover,
-			sfinv_only and 7.2 or (ROWS * 8.75) / 11, -0.05,
-				PNG.next, "next_page", PNG.next_hover)
-	end
+	fs[#fs + 1] = fmt(mul_elem(FMT.image_button, 4),
+		sfinv_only and 2.6 or 2.54, -0.06, 0.85, 0.85, "", "search", "",
+		sfinv_only and 3.3 or 3.25, -0.06, 0.85, 0.85, "", "clear", "",
+		sfinv_only and 5.45 or (ROWS * 6.83) / 11, -0.06, 0.85, 0.85, "", "prev_page", "",
+		sfinv_only and 7.2  or (ROWS * 8.75) / 11, -0.06, 0.85, 0.85, "", "next_page", "")
 
 	data.pagemax = max(1, ceil(#data.items / IPP))
 
@@ -1126,7 +1098,7 @@ local function make_fs(data)
 		local X = i % ROWS
 		local Y = (i % IPP - X) / ROWS + 1
 
-		if data.fs_version >= 3 and data.query_item == item then
+		if data.query_item == item then
 			fs[#fs + 1] = fmt(FMT.image,
 				X - (X * (sfinv_only and 0.12 or 0.14)) - 0.05,
 				Y - (Y * 0.1) - 0.1,
@@ -1458,38 +1430,11 @@ local function show_item(def)
 		def.description and def.description ~= ""
 end
 
-local function tablelen(t)
-	local c = 0
-	for _ in pairs(t) do
-		c = c + 1
-	end
-
-	return c
-end
-
 local function get_init_items()
-	local ic, it, last_str = 0, tablelen(reg_items), ""
+	print("[craftguide] Caching data (this may take a while)")
 	local hash = {}
 
-	local function iop(str)
-		io.write(("\b \b"):rep(#last_str))
-		io.write(str)
-		io.flush()
-		last_str = str
-	end
-
-	local full_char, empty_char = "#", " "
-
 	for name, def in pairs(reg_items) do
-		ic = ic + 1
-		local percent, bar, len = (ic * 100) / it, "[", 20
-
-		for i = 1, len do
-			bar = bar .. (i <= percent / (100 / len) and full_char or empty_char)
-		end
-
-		iop(fmt("[craftguide] Caching data  %s  %u%%\r", bar .. "]", percent))
-
 		if show_item(def) then
 			if not fuel_cache[name] then
 				cache_fuel(name)
@@ -1524,8 +1469,6 @@ local function get_init_items()
 			post_data = write_json(post_data),
 		}
 	end
-
-	print()
 end
 
 local function init_data(name)
@@ -1655,7 +1598,7 @@ if sfinv_only then
 
 		is_in_nav = function(self, player, context)
 			local name = player:get_player_name()
-			return get_fs_version(name) >= 2
+			return get_fs_version(name) >= FORMSPEC_MINIMAL_VERSION
 		end,
 
 		get = function(self, player, context)
@@ -1691,9 +1634,18 @@ else
 		local name = user:get_player_name()
 		local data = pdata[name]
 
-		if data.fs_version == 1 then
-			return msg(name, "Your Minetest client is outdated. " ..
-				"Get the latest version on minetest.net to use the Crafting Guide.")
+		if data.fs_version < FORMSPEC_MINIMAL_VERSION then
+			local fs = fmt([[
+				size[6.6,1.3]
+				image[0,0;1,1;%s]
+				label[1,0;%s]
+				button_exit[2.8,0.8;1,1;;OK]
+			]],
+			PNG.nothing,
+			"Your Minetest client is outdated.\n" ..
+			"Get the latest version on minetest.net to use the Crafting Guide.")
+
+			return show_formspec(name, "craftguide", fs)
 		end
 
 		if next(recipe_filters) then
@@ -1724,7 +1676,7 @@ else
 		paramtype = "light",
 		paramtype2 = "wallmounted",
 		sunlight_propagates = true,
-		groups = {oddly_breakable_by_hand = 1, flammable = 3},
+		groups = {choppy = 1, attached_node = 1, oddly_breakable_by_hand = 1, flammable = 3},
 		node_box = {
 			type = "wallmounted",
 			wall_top    = {-0.5, 0.4375, -0.5, 0.5, 0.5, 0.5},
@@ -1839,11 +1791,7 @@ if progressive_mode then
 		return filtered
 	end
 
-	local item_lists = {
-		"main",
-		"craft",
-		"craftpreview",
-	}
+	local item_lists = {"main", "craft", "craftpreview"}
 
 	local function get_inv_items(player)
 		local inv = player:get_inventory()
@@ -2001,10 +1949,7 @@ if progressive_mode then
 		}
 	end)
 
-	local to_save = {
-		"inv_items",
-		"known_recipes",
-	}
+	local to_save = {"inv_items", "known_recipes"}
 
 	local function save_meta(player)
 		local meta = player:get_meta()
@@ -2037,7 +1982,7 @@ end)
 
 function craftguide.show(name, item, show_usages)
 	if not true_str(name)then
-		return err"craftguide.show(): player name missing"
+		return err "craftguide.show(): player name missing"
 	end
 
 	local data = pdata[name]

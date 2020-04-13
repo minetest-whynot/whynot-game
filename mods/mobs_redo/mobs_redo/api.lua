@@ -6,7 +6,7 @@ local use_cmi = minetest.global_exists("cmi")
 
 mobs = {
 	mod = "redo",
-	version = "20200326",
+	version = "20200412",
 	intllib = S,
 	invis = minetest.global_exists("invisibility") and invisibility or {}
 }
@@ -254,6 +254,8 @@ function mob_class:get_velocity()
 
 	local v = self.object:get_velocity()
 
+	if not v then return 0 end
+
 	return (v.x * v.x + v.z * v.z) ^ 0.5
 end
 
@@ -461,9 +463,9 @@ local ray_line_of_sight = function(self, pos1, pos2)
 
 	while thing do
 
-		if thing.type == "object"
-		and thing.ref ~= self.object
-		and not thing.ref:is_player() then return false end
+--		if thing.type == "object"
+--		and thing.ref ~= self.object
+--		and not thing.ref:is_player() then return false end
 
 		if thing.type == "node" then
 
@@ -480,7 +482,7 @@ local ray_line_of_sight = function(self, pos1, pos2)
 end
 
 -- detect if using minetest 5.0 by searching for permafrost node
-local is_50 = nil -- minetest.registered_nodes["default:permafrost"]
+local is_50 = minetest.registered_nodes["default:permafrost"]
 
 function mob_class:line_of_sight(pos1, pos2, stepsize)
 
@@ -1004,6 +1006,9 @@ function mob_class:do_jump()
 
 	local pos = self.object:get_pos()
 	local yaw = self.object:get_yaw()
+
+	-- sanity check
+	if not yaw then return false end
 
 	-- what is mob standing on?
 	pos.y = pos.y + self.collisionbox[2] - 0.2
@@ -2533,6 +2538,9 @@ function mob_class:falling(pos)
 	-- floating in water (or falling)
 	local v = self.object:get_velocity()
 
+	-- sanity check
+	if not v then return end
+
 	if v.y > 0 then
 
 		-- apply gravity when moving up
@@ -2775,6 +2783,10 @@ function mob_class:on_punch(hitter, tflp, tool_capabilities, dir)
 	and tflp >= punch_interval then
 
 		local v = self.object:get_velocity()
+
+		-- sanity check
+		if not v then return end
+
 		local kb = damage or 1
 		local up = 2
 
@@ -3115,7 +3127,10 @@ function mob_class:on_step(dtime)
 	end
 
 	local pos = self.object:get_pos()
-	local yaw = 0
+	local yaw = self.object:get_yaw()
+
+	-- early warning check, if no yaw then no entity, skip rest of function
+	if not yaw then return end
 
 	-- get node at foot level every quarter second
 	self.node_timer = (self.node_timer or 0) + dtime
@@ -3163,8 +3178,6 @@ function mob_class:on_step(dtime)
 	-- smooth rotation by ThomasMonroe314
 
 	if self.delay and self.delay > 0 then
-
-		local yaw = self.object:get_yaw() or 0
 
 		if self.delay == 1 then
 			yaw = self.target_yaw
@@ -3840,6 +3853,8 @@ function mobs:register_egg(mob, desc, background, addegg, no_creative)
 				local mob = minetest.add_entity(pos, mob, data)
 				local ent = mob:get_luaentity()
 
+				if not ent then return end -- sanity check
+
 				-- set owner if not a monster
 				if ent.type ~= "monster" then
 					ent.owner = placer:get_player_name()
@@ -3884,6 +3899,8 @@ function mobs:register_egg(mob, desc, background, addegg, no_creative)
 
 				local mob = minetest.add_entity(pos, mob)
 				local ent = mob:get_luaentity()
+
+				if not ent then return end -- sanity check
 
 				-- don't set owner if monster or sneak pressed
 				if ent.type ~= "monster"

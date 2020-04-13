@@ -46,7 +46,8 @@ function default.chest.chest_lid_close(pn)
 	local node = minetest.get_node(pos)
 	minetest.after(0.2, minetest.swap_node, pos, { name = "default:" .. swap,
 			param2 = node.param2 })
-	minetest.sound_play(sound, {gain = 0.3, pos = pos, max_hear_distance = 10})
+	minetest.sound_play(sound, {gain = 0.3, pos = pos,
+		max_hear_distance = 10}, true)
 end
 
 default.chest.open_chests = {}
@@ -128,7 +129,7 @@ function default.chest.register_chest(name, d)
 			end
 
 			minetest.sound_play(def.sound_open, {gain = 0.3,
-					pos = pos, max_hear_distance = 10})
+					pos = pos, max_hear_distance = 10}, true)
 			if not default.chest.chest_lid_obstructed(pos) then
 				minetest.swap_node(pos,
 						{ name = "default:" .. name .. "_open",
@@ -199,7 +200,7 @@ function default.chest.register_chest(name, d)
 		end
 		def.on_rightclick = function(pos, node, clicker)
 			minetest.sound_play(def.sound_open, {gain = 0.3, pos = pos,
-					max_hear_distance = 10})
+					max_hear_distance = 10}, true)
 			if not default.chest.chest_lid_obstructed(pos) then
 				minetest.swap_node(pos, {
 						name = "default:" .. name .. "_open",
@@ -317,4 +318,40 @@ default.chest.register_chest("chest_locked", {
 	sound_close = "default_chest_close",
 	groups = {choppy = 2, oddly_breakable_by_hand = 2},
 	protected = true,
+})
+
+minetest.register_craft({
+	output = "default:chest",
+	recipe = {
+		{"group:wood", "group:wood", "group:wood"},
+		{"group:wood", "", "group:wood"},
+		{"group:wood", "group:wood", "group:wood"},
+	}
+})
+
+minetest.register_craft({
+	output = "default:chest_locked",
+	recipe = {
+		{"group:wood", "group:wood", "group:wood"},
+		{"group:wood", "default:steel_ingot", "group:wood"},
+		{"group:wood", "group:wood", "group:wood"},
+	}
+})
+
+minetest.register_craft( {
+	type = "shapeless",
+	output = "default:chest_locked",
+	recipe = {"default:chest", "default:steel_ingot"},
+})
+
+minetest.register_craft({
+	type = "fuel",
+	recipe = "default:chest",
+	burntime = 30,
+})
+
+minetest.register_craft({
+	type = "fuel",
+	recipe = "default:chest_locked",
+	burntime = 30,
 })

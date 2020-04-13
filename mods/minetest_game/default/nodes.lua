@@ -2031,7 +2031,7 @@ local function coral_on_place(itemstack, placer, pointed_thing)
 	local def_under = minetest.registered_nodes[node_under.name]
 
 	if def_under and def_under.on_rightclick and not placer:get_player_control().sneak then
-		return def_under.on_rightclick(pos_under, node_under.name,
+		return def_under.on_rightclick(pos_under, node_under,
 				placer, itemstack, pointed_thing) or itemstack
 	end
 
@@ -2203,7 +2203,7 @@ minetest.register_node("default:water_source", {
 			},
 		},
 	},
-	alpha = 160,
+	alpha = 191,
 	paramtype = "light",
 	walkable = false,
 	pointable = false,
@@ -2234,7 +2234,7 @@ minetest.register_node("default:water_flowing", {
 				type = "vertical_frames",
 				aspect_w = 16,
 				aspect_h = 16,
-				length = 0.8,
+				length = 0.5,
 			},
 		},
 		{
@@ -2244,11 +2244,11 @@ minetest.register_node("default:water_flowing", {
 				type = "vertical_frames",
 				aspect_w = 16,
 				aspect_h = 16,
-				length = 0.8,
+				length = 0.5,
 			},
 		},
 	},
-	alpha = 160,
+	alpha = 191,
 	paramtype = "light",
 	paramtype2 = "flowingliquid",
 	walkable = false,
@@ -2330,7 +2330,7 @@ minetest.register_node("default:river_water_flowing", {
 				type = "vertical_frames",
 				aspect_w = 16,
 				aspect_h = 16,
-				length = 0.8,
+				length = 0.5,
 			},
 		},
 		{
@@ -2340,7 +2340,7 @@ minetest.register_node("default:river_water_flowing", {
 				type = "vertical_frames",
 				aspect_w = 16,
 				aspect_h = 16,
-				length = 0.8,
+				length = 0.5,
 			},
 		},
 	},

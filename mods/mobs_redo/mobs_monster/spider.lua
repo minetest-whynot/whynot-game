@@ -5,6 +5,9 @@ local get_velocity = function(self)
 
 	local v = self.object:get_velocity()
 
+	-- sanity check
+	if not v then return 0 end
+
 	return (v.x * v.x + v.z * v.z) ^ 0.5
 end
 
@@ -119,6 +122,9 @@ mobs:register_mob("mobs_monster:spider", {
 		local pos = self.object:get_pos()
 		local yaw = self.object:get_yaw()
 
+		-- sanity check
+		if not yaw then return end
+
 		pos.y = pos.y + self.collisionbox[2] - 0.2
 
 		local dir_x = -math.sin(yaw) * (self.collisionbox[4] + 0.5)
@@ -159,7 +165,7 @@ mobs:spawn({
 	name = "mobs_monster:spider",
 	nodes = {
 		"default:dirt_with_rainforest_litter", "default:snowblock",
-		"default:snow", "ethereal:crystal_dirt"
+		"default:snow", "ethereal:crystal_dirt", "ethereal:cold_dirt"
 	},
 	min_light = 0,
 	max_light = 8,

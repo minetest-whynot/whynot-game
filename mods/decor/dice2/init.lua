@@ -1,10 +1,4 @@
--- Boilerplate to support localized strings if intllib mod is installed.
-local S
-if (minetest.get_modpath("intllib")) then
-	S = intllib.Getter()
-else
-	S = function ( s ) return s end
-end
+local S = minetest.get_translator("dice2")
 
 local dice2 = {}
 dice2.colors = { "white", "red" }
@@ -22,7 +16,7 @@ function dice2.throw(pos, node, clicker, itemstack, pointed_thing)
 	Don’t worry, the probability is still 1/6 for each facing direction. ]]
 	newnode.param2 = math.random(0,23)
 	minetest.swap_node(pos,newnode)
-	minetest.sound_play( {name="dice2_dice_throw", gain=1 }, {pos=pos, loop=false})
+	minetest.sound_play( {name="dice2_dice_throw", gain=1 }, {pos=pos, loop=false}, true)
 	return itemstack
 end
 
