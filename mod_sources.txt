@@ -1,7 +1,7 @@
 
 bell07	https://github.com/bell07/minetest_game (fetch)
 origin	https://github.com/minetest/minetest_game (fetch)
-* master                 56167a6 [origin/stable-5: ahead 2] Merge remote-tracking branch 'origin/stable-5'
+* master                 b7baae7 [origin/stable-5: ahead 1] Fix builtin item metatable.
 Mod: minetest_game/mods/beds
 Mod: minetest_game/mods/binoculars
 Mod: minetest_game/mods/boats
@@ -33,7 +33,7 @@ Mod: minetest_game/mods/wool
 Mod: minetest_game/mods/xpanes
 
 origin	https://github.com/minetest-mods/craftguide/ (fetch)
-* master 689840d [origin/master] Remove progress bar because of too much issues
+* master 679e005 [origin/master] Fix item positioning for large recipes
 Mod: libs/craftguide
 
 origin	https://github.com/minetest-mods/craftguide_reveal (fetch)
@@ -73,7 +73,7 @@ origin	https://github.com/Chemguy99/armor_addon (fetch)
 Mod: player/armor_addon
 
 origin	https://github.com/minetest-mods/awards (fetch)
-* master ce58720 [origin/master] Fix group total, fix item increment count argument, add player checks, resize award icon, fix log output
+* master c7b60be [origin/master] player:getpos() is deprecated and calling it causes the game to halt if deprecated_lua_api_handling is set to "error" in minetest.conf. Call player:get_pos() instead to prevent the game from halting.
 Mod: player/awards
 
 origin	https://github.com/minetest-mods/cozy (fetch)
@@ -85,7 +85,7 @@ origin	http://repo.or.cz/minetest_hbhunger (fetch)
 Mod: player/hbhunger
 
 origin	https://github.com/minetest-mods/hbsprint (fetch)
-* master 2547242 [origin/master: ahead 45, behind 48] Fix typo in autohide setting, default to true again
+* master c3e00a6 [origin/master] Fix typo.
 Mod: player/hbsprint
 
 origin	https://repo.or.cz/minetest_hudbars.git (fetch)
@@ -101,7 +101,7 @@ origin	http://repo.or.cz/minetest_show_wielded_item.git (fetch)
 Mod: player/show_wielded_item
 
 origin	https://github.com/minetest-mods/wielded_light (fetch)
-* master            791ebfa [origin/master] use setmetatable instead of table copy like in minetest game / default dropped item
+* master            56d52ff [origin/master] Merge pull request #5 from fluxionary/fix_drops
 Mod: player/wielded_light
 
 origin	https://github.com/bell07/minetest-player_api_modpack (fetch)
@@ -148,7 +148,7 @@ origin	https://gitlab.com/rautars/weather_pack (fetch)
 Mod: ambience/weather_pack
 
 origin	https://notabug.org/TenPlus1/farming (fetch)
-* master 17359d5 [origin/master] fix pumpkin drop with scythe
+* master 0e42a72 [origin/master] whoops, added 5.0 check for dry dirt
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
@@ -378,7 +378,7 @@ origin	https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin	https://github.com/minetest-mods/mesecons (fetch)
-* master 68c1729 [origin/master] Refactor actionqueue.lua (#501)
+* master d3aedd2 [origin/master] Speed up search for objects to be moved in MVPS (#512)
 Mod: mesecons/mesecons
 Mod: mesecons/mesecons_alias
 Mod: mesecons/mesecons_blinkyplant
@@ -405,9 +405,9 @@ Mod: mesecons/mesecons_walllever
 Mod: mesecons/mesecons_wires
 
 origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
-* master ffc1362 [origin/master] add sanity check to spiders
+* master 2fdfd7f [origin/master] deinterlaced lava flan image
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master bff3132 [origin/master] re-enable raycasting line of sight (should work now)
+* master 00e8ac0 [origin/master] added failsafe for suffocation value (true, false) instead of value
 Mod: mobs_redo/mobs_redo

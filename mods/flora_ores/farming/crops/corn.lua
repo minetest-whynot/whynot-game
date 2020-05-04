@@ -74,6 +74,7 @@ minetest.register_craft( {
 	recipe = {
 		{ "vessels:glass_bottle", "group:food_corn", "group:food_corn"},
 		{ "group:food_corn", "group:food_corn", "group:food_corn"},
+		{ "group:food_corn", "group:food_corn", "group:food_corn"},
 	}
 })
 

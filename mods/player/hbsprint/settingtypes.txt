@@ -16,6 +16,12 @@ sprint_stamina (Stamina) bool true
 #The amount of stamina to drain while sprinting
 sprint_stamina_drain (Stamina drain) float 2
 
+#The amount of stamina to heal while not sprinting
+sprint_stamina_heal (Stamina heal) float 2
+
+#The amount of stamina to heal while not moving or taking any actions
+sprint_stamina_standing (Stamina heal) float 2.5
+
 #The amount of seconds before starting to replenish stamina
 sprint_stamina_replenish (Stamina replenish) float 2
 

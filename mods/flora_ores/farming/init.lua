@@ -7,7 +7,7 @@
 
 farming = {
 	mod = "redo",
-	version = "20191202",
+	version = "20200430",
 	path = minetest.get_modpath("farming"),
 	select = {
 		type = "fixed",
@@ -79,7 +79,8 @@ end
 
 
 -- Growth Logic
-local STAGE_LENGTH_AVG = 160.0
+local STAGE_LENGTH_AVG = tonumber(
+		minetest.settings:get("farming_stage_length")) or 160
 local STAGE_LENGTH_DEV = STAGE_LENGTH_AVG / 6
 
 

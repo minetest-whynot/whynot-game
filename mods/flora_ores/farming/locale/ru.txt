@@ -1,0 +1,195 @@
+# Russian translation of the farming mod by TenPlus1
+# textdomain: farming
+# author: codexp <codexp@gmx.net>
+# author: TheDarkTiger
+# last update: 2020/Apr/26
+
+###### folder . ######
+
+### init.lua ###
+Seed=семена
+
+### compatibility.lua ###
+Banana=
+Banana Leaves=
+Orange=
+Strawberry=
+
+### food.lua ###
+Sugar=сахар
+Salt=
+Rose Water=
+Turkish Delight=
+Garlic Bread=
+Donut=пончик
+Chocolate Donut=шоколадный пончик
+Apple Donut=яблочный пончик
+Porridge=
+Jaffa Cake=
+
+### hoes.lua ###
+Hoe=мотыга
+Wooden Hoe=деревянная мотыга
+Stone Hoe=каменная мотыга
+Steel Hoe=стальная мотыга
+Bronze Hoe=бронзовая мотыга
+Mese Hoe=магическая мотыга
+Diamond Hoe=алмазная мотыга
+# Surcharge du mod [Toolranks] à faire #
+Hoe Bomb (use or throw on grassy areas to hoe land)=
+Mithril Scythe (Right-click to harvest and replant crops)=
+# Surcharge du mod [Toolranks] à faire #
+
+### soil.lua ###
+Soil=земля
+Wet Soil=мокрая земля
+
+### utensils.lua ###
+Wooden Bowl=
+Saucepan=
+Cooking Pot=
+Baking Tray=
+Skillet=
+Mortar and Pestle=
+Cutting Board=
+Juicer=
+Glass Mixing Bowl=
+
+
+###### folder ./crops ######
+
+### barley.lua ###
+Barley Seed=семена ячменя
+Barley=ячмень
+
+### beans.lua ###
+Green Beans=зеленая фасоль
+Bean Pole (place on soil before planting beans)=жердь для бобовых (установите на почву перед посадкой бобовых)
+
+### beetroot.lua ###
+Beetroot=
+Beetroot Soup=
+
+### blueberry.lua ###
+Blueberries=голубика
+Blueberry Muffin=кекс из голубики
+Blueberry Pie=
+
+### carrot.lua ##
+Carrot=морковь
+Carrot Juice=
+Golden Carrot=золотая морковь
+
+### chili.lua ###
+Chili Pepper=
+Bowl of Chili=
+
+### cocoa.lua ###
+Cocoa Beans=бобы какао
+Cookie=печенье
+Bar of Dark Chocolate=плитка темного шоколада
+Chocolate Block=
+
+### coffee.lua ###
+Coffee Beans=кофе в зернах
+Cup of Coffee=чашка кофе
+
+### corn.lua ###
+Corn=кукуруза
+Corn on the Cob=початок кукурузы
+Cornstarch=
+Bottle of Ethanol=бутылка этилового спирта
+
+### cotton.lua ###
+Cotton Seed=семена хлопка
+Cotton=хлопок
+String=
+
+### cucumber.lua ###
+Cucumber=огурец
+
+### garlic.lua ###
+Garlic clove=
+Garlic=
+Garlic Braid=
+
+### grapes.lua ###
+Grapes=виноград
+Trellis (place on soil before planting grapes)=решетка (поставьте на почву для посадки винограда)
+
+### hemp.lua ###
+Hemp Seed=семена конопли
+Hemp Leaf=листья конопли
+Bottle of Hemp Oil=бутылка конопляного масла
+Hemp Fibre=
+Hemp Block=
+Hemp Rope=Пенька
+
+### melon.lua ###
+Melon Slice=ломтик арбуза
+Melon=арбуз
+
+### onion.lua ###
+Onion=
+
+### peas.lua ###
+Pea Pod=
+Peas=
+Pea Soup=
+
+### pepper.lua ###
+Peppercorn=
+Pepper=
+Ground Pepper=
+
+### pinapple.lua ###
+Pineapple Top=
+Pineapple=
+Pineapple Ring=
+Pineapple Juice=
+
+### potato.lua ###
+Potato=картофель
+Baked Potato=запеченный картофель
+Cucumber and Potato Salad=
+
+### pumpkin.lua ###
+Pumpkin Slice=ломтик тыквы
+Jack 'O Lantern (punch to turn on and off)=светильник джека (удар для включения и отключения)
+Scarecrow Bottom=
+Pumpkin Bread=тыквенный хлеб
+Pumpkin Dough=тыквенное тесто
+Pumpkin=тыква
+
+### raspberry.lua ###
+Raspberries=малина
+Raspberry Smoothie=малиновый коктейль
+
+### rhubarb.lua ###
+Rhubarb=ревень
+Rhubarb Pie=пирог из ревеня
+
+### ryeoatrice.lua ###
+Rye=
+Rye seed=
+Oat=
+Oat seed=
+Rice=
+Rice grains=
+Rice Bread=
+Rice Flour=
+Multigrain Flour=
+Multigrain Bread=
+
+### tomato.lua ###
+Tomato=помидор
+
+### wheat.lua ###
+Wheat Seed=
+Wheat=семена пшеницы
+Straw=солома
+Flour=мука
+Bread=хлеб
+Sliced Bread=
+Toast=
+Toast Sandwich=

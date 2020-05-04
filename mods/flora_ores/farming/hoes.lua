@@ -96,8 +96,19 @@ function farming.hoe_on_use(itemstack, user, pointed_thing, uses)
 		return
 	end
 
+	-- check if (wet) soil defined
+	local ndef = minetest.registered_nodes[under.name]
+	if ndef.soil == nil or ndef.soil.wet == nil or ndef.soil.dry == nil then
+		return
+	end
+
+	if minetest.is_protected(pt.under, user:get_player_name()) then
+		minetest.record_protection_violation(pt.under, user:get_player_name())
+		return
+	end
+
 	-- turn the node into soil, wear out item and play sound
-	minetest.set_node(pt.under, {name = "farming:soil"})
+	minetest.set_node(pt.under, {name = ndef.soil.dry})
 
 	minetest.sound_play("default_dig_crumbly", {pos = pt.under, gain = 0.5})
 
@@ -321,7 +332,7 @@ end
 
 -- hoe bomb item
 minetest.register_craftitem("farming:hoe_bomb", {
-	description = S("Hoe Bomb (use or throw on grassy areas to hoe land"),
+	description = S("Hoe Bomb (use or throw on grassy areas to hoe land)"),
 	inventory_image = "farming_hoe_bomb.png",
 	groups = {flammable = 2, not_in_creative_inventory = 1},
 	on_use = function(itemstack, user, pointed_thing)
@@ -350,7 +361,7 @@ farming.add_to_scythe_not_drops = function(item)
 end
 
 minetest.register_tool("farming:scythe_mithril", {
-	description = S("Mithril Scythe (Use to harvest and replant crops)"),
+	description = S("Mithril Scythe (Right-click to harvest and replant crops)"),
 	inventory_image = "farming_scythe_mithril.png",
 	sound = {breaks = "default_tool_breaks"},
 

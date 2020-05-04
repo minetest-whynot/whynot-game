@@ -1,4 +1,6 @@
 
+local S = farming.intllib
+
 --= Helpers
 
 local eth = minetest.get_modpath("ethereal")
@@ -29,7 +31,7 @@ if eth then
 	alias("farming_plus:banana", "ethereal:banana")
 else
 	minetest.register_node(":ethereal:banana", {
-		description = "Banana",
+		description = S("Banana"),
 		drawtype = "torchlike",
 		tiles = {"banana_single.png"},
 		inventory_image = "banana_single.png",
@@ -47,7 +49,7 @@ else
 	})
 
 	minetest.register_node(":ethereal:bananaleaves", {
-		description = "Banana Leaves",
+		description = S("Banana Leaves"),
 		tiles = {"banana_leaf.png"},
 		inventory_image = "banana_leaf.png",
 		wield_image = "banana_leaf.png",
@@ -87,7 +89,7 @@ if eth then
 	alias("farming_plus:orange_seed", "ethereal:orange_tree_sapling")
 else
 	minetest.register_node(":ethereal:orange", {
-		description = "Orange",
+		description = S("Orange"),
 		drawtype = "plantlike",
 		tiles = {"farming_orange.png"},
 		inventory_image = "farming_orange.png",
@@ -145,7 +147,7 @@ if eth then
 	alias("farming_plus:strawberry", "ethereal:strawberry_7")
 else
 	minetest.register_craftitem(":ethereal:strawberry", {
-		description = "Strawberry",
+		description = S("Strawberry"),
 		inventory_image = "strawberry.png",
 		wield_image = "strawberry.png",
 		groups = {food_strawberry = 1, flammable = 2},
