@@ -105,7 +105,7 @@ origin	https://github.com/minetest-mods/wielded_light (fetch)
 Mod: player/wielded_light
 
 origin	https://github.com/bell07/minetest-player_api_modpack (fetch)
-* master 8ee5f70 [origin/master] add locale/skinsdb.zh_TW.tr
+* master d01fb55 [origin/master] minetest_game-5.2 backports
 Mod: player_api_modpack/3d_armor
 Mod: player_api_modpack/character_creator
 Mod: player_api_modpack/clothing
@@ -409,5 +409,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master 00e8ac0 [origin/master] added failsafe for suffocation value (true, false) instead of value
+* master 99fe3d0 [origin/master] missed local
 Mod: mobs_redo/mobs_redo

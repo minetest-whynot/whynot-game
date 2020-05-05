@@ -6,7 +6,7 @@ local use_cmi = minetest.global_exists("cmi")
 
 mobs = {
 	mod = "redo",
-	version = "20200502",
+	version = "20200504",
 	intllib = S,
 	invis = minetest.global_exists("invisibility") and invisibility or {}
 }
@@ -605,7 +605,7 @@ function mob_class:do_stay_near()
 	local direction = vector.direction(pos, target)
 	local vec = {x = target.x - pos.x, z = target.z - pos.z}
 
-	yaw = (atan(vec.z / vec.x) + pi / 2) - self.rotate
+	local yaw = (atan(vec.z / vec.x) + pi / 2) - self.rotate
 
 	if target.x > pos.x then
 		yaw = yaw + pi
