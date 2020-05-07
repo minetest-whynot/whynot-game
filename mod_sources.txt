@@ -1,7 +1,7 @@
 
 bell07	https://github.com/bell07/minetest_game (fetch)
 origin	https://github.com/minetest/minetest_game (fetch)
-* master                 b7baae7 [origin/stable-5: ahead 1] Fix builtin item metatable.
+* master                1ec4e54 [origin/stable-5: ahead 2] Fix crash on TNT explosions if tnt is disabled
 Mod: minetest_game/mods/beds
 Mod: minetest_game/mods/binoculars
 Mod: minetest_game/mods/boats
