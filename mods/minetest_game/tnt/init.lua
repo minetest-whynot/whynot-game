@@ -396,6 +396,10 @@ local function tnt_explode(pos, radius, ignore_protection, ignore_on_blast, owne
 end
 
 function tnt.boom(pos, def)
+	if not enable_tnt then
+		return
+	end
+
 	def = def or {}
 	def.radius = def.radius or 1
 	def.damage_radius = def.damage_radius or def.radius * 2

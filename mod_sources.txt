@@ -101,7 +101,7 @@ origin	http://repo.or.cz/minetest_show_wielded_item.git (fetch)
 Mod: player/show_wielded_item
 
 origin	https://github.com/minetest-mods/wielded_light (fetch)
-* master            56d52ff [origin/master] Merge pull request #5 from fluxionary/fix_drops
+* master            7d78f96 [origin/master] Fix #6
 Mod: player/wielded_light
 
 origin	https://github.com/bell07/minetest-player_api_modpack (fetch)
