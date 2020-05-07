@@ -6,7 +6,7 @@ local use_cmi = minetest.global_exists("cmi")
 
 mobs = {
 	mod = "redo",
-	version = "20200504",
+	version = "20200505",
 	intllib = S,
 	invis = minetest.global_exists("invisibility") and invisibility or {}
 }
@@ -299,8 +299,7 @@ end
 -- set defined animation
 function mob_class:set_animation(anim, force)
 
-	if not self.animation
-	or not anim then return end
+	if not self.animation or not anim then return end
 
 	self.animation.current = self.animation.current or ""
 
@@ -378,10 +377,9 @@ local line_of_sight = function(self, pos1, pos2, stepsize)
 	local ad = 0
 
 	-- It continues to advance in the line of sight in search of a real
-	-- obstruction which counts as 'normal' nodebox.
+	-- obstruction which counts as 'walkable' nodebox.
 	while minetest.registered_nodes[nn]
 	and (minetest.registered_nodes[nn].walkable == false) do
---	or minetest.registered_nodes[nn].drawtype == "nodebox") do
 
 		-- Check if you can still move forward
 		if td < ad + stepsize then
@@ -444,10 +442,9 @@ local new_line_of_sight = function(self, pos1, pos2, stepsize)
 	local nn = minetest.get_node(pos).name
 
 	-- It continues to advance in the line of sight in search of a real
-	-- obstruction which counts as 'normal' nodebox.
+	-- obstruction which counts as 'walkable' nodebox.
 	while minetest.registered_nodes[nn]
 	and (minetest.registered_nodes[nn].walkable == false) do
---	or minetest.registered_nodes[nn].drawtype == "nodebox") do
 
 		npos1 = vector.add(npos1, stepv)
 
@@ -679,11 +676,8 @@ end
 -- drop items
 function mob_class:item_drop()
 
-	-- no drops if disabled by setting
-	if not mobs_drop_items then return end
-
-	-- no drops for child mobs
-	if self.child then return end
+	-- no drops if disabled by setting or mob is child
+	if not mobs_drop_items or self.child then return end
 
 	local pos = self.object:get_pos()
 
@@ -719,7 +713,7 @@ function mob_class:item_drop()
 				end
 			end
 
-			-- only drop rare items (drops.min=0) if killed by player
+			-- only drop rare items (drops.min = 0) if killed by player
 			if death_by_player then
 				obj = minetest.add_item(pos, ItemStack(item .. " " .. num))
 
@@ -810,7 +804,7 @@ function mob_class:check_for_death(cmi_cause)
 		return true
 	end
 
-	-- default death function and die animation (if defined)
+	-- check for custom death function and die animation
 	if self.animation
 	and self.animation.die_start
 	and self.animation.die_end then
@@ -909,22 +903,21 @@ function mob_class:is_at_cliff()
 		{x = pos.x + dir_x, y = ypos, z = pos.z + dir_z},
 		{x = pos.x + dir_x, y = ypos - self.fear_height, z = pos.z + dir_z})
 
-	-- check for straight drop, drop onto danger or walkable node
+	-- check for straight drop
 	if free_fall then
 		return true
-	else
-		local bnode = node_ok(blocker)
-
-		if is_node_dangerous(self, bnode.name) then
-			return true
-		else
-			local def = minetest.registered_nodes[bnode.name]
-
-			return (not def and def.walkable)
-		end
 	end
 
-	return false
+	local bnode = node_ok(blocker)
+
+	-- will we drop onto dangerous node?
+	if is_node_dangerous(self, bnode.name) then
+		return true
+	end
+
+	local def = minetest.registered_nodes[bnode.name]
+
+	return (not def and def.walkable)
 end
 
 
@@ -951,7 +944,9 @@ function mob_class:do_env_damage()
 
 	-- remove mob if standing inside ignore node
 	if self.standing_in == "ignore" then
+
 		self.object:remove()
+
 		return true
 	end
 
@@ -976,8 +971,7 @@ function mob_class:do_env_damage()
 	pos.y = pos.y + 1 -- for particle effect position
 
 	-- water
-	if self.water_damage
-	and nodef.groups.water then
+	if self.water_damage and nodef.groups.water then
 
 		if self.water_damage ~= 0 then
 
@@ -989,12 +983,8 @@ function mob_class:do_env_damage()
 					pos = pos, node = self.standing_in}) then return true end
 		end
 
-	-- lava or fire or ignition source
-	elseif self.lava_damage
-	and nodef.groups.igniter then
---	and (nodef.groups.lava
---	or self.standing_in == node_fire
---	or self.standing_in == node_permanent_flame) then
+	-- ignition source (fire or lava)
+	elseif self.lava_damage and nodef.groups.igniter then
 
 		if self.lava_damage ~= 0 then
 
@@ -1025,6 +1015,7 @@ function mob_class:do_env_damage()
 	and (nodef.groups.disable_suffocation ~= 1) then
 
 		local damage
+
 		if self.suffocation == true then
 			damage = 2
 		else
@@ -1147,14 +1138,14 @@ function mob_class:do_jump()
 	and (self.facing_fence or blocked) then
 
 		self.jump_count = (self.jump_count or 0) + 1
---print ("----", self.jump_count)
+
 		if self.jump_count > 4 then
 
 			local yaw = self.object:get_yaw() or 0
 			local turn = random(0, 2) + 1.35
 
 			yaw = self:set_yaw(yaw + turn, 12)
---print ("---- turn", turn)
+
 			self.jump_count = 0
 		end
 	end
@@ -1423,7 +1414,7 @@ function mob_class:replace(pos)
 
 		if self.on_replace then
 
-			local oldnode = what
+			local oldnode = what or ""
 			local newnode = with
 
 			-- convert any group: replacements to actual node name
@@ -1460,11 +1451,11 @@ end
 local los_switcher = false
 local height_switcher = false
 
--- path finding and smart mob routine by rnd, line_of_sight and other edits by Elkien3
+-- path finding and smart mob routine by rnd,
+-- line_of_sight and other edits by Elkien3
 function mob_class:smart_mobs(s, p, dist, dtime)
 
 	local s1 = self.path.lastpos
-
 	local target_pos = self.attack:get_pos()
 
 	-- is it becoming stuck?
@@ -1563,7 +1554,6 @@ function mob_class:smart_mobs(s, p, dist, dtime)
 		-- round position to center of node to avoid stuck in walls
 		-- also adjust height for player models!
 		s.x = floor(s.x + 0.5)
---		s.y = floor(s.y + 0.5) - sheight
 		s.z = floor(s.z + 0.5)
 
 		local ssight, sground = minetest.line_of_sight(s, {
@@ -1581,9 +1571,11 @@ function mob_class:smart_mobs(s, p, dist, dtime)
 		p1.z = floor(p1.z + 0.5)
 
 		local dropheight = 6
+
 		if self.fear_height ~= 0 then dropheight = self.fear_height end
 
 		local jumpheight = 0
+
 		if self.jump and self.jump_height >= 4 then
 			jumpheight = min(math.ceil(self.jump_height / 4), 4)
 		elseif self.stepheight > 0.5 then
@@ -2040,6 +2032,7 @@ function mob_class:follow_flop()
 			self:set_animation("stand")
 
 			return
+
 		elseif self.state == "flop" then
 			self.state = "stand"
 		end
@@ -2153,10 +2146,19 @@ function mob_class:do_states(dtime)
 		if lp then
 
 			-- if mob in dangerous node then look for land
-			if is_node_dangerous(self, self.standing_in) then
+			if not is_node_dangerous(self, self.standing_in) then
 
-				lp = minetest.find_node_near(s, 5, {"group:soil", "group:stone",
-					"group:sand", node_ice, node_snowblock})
+--				lp = minetest.find_node_near(s, 5, {"group:soil", "group:stone",
+--					"group:sand", node_ice, node_snowblock})
+
+				lp = minetest.find_nodes_in_area_under_air(
+					{s.x - 5, s.y - 5, s.z - 5},
+					{s.x + 5, s.y + 5, s.z + 5},
+					{"group:soil", "group:stone", "group:sand",
+							node_ice, node_snowblock})
+
+				-- select position of random block to climb onto
+				lp = #lp > 0 and lp[random(#lp)]
 
 				-- did we find land?
 				if lp then
@@ -2973,7 +2975,7 @@ end
 
 
 -- get entity staticdata
-function mob_class:get_staticdata()
+function mob_class:mob_staticdata()
 
 	-- remove mob when out of range unless tamed
 	if remove_far
@@ -2983,11 +2985,12 @@ function mob_class:get_staticdata()
 	and not self.tamed
 	and self.lifetimer < 20000 then
 
-		--print ("REMOVED " .. self.name)
+--		print ("REMOVED " .. self.name)
 
 		self.object:remove()
 
-		return ""-- nil
+		--return "" -- nil
+		return minetest.serialize({remove_ok = true, static_save = true})
 	end
 
 	self.remove_ok = true
@@ -3002,7 +3005,8 @@ function mob_class:get_staticdata()
 	end
 
 	if use_cmi then
-		self.serialized_cmi_components = cmi.serialize_components(self._cmi_components)
+		self.serialized_cmi_components = cmi.serialize_components(
+				self._cmi_components)
 	end
 
 	local tmp = {}
@@ -3132,8 +3136,19 @@ function mob_class:mob_activate(staticdata, def, dtime)
 	self.path.following = false -- currently following path?
 	self.path.stuck_timer = 0 -- if stuck for too long search for path
 
+	-- Armor groups
+	-- immortal=1 because we use custom health
+	-- handling (using "health" property)
+	local armor
+	if type(self.armor) == "table" then
+		armor = table.copy(self.armor)
+		armor.immortal = 1
+	else
+		armor = {immortal = 1, fleshy = self.armor}
+	end
+	self.object:set_armor_groups(armor)
+
 	-- mob defaults
-	self.object:set_armor_groups({immortal = 1, fleshy = self.armor})
 	self.old_y = self.object:get_pos().y
 	self.old_health = self.health
 	self.sounds.distance = self.sounds.distance or 10
@@ -3155,6 +3170,11 @@ function mob_class:mob_activate(staticdata, def, dtime)
 	self:update_tag()
 	self:set_animation("stand")
 
+	-- set 5.x flag to remove monsters when map area unloaded
+	if remove_far and self.type == "monster" then
+		self.static_save = false
+	end
+
 	-- run on_spawn function if found
 	if self.on_spawn and not self.on_spawn_run then
 		if self.on_spawn(self) then
@@ -3168,7 +3188,8 @@ function mob_class:mob_activate(staticdata, def, dtime)
 	end
 
 	if use_cmi then
-		self._cmi_components = cmi.activate_components(self.serialized_cmi_components)
+		self._cmi_components = cmi.activate_components(
+				self.serialized_cmi_components)
 		cmi.notify_activate(self.object, dtime)
 	end
 end
@@ -3506,6 +3527,10 @@ minetest.register_entity(name, setmetatable({
 		return self:mob_activate(staticdata, def, dtime)
 	end,
 
+	get_staticdata = function(self)
+		return self:mob_staticdata(self)
+	end,
+
 }, mob_class_meta))
 
 end -- END mobs:register_mob function
@@ -3564,12 +3589,13 @@ function mobs:spawn_specific(name, nodes, neighbors, min_light, max_light,
 		aoc = tonumber(numbers[2]) or aoc
 
 		if chance == 0 then
-			minetest.log("warning", string.format("[mobs] %s has spawning disabled", name))
+			minetest.log("warning",
+					string.format("[mobs] %s has spawning disabled", name))
 			return
 		end
 
-		minetest.log("action",
-			string.format("[mobs] Chance setting for %s changed to %s (total: %s)",
+		minetest.log("action", string.format(
+				"[mobs] Chance setting for %s changed to %s (total: %s)",
 				name, chance, aoc))
 
 	end
@@ -3807,7 +3833,8 @@ function mobs:register_arrow(name, def)
 
 		on_activate = def.on_activate,
 
-		on_punch = def.on_punch or function(self, hitter, tflp, tool_capabilities, dir)
+		on_punch = def.on_punch or function(
+				self, hitter, tflp, tool_capabilities, dir)
 		end,
 
 		on_step = def.on_step or function(self, dtime)
@@ -3855,7 +3882,8 @@ function mobs:register_arrow(name, def)
 
 						self.lastpos = (self.lastpos or pos)
 
-						minetest.add_item(self.lastpos, self.object:get_luaentity().name)
+						minetest.add_item(self.lastpos,
+								self.object:get_luaentity().name)
 					end
 
 					self.object:remove() ; -- print ("hit node")
@@ -3992,7 +4020,8 @@ function mobs:register_egg(mob, desc, background, addegg, no_creative)
 			local under = minetest.get_node(pointed_thing.under)
 			local def = minetest.registered_nodes[under.name]
 			if def and def.on_rightclick then
-				return def.on_rightclick(pointed_thing.under, under, placer, itemstack)
+				return def.on_rightclick(
+						pointed_thing.under, under, placer, itemstack)
 			end
 
 			if pos
@@ -4040,7 +4069,8 @@ function mobs:register_egg(mob, desc, background, addegg, no_creative)
 			local under = minetest.get_node(pointed_thing.under)
 			local def = minetest.registered_nodes[under.name]
 			if def and def.on_rightclick then
-				return def.on_rightclick(pointed_thing.under, under, placer, itemstack)
+				return def.on_rightclick(
+						pointed_thing.under, under, placer, itemstack)
 			end
 
 			if pos

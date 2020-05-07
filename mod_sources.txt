@@ -409,5 +409,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master 99fe3d0 [origin/master] missed local
+* master 8ce8490 [origin/master] code tweak and tidy
 Mod: mobs_redo/mobs_redo
