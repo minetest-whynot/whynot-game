@@ -321,7 +321,7 @@ ambience.add_set("night", {
 
 		local c = (def.totals["default:leaves"] or 0)
 			+ (def.totals["default:bush_leaves"] or 0)
-			+ (def.totals["default:pine_leaves"] or 0)
+			+ (def.totals["default:pine_needles"] or 0)
 			+ (def.totals["default:aspen_leaves"] or 0)
 
 		if (def.tod < 0.2 or def.tod > 0.8)
@@ -330,6 +330,7 @@ ambience.add_set("night", {
 			return "night"
 		end
 	end,
+	nodes = {"group:leaves"}
 })
 
 -- Daytime sounds play during day when around leaves and above ground
@@ -351,7 +352,7 @@ ambience.add_set("day", {
 
 		local c = (def.totals["default:leaves"] or 0)
 			+ (def.totals["default:bush_leaves"] or 0)
-			+ (def.totals["default:pine_leaves"] or 0)
+			+ (def.totals["default:pine_needles"] or 0)
 			+ (def.totals["default:aspen_leaves"] or 0)
 
 		if (def.tod > 0.2 and def.tod < 0.8)

@@ -33,7 +33,7 @@ Mod: minetest_game/mods/wool
 Mod: minetest_game/mods/xpanes
 
 origin	https://github.com/minetest-mods/craftguide/ (fetch)
-* master 679e005 [origin/master] Fix item positioning for large recipes
+* master 7ef62f4 [origin/master] Strip newline in item description
 Mod: libs/craftguide
 
 origin	https://github.com/minetest-mods/craftguide_reveal (fetch)
@@ -132,7 +132,7 @@ Mod: smart_sfinv_modpack/smart_sfinv_creative_sitebar
 Mod: smart_sfinv_modpack/smart_sfinv_tweaks
 
 origin	https://notabug.org/TenPlus1/ambience (fetch)
-* master 99710ce [origin/master] add check for env_sounds to disable water flowing sfx
+* master 7bb0275 [origin/master] whoops, pine_leaves should be pine_needles :P
 Mod: ambience/ambience
 
 origin	https://github.com/minetest-mods/lightning (fetch)
@@ -148,7 +148,7 @@ origin	https://gitlab.com/rautars/weather_pack (fetch)
 Mod: ambience/weather_pack
 
 origin	https://notabug.org/TenPlus1/farming (fetch)
-* master 0e42a72 [origin/master] whoops, added 5.0 check for dry dirt
+* master ca0876c [origin/master] onion soup added thanks to edcrypt
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
@@ -176,7 +176,7 @@ origin	https://github.com/taikedz/everamzah-backpacks (fetch)
 Mod: tools/backpacks
 
 origin	https://github.com/SmallJoker/boost_cart (fetch)
-* master cc293e9 [origin/master] Fix model animations after detach, remove README.txt
+* master c8f7cae [origin/master] Set driver to nil (like before)
 Mod: tools/boost_cart
 
 origin	https://github.com/minetest-mods/ccompass (fetch)
@@ -285,7 +285,7 @@ origin	https://github.com/sbrl/plasticbox (fetch)
 Mod: decor/plasticbox
 
 origin	https://github.com/pithydon/princess (fetch)
-* master dd4fff0 [origin/master] mcstair update
+* master 122f28d [origin/master] Fence rail and update for new furniture.
 Mod: decor/princess
 
 origin	https://github.com/minetest-mods/realchess (fetch)
@@ -301,7 +301,7 @@ origin	https://github.com/minetest-mods/ts_furniture (fetch)
 Mod: decor/ts_furniture
 
 origin	https://gitlab.com/VanessaE/unifieddyes (fetch)
-* master         b55c874 [origin/master] Merge branch 'mt5-locales' into 'master'
+* master         17e87a8 [origin/master] add sanity checks for when what should be a player/digger is `nil`
 Mod: decor/unifieddyes
 
 origin	https://gitlab.com/VanessaE/homedecor_modpack/ (fetch)
@@ -405,9 +405,9 @@ Mod: mesecons/mesecons_walllever
 Mod: mesecons/mesecons_wires
 
 origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
-* master 2fdfd7f [origin/master] deinterlaced lava flan image
+* master 674afa9 [origin/master] nil check for player when using lava pick
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master 8ce8490 [origin/master] code tweak and tidy
+* master 3a17c47 [origin/master] added 'texture_mods' to mob definition to add overlay textures
 Mod: mobs_redo/mobs_redo

@@ -161,7 +161,8 @@ minetest.register_on_placenode(
 
 		if not def
 		  or not def.palette
-		  or def.after_place_node then
+		  or def.after_place_node
+		  or not placer then
 			return false
 		end
 
@@ -192,6 +193,7 @@ minetest.register_on_placenode(
 -- The complementary function:  strip-off the color if the node being dug is still white/neutral
 
 local function move_item(item, pos, inv, digger)
+	if not digger then return end
 	local creative = creative_mode or minetest.check_player_privs(digger, "creative")
 	if inv:room_for_item("main", item)
 	  and (not creative or not inv:contains_item("main", item, true)) then
@@ -203,7 +205,7 @@ local function move_item(item, pos, inv, digger)
 end
 
 function unifieddyes.on_dig(pos, node, digger)
-
+	if not digger then return end
 	local playername = digger:get_player_name()
 	if minetest.is_protected(pos, playername) then 
 		minetest.record_protection_violation(pos, playername)

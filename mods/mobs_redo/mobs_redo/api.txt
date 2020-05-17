@@ -89,6 +89,9 @@ functions needed for the mob to work properly which contains the following:
                          punches when nearby.
    'group_attack'        when true has same mob type grouping together to attack
                          offender.
+   'group_helper'        string containing mob name that attacks alongside
+                         current mob when group attacking.
+                         mob is attacking in groups.
    'attack_type'         tells the api what a mob does when attacking the player
                          or another mob:
       'dogfight'         is a melee attack when player is within mob reach.
@@ -182,6 +185,8 @@ functions needed for the mob to work properly which contains the following:
    'child_texture'     holds the texture table for when baby mobs are used.
    'gotten_texture'    holds the texture table for when self.gotten value is
                        true, used for milking cows or shearing sheep.
+   'texture_mods'      holds a string which overlays a texture on top of the
+                       mob texture e.g. "^saddle.png"
    'mesh'              holds the name of the external object used for mob model
                        e.g. "mobs_cow.b3d"
    'gotten_mesh"       holds the name of the external object used for when
@@ -633,6 +638,7 @@ External Settings for "minetest.conf"
                             pathfinding level 2, replace functions or mobs:boom
                             function.
    'mob_nospawn_range'      Minimum range a mob can spawn near player (def: 12)
+   'mob_active_limit'       Number of active mobs in game, 0 for unlimited
 
 Players can override the spawn chance for each mob registered by adding a line
 to their minetest.conf file with a new value, the lower the value the more each

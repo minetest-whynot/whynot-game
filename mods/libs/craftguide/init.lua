@@ -7,7 +7,6 @@ local searches      = {}
 local recipes_cache = {}
 local usages_cache  = {}
 local fuel_cache    = {}
-
 local toolrepair
 
 local progressive_mode = core.settings:get_bool "craftguide_progressive_mode"
@@ -16,6 +15,7 @@ local autocache = core.settings:get_bool "craftguide_autocache"
 
 local http = core.request_http_api()
 local storage = core.get_mod_storage()
+local singleplayer = core.is_singleplayer()
 
 local reg_items = core.registered_items
 local reg_tools = core.registered_tools
@@ -109,6 +109,20 @@ local FMT = {
 local function get_fs_version(name)
 	local info = get_player_info(name)
 	return info and info.formspec_version or 1
+end
+
+local function outdated(name)
+	local fs = fmt([[
+		size[6.6,1.3]
+		image[0,0;1,1;%s]
+		label[1,0;%s]
+		button_exit[2.8,0.8;1,1;;OK]
+	]],
+	PNG.book,
+	"Your Minetest client is outdated.\n" ..
+	"Get the latest version on minetest.net to use the Crafting Guide.")
+
+	return show_formspec(name, "craftguide", fs)
 end
 
 local function mul_elem(elem, n)
@@ -697,6 +711,10 @@ local function is_fav(data)
 	return fav, i
 end
 
+local function check_newline(def)
+	return def and def.description and find(def.description, "\n")
+end
+
 local function get_desc(name)
 	if sub(name, 1, 1) == "_" then
 		name = sub(name, 2)
@@ -814,11 +832,15 @@ local function get_output_fs(data, fs, L)
 		fs[#fs + 1] = fmt("item_image_button[%f,%f;%f,%f;%s;%s;%s]",
 			output_X, Y, 1.1, 1.1, item, _name, "")
 
+
+		local def = reg_items[name]
+
 		local infos = {
-			unknown  = not reg_items[name] or nil,
+			unknown  = not def or nil,
 			burntime = fuel_cache[name],
 			repair   = repairable(name),
 			rarity   = L.rarity,
+			newline  = check_newline(def),
 		}
 
 		if next(infos) then
@@ -925,12 +947,15 @@ local function get_grid_fs(data, fs, rcp, spacing)
 		fs[#fs + 1] = fmt(FMT.item_image_button,
 			X, Y, btn_size, btn_size, item, item, label)
 
+		local def = reg_items[name]
+
 		local infos = {
-			unknown  = not reg_items[name] or nil,
+			unknown  = not def or nil,
 			groups   = groups,
 			burntime = fuel_cache[name],
 			cooktime = cooktime,
 			replace  = replace,
+			newline  = check_newline(def),
 		}
 
 		if next(infos) then
@@ -1549,6 +1574,10 @@ on_mods_loaded(get_init_items)
 on_joinplayer(function(player)
 	local name = player:get_player_name()
 	init_data(name)
+
+	if pdata[name].fs_version < FORMSPEC_MINIMAL_VERSION then
+		outdated(name)
+	end
 end)
 
 local function fields(player, _f)
@@ -1653,9 +1682,8 @@ if sfinv_only then
 		get = function(self, player, context)
 			local name = player:get_player_name()
 			local data = pdata[name]
-			local formspec = make_fs(data)
 
-			return sfinv.make_formspec(player, context, formspec)
+			return sfinv.make_formspec(player, context, make_fs(data))
 		end,
 
 		on_enter = function(self, player, context)
@@ -1684,17 +1712,7 @@ else
 		local data = pdata[name]
 
 		if data.fs_version < FORMSPEC_MINIMAL_VERSION then
-			local fs = fmt([[
-				size[6.6,1.3]
-				image[0,0;1,1;%s]
-				label[1,0;%s]
-				button_exit[2.8,0.8;1,1;;OK]
-			]],
-			PNG.nothing,
-			"Your Minetest client is outdated.\n" ..
-			"Get the latest version on minetest.net to use the Crafting Guide.")
-
-			return show_formspec(name, "craftguide", fs)
+			return outdated(name)
 		end
 
 		if next(recipe_filters) then
@@ -1725,7 +1743,12 @@ else
 		paramtype = "light",
 		paramtype2 = "wallmounted",
 		sunlight_propagates = true,
-		groups = {choppy = 1, attached_node = 1, oddly_breakable_by_hand = 1, flammable = 3},
+		groups = {
+			choppy = 1,
+			attached_node = 1,
+			oddly_breakable_by_hand = 1,
+			flammable = 3,
+		},
 		node_box = {
 			type = "wallmounted",
 			wall_top    = {-0.5, 0.4375, -0.5, 0.5, 0.5, 0.5},
@@ -1770,7 +1793,7 @@ else
 	if rawget(_G, "sfinv_buttons") then
 		sfinv_buttons.register_button("craftguide", {
 			title = S"Crafting Guide",
-			tooltip = S"Shows a list of available crafting recipes, cooking recipes and fuels",
+			tooltip = S"Shows a list of available crafting recipes",
 			image = PNG.book,
 			action = function(player)
 				on_use(player)
@@ -1780,7 +1803,6 @@ else
 end
 
 if progressive_mode then
-	local PLAYERS = {}
 	local POLL_FREQ = 0.25
 	local HUD_TIMER_MAX = 1.5
 
@@ -1867,6 +1889,34 @@ if progressive_mode then
 		return inv_items
 	end
 
+	local function init_hud(player, data)
+		data.hud = {
+			bg = player:hud_add{
+				hud_elem_type = "image",
+				position      = {x = 0.78, y = 1},
+				alignment     = {x = 1,    y = 1},
+				scale         = {x = 370,  y = 112},
+				text          = PNG.bg,
+			},
+
+			book = player:hud_add{
+				hud_elem_type = "image",
+				position      = {x = 0.79, y = 1.02},
+				alignment     = {x = 1,    y = 1},
+				scale         = {x = 4,    y = 4},
+				text          = PNG.book,
+			},
+
+			text = player:hud_add{
+				hud_elem_type = "text",
+				position      = {x = 0.84, y = 1.04},
+				alignment     = {x = 1,    y = 1},
+				number        = 0xffffff,
+				text          = "",
+			},
+		}
+	end
+
 	local function show_hud_success(player, data)
 		-- It'd better to have an engine function `hud_move` to only need
 		-- 2 calls for the notification's back and forth.
@@ -1914,8 +1964,9 @@ if progressive_mode then
 	-- Workaround. Need an engine call to detect when the contents of
 	-- the player inventory changed, instead.
 	local function poll_new_items()
-		for i = 1, #PLAYERS do
-			local player = PLAYERS[i]
+		local players = get_players()
+		for i = 1, #players do
+			local player = players[i]
 			local name   = player:get_player_name()
 			local data   = pdata[name]
 
@@ -1948,12 +1999,13 @@ if progressive_mode then
 	poll_new_items()
 
 	globalstep(function()
-		for i = 1, #PLAYERS do
-			local player = PLAYERS[i]
+		local players = get_players()
+		for i = 1, #players do
+			local player = players[i]
 			local name   = player:get_player_name()
 			local data   = pdata[name]
 
-			if data.show_hud ~= nil then
+			if data.show_hud ~= nil and singleplayer then
 				show_hud_success(player, data)
 			end
 		end
@@ -1962,8 +2014,6 @@ if progressive_mode then
 	craftguide.add_recipe_filter("Default progressive filter", progressive_filter)
 
 	on_joinplayer(function(player)
-		PLAYERS = get_players()
-
 		local name = player:get_player_name()
 		local data = pdata[name]
 
@@ -1971,31 +2021,9 @@ if progressive_mode then
 		data.inv_items = dslz(meta:get_string "inv_items") or {}
 		data.known_recipes = dslz(meta:get_string "known_recipes") or 0
 
-		data.hud = {
-			bg = player:hud_add{
-				hud_elem_type = "image",
-				position      = {x = 0.78, y = 1},
-				alignment     = {x = 1,    y = 1},
-				scale         = {x = 370,  y = 112},
-				text          = PNG.bg,
-			},
-
-			book = player:hud_add{
-				hud_elem_type = "image",
-				position      = {x = 0.79, y = 1.02},
-				alignment     = {x = 1,    y = 1},
-				scale         = {x = 4,    y = 4},
-				text          = PNG.book,
-			},
-
-			text = player:hud_add{
-				hud_elem_type = "text",
-				position      = {x = 0.84, y = 1.04},
-				alignment     = {x = 1,    y = 1},
-				number        = 0xffffff,
-				text          = "",
-			},
-		}
+		if singleplayer then
+			init_hud(player, data)
+		end
 	end)
 
 	local to_save = {"inv_items", "known_recipes"}
@@ -2011,14 +2039,12 @@ if progressive_mode then
 		end
 	end
 
-	on_leaveplayer(function(player)
-		PLAYERS = get_players()
-		save_meta(player)
-	end)
+	on_leaveplayer(save_meta)
 
 	on_shutdown(function()
-		for i = 1, #PLAYERS do
-			local player = PLAYERS[i]
+		local players = get_players()
+		for i = 1, #players do
+			local player = players[i]
 			save_meta(player)
 		end
 	end)
@@ -2046,13 +2072,11 @@ function craftguide.show(name, item, show_usages)
 	if not recipes and not usages then
 		if not recipes_cache[item] and not usages_cache[item] then
 			return false, msg(name, fmt("%s: %s",
-				S"No recipe or usage for this item",
-				get_desc(item)))
+				S"No recipe or usage for this item", get_desc(item)))
 		end
 
 		return false, msg(name, fmt("%s: %s",
-			S"You don't know a recipe or usage for this item",
-			get_desc(item)))
+			S"You don't know a recipe or usage for this item", get_desc(item)))
 	end
 
 	data.query_item = item
