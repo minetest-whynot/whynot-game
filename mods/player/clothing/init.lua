@@ -78,16 +78,16 @@ local function save_clothing_metadata(player, clothing_inv)
 		end
 	end
 	if is_empty then
-		player:set_attribute("clothing:inventory", nil)
+		player:get_meta():set_string("clothing:inventory", "")
 	else
-		player:set_attribute("clothing:inventory",
+		player:get_meta():set_string("clothing:inventory",
 			minetest.serialize(clothes))
 	end
 end
 
 local function load_clothing_metadata(player, clothing_inv)
 	local player_inv = player:get_inventory()
-	local clothing_meta = player:get_attribute("clothing:inventory")
+	local clothing_meta = player:get_meta():get_string("clothing:inventory")
 	local clothes = clothing_meta and minetest.deserialize(clothing_meta) or {}
 	local dirty_meta = false
 	if not clothing_meta then

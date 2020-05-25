@@ -60,7 +60,7 @@ clothing.set_player_clothing = function(self, player)
 		cape = {},
 	}
 
-	local clothing_meta = player:get_attribute("clothing:inventory")
+	local clothing_meta = player:get_meta():get_string("clothing:inventory")
 	local clothes = clothing_meta and minetest.deserialize(clothing_meta) or {}
 
 	local capes = {}
@@ -89,7 +89,7 @@ clothing.set_player_clothing = function(self, player)
 	clothing.player_textures[name] = clothing.player_textures[name] or {}
 	clothing.player_textures[name].clothing = clothing_out
 	clothing.player_textures[name].cape = cape_out
-	player_api.update_textures(player)
+	player_api.set_textures(player)
 	self:run_callbacks("on_update", player)
 end
 

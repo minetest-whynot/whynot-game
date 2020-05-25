@@ -14,5 +14,6 @@ unknown command=unbekannter Befehl
 see /help skinsdb for supported parameters=Lese /help für erlaubte Parameter
 skin set to=Skin ist jetzt
 invalid skin=unbekannter Skin
+requires skin key=Skin key benötigt
 unknown parameter=unbekannter Parameter
 Skins=Aussehen

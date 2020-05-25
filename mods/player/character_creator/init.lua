@@ -380,4 +380,21 @@ elseif minetest.get_modpath("sfinv_buttons") then
 		title = "Character Creator",
 		action = show_formspec,
 	})
+
+elseif minetest.global_exists("sfinv") and sfinv.enabled then
+
+	local old_func = sfinv.pages["sfinv:crafting"].get
+	sfinv.override_page("sfinv:crafting", {
+		get = function(self, player, context)
+			local fs = old_func(self, player, context)
+			return fs .. "image_button[0,0;1,1;inventory_plus_character_creator.png;character_creator;]"
+		end
+	})
+
+	minetest.register_on_player_receive_fields(function(player, formname, fields)
+		if fields.character_creator then
+			show_formspec(player)
+			return true
+		end
+	end)
 end

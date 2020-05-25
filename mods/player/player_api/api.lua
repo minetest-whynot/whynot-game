@@ -16,6 +16,16 @@ local registered_skin_modifiers = {}
 local registered_on_skin_change = {}
 
 function player_api.register_model(name, def)
+	-- compatibility defaults
+	def.visual = def.visual or "mesh"
+	def.visual_size = def.visual_size or {x = 1, y = 1}
+	if def.visual == "mesh" and not def.mesh then
+		def.mesh = name
+	end
+	def.collisionbox = def.collisionbox or {-0.3, 0.0, -0.3, 0.3, 1.7, 0.3}
+	def.stepheight = def.stepheight or 0.6
+	def.eye_height = def.eye_height or 1.47
+
 	models[name] = def
 end
 
@@ -53,34 +63,35 @@ end
 
 -- Called when a player's appearance needs to be updated
 function player_api.set_model(player, model_name)
+	local default_model = models[player_api.default_model]
 	local name = player:get_player_name()
 	local model = model_name and models[model_name]
 	if not model then
 		model_name = player_api.default_model
-		model = models[model_name]
+		model = default_model
 	end
 
 	player:set_properties({
-		mesh = model_name,
+		mesh = model.mesh,
 		textures = player_textures[name] or model.textures,
-		visual = model.visual or "mesh",
-		visual_size = model.visual_size or {x = 1, y = 1},
-		collisionbox = model.collisionbox or {-0.3, 0.0, -0.3, 0.3, 1.7, 0.3},
-		stepheight = model.stepheight or 0.6,
-		eye_height = model.eye_height or 1.47,
+		visual = model.visual,
+		visual_size = model.visual_size,
+		collisionbox = model.collisionbox,
+		stepheight = model.stepheight,
+		eye_height = model.eye_height,
 	})
 	player_api.set_animation(player, "stand")
 	player_model[name] = model_name
 end
 
--- Apply textures to player model
-function player_api.update_textures(player)
+function player_api.set_textures(player, textures)
 	local name = player:get_player_name()
 	local model = models[player_model[name]]
 	local skin = skins[player_skin[name]]
 
-	local textures
-	if skin.textures then
+	if textures then
+		skin_textures[name] = textures
+	elseif skin.textures then
 		textures = table.copy(skin.textures)
 		skin_textures[name] = skin.textures
 	elseif skin.texture then
@@ -98,7 +109,7 @@ function player_api.update_textures(player)
 	if model.skin_modifier then
 		textures = model:skin_modifier(textures, player, player_model[name], player_skin[name]) or textures
 	end
---print("set skin textures", dump(textures))
+
 	player_textures[name] = textures
 	player:set_properties({textures = textures})
 end
@@ -121,10 +132,10 @@ function player_api.set_skin(player, skin_name, is_default, is_force)
 
 	-- Handle skin textures
 	player_skin[name] = skin_name
-	player_api.update_textures(player)
+	player_api.set_textures(player)
 
 	if not is_default then
-		player:set_attribute("player_api:skin", skin_name)
+		player:get_meta():set_string("player_api:skin", skin_name)
 	end
 
 	for _, modifier_func in ipairs(registered_on_skin_change) do
@@ -134,7 +145,7 @@ end
 
 -- Get current assigned or default skin for player
 function player_api.get_skin(player)
-	local assigned_skin = player:get_attribute("player_api:skin")
+	local assigned_skin = player:get_meta():get_string("player_api:skin")
 	if assigned_skin then
 		return assigned_skin, false
 	end
@@ -231,8 +242,6 @@ function player_api.init_on_joinplayer(player)
 		{x = 200, y = 219},
 		30
 	)
-	player:hud_set_hotbar_image("gui_hotbar.png")
-	player:hud_set_hotbar_selected_image("gui_hotbar_selected.png")
 end
 
 minetest.register_on_joinplayer(function(player)
@@ -263,20 +272,14 @@ function minetest.calculate_knockback(player, ...)
 end
 
 -- Check each player and apply animations
-minetest.register_globalstep(function(dtime)
+minetest.register_globalstep(function()
 	for _, player in pairs(minetest.get_connected_players()) do
 		local name = player:get_player_name()
 		local model_name = player_model[name]
 		local model = model_name and models[model_name]
 		if model and not player_attached[name] then
 			local controls = player:get_player_control()
-			local walking = false
 			local animation_speed_mod = model.animation_speed or 30
-
-			-- Determine if the player is walking
-			if controls.up or controls.down or controls.left or controls.right then
-				walking = true
-			end
 
 			-- Determine if the player is sneaking, and reduce animation speed if so
 			if controls.sneak then
@@ -286,18 +289,19 @@ minetest.register_globalstep(function(dtime)
 			-- Apply animations based on what the player is doing
 			if player:get_hp() == 0 then
 				player_set_animation(player, "lay")
-			elseif walking then
+			-- Determine if the player is walking
+			elseif controls.up or controls.down or controls.left or controls.right then
 				if player_sneak[name] ~= controls.sneak then
 					player_anim[name] = nil
 					player_sneak[name] = controls.sneak
 				end
-				if controls.LMB then
+				if controls.LMB or controls.RMB then
 					player_set_animation(player, "walk_mine", animation_speed_mod)
 				else
 					player_set_animation(player, "walk", animation_speed_mod)
 				end
-			elseif controls.LMB then
-				player_set_animation(player, "mine")
+			elseif controls.LMB or controls.RMB then
+				player_set_animation(player, "mine", animation_speed_mod)
 			else
 				player_set_animation(player, "stand", animation_speed_mod)
 			end

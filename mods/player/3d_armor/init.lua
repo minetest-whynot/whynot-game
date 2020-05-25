@@ -112,7 +112,7 @@ local function validate_armor_inventory(player)
 		return
 	end
 	local armor_prev = {}
-	local armor_list_string = player:get_attribute("3d_armor_inventory")
+	local armor_list_string = player:get_meta():get_string("3d_armor_inventory")
 	if armor_list_string then
 		local armor_list = armor:deserialize_inventory_list(armor_list_string)
 		for i, stack in ipairs(armor_list) do

@@ -5,9 +5,6 @@ screwdriver = screwdriver or {}
 local placeholder_node = "air"
 local wd_cbox = {type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, 1.5, 0.5}}
 
--- cache set_textures function
-local set_player_textures = player_api.set_textures
-
 local skinslist = {"male1", "male2", "male3", "male4", "male5"}
 local default_skin = "character.png"
 

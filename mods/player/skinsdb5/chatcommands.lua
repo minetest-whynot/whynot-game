@@ -36,11 +36,15 @@ minetest.register_chatcommand("skinsdb", {
 		end
 
 		if command == "set" then
-			if player_api.registered_skins[parameter] then
-				player_api.set_skin(player, parameter)
-				return true, S("skin set to").." "..parameter
+			if parameter then
+				if player_api.registered_skins[parameter] then
+					player_api.set_skin(player, parameter)
+					return true, S("skin set to").." "..parameter
+				else
+					return false, S("invalid skin").." "..parameter
+				end
 			else
-				return false, S("invalid skin").." "..parameter
+				return false, S("requires skin key")
 			end
 		elseif command == "list" then
 			local list

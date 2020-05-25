@@ -15,16 +15,13 @@ player_api.register_model("character.b3d", {
 		walk_mine = {x = 200, y = 219},
 		sit       = {x = 81,  y = 160},
 	},
-	collisionbox = {-0.3, 0.0, -0.3, 0.3, 1.7, 0.3},
-	stepheight = 0.6,
-	eye_height = 1.47,
 })
 
 player_api.register_model("upright_sprite", {
 	textures = {"player.png", "player_back.png"},
 	visual = "upright_sprite",
+	visual_size = {x = 1, y = 2},
 	collisionbox = {-0.3, 0.0, -0.3, 0.3, 1.75, 0.3},
-	stepheight = 0.6,
 	eye_height = 1.625,
 })
 

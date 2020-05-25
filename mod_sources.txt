@@ -105,7 +105,7 @@ origin	https://github.com/minetest-mods/wielded_light (fetch)
 Mod: player/wielded_light
 
 origin	https://github.com/bell07/minetest-player_api_modpack (fetch)
-* master d01fb55 [origin/master] minetest_game-5.2 backports
+* master f5f61bd [origin/master] minetest_game upstream rebase backports
 Mod: player_api_modpack/3d_armor
 Mod: player_api_modpack/character_creator
 Mod: player_api_modpack/clothing
@@ -405,9 +405,9 @@ Mod: mesecons/mesecons_walllever
 Mod: mesecons/mesecons_wires
 
 origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
-* master 674afa9 [origin/master] nil check for player when using lava pick
+* master b6591fa [origin/master] tweak spider climbing feature
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master 3a17c47 [origin/master] added 'texture_mods' to mob definition to add overlay textures
+* master d125d0a [origin/master] tweak and tidy code (thanks MoNTE48)
 Mod: mobs_redo/mobs_redo

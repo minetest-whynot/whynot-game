@@ -279,7 +279,7 @@ armor.set_player_armor = function(self, player)
 	self.def[name].level = self.def[name].groups.fleshy or 0
 	self.def[name].state = state
 	self.def[name].count = count
-	player_api.update_textures(player)
+	player_api.set_textures(player)
 	self:run_callbacks("on_update", player)
 end
 
@@ -430,7 +430,7 @@ end
 armor.load_armor_inventory = function(self, player)
 	local _, inv = self:get_valid_player(player, "[load_armor_inventory]")
 	if inv then
-		local armor_list_string = player:get_attribute("3d_armor_inventory")
+		local armor_list_string = player:get_meta():get_string("3d_armor_inventory")
 		if armor_list_string then
 			inv:set_list("armor",
 				self:deserialize_inventory_list(armor_list_string))
@@ -442,7 +442,7 @@ end
 armor.save_armor_inventory = function(self, player)
 	local _, inv = self:get_valid_player(player, "[save_armor_inventory]")
 	if inv then
-		player:set_attribute("3d_armor_inventory",
+		player:get_meta():set_string("3d_armor_inventory",
 			self:serialize_inventory_list(inv:get_list("armor")))
 	end
 end
