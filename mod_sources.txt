@@ -105,7 +105,7 @@ origin	https://github.com/minetest-mods/wielded_light (fetch)
 Mod: player/wielded_light
 
 origin	https://github.com/bell07/minetest-player_api_modpack (fetch)
-* master f5f61bd [origin/master] minetest_game upstream rebase backports
+* master e889673 [origin/master] backport new skin parts Thx. to @ClockGen
 Mod: player_api_modpack/3d_armor
 Mod: player_api_modpack/character_creator
 Mod: player_api_modpack/clothing
@@ -409,5 +409,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master d125d0a [origin/master] tweak and tidy code (thanks MoNTE48)
+* master 9dd4ac7 [origin/master] fix tnt explosion causing mobs to attack themselves
 Mod: mobs_redo/mobs_redo

@@ -6,7 +6,7 @@ local use_cmi = minetest.global_exists("cmi")
 
 mobs = {
 	mod = "redo",
-	version = "20200521",
+	version = "20200525",
 	intllib = S,
 	invis = minetest.global_exists("invisibility") and invisibility or {}
 }
@@ -1222,7 +1222,8 @@ local entity_physics = function(pos, radius)
 		local ent = objs[n]:get_luaentity()
 
 		-- punches work on entities AND players
-		objs[n]:punch(objs[n], 1.0, {
+--		objs[n]:punch(objs[n], 1.0, {
+		objs[n]:punch(nil, 1.0, {
 			full_punch_interval = 1.0,
 			damage_groups = {fleshy = damage},
 		}, pos)

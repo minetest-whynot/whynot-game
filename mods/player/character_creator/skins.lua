@@ -249,6 +249,12 @@ return {
 		["Yellow T-Shirt"] = "cc_tshirt_yellow.png",
 		["Black T-Shirt"] = "cc_tshirt_black.png",
 		["Blue T-Shirt"] = "cc_tshirt_blue.png",
+		["Brown Vest"] = "cc_vest_brown.png",
+		["Green Vest"] = "cc_vest_green.png",
+		["Blue Vest"] = "cc_vest_blue.png",
+		["Brown Shirt"] = "cc_shirt_canvas_brown.png",
+		["Green Shirt"] = "cc_shirt_canvas_green.png",
+		["Blue Shirt"] = "cc_shirt_canvas_blue.png",
 	},
 
 	pants = {
@@ -260,11 +266,18 @@ return {
 		["White Pants"] = "cc_pants_white.png",
 		["Yellow Pants"] = "cc_pants_yellow.png",
 		["Black Pants"] = "cc_pants_black.png",
+		["Brown Canvas Pants"] = "cc_pants_canvas_brown.png",
+		["Green Canvas Pants"] = "cc_pants_canvas_green.png",
+		["Blue Canvas Pants"] = "cc_pants_canvas_blue.png",
 	},
 
 	shoes = {
 		["Leather Shoes"] = "cc_shoes_leather.png",
 		["Canvas Shoes"] = "cc_shoes_canvas.png",
 		["Fur Shoes"] = "cc_shoes_fur.png",
+		["Brown Shoes"] = "cc_shoes_brown.png",
+		["Green Shoes"] = "cc_shoes_green.png",
+		["Blue Shoes"] = "cc_shoes_blue.png",
+		["Black Shoes"] = "cc_shoes_black.png",
 	}
 }
