@@ -47,6 +47,8 @@ register_plant("onion_5", 5, 22, nil, "", -1, farming.onion)
 register_plant("garlic_5", 3, 30, nil, "group:tree", 1, farming.garlic)
 register_plant("pea_5", 25, 50, nil, "", -1, farming.peas)
 register_plant("beetroot_5", 1, 15, nil, "", -1, farming.beetroot)
+register_plant("mint_4", 1, 75, {"default:dirt_with_grass", 
+"default:dirt_with_coniferous_litter"}, "group:water", 1, farming.mint)
 
 
 if minetest.get_mapgen_setting("mg_name") == "v6" then

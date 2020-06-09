@@ -304,6 +304,12 @@ function cart_entity:on_step(dtime)
 				acc = -0.4
 			end
 		end
+		if ctrl and ctrl.sneak then
+			-- Descend when sneak is pressed
+			boost_cart:manage_attachment(player, nil)
+			player = nil
+			ctrl = nil
+		end
 
 		if acc then
 			-- Slow down or speed up, depending on Y direction
@@ -340,10 +346,13 @@ function cart_entity:on_step(dtime)
 	if self.punched then
 		-- Collect dropped items
 		for _, obj_ in pairs(minetest.get_objects_inside_radius(pos, 1)) do
-			if not obj_:is_player() and
-					obj_:get_luaentity() and
-					not obj_:get_luaentity().physical_state and
-					obj_:get_luaentity().name == "__builtin:item" then
+			local ent = obj_:get_luaentity()
+			-- Careful here: physical_state and disable_physics are item-internal APIs
+			if ent and ent.name == "__builtin:item" and ent.physical_state then
+				-- Check API to support 5.2.0 and older
+				if ent.disable_physics then
+					ent:disable_physics()
+				end
 
 				obj_:set_attach(self.object, "", {x=0, y=0, z=0}, {x=0, y=0, z=0})
 				self.attached_items[#self.attached_items + 1] = obj_

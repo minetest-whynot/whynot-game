@@ -7,7 +7,7 @@
 
 farming = {
 	mod = "redo",
-	version = "20200430",
+	version = "20200527",
 	path = minetest.get_modpath("farming"),
 	select = {
 		type = "fixed",
@@ -624,6 +624,7 @@ farming.pepper = 0.002
 farming.pineapple = 0.001
 farming.peas = 0.001
 farming.beetroot = 0.001
+farming.mint = 0.005
 farming.grains = true
 farming.rarety = 0.002
 
@@ -688,6 +689,7 @@ ddoo("peas.lua", farming.peas)
 ddoo("beetroot.lua", farming.beetroot)
 ddoo("chili.lua", farming.chili)
 ddoo("ryeoatrice.lua", farming.grains)
+ddoo("mint.lua", farming.mint)
 
 dofile(farming.path.."/food.lua")
 dofile(farming.path.."/mapgen.lua")

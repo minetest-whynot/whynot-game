@@ -136,7 +136,7 @@ origin	https://notabug.org/TenPlus1/ambience (fetch)
 Mod: ambience/ambience
 
 origin	https://github.com/minetest-mods/lightning (fetch)
-* master 01f2b9c [origin/master] Use mod.conf for dependencies and description
+* master 1059546 [origin/master] Add a setting to disable the random fire chance. (#18)
 Mod: ambience/lightning
 
 origin	https://github.com/Ezhh/under_sky (fetch)
@@ -148,7 +148,7 @@ origin	https://gitlab.com/rautars/weather_pack (fetch)
 Mod: ambience/weather_pack
 
 origin	https://notabug.org/TenPlus1/farming (fetch)
-* master ca0876c [origin/master] onion soup added thanks to edcrypt
+* master d021cb6 [origin/master] added apple pie
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
@@ -176,7 +176,7 @@ origin	https://github.com/taikedz/everamzah-backpacks (fetch)
 Mod: tools/backpacks
 
 origin	https://github.com/SmallJoker/boost_cart (fetch)
-* master c8f7cae [origin/master] Set driver to nil (like before)
+* master 5b53183 [origin/master] Descend from cart using sneak (#31)
 Mod: tools/boost_cart
 
 origin	https://github.com/minetest-mods/ccompass (fetch)
@@ -244,7 +244,7 @@ origin	https://github.com/Ezhh/abriglass (fetch)
 Mod: decor/abriglass
 
 origin	https://gitlab.com/VanessaE/basic_materials (fetch)
-* master 97e2bd7 [origin/master] Merge branch 'master' into 'master'
+* master c539463 [origin/master] add minimum minetest version key for contentdb
 Mod: decor/basic_materials
 
 origin	https://github.com/Napiophelios/campfire (fetch)
@@ -301,11 +301,11 @@ origin	https://github.com/minetest-mods/ts_furniture (fetch)
 Mod: decor/ts_furniture
 
 origin	https://gitlab.com/VanessaE/unifieddyes (fetch)
-* master         17e87a8 [origin/master] add sanity checks for when what should be a player/digger is `nil`
+* master         71d7e3c [origin/master] add minimum minetest version key for contentdb
 Mod: decor/unifieddyes
 
 origin	https://gitlab.com/VanessaE/homedecor_modpack/ (fetch)
-* master d4b5f94 [origin/master: ahead 2] Merge remote-tracking branch 'origin/master'
+* master 7ae96dc [origin/master: ahead 3] Merge remote-tracking branch 'origin/master'
 Mod: homedecor_modpack/building_blocks
 Mod: homedecor_modpack/fake_fire
 Mod: homedecor_modpack/lavalamp
@@ -378,7 +378,7 @@ origin	https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin	https://github.com/minetest-mods/mesecons (fetch)
-* master d3aedd2 [origin/master] Speed up search for objects to be moved in MVPS (#512)
+* master e1cffde [origin/master] Gates: Modify appearance (#515)
 Mod: mesecons/mesecons
 Mod: mesecons/mesecons_alias
 Mod: mesecons/mesecons_blinkyplant
@@ -409,5 +409,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master 9dd4ac7 [origin/master] fix tnt explosion causing mobs to attack themselves
+* master d04f144 [origin/master] revert previous nil punch to mob object
 Mod: mobs_redo/mobs_redo

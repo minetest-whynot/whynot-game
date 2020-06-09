@@ -12,6 +12,7 @@ Target: Run smoothly as possible, even on laggy servers.
 - Rail junction switching with the 'right/left' walking keys
 - Handbrake with the 'back' key
 - Support for non-minetest_game subgames
+- Descend from cart using the `sneak` key
 
 ## Settings
 This mod can be adjusted to fit the preference of a player or server. Use the `Settings -> All Settings` dialog in the main menu or tune your

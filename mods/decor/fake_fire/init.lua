@@ -3,7 +3,80 @@ local S = homedecor.gettext
 
 screwdriver = screwdriver or {}
 
-local function start_smoke(pos, node, clicker, chimney)
+local function fire_particles_on(pos) -- 3 layers of fire
+	local meta = minetest.get_meta(pos)
+	local id = minetest.add_particlespawner({ -- 1 layer big particles fire
+		amount = 9,
+		time = 0,
+		minpos = {x = pos.x - 0.2, y = pos.y - 0.4, z = pos.z - 0.2},
+		maxpos = {x = pos.x + 0.2, y = pos.y - 0.1, z = pos.z + 0.2},
+		minvel = {x= 0, y= 0, z= 0},
+		maxvel = {x= 0, y= 0.1, z= 0},
+		minacc = {x= 0, y= 0, z= 0},
+		maxacc = {x= 0, y= 0.7, z= 0},
+		minexptime = 0.5,
+		maxexptime = 0.7,
+		minsize = 2,
+		maxsize = 5,
+		collisiondetection = false,
+		vertical = true,
+		texture = "fake_fire_particle_anim_fire.png",
+		animation = {type="vertical_frames", aspect_w=16, aspect_h=16, length = 0.8,},
+	})
+	meta:set_int("layer_1", id)
+
+	local id = minetest.add_particlespawner({ -- 2 layer smol particles fire
+		amount = 1,
+		time = 0,
+		minpos = {x = pos.x - 0.1, y = pos.y, z = pos.z - 0.1},
+		maxpos = {x = pos.x + 0.1, y = pos.y + 0.4, z = pos.z + 0.1},
+		minvel = {x= 0, y= 0, z= 0},
+		maxvel = {x= 0, y= 0.1, z= 0},
+		minacc = {x= 0, y= 0, z= 0},
+		maxacc = {x= 0, y= 1, z= 0},
+		minexptime = 0.4,
+		maxexptime = 0.6,
+		minsize = 0.5,
+		maxsize = 0.7,
+		collisiondetection = false,
+		vertical = true,
+		texture = "fake_fire_particle_anim_fire.png",
+		animation = {type="vertical_frames", aspect_w=16, aspect_h=16, length = 0.7,},
+	})
+	meta:set_int("layer_2", id)
+
+	local id = minetest.add_particlespawner({ --3 layer smoke
+		amount = 1,
+		time = 0,
+		minpos = {x = pos.x - 0.1, y = pos.y - 0.2, z = pos.z - 0.1},
+		maxpos = {x = pos.x + 0.2, y = pos.y + 0.4, z = pos.z + 0.2},
+		minvel = {x= 0, y= 0, z= 0},
+		maxvel = {x= 0, y= 0.1, z= 0},
+		minacc = {x= 0, y= 0, z= 0},
+		maxacc = {x= 0, y= 1, z= 0},
+		minexptime = 0.6,
+		maxexptime = 0.8,
+		minsize = 2,
+		maxsize = 4,
+		collisiondetection = true,
+		vertical = true,
+		texture = "fake_fire_particle_anim_smoke.png",
+		animation = {type="vertical_frames", aspect_w=16, aspect_h=16, length = 0.9,},
+	})
+	meta:set_int("layer_3", id)
+end
+
+local function fire_particles_off(pos)
+	local meta = minetest.get_meta(pos)
+	local id_1 = meta:get_int("layer_1");
+	local id_2 = meta:get_int("layer_2");
+	local id_3 = meta:get_int("layer_3");
+	minetest.delete_particlespawner(id_1)
+	minetest.delete_particlespawner(id_2)
+	minetest.delete_particlespawner(id_3)
+end
+
+local function start_fire_effects(pos, node, clicker, chimney)
 	local this_spawner_meta = minetest.get_meta(pos)
 	local id = this_spawner_meta:get_int("smoky")
 	local s_handle = this_spawner_meta:get_int("sound")
@@ -41,7 +114,7 @@ local function start_smoke(pos, node, clicker, chimney)
 				max_hear_distance = 5,
 				loop = true
 			})
-			this_spawner_meta:set_int("smoky", id)
+			fire_particles_on(pos)
 			this_spawner_meta:set_int("sound", s_handle)
 		end
 	end
@@ -83,7 +156,7 @@ minetest.register_node("fake_fire:ice_fire", {
 		aspect_w=16, aspect_h=16, length=1.5}},
 	},
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
-		start_smoke(pos, node, clicker)
+		start_fire_effects(pos, node, clicker)
 		return itemstack
 	end,
 	on_destruct = function (pos)
@@ -97,42 +170,54 @@ minetest.register_node("fake_fire:ice_fire", {
 
 minetest.register_alias("fake_fire:fake_fire", "fire:permanent_flame")
 
+local sbox = {
+	type = 'fixed',
+	fixed = { -8/16, -8/16, -8/16, 8/16, -6/16, 8/16},
+}
+
 minetest.register_node("fake_fire:fancy_fire", {
-		inventory_image = "fancy_fire_inv.png",
-		description = S("Fancy Fire"),
-		drawtype = "mesh",
-		mesh = "fancy_fire.obj",
-		paramtype = "light",
-		paramtype2 = "facedir",
-		groups = {dig_immediate=3},
-		sunlight_propagates = true,
-		light_source = 14,
-		walkable = false,
-		damage_per_second = 4,
-		on_rotate = screwdriver.rotate_simple,
-		tiles = {
-		{name="fake_fire_animated.png",
-		animation={type='vertical_frames', aspect_w=16, aspect_h=16, length=1}}, {name='fake_fire_logs.png'}},
-		on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
-			start_smoke(pos, node, clicker)
-			return itemstack
-		end,
-		on_destruct = function (pos)
-			stop_smoke(pos)
-			minetest.sound_play("fire_extinguish", {
-				pos = pos, max_hear_distance = 5
-			})
-		end,
-		drop = {
-			max_items = 3,
-			items = {
-				{
-					items = { "default:torch", "default:torch", "building_blocks:sticks" },
-					rarity = 1,
-				}
+	inventory_image = "fancy_fire_inv.png",
+	description = S("Fancy Fire"),
+	drawtype = "mesh",
+	mesh = "fancy_fire.obj",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	groups = {oddly_breakable_by_hand=3, flammable=0},
+	sunlight_propagates = true,
+	light_source = 13,
+	walkable = false,
+	buildable_to = false,
+	damage_per_second = 3,
+	selection_box = sbox,
+	tiles = {
+		"basic_materials_concrete_block.png",
+		"default_junglewood.png",
+		"fake_fire_empty_tile.png"
+	},
+	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
+		fire_particles_on(pos)
+		return itemstack
+	end,
+	on_construct = function(pos)
+		local meta = minetest.get_meta(pos)
+		fire_particles_on(pos)
+	end,
+	on_destruct = function(pos, oldnode, oldmetadata, digger)
+		fire_particles_off(pos)
+		minetest.sound_play("fire_extinguish", {
+			pos = pos, max_hear_distance = 5
+		})
+	end,
+	drop = {
+		max_items = 3,
+		items = {
+			{
+				items = { "default:torch", "default:torch", "building_blocks:sticks" },
+				rarity = 1,
 			}
 		}
-	})
+	}
+})
 
 -- EMBERS
 minetest.register_node("fake_fire:embers", {
@@ -168,7 +253,7 @@ for _, mat in ipairs(materials) do
 		},
 		on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 			local chimney = 1
-			start_smoke(pos, node, clicker, chimney)
+			start_fire_effects(pos, node, clicker, chimney)
 			return itemstack
 		end,
 		on_destruct = function (pos)
@@ -209,8 +294,22 @@ minetest.register_craft({
 })
 
 -- ALIASES
+
 minetest.register_alias("fake_fire:smokeless_fire", "fake_fire:fake_fire")
 minetest.register_alias("fake_fire:smokeless_ice_fire", "fake_fire:ice_fire")
 minetest.register_alias("fake_fire:smokeless_chimney_top_stone", "fake_fire:chimney_top_stone")
 minetest.register_alias("fake_fire:smokeless_chimney_top_sandstone", "fake_fire:chimney_top_sandstone")
 minetest.register_alias("fake_fire:flint", "fake_fire:flint_and_steel")
+
+-- OTHER
+
+minetest.register_lbm({
+	name = "fake_fire:reload_particles",
+	label = "restart fire particles on reload",
+	nodenames = {"fake_fire:fancy_fire"},
+	run_at_every_load = true,
+	action = function(pos, node)
+		fire_particles_off(pos)
+		fire_particles_on(pos)
+	end
+})

@@ -22,6 +22,8 @@ lightning.auto = true
 -- range of the skybox highlight and sound effect
 lightning.effect_range = 500
 
+local random_fire = minetest.settings:get_bool("lightning_random_fire") ~= false
+
 local rng = PcgRandom(32321123312123)
 
 -- table with playername as key and previous skybox as value
@@ -167,7 +169,7 @@ lightning.strike = function(pos)
 				return
 			end
 			-- very rarely, potentially cause a fire
-			if fire and rng:next(1,1000) == 1 then
+			if fire and random_fire and rng:next(1,1000) == 1 then
 				minetest.set_node(pos2, {name = "fire:basic_flame"})
 			else
 				minetest.set_node(pos2, {name = "lightning:dying_flame"})
