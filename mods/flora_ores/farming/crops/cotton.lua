@@ -1,6 +1,27 @@
 
 local S = farming.intllib
 
+-- wild cotton as a source of cotton seed
+minetest.register_node("farming:cotton_wild", {
+	description = S("Wild Cotton"),
+	drawtype = "plantlike",
+	waving = 1,
+	tiles = {"farming_cotton_wild.png"},
+	inventory_image = "farming_cotton_wild.png",
+	wield_image = "farming_cotton_wild.png",
+	paramtype = "light",
+	sunlight_propagates = true,
+	walkable = false,
+	buildable_to = true,
+	groups = {snappy = 3, attached_node = 1, flammable = 4},
+	drop = "farming:seed_cotton",
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-6 / 16, -8 / 16, -6 / 16, 6 / 16, 5 / 16, 6 / 16},
+	},
+})
+
 -- cotton seeds
 minetest.register_node("farming:seed_cotton", {
 	description = S("Cotton Seed"),

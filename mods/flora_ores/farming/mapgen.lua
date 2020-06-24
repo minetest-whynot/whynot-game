@@ -47,7 +47,7 @@ register_plant("onion_5", 5, 22, nil, "", -1, farming.onion)
 register_plant("garlic_5", 3, 30, nil, "group:tree", 1, farming.garlic)
 register_plant("pea_5", 25, 50, nil, "", -1, farming.peas)
 register_plant("beetroot_5", 1, 15, nil, "", -1, farming.beetroot)
-register_plant("mint_4", 1, 75, {"default:dirt_with_grass", 
+register_plant("mint_4", 1, 75, {"default:dirt_with_grass",
 "default:dirt_with_coniferous_litter"}, "group:water", 1, farming.mint)
 
 
@@ -147,3 +147,22 @@ minetest.register_decoration({
 	decoration = {"farming:pineapple_8"},
 })
 end
+
+minetest.register_decoration({
+	name = "farming:cotton_wild",
+	deco_type = "simple",
+	place_on = {"default:dry_dirt_with_dry_grass"},
+	sidelen = 16,
+	noise_params = {
+		offset = -0.1,
+		scale = 0.1,
+		spread = {x = 50, y = 50, z = 50},
+		seed = 4242,
+		octaves = 3,
+		persist = 0.7
+	},
+	biomes = {"savanna"},
+	y_max = 31000,
+	y_min = 1,
+	decoration = "farming:cotton_wild",
+})

@@ -11,7 +11,7 @@ Dungeon Master
 
 Lava Flan
 
-- Cute as they may look lava flan wallow in their namesake (no, not flans) and get curious about players who wander by, forgetting that they can burn you and cause damage. They have a 1 in 5 chance of dropping lava orb when killed.
+- Cute as they may look lava flan wallow in their namesake (no, not flans) and get curious about players who wander by, forgetting that they can burn you and cause damage. They have a 1 in 5 chance of dropping lava orb when killed, but if they die in water then pray they dont solidify into an obsidian flan that shoots shards and destroys all around them.
 
 Mese Monster
 

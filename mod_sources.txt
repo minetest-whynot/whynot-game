@@ -33,7 +33,7 @@ Mod: minetest_game/mods/wool
 Mod: minetest_game/mods/xpanes
 
 origin	https://github.com/minetest-mods/craftguide/ (fetch)
-* master 7ef62f4 [origin/master] Strip newline in item description
+* master 762c166 [origin/master] Add strings to locales
 Mod: libs/craftguide
 
 origin	https://github.com/minetest-mods/craftguide_reveal (fetch)
@@ -93,7 +93,7 @@ origin	https://repo.or.cz/minetest_hudbars.git (fetch)
 Mod: player/hudbars
 
 origin	https://github.com/minetest-mods/playeranim (fetch)
-* master 41f23cf [origin/master] Autodetect the player model version, remove playeranim.model_version
+* master ae45fe4 [origin/master] Fix compatibility with (upcoming) Minetest 5.3.0
 Mod: player/playeranim
 
 origin	http://repo.or.cz/minetest_show_wielded_item.git (fetch)
@@ -132,7 +132,7 @@ Mod: smart_sfinv_modpack/smart_sfinv_creative_sitebar
 Mod: smart_sfinv_modpack/smart_sfinv_tweaks
 
 origin	https://notabug.org/TenPlus1/ambience (fetch)
-* master 7bb0275 [origin/master] whoops, pine_leaves should be pine_needles :P
+* master 11eff94 [origin/master] better sound handling when changing sets
 Mod: ambience/ambience
 
 origin	https://github.com/minetest-mods/lightning (fetch)
@@ -148,7 +148,7 @@ origin	https://gitlab.com/rautars/weather_pack (fetch)
 Mod: ambience/weather_pack
 
 origin	https://notabug.org/TenPlus1/farming (fetch)
-* master d021cb6 [origin/master] added apple pie
+* master c62e36f [origin/master] update russian translation (thanks Yellow)
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
@@ -224,7 +224,7 @@ origin	https://github.com/bell07/minetest-subspacewalker (fetch)
 Mod: tools/subspacewalker
 
 origin	https://github.com/lisacvuk/minetest-toolranks (fetch)
-* master 9ca5587 [origin/master] Add translation support for french (#9)
+* master d000b4b [origin/master] fix tool description for old and unused tools (#14)
 Mod: tools/toolranks
 
 origin	https://github.com/minetest-mods/trash_can (fetch)
@@ -405,9 +405,9 @@ Mod: mesecons/mesecons_walllever
 Mod: mesecons/mesecons_wires
 
 origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
-* master b6591fa [origin/master] tweak spider climbing feature
+* master a39eec8 [origin/master] use mobs:add_mob() to add obsidian flan, also lava damages ob flan
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master d04f144 [origin/master] revert previous nil punch to mob object
+* master e63b1b4 [origin/master] add mobs:add_mob() function
 Mod: mobs_redo/mobs_redo

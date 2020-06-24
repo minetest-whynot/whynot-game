@@ -236,3 +236,35 @@ minetest.register_craft({
 	},
 	replacements = {{"group:food_baking_tray", "farming:baking_tray"}}
 })
+
+-- Cactus Juice
+
+minetest.register_craftitem("farming:cactus_juice", {
+	description = S("Cactus Juice"),
+	inventory_image = "farming_cactus_juice.png",
+--	on_use = minetest.item_eat(2, "vessels:drinking_glass"),
+	groups = {vessel = 1},
+	on_use = function(itemstack, user, pointed_thing)
+		if user then
+			if math.random(1, 5) == 1 then
+				return minetest.do_item_eat(-1, "vessels:drinking_glass",
+						itemstack, user, pointed_thing)
+			else
+				return minetest.do_item_eat(2, "vessels:drinking_glass",
+						itemstack, user, pointed_thing)
+			end
+		end
+	end,
+})
+
+minetest.register_craft({
+	output = "farming:cactus_juice 2",
+	type = "shapeless",
+	recipe = {
+		"vessels:drinking_glass", "vessels:drinking_glass",
+		"default:cactus", "farming:juicer"
+	},
+	replacements = {
+		{"group:food_juicer", "farming:juicer"},
+	},
+})

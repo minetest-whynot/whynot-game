@@ -134,7 +134,7 @@ end
 
 -- paper
 minetest.register_craft( {
-	output = "default:paper",
+	output = "default:paper 3",
 	recipe = {
 		{"farming:hemp_fibre", "farming:hemp_fibre", "farming:hemp_fibre"},
 	}
@@ -142,7 +142,7 @@ minetest.register_craft( {
 
 -- string
 minetest.register_craft( {
-	output = "farming:cotton",
+	output = "farming:cotton 3",
 	recipe = {
 		{"farming:hemp_fibre"},
 		{"farming:hemp_fibre"},

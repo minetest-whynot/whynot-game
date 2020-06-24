@@ -256,7 +256,7 @@ minetest.register_entity("farming:hoebomb_entity", {
 	visual = "sprite",
 	visual_size = {x = 1.0, y = 1.0},
 	textures = {"farming_hoe_bomb.png"},
-	collisionbox = {0,0,0,0,0,0},
+	collisionbox = {-0.1,-0.1,-0.1,0.1,0.1,0.1},
 	lastpos = {},
 	player = "",
 
@@ -499,12 +499,16 @@ if minetest.get_modpath("moreores") then
 	-- Toolranks support
 	if tr then
 
+		local desc = S("%s Hoe"):format(S("Silver"))
+
 		minetest.override_item("moreores:hoe_silver", {
-			original_description = S("%s Hoe"):format(S("Silver")),
-			description = toolranks.create_description("Silver Hoe")})
+			original_description = desc,
+			description = toolranks.create_description(desc)})
+
+		desc = S("%s Hoe"):format(S("Mithril"))
 
 		minetest.override_item("moreores:hoe_mithril", {
-			original_description = S("%s Hoe"):format(S("Mithril")),
-			description = toolranks.create_description("Mithril Hoe")})
+			original_description = desc,
+			description = toolranks.create_description(desc)})
 	end
 end
