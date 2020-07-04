@@ -339,6 +339,8 @@ Adding Mobs in World
 		ignore_count = true -- ignores mob count per map area
 	})
 
+Returns false if mob could not be added, returns mob object if spawned ok.
+
 
 Spawning Mobs in World
 ----------------------

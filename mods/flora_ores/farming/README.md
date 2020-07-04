@@ -13,7 +13,7 @@ This mod works by adding your new plant to the {growing=1} group and numbering t
 
 ### Changelog:
 
-- 1.45 - Dirt and Hoes are more in line with default by using dry/wet/base, added cactus juice
+- 1.45 - Dirt and Hoes are more in line with default by using dry/wet/base, added cactus juice, added pasta, spaghetti, cabbage, korean bibimbap, code tidy
 options, onion soup added (thanks edcrypt), Added apple pie, added wild cotton to savanna
 - 1.44 - Added 'farming_stage_length' in mod settings for speed of crop growth, also thanks to TheDarkTiger for translation updates
 - 1.43 - Scythe works on use instead of right-click, added seed=1 groups to actual seeds and seed=2 group for plantable food items.

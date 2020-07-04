@@ -172,5 +172,5 @@ minetest.register_abm({
 		and minetest.get_item_group(nn, "plant") == 0 then
 			minetest.set_node(pos, {name = ndef.soil.base})
 		end
-	end,
+	end
 })

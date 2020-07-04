@@ -16,7 +16,7 @@ minetest.register_craftitem("farming:seed_mint", {
 minetest.register_craftitem("farming:mint_leaf", {
 	description = S("Mint Leaf"),
 	inventory_image = "farming_mint_leaf.png",
-	groups = {food_mint = 1, flammable = 4},
+	groups = {food_mint = 1, flammable = 4}
 })
 
 -- mint tea
@@ -24,7 +24,7 @@ minetest.register_craftitem("farming:mint_tea", {
 	description = S("Mint Tea"),
 	inventory_image = "farming_mint_tea.png",
 	on_use = minetest.item_eat(2, "vessels:drinking_glass"),
-	groups = {flammable = 4},
+	groups = {flammable = 4}
 })
 
 minetest.register_craft({
@@ -37,12 +37,12 @@ minetest.register_craft({
 	},
 	replacements = {
 		{"group:food_juicer", "farming:juicer"},
-		{"bucket:bucket_water", "bucket:bucket_empty"},
-	},
+		{"bucket:bucket_water", "bucket:bucket_empty"}
+	}
 })
 
 -- mint definition
-local crop_def = {
+local def = {
 	drawtype = "plantlike",
 	tiles = {"farming_mint_1.png"},
 	paramtype = "light",
@@ -58,20 +58,20 @@ local crop_def = {
 }
 
 -- stage 1
-minetest.register_node("farming:mint_1", table.copy(crop_def))
+minetest.register_node("farming:mint_1", table.copy(def))
 
 -- stage 2
-crop_def.tiles = {"farming_mint_2.png"}
-minetest.register_node("farming:mint_2", table.copy(crop_def))
+def.tiles = {"farming_mint_2.png"}
+minetest.register_node("farming:mint_2", table.copy(def))
 
 -- stage 3
-crop_def.tiles = {"farming_mint_3.png"}
-minetest.register_node("farming:mint_3", table.copy(crop_def))
+def.tiles = {"farming_mint_3.png"}
+minetest.register_node("farming:mint_3", table.copy(def))
 
 -- stage 4 (final)
-crop_def.tiles = {"farming_mint_4.png"}
-crop_def.groups.growing = 0
-crop_def.drop = {
+def.tiles = {"farming_mint_4.png"}
+def.groups.growing = nil
+def.drop = {
 	items = {
 		{items = {"farming:mint_leaf 2"}, rarity = 1},
 		{items = {"farming:mint_leaf 2"}, rarity = 2},
@@ -79,7 +79,7 @@ crop_def.drop = {
 		{items = {"farming:seed_mint 2"}, rarity = 2},
 	}
 }
-minetest.register_node("farming:mint_4", table.copy(crop_def))
+minetest.register_node("farming:mint_4", table.copy(def))
 
 -- add to registered_plants
 farming.registered_plants["farming:mint"] = {

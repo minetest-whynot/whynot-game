@@ -36,7 +36,7 @@ farming.register_hoe = function(name, def)
 			return farming.hoe_on_use(itemstack, user, pointed_thing, def.max_uses)
 		end,
 		groups = def.groups,
-		sound = {breaks = "default_tool_breaks"},
+		sound = {breaks = "default_tool_breaks"}
 	})
 
 	-- Register its recipe
@@ -149,7 +149,7 @@ farming.register_hoe(":farming:hoe_wood", {
 minetest.register_craft({
 	type = "fuel",
 	recipe = "farming:hoe_wood",
-	burntime = 5,
+	burntime = 5
 })
 
 farming.register_hoe(":farming:hoe_stone", {
@@ -170,7 +170,7 @@ farming.register_hoe(":farming:hoe_bronze", {
 	description = S("Bronze Hoe"),
 	inventory_image = "farming_tool_bronzehoe.png",
 	max_uses = 500,
-	groups = {not_in_creative_inventory = 1},
+	groups = {not_in_creative_inventory = 1}
 })
 
 farming.register_hoe(":farming:hoe_mese", {
@@ -184,7 +184,7 @@ farming.register_hoe(":farming:hoe_diamond", {
 	description = S("Diamond Hoe"),
 	inventory_image = "farming_tool_diamondhoe.png",
 	max_uses = 500,
-	groups = {not_in_creative_inventory = 1},
+	groups = {not_in_creative_inventory = 1}
 })
 
 -- Toolranks support
@@ -437,7 +437,7 @@ minetest.register_tool("farming:scythe_mithril", {
 					obj:set_velocity({
 						x = math.random(-10, 10) / 9,
 						y = 3,
-						z = math.random(-10, 10) / 9,
+						z = math.random(-10, 10) / 9
 					})
 				end
 			end
@@ -486,14 +486,14 @@ if minetest.get_modpath("moreores") then
 		description = S("%s Hoe"):format(S("Silver")),
 		inventory_image = "moreores_tool_silverhoe.png",
 		max_uses = 300,
-		material = "moreores:silver_ingot",
+		material = "moreores:silver_ingot"
 	})
 
 	farming.register_hoe(":moreores:hoe_mithril", {
 		description = S("%s Hoe"):format(S("Mithril")),
 		inventory_image = "moreores_tool_mithrilhoe.png",
 		max_uses = 1000,
-		material = "moreores:mithril_ingot",
+		material = "moreores:mithril_ingot"
 	})
 
 	-- Toolranks support

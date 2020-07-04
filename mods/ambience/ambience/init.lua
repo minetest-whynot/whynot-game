@@ -182,9 +182,8 @@ minetest.register_globalstep(function(dtime)
 
 	-- get list of players and set some variables
 	local players = minetest.get_connected_players()
-	local player_name, number, chance, ambience, handler
+	local player_name, number, chance, ambience, handler, ok
 	local tod = minetest.get_timeofday()
-	local ok = true
 
 	-- loop through players
 	for n = 1, #players do
@@ -239,7 +238,7 @@ minetest.register_globalstep(function(dtime)
 			}, ambience.ephemeral)
 
 --print ("playing... " .. ambience.name .. " (" .. chance .. " < "
---		.. sound_sets[set_name].frequency .. ") @ ", MORE_GAIN)
+--		.. sound_sets[set_name].frequency .. ") @ ", MORE_GAIN, handler)
 
 			-- only continue if sound playing returns handler
 			if handler then
@@ -247,31 +246,31 @@ minetest.register_globalstep(function(dtime)
 --print("-- current handler", handler)
 
 				-- set what player is currently listening to
-				playing[player_name] = playing[player_name] or {}
-				playing[player_name].handler = handler
-				playing[player_name].set = set_name
-				playing[player_name].gain = MORE_GAIN
-				playing[player_name].old_handler = handler
+				playing[player_name] = {
+					set = set_name, gain = MORE_GAIN,
+					handler = handler, old_handler = handler
+				}
 
 				-- set timer to stop sound
 				minetest.after(ambience.length, function()
 
+--print("-- after", set_name, handler)
+
 					-- make sure we are stopping same sound we started
 					if playing[player_name]
 					and playing[player_name].handler
-					and playing[player_name].set == set_name
-					and handler == playing[player_name].old_handler then
+					and playing[player_name].old_handler == handler then
 
 --print("-- timed stop", set_name, handler)
 
 						--minetest.sound_stop(playing[player_name].handler)
-						minetest.sound_stop(playing[player_name].old_handler)
+						minetest.sound_stop(handler)
 
 						-- reset player variables and backup handler
-						playing[player_name].set = nil
-						playing[player_name].handler = nil
-						playing[player_name].gain = nil
-						playing[player_name].old_handler = handler
+						playing[player_name] = {
+							set = nil, gain = nil,
+							handler = nil, old_handler = nil
+						}
 					end
 				end)
 			end

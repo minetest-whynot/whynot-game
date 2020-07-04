@@ -6,7 +6,7 @@ local use_cmi = minetest.global_exists("cmi")
 
 mobs = {
 	mod = "redo",
-	version = "20200622",
+	version = "20200701",
 	intllib = S,
 	invis = minetest.global_exists("invisibility") and invisibility or {}
 }
@@ -206,7 +206,6 @@ end
 function mob_class:collision()
 
 	local pos = self.object:get_pos()
-	local vel = self.object:get_velocity()
 	local x, z = 0, 0
 	local width = -self.collisionbox[1] + self.collisionbox[4] + 0.5
 
@@ -229,12 +228,36 @@ function mob_class:collision()
 end
 
 
+-- check string against another string or table
+local check_for = function(look_for, look_inside)
+
+	if type(look_inside) == "string" and look_inside == look_for then
+
+		return true
+
+	elseif type(look_inside) == "table" then
+
+		for _, str in pairs(look_inside) do
+
+			if str == look_for then
+
+				return true
+			end
+		end
+	end
+
+	return false
+end
+
+
 -- move mob in facing direction
 function mob_class:set_velocity(v)
 
 	-- halt mob if it has been ordered to stay
 	if self.order == "stand" then
+
 		self.object:set_velocity({x = 0, y = 0, z = 0})
+
 		return
 	end
 
@@ -250,14 +273,26 @@ function mob_class:set_velocity(v)
 	-- nil check for velocity
 	v = v or 0
 
+	-- check if standing in liquid with max viscosity of 7
+	local visc = min(minetest.registered_nodes[self.standing_in].liquid_viscosity, 7)
+
+	-- only slow mob trying to move while inside a viscous fluid that
+	-- they aren't meant to be in (fish in water, spiders in cobweb etc)
+	if v > 0 and visc and visc > 0
+	and not check_for(self.standing_in, self.fly_in) then
+		v = v / (visc + 1)
+	end
+
 	-- set velocity with hard limit of 10
 	local vel = self.object:get_velocity()
 
-	self.object:set_velocity({
-		x = max(-10, min((sin(yaw) * -v) + c_x, 10)),
-		y = max(-10, min((vel and vel.y or 0), 10)),
-		z = max(-10, min((cos(yaw) * v) + c_y, 10))
-	})
+	local new_vel = {
+		x = (sin(yaw) * -v) + c_x,
+		y = vel.y,
+		z = (cos(yaw) * v) + c_y
+	}
+
+	self.object:set_velocity(new_vel)
 end
 
 -- global version of above function
@@ -550,20 +585,9 @@ function mob_class:flight_check()
 
 	if not def then return false end
 
-	if type(self.fly_in) == "string"
-	and self.standing_in == self.fly_in then
-
+	-- are we standing inside what we should be to fly/swim ?
+	if check_for(self.standing_in, self.fly_in) then
 		return true
-
-	elseif type(self.fly_in) == "table" then
-
-		for _,fly_in in pairs(self.fly_in) do
-
-			if self.standing_in == fly_in then
-
-				return true
-			end
-		end
 	end
 
 	-- stops mobs getting stuck inside stairs and plantlike nodes
@@ -1120,14 +1144,8 @@ function mob_class:do_jump()
 	-- sanity check
 	if not yaw then return false end
 
-	-- what is mob standing on?
-	pos.y = pos.y + self.collisionbox[2] - 0.2
-
-	local nod = node_ok(pos)
-
---print("standing on:", nod.name, pos.y)
-
-	if minetest.registered_nodes[nod.name].walkable == false then
+	-- we can only jump if standing on solid node
+	if minetest.registered_nodes[self.standing_on].walkable == false then
 		return false
 	end
 
@@ -1135,22 +1153,22 @@ function mob_class:do_jump()
 	local dir_x = -sin(yaw) * (self.collisionbox[4] + 0.5)
 	local dir_z = cos(yaw) * (self.collisionbox[4] + 0.5)
 
+	-- set y_pos to base of mob
+	pos.y = pos.y + self.collisionbox[2]
+
 	-- what is in front of mob?
 	local nod = node_ok({
-		x = pos.x + dir_x,
-		y = pos.y + 0.5,
-		z = pos.z + dir_z
+		x = pos.x + dir_x, y = pos.y + 0.5, z = pos.z + dir_z
 	})
 
 	-- what is above and in front?
 	local nodt = node_ok({
-		x = pos.x + dir_x,
-		y = pos.y + 1.5,
-		z = pos.z + dir_z
+		x = pos.x + dir_x, y = pos.y + 1.5, z = pos.z + dir_z
 	})
 
 	local blocked = minetest.registered_nodes[nodt.name].walkable
 
+--print("standing on:", self.standing_on, pos.y - 0.25)
 --print("in front:", nod.name, pos.y + 0.5)
 --print("in front above:", nodt.name, pos.y + 1.5)
 
@@ -1252,22 +1270,10 @@ function mob_class:follow_holding(clicker)
 	end
 
 	local item = clicker:get_wielded_item()
-	local t = type(self.follow)
 
-	-- single item
-	if t == "string"
-	and item:get_name() == self.follow then
+	-- are we holding an item mob can follow ?
+	if check_for(item:get_name(), self.follow) then
 		return true
-
-	-- multiple items
-	elseif t == "table" then
-
-		for no = 1, #self.follow do
-
-			if self.follow[no] == item:get_name() then
-				return true
-			end
-		end
 	end
 
 	return false
@@ -1957,8 +1963,8 @@ function mob_class:do_runaway_from()
 		if name ~= "" and name ~= self.name
 		and specific_runaway(self.runaway_from, name) then
 
-			p = player:get_pos()
 			sp = s
+			p = player and player:get_pos() or s
 
 			-- aim higher to make looking up hills more realistic
 			p.y = p.y + 1
@@ -2365,10 +2371,10 @@ function mob_class:do_states(dtime)
 					self.blinktimer = 0
 
 					if self.blinkstatus then
---						self.object:set_texture_mod("")
+
 						self.object:set_texture_mod(self.texture_mods)
 					else
---						self.object:set_texture_mod("^[brighten")
+
 						self.object:set_texture_mod(self.texture_mods
 								.. "^[brighten")
 					end
@@ -2580,11 +2586,7 @@ function mob_class:do_states(dtime)
 			p.y = p.y - .5
 			s.y = s.y + .5
 
-			local vec = {
-				x = p.x - s.x,
-				y = p.y - s.y,
-				z = p.z - s.z
-			}
+			local vec = {x = p.x - s.x, y = p.y - s.y, z = p.z - s.z}
 
 			yaw = yaw_to_pos(self, p)
 
@@ -2641,39 +2643,33 @@ function mob_class:falling(pos)
 	-- sanity check
 	if not v then return end
 
-	if v.y > 0 then
+	local fall_speed = -10 -- gravity
 
-		-- apply gravity when moving up
-		self.object:set_acceleration({
-			x = 0,
-			y = -10,
-			z = 0
-		})
-
-	elseif v.y <= 0 and v.y > self.fall_speed then
-
-		-- fall downwards at set speed
-		self.object:set_acceleration({
-			x = 0,
-			y = self.fall_speed,
-			z = 0
-		})
-	else
-		-- stop accelerating once max fall speed hit
-		self.object:set_acceleration({x = 0, y = 0, z = 0})
+	-- don't exceed mob fall speed
+	if v.y < self.fall_speed then
+		fall_speed = self.fall_speed
 	end
 
-	-- in water then float up
-	if self.standing_in
-	and minetest.registered_nodes[self.standing_in].groups.water then
+	-- in water then use liquid viscosity for float/sink speed
+	if (self.standing_in
+	and minetest.registered_nodes[self.standing_in].groups.liquid) --water)
+	or (self.standing_on
+	and minetest.registered_nodes[self.standing_in].groups.liquid) then -- water) then
+
+		local visc = min(
+				minetest.registered_nodes[self.standing_in].liquid_viscosity, 7)
 
 		if self.floats == 1 then
 
-			self.object:set_acceleration({
-				x = 0,
-				y = -self.fall_speed / (max(1, v.y) ^ 8), -- 8 was 2
-				z = 0
-			})
+			-- floating up
+			if visc > 0 then
+				fall_speed = max(1, v.y) / (visc + 1)
+			end
+		else
+			-- sinking down
+			if visc > 0 then
+				fall_speed = -(max(1, v.y) / (visc + 1))
+			end
 		end
 	else
 
@@ -2697,6 +2693,13 @@ function mob_class:falling(pos)
 			self.old_y = self.object:get_pos().y
 		end
 	end
+
+	-- fall at set speed
+	self.object:set_acceleration({
+		x = 0,
+		y = fall_speed,
+		z = 0
+	})
 end
 
 
@@ -3183,6 +3186,7 @@ function mob_class:mob_activate(staticdata, def, dtime)
 	self.selectionbox = selbox
 	self.visual_size = vis_size
 	self.standing_in = "air"
+	self.standing_on = "air"
 
 	-- check existing nametag
 	if not self.nametag then
@@ -3308,6 +3312,9 @@ function mob_class:on_step(dtime, moveresult)
 		-- what is mob standing in?
 		self.standing_in = node_ok({
 			x = pos.x, y = pos.y + y_level + 0.25, z = pos.z}, "air").name
+
+		self.standing_on = node_ok({
+			x = pos.x, y = pos.y + y_level - 0.25, z = pos.z}, "air").name
 
 --print("standing in " .. self.standing_in)
 
@@ -3707,7 +3714,7 @@ function mobs:add_mob(pos, def)
 		ent:update_tag()
 	end
 
-	return true
+	return ent
 end
 
 

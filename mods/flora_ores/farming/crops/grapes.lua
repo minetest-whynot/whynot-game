@@ -8,7 +8,6 @@ local function place_grapes(itemstack, placer, pointed_thing, plantname)
 
 	-- check if pointing at a node
 	if not pt or pt.type ~= "node" then
-
 		return
 	end
 
@@ -69,17 +68,16 @@ minetest.register_craftitem("farming:grapes", {
 	inventory_image = "farming_grapes.png",
 	on_use = minetest.item_eat(2),
 	groups = {seed = 2, food_grapes = 1, flammable = 3},
-
 	on_place = function(itemstack, placer, pointed_thing)
 		return place_grapes(itemstack, placer, pointed_thing, "farming:grapes_1")
-	end,
+	end
 })
 
 -- grapes can be used for violet dye
 minetest.register_craft({
 	output = "dye:violet",
 	recipe = {
-		{"farming:grapes"},
+		{"farming:grapes"}
 	}
 })
 
@@ -89,7 +87,7 @@ minetest.register_node("farming:trellis", {
 	drawtype = "plantlike",
 	tiles = {"farming_trellis.png"},
 	inventory_image = "farming_trellis.png",
-	visual_scale = 1.9, -- 1.45,
+	visual_scale = 1.9,
 	paramtype = "light",
 	walkable = false,
 	buildable_to = true,
@@ -159,21 +157,21 @@ minetest.register_craft({
 	recipe = {
 		{"default:stick", "default:stick", "default:stick"},
 		{"default:stick", "default:stick", "default:stick"},
-		{"default:stick", "default:stick", "default:stick"},
+		{"default:stick", "default:stick", "default:stick"}
 	}
 })
 
 minetest.register_craft({
 	type = "fuel",
 	recipe = "farming:trellis",
-	burntime = 15,
+	burntime = 15
 })
 
 -- grapes definition
-local crop_def = {
+local def = {
 	drawtype = "plantlike",
 	tiles = {"farming_grapes_1.png"},
-	visual_scale = 1.9, -- 1.45,
+	visual_scale = 1.9,
 	paramtype = "light",
 	walkable = false,
 	buildable_to = true,
@@ -192,44 +190,44 @@ local crop_def = {
 }
 
 -- stage 1
-minetest.register_node("farming:grapes_1", table.copy(crop_def))
+minetest.register_node("farming:grapes_1", table.copy(def))
 
 -- stage2
-crop_def.tiles = {"farming_grapes_2.png"}
-minetest.register_node("farming:grapes_2", table.copy(crop_def))
+def.tiles = {"farming_grapes_2.png"}
+minetest.register_node("farming:grapes_2", table.copy(def))
 
 -- stage 3
-crop_def.tiles = {"farming_grapes_3.png"}
-minetest.register_node("farming:grapes_3", table.copy(crop_def))
+def.tiles = {"farming_grapes_3.png"}
+minetest.register_node("farming:grapes_3", table.copy(def))
 
 -- stage 4
-crop_def.tiles = {"farming_grapes_4.png"}
-minetest.register_node("farming:grapes_4", table.copy(crop_def))
+def.tiles = {"farming_grapes_4.png"}
+minetest.register_node("farming:grapes_4", table.copy(def))
 
 -- stage 5
-crop_def.tiles = {"farming_grapes_5.png"}
-minetest.register_node("farming:grapes_5", table.copy(crop_def))
+def.tiles = {"farming_grapes_5.png"}
+minetest.register_node("farming:grapes_5", table.copy(def))
 
 -- stage 6
-crop_def.tiles = {"farming_grapes_6.png"}
-minetest.register_node("farming:grapes_6", table.copy(crop_def))
+def.tiles = {"farming_grapes_6.png"}
+minetest.register_node("farming:grapes_6", table.copy(def))
 
 -- stage 7
-crop_def.tiles = {"farming_grapes_7.png"}
-minetest.register_node("farming:grapes_7", table.copy(crop_def))
+def.tiles = {"farming_grapes_7.png"}
+minetest.register_node("farming:grapes_7", table.copy(def))
 
 -- stage 8 (final)
-crop_def.tiles = {"farming_grapes_8.png"}
-crop_def.groups.growing = 0
-crop_def.drop = {
+def.tiles = {"farming_grapes_8.png"}
+def.groups.growing = nil
+def.drop = {
 	items = {
 		{items = {"farming:trellis"}, rarity = 1},
 		{items = {"farming:grapes 3"}, rarity = 1},
 		{items = {"farming:grapes 1"}, rarity = 2},
-		{items = {"farming:grapes 1"}, rarity = 3},
+		{items = {"farming:grapes 1"}, rarity = 3}
 	}
 }
-minetest.register_node("farming:grapes_8", table.copy(crop_def))
+minetest.register_node("farming:grapes_8", table.copy(def))
 
 -- add to registered_plants
 farming.registered_plants["farming:grapes"] = {
@@ -253,13 +251,13 @@ minetest.register_node("farming:grapebush", {
 		items = {
 			{items = {"farming:grapes 1"}, rarity = 1},
 			{items = {"farming:grapes 1"}, rarity = 2},
-			{items = {"farming:grapes 1"}, rarity = 3},
+			{items = {"farming:grapes 1"}, rarity = 3}
 		}
 	},
 	selection_box = farming.select,
 	groups = {
 		snappy = 3, flammable = 2, plant = 1, attached_node = 1,
-		not_in_creative_inventory=1
+		not_in_creative_inventory = 1
 	},
-	sounds = default.node_sound_leaves_defaults(),
+	sounds = default.node_sound_leaves_defaults()
 })

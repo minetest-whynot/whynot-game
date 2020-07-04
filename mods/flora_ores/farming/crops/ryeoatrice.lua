@@ -10,7 +10,7 @@ farming.register_plant("farming:rye", {
 	paramtype2 = "meshoptions",
 	inventory_image = "farming_rye_seed.png",
 	steps = 8,
-	place_param2 = 3,
+	place_param2 = 3
 })
 
 minetest.override_item("farming:rye", {
@@ -25,7 +25,7 @@ minetest.register_craft({
 		"farming:rye", "farming:rye", "farming:rye", "farming:rye",
 		"farming:mortar_pestle"
 	},
-	replacements = {{"group:food_mortar_pestle", "farming:mortar_pestle"}},
+	replacements = {{"group:food_mortar_pestle", "farming:mortar_pestle"}}
 })
 
 -- Oats
@@ -35,7 +35,7 @@ farming.register_plant("farming:oat", {
 	paramtype2 = "meshoptions",
 	inventory_image = "farming_oat_seed.png",
 	steps = 8,
-	place_param2 = 3,
+	place_param2 = 3
 })
 
 minetest.override_item("farming:oat", {
@@ -50,7 +50,7 @@ minetest.register_craft({
 		"farming:oat", "farming:oat", "farming:oat", "farming:oat",
 		"farming:mortar_pestle"
 	},
-	replacements = {{"group:food_mortar_pestle", "farming:mortar_pestle"}},
+	replacements = {{"group:food_mortar_pestle", "farming:mortar_pestle"}}
 })
 
 -- Rice
@@ -60,7 +60,7 @@ farming.register_plant("farming:rice", {
 	paramtype2 = "meshoptions",
 	inventory_image = "farming_rice_seed.png",
 	steps = 8,
-	place_param2 = 3,
+	place_param2 = 3
 })
 
 minetest.override_item("farming:rice", {
@@ -72,13 +72,13 @@ minetest.register_craftitem("farming:rice_bread", {
 	description = S("Rice Bread"),
 	inventory_image = "farming_rice_bread.png",
 	on_use = minetest.item_eat(5),
-	groups = {food_rice_bread = 1, flammable = 2},
+	groups = {food_rice_bread = 1, flammable = 2}
 })
 
 minetest.register_craftitem("farming:rice_flour", {
 	description = S("Rice Flour"),
 	inventory_image = "farming_rice_flour.png",
-	groups = {food_rice_flour = 1, flammable = 1},
+	groups = {food_rice_flour = 1, flammable = 1}
 })
 
 minetest.register_craft({
@@ -88,7 +88,7 @@ minetest.register_craft({
 		"farming:rice", "farming:rice", "farming:rice", "farming:rice",
 		"farming:mortar_pestle"
 	},
-	replacements = {{"group:food_mortar_pestle", "farming:mortar_pestle"}},
+	replacements = {{"group:food_mortar_pestle", "farming:mortar_pestle"}}
 })
 
 minetest.register_craft({
@@ -113,7 +113,7 @@ minetest.register_craft({
 		"farming:wheat", "farming:barley", "farming:oat",
 		"farming:rye", "farming:mortar_pestle"
 	},
-	replacements = {{"group:food_mortar_pestle", "farming:mortar_pestle"}},
+	replacements = {{"group:food_mortar_pestle", "farming:mortar_pestle"}}
 })
 
 -- Multigrain bread
@@ -122,7 +122,7 @@ minetest.register_craftitem("farming:bread_multigrain", {
 	description = S("Multigrain Bread"),
 	inventory_image = "farming_bread_multigrain.png",
 	on_use = minetest.item_eat(7),
-	groups = {food_bread = 1, flammable = 2},
+	groups = {food_bread = 1, flammable = 2}
 })
 
 minetest.register_craft({
@@ -137,29 +137,29 @@ minetest.register_craft({
 minetest.register_craft({
 	type = "fuel",
 	recipe = "farming:rice_bread",
-	burntime = 1,
+	burntime = 1
 })
 
 minetest.register_craft({
 	type = "fuel",
 	recipe = "farming:bread_multigrain",
-	burntime = 1,
+	burntime = 1
 })
 
 minetest.register_craft({
 	type = "fuel",
 	recipe = "farming:rye",
-	burntime = 1,
+	burntime = 1
 })
 
 minetest.register_craft({
 	type = "fuel",
 	recipe = "farming:oat",
-	burntime = 1,
+	burntime = 1
 })
 
 minetest.register_craft({
 	type = "fuel",
 	recipe = "farming:rice",
-	burntime = 1,
+	burntime = 1
 })
