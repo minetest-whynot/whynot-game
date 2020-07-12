@@ -11,7 +11,8 @@ this mod will place them accordingly.
 position should be displayed correctly on every screen size.
 
 ## Current version
-The current version is 2.2.2.
+The current version is 2.3.1.
+It works for Minetest 5.3.0.
 
 This software uses [semantic versioning](http://semver.org), as defined by version 2.0.0 of the SemVer
 standard.

@@ -193,7 +193,7 @@ minetest.register_on_placenode(
 -- The complementary function:  strip-off the color if the node being dug is still white/neutral
 
 local function move_item(item, pos, inv, digger)
-	if not digger then return end
+  if not (digger and digger:is_player()) then return end
 	local creative = creative_mode or minetest.check_player_privs(digger, "creative")
 	if inv:room_for_item("main", item)
 	  and (not creative or not inv:contains_item("main", item, true)) then

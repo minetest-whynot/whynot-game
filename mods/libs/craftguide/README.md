@@ -14,9 +14,11 @@ from items you ever had in your inventory. To enable it: `craftguide_progressive
 
 Use the command `/craft` to show the recipe(s) of the pointed node.
 
-For developers, `craftguide` also has a [modding API](https://github.com/minetest-mods/craftguide/blob/master/API.md). 
+For developers, `craftguide` also has a [modding API](https://github.com/minetest-mods/craftguide/blob/master/API.md).
+
+For the best visuals, it is recommended to enable `inventory_items_animations` in `minetest.conf`.
 
 Love this mod? Donations are appreciated: https://www.paypal.me/jpg84240
 
 
-![Preview2](https://i.imgur.com/mLlVyca.png)
+![Preview2](https://i.imgur.com/TrBouDq.png)

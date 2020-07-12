@@ -61,6 +61,7 @@ function creative.init_creative_inventory(player)
 	return player_inventory[player_name]
 end
 
+local NO_MATCH = 999
 local function match(s, filter)
 	if filter == "" then
 		return 0
@@ -68,7 +69,15 @@ local function match(s, filter)
 	if s:lower():find(filter, 1, true) then
 		return #s - #filter
 	end
-	return nil
+	return NO_MATCH
+end
+
+local function description(def, lang_code)
+	local s = def.description
+	if lang_code then
+		s = minetest.get_translated_string(lang_code, s)
+	end
+	return s:gsub("\n.*", "") -- First line only
 end
 
 function creative.update_creative_inventory(player_name, tab_content)
@@ -84,13 +93,26 @@ function creative.update_creative_inventory(player_name, tab_content)
 
 	local items = inventory_cache[tab_content] or init_creative_cache(tab_content)
 
+	local lang
+	local player_info = minetest.get_player_information(player_name)
+	if player_info and player_info.lang_code ~= "" then
+		lang = player_info.lang_code
+	end
+
 	local creative_list = {}
 	local order = {}
 	for name, def in pairs(items) do
-		local m = match(def.description, inv.filter) or match(def.name, inv.filter)
-		if m then
+		local m = match(description(def), inv.filter)
+		if m > 0 then
+			m = math.min(m, match(description(def, lang), inv.filter))
+		end
+		if m > 0 then
+			m = math.min(m, match(name, inv.filter))
+		end
+
+		if m < NO_MATCH then
 			creative_list[#creative_list+1] = name
-			-- Sort by description length first so closer matches appear earlier
+			-- Sort by match value first so closer matches appear earlier
 			order[name] = string.format("%02d", m) .. name
 		end
 	end
@@ -199,10 +221,30 @@ function creative.register_tab(name, title, items)
 	})
 end
 
+-- Sort registered items
+local registered_nodes = {}
+local registered_tools = {}
+local registered_craftitems = {}
+
+minetest.register_on_mods_loaded(function()
+	for name, def in pairs(minetest.registered_items) do
+		local group = def.groups or {}
+
+		local nogroup = not (group.node or group.tool or group.craftitem)
+		if group.node or (nogroup and minetest.registered_nodes[name]) then
+			registered_nodes[name] = def
+		elseif group.tool or (nogroup and minetest.registered_tools[name]) then
+			registered_tools[name] = def
+		elseif group.craftitem or (nogroup and minetest.registered_craftitems[name]) then
+			registered_craftitems[name] = def
+		end
+	end
+end)
+
 creative.register_tab("all", S("All"), minetest.registered_items)
-creative.register_tab("nodes", S("Nodes"), minetest.registered_nodes)
-creative.register_tab("tools", S("Tools"), minetest.registered_tools)
-creative.register_tab("craftitems", S("Items"), minetest.registered_craftitems)
+creative.register_tab("nodes", S("Nodes"), registered_nodes)
+creative.register_tab("tools", S("Tools"), registered_tools)
+creative.register_tab("craftitems", S("Items"), registered_craftitems)
 
 local old_homepage_name = sfinv.get_homepage_name
 function sfinv.get_homepage_name(player)

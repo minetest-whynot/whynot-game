@@ -458,12 +458,12 @@ minetest.register_node("default:dirt_with_grass_footsteps", {
 })
 
 minetest.register_node("default:dirt_with_dry_grass", {
-	description = S("Dirt with Dry Grass"),
+	description = S("Dirt with Savanna Grass"),
 	tiles = {"default_dry_grass.png",
 		"default_dirt.png",
 		{name = "default_dirt.png^default_dry_grass_side.png",
 			tileable_vertical = false}},
-	groups = {crumbly = 3, soil = 1},
+	groups = {crumbly = 3, soil = 1, spreading_dirt_type = 1},
 	drop = "default:dirt",
 	sounds = default.node_sound_dirt_defaults({
 		footstep = {name = "default_grass_footstep", gain = 0.4},
@@ -513,14 +513,14 @@ minetest.register_node("default:dirt_with_coniferous_litter", {
 })
 
 minetest.register_node("default:dry_dirt", {
-	description = S("Dry Dirt"),
+	description = S("Savanna Dirt"),
 	tiles = {"default_dry_dirt.png"},
 	groups = {crumbly = 3, soil = 1},
 	sounds = default.node_sound_dirt_defaults(),
 })
 
 minetest.register_node("default:dry_dirt_with_dry_grass", {
-	description = S("Dry Dirt with Dry Grass"),
+	description = S("Savanna Dirt with Savanna Grass"),
 	tiles = {"default_dry_grass.png", "default_dry_dirt.png",
 		{name = "default_dry_dirt.png^default_dry_grass_side.png",
 			tileable_vertical = false}},
@@ -621,7 +621,7 @@ minetest.register_node("default:snow", {
 	collision_box = {
 		type = "fixed",
 		fixed = {
-			{-0.5, -0.5, -0.5, 0.5, -7 / 16, 0.5},
+			{-0.5, -0.5, -0.5, 0.5, -6 / 16, 0.5},
 		},
 	},
 	groups = {crumbly = 3, falling_node = 1, snowy = 1},
@@ -1497,7 +1497,7 @@ end
 
 
 minetest.register_node("default:dry_grass_1", {
-	description = S("Dry Grass"),
+	description = S("Savanna Grass"),
 	drawtype = "plantlike",
 	waving = 1,
 	tiles = {"default_dry_grass_1.png"},
@@ -1526,7 +1526,7 @@ minetest.register_node("default:dry_grass_1", {
 
 for i = 2, 5 do
 	minetest.register_node("default:dry_grass_" .. i, {
-		description = S("Dry Grass"),
+		description = S("Savanna Grass"),
 		drawtype = "plantlike",
 		waving = 1,
 		tiles = {"default_dry_grass_" .. i .. ".png"},
@@ -2579,12 +2579,10 @@ local function register_sign(material, desc, def)
 		sounds = def.sounds,
 
 		on_construct = function(pos)
-			--local n = minetest.get_node(pos)
 			local meta = minetest.get_meta(pos)
 			meta:set_string("formspec", "field[text;;${text}]")
 		end,
 		on_receive_fields = function(pos, formname, fields, sender)
-			--print("Sign at "..minetest.pos_to_string(pos).." got "..dump(fields))
 			local player_name = sender:get_player_name()
 			if minetest.is_protected(pos, player_name) then
 				minetest.record_protection_violation(pos, player_name)
@@ -2598,8 +2596,8 @@ local function register_sign(material, desc, def)
 				minetest.chat_send_player(player_name, S("Text too long"))
 				return
 			end
-			minetest.log("action", (player_name or "") .. " wrote \"" ..
-				text .. "\" to sign at " .. minetest.pos_to_string(pos))
+			minetest.log("action", player_name .. " wrote \"" .. text ..
+				"\" to the sign at " .. minetest.pos_to_string(pos))
 			local meta = minetest.get_meta(pos)
 			meta:set_string("text", text)
 
@@ -2816,7 +2814,10 @@ minetest.register_node("default:brick", {
 	description = S("Brick Block"),
 	paramtype2 = "facedir",
 	place_param2 = 0,
-	tiles = {"default_brick.png"},
+	tiles = {
+		"default_brick.png^[transformFX",
+		"default_brick.png",
+	},
 	is_ground_content = false,
 	groups = {cracky = 3},
 	sounds = default.node_sound_stone_defaults(),

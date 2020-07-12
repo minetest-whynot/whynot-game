@@ -78,9 +78,7 @@ end
 -- nodes from being placed in the top half of the door.
 minetest.register_node("doors:hidden", {
 	description = S("Hidden Door Segment"),
-	-- can't use airlike otherwise falling nodes will turn to entities
-	-- and will be forever stuck until door is removed.
-	drawtype = "nodebox",
+	drawtype = "airlike",
 	paramtype = "light",
 	paramtype2 = "facedir",
 	sunlight_propagates = true,
@@ -93,13 +91,7 @@ minetest.register_node("doors:hidden", {
 	drop = "",
 	groups = {not_in_creative_inventory = 1},
 	on_blast = function() end,
-	tiles = {"doors_blank.png"},
-	-- 1px transparent block inside door hinge near node top.
-	node_box = {
-		type = "fixed",
-		fixed = {-15/32, 13/32, -15/32, -13/32, 1/2, -13/32},
-	},
-	-- collision_box needed otherise selection box would be full node size
+	-- 1px block inside door hinge near node top
 	collision_box = {
 		type = "fixed",
 		fixed = {-15/32, 13/32, -15/32, -13/32, 1/2, -13/32},
@@ -115,10 +107,10 @@ local transform = {
 		{v = "_a", param2 = 2},
 	},
 	{
-		{v = "_b", param2 = 1},
-		{v = "_b", param2 = 2},
-		{v = "_b", param2 = 3},
-		{v = "_b", param2 = 0},
+		{v = "_c", param2 = 1},
+		{v = "_c", param2 = 2},
+		{v = "_c", param2 = 3},
+		{v = "_c", param2 = 0},
 	},
 	{
 		{v = "_b", param2 = 1},
@@ -127,10 +119,10 @@ local transform = {
 		{v = "_b", param2 = 0},
 	},
 	{
-		{v = "_a", param2 = 3},
-		{v = "_a", param2 = 0},
-		{v = "_a", param2 = 1},
-		{v = "_a", param2 = 2},
+		{v = "_d", param2 = 3},
+		{v = "_d", param2 = 0},
+		{v = "_d", param2 = 1},
+		{v = "_d", param2 = 2},
 	},
 }
 
@@ -449,15 +441,23 @@ function doors.register(name, def)
 	def.mesh = "door_b.obj"
 	minetest.register_node(":" .. name .. "_b", def)
 
+	def.mesh = "door_a2.obj"
+	minetest.register_node(":" .. name .. "_c", def)
+
+	def.mesh = "door_b2.obj"
+	minetest.register_node(":" .. name .. "_d", def)
+
 	doors.registered_doors[name .. "_a"] = true
 	doors.registered_doors[name .. "_b"] = true
+	doors.registered_doors[name .. "_c"] = true
+	doors.registered_doors[name .. "_d"] = true
 end
 
 doors.register("door_wood", {
 		tiles = {{ name = "doors_door_wood.png", backface_culling = true }},
 		description = S("Wooden Door"),
 		inventory_image = "doors_item_wood.png",
-		groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
+		groups = {node = 1, choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
 		recipe = {
 			{"group:wood", "group:wood"},
 			{"group:wood", "group:wood"},
@@ -470,7 +470,7 @@ doors.register("door_steel", {
 		description = S("Steel Door"),
 		inventory_image = "doors_item_steel.png",
 		protected = true,
-		groups = {cracky = 1, level = 2},
+		groups = {node = 1, cracky = 1, level = 2},
 		sounds = default.node_sound_metal_defaults(),
 		sound_open = "doors_steel_door_open",
 		sound_close = "doors_steel_door_close",
@@ -485,7 +485,7 @@ doors.register("door_glass", {
 		tiles = {"doors_door_glass.png"},
 		description = S("Glass Door"),
 		inventory_image = "doors_item_glass.png",
-		groups = {cracky=3, oddly_breakable_by_hand=3},
+		groups = {node = 1, cracky=3, oddly_breakable_by_hand=3},
 		sounds = default.node_sound_glass_defaults(),
 		sound_open = "doors_glass_door_open",
 		sound_close = "doors_glass_door_close",
@@ -500,7 +500,7 @@ doors.register("door_obsidian_glass", {
 		tiles = {"doors_door_obsidian_glass.png"},
 		description = S("Obsidian Glass Door"),
 		inventory_image = "doors_item_obsidian_glass.png",
-		groups = {cracky=3},
+		groups = {node = 1, cracky=3},
 		sounds = default.node_sound_glass_defaults(),
 		sound_open = "doors_glass_door_open",
 		sound_close = "doors_glass_door_close",
