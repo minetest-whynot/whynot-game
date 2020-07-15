@@ -156,6 +156,7 @@ local group_names = {
 	coal = S"Any coal",
 	dye = S"Any dye",
 	flower = S"Any flower",
+	glass = S"Any glass",
 	mushroom = S"Any mushroom",
 	sand = S"Any sand",
 	stick = S"Any stick",
@@ -697,14 +698,7 @@ local function cache_drops(name, drop)
 end
 
 local function cache_recipes(item)
-	item = reg_aliases[item] or item
-	local def = reg_items[item]
-	if not def then return end
-	local recipes = get_all_recipes(item) or {}
-
-	for i = 1, #recipes do
-		recipes_cache[item] = table_merge(recipes_cache[item] or {}, recipes[i])
-	end
+	recipes_cache[item] = get_all_recipes(item)
 end
 
 local function get_recipes(item, data, player)
@@ -785,8 +779,16 @@ local function is_fav(favs, query_item)
 	return fav, i
 end
 
-local function str_newline(str)
-	return find(str, "\n")
+local function weird_desc(str)
+	return not true_str(str) or find(str, "\n") or not find(str, "%u")
+end
+
+local function toupper(str)
+	return str:gsub("%f[%w]%l", upper):gsub("_", " ")
+end
+
+local function strip_newline(str)
+	return match(str, "[^\n]*")
 end
 
 local function get_desc(item, lang_code)
@@ -797,10 +799,15 @@ local function get_desc(item, lang_code)
 	local def = reg_items[item]
 
 	if def then
-		if true_str(def.description) then
-			return match(translate(lang_code, def.description), "[^\n]*")
+		local desc = def.description
+		if true_str(desc) then
+			if not find(desc, "%u") then
+				return strip_newline(toupper(desc))
+			end
+			return strip_newline(translate(lang_code, desc))
+
 		elseif true_str(item) then
-			return match(item, ":.*"):gsub("%W%l", upper):sub(2):gsub("_", " ")
+			return toupper(match(item, ":(.*)"))
 		end
 	end
 
@@ -842,7 +849,7 @@ local function get_tooltip(item, info, lang_code)
 
 	if info.replace then
 		for i = 1, #info.replace do
-			local rpl = info.replace[i]
+			local rpl = match(info.replace[i], "%S+")
 			local desc = clr("#ff0", get_desc(rpl, lang_code))
 
 			if info.cooktime then
@@ -913,39 +920,39 @@ local function get_output_fs(lang_code, fs, rcp, shapeless, right, btn_size, _bt
 	end
 
 	local arrow_X = right + (_btn_size or ITEM_BTN_SIZE)
-	local output_X = arrow_X + 0.9
+	local X = arrow_X + 0.9
 	local Y = YOFFSET + (sfinv_only and 2 or 0) + spacing
 
 	fs[#fs + 1] = fmt(FMT.image, arrow_X, Y + 0.2, 0.9, 0.7, PNG.arrow)
 
 	if rcp.type == "fuel" then
-		fs[#fs + 1] = fmt(FMT.animated_image, output_X, Y,
+		fs[#fs + 1] = fmt(FMT.animated_image, X, Y,
 			ITEM_BTN_SIZE, ITEM_BTN_SIZE, PNG.fire_anim, 8, 180)
 	else
 		local item = rcp.output
 		item = clean_name(item)
 		local name = match(item, "%S*")
 
-		fs[#fs + 1] = fmt(FMT.image, output_X, Y,
+		fs[#fs + 1] = fmt(FMT.image, X, Y,
 			ITEM_BTN_SIZE, ITEM_BTN_SIZE, PNG.selected)
 
 		local _name = sfinv_only and name or fmt("_%s", name)
 
 		fs[#fs + 1] = fmt("item_image_button[%f,%f;%f,%f;%s;%s;%s]",
-			output_X, Y, ITEM_BTN_SIZE, ITEM_BTN_SIZE, item, _name, "")
+			X, Y, ITEM_BTN_SIZE, ITEM_BTN_SIZE, item, _name, "")
 
 		local def = reg_items[name]
 		local unknown = not def or nil
-		local weird_desc = name ~= "" and def and
-			(not true_str(def.description) or str_newline(def.description)) or nil
+		local desc = def and def.description
+		local weird = name ~= "" and desc and weird_desc(desc) or nil
 
 		local infos = {
-			unknown    = unknown,
-			weird_desc = weird_desc,
-			burntime   = fuel_cache[name],
-			repair     = repairable(name),
-			rarity     = rcp.rarity,
-			tools      = rcp.tools,
+			unknown  = unknown,
+			weird    = weird,
+			burntime = fuel_cache[name],
+			repair   = repairable(name),
+			rarity   = rcp.rarity,
+			tools    = rcp.tools,
 		}
 
 		if next(infos) then
@@ -954,11 +961,11 @@ local function get_output_fs(lang_code, fs, rcp, shapeless, right, btn_size, _bt
 
 		if infos.burntime then
 			fs[#fs + 1] = fmt(FMT.image,
-				output_X + 1, YOFFSET + (sfinv_only and 2 or 0.1) + spacing,
+				X + 1, YOFFSET + (sfinv_only and 2 or 0.1) + spacing,
 				0.6, 0.4, PNG.arrow)
 
 			fs[#fs + 1] = fmt(FMT.animated_image,
-				output_X + 1.6, YOFFSET + (sfinv_only and 1.85 or 0) + spacing,
+				X + 1.6, YOFFSET + (sfinv_only and 1.85 or 0) + spacing,
 				0.6, 0.6, PNG.fire_anim, 8, 180)
 		end
 	end
@@ -1026,13 +1033,22 @@ local function get_grid_fs(lang_code, fs, rcp, spacing)
 		local label = groups and "\nG" or ""
 		local replace
 
-		if rcp.replacements then
-			replace = {}
-			label = fmt("%s%s\nR", label ~= "" and "\n" or "", label)
+		for j = 1, #(rcp.replacements or {}) do
+			local replacement = rcp.replacements[j]
+			if replacement[1] == name then
+				replace = replace or {}
 
-			for j = 1, #rcp.replacements do
-				local replacement = rcp.replacements[j]
-				if replacement[1] == name then
+				local added
+
+				for _, v in ipairs(replace) do
+					if replacement[2] == v then
+						added = true
+						break
+					end
+				end
+
+				if not added then
+					label = fmt("%s%s\nR", label ~= "" and "\n" or "", label)
 					replace[#replace + 1] = replacement[2]
 				end
 			end
@@ -1044,26 +1060,28 @@ local function get_grid_fs(lang_code, fs, rcp, spacing)
 			fs[#fs + 1] = fmt(FMT.image, X, Y, btn_size, btn_size, PNG.selected)
 		end
 
+		local btn_name = item ~= "" and item or (groups and groups[1] or "")
+
 		fs[#fs + 1] = fmt(FMT.item_image_button,
-			X, Y, btn_size, btn_size, item, item, label)
+			X, Y, btn_size, btn_size, item, btn_name, label)
 
 		local def = reg_items[name]
 		local unknown = not def or nil
 		unknown = not groups and unknown or nil
-		local weird_desc = name ~= "" and def and
-			(not true_str(def.description) or str_newline(def.description)) or nil
+		local desc = def and def.description
+		local weird = name ~= "" and desc and weird_desc(desc) or nil
 
 		local infos = {
-			unknown    = unknown,
-			weird_desc = weird_desc,
-			groups     = groups,
-			burntime   = fuel_cache[name],
-			cooktime   = cooktime,
-			replace    = replace,
+			unknown  = unknown,
+			weird    = weird,
+			groups   = groups,
+			burntime = fuel_cache[name],
+			cooktime = cooktime,
+			replace  = replace,
 		}
 
 		if next(infos) then
-			fs[#fs + 1] = get_tooltip(item, infos, lang_code)
+			fs[#fs + 1] = get_tooltip(btn_name, infos, lang_code)
 		end
 	end
 
@@ -1250,13 +1268,14 @@ local function make_fs(data)
 	ESC(data.filter))
 
 	fs[#fs + 1] = fmt([[
+		style_type[label,field;font_size=16]
 		style_type[image_button;border=false]
+		style_type[button;border=false;font=bold;font_size=19]
 		style_type[item_image_button;border=false;bgimg_hovered=%s;bgimg_pressed=%s]
 		style[search;fgimg=%s;fgimg_hovered=%s]
 		style[clear;fgimg=%s;fgimg_hovered=%s]
 		style[prev_page;fgimg=%s;fgimg_hovered=%s;fgimg_pressed=%s]
 		style[next_page;fgimg=%s;fgimg_hovered=%s;fgimg_pressed=%s]
-		style[pagenum;border=false]
 	]],
 	PNG.selected, PNG.selected,
 	PNG.search, PNG.search_hover,
@@ -1287,15 +1306,13 @@ local function make_fs(data)
 	end
 
 	if #data.items == 0 then
-		local no_item = ES"No item to show"
-		local pos = 3
+		local lbl = ES"No item to show"
 
 		if next(recipe_filters) and #init_items > 0 and data.filter == "" then
-			no_item = ES"Collect items to reveal more recipes"
-			pos = pos - 1
+			lbl = ES"Collect items to reveal more recipes"
 		end
 
-		fs[#fs + 1] = fmt(FMT.label, pos, 2, no_item)
+		fs[#fs + 1] = fmt(FMT.button, -0.25, 3, 8.3, 1, "no_item", lbl)
 	end
 
 	local first_item = (data.pagenum - 1) * IPP
@@ -1307,7 +1324,7 @@ local function make_fs(data)
 		local X = i % ROWS
 		local Y = (i % IPP - X) / ROWS + 1
 		X = X - (X * (sfinv_only and 0.12 or 0.14)) - 0.05
-		Y = Y - (Y * 0.1) - 0.1
+		Y = Y - (Y * 0.08) - 0.15
 
 		if data.query_item == item then
 			fs[#fs + 1] = fmt(FMT.image, X, Y, 1, 1, PNG.selected)
@@ -1552,9 +1569,15 @@ local function get_init_items()
 
 	for name, def in pairs(reg_items) do
 		if name ~= "" and show_item(def) then
-			cache_recipes(name)
 			cache_drops(name, def.drop)
-			cache_fuel(name)
+
+			if not fuel_cache[name] then
+				cache_fuel(name)
+			end
+
+			if not recipes_cache[name] then
+				cache_recipes(name)
+			end
 
 			_preselect[name] = true
 		end
