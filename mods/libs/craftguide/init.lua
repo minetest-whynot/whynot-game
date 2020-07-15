@@ -1270,7 +1270,7 @@ local function make_fs(data)
 	fs[#fs + 1] = fmt([[
 		style_type[label,field;font_size=16]
 		style_type[image_button;border=false]
-		style_type[button;border=false;font=bold;font_size=19]
+		style_type[button;border=false;font=bold;font_size=18]
 		style_type[item_image_button;border=false;bgimg_hovered=%s;bgimg_pressed=%s]
 		style[search;fgimg=%s;fgimg_hovered=%s]
 		style[clear;fgimg=%s;fgimg_hovered=%s]
@@ -1386,10 +1386,9 @@ local function search(data)
 
 	for i = 1, #data.items_raw do
 		local item = data.items_raw[i]
-		local def  = reg_items[item]
-		local desc = (def and def.description) and lower(def.description) or ""
-		local loc_desc = lower(translate(data.lang_code, def and def.description)) or ""
-		local search_in = fmt("%s %s %s", item, desc, loc_desc)
+		local def = reg_items[item]
+		local desc = lower(translate(data.lang_code, def and def.description)) or ""
+		local search_in = fmt("%s %s", item, desc)
 		local to_add
 
 		if search_filter then
@@ -1479,32 +1478,8 @@ core.register_craft = function(def)
 			def.width = def.cooktime
 			def.cooktime = nil
 			def.items[1] = def.recipe
-
-		elseif def.type == "shapeless" then
-			def.width = 0
-			for j = 1, #def.recipe do
-				def.items[#def.items + 1] = def.recipe[j]
-			end
-		else
-			def.width = #def.recipe[1]
-			local c = 0
-
-			for j = 1, #def.recipe do
-				if def.recipe[j] then
-					for h = 1, def.width do
-						c = c + 1
-						local it = def.recipe[j][h]
-
-						if it and it ~= "" then
-							def.items[c] = it
-						end
-					end
-				end
-			end
-		end
-
-		if def.type ~= "fuel" then
 			def.recipe = nil
+
 			recipes_cache[name] = recipes_cache[name] or {}
 			insert(recipes_cache[name], 1, def)
 		end
