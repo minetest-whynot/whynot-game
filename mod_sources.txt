@@ -1,7 +1,7 @@
 
 bell07	https://github.com/bell07/minetest_game (fetch)
 origin	https://github.com/minetest/minetest_game (fetch)
-* master                6a0587f [origin/stable-5: ahead 3] Merge remote-tracking branch 'origin/stable-5'
+* master                  a0f7623 [origin/stable-5: ahead 1] Fix builtin item metatable.
 Mod: minetest_game/mods/beds
 Mod: minetest_game/mods/binoculars
 Mod: minetest_game/mods/boats
@@ -32,8 +32,9 @@ Mod: minetest_game/mods/weather
 Mod: minetest_game/mods/wool
 Mod: minetest_game/mods/xpanes
 
+bell07	https://github.com/bell07/craftguide (fetch)
 origin	https://github.com/minetest-mods/craftguide/ (fetch)
-* master bba7dd8 [origin/master] Remove useless code
+* upstream 74785bc [origin/master] Fix fuel recipes not appearing
 Mod: libs/craftguide
 
 origin	https://github.com/minetest-mods/craftguide_reveal (fetch)

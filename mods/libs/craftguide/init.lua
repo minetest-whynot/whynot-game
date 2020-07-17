@@ -157,6 +157,7 @@ local group_names = {
 	dye = S"Any dye",
 	flower = S"Any flower",
 	glass = S"Any glass",
+	leaves = S"Any leaves",
 	mushroom = S"Any mushroom",
 	sand = S"Any sand",
 	stick = S"Any stick",
@@ -567,7 +568,11 @@ end
 local function cache_fuel(item)
 	local burntime = get_burntime(item)
 	if burntime > 0 then
-		fuel_cache[item] = burntime
+		fuel_cache[item] = {
+			type = "fuel",
+			items = {item},
+			burntime = burntime,
+		}
 	end
 end
 
@@ -613,13 +618,7 @@ local function cache_usages(item)
 	end
 
 	if fuel_cache[item] then
-		local fuel = {
-			type = "fuel",
-			items = {item},
-			replacements = fuel_cache.replacements[item],
-		}
-
-		usages_cache[item] = table_merge(usages_cache[item] or {}, {fuel})
+		usages_cache[item] = table_merge(usages_cache[item] or {}, {fuel_cache[item]})
 	end
 end
 
@@ -637,7 +636,7 @@ local function drop_table(name, drop)
 
 			if not dstack:is_empty() and (dname ~= name or
 					(dname == name and dcount > 1)) then
-				if #di.items == 1 and (not di.rarity or di.rarity <= 1) then
+				if not di.rarity or di.rarity <= 1 then
 					if drop_sure[dname] then
 						if dcount > drop_sure[dname].output then
 							dcount = dcount + drop_sure[dname].output
@@ -945,11 +944,12 @@ local function get_output_fs(lang_code, fs, rcp, shapeless, right, btn_size, _bt
 		local unknown = not def or nil
 		local desc = def and def.description
 		local weird = name ~= "" and desc and weird_desc(desc) or nil
+		local burntime = fuel_cache[name] and fuel_cache[name].burntime
 
 		local infos = {
 			unknown  = unknown,
 			weird    = weird,
-			burntime = fuel_cache[name],
+			burntime = burntime,
 			repair   = repairable(name),
 			rarity   = rcp.rarity,
 			tools    = rcp.tools,
@@ -1070,12 +1070,13 @@ local function get_grid_fs(lang_code, fs, rcp, spacing)
 		unknown = not groups and unknown or nil
 		local desc = def and def.description
 		local weird = name ~= "" and desc and weird_desc(desc) or nil
+		local burntime = fuel_cache[name] and fuel_cache[name].burntime
 
 		local infos = {
 			unknown  = unknown,
 			weird    = weird,
 			groups   = groups,
-			burntime = fuel_cache[name],
+			burntime = burntime,
 			cooktime = cooktime,
 			replace  = replace,
 		}
@@ -1437,11 +1438,9 @@ craftguide.add_search_filter("groups", function(item, groups)
 end)
 
 --[[	As `core.get_craft_recipe` and `core.get_all_craft_recipes` do not
-	return the replacements and toolrepair, we have to override
-	`core.register_craft` and do some reverse engineering.
-	See engine's issues #4901 and #8920.	]]
-
-fuel_cache.replacements = {}
+	return the fuel, replacements and toolrepair recipes, we have to
+	override `core.register_craft` and do some reverse engineering.
+	See engine's issues #4901, #5745 and #8920.	]]
 
 local old_register_craft = core.register_craft
 
@@ -1466,22 +1465,10 @@ core.register_craft = function(def)
 	for i = 1, #output do
 		local name = output[i]
 
-		if def.type ~= "fuel" then
-			def.items = {}
-		end
-
 		if def.type == "fuel" then
-			fuel_cache[name] = def.burntime
-			fuel_cache.replacements[name] = def.replacements
-
-		elseif def.type == "cooking" then
-			def.width = def.cooktime
-			def.cooktime = nil
-			def.items[1] = def.recipe
-			def.recipe = nil
-
-			recipes_cache[name] = recipes_cache[name] or {}
-			insert(recipes_cache[name], 1, def)
+			def.replacements = def.replacements
+			def.items = {def.recipe}
+			fuel_cache[name] = def
 		end
 	end
 end
@@ -1492,10 +1479,7 @@ core.clear_craft = function(def)
 	old_clear_craft(def)
 
 	if true_str(def) then
-		def = match(def, "%S*")
-		recipes_cache[def] = nil
-		fuel_cache[def] = nil
-
+		return -- TODO
 	elseif is_table(def) then
 		return -- TODO
 	end
@@ -1576,7 +1560,6 @@ local function get_init_items()
 		local post_data = {
 			recipes = recipes_cache,
 			usages  = usages_cache,
-			fuel    = fuel_cache,
 		}
 
 		http.fetch_async{
