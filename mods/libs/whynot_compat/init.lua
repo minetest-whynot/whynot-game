@@ -123,3 +123,11 @@ minetest.register_alias("endless_apples:apple_mark", "default:apple_mark")
 if minetest.get_modpath('player_api') and player_api.registered_skins then
 	player_api.registered_skins['sprite'] = nil
 end
+
+if minetest.get_modpath('bonemeal') and minetest.get_modpath('heads') then
+	-- Remove redundant sugar in farming and mtfoods
+	minetest.clear_craft({
+		type = "shapeless",
+		recipe = {"bones:bones"}
+	})
+end

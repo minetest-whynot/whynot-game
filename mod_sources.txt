@@ -66,7 +66,7 @@ origin	https://github.com/minetest-mods/intllib (fetch)
 Mod: libs/intllib
 
 origin	https://github.com/bell07/minetest-whynot_compat (fetch)
-* master 8cff1c0 [origin/master] remove demo spite skin from enhanced player_api
+* master 557f1b9 [origin/master] resolve conflict between heads and bonemeal
 Mod: libs/whynot_compat
 
 origin	https://github.com/Chemguy99/armor_addon (fetch)
@@ -175,6 +175,10 @@ Mod: mapgen/tac_nayn
 origin	https://github.com/taikedz/everamzah-backpacks (fetch)
 * master 7f617df [origin/master] removing rabbit_hide as it does not seem to be standard mobs_redo content
 Mod: tools/backpacks
+
+origin	https://notabug.org/tenplus1/bonemeal (fetch)
+* master ebbec59 [origin/master] fix loaded translations
+Mod: tools/bonemeal
 
 origin	https://github.com/SmallJoker/boost_cart (fetch)
 * master 5b53183 [origin/master] Descend from cart using sneak (#31)
