@@ -6,7 +6,7 @@ local use_cmi = minetest.global_exists("cmi")
 
 mobs = {
 	mod = "redo",
-	version = "20200701",
+	version = "20200720",
 	intllib = S,
 	invis = minetest.global_exists("invisibility") and invisibility or {}
 }
@@ -195,7 +195,7 @@ end
 
 -- calculate distance
 local get_distance = function(a, b)
-
+if not a or not b then return 50 end -- nil check
 	local x, y, z = a.x - b.x, a.y - b.y, a.z - b.z
 
 	return square(x * x + y * y + z * z)
@@ -1013,7 +1013,7 @@ function mob_class:do_env_damage()
 		self:update_tag()
 	end
 
-	local pos = self.object:get_pos()
+	local pos = self.object:get_pos() ; if not pos then return end
 
 	self.time_of_day = minetest.get_timeofday()
 
@@ -1831,7 +1831,7 @@ function mob_class:general_attack()
 		return
 	end
 
-	local s = self.object:get_pos()
+	local s = self.object:get_pos() ; if not s then return end
 	local objs = minetest.get_objects_inside_radius(s, self.view_range)
 
 	-- remove entities we aren't interested in
@@ -2001,7 +2001,7 @@ function mob_class:follow_flop()
 	and self.state ~= "attack"
 	and self.state ~= "runaway" then
 
-		local s = self.object:get_pos()
+		local s = self.object:get_pos() ; if not s then return end
 		local players = minetest.get_connected_players()
 
 		for n = 1, #players do
@@ -2132,11 +2132,11 @@ end
 -- execute current state (stand, walk, run, attacks)
 function mob_class:do_states(dtime)
 
-	local yaw = self.object:get_yaw() or 0
+	local yaw = self.object:get_yaw() ; if not yaw then return end
 
 	if self.state == "stand" then
 
-		if random(4) == 1 then
+		if self.randomly_turn and random(4) == 1 then
 
 			local lp
 			local s = self.object:get_pos()
@@ -2224,7 +2224,7 @@ function mob_class:do_states(dtime)
 			yaw = self:set_yaw(yaw, 8)
 
 		-- otherwise randomly turn
-		elseif random(100) <= 30 then
+		elseif self.randomly_turn and random(100) <= 30 then
 
 			yaw = yaw + random(-0.5, 0.5)
 
@@ -3564,6 +3564,7 @@ minetest.register_entity(name, setmetatable({
 	owner_loyal = def.owner_loyal,
 	pushable = def.pushable,
 	stay_near = def.stay_near,
+	randomly_turn = def.randomly_turn ~= false,
 
 	on_spawn = def.on_spawn,
 

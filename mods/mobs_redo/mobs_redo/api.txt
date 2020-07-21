@@ -31,13 +31,15 @@ functions needed for the mob to work properly which contains the following:
    'hp_max'        has the maximum health value the mob can spawn with.
    'armor'         holds strength of mob, 100 is normal, lower is more powerful
                    and needs more hits and better weapons to kill.
-   'passive'       when true allows animals to defend themselves when hit,
+   'passive'       when false allows animals to defend themselves when hit,
                    otherwise they amble onwards.
    'walk_velocity' is the speed that your mob can walk around.
    'run_velocity'  is the speed your mob can run with, usually when attacking.
    'stand_chance'  has a 0-100 chance value your mob will stand from walking.
    'walk_chance'   has a 0-100 chance value your mob will walk from standing,
                    set to 0 for jumping mobs only.
+   'randomly_turn' if set to false then mob will not turn to face player or
+                   randomly turn while walking or standing.
    'jump'          when true allows your mob to jump updwards.
    'jump_height'   holds the height your mob can jump, 0 to disable jumping.
    'stepheight'    height of a block that your mob can easily walk up onto,

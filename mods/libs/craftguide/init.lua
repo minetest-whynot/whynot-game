@@ -7,6 +7,7 @@ local searches      = {}
 local recipes_cache = {}
 local usages_cache  = {}
 local fuel_cache    = {}
+local replacements  = {fuel = {}}
 local toolrepair
 
 local progressive_mode = core.settings:get_bool "craftguide_progressive_mode"
@@ -572,6 +573,7 @@ local function cache_fuel(item)
 			type = "fuel",
 			items = {item},
 			burntime = burntime,
+			replacements = replacements.fuel[item],
 		}
 	end
 end
@@ -584,7 +586,6 @@ end
 
 local function get_usages(recipe)
 	local added = {}
-
 	for _, item in pairs(recipe.items) do
 		item = reg_aliases[item] or item
 		if not added[item] then
@@ -697,7 +698,23 @@ local function cache_drops(name, drop)
 end
 
 local function cache_recipes(item)
-	recipes_cache[item] = get_all_recipes(item)
+	local recipes = get_all_recipes(item)
+
+	if replacements[item] then
+		local _recipes = {}
+
+		for k, v in ipairs(recipes or {}) do
+			_recipes[#recipes + 1 - k] = v
+		end
+
+		for k, v in pairs(replacements[item]) do
+			_recipes[k].replacements = v
+		end
+
+		recipes = _recipes
+	end
+
+	recipes_cache[item] = recipes
 end
 
 local function get_recipes(item, data, player)
@@ -734,21 +751,17 @@ end
 local function groups_to_items(groups, get_all)
 	if not get_all and #groups == 1 then
 		local group = groups[1]
-		local def_gr = "default:" .. group
-		local stereotypes = craftguide.group_stereotypes
-		local stereotype = stereotypes and stereotypes[group]
-		stereotype = reg_items[stereotype] and stereotype
+		local stereotype = craftguide.group_stereotypes[group]
+		local def = reg_items[stereotype]
 
-		if stereotype then
+		if def and show_item(def) then
 			return stereotype
-		elseif reg_items[def_gr] then
-			return def_gr
 		end
 	end
 
 	local names = {}
 	for name, def in pairs(reg_items) do
-		if item_has_groups(def.groups, groups) then
+		if show_item(def) and item_has_groups(def.groups, groups) then
 			if get_all then
 				names[#names + 1] = name
 			else
@@ -1060,7 +1073,13 @@ local function get_grid_fs(lang_code, fs, rcp, spacing)
 			fs[#fs + 1] = fmt(FMT.image, X, Y, btn_size, btn_size, PNG.selected)
 		end
 
-		local btn_name = item ~= "" and item or (groups and groups[1] or "")
+		local btn_name = ""
+
+		if groups then
+			btn_name = fmt("group|%s|%s", groups[1], item)
+		elseif item ~= "" then
+			btn_name = item
+		end
 
 		fs[#fs + 1] = fmt(FMT.item_image_button,
 			X, Y, btn_size, btn_size, item, btn_name, label)
@@ -1144,7 +1163,7 @@ local function get_title_fs(query_item, lang_code, favs, fs, spacing)
 	local t_desc = query_item
 	t_desc = #t_desc > 40 and fmt("%s...", sub(t_desc, 1, 37)) or t_desc
 
-	fs[#fs + 1] = fmt("hypertext[9.05,%f;5.85,1.2;item_title;%s]",
+	fs[#fs + 1] = fmt("hypertext[9.05,%f;5.85,1.2;;%s]",
 		spacing - 0.1,
 		fmt("<item name=%s float=right width=64 height=64 rotate=yes>" ..
 		    "<big><b>%s</b></big>\n<style color=#7bf font=mono>%s</style>",
@@ -1313,7 +1332,10 @@ local function make_fs(data)
 			lbl = ES"Collect items to reveal more recipes"
 		end
 
-		fs[#fs + 1] = fmt(FMT.button, -0.25, 3, 8.3, 1, "no_item", lbl)
+		fs[#fs + 1] = fmt("hypertext[%f,%f;%f,%f;;%s]",
+			0.05, 3, 8.29, 1,
+			fmt("<center><style size=20><b>%s</b></style></center>]",
+				translate(data.lang_code, lbl)))
 	end
 
 	local first_item = (data.pagenum - 1) * IPP
@@ -1443,6 +1465,7 @@ end)
 	See engine's issues #4901, #5745 and #8920.	]]
 
 local old_register_craft = core.register_craft
+local rcp_num = {}
 
 core.register_craft = function(def)
 	old_register_craft(def)
@@ -1464,11 +1487,15 @@ core.register_craft = function(def)
 
 	for i = 1, #output do
 		local name = output[i]
+		rcp_num[name] = (rcp_num[name] or 0) + 1
 
-		if def.type == "fuel" then
-			def.replacements = def.replacements
-			def.items = {def.recipe}
-			fuel_cache[name] = def
+		if def.replacements then
+			if def.type == "fuel" then
+				replacements.fuel[name] = def.replacements
+			else
+				replacements[name] = replacements[name] or {}
+				replacements[name][rcp_num[name]] = def.replacements
+			end
 		end
 	end
 end
@@ -1665,6 +1692,8 @@ local function fields(player, _f)
 			item = sub(item, 1, -5)
 		elseif sub(item, 1, 1) == "_" then
 			item = sub(item, 2)
+		elseif sub(item, 1, 6) == "group|" then
+			item = match(item, "([%w:_]+)$")
 		end
 
 		item = reg_aliases[item] or item

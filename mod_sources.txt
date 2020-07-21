@@ -34,7 +34,7 @@ Mod: minetest_game/mods/xpanes
 
 bell07	https://github.com/bell07/craftguide (fetch)
 origin	https://github.com/minetest-mods/craftguide/ (fetch)
-* upstream 74785bc [origin/master] Fix fuel recipes not appearing
+* upstream 9412ac7 [origin/master] Polish
 Mod: libs/craftguide
 
 origin	https://github.com/minetest-mods/craftguide_reveal (fetch)
@@ -94,7 +94,7 @@ origin	https://repo.or.cz/minetest_hudbars.git (fetch)
 Mod: player/hudbars
 
 origin	https://github.com/minetest-mods/playeranim (fetch)
-* master ae45fe4 [origin/master] Fix compatibility with (upcoming) Minetest 5.3.0
+* master c95658c [origin/master: ahead 1] quickfix for MT-5.3
 Mod: player/playeranim
 
 origin	http://repo.or.cz/minetest_show_wielded_item.git (fetch)
@@ -414,5 +414,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master 804f8b9 [origin/master] nil check during mob detatch in mount.lua
+* master 1271570 [origin/master] nil check in do_states
 Mod: mobs_redo/mobs_redo

@@ -22,7 +22,7 @@ end
 
 -- stop player_api from messing stuff up (since 5.3)
 if minetest.global_exists("player_api") then
-	for _, v in pairs(player_api.registered_models["character.b3d"].animations) do
+	for _, v in pairs(player_api.registered_models[player_api.default_model].animations) do
 		v.x = 0
 		v.y = 0
 	end
