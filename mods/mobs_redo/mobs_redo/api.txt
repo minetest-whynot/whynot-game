@@ -344,6 +344,15 @@ Adding Mobs in World
 Returns false if mob could not be added, returns mob object if spawned ok.
 
 
+Removing Mob from World
+-----------------------
+
+	mobs:remove(self, decrease)
+
+Removes mob 'self' from the world and if 'decrease' is true then the mob counter
+will also be decreased by one.
+
+
 Spawning Mobs in World
 ----------------------
 

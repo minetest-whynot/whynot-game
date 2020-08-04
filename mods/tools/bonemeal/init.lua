@@ -12,7 +12,7 @@ local S = minetest.get_translator and minetest.get_translator("bonemeal") or
 
 -- creative check
 local creative_mode_cache = minetest.settings:get_bool("creative_mode")
-function is_creative(name)
+function bonemeal.is_creative(name)
 	return creative_mode_cache or minetest.check_player_privs(name, {creative = true})
 end
 
@@ -495,7 +495,7 @@ minetest.register_craftitem("bonemeal:mulch", {
 		end
 
 		-- take item if not in creative
-		if not is_creative(user:get_player_name()) then
+		if not bonemeal.is_creative(user:get_player_name()) then
 			itemstack:take_item()
 		end
 
@@ -525,7 +525,7 @@ minetest.register_craftitem("bonemeal:bonemeal", {
 		end
 
 		-- take item if not in creative
-		if not is_creative(user:get_player_name()) then
+		if not bonemeal.is_creative(user:get_player_name()) then
 			itemstack:take_item()
 		end
 
@@ -555,7 +555,7 @@ minetest.register_craftitem("bonemeal:fertiliser", {
 		end
 
 		-- take item if not in creative
-		if not is_creative(user:get_player_name()) then
+		if not bonemeal.is_creative(user:get_player_name()) then
 			itemstack:take_item()
 		end
 

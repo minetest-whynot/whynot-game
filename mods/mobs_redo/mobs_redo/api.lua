@@ -6,7 +6,7 @@ local use_cmi = minetest.global_exists("cmi")
 
 mobs = {
 	mod = "redo",
-	version = "20200720",
+	version = "20200727",
 	intllib = S,
 	invis = minetest.global_exists("invisibility") and invisibility or {}
 }
@@ -195,7 +195,9 @@ end
 
 -- calculate distance
 local get_distance = function(a, b)
-if not a or not b then return 50 end -- nil check
+
+--	if not a or not b then return 50 end -- nil check
+
 	local x, y, z = a.x - b.x, a.y - b.y, a.z - b.z
 
 	return square(x * x + y * y + z * z)
@@ -228,7 +230,7 @@ function mob_class:collision()
 end
 
 
--- check string against another string or table
+-- check if string exists in another string or table
 local check_for = function(look_for, look_inside)
 
 	if type(look_inside) == "string" and look_inside == look_for then
@@ -289,8 +291,7 @@ function mob_class:set_velocity(v)
 	local new_vel = {
 		x = (sin(yaw) * -v) + c_x,
 		y = vel.y,
-		z = (cos(yaw) * v) + c_y
-	}
+		z = (cos(yaw) * v) + c_y}
 
 	self.object:set_velocity(new_vel)
 end
@@ -351,9 +352,9 @@ function mob_class:set_animation(anim, force)
 		return
 	end
 
-	-- check for more than one animation
 	local num = 0
 
+	-- check for more than one animation (max 4)
 	for n = 1, 4 do
 
 		if self.animation[anim .. n .. "_start"]
@@ -386,7 +387,7 @@ end
 
 -- above function exported for mount.lua
 function mobs:set_animation(entity, anim)
-	mob_class.set_animation(entity, anim)
+	entity.set_animation(entity, anim)
 end
 
 
@@ -748,7 +749,7 @@ function mob_class:item_drop()
 	-- was mob killed by player?
 	local death_by_player = self.cause_of_death
 		and self.cause_of_death.puncher
-		and self.cause_of_death.puncher:is_player() or nil
+		and self.cause_of_death.puncher:is_player()
 
 	local obj, item, num
 
@@ -810,6 +811,11 @@ local remove_mob = function(self, decrease)
 		end
 	end
 --print("-- active mobs: " .. active_mobs .. " / " .. active_limit)
+end
+
+-- global function for removing mobs
+function mobs:remove(self, decrease)
+	remove_mob(self, decrease)
 end
 
 
@@ -963,12 +969,11 @@ function mob_class:is_at_cliff()
 		return false
 	end
 
-	-- if object no longer exists then return
-	if not self.object:get_luaentity() then
-		return false
-	end
-
+	-- get yaw but if nil returned object no longer exists
 	local yaw = self.object:get_yaw()
+
+	if not yaw then return false end
+
 	local dir_x = -sin(yaw) * (self.collisionbox[4] + 0.5)
 	local dir_z = cos(yaw) * (self.collisionbox[4] + 0.5)
 	local pos = self.object:get_pos()
@@ -1028,24 +1033,6 @@ function mob_class:do_env_damage()
 	-- particle appears at random mob height
 	pos.y = pos.y + random(self.collisionbox[2], self.collisionbox[5])
 
-	-- is mob light sensative, or scared of the dark :P
-	if self.light_damage ~= 0 then
-
-		local light = minetest.get_node_light(pos) or 0
-
-		if light >= self.light_damage_min
-		and light <= self.light_damage_max then
-
-			self.health = self.health - self.light_damage
-
-			effect(pos, 5, "tnt_smoke.png")
-
-			if self:check_for_death({type = "light"}) then
-				return true
-			end
-		end
-	end
-
 	local nodef = minetest.registered_nodes[self.standing_in]
 
 	-- water
@@ -1088,6 +1075,24 @@ function mob_class:do_env_damage()
 		if self:check_for_death({type = "environment",
 				pos = pos, node = self.standing_in}) then
 			return true
+		end
+	end
+
+	-- is mob light sensative, or scared of the dark :P
+	if self.light_damage ~= 0 then
+
+		local light = minetest.get_node_light(pos) or 0
+
+		if light >= self.light_damage_min
+		and light <= self.light_damage_max then
+
+			self.health = self.health - self.light_damage
+
+			effect(pos, 5, "tnt_smoke.png")
+
+			if self:check_for_death({type = "light"}) then
+				return true
+			end
 		end
 	end
 
@@ -1538,7 +1543,8 @@ local height_switcher = false
 function mob_class:smart_mobs(s, p, dist, dtime)
 
 	local s1 = self.path.lastpos
-	local target_pos = self.attack:get_pos()
+	local target_pos = p
+
 
 	-- is it becoming stuck?
 	if abs(s1.x - s.x) + abs(s1.z - s.z) < .5 then
@@ -1601,10 +1607,6 @@ function mob_class:smart_mobs(s, p, dist, dtime)
 		self.path.stuck_timer = 0
 
 		minetest.after(1, function(self)
-
-			if not self.object:get_luaentity() then
-				return
-			end
 
 			if self.object:get_luaentity() then
 
@@ -1687,7 +1689,10 @@ function mob_class:smart_mobs(s, p, dist, dtime)
 ]]
 
 		self.state = ""
-		self:do_attack(self.attack)
+
+		if self.attack then
+			self:do_attack(self.attack)
+		end
 
 		-- no path found, try something else
 		if not self.path.way then
@@ -1777,7 +1782,6 @@ function mob_class:smart_mobs(s, p, dist, dtime)
 							minetest.add_item(p1, ItemStack(node1))
 							minetest.set_node(p1, {name = "air"})
 						end
-
 					end
 				end
 			end
@@ -1785,38 +1789,23 @@ function mob_class:smart_mobs(s, p, dist, dtime)
 			-- will try again in 2 second
 			self.path.stuck_timer = stuck_timeout - 2
 
-	elseif s.y < p1.y and (not self.fly) then
+		elseif s.y < p1.y and (not self.fly) then
 			self:do_jump() --add jump to pathfinding
 			self.path.following = true
 		else
 			-- yay i found path
-			self:mob_sound(self.sounds.war_cry)
+			if self.attack then
+				self:mob_sound(self.sounds.war_cry)
+			else
+				self:mob_sound(self.sounds.random)
+			end
+
 			self:set_velocity(self.walk_velocity)
 
 			-- follow path now that it has it
 			self.path.following = true
 		end
 	end
-end
-
-
--- specific attacks
-local specific_attack = function(list, what)
-
-	-- no list so attack default (player, animals etc.)
-	if list == nil then
-		return true
-	end
-
-	-- found entity on list to attack?
-	for no = 1, #list do
-
-		if list[no] == what then
-			return true
-		end
-	end
-
-	return false
 end
 
 
@@ -1847,7 +1836,8 @@ function mob_class:general_attack()
 			or self.attack_players == false
 			or (self.owner and self.type ~= "monster")
 			or mobs.invis[objs[n]:get_player_name()]
-			or not specific_attack(self.specific_attack, "player") then
+			or (self.specific_attack
+					and not check_for("player", self.specific_attack)) then
 				objs[n] = nil
 --print("- pla", n)
 			end
@@ -1860,7 +1850,8 @@ function mob_class:general_attack()
 			or (not self.attack_animals and ent.type == "animal")
 			or (not self.attack_monsters and ent.type == "monster")
 			or (not self.attack_npcs and ent.type == "npc")
-			or not specific_attack(self.specific_attack, ent.name) then
+			or (self.specific_attack
+					and not check_for(ent.name, self.specific_attack)) then
 				objs[n] = nil
 --print("- mob", n, self.name, ent.name)
 			end
@@ -1903,26 +1894,6 @@ function mob_class:general_attack()
 end
 
 
--- specific runaway
-local specific_runaway = function(list, what)
-
-	-- no list so do not run
-	if list == nil then
-		return false
-	end
-
-	-- found entity on list to attack?
-	for no = 1, #list do
-
-		if list[no] == what then
-			return true
-		end
-	end
-
-	return false
-end
-
-
 -- find someone to runaway from
 function mob_class:do_runaway_from()
 
@@ -1961,7 +1932,7 @@ function mob_class:do_runaway_from()
 
 		-- find specific mob to runaway from
 		if name ~= "" and name ~= self.name
-		and specific_runaway(self.runaway_from, name) then
+		and (self.runaway_from and check_for(name, self.runaway_from)) then
 
 			sp = s
 			p = player and player:get_pos() or s
@@ -2284,12 +2255,12 @@ function mob_class:do_states(dtime)
 	-- attack routines (explode, dogfight, shoot, dogshoot)
 	elseif self.state == "attack" then
 
-		-- calculate distance from mob and enemy
+		-- get mob and enemy positions and distance between
 		local s = self.object:get_pos()
-		local p = self.attack:get_pos() or s
-		local dist = get_distance(p, s)
+		local p = self.attack and self.attack:get_pos()
+		local dist = p and get_distance(p, s) or 500
 
-		-- stop attacking if player invisible or out of range
+		-- stop attacking if player out of range or invisible
 		if dist > self.view_range
 		or not self.attack
 		or not self.attack:get_pos()
@@ -2425,7 +2396,8 @@ function mob_class:do_states(dtime)
 
 		elseif self.attack_type == "dogfight"
 		or (self.attack_type == "dogshoot" and self:dogswitch(dtime) == 2)
-		or (self.attack_type == "dogshoot" and dist <= self.reach and self:dogswitch() == 0) then
+		or (self.attack_type == "dogshoot" and dist <= self.reach
+		and self:dogswitch() == 0) then
 
 			if self.fly
 			and dist > self.reach then
@@ -2472,7 +2444,6 @@ function mob_class:do_states(dtime)
 						})
 					end
 				end
-
 			end
 
 			-- rnd: new movement direction
@@ -2494,7 +2465,7 @@ function mob_class:do_states(dtime)
 					return
 				end
 
-				if abs(p1.x-s.x) + abs(p1.z - s.z) < 0.6 then
+				if abs(p1.x - s.x) + abs(p1.z - s.z) < 0.6 then
 					-- reached waypoint, remove it from queue
 					table.remove(self.path.way, 1)
 				end
@@ -2652,9 +2623,9 @@ function mob_class:falling(pos)
 
 	-- in water then use liquid viscosity for float/sink speed
 	if (self.standing_in
-	and minetest.registered_nodes[self.standing_in].groups.liquid) --water)
+	and minetest.registered_nodes[self.standing_in].groups.liquid)
 	or (self.standing_on
-	and minetest.registered_nodes[self.standing_in].groups.liquid) then -- water) then
+	and minetest.registered_nodes[self.standing_in].groups.liquid) then
 
 		local visc = min(
 				minetest.registered_nodes[self.standing_in].liquid_viscosity, 7)
@@ -2916,7 +2887,7 @@ function mob_class:on_punch(hitter, tflp, tool_capabilities, dir, damage)
 		dir = dir or {x = 0, y = 0, z = 0}
 
 		-- use tool knockback value or default
-		kb = tool_capabilities.damage_groups["knockback"] or kb -- (kb * 1.5)
+		kb = tool_capabilities.damage_groups["knockback"] or kb
 
 		self.object:set_velocity({
 			x = dir.x * kb,
@@ -3730,6 +3701,7 @@ function mobs:spawn_specific(name, nodes, neighbors, min_light, max_light,
 
 	-- Do mobs spawn at all?
 	if not mobs_spawn or not mobs.spawning_mobs[name] then
+--print ("--- spawning not registered for " .. name)
 		return
 	end
 

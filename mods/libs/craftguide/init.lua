@@ -23,6 +23,7 @@ local reg_aliases = core.registered_aliases
 local log = core.log
 local after = core.after
 local clr = core.colorize
+local sound_play = core.sound_play
 local parse_json = core.parse_json
 local write_json = core.write_json
 local chat_send = core.chat_send_player
@@ -76,25 +77,25 @@ local POLL_FREQ = 0.25
 local HUD_TIMER_MAX = 1.5
 
 local PNG = {
-	bg        = "craftguide_bg.png",
-	bg_full   = "craftguide_bg_full.png",
-	search    = "craftguide_search_icon.png",
-	clear     = "craftguide_clear_icon.png",
-	prev      = "craftguide_next_icon.png^\\[transformFX",
-	next      = "craftguide_next_icon.png",
-	arrow     = "craftguide_arrow.png",
-	fire      = "craftguide_fire.png",
+	bg = "craftguide_bg.png",
+	bg_full = "craftguide_bg_full.png",
+	search = "craftguide_search_icon.png",
+	clear = "craftguide_clear_icon.png",
+	prev = "craftguide_next_icon.png^\\[transformFX",
+	next = "craftguide_next_icon.png",
+	arrow = "craftguide_arrow.png",
+	fire = "craftguide_fire.png",
 	fire_anim = "craftguide_fire_anim.png",
-	book      = "craftguide_book.png",
-	sign      = "craftguide_sign.png",
-	nothing   = "craftguide_no.png",
-	selected  = "craftguide_selected.png",
+	book = "craftguide_book.png",
+	sign = "craftguide_sign.png",
+	nothing = "craftguide_no.png",
+	selected = "craftguide_selected.png",
 	furnace_anim = "craftguide_furnace_anim.png",
 
 	search_hover = "craftguide_search_icon_hover.png",
-	clear_hover  = "craftguide_clear_icon_hover.png",
-	prev_hover   = "craftguide_next_icon_hover.png^\\[transformFX",
-	next_hover   = "craftguide_next_icon_hover.png",
+	clear_hover = "craftguide_clear_icon_hover.png",
+	prev_hover = "craftguide_next_icon_hover.png^\\[transformFX",
+	next_hover = "craftguide_next_icon_hover.png",
 }
 
 local FMT = {
@@ -103,6 +104,7 @@ local FMT = {
 	image = "image[%f,%f;%f,%f;%s]",
 	button = "button[%f,%f;%f,%f;%s;%s]",
 	tooltip = "tooltip[%f,%f;%f,%f;%s]",
+	hypertext = "hypertext[%f,%f;%f,%f;;%s]",
 	item_image = "item_image[%f,%f;%f,%f;%s]",
 	image_button = "image_button[%f,%f;%f,%f;%s;%s;%s]",
 	animated_image = "animated_image[%f,%f;%f,%f;;%s;%u;%u]",
@@ -145,6 +147,11 @@ craftguide.group_stereotypes = {
 	wool = "wool:white",
 	wood = "default:wood",
 	tree = "default:tree",
+	sand = "default:sand",
+	glass = "default:glass",
+	stick = "default:stick",
+	stone = "default:stone",
+	leaves = "default:leaves",
 	coal = "default:coal_lump",
 	vessel = "vessels:glass_bottle",
 	flower = "flowers:dandelion_yellow",
@@ -153,20 +160,20 @@ craftguide.group_stereotypes = {
 }
 
 local group_names = {
-	carpet = S"Any carpet",
-	coal = S"Any coal",
 	dye = S"Any dye",
-	flower = S"Any flower",
-	glass = S"Any glass",
-	leaves = S"Any leaves",
-	mushroom = S"Any mushroom",
+	coal = S"Any coal",
 	sand = S"Any sand",
-	stick = S"Any stick",
-	stone = S"Any kind of stone block",
-	tree  = S"Any tree",
-	vessel = S"Any vessel",
+	tree = S"Any tree",
 	wool = S"Any wool",
+	glass = S"Any glass",
+	stick = S"Any stick",
+	stone = S"Any stone",
+	carpet = S"Any carpet",
+	flower = S"Any flower",
+	leaves = S"Any leaves",
+	vessel = S"Any vessel",
 	wood = S"Any wood planks",
+	mushroom = S"Any mushroom",
 
 	["color_red,flower"] = S"Any red flower",
 	["color_blue,flower"] = S"Any blue flower",
@@ -586,6 +593,7 @@ end
 
 local function get_usages(recipe)
 	local added = {}
+
 	for _, item in pairs(recipe.items) do
 		item = reg_aliases[item] or item
 		if not added[item] then
@@ -624,68 +632,50 @@ local function cache_usages(item)
 end
 
 local function drop_table(name, drop)
-	local drop_sure, drop_maybe = {}, {}
+	local count_sure = 0
 	local drop_items = drop.items or {}
+	local max_items = drop.max_items
 
 	for i = 1, #drop_items do
 		local di = drop_items[i]
+		local valid_rarity = di.rarity and di.rarity > 1
 
-		for j = 1, #di.items do
-			local dstack = ItemStack(di.items[j])
-			local dname  = dstack:get_name()
-			local dcount = dstack:get_count()
+		if di.rarity or not max_items or
+				(max_items and not di.rarity and count_sure < max_items) then
+			for j = 1, #di.items do
+				local dstack = ItemStack(di.items[j])
+				local dname  = dstack:get_name()
+				local dcount = dstack:get_count()
+				local empty  = dstack:is_empty()
 
-			if not dstack:is_empty() and (dname ~= name or
-					(dname == name and dcount > 1)) then
-				if not di.rarity or di.rarity <= 1 then
-					if drop_sure[dname] then
-						if dcount > drop_sure[dname].output then
-							dcount = dcount + drop_sure[dname].output
-						else
-							dcount = drop_sure[dname].output
-						end
-					end
+				if not empty and (dname ~= name or
+						(dname == name and dcount > 1)) then
+					local rarity = valid_rarity and di.rarity
 
-					drop_sure[dname] = {
-						output = dcount,
-						tools  = di.tools,
-					}
-				else
-					drop_maybe[#drop_maybe + 1] = {
-						item   = dname,
-						output = dcount,
-						rarity = di.rarity,
+					craftguide.register_craft{
+						type   = rarity and "digging_chance" or "digging",
+						items  = {name},
+						output = fmt("%s %u", dname, dcount),
+						rarity = rarity,
 						tools  = di.tools,
 					}
 				end
 			end
 		end
-	end
 
-	for item, data in pairs(drop_sure) do
-		craftguide.register_craft{
-			type   = "digging",
-			items  = {name},
-			output = fmt("%s %u", item, data.output),
-			tools  = data.tools,
-		}
-	end
-
-	for _, data in ipairs(drop_maybe) do
-		craftguide.register_craft{
-			type   = "digging_chance",
-			items  = {name},
-			output = fmt("%s %u", data.item, data.output),
-			rarity = data.rarity,
-			tools  = data.tools,
-		}
+		if not di.rarity then
+			count_sure = count_sure + 1
+		end
 	end
 end
 
 local function cache_drops(name, drop)
 	if true_str(drop) then
 		local dstack = ItemStack(drop)
-		if not dstack:is_empty() and dstack:get_name() ~= name then
+		local dname  = dstack:get_name()
+		local empty  = dstack:is_empty()
+
+		if not empty and dname ~= name then
 			craftguide.register_craft{
 				type = "digging",
 				items = {name},
@@ -707,8 +697,20 @@ local function cache_recipes(item)
 			_recipes[#recipes + 1 - k] = v
 		end
 
+		local shift = 0
+		local size_rpl = maxn(replacements[item])
+		local size_rcp = #_recipes
+
+		if size_rpl > size_rcp then
+			shift = size_rcp - size_rpl
+		end
+
 		for k, v in pairs(replacements[item]) do
-			_recipes[k].replacements = v
+			k = k + shift
+
+			if _recipes[k] then
+				_recipes[k].replacements = v
+			end
 		end
 
 		recipes = _recipes
@@ -792,7 +794,7 @@ local function is_fav(favs, query_item)
 end
 
 local function weird_desc(str)
-	return not true_str(str) or find(str, "\n") or not find(str, "%u")
+	return not true_str(str) or find(str, "[\\]*") or not find(str, "%u")
 end
 
 local function toupper(str)
@@ -801,6 +803,10 @@ end
 
 local function strip_newline(str)
 	return match(str, "[^\n]*")
+end
+
+local function strip_prefix(str)
+	return match(str, ".*@.*%)(.*)()") or str
 end
 
 local function get_desc(item, lang_code)
@@ -813,10 +819,16 @@ local function get_desc(item, lang_code)
 	if def then
 		local desc = def.description
 		if true_str(desc) then
+			desc = translate(lang_code, desc)
+			desc = desc:trim()
+			desc = strip_newline(desc)
+			desc = strip_prefix(desc)
+
 			if not find(desc, "%u") then
-				return strip_newline(toupper(desc))
+				desc = toupper(desc)
 			end
-			return strip_newline(translate(lang_code, desc))
+
+			return desc
 
 		elseif true_str(item) then
 			return toupper(match(item, ":(.*)"))
@@ -860,13 +872,13 @@ local function get_tooltip(item, info, lang_code)
 	end
 
 	if info.replace then
-		for i = 1, #info.replace do
-			local rpl = match(info.replace[i], "%S+")
+		for i = 1, #info.replace.items do
+			local rpl = match(info.replace.items[i], "%S+")
 			local desc = clr("#ff0", get_desc(rpl, lang_code))
 
-			if info.cooktime then
+			if info.replace.type == "cooking" then
 				tooltip = add(S("Replaced by @1 on smelting", desc))
-			elseif info.burntime then
+			elseif info.replace.type == "fuel" then
 				tooltip = add(S("Replaced by @1 on burning", desc))
 			else
 				tooltip = add(S("Replaced by @1 on crafting", desc))
@@ -1049,11 +1061,11 @@ local function get_grid_fs(lang_code, fs, rcp, spacing)
 		for j = 1, #(rcp.replacements or {}) do
 			local replacement = rcp.replacements[j]
 			if replacement[1] == name then
-				replace = replace or {}
+				replace = replace or {type = rcp.type, items = {}}
 
 				local added
 
-				for _, v in ipairs(replace) do
+				for _, v in ipairs(replace.items) do
 					if replacement[2] == v then
 						added = true
 						break
@@ -1062,7 +1074,7 @@ local function get_grid_fs(lang_code, fs, rcp, spacing)
 
 				if not added then
 					label = fmt("%s%s\nR", label ~= "" and "\n" or "", label)
-					replace[#replace + 1] = replacement[2]
+					replace.items[#replace.items + 1] = replacement[2]
 				end
 			end
 		end
@@ -1127,7 +1139,7 @@ local function get_rcp_lbl(lang_code, show_usages, unum, rnum, fs, panel, spacin
 	end
 
 	lbl = translate(lang_code, lbl)
-	local lbl_len = #(lbl):gsub("[\128-\191]", "") -- Count chars, not bytes in UTF-8 strings
+	local lbl_len = #lbl:gsub("[\128-\191]", "") -- Count chars, not bytes in UTF-8 strings
 	local shift = min(0.9, abs(13 - max(13, lbl_len)) * 0.1)
 
 	fs[#fs + 1] = fmt(FMT.label,
@@ -1163,8 +1175,8 @@ local function get_title_fs(query_item, lang_code, favs, fs, spacing)
 	local t_desc = query_item
 	t_desc = #t_desc > 40 and fmt("%s...", sub(t_desc, 1, 37)) or t_desc
 
-	fs[#fs + 1] = fmt("hypertext[9.05,%f;5.85,1.2;;%s]",
-		spacing - 0.1,
+	fs[#fs + 1] = fmt(FMT.hypertext,
+		9.05, spacing - 0.1, 5.85, 1.2,
 		fmt("<item name=%s float=right width=64 height=64 rotate=yes>" ..
 		    "<big><b>%s</b></big>\n<style color=#7bf font=mono>%s</style>",
 			query_item, desc, t_desc))
@@ -1199,11 +1211,11 @@ end
 local function get_panels(lang_code, query_item, recipes, usages, show_usages,
 			  favs, unum, rnum, fs)
 
-	local _title    = {name = "title", height = 1.2}
-	local _favs     = {name = "favs",  height = 1.91}
-	local _recipes  = {name = "recipes", rcp = recipes, height = 3.5}
-	local _usages   = {name = "usages",  rcp = usages,  height = 3.5}
-	local panels    = {_title, _recipes, _usages, _favs}
+	local _title   = {name = "title", height = 1.2}
+	local _favs    = {name = "favs",  height = 1.91}
+	local _recipes = {name = "recipes", rcp = recipes, height = 3.5}
+	local _usages  = {name = "usages",  rcp = usages,  height = 3.5}
+	local panels   = {_title, _recipes, _usages, _favs}
 
 	if sfinv_only then
 		panels = {show_usages and _usages or _recipes}
@@ -1233,13 +1245,12 @@ local function get_panels(lang_code, query_item, recipes, usages, show_usages,
 			-0.2 + spacing, panel.height, PNG.bg_full, 10)
 
 		if recipe_or_usage and not rn then
-			local X = XOFFSET - 0.7
-			local Y = YOFFSET - 0.4 + spacing
+			local lbl = is_recipe and ES"No recipes" or ES"No usages"
 
-			fs[#fs + 1] = fmt(FMT.image, X, Y, 2, 2, PNG.nothing)
-
-			fs[#fs + 1] = fmt(FMT.tooltip,
-				X, Y, 2, 2, is_recipe and ES"No recipes" or ES"No usages")
+			fs[#fs + 1] = fmt(FMT.hypertext,
+				8.29, YOFFSET + spacing + 0.3, 6.8, 1,
+				fmt("<center><style size=20><b>%s</b></style></center>",
+					translate(lang_code, lbl)))
 
 		elseif panel.name == "title" then
 			get_title_fs(query_item, lang_code, favs, fs, spacing)
@@ -1332,9 +1343,9 @@ local function make_fs(data)
 			lbl = ES"Collect items to reveal more recipes"
 		end
 
-		fs[#fs + 1] = fmt("hypertext[%f,%f;%f,%f;;%s]",
+		fs[#fs + 1] = fmt(FMT.hypertext,
 			0.05, 3, 8.29, 1,
-			fmt("<center><style size=20><b>%s</b></style></center>]",
+			fmt("<center><style size=20><b>%s</b></style></center>",
 				translate(data.lang_code, lbl)))
 	end
 
@@ -1486,15 +1497,15 @@ core.register_craft = function(def)
 	end
 
 	for i = 1, #output do
-		local name = output[i]
-		rcp_num[name] = (rcp_num[name] or 0) + 1
+		local item = output[i]
+		rcp_num[item] = (rcp_num[item] or 0) + 1
 
 		if def.replacements then
 			if def.type == "fuel" then
-				replacements.fuel[name] = def.replacements
+				replacements.fuel[item] = def.replacements
 			else
-				replacements[name] = replacements[name] or {}
-				replacements[name][rcp_num[name]] = def.replacements
+				replacements[item] = replacements[item] or {}
+				replacements[item][rcp_num[item]] = def.replacements
 			end
 		end
 	end
@@ -1631,8 +1642,13 @@ on_joinplayer(function(player)
 end)
 
 local function fields(player, _f)
+	if _f.quit then return end
 	local name = player:get_player_name()
 	local data = pdata[name]
+
+	if not _f.key_enter_field then
+		sound_play("craftguide_click", {to_player = name, gain = 0.2})
+	end
 
 	if _f.clear then
 		reset_data(data)
@@ -2019,8 +2035,8 @@ if progressive_mode then
 		local players = get_players()
 		for i = 1, #players do
 			local player = players[i]
-			local name   = player:get_player_name()
-			local data   = pdata[name]
+			local name = player:get_player_name()
+			local data = pdata[name]
 
 			local inv_items = get_inv_items(player)
 			local diff = array_diff(inv_items, data.inv_items)
@@ -2054,8 +2070,8 @@ if progressive_mode then
 		local players = get_players()
 		for i = 1, #players do
 			local player = players[i]
-			local name   = player:get_player_name()
-			local data   = pdata[name]
+			local name = player:get_player_name()
+			local data = pdata[name]
 
 			if data.show_hud ~= nil and singleplayer then
 				show_hud_success(player, data)
@@ -2108,7 +2124,7 @@ on_leaveplayer(function(player)
 end)
 
 function craftguide.show(name, item, show_usages)
-	if not true_str(name)then
+	if not true_str(name) then
 		return err "craftguide.show(): player name missing"
 	end
 

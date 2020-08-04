@@ -34,7 +34,7 @@ Mod: minetest_game/mods/xpanes
 
 bell07	https://github.com/bell07/craftguide (fetch)
 origin	https://github.com/minetest-mods/craftguide/ (fetch)
-* upstream 9412ac7 [origin/master] Polish
+* upstream 584c215 [origin/master] Add contentdb badges
 Mod: libs/craftguide
 
 origin	https://github.com/minetest-mods/craftguide_reveal (fetch)
@@ -80,6 +80,10 @@ Mod: player/awards
 origin	https://github.com/minetest-mods/cozy (fetch)
 * master b51cd03 [origin/master] Use mod.conf for dependencies, and description (#3)
 Mod: player/cozy
+
+origin	https://repo.or.cz/minetest_hbarmor.git (fetch)
+* master 93d994c [origin/master] Version 1.0.0
+Mod: player/hbarmor
 
 origin	http://repo.or.cz/minetest_hbhunger (fetch)
 * master 91d6d3d [origin/master] Play sound at eater, add random pitch
@@ -149,7 +153,7 @@ origin	https://gitlab.com/rautars/weather_pack (fetch)
 Mod: ambience/weather_pack
 
 origin	https://notabug.org/TenPlus1/farming (fetch)
-* master e112868 [origin/master] fix bibimbap recipe (thanks Orange)
+* master 14ffd25 [origin/master] add chinese translation (thanks pevernow)
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
@@ -177,7 +181,7 @@ origin	https://github.com/taikedz/everamzah-backpacks (fetch)
 Mod: tools/backpacks
 
 origin	https://notabug.org/tenplus1/bonemeal (fetch)
-* master ebbec59 [origin/master] fix loaded translations
+* master a5a4798 [origin/master] rename creative check function
 Mod: tools/bonemeal
 
 origin	https://github.com/SmallJoker/boost_cart (fetch)
@@ -310,7 +314,7 @@ origin	https://gitlab.com/VanessaE/unifieddyes (fetch)
 Mod: decor/unifieddyes
 
 origin	https://gitlab.com/VanessaE/homedecor_modpack/ (fetch)
-* master 7ae96dc [origin/master: ahead 3] Merge remote-tracking branch 'origin/master'
+* master 2e55588 [origin/master: ahead 4] Merge remote-tracking branch 'origin/master'
 Mod: homedecor_modpack/building_blocks
 Mod: homedecor_modpack/fake_fire
 Mod: homedecor_modpack/lavalamp
@@ -383,7 +387,7 @@ origin	https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin	https://github.com/minetest-mods/mesecons (fetch)
-* master 75bd1e8 [origin/master] Unpad insulated wire recipes (#477)
+* master c1eccba [origin/master] Make sounds ephemeral (#521)
 Mod: mesecons/mesecons
 Mod: mesecons/mesecons_alias
 Mod: mesecons/mesecons_blinkyplant
@@ -414,5 +418,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master 1271570 [origin/master] nil check in do_states
+* master 565c085 [origin/master] nil check for self.attack
 Mod: mobs_redo/mobs_redo
