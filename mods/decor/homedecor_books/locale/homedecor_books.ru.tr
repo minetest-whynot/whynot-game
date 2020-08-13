@@ -1,0 +1,13 @@
+# textdomain: homedecor_books
+
+
+### init.lua ###
+
+@1 has written in a book (title: "@2"): "@3" at location @4=@1 написал в книге (заголовок: "@2"): "@3" в позиции @4
+Writable Book (@1)=Записная книга (@1)
+blue=
+brown=
+green=зелёный
+grey=
+red=красный
+violet=

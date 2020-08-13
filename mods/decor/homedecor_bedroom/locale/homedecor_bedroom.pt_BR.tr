@@ -1,0 +1,13 @@
+# textdomain: homedecor_bedroom
+
+
+### init.lua ###
+
+Bed=Cama
+Bed (king sized)=Cama (tamanho king)
+Nightstand with One Drawer (@1)=Mesa de Cabeceira com Gaveta (@1)
+Nightstand with Two Drawers (@1)=Mesa de Cabeceira com Duas Gavetas (@1)
+One-drawer Nightstand=Mesinha de Uma Gaveta
+Two-drawer Nightstand=Mesinha de Duas Gavetas
+mahogany=mogno
+oak=carvalho

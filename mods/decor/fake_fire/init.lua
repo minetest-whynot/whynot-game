@@ -1,11 +1,8 @@
-
-local S = homedecor.gettext
-
-screwdriver = screwdriver or {}
+local S = minetest.get_translator("fake_fire")
 
 local function fire_particles_on(pos) -- 3 layers of fire
 	local meta = minetest.get_meta(pos)
-	local id = minetest.add_particlespawner({ -- 1 layer big particles fire
+	local id1 = minetest.add_particlespawner({ -- 1 layer big particles fire
 		amount = 9,
 		time = 0,
 		minpos = {x = pos.x - 0.2, y = pos.y - 0.4, z = pos.z - 0.2},
@@ -23,9 +20,9 @@ local function fire_particles_on(pos) -- 3 layers of fire
 		texture = "fake_fire_particle_anim_fire.png",
 		animation = {type="vertical_frames", aspect_w=16, aspect_h=16, length = 0.8,},
 	})
-	meta:set_int("layer_1", id)
+	meta:set_int("layer_1", id1)
 
-	local id = minetest.add_particlespawner({ -- 2 layer smol particles fire
+	local id2 = minetest.add_particlespawner({ -- 2 layer smol particles fire
 		amount = 1,
 		time = 0,
 		minpos = {x = pos.x - 0.1, y = pos.y, z = pos.z - 0.1},
@@ -43,9 +40,9 @@ local function fire_particles_on(pos) -- 3 layers of fire
 		texture = "fake_fire_particle_anim_fire.png",
 		animation = {type="vertical_frames", aspect_w=16, aspect_h=16, length = 0.7,},
 	})
-	meta:set_int("layer_2", id)
+	meta:set_int("layer_2", id2)
 
-	local id = minetest.add_particlespawner({ --3 layer smoke
+	local id3 = minetest.add_particlespawner({ --3 layer smoke
 		amount = 1,
 		time = 0,
 		minpos = {x = pos.x - 0.1, y = pos.y - 0.2, z = pos.z - 0.1},
@@ -63,7 +60,7 @@ local function fire_particles_on(pos) -- 3 layers of fire
 		texture = "fake_fire_particle_anim_smoke.png",
 		animation = {type="vertical_frames", aspect_w=16, aspect_h=16, length = 0.9,},
 	})
-	meta:set_int("layer_3", id)
+	meta:set_int("layer_3", id3)
 end
 
 local function fire_particles_off(pos)
@@ -199,7 +196,6 @@ minetest.register_node("fake_fire:fancy_fire", {
 		return itemstack
 	end,
 	on_construct = function(pos)
-		local meta = minetest.get_meta(pos)
 		fire_particles_on(pos)
 	end,
 	on_destruct = function(pos, oldnode, oldmetadata, digger)

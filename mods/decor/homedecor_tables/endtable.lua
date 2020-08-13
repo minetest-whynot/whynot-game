@@ -1,11 +1,18 @@
 -- formerly lrfurn endtable component
 
-local S = homedecor.gettext
+local S = minetest.get_translator("homedecor_tables")
 
 minetest.register_node(":lrfurn:endtable", {
 	description = S("End Table"),
 	drawtype = "nodebox",
-	tiles = {"lrfurn_coffeetable_back.png", "lrfurn_coffeetable_back.png",  "lrfurn_coffeetable_back.png",  "lrfurn_coffeetable_back.png",  "lrfurn_coffeetable_back.png",  "lrfurn_coffeetable_back.png"},
+	tiles = {
+		"lrfurn_coffeetable_back.png",
+		"lrfurn_coffeetable_back.png",
+		"lrfurn_coffeetable_back.png",
+		"lrfurn_coffeetable_back.png",
+		"lrfurn_coffeetable_back.png",
+		"lrfurn_coffeetable_back.png"
+	},
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
@@ -50,5 +57,5 @@ minetest.register_craft({
 })
 
 if minetest.settings:get("log_mods") then
-	minetest.log("action", "[lrfurn/endtable] "..S("Loaded!"))
+	minetest.log("action", "[lrfurn/endtable] Loaded!")
 end

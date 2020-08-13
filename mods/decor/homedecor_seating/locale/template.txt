@@ -1,0 +1,24 @@
+# textdomain: homedecor_seating
+
+
+### armchairs.lua ###
+
+Armchair=
+
+### init.lua ###
+
+Someone else owns the spot where the middle or far end goes!=
+Someone else owns the spot where the other end goes!=
+
+### longsofas.lua ###
+
+Long Sofa=
+
+### longsofas.lua ###
+### sofas.lua ###
+
+No room to place the sofa!=
+
+### sofas.lua ###
+
+Sofa=

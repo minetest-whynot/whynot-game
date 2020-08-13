@@ -1,4 +1,4 @@
-local S = homedecor.gettext
+local S = minetest.get_translator("building_blocks")
 
 minetest.register_craftitem("building_blocks:sticks", {
 	description = S("Small bundle of sticks"),

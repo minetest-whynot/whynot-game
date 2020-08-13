@@ -1,0 +1,48 @@
+# textdomain: building_blocks
+
+
+### alias.lua ###
+
+Granite=Granit
+
+### node_stairs.lua ###
+
+Adobe=Pisé
+Adobe Slab=Dalle en pisé
+Adobe Stair=Escalier en pisé
+Brobble Spread=Tapis rouge
+Chess board tiling=Pavage en échiquier
+Fake Grass=Herbe synthétique
+Fake Grass Slab=Dalle en herbe synthétique
+Fake Grass Stair=Escalier en herbe synthétique
+Fireplace=Cheminée
+Grate=Grille
+Grate Slab=Dalle en métal déployé
+Grate Stair=Escalier en métal déployé
+Gravel Spread=Tapis de gravier
+Hardwood=Bois dur (feuillu)
+Hardwood Slab=Dalle en bois dur (feuillu)
+Hardwood Stair=Escalier en bois dur (feuillu)
+Marble=Marbre
+Marble Slab=Dalle en marbre
+Marble Stair=Marche en marbre
+Roof block=Bloc de toit
+Roof block Slab=Dalle en bloc de toit
+Roof block Stair=Escalier en bloc de toit
+Streak Free Glass=Verre anti-rayures
+Streak Free Glass Slab=Dalle en verre anti-rayures
+Streak Free Glass Stair=Escalier en verre anti-rayures
+Tar=Goudron
+Tar Slab=Dalle en goudron
+Tar Stair=Marche en goudron
+Tarmac Spread=Tapis de goudron
+Terrycloth towel=Serviette éponge
+Wood Framed Glass=Verre encadré de bois
+Wood Framed Glass Slab=Dalle en verre encadré de bois
+Wood Framed Glass Stair=Escalier en verre encadré de bois
+
+### others.lua ###
+
+Small bundle of sticks=Petit fagot de brindilles
+Tar Knife=Couteau à goudron
+Tar base=Pâte de goudron

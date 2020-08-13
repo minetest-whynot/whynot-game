@@ -1,0 +1,18 @@
+# textdomain: homedecor_roofing
+
+
+### init.lua ###
+
+@1 (inner corner)=@1 (Innenecke)
+@1 (outer corner)=@1 (Aussenecke)
+Asphalt Shingles=Asphaltschindeln
+Chimney=Schornstein
+Glass Shingles=Glasschindeln
+Glass Skylight=Glasdachfenster
+Glass Skylight Frosted=Milchglasdachfenster
+Shingles (@1)=Schindeln (@1)
+Terracotta Shingles=Terrakottaschindeln
+Wood Shingles=Holzschindeln
+asphalt=Asphalt
+terracotta=Terrakotta
+wood=Holz

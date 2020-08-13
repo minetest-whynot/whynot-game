@@ -45,8 +45,8 @@ function homedecor.register(name, original_def)
 		-- dissallow rotating only half the expanded node by default
 		-- unless we know better
 		def.on_rotate = def.on_rotate
-			or (def.mesh and expand.top and screwdriver.rotate_simple)
-			or screwdriver.disallow
+			or (minetest.get_modpath("screwdriver") and (def.mesh and expand.top and screwdriver.rotate_simple)
+			or screwdriver.disallow) or nil
 
 		def.on_place = def.on_place or function(itemstack, placer, pointed_thing)
 			if expand.top then
@@ -70,7 +70,11 @@ function homedecor.register(name, original_def)
 			if not fdir or fdir > 3 then return end
 
 			if expand.right and expand.forward ~= "air" then
-				local right_pos = { x=pos.x+homedecor.fdir_to_right[fdir+1][1], y=pos.y, z=pos.z+homedecor.fdir_to_right[fdir+1][2] }
+				local right_pos = {
+					x = pos.x + homedecor.fdir_to_right[fdir+1][1],
+					y = pos.y,
+					z = pos.z + homedecor.fdir_to_right[fdir+1][2]
+				}
 				local node = minetest.get_node(right_pos).name
 				if node == expand.right or node == placeholder_node then
 					minetest.remove_node(right_pos)

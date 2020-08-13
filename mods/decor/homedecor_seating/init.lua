@@ -1,11 +1,10 @@
 -- Home decor seating
 -- forked from the previous lrfurn mod
 
-local S = homedecor.gettext
+local S = minetest.get_translator("homedecor_seating")
 local modpath = minetest.get_modpath("homedecor_seating")
 
 lrfurn = {}
-screwdriver = screwdriver or {}
 
 lrfurn.fdir_to_right = {
 	{  1,  0 },
@@ -35,17 +34,24 @@ lrfurn.colors = {
 function lrfurn.check_right(pos, fdir, long, placer)
 	if not fdir or fdir > 3 then fdir = 0 end
 
-	local pos2 = { x = pos.x + lrfurn.fdir_to_right[fdir+1][1],     y=pos.y, z = pos.z + lrfurn.fdir_to_right[fdir+1][2]     }
-	local pos3 = { x = pos.x + lrfurn.fdir_to_right[fdir+1][1] * 2, y=pos.y, z = pos.z + lrfurn.fdir_to_right[fdir+1][2] * 2 }
+	local pos2 = {
+		x = pos.x + lrfurn.fdir_to_right[fdir+1][1],
+		y = pos.y, z = pos.z + lrfurn.fdir_to_right[fdir+1][2]
+	}
+	local pos3 = {
+		x = pos.x + lrfurn.fdir_to_right[fdir+1][1] * 2,
+		y = pos.y, z = pos.z + lrfurn.fdir_to_right[fdir+1][2] * 2
+	}
 
 	local node2 = minetest.get_node(pos2)
 	if node2 and node2.name ~= "air" then
 		return false
 	elseif minetest.is_protected(pos2, placer:get_player_name()) then
 		if not long then
-			minetest.chat_send_player(placer:get_player_name(), S("Someone else owns the spot where other end goes!"))
+			minetest.chat_send_player(placer:get_player_name(), S("Someone else owns the spot where the other end goes!"))
 		else
-			minetest.chat_send_player(placer:get_player_name(), S("Someone else owns the spot where the middle or far end goes!"))
+			minetest.chat_send_player(placer:get_player_name(),
+				S("Someone else owns the spot where the middle or far end goes!"))
 		end
 		return false
 	end

@@ -1,7 +1,8 @@
+local S = minetest.get_translator("homedecor_electrical")
 
-local S = homedecor.gettext
+homedecor_electrical = {}
 
-function homedecor.toggle_switch(pos, node, clicker, itemstack, pointed_thing)
+function homedecor_electrical.toggle_switch(pos, node, clicker, itemstack, pointed_thing)
 	if not clicker then return false end
 	local playername = clicker:get_player_name()
 	if minetest.is_protected(pos, playername) then
@@ -18,7 +19,7 @@ end
 local on_rc
 if minetest.get_modpath("mesecons") then
 	on_rc = function(pos, node, clicker, itemstack, pointed_thing)
-		local t = homedecor.toggle_switch(pos, node, clicker, itemstack, pointed_thing)
+		local t = homedecor_electrical.toggle_switch(pos, node, clicker, itemstack, pointed_thing)
 		if not t then return end
 		if string.find(node.name, "_on", -5) then
 			mesecon.receptor_off(pos, mesecon.rules.buttonlike_get(node))
@@ -100,7 +101,10 @@ for _, onoff in ipairs ({"on", "off"}) do
 				{ -0.1875,   -0.25,    0.375,  0.1875,   0.1875, 0.5 },
 			}
 		},
-		groups = {cracky=3, dig_immediate=2, mesecon_needs_receiver=1, not_in_creative_inventory = (onoff == "on") and 1 or nil},
+		groups = {
+			cracky=3, dig_immediate=2, mesecon_needs_receiver=1,
+			not_in_creative_inventory = (onoff == "on") and 1 or nil
+		},
 		walkable = false,
 		drop = {
 			items = {

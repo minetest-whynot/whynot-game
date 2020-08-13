@@ -1,0 +1,11 @@
+# textdomain: homedecor_climate_control
+
+
+### init.lua ###
+
+Air Conditioner=
+Ceiling Fan=
+Desk Fan=
+Fan blades=
+Radiator heater=
+Space heater=

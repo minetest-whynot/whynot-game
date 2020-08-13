@@ -1,6 +1,6 @@
 -- This file adds fences of various types
 
-local S = homedecor.gettext
+local S = minetest.get_translator("homedecor_fences")
 
 local materials = {
 	{ S("brass"), "brass" },
@@ -265,6 +265,7 @@ homedecor.register("fence_wrought_iron_2_corner", {
 
 -- insert the old wood signs-on-metal-fences into signs_lib's conversion LBM
 if minetest.get_modpath("signs_lib") then
+	-- FIXME: export a function in signs_lib API to allow signs_lib to be read only in .luacheckrc
 	table.insert(signs_lib.old_fenceposts_with_signs, "homedecor:fence_brass_with_sign")
 	signs_lib.old_fenceposts["homedecor:fence_brass_with_sign"] = "homedecor:fence_brass"
 	signs_lib.old_fenceposts_replacement_signs["homedecor:fence_brass_with_sign"] = "default:sign_wall_wood_onpole"

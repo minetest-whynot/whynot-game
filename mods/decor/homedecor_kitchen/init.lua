@@ -1,8 +1,6 @@
 -- This file supplies Kitchen stuff like refrigerators, sinks, etc.
 
-local S = homedecor.gettext
-
-local function N_(x) return x end
+local S = minetest.get_translator("homedecor_kitchen")
 
 -- steel-textured fridge
 homedecor.register("refrigerator_steel", {
@@ -20,7 +18,7 @@ homedecor.register("refrigerator_steel", {
 		size=50,
 		lockable=true,
 	},
-	on_rotate = screwdriver.rotate_simple
+	on_rotate = minetest.get_modpath("screwdriver") and screwdriver.rotate_simple or nil,
 })
 
 -- white, enameled fridge
@@ -39,7 +37,7 @@ homedecor.register("refrigerator_white", {
 		size=50,
 		lockable=true,
 	},
-	on_rotate = screwdriver.rotate_simple
+	on_rotate = minetest.get_modpath("screwdriver") and screwdriver.rotate_simple or nil,
 })
 
 minetest.register_alias("homedecor:refrigerator_white_bottom", "homedecor:refrigerator_white")
@@ -120,11 +118,11 @@ homedecor.register("dishwasher", {
 	groups = { snappy = 3 },
 })
 
-local materials = { N_("granite"), N_("marble"), N_("steel"), N_("wood") }
+local materials = { ["granite"] = S("granite"), ["marble"] = S("marble"), ["steel"] = S("steel"), ["wood"] = S("wood") }
 
-for _, m in ipairs(materials) do
+for m, m_loc in pairs(materials) do
 homedecor.register("dishwasher_"..m, {
-	description = S("Dishwasher (@1)", S(m)),
+	description = S("Dishwasher (@1)", m_loc),
 	tiles = {
 		"homedecor_kitchen_cabinet_top_"..m..".png",
 		"homedecor_dishwasher_bottom.png",
@@ -139,7 +137,8 @@ homedecor.register("dishwasher_"..m, {
 end
 
 local cabinet_sides = "(default_wood.png^[transformR90)^homedecor_kitchen_cabinet_bevel.png"
-local cabinet_bottom = "(default_wood.png^[colorize:#000000:100)^(homedecor_kitchen_cabinet_bevel.png^[colorize:#46321580)"
+local cabinet_bottom = "(default_wood.png^[colorize:#000000:100)"
+	.."^(homedecor_kitchen_cabinet_bevel.png^[colorize:#46321580)"
 
 local function N_(x) return x end
 
@@ -255,7 +254,7 @@ homedecor.register("kitchen_faucet", {
 	groups = {snappy=3},
 	selection_box = kf_cbox,
 	walkable = false,
-	on_rotate = screwdriver.disallow,
+	on_rotate = minetest.get_modpath("screwdriver") and screwdriver.disallow or nil,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		local below = minetest.get_node_or_nil({x=pos.x, y=pos.y-1, z=pos.z})
 		if below and

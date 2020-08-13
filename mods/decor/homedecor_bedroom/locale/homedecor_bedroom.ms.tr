@@ -1,0 +1,13 @@
+# textdomain: homedecor_bedroom
+
+
+### init.lua ###
+
+Bed=Katil
+Bed (king sized)=Katil Raja
+Nightstand with One Drawer (@1)=Kabinet Katil dengan Satu Laci (@1)
+Nightstand with Two Drawers (@1)=Kabinet Katil dengan Dua Laci (@1)
+One-drawer Nightstand=Kabinet Katil Satu Laci
+Two-drawer Nightstand=Kabinet Katil Dua Laci
+mahogany=Mahogani
+oak=Oak

@@ -1,6 +1,6 @@
 -- formerly homedecor's misc tables component
 
-local S = homedecor.gettext
+local S = minetest.get_translator("homedecor_tables")
 
 local materials = {
 	{ "glass",

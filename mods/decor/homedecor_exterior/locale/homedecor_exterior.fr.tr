@@ -1,0 +1,25 @@
+# textdomain: homedecor_exterior
+
+
+### init.lua ###
+
+Barbecue=Barbecue
+Doghouse=Niche
+Garden Lattice (@1)=Treillage (@1)
+Garden stone path=Chemin de pierres
+No room in your inventory to add a filled bucket!=Il n’y a pas de place dans votre inventaire pour y ajouter un seau plein!
+No room under there to hang a swing.=Il n’y a pas la place en dessous pour y accrocher une balançoire.
+Shrubbery (@1)=Arbustes (@1)
+Shrubbery (large, @1)=Arbustes (@1)
+Tree's swing=Balançoire
+Water well=Puits
+
+You have to point at the bottom side of an overhanging object to place a swing.=Vous devez viser le dessous d’un objet en hauteur pour placer la balançoire.
+
+green=vert
+red=rouge
+white wood=bois blanc
+white wood, with vegetation=bois blanc, avec végétation
+wood=bois
+wood, with vegetation=bois, avec végétation
+yellow=jaune

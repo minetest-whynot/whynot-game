@@ -1,5 +1,4 @@
-
-local S = homedecor.gettext
+local S = minetest.get_translator("homedecor_foyer")
 
 homedecor.register("coatrack_wallmount", {
 	tiles = { homedecor.plain_wood },
@@ -39,7 +38,7 @@ homedecor.register("coat_tree", {
 		type = "fixed",
 		fixed = { -0.4, -0.5, -0.4, 0.4, 1.5, 0.4 }
 	},
-	on_rotate = screwdriver.rotate_simple
+	on_rotate = minetest.get_modpath("screwdriver") and screwdriver.rotate_simple or nil,
 })
 
 local mat_colors = {

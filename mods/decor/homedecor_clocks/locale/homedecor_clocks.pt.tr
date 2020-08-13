@@ -1,0 +1,10 @@
+# textdomain: homedecor_clocks
+
+
+### init.lua ###
+
+Alarm clock=Despertador
+Digital clock=Relógio digital
+Grandfather Clock=Relógio Antigo
+Plastic analog clock=Relógio analógico de plástico
+Wooden analog clock=Relógio analógico de madeira

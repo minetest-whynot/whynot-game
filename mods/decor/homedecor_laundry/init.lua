@@ -1,7 +1,8 @@
+local S = minetest.get_translator("homedecor_laundry")
 -- laundry devices
 
 homedecor.register("washing_machine", {
-	description = "Washing Machine",
+	description = S("Washing Machine"),
 	tiles = {
 		"homedecor_washing_machine_top.png",
 		"homedecor_washing_machine_bottom.png",
@@ -22,7 +23,7 @@ homedecor.register("washing_machine", {
 })
 
 homedecor.register("dryer", {
-	description = "Tumble dryer",
+	description = S("Tumble dryer"),
 	tiles = {
 		"homedecor_dryer_top.png",
 		"homedecor_dryer_bottom.png",
@@ -48,7 +49,7 @@ local ib_cbox = {
 }
 
 homedecor.register("ironing_board", {
-	description = "Ironing board",
+	description = S("Ironing board"),
 	mesh = "homedecor_ironing_board.obj",
 	tiles = {
 		"wool_grey.png",

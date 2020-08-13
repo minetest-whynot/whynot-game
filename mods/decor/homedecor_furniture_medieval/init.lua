@@ -1,5 +1,4 @@
-
-local S = homedecor.gettext
+local S = minetest.get_translator("homedecor_furniture_medieval")
 
 homedecor.register("bars", {
 	description = S("Bars"),

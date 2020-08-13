@@ -1,5 +1,4 @@
-
-local S = homedecor.gettext
+local S = minetest.get_translator("lavalamp")
 
 lavalamp = {}
 
@@ -65,7 +64,6 @@ minetest.register_node("lavalamp:lavalamp_off", {
 	},
 	groups = {snappy=2,cracky=3,oddly_breakable_by_hand=3, not_in_creative_inventory=1},
 	sounds = default.node_sound_glass_defaults(),
-	drop = "lavalamp:lavalamp",
 	on_construct = unifieddyes.on_construct,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		node.name = "lavalamp:lavalamp"

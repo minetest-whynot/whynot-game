@@ -1,0 +1,24 @@
+# textdomain: homedecor_seating
+
+
+### armchairs.lua ###
+
+Armchair=Poltrona
+
+### init.lua ###
+
+Someone else owns the spot where the middle or far end goes!=Alguém já é proprietário do local onde a cabeceira vai.
+Someone else owns the spot where the other end goes!=Alguém já é proprietário do local onde a cabeceira vai.
+
+### longsofas.lua ###
+
+Long Sofa=Sofá Grande
+
+### longsofas.lua ###
+### sofas.lua ###
+
+No room to place the sofa!=Sem espaço para colocar o sofá!
+
+### sofas.lua ###
+
+Sofa=Sofá

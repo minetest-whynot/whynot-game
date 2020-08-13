@@ -1,0 +1,13 @@
+# textdomain: homedecor_books
+
+
+### init.lua ###
+
+@1 has written in a book (title: "@2"): "@3" at location @4=@1 telah menulis dalam buku (tajuk: "@2"): "@3" di lokasi @4
+Writable Book (@1)=Buku Boleh Ditulis (@1)
+blue=Biru
+brown=Perang
+green=Hijau
+grey=Kelabu
+red=Merah
+violet=Ungu

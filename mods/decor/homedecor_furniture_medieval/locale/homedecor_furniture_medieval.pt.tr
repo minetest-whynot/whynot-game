@@ -1,0 +1,8 @@
+# textdomain: homedecor_furniture_medieval
+
+
+### init.lua ###
+
+Bars=Barras
+Binding Bars=Barras do Canto
+Chains=Correntes

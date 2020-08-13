@@ -1,0 +1,32 @@
+# textdomain: homedecor_lighting
+
+
+### init.lua ###
+
+Candlestick (brass)=Chandelier (laiton)
+Candlestick (wrought iron)=Chandelier (fer forgé)
+Ceiling Lamp/Light=Plafonnier
+Ceiling Lantern/Light=Lanterne de plafond
+Chandelier (brass)=Chandelier (laiton)
+Chandelier (steel)=Chandelier (acier)
+Desk Lamp/Light=Lampe de bureau
+Ground Lantern/Light=Lanterne de jardin
+Hanging Lantern/Light=Lanterne suspendue
+Hanging chain (ceiling mount, brass)=Chaine suspendue (plafonnier, laiton)
+Hanging chain (ceiling mount, steel)=Chaine suspendue (plafonnier, acier)
+Lattice lantern/Light (large)=Lanterne à grille (grande)
+Lattice lantern/light (small)=Lanterne à grille (petite)
+Oil Lamp/Light (tabletop)=Lampe à huile
+Oil lamp/Light (hurricane)=Lampe tempête
+Plasma Ball/light=Boule plasma
+Plasma Lamp/Light=Lampe plasma
+Small Glowlight Cube=Petit cube lumineux
+Standing Lamp/Light=Lampe à pied
+Table Lamp/Light=Lampe de table
+Thick Candle=Grosse bougie
+Thick Glowlight=Dalle lumineuse épaisse
+Thin Candle=Petite bougie
+Thin Glowlight=Dalle lumineuse fine
+Wall Lamp/light=Lampe murale
+Wall Torch=Torche murale
+Wall sconce=Bougeoir mural

@@ -1,0 +1,18 @@
+# textdomain: homedecor_roofing
+
+
+### init.lua ###
+
+@1 (inner corner)=@1 (внутренний угол)
+@1 (outer corner)=@1 (внешний угол)
+Asphalt Shingles=Асфальтовая черепица
+Chimney=Дымоход
+Glass Shingles=Стеклянная черепица
+Glass Skylight=Стеклянный люк
+Glass Skylight Frosted=Матовый стеклянный люк
+Shingles (@1)=Черепица (@1)
+Terracotta Shingles=Терракотовая черепица
+Wood Shingles=Деревянная черепица
+asphalt=асфальт
+terracotta=терракотовый
+wood=дерево

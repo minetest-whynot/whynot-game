@@ -1,0 +1,20 @@
+# textdomain: homedecor_fences
+
+
+### init.lua ###
+
+Barbed Wire Fence=Cerca de alambre de espino
+Barbed Wire Fence Corner=Esquina de cerca de alambre de espino
+Chainlink Fence=Cerca de eslabón de cadena
+Chainlink Fence Corner=Esquina de cerca de eslabón de cadena
+Fence/railing (@1)=Cerca/barandilla (@1)
+Unpainted Picket Fence=Cerca de piquete sin pintar
+Unpainted Picket Fence Corner=Esquina de cerca de piquete sin pintar
+White Picket Fence=Cerca de piquete blanca
+White Picket Fence Corner=Esquina de cerca de piquete blanca
+Wooden Privacy Fence=Cerca de privacidad de madera
+Wooden Privacy Fence Corner=Esquina de cerca de privacidad de madera
+Wrought Iron fence (type 2)=Cerca de hierro forjado (tipo 2)
+Wrought Iron fence (type 2) Corner=Esquina de cerca de hierro forjado (tipo 2)
+brass=latón
+wrought iron=hierro forjado

@@ -1,0 +1,8 @@
+# textdomain: homedecor_electrical
+
+
+### init.lua ###
+
+Doorbell=Sonnette
+Light switch=Interrupteur
+Power Outlet=Prise de courant

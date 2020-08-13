@@ -1,0 +1,48 @@
+# textdomain: building_blocks
+
+
+### alias.lua ###
+
+Granite=Гранит
+
+### node_stairs.lua ###
+
+Adobe=Саман
+Adobe Slab=Саманная плита
+Adobe Stair=Саманная ступенька
+Brobble Spread=Настил кирпичного булыжника
+Chess board tiling=Шахматная плитка
+Fake Grass=Псевдо трава
+Fake Grass Slab=
+Fake Grass Stair=
+Fireplace=Камин
+Grate=Каминная решётка
+Grate Slab=Решётчатая плита
+Grate Stair=Решётчатая ступенька
+Gravel Spread=Настил гравия
+Hardwood=Твёрдая древесина
+Hardwood Slab=Плита из твёрдой древесины
+Hardwood Stair=Ступенька из твёрдой древесины
+Marble=Мрамор
+Marble Slab=Мраморная блита
+Marble Stair=Мраморная ступенька
+Roof block=Кровельный блок
+Roof block Slab=
+Roof block Stair=
+Streak Free Glass=Стекло без стыков
+Streak Free Glass Slab=
+Streak Free Glass Stair=
+Tar=Смола
+Tar Slab=Плита из смолы
+Tar Stair=Ступенька из смолы
+Tarmac Spread=Покрытие гудронной смолой
+Terrycloth towel=Махровое полотенце
+Wood Framed Glass=Деревянное окно
+Wood Framed Glass Slab=
+Wood Framed Glass Stair=
+
+### others.lua ###
+
+Small bundle of sticks=Небольшая связка палок
+Tar Knife=Смоляной нож
+Tar base=Смоляная основа

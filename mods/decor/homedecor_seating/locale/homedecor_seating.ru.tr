@@ -1,0 +1,24 @@
+# textdomain: homedecor_seating
+
+
+### armchairs.lua ###
+
+Armchair=Кресло
+
+### init.lua ###
+
+Someone else owns the spot where the middle or far end goes!=Кому-то другому принадлежит точка, куда выходит средний или дальний конец!
+Someone else owns the spot where the other end goes!=Кому-то другому принадлежит точка, где выходит другой конец!
+
+### longsofas.lua ###
+
+Long Sofa=Длинный диван
+
+### longsofas.lua ###
+### sofas.lua ###
+
+No room to place the sofa!=Нет места для дивана!
+
+### sofas.lua ###
+
+Sofa=Диван

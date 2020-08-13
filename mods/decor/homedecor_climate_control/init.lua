@@ -1,6 +1,6 @@
 -- Nodes that would affect the local temperature e.g. fans, heater, A/C
 
-local S = homedecor.gettext
+local S = minetest.get_translator("homedecor_climate_control")
 
 homedecor.register("air_conditioner", {
 	description = S("Air Conditioner"),
@@ -52,7 +52,7 @@ homedecor.register("desk_fan", {
 	inventory_image = "homedecor_desk_fan_inv.png",
 	wield_image = "homedecor_desk_fan_inv.png",
 	selection_box = { type = "regular" },
-	on_rotate = screwdriver.disallow,
+	on_rotate = minetest.get_modpath("screwdriver") and screwdriver.disallow or nil,
 	on_construct = function(pos)
 		local meta = minetest.get_meta(pos)
 		meta:set_string("active", "no")

@@ -1,0 +1,10 @@
+# textdomain: homedecor_office
+
+
+### init.lua ###
+
+Calendar=Calendrier
+Date (right-click to update):@n@1=Date (clic-droit pour mettre à jour) :@n@1
+Desk=Bureau
+Desk globe=Globe de bureau
+Filing cabinet=Meuble de rangement

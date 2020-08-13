@@ -1,0 +1,24 @@
+# textdomain: homedecor_kitchen
+
+
+### init.lua ###
+
+Copper pans=Медные кастрюли
+Dishwasher=Посудомоечная машина
+Dishwasher (@1)=Посудомоечная машина (@1)
+Half-height Kitchen Cabinet (on ceiling)=Полуразмерный кухонный шкаф (потолочный)
+Kitchen Cabinet=Кухонный шкаф
+Kitchen Cabinet (@1 top)=Кухонный шкаф (@1 верх)
+Kitchen Cabinet with sink=Кухонный шкаф с раковиной
+Kitchen Faucet=Кухонный смеситель
+Microwave Oven=Микроволновая печь
+Oven=Духовка
+Oven (stainless steel)=Духовка (нержавеющая сталь)
+Paper towels=Бумажные полотенца
+Refrigerator=Холодильник
+Refrigerator (stainless steel)=Холодильник (нержавеющая сталь)
+Under-sink cabinet=Шкаф для раковины
+granite=гранит
+marble=мрамор
+steel=сталь
+wood=дерево

@@ -1,0 +1,13 @@
+# textdomain: homedecor_bedroom
+
+
+### init.lua ###
+
+Bed=Bett
+Bed (king sized)=Breites Doppelbett
+Nightstand with One Drawer (@1)=Nachttisch mit einer Schublade (@1)
+Nightstand with Two Drawers (@1)=Nachttisch mit zwei Schubladen (@1)
+One-drawer Nightstand=Nachttisch mit einer Schublade
+Two-drawer Nightstand=Nachttisch mit zwei Schubladen
+mahogany=Mahagoni
+oak=Eiche

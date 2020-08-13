@@ -1,6 +1,6 @@
 -- formerly lrfurn coffee table component
 
-local S = homedecor.gettext
+local S = minetest.get_translator("homedecor_tables")
 
 local fdir_to_right = {
 	{  1,  0 },
@@ -20,9 +20,10 @@ local function check_right(pos, fdir, long, placer)
 		return false
 	elseif minetest.is_protected(pos2, placer:get_player_name()) then
 		if not long then
-			minetest.chat_send_player(placer:get_player_name(), S("Someone else owns the spot where other end goes!"))
+			minetest.chat_send_player(placer:get_player_name(), S("Someone else owns the spot where the other end goes!"))
 		else
-			minetest.chat_send_player(placer:get_player_name(), S("Someone else owns the spot where the middle or far end goes!"))
+			minetest.chat_send_player(placer:get_player_name(),
+				S("Someone else owns the spot where the middle or far end goes!"))
 		end
 		return false
 	end
@@ -46,7 +47,14 @@ minetest.register_alias("lrfurn:coffeetable_front", "air")
 minetest.register_node(":lrfurn:coffeetable", {
 	description = S("Coffee Table"),
 	drawtype = "nodebox",
-	tiles = {"lrfurn_coffeetable_back.png", "lrfurn_coffeetable_back.png",  "lrfurn_coffeetable_back.png",  "lrfurn_coffeetable_back.png",  "lrfurn_coffeetable_back.png",  "lrfurn_coffeetable_back.png"},
+	tiles = {
+		"lrfurn_coffeetable_back.png",
+		"lrfurn_coffeetable_back.png",
+		"lrfurn_coffeetable_back.png",
+		"lrfurn_coffeetable_back.png",
+		"lrfurn_coffeetable_back.png",
+		"lrfurn_coffeetable_back.png"
+	},
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
@@ -114,5 +122,5 @@ minetest.register_craft({
 })
 
 if minetest.settings:get("log_mods") then
-	minetest.log("action", "[lrfurn/coffeetable] "..S("Loaded!"))
+	minetest.log("action", "[lrfurn/coffeetable] Loaded!")
 end

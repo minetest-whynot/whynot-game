@@ -1,5 +1,4 @@
-
-local S = homedecor.gettext
+local S = minetest.get_translator("homedecor_seating")
 local armchair_cbox = {
 	type = "fixed",
 	fixed = {
@@ -169,5 +168,5 @@ minetest.register_lbm({
 })
 
 if minetest.settings:get("log_mods") then
-	minetest.log("action", "[lrfurn/armchairs] "..S("Loaded!"))
+	minetest.log("action", "[lrfurn/armchairs] Loaded!")
 end

@@ -1,0 +1,10 @@
+# textdomain: homedecor_office
+
+
+### init.lua ###
+
+Calendar=Календарь
+Date (right-click to update):@n@1=Дата (правая кнопка мыши для обновления):@n@1
+Desk=Письменный стол
+Desk globe=Настольный глобус
+Filing cabinet=Шкаф для документов

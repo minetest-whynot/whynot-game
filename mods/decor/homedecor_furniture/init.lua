@@ -1,5 +1,4 @@
-
-local S = homedecor.gettext
+local S = minetest.get_translator("homedecor_furniture")
 
 local table_colors = {
 	{ "",           S("Table"),           homedecor.plain_wood },

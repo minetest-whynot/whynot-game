@@ -1,15 +1,23 @@
-local S = homedecor.gettext
-
-local function N_(x) return x end
+local S = minetest.get_translator("homedecor_books")
 
 local bookcolors = {
-	{ N_("red"),    0xffd26466 },
-	{ N_("green"),  0xff62aa66 },
-	{ N_("blue"),   0xff8686d7 },
-	{ N_("violet"), 0xff9c65a7 },
-	{ N_("grey"),   0xff757579 },
-	{ N_("brown"),  0xff896958 }
+	{ "red",    0xffd26466 },
+	{ "green",  0xff62aa66 },
+	{ "blue",   0xff8686d7 },
+	{ "violet", 0xff9c65a7 },
+	{ "grey",   0xff757579 },
+	{ "brown",  0xff896958 }
 }
+
+local color_locale = {
+	red = S("red") ,
+	green = S("green"),
+	blue = S("blue"),
+	violet = S("violet"),
+	grey = S("grey"),
+	brown = S("brown"),
+}
+
 
 local BOOK_FORMNAME = "homedecor:book_form"
 
@@ -39,7 +47,7 @@ for _, c in ipairs(bookcolors) do
 	end
 
 	homedecor.register("book_"..color, {
-		description = S("Writable Book (@1)", S(color)),
+		description = S("Writable Book (@1)", color_locale[color]),
 		mesh = "homedecor_book.obj",
 		tiles = {
 			{ name = "homedecor_book_cover.png", color = hue },
@@ -153,6 +161,16 @@ for _, c in ipairs(bookcolors) do
 		}
 	})
 
+	-- crafting
+	minetest.register_craft({
+		type = "shapeless",
+		output = "homedecor:book_"..color,
+		recipe = {
+			"dye:"..color,
+			"default:book"
+		},
+	})
+
 end
 
 minetest.register_on_player_receive_fields(function(player, form_name, fields)
@@ -183,28 +201,7 @@ minetest.register_on_player_receive_fields(function(player, form_name, fields)
 	return true
 end)
 
--- crafting
 
-
-local bookcolors = {
-	"red",
-	"green",
-	"blue",
-	"violet",
-	"grey",
-	"brown"
-}
-
-for _, color in ipairs(bookcolors) do
-	minetest.register_craft({
-		type = "shapeless",
-		output = "homedecor:book_"..color,
-		recipe = {
-			"dye:"..color,
-			"default:book"
-		},
-	})
-end
 
 -- aliases
 

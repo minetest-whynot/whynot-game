@@ -1,5 +1,4 @@
-
-local S = homedecor.gettext
+local S = minetest.get_translator("homedecor_gastronomy")
 
 local cutlery_cbox = {
 	type = "fixed",
@@ -162,7 +161,6 @@ homedecor.register("beer_mug", {
 	sounds = default.node_sound_glass_defaults(),
 	selection_box = beer_cbox,
 	on_use = function(itemstack, user, pointed_thing)
-		local inv = user:get_inventory()
 		if not creative.is_enabled_for(user:get_player_name()) then
 			minetest.do_item_eat(2, "vessels:drinking_glass 1", itemstack, user, pointed_thing)
 			return itemstack
@@ -184,7 +182,7 @@ homedecor.register("soda_machine", {
 	collision_box = svm_cbox,
 	expand = { top="placeholder" },
 	sounds = default.node_sound_wood_defaults(),
-	on_rotate = screwdriver.rotate_simple,
+	on_rotate = minetest.get_modpath("screwdriver") and screwdriver.rotate_simple or nil,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		local playername = clicker:get_player_name()
 		local wielditem = clicker:get_wielded_item()
@@ -235,7 +233,7 @@ homedecor.register("coffee_maker", {
 	groups = {snappy=3},
 	selection_box = cm_cbox,
 	node_box = cm_cbox,
-	on_rotate = screwdriver.disallow
+	on_rotate = minetest.get_modpath("screwdriver") and screwdriver.disallow or nil,
 })
 
 homedecor.register("toaster", {

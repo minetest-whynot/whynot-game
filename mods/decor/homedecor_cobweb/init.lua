@@ -1,5 +1,5 @@
-
-local S = homedecor.gettext
+local S = minetest.get_translator("homedecor_cobweb")
+homedecor_cobweb = {}
 
 minetest.register_node(":homedecor:cobweb_corner", {
 	description = S("Cobweb"),
@@ -21,7 +21,7 @@ minetest.register_node(":homedecor:cobweb_corner", {
 	visual_scale = 1.4,
 	groups = { snappy = 3, liquid=3 },
 	after_place_node = function(pos, placer, itemstack, pointed_thing)
-		homedecor.rotate_cobweb(pos)
+		homedecor_cobweb.rotate(pos)
 	end
 })
 
@@ -102,7 +102,7 @@ minetest.register_node(":homedecor:cobweb_plantlike", {
 
 -- helper function to rotate the cobweb after it's placed
 
-function homedecor.rotate_cobweb(pos)
+function homedecor_cobweb.rotate(pos)
 	local wall_xm = minetest.get_node({ x=pos.x-1, y=pos.y, z=pos.z }).name
 	local wall_xp = minetest.get_node({ x=pos.x+1, y=pos.y, z=pos.z }).name
 	local wall_zm = minetest.get_node({ x=pos.x,   y=pos.y, z=pos.z-1}).name

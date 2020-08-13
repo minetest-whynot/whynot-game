@@ -1,0 +1,18 @@
+# textdomain: homedecor_roofing
+
+
+### init.lua ###
+
+@1 (inner corner)=@1 (canto interno)
+@1 (outer corner)=@1 (canto externo)
+Asphalt Shingles=Telhas de Asfalto
+Chimney=Chaminé
+Glass Shingles=Telhas de Vidro
+Glass Skylight=Claraboia de Vidro
+Glass Skylight Frosted=Claraboia de Vidro Fosco
+Shingles (@1)=Telhas (@1)
+Terracotta Shingles=Telhas de Terracota
+Wood Shingles=Telhas de Madeira
+asphalt=asfalto
+terracotta=terracota
+wood=madeira

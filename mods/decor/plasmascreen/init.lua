@@ -1,7 +1,6 @@
+local S = minetest.get_translator("plasmascreen")
 
-local S = homedecor.gettext
-
-screwdriver = screwdriver or {}
+local sc_disallow = minetest.get_modpath("screwdriver") and screwdriver.disallow or nil
 
 minetest.register_node("plasmascreen:stand", {
 	description = S("Plasma Screen TV Stand"),
@@ -119,7 +118,7 @@ minetest.register_node("plasmascreen:tv", {
 	light_source = 10,
 	selection_box = tv_cbox,
 	collision_box = tv_cbox,
-	on_rotate = screwdriver.disallow,
+	on_rotate = sc_disallow or nil,
 	groups = {snappy=1, choppy=2, oddly_breakable_by_hand=2},
 	after_place_node = function(pos, placer, itemstack)
 		if not checkwall(pos) then
@@ -147,7 +146,7 @@ minetest.register_node("plasmascreen:tv_off", {
 	light_source = 10,
 	selection_box = tv_cbox,
 	collision_box = tv_cbox,
-	on_rotate = screwdriver.disallow,
+	on_rotate = sc_disallow or nil,
 	groups = {snappy=1, choppy=2, oddly_breakable_by_hand=2, not_in_creative_inventory=1},
 	after_place_node = function(pos, placer, itemstack)
 		if not checkwall(pos) then

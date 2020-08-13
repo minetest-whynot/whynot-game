@@ -1,0 +1,18 @@
+# textdomain: homedecor_windows_and_treatments
+
+
+### init.lua ###
+
+Curtain Rod (@1)=Suporte de Cortina (@1)
+Curtains=Cortinas
+Curtains (open)=Cortinas
+Stained Glass=Vitral
+Window (plain)=Janela (Sem Acabamento)
+Window (quartered)=Janela (dividida em 4)
+Window Blinds (thick)=Persiana (grossa)
+Window Blinds (thin)=Persiana (fina)
+Window flowerbox=Janela com Caixa de Flores
+Wooden Shutter=Obturador de Madeira
+brass=latão
+wood=madeira
+wrought iron=ferro forjado

@@ -1,0 +1,20 @@
+# textdomain: homedecor_fences
+
+
+### init.lua ###
+
+Barbed Wire Fence=
+Barbed Wire Fence Corner=
+Chainlink Fence=
+Chainlink Fence Corner=
+Fence/railing (@1)=
+Unpainted Picket Fence=
+Unpainted Picket Fence Corner=
+White Picket Fence=
+White Picket Fence Corner=
+Wooden Privacy Fence=
+Wooden Privacy Fence Corner=
+Wrought Iron fence (type 2)=
+Wrought Iron fence (type 2) Corner=
+brass=
+wrought iron=

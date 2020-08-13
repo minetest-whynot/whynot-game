@@ -1,0 +1,18 @@
+# textdomain: homedecor_roofing
+
+
+### init.lua ###
+
+@1 (inner corner)=
+@1 (outer corner)=
+Asphalt Shingles=
+Chimney=
+Glass Shingles=
+Glass Skylight=
+Glass Skylight Frosted=
+Shingles (@1)=
+Terracotta Shingles=
+Wood Shingles=
+asphalt=
+terracotta=
+wood=

@@ -1,0 +1,10 @@
+# textdomain: homedecor_clocks
+
+
+### init.lua ###
+
+Alarm clock=Wecker
+Digital clock=Digitaluhr
+Grandfather Clock=Standuhr
+Plastic analog clock=Plastikanaloguhr
+Wooden analog clock=Hölzerne Analoguhr

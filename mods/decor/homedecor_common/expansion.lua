@@ -1,5 +1,4 @@
-
-local S = homedecor.gettext
+local S = minetest.get_translator("homedecor_common")
 
 -- vectors to place one node next to or behind another
 
@@ -146,7 +145,11 @@ function homedecor.stack_wing(itemstack, placer, pointed_thing, node1, node2, no
 	local forceright = placer:get_player_control()["sneak"]
 	local fdir = minetest.dir_to_facedir(placer:get_look_dir())
 
-	local is_right_wing = node1 == minetest.get_node({ x = pos.x + homedecor.fdir_to_left[fdir+1][1], y=pos.y, z = pos.z + homedecor.fdir_to_left[fdir+1][2] }).name
+	local is_right_wing = node1 == minetest.get_node(
+		{
+			x = pos.x + homedecor.fdir_to_left[fdir+1][1],
+			y = pos.y,
+			z = pos.z + homedecor.fdir_to_left[fdir+1][2] }).name
 	if forceright or is_right_wing then
 		node1, node2 = node1_right, node2_right
 	end
@@ -210,19 +213,13 @@ function homedecor.bed_expansion(pos, placer, itemstack, pointed_thing, trybunks
 	local rightpos = {x=pos.x+rxd, y=pos.y, z=pos.z+rzd}
 	local rightnode = minetest.get_node(rightpos)
 
-	local inv = placer:get_inventory()
-
 	if leftnode.name == "homedecor:bed_regular" then
 		local newname = string.gsub(thisnode.name, "_regular", "_kingsize")
-		local meta = minetest.get_meta(pos)
-		local leftmeta = minetest.get_meta(leftpos)
 
 		minetest.set_node(pos, {name = "air"})
 		minetest.swap_node(leftpos, { name = newname, param2 = param2})
 	elseif rightnode.name == "homedecor:bed_regular" then
 		local newname = string.gsub(thisnode.name, "_regular", "_kingsize")
-		local meta = minetest.get_meta(pos)
-		local rightmeta = minetest.get_meta(rightpos)
 
 		minetest.set_node(rightpos, {name = "air"})
 		minetest.swap_node(pos, { name = newname, param2 = param2})
@@ -234,6 +231,7 @@ function homedecor.bed_expansion(pos, placer, itemstack, pointed_thing, trybunks
 	if trybunks and is_buildable_to(placer_name, toppos, topposfwd) then
 		local newname = string.gsub(thisnode.name, "_regular", "_extended")
 		local newparam2 = param2 % 8
+		-- FIXME: is newparam2 a legacy unused variable from a8729575abfbd15cc622b413b71976c9157fbab4? or should this variable be used somewhere?
 		minetest.swap_node(toppos, { name = thisnode.name, param2 = param2})
 		minetest.swap_node(pos, { name = newname, param2 = param2})
 		itemstack:take_item()

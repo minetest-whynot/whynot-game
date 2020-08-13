@@ -1,0 +1,8 @@
+# textdomain: homedecor_electrical
+
+
+### init.lua ###
+
+Doorbell=Campainha
+Light switch=Interruptor de luz
+Power Outlet=Cristal de Força

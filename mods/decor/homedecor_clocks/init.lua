@@ -1,5 +1,5 @@
 
-local S = homedecor.gettext
+local S = minetest.get_translator("homedecor_clocks")
 
 local clock_sbox = {
 	type = "fixed",
@@ -94,7 +94,7 @@ homedecor.register("grandfather_clock", {
 	collision_box = gf_cbox,
 	sounds = default.node_sound_wood_defaults(),
 	expand = { top="placeholder" },
-	on_rotate = screwdriver.rotate_simple
+	on_rotate = minetest.get_modpath("screwdriver") and screwdriver.rotate_simple or nil,
 })
 
 -- crafting

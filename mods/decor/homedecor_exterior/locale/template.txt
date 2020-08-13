@@ -1,0 +1,25 @@
+# textdomain: homedecor_exterior
+
+
+### init.lua ###
+
+Barbecue=
+Doghouse=
+Garden Lattice (@1)=
+Garden stone path=
+No room in your inventory to add a filled bucket!=
+No room under there to hang a swing.=
+Shrubbery (@1)=
+Shrubbery (large, @1)=
+Tree's swing=
+Water well=
+
+You have to point at the bottom side of an overhanging object to place a swing.=
+
+green=
+red=
+white wood=
+white wood, with vegetation=
+wood=
+wood, with vegetation=
+yellow=

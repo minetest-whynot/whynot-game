@@ -1,0 +1,10 @@
+# textdomain: fake_fire
+
+
+### init.lua ###
+
+Fancy Fire=
+Glowing Embers=
+Ice fire=
+Sandstone chimney top=
+Stone chimney top=

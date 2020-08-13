@@ -1,0 +1,18 @@
+# textdomain: homedecor_roofing
+
+
+### init.lua ###
+
+@1 (inner corner)=@1（内角）
+@1 (outer corner)=@1（外角）
+Asphalt Shingles=沥青瓦
+Chimney=烟囱
+Glass Shingles=玻璃瓦
+Glass Skylight=玻璃天窗
+Glass Skylight Frosted=磨砂玻璃天窗
+Shingles (@1)=瓦（@1）
+Terracotta Shingles=陶瓦
+Wood Shingles=木头瓦
+asphalt=沥青
+terracotta=陶土
+wood=木材

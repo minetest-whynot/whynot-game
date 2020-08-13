@@ -1,0 +1,45 @@
+# textdomain: homedecor_misc
+
+
+### init.lua ###
+
+Banister for Stairs (@1, @2)=
+Blue Geranium=
+Bonsai=
+Brass Pole=
+Cactus=
+Cardboard box=
+Cardboard box (big)=
+DVD/CD cabinet=
+Dartboard=
+Drop-Ceiling Tile=
+Fishtank=
+Fishtank (lighted)=
+Flower Pot (@1)=
+Japanese tatami=
+Japanese wall=
+Japanese wall (bottom)=
+Japanese wall (top)=
+Metal tool cabinet and work table=
+Piano=
+Pool Table=
+Potted flower (@1)=
+Rose=
+Rug (@1)=
+Skateboard=
+Small Flower Pot=
+Sport bench=
+Textured Ceiling Paint=
+Trophy=
+Tulip=
+Viola=
+White Dandelion=
+Wrought Iron Pole=
+Yellow Dandelion=
+brass=
+dark topped=
+diagonal=
+horizontal=
+not enough space=
+wood=
+wrought iron=

@@ -1,0 +1,10 @@
+# textdomain: homedecor_office
+
+
+### init.lua ###
+
+Calendar=日历
+Date (right-click to update):@n@1=
+Desk=办公桌
+Desk globe=台式地球仪
+Filing cabinet=文件柜

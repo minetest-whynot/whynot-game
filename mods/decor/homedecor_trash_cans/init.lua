@@ -1,5 +1,4 @@
-
-local S = homedecor.gettext
+local S = minetest.get_translator("homedecor_trash_cans")
 
 local tg_cbox = {
 	type = "fixed",

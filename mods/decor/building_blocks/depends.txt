@@ -1,5 +1,0 @@
-default
-homedecor_common
-moreblocks?
-gloopblocks?
-stairs?

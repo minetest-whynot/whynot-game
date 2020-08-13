@@ -1,5 +1,4 @@
-
-local S = homedecor.gettext
+local S = minetest.get_translator("homedecor_seating")
 
 local sofa_cbox = {
 	type = "wallmounted",
@@ -23,7 +22,7 @@ minetest.register_node(":lrfurn:sofa", {
 	sounds = default.node_sound_wood_defaults(),
 	selection_box = sofa_cbox,
 	node_box = sofa_cbox,
-	on_rotate = screwdriver.disallow,
+	on_rotate = minetest.get_modpath("screwdriver") and screwdriver.disallow or nil,
 	after_place_node = function(pos, placer, itemstack, pointed_thing)
 		lrfurn.fix_sofa_rotation_nsew(pos, placer, itemstack, pointed_thing)
 		local playername = placer:get_player_name()
@@ -133,5 +132,5 @@ minetest.register_lbm({
 })
 
 if minetest.settings:get("log_mods") then
-	minetest.log("action", "[lrfurn/sofas] "..S("Loaded!"))
+	minetest.log("action", "[lrfurn/sofas] Loaded!")
 end

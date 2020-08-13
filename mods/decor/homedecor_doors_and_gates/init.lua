@@ -1,13 +1,15 @@
 -- Node definitions for Homedecor doors
 
-local S = homedecor.gettext
+local S = minetest.get_translator("homedecor_doors_and_gates")
 local mesecons_mp = minetest.get_modpath("mesecons")
+homedecor_doors_and_gates = {}
 
 -- new doors using minetest_game doors API
 
 local door_list = {
-	{	name = "wood_plain",
-		description = "Plain Wooden Door",
+	{
+		name = "wood_plain",
+		description = S("Plain Wooden Door"),
 		groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
 		sounds = {
 			main = default.node_sound_wood_defaults(),
@@ -16,8 +18,9 @@ local door_list = {
 		}
 	},
 
-	{	name = "exterior_fancy",
-		description = "Fancy Wood/Glass Door",
+	{
+		name = "exterior_fancy",
+		description = S("Fancy Wood/Glass Door"),
 		groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
 		sounds = {
 			main = default.node_sound_wood_defaults(),
@@ -29,8 +32,9 @@ local door_list = {
 		custom_model = "homedecor_door_fancy"
 	},
 
-	{	name = "french_oak",
-		description = "French door, Oak-colored",
+	{
+		name = "french_oak",
+		description = S("French door, Oak-colored"),
 		groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
 		sounds = {
 			main = default.node_sound_glass_defaults(),
@@ -40,8 +44,9 @@ local door_list = {
 		custom_model = "homedecor_door_french"
 	},
 
-	{	name = "french_mahogany",
-		description = "French door, Mahogany-colored",
+	{
+		name = "french_mahogany",
+		description = S("French door, Mahogany-colored"),
 		groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
 		sounds = {
 			main = default.node_sound_glass_defaults(),
@@ -51,8 +56,9 @@ local door_list = {
 		custom_model = "homedecor_door_french"
 	},
 
-	{	name = "french_white",
-		description = "French door, White",
+	{
+		name = "french_white",
+		description = S("French door, White"),
 		groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
 		sounds = {
 			main = default.node_sound_glass_defaults(),
@@ -62,8 +68,9 @@ local door_list = {
 		custom_model = "homedecor_door_french"
 	},
 
-	{	name = "basic_panel",
-		description = "Basic white panel Door",
+	{
+		name = "basic_panel",
+		description = S("Basic white panel Door"),
 		groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
 		sounds = {
 			main = default.node_sound_wood_defaults(),
@@ -72,8 +79,9 @@ local door_list = {
 		}
 	},
 
-	{	name = "wrought_iron",
-		description = "Wrought Iron Gate/Door",
+	{
+		name = "wrought_iron",
+		description = S("Wrought Iron Gate/Door"),
 		groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
 		sounds = {
 			main = default.node_sound_metal_defaults(),
@@ -84,8 +92,9 @@ local door_list = {
 		custom_model = "homedecor_door_wrought_iron"
 	},
 
-	{	name = "carolina",
-		description = "Wooden Carolina door",
+	{
+		name = "carolina",
+		description = S("Wooden Carolina door"),
 		groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
 		sounds = {
 			main = default.node_sound_wood_defaults(),
@@ -96,8 +105,9 @@ local door_list = {
 		alpha = true
 	},
 
-	{	name = "woodglass",
-		description = "Wooden door with glass insert, type 3",
+	{
+		name = "woodglass",
+		description = S("Wooden door with glass insert, type 3"),
 		groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
 		sounds = {
 			main = default.node_sound_wood_defaults(),
@@ -109,8 +119,9 @@ local door_list = {
 		custom_model = "homedecor_door_wood_glass_3"
 	},
 
-	{	name = "closet_mahogany",
-		description = "Mahogany Closet Door",
+	{
+		name = "closet_mahogany",
+		description = S("Mahogany Closet Door"),
 		groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
 		sounds = {
 			main = default.node_sound_wood_defaults(),
@@ -118,8 +129,9 @@ local door_list = {
 		custom_model = "homedecor_door_closet"
 	},
 
-	{	name = "closet_oak",
-		description = "Oak Closet Door",
+	{
+		name = "closet_oak",
+		description = S("Oak Closet Door"),
 		groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
 		sounds = {
 			main = default.node_sound_wood_defaults(),
@@ -307,7 +319,7 @@ for i, g in ipairs(gate_list) do
 			fixed = gate_models_closed[i]
 		},
 		on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
-			homedecor.flip_gate(pos, node, clicker, gate, "closed")
+			homedecor_doors_and_gates.flip_gate(pos, node, clicker, gate, "closed")
 			return itemstack
 		end,
 	}
@@ -316,7 +328,7 @@ for i, g in ipairs(gate_list) do
         def.mesecons = {
             effector = {
 				rules = mesecon.rules.pplate,
-                action_on = function(pos,node) homedecor.flip_gate(pos,node,nil,gate, "closed") end
+                action_on = function(pos,node) homedecor_doors_and_gates.flip_gate(pos,node,nil,gate, "closed") end
             }
         }
 	end
@@ -340,14 +352,14 @@ for i, g in ipairs(gate_list) do
 	}
     def.drop = "homedecor:gate_"..gate.."_closed"
 	def.on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
-        homedecor.flip_gate(pos, node, clicker, gate, "open")
+        homedecor_doors_and_gates.flip_gate(pos, node, clicker, gate, "open")
         return itemstack
 	end
 
 	if mesecons_mp then
 		def.mesecons.effector = {
 			rules = mesecon.rules.pplate,
-			action_off = function(pos,node) homedecor.flip_gate(pos,node,nil,gate, "open") end
+			action_off = function(pos,node) homedecor_doors_and_gates.flip_gate(pos,node,nil,gate, "open") end
 		}
 	end
 
@@ -363,7 +375,7 @@ minetest.register_alias("homedecor:fence_picket_gate_closed",       "homedecor:g
 minetest.register_alias("homedecor:fence_picket_gate_white_open",   "homedecor:gate_picket_white_open")
 minetest.register_alias("homedecor:fence_picket_gate_white_closed", "homedecor:gate_picket_white_closed")
 
-function homedecor.flip_gate(pos, node, player, gate, oc)
+function homedecor_doors_and_gates.flip_gate(pos, node, player, gate, oc)
 
 
 	local fdir = node.param2 or 0
@@ -432,7 +444,7 @@ homedecor.register("door_japanese_open", {
 	mesh = "homedecor_door_japanese_open.obj",
 	groups = { snappy = 3, not_in_creative_inventory = 1 },
 	sounds = default.node_sound_wood_defaults(),
-	on_rotate = screwdriver.disallow,
+	on_rotate = minetest.get_modpath("screwdriver") and screwdriver.disallow or nil,
 	selection_box = {
 		type = "fixed",
 		fixed = {-1.5, -0.5, -0.0625, 0.5, 1.5, 0},

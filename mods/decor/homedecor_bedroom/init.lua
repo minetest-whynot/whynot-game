@@ -1,7 +1,6 @@
+local S = minetest.get_translator("homedecor_bedroom")
 
-local S = homedecor.gettext
-
-local function N_(x) return x end
+local sc_disallow = minetest.get_modpath("screwdriver") and screwdriver.disallow or nil
 
 local bed_sbox = {
 	type = "wallmounted",
@@ -31,6 +30,9 @@ local kbed_cbox = {
 	}
 }
 
+
+local bed_on_rightclick = minetest.registered_nodes["beds:bed"].on_rightclick
+
 homedecor.register("bed_regular", {
 	mesh = "homedecor_bed_regular.obj",
 	tiles = {
@@ -49,7 +51,7 @@ homedecor.register("bed_regular", {
 	selection_box = bed_sbox,
 	node_box = bed_cbox,
 	sounds = default.node_sound_wood_defaults(),
-	on_rotate = screwdriver.disallow,
+	on_rotate = sc_disallow or nil,
 	after_place_node = function(pos, placer, itemstack, pointed_thing)
 		unifieddyes.fix_rotation_nsew(pos, placer, itemstack, pointed_thing)
 		if not placer:get_player_control().sneak then
@@ -66,7 +68,7 @@ homedecor.register("bed_regular", {
 			homedecor.bed_expansion(pos, clicker, itemstack, pointed_thing, true)
 			return itemstack
 		else
-			homedecor.beds_on_rightclick(pos, node, clicker)
+			bed_on_rightclick(pos, node, clicker)
 			return itemstack
 		end
 	end
@@ -89,13 +91,13 @@ homedecor.register("bed_extended", {
 	groups = {snappy=3, ud_param2_colorable = 1},
 	sounds = default.node_sound_wood_defaults(),
 	expand = { forward = "air" },
-	on_rotate = screwdriver.disallow,
+	on_rotate = sc_disallow or nil,
 	after_dig_node = function(pos, oldnode, oldmetadata, digger)
 		homedecor.unextend_bed(pos)
 	end,
 	on_dig = unifieddyes.on_dig,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
-		homedecor.beds_on_rightclick(pos, node, clicker)
+		bed_on_rightclick(pos, node, clicker)
 		return itemstack
 	end,
 	drop = "homedecor:bed_regular"
@@ -119,7 +121,7 @@ homedecor.register("bed_kingsize", {
 	selection_box = kbed_sbox,
 	node_box = kbed_cbox,
 	sounds = default.node_sound_wood_defaults(),
-	on_rotate = screwdriver.disallow,
+	on_rotate = sc_disallow or nil,
 	after_place_node = function(pos, placer, itemstack, pointed_thing)
 		unifieddyes.fix_rotation_nsew(pos, placer, itemstack, pointed_thing)
 	end,
@@ -132,14 +134,14 @@ homedecor.register("bed_kingsize", {
 	end,
 	on_dig = unifieddyes.on_dig,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
-		homedecor.beds_on_rightclick(pos, node, clicker)
+		bed_on_rightclick(pos, node, clicker)
 		return itemstack
 	end,
 })
 
-for _, w in pairs({ N_("mahogany"), N_("oak") }) do
+for w, d in pairs({ ["mahogany"] = S("mahogany"), ["oak"] = S("oak") }) do
 	homedecor.register("nightstand_"..w.."_one_drawer", {
-		description = S("Nightstand with One Drawer (@1)", S(w)),
+		description = S("Nightstand with One Drawer (@1)", d),
 		tiles = { 'homedecor_nightstand_'..w..'_tb.png',
 			'homedecor_nightstand_'..w..'_tb.png^[transformFY',
 			'homedecor_nightstand_'..w..'_lr.png^[transformFX',
@@ -168,7 +170,7 @@ for _, w in pairs({ N_("mahogany"), N_("oak") }) do
 	})
 
 	homedecor.register("nightstand_"..w.."_two_drawers", {
-		description = S("Nightstand with Two Drawers (@1)", S(w)),
+		description = S("Nightstand with Two Drawers (@1)", d),
 		tiles = { 'homedecor_nightstand_'..w..'_tb.png',
 			'homedecor_nightstand_'..w..'_tb.png^[transformFY',
 			'homedecor_nightstand_'..w..'_lr.png^[transformFX',
@@ -214,19 +216,19 @@ local bedcolors = {
 	"yellow"
 }
 
-homedecor.old_bed_nodes = {}
+local old_bed_nodes = {}
 
 for _, color in ipairs(bedcolors) do
-	table.insert(homedecor.old_bed_nodes, "homedecor:bed_"..color.."_regular")
-	table.insert(homedecor.old_bed_nodes, "homedecor:bed_"..color.."_extended")
-	table.insert(homedecor.old_bed_nodes, "homedecor:bed_"..color.."_kingsize")
+	table.insert(old_bed_nodes, "homedecor:bed_"..color.."_regular")
+	table.insert(old_bed_nodes, "homedecor:bed_"..color.."_extended")
+	table.insert(old_bed_nodes, "homedecor:bed_"..color.."_kingsize")
 end
 
 minetest.register_lbm({
 	name = ":homedecor:convert_beds",
 	label = "Convert homedecor static bed nodes to use param2 color",
 	run_at_every_load = false,
-	nodenames = homedecor.old_bed_nodes,
+	nodenames = old_bed_nodes,
 	action = function(pos, node)
 		local name = node.name
 		local color = string.sub(name, string.find(name, "_") + 1)

@@ -1,0 +1,18 @@
+# textdomain: homedecor_roofing
+
+
+### init.lua ###
+
+@1 (inner corner)=Tegole in legno (angolo interno)
+@1 (outer corner)=Tegole in legno (angolo esterno)
+Asphalt Shingles=Mattonelle di asfalto
+Chimney=
+Glass Shingles=Mattonelle di asfalto
+Glass Skylight=Lucernario di vetro
+Glass Skylight Frosted=Lucernario di vetro satinato
+Shingles (@1)=Tegole in legno
+Terracotta Shingles=Tegole di terracotta
+Wood Shingles=Tegole in legno
+asphalt=
+terracotta=Tegole di terracotta
+wood=

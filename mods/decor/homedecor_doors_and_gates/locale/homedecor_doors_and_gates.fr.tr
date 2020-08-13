@@ -1,0 +1,23 @@
+# textdomain: homedecor_doors_and_gates
+
+
+### init.lua ###
+
+"Half" Door=Demi-porte
+"Half" Door (white)=Demi-porte (blanche)
+Barbed Wire Fence Gate=Portillon en fil barbelé
+Basic white panel Door=Porte blanche simple à panneaux
+Chainlink Fence Gate=Portillon grillagé
+Fancy Wood/Glass Door=Porte chic en bois et verre
+French door, Mahogany-colored=Porte française, couleur acajou
+French door, Oak-colored=Porte française, couleur chêne
+French door, White=Porte française, blanche
+Japanese-style door=Porte japonaise
+Mahogany Closet Door=Porte de placard en acajou
+Oak Closet Door=Porte de placard en chêne
+Plain Wooden Door=Porte en bois simple
+Unpainted Picket Fence Gate=Portillon en piquets bruts
+White Picket Fence Gate=Portillon en piquets blancs
+Wooden Carolina door=Porte en pin de caroline
+Wooden door with glass insert, type 3=Porte en bois avec fenêtre en verre, type 3
+Wrought Iron Gate/Door=Porte en fer forgé

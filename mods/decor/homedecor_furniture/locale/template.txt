@@ -1,0 +1,10 @@
+# textdomain: homedecor_furniture
+
+
+### init.lua ###
+
+Bookshelf (open-frame)=
+Mahogany Table=
+Table=
+Wall Shelf=
+White Table=

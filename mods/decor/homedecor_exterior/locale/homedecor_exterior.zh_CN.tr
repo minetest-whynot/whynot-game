@@ -1,0 +1,25 @@
+# textdomain: homedecor_exterior
+
+
+### init.lua ###
+
+Barbecue=烧烤
+Doghouse=狗窝
+Garden Lattice (@1)=花园格子（@1）
+Garden stone path=花园石径
+No room in your inventory to add a filled bucket!=
+No room under there to hang a swing.=
+Shrubbery (@1)=灌木丛（@1）
+Shrubbery (large, @1)=大灌木丛（@1）
+Tree's swing=树的秋千
+Water well=水井
+
+You have to point at the bottom side of an overhanging object to place a swing.=
+
+green=绿色
+red=红色
+white wood=白木
+white wood, with vegetation=带植被的白木
+wood=木材
+wood, with vegetation=带植被的木材
+yellow=黄色的

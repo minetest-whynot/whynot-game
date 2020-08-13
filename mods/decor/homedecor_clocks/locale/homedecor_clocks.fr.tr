@@ -1,0 +1,10 @@
+# textdomain: homedecor_clocks
+
+
+### init.lua ###
+
+Alarm clock=Réveil-matin
+Digital clock=Horloge numérique
+Grandfather Clock=Horloge comtoise
+Plastic analog clock=Horloge analogique en plastique
+Wooden analog clock=Horloge analogique en bois

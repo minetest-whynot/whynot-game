@@ -1,7 +1,5 @@
-
-local S = homedecor.gettext
-
-local function N_(x) return x end
+local S = minetest.get_translator("homedecor_exterior")
+homedecor_exterior = {}
 
 local bbq_cbox = {
 	type = "fixed",
@@ -48,7 +46,7 @@ homedecor.register("doghouse", {
 	groups = {snappy=3},
 	expand = { top="placeholder" },
 	sounds = default.node_sound_wood_defaults(),
-	on_rotate = screwdriver.rotate_simple
+	on_rotate = minetest.get_modpath("screwdriver") and screwdriver.rotate_simple or nil,
 })
 
 minetest.register_alias("homedecor:doghouse_roof", "air")
@@ -126,7 +124,7 @@ homedecor.register("swing", {
 	groups = { snappy=3, oddly_breakable_by_hand=3 },
 	sounds = default.node_sound_wood_defaults(),
 	walkable = false,
-	on_rotate = screwdriver.disallow,
+	on_rotate = minetest.get_modpath("screwdriver") and screwdriver.disallow or nil,
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -156,7 +154,7 @@ homedecor.register("swing", {
 
 				if not testreg or not testreg.buildable_to then
 					if i < 1 then
-						minetest.chat_send_player(placer_name, "No room under there to hang a swing.")
+						minetest.chat_send_player(placer_name, S("No room under there to hang a swing."))
 						return itemstack
 					else
 						break
@@ -176,7 +174,8 @@ homedecor.register("swing", {
 				itemstack:take_item()
 			end
 		else
-			minetest.chat_send_player(placer_name, "You have to point at the bottom side of an overhanging object to place a swing.")
+			minetest.chat_send_player(placer_name,
+				S("You have to point at the bottom side of an overhanging object to place a swing."))
 		end
 		return itemstack
 	end,
@@ -225,7 +224,7 @@ homedecor.register("well", {
 	collision_box = homedecor.nodebox.slab_y(2),
 	expand = { top="placeholder" },
 	sounds = default.node_sound_stone_defaults(),
-	on_rotate = screwdriver.rotate_simple
+	on_rotate = minetest.get_modpath("screwdriver") and screwdriver.rotate_simple or nil,
 })
 
 if minetest.get_modpath("bucket") then
@@ -239,7 +238,7 @@ if minetest.get_modpath("bucket") then
 					itemstack:take_item()
 					inv:add_item("main", "bucket:bucket_water 1")
 				else
-					minetest.chat_send_player(user:get_player_name(), "No room in your inventory to add a filled bucket!")
+					minetest.chat_send_player(user:get_player_name(), S("No room in your inventory to add a filled bucket!"))
 				end
 				return itemstack
 			else if original_bucket_on_use then
@@ -250,17 +249,17 @@ if minetest.get_modpath("bucket") then
 	})
 end
 
-homedecor.shrub_colors = {
-	N_("green"),
-	N_("red"),
-	N_("yellow"),
+homedecor_exterior.shrub_colors = {
+	["green"] = S("green"),
+	["red"] = S("red"),
+	["yellow"] = S("yellow"),
 }
 
 local shrub_cbox = { -0.5, -0.5, -0.5, 0.5, 0.5, 0.5 }
 
-for _, color in ipairs(homedecor.shrub_colors) do
+for color, color_loc in pairs(homedecor_exterior.shrub_colors) do
 	minetest.register_node(":homedecor:shrubbery_large_"..color, {
-		description = S("Shrubbery (large, @1)", S(color)),
+		description = S("Shrubbery (large, @1)", color_loc),
 		drawtype = "mesh",
 		mesh = "homedecor_cube.obj",
 		tiles = {"homedecor_shrubbery_"..color..".png"},
@@ -271,7 +270,7 @@ for _, color in ipairs(homedecor.shrub_colors) do
 	})
 
 	minetest.register_node(":homedecor:shrubbery_"..color, {
-		description = S("Shrubbery (@1)", S(color)),
+		description = S("Shrubbery (@1)", color_loc),
 		drawtype = "mesh",
 		mesh = "homedecor_shrubbery.obj",
 		tiles = {
@@ -426,7 +425,7 @@ minetest.register_craft({
 	}
 })
 
-for _, color in ipairs(homedecor.shrub_colors) do
+for color, _ in pairs(homedecor_exterior.shrub_colors) do
 
 	minetest.register_craft({
 		type = "shapeless",

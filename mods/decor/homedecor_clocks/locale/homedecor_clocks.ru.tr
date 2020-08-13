@@ -1,0 +1,10 @@
+# textdomain: homedecor_clocks
+
+
+### init.lua ###
+
+Alarm clock=Будильник
+Digital clock=Цифровые часы
+Grandfather Clock=Дедушкины часы
+Plastic analog clock=Пластиковые стрелочные часы
+Wooden analog clock=Деревянные стрелочные часы

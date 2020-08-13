@@ -1,0 +1,48 @@
+# textdomain: building_blocks
+
+
+### alias.lua ###
+
+Granite=Granito
+
+### node_stairs.lua ###
+
+Adobe=Adobe
+Adobe Slab=Losa de adobe
+Adobe Stair=Escaleras de adobe
+Brobble Spread=Mezcla de Ladroquines
+Chess board tiling=Azulejos de ajedrez
+Fake Grass=Hierba falsa
+Fake Grass Slab=
+Fake Grass Stair=
+Fireplace=Chimenea
+Grate=Reja
+Grate Slab=Losa de rejas
+Grate Stair=Escaleras de rejas
+Gravel Spread=Mezcla de gravilla
+Hardwood=Madera dura
+Hardwood Slab=Losa de madera dura
+Hardwood Stair=Escaleras de madera dura
+Marble=Mármol
+Marble Slab=Losa de mármol
+Marble Stair=Escaleras de mármol
+Roof block=Bloque de techo
+Roof block Slab=
+Roof block Stair=
+Streak Free Glass=Vídrio sin rayas
+Streak Free Glass Slab=
+Streak Free Glass Stair=
+Tar=Alquitrán
+Tar Slab=Losa de alquitrán
+Tar Stair=Escaleras de alquitrán
+Tarmac Spread=Mezcla de asfalto
+Terrycloth towel=Toalla
+Wood Framed Glass=Vídrio enmarcado en madera
+Wood Framed Glass Slab=
+Wood Framed Glass Stair=
+
+### others.lua ###
+
+Small bundle of sticks=Manojo de palitos
+Tar Knife=Cuchillo de alquitrán
+Tar base=Base de alquitrán

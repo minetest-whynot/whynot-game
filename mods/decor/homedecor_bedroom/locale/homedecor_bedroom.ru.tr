@@ -1,0 +1,13 @@
+# textdomain: homedecor_bedroom
+
+
+### init.lua ###
+
+Bed=Кровать
+Bed (king sized)=Кровать (большая)
+Nightstand with One Drawer (@1)=Тумба с одним ящиком (@1)
+Nightstand with Two Drawers (@1)=Тумба с двумя ящиками (@1)
+One-drawer Nightstand=Тумба с одним ящиком
+Two-drawer Nightstand=Тумба с двумя ящиками
+mahogany=красное дерево
+oak=дуб

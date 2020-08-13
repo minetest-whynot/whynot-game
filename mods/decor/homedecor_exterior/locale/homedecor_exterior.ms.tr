@@ -1,0 +1,25 @@
+# textdomain: homedecor_exterior
+
+
+### init.lua ###
+
+Barbecue=Barbeku
+Doghouse=Rumah Anjing
+Garden Lattice (@1)=Kekisi Taman (@1)
+Garden stone path=Laluan Berbatu Taman
+No room in your inventory to add a filled bucket!=
+No room under there to hang a swing.=
+Shrubbery (@1)=Rumpun Pokok Renek (@1)
+Shrubbery (large, @1)=Rumpun Pokok Renek (Besar, @1)
+Tree's swing=Buaian Pokok
+Water well=Perigi Air
+
+You have to point at the bottom side of an overhanging object to place a swing.=
+
+green=Hijau
+red=Merah
+white wood=Kayu Putih
+white wood, with vegetation=Kayu Putih, dengan Tumbuhan
+wood=Kayu
+wood, with vegetation=Kayu, dengan Tumbuhan
+yellow=Kuning

@@ -1,0 +1,16 @@
+# textdomain: homedecor_electronics
+
+
+### init.lua ###
+
+DVD Player=
+DVD and VCR=
+Large Stereo Speaker=
+Large Stereo Speaker, open front=
+Projection Screen Material=
+Small CRT Television=
+Small Surround Speaker=
+Speaker driver=
+Stereo Receiver=
+Telephone=
+VCR=

@@ -1,0 +1,28 @@
+# textdomain: homedecor_common
+
+
+### crafts.lua ###
+
+Small Wooden Drawer=Laci Kayu Kecil
+Terracotta Roof Tile=Genting Bumbung Terracotta
+
+### expansion.lua ###
+
+Not enough room - the space for the headboard is occupied!=Tidak cukup ruang - ada barang di kawasan untuk letak kepala katil!
+Not enough room - the upper space is occupied!=Tidak cukup ruang - ada barang di kawasan atas!
+Someone already owns that spot.=Kawasan itu kepunyaan orang lain.
+Someone already owns the spot where the headboard goes.=Tempat untuk letak kepala katil itu kawasan kepunyaan orang lain.
+
+### furnaces.lua ###
+
+@1 (active)=@1 (aktif)
+@1 (active: @2%)=@1 (aktif: @2)
+@1 (empty)=@1 (kosong)
+@1 (out of fuel)=@1 (kehabisan bahan api)
+@1 (output bins are full)=@1 (dulang keluar penuh)
+Furnace=Relau
+
+### inventory.lua ###
+
+@1 (Locked)=@1 (Berkunci)
+@1 (owned by @2)=@1 (hak milik @2)

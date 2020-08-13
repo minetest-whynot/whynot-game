@@ -1,7 +1,0 @@
-homedecor_common
-default
-unifieddyes
-wool
-moreblocks?
-technic?
-bucket?

@@ -1,0 +1,13 @@
+# textdomain: homedecor_bedroom
+
+
+### init.lua ###
+
+Bed=Lit
+Bed (king sized)=Grand lit
+Nightstand with One Drawer (@1)=Meuble de chevet avec un tiroir (@1)
+Nightstand with Two Drawers (@1)=Meuble de chevet avec deux tiroirs (@1)
+One-drawer Nightstand=Meuble de chevet avec un tiroir
+Two-drawer Nightstand=Meuble de chevet avec deux tiroirs
+mahogany=acajou
+oak=chêne

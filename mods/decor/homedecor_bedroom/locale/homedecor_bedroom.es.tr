@@ -1,0 +1,13 @@
+# textdomain: homedecor_bedroom
+
+
+### init.lua ###
+
+Bed=Cama
+Bed (king sized)=Cama (tamaño grande)
+Nightstand with One Drawer (@1)=Mesa de luz con un cajón (@1)
+Nightstand with Two Drawers (@1)=Mesa de luz con dos cajones (@1)
+One-drawer Nightstand=Mesa de luz con un cajón
+Two-drawer Nightstand=Mesa de luz con dos cajones
+mahogany=caoba
+oak=roble

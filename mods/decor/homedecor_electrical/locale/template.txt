@@ -1,0 +1,8 @@
+# textdomain: homedecor_electrical
+
+
+### init.lua ###
+
+Doorbell=
+Light switch=
+Power Outlet=

@@ -15,7 +15,7 @@ homedecor.register("deckchair", {
 	sounds = default.node_sound_wood_defaults(),
 	selection_box = dc_cbox,
 	collision_box = dc_cbox,
-	on_rotate = screwdriver.disallow
+	on_rotate = minetest.get_modpath("screwdriver") and screwdriver.disallow or nil,
 })
 
 minetest.register_alias("homedecor:deckchair_foot", "homedecor:deckchair")
@@ -30,7 +30,7 @@ homedecor.register("deckchair_striped_blue", {
 	sounds = default.node_sound_wood_defaults(),
 	selection_box = dc_cbox,
 	collision_box = dc_cbox,
-	on_rotate = screwdriver.disallow
+	on_rotate = minetest.get_modpath("screwdriver") and screwdriver.disallow or nil,
 })
 
 homedecor.register("simple_bench", {
@@ -74,7 +74,7 @@ homedecor.register("bench_large_1", {
 	sounds = default.node_sound_wood_defaults(),
 	selection_box = bl1_sbox,
 	node_box = bl1_cbox,
-	on_rotate = screwdriver.disallow
+	on_rotate = minetest.get_modpath("screwdriver") and screwdriver.disallow or nil,
 })
 
 minetest.register_alias("homedecor:bench_large_1_left", "homedecor:bench_large_1")
@@ -103,7 +103,7 @@ homedecor.register("bench_large_2", {
 	node_box = bl2_cbox,
 	expand = { right="placeholder" },
 	sounds = default.node_sound_wood_defaults(),
-	on_rotate = screwdriver.disallow
+	on_rotate = minetest.get_modpath("screwdriver") and screwdriver.disallow or nil,
 })
 
 minetest.register_alias("homedecor:bench_large_2_left", "homedecor:bench_large_2")
@@ -162,14 +162,6 @@ homedecor.register("kitchen_chair_padded", {
 	end
 })
 
-local ac_cbox = {
-	type = "fixed",
-	fixed = {
-		{-0.5, -0.5, -0.5, 0.5, 0, 0.5 },
-		{-0.5, -0.5, 0.4, 0.5, 0.5, 0.5 }
-	}
-}
-
 local ofchairs_sbox = {
 	type = "fixed",
 	fixed = { -8/16, -8/16, -8/16, 8/16, 29/32, 8/16 }
@@ -201,7 +193,7 @@ for _, c in pairs(chairs) do
 		selection_box = ofchairs_sbox,
 		collision_box = ofchairs_cbox,
 		expand = { top = "placeholder" },
-		on_rotate = screwdriver.rotate_simple
+		on_rotate = minetest.get_modpath("screwdriver") and screwdriver.rotate_simple or nil,
 	})
 end
 

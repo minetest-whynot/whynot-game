@@ -1,0 +1,13 @@
+# textdomain: homedecor_bedroom
+
+
+### init.lua ###
+
+Bed=
+Bed (king sized)=
+Nightstand with One Drawer (@1)=
+Nightstand with Two Drawers (@1)=
+One-drawer Nightstand=
+Two-drawer Nightstand=
+mahogany=
+oak=

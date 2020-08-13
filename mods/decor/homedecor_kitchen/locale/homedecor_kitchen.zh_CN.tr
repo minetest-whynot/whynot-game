@@ -1,0 +1,24 @@
+# textdomain: homedecor_kitchen
+
+
+### init.lua ###
+
+Copper pans=铜锅
+Dishwasher=洗碗机
+Dishwasher (@1)=洗碗机（@1）
+Half-height Kitchen Cabinet (on ceiling)=半高厨柜（悬挂式）
+Kitchen Cabinet=厨柜
+Kitchen Cabinet (@1 top)=厨柜（@1顶）
+Kitchen Cabinet with sink=带水槽的橱柜
+Kitchen Faucet=厨房水龙头
+Microwave Oven=微波炉
+Oven=烤箱
+Oven (stainless steel)=烤箱（不锈钢）
+Paper towels=纸巾
+Refrigerator=冰箱
+Refrigerator (stainless steel)=冰箱（不锈钢）
+Under-sink cabinet=水槽柜下
+granite=花岗岩
+marble=大理石
+steel=钢
+wood=木材

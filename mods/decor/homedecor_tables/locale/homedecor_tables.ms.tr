@@ -1,0 +1,27 @@
+# textdomain: homedecor_tables
+
+
+### coffeetable.lua ###
+
+Coffee Table=Meja Kopi
+No room to place the coffee table!=Tiada ruang untuk letak meja kopi!
+Someone else owns the spot where the middle or far end goes!=Tempat untuk letak pertengahan atau hujung objek itu kawasan kepunyaan orang lain!
+Someone else owns the spot where the other end goes!=Tempat untuk letak hujung objek itu kawasan kepunyaan orang lain!
+
+### endtable.lua ###
+
+End Table=Meja Hujung
+
+### misc.lua ###
+
+Large glass table piece=Kepingan Kaca Meja Besar
+Large wooden table piece=Kepingan Meja Kayu Besar
+Legs for Utility Table=Kaki untuk Meja Utiliti
+Small round glass table=Kaca Meja Bulat Kecil
+Small round wooden table=Kepingan Meja Kayu Bulat Kecil
+Small square glass table=Kaca Meja Segi Empat Kecil
+Small square wooden table=Kepingan Meja Kayu Segi Empat Kecil
+Table Legs (@1)=Kaki Meja (@1)
+Utility Table=Kepingan Meja Utiliti
+brass=Loyang
+wrought iron=Besi Tempaan

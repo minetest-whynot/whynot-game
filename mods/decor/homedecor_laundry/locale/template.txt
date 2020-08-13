@@ -1,0 +1,8 @@
+# textdomain: homedecor_laundry
+
+
+### init.lua ###
+
+Ironing board=
+Tumble dryer=
+Washing Machine=

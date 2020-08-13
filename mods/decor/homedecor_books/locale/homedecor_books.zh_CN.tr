@@ -1,0 +1,13 @@
+# textdomain: homedecor_books
+
+
+### init.lua ###
+
+@1 has written in a book (title: "@2"): "@3" at location @4=@我在一本书中写过（书名：\@2\）：\@3\，地点@4
+Writable Book (@1)=可写书（@1）
+blue=蓝色
+brown=棕色的
+green=绿色
+grey=灰色
+red=红色
+violet=紫罗兰

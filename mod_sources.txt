@@ -34,7 +34,7 @@ Mod: minetest_game/mods/xpanes
 
 bell07	https://github.com/bell07/craftguide (fetch)
 origin	https://github.com/minetest-mods/craftguide/ (fetch)
-* upstream 584c215 [origin/master] Add contentdb badges
+* upstream 4cc44d0 [origin/master] Fix irrlicht warning
 Mod: libs/craftguide
 
 origin	https://github.com/minetest-mods/craftguide_reveal (fetch)
@@ -216,10 +216,6 @@ origin	https://github.com/minetest-mods/jumping (fetch)
 * master fdd5bbd [origin/master] beter recipes - use the jumping cushion to build the trampoline recipes have soft-dependency in recipe to farming and wool
 Mod: tools/jumping
 
-origin	https://github.com/tacigar/maidroid (fetch)
-* master 3b414ef [origin/master] Merge pull request #175 from Rui-Minetest/patch-2
-Mod: tools/maidroid
-
 origin	https://github.com/minetest-mods/orbs_of_time/ (fetch)
 * master 2bf8783 [origin/master] switch to client-side translation
 Mod: tools/orbs_of_time
@@ -237,7 +233,7 @@ origin	https://github.com/lisacvuk/minetest-toolranks (fetch)
 Mod: tools/toolranks
 
 origin	https://github.com/minetest-mods/trash_can (fetch)
-* master c6ef1d7 [origin/master] Add MineClone2 compatibility (#10)
+* master 423b0f2 [origin/master] Use listrings for inventories (#12)
 Mod: tools/trash_can
 
 origin	https://github.com/minetest-mods/woodcutting (fetch)
@@ -247,6 +243,12 @@ Mod: tools/woodcutting
 origin	https://github.com/Amaz1/flight/ (fetch)
 * master 82ddbce [origin/master] Change license to MIT
 Mod: flight/flyingcarpet
+
+origin	https://github.com/tacigar/maidroid (fetch)
+* master 3b414ef [origin/master] Merge pull request #175 from Rui-Minetest/patch-2
+Mod: maidroid/maidroid
+Mod: maidroid/maidroid_core
+Mod: maidroid/maidroid_tool
 
 origin	https://github.com/Ezhh/abriglass (fetch)
 * master eec4fcd [origin/master] Improve cage glass
@@ -314,7 +316,7 @@ origin	https://gitlab.com/VanessaE/unifieddyes (fetch)
 Mod: decor/unifieddyes
 
 origin	https://gitlab.com/VanessaE/homedecor_modpack/ (fetch)
-* master 2e55588 [origin/master: ahead 4] Merge remote-tracking branch 'origin/master'
+* master 0ea0599 [origin/master: ahead 1] enable the beds 3x time
 Mod: homedecor_modpack/building_blocks
 Mod: homedecor_modpack/fake_fire
 Mod: homedecor_modpack/lavalamp
@@ -387,7 +389,7 @@ origin	https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin	https://github.com/minetest-mods/mesecons (fetch)
-* master c1eccba [origin/master] Make sounds ephemeral (#521)
+* master 16836b1 [origin/master] Make more nodes trigger special noteblock sounds (#506)
 Mod: mesecons/mesecons
 Mod: mesecons/mesecons_alias
 Mod: mesecons/mesecons_blinkyplant

@@ -1,4 +1,0 @@
-wool
-bucket
-homedecor_common
-unifieddyes

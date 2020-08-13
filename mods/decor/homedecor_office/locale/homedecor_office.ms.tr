@@ -1,0 +1,10 @@
+# textdomain: homedecor_office
+
+
+### init.lua ###
+
+Calendar=Kalendar
+Date (right-click to update):@n@1=Tarikh (klik-kanan untuk kemaskini):@n@1
+Desk=Meja Kerja
+Desk globe=Glob Dunia
+Filing cabinet=Kabinet Pemfailan

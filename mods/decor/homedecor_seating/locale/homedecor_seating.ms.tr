@@ -1,0 +1,24 @@
+# textdomain: homedecor_seating
+
+
+### armchairs.lua ###
+
+Armchair=Kerusi Berlengan
+
+### init.lua ###
+
+Someone else owns the spot where the middle or far end goes!=Tempat untuk letak pertengahan atau hujung objek itu kawasan kepunyaan orang lain!
+Someone else owns the spot where the other end goes!=Tempat untuk letak hujung objek itu kawasan kepunyaan orang lain!
+
+### longsofas.lua ###
+
+Long Sofa=Sofa Panjang
+
+### longsofas.lua ###
+### sofas.lua ###
+
+No room to place the sofa!=Tiada ruang untuk letak sofa!
+
+### sofas.lua ###
+
+Sofa=Sofa

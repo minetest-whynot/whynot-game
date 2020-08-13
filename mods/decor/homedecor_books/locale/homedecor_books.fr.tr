@@ -1,0 +1,13 @@
+# textdomain: homedecor_books
+
+
+### init.lua ###
+
+@1 has written in a book (title: "@2"): "@3" at location @4=@1 a écrit dans un livre (titre: "@2"): "@3" à l'emplacement @4
+Writable Book (@1)=Livre inscriptible (@1)
+blue=bleu
+brown=marron
+green=vert
+grey=vert
+red=rouge
+violet=violet

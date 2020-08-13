@@ -1,0 +1,24 @@
+# textdomain: homedecor_kitchen
+
+
+### init.lua ###
+
+Copper pans=
+Dishwasher=
+Dishwasher (@1)=
+Half-height Kitchen Cabinet (on ceiling)=
+Kitchen Cabinet=
+Kitchen Cabinet (@1 top)=
+Kitchen Cabinet with sink=
+Kitchen Faucet=
+Microwave Oven=
+Oven=
+Oven (stainless steel)=
+Paper towels=
+Refrigerator=
+Refrigerator (stainless steel)=
+Under-sink cabinet=
+granite=
+marble=
+steel=
+wood=

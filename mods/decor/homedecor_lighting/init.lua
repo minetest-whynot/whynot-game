@@ -1,6 +1,8 @@
 -- This file supplies the majority of homedecor's lighting
 
-local S = homedecor.gettext
+local S = minetest.get_translator("homedecor_lighting")
+
+homedecor_lighting = {}
 
 local function is_protected(pos, clicker)
 	if minetest.is_protected(pos, clicker:get_player_name()) then
@@ -14,15 +16,6 @@ end
 local hd_mesecons = minetest.get_modpath("mesecons")
 
 -- control and brightness for dimmable lamps
-
-local brightn_cycle = {
-	["off"] = "low",
-	["low"] = "med",
-	["med"] = "hi",
-	["hi"]  = "max",
-	["max"] = "off",
-	["on"]  = "off",
-}
 
 local word_to_bright = {
 	["off"] = 0,
@@ -58,7 +51,6 @@ if hd_mesecons then
 	actions = {
 		action_off = function(pos, node)
 			local sep = string.find(node.name, "_", -5)
-			local onoff = string.sub(node.name, sep + 1)
 			if minetest.get_meta(pos):get_int("toggled") > 0 then
 				minetest.swap_node(pos, {
 					name = string.sub(node.name, 1, sep - 1).."_off",
@@ -69,7 +61,6 @@ if hd_mesecons then
 		action_on = function(pos, node)
 			minetest.get_meta(pos):set_int("toggled", 1)
 			local sep = string.find(node.name, "_", -5)
-			local onoff = string.sub(node.name, sep + 1)
 			minetest.swap_node(pos, {
 				name = string.sub(node.name, 1, sep - 1).."_on",
 				param2 = node.param2
@@ -77,15 +68,15 @@ if hd_mesecons then
 		end
 	}
 
-	homedecor.mesecon_wall_light = {
+	homedecor_lighting.mesecon_wall_light = {
 		effector = table.copy(actions)
 	}
-	homedecor.mesecon_wall_light.effector.rules = mesecon.rules.wallmounted_get
+	homedecor_lighting.mesecon_wall_light.effector.rules = mesecon.rules.wallmounted_get
 
-	homedecor.mesecon_alldir_light = {
+	homedecor_lighting.mesecon_alldir_light = {
 		effector = table.copy(actions),
 	}
-	homedecor.mesecon_alldir_light.effector.rules = rules_alldir
+	homedecor_lighting.mesecon_alldir_light.effector.rules = rules_alldir
 end
 
 -- digilines compatibility
@@ -136,7 +127,7 @@ if minetest.get_modpath("digilines") then
 	end)
 
 	if hd_mesecons then
-		homedecor.digiline_wall_light = {
+		homedecor_lighting.digiline_wall_light = {
 			effector = {
 				action = on_digiline_receive_string,
 			},
@@ -145,7 +136,7 @@ if minetest.get_modpath("digilines") then
 			}
 		}
 	else
-		homedecor.digiline_wall_light = {
+		homedecor_lighting.digiline_wall_light = {
 			effector = {
 				action = on_digiline_receive_string,
 			},
@@ -155,7 +146,7 @@ if minetest.get_modpath("digilines") then
 		}
 	end
 
-	homedecor.digiline_alldir_light = {
+	homedecor_lighting.digiline_alldir_light = {
 		effector = {
 			action = on_digiline_receive_string,
 		},
@@ -170,7 +161,6 @@ if minetest.get_modpath("digilines") then
 		if puncher:get_player_control().sneak then
 			local name = puncher:get_player_name()
 			player_last_clicked[name] = pos
-			local meta = minetest.get_meta(pos)
 			local form = "field[channel;Channel;]"
 			minetest.show_formspec(name, "homedecor:lamp_set_channel", form)
 		end
@@ -179,12 +169,13 @@ end
 
 -- turn on/off, cycle brightness
 
-function homedecor.toggle_light(pos, node, clicker, itemstack, pointed_thing)
+function homedecor_lighting.toggle_light(pos, node, clicker, itemstack, pointed_thing)
 	if is_protected(pos, clicker) then return end
 	local sep = string.find(node.name, "_", -5)
 	local level = string.sub(node.name, sep + 1)
 	local n = tonumber(level) or 0
 
+	local newsuff
 	if level == "on" then
 		newsuff = "_off"
 	elseif level == "off" then
@@ -287,14 +278,14 @@ for brightness_level = 0, 14 do
 			unifieddyes.fix_rotation(pos, placer, itemstack, pointed_thing)
 		end,
 		on_dig = unifieddyes.on_dig,
-		on_rightclick = homedecor.toggle_light,
+		on_rightclick = homedecor_lighting.toggle_light,
 		drop = {
 			items = {
 				{items = {"homedecor:glowlight_half_on"}, inherit_color = true },
 			}
 		},
-		mesecons = homedecor.mesecon_wall_light,
-		digiline = homedecor.digiline_wall_light,
+		mesecons = homedecor_lighting.mesecon_wall_light,
+		digiline = homedecor_lighting.digiline_wall_light,
 		on_punch = digiline_on_punch
 	})
 
@@ -353,14 +344,14 @@ for brightness_level = 0, 14 do
 			unifieddyes.fix_rotation(pos, placer, itemstack, pointed_thing)
 		end,
 		on_dig = unifieddyes.on_dig,
-		on_rightclick = homedecor.toggle_light,
+		on_rightclick = homedecor_lighting.toggle_light,
 		drop = {
 			items = {
 				{items = {"homedecor:glowlight_quarter_on"}, inherit_color = true },
 			}
 		},
-		mesecons = homedecor.mesecon_wall_light,
-		digiline = homedecor.digiline_wall_light,
+		mesecons = homedecor_lighting.mesecon_wall_light,
+		digiline = homedecor_lighting.digiline_wall_light,
 		on_punch = digiline_on_punch
 	})
 
@@ -420,14 +411,14 @@ for brightness_level = 0, 14 do
 			unifieddyes.fix_rotation(pos, placer, itemstack, pointed_thing)
 		end,
 		on_dig = unifieddyes.on_dig,
-		on_rightclick = homedecor.toggle_light,
+		on_rightclick = homedecor_lighting.toggle_light,
 		drop = {
 			items = {
 				{items = {"homedecor:glowlight_small_cube_on"}, inherit_color = true },
 			}
 		},
-		mesecons = homedecor.mesecon_wall_light,
-		digiline = homedecor.digiline_wall_light,
+		mesecons = homedecor_lighting.mesecon_wall_light,
+		digiline = homedecor_lighting.digiline_wall_light,
 		on_punch = digiline_on_punch
 	})
 
@@ -458,14 +449,14 @@ for brightness_level = 0, 14 do
 		sunlight_propagates = true,
 		groups = {cracky=3, oddly_breakable_by_hand=3, not_in_creative_inventory = nici},
 		sounds = default.node_sound_glass_defaults(),
-		on_rightclick = homedecor.toggle_light,
+		on_rightclick = homedecor_lighting.toggle_light,
 		drop = {
 			items = {
 				{items = {"homedecor:plasma_lamp_on"}},
 			}
 		},
-		mesecons = homedecor.mesecon_alldir_light,
-		digiline = homedecor.digiline_alldir_light,
+		mesecons = homedecor_lighting.mesecon_alldir_light,
+		digiline = homedecor_lighting.digiline_alldir_light,
 		on_punch = digiline_on_punch
 	})
 
@@ -485,14 +476,14 @@ for brightness_level = 0, 14 do
 		light_source = brightness_level,
 		selection_box = gl_cbox,
 		walkable = false,
-		on_rightclick = homedecor.toggle_light,
+		on_rightclick = homedecor_lighting.toggle_light,
 		drop = {
 			items = {
 				{items = {"homedecor:ground_lantern_on"}},
 			}
 		},
-		mesecons = homedecor.mesecon_alldir_light,
-		digiline = homedecor.digiline_alldir_light,
+		mesecons = homedecor_lighting.mesecon_alldir_light,
+		digiline = homedecor_lighting.digiline_alldir_light,
 		on_punch = digiline_on_punch
 	})
 
@@ -512,14 +503,14 @@ for brightness_level = 0, 14 do
 		light_source = brightness_level,
 		selection_box = hl_cbox,
 		walkable = false,
-		on_rightclick = homedecor.toggle_light,
+		on_rightclick = homedecor_lighting.toggle_light,
 		drop = {
 			items = {
 				{items = {"homedecor:hanging_lantern_on"}},
 			}
 		},
-		mesecons = homedecor.mesecon_alldir_light,
-		digiline = homedecor.digiline_alldir_light,
+		mesecons = homedecor_lighting.mesecon_alldir_light,
+		digiline = homedecor_lighting.digiline_alldir_light,
 		on_punch = digiline_on_punch
 	})
 
@@ -539,35 +530,32 @@ for brightness_level = 0, 14 do
 		light_source = brightness_level,
 		selection_box = cl_cbox,
 		walkable = false,
-		on_rightclick = homedecor.toggle_light,
+		on_rightclick = homedecor_lighting.toggle_light,
 		drop = {
 			items = {
 				{items = {"homedecor:ceiling_lantern_on"}},
 			}
 		},
-		mesecons = homedecor.mesecon_alldir_light,
-		digiline = homedecor.digiline_alldir_light,
+		mesecons = homedecor_lighting.mesecon_alldir_light,
+		digiline = homedecor_lighting.digiline_alldir_light,
 		on_punch = digiline_on_punch
 	})
 
-	if minetest.get_modpath("darkage") then
-		sm_light = default.LIGHT_MAX-5
-	else
-
+	if not minetest.get_modpath("darkage") then
 		homedecor.register("lattice_lantern_large_"..brightness_level, {
 			description = S("Lattice lantern/Light (large)"),
 			tiles = { gen_ls_tex_yellow.."^homedecor_lattice_lantern_large_overlay.png" },
 			groups = { snappy = 3, not_in_creative_inventory = nici },
 			light_source = brightness_level,
 			sounds = default.node_sound_glass_defaults(),
-			on_rightclick = homedecor.toggle_light,
+			on_rightclick = homedecor_lighting.toggle_light,
 			drop = {
 				items = {
 					{items = {"homedecor:lattice_lantern_large_on"}},
 				}
 			},
-			mesecons = homedecor.mesecon_alldir_light,
-			digiline = homedecor.digiline_alldir_light,
+			mesecons = homedecor_lighting.mesecon_alldir_light,
+			digiline = homedecor_lighting.digiline_alldir_light,
 			on_punch = digiline_on_punch
 		})
 	end
@@ -602,14 +590,14 @@ for brightness_level = 0, 14 do
 		light_source = brightness_level,
 		sounds = default.node_sound_glass_defaults(),
 		on_place = minetest.rotate_node,
-		on_rightclick = homedecor.toggle_light,
+		on_rightclick = homedecor_lighting.toggle_light,
 		drop = {
 			items = {
 				{items = {"homedecor:lattice_lantern_small_on"}},
 			}
 		},
-		mesecons = homedecor.mesecon_alldir_light,
-		digiline = homedecor.digiline_alldir_light,
+		mesecons = homedecor_lighting.mesecon_alldir_light,
+		digiline = homedecor_lighting.digiline_alldir_light,
 		on_punch = digiline_on_punch
 	})
 
@@ -643,14 +631,14 @@ for brightness_level = 0, 14 do
 		on_dig = unifieddyes.on_dig,
 		on_rotate = unifieddyes.fix_after_screwdriver_nsew,
 		light_source = brightness_level,
-		on_rightclick = homedecor.toggle_light,
+		on_rightclick = homedecor_lighting.toggle_light,
 		drop = {
 			items = {
 				{items = {"homedecor:desk_lamp_on"}, inherit_color = true },
 			}
 		},
-		mesecons = homedecor.mesecon_alldir_light,
-		digiline = homedecor.digiline_alldir_light,
+		mesecons = homedecor_lighting.mesecon_alldir_light,
+		digiline = homedecor_lighting.digiline_alldir_light,
 		on_punch = digiline_on_punch
 	})
 
@@ -669,14 +657,14 @@ for brightness_level = 0, 14 do
 		light_source = brightness_level,
 		groups = {snappy=3, not_in_creative_inventory = nici},
 		walkable = false,
-		on_rightclick = homedecor.toggle_light,
+		on_rightclick = homedecor_lighting.toggle_light,
 		drop = {
 			items = {
 				{items = {"homedecor:ceiling_lamp_on"}},
 			}
 		},
-		mesecons = homedecor.mesecon_alldir_light,
-		digiline = homedecor.digiline_alldir_light,
+		mesecons = homedecor_lighting.mesecon_alldir_light,
+		digiline = homedecor_lighting.digiline_alldir_light,
 		on_punch = digiline_on_punch
 	})
 
@@ -691,7 +679,7 @@ for brightness_level = 0, 14 do
 	}
 
 	local wool_brightened = "wool_grey.png^[colorize:#ffffff:"..(brightness_level * 15)
-	
+
 	homedecor.register("table_lamp_"..brightness_level, {
 		description = S("Table Lamp/Light"),
 		mesh = "homedecor_table_lamp.obj",
@@ -715,9 +703,9 @@ for brightness_level = 0, 14 do
 				{items = {"homedecor:table_lamp_hi"}, inherit_color = true },
 			}
 		},
-		digiline =      homedecor.digiline_alldir_light,
-		mesecons =      homedecor.mesecon_wall_light,
-		on_rightclick = homedecor.toggle_light,
+		digiline =      homedecor_lighting.digiline_alldir_light,
+		mesecons =      homedecor_lighting.mesecon_wall_light,
+		on_rightclick = homedecor_lighting.toggle_light,
 		on_punch =      digiline_on_punch,
 		on_dig = unifieddyes.on_dig,
 	})
@@ -740,16 +728,16 @@ for brightness_level = 0, 14 do
 		groups = {cracky=2,oddly_breakable_by_hand=1, ud_param2_colorable = 1, not_in_creative_inventory=nici },
 		selection_box = slamp_cbox,
 		sounds = default.node_sound_wood_defaults(),
-		on_rotate = screwdriver.rotate_simple,
+		on_rotate = minetest.get_modpath("screwdriver") and screwdriver.rotate_simple or nil,
 		--expand = { top="air" },
 		drop = {
 			items = {
 				{items = {"homedecor:standing_lamp_hi"}, inherit_color = true },
 			}
 		},
-		digiline =      homedecor.digiline_alldir_light,
-		mesecons =      homedecor.mesecon_wall_light,
-		on_rightclick = homedecor.toggle_light,
+		digiline =      homedecor_lighting.digiline_alldir_light,
+		mesecons =      homedecor_lighting.mesecon_wall_light,
+		on_rightclick = homedecor_lighting.toggle_light,
 		on_punch =      digiline_on_punch,
 		on_dig = unifieddyes.on_dig,
 	})
@@ -763,7 +751,7 @@ for _, light_brightn_name in ipairs({"off", "on"}) do
 	local onflag = (light_brightn_name == "on")
 	local nici = (light_brightn_name == "off") and 1 or nil
 	local nici_m = (light_brightn_name == "off") and 1 or nil
-	local on_rc = homedecor.toggle_light
+	local on_rc = homedecor_lighting.toggle_light
 	local di = "on"
 
 	if hd_mesecons then
@@ -805,14 +793,14 @@ for _, light_brightn_name in ipairs({"off", "on"}) do
 		sunlight_propagates = true,
 		groups = {cracky=3, oddly_breakable_by_hand=3, not_in_creative_inventory = nici},
 		sounds = default.node_sound_glass_defaults(),
-		on_rightclick = homedecor.toggle_light,
+		on_rightclick = homedecor_lighting.toggle_light,
 		drop = {
 			items = {
 				{items = {"homedecor:plasma_ball_on"}},
 			}
 		},
-		mesecons = homedecor.mesecon_alldir_light,
-		digiline = homedecor.digiline_alldir_light,
+		mesecons = homedecor_lighting.mesecon_alldir_light,
+		digiline = homedecor_lighting.digiline_alldir_light,
 		on_punch = digiline_on_punch
 	})
 
@@ -859,14 +847,14 @@ for _, light_brightn_name in ipairs({"off", "on"}) do
 			}
 		},
 		on_rightclick = on_rc,
-		mesecons = {
+		mesecons = hd_mesecons and {
 			conductor = {
 				state = mesecon and (onflag and mesecon.state.on or mesecon.state.off),
 				onstate =  "homedecor:rope_light_on_floor_on",
 				offstate = "homedecor:rope_light_on_floor_off",
 				rules = rules_alldir
 			},
-		}
+		} or nil,
 	})
 
 	minetest.register_node(":homedecor:rope_light_on_ceiling_"..light_brightn_name, {
@@ -905,14 +893,14 @@ for _, light_brightn_name in ipairs({"off", "on"}) do
 			}
 		},
 		on_rightclick = on_rc,
-		mesecons = {
+		mesecons = hd_mesecons and {
 			conductor = {
 				state = mesecon and (onflag and mesecon.state.on or mesecon.state.off),
 				onstate =  "homedecor:rope_light_on_ceiling_on",
 				offstate = "homedecor:rope_light_on_ceiling_off",
 				rules = rules_alldir
 			},
-		}
+		} or nil,
 	})
 
 	homedecor.register("wall_lamp_"..light_brightn_name, {
@@ -935,9 +923,9 @@ for _, light_brightn_name in ipairs({"off", "on"}) do
 				{items = {"homedecor:wall_lamp_on"}},
 			}
 		},
-		on_rightclick = homedecor.toggle_light,
-		mesecons = homedecor.mesecon_alldir_light,
-		digiline = homedecor.digiline_alldir_light,
+		on_rightclick = homedecor_lighting.toggle_light,
+		mesecons = homedecor_lighting.mesecon_alldir_light,
+		digiline = homedecor_lighting.digiline_alldir_light,
 		on_punch = digiline_on_punch
 	})
 end
@@ -1082,11 +1070,6 @@ homedecor.register("oil_lamp_tabletop", {
 	sounds = default.node_sound_glass_defaults(),
 })
 
-local chains_sbox = {
-	type = "fixed",
-	fixed = { -0.1, -0.5, -0.1, 0.1, 0.5, 0.1 }
-}
-
 local topchains_sbox = {
 	type = "fixed",
 	fixed = {
@@ -1215,7 +1198,7 @@ local lamp_colors = {
 
 -- conversion LBM for param2 coloring
 
-homedecor.old_static_nodes = {
+homedecor_lighting.old_static_nodes = {
 	"homedecor:glowlight_quarter_white",
 	"homedecor:glowlight_quarter_yellow",
 	"homedecor:glowlight_half_white",
@@ -1228,8 +1211,8 @@ local lamp_power = {"off", "low", "med", "hi", "max"}
 
 for _, power in ipairs(lamp_power) do
 	for _, color in ipairs(lamp_colors) do
-		table.insert(homedecor.old_static_nodes, "homedecor:table_lamp_"..color.."_"..power)
-		table.insert(homedecor.old_static_nodes, "homedecor:standing_lamp_"..color.."_"..power)
+		table.insert(homedecor_lighting.old_static_nodes, "homedecor:table_lamp_"..color.."_"..power)
+		table.insert(homedecor_lighting.old_static_nodes, "homedecor:standing_lamp_"..color.."_"..power)
 	end
 end
 
@@ -1237,7 +1220,7 @@ minetest.register_lbm({
 	name = ":homedecor:convert_lighting",
 	label = "Convert homedecor glowlights, table lamps, and standing lamps to use param2 color",
 	run_at_every_load = false,
-	nodenames = homedecor.old_static_nodes,
+	nodenames = homedecor_lighting.old_static_nodes,
 	action = function(pos, node)
 		local name = node.name
 		local newname
@@ -1331,7 +1314,7 @@ minetest.register_lbm({
 
 -- this one's for the small "gooseneck" desk lamps
 
-homedecor.old_static_desk_lamps = {
+homedecor_lighting.old_static_desk_lamps = {
 	"homedecor:desk_lamp_red",
 	"homedecor:desk_lamp_blue",
 	"homedecor:desk_lamp_green",
@@ -1342,7 +1325,7 @@ minetest.register_lbm({
 	name = ":homedecor:convert_desk_lamps",
 	label = "Convert homedecor desk lamps to use param2 color",
 	run_at_every_load = false,
-	nodenames = homedecor.old_static_desk_lamps,
+	nodenames = homedecor_lighting.old_static_desk_lamps,
 	action = function(pos, node)
 		local name = node.name
 		local color = string.sub(name, string.find(name, "_", -8) + 1)

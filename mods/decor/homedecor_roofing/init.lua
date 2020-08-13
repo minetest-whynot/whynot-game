@@ -1,7 +1,6 @@
+local S = minetest.get_translator("homedecor_roofing")
 
-local S = homedecor.gettext
-
-local function N_(x) return x end
+homedecor_roofing = {}
 
 minetest.register_node(":homedecor:skylight", {
 	description = S("Glass Skylight"),
@@ -28,9 +27,9 @@ minetest.register_node(":homedecor:skylight_frosted", {
 	selection_box = homedecor.nodebox.slab_y(0.1),
 })
 
-for _, s in pairs({ N_("asphalt"), N_("terracotta"), N_("wood") }) do
+for s, s_loc in pairs({ ["asphalt"] = S("asphalt"), ["terracotta"] = S("terracotta"), ["wood"] = S("wood") }) do
 	minetest.register_node(":homedecor:shingles_"..s, {
-		description = S("Shingles (@1)", S(s)),
+		description = S("Shingles (@1)", s_loc),
 		drawtype = "raillike",
 		tiles = { "homedecor_shingles_"..s..".png" },
 		wield_image = "homedecor_shingles_"..s..".png",
@@ -76,7 +75,7 @@ local icorner_cbox = {
 	}
 }
 
-homedecor.register_outer_corner = function(modname, subname, groups, slope_image, description)
+homedecor_roofing.register_outer_corner = function(modname, subname, groups, slope_image, description)
 	local tiles = slope_image
 
 	if type(slope_image) ~= "table" then
@@ -98,7 +97,7 @@ homedecor.register_outer_corner = function(modname, subname, groups, slope_image
 	})
 end
 
-homedecor.register_inner_corner = function(modname, subname, groups, slope_image, description)
+homedecor_roofing.register_inner_corner = function(modname, subname, groups, slope_image, description)
 	local tiles = slope_image
 
 	if type(slope_image) ~= "table" then
@@ -119,7 +118,7 @@ homedecor.register_inner_corner = function(modname, subname, groups, slope_image
 	})
 end
 
-homedecor.register_slope = function(modname, subname, recipeitem, groups, slope_image, description)
+homedecor_roofing.register_slope = function(modname, subname, recipeitem, groups, slope_image, description)
 	local tiles = slope_image
 
 	if type(slope_image) ~= "table" then
@@ -252,26 +251,26 @@ minetest.register_craft({
 	burntime = 30,
 })
 
-homedecor.register_roof = function(modname, subname, groups, slope_image , description)
-	homedecor.register_outer_corner(modname, subname, groups, slope_image, description)
-	homedecor.register_inner_corner(modname, subname, groups, slope_image, description)
+homedecor_roofing.register_roof = function(modname, subname, groups, slope_image , description)
+	homedecor_roofing.register_outer_corner(modname, subname, groups, slope_image, description)
+	homedecor_roofing.register_inner_corner(modname, subname, groups, slope_image, description)
 end
 
 -- corners
 
-homedecor.register_roof("homedecor", "wood",
+homedecor_roofing.register_roof("homedecor", "wood",
 	{ snappy = 3 },
 	{ "homedecor_shingles_wood.png" },
 	S("Wood Shingles")
 )
 
-homedecor.register_roof("homedecor", "asphalt",
+homedecor_roofing.register_roof("homedecor", "asphalt",
 	{ snappy = 3 },
 	{ "homedecor_shingles_asphalt.png" },
 	S("Asphalt Shingles")
 )
 
-homedecor.register_roof("homedecor", "terracotta",
+homedecor_roofing.register_roof("homedecor", "terracotta",
 	{ snappy = 3 },
 	{ "homedecor_shingles_terracotta.png" },
 	S("Terracotta Shingles")
@@ -279,28 +278,28 @@ homedecor.register_roof("homedecor", "terracotta",
 
 -- register just the slopes
 
-homedecor.register_slope("homedecor", "wood",
+homedecor_roofing.register_slope("homedecor", "wood",
 	"homedecor:shingles_wood",
 	{ snappy = 3 },
 	{ "homedecor_shingles_wood.png" },
 	S("Wood Shingles")
 )
 
-homedecor.register_slope("homedecor", "asphalt",
+homedecor_roofing.register_slope("homedecor", "asphalt",
 	"homedecor:shingles_asphalt",
 	{ snappy = 3 },
 	{ "homedecor_shingles_asphalt.png" },
 	S("Asphalt Shingles")
 )
 
-homedecor.register_slope("homedecor", "terracotta",
+homedecor_roofing.register_slope("homedecor", "terracotta",
 	"homedecor:shingles_terracotta",
 	{ snappy = 3 },
 	{ "homedecor_shingles_terracotta.png" },
 	S("Terracotta Shingles")
 )
 
-homedecor.register_slope("homedecor", "glass",
+homedecor_roofing.register_slope("homedecor", "glass",
 	"homedecor:shingles_glass",
 	{ snappy = 3 },
 	{ "homedecor_shingles_glass.png", "homedecor_shingles_wood.png" },

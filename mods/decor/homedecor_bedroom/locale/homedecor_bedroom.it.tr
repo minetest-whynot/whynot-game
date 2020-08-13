@@ -1,0 +1,13 @@
+# textdomain: homedecor_bedroom
+
+
+### init.lua ###
+
+Bed=rosso
+Bed (king sized)=
+Nightstand with One Drawer (@1)=Comodino in quercia con un cassetto
+Nightstand with Two Drawers (@1)=Comodino in quercia con due cassetti
+One-drawer Nightstand=Comodino a singolo cassetto
+Two-drawer Nightstand=Comodino a doppio cassetto
+mahogany=
+oak=

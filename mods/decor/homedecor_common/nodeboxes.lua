@@ -22,7 +22,8 @@ homedecor.box = {
 		end
 	end,
 	bar_y = function(radius) return {-radius, -0.5, -radius, radius, 0.5, radius} end,
-	cuboid = function(radius_x, radius_y, radius_z) return {-radius_x, -radius_y, -radius_z, radius_x, radius_y, radius_z} end,
+	cuboid = function(radius_x, radius_y, radius_z)
+		return {-radius_x, -radius_y, -radius_z, radius_x, radius_y, radius_z} end,
 }
 
 homedecor.nodebox = {

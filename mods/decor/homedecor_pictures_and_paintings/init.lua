@@ -1,4 +1,4 @@
-local S = homedecor.gettext
+local S = minetest.get_translator("homedecor_pictures_and_paintings")
 
 local pframe_cbox = {
 	type = "fixed",
@@ -8,7 +8,7 @@ local n = { 1, 2 }
 
 for _, i in ipairs(n) do
 	homedecor.register("picture_frame"..i, {
-		description = S("Picture Frame "..i),
+		description = S("Picture Frame @1", i),
 		mesh = "homedecor_picture_frame.obj",
 		tiles = {
 			"homedecor_picture_frame_image"..i..".png",

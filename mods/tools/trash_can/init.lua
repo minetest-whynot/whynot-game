@@ -120,6 +120,7 @@ minetest.register_node("trash_can:trash_can_wooden",{
 			"button[0,0;2,1;empty;Empty Trash]" ..
 			"list[context;trashlist;3,1;2,3;]" ..
 			"list[current_player;main;0,5;8,4;]" ..
+			"listring[]" ..
 			moditems.boxart
 		)
 		meta:set_string("infotext", moditems.trashcan_infotext)
@@ -190,6 +191,7 @@ minetest.register_node("trash_can:dumpster", {
 			"button[0,0;2,1;empty;Empty Trash]" ..
 			"list[context;main;1,1;6,3;]" ..
 			"list[current_player;main;0,5;8,4;]"..
+			"listring[]" ..
 			moditems.boxart
 		)
 		meta:set_string("infotext", moditems.dumpster_infotext)

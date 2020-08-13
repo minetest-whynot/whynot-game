@@ -1,0 +1,8 @@
+# textdomain: homedecor_electrical
+
+
+### init.lua ###
+
+Doorbell=门铃
+Light switch=灯光开关
+Power Outlet=电源插座

@@ -1,0 +1,27 @@
+# textdomain: homedecor_tables
+
+
+### coffeetable.lua ###
+
+Coffee Table=咖啡桌
+No room to place the coffee table!=没有地方放咖啡桌！
+Someone else owns the spot where the middle or far end goes!=中间或远端去的地方是别人的！
+Someone else owns the spot where the other end goes!=另一端去的地方是别人的！
+
+### endtable.lua ###
+
+End Table=结束表
+
+### misc.lua ###
+
+Large glass table piece=大玻璃桌片
+Large wooden table piece=大木桌片
+Legs for Utility Table=通用桌腿
+Small round glass table=小圆形玻璃桌
+Small round wooden table=小圆桌
+Small square glass table=小方形玻璃桌
+Small square wooden table=小方木桌
+Table Legs (@1)=桌腿（@1）
+Utility Table=效用表
+brass=黄铜
+wrought iron=锻铁

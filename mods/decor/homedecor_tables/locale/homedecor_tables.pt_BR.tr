@@ -1,0 +1,27 @@
+# textdomain: homedecor_tables
+
+
+### coffeetable.lua ###
+
+Coffee Table=Mesa de Café
+No room to place the coffee table!=Sem espaço para colocar a mesa de café
+Someone else owns the spot where the middle or far end goes!=Alguém já é proprietário do local onde a cabeceira vai.
+Someone else owns the spot where the other end goes!=Alguém já é proprietário do local onde a cabeceira vai.
+
+### endtable.lua ###
+
+End Table=Mesa
+
+### misc.lua ###
+
+Large glass table piece=Mesa grande de vidro
+Large wooden table piece=Mesa grande de madeira
+Legs for Utility Table=Pernas para Mesa de Trabalho
+Small round glass table=Mesa pequena circular de vidro
+Small round wooden table=Mesa pequena circular de madeira
+Small square glass table=Mesa pequena quadrada de vidro
+Small square wooden table=Mesa pequena quadrada de madeira
+Table Legs (@1)=Pernas de Mesa (@1)
+Utility Table=Mesa de Trabalho
+brass=latão
+wrought iron=ferro forjado

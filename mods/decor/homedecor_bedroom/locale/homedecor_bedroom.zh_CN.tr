@@ -1,0 +1,13 @@
+# textdomain: homedecor_bedroom
+
+
+### init.lua ###
+
+Bed=床
+Bed (king sized)=双人床
+Nightstand with One Drawer (@1)=带一个抽屉的床头柜(@1)
+Nightstand with Two Drawers (@1)=带两个抽屉的床头柜(@1)
+One-drawer Nightstand=单抽屉床头柜
+Two-drawer Nightstand=两抽屉床头柜
+mahogany=桃花心木
+oak=橡木

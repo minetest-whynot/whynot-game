@@ -1,0 +1,25 @@
+# textdomain: homedecor_exterior
+
+
+### init.lua ###
+
+Barbecue=Grill
+Doghouse=Hundehütte
+Garden Lattice (@1)=Gartenzaun (@1)
+Garden stone path=Gartensteinpfad
+No room in your inventory to add a filled bucket!=
+No room under there to hang a swing.=
+Shrubbery (@1)=Gebüsch (@1)
+Shrubbery (large, @1)=Gebüsch (@1)
+Tree's swing=Baumschaukel
+Water well=Wasserbrunnen
+
+You have to point at the bottom side of an overhanging object to place a swing.=
+
+green=grün
+red=rot
+white wood=weißes Holz
+white wood, with vegetation=weißes Holz mit Vegetation
+wood=Holz
+wood, with vegetation=Holz mit Vegetation
+yellow=gelb

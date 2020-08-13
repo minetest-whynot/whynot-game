@@ -1,0 +1,18 @@
+# textdomain: homedecor_roofing
+
+
+### init.lua ###
+
+@1 (inner corner)=@1 (coin intérieur)
+@1 (outer corner)=@1 (coin extérieur)
+Asphalt Shingles=Bardeaux d'asphalte
+Chimney=Cheminée
+Glass Shingles=Bardeaux de verre
+Glass Skylight=Lucarne en verre
+Glass Skylight Frosted=Lucarne en verre givrée
+Shingles (@1)=Bardeaux (@1)
+Terracotta Shingles=Bardeaux de terre cuite
+Wood Shingles=Bardeaux de bois
+asphalt=asphalte
+terracotta=terre cuite
+wood=bois

@@ -1,5 +1,4 @@
-
-local S = homedecor.gettext
+local S = minetest.get_translator("homedecor_common")
 
 local default_can_dig = function(pos,player)
 	local meta = minetest.get_meta(pos)
@@ -84,20 +83,17 @@ function homedecor.handle_inventory(name, def, original_def)
 	end
 
 	def.can_dig = def.can_dig or default_can_dig
-	def.on_metadata_inventory_move = def.on_metadata_inventory_move or function(pos, from_list, from_index, to_list, to_index, count, player)
-		minetest.log("action", S("@1 moves stuff in @2 at @3",
-			player:get_player_name(), name, minetest.pos_to_string(pos)
-		))
+	def.on_metadata_inventory_move = def.on_metadata_inventory_move or
+			function(pos, from_list, from_index, to_list, to_index, count, player)
+		minetest.log("action", player:get_player_name().." moves stuff in "..name.." at "..minetest.pos_to_string(pos))
 	end
 	def.on_metadata_inventory_put = def.on_metadata_inventory_put or function(pos, listname, index, stack, player)
-		minetest.log("action", S("@1 moves @2 to @3 at @4",
-			player:get_player_name(), stack:get_name(), name, minetest.pos_to_string(pos)
-		))
+		minetest.log("action", player:get_player_name().." moves "..stack:get_name()
+			.." to "..name.." at "..minetest.pos_to_string(pos))
 	end
 	def.on_metadata_inventory_take = def.on_metadata_inventory_take or function(pos, listname, index, stack, player)
-		minetest.log("action", S("@1 takes @2 from @3 at @4",
-			player:get_player_name(), stack:get_name(), name, minetest.pos_to_string(pos)
-		))
+		minetest.log("action", player:get_player_name().." takes "..stack:get_name()
+			.." from "..name.." at "..minetest.pos_to_string(pos))
 	end
 
 	local locked = inventory.locked
@@ -114,57 +110,76 @@ function homedecor.handle_inventory(name, def, original_def)
 
 		local allow_move = def.allow_metadata_inventory_move
 		def.allow_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)
-			local meta = minetest.get_meta(pos)
-			local owner = meta:get_string("owner")
-			local playername = player:get_player_name()
-
-			if playername == owner or
-					minetest.check_player_privs(playername, "protection_bypass") then
-				return allow_move and
-						allow_move(pos, from_list, from_index, to_list, to_index, count, player) or
-						count
+			if not default.can_interact_with_node(player, pos) then
+				minetest.log("action", player:get_player_name().." tried to access a "..name.." belonging to "
+					..minetest.get_meta(pos):get_string("owner").." at "..minetest.pos_to_string(pos))
+				return 0
 			end
-
-			minetest.log("action", S("@1 tried to access a @2 belonging to @3 at @4",
-				playername, name, owner, minetest.pos_to_string(pos)
-			))
-			return 0
+			return allow_move and allow_move(pos, from_list, from_index, to_list, to_index, count, player) or
+					count
 		end
 
 		local allow_put = def.allow_metadata_inventory_put
 		def.allow_metadata_inventory_put = function(pos, listname, index, stack, player)
-			local meta = minetest.get_meta(pos)
-			local owner = meta:get_string("owner")
-			local playername = player:get_player_name()
-
-			if playername == owner or
-					minetest.check_player_privs(playername, "protection_bypass") then
-				return allow_put and allow_put(pos, listname, index, stack, player) or
-						stack:get_count()
+			if not default.can_interact_with_node(player, pos) then
+				minetest.log("action", player:get_player_name().." tried to access a "..name.." belonging to"
+					..minetest.get_meta(pos):get_string("owner").." at "..minetest.pos_to_string(pos))
+				return 0
 			end
-
-			minetest.log("action", S("@1 tried to access a @2 belonging to @3 at @4",
-				playername, name, owner, minetest.pos_to_string(pos)
-			))
-			return 0
+			return allow_put and allow_put(pos, listname, index, stack, player) or
+					stack:get_count()
 		end
 
 		local allow_take = def.allow_metadata_inventory_take
 		def.allow_metadata_inventory_take = function(pos, listname, index, stack, player)
+			if not default.can_interact_with_node(player, pos) then
+				minetest.log("action", player:get_player_name().." tried to access a "..name.." belonging to"
+					..minetest.get_meta(pos):get_string("owner").." at ".. minetest.pos_to_string(pos))
+				return 0
+			end
+			return allow_take and allow_take(pos, listname, index, stack, player) or
+					stack:get_count()
+		end
+
+		local can_dig = def.can_dig
+		def.can_dig = function(pos, player)
+			return default.can_interact_with_node(player, pos) and (can_dig and (can_dig(pos, player) or true))
+		end
+
+		def.on_key_use = function(pos, player)
+			local secret = minetest.get_meta(pos):get_string("key_lock_secret")
+			local itemstack = player:get_wielded_item()
+			local key_meta = itemstack:get_meta()
+
+			if secret ~= key_meta:get_string("secret") then
+				return
+			end
+
+			minetest.show_formspec(
+				player:get_player_name(),
+				name.."_locked",
+				minetest.get_meta(pos):get_string("formspec")
+			)
+		end
+
+		def.on_skeleton_key_use = function(pos, player, newsecret)
 			local meta = minetest.get_meta(pos)
 			local owner = meta:get_string("owner")
 			local playername = player:get_player_name()
 
-			if playername == owner or
-					minetest.check_player_privs(playername, "protection_bypass") then
-				return allow_take and allow_take(pos, listname, index, stack, player) or
-						stack:get_count()
+			-- verify placer is owner
+			if owner ~= playername then
+				minetest.record_protection_violation(pos, playername)
+				return nil
 			end
 
-			minetest.log("action", S("@1 tried to access a @2 belonging to @3 at @4",
-				playername, name, owner, minetest.pos_to_string(pos)
-			))
-			return 0
+			local secret = meta:get_string("key_lock_secret")
+			if secret == "" then
+				secret = newsecret
+				meta:set_string("key_lock_secret", secret)
+			end
+
+			return secret, meta:get_string("description"), owner
 		end
 	end
 

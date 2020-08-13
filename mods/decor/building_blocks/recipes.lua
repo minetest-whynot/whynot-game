@@ -1,5 +1,3 @@
-local S = homedecor.gettext
-
 if minetest.get_modpath("moreblocks") then
 	minetest.register_craft({
 		output = 'building_blocks:sticks 2',

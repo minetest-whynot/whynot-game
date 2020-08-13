@@ -1,0 +1,24 @@
+# textdomain: homedecor_kitchen
+
+
+### init.lua ###
+
+Copper pans=Sartenes de cobre
+Dishwasher=Lavavajillas
+Dishwasher (@1)=Lavavajillas (@1)
+Half-height Kitchen Cabinet (on ceiling)=Gabinete de cocina de media altura (en techo)
+Kitchen Cabinet=Gabinete de cocina
+Kitchen Cabinet (@1 top)=Gabinete de cocina (mesada de @1)
+Kitchen Cabinet with sink=Gabinete de cocina con lavabo
+Kitchen Faucet=Grifo de cocina
+Microwave Oven=Horno microondas
+Oven=Horno
+Oven (stainless steel)=Horno (acero inoxidable)
+Paper towels=Toallas de papel
+Refrigerator=Refrigerador
+Refrigerator (stainless steel)=Refrigerador (acero inoxidable)
+Under-sink cabinet=Gabinete bajo lavabo
+granite=granito
+marble=mármol
+steel=acero
+wood=madera

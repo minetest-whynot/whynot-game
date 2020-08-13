@@ -1,0 +1,28 @@
+# textdomain: homedecor_common
+
+
+### crafts.lua ###
+
+Small Wooden Drawer=Маленький деревянный выдвижной ящик
+Terracotta Roof Tile=Терракотовая крыша
+
+### expansion.lua ###
+
+Not enough room - the space for the headboard is occupied!=Не хватает места - пространство для изголовья занято!
+Not enough room - the upper space is occupied!=Не хватает места - верхнее пространство занято!
+Someone already owns that spot.=Та точка уже принадлежит кому-то.
+Someone already owns the spot where the headboard goes.=Точка, куда ставится изголовье, уже принадлежит кому-то.
+
+### furnaces.lua ###
+
+@1 (active)=@1 (активно)
+@1 (active: @2%)=@1 (активно: @2%)
+@1 (empty)=@1 (пусто)
+@1 (out of fuel)=@1 (не хватает топлива)
+@1 (output bins are full)=@1 (выходные ячейки заполнены)
+Furnace=Печь
+
+### inventory.lua ###
+
+@1 (Locked)=@1 (Закрыто)
+@1 (owned by @2)=@1 (принадлежит @2)

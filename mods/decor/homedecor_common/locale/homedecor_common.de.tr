@@ -1,0 +1,28 @@
+# textdomain: homedecor_common
+
+
+### crafts.lua ###
+
+Small Wooden Drawer=Kleine Holzschublade
+Terracotta Roof Tile=Terrakottadachziegel
+
+### expansion.lua ###
+
+Not enough room - the space for the headboard is occupied!=Nicht genügeng Platz – Der Platz für das Kopfende ist belegt!
+Not enough room - the upper space is occupied!=Nicht genügend Platz – der obere Teil ist belegt!
+Someone already owns that spot.=Jemanden gehört diese Stelle schon.
+Someone already owns the spot where the headboard goes.=Jemanden gehört schon der Platz, wo das Kopfende hingehen würde.
+
+### furnaces.lua ###
+
+@1 (active)=@1 (aktiv)
+@1 (active: @2%)=@1 (aktiv: @2%)
+@1 (empty)=@1 (leer)
+@1 (out of fuel)=@1 (kein Brennmaterial vorhanden)
+@1 (output bins are full)=@1 (Ausgabe ist voll)
+Furnace=Ofen
+
+### inventory.lua ###
+
+@1 (Locked)=@1 (abgeschlossen)
+@1 (owned by @2)=@1 (gehört @2)

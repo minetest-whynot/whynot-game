@@ -1,0 +1,8 @@
+# textdomain: homedecor_trash_cans
+
+
+### init.lua ###
+
+Green Trash Can=
+Small Trash Can=
+Trash Can=

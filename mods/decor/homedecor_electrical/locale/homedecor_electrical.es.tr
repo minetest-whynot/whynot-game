@@ -1,0 +1,8 @@
+# textdomain: homedecor_electrical
+
+
+### init.lua ###
+
+Doorbell=Timbre
+Light switch=Interruptor de luz
+Power Outlet=Toma de corriente

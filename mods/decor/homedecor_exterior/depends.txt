@@ -1,8 +1,0 @@
-homedecor_common
-default
-dye
-creative
-basic_materials
-moreblocks?
-building_blocks?
-bucket?

@@ -1,0 +1,27 @@
+# textdomain: homedecor_tables
+
+
+### coffeetable.lua ###
+
+Coffee Table=Kaffeetisch
+No room to place the coffee table!=Kein Platz, um den Kaffeetisch zu platzieren!
+Someone else owns the spot where the middle or far end goes!=Jemanden gehört schon die Stelle, wo das mittlere oder ferne Stück hingehen würde.
+Someone else owns the spot where the other end goes!=Jemanden gehört schon die Stelle, wo das andere Ende hingehen würde.
+
+### endtable.lua ###
+
+End Table=Beitisch
+
+### misc.lua ###
+
+Large glass table piece=Großes Glastischteil
+Large wooden table piece=Großes Holztischteil
+Legs for Utility Table=Tischbeine für Werkzeugtisch
+Small round glass table=Kleiner runder Glastisch
+Small round wooden table=Kleiner runder Holztisch
+Small square glass table=Kleiner quadratischer Glastisch
+Small square wooden table=Kleiner quadratischer Holztisch
+Table Legs (@1)=Tischbeine (@1)
+Utility Table=Werkzeugtisch
+brass=Messing
+wrought iron=Schmiedeeisen

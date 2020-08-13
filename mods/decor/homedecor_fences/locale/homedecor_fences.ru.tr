@@ -1,0 +1,20 @@
+# textdomain: homedecor_fences
+
+
+### init.lua ###
+
+Barbed Wire Fence=Забор из колючей проволоки
+Barbed Wire Fence Corner=Угол забора из колючей проволоки
+Chainlink Fence=Цепной забор
+Chainlink Fence Corner=Угол цепного забора
+Fence/railing (@1)=Забор/ограда (@1)
+Unpainted Picket Fence=Некрашеный забор из частокола
+Unpainted Picket Fence Corner=Угол некрашеного забора из частокола
+White Picket Fence=Белый забор из частокола
+White Picket Fence Corner=Угол белого забора из частокола
+Wooden Privacy Fence=Деревянный глухой забор
+Wooden Privacy Fence Corner=Угол деревянного глухого забора
+Wrought Iron fence (type 2)=Кованный железный забор (2й тип)
+Wrought Iron fence (type 2) Corner=Угол кованного железного забора (2й тип)
+brass=латунь
+wrought iron=кованное железо

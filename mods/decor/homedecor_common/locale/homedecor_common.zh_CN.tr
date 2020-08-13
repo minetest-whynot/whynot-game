@@ -1,0 +1,28 @@
+# textdomain: homedecor_common
+
+
+### crafts.lua ###
+
+Small Wooden Drawer=小的木抽屉
+Terracotta Roof Tile=陶土屋顶瓦
+
+### expansion.lua ###
+
+Not enough room - the space for the headboard is occupied!=没有足够的空间-床头板的空间被占用了！
+Not enough room - the upper space is occupied!=没有足够的空间-上面的空间被占用了！
+Someone already owns that spot.=已经有东西占用那个地方了。
+Someone already owns the spot where the headboard goes.=有东西已经占用床头板的位置了。
+
+### furnaces.lua ###
+
+@1 (active)=@1（活动）
+@1 (active: @2%)=@1（活动：@2%）
+@1 (empty)=@1（空）
+@1 (out of fuel)=@1（燃油耗尽）
+@1 (output bins are full)=@1（输出箱已满）
+Furnace=熔炉
+
+### inventory.lua ###
+
+@1 (Locked)=@1（锁定）
+@1 (owned by @2)=@1（归@2所有）

@@ -1,5 +1,6 @@
+local S = minetest.get_translator("homedecor_windows_and_treatments")
 
-local S = homedecor.gettext
+homedecor_windows_and_treatments = {}
 
 homedecor.register("window_quartered", {
 	description = S("Window (quartered)"),
@@ -271,17 +272,17 @@ minetest.register_alias("homedecor:shutter_oak", "homedecor:shutter")
 
 -- convert old shutters to param2 coloring
 
-homedecor.old_shutter_nodes = {}
+homedecor_windows_and_treatments.old_shutter_nodes = {}
 
 for _, color in ipairs(shutters) do
-	table.insert(homedecor.old_shutter_nodes, "homedecor:shutter_"..color)
+	table.insert(homedecor_windows_and_treatments.old_shutter_nodes, "homedecor:shutter_"..color)
 end
 
 minetest.register_lbm({
 	name = ":homedecor:convert_shutters",
 	label = "Convert shutter static nodes to use param2 color",
 	run_at_every_load = false,
-	nodenames = homedecor.old_shutter_nodes,
+	nodenames = homedecor_windows_and_treatments.old_shutter_nodes,
 	action = function(pos, node)
 		local name = node.name
 		local color = string.sub(name, string.find(name, "_") + 1)
@@ -316,18 +317,18 @@ local curtaincolors = {
 	"violet",
 }
 
-homedecor.old_static_curtain_nodes = {}
+homedecor_windows_and_treatments.old_static_curtain_nodes = {}
 
 for _, color in ipairs(curtaincolors) do
-	table.insert(homedecor.old_static_curtain_nodes, "homedecor:curtain_"..color)
-	table.insert(homedecor.old_static_curtain_nodes, "homedecor:curtain_open_"..color)
+	table.insert(homedecor_windows_and_treatments.old_static_curtain_nodes, "homedecor:curtain_"..color)
+	table.insert(homedecor_windows_and_treatments.old_static_curtain_nodes, "homedecor:curtain_open_"..color)
 end
 
 minetest.register_lbm({
 	name = ":homedecor:convert_curtains",
 	label = "Convert static curtain nodes to use param2 color",
 	run_at_every_load = false,
-	nodenames = homedecor.old_static_curtain_nodes,
+	nodenames = homedecor_windows_and_treatments.old_static_curtain_nodes,
 	action = function(pos, node)
 		local name = node.name
 		local color = string.sub(name, 19)
@@ -423,15 +424,15 @@ unifieddyes.register_color_craft({
 	}
 })
 
-local mats = {
+local mats_craft = {
 	{ "brass", "homedecor:pole_brass" },
 	{ "wrought_iron", "homedecor:pole_wrought_iron" },
 	{ "wood", "group:stick" }
 }
 
-for i in ipairs(mats) do
-	local material = mats[i][1]
-	local ingredient = mats[i][2]
+for i in ipairs(mats_craft) do
+	local material = mats_craft[i][1]
+	local ingredient = mats_craft[i][2]
 	minetest.register_craft( {
 		output = "homedecor:curtainrod_"..material.." 3",
 		recipe = {

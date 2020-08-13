@@ -1,5 +1,6 @@
+local S = minetest.get_translator("homedecor_bathroom")
 
-local S = homedecor.gettext
+local sc_disallow = minetest.get_modpath("screwdriver") and screwdriver.disallow or nil
 
 minetest.register_node(":homedecor:bathroom_tiles_dark", {
 	description = S("Bathroom/kitchen tiles (dark)"),
@@ -274,7 +275,7 @@ homedecor.register("taps", {
 	sounds = default.node_sound_stone_defaults(),
 	on_rightclick = taps_on_rightclick,
 	on_destruct = homedecor.stop_particle_spawner,
-	on_rotate = screwdriver.disallow
+	on_rotate = sc_disallow or nil
 })
 
 homedecor.register("taps_brass", {
@@ -297,7 +298,7 @@ homedecor.register("taps_brass", {
 	sounds = default.node_sound_stone_defaults(),
 	on_rightclick = taps_on_rightclick,
 	on_destruct = homedecor.stop_particle_spawner,
-	on_rotate = screwdriver.disallow
+	on_rotate = sc_disallow or nil,
 })
 
 --Shower Tray
@@ -347,7 +348,7 @@ homedecor.register("shower_head", {
 	groups = {snappy=3},
 	selection_box = sh_cbox,
 	walkable = false,
-	on_rotate = screwdriver.disallow,
+	on_rotate = sc_disallow or nil,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		local below = minetest.get_node_or_nil({x=pos.x, y=pos.y-2.0, z=pos.z})
 		if below and (
@@ -469,7 +470,7 @@ minetest.register_alias("table_lamp", "homedecor:table_lamp_off")
 
 -- convert old static nodes
 
-homedecor.old_static_bathroom_tiles = {
+local old_static_bathroom_tiles = {
 	"homedecor:tiles_1",
 	"homedecor:tiles_2",
 	"homedecor:tiles_3",
@@ -492,7 +493,7 @@ minetest.register_lbm({
 	name = ":homedecor:convert_bathroom_tiles",
 	label = "Convert bathroom tiles to use param2 color",
 	run_at_every_load = false,
-	nodenames = homedecor.old_static_bathroom_tiles,
+	nodenames = old_static_bathroom_tiles,
 	action = function(pos, node)
 		local name = node.name
 		local newname = "homedecor:bathroom_tiles_light"

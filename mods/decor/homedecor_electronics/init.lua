@@ -1,6 +1,6 @@
 -- Various home electronics
 
-local S = homedecor.gettext
+local S = minetest.get_translator("homedecor_electronics")
 
 homedecor.register("speaker", {
 	description = S("Large Stereo Speaker"),
@@ -160,18 +160,18 @@ minetest.register_craftitem(":homedecor:speaker_driver", {
 })
 
 minetest.register_craft( {
-        output = "homedecor:projection_screen 3",
-        recipe = {
+	output = "homedecor:projection_screen 3",
+	recipe = {
 		{ "", "default:glass", "" },
-                { "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" },
-                { "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" },
-        },
+		{ "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" },
+		{ "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" },
+	},
 })
 
 minetest.register_craft({
-        type = "fuel",
-        recipe = "homedecor:projection_screen",
-        burntime = 30,
+	type = "fuel",
+	recipe = "homedecor:projection_screen",
+	burntime = 30,
 })
 
 
@@ -212,8 +212,8 @@ minetest.register_craft( {
 
 
 minetest.register_craft( {
-        output = "homedecor:speaker_driver 2",
-		recipe = {
+	output = "homedecor:speaker_driver 2",
+	recipe = {
 		{ "", "default:steel_ingot", "" },
 		{ "default:paper", "basic_materials:copper_wire", "default:iron_lump" },
 		{ "", "default:steel_ingot", "" },
@@ -221,15 +221,15 @@ minetest.register_craft( {
 })
 
 minetest.register_craft( {
-        output = "homedecor:speaker_small",
-		recipe = {
+	output = "homedecor:speaker_small",
+	recipe = {
 		{ "wool:black", "homedecor:speaker_driver", "group:wood" },
 	},
 })
 
 minetest.register_craft( {
-        output = "homedecor:speaker",
-		recipe = {
+	output = "homedecor:speaker",
+	recipe = {
 		{ "wool:black", "homedecor:speaker_driver", "group:wood" },
 		{ "wool:black", "homedecor:speaker_driver", "group:wood" },
 		{ "wool:black", "group:wood", "group:wood" },
@@ -239,15 +239,15 @@ minetest.register_craft( {
 -- cotton version
 
 minetest.register_craft( {
-        output = "homedecor:speaker_small",
-		recipe = {
+	output = "homedecor:speaker_small",
+	recipe = {
 		{ "cotton:black", "homedecor:speaker_driver", "group:wood" },
 	},
 })
 
 minetest.register_craft( {
-        output = "homedecor:speaker",
-		recipe = {
+	output = "homedecor:speaker",
+	recipe = {
 		{ "cotton:black", "homedecor:speaker_driver", "group:wood" },
 		{ "cotton:black", "homedecor:speaker_driver", "group:wood" },
 		{ "cotton:black", "group:wood", "group:wood" },
@@ -256,46 +256,37 @@ minetest.register_craft( {
 
 
 minetest.register_craft({
-    output = "homedecor:vcr 2",
-    recipe = {
+	output = "homedecor:vcr 2",
+	recipe = {
 		{ "basic_materials:ic", "default:steel_ingot", "basic_materials:plastic_sheet" },
 		{ "default:iron_lump", "default:iron_lump", "default:iron_lump" },
 		{ "basic_materials:plastic_sheet", "", "basic_materials:plastic_sheet" },
-    },
+	},
 })
 
 minetest.register_craft({
-    output = "homedecor:dvd_player 2",
-    recipe = {
+	output = "homedecor:dvd_player 2",
+	recipe = {
 		{ "", "basic_materials:plastic_sheet", "" },
 		{ "default:obsidian_glass", "basic_materials:motor", "basic_materials:motor" },
 		{ "default:mese_crystal_fragment", "basic_materials:ic", "basic_materials:energy_crystal_simple" },
-    },
-})
-
-minetest.register_craft({
-    output = "homedecor:dvd_player 2",
-    recipe = {
-		{ "", "basic_materials:plastic_sheet", "" },
-		{ "default:obsidian_glass", "basic_materials:motor", "basic_materials:motor" },
-		{ "default:mese_crystal_fragment", "basic_materials:ic", "basic_materials:energy_crystal_simple" },
-    },
+	},
 })
 
 minetest.register_craft({
 	type = "shapeless",
-    output = "homedecor:dvd_vcr",
-    recipe = {
+	output = "homedecor:dvd_vcr",
+	recipe = {
 		"homedecor:vcr",
 		"homedecor:dvd_player"
-    },
+	},
 })
 
 minetest.register_craft( {
-        output = "homedecor:telephone",
-        recipe = {
-			{ "homedecor:speaker_driver", "basic_materials:copper_wire", "homedecor:speaker_driver" },
-			{ "basic_materials:plastic_sheet", "default:steel_ingot", "basic_materials:plastic_sheet" },
-			{ "default:steel_ingot", "default:steel_ingot", "default:steel_ingot" }
-        },
+	output = "homedecor:telephone",
+	recipe = {
+		{ "homedecor:speaker_driver", "basic_materials:copper_wire", "homedecor:speaker_driver" },
+		{ "basic_materials:plastic_sheet", "default:steel_ingot", "basic_materials:plastic_sheet" },
+		{ "default:steel_ingot", "default:steel_ingot", "default:steel_ingot" }
+	},
 })

@@ -1,0 +1,27 @@
+# textdomain: homedecor_tables
+
+
+### coffeetable.lua ###
+
+Coffee Table=Кофейный столик
+No room to place the coffee table!=Нет места для установки кофейного столика!
+Someone else owns the spot where the middle or far end goes!=Кому-то другому принадлежит точка, куда выходит средний или дальний конец!
+Someone else owns the spot where the other end goes!=Кому-то другому принадлежит точка, где выходит другой конец!
+
+### endtable.lua ###
+
+End Table=Оконечный стол
+
+### misc.lua ###
+
+Large glass table piece=Большая стеклянная столешница
+Large wooden table piece=Большая деревянная столешница
+Legs for Utility Table=Ножки вспомогательного стола
+Small round glass table=Маленький круглый стеклянный столик
+Small round wooden table=Маленький круглый деревянный столик
+Small square glass table=Маленький квадратный стеклянный столик
+Small square wooden table=Маленький квадратный деревянный столик
+Table Legs (@1)=Ножки стола (@1)
+Utility Table=Вспомогательный стол
+brass=латунь
+wrought iron=кованное железо

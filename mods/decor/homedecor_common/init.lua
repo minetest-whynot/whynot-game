@@ -6,11 +6,6 @@ local modpath = minetest.get_modpath("homedecor_common")
 homedecor = {}
 homedecor.modpath = modpath
 
--- Intllib support
-homedecor.gettext, homedecor.ngettext = dofile(modpath.."/intllib.lua")
-
-local S = homedecor.gettext
-
 -- Determine if the item being pointed at is the underside of a node (e.g a ceiling)
 function homedecor.find_ceiling(itemstack, placer, pointed_thing)
 	-- most of this is copied from the rotate-and-place function in builtin
@@ -54,8 +49,6 @@ function homedecor.find_ceiling(itemstack, placer, pointed_thing)
 	return isceiling, pos
 end
 
-screwdriver = screwdriver or {}
-
 homedecor.plain_wood    = { name = "homedecor_generic_wood_plain.png",  color = 0xffa76820 }
 homedecor.mahogany_wood = { name = "homedecor_generic_wood_plain.png",  color = 0xff7d2506 }
 homedecor.white_wood    = "homedecor_generic_wood_plain.png"
@@ -73,10 +66,9 @@ dofile(modpath.."/furnaces.lua")
 dofile(modpath.."/inventory.lua")
 dofile(modpath.."/registration.lua")
 dofile(modpath.."/water_particles.lua")
-dofile(modpath.."/mt_game_beds_functions.lua")
 dofile(modpath.."/sit.lua")
 dofile(modpath.."/crafts.lua")
 
 if minetest.settings:get_bool("log_mod") then
-	minetest.log("action", "[HomeDecor API] " .. S("Loaded!"))
+	minetest.log("action", "[HomeDecor API] Loaded!")
 end

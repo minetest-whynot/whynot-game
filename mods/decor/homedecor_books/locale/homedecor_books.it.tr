@@ -1,0 +1,13 @@
+# textdomain: homedecor_books
+
+
+### init.lua ###
+
+@1 has written in a book (title: "@2"): "@3" at location @4=
+Writable Book (@1)=Gambe in ottone del tavolo (@1)
+blue=blu
+brown=
+green=verde
+grey=verde scuro
+red=rosso
+violet=viola

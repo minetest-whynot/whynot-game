@@ -1,3 +1,0 @@
-default
-homedecor_common
-homedecor_electronics

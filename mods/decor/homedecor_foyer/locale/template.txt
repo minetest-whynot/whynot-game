@@ -1,0 +1,10 @@
+# textdomain: homedecor_foyer
+
+
+### init.lua ###
+
+Brown welcome mat=
+Coat tree=
+Green welcome mat=
+Grey welcome mat=
+Wall-mounted coat rack=

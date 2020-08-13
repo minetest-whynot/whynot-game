@@ -1,6 +1,6 @@
 -- crafts for common items that are used by more than one home decor component
 
-local S = homedecor.gettext
+local S = minetest.get_translator("homedecor_common")
 
 -- items
 
