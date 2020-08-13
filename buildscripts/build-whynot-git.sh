@@ -34,6 +34,8 @@ mod_install tools
 
 mod_install tools flight/flyingcarpet
 
+mod_install tools maidroid/maidroid*
+
 mod_install decor
 mod_install decor homedecor_modpack/building_blocks #grate and marble in recipes
 # no computers - I use laptop mod
