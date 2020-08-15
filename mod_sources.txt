@@ -160,8 +160,8 @@ origin	https://github.com/minetest-technic/mese_crystals (fetch)
 * master c11160f [origin/master: ahead 1] fix leaked globals
 Mod: flora_ores/mese_crystals
 
-origin	https://github.com/h-v-smacker/maple (fetch)
-* master 1829c7a [origin/master] Create LICENSE
+origin	https://notabug.org/dacmot/maple (fetch)
+* master 246107d [origin/master] Don't translate log strings
 Mod: mapgen/maple
 
 origin	https://github.com/minetest-mods/meseor (fetch)
@@ -389,7 +389,7 @@ origin	https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin	https://github.com/minetest-mods/mesecons (fetch)
-* master 16836b1 [origin/master] Make more nodes trigger special noteblock sounds (#506)
+* master 4750925 [origin/master] Allow admins digging any command block (#525)
 Mod: mesecons/mesecons
 Mod: mesecons/mesecons_alias
 Mod: mesecons/mesecons_blinkyplant
@@ -420,5 +420,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master 565c085 [origin/master] nil check for self.attack
+* master 81b5e40 [origin/master] update french translation (thanks dacmot)
 Mod: mobs_redo/mobs_redo

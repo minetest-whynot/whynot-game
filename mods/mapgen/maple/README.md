@@ -5,7 +5,7 @@ This mod adds a maple tree to the minetest game. Originally written for the Home
 
 ## The tree
 
-![Maple Tree](https://github.com/h-v-smacker/maple/blob/master/maple_in_the_wild.jpg)
+![Maple Tree](maple_in_the_wild.jpg)
 
 ## Bonemeal
 
@@ -46,3 +46,4 @@ If storage drawers mod is available, maple registers the corresponding assortmen
 ## Arcs
 
 If pkarcs (simple arcs) mod is found, maple arcs are registered.
+
