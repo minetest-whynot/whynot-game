@@ -1,6 +1,7 @@
 # textdomain:maple
 Maple Drawers=Commode d'érable
-Maple Fence=Clôture d'érable
+Maple Fence=Barrière d'érable
+Maple Fence Rail=Clôture d'érable
 Maple Leaves=Feuilles d'érable
 Maple Sapling=Pousse d'érable
 Maple Slab=Dalle d'érable
@@ -10,7 +11,8 @@ Maple Trunk=Tronc d'érable
 Maple Trunk Slab=Dalle en tronc d'érable
 Maple Trunk Stair=Marches de tronc d'érable
 Maple Wood=Bois d'érable
+Maple Wood Fence Gate=Porte de clôture d'érable
 Maple Wood Planks=Planches d'érable
-Maple Wood Slab=Dalles en planches d'érable
+Maple Wood Slab=Dalle en planches d'érable
 Maple Wood Stair=Marches en planches d'érable
 Maple sapling placed.=Pousse d'érable plantée.

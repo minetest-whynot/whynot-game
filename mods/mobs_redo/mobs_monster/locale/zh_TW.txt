@@ -14,6 +14,7 @@ Dungeon Master = 地穴之主
 Lava Flan = 岩漿餅
 Lava orb = 岩漿球
 Lava Pickaxe = 岩漿鎬
+Obsidian Flan = 黑耀石餅
 
 #mese_monster.lua
 Mese Monster = 黃石怪

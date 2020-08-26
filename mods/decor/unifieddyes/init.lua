@@ -1147,10 +1147,11 @@ minetest.register_tool("unifieddyes:airbrush", {
 
 		unifieddyes.player_last_right_clicked[player_name] = {pos = pos, node = node, def = def}
 
-		if not keys.sneak then
+		if (not keys.sneak) and def.on_rightclick then
+			return def.on_rightclick(pos, node, placer, itemstack, pointed_thing)
+		elseif not keys.sneak then
 			unifieddyes.show_airbrush_form(placer)
 		elseif keys.sneak then
-
 			if not pos or not def then return end
 			local newcolor = unifieddyes.color_to_name(node.param2, def)
 

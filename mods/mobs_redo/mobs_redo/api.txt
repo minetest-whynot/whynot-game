@@ -199,7 +199,8 @@ functions needed for the mob to work properly which contains the following:
    'double_melee_attack' when true has the api choose between 'punch' and
                       'punch2' animations. [DEPRECATED]
 
-   'animation'       holds a table containing animation names and settings for use with mesh models:
+   'animation'       holds a table containing animation names and settings for use with
+                     mesh models:
       'stand_start'  start frame for when mob stands still.
       'stand_end'    end frame of stand animation.
       'stand_speed'  speed of animation in frames per second.

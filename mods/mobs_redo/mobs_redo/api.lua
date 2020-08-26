@@ -1,12 +1,15 @@
 
--- Intllib and CMI support check
+-- Load support for intllib.
 local MP = minetest.get_modpath(minetest.get_current_modname())
-local S, NS = dofile(MP .. "/intllib.lua")
+local S = minetest.get_translator and minetest.get_translator("mobs_redo") or
+		dofile(MP .. "/intllib.lua")
+
+-- CMI support check
 local use_cmi = minetest.global_exists("cmi")
 
 mobs = {
 	mod = "redo",
-	version = "20200727",
+	version = "20200825",
 	intllib = S,
 	invis = minetest.global_exists("invisibility") and invisibility or {}
 }
@@ -196,7 +199,7 @@ end
 -- calculate distance
 local get_distance = function(a, b)
 
---	if not a or not b then return 50 end -- nil check
+	if not a or not b then return 50 end -- nil check
 
 	local x, y, z = a.x - b.x, a.y - b.y, a.z - b.z
 

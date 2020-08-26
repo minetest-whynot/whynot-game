@@ -34,7 +34,7 @@ Mod: minetest_game/mods/xpanes
 
 bell07	https://github.com/bell07/craftguide (fetch)
 origin	https://github.com/minetest-mods/craftguide/ (fetch)
-* upstream 4cc44d0 [origin/master] Fix irrlicht warning
+* upstream f91436d [origin/master] Add chinese translations
 Mod: libs/craftguide
 
 origin	https://github.com/minetest-mods/craftguide_reveal (fetch)
@@ -110,7 +110,7 @@ origin	https://github.com/minetest-mods/wielded_light (fetch)
 Mod: player/wielded_light
 
 origin	https://github.com/bell07/minetest-player_api_modpack (fetch)
-* master e889673 [origin/master] backport new skin parts Thx. to @ClockGen
+* master e616d9c [origin/master] Update README.md
 Mod: player_api_modpack/3d_armor
 Mod: player_api_modpack/character_creator
 Mod: player_api_modpack/clothing
@@ -153,7 +153,7 @@ origin	https://gitlab.com/rautars/weather_pack (fetch)
 Mod: ambience/weather_pack
 
 origin	https://notabug.org/TenPlus1/farming (fetch)
-* master 14ffd25 [origin/master] add chinese translation (thanks pevernow)
+* master 154471f [origin/master] Added 5.x translations
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
@@ -161,7 +161,7 @@ origin	https://github.com/minetest-technic/mese_crystals (fetch)
 Mod: flora_ores/mese_crystals
 
 origin	https://notabug.org/dacmot/maple (fetch)
-* master 246107d [origin/master] Don't translate log strings
+* master 033bdca [origin/master] Add maple wood fence gate
 Mod: mapgen/maple
 
 origin	https://github.com/minetest-mods/meseor (fetch)
@@ -280,7 +280,7 @@ Mod: decor/heads
 
 bell07	https://github.com/bell07/minetest-laptop (fetch)
 origin	https://github.com/Gerold55/laptop (fetch)
-* master f8d2f76 [bell07/master] fix print button if the selection was lost
+* master 8943f55 [bell07/master] add compatibility code for last change
 Mod: decor/laptop
 
 origin	http://repo.or.cz/minetest_mtg_plus.git (fetch)
@@ -312,11 +312,11 @@ origin	https://github.com/minetest-mods/ts_furniture (fetch)
 Mod: decor/ts_furniture
 
 origin	https://gitlab.com/VanessaE/unifieddyes (fetch)
-* master         c91c68e [origin/master] Merge branch '6-move_item_crash' into 'master'
+* master         30c55be [origin/master] Merge branch 'airbrush_on_place' into 'master'
 Mod: decor/unifieddyes
 
 origin	https://gitlab.com/VanessaE/homedecor_modpack/ (fetch)
-* master 0ea0599 [origin/master: ahead 1] enable the beds 3x time
+* master 631ae20 [origin/master: ahead 1] enable the beds 3x time
 Mod: homedecor_modpack/building_blocks
 Mod: homedecor_modpack/fake_fire
 Mod: homedecor_modpack/lavalamp
@@ -389,7 +389,7 @@ origin	https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin	https://github.com/minetest-mods/mesecons (fetch)
-* master 4750925 [origin/master] Allow admins digging any command block (#525)
+* master 9fda51b [origin/master] Insulated double corner (#524)
 Mod: mesecons/mesecons
 Mod: mesecons/mesecons_alias
 Mod: mesecons/mesecons_blinkyplant
@@ -416,9 +416,9 @@ Mod: mesecons/mesecons_walllever
 Mod: mesecons/mesecons_wires
 
 origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
-* master 3c3d657 [origin/master] since lava flan live in lava, set self.fly_in so they dont slow down when moving around
+* master a42877e [origin/master] added 5.x translations
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master 81b5e40 [origin/master] update french translation (thanks dacmot)
+* master 4771489 [origin/master] update intllib.lua
 Mod: mobs_redo/mobs_redo

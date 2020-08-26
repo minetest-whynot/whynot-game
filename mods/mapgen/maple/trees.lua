@@ -1,6 +1,7 @@
 local S = maple.get_translator;
 local random = math.random
 
+
 -- I don't remember if snow function is needed.
 local function is_snow_nearby(pos)
   return minetest.find_node_near(pos, 1,
@@ -43,8 +44,7 @@ minetest.register_lbm({
 -- New maple tree
 
 function maple.grow_new_maple_tree(pos)
-  local path = minetest.get_modpath("maple") ..
-    "/schematics/maple_tree.mts"
+  local path = maple.path .. "/schematics/maple_tree.mts"
   minetest.place_schematic({x = pos.x - 3, y = pos.y, z = pos.z - 3},
     path, "0", nil, false)
 end

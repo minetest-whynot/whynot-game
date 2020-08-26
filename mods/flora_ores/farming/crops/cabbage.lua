@@ -54,7 +54,7 @@ def.groups.growing = nil
 def.drop = {
 	max_items = 2, items = {
 		{items = {"farming:cabbage"}, rarity = 1},
-		{items = {"farming:cabbage"}, rarity = 5}
+		{items = {"farming:cabbage"}, rarity = 2}
 	}
 }
 minetest.register_node("farming:cabbage_6", table.copy(def))

@@ -27,7 +27,9 @@ end
 local statistics = dofile(farming.path .. "/statistics.lua")
 
 -- Intllib
-local S = dofile(farming.path .. "/intllib.lua")
+local S = minetest.get_translator and minetest.get_translator("farming") or
+		dofile(farming.path .. "/intllib.lua")
+
 farming.intllib = S
 
 
