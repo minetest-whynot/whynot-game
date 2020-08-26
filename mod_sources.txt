@@ -415,6 +415,10 @@ Mod: mesecons/mesecons_torch
 Mod: mesecons/mesecons_walllever
 Mod: mesecons/mesecons_wires
 
+origin	https://codeberg.org/Hamlet/mobs_ghost_redo (fetch)
+* master ac9c013 [origin/master] v0.7.0
+Mod: mobs_redo/mobs_ghost_redo
+
 origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 * master a42877e [origin/master] added 5.x translations
 Mod: mobs_redo/mobs_monster
