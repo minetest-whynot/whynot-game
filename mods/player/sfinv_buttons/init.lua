@@ -1,62 +1,59 @@
 -- Based on "https://gist.githubusercontent.com/rubenwardy/10074b66bd6e409c72c3ad0f79f5771a/raw/47389bbf0dc6badd79362361d0592053add7ceab/init.lua
 
--- Boilerplate to support localized strings if intllib mod is installed.
-local S
-if minetest.get_modpath("intllib") then
-	S = intllib.Getter()
-else
-	S = function(s) return s end
-end
-
-local buttons = {}
-local button_names_sorted = {}
-local buttons_num = 0
-
 local button_prefix = "sfinv_button_"
+local last_button = 0
 
--- Stores selected index in textlist
-local player_indexes = {}
-local player_selections = {}
-
-sfinv_buttons = {}
+sfinv_buttons = { registered_buttons = {}, MAX_ROWS = 9 }
 
 sfinv_buttons.register_button = function(name, def)
-	buttons[name] = def
-	table.insert(button_names_sorted, name)
-	buttons_num = buttons_num + 1
-end
 
--- Turns a textlist index to a button name
-local index_to_button_name = function(index, player)
-	local internal_index = 1
-	for i=1, #button_names_sorted do
-		local name = button_names_sorted[i]
-		local def = buttons[name]
-		if internal_index == index then
-			if def.show == nil or def.show(player) == true then
-				return name
+	def.button_name = button_prefix .. minetest.get_current_modname() .. '_' .. name
+
+	local idx_start = def.position or 1
+	local idx_end = last_button + 1
+	if idx_start > idx_end then
+		sfinv_buttons.registered_buttons[idx_start] = def
+		if idx_start > last_button then
+			last_button = idx_start
+		end
+	else
+		local bubble = def
+		for idx = idx_start, idx_end do
+			local current = sfinv_buttons.registered_buttons[idx]
+			if not current then
+				-- free slot found
+				sfinv_buttons.registered_buttons[idx] = bubble
+				if idx > last_button then
+					last_button = idx
+				end
+				break
+			elseif bubble.position and (not current.position or current.position < bubble.position ) then
+				-- swap bubble
+				sfinv_buttons.registered_buttons[idx] = bubble
+				bubble = current
 			end
 		end
-		internal_index = internal_index + 1
 	end
-	return
 end
 
 smart_sfinv_api.register_enhancement({
 	make_formspec = function(handler, player, context, content, show_inv)
-		handler.formspec_size_add_w = handler.formspec_size_add_w + 1
+		if last_button == 0 then -- no buttons
+			return 
+		end
 
-		local x = 8.1
-		local y = 0
+		handler.formspec_size_add_w = handler.formspec_size_add_w + math.floor(last_button / sfinv_buttons.MAX_ROWS) + 1
 
 		local retval = ""
 
-		local buttons_added = 0
-		for i=1, #button_names_sorted do
-			local name = button_names_sorted[i]
-			local def = buttons[name]
-			if def.show == nil or def.show(player) == true then
-				local button_id = minetest.formspec_escape(button_prefix .. name)
+		for idx = 1, last_button do
+			local def = sfinv_buttons.registered_buttons[idx]
+
+			local x = 8.1 + math.floor(idx / sfinv_buttons.MAX_ROWS)
+			local y = (idx - 1) % sfinv_buttons.MAX_ROWS
+
+			if def and (def.show == nil or def.show == true or def.show(player, context, content, show_inv) == true) then
+				local button_id = minetest.formspec_escape(def.button_name)
 				retval = retval .. table.concat({
 					"image_button[",
 					x, ",", y, ";",
@@ -64,38 +61,34 @@ smart_sfinv_api.register_enhancement({
 					def.image, ";",
 					button_id, ";]"}, "")
 
-				local tooltip = def.title
-				if def.tooltip and def.tooltip ~= def.title then
-					tooltip = tooltip or ""
-					tooltip = tooltip .. " " .. def.tooltip
+				local tooltip
+				if def.title then
+					if def.tooltip and def.tooltip ~= def.title then
+						tooltip = def.tooltip .. " " .. def.tooltip
+					else
+						tooltip = def.title
+					end
+				else
+					tooltip = def.tooltip
 				end
 
-				if tooltip ~= nil then
+				if tooltip then
 					retval = retval .. "tooltip["..button_id..";"..
 						minetest.formspec_escape(tooltip).."]"
 				end
-
-				y = y + 1
 			end
 		end
-
 		handler.formspec_after_navfs = handler.formspec_after_navfs .. retval
 	end,
 
 	receive_fields = function(handler, player, context, fields)
 		local player_name = player:get_player_name()
-		-- TODO: Test support case when some buttons are hidden for player
-		if fields.sfinv_buttons_action then
-			local button = buttons[player_selections[player_name]]
-			if button ~= nil and button.action ~= nil then
-				button.action(player)
-			end
-		else
-			for widget_name, _ in pairs(fields) do
-				local id = string.sub(widget_name, string.len(button_prefix) + 1, -1)
-				if buttons[id] ~= nil and buttons[id].action ~= nil then
-					buttons[id].action(player)
-				end
+		local button_prefix_len = button_prefix:len()
+		for idx = 1, last_button do
+			local def = sfinv_buttons.registered_buttons[idx]
+			if def and fields[def.button_name] and def.action then
+				def.action(player, context, content, show_inv)
+				break
 			end
 		end
 	end

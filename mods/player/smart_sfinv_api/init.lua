@@ -20,8 +20,8 @@ Method does set Attributes:
  - enh.formspec_before_navfs
  - enh.formspec_after_navfs
  - enh.formspec_after_content
- - theme_main - Theme
- - theme_inv  - Player inventory fields
+ - enh.theme_main - Theme
+ - enh.theme_inv  - Player inventory fields
  - enh.custom_nav_fs - if set, default is skipped
 ]]
 
@@ -110,7 +110,7 @@ function sfinv.make_formspec(player, context, content, show_inv, size)
 	end
 
 
-	local tmp = enh_handler_class.patch_2275 and {
+	local tmp =  {
 		new_size or handler.formspec_size,
 		handler.theme_main,
 		handler.formspec_before_navfs,
@@ -118,18 +118,8 @@ function sfinv.make_formspec(player, context, content, show_inv, size)
 		handler.formspec_after_navfs,
 		show_inv and handler.theme_inv or "",
 		content,
-		handler.formspec_after_content
-	} or { -- can be removed if patch_2275 merged to upstream
-		new_size or handler.formspec_size,
-		handler.theme_main,
-		handler.formspec_before_navfs,
-		nav_fs,
-		handler.formspec_after_navfs,
-		content,
-		show_inv and handler.theme_inv or "",
 		handler.formspec_after_content
 	}
-
 	return table.concat(tmp, "")
 end
 
@@ -154,13 +144,8 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 end)
 
 
-----------------------------------------------
--- Initialization: hacky access to some default variables
-----------------------------------------------
+-----------------------------------------------
+--- Initialization: hacky access to some default variables
+-----------------------------------------------
 local _dummy_page = orig_make_formspec(nil, {}, "|", true, nil)
-enh_handler_class.formspec_size, enh_handler_class.theme_main, enh_handler_class.theme_inv = _dummy_page:match("(size%[[%d.,]+%]*)([^|]*)|([^|]*)") 
-if enh_handler_class.theme_inv == "" then -- Support for https://github.com/minetest/minetest_game/pull/2275
-	enh_handler_class.patch_2275 = true
-	enh_handler_class.theme_inv = enh_handler_class.theme_main
-	enh_handler_class.theme_main = ""
-end
+enh_handler_class.formspec_size, enh_handler_class.theme_inv, enh_handler_class.theme_main = _dummy_page:match("(size%[[%d.,]+%]*)([^|]*)|([^|]*)") 

@@ -47,7 +47,9 @@ return {
 		maidroid_core = 'maidroid',
 		maidroid_tool = 'maidroid',
 
-		shields = '3d_armor',
+		["3d_armor"] = 'armor',
+		shields = 'armor',
+		armor_addon = 'armor',
 	},
 	by_group = {
 		-- Order all stairs and slabs to the stairs group
