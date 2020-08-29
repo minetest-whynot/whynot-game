@@ -1,195 +1,134 @@
-# Traduction Française du mod farming par TenPlus1
-# textdomain: farming
-# author: Papaou30
-# author: TheDarkTiger
-# last update: 2020/Apr/26
-
-###### folder . ######
-
-### init.lua ###
-Seed=Graine
-
-### compatibility.lua ###
-Banana=Banane
-Banana Leaves=Feuilles de Banane
-Orange=Orange
-Strawberry=Fraise
-
-### food.lua ###
-Sugar=Sucre
-Salt=Sel
-Rose Water=Eau de Rose
-Turkish Delight=Douceur Turque
-Garlic Bread=Pain à l'Ail
-Donut=Beignet
-Chocolate Donut=Beignet au chocolat
+# textdomain:farming
+%s Hoe=Binette de %s
 Apple Donut=Beignet aux pommes
-Porridge=Gruau de céréales
-Jaffa Cake=Petit gâteau à l'orange "Jaffa"
-
-### hoes.lua ###
-Hoe=Binette
-Wooden Hoe=Binette en Bois
-Stone Hoe=Binette en Pierre
-Steel Hoe=Binette en Acier
-Bronze Hoe=Binette en Bronze
-Mese Hoe=Binette en Mese
-Diamond Hoe=Binette en Diamant
-# Surcharge du mod [Toolranks] à faire #
-Hoe Bomb (use or throw on grassy areas to hoe land)=Bombe à binnage (Actionner ou lancer sur une zone herbeuse pour la binner)
-Mithril Scythe (Right-click to harvest and replant crops)=Faux en Mithril (Récolte et replante des graines)
-# Surcharge du mod [Toolranks] à faire #
-
-### soil.lua ###
-Soil=Sol binné
-Wet Soil=Sol binné humide
-
-### utensils.lua ###
-Wooden Bowl=Bol en Bois
-Saucepan=Casserole
-Cooking Pot=Fait-tout
-Baking Tray=Lèche-frite
-Skillet=Poêle
-Mortar and Pestle=Mortier et Pilon
-Cutting Board=Planche à découper
-Juicer=Presse-agrumes
-Glass Mixing Bowl=Terrine en Verre
-
-
-###### folder ./crops ######
-
-### barley.lua ###
-Barley Seed=Graine d'Orge
-Barley=Orge
-
-### beans.lua ###
-Green Beans=Haricots verts
-Bean Pole (place on soil before planting beans)=Tuteur pour haricots  (placer sur le sol avant de planter des haricots)
-
-### beetroot.lua ###
-Beetroot=Betrave
-Beetroot Soup=Soupe de Betrave
-
-### blueberry.lua ###
-Blueberries=Myrtilles
-Blueberry Muffin=Muffin aux Myrtilles
-Blueberry Pie=Tarte aux Myrtilles
-
-### carrot.lua ##
-Carrot=Carotte
-Carrot Juice=Jus de Carotte
-Golden Carrot=Carotte dorée
-
-### chili.lua ###
-Chili Pepper=Piment Rouge
-Bowl of Chili=Assiette de Chilli
-
-### cocoa.lua ###
-Cocoa Beans=Fèves de Cacao
-Cookie=Cookie
-Bar of Dark Chocolate=Tablette de Chocolat noir
-Chocolate Block=Block de Chocolat
-
-### coffee.lua ###
-Coffee Beans=Grains de café
-Cup of Coffee=Tasse de café
-
-### corn.lua ###
-Corn=Maïs
-Corn on the Cob=Cobette (Maïs cuit)
-Cornstarch=Fécule de Maïs
-Bottle of Ethanol=Bouteille d'Éthanol
-
-### cotton.lua ###
-Cotton Seed=Graines de Coton
-Cotton=Coton
-String=Ficelle
-
-### cucumber.lua ###
-Cucumber=Concombre
-
-### garlic.lua ###
-Garlic clove=Gousse d'Ail
-Garlic=Tête d'Ail
-Garlic Braid=Ail tressé
-
-### grapes.lua ###
-Grapes=Raisins
-Trellis (place on soil before planting grapes)=Treillis (placer sur le sol avant de planter la vigne)
-
-### hemp.lua ###
-Hemp Seed=Graines de Chanvre
-Hemp Leaf=Feuille de Chanvre
-Bottle of Hemp Oil=Bouteille d'huile de Chanvre
-Hemp Fibre=Fibre de Chanvre
-Hemp Block=Bloc de Chanvre
-Hemp Rope=Corde de Chanvre
-
-### melon.lua ###
-Melon Slice=Tranche de Melon
-Melon=Melon
-
-### onion.lua ###
-Onion=Oignon
-
-### peas.lua ###
-Pea Pod=Cosse de Petit-poids
-Peas=Petit-poids
-Pea Soup=Soupe de Petit-poids
-
-### pepper.lua ###
-Peppercorn=Grain de Poivre
-Pepper=Poivron
-Ground Pepper=Poivre moulu
-
-### pinapple.lua ###
-Pineapple Top=Pousse d'Ananas
-Pineapple=Ananas
-Pineapple Ring=Tranche d'Ananas
-Pineapple Juice=Jus d'Ananas
-
-### potato.lua ###
-Potato=Pomme de terre
+Apple Pie=Tarte aux pommes
 Baked Potato=Pomme de terre cuite
-Cucumber and Potato Salad=Salade de Pomme de terre au Concombre
-
-### pumpkin.lua ###
-Pumpkin Slice=Tranche de Citrouille
+Baking Tray=Lèche-frite
+Banana=Banane
+Banana Leaves=Feuilles de banane
+Bar of Dark Chocolate=Tablette de chocolat noir
+Barley=Orge
+Barley Seed=Graine d'orge
+Bean Pole (place on soil before planting beans)=Tuteur pour haricots (placer sur le sol avant de planter des haricots)
+Beetroot=Betterave
+Beetroot Soup=Soupe de betterave
+Bibimbap=Bibimbap
+Blueberries=Myrtilles
+Blueberry Muffin=Muffin aux myrtilles
+Blueberry Pie=Tarte aux myrtilles
+Bottle of Ethanol=Bouteille d'éthanol
+Bottle of Hemp Oil=Bouteille d'huile de chanvre
+Bowl of Chili=Bol de chilli
+Bread=Pain
+Bronze Hoe=Binette en bronze
+Cabbage=Chou
+Cactus Juice=Jus de cactus
+Carrot=Carotte
+Carrot Juice=Jus de carotte
+Chili Pepper=Piment fort
+Chocolate Block=Bloc de chocolat
+Chocolate Donut=Beignet au chocolat
+Cocoa Beans=Fèves de cacao
+Coffee Beans=Grains de café
+Cookie=Biscuit
+Cooking Pot=Marmitte
+Corn=Maïs
+Corn on the Cob=Maïs cuit
+Cornstarch=Fécule de maïs
+Cotton=Coton
+Cotton Seed=Graines de coton
+Cucumber=Concombre
+Cucumber and Potato Salad=Salade de pomme de terre et concombre
+Cup of Coffee=Tasse de café
+Cutting Board=Planche à découper
+Diamond Hoe=Binette en diamant
+Donut=Beignet
+Flour=Farine
+Garlic=Tête d'ail
+Garlic Braid=Ail tressé
+Garlic Bread=Pain à l'ail
+Garlic clove=Gousse d'ail
+Glass Mixing Bowl=Terrine en verre
+Golden Carrot=Carotte dorée
+Grapes=Raisins
+Green Beans=Haricots verts
+Ground Pepper=Poivre moulu
+Hemp Block=Bloc de chanvre
+Hemp Fibre=Fibre de chanvre
+Hemp Leaf=Feuille de chanvre
+Hemp Rope=Corde de chanvre
+Hemp Seed=Graines de chanvre
+Hoe=Binette
+Hoe Bomb (use or throw on grassy areas to hoe land)=Bombe à binnage (Actionner ou lancer sur une zone herbeuse pour la binner)
 Jack 'O Lantern (punch to turn on and off)=Jack 'O Lantern (Frapper pour allumer et éteindre)
-Scarecrow Bottom=Base d'Epouventail
-Pumpkin Bread=Pain à la Citrouille
-Pumpkin Dough=Pâton de pain à la Citrouille
+Jaffa Cake=Petit gâteau à l'orange "Jaffa"
+Juicer=Presse-agrumes
+Melon=Melon
+Melon Slice=Tranche de melon
+Mese Hoe=Binette en mese
+Mint Leaf=Feuille de menthe
+Mint Seeds=Graine de menthe
+Mint Tea=Thé à la menthe
+Mithril Scythe (Right-click to harvest and replant crops)=Faux en mithril (Récolte et replante des graines)
+Mortar and Pestle=Mortier et pilon
+Multigrain Bread=Pain aux céréales
+Multigrain Flour=Farine multi-céréales
+Oat seed=Grains d'orge
+Oats=Avoine
+Onion=Oignon
+Onion Soup=Soupe à l'oignon
+Orange=Orange
+Pasta=Pâtes
+Pea Pod=Cosse de petit-pois
+Pea Soup=Soupe de petit-pois
+Peas=Petit-pois
+Pepper=Poivron
+Peppercorn=Grain de poivre
+Pineapple=Ananas
+Pineapple Juice=Jus d'ananas
+Pineapple Ring=Tranche d'ananas
+Pineapple Top=Pousse d'ananas
+Porridge=Gruau de céréales
+Potato=Pomme de terre
 Pumpkin=Citrouille
-
-### raspberry.lua ###
+Pumpkin Bread=Pain à la citrouille
+Pumpkin Dough=Pâton de pain à la citrouille
+Pumpkin Slice=Tranche de citrouille
 Raspberries=Framboises
-Raspberry Smoothie=Smoothie aux Framboises
-
-### rhubarb.lua ###
+Raspberry Smoothie=Smoothie aux framboises
 Rhubarb=Rhubarbe
 Rhubarb Pie=Tarte à la rhubarbe
-
-### ryeoatrice.lua ###
-Rye=Seigle
-Rye seed=Grains de Seigle
-Oat=Orge
-Oat seed=Grains d'Orge
 Rice=Riz
-Rice grains=Grain de Riz
-Rice Bread=Pain de Riz
-Rice Flour=Farine de Riz
-Multigrain Flour=Farine Multi-céréales
-Multigrain Bread=Pain aux Céréales
-
-### tomato.lua ###
-Tomato=Tomate
-
-### wheat.lua ###
-Wheat Seed=Grain de blé
-Wheat=Blé
-Straw=Paille
-Flour=Farine
-Bread=Pain
+Rice Bread=Pain de riz
+Rice Flour=Farine de riz
+Rice grains=Grain de riz
+Rose Water=Eau de rose
+Rye=Seigle
+Rye seed=Grains de seigle
+Salt=Sel
+Saucepan=Casserole
+Savanna Soil=Terre de la savane binnée
+Scarecrow Bottom=Base d'épouventail
+Seed=Graine
+Skillet=Poêle
 Sliced Bread=Tranche de Pain
-Toast=Pain Grillé
-Toast Sandwich=Sandwich au Pain
+Soil=Terre binnée
+Spaghetti=Spaghetti
+Steel Hoe=Binette en acier
+Stone Hoe=Binette en pierre
+Straw=Paille
+Strawberry=Fraise
+String=Ficelle
+Sugar=Sucre
+Toast=Pain grillé
+Toast Sandwich=Sandwich au pain grillé
+Tomato=Tomate
+Trellis (place on soil before planting grapes)=Treillis (placer sur le sol avant de planter la vigne)
+Turkish Delight=Douceur turque
+Wet Savanna Soil=Terre humide et binnée de la savane
+Wet Soil=Terre humide et binnée
+Wheat=Blé
+Wheat Seed=Grain de blé
+Wild Cotton=Coton sauvage
+Wooden Bowl=Bol en bois
+Wooden Hoe=Binette en bois

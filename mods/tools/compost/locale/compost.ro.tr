@@ -1,6 +1,6 @@
 # textdomain: compost
 To start composting, fill every input slot with organic matter.=
-progress: @1%=
-Empty Compost Bin=
-Compost Bin=
+progress: @1%=progres: @1%
+Empty Compost Bin=Cutie de compost goală
+Compost Bin=Cutie de compost
 Garden Soil=

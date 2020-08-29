@@ -106,7 +106,7 @@ origin	http://repo.or.cz/minetest_show_wielded_item.git (fetch)
 Mod: player/show_wielded_item
 
 origin	https://github.com/minetest-mods/wielded_light (fetch)
-* master            7d78f96 [origin/master] Fix #6
+* master            4376b55 [origin/master] Code maintanance
 Mod: player/wielded_light
 
 origin	https://github.com/bell07/minetest-player_api_modpack (fetch)
@@ -153,12 +153,16 @@ origin	https://gitlab.com/rautars/weather_pack (fetch)
 Mod: ambience/weather_pack
 
 origin	https://notabug.org/TenPlus1/farming (fetch)
-* master 154471f [origin/master] Added 5.x translations
+* master 32ae94e [origin/master] mt5.x translations added/updated (thanks dacmot)
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
 * master c11160f [origin/master: ahead 1] fix leaked globals
 Mod: flora_ores/mese_crystals
+
+origin	https://github.com/Treer/cloudlands/ (fetch)
+* master 0009137 [origin/master] Update README.md
+Mod: mapgen/cloudlands
 
 origin	https://notabug.org/dacmot/maple (fetch)
 * master 033bdca [origin/master] Add maple wood fence gate
@@ -193,7 +197,7 @@ origin	https://github.com/minetest-mods/ccompass (fetch)
 Mod: tools/ccompass
 
 origin	https://github.com/bell07/minetest-compost (fetch)
-* master 0a1c82f [origin/master] Garden Soil (squashed changes ThorfinnS+bell07)
+* master 4c56e99 [origin/master] update translations
 Mod: tools/compost
 
 origin	https://github.com/orwell96/engrave/ (fetch)
@@ -420,9 +424,9 @@ origin	https://codeberg.org/Hamlet/mobs_ghost_redo (fetch)
 Mod: mobs_redo/mobs_ghost_redo
 
 origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
-* master a42877e [origin/master] added 5.x translations
+* master 84f1ff3 [origin/master] mt5.x translations added/updated (thanks dacmot)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master 4771489 [origin/master] update intllib.lua
+* master 39002cf [origin/master] mt5.x translations added/updated (thanks dacmot)
 Mod: mobs_redo/mobs_redo

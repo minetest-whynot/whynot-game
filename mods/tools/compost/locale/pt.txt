@@ -1,6 +1,0 @@
-# Translations by BrunoMine, 2017 <borgesdossantosbruno@gmail.com>
-
-Compost Bin = Silo de Compostagem
-Empty Compost Bin = Silo de Compostagem Vazio
-To start composting, place some organic matter inside. = Para iniciar a compostagem, coloque alguma materia organica dentro.
-progress: @1% = progresso: @1%

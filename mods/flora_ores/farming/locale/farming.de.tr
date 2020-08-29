@@ -1,195 +1,134 @@
-# German translation of the farming mod by TenPlus1
-# textdomain: farming
-# author: Xanthin
-# author: TheDarkTiger
-# last update: 2020/Apr/26
-
-###### folder . ######
-
-### init.lua ###
-Seed=Saatgut
-
-### compatibility.lua ###
-Banana=
-Banana Leaves=
-Orange=
-Strawberry=
-
-### food.lua ###
-Sugar=Zucker
-Salt=
-Rose Water=
-Turkish Delight=
-Garlic Bread=
-Donut=Donut
-Chocolate Donut=Schokodonut
+# textdomain:farming
+#%s Hoe=
 Apple Donut=Apfeldonut
-Porridge=
-Jaffa Cake=
-
-### hoes.lua ###
-Hoe=Hacke
-Wooden Hoe=Holzhacke
-Stone Hoe=Steinhacke
-Steel Hoe=Stahlhacke
-Bronze Hoe=Bronzehacke
-Mese Hoe=Mesehacke
-Diamond Hoe=Diamanthacke
-# Surcharge du mod [Toolranks] à faire #
-Hoe Bomb (use or throw on grassy areas to hoe land)=
-Mithril Scythe (Right-click to harvest and replant crops)=
-# Surcharge du mod [Toolranks] à faire #
-
-### soil.lua ###
-Soil=Ackerboden
-Wet Soil=Bewässerter Ackerboden
-
-### utensils.lua ###
-Wooden Bowl=
-Saucepan=
-Cooking Pot=
-Baking Tray=
-Skillet=
-Mortar and Pestle=
-Cutting Board=
-Juicer=
-Glass Mixing Bowl=
-
-
-###### folder ./crops ######
-
-### barley.lua ###
-Barley Seed=Gerstenkörner
+#Apple Pie=
+Baked Potato=Ofenkartoffel
+#Baking Tray=
+#Banana=
+#Banana Leaves=
+Bar of Dark Chocolate=Tafel Zartbitterschokolade
 Barley=Gerste
-
-### beans.lua ###
-Green Beans=Grüne Bohnen
+Barley Seed=Gerstenkörner
 Bean Pole (place on soil before planting beans)=Bohnenstange (vor dem Pflanzen der Bohnen auf den\nAckerboden stellen)
-
-### beetroot.lua ###
-Beetroot=
-Beetroot Soup=
-
-### blueberry.lua ###
+#Beetroot=
+#Beetroot Soup=
+#Bibimbap=
 Blueberries=Blaubeeren
 Blueberry Muffin=Blaubeermuffin
-Blueberry Pie=
-
-### carrot.lua ##
+#Blueberry Pie=
+Bottle of Ethanol=Flasche Ethanol
+Bottle of Hemp Oil=Flasche mit Hanföl
+#Bowl of Chili=
+Bread=Brot
+Bronze Hoe=Bronzehacke
+#Cabbage=
+#Cactus Juice=
 Carrot=Möhre
-Carrot Juice=
-Golden Carrot=Goldene Möhre
-
-### chili.lua ###
-Chili Pepper=
-Bowl of Chili=
-
-### cocoa.lua ###
+#Carrot Juice=
+#Chili Pepper=
+#Chocolate Block=
+Chocolate Donut=Schokodonut
 Cocoa Beans=Kakaobohne
-Cookie=Keks
-Bar of Dark Chocolate=Tafel Zartbitterschokolade
-Chocolate Block=
-
-### coffee.lua ###
 Coffee Beans=Kaffeebohnen
-Cup of Coffee=Tasse Kaffee
-
-### corn.lua ###
+Cookie=Keks
+#Cooking Pot=
 Corn=Mais
 Corn on the Cob=Maiskolben
-Cornstarch=
-Bottle of Ethanol=Flasche Ethanol
-
-### cotton.lua ###
-Cotton Seed=Baumwollsamen
+#Cornstarch=
 Cotton=Baumwolle
-String=
-
-### cucumber.lua ###
+Cotton Seed=Baumwollsamen
 Cucumber=Gurke
-
-### garlic.lua ###
-Garlic clove=
-Garlic=
-Garlic Braid=
-
-### grapes.lua ###
+#Cucumber and Potato Salad=
+Cup of Coffee=Tasse Kaffee
+#Cutting Board=
+Diamond Hoe=Diamanthacke
+Donut=Donut
+Flour=Mehl
+#Garlic=
+#Garlic Braid=
+#Garlic Bread=
+#Garlic clove=
+#Glass Mixing Bowl=
+Golden Carrot=Goldene Möhre
 Grapes=Weintrauben
-Trellis (place on soil before planting grapes)=Spalier (vor dem Pflanzen der Weintrauben auf den\nAckerboden stellen)
-
-### hemp.lua ###
-Hemp Seed=Hanfsamen
-Hemp Leaf=Hanfblatt
-Bottle of Hemp Oil=Flasche mit Hanföl
+Green Beans=Grüne Bohnen
+#Ground Pepper=
+#Hemp Block=
 Hemp Fibre=Hanffaser
-Hemp Block=
+Hemp Leaf=Hanfblatt
 Hemp Rope=Hanfseil
-
-### melon.lua ###
-Melon Slice=Melonenscheibe
-Melon=Melone
-
-### onion.lua ###
-Onion=
-
-### peas.lua ###
-Pea Pod=
-Peas=
-Pea Soup=
-
-### pepper.lua ###
-Peppercorn=
-Pepper=
-Ground Pepper=
-
-### pinapple.lua ###
-Pineapple Top=
-Pineapple=
-Pineapple Ring=
-Pineapple Juice=
-
-### potato.lua ###
-Potato=Kartoffel
-Baked Potato=Ofenkartoffel
-Cucumber and Potato Salad=
-
-### pumpkin.lua ###
-Pumpkin Slice=Kürbisscheibe
+Hemp Seed=Hanfsamen
+Hoe=Hacke
+#Hoe Bomb (use or throw on grassy areas to hoe land)=
 Jack 'O Lantern (punch to turn on and off)=Kürbislaterne (Punch zum Ein- und Ausschalten)
-Scarecrow Bottom=
+#Jaffa Cake=
+#Juicer=
+Melon=Melone
+Melon Slice=Melonenscheibe
+Mese Hoe=Mesehacke
+#Mint Leaf=
+#Mint Seeds=
+#Mint Tea=
+#Mithril Scythe (Right-click to harvest and replant crops)=
+#Mortar and Pestle=
+#Multigrain Bread=
+#Multigrain Flour=
+#Oat seed=
+#Oats=
+#Onion=
+#Onion Soup=
+#Orange=
+#Pasta=
+#Pea Pod=
+#Pea Soup=
+#Peas=
+#Pepper=
+#Peppercorn=
+#Pineapple=
+#Pineapple Juice=
+#Pineapple Ring=
+#Pineapple Top=
+#Porridge=
+Potato=Kartoffel
+Pumpkin=Kürbis
 Pumpkin Bread=Kürbisbrot
 Pumpkin Dough=Kürbisteig
-Pumpkin=Kürbis
-
-### raspberry.lua ###
+Pumpkin Slice=Kürbisscheibe
 Raspberries=Himbeeren
 Raspberry Smoothie=Himbeersmoothie
-
-### rhubarb.lua ###
 Rhubarb=Rhabarber
 Rhubarb Pie=Rhabarberkuchen
-
-### ryeoatrice.lua ###
-Rye=
-Rye seed=
-Oat=
-Oat seed=
-Rice=
-Rice grains=
-Rice Bread=
-Rice Flour=
-Multigrain Flour=
-Multigrain Bread=
-
-### tomato.lua ###
-Tomato=Tomate
-
-### wheat.lua ###
-Wheat Seed=Weizenkörner
-Wheat=Weizen
+#Rice=
+#Rice Bread=
+#Rice Flour=
+#Rice grains=
+#Rose Water=
+#Rye=
+#Rye seed=
+#Salt=
+#Saucepan=
+#Savanna Soil=
+#Scarecrow Bottom=
+Seed=Saatgut
+#Skillet=
+#Sliced Bread=
+Soil=Ackerboden
+#Spaghetti=
+Steel Hoe=Stahlhacke
+Stone Hoe=Steinhacke
 Straw=Stroh
-Flour=Mehl
-Bread=Brot
-Sliced Bread=
-Toast=
-Toast Sandwich=
+#Strawberry=
+#String=
+Sugar=Zucker
+#Toast=
+#Toast Sandwich=
+Tomato=Tomate
+Trellis (place on soil before planting grapes)=Spalier (vor dem Pflanzen der Weintrauben auf den\nAckerboden stellen)
+#Turkish Delight=
+#Wet Savanna Soil=
+Wet Soil=Bewässerter Ackerboden
+Wheat=Weizen
+Wheat Seed=Weizenkörner
+#Wild Cotton=
+#Wooden Bowl=
+Wooden Hoe=Holzhacke

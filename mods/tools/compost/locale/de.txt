@@ -1,4 +1,0 @@
-Compost Bin = Kompostsilo
-Empty Compost Bin = Leeres Kompostsilo
-To start composting, place some organic matter inside. = Zum Kompostieren mit organischem Material befüllen.
-progress: @1% = Fortschritt: @1%

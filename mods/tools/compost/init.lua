@@ -3,21 +3,9 @@
 --License: General Public License, version 3 or later
 --Original Work Copyright (C) 2016 cd2 (cdqwertz) <cdqwertz@gmail.com>
 --Modified Work Copyright (C) Vitalie Ciubotaru <vitalie at ciubotaru dot tk>
---Modified Work Copyright (C) 2017 bell07
+--Modified Work Copyright (C) 2017-2020 bell07
 
-local i18n --internationalization
-	if minetest.get_modpath("intllib") then
-minetest.log('action', 'intllib loaded')
-		i18n = intllib.Getter()
-	else
-		i18n = function(s,a,...)
-		a={a,...}
-		local v = s:gsub("@(%d+)", function(n)
-			return a[tonumber(n)]
-			end)
-		return v
-	end
-end
+local i18n = minetest.get_translator("compost")
 
 compost = {
 	processing_duration = tonumber(minetest.settings:get("compost_duration_seconds")) or 300,

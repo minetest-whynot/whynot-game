@@ -1,0 +1,11 @@
+# textdomain: compost
+To start composting, fill every input slot with organic matter.=Чтобы начать компостирование, положите органику во все слоты.
+progress: @1%=прогресс: @1%
+Empty Compost Bin=Пустой компостер
+Compost Bin=Компостер
+Garden Soil=Садовая Почва
+
+Compost Bin = Компостный ящик
+Empty Compost Bin = Пустой компостный ящик
+To start composting, place some organic matter inside. = Чтобы начать компостирование, добавьте органику внутрь
+progress: @1% = прогресс: @1%
