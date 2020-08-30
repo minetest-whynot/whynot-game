@@ -834,7 +834,7 @@ local function strip_prefix(str)
 	return match(str, ".*@.*%)(.*)()") or str
 end
 
-local function get_desc(item, lang_code)
+local function get_desc(item)
 	if sub(item, 1, 1) == "_" then
 		item = sub(item, 2)
 	end
@@ -844,7 +844,6 @@ local function get_desc(item, lang_code)
 	if def then
 		local desc = def.description
 		if true_str(desc) then
-			desc = translate(lang_code, desc)
 			desc = desc:trim()
 			desc = strip_newline(desc)
 			desc = strip_prefix(desc)
@@ -863,7 +862,7 @@ local function get_desc(item, lang_code)
 	return S("Unknown Item (@1)", item)
 end
 
-local function get_tooltip(item, info, lang_code)
+local function get_tooltip(item, info)
 	local tooltip
 
 	if info.groups then
@@ -881,7 +880,7 @@ local function get_tooltip(item, info, lang_code)
 			tooltip = S("Any item belonging to the group(s): @1", groupstr)
 		end
 	else
-		tooltip = get_desc(item, lang_code)
+		tooltip = get_desc(item)
 	end
 
 	local function add(str)
@@ -899,7 +898,7 @@ local function get_tooltip(item, info, lang_code)
 	if info.replace then
 		for i = 1, #info.replace.items do
 			local rpl = match(info.replace.items[i], "%S+")
-			local desc = clr("#ff0", get_desc(rpl, lang_code))
+			local desc = clr("#ff0", get_desc(rpl))
 
 			if info.replace.type == "cooking" then
 				tooltip = add(S("Replaced by @1 on smelting", desc))
@@ -927,21 +926,21 @@ local function get_tooltip(item, info, lang_code)
 		if several then
 			for i = 1, #info.tools do
 				names = fmt("%s\t\t- %s\n",
-					names, clr("#ff0", get_desc(info.tools[i], lang_code)))
+					names, clr("#ff0", get_desc(info.tools[i])))
 			end
 
 			tooltip = add(S("Only drop if using one of these tools: @1",
 				sub(names, 1, -2)))
 		else
 			tooltip = add(S("Only drop if using this tool: @1",
-				clr("#ff0", get_desc(info.tools[1], lang_code))))
+				clr("#ff0", get_desc(info.tools[1]))))
 		end
 	end
 
 	return fmt("tooltip[%s;%s]", item, ESC(tooltip))
 end
 
-local function get_output_fs(lang_code, fs, rcp, shapeless, right, btn_size, _btn_size, spacing)
+local function get_output_fs(fs, rcp, shapeless, right, btn_size, _btn_size, spacing)
 	local custom_recipe = craft_types[rcp.type]
 
 	if custom_recipe or shapeless or rcp.type == "cooking" then
@@ -1006,7 +1005,7 @@ local function get_output_fs(lang_code, fs, rcp, shapeless, right, btn_size, _bt
 		}
 
 		if next(infos) then
-			fs[#fs + 1] = get_tooltip(_name, infos, lang_code)
+			fs[#fs + 1] = get_tooltip(_name, infos)
 		end
 
 		if infos.burntime then
@@ -1021,7 +1020,7 @@ local function get_output_fs(lang_code, fs, rcp, shapeless, right, btn_size, _bt
 	end
 end
 
-local function get_grid_fs(lang_code, fs, rcp, spacing)
+local function get_grid_fs(fs, rcp, spacing)
 	local width = rcp.width or 1
 	local right, btn_size, _btn_size = 0, ITEM_BTN_SIZE
 	local cooktime, shapeless
@@ -1138,7 +1137,7 @@ local function get_grid_fs(lang_code, fs, rcp, spacing)
 		}
 
 		if next(infos) then
-			fs[#fs + 1] = get_tooltip(btn_name, infos, lang_code)
+			fs[#fs + 1] = get_tooltip(btn_name, infos)
 		end
 	end
 
@@ -1146,25 +1145,25 @@ local function get_grid_fs(lang_code, fs, rcp, spacing)
 		fs[#fs + 1] = "style_type[item_image_button;border=false]"
 	end
 
-	get_output_fs(lang_code, fs, rcp, shapeless, right, btn_size, _btn_size, spacing)
+	get_output_fs(fs, rcp, shapeless, right, btn_size, _btn_size, spacing)
 end
 
-local function get_rcp_lbl(lang_code, show_usages, unum, rnum, fs, panel, spacing, rn, is_recipe)
+local function get_rcp_lbl(fs, data, panel, spacing, rn, is_recipe)
 	local lbl
 
-	if (not sfinv_only and is_recipe) or (sfinv_only and not show_usages) then
-		lbl = ES("Recipe @1 of @2", rnum, rn)
+	if (not sfinv_only and is_recipe) or (sfinv_only and not data.show_usages) then
+		lbl = ES("Recipe @1 of @2", data.rnum, rn)
 
-	elseif not sfinv_only or (sfinv_only and show_usages) then
-		lbl = ES("Usage @1 of @2", unum, rn)
+	elseif not sfinv_only or (sfinv_only and data.show_usages) then
+		lbl = ES("Usage @1 of @2", data.unum, rn)
 
 	elseif sfinv_only then
-		lbl = show_usages and ES("Usage @1 of @2", unum, rn) or
-			ES("Recipe @1 of @2", rnum, rn)
+		lbl = data.show_usages and ES("Usage @1 of @2", data.unum, rn) or
+			ES("Recipe @1 of @2", data.rnum, rn)
 	end
 
-	lbl = translate(lang_code, lbl)
-	local lbl_len = #lbl:gsub("[\128-\191]", "") -- Count chars, not bytes in UTF-8 strings
+	local _lbl = translate(data.lang_code, lbl)
+	local lbl_len = #_lbl:gsub("[\128-\191]", "") -- Count chars, not bytes in UTF-8 strings
 	local shift = min(0.9, abs(13 - max(13, lbl_len)) * 0.1)
 
 	fs[#fs + 1] = fmt(FMT.label,
@@ -1183,21 +1182,25 @@ local function get_rcp_lbl(lang_code, show_usages, unum, rnum, fs, panel, spacin
 			x_arrow + 1.8,   y_arrow, PNG.next, next_name, "")
 	end
 
-	local rcp = is_recipe and panel.rcp[rnum] or panel.rcp[unum]
-	get_grid_fs(lang_code, fs, rcp, spacing)
+	local rcp = is_recipe and panel.rcp[data.rnum] or panel.rcp[data.unum]
+	get_grid_fs(fs, rcp, spacing)
 end
 
-local function get_title_fs(query_item, lang_code, favs, fs, spacing)
-	local desc = ESC(get_desc(query_item, lang_code))
+local function get_title_fs(query_item, favs, fs, spacing)
+	local desc = ESC(get_desc(query_item))
 	desc = #desc > 33 and fmt("%s...", sub(desc, 1, 30)) or desc
 	local t_desc = query_item
-	t_desc = #t_desc > 40 and fmt("%s...", sub(t_desc, 1, 37)) or t_desc
+	t_desc = #t_desc > 35 and fmt("%s...", sub(t_desc, 1, 32)) or t_desc
+
+	fs[#fs + 1] = "style_type[label;font=bold;font_size=22]"
+	fs[#fs + 1] = fmt(FMT.label, 8.75, spacing - 0.1, desc)
+	fs[#fs + 1] = "style_type[label;font=mono;font_size=16]"
+	fs[#fs + 1] = fmt(FMT.label, 8.75, spacing + 0.3, clr("#7bf", t_desc))
+	fs[#fs + 1] = "style_type[label;font=normal;font_size=16]"
 
 	fs[#fs + 1] = fmt(FMT.hypertext,
-		9.05, spacing - 0.1, 5.85, 1.2,
-		fmt("<item name=%s float=right width=64 height=64 rotate=yes>" ..
-		    "<big><b>%s</b></big>\n<style color=#7bf font=mono>%s</style>",
-			query_item, desc, t_desc))
+		13.8, spacing - 0.15, 1.1, 1.3,
+		fmt("<item name=%s width=64 rotate=yes>", query_item))
 
 	local fav = is_fav(favs, query_item)
 	local nfavs = #favs
@@ -1226,17 +1229,15 @@ local function get_title_fs(query_item, lang_code, favs, fs, spacing)
 	end
 end
 
-local function get_panels(lang_code, query_item, recipes, usages, show_usages,
-			  favs, unum, rnum, fs)
-
+local function get_panels(data, fs)
 	local _title   = {name = "title", height = 1.2}
 	local _favs    = {name = "favs",  height = 1.91}
-	local _recipes = {name = "recipes", rcp = recipes, height = 3.5}
-	local _usages  = {name = "usages",  rcp = usages,  height = 3.5}
+	local _recipes = {name = "recipes", rcp = data.recipes, height = 3.5}
+	local _usages  = {name = "usages",  rcp = data.usages,  height = 3.5}
 	local panels   = {_title, _recipes, _usages, _favs}
 
 	if sfinv_only then
-		panels = {show_usages and _usages or _recipes}
+		panels = {data.show_usages and _usages or _recipes}
 	end
 
 	for idx = 1, #panels do
@@ -1249,12 +1250,11 @@ local function get_panels(lang_code, query_item, recipes, usages, show_usages,
 		end
 
 		local rn = panel.rcp and #panel.rcp
-		local is_recipe = sfinv_only and not show_usages or panel.name == "recipes"
+		local is_recipe = sfinv_only and not data.show_usages or panel.name == "recipes"
 		local recipe_or_usage = panel.name == "recipes" or panel.name == "usages"
 
 		if rn then
-			get_rcp_lbl(lang_code, show_usages, unum, rnum, fs, panel,
-				    spacing, rn, is_recipe)
+			get_rcp_lbl(fs, data, panel, spacing, rn, is_recipe)
 		end
 
 		if sfinv_only then return end
@@ -1267,21 +1267,20 @@ local function get_panels(lang_code, query_item, recipes, usages, show_usages,
 
 			fs[#fs + 1] = fmt(FMT.hypertext,
 				8.29, YOFFSET + spacing + 0.3, 6.8, 1,
-				fmt("<center><style size=20><b>%s</b></style></center>",
-					translate(lang_code, lbl)))
+				fmt("<center><style size=20><b>%s</b></style></center>", lbl))
 
 		elseif panel.name == "title" then
-			get_title_fs(query_item, lang_code, favs, fs, spacing)
+			get_title_fs(data.query_item, data.favs, fs, spacing)
 
 		elseif panel.name == "favs" then
 			fs[#fs + 1] = fmt(FMT.label, 8.3, spacing - 0.15, ES"Bookmarks")
 
-			for i = 1, #favs do
-				local item = favs[i]
+			for i = 1, #data.favs do
+				local item = data.favs[i]
 				local X = 7.85 + (i - 0.5)
 				local Y = spacing + 0.4
 
-				if query_item == item then
+				if data.query_item == item then
 					fs[#fs + 1] = fmt(FMT.image, X, Y,
 						ITEM_BTN_SIZE, ITEM_BTN_SIZE, PNG.selected)
 				end
@@ -1348,8 +1347,7 @@ local function make_fs(data)
 
 		fs[#fs + 1] = fmt(FMT.hypertext,
 			0.05, 3, 8.29, 1,
-			fmt("<center><style size=20><b>%s</b></style></center>",
-				translate(data.lang_code, lbl)))
+			fmt("<center><style size=20><b>%s</b></style></center>", lbl))
 	end
 
 	local first_item = (data.pagenum - 1) * IPP
@@ -1372,8 +1370,7 @@ local function make_fs(data)
 	end
 
 	if (data.recipes and #data.recipes > 0) or (data.usages and #data.usages > 0) then
-		get_panels(data.lang_code, data.query_item, data.recipes, data.usages,
-			   data.show_usages, data.favs, data.unum, data.rnum, fs)
+		get_panels(data, fs)
 	end
 
 	return concat(fs)
@@ -2143,13 +2140,11 @@ function craftguide.show(name, item, show_usages)
 	if not recipes and not usages then
 		if not recipes_cache[item] and not usages_cache[item] then
 			return false, msg(name, fmt("%s: %s",
-				S"No recipe or usage for this item",
-				get_desc(item, data.lang_code)))
+				S"No recipe or usage for this item", get_desc(item)))
 		end
 
 		return false, msg(name, fmt("%s: %s",
-			S"You don't know a recipe or usage for this item",
-			get_desc(item, data.lang_code)))
+			S"You don't know a recipe or usage for this item", get_desc(item)))
 	end
 
 	data.query_item = item

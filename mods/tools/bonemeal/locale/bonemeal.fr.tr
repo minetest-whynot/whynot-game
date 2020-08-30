@@ -1,6 +1,7 @@
-# textdomain: beds
-Mulch=Paillis
+# textdomain:bonemeal
+[MOD] bonemeal loaded=[MOD] bonemeal chargé
+Bone=Os
 Bone Meal=Poudre d'os
 Fertiliser=Engrais
-Bone=Os
-[MOD] bonemeal loaded=[MOD] bonemeal chargé
+Gelatin Powder=Poudre de gélatine
+Mulch=Paillis

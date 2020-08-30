@@ -1,6 +1,7 @@
-# textdomain: bonemeal
-Mulch=Мульча
+# textdomain:bonemeal
+[MOD] bonemeal loaded=[MOD] костная мука загружена
+Bone=Кость
 Bone Meal=Костная Мука
 Fertiliser=Удобрение
-Bone=Кость
-[MOD] bonemeal loaded=[MOD] костная мука загружена
+#Gelatin Powder=
+Mulch=Мульча

@@ -1,6 +1,6 @@
-# textdomain: compost
-To start composting, fill every input slot with organic matter.=Für die Kompostierung bitte alle Slots mit organischem Material füllen.
-progress: @1%=Fortschritt: @1%
-Empty Compost Bin=Leerer Komposter
+# textdomain:compost
 Compost Bin=Komposter
+Empty Compost Bin=Leerer Komposter
 Garden Soil=Gartenerde
+progress: @1%=Fortschritt: @1%
+To start composting, fill every input slot with organic matter.=Für die Kompostierung bitte alle Slots mit organischem Material füllen.

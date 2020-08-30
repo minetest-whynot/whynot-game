@@ -5,7 +5,7 @@
 --Modified Work Copyright (C) Vitalie Ciubotaru <vitalie at ciubotaru dot tk>
 --Modified Work Copyright (C) 2017-2020 bell07
 
-local i18n = minetest.get_translator("compost")
+local S = minetest.get_translator("compost")
 
 compost = {
 	processing_duration = tonumber(minetest.settings:get("compost_duration_seconds")) or 300,
@@ -172,12 +172,12 @@ local function update_timer(pos)
 		timer:stop()
 		progress = 0
 		meta:set_int('progress', progress)
-		meta:set_string('infotext', i18n('To start composting, fill every input slot with organic matter.'))
+		meta:set_string('infotext', S("To start composting, fill every input slot with organic matter."))
 	else
 		if not timer:is_started() then
 			timer:start(compost.processing_duration / 10)
 		end
-		meta:set_string('infotext', i18n('progress: @1%', progress))
+		meta:set_string('infotext', S("progress: @1%", progress))
 	end
 	meta:set_string('formspec', formspec(pos, progress))
 end
@@ -303,7 +303,7 @@ local function on_punch(pos, node, player, pointed_thing)
 end
 
 minetest.register_node("compost:wood_barrel_empty", {
-	description = i18n('Empty Compost Bin'),
+	description = S("Empty Compost Bin"),
 	tiles = {
 		"default_wood.png",
 	},
@@ -335,7 +335,7 @@ minetest.register_node("compost:wood_barrel_empty", {
 })
 
 minetest.register_node("compost:wood_barrel", {
-	description = i18n('Compost Bin'),
+	description = S("Compost Bin"),
 	tiles = {
 		"default_wood.png^compost_compost.png",
 		"default_wood.png^compost_compost.png",
@@ -395,7 +395,7 @@ minetest.register_craft({
 
 if garden_soil then
 	minetest.register_node("compost:garden_soil", {
-		description = i18n("Garden Soil"),
+		description = S("Garden Soil"),
 		tiles = {"compost_garden_soil.png"},
 		groups = {crumbly = 3, soil=3, grassland = 1, wet = 1},
 		sounds =  default.node_sound_dirt_defaults(),

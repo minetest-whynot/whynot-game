@@ -1,6 +1,7 @@
-# textdomain: bonemeal
-Mulch=Mantillo
+# textdomain:bonemeal
+[MOD] bonemeal loaded=[MOD] bonemeal cargado
+Bone=Hueso
 Bone Meal=Comida de hueso
 Fertiliser=Fertilizante
-Bone=Hueso
-[MOD] bonemeal loaded=[MOD] bonemeal cargado
+#Gelatin Powder=
+Mulch=Mantillo

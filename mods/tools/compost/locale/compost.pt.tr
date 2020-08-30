@@ -1,6 +1,6 @@
-# textdomain: compost
-To start composting, fill every input slot with organic matter.=
-progress: @1%=progresso: @1%
-Empty Compost Bin=Silo de Compostagem Vazio
+# textdomain:compost
 Compost Bin=Silo de Compostagem
-Garden Soil=
+Empty Compost Bin=Silo de Compostagem Vazio
+#Garden Soil=
+progress: @1%=progresso: @1%
+#To start composting, fill every input slot with organic matter.=

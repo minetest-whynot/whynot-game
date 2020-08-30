@@ -1,6 +1,7 @@
-# textdomain: bonemeal
-Mulch=Pacciame
+# textdomain:bonemeal
+[MOD] bonemeal loaded=[MOD] bonemeal caricata
+Bone=Ossa
 Bone Meal=Pasto osseo
 Fertiliser=Fertilizzante
-Bone=Ossa
-[MOD] bonemeal loaded=[MOD] bonemeal caricata
+#Gelatin Powder=
+Mulch=Pacciame
