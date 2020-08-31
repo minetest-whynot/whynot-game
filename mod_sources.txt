@@ -110,7 +110,7 @@ origin	https://github.com/minetest-mods/wielded_light (fetch)
 Mod: player/wielded_light
 
 origin	https://github.com/bell07/minetest-player_api_modpack (fetch)
-* master e616d9c [origin/master] Update README.md
+* master 829983d [origin/master] update 3d_armor against mintest-mods version
 Mod: player_api_modpack/3d_armor
 Mod: player_api_modpack/character_creator
 Mod: player_api_modpack/clothing
@@ -121,14 +121,14 @@ Mod: player_api_modpack/skin_admin
 Mod: player_api_modpack/skinsdb5
 Mod: player_api_modpack/wieldview
 
-origin	https://github.com/stujones11/minetest-3d_armor (fetch)
-* master 47ecef4 [origin/master] Update licenses
+origin	https://github.com/minetest-mods/3d_armor (fetch)
+* master 502eb14 [origin/master] run actions on pull-requests too
 Mod: 3d_armor/3d_armor_stand
 Mod: 3d_armor/shields
 Mod: 3d_armor/3d_armor_sfinv
 
 origin	https://github.com/bell07/minetest-smart_sfinv (fetch)
-* master 6cf900f [origin/master] modernize mods with some small adjustments
+* master 7a59468 [origin/master] fix copy&paste issue
 Mod: smart_sfinv_modpack/creative_maxstack
 Mod: smart_sfinv_modpack/sfinv_buttons
 Mod: smart_sfinv_modpack/smart_sfinv_api
@@ -196,8 +196,8 @@ origin	https://github.com/minetest-mods/ccompass (fetch)
 * master 7117c01 [origin/master] Use mod.conf for description (#15)
 Mod: tools/ccompass
 
-origin	https://github.com/bell07/minetest-compost (fetch)
-* master 4ceced8 [origin/master] Merge pull request #3 from dacmot/master
+origin	https://github.com/minetest-mods/compost (fetch)
+* master a11176b [origin/master] move depends to mod.conf, clanup description.txt and update README.md to markdown
 Mod: tools/compost
 
 origin	https://github.com/orwell96/engrave/ (fetch)

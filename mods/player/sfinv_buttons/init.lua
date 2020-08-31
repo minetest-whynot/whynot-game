@@ -87,7 +87,7 @@ smart_sfinv_api.register_enhancement({
 		for idx = 1, last_button do
 			local def = sfinv_buttons.registered_buttons[idx]
 			if def and fields[def.button_name] and def.action then
-				def.action(player, context, content, show_inv)
+				def.action(player, context, fields)
 				break
 			end
 		end

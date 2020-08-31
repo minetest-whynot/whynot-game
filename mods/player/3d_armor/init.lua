@@ -4,15 +4,17 @@ local worldpath = minetest.get_worldpath()
 local last_punch_time = {}
 local timer = 0
 
--- support for i18n
-armor_i18n = { }
-armor_i18n.gettext, armor_i18n.ngettext = dofile(modpath.."/intllib.lua")
+dofile(modpath.."/api.lua")
 
 -- local functions
-local S = armor_i18n.gettext
 local F = minetest.formspec_escape
+local S = armor.get_translator
 
-dofile(modpath.."/api.lua")
+-- integration test
+if minetest.settings:get_bool("enable_3d_armor_integration_test") then
+        dofile(modpath.."/integration_test.lua")
+end
+
 
 -- Legacy Config Support
 
@@ -20,13 +22,11 @@ local input = io.open(modpath.."/armor.conf", "r")
 if input then
 	dofile(modpath.."/armor.conf")
 	input:close()
-	input = nil
 end
 input = io.open(worldpath.."/armor.conf", "r")
 if input then
 	dofile(worldpath.."/armor.conf")
 	input:close()
-	input = nil
 end
 for name, _ in pairs(armor.config) do
 	local global = "ARMOR_"..name:upper()
@@ -97,22 +97,35 @@ armor.formspec = armor.formspec..
 if armor.config.fire_protect then
 	armor.formspec = armor.formspec.."label[5,2;"..F(S("Fire"))..":  armor_attr_fire]"
 end
+
+armor:register_on_damage(function(player, index, stack)
+	local name = player:get_player_name()
+	local def = stack:get_definition()
+	if name and def and def.description and stack:get_wear() > 60100 then
+		minetest.chat_send_player(name, S("Your @1 is almost broken!", def.description))
+		minetest.sound_play("default_tool_breaks", {to_player = name, gain = 2.0})
+	end
+end)
+
 armor:register_on_destroy(function(player, index, stack)
 	local name = player:get_player_name()
 	local def = stack:get_definition()
 	if name and def and def.description then
 		minetest.chat_send_player(name, S("Your @1 got destroyed!", def.description))
+		minetest.sound_play("default_tool_breaks", {to_player = name, gain = 2.0})
 	end
 end)
 
 local function validate_armor_inventory(player)
 	-- Workaround for detached inventory swap exploit
 	local _, inv = armor:get_valid_player(player, "[validate_armor_inventory]")
+	local pos = player:get_pos()
 	if not inv then
 		return
 	end
 	local armor_prev = {}
-	local armor_list_string = player:get_meta():get_string("3d_armor_inventory")
+	local attribute_meta = player:get_meta() -- I know, the function's name is weird but let it be like that. ;)
+	local armor_list_string = attribute_meta:get_string("3d_armor_inventory")
 	if armor_list_string then
 		local armor_list = armor:deserialize_inventory_list(armor_list_string)
 		for i, stack in ipairs(armor_list) do
@@ -138,6 +151,7 @@ local function validate_armor_inventory(player)
 				elements[element] = true;
 			else
 				inv:remove_item("armor", stack)
+				minetest.item_drop(stack, player, pos)
 				-- The following code returns invalid items to the player's main
 				-- inventory but could open up the possibity for a hacked client
 				-- to receive items back they never really had. I am not certain
@@ -156,10 +170,12 @@ local function validate_armor_inventory(player)
 	end
 end
 
-local function init_player_armor(player)
-	local name = player:get_player_name()
-	local pos = player:get_pos()
-
+local function init_player_armor(initplayer)
+	local name = initplayer:get_player_name()
+	local pos = initplayer:get_pos()
+	if not name or not pos then
+		return false
+	end
 	local armor_inv = minetest.create_detached_inventory(name.."_armor", {
 		on_put = function(inv, listname, index, stack, player)
 			validate_armor_inventory(player)
@@ -199,20 +215,20 @@ local function init_player_armor(player)
 		end,
 	}, name)
 	armor_inv:set_size("armor", 6)
-	if not armor:load_armor_inventory(player) and armor.migrate_old_inventory then
-		local player_inv = player:get_inventory()
+	if not armor:load_armor_inventory(initplayer) and armor.migrate_old_inventory then
+		local player_inv = initplayer:get_inventory()
 		player_inv:set_size("armor", 6)
 		for i=1, 6 do
 			local stack = player_inv:get_stack("armor", i)
 			armor_inv:set_stack("armor", i, stack)
 		end
-		armor:save_armor_inventory(player)
+		armor:save_armor_inventory(initplayer)
 		player_inv:set_size("armor", 0)
 	end
 	for i=1, 6 do
 		local stack = armor_inv:get_stack("armor", i)
 		if stack:get_count() > 0 then
-			armor:run_callbacks("on_equip", player, i, stack)
+			armor:run_callbacks("on_equip", initplayer, i, stack)
 		end
 	end
 	armor.def[name] = {
@@ -267,8 +283,8 @@ if armor.config.drop == true or armor.config.destroy == true then
 		if pos and armor.config.destroy == false then
 			minetest.after(armor.config.bones_delay, function()
 				local meta = nil
-				local maxp = vector.add(pos, 8)
-				local minp = vector.subtract(pos, 8)
+				local maxp = vector.add(pos, 16)
+				local minp = vector.subtract(pos, 16)
 				local bones = minetest.find_nodes_in_area(minp, maxp, {"bones:bones"})
 				for _, p in pairs(bones) do
 					local m = minetest.get_meta(p)
@@ -307,8 +323,9 @@ if armor.config.punch_damage == true then
 	end)
 end
 
-minetest.register_on_player_hpchange(function(player, hp_change)
-	if player and hp_change < 0 then
+minetest.register_on_player_hpchange(function(player, hp_change, reason)
+	if player and reason.type ~= "drown" and reason.hunger == nil
+			and hp_change < 0 then
 		local name = player:get_player_name()
 		if name then
 			local heal = armor.def[name].heal
@@ -325,7 +342,8 @@ minetest.register_on_player_hpchange(function(player, hp_change)
 	return hp_change
 end, true)
 
--- Fire Protection and water breating, added by TenPlus1
+-- Fire Protection and water breathing, added by TenPlus1.
+
 if armor.config.fire_protect == true then
 	-- override hot nodes so they do not hurt player anywhere but mod
 	for _, row in pairs(armor.fire_nodes) do

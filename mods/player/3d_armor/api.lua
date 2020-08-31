@@ -1,5 +1,5 @@
 -- support for i18n
-local S = armor_i18n.gettext
+local S = minetest.get_translator(minetest.get_current_modname())
 
 local use_player_monoids = minetest.global_exists("player_monoids")
 local use_armor_monoid = minetest.global_exists("armor_monoid")
@@ -65,6 +65,7 @@ armor = {
 	},
 	migrate_old_inventory = true,
 	version = "0.4.13",
+	get_translator = S
 }
 
 armor.config = {
@@ -254,6 +255,11 @@ armor.set_player_armor = function(self, player)
 	if use_armor_monoid then
 		armor_monoid.monoid:add_change(player, change, "3d_armor:armor")
 	else
+		-- Preserve immortal group (damage disabled for player)
+		local immortal = player:get_armor_groups().immortal
+		if immortal and immortal ~= 0 then
+			groups.immortal = 1
+		end
 		player:set_armor_groups(groups)
 	end
 	if use_player_monoids then
@@ -288,6 +294,8 @@ armor.punch = function(self, player, hitter, time_from_last_punch, tool_capabili
 	if not name then
 		return
 	end
+	local set_state
+	local set_count
 	local state = 0
 	local count = 0
 	local recip = true
@@ -295,8 +303,8 @@ armor.punch = function(self, player, hitter, time_from_last_punch, tool_capabili
 	local list = armor_inv:get_list("armor")
 	for i, stack in pairs(list) do
 		if stack:get_count() == 1 then
-			local name = stack:get_name()
-			local use = minetest.get_item_group(name, "armor_use") or 0
+			local itemname = stack:get_name()
+			local use = minetest.get_item_group(itemname, "armor_use") or 0
 			local damage = use > 0
 			local def = stack:get_definition() or {}
 			if type(def.on_punched) == "function" then
@@ -344,14 +352,20 @@ armor.punch = function(self, player, hitter, time_from_last_punch, tool_capabili
 				end
 			end
 			if damage == true and hitter == "fire" then
-				damage = minetest.get_item_group(name, "flammable") > 0
+				damage = minetest.get_item_group(itemname, "flammable") > 0
 			end
 			if damage == true then
 				self:damage(player, i, stack, use)
+				set_state = self.def[name].state
+				set_count = self.def[name].count
 			end
 			state = state + stack:get_wear()
 			count = count + 1
 		end
+	end
+	if set_count and set_count ~= count then
+		state = set_state or state
+		count = set_count or count
 	end
 	self.def[name].state = state
 	self.def[name].count = count
@@ -430,7 +444,8 @@ end
 armor.load_armor_inventory = function(self, player)
 	local _, inv = self:get_valid_player(player, "[load_armor_inventory]")
 	if inv then
-		local armor_list_string = player:get_meta():get_string("3d_armor_inventory")
+		local meta = player:get_meta()
+		local armor_list_string = meta:get_string("3d_armor_inventory")
 		if armor_list_string then
 			inv:set_list("armor",
 				self:deserialize_inventory_list(armor_list_string))
@@ -442,7 +457,8 @@ end
 armor.save_armor_inventory = function(self, player)
 	local _, inv = self:get_valid_player(player, "[save_armor_inventory]")
 	if inv then
-		player:get_meta():set_string("3d_armor_inventory",
+		local meta = player:get_meta()
+		meta:set_string("3d_armor_inventory",
 			self:serialize_inventory_list(inv:get_list("armor")))
 	end
 end
@@ -479,7 +495,7 @@ armor.drop_armor = function(pos, stack)
 	if node then
 		local obj = minetest.add_item(pos, stack)
 		if obj then
-			obj:setvelocity({x=math.random(-1, 1), y=5, z=math.random(-1, 1)})
+			obj:set_velocity({x=math.random(-1, 1), y=5, z=math.random(-1, 1)})
 		end
 	end
 end
