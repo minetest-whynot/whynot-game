@@ -34,7 +34,7 @@ Mod: minetest_game/mods/xpanes
 
 bell07	https://github.com/bell07/craftguide (fetch)
 origin	https://github.com/minetest-mods/craftguide/ (fetch)
-* upstream 8c3efef [origin/master] Cleanup
+* upstream aa46556 [origin/master] Fix tooltip 2
 Mod: libs/craftguide
 
 origin	https://github.com/minetest-mods/craftguide_reveal (fetch)
@@ -110,12 +110,13 @@ origin	https://github.com/minetest-mods/wielded_light (fetch)
 Mod: player/wielded_light
 
 origin	https://github.com/bell07/minetest-player_api_modpack (fetch)
-* master 829983d [origin/master] update 3d_armor against mintest-mods version
+* master 1104ee2 [origin/master] add place_your_skins_here mod
 Mod: player_api_modpack/3d_armor
 Mod: player_api_modpack/character_creator
 Mod: player_api_modpack/clothing
 Mod: player_api_modpack/homedecor_wardrobe
 Mod: player_api_modpack/multiskin_model
+Mod: player_api_modpack/place_your_skins_here
 Mod: player_api_modpack/player_api
 Mod: player_api_modpack/skin_admin
 Mod: player_api_modpack/skinsdb5

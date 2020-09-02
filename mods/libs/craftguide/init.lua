@@ -819,7 +819,7 @@ local function is_fav(favs, query_item)
 end
 
 local function weird_desc(str)
-	return not true_str(str) or find(str, "[\\]*") or not find(str, "%u")
+	return not true_str(str) or find(str, "\n") or not find(str, "%u")
 end
 
 local function toupper(str)
@@ -828,10 +828,6 @@ end
 
 local function strip_newline(str)
 	return match(str, "[^\n]*")
-end
-
-local function strip_prefix(str)
-	return match(str, ".*@.*%)(.*)()") or str
 end
 
 local function get_desc(item)
@@ -846,7 +842,6 @@ local function get_desc(item)
 		if true_str(desc) then
 			desc = desc:trim()
 			desc = strip_newline(desc)
-			desc = strip_prefix(desc)
 
 			if not find(desc, "%u") then
 				desc = toupper(desc)
@@ -1109,13 +1104,7 @@ local function get_grid_fs(fs, rcp, spacing)
 			fs[#fs + 1] = fmt(FMT.image, X, Y, btn_size, btn_size, PNG.selected)
 		end
 
-		local btn_name = ""
-
-		if groups then
-			btn_name = fmt("group|%s|%s", groups[1], item)
-		elseif item ~= "" then
-			btn_name = item
-		end
+		local btn_name = groups and fmt("group|%s|%s", groups[1], item) or item
 
 		fs[#fs + 1] = fmt(FMT.item_image_button,
 			X, Y, btn_size, btn_size, item, btn_name, label)
