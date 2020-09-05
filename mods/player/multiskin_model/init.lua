@@ -83,10 +83,14 @@ function multiskin_model.get_skin_format(file)
 	end
 end
 
-player_api.read_textures_and_meta(function(filename, skin)
-	if not skin.format then
-		local file = io.open(filename, "r")
+local old_register_skin = player_api.register_skin
+function player_api.register_skin(name, skin)
+	old_register_skin(name, skin)
+	if skin.filename and not skin.format then
+		local file = io.open(skin.filename, "r")
 		skin.format = multiskin_model.get_skin_format(file)
 		file:close()
 	end
-end)
+end
+
+player_api.read_textures_and_meta()

@@ -383,6 +383,9 @@ default setting and can be omitted:
                           anytime
     'on_spawn'            is a custom function which runs after mob has spawned
                           and gives self and pos values.
+    'on_map_load'         when true mobs will have a chance of spawning only
+                          when new areas of map are loaded, interval will not be
+                          used.
 
 The older spawn functions are still active and working but have no defaults like
 the mobs:spawn, so it is recommended to use the above instead.
@@ -698,8 +701,8 @@ mobs_monster:sand_monster 100
 ...you can also change how many of a certain mob appear in an active mapblock by
 adding a comma and then a new value e.g.
 
-mobs_animal:cow 8000,4            <-- 4 cows per mapblock at 8000 spawn chance
-mobs_monster:dirt_monster ,20     <-- 20 dirt monsters per mapblock
+mobs_animal:cow = 8000,4            <-- 4 cows per mapblock at 8000 spawn chance
+mobs_monster:dirt_monster = ,20     <-- 20 dirt monsters per mapblock
 
 
 Rideable Horse Example Mob

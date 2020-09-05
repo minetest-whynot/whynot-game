@@ -11,7 +11,7 @@ minetest.register_craftitem("farming:coffee_beans", {
 	end
 })
 
--- cold cup of coffee
+-- cup of coffee
 minetest.register_node("farming:coffee_cup", {
 	description = S("Cup of Coffee"),
 	drawtype = "torchlike",
@@ -37,12 +37,26 @@ minetest.register_craft( {
 	type = "shapeless",
 	recipe = {
 		"vessels:drinking_glass", "group:food_coffee",
-		"bucket:bucket_water", "group:food_saucepan"},
+		"group:water_bucket", "group:food_saucepan"},
 	replacements = {
-		{"bucket:bucket_water", "bucket:bucket_empty"},
+		{"group:water_bucket", "bucket:bucket_empty"},
 		{"group:food_saucepan", "farming:saucepan"}
 	}
 })
+
+if minetest.get_modpath("bucket_wooden") then
+	minetest.register_craft( {
+		output = "farming:coffee_cup",
+		type = "shapeless",
+		recipe = {
+			"vessels:drinking_glass", "group:food_coffee",
+			"group:water_bucket_wooden", "group:food_saucepan"},
+		replacements = {
+			{"group:water_bucket_wooden", "bucket_wooden:bucket_empty"},
+			{"group:food_saucepan", "farming:saucepan"}
+		}
+	})
+end
 
 -- coffee definition
 local def = {

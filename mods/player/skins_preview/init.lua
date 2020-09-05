@@ -1,5 +1,6 @@
--- stohlen from https://github.com/GreenXenith/skinsdb/blob/master/skin_meta_api.lua
-function skinsdb5.get_preview(texture, format)
+-- Based on contribution to https://github.com/GreenXenith/skinsdb/blob/master/skin_meta_api.lua
+
+local function get_preview(texture, format)
 	local player_skin = "("..texture..")"
 	local skin = ""
 
@@ -49,12 +50,11 @@ function skinsdb5.get_preview(texture, format)
 	return minetest.formspec_escape(skin)
 end
 
-player_api.register_on_skin_change(function(player, model_name, skin_name)
-	local skin = player_api.registered_skins[skin_name]
-	if not skin.preview then
-		local texture = skin.texture or (skin.textures and skin.textures[1])
-		if texture then
-			skin.preview = skinsdb5.get_preview(texture, skin.format)
-		end
+-- Generate preview if not defined
+player_api.register_skin_dyn_values("preview", function(skin)
+	local texture = skin.texture or (skin.textures and skin.textures[1])
+	if texture then
+		skin.preview = get_preview(texture, skin.format)
 	end
+	return skin.preview
 end)

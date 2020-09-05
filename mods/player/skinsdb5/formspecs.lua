@@ -17,9 +17,6 @@ function skinsdb5.get_skin_info_formspec(skin_name)
 		return ""
 	end
 	local texture = skin.texture or (skin.textures and skin.textures[1])
-	if not skin.preview and texture then
-		skin.preview = skinsdb5.get_preview(texture, skin.format)
-	end
 	local formspec = ""
 	if skin.preview then
 		formspec = formspec.."image[0,.75;1,2;"..skin.preview.."]"
@@ -67,13 +64,6 @@ function skinsdb5.get_skin_selection_formspec(player, context, y_delta)
 		local skin = skins_list[i]
 		if not skin then
 			break
-		end
-
-		if not skin.preview then
-			local texture = skin.texture or (skin.textures and skin.textures[1])
-			if texture then
-				skin.preview = skinsdb5.get_preview(texture, skin.format)
-			end
 		end
 
 		local index_p = context.skins_list[i].page_index

@@ -68,13 +68,28 @@ minetest.register_craft({
 	recipe = {
 		{"flowers:rose", "flowers:rose", "flowers:rose"},
 		{"flowers:rose", "flowers:rose", "flowers:rose"},
-		{"bucket:bucket_water", "group:food_pot", "vessels:glass_bottle"}
+		{"group:water_bucket", "group:food_pot", "vessels:glass_bottle"}
 	},
 	replacements = {
-		{"bucket:bucket_water", "bucket:bucket_empty"},
+		{"group:water_bucket", "bucket:bucket_empty"},
 		{"group:food_pot", "farming:pot"}
 	}
 })
+
+if minetest.get_modpath("bucket_wooden") then
+	minetest.register_craft({
+		output = "farming:rose_water",
+		recipe = {
+			{"flowers:rose", "flowers:rose", "flowers:rose"},
+			{"flowers:rose", "flowers:rose", "flowers:rose"},
+			{"group:water_bucket_wooden", "group:food_pot", "vessels:glass_bottle"}
+		},
+		replacements = {
+			{"group:water_bucket_wooden", "bucket_wooden:bucket_empty"},
+			{"group:food_pot", "farming:pot"}
+		}
+	})
+end
 
 --= Turkish Delight
 
@@ -168,23 +183,28 @@ minetest.register_craftitem("farming:porridge", {
 
 minetest.after(0, function()
 
-	local fluid = "bucket:bucket_water"
-	local fluid_return = "bucket:bucket_water"
+	local fluid = "group:water_bucket"
+	local fluid_return = {
+		{"group:water_bucket", "bucket:bucket_empty"},
+		{"group:water_bucket_wooden", "bucket:bucket_empty"}
+	}
 
 	if minetest.get_modpath("mobs") and mobs and mobs.mod == "redo" then
 		fluid = "group:food_milk"
-		fluid_return = "mobs:bucket_milk"
+		fluid_return = {
+			{"mobs:bucket_milk", "bucket:bucket_empty"}
+		}
+	else
+		minetest.register_craft({
+			type = "shapeless",
+			output = "farming:porridge",
+			recipe = {
+				"group:food_oats", "group:food_oats", "group:food_oats",
+				"group:food_oats", "group:food_bowl", "group:water_bucket_wooden"
+			},
+			replacements = fluid_return
+		})
 	end
-
-	minetest.register_craft({
-		type = "shapeless",
-		output = "farming:porridge",
-		recipe = {
-			"group:food_barley", "group:food_barley", "group:food_wheat",
-			"group:food_wheat", "group:food_bowl", fluid
-		},
-		replacements = {{fluid_return, "bucket:bucket_empty"}}
-	})
 
 	minetest.register_craft({
 		type = "shapeless",
@@ -193,8 +213,11 @@ minetest.after(0, function()
 			"group:food_oats", "group:food_oats", "group:food_oats",
 			"group:food_oats", "group:food_bowl", fluid
 		},
-		replacements = {{fluid_return, "bucket:bucket_empty"}}
+		replacements = fluid_return
 	})
+
+	if minetest.get_modpath("bucket_wooden") then
+	end
 end)
 
 --= Jaffa Cake

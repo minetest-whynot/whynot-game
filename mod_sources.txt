@@ -110,15 +110,18 @@ origin	https://github.com/minetest-mods/wielded_light (fetch)
 Mod: player/wielded_light
 
 origin	https://github.com/bell07/minetest-player_api_modpack (fetch)
-* master 1104ee2 [origin/master] add place_your_skins_here mod
+* master 567808e [origin/master] add skins.filename attribute and rewrite multiskin_model format integration integration
 Mod: player_api_modpack/3d_armor
 Mod: player_api_modpack/character_creator
 Mod: player_api_modpack/clothing
+Mod: player_api_modpack/fensta_skins
 Mod: player_api_modpack/homedecor_wardrobe
 Mod: player_api_modpack/multiskin_model
+Mod: player_api_modpack/newhand
 Mod: player_api_modpack/place_your_skins_here
 Mod: player_api_modpack/player_api
 Mod: player_api_modpack/skin_admin
+Mod: player_api_modpack/skins_preview
 Mod: player_api_modpack/skinsdb5
 Mod: player_api_modpack/wieldview
 
@@ -154,7 +157,7 @@ origin	https://gitlab.com/rautars/weather_pack (fetch)
 Mod: ambience/weather_pack
 
 origin	https://notabug.org/TenPlus1/farming (fetch)
-* master 32ae94e [origin/master] mt5.x translations added/updated (thanks dacmot)
+* master f7524e1 [origin/master] update recipes to use water/river-water buckets, also support for wooden bucket mod
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
@@ -425,9 +428,9 @@ origin	https://codeberg.org/Hamlet/mobs_ghost_redo (fetch)
 Mod: mobs_redo/mobs_ghost_redo
 
 origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
-* master 84f1ff3 [origin/master] mt5.x translations added/updated (thanks dacmot)
+* master 144c851 [origin/master] convert mobs_fireball.ogg to mono
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master 39002cf [origin/master] mt5.x translations added/updated (thanks dacmot)
+* master 8952319 [origin/master] fix typo in api.txt
 Mod: mobs_redo/mobs_redo

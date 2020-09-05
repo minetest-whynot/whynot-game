@@ -3,7 +3,7 @@ local S = farming.intllib
 
 -- blueberries
 minetest.register_craftitem("farming:blueberries", {
-	description = S("Blueberries"),
+	description = S("Wild Blueberries"),
 	inventory_image = "farming_blueberries.png",
 	groups = {seed = 2, food_blueberries = 1, food_blueberry = 1,
 			food_berry = 1, flammable = 2},

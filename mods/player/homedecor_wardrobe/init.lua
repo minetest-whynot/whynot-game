@@ -18,12 +18,8 @@ for _, shrt in ipairs(skinslist) do
 			author = 'Calinou and Jordach',
 			license = 'CC-by-SA-4.0',
 			in_inventory_list = false,
+			filename = modpath.."/textures/homedecor_clothes_"..skin_name..".png",
 		}
-		if minetest.get_modpath("multiskin_model") then
-			local file = io.open(modpath.."/textures/homedecor_clothes_"..skin_name..".png", "r")
-			skin.format = multiskin_model.get_skin_format(file)
-			file:close()
-		end
 		player_api.register_skin(skin.texture, skin)
 	end
 end

@@ -6,7 +6,6 @@ local modpath = minetest.get_modpath(minetest.get_current_modname())
 skinsdb5.modpath = modpath
 
 dofile(modpath.."/api.lua")
-dofile(modpath.."/preview.lua")
 dofile(modpath.."/formspecs.lua")
 dofile(modpath.."/chatcommands.lua")
 
