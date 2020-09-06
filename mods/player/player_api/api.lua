@@ -9,13 +9,13 @@ local animation_blend = 0
 
 player_api.registered_models = {}
 player_api.registered_skins = {}
-player_api.registered_skin_dyn_values = {}
+
 -- Local for speed.
 local models = player_api.registered_models
 local skins = player_api.registered_skins
 local registered_skin_modifiers = {}
 local registered_on_skin_change = {}
-local registered_skin_dyn_values = player_api.registered_skin_dyn_values
+local registered_skin_dyn_values = {}
 
 function player_api.register_model(name, def)
 	-- compatibility defaults

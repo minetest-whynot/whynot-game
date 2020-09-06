@@ -69,10 +69,6 @@ origin	https://github.com/bell07/minetest-whynot_compat (fetch)
 * master 557f1b9 [origin/master] resolve conflict between heads and bonemeal
 Mod: libs/whynot_compat
 
-origin	https://github.com/Chemguy99/armor_addon (fetch)
-* master f3db114 [origin/master] Added more armor types to the repository which include new texture files and a few mods in armor.lua, crafts.lua, and depends.txt files.
-Mod: player/armor_addon
-
 origin	https://github.com/minetest-mods/awards (fetch)
 * master 4e8d175 [origin/master] Fixed a couple typos.
 Mod: player/awards
@@ -97,6 +93,10 @@ origin	https://repo.or.cz/minetest_hudbars.git (fetch)
 * master 0684bac [origin/master] Version 2.3.1
 Mod: player/hudbars
 
+origin	https://github.com/dacmot/moarmour (fetch)
+* master dfba7ef [origin/master] Update README.md
+Mod: player/moarmour
+
 origin	https://github.com/minetest-mods/playeranim (fetch)
 * master c95658c [origin/master: ahead 1] quickfix for MT-5.3
 Mod: player/playeranim
@@ -110,7 +110,7 @@ origin	https://github.com/minetest-mods/wielded_light (fetch)
 Mod: player/wielded_light
 
 origin	https://github.com/bell07/minetest-player_api_modpack (fetch)
-* master 567808e [origin/master] add skins.filename attribute and rewrite multiskin_model format integration integration
+* master 3226724 [origin/master] upstream fixes
 Mod: player_api_modpack/3d_armor
 Mod: player_api_modpack/character_creator
 Mod: player_api_modpack/clothing
@@ -132,7 +132,7 @@ Mod: 3d_armor/shields
 Mod: 3d_armor/3d_armor_sfinv
 
 origin	https://github.com/bell07/minetest-smart_sfinv (fetch)
-* master 7a59468 [origin/master] fix copy&paste issue
+* master 0f6bcdc [origin/master: ahead 1] added moarmour => armor group mapping for smart_sfinv_creative_bymod
 Mod: smart_sfinv_modpack/creative_maxstack
 Mod: smart_sfinv_modpack/sfinv_buttons
 Mod: smart_sfinv_modpack/smart_sfinv_api
@@ -432,5 +432,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master 8952319 [origin/master] fix typo in api.txt
+* master bd8be09 [origin/master] fix nametag return
 Mod: mobs_redo/mobs_redo

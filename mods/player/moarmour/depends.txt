@@ -8,6 +8,7 @@ even_mosword?
 candycane?
 moreores?
 bones?
+bonemeal?
 xpanes?
 tac_nayn?
 sky_tools?

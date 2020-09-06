@@ -1,0 +1,15 @@
+.gitattributes text
+.gitignore     text
+
+*.pl     text
+*.lua    text
+*.tr     text
+*.md     text
+*.txt    text
+mod.conf text
+LICENSE  text
+
+*.jpg   binary
+*.png   binary
+*.mts   binary
+*.xcf   binary

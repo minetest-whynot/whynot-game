@@ -9,7 +9,7 @@ local use_cmi = minetest.global_exists("cmi")
 
 mobs = {
 	mod = "redo",
-	version = "20200904",
+	version = "20200905",
 	intllib = S,
 	invis = minetest.global_exists("invisibility") and invisibility or {}
 }
@@ -4588,6 +4588,8 @@ function mobs:feed_tame(self, clicker, feed_count, breed, tame)
 			.. ";" .. tag .. "]"
 			.. "button_exit[2.5,3.5;3,1;mob_rename;"
 			.. minetest.formspec_escape(S("Rename")) .. "]")
+
+		return true
 	end
 
 	return false
