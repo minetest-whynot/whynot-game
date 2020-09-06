@@ -97,8 +97,9 @@ origin	https://github.com/dacmot/moarmour (fetch)
 * master dfba7ef [origin/master] Update README.md
 Mod: player/moarmour
 
+bell07	https://github.com/bell07/playeranim (fetch)
 origin	https://github.com/minetest-mods/playeranim (fetch)
-* master c95658c [origin/master: ahead 1] quickfix for MT-5.3
+* master ae5ca42 [origin/master: ahead 1] Clear up all animations of all registered models
 Mod: player/playeranim
 
 origin	http://repo.or.cz/minetest_show_wielded_item.git (fetch)
@@ -110,7 +111,7 @@ origin	https://github.com/minetest-mods/wielded_light (fetch)
 Mod: player/wielded_light
 
 origin	https://github.com/bell07/minetest-player_api_modpack (fetch)
-* master 3226724 [origin/master] upstream fixes
+* master 3a621b7 [origin/master] texture vs textures clearup
 Mod: player_api_modpack/3d_armor
 Mod: player_api_modpack/character_creator
 Mod: player_api_modpack/clothing
@@ -132,7 +133,7 @@ Mod: 3d_armor/shields
 Mod: 3d_armor/3d_armor_sfinv
 
 origin	https://github.com/bell07/minetest-smart_sfinv (fetch)
-* master 0f6bcdc [origin/master: ahead 1] added moarmour => armor group mapping for smart_sfinv_creative_bymod
+* master 0f6bcdc [origin/master] added moarmour => armor group mapping for smart_sfinv_creative_bymod
 Mod: smart_sfinv_modpack/creative_maxstack
 Mod: smart_sfinv_modpack/sfinv_buttons
 Mod: smart_sfinv_modpack/smart_sfinv_api

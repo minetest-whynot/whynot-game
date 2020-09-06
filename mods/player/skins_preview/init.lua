@@ -52,7 +52,7 @@ end
 
 -- Generate preview if not defined
 player_api.register_skin_dyn_values("preview", function(skin)
-	local texture = skin.texture or (skin.textures and skin.textures[1])
+	local texture = skin.textures and skin.textures[1]
 	if texture then
 		skin.preview = get_preview(texture, skin.format)
 	end

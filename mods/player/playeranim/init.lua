@@ -22,10 +22,17 @@ end
 
 -- stop player_api from messing stuff up (since 5.3)
 if minetest.global_exists("player_api") then
-	for _, v in pairs(player_api.registered_models[player_api.default_model].animations) do
-		v.x = 0
-		v.y = 0
-	end
+	minetest.register_on_mods_loaded(function()
+		for _, model in pairs(player_api.registered_models) do
+			if model.animations then
+				for _, animation in pairs(model.animations) do
+					animation.x = 0
+					animation.y = 0
+				end
+			end
+		end
+	end)
+
 	minetest.register_on_joinplayer(function(player)
 		player:set_local_animation(nil, nil, nil, nil, 0)
 	end)

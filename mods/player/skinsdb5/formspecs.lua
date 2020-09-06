@@ -16,7 +16,7 @@ function skinsdb5.get_skin_info_formspec(skin_name)
 	if not skin then
 		return ""
 	end
-	local texture = skin.texture or (skin.textures and skin.textures[1])
+	local texture = skin.textures and skin.textures[1]
 	local formspec = ""
 	if skin.preview then
 		formspec = formspec.."image[0,.75;1,2;"..skin.preview.."]"

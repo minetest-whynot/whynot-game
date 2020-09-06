@@ -198,7 +198,8 @@ end
 local function change_skin(player)
 	local playername = player:get_player_name()
 	local skin_obj = player_api.registered_skins["character_creator:"..playername]
-	skin_obj.texture = get_texture(player)
+	skin_obj.textures = skin_obj.textures or {}
+	skin_obj.textures[1] = get_texture(player)
 	skin_obj.preview = nil --rebuild preview
 	save_skin(player)
 end
