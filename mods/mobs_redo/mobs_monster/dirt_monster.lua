@@ -57,6 +57,7 @@ if minetest.get_modpath("ethereal") then
 	spawn_on = "ethereal:gray_dirt"
 end
 
+if not mobs.custom_spawn_monster then
 mobs:spawn({
 	name = "mobs_monster:dirt_monster",
 	nodes = {spawn_on},
@@ -67,6 +68,7 @@ mobs:spawn({
 	min_height = 0,
 	day_toggle = false,
 })
+end
 
 
 mobs:register_egg("mobs_monster:dirt_monster", S("Dirt Monster"), "default_dirt.png", 1)

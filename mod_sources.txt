@@ -32,9 +32,8 @@ Mod: minetest_game/mods/weather
 Mod: minetest_game/mods/wool
 Mod: minetest_game/mods/xpanes
 
-bell07	https://github.com/bell07/craftguide (fetch)
 origin	https://github.com/minetest-mods/craftguide/ (fetch)
-* upstream aa46556 [origin/master] Fix tooltip 2
+* upstream 0de66b1 [origin/master] Small cleanup
 Mod: libs/craftguide
 
 origin	https://github.com/minetest-mods/craftguide_reveal (fetch)
@@ -86,7 +85,7 @@ origin	http://repo.or.cz/minetest_hbhunger (fetch)
 Mod: player/hbhunger
 
 origin	https://github.com/minetest-mods/hbsprint (fetch)
-* master c3e00a6 [origin/master] Fix typo.
+* master 899d246 [origin/master] Fix sprinting for players with the fast and fly privileges.
 Mod: player/hbsprint
 
 origin	https://repo.or.cz/minetest_hudbars.git (fetch)
@@ -99,7 +98,7 @@ Mod: player/moarmour
 
 bell07	https://github.com/bell07/playeranim (fetch)
 origin	https://github.com/minetest-mods/playeranim (fetch)
-* master ae5ca42 [origin/master: ahead 1] Clear up all animations of all registered models
+* master 9dab03f [origin/master] Clear up all animations of all registered models (#1)
 Mod: player/playeranim
 
 origin	http://repo.or.cz/minetest_show_wielded_item.git (fetch)
@@ -127,7 +126,7 @@ Mod: player_api_modpack/skinsdb5
 Mod: player_api_modpack/wieldview
 
 origin	https://github.com/minetest-mods/3d_armor (fetch)
-* master 502eb14 [origin/master] run actions on pull-requests too
+* master 7f63df2 [origin/master] fix armor equip/unequip (#17)
 Mod: 3d_armor/3d_armor_stand
 Mod: 3d_armor/shields
 Mod: 3d_armor/3d_armor_sfinv
@@ -325,7 +324,7 @@ origin	https://gitlab.com/VanessaE/unifieddyes (fetch)
 Mod: decor/unifieddyes
 
 origin	https://gitlab.com/VanessaE/homedecor_modpack/ (fetch)
-* master 631ae20 [origin/master: ahead 1] enable the beds 3x time
+* master 0d6e9bf [origin/master: ahead 2] Merge remote-tracking branch 'origin/master'
 Mod: homedecor_modpack/building_blocks
 Mod: homedecor_modpack/fake_fire
 Mod: homedecor_modpack/lavalamp
@@ -398,7 +397,7 @@ origin	https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin	https://github.com/minetest-mods/mesecons (fetch)
-* master 9fda51b [origin/master] Insulated double corner (#524)
+* master 6921909 [origin/master] Restrict Lua controller interrupt IDs (#534)
 Mod: mesecons/mesecons
 Mod: mesecons/mesecons_alias
 Mod: mesecons/mesecons_blinkyplant
@@ -429,9 +428,9 @@ origin	https://codeberg.org/Hamlet/mobs_ghost_redo (fetch)
 Mod: mobs_redo/mobs_ghost_redo
 
 origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
-* master 144c851 [origin/master] convert mobs_fireball.ogg to mono
+* master 4018a5c [origin/master] Added spawn.lua check for custom mob spawns, example file included
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master bd8be09 [origin/master] fix nametag return
+* master f14050a [origin/master] nil check for do_stay_near
 Mod: mobs_redo/mobs_redo

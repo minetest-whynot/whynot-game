@@ -89,6 +89,7 @@ mobs:register_mob("mobs_monster:lava_flan", {
 })
 
 
+if not mobs.custom_spawn_monster then
 mobs:spawn({
 	name = "mobs_monster:lava_flan",
 	nodes = {"default:lava_source"},
@@ -96,6 +97,7 @@ mobs:spawn({
 	active_object_count = 1,
 	max_height = 0,
 })
+end
 
 
 mobs:register_egg("mobs_monster:lava_flan", S("Lava Flan"), "default_lava.png", 1)

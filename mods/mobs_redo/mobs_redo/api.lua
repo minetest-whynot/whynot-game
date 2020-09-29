@@ -9,7 +9,7 @@ local use_cmi = minetest.global_exists("cmi")
 
 mobs = {
 	mod = "redo",
-	version = "20200905",
+	version = "20200923",
 	intllib = S,
 	invis = minetest.global_exists("invisibility") and invisibility or {}
 }
@@ -637,7 +637,7 @@ function mob_class:do_stay_near()
 	local searchnodes = self.stay_near[1]
 	local chance = self.stay_near[2] or 10
 
-	if random(chance) > 1 then
+	if not pos or random(chance) > 1 then
 		return false
 	end
 
@@ -2685,20 +2685,20 @@ function mob_class:on_punch(hitter, tflp, tool_capabilities, dir, damage)
 
 	-- mob health check
 	if self.health <= 0 then
-		return
+		return true
 	end
 
 	-- custom punch function
 	if self.do_punch
 	and self:do_punch(hitter, tflp, tool_capabilities, dir) == false then
-		return
+		return true
 	end
 
 	-- error checking when mod profiling is enabled
 	if not tool_capabilities then
 		minetest.log("warning",
 				"[mobs] Mod profiling enabled, damage not enabled")
-		return
+		return true
 	end
 
 	-- is mob protected?
@@ -2709,7 +2709,7 @@ function mob_class:on_punch(hitter, tflp, tool_capabilities, dir, damage)
 		minetest.chat_send_player(hitter:get_player_name(),
 				S("Mob has been protected!"))
 
-		return
+		return true
 	end
 
 	local weapon = hitter:get_wielded_item()
@@ -2770,7 +2770,7 @@ function mob_class:on_punch(hitter, tflp, tool_capabilities, dir, damage)
 	if use_cmi
 	and cmi.notify_punch(
 			self.object, hitter, tflp, tool_capabilities, dir, damage) then
-		return
+		return true
 	end
 
 	-- add weapon wear
@@ -2875,7 +2875,7 @@ function mob_class:on_punch(hitter, tflp, tool_capabilities, dir, damage)
 		local v = self.object:get_velocity()
 
 		-- sanity check
-		if not v then return end
+		if not v then return true end
 
 		local kb = damage or 1
 		local up = 2

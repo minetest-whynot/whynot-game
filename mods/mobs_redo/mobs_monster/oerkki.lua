@@ -60,6 +60,7 @@ mobs:register_mob("mobs_monster:oerkki", {
 })
 
 
+if not mobs.custom_spawn_monster then
 mobs:spawn({
 	name = "mobs_monster:oerkki",
 	nodes = {"default:stone"},
@@ -67,6 +68,7 @@ mobs:spawn({
 	chance = 7000,
 	max_height = -10,
 })
+end
 
 
 mobs:register_egg("mobs_monster:oerkki", S("Oerkki"), "default_obsidian.png", 1)

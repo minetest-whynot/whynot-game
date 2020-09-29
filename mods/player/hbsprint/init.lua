@@ -182,16 +182,15 @@ end)
 
 local function sprint_step(player, dtime)
   local name = player:get_player_name()
+  local fast = minetest.get_player_privs(name).fast
 
-  if minetest.get_player_privs(name).fast then
-    return
-  end
-
-  if stamina then
-    stamina_timer[name] = (stamina_timer[name] or 0) + dtime
-  end
-  if breath then
-    breath_timer[name] = (breath_timer[name] or 0) + dtime
+  if not fast then
+    if stamina then
+      stamina_timer[name] = (stamina_timer[name] or 0) + dtime
+    end
+    if breath then
+      breath_timer[name] = (breath_timer[name] or 0) + dtime
+    end
   end
 
   local ctrl = player:get_player_control()
@@ -204,7 +203,7 @@ local function sprint_step(player, dtime)
 
   if not key_press then
     stop_sprint(player)
-    if stamina and stamina_timer[name] >= replenish then
+    if stamina and not fast and stamina_timer[name] >= replenish then
       replenish_stamina(player)
       stamina_timer[name] = 0
     end
@@ -235,15 +234,15 @@ local function sprint_step(player, dtime)
     hunger = hunger_ng.get_hunger_information(name).hunger.exact
   end
 
-  if player_stamina > 0 and hunger > starve_limit and ground then
+  if (player_stamina > 0 and hunger > starve_limit and ground) or fast then
     start_sprint(player)
-    if stamina then drain_stamina(player) end
+    if stamina and not fast then drain_stamina(player) end
     if starve then drain_hunger(player, name) end
-    if breath and breath_timer[name] >= 2 then
+    if breath and not fast and breath_timer[name] >= 2 then
       drain_breath(player)
       breath_timer[name] = 0
     end
-    if particles then
+    if particles and ground then
       create_particles(player, name, ground)
     end
   else
