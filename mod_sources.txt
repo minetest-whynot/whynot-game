@@ -126,7 +126,7 @@ Mod: player_api_modpack/skinsdb5
 Mod: player_api_modpack/wieldview
 
 origin	https://github.com/minetest-mods/3d_armor (fetch)
-* master 7f63df2 [origin/master] fix armor equip/unequip (#17)
+* master 3f1a952 [origin/master] Fix not being able to place armor on anvil (#19)
 Mod: 3d_armor/3d_armor_stand
 Mod: 3d_armor/shields
 Mod: 3d_armor/3d_armor_sfinv
@@ -316,7 +316,7 @@ origin	https://github.com/v-rob/slats (fetch)
 Mod: decor/slats
 
 origin	https://github.com/minetest-mods/ts_furniture (fetch)
-* master bc1276b [origin/master] Add chat message when sitting is not possible.
+* master d6a34f3 [origin/master] Fix undeclared variable warning
 Mod: decor/ts_furniture
 
 origin	https://gitlab.com/VanessaE/unifieddyes (fetch)
@@ -432,5 +432,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master f14050a [origin/master] nil check for do_stay_near
+* master 7f4d473 [origin/master] Localize a few functions (thanks MoNTE48)
 Mod: mobs_redo/mobs_redo

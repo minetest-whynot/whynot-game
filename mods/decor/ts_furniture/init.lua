@@ -55,7 +55,7 @@ if ts_furniture.enable_sitting then
 				local ctrl = player:get_player_control()
 				if default.player_attached[name] and not player:get_attach() and
 				(ctrl.up or ctrl.down or ctrl.left or ctrl.right or ctrl.jump) then
-					ts_furniture.up(_, _, player)
+					ts_furniture.up(nil, nil, player)
 				end
 			end
 		end)

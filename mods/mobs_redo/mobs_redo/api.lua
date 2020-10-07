@@ -1,4 +1,3 @@
-
 -- Load support for intllib.
 local MP = minetest.get_modpath(minetest.get_current_modname())
 local S = minetest.get_translator and minetest.get_translator("mobs_redo") or
@@ -9,18 +8,10 @@ local use_cmi = minetest.global_exists("cmi")
 
 mobs = {
 	mod = "redo",
-	version = "20200923",
+	version = "20201003",
 	intllib = S,
 	invis = minetest.global_exists("invisibility") and invisibility or {}
 }
-
--- creative check
-local creative_cache = minetest.settings:get_bool("creative_mode")
-function mobs.is_creative(name)
-	return creative_cache or minetest.check_player_privs(name,
-			{creative = true})
-end
-
 
 -- localize math functions
 local pi = math.pi
@@ -43,24 +34,36 @@ local atan = function(x)
 		return atann(x)
 	end
 end
+local table_copy = table.copy
+local table_remove = table.remove
+local vadd = vector.add
+local vdirection = vector.direction
+local vmultiply = vector.multiply
+local vsubtract = vector.subtract
+local settings = minetest.settings
 
+-- creative check
+local creative_cache = minetest.settings:get_bool("creative_mode")
+function mobs.is_creative(name)
+	return creative_cache or minetest.check_player_privs(name,
+			{creative = true})
+end
 
 -- Load settings
-local damage_enabled = minetest.settings:get_bool("enable_damage")
-local mobs_spawn = minetest.settings:get_bool("mobs_spawn") ~= false
-local peaceful_only = minetest.settings:get_bool("only_peaceful_mobs")
-local disable_blood = minetest.settings:get_bool("mobs_disable_blood")
-local mobs_drop_items = minetest.settings:get_bool("mobs_drop_items") ~= false
-local mobs_griefing = minetest.settings:get_bool("mobs_griefing") ~= false
-local spawn_protected = minetest.settings:get_bool("mobs_spawn_protected") ~= false
-local remove_far = minetest.settings:get_bool("remove_far_mobs") ~= false
-local difficulty = tonumber(minetest.settings:get("mob_difficulty")) or 1.0
-local show_health = minetest.settings:get_bool("mob_show_health") ~= false
-local max_per_block = tonumber(minetest.settings:get("max_objects_per_block") or 99)
-local mob_nospawn_range = tonumber(minetest.settings:get("mob_nospawn_range") or 12)
-local active_limit = tonumber(minetest.settings:get("mob_active_limit") or 0)
-local mob_chance_multiplier =
-		tonumber(minetest.settings:get("mob_chance_multiplier") or 1)
+local damage_enabled = settings:get_bool("enable_damage")
+local mobs_spawn = settings:get_bool("mobs_spawn") ~= false
+local peaceful_only = settings:get_bool("only_peaceful_mobs")
+local disable_blood = settings:get_bool("mobs_disable_blood")
+local mobs_drop_items = settings:get_bool("mobs_drop_items") ~= false
+local mobs_griefing = settings:get_bool("mobs_griefing") ~= false
+local spawn_protected = settings:get_bool("mobs_spawn_protected") ~= false
+local remove_far = settings:get_bool("remove_far_mobs") ~= false
+local difficulty = tonumber(settings:get("mob_difficulty")) or 1.0
+local show_health = settings:get_bool("mob_show_health") ~= false
+local max_per_block = tonumber(settings:get("max_objects_per_block") or 99)
+local mob_nospawn_range = tonumber(settings:get("mob_nospawn_range") or 12)
+local active_limit = tonumber(settings:get("mob_active_limit") or 0)
+local mob_chance_multiplier = tonumber(settings:get("mob_chance_multiplier") or 1)
 local active_mobs = 0
 
 
@@ -73,7 +76,7 @@ if peaceful_only then
 end
 
 -- calculate aoc range for mob count
-local aoc_range = tonumber(minetest.settings:get("active_block_range")) * 16
+local aoc_range = tonumber(settings:get("active_block_range")) * 16
 
 -- pathfinding settings
 local enable_pathfinding = true
@@ -470,7 +473,7 @@ local new_line_of_sight = function(self, pos1, pos2, stepsize)
 
 	stepsize = stepsize or 1
 
-	local stepv = vector.multiply(vector.direction(pos1, pos2), stepsize)
+	local stepv = vmultiply(vdirection(pos1, pos2), stepsize)
 
 	local s, pos = minetest.line_of_sight(pos1, pos2, stepsize)
 
@@ -493,7 +496,7 @@ local new_line_of_sight = function(self, pos1, pos2, stepsize)
 	while minetest.registered_nodes[nn]
 	and (minetest.registered_nodes[nn].walkable == false) do
 
-		npos1 = vector.add(npos1, stepv)
+		npos1 = vadd(npos1, stepv)
 
 		if get_distance(npos1, pos2) < stepsize then return true end
 
@@ -573,10 +576,10 @@ function mob_class:attempt_flight_correction(override)
 	end
 
 	local escape_target = flyable_nodes[random(#flyable_nodes)]
-	local escape_direction = vector.direction(pos, escape_target)
+	local escape_direction = vdirection(pos, escape_target)
 
 	self.object:set_velocity(
-		vector.multiply(escape_direction, 1)) --self.run_velocity))
+		vmultiply(escape_direction, 1)) --self.run_velocity))
 
 	return true
 end
@@ -1028,7 +1031,7 @@ function mob_class:do_env_damage()
 	-- halt mob if standing inside ignore node
 	if self.standing_in == "ignore" then
 
-		self.object:set_velocity({x  = 0, y = 0, z = 0})
+		self.object:set_velocity({x = 0, y = 0, z = 0})
 
 		return true
 	end
@@ -1620,7 +1623,7 @@ function mob_class:smart_mobs(s, p, dist, dtime)
 		end, self)
 	end
 
-	if abs(vector.subtract(s,target_pos).y) > self.stepheight then
+	if abs(vsubtract(s,target_pos).y) > self.stepheight then
 
 		if height_switcher then
 			use_pathfind = true
@@ -1904,7 +1907,7 @@ function mob_class:do_runaway_from()
 		return
 	end
 
-	local s = self.object:get_pos()
+	local s = self.object:get_pos() ; if not s then return end
 	local p, sp, dist, pname
 	local player, obj, min_player, name
 	local min_dist = self.view_range + 1
@@ -2470,7 +2473,7 @@ function mob_class:do_states(dtime)
 
 				if abs(p1.x - s.x) + abs(p1.z - s.z) < 0.6 then
 					-- reached waypoint, remove it from queue
-					table.remove(self.path.way, 1)
+					table_remove(self.path.way, 1)
 				end
 
 				-- set new temporary target
@@ -3142,7 +3145,7 @@ function mob_class:mob_activate(staticdata, def, dtime)
 	-- Armor groups (immortal = 1 for custom damage handling)
 	local armor
 	if type(self.armor) == "table" then
-		armor = table.copy(self.armor)
+		armor = table_copy(self.armor)
 --		armor.immortal = 1
 	else
 --		armor = {immortal = 1, fleshy = self.armor}
@@ -3184,7 +3187,7 @@ function mob_class:mob_activate(staticdata, def, dtime)
 	-- run on_spawn function if found
 	if self.on_spawn and not self.on_spawn_run then
 		if self.on_spawn(self) then
-			self.on_spawn_run = true --  if true, set flag to run once only
+			self.on_spawn_run = true -- if true, set flag to run once only
 		end
 	end
 
@@ -3709,7 +3712,7 @@ function mobs:spawn_specific(name, nodes, neighbors, min_light, max_light, inter
 	end
 
 	-- chance/spawn number override in minetest.conf for registered mob
-	local numbers = minetest.settings:get(name)
+	local numbers = settings:get(name)
 
 	if numbers then
 		numbers = numbers:split(",")
@@ -4580,14 +4583,15 @@ function mobs:feed_tame(self, clicker, feed_count, breed, tame)
 		mob_sta[name] = item
 
 		local tag = self.nametag or ""
+		local esc = minetest.formspec_escape
 
 		minetest.show_formspec(name, "mobs_nametag",
-			"size[8,4]"
-			.. "field[0.5,1;7.5,0;name;"
-			.. minetest.formspec_escape(S("Enter name:"))
-			.. ";" .. tag .. "]"
-			.. "button_exit[2.5,3.5;3,1;mob_rename;"
-			.. minetest.formspec_escape(S("Rename")) .. "]")
+			"size[8,4]" ..
+			"field[0.5,1;7.5,0;name;" ..
+			esc(S("Enter name:")) ..
+			";" .. tag .. "]" ..
+			"button_exit[2.5,3.5;3,1;mob_rename;" ..
+			esc(S("Rename")) .. "]")
 
 		return true
 	end
