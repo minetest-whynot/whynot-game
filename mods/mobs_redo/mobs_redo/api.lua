@@ -8,7 +8,7 @@ local use_cmi = minetest.global_exists("cmi")
 
 mobs = {
 	mod = "redo",
-	version = "20201003",
+	version = "20201029",
 	intllib = S,
 	invis = minetest.global_exists("invisibility") and invisibility or {}
 }
@@ -3594,6 +3594,68 @@ local count_mobs = function(pos, type)
 end
 
 
+-- do we have enough space to spawn mob? (thanks wuzzy)
+local can_spawn = function(pos, name)
+
+	local ent = minetest.registered_entities[name]
+	local width_x = max(1, ceil(ent.collisionbox[4] - ent.collisionbox[1]))
+	local min_x, max_x
+
+	if width_x % 2 == 0 then
+		max_x = floor(width_x / 2)
+		min_x = -(max_x - 1)
+	else
+		max_x = floor(width_x / 2)
+		min_x = -max_x
+	end
+
+	local width_z = max(1, ceil(ent.collisionbox[6] - ent.collisionbox[3]))
+	local min_z, max_z
+
+	if width_z % 2 == 0 then
+		max_z = floor(width_z / 2)
+		min_z = -(max_z - 1)
+	else
+		max_z = floor(width_z / 2)
+		min_z = -max_z
+	end
+
+	local max_y = max(0, ceil(ent.collisionbox[5] - ent.collisionbox[2]) - 1)
+	local pos2
+
+	for y = 0, max_y do
+	for x = min_x, max_x do
+	for z = min_z, max_z do
+
+		pos2 = {x = pos.x + x, y = pos.y + y, z = pos.z + z}
+
+		if minetest.registered_nodes[node_ok(pos2).name].walkable == true then
+			return nil
+		end
+	end
+	end
+	end
+
+	-- spawn mob 1/2 node above ground
+	pos.y = pos.y + 0.5
+
+	-- tweak X/Z spawn pos
+	if width_x % 2 == 0 then
+		pos.x = pos.x + 0.5
+	end
+
+	if width_z % 2 == 0 then
+		pos.z = pos.z + 0.5
+	end
+
+	return pos
+end
+
+function mobs:can_spawn(pos, name)
+	return can_spawn(pos, name)
+end
+
+
 -- global functions
 
 function mobs:add_mob(pos, def)
@@ -3841,69 +3903,22 @@ function mobs:spawn_specific(name, nodes, neighbors, min_light, max_light, inter
 			end
 		end
 
-		-- do we have enough space to spawn mob? (thanks wuzzy)
-		local ent = minetest.registered_entities[name]
-		local width_x = max(1, ceil(ent.collisionbox[4] - ent.collisionbox[1]))
-		local min_x, max_x
+		-- returns position if we have enough space to spawn mob
+		pos = can_spawn(pos, name)
 
-		if width_x % 2 == 0 then
-			max_x = floor(width_x / 2)
-			min_x = -(max_x - 1)
-		else
-			max_x = floor(width_x / 2)
-			min_x = -max_x
-		end
+		if pos then
 
-		local width_z = max(1, ceil(ent.collisionbox[6] - ent.collisionbox[3]))
-		local min_z, max_z
-
-		if width_z % 2 == 0 then
-			max_z = floor(width_z / 2)
-			min_z = -(max_z - 1)
-		else
-			max_z = floor(width_z / 2)
-			min_z = -max_z
-		end
-
-		local max_y = max(0, ceil(ent.collisionbox[5] - ent.collisionbox[2]) - 1)
-
-		for y = 0, max_y do
-		for x = min_x, max_x do
-		for z = min_z, max_z do
-
-			local pos2 = {
-				x = pos.x + x,
-				y = pos.y + y,
-				z = pos.z + z}
-
-			if minetest.registered_nodes[node_ok(pos2).name].walkable == true then
---print("--- not enough space to spawn", name)
-				return
-			end
-		end
-		end
-		end
-
-		-- spawn mob 1/2 node above ground
-		pos.y = pos.y + 0.5
-
-		-- tweak X/Z spawn pos
-		if width_x % 2 == 0 then
-			pos.x = pos.x + 0.5
-		end
-
-		if width_z % 2 == 0 then
-			pos.z = pos.z + 0.5
-		end
-
-		local mob = minetest.add_entity(pos, name)
+			local mob = minetest.add_entity(pos, name)
 
 --		print("[mobs] Spawned " .. name .. " at "
 --		.. minetest.pos_to_string(pos) .. " on "
 --		.. node.name .. " near " .. neighbors[1])
 
-		if on_spawn then
-			on_spawn(mob:get_luaentity(), pos)
+			if on_spawn then
+				on_spawn(mob:get_luaentity(), pos)
+			end
+		else
+--print("--- not enough space to spawn", name)
 		end
 	end
 

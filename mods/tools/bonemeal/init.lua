@@ -632,6 +632,16 @@ minetest.register_craft({
 	}
 })
 
+minetest.register_craft({
+	type = "shapeless",
+	output = "bonemeal:mulch",
+	recipe = {
+		"group:seed", "group:seed", "group:seed",
+		"group:seed", "group:seed", "group:seed",
+		"group:seed", "group:seed", "group:seed"
+	}
+})
+
 -- fertiliser
 minetest.register_craft({
 	type = "shapeless",

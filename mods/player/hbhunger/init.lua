@@ -25,6 +25,9 @@ hbhunger.EXHAUST_DIG = 3  -- exhaustion increased this value after digged node
 hbhunger.EXHAUST_PLACE = 1 -- exhaustion increased this value after placed
 hbhunger.EXHAUST_MOVE = 0.3 -- exhaustion increased this value if player movement detected
 hbhunger.EXHAUST_LVL = 160 -- at what exhaustion player satiation gets lowerd
+hbhunger.SAT_MAX = 30 -- maximum satiation points
+hbhunger.SAT_INIT = 20 -- initial satiation points
+hbhunger.SAT_HEAL = 15 -- required satiation points to start healing
 
 
 --load custom settings
@@ -39,9 +42,10 @@ local function custom_hud(player)
 end
 
 dofile(minetest.get_modpath("hbhunger").."/hunger.lua")
+dofile(minetest.get_modpath("hbhunger").."/register_foods.lua")
 
 -- register satiation hudbar
-hb.register_hudbar("satiation", 0xFFFFFF, S("Satiation"), { icon = "hbhunger_icon.png", bgicon = "hbhunger_bgicon.png",  bar = "hbhunger_bar.png" }, 20, 30, false, nil, { format_value = "%.1f", format_max_value = "%d" })
+hb.register_hudbar("satiation", 0xFFFFFF, S("Satiation"), { icon = "hbhunger_icon.png", bgicon = "hbhunger_bgicon.png",  bar = "hbhunger_bar.png" }, hbhunger.SAT_INIT, hbhunger.SAT_MAX, false, nil, { format_value = "%.1f", format_max_value = "%d" })
 
 -- update hud elemtens if value has changed
 local function update_hud(player)
@@ -73,7 +77,7 @@ hbhunger.set_hunger_raw = function(player)
 	local name = player:get_player_name()
 	local value = hbhunger.hunger[name]
 	if not inv  or not value then return nil end
-	if value > 30 then value = 30 end
+	if value > hbhunger.SAT_MAX then value = hbhunger.SAT_MAX end
 	if value < 0 then value = 0 end
 	
 	inv:set_stack("hunger", 1, ItemStack({name=":", count=value+1}))
@@ -96,7 +100,7 @@ end)
 minetest.register_on_respawnplayer(function(player)
 	-- reset hunger (and save)
 	local name = player:get_player_name()
-	hbhunger.hunger[name] = 20
+	hbhunger.hunger[name] = hbhunger.SAT_INIT
 	hbhunger.set_hunger_raw(player)
 	hbhunger.exhaustion[name] = 0
 end)
@@ -116,10 +120,10 @@ minetest.register_globalstep(function(dtime)
 		local h = tonumber(hbhunger.hunger[name])
 		local hp = player:get_hp()
 		if timer > 4 then
-			-- heal player by 1 hp if not dead and satiation is > 15 (of 30)
-			if h > 15 and hp > 0 and player:get_breath() > 0 then
+			-- heal player by 1 hp if not dead and satiation is > hbhunger.SAT_HEAL
+			if h > hbhunger.SAT_HEAL and hp > 0 and player:get_breath() > 0 then
 				player:set_hp(hp+1)
-				-- or damage player by 1 hp if satiation is < 2 (of 30)
+				-- or damage player by 1 hp if satiation is < 2
 				elseif h <= 1 then
 					if hp-1 >= 0 then player:set_hp(hp-1) end
 				end
@@ -146,5 +150,39 @@ minetest.register_globalstep(function(dtime)
 	if timer > 4 then timer = 0 end
 	if timer2 > hbhunger.HUNGER_TICK then timer2 = 0 end
 end)
+
+minetest.register_chatcommand("satiation", {
+	privs = {["server"]=true},
+	params = S("[<player>] <satiation>"),
+	description = S("Set satiation of player or yourself"),
+	func = function(name, param)
+		if minetest.settings:get_bool("enable_damage") == false then
+			return false, S("Not possible, damage is disabled.")
+		end
+		local targetname, satiation = string.match(param, "(%S+) (%S+)")
+		if not targetname then
+			satiation = param
+		end
+		satiation = tonumber(satiation)
+		if not satiation then
+			return false, S("Invalid satiation!")
+		end
+		if not targetname then
+			targetname = name
+		end
+		local target = minetest.get_player_by_name(targetname)
+		if target == nil then
+			return false, S("Player @1 does not exist.", targetname)
+		end
+		if satiation > hbhunger.SAT_MAX then
+			satiation = hbhunger.SAT_MAX
+		elseif satiation < 0 then
+			satiation = 0
+		end
+		hbhunger.hunger[targetname] = satiation
+		hbhunger.set_hunger_raw(target)
+		return true
+	end,
+})
 
 end

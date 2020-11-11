@@ -812,7 +812,7 @@ for _, light_brightn_name in ipairs({"off", "on"}) do
 	-- rope lighting
 
 	minetest.register_node(":homedecor:rope_light_on_floor_"..light_brightn_name, {
-		description = "Rope lighting (on floor)",
+		description = S("Rope lighting (on floor)"),
 		inventory_image =  "homedecor_rope_light_on_floor.png",
 		paramtype = "light",
 		light_source = word_to_bright[light_brightn_name],
@@ -858,7 +858,7 @@ for _, light_brightn_name in ipairs({"off", "on"}) do
 	})
 
 	minetest.register_node(":homedecor:rope_light_on_ceiling_"..light_brightn_name, {
-		description = "Rope lighting (on ceiling)",
+		description = S("Rope lighting (on ceiling)"),
 		inventory_image =  "homedecor_rope_light_on_ceiling.png",
 		paramtype = "light",
 		light_source = word_to_bright[light_brightn_name],

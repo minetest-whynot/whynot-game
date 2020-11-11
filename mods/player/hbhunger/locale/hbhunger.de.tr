@@ -1,2 +1,7 @@
 # textdomain:hbhunger
 Satiation=Sättigung
+Set satiation of player or yourself=Sättigung von Spieler oder Ihnen selbst setzen
+Not possible, damage is disabled.=Nicht möglich, Schaden ist deaktiviert.
+Invalid satiation!=Ungültige Sättigung!
+Player @1 does not exist.=Spieler @1 existiert nicht.
+[<player>] <satiation>=[<Spieler>] <Sättigung>

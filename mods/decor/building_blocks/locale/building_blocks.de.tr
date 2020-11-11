@@ -13,8 +13,8 @@ Adobe Stair=Adobetreppe
 Brobble Spread=Ziesterboden
 Chess board tiling=Schachbrettkacheln
 Fake Grass=Falsches Gras
-Fake Grass Slab=
-Fake Grass Stair=
+Fake Grass Slab=Falsches-Gras-Stufe
+Fake Grass Stair=Falsches-Gras-Treppe
 Fireplace=Kamin
 Grate=Rost
 Grate Slab=Roststufe
@@ -27,19 +27,19 @@ Marble=Marmor
 Marble Slab=Marmorstufe
 Marble Stair=Marmortreppe
 Roof block=Dachblock
-Roof block Slab=
-Roof block Stair=
+Roof block Slab=Dachblockstufe
+Roof block Stair=Dachblocktreppe
 Streak Free Glass=Schlierenfreies Glas
-Streak Free Glass Slab=
-Streak Free Glass Stair=
+Streak Free Glass Slab=Schlierenfreies-Glas-Stufe
+Streak Free Glass Stair=Schlierenfreies-Glas-Treppe
 Tar=Teer
 Tar Slab=Teerstufe
 Tar Stair=Teertreppe
 Tarmac Spread=Asphaltboden
 Terrycloth towel=Frottiertuch
 Wood Framed Glass=Holzrahmenglas
-Wood Framed Glass Slab=
-Wood Framed Glass Stair=
+Wood Framed Glass Slab=Holzrahmenglasstufe
+Wood Framed Glass Stair=Holzrahmenglastreppe
 
 ### others.lua ###
 

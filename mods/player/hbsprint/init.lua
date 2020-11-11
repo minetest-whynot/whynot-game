@@ -237,7 +237,7 @@ local function sprint_step(player, dtime)
   if (player_stamina > 0 and hunger > starve_limit and ground) or fast then
     start_sprint(player)
     if stamina and not fast then drain_stamina(player) end
-    if starve then drain_hunger(player, name) end
+    if starve and not fast then drain_hunger(player, name) end
     if breath and not fast and breath_timer[name] >= 2 then
       drain_breath(player)
       breath_timer[name] = 0
