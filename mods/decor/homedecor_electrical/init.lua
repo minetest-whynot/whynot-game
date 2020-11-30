@@ -161,7 +161,7 @@ minetest.register_craft( {
 minetest.register_craft( {
         output = "homedecor:doorbell",
         recipe = {
-			{ "homedecor:light_switch", "basic_materials:energy_crystal_simple", "homedecor:speaker_driver" }
+			{ "homedecor:light_switch_off", "basic_materials:energy_crystal_simple", "homedecor:speaker_driver" }
         },
 })
 

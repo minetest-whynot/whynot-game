@@ -1,0 +1,2 @@
+# Set the height below which the black skybox appears.
+sky_start (Sky start) int -100

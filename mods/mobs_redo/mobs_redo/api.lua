@@ -8,7 +8,7 @@ local use_cmi = minetest.global_exists("cmi")
 
 mobs = {
 	mod = "redo",
-	version = "20201029",
+	version = "20201130",
 	intllib = S,
 	invis = minetest.global_exists("invisibility") and invisibility or {}
 }
@@ -58,6 +58,7 @@ local mobs_drop_items = settings:get_bool("mobs_drop_items") ~= false
 local mobs_griefing = settings:get_bool("mobs_griefing") ~= false
 local spawn_protected = settings:get_bool("mobs_spawn_protected") ~= false
 local remove_far = settings:get_bool("remove_far_mobs") ~= false
+local mob_area_spawn = settings:get_bool("mob_area_spawn")
 local difficulty = tonumber(settings:get("mob_difficulty")) or 1.0
 local show_health = settings:get_bool("mob_show_health") ~= false
 local max_per_block = tonumber(settings:get("max_objects_per_block") or 99)
@@ -877,7 +878,7 @@ function mob_class:check_for_death(cmi_cause)
 	local pos = self.object:get_pos()
 
 	-- execute custom death function
-	if self.on_die then
+	if pos and self.on_die then
 
 		self:on_die(pos)
 
@@ -897,7 +898,7 @@ function mob_class:check_for_death(cmi_cause)
 
 		local frames = self.animation.die_end - self.animation.die_start
 		local speed = self.animation.die_speed or 15
-		local length = max(frames / speed, 0)
+		local length = max((frames / speed), 0)
 
 		self.attack = nil
 		self.v_start = false
@@ -910,23 +911,28 @@ function mob_class:check_for_death(cmi_cause)
 
 		minetest.after(length, function(self)
 
-			if use_cmi and self.object:get_luaentity() then
-				cmi.notify_die(self.object, cmi_cause)
+			if self.object:get_luaentity() then
+
+				if use_cmi then
+					cmi.notify_die(self.object, cmi_cause)
+				end
+
+				remove_mob(self, true)
 			end
-
-			remove_mob(self, true)
-
 		end, self)
-	else
+
+		return true
+
+	elseif pos then -- otherwise remove mod and show particle effect
 
 		if use_cmi then
 			cmi.notify_die(self.object, cmi_cause)
 		end
 
 		remove_mob(self, true)
-	end
 
-	effect(pos, 20, "tnt_smoke.png")
+		effect(pos, 20, "tnt_smoke.png")
+	end
 
 	return true
 end
@@ -3903,8 +3909,27 @@ function mobs:spawn_specific(name, nodes, neighbors, min_light, max_light, inter
 			end
 		end
 
-		-- returns position if we have enough space to spawn mob
-		pos = can_spawn(pos, name)
+		-- should we check mob area for obstructions ?
+		if mob_area_spawn ~= true then
+
+			-- do we have enough height clearance to spawn mob?
+			local ent = minetest.registered_entities[name]
+			local height = max(1, math.ceil(
+				(ent.collisionbox[5] or 0.25) - (ent.collisionbox[2] or -0.25) - 1))
+
+			for n = 0, height do
+
+				local pos2 = {x = pos.x, y = pos.y + n, z = pos.z}
+
+				if minetest.registered_nodes[node_ok(pos2).name].walkable == true then
+--print ("--- inside block", name, node_ok(pos2).name)
+					return
+				end
+			end
+		else
+			-- returns position if we have enough space to spawn mob
+			pos = can_spawn(pos, name)
+		end
 
 		if pos then
 

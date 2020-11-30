@@ -697,6 +697,9 @@ External Settings for "minetest.conf"
                             function.
    'mob_nospawn_range'      Minimum range a mob can spawn near player (def: 12)
    'mob_active_limit'       Number of active mobs in game, 0 for unlimited
+   'mob_area_spawn'         When true will check surrounding area the size of the
+                            mob for obstructions before spawning, otherwise it
+                            defaults to checking the height of the mob only.
 
 Players can override the spawn chance for each mob registered by adding a line
 to their minetest.conf file with a new value, the lower the value the more each

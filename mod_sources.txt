@@ -33,7 +33,7 @@ Mod: minetest_game/mods/wool
 Mod: minetest_game/mods/xpanes
 
 origin	https://github.com/minetest-mods/craftguide/ (fetch)
-* upstream 0de66b1 [origin/master] Small cleanup
+* upstream 25e241d [origin/master] Add safety
 Mod: libs/craftguide
 
 origin	https://github.com/minetest-mods/craftguide_reveal (fetch)
@@ -126,7 +126,7 @@ Mod: player_api_modpack/skinsdb5
 Mod: player_api_modpack/wieldview
 
 origin	https://github.com/minetest-mods/3d_armor (fetch)
-* master 5958b31 [origin/master] Fix detached inventory vulnerability (#23)
+* master cbd1a12 [origin/master] Update README.md (#25)
 Mod: 3d_armor/3d_armor_stand
 Mod: 3d_armor/shields
 Mod: 3d_armor/3d_armor_sfinv
@@ -149,7 +149,7 @@ origin	https://github.com/minetest-mods/lightning (fetch)
 Mod: ambience/lightning
 
 origin	https://github.com/Ezhh/under_sky (fetch)
-* master a15de19 [origin/master] Add cloud removal
+* master e7f9c6c [origin/master] Add mod.conf and settingtypes.txt
 Mod: ambience/under_sky
 
 origin	https://gitlab.com/rautars/weather_pack (fetch)
@@ -197,7 +197,7 @@ origin	https://github.com/SmallJoker/boost_cart (fetch)
 Mod: tools/boost_cart
 
 origin	https://github.com/minetest-mods/ccompass (fetch)
-* master 7117c01 [origin/master] Use mod.conf for description (#15)
+* master 9845a89 [origin/master] hint how to disable teleporting
 Mod: tools/ccompass
 
 origin	https://github.com/minetest-mods/compost (fetch)
@@ -237,7 +237,7 @@ origin	https://github.com/bell07/minetest-subspacewalker (fetch)
 Mod: tools/subspacewalker
 
 origin	https://github.com/lisacvuk/minetest-toolranks (fetch)
-* master 12af618 [origin/master] Add check for `tool_capabilities` and fallback if not defined (#15)
+* master 8010feb [origin/master] Add nil check afteruse
 Mod: tools/toolranks
 
 origin	https://github.com/minetest-mods/trash_can (fetch)
@@ -324,7 +324,7 @@ origin	https://gitlab.com/VanessaE/unifieddyes (fetch)
 Mod: decor/unifieddyes
 
 origin	https://gitlab.com/VanessaE/homedecor_modpack/ (fetch)
-* master 3a51224 [origin/master: ahead 3] Merge remote-tracking branch 'origin/master'
+* master 7a6984f [origin/master: ahead 4] Merge remote-tracking branch 'origin/master'
 Mod: homedecor_modpack/building_blocks
 Mod: homedecor_modpack/fake_fire
 Mod: homedecor_modpack/lavalamp
@@ -397,7 +397,7 @@ origin	https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin	https://github.com/minetest-mods/mesecons (fetch)
-* master d356f90 [origin/master] Make Lua code area and error label use monospaced font (#541)
+* master 0d86f2c [origin/master] Prevent unauthorized players from changing the noteblock sound. (#547)
 Mod: mesecons/mesecons
 Mod: mesecons/mesecons_alias
 Mod: mesecons/mesecons_blinkyplant
@@ -432,5 +432,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master d12576f [origin/master] mobs:can_spawn function added to check free space to spawn mob
+* master a4d2918 [origin/master] add mob_area_spawn setting
 Mod: mobs_redo/mobs_redo

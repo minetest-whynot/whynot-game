@@ -19,6 +19,10 @@ if nodes_setting then
 		ccompass.restrict_target_nodes[z] = true
 	end)
 end
+
+ccompass.allow_climbable_target = not minetest.settings:get_bool("ccompass_deny_climbable_target")
+ccompass.allow_damaging_target = minetest.settings:get_bool("ccompass_allow_damage_target")
+
 -- Teleport targets
 ccompass.teleport_nodes = {}
 local teleport_nodes_setting = minetest.settings:get("ccompass_teleport_nodes")
@@ -28,6 +32,38 @@ if teleport_nodes_setting then
 	end)
 else
 	ccompass.teleport_nodes["default:mese"] = true
+end
+-- Permited nodes above target
+ccompass.nodes_over_target_allow = {}
+nodes_setting = minetest.settings:get("ccompass_nodes_over_target_allow")
+if nodes_setting then
+	nodes_setting:gsub("[^,]+", function(z)
+		ccompass.nodes_over_target_allow[z] = true
+	end)
+end
+-- Not permited nodes above target
+ccompass.nodes_over_target_deny = {}
+nodes_setting = minetest.settings:get("ccompass_nodes_over_target_deny")
+if nodes_setting then
+	nodes_setting:gsub("[^,]+", function(z)
+		ccompass.nodes_over_target_deny[z] = true
+	end)
+end
+-- Permited drawtype of nodes above target
+ccompass.nodes_over_target_allow_drawtypes = {}
+nodes_setting = minetest.settings:get("ccompass_nodes_over_target_allow_drawtypes")
+if nodes_setting then
+	nodes_setting:gsub("[^,]+", function(z)
+		ccompass.nodes_over_target_allow_drawtypes[z] = true
+	end)
+else
+	ccompass.nodes_over_target_allow_drawtypes = {
+		airlike = true,
+		flowingliquid = true,
+		liquid = true,
+		plantlike = true,
+		plantlike_rooted = true,
+	}
 end
 
 if minetest.settings:get_bool("ccompass_aliasses") then
@@ -78,34 +114,125 @@ local function get_destination(player, stack)
 	end
 end
 
+function ccompass.is_safe_target(target, nodename)
+	local node_def = minetest.registered_nodes[nodename]
+	-- unknown node: not dangerous but probably best treated as one
+	if not node_def then return false end
+	-- white-list
+	if ccompass.nodes_over_target_allow[nodename] then return true end
+	-- black-list
+	if ccompass.nodes_over_target_deny[nodename] then return false end
+	-- damaging node
+	if not ccompass.allow_damaging_target then
+		if node_def.damage_per_second and 0 < node_def.damage_per_second then
+			return false
+		end
+	end
+	-- climbable nodes are ok depending on settings
+	if ccompass.allow_climbable_target and node_def.climbable then return true end
+	-- deeper checks
+	local is_good_draw_type = ccompass.nodes_over_target_allow_drawtypes
+	if is_good_draw_type[node_def.drawtype] then return true end
+
+	-- anything else is assumed dangerous
+	return false
+end
+
+function ccompass.is_safe_target_under(target, nodename)
+	local node_def = minetest.registered_nodes[nodename]
+	-- unknown node: not dangerous but probably best treated as one
+	if not node_def then return false end
+	-- damaging node
+	if not ccompass.allow_damaging_target then
+		if node_def.damage_per_second and 0 < node_def.damage_per_second then
+			return false
+		end
+	end
+	-- climbable nodes are ok depending on settings
+	if ccompass.allow_climbable_target and node_def.climbable then return true end
+	-- solid / walkable
+	if node_def.walkable then return true end
+
+	-- anything else is assumed unsafe
+	return false
+end
+
+local function check_target(cur_target, nodenames_cache)
+	--check target
+	local nodename = nodenames_cache[cur_target.y] or minetest.get_node(cur_target).name
+	if nodename == "ignore" then return false end
+	nodenames_cache[cur_target.y] = nodename
+	if ccompass.is_safe_target(cur_target, nodename) then
+
+		-- Check under
+		cur_target.y = cur_target.y - 1
+		nodename = nodenames_cache[cur_target.y] or minetest.get_node(cur_target).name
+		if nodename == "ignore" then return false end
+		nodenames_cache[cur_target.y] = nodename
+		if ccompass.is_safe_target_under(cur_target, nodename) then
+
+			-- Check head
+			cur_target.y = cur_target.y + 2
+			nodename = nodenames_cache[cur_target.y] or minetest.get_node(cur_target).name
+			if nodename == "ignore" then return false end
+			nodenames_cache[cur_target.y] = nodename
+			if ccompass.is_safe_target(cur_target, nodename) then
+				return true
+			end
+		end
+	end
+end
+
 local function teleport_above(playername, target, counter)
 	local player = minetest.get_player_by_name(playername)
 	if not player then
 		return
 	end
 
-	for i = (counter or 1), 160 do
-		local nodename = minetest.get_node(target).name
-		if nodename == "ignore" then
-			minetest.emerge_area(target, target)
+	local found_place = false
+	local cur_target = { x = target.x, z = target.z } -- y is handled in loop
+
+	local nodenames_cache = {}
+
+	for i = (counter or 0), 80 do
+		-- Search above
+		cur_target.y = target.y + i
+		found_place  = check_target(cur_target, nodenames_cache)
+		if found_place == false then
+			minetest.emerge_area(cur_target, cur_target)
 			minetest.after(0.1, teleport_above, playername, target, i)
 			return
-		end
-
-		if nodename ~= 'air' then
-			target.y = target.y + 1
-		else
+		elseif found_place == true then
+			cur_target.y = target.y + i -- reset after check_target
 			break
 		end
+
+		if i > 0 then
+			-- Search bellow
+			cur_target.y = target.y - i
+			found_place  = check_target(cur_target, nodenames_cache)
+			if found_place == false then
+				minetest.emerge_area(cur_target, cur_target)
+				minetest.after(0.1, teleport_above, playername, target, i)
+				return
+			elseif found_place == true then
+				cur_target.y = target.y - i  -- reset after check_target
+				break
+			end
+		end
 	end
-	player:setpos(target)
-	return
+
+	if found_place then
+		player:set_pos(cur_target)
+	else
+		minetest.chat_send_player(playername, "Could not find suitable surrounding at target.")
+	end
 end
 
 -- get right image number for players compas
 local function get_compass_stack(player, stack)
 	local target = get_destination(player, stack)
-	local pos = player:getpos()
+	local pos = player:get_pos()
 	local dir = player:get_look_horizontal()
 	local angle_north = math.deg(math.atan2(target.x - pos.x, target.z - pos.z))
 	if angle_north < 0 then
@@ -173,7 +300,6 @@ local function on_use_function(itemstack, player, pointed_thing)
 	if waypoint_pos and waypoint_pos ~= "" then
 		nodepos_string = waypoint_pos
 	end
-
 
 	if skip_namechange ~= "" then
 		ccompass.set_target(itemstack, {
