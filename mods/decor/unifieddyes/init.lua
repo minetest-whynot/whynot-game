@@ -166,14 +166,11 @@ minetest.register_on_placenode(
 			return false
 		end
 
+		local param2
 		if not string.find(itemstack:to_string(), "palette_index") then
-			local param2
-			local color = 0
-
 			if def.palette == "unifieddyes_palette_extended.png"
 			  and def.paramtype2 == "color" then
 				param2 = 240
-				color = 240
 			elseif def.palette == "unifieddyes_palette_colorwallmounted.png"
 			  and def.paramtype2 == "colorwallmounted" then
 				param2 = newnode.param2 % 8
@@ -184,17 +181,21 @@ minetest.register_on_placenode(
 
 			if param2 then
 				minetest.swap_node(pos, {name = newnode.name, param2 = param2})
-				minetest.get_meta(pos):set_int("palette_index", color)
 			end
+		end
+
+		if def.palette ~= "" then
+			minetest.get_meta(pos):set_int("palette_index", param2 or 240)
 		end
 	end
 )
 
 -- The complementary function:  strip-off the color if the node being dug is still white/neutral
 
-local function move_item(item, pos, inv, digger)
-  if not (digger and digger:is_player()) then return end
+local function move_item(item, pos, inv, digger, fix_color)
+	if not (digger and digger:is_player()) then return end
 	local creative = creative_mode or minetest.check_player_privs(digger, "creative")
+	item = unifieddyes.fix_bad_color_info(item, fix_color)
 	if inv:room_for_item("main", item)
 	  and (not creative or not inv:contains_item("main", item, true)) then
 		inv:add_item("main", item)
@@ -214,20 +215,21 @@ function unifieddyes.on_dig(pos, node, digger)
 
 	local oldparam2 = minetest.get_node(pos).param2
 	local def = minetest.registered_items[node.name]
-	local del_color
+	local fix_color
 
 	if def.paramtype2 == "color" and oldparam2 == 240 and def.palette == "unifieddyes_palette_extended.png" then
-		del_color = true
+		fix_color = 240
+	elseif def.paramtype2 == "color" and oldparam2 == 0 and def.palette == "unifieddyes_palette_extended.png" then
+		fix_color = 0
 	elseif def.paramtype2 == "colorwallmounted" and math.floor(oldparam2 / 8) == 0 and def.palette == "unifieddyes_palette_colorwallmounted.png" then
-		del_color = true
+		fix_color = 0
 	elseif def.paramtype2 == "colorfacedir" and math.floor(oldparam2 / 32) == 0 and string.find(def.palette, "unifieddyes_palette_") then
-		del_color = true
+		fix_color = 0
 	end
 
 	local inv = digger:get_inventory()
-
-	if del_color then
-		move_item(node.name, pos, inv, digger)
+	if fix_color then
+		move_item(node.name, pos, inv, digger, fix_color)
 	else
 		return minetest.node_dig(pos, node, digger)
 	end
@@ -273,11 +275,14 @@ end
 
 -- This helper function creates a colored itemstack
 
+function unifieddyes.fix_bad_color_info(item, paletteidx)
+	local stack=minetest.itemstring_with_color(item, paletteidx)
+	return string.gsub(stack, "u0001color", "u0001palette_index")
+end
+
 function unifieddyes.make_colored_itemstack(item, palette, color)
 	local paletteidx = unifieddyes.getpaletteidx(color, palette)
-	local stack = ItemStack(item)
-	stack:get_meta():set_int("palette_index", paletteidx)
-	return stack:to_string(),paletteidx
+	return unifieddyes.fix_bad_color_info(item, paletteidx), paletteidx
 end
 
 -- these helper functions register all of the recipes needed to create colored

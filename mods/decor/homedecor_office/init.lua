@@ -96,8 +96,8 @@ minetest.register_craft({
     output = "homedecor:desk",
     recipe = {
 		{ "stairs:slab_wood", "stairs:slab_wood", "stairs:slab_wood" },
-		{ "homedecor:drawer_small", "default:wood", "default:wood" },
-		{ "homedecor:drawer_small", "", "default:wood" },
+		{ "homedecor:drawer_small", "group:wood", "group:wood" },
+		{ "homedecor:drawer_small", "", "group:wood" },
     },
 })
 
@@ -105,17 +105,17 @@ minetest.register_craft({
     output = "homedecor:desk",
     recipe = {
 		{ "moreblocks:slab_wood", "moreblocks:slab_wood", "moreblocks:slab_wood" },
-		{ "homedecor:drawer_small", "default:wood", "default:wood" },
-		{ "homedecor:drawer_small", "", "default:wood" },
+		{ "homedecor:drawer_small", "group:wood", "group:wood" },
+		{ "homedecor:drawer_small", "", "group:wood" },
     },
 })
 
 minetest.register_craft({
     output = "homedecor:filing_cabinet",
     recipe = {
-		{ "", "default:wood", "" },
-		{ "default:wood", "homedecor:drawer_small", "default:wood" },
-		{ "", "default:wood", "" },
+		{ "", "group:wood", "" },
+		{ "group:wood", "homedecor:drawer_small", "group:wood" },
+		{ "", "group:wood", "" },
     },
 })
 

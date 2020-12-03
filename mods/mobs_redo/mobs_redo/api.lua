@@ -277,10 +277,10 @@ function mob_class:set_velocity(v)
 		c_x, c_y = unpack(self:collision())
 	end
 
-	local yaw = (self.object:get_yaw() or 0) + self.rotate
+	local yaw = (self.object:get_yaw() or 0) + (self.rotate or 0)
 
 	-- nil check for velocity
-	v = v or 0
+	v = v or 0.01
 
 	-- check if standing in liquid with max viscosity of 7
 	local visc = min(minetest.registered_nodes[self.standing_in].liquid_viscosity, 7)
@@ -292,8 +292,8 @@ function mob_class:set_velocity(v)
 		v = v / (visc + 1)
 	end
 
-	-- set velocity with hard limit of 10
-	local vel = self.object:get_velocity()
+	-- set velocity
+	local vel = self.object:get_velocity() or 0
 
 	local new_vel = {
 		x = (sin(yaw) * -v) + c_x,

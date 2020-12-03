@@ -76,7 +76,7 @@ homedecor.register("wall_shelf", {
 minetest.register_craft({
 	output = "homedecor:table",
 	recipe = {
-		{ "default:wood","default:wood", "default:wood" },
+		{ "group:wood","group:wood", "group:wood" },
 		{ "group:stick", "", "group:stick" },
 	},
 })

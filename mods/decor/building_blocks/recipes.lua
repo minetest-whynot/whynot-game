@@ -41,7 +41,7 @@ minetest.register_craft({
 minetest.register_craft({
 	output = 'building_blocks:fakegrass 2',
 	recipe = {
-		{'default:leaves'},
+		{'group:leaves'},
 		{"default:dirt"},
 	}
 })
@@ -139,7 +139,7 @@ minetest.register_craft({
 minetest.register_craft({
 	output = 'building_blocks:woodglass 1',
 	recipe = {
-		{"default:wood"},
+		{"group:wood"},
 		{"default:glass"},
 	}
 })

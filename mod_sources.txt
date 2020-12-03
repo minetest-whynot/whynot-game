@@ -106,7 +106,7 @@ origin	http://repo.or.cz/minetest_show_wielded_item.git (fetch)
 Mod: player/show_wielded_item
 
 origin	https://github.com/minetest-mods/wielded_light (fetch)
-* master            4376b55 [origin/master] Code maintanance
+* master            60b31d3 [origin/master] fix mt-5.4 compatibility Closes #7
 Mod: player/wielded_light
 
 origin	https://github.com/bell07/minetest-player_api_modpack (fetch)
@@ -126,7 +126,7 @@ Mod: player_api_modpack/skinsdb5
 Mod: player_api_modpack/wieldview
 
 origin	https://github.com/minetest-mods/3d_armor (fetch)
-* master cbd1a12 [origin/master] Update README.md (#25)
+* master 713b0c8 [origin/master] Documentation and Screenshot Update (#26)
 Mod: 3d_armor/3d_armor_stand
 Mod: 3d_armor/shields
 Mod: 3d_armor/3d_armor_sfinv
@@ -320,11 +320,11 @@ origin	https://github.com/minetest-mods/ts_furniture (fetch)
 Mod: decor/ts_furniture
 
 origin	https://gitlab.com/VanessaE/unifieddyes (fetch)
-* master         30c55be [origin/master] Merge branch 'airbrush_on_place' into 'master'
+* master         eb5610f [origin/master] workaround for engine bug in crafting, placing, digging items with a palette index of 0
 Mod: decor/unifieddyes
 
 origin	https://gitlab.com/VanessaE/homedecor_modpack/ (fetch)
-* master 7a6984f [origin/master: ahead 4] Merge remote-tracking branch 'origin/master'
+* master ac9f417 [origin/master: ahead 5] Merge remote-tracking branch 'origin/master'
 Mod: homedecor_modpack/building_blocks
 Mod: homedecor_modpack/fake_fire
 Mod: homedecor_modpack/lavalamp
@@ -432,5 +432,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master a4d2918 [origin/master] add mob_area_spawn setting
+* master 4a6518e [origin/master] add additional nil backups for set_velocity
 Mod: mobs_redo/mobs_redo
