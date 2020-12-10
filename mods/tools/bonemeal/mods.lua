@@ -40,7 +40,9 @@ if farming and farming.mod and farming.mod == "redo" then
 		{"farming:oat_", 8},
 		{"farming:rice_", 8},
 		{"farming:mint_", 4},
-		{"farming:cabbage_", 6}
+		{"farming:cabbage_", 6},
+		{"farming:lettuce_", 5},
+		{"farming:blackberry_", 4}
 	})
 end
 

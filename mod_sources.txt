@@ -33,7 +33,7 @@ Mod: minetest_game/mods/wool
 Mod: minetest_game/mods/xpanes
 
 origin	https://github.com/minetest-mods/craftguide/ (fetch)
-* upstream 25e241d [origin/master] Add safety
+* upstream 443831c [origin/master] Improve strings
 Mod: libs/craftguide
 
 origin	https://github.com/minetest-mods/craftguide_reveal (fetch)
@@ -110,7 +110,7 @@ origin	https://github.com/minetest-mods/wielded_light (fetch)
 Mod: player/wielded_light
 
 origin	https://github.com/bell07/minetest-player_api_modpack (fetch)
-* master 3a621b7 [origin/master] texture vs textures clearup
+* master 74a81c7 [origin/master] player_api: do not override preview and playername from skins meta file
 Mod: player_api_modpack/3d_armor
 Mod: player_api_modpack/character_creator
 Mod: player_api_modpack/clothing
@@ -157,7 +157,7 @@ origin	https://gitlab.com/rautars/weather_pack (fetch)
 Mod: ambience/weather_pack
 
 origin	https://notabug.org/TenPlus1/farming (fetch)
-* master f7524e1 [origin/master] update recipes to use water/river-water buckets, also support for wooden bucket mod
+* master 45b5a07 [origin/master] Add lettuce and blackberries with recipes (thanks OgelGames)
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
@@ -189,7 +189,7 @@ origin	https://github.com/taikedz/everamzah-backpacks (fetch)
 Mod: tools/backpacks
 
 origin	https://notabug.org/tenplus1/bonemeal (fetch)
-* master 77c02f1 [origin/master] added recipe 9x seed = 1x mulch
+* master 5ce62f4 [origin/master] add blackberry and lettuce
 Mod: tools/bonemeal
 
 origin	https://github.com/SmallJoker/boost_cart (fetch)
@@ -432,5 +432,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master 4a6518e [origin/master] add additional nil backups for set_velocity
+* master bf32a09 [origin/master] on_flop and air_damage added
 Mod: mobs_redo/mobs_redo

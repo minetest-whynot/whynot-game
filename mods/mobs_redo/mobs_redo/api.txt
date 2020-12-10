@@ -64,6 +64,7 @@ functions needed for the mob to work properly which contains the following:
    'fall_damage'   when true causes falling to inflict damage.
    'water_damage'  holds the damage per second infliced to mobs when standing in
                    water.
+   'air_damage'    holds damage per second inflicted to mob when standing in air.
    'lava_damage'   holds the damage per second inflicted to mobs when standing
                    in lava or fire or an ignition source.
    'light_damage'  holds the damage per second inflicted to mobs when light
@@ -226,6 +227,7 @@ functions needed for the mob to work properly which contains the following:
       'die_end'
       'die_speed'
       'die_loop'     when set to false stops the animation looping.
+      'die_rotate'   if true mob spins during death animation.
 
       Using '_loop = false' setting will stop any of the above animations from
       looping.
@@ -298,6 +300,9 @@ enhance mob functionality and have them do many interesting things:
                     is returned normal attack function continued.
    'on_die'         a function that is called when mob is killed (self, pos), also
                     has access to self.cause_of_death table.
+   'on_flop'        function called when flying or swimmimng mob is no longer in
+                    air/water, (self) paramater and return true to skip the built
+                    in api flop feature.
    'do_custom'      a custom function that is called every tick while mob is
                     active and which has access to all of the self.* variables
                     e.g. (self.health for health or self.standing_in for node
@@ -329,6 +334,14 @@ for each mob.
    'self.order'         set to "follow" or "stand" so that npc will follow owner
                         or stand it's ground
    'self.nametag'       contains the name of the mob which it can show above
+   'self.state'         Current mob state.
+                        "stand": no movement (except turning around)
+                        "walk": walk or move around aimlessly
+                        "attack": chase and attack enemy
+                        "runaway": flee from target
+                        "flop": bounce around aimlessly
+                                (for swimming mobs that have stranded)
+                        "die": during death
 
 
 Adding Mobs in World

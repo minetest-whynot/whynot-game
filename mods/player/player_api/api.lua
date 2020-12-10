@@ -213,14 +213,16 @@ function player_api.read_textures_and_meta()
 				end
 
 				-- Check if preview exists
-				local file2 = io.open(modpath.."/textures/"..skin_id.."_preview.png", "r")
-				if file2 then
-					file2:close()
-					skin.preview = skin_id.."_preview.png"
+				if not skin.preview then
+					local file2 = io.open(modpath.."/textures/"..skin_id.."_preview.png", "r")
+					if file2 then
+						file2:close()
+						skin.preview = skin_id.."_preview.png"
+					end
 				end
 
 				-- Check for private
-				if prefix == "player" then
+				if prefix == "player" and not skin.playername then
 					skin.playername = nameparts[2]
 				end
 

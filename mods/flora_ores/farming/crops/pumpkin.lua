@@ -200,7 +200,7 @@ minetest.register_alias("farming:pumpkin", "farming:pumpkin_8")
 farming.registered_plants["farming:pumpkin"] = {
 	crop = "farming:pumpkin",
 	seed = "farming:pumpkin_slice",
-	minlight = 13,
-	maxlight = 15,
+	minlight = farming.min_light,
+	maxlight = farming.max_light,
 	steps = 8
 }

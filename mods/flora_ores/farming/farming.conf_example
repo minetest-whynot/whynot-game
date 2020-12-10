@@ -31,7 +31,13 @@ farming.peas = 0.001
 farming.beetroot = 0.001
 farming.mint = 0.005
 farming.cabbage = 0.001
+farming.blackberry = 0.002
+farming.lettuce = 0.001
 farming.grains = true -- true or false only
 
 -- default rarety of crops on map (higher number = more crops)
 farming.rarety = 0.002
+
+-- default minimum and maximum light levels crops need to grow
+farming.min_light = 12
+farming.max_light = 15

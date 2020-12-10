@@ -129,7 +129,7 @@ minetest.register_node("farming:garlic_5", table.copy(def))
 farming.registered_plants["farming:garlic"] = {
 	crop = "farming:garlic",
 	seed = "farming:garlic_clove",
-	minlight = 13,
-	maxlight = 15,
+	minlight = farming.min_light,
+	maxlight = farming.max_light,
 	steps = 5
 }

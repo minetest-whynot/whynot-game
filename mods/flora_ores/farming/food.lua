@@ -373,3 +373,68 @@ minetest.register_craft({
 	replacements = {{"group:food_skillet", "farming:skillet"}}
 })
 end
+
+-- Burger
+
+minetest.register_craftitem("farming:burger", {
+	description = S("Burger"),
+	inventory_image = "farming_burger.png",
+	on_use = minetest.item_eat(16),
+})
+
+if minetest.get_modpath("mobs_animal") or minetest.get_modpath("xanadu")then
+minetest.register_craft({
+	type = "shapeless",
+	output = "farming:burger",
+	recipe = {
+		"farming:bread", "group:food_meat", "group:food_cheese",
+		"group:food_tomato", "group:food_cucumber", "group:food_onion",
+		"group:food_lettuce"
+	}
+})
+else
+minetest.register_craft({
+	type = "shapeless",
+	output = "farming:burger",
+	recipe = {
+		"farming:bread", "group:food_mushroom", "group:food_tomato",
+		"group:food_cucumber", "group:food_onion", "group:food_lettuce"
+	}
+})
+end
+
+-- Salad
+
+minetest.register_craftitem("farming:salad", {
+	description = S("Salad"),
+	inventory_image = "farming_salad.png",
+	on_use = minetest.item_eat(8, "farming:bowl")
+})
+
+minetest.register_craft({
+	output = "farming:salad",
+	type = "shapeless",
+	recipe = {
+		"group:food_bowl", "group:food_tomato", "group:food_cucumber",
+		"group:food_lettuce", "group:food_oil"
+	},
+})
+
+-- Triple Berry Smoothie
+
+minetest.register_craftitem("farming:smoothie_berry", {
+	description = S("Triple Berry Smoothie"),
+	inventory_image = "farming_berry_smoothie.png",
+	on_use = minetest.item_eat(6, "vessels:drinking_glass"),
+	groups = {vessel = 1, drink = 1}
+})
+
+minetest.register_craft({
+	output = "farming:smoothie_berry",
+	type = "shapeless",
+	recipe = {
+		"group:food_raspberries", "group:food_blackberries",
+		"group:food_strawberry", "group:food_banana",
+		"vessels:drinking_glass"
+	}
+})

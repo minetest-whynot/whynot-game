@@ -13,6 +13,7 @@ This mod works by adding your new plant to the {growing=1} group and numbering t
 
 ### Changelog:
 
+- 1.46 - Added min/max default light settings, added lettuce and blackberries with food items (thanks OgelGames)
 - 1.45 - Dirt and Hoes are more in line with default by using dry/wet/base, added cactus juice, added pasta, spaghetti, cabbage, korean bibimbap, code tidy
 options, onion soup added (thanks edcrypt), Added apple pie, added wild cotton to savanna
 - 1.44 - Added 'farming_stage_length' in mod settings for speed of crop growth, also thanks to TheDarkTiger for translation updates

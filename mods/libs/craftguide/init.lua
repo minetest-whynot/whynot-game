@@ -11,7 +11,6 @@ local replacements  = {fuel = {}}
 local toolrepair
 
 local progressive_mode = core.settings:get_bool "craftguide_progressive_mode"
-local sfinv_only = core.settings:get_bool "craftguide_sfinv_only" and rawget(_G, "sfinv")
 
 local http = core.request_http_api()
 local singleplayer = core.is_singleplayer()
@@ -59,22 +58,22 @@ local sprintf, find, gmatch, match, sub, split, upper, lower =
 	string.sub, string.split, string.upper, string.lower
 
 local min, max, floor, ceil, abs = math.min, math.max, math.floor, math.ceil, math.abs
-local pairs, ipairs, next, type, setmetatable = pairs, ipairs, next, type, setmetatable
+local pairs, ipairs, next, type, setmetatable, tonum =
+	pairs, ipairs, next, type, setmetatable, tonumber
+
 local vec_add, vec_mul = vector.add, vector.multiply
 
 local ROWS = 9
-local LINES = sfinv_only and 5 or 10
+local LINES = 10
 local IPP = ROWS * LINES
-local WH_LIMIT = 10
 local MAX_FAVS = 6
 local ITEM_BTN_SIZE = 1.1
-
-local XOFFSET = sfinv_only and 3.83 or 11.2
-local YOFFSET = sfinv_only and 4.9 or 1
 
 -- Progressive mode
 local POLL_FREQ = 0.25
 local HUD_TIMER_MAX = 1.5
+
+local MIN_FORMSPEC_VERSION = 4
 
 local PNG = {
 	bg = "craftguide_bg.png",
@@ -104,22 +103,23 @@ local fs_elements = {
 	image = "image[%f,%f;%f,%f;%s]",
 	button = "button[%f,%f;%f,%f;%s;%s]",
 	tooltip = "tooltip[%f,%f;%f,%f;%s]",
-	hypertext = "hypertext[%f,%f;%f,%f;;%s]",
 	item_image = "item_image[%f,%f;%f,%f;%s]",
 	bg9 = "background9[%f,%f;%f,%f;%s;false;%u]",
 	model = "model[%f,%f;%f,%f;%s;%s;%s;0,0;true]",
 	image_button = "image_button[%f,%f;%f,%f;%s;%s;%s]",
 	animated_image = "animated_image[%f,%f;%f,%f;;%s;%u;%u]",
+	scrollbar = "scrollbar[%f,%f;%f,%f;horizontal;%s;%u]",
 	item_image_button = "item_image_button[%f,%f;%f,%f;%s;%s;%s]",
-	arrow = "image_button[%f,%f;0.8,0.8;%s;%s;;;false;%s]",
+	arrow = "image_button[%f,%f;0.7,0.7;%s;%s;;;false;%s]",
 }
 
 local styles = sprintf([[
-	style[filter;border=false]
 	style_type[label,field;font_size=+0]
 	style_type[image_button;border=false;sound=craftguide_click]
-	style_type[button;border=false;font=bold;font_size=+2;content_offset=0]
-	style_type[item_image_button;border=false;bgimg_hovered=%s;bgimg_pressed=%s;sound=craftguide_click]
+	style_type[item_image_button;border=false;bgimg_hovered=%s;bgimg_pressed=%s;
+		   sound=craftguide_click]
+
+	style[filter;border=false]
 	style[search;fgimg=%s;fgimg_hovered=%s]
 	style[clear;fgimg=%s;fgimg_hovered=%s]
 	style[prev_page;fgimg=%s;fgimg_hovered=%s;fgimg_pressed=%s]
@@ -128,6 +128,10 @@ local styles = sprintf([[
 	style[next_recipe;fgimg=%s;fgimg_hovered=%s;fgimg_pressed=%s]
 	style[prev_usage;fgimg=%s;fgimg_hovered=%s;fgimg_pressed=%s]
 	style[next_usage;fgimg=%s;fgimg_hovered=%s;fgimg_pressed=%s]
+	style[pagenum,no_item,no_rcp;border=false;font=bold;font_size=+2;content_offset=0]
+	style[craft_rcp,craft_usg;border=false;noclip=true;font_size=+0;sound=craftguide_craft;
+	      bgimg=craftguide_btn9.png;bgimg_hovered=craftguide_btn9_hovered.png;
+	      bgimg_pressed=craftguide_btn9_pressed.png;bgimg_middle=4,6]
 ]],
 PNG.selected, PNG.selected,
 PNG.search, PNG.search_hover,
@@ -139,17 +143,20 @@ PNG.next, PNG.next_hover, PNG.next_hover,
 PNG.prev, PNG.prev_hover, PNG.prev_hover,
 PNG.next, PNG.next_hover, PNG.next_hover)
 
-local function get_lang_code(name)
-	local info = get_player_info(name)
+local function get_lang_code(info)
 	return info and info.lang_code
+end
+
+local function get_formspec_version(info)
+	return info and info.formspec_version or 1
 end
 
 local function outdated(name)
 	local fs = sprintf([[
-		size[6.6,1.3]
+		size[7.1,1.3]
 		image[0,0;1,1;%s]
 		label[1,0;%s]
-		button_exit[2.8,0.8;1,1;;OK]
+		button_exit[3.1,0.8;1,1;;OK]
 	]],
 	PNG.book,
 	"Your Minetest client is outdated.\n" ..
@@ -219,7 +226,7 @@ local group_names = {
 
 craftguide.model_alias = {
 	["boats:boat"] = {name = "boats:boat", drawtype = "entity"},
-	--["carts:cart"] = {name = "carts:cart", drawtype = "entity"}, -- the cart animation is broken
+	--["carts:cart"] = {name = "carts:cart", drawtype = "entity"}, -- animation broken
 }
 
 local function err(str)
@@ -490,6 +497,7 @@ function craftguide.register_craft(def)
 
 	def.custom = true
 	def.width = width
+
 	insert(recipes_cache[item], def)
 end
 
@@ -549,6 +557,46 @@ end
 
 function craftguide.get_search_filters()
 	return search_filters
+end
+
+local function weird_desc(str)
+	return not true_str(str) or find(str, "\n") or not find(str, "%u")
+end
+
+local function toupper(str)
+	return str:gsub("%f[%w]%l", upper):gsub("_", " ")
+end
+
+local function snip(str, limit)
+	return #str > limit and sprintf("%s...", sub(str, 1, limit - 3)) or str
+end
+
+local function get_desc(item, lang_code)
+	if sub(item, 1, 1) == "_" then
+		item = sub(item, 2)
+	end
+
+	local def = reg_items[item]
+
+	if def then
+		local desc = def.description
+		desc = lang_code and translate(lang_code, desc) or desc
+
+		if true_str(desc) then
+			desc = desc:trim():match("[^\n]*")
+
+			if not find(desc, "%u") then
+				desc = toupper(desc)
+			end
+
+			return desc
+
+		elseif true_str(item) then
+			return toupper(match(item, ":(.*)"))
+		end
+	end
+
+	return S("Unknown Item (@1)", item)
 end
 
 local function item_has_groups(item_groups, groups)
@@ -741,7 +789,9 @@ local function cache_recipes(item)
 		recipes = _recipes
 	end
 
-	recipes_cache[item] = recipes
+	if recipes then
+		recipes_cache[item] = table_merge(recipes, recipes_cache[item] or {})
+	end
 end
 
 local function get_recipes(item, data, player)
@@ -754,20 +804,8 @@ local function get_recipes(item, data, player)
 	end
 
 	local no_recipes = not recipes or #recipes == 0
-
-	if no_recipes and not usages then
-		return
-	elseif sfinv_only then
-		if usages and no_recipes then
-			data.show_usages = true
-		elseif recipes and not usages then
-			data.show_usages = nil
-		end
-	end
-
-	if not sfinv_only or (sfinv_only and data.show_usages) then
-		usages = apply_recipe_filters(usages, player)
-	end
+	if no_recipes and not usages then return end
+	usages = apply_recipe_filters(usages, player)
 
 	local no_usages = not usages or #usages == 0
 
@@ -800,6 +838,157 @@ local function groups_to_items(groups, get_all)
 	return get_all and names or ""
 end
 
+local function get_stack_max(data, is_recipe, rcp)
+	local inv = data.player:get_inventory()
+	local list = inv:get_list("main")
+	local size = inv:get_size("main")
+	local counts_inv, counts_rcp, counts = {}, {}, {}
+	local rcp_usg = is_recipe and "recipe" or "usage"
+
+	for _, it in pairs(rcp.items) do
+		counts_rcp[it] = (counts_rcp[it] or 0) + 1
+	end
+
+	data.export_counts[rcp_usg] = {}
+	data.export_counts[rcp_usg].rcp = counts_rcp
+
+	for i = 1, size do
+		local stack = list[i]
+
+		if not stack:is_empty() then
+			local item = stack:get_name()
+			local count = stack:get_count()
+
+			for name in pairs(counts_rcp) do
+				if is_group(name) then
+					local def = reg_items[item]
+					local groups = extract_groups(name)
+
+					if item_has_groups(def.groups, groups) then
+						counts_inv[name] = (counts_inv[name] or 0) + count
+					end
+				end
+			end
+
+			counts_inv[item] = (counts_inv[item] or 0) + count
+		end
+	end
+
+	data.export_counts[rcp_usg].inv = counts_inv
+
+	for name in pairs(counts_rcp) do
+		counts[name] = floor((counts_inv[name] or 0) / (counts_rcp[name] or 0))
+	end
+
+	local max_stacks = math.huge
+
+	for _, count in pairs(counts) do
+		if count < max_stacks then
+			max_stacks = count
+		end
+	end
+
+	return max_stacks
+end
+
+local function craft_stack(player, pname, data, _f)
+	local inv = player:get_inventory()
+	local rcp_usg = _f.craft_rcp and "recipe" or "usage"
+	local output = _f.craft_rcp and
+			data.recipes[data.rnum].output or data.usages[data.unum].output
+	output = ItemStack(output)
+	local stackname, stackcount = output:get_name(), output:get_count()
+	local scrbar_val = data[sprintf("scrbar_%s", _f.craft_rcp and "rcp" or "usg")]
+
+	for name, count in pairs(data.export_counts[rcp_usg].rcp) do
+		local items = {[name] = count}
+
+		if is_group(name) then
+			items = {}
+			local groups = extract_groups(name)
+			local item_groups = groups_to_items(groups, true)
+			local remaining = count
+
+			for _, item in ipairs(item_groups) do
+			for _name, _count in pairs(data.export_counts[rcp_usg].inv) do
+				if item == _name and remaining > 0 then
+					local c = min(remaining, _count)
+					items[item] = c
+					remaining = remaining - c
+				end
+			end
+			end
+		end
+
+		for k, v in pairs(items) do
+			inv:remove_item("main", sprintf("%s %s", k, v * scrbar_val))
+		end
+	end
+
+	local count = stackcount * scrbar_val
+	local stack = ItemStack(sprintf("%s %s", stackname, count))
+	local desc = get_desc(stackname)
+	local message
+
+	if count > 1 then
+		message = clr("#ff0", sprintf("%s x %s", count, desc))
+	else
+		message = clr("#ff0", sprintf("%s", desc))
+	end
+
+	if inv:room_for_item("main", stack) then
+		inv:add_item("main", stack)
+		msg(pname, sprintf("%s added in your inventory", message))
+	else
+		local dir     = player:get_look_dir()
+		local ppos    = player:get_pos()
+		      ppos.y  = ppos.y + 1.625
+		local look_at = vec_add(ppos, vec_mul(dir, 1))
+
+		core.add_item(look_at, stack)
+		msg(pname, sprintf("%s crafted", message))
+	end
+end
+
+local function select_item(player, data, _f)
+	local item
+
+	for field in pairs(_f) do
+		if find(field, ":") then
+			item = field
+			break
+		end
+	end
+
+	if not item then
+		return
+	elseif sub(item, -4) == "_inv" then
+		item = sub(item, 1, -5)
+	elseif sub(item, 1, 1) == "_" then
+		item = sub(item, 2)
+	elseif sub(item, 1, 6) == "group|" then
+		item = match(item, "([%w:_]+)$")
+	end
+
+	item = reg_aliases[item] or item
+
+	if item == data.query_item then return end
+
+	local recipes, usages = get_recipes(item, data, player)
+	if not recipes and not usages      then return end
+	if data.show_usages and not usages then return end
+
+	data.query_item = item
+	data.recipes    = recipes
+	data.usages     = usages
+	data.rnum       = 1
+	data.unum       = 1
+	data.scrbar_rcp = 1
+	data.scrbar_usg = 1
+	data.export_rcp = nil
+	data.export_usg = nil
+end
+
 local function repairable(tool)
 	local def = reg_tools[tool]
 	return toolrepair and def and def.groups and def.groups.disable_repair ~= 1
@@ -816,46 +1005,6 @@ local function is_fav(favs, query_item)
 	end
 
 	return fav, i
-end
-
-local function weird_desc(str)
-	return not true_str(str) or find(str, "\n") or not find(str, "%u")
-end
-
-local function toupper(str)
-	return str:gsub("%f[%w]%l", upper):gsub("_", " ")
-end
-
-local function snip(str, limit)
-	return #str > limit and sprintf("%s...", sub(str, 1, limit - 3)) or str
-end
-
-local function get_desc(item, lang_code)
-	if sub(item, 1, 1) == "_" then
-		item = sub(item, 2)
-	end
-
-	local def = reg_items[item]
-
-	if def then
-		local desc = def.description
-		desc = lang_code and translate(lang_code, desc) or desc
-
-		if true_str(desc) then
-			desc = desc:trim():match("[^\n]*")
-
-			if not find(desc, "%u") then
-				desc = toupper(desc)
-			end
-
-			return desc
-
-		elseif true_str(item) then
-			return toupper(match(item, ":(.*)"))
-		end
-	end
-
-	return S("Unknown Item (@1)", item)
 end
 
 local function get_tooltip(item, info)
@@ -936,7 +1085,7 @@ local function get_tooltip(item, info)
 	return sprintf("tooltip[%s;%s]", item, ESC(tooltip))
 end
 
-local function get_output_fs(fs, rcp, shapeless, right, btn_size, _btn_size, spacing)
+local function get_output_fs(fs, data, rcp, shapeless, right, btn_size, _btn_size)
 	local custom_recipe = craft_types[rcp.type]
 
 	if custom_recipe or shapeless or rcp.type == "cooking" then
@@ -947,8 +1096,8 @@ local function get_output_fs(fs, rcp, shapeless, right, btn_size, _btn_size, spa
 			icon = sprintf("craftguide_%s.png^[resize:16x16", icon)
 		end
 
-		local pos_x = right + btn_size + 0.1
-		local pos_y = YOFFSET + (sfinv_only and 1.55 or -0.45) + spacing
+		local pos_x = right + btn_size + 0.42
+		local pos_y = data.yoffset + 0.9
 
 		if sub(icon, 1, 18) == "craftguide_furnace" then
 			fs(fmt("animated_image", pos_x, pos_y, 0.5, 0.5, PNG.furnace_anim, 8, 180))
@@ -962,24 +1111,27 @@ local function get_output_fs(fs, rcp, shapeless, right, btn_size, _btn_size, spa
 		fs(fmt("tooltip", pos_x, pos_y, 0.5, 0.5, ESC(tooltip)))
 	end
 
-	local arrow_X = right + (_btn_size or ITEM_BTN_SIZE)
-	local X = arrow_X + 0.9
-	local Y = YOFFSET + (sfinv_only and 2 or 0) + spacing
+	local arrow_X = right + 0.2 + (_btn_size or ITEM_BTN_SIZE)
+	local X = arrow_X + 1.2
+	local Y = data.yoffset + 1.4
 
-	fs(fmt("image", arrow_X, Y + 0.2, 0.9, 0.7, PNG.arrow))
+	fs(fmt("image", arrow_X, Y + 0.06, 1, 1, PNG.arrow))
 
 	if rcp.type == "fuel" then
-		fs(fmt("animated_image", X, Y, ITEM_BTN_SIZE, ITEM_BTN_SIZE, PNG.fire_anim, 8, 180))
+		fs(fmt("animated_image",
+			X, Y, ITEM_BTN_SIZE, ITEM_BTN_SIZE, PNG.fire_anim, 8, 180))
 	else
 		local item = rcp.output
 		item = clean_name(item)
 		local name = match(item, "%S*")
 
-		fs(fmt("image", X, Y, ITEM_BTN_SIZE, ITEM_BTN_SIZE, PNG.selected))
+		fs(fmt("image",
+			X, Y - 0.11, ITEM_BTN_SIZE * 1.2, ITEM_BTN_SIZE * 1.2, PNG.selected))
 
-		local _name = sfinv_only and name or sprintf("_%s", name)
+		local _name = sprintf("_%s", name)
 
-		fs(fmt("item_image_button", X, Y, ITEM_BTN_SIZE, ITEM_BTN_SIZE, item, _name, ""))
+		fs(fmt("item_image_button",
+			X + 0.1, Y, ITEM_BTN_SIZE, ITEM_BTN_SIZE, item, _name, ""))
 
 		local def = reg_items[name]
 		local unknown = not def or nil
@@ -999,19 +1151,10 @@ local function get_output_fs(fs, rcp, shapeless, right, btn_size, _btn_size, spa
 		if next(infos) then
 			fs(get_tooltip(_name, infos))
 		end
-
-		if infos.burntime then
-			fs(fmt("image",
-				X + 1, YOFFSET + (sfinv_only and 2 or 0.1) + spacing,
-				0.6, 0.4, PNG.arrow),
-			   fmt("animated_image",
-				X + 1.6, YOFFSET + (sfinv_only and 1.85 or 0) + spacing,
-				0.6, 0.6, PNG.fire_anim, 8, 180))
-		end
 	end
 end
 
-local function get_grid_fs(fs, rcp, spacing)
+local function get_grid_fs(fs, data, rcp)
 	local width = rcp.width or 1
 	local right, btn_size, _btn_size = 0, ITEM_BTN_SIZE
 	local cooktime, shapeless
@@ -1025,16 +1168,6 @@ local function get_grid_fs(fs, rcp, spacing)
 	end
 
 	local rows = ceil(maxn(rcp.items) / width)
-
-	if width > WH_LIMIT or rows > WH_LIMIT then
-		fs(fmt("label",
-			XOFFSET + (sfinv_only and -1.5 or -1.6),
-			YOFFSET + (sfinv_only and 0.5 or spacing),
-			ES("Recipe's too big to be displayed (@1x@2)", width, rows)))
-
-		return concat(fs)
-	end
-
 	local large_recipe = width > 3 or rows > 3
 
 	if large_recipe then
@@ -1046,17 +1179,21 @@ local function get_grid_fs(fs, rcp, spacing)
 		item = clean_name(item)
 		local name = match(item, "%S*")
 
-		local X = ceil((i - 1) % width - width) + XOFFSET
-		local Y = ceil(i / width) + YOFFSET - min(2, rows) + spacing
+		local X = ceil((i - 1) % width - width)
+		X = X + (X * 0.2) + data.xoffset + 3.9
+
+		local Y = ceil(i / width) - min(2, rows)
+		Y = Y + (Y * 0.15)  + data.yoffset + 1.4
 
 		if large_recipe then
-			btn_size = (width > 3 and 3 / width or 3 / rows) + 0.1
+			btn_size = (3 / width) * (3 / rows) + 0.3
 			_btn_size = btn_size
+
 			local xi = (i - 1) % width
 			local yi = floor((i - 1) / width)
 
-			X = btn_size * xi + XOFFSET - 2.65 - (xi * 0.15)
-			Y = btn_size * yi + spacing + (sfinv_only and 4 or 0) - (yi * 0.1)
+			X = btn_size * xi + data.xoffset + 0.3 + (xi * 0.05)
+			Y = btn_size * yi + data.yoffset + 0.2 + (yi * 0.05)
 		end
 
 		if X > right then
@@ -1095,8 +1232,6 @@ local function get_grid_fs(fs, rcp, spacing)
 			end
 		end
 
-		Y = Y + (sfinv_only and 2 or 0)
-
 		if not large_recipe then
 			fs(fmt("image", X, Y, btn_size, btn_size, PNG.selected))
 		end
@@ -1130,104 +1265,84 @@ local function get_grid_fs(fs, rcp, spacing)
 		fs("style_type[item_image_button;border=false]")
 	end
 
-	get_output_fs(fs, rcp, shapeless, right, btn_size, _btn_size, spacing)
+	get_output_fs(fs, data, rcp, shapeless, right, btn_size, _btn_size)
 end
 
-local function get_rcp_lbl(fs, data, panel, spacing, rn, is_recipe)
-	local lbl
+local function get_rcp_lbl(fs, data, panel, rn, is_recipe)
+	local lbl = ES("Usage @1 of @2", data.unum, rn)
 
-	if (not sfinv_only and is_recipe) or (sfinv_only and not data.show_usages) then
+	if is_recipe then
 		lbl = ES("Recipe @1 of @2", data.rnum, rn)
-
-	elseif not sfinv_only or (sfinv_only and data.show_usages) then
-		lbl = ES("Usage @1 of @2", data.unum, rn)
-
-	elseif sfinv_only then
-		lbl = data.show_usages and ES("Usage @1 of @2", data.unum, rn) or
-			ES("Recipe @1 of @2", data.rnum, rn)
 	end
 
 	local _lbl = translate(data.lang_code, lbl)
 	local lbl_len = #_lbl:gsub("[\128-\191]", "") -- Count chars, not bytes in UTF-8 strings
-	local shift = min(0.9, abs(12 - max(12, lbl_len)) * 0.1)
+	local shift = min(0.9, abs(12 - max(12, lbl_len)) * 0.15)
 
-	fs(fmt("label",
-		XOFFSET + (sfinv_only and 2.3 or 1.6) - shift,
-		YOFFSET + (sfinv_only and 3.4 or 1.5 + spacing), lbl))
+	fs(fmt("label", data.xoffset + 5.65 - shift, data.yoffset + 3.37, lbl))
 
 	if rn > 1 then
 		local btn_suffix = is_recipe and "recipe" or "usage"
 		local prev_name = sprintf("prev_%s", btn_suffix)
 		local next_name = sprintf("next_%s", btn_suffix)
-		local x_arrow = XOFFSET + (sfinv_only and 1.7 or 1)
-		local y_arrow = YOFFSET + (sfinv_only and 3.3 or 1.4 + spacing)
+		local x_arrow = data.xoffset + 4.9
+		local y_arrow = data.yoffset + 3
 
 		fs(fmt("arrow", x_arrow - shift, y_arrow, PNG.prev, prev_name, ""),
-		   fmt("arrow", x_arrow + 1.8,   y_arrow, PNG.next, next_name, ""))
+		   fmt("arrow", x_arrow + 2.3,   y_arrow, PNG.next, next_name, ""))
 	end
 
 	local rcp = is_recipe and panel.rcp[data.rnum] or panel.rcp[data.unum]
-	get_grid_fs(fs, rcp, spacing)
+	get_grid_fs(fs, data, rcp)
 end
 
-local function get_title_fs(query_item, favs, lang_code, fs, spacing)
-	fs("style_type[label;font=bold;font_size=+6]",
-	   fmt("label", 8.75, spacing - 0.1, snip(ESC(get_desc(query_item, lang_code)), 45)),
-	   "style_type[label;font=mono;font_size=+0]",
-	   fmt("label", 8.75, spacing + 0.3, clr("#7bf", snip(query_item, 35))),
-	   "style_type[label;font=normal]")
-
-	local def = reg_items[query_item]
-	local model_alias = craftguide.model_alias[query_item]
-
-	if def.drawtype == "mesh" or model_alias then
-		if model_alias then
-			if model_alias.drawtype == "entity" then
-				def = reg_entities[model_alias.name]
-				local init_props = def.initial_properties
-				def.textures = init_props and init_props.textures or def.textures
-				def.mesh = init_props and init_props.mesh or def.mesh
-			else
-				def = reg_items[model_alias.name]
-			end
+local function get_model_fs(fs, data, def, model_alias)
+	if model_alias then
+		if model_alias.drawtype == "entity" then
+			def = reg_entities[model_alias.name]
+			local init_props = def.initial_properties
+			def.textures = init_props and init_props.textures or def.textures
+			def.mesh = init_props and init_props.mesh or def.mesh
+		else
+			def = reg_items[model_alias.name]
 		end
-
-		local tiles = def.tiles or def.textures or {}
-		local t = {}
-
-		for _, v in ipairs(tiles) do
-			local _name
-
-			if v.color then
-				local hex = sprintf("%02x", v.color)
-
-				while #hex < 8 do
-					hex = "0" .. hex
-				end
-
-				_name = sprintf("%s^[multiply:%s", v.name,
-					sprintf("#%s%s", sub(hex, 3), sub(hex, 1, 2)))
-
-			elseif v.animation then
-				_name = sprintf("%s^[verticalframe:%u:0", v.name,
-						v.animation.aspect_h)
-			end
-
-			t[#t + 1] = _name or v.name or v
-		end
-
-		while #t < 6 do
-			t[#t + 1] = t[#t]
-		end
-
-		fs(fmt("model", 13.5, spacing - 0.2, 1.2, 1.2, "", def.mesh, concat(t, ",")))
-	else
-		fs(fmt("hypertext", 13.8, spacing - 0.15, 1.1, 1.3,
-			sprintf("<item name=%s width=64 rotate=yes>", query_item)))
 	end
 
-	local fav = is_fav(favs, query_item)
-	local nfavs = #favs
+	local tiles = def.tiles or def.textures or {}
+	local t = {}
+
+	for _, v in ipairs(tiles) do
+		local _name
+
+		if v.color then
+			local hex = sprintf("%02x", v.color)
+
+			while #hex < 8 do
+				hex = "0" .. hex
+			end
+
+			_name = sprintf("%s^[multiply:%s", v.name,
+				sprintf("#%s%s", sub(hex, 3), sub(hex, 1, 2)))
+
+		elseif v.animation then
+			_name = sprintf("%s^[verticalframe:%u:0", v.name, v.animation.aspect_h)
+		end
+
+		t[#t + 1] = _name or v.name or v
+	end
+
+	while #t < 6 do
+		t[#t + 1] = t[#t]
+	end
+
+	fs(fmt("model",
+		data.xoffset + 6.6, data.yoffset + 0.05, 1.3, 1.3, "", def.mesh, concat(t, ",")))
+end
+
+local function get_title_fs(fs, data)
+	local fav = is_fav(data.favs, data.query_item)
+	local nfavs = #data.favs
+	local star_x, star_y, star_size = data.xoffset + 0.4, data.yoffset + 0.5, 0.4
 
 	if nfavs < MAX_FAVS or (nfavs == MAX_FAVS and fav) then
 		local fav_marked = sprintf("craftguide_fav%s.png", fav and "_off" or "")
@@ -1235,71 +1350,151 @@ local function get_title_fs(query_item, favs, lang_code, fs, spacing)
 		fs(sprintf("style[fav;fgimg=%s;fgimg_hovered=%s;fgimg_pressed=%s]",
 			sprintf("craftguide_fav%s.png", fav and "" or "_off"),
 			fav_marked, fav_marked),
-		   fmt("image_button", 8.25, spacing + 0.15, 0.5, 0.45, "", "fav", ""),
+		   fmt("image_button", star_x, star_y, star_size, star_size, "", "fav", ""),
 		   sprintf("tooltip[fav;%s]", fav and ES"Unmark this item" or ES"Mark this item"))
 	else
-		fs(sprintf("style[fav_no;fgimg=%s;fgimg_hovered=%s;fgimg_pressed=%s]",
+		fs(sprintf("style[nofav;fgimg=%s;fgimg_hovered=%s;fgimg_pressed=%s]",
 			"craftguide_fav_off.png", PNG.nothing, PNG.nothing),
-		   fmt("image_button", 8.25, spacing + 0.15, 0.5, 0.45, "", "fav_no", ""),
-		   sprintf("tooltip[fav_no;%s]", ES"Cannot mark this item. Bookmark limit reached."))
+		   fmt("image_button", star_x, star_y, star_size, star_size, "", "nofav", ""),
+		   sprintf("tooltip[nofav;%s]",
+			ES"Cannot mark this item. Bookmark limit reached."))
+	end
+
+	fs("style_type[label;font=bold;font_size=+6]",
+	   fmt("label", data.xoffset + 1.05, data.yoffset + 0.47,
+		snip(ESC(get_desc(data.query_item, data.lang_code)), 32)),
+	   "style_type[label;font=mono;font_size=+0]",
+	   fmt("label", data.xoffset + 1.05, data.yoffset + 0.97,
+		clr("#7bf", snip(data.query_item, 34))),
+	   "style_type[label;font=normal]")
+
+	local def = reg_items[data.query_item]
+	local model_alias = craftguide.model_alias[data.query_item]
+
+	if def.drawtype == "mesh" or model_alias then
+		get_model_fs(fs, data, def, model_alias)
+	else
+		fs(fmt("item_image",
+			data.xoffset + 6.8, data.yoffset + 0.17, 1.1, 1.1, data.query_item))
 	end
 end
 
-local function get_panels(data, fs)
-	local _title   = {name = "title", height = 1.2}
-	local _favs    = {name = "favs",  height = 1.91}
-	local _recipes = {name = "recipes", rcp = data.recipes, height = 3.5}
-	local _usages  = {name = "usages",  rcp = data.usages,  height = 3.5}
-	local panels   = {_title, _recipes, _usages, _favs}
+local function get_export_fs(fs, data, panel, is_recipe, is_usage, max_stacks_rcp, max_stacks_usg)
+	local name = is_recipe and "rcp" or "usg"
+	local show_export = (is_recipe and data.export_rcp) or (is_usage and data.export_usg)
 
-	if sfinv_only then
-		panels = {data.show_usages and _usages or _recipes}
+	fs(sprintf("style[export_%s;fgimg=%s;fgimg_hovered=%s;fgimg_pressed=%s]",
+		name, sprintf("craftguide_export%s.png", show_export and "" or "_off"),
+		"craftguide_export.png", "craftguide_export.png"),
+	   fmt("image_button",
+		data.xoffset + 7.35, data.yoffset + 0.2, 0.45, 0.45, "",
+		sprintf("export_%s", name), ""),
+	   sprintf("tooltip[export_%s;%s]", name, ES"Craft this stack"))
+
+	if not show_export then return end
+
+	local item = (is_recipe and panel.rcp[data.rnum].output) or
+		     (is_usage and panel.rcp[data.unum].output)
+	item = clean_name(item)
+	local _name = match(item, "%S*")
+	local stack = ItemStack(_name)
+	local stack_max = stack:get_stack_max()
+	local craft_max = is_recipe and max_stacks_rcp or max_stacks_usg
+	local stack_fs = (is_recipe and data.scrbar_rcp) or (is_usage and data.scrbar_usg) or 1
+
+	if stack_fs > craft_max then
+		stack_fs = craft_max
+
+		if is_recipe then
+			data.scrbar_rcp = craft_max
+		elseif is_usage then
+			data.scrbar_usg = craft_max
+		end
 	end
 
+	fs(sprintf("style[scrbar_%s;noclip=true]", name),
+	   sprintf("scrollbaroptions[min=1;max=%u;smallstep=1]", min(craft_max, stack_max)),
+	   fmt("scrollbar",
+		data.xoffset + 8.1, data.yoffset, 3, 0.35, sprintf("scrbar_%s", name), stack_fs),
+	   fmt("button", data.xoffset + 8.1, data.yoffset + 0.4, 3, 0.7, sprintf("craft_%s", name),
+		sprintf("%s", sprintf(stack_fs > 1 and ES"Craft %u stacks" or ES"Craft %u stack",
+			stack_fs))))
+end
+
+local function get_rcp_extra(fs, data, panel, is_recipe, is_usage)
+	local rn = panel.rcp and #panel.rcp
+
+	if rn then
+		local rcp_normal = is_recipe and panel.rcp[data.rnum].type == "normal"
+		local usg_normal = is_usage and panel.rcp[data.unum].type == "normal"
+		local max_stacks_rcp, max_stacks_usg = 0, 0
+
+		if rcp_normal then
+			max_stacks_rcp = get_stack_max(data, is_recipe, panel.rcp[data.rnum])
+		end
+
+		if usg_normal then
+			max_stacks_usg = get_stack_max(data, is_recipe, panel.rcp[data.unum])
+		end
+
+		if max_stacks_rcp > 0 or max_stacks_usg > 0 then
+			get_export_fs(fs, data, panel, is_recipe, is_usage, max_stacks_rcp,
+				      max_stacks_usg)
+		end
+
+		get_rcp_lbl(fs, data, panel, rn, is_recipe)
+	else
+		local lbl = is_recipe and ES"No recipes" or ES"No usages"
+		fs(fmt("button",
+			data.xoffset + 0.1, data.yoffset + (panel.height / 2) - 0.5,
+			7.8, 1, "no_rcp", lbl))
+	end
+end
+
+local function get_favs(fs, data)
+	fs(fmt("label", data.xoffset + 0.4, data.yoffset + 0.4, ES"Bookmarks"))
+
+	for i = 1, #data.favs do
+		local item = data.favs[i]
+		local X = data.xoffset - 0.7 + (i * 1.2)
+		local Y = data.yoffset + 0.8
+
+		if data.query_item == item then
+			fs(fmt("image", X, Y, ITEM_BTN_SIZE, ITEM_BTN_SIZE, PNG.selected))
+		end
+
+		fs(fmt("item_image_button", X, Y, ITEM_BTN_SIZE, ITEM_BTN_SIZE, item, item, ""))
+	end
+end
+
+local function get_panels(fs, data)
+	local _title   = {name = "title", height = 1.4}
+	local _favs    = {name = "favs",  height = 2.2}
+	local _recipes = {name = "recipes", rcp = data.recipes, height = 3.9}
+	local _usages  = {name = "usages",  rcp = data.usages,  height = 3.9}
+	local panels   = {_title, _recipes, _usages, _favs}
+
 	for idx = 1, #panels do
-		local panel, spacing = panels[idx], 0
+		local panel = panels[idx]
+		data.yoffset = 0
 
 		if idx > 1 then
 			for _idx = idx - 1, 1, -1 do
-				spacing = spacing + panels[_idx].height + 0.1
+				data.yoffset = data.yoffset + panels[_idx].height + 0.1
 			end
 		end
 
-		local rn = panel.rcp and #panel.rcp
-		local is_recipe = sfinv_only and not data.show_usages or panel.name == "recipes"
-		local recipe_or_usage = panel.name == "recipes" or panel.name == "usages"
+		fs(fmt("bg9",
+			data.xoffset + 0.1, data.yoffset, 7.9, panel.height, PNG.bg_full, 10))
 
-		if rn then
-			get_rcp_lbl(fs, data, panel, spacing, rn, is_recipe)
-		end
+		local is_recipe, is_usage = panel.name == "recipes", panel.name == "usages"
 
-		if sfinv_only then return end
-
-		fs(fmt("bg9", 8.1, -0.2 + spacing, 6.6, panel.height, PNG.bg_full, 10))
-
-		if recipe_or_usage and not rn then
-			local lbl = is_recipe and ES"No recipes" or ES"No usages"
-			fs(fmt("button", 8, YOFFSET + spacing + 0.1, 6.8, 1, "", lbl))
-
+		if is_recipe or is_usage then
+			get_rcp_extra(fs, data, panel, is_recipe, is_usage)
 		elseif panel.name == "title" then
-			get_title_fs(data.query_item, data.favs, data.lang_code, fs, spacing)
-
+			get_title_fs(fs, data)
 		elseif panel.name == "favs" then
-			fs(fmt("label", 8.3, spacing - 0.15, ES"Bookmarks"))
-
-			for i = 1, #data.favs do
-				local item = data.favs[i]
-				local X = 7.85 + (i - 0.5)
-				local Y = spacing + 0.4
-
-				if data.query_item == item then
-					fs(fmt("image",
-						X, Y, ITEM_BTN_SIZE, ITEM_BTN_SIZE, PNG.selected))
-				end
-
-				fs(fmt("item_image_button",
-					X, Y, ITEM_BTN_SIZE, ITEM_BTN_SIZE, item, item, ""))
-			end
+			get_favs(fs, data)
 		end
 	end
 end
@@ -1311,41 +1506,35 @@ local function make_fs(data)
 		end
 	})
 
+	data.xoffset = ROWS + 1.04
+
 	fs(sprintf([[
+		formspec_version[%u]
 		size[%f,%f]
 		no_prepend[]
 		bgcolor[#0000]
 	]],
-	9 + (data.query_item and 6.7 or 0) - 1.2, LINES - 0.3), styles)
+	MIN_FORMSPEC_VERSION, data.xoffset + (data.query_item and 8 or 0), LINES + 1.7), styles)
 
-	if not sfinv_only then
-		fs(fmt("bg9", -0.15, -0.2, 9 - 0.9, LINES + 0.4, PNG.bg_full, 10))
-	end
+	fs(fmt("bg9", 0, 0, data.xoffset, LINES + 1.7, PNG.bg_full, 10))
 
 	fs(sprintf([[
-		field[0.4,0.2;2.6,1;filter;;%s]
+		box[0.2,0.2;3.5,0.6;#bababa25]
+		set_focus[filter]
+		field[0.2,0.2;3.5,0.6;filter;;%s]
 		field_close_on_enter[filter;false]
-		box[0,0;2.5,0.6;#bababa25]
 	   ]], ESC(data.filter)),
-	   fmt("image_button", 2.6, -0.06, 0.85, 0.85, "", "search", ""),
-	   fmt("image_button", 3.3, -0.06, 0.85, 0.85, "", "clear", ""))
+	   fmt("image_button", 3.75, 0.15, 0.7, 0.7, "", "search", ""),
+	   fmt("image_button", 4.43, 0.15, 0.7, 0.7, "", "clear", ""))
 
-	if sfinv_only then
-		fs("container[0.2,0]")
-	end
-
-	fs(fmt("image_button", 5.35, -0.06, 0.85, 0.85, "", "prev_page", ""),
-	   fmt("image_button", 7.1, -0.06, 0.85, 0.85, "", "next_page", ""))
+	fs(fmt("image_button", data.xoffset - 3.2, 0.15, 0.7, 0.7, "", "prev_page", ""),
+	   fmt("image_button", data.xoffset - 0.7, 0.15, 0.7, 0.7, "", "next_page", ""))
 
 	data.pagemax = max(1, ceil(#data.items / IPP))
 
 	fs(fmt("button",
-		5.97, -0.06, 1.36, 0.85, "pagenum",
+		data.xoffset - 2.53, 0.15, 1.88, 0.7, "pagenum",
 		sprintf("%s / %u", clr("#ff0", data.pagenum), data.pagemax)))
-
-	if sfinv_only then
-		fs("container_end[]")
-	end
 
 	if #data.items == 0 then
 		local lbl = ES"No item to show"
@@ -1354,7 +1543,7 @@ local function make_fs(data)
 			lbl = ES"Collect items to reveal more recipes"
 		end
 
-		fs(fmt("button", -0.25, 3, 8.3, 1, "", lbl))
+		fs(fmt("button", 0, 3, data.xoffset, 1, "no_item", lbl))
 	end
 
 	local first_item = (data.pagenum - 1) * IPP
@@ -1364,9 +1553,10 @@ local function make_fs(data)
 		if not item then break end
 
 		local X = i % ROWS
+		X = X + (X * 0.08) + 0.2
+
 		local Y = (i % IPP - X) / ROWS + 1
-		X = X - (X * (sfinv_only and 0.12 or 0.14)) - 0.05
-		Y = Y - (Y * 0.08) - 0.15
+		Y = Y + (Y * 0.06)
 
 		if data.query_item == item then
 			fs(fmt("image", X, Y, 1, 1, PNG.selected))
@@ -1376,7 +1566,7 @@ local function make_fs(data)
 	end
 
 	if (data.recipes and #data.recipes > 0) or (data.usages and #data.usages > 0) then
-		get_panels(data, fs)
+		get_panels(fs, data)
 	end
 
 	return concat(fs)
@@ -1384,11 +1574,7 @@ end
 
 local show_fs = function(player, name)
 	local data = pdata[name]
-	if sfinv_only then
-		sfinv.set_player_inventory_formspec(player)
-	else
-		show_formspec(name, "craftguide", make_fs(data))
-	end
+	show_formspec(name, "craftguide", make_fs(data))
 end
 
 craftguide.register_craft_type("digging", {
@@ -1572,14 +1758,8 @@ local function get_init_items()
 	for name, def in pairs(reg_items) do
 		if name ~= "" and show_item(def) then
 			cache_drops(name, def.drop)
-
-			if not fuel_cache[name] then
-				cache_fuel(name)
-			end
-
-			if not recipes_cache[name] then
-				cache_recipes(name)
-			end
+			cache_fuel(name)
+			cache_recipes(name)
 
 			_preselect[name] = true
 		end
@@ -1613,13 +1793,18 @@ local function get_init_items()
 end
 
 local function init_data(name)
+	local info = get_player_info(name)
+
 	pdata[name] = {
-		filter    = "",
-		pagenum   = 1,
-		items     = init_items,
-		items_raw = init_items,
-		favs      = {},
-		lang_code = get_lang_code(name),
+		filter        = "",
+		pagenum       = 1,
+		items         = init_items,
+		items_raw     = init_items,
+		favs          = {},
+		export_counts = {},
+		lang_code     = get_lang_code(info),
+		fs_version    = get_formspec_version(info),
+		player        = get_player_by_name(name),
 	}
 end
 
@@ -1628,10 +1813,14 @@ local function reset_data(data)
 	data.pagenum     = 1
 	data.rnum        = 1
 	data.unum        = 1
+	data.scrbar_rcp  = 1
+	data.scrbar_usg  = 1
 	data.query_item  = nil
 	data.recipes     = nil
 	data.usages      = nil
 	data.show_usages = nil
+	data.export_rcp  = nil
+	data.export_usg  = nil
 	data.items       = data.items_raw
 end
 
@@ -1640,8 +1829,9 @@ on_mods_loaded(get_init_items)
 on_joinplayer(function(player)
 	local name = player:get_player_name()
 	init_data(name)
+	local data = pdata[name]
 
-	if not pdata[name].lang_code then
+	if data.fs_version < MIN_FORMSPEC_VERSION then
 		outdated(name)
 	end
 end)
@@ -1651,16 +1841,23 @@ local function fields(player, _f)
 	local name = player:get_player_name()
 	local data = pdata[name]
 
+	local scrbar_rcp_CHG = _f.scrbar_rcp and sub(_f.scrbar_rcp, 1, 3) == "CHG"
+	local scrbar_usg_CHG = _f.scrbar_usg and sub(_f.scrbar_usg, 1, 3) == "CHG"
+
 	if _f.clear then
 		reset_data(data)
 
 	elseif _f.prev_recipe or _f.next_recipe then
 		local num = data.rnum + (_f.prev_recipe and -1 or 1)
 		data.rnum = data.recipes[num] and num or (_f.prev_recipe and #data.recipes or 1)
+		data.export_rcp = nil
+		data.scrbar_rcp = 1
 
 	elseif _f.prev_usage or _f.next_usage then
 		local num = data.unum + (_f.prev_usage and -1 or 1)
 		data.unum = data.usages[num] and num or (_f.prev_usage and #data.usages or 1)
+		data.export_usg = nil
+		data.scrbar_usg = 1
 
 	elseif _f.key_enter_field == "filter" or _f.search then
 		if _f.filter == "" then
@@ -1673,6 +1870,7 @@ local function fields(player, _f)
 
 		data.filter = str
 		data.pagenum = 1
+
 		search(data)
 
 	elseif _f.prev_page or _f.next_page then
@@ -1694,182 +1892,115 @@ local function fields(player, _f)
 		elseif fav then
 			remove(data.favs, i)
 		end
+
+	elseif _f.export_rcp or _f.export_usg then
+		if _f.export_rcp then
+			data.export_rcp = not data.export_rcp
+		else
+			data.export_usg = not data.export_usg
+		end
+
+	elseif scrbar_rcp_CHG or scrbar_usg_CHG then
+		data.scrbar_rcp = _f.scrbar_rcp and tonum(match(_f.scrbar_rcp, "%d+"))
+		data.scrbar_usg = _f.scrbar_usg and tonum(match(_f.scrbar_usg, "%d+"))
+
+	elseif _f.craft_rcp or _f.craft_usg then
+		craft_stack(player, name, data, _f)
 	else
-		local item
-		for field in pairs(_f) do
-			if find(field, ":") then
-				item = field
-				break
-			end
-		end
-
-		if not item then
-			return
-		elseif sub(item, -4) == "_inv" then
-			item = sub(item, 1, -5)
-		elseif sub(item, 1, 1) == "_" then
-			item = sub(item, 2)
-		elseif sub(item, 1, 6) == "group|" then
-			item = match(item, "([%w:_]+)$")
-		end
-
-		item = reg_aliases[item] or item
-
-		if sfinv_only then
-			if item ~= data.query_item then
-				data.show_usages = nil
-			else
-				data.show_usages = not data.show_usages
-			end
-		elseif item == data.query_item then
-			return
-		end
-
-		local recipes, usages = get_recipes(item, data, player)
-		if not recipes and not usages      then return end
-		if data.show_usages and not usages then return end
-
-		data.query_item = item
-		data.recipes    = recipes
-		data.usages     = usages
-		data.rnum       = 1
-		data.unum       = 1
+		select_item(player, data, _f)
 	end
 
 	return true, show_fs(player, name)
 end
 
-if sfinv_only then
-	sfinv.register_page("craftguide:craftguide", {
-		title = S"Craft Guide",
+on_receive_fields(function(player, formname, _f)
+	if formname == "craftguide" then
+		fields(player, _f)
+	end
+end)
 
-		is_in_nav = function(self, player, context)
-			local name = player:get_player_name()
-			return get_lang_code(name)
-		end,
+local function on_use(user)
+	local name = user:get_player_name()
+	local data = pdata[name]
 
-		get = function(self, player, context)
-			local name = player:get_player_name()
-			local data = pdata[name]
-
-			return sfinv.make_formspec(player, context, make_fs(data))
-		end,
-
-		on_enter = function(self, player, context)
-			if next(recipe_filters) then
-				local name = player:get_player_name()
-				local data = pdata[name]
-
-				data.items_raw = get_filtered_items(player)
-				search(data)
-			end
-		end,
-
-		on_player_receive_fields = function(self, player, context, _f)
-			fields(player, _f)
-		end,
-	})
-else
-	on_receive_fields(function(player, formname, _f)
-		if formname == "craftguide" then
-			fields(player, _f)
-		end
-	end)
-
-	local function on_use(user)
-		local name = user:get_player_name()
-		local data = pdata[name]
-
-		if not data.lang_code then
-			return outdated(name)
-		end
-
-		if next(recipe_filters) then
-			data.items_raw = get_filtered_items(user)
-			search(data)
-		end
-
-		show_formspec(name, "craftguide", make_fs(data))
+	if data.fs_version < MIN_FORMSPEC_VERSION then
+		return outdated(name)
 	end
 
-	core.register_craftitem("craftguide:book", {
-		description = S"Crafting Guide",
-		inventory_image = PNG.book,
-		wield_image = PNG.book,
-		stack_max = 1,
-		groups = {book = 1},
-		on_use = function(itemstack, user)
-			on_use(user)
-		end
-	})
-
-	core.register_node("craftguide:sign", {
-		description = S"Crafting Guide Sign",
-		drawtype = "nodebox",
-		tiles = {PNG.sign},
-		inventory_image = PNG.sign,
-		wield_image = PNG.sign,
-		paramtype = "light",
-		paramtype2 = "wallmounted",
-		sunlight_propagates = true,
-		groups = {
-			choppy = 1,
-			attached_node = 1,
-			oddly_breakable_by_hand = 1,
-			flammable = 3,
-		},
-		node_box = {
-			type = "wallmounted",
-			wall_top    = {-0.5, 0.4375, -0.5, 0.5, 0.5, 0.5},
-			wall_bottom = {-0.5, -0.5, -0.5, 0.5, -0.4375, 0.5},
-			wall_side   = {-0.5, -0.5, -0.5, -0.4375, 0.5, 0.5}
-		},
-
-		on_construct = function(pos)
-			local meta = core.get_meta(pos)
-			meta:set_string("infotext", "Crafting Guide Sign")
-		end,
-
-		on_rightclick = function(pos, node, user, itemstack)
-			on_use(user)
-		end
-	})
-
-	core.register_craft{
-		output = "craftguide:book",
-		type   = "shapeless",
-		recipe = {"default:book"}
-	}
-
-	core.register_craft{
-		type = "fuel",
-		recipe = "craftguide:book",
-		burntime = 3
-	}
-
-	core.register_craft{
-		output = "craftguide:sign",
-		type   = "shapeless",
-		recipe = {"default:sign_wall_wood"}
-	}
-
-	core.register_craft{
-		type = "fuel",
-		recipe = "craftguide:sign",
-		burntime = 10
-	}
-
-	if rawget(_G, "sfinv_buttons") then
-		sfinv_buttons.register_button("craftguide", {
-			title = S"Crafting Guide",
-			tooltip = S"Shows a list of available crafting recipes",
-			image = PNG.book,
-			action = function(player)
-				on_use(player)
-			end,
-		})
+	if next(recipe_filters) then
+		data.items_raw = get_filtered_items(user)
+		search(data)
 	end
+
+	show_formspec(name, "craftguide", make_fs(data))
 end
+
+core.register_craftitem("craftguide:book", {
+	description = S"Crafting Guide",
+	inventory_image = PNG.book,
+	wield_image = PNG.book,
+	stack_max = 1,
+	groups = {book = 1},
+	on_use = function(itemstack, user)
+		on_use(user)
+	end
+})
+
+core.register_node("craftguide:sign", {
+	description = S"Crafting Guide Sign",
+	drawtype = "nodebox",
+	tiles = {PNG.sign},
+	inventory_image = PNG.sign,
+	wield_image = PNG.sign,
+	paramtype = "light",
+	paramtype2 = "wallmounted",
+	sunlight_propagates = true,
+	groups = {
+		choppy = 1,
+		attached_node = 1,
+		oddly_breakable_by_hand = 1,
+		flammable = 3,
+	},
+	node_box = {
+		type = "wallmounted",
+		wall_top    = {-0.5, 0.4375, -0.5, 0.5, 0.5, 0.5},
+		wall_bottom = {-0.5, -0.5, -0.5, 0.5, -0.4375, 0.5},
+		wall_side   = {-0.5, -0.5, -0.5, -0.4375, 0.5, 0.5}
+	},
+
+	on_construct = function(pos)
+		local meta = core.get_meta(pos)
+		meta:set_string("infotext", "Crafting Guide Sign")
+	end,
+
+	on_rightclick = function(pos, node, user, itemstack)
+		on_use(user)
+	end
+})
+
+core.register_craft{
+	output = "craftguide:book",
+	type   = "shapeless",
+	recipe = {"default:book"}
+}
+
+core.register_craft{
+	type = "fuel",
+	recipe = "craftguide:book",
+	burntime = 3
+}
+
+core.register_craft{
+	output = "craftguide:sign",
+	type   = "shapeless",
+	recipe = {"default:sign_wall_wood"}
+}
+
+core.register_craft{
+	type = "fuel",
+	recipe = "craftguide:sign",
+	burntime = 10
+}
 
 if progressive_mode then
 	local function item_in_inv(item, inv_items)
@@ -1881,8 +2012,7 @@ if progressive_mode then
 				local def = reg_items[inv_items[i]]
 
 				if def then
-					local item_groups = def.groups
-					if item_has_groups(item_groups, groups) then
+					if item_has_groups(def.groups, groups) then
 						return true
 					end
 				end
@@ -1896,8 +2026,8 @@ if progressive_mode then
 		end
 	end
 
-	local function recipe_in_inv(recipe, inv_items)
-		for _, item in pairs(recipe.items) do
+	local function recipe_in_inv(rcp, inv_items)
+		for _, item in pairs(rcp.items) do
 			if not item_in_inv(item, inv_items) then return end
 		end
 
@@ -2044,20 +2174,12 @@ if progressive_mode then
 
 			if #diff > 0 then
 				data.inv_items = table_merge(diff, data.inv_items)
-
 				local oldknown = data.known_recipes or 0
-				local items = get_filtered_items(player, data)
-
+				get_filtered_items(player, data)
 				data.discovered = data.known_recipes - oldknown
 
 				if data.show_hud == nil and data.discovered > 0 then
 					data.show_hud = true
-				end
-
-				if sfinv_only then
-					data.items_raw = items
-					search(data)
-					sfinv.set_player_inventory_formspec(player)
 				end
 			end
 		end
@@ -2151,10 +2273,6 @@ function craftguide.show(name, item, show_usages)
 	data.query_item = item
 	data.recipes    = recipes
 	data.usages     = usages
-
-	if sfinv_only then
-		data.show_usages = show_usages
-	end
 
 	show_fs(player, name)
 end

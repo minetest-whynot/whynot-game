@@ -226,8 +226,8 @@ minetest.register_node("farming:beanpole_5", table.copy(def))
 farming.registered_plants["farming:beans"] = {
 	crop = "farming:beanpole",
 	seed = "farming:beans",
-	minlight = 13,
-	maxlight = 15,
+	minlight = farming.min_light,
+	maxlight = farming.max_light,
 	steps = 5
 }
 
