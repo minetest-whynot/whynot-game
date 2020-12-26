@@ -33,7 +33,7 @@ Mod: minetest_game/mods/wool
 Mod: minetest_game/mods/xpanes
 
 origin	https://github.com/minetest-mods/craftguide/ (fetch)
-* upstream 443831c [origin/master] Improve strings
+* upstream cce82cd [origin/master] Add vignette when opening the guide
 Mod: libs/craftguide
 
 origin	https://github.com/minetest-mods/craftguide_reveal (fetch)
@@ -126,7 +126,7 @@ Mod: player_api_modpack/skinsdb5
 Mod: player_api_modpack/wieldview
 
 origin	https://github.com/minetest-mods/3d_armor (fetch)
-* master 713b0c8 [origin/master] Documentation and Screenshot Update (#26)
+* master 724a3df [origin/master] call "set_player_armor" on respawn
 Mod: 3d_armor/3d_armor_stand
 Mod: 3d_armor/shields
 Mod: 3d_armor/3d_armor_sfinv
@@ -141,7 +141,7 @@ Mod: smart_sfinv_modpack/smart_sfinv_creative_sitebar
 Mod: smart_sfinv_modpack/smart_sfinv_tweaks
 
 origin	https://notabug.org/TenPlus1/ambience (fetch)
-* master d795042 [origin/master] tweak and tidy code
+* master 43a1ebb [origin/master] few nil checks added
 Mod: ambience/ambience
 
 origin	https://github.com/minetest-mods/lightning (fetch)
@@ -157,7 +157,7 @@ origin	https://gitlab.com/rautars/weather_pack (fetch)
 Mod: ambience/weather_pack
 
 origin	https://notabug.org/TenPlus1/farming (fetch)
-* master 45b5a07 [origin/master] Add lettuce and blackberries with recipes (thanks OgelGames)
+* master 79bf55f [origin/master] update texture licenses (thanks OgelGames)
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
@@ -189,7 +189,7 @@ origin	https://github.com/taikedz/everamzah-backpacks (fetch)
 Mod: tools/backpacks
 
 origin	https://notabug.org/tenplus1/bonemeal (fetch)
-* master 5ce62f4 [origin/master] add blackberry and lettuce
+* master 30d0c02 [origin/master] only use bonemeal items when actually used.
 Mod: tools/bonemeal
 
 origin	https://github.com/SmallJoker/boost_cart (fetch)
@@ -397,7 +397,7 @@ origin	https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin	https://github.com/minetest-mods/mesecons (fetch)
-* master 0d86f2c [origin/master] Prevent unauthorized players from changing the noteblock sound. (#547)
+* master 583d2c1 [origin/master] Replace mesecon.mergetable (#533)
 Mod: mesecons/mesecons
 Mod: mesecons/mesecons_alias
 Mod: mesecons/mesecons_blinkyplant

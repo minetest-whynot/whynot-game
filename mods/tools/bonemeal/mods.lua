@@ -32,7 +32,7 @@ if farming and farming.mod and farming.mod == "redo" then
 		{"farming:chili_", 8},
 		{"farming:garlic_", 5},
 		{"farming:onion_", 5},
-		{"farming:pepper_", 5},
+		{"farming:pepper_", 7},
 		{"farming:pineapple_", 8},
 		{"farming:pea_", 5},
 		{"farming:beetroot_", 5},
@@ -42,7 +42,9 @@ if farming and farming.mod and farming.mod == "redo" then
 		{"farming:mint_", 4},
 		{"farming:cabbage_", 6},
 		{"farming:lettuce_", 5},
-		{"farming:blackberry_", 4}
+		{"farming:blackberry_", 4},
+		{"farming:vanilla_", 8},
+		{"farming:soy_", 7}
 	})
 end
 
@@ -67,7 +69,9 @@ if minetest.get_modpath("ethereal") then
 		{"ethereal:orange_tree_sapling", ethereal.grow_orange_tree, "soil"},
 		{"ethereal:bamboo_sprout", ethereal.grow_bamboo_tree, "soil"},
 		{"ethereal:birch_sapling", ethereal.grow_birch_tree, "soil"},
-		{"ethereal:sakura_sapling", ethereal.grow_sakura_tree, "soil"}
+		{"ethereal:sakura_sapling", ethereal.grow_sakura_tree, "soil"},
+		{"ethereal:lemon_tree_sapling", ethereal.grow_lemon_tree, "soil"},
+		{"ethereal:olive_tree_sapling", ethereal.grow_olive_tree, "soil"}
 	})
 
 	local grass = {"default:grass_3", "default:grass_4", "default:grass_5", ""}

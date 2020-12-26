@@ -129,11 +129,13 @@ local get_ambience = function(player, tod, name)
 
 	pos.y = pos.y + 1.4 -- head level
 
-	local nod_head = pplus and playerplus[name].nod_head or minetest.get_node(pos).name
+	local nod_head = pplus and name and playerplus[name].nod_head or
+			minetest.get_node(pos).name
 
 	pos.y = pos.y - 1.2 -- foot level
 
-	local nod_feet = pplus and playerplus[name].nod_feet or minetest.get_node(pos).name
+	local nod_feet = pplus and name and playerplus[name].nod_feet or
+			minetest.get_node(pos).name
 
 	pos.y = pos.y - 0.2 -- reset pos
 

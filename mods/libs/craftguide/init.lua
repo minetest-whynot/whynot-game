@@ -78,23 +78,22 @@ local MIN_FORMSPEC_VERSION = 4
 local PNG = {
 	bg = "craftguide_bg.png",
 	bg_full = "craftguide_bg_full.png",
-	search = "craftguide_search_icon.png",
-	clear = "craftguide_clear_icon.png",
-	prev = "craftguide_next_icon.png^\\[transformFX",
-	next = "craftguide_next_icon.png",
+	search = "craftguide_search.png",
+	prev = "craftguide_next.png^\\[transformFX",
+	next = "craftguide_next.png",
 	arrow = "craftguide_arrow.png",
 	fire = "craftguide_fire.png",
 	fire_anim = "craftguide_fire_anim.png",
 	book = "craftguide_book.png",
 	sign = "craftguide_sign.png",
-	nothing = "craftguide_no.png",
+	cancel = "craftguide_cancel.png",
 	selected = "craftguide_selected.png",
 	furnace_anim = "craftguide_furnace_anim.png",
 
-	search_hover = "craftguide_search_icon_hover.png",
-	clear_hover = "craftguide_clear_icon_hover.png",
-	prev_hover = "craftguide_next_icon_hover.png^\\[transformFX",
-	next_hover = "craftguide_next_icon_hover.png",
+	cancel_hover = "craftguide_cancel.png^\\[brighten",
+	search_hover = "craftguide_search.png^\\[brighten",
+	prev_hover = "craftguide_next_hover.png^\\[transformFX",
+	next_hover = "craftguide_next_hover.png",
 }
 
 local fs_elements = {
@@ -105,43 +104,41 @@ local fs_elements = {
 	tooltip = "tooltip[%f,%f;%f,%f;%s]",
 	item_image = "item_image[%f,%f;%f,%f;%s]",
 	bg9 = "background9[%f,%f;%f,%f;%s;false;%u]",
-	model = "model[%f,%f;%f,%f;%s;%s;%s;0,0;true]",
+	model = "model[%f,%f;%f,%f;%s;%s;%s;0,0;true;true;%s]",
 	image_button = "image_button[%f,%f;%f,%f;%s;%s;%s]",
 	animated_image = "animated_image[%f,%f;%f,%f;;%s;%u;%u]",
 	scrollbar = "scrollbar[%f,%f;%f,%f;horizontal;%s;%u]",
 	item_image_button = "item_image_button[%f,%f;%f,%f;%s;%s;%s]",
-	arrow = "image_button[%f,%f;0.7,0.7;%s;%s;;;false;%s]",
 }
 
 local styles = sprintf([[
 	style_type[label,field;font_size=+0]
 	style_type[image_button;border=false;sound=craftguide_click]
-	style_type[item_image_button;border=false;bgimg_hovered=%s;bgimg_pressed=%s;
-		   sound=craftguide_click]
+	style_type[item_image_button;border=false;bgimg_hovered=%s;sound=craftguide_click]
 
 	style[filter;border=false]
-	style[search;fgimg=%s;fgimg_hovered=%s]
-	style[clear;fgimg=%s;fgimg_hovered=%s]
-	style[prev_page;fgimg=%s;fgimg_hovered=%s;fgimg_pressed=%s]
-	style[next_page;fgimg=%s;fgimg_hovered=%s;fgimg_pressed=%s]
-	style[prev_recipe;fgimg=%s;fgimg_hovered=%s;fgimg_pressed=%s]
-	style[next_recipe;fgimg=%s;fgimg_hovered=%s;fgimg_pressed=%s]
-	style[prev_usage;fgimg=%s;fgimg_hovered=%s;fgimg_pressed=%s]
-	style[next_usage;fgimg=%s;fgimg_hovered=%s;fgimg_pressed=%s]
+	style[cancel;fgimg=%s;fgimg_hovered=%s;content_offset=0]
+	style[search;fgimg=%s;fgimg_hovered=%s;content_offset=0]
+	style[prev_page;fgimg=%s;fgimg_hovered=%s]
+	style[next_page;fgimg=%s;fgimg_hovered=%s]
+	style[prev_recipe;fgimg=%s;fgimg_hovered=%s]
+	style[next_recipe;fgimg=%s;fgimg_hovered=%s]
+	style[prev_usage;fgimg=%s;fgimg_hovered=%s]
+	style[next_usage;fgimg=%s;fgimg_hovered=%s]
 	style[pagenum,no_item,no_rcp;border=false;font=bold;font_size=+2;content_offset=0]
 	style[craft_rcp,craft_usg;border=false;noclip=true;font_size=+0;sound=craftguide_craft;
 	      bgimg=craftguide_btn9.png;bgimg_hovered=craftguide_btn9_hovered.png;
 	      bgimg_pressed=craftguide_btn9_pressed.png;bgimg_middle=4,6]
 ]],
-PNG.selected, PNG.selected,
+PNG.selected,
+PNG.cancel, PNG.cancel_hover,
 PNG.search, PNG.search_hover,
-PNG.clear, PNG.clear_hover,
-PNG.prev, PNG.prev_hover, PNG.prev_hover,
-PNG.next, PNG.next_hover, PNG.next_hover,
-PNG.prev, PNG.prev_hover, PNG.prev_hover,
-PNG.next, PNG.next_hover, PNG.next_hover,
-PNG.prev, PNG.prev_hover, PNG.prev_hover,
-PNG.next, PNG.next_hover, PNG.next_hover)
+PNG.prev, PNG.prev_hover,
+PNG.next, PNG.next_hover,
+PNG.prev, PNG.prev_hover,
+PNG.next, PNG.next_hover,
+PNG.prev, PNG.prev_hover,
+PNG.next, PNG.next_hover)
 
 local function get_lang_code(info)
 	return info and info.lang_code
@@ -226,7 +223,14 @@ local group_names = {
 
 craftguide.model_alias = {
 	["boats:boat"] = {name = "boats:boat", drawtype = "entity"},
-	--["carts:cart"] = {name = "carts:cart", drawtype = "entity"}, -- animation broken
+	["carts:cart"] = {name = "carts:cart", drawtype = "entity", frames = "0,0"},
+	["default:chest"] = {name = "default:chest_open"},
+	["default:chest_locked"] = {name = "default:chest_locked_open"},
+	["doors:door_wood"] = {name = "doors:door_wood_a"},
+	["doors:door_glass"] = {name = "doors:door_glass_a"},
+	["doors:door_obsidian_glass"] = {name = "doors:door_obsidian_glass_a"},
+	["doors:door_steel"] = {name = "doors:door_steel_a"},
+	["xpanes:door_steel_bar"] = {name = "xpanes:door_steel_bar_a"},
 }
 
 local function err(str)
@@ -839,9 +843,9 @@ local function groups_to_items(groups, get_all)
 end
 
 local function get_stack_max(data, is_recipe, rcp)
-	local inv = data.player:get_inventory()
-	local list = inv:get_list("main")
-	local size = inv:get_size("main")
+	data.inv = data.player:get_inventory()
+	local list = data.inv:get_list("main")
+	local size = data.inv:get_size("main")
 	local counts_inv, counts_rcp, counts = {}, {}, {}
 	local rcp_usg = is_recipe and "recipe" or "usage"
 
@@ -891,14 +895,12 @@ local function get_stack_max(data, is_recipe, rcp)
 	return max_stacks
 end
 
-local function craft_stack(player, pname, data, _f)
-	local inv = player:get_inventory()
-	local rcp_usg = _f.craft_rcp and "recipe" or "usage"
-	local output = _f.craft_rcp and
-			data.recipes[data.rnum].output or data.usages[data.unum].output
+local function craft_stack(player, pname, data, craft_rcp)
+	local rcp_usg = craft_rcp and "recipe" or "usage"
+	local output = craft_rcp and data.recipes[data.rnum].output or data.usages[data.unum].output
 	output = ItemStack(output)
 	local stackname, stackcount = output:get_name(), output:get_count()
-	local scrbar_val = data[sprintf("scrbar_%s", _f.craft_rcp and "rcp" or "usg")]
+	local scrbar_val = data[sprintf("scrbar_%s", craft_rcp and "rcp" or "usg")] or 1
 
 	for name, count in pairs(data.export_counts[rcp_usg].rcp) do
 		local items = {[name] = count}
@@ -916,12 +918,14 @@ local function craft_stack(player, pname, data, _f)
 					items[item] = c
 					remaining = remaining - c
 				end
+
+				if remaining == 0 then break end
 			end
 			end
 		end
 
 		for k, v in pairs(items) do
-			inv:remove_item("main", sprintf("%s %s", k, v * scrbar_val))
+			data.inv:remove_item("main", sprintf("%s %s", k, v * scrbar_val))
 		end
 	end
 
@@ -936,8 +940,8 @@ local function craft_stack(player, pname, data, _f)
 		message = clr("#ff0", sprintf("%s", desc))
 	end
 
-	if inv:room_for_item("main", stack) then
-		inv:add_item("main", stack)
+	if data.inv:room_for_item("main", stack) then
+		data.inv:add_item("main", stack)
 		msg(pname, sprintf("%s added in your inventory", message))
 	else
 		local dir     = player:get_look_dir()
@@ -1085,7 +1089,7 @@ local function get_tooltip(item, info)
 	return sprintf("tooltip[%s;%s]", item, ESC(tooltip))
 end
 
-local function get_output_fs(fs, data, rcp, shapeless, right, btn_size, _btn_size)
+local function get_output_fs(fs, data, rcp, is_recipe, shapeless, right, btn_size, _btn_size)
 	local custom_recipe = craft_types[rcp.type]
 
 	if custom_recipe or shapeless or rcp.type == "cooking" then
@@ -1118,20 +1122,22 @@ local function get_output_fs(fs, data, rcp, shapeless, right, btn_size, _btn_siz
 	fs(fmt("image", arrow_X, Y + 0.06, 1, 1, PNG.arrow))
 
 	if rcp.type == "fuel" then
-		fs(fmt("animated_image",
-			X, Y, ITEM_BTN_SIZE, ITEM_BTN_SIZE, PNG.fire_anim, 8, 180))
+		fs(fmt("animated_image", X + 0.05, Y, ITEM_BTN_SIZE, ITEM_BTN_SIZE, PNG.fire_anim, 8, 180))
 	else
 		local item = rcp.output
-		item = clean_name(item)
-		local name = match(item, "%S*")
+		item = ItemStack(clean_name(item))
+		local name = item:get_name()
+		local count = item:get_count()
+		local bt_s = ITEM_BTN_SIZE * 1.2
 
-		fs(fmt("image",
-			X, Y - 0.11, ITEM_BTN_SIZE * 1.2, ITEM_BTN_SIZE * 1.2, PNG.selected))
+		fs(fmt("image", X, Y - 0.11, bt_s, bt_s, PNG.selected))
 
 		local _name = sprintf("_%s", name)
 
 		fs(fmt("item_image_button",
-			X + 0.1, Y, ITEM_BTN_SIZE, ITEM_BTN_SIZE, item, _name, ""))
+			X + 0.1, Y, ITEM_BTN_SIZE, ITEM_BTN_SIZE,
+			sprintf("%s %u", name, count * (is_recipe and data.scrbar_rcp or data.scrbar_usg or 1)),
+			_name, ""))
 
 		local def = reg_items[name]
 		local unknown = not def or nil
@@ -1154,7 +1160,7 @@ local function get_output_fs(fs, data, rcp, shapeless, right, btn_size, _btn_siz
 	end
 end
 
-local function get_grid_fs(fs, data, rcp)
+local function get_grid_fs(fs, data, rcp, is_recipe)
 	local width = rcp.width or 1
 	local right, btn_size, _btn_size = 0, ITEM_BTN_SIZE
 	local cooktime, shapeless
@@ -1225,8 +1231,7 @@ local function get_grid_fs(fs, data, rcp)
 				end
 
 				if not added then
-					label = sprintf("%s%s\nR",
-						label ~= "" and "\n" or "", label)
+					label = sprintf("%s%s\nR", label ~= "" and "\n" or "", label)
 					replace.items[#replace.items + 1] = replacement[2]
 				end
 			end
@@ -1238,7 +1243,9 @@ local function get_grid_fs(fs, data, rcp)
 
 		local btn_name = groups and sprintf("group|%s|%s", groups[1], item) or item
 
-		fs(fmt("item_image_button", X, Y, btn_size, btn_size, item, btn_name, label))
+		fs(fmt("item_image_button", X, Y, btn_size, btn_size,
+			sprintf("%s %u", item, is_recipe and data.scrbar_rcp or data.scrbar_usg or 1),
+			btn_name, label))
 
 		local def = reg_items[name]
 		local unknown = not def or nil
@@ -1265,7 +1272,7 @@ local function get_grid_fs(fs, data, rcp)
 		fs("style_type[item_image_button;border=false]")
 	end
 
-	get_output_fs(fs, data, rcp, shapeless, right, btn_size, _btn_size)
+	get_output_fs(fs, data, rcp, is_recipe, shapeless, right, btn_size, _btn_size)
 end
 
 local function get_rcp_lbl(fs, data, panel, rn, is_recipe)
@@ -1285,15 +1292,15 @@ local function get_rcp_lbl(fs, data, panel, rn, is_recipe)
 		local btn_suffix = is_recipe and "recipe" or "usage"
 		local prev_name = sprintf("prev_%s", btn_suffix)
 		local next_name = sprintf("next_%s", btn_suffix)
-		local x_arrow = data.xoffset + 4.9
-		local y_arrow = data.yoffset + 3
+		local x_arrow = data.xoffset + 5.09
+		local y_arrow = data.yoffset + 3.2
 
-		fs(fmt("arrow", x_arrow - shift, y_arrow, PNG.prev, prev_name, ""),
-		   fmt("arrow", x_arrow + 2.3,   y_arrow, PNG.next, next_name, ""))
+		fs(fmt("image_button", x_arrow - shift, y_arrow, 0.3, 0.3, "", prev_name, ""),
+		   fmt("image_button", x_arrow + 2.3,   y_arrow, 0.3, 0.3, "", next_name, ""))
 	end
 
 	local rcp = is_recipe and panel.rcp[data.rnum] or panel.rcp[data.unum]
-	get_grid_fs(fs, data, rcp)
+	get_grid_fs(fs, data, rcp, is_recipe)
 end
 
 local function get_model_fs(fs, data, def, model_alias)
@@ -1336,10 +1343,11 @@ local function get_model_fs(fs, data, def, model_alias)
 	end
 
 	fs(fmt("model",
-		data.xoffset + 6.6, data.yoffset + 0.05, 1.3, 1.3, "", def.mesh, concat(t, ",")))
+		data.xoffset + 6.6, data.yoffset + 0.05, 1.3, 1.3, "",
+		def.mesh, concat(t, ","), model_alias and model_alias.frames or ""))
 end
 
-local function get_title_fs(fs, data)
+local function get_header(fs, data)
 	local fav = is_fav(data.favs, data.query_item)
 	local nfavs = #data.favs
 	local star_x, star_y, star_size = data.xoffset + 0.4, data.yoffset + 0.5, 0.4
@@ -1348,25 +1356,36 @@ local function get_title_fs(fs, data)
 		local fav_marked = sprintf("craftguide_fav%s.png", fav and "_off" or "")
 
 		fs(sprintf("style[fav;fgimg=%s;fgimg_hovered=%s;fgimg_pressed=%s]",
-			sprintf("craftguide_fav%s.png", fav and "" or "_off"),
-			fav_marked, fav_marked),
+			sprintf("craftguide_fav%s.png", fav and "" or "_off"), fav_marked, fav_marked),
 		   fmt("image_button", star_x, star_y, star_size, star_size, "", "fav", ""),
 		   sprintf("tooltip[fav;%s]", fav and ES"Unmark this item" or ES"Mark this item"))
 	else
 		fs(sprintf("style[nofav;fgimg=%s;fgimg_hovered=%s;fgimg_pressed=%s]",
-			"craftguide_fav_off.png", PNG.nothing, PNG.nothing),
+			"craftguide_fav_off.png", PNG.cancel, PNG.cancel),
 		   fmt("image_button", star_x, star_y, star_size, star_size, "", "nofav", ""),
-		   sprintf("tooltip[nofav;%s]",
-			ES"Cannot mark this item. Bookmark limit reached."))
+		   sprintf("tooltip[nofav;%s]", ES"Cannot mark this item. Bookmark limit reached."))
+	end
+
+	local desc_lim, name_lim = 32, 34
+	local desc = ESC(get_desc(data.query_item, data.lang_code))
+	local tech_name = data.query_item
+	local X = data.xoffset + 1.05
+	local Y1 = data.yoffset + 0.47
+	local Y2 = Y1 + 0.5
+
+	if #desc > desc_lim then
+		fs(fmt("tooltip", X, Y1 - 0.1, 5.7, 0.24, desc))
+		desc = snip(desc, desc_lim)
+	end
+
+	if #tech_name > name_lim then
+		fs(fmt("tooltip", X, Y2 - 0.1, 5.7, 0.24, tech_name))
+		tech_name = snip(tech_name, name_lim)
 	end
 
 	fs("style_type[label;font=bold;font_size=+6]",
-	   fmt("label", data.xoffset + 1.05, data.yoffset + 0.47,
-		snip(ESC(get_desc(data.query_item, data.lang_code)), 32)),
-	   "style_type[label;font=mono;font_size=+0]",
-	   fmt("label", data.xoffset + 1.05, data.yoffset + 0.97,
-		clr("#7bf", snip(data.query_item, 34))),
-	   "style_type[label;font=normal]")
+	   fmt("label", X, Y1, desc), "style_type[label;font=mono;font_size=+0]",
+	   fmt("label", X, Y2, clr("#7bf", tech_name)), "style_type[label;font=normal]")
 
 	local def = reg_items[data.query_item]
 	local model_alias = craftguide.model_alias[data.query_item]
@@ -1389,7 +1408,7 @@ local function get_export_fs(fs, data, panel, is_recipe, is_usage, max_stacks_rc
 	   fmt("image_button",
 		data.xoffset + 7.35, data.yoffset + 0.2, 0.45, 0.45, "",
 		sprintf("export_%s", name), ""),
-	   sprintf("tooltip[export_%s;%s]", name, ES"Craft this stack"))
+	   sprintf("tooltip[export_%s;%s]", name, ES"Quick crafting"))
 
 	if not show_export then return end
 
@@ -1435,6 +1454,14 @@ local function get_rcp_extra(fs, data, panel, is_recipe, is_usage)
 
 		if usg_normal then
 			max_stacks_usg = get_stack_max(data, is_recipe, panel.rcp[data.unum])
+		end
+
+		if is_recipe and max_stacks_rcp == 0 then
+			data.export_rcp = nil
+			data.scrbar_rcp = 1
+		elseif is_usage and max_stacks_usg == 0 then
+			data.export_usg = nil
+			data.scrbar_usg = 1
 		end
 
 		if max_stacks_rcp > 0 or max_stacks_usg > 0 then
@@ -1484,15 +1511,14 @@ local function get_panels(fs, data)
 			end
 		end
 
-		fs(fmt("bg9",
-			data.xoffset + 0.1, data.yoffset, 7.9, panel.height, PNG.bg_full, 10))
+		fs(fmt("bg9", data.xoffset + 0.1, data.yoffset, 7.9, panel.height, PNG.bg_full, 10))
 
 		local is_recipe, is_usage = panel.name == "recipes", panel.name == "usages"
 
 		if is_recipe or is_usage then
 			get_rcp_extra(fs, data, panel, is_recipe, is_usage)
 		elseif panel.name == "title" then
-			get_title_fs(fs, data)
+			get_header(fs, data)
 		elseif panel.name == "favs" then
 			get_favs(fs, data)
 		end
@@ -1508,32 +1534,30 @@ local function make_fs(data)
 
 	data.xoffset = ROWS + 1.04
 
-	fs(sprintf([[
-		formspec_version[%u]
-		size[%f,%f]
-		no_prepend[]
-		bgcolor[#0000]
-	]],
-	MIN_FORMSPEC_VERSION, data.xoffset + (data.query_item and 8 or 0), LINES + 1.7), styles)
+	fs(sprintf("formspec_version[%u]size[%f,%f]no_prepend[]bgcolor[#0000]",
+		MIN_FORMSPEC_VERSION, data.xoffset + (data.query_item and 8 or 0), LINES + 1.7),
+		styles)
+
+	local filtered = data.filter ~= ""
 
 	fs(fmt("bg9", 0, 0, data.xoffset, LINES + 1.7, PNG.bg_full, 10))
 
-	fs(sprintf([[
-		box[0.2,0.2;3.5,0.6;#bababa25]
-		set_focus[filter]
-		field[0.2,0.2;3.5,0.6;filter;;%s]
-		field_close_on_enter[filter;false]
-	   ]], ESC(data.filter)),
-	   fmt("image_button", 3.75, 0.15, 0.7, 0.7, "", "search", ""),
-	   fmt("image_button", 4.43, 0.15, 0.7, 0.7, "", "clear", ""))
+	fs("box[0.2,0.2;4.55,0.6;#bababa25]set_focus[filter]field_close_on_enter[filter;false]")
+	fs(sprintf("field[0.3,0.2;%f,0.6;filter;;%s]", filtered and 3.45 or 3.9, ESC(data.filter)))
 
-	fs(fmt("image_button", data.xoffset - 3.2, 0.15, 0.7, 0.7, "", "prev_page", ""),
-	   fmt("image_button", data.xoffset - 0.7, 0.15, 0.7, 0.7, "", "next_page", ""))
+	if filtered then
+		fs(fmt("image_button", 3.75, 0.35, 0.3, 0.3, "", "cancel", ""))
+	end
+
+	fs(fmt("image_button", 4.25, 0.32, 0.35, 0.35, "", "search", ""))
+
+	fs(fmt("image_button", data.xoffset - 2.73, 0.3, 0.35, 0.35, "", "prev_page", ""),
+	   fmt("image_button", data.xoffset - 0.55, 0.3, 0.35, 0.35, "", "next_page", ""))
 
 	data.pagemax = max(1, ceil(#data.items / IPP))
 
 	fs(fmt("button",
-		data.xoffset - 2.53, 0.15, 1.88, 0.7, "pagenum",
+		data.xoffset - 2.4, 0.14, 1.88, 0.7, "pagenum",
 		sprintf("%s / %u", clr("#ff0", data.pagenum), data.pagemax)))
 
 	if #data.items == 0 then
@@ -1572,7 +1596,7 @@ local function make_fs(data)
 	return concat(fs)
 end
 
-local show_fs = function(player, name)
+local function show_fs(player, name)
 	local data = pdata[name]
 	show_formspec(name, "craftguide", make_fs(data))
 end
@@ -1837,14 +1861,18 @@ on_joinplayer(function(player)
 end)
 
 local function fields(player, _f)
-	if _f.quit then return end
 	local name = player:get_player_name()
 	local data = pdata[name]
 
-	local scrbar_rcp_CHG = _f.scrbar_rcp and sub(_f.scrbar_rcp, 1, 3) == "CHG"
-	local scrbar_usg_CHG = _f.scrbar_usg and sub(_f.scrbar_usg, 1, 3) == "CHG"
+	if _f.quit then
+		player:hud_change(data.vignette, "text", "")
+		data.vignette = nil
+		return
+	end
 
-	if _f.clear then
+	local sb_rcp, sb_usg = _f.scrbar_rcp, _f.scrbar_usg
+
+	if _f.cancel then
 		reset_data(data)
 
 	elseif _f.prev_recipe or _f.next_recipe then
@@ -1896,16 +1924,24 @@ local function fields(player, _f)
 	elseif _f.export_rcp or _f.export_usg then
 		if _f.export_rcp then
 			data.export_rcp = not data.export_rcp
+
+			if not data.export_rcp then
+				data.scrbar_rcp = 1
+			end
 		else
 			data.export_usg = not data.export_usg
+
+			if not data.export_usg then
+				data.scrbar_usg = 1
+			end
 		end
 
-	elseif scrbar_rcp_CHG or scrbar_usg_CHG then
-		data.scrbar_rcp = _f.scrbar_rcp and tonum(match(_f.scrbar_rcp, "%d+"))
-		data.scrbar_usg = _f.scrbar_usg and tonum(match(_f.scrbar_usg, "%d+"))
+	elseif (sb_rcp and sub(sb_rcp, 1, 3) == "CHG") or (sb_usg and sub(sb_usg, 1, 3) == "CHG") then
+		data.scrbar_rcp = sb_rcp and tonum(match(sb_rcp, "%d+"))
+		data.scrbar_usg = sb_usg and tonum(match(sb_usg, "%d+"))
 
 	elseif _f.craft_rcp or _f.craft_usg then
-		craft_stack(player, name, data, _f)
+		craft_stack(player, name, data, _f.craft_rcp)
 	else
 		select_item(player, data, _f)
 	end
@@ -1933,6 +1969,14 @@ local function on_use(user)
 	end
 
 	show_formspec(name, "craftguide", make_fs(data))
+
+	data.vignette = user:hud_add({
+		hud_elem_type = "image",
+		position = {x = 0.5,  y = 0.5},
+		scale = {x = -100, y = -100},
+		text = "craftguide_vignette.png",
+		z_index = -0xB00B,
+	})
 end
 
 core.register_craftitem("craftguide:book", {
@@ -2263,7 +2307,7 @@ function craftguide.show(name, item, show_usages)
 	if not recipes and not usages then
 		if not recipes_cache[item] and not usages_cache[item] then
 			return false, msg(name, sprintf("%s: %s",
-				S"No recipe or usage for this item", get_desc(item)))
+				S"No recipe or usage for this node", clr("#ff0", get_desc(item))))
 		end
 
 		return false, msg(name, sprintf("%s: %s",
@@ -2292,8 +2336,12 @@ register_command("craft", {
 			local node = core.get_node(look_at)
 
 			if node.name ~= "air" then
-				node_name = node.name
-				break
+				local def = reg_items[node.name]
+
+				if def then
+					node_name = node.name
+					break
+				end
 			end
 		end
 

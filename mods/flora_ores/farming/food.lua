@@ -181,44 +181,18 @@ minetest.register_craftitem("farming:porridge", {
 	on_use = minetest.item_eat(6, "farming:bowl")
 })
 
-minetest.after(0, function()
-
-	local fluid = "group:water_bucket"
-	local fluid_return = {
-		{"group:water_bucket", "bucket:bucket_empty"},
-		{"group:water_bucket_wooden", "bucket:bucket_empty"}
+minetest.register_craft({
+	type = "shapeless",
+	output = "farming:porridge",
+	recipe = {
+		"group:food_oats", "group:food_oats", "group:food_oats",
+		"group:food_oats", "group:food_bowl", "group:food_milk_glass"
+	},
+	replacements = {
+		{"mobs:glass_milk", "vessels:drinking_glass"},
+		{"farming:soy_milk", "vessels:drinking_glass"}
 	}
-
-	if minetest.get_modpath("mobs") and mobs and mobs.mod == "redo" then
-		fluid = "group:food_milk"
-		fluid_return = {
-			{"mobs:bucket_milk", "bucket:bucket_empty"}
-		}
-	else
-		minetest.register_craft({
-			type = "shapeless",
-			output = "farming:porridge",
-			recipe = {
-				"group:food_oats", "group:food_oats", "group:food_oats",
-				"group:food_oats", "group:food_bowl", "group:water_bucket_wooden"
-			},
-			replacements = fluid_return
-		})
-	end
-
-	minetest.register_craft({
-		type = "shapeless",
-		output = "farming:porridge",
-		recipe = {
-			"group:food_oats", "group:food_oats", "group:food_oats",
-			"group:food_oats", "group:food_bowl", fluid
-		},
-		replacements = fluid_return
-	})
-
-	if minetest.get_modpath("bucket_wooden") then
-	end
-end)
+})
 
 --= Jaffa Cake
 
@@ -382,7 +356,6 @@ minetest.register_craftitem("farming:burger", {
 	on_use = minetest.item_eat(16),
 })
 
-if minetest.get_modpath("mobs_animal") or minetest.get_modpath("xanadu")then
 minetest.register_craft({
 	type = "shapeless",
 	output = "farming:burger",
@@ -392,16 +365,6 @@ minetest.register_craft({
 		"group:food_lettuce"
 	}
 })
-else
-minetest.register_craft({
-	type = "shapeless",
-	output = "farming:burger",
-	recipe = {
-		"farming:bread", "group:food_mushroom", "group:food_tomato",
-		"group:food_cucumber", "group:food_onion", "group:food_lettuce"
-	}
-})
-end
 
 -- Salad
 

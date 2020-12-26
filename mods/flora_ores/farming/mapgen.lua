@@ -52,6 +52,10 @@ register_plant("mint_4", 1, 75, {"default:dirt_with_grass",
 register_plant("cabbage_6", 2, 10, nil, "", -1, farming.cabbage)
 register_plant("lettuce_5", 5, 30, nil, "", -1, farming.lettuce)
 register_plant("blackberry_4", 3, 10, nil, "", -1, farming.blackberry)
+register_plant("soy_6", 20, 50, {"default:dirt_with_dry_grass",
+		"default:dirt_with_rainforest_litter",
+		"default:dry_dirt_with_dry_grass"}, "", -1, farming.soy)
+register_plant("vanilla_7", 5, 35, nil, "", -1, farming.vanilla)
 
 
 if minetest.get_mapgen_setting("mg_name") == "v6" then
@@ -126,7 +130,7 @@ minetest.register_decoration({
 	},
 	y_min = 5,
 	y_max = 35,
-	decoration = {"farming:pepper_5"},
+	decoration = {"farming:pepper_5", "farming:pepper_6", "farming:pepper_7"},
 	spawn_by = "group:tree",
 	num_spawn_by = 1
 })

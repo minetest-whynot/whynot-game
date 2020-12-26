@@ -181,7 +181,7 @@ local function check_sapling(pos, nodename)
 			if can_grow then
 				particle_effect(pos)
 				grow_tree(pos, saplings[n][2])
-				return
+				return true
 			end
 		end
 	end
@@ -216,7 +216,7 @@ local function check_crops(pos, nodename, strength)
 
 			particle_effect(pos)
 
-			return
+			return true
 		end
 	end
 end
@@ -438,13 +438,13 @@ function bonemeal:on_use(pos, strength, node)
 
 		default.grow_papyrus(pos, node)
 		particle_effect(pos)
-		return
+		return true
 
 	elseif node.name == "default:cactus" then
 
 		default.grow_cactus(pos, node)
 		particle_effect(pos)
-		return
+		return true
 	end
 
 	-- grow grass and flowers
@@ -452,7 +452,7 @@ function bonemeal:on_use(pos, strength, node)
 	or minetest.get_item_group(node.name, "sand") > 0
 	or minetest.get_item_group(node.name, "can_bonemeal") > 0 then
 		check_soil(pos, node.name, strength)
-		return
+		return true
 	end
 
 	-- light check depending on strength (strength of 4 = no light needed)
@@ -464,11 +464,13 @@ function bonemeal:on_use(pos, strength, node)
 	if minetest.get_item_group(node.name, "sapling") > 0
 	and random(5 - strength) == 1 then
 		check_sapling(pos, node.name)
-		return
+		return true
 	end
 
 	-- check for crop growth
-	check_crops(pos, node.name, strength)
+	if check_crops(pos, node.name, strength) then
+		return true
+	end
 end
 
 
@@ -494,13 +496,14 @@ minetest.register_craftitem("bonemeal:mulch", {
 			return
 		end
 
-		-- take item if not in creative
-		if not bonemeal.is_creative(user:get_player_name()) then
-			itemstack:take_item()
-		end
-
 		-- call global on_use function with strength of 1
-		bonemeal:on_use(pointed_thing.under, 1)
+		if bonemeal:on_use(pointed_thing.under, 1) then
+
+			-- take item if not in creative
+			if not bonemeal.is_creative(user:get_player_name()) then
+				itemstack:take_item()
+			end
+		end
 
 		return itemstack
 	end
@@ -524,13 +527,14 @@ minetest.register_craftitem("bonemeal:bonemeal", {
 			return
 		end
 
-		-- take item if not in creative
-		if not bonemeal.is_creative(user:get_player_name()) then
-			itemstack:take_item()
-		end
-
 		-- call global on_use function with strength of 2
-		bonemeal:on_use(pointed_thing.under, 2)
+		if bonemeal:on_use(pointed_thing.under, 2) then
+
+			-- take item if not in creative
+			if not bonemeal.is_creative(user:get_player_name()) then
+				itemstack:take_item()
+			end
+		end
 
 		return itemstack
 	end
@@ -554,13 +558,14 @@ minetest.register_craftitem("bonemeal:fertiliser", {
 			return
 		end
 
-		-- take item if not in creative
-		if not bonemeal.is_creative(user:get_player_name()) then
-			itemstack:take_item()
-		end
-
 		-- call global on_use function with strength of 3
-		bonemeal:on_use(pointed_thing.under, 3)
+		if bonemeal:on_use(pointed_thing.under, 3) then
+
+			-- take item if not in creative
+			if not bonemeal.is_creative(user:get_player_name()) then
+				itemstack:take_item()
+			end
+		end
 
 		return itemstack
 	end

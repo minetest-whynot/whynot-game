@@ -19,16 +19,32 @@ minetest.register_craftitem("farming:peppercorn", {
 
 -- green pepper
 minetest.register_craftitem("farming:pepper", {
-	description = S("Pepper"),
+	description = S("Green Pepper"),
 	inventory_image = "crops_pepper.png",
 	on_use = minetest.item_eat(2),
 	groups = {food_pepper = 1, flammable = 3}
 })
 
+-- yellow pepper
+minetest.register_craftitem("farming:pepper_yellow", {
+	description = S("Yellow Pepper"),
+	inventory_image = "crops_pepper_yellow.png",
+	on_use = minetest.item_eat(3),
+	groups = {food_pepper = 1, flammable = 3},
+})
+
+-- red pepper
+minetest.register_craftitem("farming:pepper_red", {
+	description = S("Red Pepper"),
+	inventory_image = "crops_pepper_red.png",
+	on_use = minetest.item_eat(4),
+	groups = {food_pepper = 1, flammable = 3},
+})
+
 minetest.register_craft({
 	type = "shapeless",
 	output = "farming:peppercorn",
-	recipe = {"farming:pepper"}
+	recipe = {"group:food_pepper"}
 })
 
 -- ground pepper
@@ -93,17 +109,39 @@ minetest.register_node("farming:pepper_3", table.copy(def))
 def.tiles = {"crops_pepper_plant_4.png"}
 minetest.register_node("farming:pepper_4", table.copy(def))
 
--- stage 5
+-- stage 5 (green pepper)
 def.tiles = {"crops_pepper_plant_5.png"}
-def.groups.growing = 0
 def.drop = {
-	items = {
+	max_items = 2, items = {
 		{items = {"farming:pepper 2"}, rarity = 1},
 		{items = {"farming:pepper"}, rarity = 2},
 		{items = {"farming:pepper"}, rarity = 3}
 	}
 }
 minetest.register_node("farming:pepper_5", table.copy(def))
+
+-- stage 6 (yellow pepper)
+def.tiles = {"crops_pepper_plant_6.png"}
+def.drop = {
+	max_items = 2, items = {
+		{items = {'farming:pepper_yellow 2'}, rarity = 1},
+		{items = {'farming:pepper_yellow'}, rarity = 2},
+		{items = {'farming:pepper_yellow'}, rarity = 3},
+	}
+}
+minetest.register_node("farming:pepper_6", table.copy(def))
+
+-- stage 7 (red pepper)
+def.tiles = {"crops_pepper_plant_7.png"}
+def.groups.growing = nil
+def.drop = {
+	max_items = 2, items = {
+		{items = {'farming:pepper_red 2'}, rarity = 1},
+		{items = {'farming:pepper_red'}, rarity = 2},
+		{items = {'farming:pepper_red'}, rarity = 3},
+	}
+}
+minetest.register_node("farming:pepper_7", table.copy(def))
 
 -- add to registered_plants
 farming.registered_plants["farming:pepper"] = {
