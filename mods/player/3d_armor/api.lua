@@ -64,8 +64,8 @@ armor = {
 		on_destroy = {},
 	},
 	migrate_old_inventory = true,
-	version = "0.4.13",
-	get_translator = S
+  version = "0.4.13",
+  get_translator = S
 }
 
 armor.config = {
@@ -87,12 +87,26 @@ armor.config = {
 	material_crystal = true,
 	water_protect = true,
 	fire_protect = minetest.get_modpath("ethereal") ~= nil,
+	fire_protect_torch = minetest.get_modpath("ethereal") ~= nil,
 	punch_damage = true,
 }
 
 -- Armor Registration
 
 armor.register_armor = function(self, name, def)
+	def.on_secondary_use = function(itemstack, player)
+		return armor:equip(player, itemstack)
+	end
+	def.on_place = function(itemstack, player, pointed_thing)
+		if pointed_thing.type == "node" and player and not player:get_player_control().sneak then
+			local node = minetest.get_node(pointed_thing.under)
+			local ndef = minetest.registered_nodes[node.name]
+			if ndef and ndef.on_rightclick then
+				return ndef.on_rightclick(pointed_thing.under, node, player, itemstack, pointed_thing)
+			end
+		end
+		return armor:equip(player, itemstack)
+	end
 	minetest.register_tool(name, def)
 end
 
@@ -278,7 +292,10 @@ armor.set_player_armor = function(self, player)
 		})
 		pova.do_override(player)
 	else
-		player:set_physics_override(physics)
+		local player_physics_locked = player:get_meta():get_int("player_physics_locked")
+		if player_physics_locked == nil or player_physics_locked == 0 then
+			player:set_physics_override(physics)
+		end
 	end
 	self.textures[name].armor = texture
 	self.textures[name].preview = preview
@@ -317,6 +334,9 @@ armor.punch = function(self, player, hitter, time_from_last_punch, tool_capabili
 				local groupcaps = tool_capabilities.groupcaps or {}
 				local uses = 0
 				damage = false
+				if next(groupcaps) == nil then
+					damage = true
+				end
 				for group, caps in pairs(groupcaps) do
 					local maxlevel = caps.maxlevel or 0
 					local diff = maxlevel - level
@@ -373,6 +393,12 @@ end
 
 armor.damage = function(self, player, index, stack, use)
 	local old_stack = ItemStack(stack)
+	local worn_armor = armor:get_weared_armor_elements(player)
+	local armor_worn_cnt = 0
+	for k,v in pairs(worn_armor) do
+		armor_worn_cnt = armor_worn_cnt + 1
+	end
+	use = math.ceil(use/armor_worn_cnt)
 	stack:add_wear(use)
 	self:run_callbacks("on_damage", player, index, stack)
 	self:set_inventory_stack(player, index, stack)
@@ -383,15 +409,74 @@ armor.damage = function(self, player, index, stack, use)
 	end
 end
 
+armor.get_weared_armor_elements = function(self, player)
+    local name, inv = self:get_valid_player(player, "[get_weared_armor]")
+	local weared_armor = {}
+	if not name then
+		return
+	end
+    for i=1, inv:get_size("armor") do
+        local item_name = inv:get_stack("armor", i):get_name()
+        local element = self:get_element(item_name)
+        if element ~= nil then
+            weared_armor[element] = item_name
+        end
+	end
+	return weared_armor
+end
+
+armor.equip = function(self, player, itemstack)
+    local name, armor_inv = self:get_valid_player(player, "[equip]")
+    local weared_armor = self:get_weared_armor_elements(player)
+    local armor_element = self:get_element(itemstack:get_name())
+	if name and armor_element then
+		if weared_armor[armor_element] ~= nil then
+			self:unequip(player, armor_element)
+		end
+		armor_inv:add_item("armor", itemstack:take_item())
+		self:set_player_armor(player)
+		self:save_armor_inventory(player)
+	end
+	return itemstack
+end
+
+armor.unequip = function(self, player, armor_element)
+    local name, armor_inv = self:get_valid_player(player, "[unequip]")
+	local weared_armor = self:get_weared_armor_elements(player)
+	if not name or not weared_armor[armor_element] then
+		return
+	end
+	local itemstack = armor_inv:remove_item("armor", ItemStack(weared_armor[armor_element]))
+	minetest.after(0, function()
+		local inv = player:get_inventory()
+		if inv:room_for_item("main", itemstack) then
+			inv:add_item("main", itemstack)
+		else
+			minetest.add_item(player:get_pos(), itemstack)
+		end
+	end)
+    self:set_player_armor(player)
+	self:save_armor_inventory(player)
+end
+
+armor.remove_all = function(self, player)
+    local name, inv = self:get_valid_player(player, "[remove_all]")
+	if not name then
+		return
+    end
+	inv:set_list("armor", {})
+	self:set_player_armor(player)
+	self:save_armor_inventory(player)
+end
+
 armor.get_preview = function(self, name)
 	local player = minetest.get_player_by_name(name)
 	if player then
 		local current_skin = player_api.get_skin(player)
 		return current_skin and player_api.registered_skins[current_skin] and
 				player_api.registered_skins[current_skin].preview or 'character_preview.png'
-	else
-		return 'character_preview.png'
 	end
+	return "character_preview.png"
 end
 
 armor.get_armor_formspec = function(self, name, listring)

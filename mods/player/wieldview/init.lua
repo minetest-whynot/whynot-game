@@ -52,13 +52,15 @@ wieldview.update_wielded_item_textures = function(self, player, textures)
 	if not item then
 		return
 	end
+	if player:get_meta():get_int("show_wielded_item") == 2 then
+		item = ""
+	end
 	textures.wielditem = self:get_item_texture(item)
 end
 
 player_api.register_skin_modifier(function(textures, player, model_name, skin_name, model_name)
 	wieldview:update_wielded_item_textures(player, textures)
 end)
-
 
 minetest.register_globalstep(function(dtime)
 	time = time + dtime
@@ -68,7 +70,6 @@ minetest.register_globalstep(function(dtime)
 			--player_api.update_textures(player)
 			-- -- Therefore hacky solution
 			local current = player_api.get_animation(player)
-			local model = player_api.registered_models[current.model]
 
 			wieldview:update_wielded_item_textures(player, current.textures)
 			current.textures[4] = current.textures.wielditem
@@ -78,4 +79,3 @@ minetest.register_globalstep(function(dtime)
 		time = 0
 	end
 end)
-

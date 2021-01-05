@@ -110,7 +110,7 @@ origin	https://github.com/minetest-mods/wielded_light (fetch)
 Mod: player/wielded_light
 
 origin	https://github.com/bell07/minetest-player_api_modpack (fetch)
-* master 74a81c7 [origin/master] player_api: do not override preview and playername from skins meta file
+* master cd91360 [origin/master] update 3d_armor mods
 Mod: player_api_modpack/3d_armor
 Mod: player_api_modpack/character_creator
 Mod: player_api_modpack/clothing

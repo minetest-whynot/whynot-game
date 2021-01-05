@@ -12,7 +12,7 @@ local S = armor.get_translator
 
 -- integration test
 if minetest.settings:get_bool("enable_3d_armor_integration_test") then
-        dofile(modpath.."/integration_test.lua")
+	dofile(modpath.."/integration_test.lua")
 end
 
 
@@ -61,6 +61,17 @@ for material, _ in pairs(armor.materials) do
 	end
 end
 
+-- Remove torch damage if fire_protect_torch == false
+if armor.config.fire_protect_torch == false and armor.config.fire_protect == true then
+	for k,v in pairs(armor.fire_nodes) do
+		for k2,v2 in pairs(v) do
+			if string.find (v2,"torch") then
+				armor.fire_nodes[k] = nil
+			end
+		end
+	end
+end
+
 -- Skin modifier
 
 player_api.register_skin_modifier(function(textures, player, player_model, player_skin)
@@ -77,7 +88,7 @@ end)
 
 if minetest.get_modpath("technic") then
 	armor.formspec = armor.formspec..
-		"label[5,2.5;"..F(S("Radiation"))..":  armor_group_radiation]"
+		"label[5,2.5;"..F(S("Radiation"))..": armor_group_radiation]"
 	armor:register_armor_group("radiation")
 end
 if not minetest.get_modpath("moreores") then
@@ -93,9 +104,9 @@ dofile(modpath.."/armor.lua")
 
 armor.formspec = armor.formspec..
 	"label[5,1;"..F(S("Level"))..": armor_level]"..
-	"label[5,1.5;"..F(S("Heal"))..":  armor_attr_heal]"
+	"label[5,1.5;"..F(S("Heal"))..": armor_attr_heal]"
 if armor.config.fire_protect then
-	armor.formspec = armor.formspec.."label[5,2;"..F(S("Fire"))..":  armor_attr_fire]"
+	armor.formspec = armor.formspec.."label[5,2;"..F(S("Fire"))..": armor_attr_fire]"
 end
 
 armor:register_on_damage(function(player, index, stack)
@@ -193,6 +204,9 @@ local function init_player_armor(initplayer)
 			armor:set_player_armor(player)
 		end,
 		allow_put = function(inv, listname, index, put_stack, player)
+			if player:get_player_name() ~= name then
+				return 0
+			end
 			local element = armor:get_element(put_stack:get_name())
 			if not element then
 				return 0
@@ -208,9 +222,15 @@ local function init_player_armor(initplayer)
 			return 1
 		end,
 		allow_take = function(inv, listname, index, stack, player)
+			if player:get_player_name() ~= name then
+				return 0
+			end
 			return stack:get_count()
 		end,
 		allow_move = function(inv, from_list, from_index, to_list, to_index, count, player)
+			if player:get_player_name() ~= name then
+				return 0
+			end
 			return count
 		end,
 	}, name)
@@ -310,13 +330,20 @@ if armor.config.drop == true or armor.config.destroy == true then
 			end)
 		end
 	end)
+else -- reset un-dropped armor and it's effects
+	minetest.register_on_respawnplayer(function(player)
+		armor:set_player_armor(player)
+	end)
 end
 
 if armor.config.punch_damage == true then
 	minetest.register_on_punchplayer(function(player, hitter,
 			time_from_last_punch, tool_capabilities)
 		local name = player:get_player_name()
-		if name then
+		local hit_ip = hitter:is_player()
+		if name and hit_ip and minetest.is_protected(player:get_pos(), "") then
+			return
+		elseif name then
 			armor:punch(player, hitter, time_from_last_punch, tool_capabilities)
 			last_punch_time[name] = minetest.get_gametime()
 		end
