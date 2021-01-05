@@ -33,7 +33,7 @@ Mod: minetest_game/mods/wool
 Mod: minetest_game/mods/xpanes
 
 origin	https://github.com/minetest-mods/craftguide/ (fetch)
-* upstream cce82cd [origin/master] Add vignette when opening the guide
+* mt-5.3   58e4516 Update Screenshot
 Mod: libs/craftguide
 
 origin	https://github.com/minetest-mods/craftguide_reveal (fetch)
@@ -126,7 +126,7 @@ Mod: player_api_modpack/skinsdb5
 Mod: player_api_modpack/wieldview
 
 origin	https://github.com/minetest-mods/3d_armor (fetch)
-* master 724a3df [origin/master] call "set_player_armor" on respawn
+* master a3cba57 [origin/master] locale es fix
 Mod: 3d_armor/3d_armor_stand
 Mod: 3d_armor/shields
 Mod: 3d_armor/3d_armor_sfinv
@@ -149,7 +149,7 @@ origin	https://github.com/minetest-mods/lightning (fetch)
 Mod: ambience/lightning
 
 origin	https://github.com/Ezhh/under_sky (fetch)
-* master e7f9c6c [origin/master] Add mod.conf and settingtypes.txt
+* master 5f8d570 [origin/master] Hide sun, moon and stars when underground
 Mod: ambience/under_sky
 
 origin	https://gitlab.com/rautars/weather_pack (fetch)
@@ -157,7 +157,7 @@ origin	https://gitlab.com/rautars/weather_pack (fetch)
 Mod: ambience/weather_pack
 
 origin	https://notabug.org/TenPlus1/farming (fetch)
-* master 79bf55f [origin/master] update texture licenses (thanks OgelGames)
+* master 95dd74c [origin/master] remove moreores hoes (inc. within moreores now)
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
@@ -432,5 +432,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master bf32a09 [origin/master] on_flop and air_damage added
+* master 76ee3d0 [origin/master] add peaceful player privs and settings (thanks sfence)
 Mod: mobs_redo/mobs_redo

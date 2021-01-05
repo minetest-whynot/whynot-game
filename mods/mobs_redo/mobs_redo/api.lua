@@ -8,7 +8,7 @@ local use_cmi = minetest.global_exists("cmi")
 
 mobs = {
 	mod = "redo",
-	version = "20201206",
+	version = "20210104",
 	intllib = S,
 	invis = minetest.global_exists("invisibility") and invisibility or {}
 }
@@ -65,6 +65,7 @@ local max_per_block = tonumber(settings:get("max_objects_per_block") or 99)
 local mob_nospawn_range = tonumber(settings:get("mob_nospawn_range") or 12)
 local active_limit = tonumber(settings:get("mob_active_limit") or 0)
 local mob_chance_multiplier = tonumber(settings:get("mob_chance_multiplier") or 1)
+local peaceful_player_enabled = settings:get_bool("enable_peaceful_player")
 local active_mobs = 0
 
 
@@ -1848,6 +1849,23 @@ function mob_class:smart_mobs(s, p, dist, dtime)
 end
 
 
+-- peaceful player privilege support
+local function is_peaceful_player(player)
+
+	if peaceful_player_enabled then
+
+		local player_name = player:get_player_name()
+
+		if player_name
+		and minetest.check_player_privs(player_name, "peaceful_player") then
+			return true
+		end
+	end
+
+	return false
+end
+
+
 -- general attack function for all mobs
 function mob_class:general_attack()
 
@@ -1920,7 +1938,8 @@ function mob_class:general_attack()
 		-- choose closest player to attack that isnt self
 		if dist ~= 0
 		and dist < min_dist
-		and self:line_of_sight(sp, p, 2) == true then
+		and self:line_of_sight(sp, p, 2) == true
+		and not is_peaceful_player(player) then
 			min_dist = dist
 			min_player = player
 		end
@@ -4503,9 +4522,9 @@ function mobs:capture_mob(self, clicker, chance_hand, chance_net,
 				minetest.add_item(clicker:get_pos(), new_stack)
 			end
 
-			remove_mob(self, true)
-
 			self:mob_sound("default_place_node_hard")
+
+			remove_mob(self, true)
 
 			return new_stack
 

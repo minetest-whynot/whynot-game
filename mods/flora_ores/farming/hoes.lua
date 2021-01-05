@@ -481,7 +481,7 @@ if minetest.get_modpath("moreores") then
 			{"", "", "group:stick"}
 		}
 	})
-
+--[[
 	farming.register_hoe(":moreores:hoe_silver", {
 		description = S("%s Hoe"):format(S("Silver")),
 		inventory_image = "moreores_tool_silverhoe.png",
@@ -510,5 +510,5 @@ if minetest.get_modpath("moreores") then
 		minetest.override_item("moreores:hoe_mithril", {
 			original_description = desc,
 			description = toolranks.create_description(desc)})
-	end
+	end]]
 end

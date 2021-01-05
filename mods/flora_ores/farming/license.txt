@@ -149,7 +149,7 @@ Created by OgelGames (CC BY-SA 4.0)
    farming_cactus_juice.png
    farming_salad.png
 
-Created by Felfa
+Created by Felfa (CC0)
    farming_blackberry*.png
    farming_lettuce*.png
    farming_burger.png
