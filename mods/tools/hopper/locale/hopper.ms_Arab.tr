@@ -1,0 +1,63 @@
+# textdomain: hopper
+
+
+### chute.lua ###
+
+@1 moves stuff to chute at @2=@1 مميندهکن بارڠ کدالم ڤلوڠسور د@2
+Hopper Chute=ڤلوڠسور چوروڠ تواڠ
+
+### doc.lua ###
+
+A chute to transfer items over longer distances.=ڤلوڠسور اونتوق مميندهکن ايتم٢ برجارق جاوه.
+A sorter to redirect certain items to an alternate target.=ڤڠيسيه اونتوق ملينچوڠکن ببراڤ ايتم کڤد ساسرن يڠ بربيذا.
+
+Chutes operate much like hoppers but do not have their own intake capability. Items can only be inserted into a chute manually or by a hopper connected to a chute. They transfer items in the direction indicated by the arrow on their narrow segment at a rate of one item per second. They have a small buffer capacity, and any items that can't be placed into the target block's inventory will remain lodged in the chute's buffer until manually removed or their destination becomes available.=چارا ݢوناکن ڤلوڠسور اين سروڤ سڤرتي چوروڠ تواڠ تتاڤي مريک تيدق براوڤاي مڠمبيل ايتم دڠن سنديري. ايتم٢ هاڽ بوليه دماسوقکن کدالم ڤلوڠسور سچارا مانوال اتو دڠن چوروڠ تواڠ يڠ برسمبوڠن دڠن ڤلوڠسور ترسبوت. مريک مميندهکن ايتم مڠيکوت اره يڠ دتندا دڠن انق ڤانه ڤد سيݢمن تيروس ڤد کادر سبواه ايتم سساٴت. مريک ممڤوڽاٴي کاڤاسيتي ڤنيمبل يڠ کچيل⹁ دان مان٢ ايتم يڠ تيدق داڤت دماسوقکن کدالم اينۏينتوري بلوک ساسرن اکن ککل ددالم ڤنيمبل ڤلوڠسور سهيڠݢ ايتم ترسبوت دکلوارکن سچارا مانوال اتو سهيڠݢ ساسرن ممڤو منريماڽ.
+
+Hopper blocks come in both 'vertical' and 'side' forms, but when in a player's inventory both are represented by a single generic item. The type of hopper block that will be placed when the player uses this item depends on what is pointed at - when the hopper item is pointed at the top or bottom face of a block a vertical hopper is placed, when aimed at the side of a block a side hopper is produced that connects to the clicked-on side.@n@n=بلوک چوروڠ تواڠ داتڠ دالم بنتوق 'منݢق' دان 'ملينتڠ'⹁ تتاڤي کدوا-دواڽ هاڽ مونچول سباݢي سبواه ايتم ݢنريک دالم اينۏينتوري ڤماٴين. جنيس بلوک چوروڠ تواڠ يڠ دلتقکن اوليه ڤماٴين برݢنتوڠ کڤد اره لتقڽ - اڤابيلا ايتم چوروڠ تواڠ دتوجوکن کاره اتس اتو باوه ڤرموکاٴن بلوک ماک چوروڠ تواڠ منݢق يڠ دلتقکن⹁ ماناکالا اڤابيلا دتوجوکن کاره سيسي ڤرموکاٴن بلوک ماک چوروڠ تواڠ ملينتڠ يڠ دلتقکن دڠن سيسي يڠ دتوجو ايت يڠ اکن برسمبوڠ کڤد چوروڠ تواڠ.@n@n
+
+Hopper blocks come in both 'vertical' and 'side' forms. They can be interconverted between the two forms via the crafting grid.@n@n=بلوک چوروڠ تواڠ داتڠ دالم بنتوق 'منݢق' دان 'ملينتڠ'. مريک بوليه ساليڠ برتوکر انتارا کدوا-دوا بنتوق ترسبوت مڠݢوناکن ݢريد ڤرتوکڠن.@n@n
+
+Hopper to transfer items between neighboring blocks' inventories.=چوروڠ تواڠ اونتوق مميندهکن ايتم دانتارا اينۏينتوري يڠ برجيرن.
+
+Items are transfered from the block at the wide end of the hopper to the block at the narrow end of the hopper at a rate of one per second. Items can also be placed directly into the hopper's inventory, or they can be dropped into the space above a hopper and will be sucked into the hopper's inventory automatically.@n@n=ايتم٢ دڤيندهکن درڤد بلوک يڠ ترلتق دبهاݢين چوروڠ تواڠ يڠ لبيه بسر کڤد بلوک يڠ ترلتق دبهاݢين چوروڠ تواڠ يڠ لبيه کچيل ڤد کادر سبواه ايتم سساٴت. ايتم٢ جوݢ بوليه دلتقکن کدالم اينۏينتوري چوروڠ تواڠ ايت سنديري⹁ اتو مريک بوليه دجاتوهکن ککاوسن داتس چوروڠ تواڠ دان ايتم٢ ترسبوت اکن دسدوت ماسوق کدالم اينۏينتوري چوروڠ تواڠ سچارا أوتوماتيکڽ.@n@n
+
+This is similar to a chute but has a secondary output that is used to shunt specific items to an alternate destination. There is a set of inventory slots labeled "Filter" at the top of this block's inventory display, if you place an item into one of these slots the sorter will record the item's type (without actually taking it from you). Then when items come through the sorter's inventory that match one of the items in the filter list it will first attempt to send it in the direction marked with an arrow on the sorter's sides.@n@nIf the item doesn't match the filter list, or the secondary output is unable to take the item for whatever reason, the sorter will try to send the item out the other output instead.@n@nIn addition, there is a button labeled "Filter All" that will tell the sorter to not use the filter list and instead first attempt to shunt all items out of the filter, only sending items along the non-filter path if the target cannot accept it for whatever reason. This feature is useful for handling "overflow" (when the target's inventory fills up) or for dealing with targets that are selective about what they accept (for example, a furnace's fuel slot).=ڤڠيسيه اين سروڤ سڤرتي ڤلوڠسور تتاڤي اي ممڤوڽاٴي کلوارن کدوا يڠ دݢوناکن اونتوق مڠاليهکن ايتم٢ ترتنتو کڤد ساسرن يڠ بربيذا. ترداڤت ساتو سيت سلوت اينۏينتوري برلابل "تاڤيس" داتس ڤاڤرن اينۏينتوري بلوک اين⹁ جيک اندا لتقکن سبواه ايتم داتس سلوت٢ اين ماک ڤڠيسيه اين اکن مريکود جنيس ايتم ترسبوت⹁ تنڤ مڠمبيلڽ درڤد اندا. کمودين اڤابيلا ايتم٢ يڠ ملالوٴي اينۏينتوري ڤڠيسيه ترسبوت دداڤتي سام دڠن جنيس ايتم يڠ تله دريکود ماک اي اکن دهنتر کاره يڠ دتندا دڠن انق ڤانه دسيسي ڤڠيسيه.@n@nسکيراڽ ايتم ترسبوت تيدق سام دڠن جنيس ايتم يڠ تله دريکود⹁ اتو اڤابيلا کلوارن کدوا تيدق ممڤو مڠهنتر ايتم تنڤ مڠيرا سبب اڤ⹁ ڤڠيسيه ترسبوت اکن مڠهنتر ايتم٢ ملالوٴي کلوارن يڠ بياسا.@n@nسلاٴين ايت⹁ ترداڤت بوتڠ برلابل "تاڤيس سموا" يڠ اکن ممبريتاهو ڤڠيسيه اونتوق مڠاليهکن سموا ايتم٢ کڤد کلوارن کدوا کچوالي ايتم يڠ سروڤ دڠن جنيس ايتم يڠ تله دريکود⹁ ملاٴينکن اڤابيلا کلوارن کدوا تيدق ممڤو منريماڽ تنڤ مڠيرا سبب اڤ. سيفت اين ڤنتيڠ اونتوق مڠنداليکن کيس "ليمڤهن"⹁ يايت اڤابيلا اينۏينتوري ساسرن تله ڤنوه⁏ اتو اونتوق مڠنداليکن ساسرن يڠ ساڠت مميليه دڠن ايتم يڠ ايڠين دتريما⹁ چونتوهڽ سلوت باهن اڤي رلاو.
+
+When used with furnaces, hoppers inject items into the furnace's "raw material" inventory slot when the narrow end is attached to the top or bottom and inject items into the furnace's "fuel" inventory slot when attached to the furnace's side.@n@nItems that cannot be placed in a target block's inventory will remain in the hopper.@n@nHoppers have the same permissions as the player that placed them. Hoppers placed by you are allowed to take items from or put items into locked chests that you own, but hoppers placed by other players will be unable to do so. A hopper's own inventory is not not owner-locked, though, so you can use this as a way to allow other players to deposit items into your locked chests.=اڤابيلا دݢوناکن برسام-سام رلاو⹁ چوروڠ تواڠ اکن مماسوقکن ايتم کدالم سلوت اينۏينتوري "باهن منته" رلاو اڤابيلا بهاݢين چوروڠ تواڠ يڠ لبيه کچيل دسمبوڠکن کاتس اتو باوه رلاو دان چوروڠ تواڠ اکن مماسوقکن ايتم کدالم سلوت اينۏينتوري "باهن اڤي" رلاو اڤابيلا بهاݢين ترسبوت دسمبوڠکن کسيسي رلاو.@n@nايتم يڠ تيدق بوليه دلتقکن دالم اينۏينتوري بلوک ساسرن اکن ککل ددالم چوروڠ تواڠ.@n@nچوروڠ تواڠ ممڤوڽاٴي کبنرن يڠ سام سڤرتي ڤماٴين يڠ ملتقکن مريک. چوروڠ تواڠ يڠ اندا لتقکن دبنرکن اونتوق مڠمبيل درڤد اتو مماسوقکن ايتم٢ کدالم ڤتي برکونچي ميليق اندا⹁ نامون چوروڠ تواڠ يڠ ڤماٴين لاٴين لتقکن تيدق داڤت بربوات سدميکين. نامون بݢيتو⹁ اينۏينتوري چوروڠ تواڠ اندا سنديري تيدق دکونچي کڤد ڤميليقڽ⹁ اوليه ايت اندا بوليه ݢوناکنڽ سباݢي ڤرانتارا اونتوق ڤماٴين لاٴين مماسوقکن ايتم٢ کڤد ڤتي برکونچي اندا.
+
+
+### hoppers.lua ###
+
+@1 moves stuff from hopper at @2=@1 مڠمبيل بارڠ درڤد چوروڠ تواڠ د@2
+@1 moves stuff in hopper at @2=@1 مميندهکن بارڠ دالم چوروڠ تواڠ د@2
+@1 moves stuff to hopper at @2=@1 مماسوقکن بارڠ کدالم چوروڠ تواڠ د@2
+Hopper=چوروڠ تواڠ
+Side Hopper=چوروڠ تواڠ ملينتڠ
+
+### sorter.lua ###
+
+@1 moves stuff to sorter at @2=@1 مماسوقکن بارڠ کدالم ڤڠيسيه د@2
+Filter=تاڤيس
+Filter@nAll=تاڤيس@nسموا
+Selective@nFilter=تاڤيسن@nمميليه
+Sorter=ڤڠيسيه
+
+This sorter is currently set to only send items listed@nin the filter list in the direction of the arrow.@nClick this button to set it to try sending all@nitems that way first.=ڤڠيسيه اين دتتڤکن اونتوق هاڽ مڠهنتر ايتم٢@nيڠ براد دالم سناراي تاڤيسن کاره انق ڤانه.@nتکن بوتڠ اين اونتوق منتڤکنڽ اونتوق منچوب@nمڠهنتر سموا ايتم کاره انق ڤانه ترلبيه داهولو.
+
+This sorter is currently set to try sending all items@nin the direction of the arrow. Click this button@nto enable an item-type-specific filter.=ڤڠيسيه اين دتتڤکن اونتوق چوب مڠهنتر سموا@nايتم٢ کاره انق ڤانه. تکن بوتڠ اين اونتوق@nمڠݢوناکن تاڤيسن خصوص سجنيس ايتم.
+
+
+### utility.lua ###
+
+Don't@nEject=جاڠن@nکلوارکن
+Eject@nItems=کلوارکن@nايتم٢
+
+This hopper is currently set to eject items from its output@neven if there isn't a compatible block positioned to receive it.@nClick this button to disable this feature.=چوروڠ تواڠ اين دتتڤکن اونتوق مڠلوارکن ايتم درڤد@nکلوارنڽ والاوڤون اڤابيلا تيادا بلوک يڠ سسواي دلتقکن@nاونتوق منريماڽ. تکن بوتڠ اين جيک تيدق ماهو کلوارکنڽ.
+
+This hopper is currently set to hold on to item if there@nisn't a compatible block positioned to receive it.@nClick this button to have it eject items instead.=چوروڠ تواڠ اين دتتڤکن اونتوق ممݢڠ ايتم سکيراڽ@nتيادا بلوک يڠ سسواي اونتوق منريماڽ.@nتکن بوتڠ اين اونتوق مڠلوارکن ايتم٢ ترسبوت.
+
+
+
+##### not used anymore #####
+
+[MOD] Hopper loaded=[MODS] چوروڠ تواڠ دمواتکن

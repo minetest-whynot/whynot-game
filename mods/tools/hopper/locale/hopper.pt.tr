@@ -56,3 +56,4 @@ Eject@nItems=Ejetar@nItens
 This hopper is currently set to eject items from its output@neven if there isn't a compatible block positioned to receive it.@nClick this button to disable this feature.=Este alimentador está atualmente configurado para ejetar itens de sua saída, mesmo se não houver um bloco compatível posicionado para recebê-lo. Clique neste botão para desativar esse recurso.
 
 This hopper is currently set to hold on to item if there@nisn't a compatible block positioned to receive it.@nClick this button to have it eject items instead.=Este funil está atualmente configurado para segurar o item se não houver um bloco compatível posicionado para recebê-lo. Clique neste botão para ejetar itens.
+

@@ -1,0 +1,63 @@
+# textdomain: hopper
+
+
+### chute.lua ###
+
+@1 moves stuff to chute at @2=@1 memindahkan barang ke dalam pelongsor di @2
+Hopper Chute=Pelongsor Corong Tuang
+
+### doc.lua ###
+
+A chute to transfer items over longer distances.=Pelongsor untuk memindahkan item-item berjarak jauh.
+A sorter to redirect certain items to an alternate target.=Pengisih untuk melencongkan beberapa item kepada sasaran yang berbeza.
+
+Chutes operate much like hoppers but do not have their own intake capability. Items can only be inserted into a chute manually or by a hopper connected to a chute. They transfer items in the direction indicated by the arrow on their narrow segment at a rate of one item per second. They have a small buffer capacity, and any items that can't be placed into the target block's inventory will remain lodged in the chute's buffer until manually removed or their destination becomes available.=Cara gunakan pelongsor ini serupa seperti corong tuang tetapi mereka tidak berupaya mengambil item dengan sendiri. Item-item hanya boleh dimasukkan ke dalam pelongsor secara manual atau dengan corong tuang yang bersambungan dengan pelongsor tersebut. Mereka memindahkan item mengikut arah yang ditanda dengan anak panah pada segmen tirus pada kadar sebuah item sesaat. Mereka mempunyai kapasiti penimbal yang kecil, dan mana-mana item yang tidak dapat dimasukkan ke dalam inventori blok sasaran akan kekal di dalam penimbal pelongsor sehingga item tersebut dikeluarkan secara manual atau sehingga sasaran mampu menerimanya.
+
+Hopper blocks come in both 'vertical' and 'side' forms, but when in a player's inventory both are represented by a single generic item. The type of hopper block that will be placed when the player uses this item depends on what is pointed at - when the hopper item is pointed at the top or bottom face of a block a vertical hopper is placed, when aimed at the side of a block a side hopper is produced that connects to the clicked-on side.@n@n=Blok corong tuang datang dalam bentuk 'menegak' dan 'melintang', tetapi kedua-duanya hanya muncul sebagai sebuah item generik dalam inventori pemain. Jenis blok corong tuang yang diletakkan oleh pemain bergantung kepada arah letaknya - apabila item corong tuang ditujukan ke arah atas atau bawah permukaan blok maka corong tuang menegak yang diletakkan, manakala apabila ditujukan ke arah sisi permukaan blok maka corong tuang melintang yang diletakkan dengan sisi yang dituju itu yang akan bersambung kepada corong tuang.@n@n
+
+Hopper blocks come in both 'vertical' and 'side' forms. They can be interconverted between the two forms via the crafting grid.@n@n=Blok corong tuang datang dalam bentuk 'menegak' dan 'melintang'. Mereka boleh saling bertukar antara kedua-dua bentuk tersebut menggunakan grid pertukangan.@n@n
+
+Hopper to transfer items between neighboring blocks' inventories.=Corong tuang untuk memindahkan item di antara inventori blok yang berjiran.
+
+Items are transfered from the block at the wide end of the hopper to the block at the narrow end of the hopper at a rate of one per second. Items can also be placed directly into the hopper's inventory, or they can be dropped into the space above a hopper and will be sucked into the hopper's inventory automatically.@n@n=Item-item dipindahkan daripada blok yang terletak di bahagian corong tuang yang lebih besar kepada blok yang terletak di bahagian corong tuang yang lebih kecil pada kadar sebuah item sesaat. Item-item juga boleh diletakkan ke dalam inventori corong tuang itu sendiri, atau mereka boleh dijatuhkan ke kawasan di atas corong tuang dan item-item tersebut akan disedut masuk ke dalam inventori corong tuang secara automatiknya.@n@n
+
+This is similar to a chute but has a secondary output that is used to shunt specific items to an alternate destination. There is a set of inventory slots labeled "Filter" at the top of this block's inventory display, if you place an item into one of these slots the sorter will record the item's type (without actually taking it from you). Then when items come through the sorter's inventory that match one of the items in the filter list it will first attempt to send it in the direction marked with an arrow on the sorter's sides.@n@nIf the item doesn't match the filter list, or the secondary output is unable to take the item for whatever reason, the sorter will try to send the item out the other output instead.@n@nIn addition, there is a button labeled "Filter All" that will tell the sorter to not use the filter list and instead first attempt to shunt all items out of the filter, only sending items along the non-filter path if the target cannot accept it for whatever reason. This feature is useful for handling "overflow" (when the target's inventory fills up) or for dealing with targets that are selective about what they accept (for example, a furnace's fuel slot).=Pengisih ini serupa seperti pelongsor tetapi ia mempunyai keluaran kedua yang digunakan untuk mengalihkan item-item tertentu kepada sasaran yang berbeza. Terdapat satu set slot inventori berlabel "Tapis" di atas paparan inventori blok ini, jika anda letakkan sebuah item di atas slot-slot ini maka pengisih ini akan merekod jenis item tersebut (tanpa mengambilnya daripada anda). Kemudian apabila item-item yang melalui inventori pengisih tersebut didapati sama dengan jenis item yang telah direkod maka ia akan dihantar ke arah yang ditanda dengan anak panah di sisi pengisih.@n@nSekiranya item tersebut tidak sama dengan jenis item yang telah direkod, atau apabila keluaran kedua tidak mampu menghantar item tanpa mengira sebab apa, pengisih tersebut akan menghantar item-item melalui keluaran yang biasa.@n@nSelain itu, terdapat butang berlabel "Tapis Semua" yang akan memberitahu pengisih untuk mengalihkan semua item-item kepada keluaran kedua kecuali item yang serupa dengan jenis item yang telah direkod, melainkan apabila keluaran kedua tidak mampu menerimanya tanpa mengira sebab apa. Sifat ini penting untuk mengendalikan kes "limpahan" (apabila inventori sasaran telah penuh) atau untuk mengendalikan sasaran yang sangat memilih dengan item yang ingin diterima (contohnya, slot bahan api relau).
+
+When used with furnaces, hoppers inject items into the furnace's "raw material" inventory slot when the narrow end is attached to the top or bottom and inject items into the furnace's "fuel" inventory slot when attached to the furnace's side.@n@nItems that cannot be placed in a target block's inventory will remain in the hopper.@n@nHoppers have the same permissions as the player that placed them. Hoppers placed by you are allowed to take items from or put items into locked chests that you own, but hoppers placed by other players will be unable to do so. A hopper's own inventory is not not owner-locked, though, so you can use this as a way to allow other players to deposit items into your locked chests.=Apabila digunakan bersama-sama relau, corong tuang akan memasukkan item ke dalam slot inventori "bahan mentah" relau apabila bahagian corong tuang yang lebih kecil disambungkan ke atas atau bawah relau dan corong tuang akan memasukkan item ke dalam slot inventori "bahan api" relau apabila bahagian tersebut disambungkan ke sisi relau.@n@nItem yang tidak boleh diletakkan dalam inventori blok sasaran akan kekal di dalam corong tuang.@n@nCorong tuang mempunyai kebenaran yang sama seperti pemain yang meletakkan mereka. Corong tuang yang anda letakkan dibenarkan untuk mengambil daripada atau memasukkan item-item ke dalam peti berkunci milik anda, namun corong tuang yang pemain lain letakkan tidak boleh berbuat sedemikian. Namun begitu, inventori corong tuang anda sendiri tidak dikunci kepada pemiliknya, oleh itu anda boleh gunakannya sebagai perantara untuk pemain lain memasukkan item-item kepada peti berkunci anda.
+
+
+### hoppers.lua ###
+
+@1 moves stuff from hopper at @2=@1 mengambil barang daripada corong tuang di @2
+@1 moves stuff in hopper at @2=@1 memindahkan barang dalam corong tuang di @2
+@1 moves stuff to hopper at @2=@1 memasukkan barang ke dalam corong tuang di @2
+Hopper=Corong Tuang
+Side Hopper=Corong Tuang Melintang
+
+### sorter.lua ###
+
+@1 moves stuff to sorter at @2=@1 memasukkan barang ke dalam pengisih di @2
+Filter=Tapis
+Filter@nAll=Tapis@nSemua
+Selective@nFilter=Tapisan@nMemilih
+Sorter=Pengisih
+
+This sorter is currently set to only send items listed@nin the filter list in the direction of the arrow.@nClick this button to set it to try sending all@nitems that way first.=Pengisih ini ditetapkan untuk hanya menghantar item-item@nyang berada dalam senarai tapisan ke arah anak panah.@nTekan butang ini untuk menetapkannya untuk mencuba@nmenghantar semua item ke arah anak panah terlebih dahulu.
+
+This sorter is currently set to try sending all items@nin the direction of the arrow. Click this button@nto enable an item-type-specific filter.=Pengisih ini ditetapkan untuk cuba menghantar semua@nitem-item ke arah anak panah. Tekan butang ini untuk@nmenggunakan tapisan khusus sejenis item.
+
+
+### utility.lua ###
+
+Don't@nEject=Jangan@nKeluarkan
+Eject@nItems=Keluarkan@nItem-item
+
+This hopper is currently set to eject items from its output@neven if there isn't a compatible block positioned to receive it.@nClick this button to disable this feature.=Corong tuang ini ditetapkan untuk mengeluarkan item daripada@nkeluarannya walaupun apabila tiada blok yang sesuai diletakkan@nuntuk menerimanya. Tekan butang ini jika tidak mahu keluarkannya.
+
+This hopper is currently set to hold on to item if there@nisn't a compatible block positioned to receive it.@nClick this button to have it eject items instead.=Corong tuang ini ditetapkan untuk memegang item sekiranya@ntiada blok yang sesuai diletakkan untuk menerimanya.@nTekan butang ini untuk mengeluarkan item-item tersebut.
+
+
+
+##### not used anymore #####
+
+[MOD] Hopper loaded=[MODS] Corong tuang dimuatkan

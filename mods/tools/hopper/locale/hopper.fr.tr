@@ -1,0 +1,63 @@
+# textdomain: hopper
+
+
+### chute.lua ###
+
+@1 moves stuff to chute at @2=Le 1 déplace des choses vers le 2
+Hopper Chute=Hopper Chute
+
+### doc.lua ###
+
+A chute to transfer items over longer distances.=Une chute pour transférer des articles sur de plus longues distances.
+A sorter to redirect certain items to an alternate target.=Un trieur pour rediriger certains éléments vers une autre cible.
+
+Chutes operate much like hoppers but do not have their own intake capability. Items can only be inserted into a chute manually or by a hopper connected to a chute. They transfer items in the direction indicated by the arrow on their narrow segment at a rate of one item per second. They have a small buffer capacity, and any items that can't be placed into the target block's inventory will remain lodged in the chute's buffer until manually removed or their destination becomes available.=Les chutes fonctionnent comme des trémies, mais n’ont pas leur propre capacité d’admission. Les articles ne peuvent être insérés que dans une chute manuelle ou par une trémie reliée à une chute. Ils transfèrent des éléments dans la direction indiquée par la flèche sur leur segment étroit à un taux d’un élément par seconde. Ils ont une petite capacité tampon, et tous les éléments qui ne peuvent pas être placés dans l’inventaire du bloc cible resteront logés dans le tampon de la chute jusqu’à ce que leur destination soit retirée manuellement ou que leur destination devienne disponible.
+
+Hopper blocks come in both 'vertical' and 'side' forms, but when in a player's inventory both are represented by a single generic item. The type of hopper block that will be placed when the player uses this item depends on what is pointed at - when the hopper item is pointed at the top or bottom face of a block a vertical hopper is placed, when aimed at the side of a block a side hopper is produced that connects to the clicked-on side.@n@n=Les blocs Hopper sont à la fois sous forme 'verticale' et 'côté', mais lorsque dans l’inventaire d’un joueur les deux sont représentés par un seul élément générique. Le type de bloc larvesteux qui sera placé lorsque le joueur utilise cet élément dépend de ce qui est pointé sur - lorsque l’élément de la trémie est pointé vers la face supérieure ou inférieure d’un bloc d’une trémie verticale est placé, lorsqu’il est dirigé sur le côté d’un bloc une trémie latérale est produite qui se connecte au côté cliqué.@n@n
+
+Hopper blocks come in both 'vertical' and 'side' forms. They can be interconverted between the two forms via the crafting grid.@n@n=Les blocs de trémie se présentent sous des formes "verticales" et "latérales". Ils peuvent être modifiés entre les deux formes via la grille de fabrication.@n@n
+
+Hopper to transfer items between neighboring blocks' inventories.=Trémie pour le transfert d'articles entre les inventaires des blocs voisins.
+
+Items are transfered from the block at the wide end of the hopper to the block at the narrow end of the hopper at a rate of one per second. Items can also be placed directly into the hopper's inventory, or they can be dropped into the space above a hopper and will be sucked into the hopper's inventory automatically.@n@n=Les articles sont transférés du bloc à l’extrémité large de la trémie au bloc à l’extrémité étroite de la trémie à un taux d’un par seconde. Les articles peuvent également être placés directement dans l’inventaire de la trémie, ou ils peuvent être déposés dans l’espace au-dessus d’une trémie et seront aspirés automatiquement dans l’inventaire de la trémie.@n@n
+
+This is similar to a chute but has a secondary output that is used to shunt specific items to an alternate destination. There is a set of inventory slots labeled "Filter" at the top of this block's inventory display, if you place an item into one of these slots the sorter will record the item's type (without actually taking it from you). Then when items come through the sorter's inventory that match one of the items in the filter list it will first attempt to send it in the direction marked with an arrow on the sorter's sides.@n@nIf the item doesn't match the filter list, or the secondary output is unable to take the item for whatever reason, the sorter will try to send the item out the other output instead.@n@nIn addition, there is a button labeled "Filter All" that will tell the sorter to not use the filter list and instead first attempt to shunt all items out of the filter, only sending items along the non-filter path if the target cannot accept it for whatever reason. This feature is useful for handling "overflow" (when the target's inventory fills up) or for dealing with targets that are selective about what they accept (for example, a furnace's fuel slot).=Ceci est similaire à une chute, mais a une sortie secondaire qui est utilisé pour shunt articles spécifiques à une destination alternative. Il y a un ensemble de fentes d’inventaire étiquetées " Filtre " en haut de l’affichage d’inventaire de ce bloc, si vous placez un élément dans l’une de ces fentes le trieur enregistrera le type de l’article (sans réellement le prendre de vous). Ensuite, lorsque les éléments passent par l’inventaire du trieur qui correspondent à l’un des éléments de la liste de filtre, il va d’abord tenter de l’envoyer dans la direction marquée d’une flèche sur les côtés du trieur.@n@nSi l’élément ne correspond pas à la liste de filtre, ou la sortie secondaire est incapable de prendre l’élément pour une raison quelconque, le trieur va essayer d’envoyer l’élément sur l’autre sortie à la place.@n@nEn outre, il ya un bouton étiqueté "Filter All" qui dira au trieur de ne pas utiliser la liste de filtre et au lieu de première tentative de shunt tous les éléments du filtre, seulement l’envoi d’éléments le long de la voie non-filtre si la cible ne peut pas l’accepter pour une raison quelconque. Cette fonctionnalité est utile pour gérer le « débordement » (lorsque l’inventaire de la cible se remplit) ou pour traiter des cibles sélectives quant à ce qu’elles acceptent (par exemple, la fente de carburant d’un four).
+
+When used with furnaces, hoppers inject items into the furnace's "raw material" inventory slot when the narrow end is attached to the top or bottom and inject items into the furnace's "fuel" inventory slot when attached to the furnace's side.@n@nItems that cannot be placed in a target block's inventory will remain in the hopper.@n@nHoppers have the same permissions as the player that placed them. Hoppers placed by you are allowed to take items from or put items into locked chests that you own, but hoppers placed by other players will be unable to do so. A hopper's own inventory is not not owner-locked, though, so you can use this as a way to allow other players to deposit items into your locked chests.=Lorsqu’elles sont utilisées avec des fours, les trémies injectent des articles dans la fente d’inventaire de la « matière première » du four lorsque l’extrémité étroite est fixée vers le haut ou le bas et injectent des articles dans la fente d’inventaire « carburant » du four lorsqu’elles sont fixées au côté du four.@n@nLes articles qui ne peuvent pas être placés dans l’inventaire d’un bloc cible resteront dans la trémie.@n@nLes hoppers ont les mêmes autorisations que le joueur qui les a placés. Les trémies placées par vous sont autorisées à prendre des articles ou à mettre des articles dans des coffres verrouillés que vous possédez, mais les trémies placées par d’autres joueurs ne pourront pas le faire. L’inventaire d’une trémie n’est pas verrouillé par le propriétaire, cependant, de sorte que vous pouvez l’utiliser comme un moyen de permettre à d’autres joueurs de déposer des articles dans vos coffres verrouillés.
+
+
+### hoppers.lua ###
+
+@1 moves stuff from hopper at @2=1 se déplace des trucs de la trémie à 2
+@1 moves stuff in hopper at @2=1 se déplace des trucs dans la trémie à 2
+@1 moves stuff to hopper at @2=1 se déplace des trucs à la trémie à 2
+Hopper=Trémie
+Side Hopper=side hopper
+
+### sorter.lua ###
+
+@1 moves stuff to sorter at @2=1 déplace les éléments vers la trieuse à 2
+Filter=Filtre
+Filter@nAll=Filtre@nTous
+Selective@nFilter=Sélective@nFiltre
+Sorter=Trieuse
+
+This sorter is currently set to only send items listed@nin the filter list in the direction of the arrow.@nClick this button to set it to try sending all@nitems that way first.=Ce trieur est actuellement configuré pour envoyer seulement@nles éléments apparaissants dans la liste de triage de la flèche@nde direction. Cliquez sur ce bouton pour qu'il essaie en premier@nlieu d'envoyer tous les articles dans cette direction.
+
+This sorter is currently set to try sending all items@nin the direction of the arrow. Click this button@nto enable an item-type-specific filter.=Ce trieur est actuellement configuré pour essayer d'envoyer tous les éléments@n dans le sens de la flèche. Cliquez sur ce bouton @npour activer un filtre spécifique à l'objet.
+
+
+### utility.lua ###
+
+Don't@nEject=Ne pas@nÉjecter
+Eject@nItems=Éjecter@nArticles
+
+This hopper is currently set to eject items from its output@neven if there isn't a compatible block positioned to receive it.@nClick this button to disable this feature.=Cette trémie est actuellement prête à éjecter les éléments de sa production@nmême s’il n’y a pas de bloc compatible pour le recevoir.@nCliquez sur ce bouton pour désactiver cette fonctionnalité.
+
+This hopper is currently set to hold on to item if there@nisn't a compatible block positioned to receive it.@nClick this button to have it eject items instead.=Cette trémie est actuellement prête à conserver un élément s'il @nn'y a pas de bloc compatible positionné pour le recevoir.@n Au lieu de cela, cliquez sur ce bouton pour l'éjecteur.
+
+
+
+##### not used anymore #####
+
+[MOD] Hopper loaded=[MOD] Hopper chargé

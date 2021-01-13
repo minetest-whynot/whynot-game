@@ -898,8 +898,26 @@ local color_button_size = ";0.75,0.75;"
 local color_square_size = ";0.69,0.69;"
 
 function unifieddyes.make_readable_color(color)
-	local s = string.gsub(color, "_", " ")
-	s = string.gsub(s, "s50", "(low saturation)")
+        -- is this a low saturation color?
+        local has_low_saturtation = string.find(color, "s50");
+
+        -- remove _s50 tag, we care about that later again
+	local s = string.gsub(color, "_s50", "")
+
+        -- replace underscores with spaces to make it look nicer
+	local s = string.gsub(s, "_", " ")
+
+        -- capitalize words, you know, looks nicer ;)
+        s = string.gsub(s, "(%l)(%w*)", function(a,b) return string.upper(a)..b end)
+
+        -- add the word dye, this is what the translations expect
+        s = s.." Dye"
+
+	-- if it is a low sat color, append an appropriate string
+	if has_low_saturtation then
+	  s = s.." (low saturation)"
+	end
+
 	return s
 end
 
@@ -925,7 +943,7 @@ function unifieddyes.make_colored_square(hexcolor, colorname, showall, creative,
 	end
 
 	local tooltip = "tooltip["..colorname..";"..
-					unifieddyes.make_readable_color(colorname)..
+					S(unifieddyes.make_readable_color(colorname))..
 					"\n(dye:"..colorname..")]"
 
 	if dye == painting_with then
@@ -1103,7 +1121,7 @@ function unifieddyes.show_airbrush_form(player)
 		t[#t+1] = "label[10.7,"
 		t[#t+1] = (vps*5.07+vs)
 		t[#t+1] = ";"
-		t[#t+1] = unifieddyes.make_readable_color(string.sub(painting_with, 5))
+		t[#t+1] = S(unifieddyes.make_readable_color(string.sub(painting_with, 5)))
 		t[#t+1] = "]label[10.7,"
 		t[#t+1] = (vps*5.24+vs)
 		t[#t+1] = ";("

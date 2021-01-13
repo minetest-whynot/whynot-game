@@ -1,0 +1,63 @@
+# textdomain: hopper
+
+
+### chute.lua ###
+
+@1 moves stuff to chute at @2=@1 sposta gli oggetti allo scivolo in @2
+Hopper Chute=Tramoggia scivolo
+
+### doc.lua ###
+
+A chute to transfer items over longer distances.=Uno scivolo per trasferire oggetti su lunghe distanze.
+A sorter to redirect certain items to an alternate target.=Un selezionatore per reindirizzare determinati oggetti verso una destinazione alternativa.
+
+Chutes operate much like hoppers but do not have their own intake capability. Items can only be inserted into a chute manually or by a hopper connected to a chute. They transfer items in the direction indicated by the arrow on their narrow segment at a rate of one item per second. They have a small buffer capacity, and any items that can't be placed into the target block's inventory will remain lodged in the chute's buffer until manually removed or their destination becomes available.=Gli scivoli funzionano in modo molto simile alle tramogge ma non hanno la propria capacità di aspirazione. Gli oggetti possono essere inseriti in uno scivolo solo manualmente o tramite una tramoggia collegata a uno scivolo. Trasferiscono gli oggetti nella direzione indicata dalla freccia sul loro segmento stretto ad una velocità di un oggetto al secondo. Hanno una capacità del buffer ridotta e tutti gli oggetti che non possono essere inseriti nell'inventario del blocco di destinazione target rimarranno alloggiati nel buffer dello scivolo fino a quando non vengono rimossi manualmente o la loro destinazione diventa disponibile.
+
+Hopper blocks come in both 'vertical' and 'side' forms, but when in a player's inventory both are represented by a single generic item. The type of hopper block that will be placed when the player uses this item depends on what is pointed at - when the hopper item is pointed at the top or bottom face of a block a vertical hopper is placed, when aimed at the side of a block a side hopper is produced that connects to the clicked-on side.@n@n=I blocchi tramoggia sono disponibili nelle due forme "verticale" e "laterale", ma quando sono nell'inventario di un giocatore entrambe sono rappresentate da un unico oggetto generico. Quando il giocatore usa questo oggetto, verrà posizionato il tipo di blocco della tramoggia a seconda di cosa è puntato - quando l'elemento della tramoggia è puntato sulla faccia superiore o inferiore di un blocco, viene posizionata una tramoggia verticale, quando è puntata sul lato di un viene prodotta una tramoggia laterale che si collega al lato cliccato.@n@n
+
+Hopper blocks come in both 'vertical' and 'side' forms. They can be interconverted between the two forms via the crafting grid.@n@n=I blocchi tramoggia sono disponibili in entrambe le forme "verticale" e "laterale". Possono essere trasformati da una forma all'altra tramite la griglia di creazione.@n@n
+
+Hopper to transfer items between neighboring blocks' inventories.=Tramoggia per spostare gli oggetti tra gli inventari dei blocchi adiacenti.
+
+Items are transfered from the block at the wide end of the hopper to the block at the narrow end of the hopper at a rate of one per second. Items can also be placed directly into the hopper's inventory, or they can be dropped into the space above a hopper and will be sucked into the hopper's inventory automatically.@n@n=Gli oggetti vengono trasferiti dal blocco all'estremità larga della tramoggia al blocco all'estremità stretta della tramoggia ad una velocità di uno al secondo. Gli oggetti possono anche essere posizionati direttamente nell'inventario della tramoggia, oppure possono essere lasciati cadere nello spazio sopra una tramoggia e verranno risucchiati automaticamente nell'inventario della tramoggia.@n@n
+
+This is similar to a chute but has a secondary output that is used to shunt specific items to an alternate destination. There is a set of inventory slots labeled "Filter" at the top of this block's inventory display, if you place an item into one of these slots the sorter will record the item's type (without actually taking it from you). Then when items come through the sorter's inventory that match one of the items in the filter list it will first attempt to send it in the direction marked with an arrow on the sorter's sides.@n@nIf the item doesn't match the filter list, or the secondary output is unable to take the item for whatever reason, the sorter will try to send the item out the other output instead.@n@nIn addition, there is a button labeled "Filter All" that will tell the sorter to not use the filter list and instead first attempt to shunt all items out of the filter, only sending items along the non-filter path if the target cannot accept it for whatever reason. This feature is useful for handling "overflow" (when the target's inventory fills up) or for dealing with targets that are selective about what they accept (for example, a furnace's fuel slot).=È simile a uno scivolo ma ha un'uscita secondaria che viene utilizzata per deviare elementi specifici verso una destinazione alternativa. C'è una serie di slot di inventario etichettati "Filtro" nella parte superiore della visualizzazione dell'inventario di questo blocco, se si inserisce un oggetto in uno di questi slot, il selezionatore registrerà il tipo di articolo (senza effettivamente prelevarlo da te). Quindi, quando gli articoli attraversano l'inventario del selezionatore che corrispondono a uno degli articoli nell'elenco dei filtri, tenterà innanzitutto di inviarlo nella direzione contrassegnata da una freccia sui lati del selezionatore.@n@nSe l'elemento non corrisponde all'elenco dei filtri o l'output secondario non è in grado di prenderlo per qualsiasi motivo, il selezionatore tenterà invece di inviare l'elemento all'altro output.@n@nInoltre, c'è un pulsante con l'etichetta "Filtra tutto" che dirà allo selezionatore di non usare l'elenco dei filtri e invece tenterà prima di eliminare tutti gli elementi dal filtro, inviando solo elementi lungo il percorso non filtrato se la destinazione non può accettare per qualunque motivo. Questa funzione è utile per gestire l'"eccedenza" (quando l'inventario del bersaglio si riempie) o per gestire le destinazioni che sono selettivi su ciò che accettano (ad esempio, lo slot del combustibile di una fornace).
+
+When used with furnaces, hoppers inject items into the furnace's "raw material" inventory slot when the narrow end is attached to the top or bottom and inject items into the furnace's "fuel" inventory slot when attached to the furnace's side.@n@nItems that cannot be placed in a target block's inventory will remain in the hopper.@n@nHoppers have the same permissions as the player that placed them. Hoppers placed by you are allowed to take items from or put items into locked chests that you own, but hoppers placed by other players will be unable to do so. A hopper's own inventory is not not owner-locked, though, so you can use this as a way to allow other players to deposit items into your locked chests.=Quando vengono usate con le fornaci, le tramogge caricano nell'inventario delle "materie prime" della fornace quando l'estremità stretta è attaccata alla parte superiore o inferiore e caricano gli articoli nell'inventario "combustibile" della fornace quando collegati al lato della fornace.@n@nGli oggetti che non possono essere inseriti nell'inventario del blocco di destinazione rimarranno nella tramoggia.@n@nLe tramogge hanno le stesse autorizzazioni del giocatore che le ha piazzate. Le tramogge piazzate da te sono autorizzate a prendere oggetti da o mettere oggetti in casse chiuse di tua proprietà, ma le tramogge posizionate da altri giocatori non saranno in grado di farlo. L'inventario di una tramoggia non è bloccato dal proprietario, quindi puoi usarlo come un modo per consentire ad altri giocatori di depositare oggetti nelle casse chiuse.
+
+
+### hoppers.lua ###
+
+@1 moves stuff from hopper at @2=@1 sposta gli oggetti dalla tramoggia in @2
+@1 moves stuff in hopper at @2=@1 sposta gli oggetti alla tramoggia in @2
+@1 moves stuff to hopper at @2=@1 sposta gli oggetti alla tramoggia in @2
+Hopper=Tramoggia
+Side Hopper=Tramoggia laterale
+
+### sorter.lua ###
+
+@1 moves stuff to sorter at @2=@1 sposta gli oggetti al selezionatore in @2
+Filter=Filtro
+Filter@nAll=Filtra@ntutto
+Selective@nFilter=Filtro di@nselezione
+Sorter=Selezionatore
+
+This sorter is currently set to only send items listed@nin the filter list in the direction of the arrow.@nClick this button to set it to try sending all@nitems that way first.=Questo selezionatore è attualmente impostato per inviare solo gli oggetti elencati@nnell'elenco dei filtri nella direzione della freccia.@nFai clic su questo pulsante per impostarlo per provare a inviare tutti@ngli oggetti prima in quel modo.
+
+This sorter is currently set to try sending all items@nin the direction of the arrow. Click this button@nto enable an item-type-specific filter.=Questo selezionatore è attualmente impostato per provare a inviare tutti @ngli oggetti nella direzione della freccia. Fai clic su questo pulsante per @nabilitare un filtro specifico del tipo di elemento.
+
+
+### utility.lua ###
+
+Don't@nEject=Non@nespellere
+Eject@nItems=Espelli@noggetti
+
+This hopper is currently set to eject items from its output@neven if there isn't a compatible block positioned to receive it.@nClick this button to disable this feature.=Questa tramoggia è attualmente impostata per espellere gli articoli dal suo output@nanche se non è presente un blocco compatibile posizionato per riceverlo.@nFare clic su questo pulsante per disabilitare questa funzione.
+
+This hopper is currently set to hold on to item if there@nisn't a compatible block positioned to receive it.@nClick this button to have it eject items instead.=Questa tramoggia è attualmente impostata per trattenere gli oggetti se non @nc'è un blocco compatibile di destinazione.@nFai clic su questo pulsante per espellere gli elementi.
+
+
+
+##### not used anymore #####
+
+[MOD] Hopper loaded=[MOD] Hopper caricato

@@ -74,3 +74,18 @@ Magenta Dye (low saturation)=Magenta Farbstoff (geringe Saettigung) lila
 Red-violet Dye (low saturation)=Rotvioletter Farbstoff (geringe Saettigung)
 
 [UnifiedDyes] Loaded!=[UnifiedDyes] geladen!
+
+Dye Airbrush=Farbstroff Airbrush
+
+Select a color:=Wähle eine Farbe
+(Right-clicked a node that supports all 256 colors, showing them all)=(Angeklickter Block unterstützt alle 256 Farben, zeige alle)
+(Right-clicked a node not supported by the Airbrush, showing all colors)=(Angeklickter Block unterstützt kein Airbrush, zeige alle Farben)
+Dyes=Farbstoffe
+Your selection=Deine Auswahl
+Your selection:=Deine Auswahl:
+Cancel=Abbrechen
+Accept=Übernehmen
+Show Available=Zeige verfügbare
+(Currently showing all 256 colors)=(Zeige alle 256 Farben)
+Show All Colors=Zeige alle Farben
+(Currently only showing what the right-clicked node can use)=(Zeige alle, die der angeklickte Block verwenden kann)

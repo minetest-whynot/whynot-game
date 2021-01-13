@@ -3,27 +3,28 @@
 
 ### chute.lua ###
 
+# translation by Chris Leick <c.leick@vollbio.de>
 @1 moves stuff to chute at @2=@1 verlagert Dinge in einen Trichter bei @2
-Hopper Chute=
+Hopper Chute=Trichterschütte
 
 ### doc.lua ###
 
-A chute to transfer items over longer distances.=
-A sorter to redirect certain items to an alternate target.=
+A chute to transfer items over longer distances.=Eine Rutsche, um Gegenstände über große Entfernungen zu übertragen.
+A sorter to redirect certain items to an alternate target.=Ein Sortierer kann bestimmte Gegenstände zu einem alternativen Ziel umleiten.
 
-Chutes operate much like hoppers but do not have their own intake capability. Items can only be inserted into a chute manually or by a hopper connected to a chute. They transfer items in the direction indicated by the arrow on their narrow segment at a rate of one item per second. They have a small buffer capacity, and any items that can't be placed into the target block's inventory will remain lodged in the chute's buffer until manually removed or their destination becomes available.=
+Chutes operate much like hoppers but do not have their own intake capability. Items can only be inserted into a chute manually or by a hopper connected to a chute. They transfer items in the direction indicated by the arrow on their narrow segment at a rate of one item per second. They have a small buffer capacity, and any items that can't be placed into the target block's inventory will remain lodged in the chute's buffer until manually removed or their destination becomes available.=Rutschen arbeiten wie Trichter, haben aber ihren eigenen Einlass. Gegenstände können nur manuell oder von einem verbundenen Trichter in eine Schütte eingelegt werden. Sie übertragen Gegenstände in die vom Pfeil angegebene Richtung in einem schmalen Abschnitt mit einer Rate von einem Gegenstand pro Sekunde. Sie haben eine kleine Pufferkapazität und alle Gegenstände, die nicht in das Inventar des Zielblocks patziert werden können, verbleiben im Puffer der Rutsche, bis sie manuell entfernt werden oder ihr Ziel verfügbar wird.
 
-Hopper blocks come in both 'vertical' and 'side' forms, but when in a player's inventory both are represented by a single generic item. The type of hopper block that will be placed when the player uses this item depends on what is pointed at - when the hopper item is pointed at the top or bottom face of a block a vertical hopper is placed, when aimed at the side of a block a side hopper is produced that connects to the clicked-on side.@n@n=
+Hopper blocks come in both 'vertical' and 'side' forms, but when in a player's inventory both are represented by a single generic item. The type of hopper block that will be placed when the player uses this item depends on what is pointed at - when the hopper item is pointed at the top or bottom face of a block a vertical hopper is placed, when aimed at the side of a block a side hopper is produced that connects to the clicked-on side.@n@n=Trichterblöcke kommen in den Formen 'vertikal' und 'seitlich' daher, werden jedoch im Inventar des Spielers beide durch ein einzelnes allgemeines Element dargestellt. Der Typ des Filterblocks, der beim Benutzen gesetzt wird, hängt davon ab, worauf der Spieler zeigt - wenn der Filtergegenstand auf eine obere oder untere Fläche eines Blocks zeigt, wird ein vertikaler Filter platziert, wenn er auf eine seitliche Fläche zeigt, wird ein seitlicher Filter erzeugt, der sich mit der angeklickten Seite verbindet.@n@n
 
-Hopper blocks come in both 'vertical' and 'side' forms. They can be interconverted between the two forms via the crafting grid.@n@n=
+Hopper blocks come in both 'vertical' and 'side' forms. They can be interconverted between the two forms via the crafting grid.@n@n=Trichterblöcke kommen in den Formen 'vertikal' und 'seitlich' daher. Im Fertigungsgitter kann zwischen den beiden Formen gewechselt werden.@n@n
 
-Hopper to transfer items between neighboring blocks' inventories.=
+Hopper to transfer items between neighboring blocks' inventories.=Trichter, um Gegenstände zwischen dem Inventar benachbarter Blöcke zu übertragen.
 
-Items are transfered from the block at the wide end of the hopper to the block at the narrow end of the hopper at a rate of one per second. Items can also be placed directly into the hopper's inventory, or they can be dropped into the space above a hopper and will be sucked into the hopper's inventory automatically.@n@n=
+Items are transfered from the block at the wide end of the hopper to the block at the narrow end of the hopper at a rate of one per second. Items can also be placed directly into the hopper's inventory, or they can be dropped into the space above a hopper and will be sucked into the hopper's inventory automatically.@n@n=Gegenstände werden vom Block am weiten Ende des Trichters zu einem Block am schmalen Ende des Trichters mit einer Rare von einem pro Sekunde übertragen. Sie können auch direkt in das Inventar des Trichters platziert oder in den Raum über dem Trichter fallengelassen werden. Dann werden sie automatisch in das Inventar des Trichters gezogen.@n@n
 
-This is similar to a chute but has a secondary output that is used to shunt specific items to an alternate destination. There is a set of inventory slots labeled "Filter" at the top of this block's inventory display, if you place an item into one of these slots the sorter will record the item's type (without actually taking it from you). Then when items come through the sorter's inventory that match one of the items in the filter list it will first attempt to send it in the direction marked with an arrow on the sorter's sides.@n@nIf the item doesn't match the filter list, or the secondary output is unable to take the item for whatever reason, the sorter will try to send the item out the other output instead.@n@nIn addition, there is a button labeled "Filter All" that will tell the sorter to not use the filter list and instead first attempt to shunt all items out of the filter, only sending items along the non-filter path if the target cannot accept it for whatever reason. This feature is useful for handling "overflow" (when the target's inventory fills up) or for dealing with targets that are selective about what they accept (for example, a furnace's fuel slot).=
+This is similar to a chute but has a secondary output that is used to shunt specific items to an alternate destination. There is a set of inventory slots labeled "Filter" at the top of this block's inventory display, if you place an item into one of these slots the sorter will record the item's type (without actually taking it from you). Then when items come through the sorter's inventory that match one of the items in the filter list it will first attempt to send it in the direction marked with an arrow on the sorter's sides.@n@nIf the item doesn't match the filter list, or the secondary output is unable to take the item for whatever reason, the sorter will try to send the item out the other output instead.@n@nIn addition, there is a button labeled "Filter All" that will tell the sorter to not use the filter list and instead first attempt to shunt all items out of the filter, only sending items along the non-filter path if the target cannot accept it for whatever reason. This feature is useful for handling "overflow" (when the target's inventory fills up) or for dealing with targets that are selective about what they accept (for example, a furnace's fuel slot).=Dies ist einer Rutsche ähnlich, hat aber eine zweite Ausgabe, die benutzt wird, um spezielle Gegenstände zu einem alternativen Ziel abzuzweigen. Es gibt einen Satz von Fächern mit der Aufschrift "Filter" oben in der Inventaranzeige des Blocks. Falls Sie einen Gegenstand in eins dieser Fächer ablegen, wird der Sortierer den Typ des Elements aufzeichnen (ohne es Ihnen tatsächlich abzunehmen). Dann, wenn Gegenstände durch das Inventar des Sortierers wandern, die zu einem der Gegenstände in der Filterliste passen, wird er versuchen, sie in die mit einem Pfeil an der Seite des Sortierers markierte Richtung zu senden.@n@nFalls der Gegenstand aus irgendeinem Grund nicht zur Filterliste passt, wird der Sortierer versuchen, den Gegenstand stattdessen aus der anderen Ausgabe heraus zu senden.@n@nZusätzlich gib es noch einen Schalter, der mit "Alle filtern" beschriftet ist. Dieser gibt an, dass alle Gegenstände aus dem Filter gesendet werden sollen, außer den Gegenständen, bei denen das aus irgendeinem Grund nicht geht. Diese Funktionalität ist nützlich zur Handhabung eines "Überlaufs" (wenn das Zielinventar voll ist) oder für den Umgang mit Zielen, die wählerisch sind, was sie annehmen (zum Beispiel das Brennfach eines Ofens).
 
-When used with furnaces, hoppers inject items into the furnace's "raw material" inventory slot when the narrow end is attached to the top or bottom and inject items into the furnace's "fuel" inventory slot when attached to the furnace's side.@n@nItems that cannot be placed in a target block's inventory will remain in the hopper.@n@nHoppers have the same permissions as the player that placed them. Hoppers placed by you are allowed to take items from or put items into locked chests that you own, but hoppers placed by other players will be unable to do so. A hopper's own inventory is not not owner-locked, though, so you can use this as a way to allow other players to deposit items into your locked chests.=
+When used with furnaces, hoppers inject items into the furnace's "raw material" inventory slot when the narrow end is attached to the top or bottom and inject items into the furnace's "fuel" inventory slot when attached to the furnace's side.@n@nItems that cannot be placed in a target block's inventory will remain in the hopper.@n@nHoppers have the same permissions as the player that placed them. Hoppers placed by you are allowed to take items from or put items into locked chests that you own, but hoppers placed by other players will be unable to do so. A hopper's own inventory is not not owner-locked, though, so you can use this as a way to allow other players to deposit items into your locked chests.=Wenn sie mit Öfen benutzt werden, legen Trichter Gegenstände im Rohstofffach des Ofens ab, wenn das schmale Ende mit der Ober- oder Unterseite des Ofens verbunden ist und in die Brennkammer, wenn sie seitlich verbunden ist.@n@nGegenstände, die nicht im Inventar des Zielblocks abgelegt werden können, verbleiben im Trichter.@n@nTrichter haben dieselben Rechte, wie der Spieler, der sie platziert. Von Ihnen platzierte Filter dürfen Gegenstände aus Ihren Truhen entnehmen oder dort ablegen, Filter anderer Spieler dürfen das nicht. Das filtereigene Inventar ist für niemanden gesperrt, daher können Sie es benutzen, um anderen Spielern eine Möglichkeit einzuräumen, Gegenstände in Ihren verschlossenen Truhen abzulegen.
 
 
 ### hoppers.lua ###
@@ -37,21 +38,22 @@ Side Hopper=Seitentrichter
 ### sorter.lua ###
 
 @1 moves stuff to sorter at @2=@1 verlagert Dinge in einen Trichter bei @2
-Filter=
-Filter@nAll=
-Selective@nFilter=
-Sorter=
+Filter=Filter
+Filter@nAll=Filter@nAlle
+Selective@nFilter=Auswahl@nFilter
+Sorter=Sortierer
 
-This sorter is currently set to only send items listed@nin the filter list in the direction of the arrow.@nClick this button to set it to try sending all@nitems that way first.=
+This sorter is currently set to only send items listed@nin the filter list in the direction of the arrow.@nClick this button to set it to try sending all@nitems that way first.=Dieser Sortierer ist derzeit so gesetzt, dass er nur@nGegenstände in die Pfeilrichtung sendet, die in der@nFilterliste stehen. Klicken Sie diese@nSchaltfläche an, um zuerst zu versuchen@n alle Gegenstände auf diesem Weg zu versenden.
 
-This sorter is currently set to try sending all items@nin the direction of the arrow. Click this button@nto enable an item-type-specific filter.=
+This sorter is currently set to try sending all items@nin the direction of the arrow. Click this button@nto enable an item-type-specific filter.=Dieser Sortierer ist derzeit so gesetzt, dass er alle@nGegenstände in Pfeilrichtung sendet. Klicken Sie diese@nSchaltfläche an, um einen vom Gegenstandstyp abhängigen Filter zu aktivieren.
 
 
 ### utility.lua ###
 
-Don't@nEject=
-Eject@nItems=
+Don't@nEject=Nicht@nauswerfen
+Eject@nItems=Gegenstände@nauswerfen
 
-This hopper is currently set to eject items from its output@neven if there isn't a compatible block positioned to receive it.@nClick this button to disable this feature.=
+This hopper is currently set to eject items from its output@neven if there isn't a compatible block positioned to receive it.@nClick this button to disable this feature.=Dieser Trichter ist derzeit so gesetzt, dass er Gegenstände@nsogar dann aus seiner eigenen Ausgabe auswirft, wenn dort kein passender Empfangsblock positioniert wurde,.@nKlicken Sie diese Schaltfäche an, um dies zu deaktivieren.
 
-This hopper is currently set to hold on to item if there@nisn't a compatible block positioned to receive it.@nClick this button to have it eject items instead.=
+This hopper is currently set to hold on to item if there@nisn't a compatible block positioned to receive it.@nClick this button to have it eject items instead.=Dieser Trichter ist derzeit so gesetzt, dass er den Gegenstand@nbehält, wenn kein geeigneter Empfangblock positioniert wurde.@nKlicken Sie diese Schaltfäche an, um Gegenstände stattdessen auszuwerfen.
+

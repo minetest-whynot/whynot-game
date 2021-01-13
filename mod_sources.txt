@@ -69,7 +69,7 @@ origin	https://github.com/bell07/minetest-whynot_compat (fetch)
 Mod: libs/whynot_compat
 
 origin	https://github.com/minetest-mods/awards (fetch)
-* master 4e8d175 [origin/master] Fixed a couple typos.
+* master 37082d1 [origin/master] Rename background to hud_background
 Mod: player/awards
 
 origin	https://github.com/minetest-mods/cozy (fetch)
@@ -126,7 +126,7 @@ Mod: player_api_modpack/skinsdb5
 Mod: player_api_modpack/wieldview
 
 origin	https://github.com/minetest-mods/3d_armor (fetch)
-* master a3cba57 [origin/master] locale es fix
+* master e7abacc [origin/master] Add armor set and armor set bonus setting (#41)
 Mod: 3d_armor/3d_armor_stand
 Mod: 3d_armor/shields
 Mod: 3d_armor/3d_armor_sfinv
@@ -157,7 +157,7 @@ origin	https://gitlab.com/rautars/weather_pack (fetch)
 Mod: ambience/weather_pack
 
 origin	https://notabug.org/TenPlus1/farming (fetch)
-* master 95dd74c [origin/master] remove moreores hoes (inc. within moreores now)
+* master 41356a3 [origin/master] updated german translation (thanks rti)
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
@@ -189,7 +189,7 @@ origin	https://github.com/taikedz/everamzah-backpacks (fetch)
 Mod: tools/backpacks
 
 origin	https://notabug.org/tenplus1/bonemeal (fetch)
-* master 30d0c02 [origin/master] only use bonemeal items when actually used.
+* master 587e0fb [origin/master] added german translation (thanks rti)
 Mod: tools/bonemeal
 
 origin	https://github.com/SmallJoker/boost_cart (fetch)
@@ -217,7 +217,7 @@ origin	https://github.com/petermaloney/helicopter (fetch)
 Mod: tools/helicopter
 
 origin	https://github.com/minetest-mods/hopper (fetch)
-* master 6525e57 [origin/master] add i18n script, update translation files
+* master 6ac1b61 [origin/master] bring in translations from weblate.org
 Mod: tools/hopper
 
 origin	https://github.com/minetest-mods/jumping (fetch)
@@ -312,7 +312,7 @@ origin	https://github.com/minetest-mods/realchess (fetch)
 Mod: decor/realchess
 
 origin	https://github.com/v-rob/slats (fetch)
-* master 723a9c9 [origin/master] Add everything
+* master 40b2390 [origin/master] Add screenshot
 Mod: decor/slats
 
 origin	https://github.com/minetest-mods/ts_furniture (fetch)
@@ -320,7 +320,7 @@ origin	https://github.com/minetest-mods/ts_furniture (fetch)
 Mod: decor/ts_furniture
 
 origin	https://gitlab.com/VanessaE/unifieddyes (fetch)
-* master         eb5610f [origin/master] workaround for engine bug in crafting, placing, digging items with a palette index of 0
+* master         6873ad3 [origin/master] Merge branch 'translatable-color-string' into 'master'
 Mod: decor/unifieddyes
 
 origin	https://gitlab.com/VanessaE/homedecor_modpack/ (fetch)
@@ -432,5 +432,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master 76ee3d0 [origin/master] add peaceful player privs and settings (thanks sfence)
+* master 622abd1 [origin/master] hopefully fixed death animation crash when player away
 Mod: mobs_redo/mobs_redo

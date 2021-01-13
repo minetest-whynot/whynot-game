@@ -1,0 +1,63 @@
+# textdomain: hopper
+
+
+### chute.lua ###
+
+@1 moves stuff to chute at @2=@1 movas aĵojn en glitujon je @2
+Hopper Chute=Ŝutilo Glitilo
+
+### doc.lua ###
+
+A chute to transfer items over longer distances.=Glitilo transmetanta portaĵojn trans pli longaj distancoj.
+A sorter to redirect certain items to an alternate target.=Apartigilo aliiriganta kelkajn portaĵojn al alia celo.
+
+Chutes operate much like hoppers but do not have their own intake capability. Items can only be inserted into a chute manually or by a hopper connected to a chute. They transfer items in the direction indicated by the arrow on their narrow segment at a rate of one item per second. They have a small buffer capacity, and any items that can't be placed into the target block's inventory will remain lodged in the chute's buffer until manually removed or their destination becomes available.=Glitujoj funkcias simile al ŝutiloj, sed ne havas propran enprenpovon. Portaĵoj povas eniĝi nur permane, aŭ per ŝutilo konektita al la glitujo. Ili transmetas portaĵojn en la direkton montratan de la sago sur ilia mallarĝa parto, je rapido de unu portaĵo sekunde. Ili havas malgrandan bufrliron, kaj ĉiuj portaĵoj, kiuj ne povas eniĝi la portaĵujon de la celata mondero restos en la bufrilo de la glitujo ĝis permana elpreno aŭ liberiĝo de la celo.
+
+Hopper blocks come in both 'vertical' and 'side' forms, but when in a player's inventory both are represented by a single generic item. The type of hopper block that will be placed when the player uses this item depends on what is pointed at - when the hopper item is pointed at the top or bottom face of a block a vertical hopper is placed, when aimed at the side of a block a side hopper is produced that connects to the clicked-on side.@n@n=Ŝutilaj monderoj ekzistas en formoj «vertikala» kaj «horizontala», sed ambaŭ estas prezentataj de la sama portaĵo en portaĵujo. La speco de mondero, kiu metiĝos post uzo de tiu portaĵo, dependas de tio, kio estas celata – se la portaĵo celas supran aŭ suban facon de mondero, vertikala ŝutilo metiĝas. Se ĝi celas flankon de mondero, horizontala ŝutilo metiĝas, konektita al la klakita flanko.@n@n
+
+Hopper blocks come in both 'vertical' and 'side' forms. They can be interconverted between the two forms via the crafting grid.@n@n=Ŝutiloj havas formojn «vertikalan» kaj «horizontalan». Oni povas ilin aliformi per la farkrado.@n@n
+
+Hopper to transfer items between neighboring blocks' inventories.=Ŝutilo transmetanta portaĵojn inter la portaĵujoj de la apudaj monderoj.
+
+Items are transfered from the block at the wide end of the hopper to the block at the narrow end of the hopper at a rate of one per second. Items can also be placed directly into the hopper's inventory, or they can be dropped into the space above a hopper and will be sucked into the hopper's inventory automatically.@n@n=Portaĵoj estas transmetitaj el la mondero je la larĝa fino de la ŝutilo al la mondero je la mallarĝa fino, unu sekunde. Eblas ankaŭ meti portaĵojn rekte en la portaĵujon de la ŝutilo, aŭ ĵeti ilin en la spacon super ŝutilo, kaj ili memage eniĝos ĝian portaĵujon.@n@n
+
+This is similar to a chute but has a secondary output that is used to shunt specific items to an alternate destination. There is a set of inventory slots labeled "Filter" at the top of this block's inventory display, if you place an item into one of these slots the sorter will record the item's type (without actually taking it from you). Then when items come through the sorter's inventory that match one of the items in the filter list it will first attempt to send it in the direction marked with an arrow on the sorter's sides.@n@nIf the item doesn't match the filter list, or the secondary output is unable to take the item for whatever reason, the sorter will try to send the item out the other output instead.@n@nIn addition, there is a button labeled "Filter All" that will tell the sorter to not use the filter list and instead first attempt to shunt all items out of the filter, only sending items along the non-filter path if the target cannot accept it for whatever reason. This feature is useful for handling "overflow" (when the target's inventory fills up) or for dealing with targets that are selective about what they accept (for example, a furnace's fuel slot).=Ĉi tio similas glitujon, sed havas duarangan eligon, kiu estas uzata por deflankigi elektitajn portaĵojn al alia celo. Super la portaĵujo de ĉi tiu mondero vi trovos aron da portaĵingoj, kiu registros specon de enmetita portaĵo (ne prenante la portaĵon mem). Poste, kiam la apartigilo trovos en sia portaĵujo portaĵon akordan kun iu el la filtra listo, ĝi unue provos ĝin sendi laŭ direkto de la sago sur siaj flankoj.@n@nSe la portaĵo ne akordas la filtran liston, aŭ se la duaranga eligejo ial ne povas preni la portaĵon, la apartigilo provos eligi ilin per la alia eligejo.@n@nAldone, la butono nomita »Filtri ĉion« ordonos al la apartigilo ne uzi la filtran liston, kaj anstataŭe unue provi deflankigi ĉiujn portaĵojn el la filtrilo, sendante portaĵojn tra la nefiltra vojo nur se la celo ne povas ilin akcepti. Ĉi tiu funkcio utilas por traktado de «superŝarĝo» (plenigo de la cela portaĵujo), aŭ por traktado de celoj, kiuj elektemas pri siaj akceptataj portaĵoj (ekzemple la portaĵingo por brulaĵo de forno).
+
+When used with furnaces, hoppers inject items into the furnace's "raw material" inventory slot when the narrow end is attached to the top or bottom and inject items into the furnace's "fuel" inventory slot when attached to the furnace's side.@n@nItems that cannot be placed in a target block's inventory will remain in the hopper.@n@nHoppers have the same permissions as the player that placed them. Hoppers placed by you are allowed to take items from or put items into locked chests that you own, but hoppers placed by other players will be unable to do so. A hopper's own inventory is not not owner-locked, though, so you can use this as a way to allow other players to deposit items into your locked chests.=Uzataj kun fornoj, ŝutiloj enmetas portaĵojn en la fornan portaĵingon por krudaĵoj, kiam la mallarĝa fino estas konektita al la supro aŭ subo, kaj enigas portaĵojn en la fornan portaĵingon por brulaĵoj kiam ĝi estas konektita al la flanko.@n@nPortaĵoj, kiuj ne povas eniĝi la portaĵujon de la celo, restos en la ŝutilo.@n@nŜutiloj havas la samajn permesojn, kiel la ludanto, kiu ilin metas. Ŝutiloj metitaj de vi rajtas meti portaĵojn al kaj el la ŝlositaj kestoj, kiujn vi posedas, sed ŝutiloj metitaj de aliaj ludantoj ne povas tion fari. Propra portaĵujo de ŝutilo tamen ne estas ŝlosita – tiel vi povas do lasi aliajn ludantojn meti portaĵojn en viajn ŝlositajn kestojn.
+
+
+### hoppers.lua ###
+
+@1 moves stuff from hopper at @2=@1 movas aĵojn el ŝutilo je @2
+@1 moves stuff in hopper at @2=@1 movas aĵojn en ŝutilon je @2
+@1 moves stuff to hopper at @2=@1 movas aĵojn al ŝutilo je @2
+Hopper=Ŝutilo
+Side Hopper=Flanka ŝutilo
+
+### sorter.lua ###
+
+@1 moves stuff to sorter at @2=@1 movas aĵojn al apartigilo je @2
+Filter=Filtrilo
+Filter@nAll=Filtri@nĉion
+Selective@nFilter=Elekta@nfiltrilo
+Sorter=Apartigilo
+
+This sorter is currently set to only send items listed@nin the filter list in the direction of the arrow.@nClick this button to set it to try sending all@nitems that way first.=Ĉi tiu apartigilo nun estas agordita sendi nur portaĵojn@nen la filtrila listo laŭ la sago. Klaku ĉi tiun butonon por@nprovi sendi ĉiujn portaĵojn tien unue.
+
+This sorter is currently set to try sending all items@nin the direction of the arrow. Click this button@nto enable an item-type-specific filter.=Ĉi tiu apartigilo nun estas agordita al sendado@nde ĉiuj portaĵoj laŭ la sago. Klaku ĉi tiun butonon@npor ŝalti filtrilon de specoj de portaĵoj.
+
+
+### utility.lua ###
+
+Don't@nEject=Ne@nelĵeti
+Eject@nItems=Eligi@nportaĵojn
+
+This hopper is currently set to eject items from its output@neven if there isn't a compatible block positioned to receive it.@nClick this button to disable this feature.=Ĉi tiu ŝutilo eligas portaĵojn el sia eligejo, eĉ se mankas@nakorda mondero, kiu ilin ricevus. Klaku ĉi tiun butonon@npor malŝalti ĉi tiun funkcion.
+
+This hopper is currently set to hold on to item if there@nisn't a compatible block positioned to receive it.@nClick this button to have it eject items instead.=Ĉi tiu ŝutilo nun estas agordita teni portaĵon, se mankas@nakorda mondero, kiu ĝin ricevus. Klaku ĉi tiun butonon@npor anstataŭe eligi la portaĵojn.
+
+
+
+##### not used anymore #####
+
+[MOD] Hopper loaded=[MOD] Ŝutilo ŝarĝita

@@ -1,0 +1,63 @@
+# textdomain: hopper
+
+
+### chute.lua ###
+
+@1 moves stuff to chute at @2=@1 verplaatst spullen naar stortkoker bij @2
+Hopper Chute=Hopper Stortkoker
+
+### doc.lua ###
+
+A chute to transfer items over longer distances.=Een stortkoker om items over langere afstanden over te brengen.
+A sorter to redirect certain items to an alternate target.=Een sorteerder om bepaalde items om te leiden naar een alternatief doel.
+
+Chutes operate much like hoppers but do not have their own intake capability. Items can only be inserted into a chute manually or by a hopper connected to a chute. They transfer items in the direction indicated by the arrow on their narrow segment at a rate of one item per second. They have a small buffer capacity, and any items that can't be placed into the target block's inventory will remain lodged in the chute's buffer until manually removed or their destination becomes available.=Glijgoten werken net als hoppers, maar hebben geen eigen opnamecapaciteit. Artikelen kunnen alleen handmatig of in een trechter op een trechter worden geplaatst. Ze brengen items over in de richting die wordt aangegeven door de pijl op hun smalle segment met een snelheid van één item per seconde. Ze hebben een kleine buffercapaciteit en alle items die niet in de inventaris van het doelblok kunnen worden geplaatst, blijven in de buffer van de parachute totdat ze handmatig worden verwijderd of hun bestemming beschikbaar komt.
+
+Hopper blocks come in both 'vertical' and 'side' forms, but when in a player's inventory both are represented by a single generic item. The type of hopper block that will be placed when the player uses this item depends on what is pointed at - when the hopper item is pointed at the top or bottom face of a block a vertical hopper is placed, when aimed at the side of a block a side hopper is produced that connects to the clicked-on side.@n@n=Hopperblokken zijn er in zowel 'verticale' als 'zij'-vorm, maar in de inventaris van een speler worden beide weergegeven door één generiek item. Het type hopperblok dat zal worden geplaatst wanneer de speler dit item gebruikt, hangt af van waar naar wordt verwezen - wanneer het hopperitem naar de boven- of onderkant van een blok wordt gericht, wordt een verticale hopper geplaatst, wanneer gericht op de zijkant van een blok een zijtrechter wordt geproduceerd die aansluit op de aangeklikte kant.@n@n
+
+Hopper blocks come in both 'vertical' and 'side' forms. They can be interconverted between the two forms via the crafting grid.@n@n=Hopperblokken zijn er in zowel 'verticale' als 'zij'-vormen. Ze kunnen worden omgezet tussen de twee vormen via het knutselrooster.@n@n
+
+Hopper to transfer items between neighboring blocks' inventories.=Hopper om items over te dragen tussen de voorraden van naburige blokken.
+
+Items are transfered from the block at the wide end of the hopper to the block at the narrow end of the hopper at a rate of one per second. Items can also be placed directly into the hopper's inventory, or they can be dropped into the space above a hopper and will be sucked into the hopper's inventory automatically.@n@n=Artikelen worden met een snelheid van één per seconde van het blok aan het brede uiteinde van de hopper naar het blok aan het smalle uiteinde van de hopper overgebracht. Items kunnen ook rechtstreeks in de voorraad van de hopper worden geplaatst, of ze kunnen in de ruimte boven een hopper worden gedropt en worden automatisch in de voorraad van de hopper gezogen.@n@n
+
+This is similar to a chute but has a secondary output that is used to shunt specific items to an alternate destination. There is a set of inventory slots labeled "Filter" at the top of this block's inventory display, if you place an item into one of these slots the sorter will record the item's type (without actually taking it from you). Then when items come through the sorter's inventory that match one of the items in the filter list it will first attempt to send it in the direction marked with an arrow on the sorter's sides.@n@nIf the item doesn't match the filter list, or the secondary output is unable to take the item for whatever reason, the sorter will try to send the item out the other output instead.@n@nIn addition, there is a button labeled "Filter All" that will tell the sorter to not use the filter list and instead first attempt to shunt all items out of the filter, only sending items along the non-filter path if the target cannot accept it for whatever reason. This feature is useful for handling "overflow" (when the target's inventory fills up) or for dealing with targets that are selective about what they accept (for example, a furnace's fuel slot).=Dit is vergelijkbaar met een parachute, maar heeft een secundaire uitgang die wordt gebruikt om specifieke items naar een alternatieve bestemming te rangeren. Bovenaan de inventarisweergave van dit blok is er een set inventarisatiesleuven met het label "Filter". Als u een item in een van deze slots plaatst, registreert de sorteerder het type van het item (zonder het daadwerkelijk van u af te nemen). @n@nWanneer items vervolgens door de inventaris van de sorteerder komen die overeenkomen met een van de items in de filterlijst, zal deze eerst proberen het te verzenden in de richting die is gemarkeerd met een pijl aan de zijkanten van de sorteerder. Als het item niet overeenkomt met de filterlijst, of als de secundaire output het item om welke reden dan ook niet kan pakken, zal de sorteerder proberen het item in plaats daarvan naar de andere output te sturen. @n@nBovendien is er een knop met het label "Alles filteren" die de sorteerder vertelt dat hij de filterlijst niet moet gebruiken en in plaats daarvan eerst probeert om alle items uit het filter te rangschikken, waarbij alleen items langs het niet-filterpad worden verzonden als het doel het niet kan accepteren om welke reden dan ook. Deze functie is handig voor het afhandelen van 'overloop' (wanneer de voorraad van het doelwit vol raakt) of voor het omgaan met doelen die selectief zijn in wat ze accepteren (bijvoorbeeld de brandstofsleuf van een oven).
+
+When used with furnaces, hoppers inject items into the furnace's "raw material" inventory slot when the narrow end is attached to the top or bottom and inject items into the furnace's "fuel" inventory slot when attached to the furnace's side.@n@nItems that cannot be placed in a target block's inventory will remain in the hopper.@n@nHoppers have the same permissions as the player that placed them. Hoppers placed by you are allowed to take items from or put items into locked chests that you own, but hoppers placed by other players will be unable to do so. A hopper's own inventory is not not owner-locked, though, so you can use this as a way to allow other players to deposit items into your locked chests.=Bij gebruik met ovens injecteren hoppers items in de inventarisopening van de oven voor "grondstoffen" wanneer het smalle uiteinde aan de boven- of onderkant is bevestigd en injecteren items in de inventarisruimte van de oven voor "brandstof" wanneer deze aan de zijkant van de oven zijn bevestigd. @n@nItems die niet in de inventaris van een doelblok kunnen worden geplaatst, blijven in de hopper. @n@nHoppers hebben dezelfde rechten als de speler die ze heeft geplaatst. Door u geplaatste hoppers mogen items van of nemen in afgesloten kisten die u bezit, maar hoppers die door andere spelers zijn geplaatst, kunnen dit niet doen. De eigen inventaris van een hopper is echter niet door de eigenaar vergrendeld, dus je kunt dit gebruiken als een manier om andere spelers toe te staan items in je vergrendelde kisten te deponeren.
+
+
+### hoppers.lua ###
+
+@1 moves stuff from hopper at @2=@1 verplaatst spullen van hopper bij @2
+@1 moves stuff in hopper at @2=@1 verplaatst spullen in hopper bij @2
+@1 moves stuff to hopper at @2=@1 verplaatst spullen naar hopper bij @2
+Hopper=Trechter
+Side Hopper=Zijtrechter
+
+### sorter.lua ###
+
+@1 moves stuff to sorter at @2=@1 verplaatst spullen naar sorteerder bij @2
+Filter=Filter
+Filter@nAll=Filter @nAllemaal
+Selective@nFilter=Selectief @nFilter
+Sorter=Sorteerder
+
+This sorter is currently set to only send items listed@nin the filter list in the direction of the arrow.@nClick this button to set it to try sending all@nitems that way first.=Deze sorteerder is momenteel ingesteld om alleen de vermelde items te verzenden @nin de filterlijst in de richting van de pijl. @nKlik op deze knop om in te stellen dat alles moet worden verzonden @nitems op die manier eerst.
+
+This sorter is currently set to try sending all items@nin the direction of the arrow. Click this button@nto enable an item-type-specific filter.=Deze sorter is momenteel ingesteld om te proberen alle items @nte verzenden in de richting van de pijl. Klik op deze knop @nom een itemtypespecifiek filter in te schakelen.
+
+
+### utility.lua ###
+
+Don't@nEject=Niet @nUitwerpen
+Eject@nItems=Uitwerpen @nItems
+
+This hopper is currently set to eject items from its output@neven if there isn't a compatible block positioned to receive it.@nClick this button to disable this feature.=Deze hopper is momenteel ingesteld om items uit de uitvoer te werpen @nzelfs als er geen compatibel blok is geplaatst om het te ontvangen. @nKlik op deze knop om deze functie uit te schakelen.
+
+This hopper is currently set to hold on to item if there@nisn't a compatible block positioned to receive it.@nClick this button to have it eject items instead.=Deze hopper is momenteel ingesteld om het item vast te houden dat als er @ngeen compatibel blok is dat is gepositioneerd om het te ontvangen. @nKlik op deze knop om items in plaats daarvan te verwijderen.
+
+
+
+##### not used anymore #####
+
+[MOD] Hopper loaded=[MOD] Hopper geladen

@@ -1,0 +1,63 @@
+# textdomain: hopper
+
+
+### chute.lua ###
+
+@1 moves stuff to chute at @2=@1 eşyaları @2 deki kanala taşır
+Hopper Chute=Huni Kanal
+
+### doc.lua ###
+
+A chute to transfer items over longer distances.=Ögeleri uzak mesafelere aktarmak için bir kanal.
+A sorter to redirect certain items to an alternate target.=Belirli ögeleri başka bir hedefe yönlendirmek için ayırıcı.
+
+Chutes operate much like hoppers but do not have their own intake capability. Items can only be inserted into a chute manually or by a hopper connected to a chute. They transfer items in the direction indicated by the arrow on their narrow segment at a rate of one item per second. They have a small buffer capacity, and any items that can't be placed into the target block's inventory will remain lodged in the chute's buffer until manually removed or their destination becomes available.=Kanallar huniler gibi çalışır ancak alım yetenekleri yoktur. Ögeler kanala yalnızca elle veya bağlı bir huniyle aktarılabilir. Dar bölümlerindeki ok yönünde saniyede bir öge hızında ögeleri taşırlar. Küçük bir tampon alanı vardır ve hedef bloğa yerleştirilemeyen her öge, elle kaldırılana veya hedef kullanılabilir olana kadar, kanalın tamponuna takılı kalır.
+
+Hopper blocks come in both 'vertical' and 'side' forms, but when in a player's inventory both are represented by a single generic item. The type of hopper block that will be placed when the player uses this item depends on what is pointed at - when the hopper item is pointed at the top or bottom face of a block a vertical hopper is placed, when aimed at the side of a block a side hopper is produced that connects to the clicked-on side.@n@n=Huni blokları dikey ve yan biçimlerde gelir, fakat oyuncunun envanterinde tek genel bir ögeyle gösterilir. Yerleşetirilecek huninin türü neye hedeflendiğine bağlıdır - huni ögesi bloğun üst veya alt yüzeyine hedefleniyorsa dikey bir huni yerleştirilir, bloğun yanlarına hedeflendiğinde ise tıklanan tarafa bağlayan yan huni oluşturulur.@n@n
+
+Hopper blocks come in both 'vertical' and 'side' forms. They can be interconverted between the two forms via the crafting grid.@n@n=Huni blokları dikey ve yan biçimlerde gelir. İşleme ızgarasıyla iki biçime dönüştürülebilirler.@n@n
+
+Hopper to transfer items between neighboring blocks' inventories.=Komşu bloklardaki envanterler arasında ögeleri aktarmak için huni.
+
+Items are transfered from the block at the wide end of the hopper to the block at the narrow end of the hopper at a rate of one per second. Items can also be placed directly into the hopper's inventory, or they can be dropped into the space above a hopper and will be sucked into the hopper's inventory automatically.@n@n=Ögeler huninin geniş tarafında bulunan bloktan ince tarafında bulunan bloğa saniye bir adet hızında taşınır. Ögeler huninin envanterine doğrudan eklenebilir, veya huninin üstündeki boşluğa atılabilir ve huninin envanterine kendiliğinden çekilir.@n@n
+
+This is similar to a chute but has a secondary output that is used to shunt specific items to an alternate destination. There is a set of inventory slots labeled "Filter" at the top of this block's inventory display, if you place an item into one of these slots the sorter will record the item's type (without actually taking it from you). Then when items come through the sorter's inventory that match one of the items in the filter list it will first attempt to send it in the direction marked with an arrow on the sorter's sides.@n@nIf the item doesn't match the filter list, or the secondary output is unable to take the item for whatever reason, the sorter will try to send the item out the other output instead.@n@nIn addition, there is a button labeled "Filter All" that will tell the sorter to not use the filter list and instead first attempt to shunt all items out of the filter, only sending items along the non-filter path if the target cannot accept it for whatever reason. This feature is useful for handling "overflow" (when the target's inventory fills up) or for dealing with targets that are selective about what they accept (for example, a furnace's fuel slot).=Bu bir kanala benzer ama belli ögeleri başka bir hedefe yönlendirmek için kullanılan ikincil bir çıkışı vardır. Bu bloğun envanter ekranının tepesinde "Filtre" olarak etiketlenmiş bir dizi bölme vardır, bu bölmelerden birine bir öge koyarsanız ayırıcı öge türünü (onu sizden almadan) kaydeder. Sonra filtre listesindeki ögelerden biriyle eşleşen bir öge ayırıcının envanterine girdiğinde, ilk olarak bunu ayırıcının yanlarında bir okla işaretli olan yönde göndermeyi dener.@n@nEğer öge filtre listesiyle eşleşmiyor veya ikincil çıkış bir nedenle ögeyi alamıyorsa, ayırıcı onu diğer çıkışa göndermeyi dener.@n@nEk olarak Hepsini Filtrele etiketli bir düğme ayırıcaya filtre listesini kullanmamasını bunun yerine tüm ögeleri ilk olarak filtreden dışarı yönlendirip sadece bir nedenle hedefe kabul edilemeyecek ögeleri filtresiz yola göndermesi söyler. Bu özellik (hedefin envanteri dolduğunda) taşmayı yönetmek için veya (fırın yakıt bölmesi gibi) kabul ettikleri konusunda seçici olan hedeflerle uğraşırken faydalıdır.
+
+When used with furnaces, hoppers inject items into the furnace's "raw material" inventory slot when the narrow end is attached to the top or bottom and inject items into the furnace's "fuel" inventory slot when attached to the furnace's side.@n@nItems that cannot be placed in a target block's inventory will remain in the hopper.@n@nHoppers have the same permissions as the player that placed them. Hoppers placed by you are allowed to take items from or put items into locked chests that you own, but hoppers placed by other players will be unable to do so. A hopper's own inventory is not not owner-locked, though, so you can use this as a way to allow other players to deposit items into your locked chests.=Fırınlar ile kullanıldığında, huninin dar ucu fırının üst veya alt tarafına takıldığında "işlenmemiş madde" bölmesine atılır ve fırının yanına takıldığında "yakıt" bölmesine atılır.@n@nBir hedef bloğun envanterine yerleştirilemeyen maddeler huni içinde kalır.@n@nHuniler onları yerleştiren oyuncuyla aynı yetkilere sahiptir. Sizin yerleştirdiğiniz huniler sizin kilitli sandıklarınızın içine ögeleri koyabilir veya içinden ögeleri alabilir, ancak diğer oyuncuların yerleştirdiği huniler bunu yapamaz. Bir huninin kendi envanteri sahip kilitli değildir, ama bunu diğer oyuncular kilitli sandıklarınızın içine ögeleri koymasına izin vermek için bir yol kullanabilirsiniz.
+
+
+### hoppers.lua ###
+
+@1 moves stuff from hopper at @2=@1 eşyaları @2 deki huniden taşır
+@1 moves stuff in hopper at @2=@1, @2 deki hunideki eşyaları taşır
+@1 moves stuff to hopper at @2=@1 eşyaları @2 deki huniye taşır
+Hopper=Huni
+Side Hopper=Yan Huni
+
+### sorter.lua ###
+
+@1 moves stuff to sorter at @2=@1 eşyaları @2 deki ayırıcıya taşır
+Filter=Filtre
+Filter@nAll=Tümünü@nFiltrele
+Selective@nFilter=Seçici@nFiltre
+Sorter=Ayırıcı
+
+This sorter is currently set to only send items listed@nin the filter list in the direction of the arrow.@nClick this button to set it to try sending all@nitems that way first.=Bu ayırıcı şu anda sadece filtre listesinde listelenmiş@nögeleri ok yönünde göndermek için ayarlı.@nTüm ögeleri göndermeyi denemesini ayarlamak@niçin bu düğmeye tıklayın.
+
+This sorter is currently set to try sending all items@nin the direction of the arrow. Click this button@nto enable an item-type-specific filter.=Bu ayırıcı şu anda tüm ögeleri ok yönünde göndermeyi@ndenemek için ayarlı. Öge-türüne-bağlı bir filtreyi@netkinleştirmek için bu düğmeye tıklayın.
+
+
+### utility.lua ###
+
+Don't@nEject=Çıkarma
+Eject@nItems=Ögeleri@nÇıkar
+
+This hopper is currently set to eject items from its output@neven if there isn't a compatible block positioned to receive it.@nClick this button to disable this feature.=Bu huni, alması için konumlandırılmış uyumlu bir blok@nolmasada, şu anda ögeleri çıkışından atmak için ayarlanmış.@nBu özelliği devre dışı kılmak için bu düğmeyi tıklayın.
+
+This hopper is currently set to hold on to item if there@nisn't a compatible block positioned to receive it.@nClick this button to have it eject items instead.=Bu huni, alması için konumlandırılmış uyumlu bir@nblok yoksa, ögeleri tutmak için ayarlanmış.@nBunun yerine ögeleri atması için bu düğmeyi tıklayın.
+
+
+
+##### not used anymore #####
+
+[MOD] Hopper loaded=[MOD] Huni yüklendi
