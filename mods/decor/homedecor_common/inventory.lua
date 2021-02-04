@@ -141,9 +141,9 @@ function homedecor.handle_inventory(name, def, original_def)
 					stack:get_count()
 		end
 
-		local can_dig = def.can_dig
+		local can_dig = def.can_dig or default_can_dig
 		def.can_dig = function(pos, player)
-			return default.can_interact_with_node(player, pos) and (can_dig and (can_dig(pos, player) or true))
+			return default.can_interact_with_node(player, pos) and (can_dig and can_dig(pos, player) == true)
 		end
 
 		def.on_key_use = function(pos, player)

@@ -141,7 +141,7 @@ Mod: smart_sfinv_modpack/smart_sfinv_creative_sitebar
 Mod: smart_sfinv_modpack/smart_sfinv_tweaks
 
 origin	https://notabug.org/TenPlus1/ambience (fetch)
-* master 43a1ebb [origin/master] few nil checks added
+* master 9b1a57b [origin/master] update mod.conf info
 Mod: ambience/ambience
 
 origin	https://github.com/minetest-mods/lightning (fetch)
@@ -157,7 +157,7 @@ origin	https://gitlab.com/rautars/weather_pack (fetch)
 Mod: ambience/weather_pack
 
 origin	https://notabug.org/TenPlus1/farming (fetch)
-* master 41356a3 [origin/master] updated german translation (thanks rti)
+* master 79035d0 [origin/master] added extra compatibility for crops spawning on older v6 maps
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
@@ -177,7 +177,7 @@ origin	https://github.com/minetest-mods/meseor (fetch)
 Mod: mapgen/meseor
 
 origin	https://notabug.org/TenPlus1/pbj_pup (fetch)
-* master 85e1d9a [origin/master] add screenshot
+* master a60d0cd [origin/master] add mod.conf
 Mod: mapgen/pbj_pup
 
 origin	https://github.com/GreenXenith/tac_nayn (fetch)
@@ -189,7 +189,7 @@ origin	https://github.com/taikedz/everamzah-backpacks (fetch)
 Mod: tools/backpacks
 
 origin	https://notabug.org/tenplus1/bonemeal (fetch)
-* master 587e0fb [origin/master] added german translation (thanks rti)
+* master 308baf3 [origin/master] update mod.conf info
 Mod: tools/bonemeal
 
 origin	https://github.com/SmallJoker/boost_cart (fetch)
@@ -263,7 +263,7 @@ origin	https://github.com/Ezhh/abriglass (fetch)
 Mod: decor/abriglass
 
 origin	https://gitlab.com/VanessaE/basic_materials (fetch)
-* master 30ffac3 [origin/master] Merge branch 'de' into 'master'
+* master e72665b [origin/master] Merge branch 'italian' into 'master'
 Mod: decor/basic_materials
 
 origin	https://github.com/Napiophelios/campfire (fetch)
@@ -324,7 +324,7 @@ origin	https://gitlab.com/VanessaE/unifieddyes (fetch)
 Mod: decor/unifieddyes
 
 origin	https://gitlab.com/VanessaE/homedecor_modpack/ (fetch)
-* master ac9f417 [origin/master: ahead 5] Merge remote-tracking branch 'origin/master'
+* master 6486037 [origin/master: ahead 6] Merge remote-tracking branch 'origin/master'
 Mod: homedecor_modpack/building_blocks
 Mod: homedecor_modpack/fake_fire
 Mod: homedecor_modpack/lavalamp
@@ -389,7 +389,7 @@ origin	https://github.com/Philipbenr/mtfoods (fetch)
 Mod: food/mtfoods
 
 origin	https://notabug.org/TenPlus1/pie (fetch)
-* master 3461c54 [origin/master] new pie inventory image (thanks lux_pp)
+* master 85016dc [origin/master] update mod.conf info
 Mod: food/pie
 
 origin	https://github.com/GreenXenith/waffles (fetch)
@@ -428,9 +428,9 @@ origin	https://codeberg.org/Hamlet/mobs_ghost_redo (fetch)
 Mod: mobs_redo/mobs_ghost_redo
 
 origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
-* master 4018a5c [origin/master] Added spawn.lua check for custom mob spawns, example file included
+* master 9835105 [origin/master] fix typo in mod.conf
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master 622abd1 [origin/master] hopefully fixed death animation crash when player away
+* master c158e84 [origin/master] stop grown child mobs sinking into blocks below
 Mod: mobs_redo/mobs_redo

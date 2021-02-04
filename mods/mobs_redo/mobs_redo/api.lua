@@ -8,7 +8,7 @@ local use_cmi = minetest.global_exists("cmi")
 
 mobs = {
 	mod = "redo",
-	version = "20210108",
+	version = "20210203",
 	intllib = S,
 	invis = minetest.global_exists("invisibility") and invisibility or {}
 }
@@ -563,7 +563,7 @@ function mob_class:attempt_flight_correction(override)
 
 	-- We are not flying in what we are supposed to.
 	-- See if we can find intended flight medium and return to it
-	local pos = self.object:get_pos()
+	local pos = self.object:get_pos() ; if not pos then return true end
 	local searchnodes = self.fly_in
 
 	if type(searchnodes) == "string" then
@@ -1354,11 +1354,15 @@ function mob_class:breed()
 				self.on_grown(self)
 			else
 				-- jump when fully grown so as not to fall into ground
-				self.object:set_velocity({
-					x = 0,
-					y = self.jump_height,
-					z = 0
-				})
+--				self.object:set_velocity({
+--					x = 0,
+--					y = self.jump_height,
+--					z = 0
+--				})
+				local pos = self.object:get_pos() ; if not pos then return end
+				local ent = self.object:get_luaentity()
+				pos.y = pos.y + (ent.collisionbox[2] * -1) - 0.4
+				self.object:set_pos(pos)
 			end
 		end
 
@@ -1457,6 +1461,8 @@ function mob_class:breed()
 					else
 						effect(pos, 15, "tnt_smoke.png", 1, 2, 2, 15, 5)
 					end
+
+					pos.y = pos.y + 0.5 -- spawn child a little higher
 
 					local mob = minetest.add_entity(pos, self.name)
 					local ent2 = mob:get_luaentity()
@@ -3705,9 +3711,6 @@ local can_spawn = function(pos, name)
 	end
 	end
 
-	-- spawn mob 1/2 node above ground
-	pos.y = pos.y + 0.5
-
 	-- tweak X/Z spawn pos
 	if width_x % 2 == 0 then
 		pos.x = pos.x + 0.5
@@ -3972,15 +3975,15 @@ function mobs:spawn_specific(name, nodes, neighbors, min_light, max_light, inter
 			end
 		end
 
+		local ent = minetest.registered_entities[name]
+
 		-- should we check mob area for obstructions ?
 		if mob_area_spawn ~= true then
 
 			-- do we have enough height clearance to spawn mob?
-			local ent = minetest.registered_entities[name]
-			local height = max(1, math.ceil(
-				(ent.collisionbox[5] or 0.25) - (ent.collisionbox[2] or -0.25) - 1))
+			local height = max(0, ent.collisionbox[5] - ent.collisionbox[2])
 
-			for n = 0, height do
+			for n = 0, floor(height) do
 
 				local pos2 = {x = pos.x, y = pos.y + n, z = pos.z}
 
@@ -3995,6 +3998,9 @@ function mobs:spawn_specific(name, nodes, neighbors, min_light, max_light, inter
 		end
 
 		if pos then
+
+			-- adjust for mob collision box
+			pos.y = pos.y + (ent.collisionbox[2] * -1) - 0.4
 
 			local mob = minetest.add_entity(pos, name)
 

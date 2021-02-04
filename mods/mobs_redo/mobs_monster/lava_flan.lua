@@ -109,6 +109,7 @@ mobs:alias_mob("mobs:lava_flan", "mobs_monster:lava_flan") -- compatibility
 minetest.register_craftitem(":mobs:lava_orb", {
 	description = S("Lava orb"),
 	inventory_image = "zmobs_lava_orb.png",
+	light_source = 14,
 })
 
 minetest.register_alias("zmobs:lava_orb", "mobs:lava_orb")
@@ -178,7 +179,8 @@ minetest.register_tool(":mobs:pick_lava", {
 		},
 		damage_groups = {fleshy = 6, fire = 1},
 	},
-	groups = {pickaxe = 1}
+	groups = {pickaxe = 1},
+	light_source = 14
 })
 
 minetest.register_craft({
