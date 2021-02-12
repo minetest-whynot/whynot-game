@@ -126,7 +126,7 @@ Mod: player_api_modpack/skinsdb5
 Mod: player_api_modpack/wieldview
 
 origin	https://github.com/minetest-mods/3d_armor (fetch)
-* master e7abacc [origin/master] Add armor set and armor set bonus setting (#41)
+* master 42f7dac [origin/master] Update fire and water protection (#42)
 Mod: 3d_armor/3d_armor_stand
 Mod: 3d_armor/shields
 Mod: 3d_armor/3d_armor_sfinv
@@ -221,7 +221,7 @@ origin	https://github.com/minetest-mods/hopper (fetch)
 Mod: tools/hopper
 
 origin	https://github.com/minetest-mods/jumping (fetch)
-* master fdd5bbd [origin/master] beter recipes - use the jumping cushion to build the trampoline recipes have soft-dependency in recipe to farming and wool
+* master 811847b [origin/master] Update mod.conf
 Mod: tools/jumping
 
 origin	https://github.com/minetest-mods/orbs_of_time/ (fetch)
@@ -432,5 +432,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master c158e84 [origin/master] stop grown child mobs sinking into blocks below
+* master 11e1d52 [origin/master] replace minetest 5.0 check
 Mod: mobs_redo/mobs_redo
