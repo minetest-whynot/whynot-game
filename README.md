@@ -19,31 +19,31 @@ The whynot related work (such as the buiding scripts) are GPL-V3
 
 ### 1 don't take over the game
 
-<span id="#1-no-take-over-the-game"></span>
+<span id="1-no-take-over-the-game"></span>
 
 Unfortunately a lot of great mods assume the player likes to play with this mod only. This game stands for diversity. That means if a player does not like an included mod, they can play the game without using that mod (few exceptions).
 
 ### 2 don't take over the server
 
-<span id="#2-no-take-over-the-server"></span>
+<span id="2-no-take-over-the-server"></span>
 
 Thinking alongside point 1, the mod should be not strain the server if the mod is not in use. That means no unnecessary ABM's and so on.
 
 ### 3 don't destroy the world
 
-<span id="#3-no-destroy-the-world"></span>
+<span id="3-no-destroy-the-world"></span>
 
 The mod should not be able to destroy players' work.
 
 ### 4 no bad code quality
 
-<span id="#4-no-bad-code-quality"></span>
+<span id="4-no-bad-code-quality"></span>
 
 I look into the lua code of each mod before I make my decision. I am tolerant against imperfect code, but roughly negligent and/or bad code will be rejected. Advantage for the mod developer: They get a code review for free ;-) And if I like the mod, I might contribute some optimizations to get the mod ready for the game.
 
 ### 5 no all-in-one mods or lots of unused dependencies
 
-<span id="#5-no-all-in-one-mods-and-lot-of-unused-dependencies"></span>
+<span id="5-no-all-in-one-mods-and-lot-of-unused-dependencies"></span>
 
 It is difficult to consider an all-in-one mod for these described rules. Therefore an all-in-one mod might be rejected.
 
