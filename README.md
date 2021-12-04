@@ -12,7 +12,7 @@ Generated file: [mod_sources.txt](https://github.com/bell07/minetest-game-whynot
 
 ### License statement
 
-Each mods does have their own free license.
+Each of the mods do have their own free license.
 The whynot related work (such as the buiding scripts) are GPL-V3
 
 ## Whynot Rules for mods
@@ -36,8 +36,6 @@ Thinking alongside point 1, the mod should be not strain the server if the mod i
 The mod should not be able to destroy players' work.
 
 ### 4 no bad code quality
-
-<span id="4-no-bad-code-quality"></span>
 
 I look into the lua code of each mod before I make my decision. I am tolerant against imperfect code, but roughly negligent and/or bad code will be rejected. Advantage for the mod developer: They get a code review for free ;-) And if I like the mod, I might contribute some optimizations to get the mod ready for the game.
 
