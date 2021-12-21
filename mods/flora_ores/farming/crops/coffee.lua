@@ -34,29 +34,14 @@ minetest.register_alias("farming:drinking_cup", "vessels:drinking_glass")
 
 minetest.register_craft( {
 	output = "farming:coffee_cup",
-	type = "shapeless",
 	recipe = {
-		"vessels:drinking_glass", "group:food_coffee",
-		"group:water_bucket", "group:food_saucepan"},
+		{"group:food_saucepan", "group:food_coffee", "group:food_water_glass"}
+	},
 	replacements = {
-		{"group:water_bucket", "bucket:bucket_empty"},
 		{"group:food_saucepan", "farming:saucepan"}
 	}
 })
 
-if minetest.get_modpath("bucket_wooden") then
-	minetest.register_craft( {
-		output = "farming:coffee_cup",
-		type = "shapeless",
-		recipe = {
-			"vessels:drinking_glass", "group:food_coffee",
-			"group:water_bucket_wooden", "group:food_saucepan"},
-		replacements = {
-			{"group:water_bucket_wooden", "bucket_wooden:bucket_empty"},
-			{"group:food_saucepan", "farming:saucepan"}
-		}
-	})
-end
 
 -- coffee definition
 local def = {

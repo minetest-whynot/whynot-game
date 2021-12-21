@@ -127,8 +127,13 @@ function cart_entity:on_punch(puncher, time_from_last_punch, tool_capabilities, 
 			boost_cart:manage_attachment(player, nil)
 		end
 		for _, obj_ in pairs(self.attached_items) do
-			if obj_ then
+			local ent = obj_ and obj_:get_luaentity()
+			if ent then
 				obj_:set_detach()
+				-- Attention! Internal item API
+				if ent.enable_physics then
+					ent:enable_physics()
+				end
 			end
 		end
 
@@ -156,7 +161,8 @@ function cart_entity:on_punch(puncher, time_from_last_punch, tool_capabilities, 
 	end
 
 	local punch_interval = 1
-	if tool_capabilities and tool_capabilities.full_punch_interval then
+	-- Faulty tool registrations may cause the interval to be set to 0 !
+	if tool_capabilities and (tool_capabilities.full_punch_interval or 0) > 0 then
 		punch_interval = tool_capabilities.full_punch_interval
 	end
 	time_from_last_punch = math.min(time_from_last_punch or punch_interval, punch_interval)
@@ -347,8 +353,8 @@ function cart_entity:on_step(dtime)
 		-- Collect dropped items
 		for _, obj_ in pairs(minetest.get_objects_inside_radius(pos, 1)) do
 			local ent = obj_:get_luaentity()
-			-- Careful here: physical_state and disable_physics are item-internal APIs
-			if ent and ent.name == "__builtin:item" and ent.physical_state then
+			-- Attention! Physics must be disabled prior to attach
+			if ent and ent.name == "__builtin:item" and not obj_:get_attach() then
 				-- Check API to support 5.2.0 and older
 				if ent.disable_physics then
 					ent:disable_physics()

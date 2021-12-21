@@ -217,7 +217,7 @@ if minetest.get_modpath("ethereal") then
 	hbhunger.register_food("ethereal:wild_onion_plant", 2)
 	hbhunger.register_food("ethereal:mushroom_soup", 4, "ethereal:bowl")
 	hbhunger.register_food("ethereal:mushroom_soup_cooked", 6, "ethereal:bowl")
-	hbhunger.register_food("ethereal:hearty_stew", 6, "ethereal:bowl", 3)
+	hbhunger.register_food("ethereal:hearty_stew", 6, "ethereal:bowl")
 	hbhunger.register_food("ethereal:hearty_stew_cooked", 10, "ethereal:bowl")
 	if minetest.get_modpath("bucket") then
   	hbhunger.register_food("ethereal:bucket_cactus", 2, "bucket:bucket_empty")

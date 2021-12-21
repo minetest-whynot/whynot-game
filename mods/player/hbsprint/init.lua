@@ -130,8 +130,8 @@ local function is_walkable(ground)
 end
 
 local function create_particles(player, name, ground)
-  local def = minetest.registered_nodes[ground.name]
-  local tile = def.tiles[1] or def.inventory_image
+  local def = minetest.registered_nodes[ground.name] or {}
+  local tile = def.tiles and def.tiles[1] or def.inventory_image
   if type(tile) == "table" then
     tile = tile.name
   end

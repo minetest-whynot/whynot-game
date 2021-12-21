@@ -3,9 +3,25 @@ ts_furniture = {}
 -- If true, you can sit on chairs and benches, when right-click them.
 ts_furniture.enable_sitting = minetest.settings:get_bool("ts_furniture.enable_sitting", true)
 ts_furniture.globalstep = minetest.settings:get_bool("ts_furniture.globalstep", true)
+ts_furniture.kneeling_bench = minetest.settings:get_bool("ts_furniture.kneeling_bench", false)
 
 -- Used for localization
 local S = minetest.get_translator("ts_furniture")
+
+-- Get texture by node name
+local T = function (node_name)
+	local def = minetest.registered_nodes[node_name]
+	if not (def and def.tiles) then
+		return ""
+	end
+	local tile = def.tiles[5] or def.tiles[4] or def.tiles[3] or def.tiles[2] or def.tiles[1]
+	if type(tile) == "string" then
+		return tile
+	elseif type(tile) == "table" and tile.name then
+		return tile.name
+	end
+	return ""
+end
 
 -- The following code is from "Get Comfortable [cozy]" (by everamzah; published under WTFPL)
 -- Thomas S. modified it, so that it can be used in this mod
@@ -147,12 +163,36 @@ local furnitures = {
 	}
 }
 
+if ts_furniture.kneeling_bench then
+	furnitures.kneeling_bench = {
+		description = "Kneeling Bench",
+		nodebox = {
+			{ -0.5, -0.5, 0.4, 0.5, 0.5, 0.5 },
+			{ -0.4, -0.5, -0.2, -0.3, -0.3, 0.5 },
+			{ 0.3, -0.5, -0.2, 0.4, -0.3, 0.5 },
+			{ -0.5, -0.3, -0.2, 0.5, -0.2, 0.2},
+			{ -0.5, 0.4, 0.15, 0.5, 0.5, 0.55},
+		},
+		craft = function(recipe)
+			local bench_name = "ts_furniture:" .. recipe:gsub(":", "_") .. "_bench"
+			return {
+				{ recipe, "" },
+				{ recipe, bench_name }
+			}
+		end
+	}
+end
+
 local ignore_groups = {
 	["wood"] = true,
 	["stone"] = true
 }
 
 function ts_furniture.register_furniture(recipe, description, tiles)
+	if not tiles then
+		tiles = T(recipe)
+	end
+
 	local recipe_def = minetest.registered_items[recipe]
 	if not recipe_def then
 		return
@@ -196,34 +236,34 @@ function ts_furniture.register_furniture(recipe, description, tiles)
 	end
 end
 
-ts_furniture.register_furniture("default:aspen_wood", "Aspen", "default_aspen_wood.png")
-ts_furniture.register_furniture("default:pine_wood", "Pine", "default_pine_wood.png")
-ts_furniture.register_furniture("default:acacia_wood", "Acacia", "default_acacia_wood.png")
-ts_furniture.register_furniture("default:wood", "Wooden", "default_wood.png")
-ts_furniture.register_furniture("default:junglewood", "Jungle Wood", "default_junglewood.png")
+ts_furniture.register_furniture("default:aspen_wood", "Aspen")
+ts_furniture.register_furniture("default:pine_wood", "Pine")
+ts_furniture.register_furniture("default:acacia_wood", "Acacia")
+ts_furniture.register_furniture("default:wood", "Wooden")
+ts_furniture.register_furniture("default:junglewood", "Jungle Wood")
 
 if (minetest.get_modpath("moretrees")) then
-	ts_furniture.register_furniture("moretrees:apple_tree_planks", "Apple Tree", "moretrees_apple_tree_wood.png")
-	ts_furniture.register_furniture("moretrees:beech_planks", "Beech", "moretrees_beech_wood.png")
-	ts_furniture.register_furniture("moretrees:birch_planks", "Birch", "moretrees_birch_wood.png")
-	ts_furniture.register_furniture("moretrees:fir_planks", "Fir", "moretrees_fir_wood.png")
-	ts_furniture.register_furniture("moretrees:oak_planks", "Oak", "moretrees_oak_wood.png")
-	ts_furniture.register_furniture("moretrees:palm_planks", "Palm", "moretrees_palm_wood.png")
-	ts_furniture.register_furniture("moretrees:rubber_tree_planks", "Rubber Tree", "moretrees_rubber_tree_wood.png")
-	ts_furniture.register_furniture("moretrees:sequoia_planks", "Sequoia", "moretrees_sequoia_wood.png")
-	ts_furniture.register_furniture("moretrees:spruce_planks", "Spruce", "moretrees_spruce_wood.png")
-	ts_furniture.register_furniture("moretrees:willow_planks", "Willow", "moretrees_willow_wood.png")
+	ts_furniture.register_furniture("moretrees:apple_tree_planks", "Apple Tree")
+	ts_furniture.register_furniture("moretrees:beech_planks", "Beech")
+	ts_furniture.register_furniture("moretrees:birch_planks", "Birch")
+	ts_furniture.register_furniture("moretrees:fir_planks", "Fir")
+	ts_furniture.register_furniture("moretrees:oak_planks", "Oak")
+	ts_furniture.register_furniture("moretrees:palm_planks", "Palm")
+	ts_furniture.register_furniture("moretrees:rubber_tree_planks", "Rubber Tree")
+	ts_furniture.register_furniture("moretrees:sequoia_planks", "Sequoia")
+	ts_furniture.register_furniture("moretrees:spruce_planks", "Spruce")
+	ts_furniture.register_furniture("moretrees:willow_planks", "Willow")
 end
 
 if minetest.get_modpath("ethereal") then
-	ts_furniture.register_furniture("ethereal:banana_wood", "Banana", "banana_wood.png")
-	ts_furniture.register_furniture("ethereal:birch_wood", "Birch", "moretrees_birch_wood.png")
-	ts_furniture.register_furniture("ethereal:frost_wood", "Frost", "frost_wood.png")
-	ts_furniture.register_furniture("ethereal:mushroom_trunk", "Mushroom", "mushroom_trunk.png")
-	ts_furniture.register_furniture("ethereal:palm_wood", "Palm", "moretrees_palm_wood.png")
-	ts_furniture.register_furniture("ethereal:redwood_wood", "Redwood", "redwood_wood.png")
-	ts_furniture.register_furniture("ethereal:sakura_wood", "Sakura", "ethereal_sakura_wood.png")
-	ts_furniture.register_furniture("ethereal:scorched_tree", "Scorched", "scorched_tree.png")
-	ts_furniture.register_furniture("ethereal:willow_wood", "Willow", "willow_wood.png")
-	ts_furniture.register_furniture("ethereal:yellow_wood", "Healing Tree", "yellow_wood.png")
+	ts_furniture.register_furniture("ethereal:banana_wood", "Banana")
+	ts_furniture.register_furniture("ethereal:birch_wood", "Birch")
+	ts_furniture.register_furniture("ethereal:frost_wood", "Frost")
+	ts_furniture.register_furniture("ethereal:mushroom_trunk", "Mushroom")
+	ts_furniture.register_furniture("ethereal:palm_wood", "Palm")
+	ts_furniture.register_furniture("ethereal:redwood_wood", "Redwood")
+	ts_furniture.register_furniture("ethereal:sakura_wood", "Sakura")
+	ts_furniture.register_furniture("ethereal:scorched_tree", "Scorched")
+	ts_furniture.register_furniture("ethereal:willow_wood", "Willow")
+	ts_furniture.register_furniture("ethereal:yellow_wood", "Healing Tree")
 end

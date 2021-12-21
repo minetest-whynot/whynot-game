@@ -21,9 +21,8 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-	type = "shapeless",
 	output = "farming:melon_slice 4",
-	recipe = {"farming:melon_8", "farming:cutting_board"},
+	recipe = {{"farming:cutting_board", "farming:melon_8"}},
 	replacements = {{"farming:cutting_board", "farming:cutting_board"}}
 })
 
@@ -72,17 +71,22 @@ def.tiles = {"farming_melon_7.png"}
 minetest.register_node("farming:melon_7", table.copy(def))
 
 -- stage 8 (final)
-def.drawtype = "nodebox"
-def.description = S("Melon")
-def.tiles = {"farming_melon_top.png", "farming_melon_top.png", "farming_melon_side.png"}
-def.selection_box = {-.5, -.5, -.5, .5, .5, .5}
-def.walkable = true
-def.groups = {
-	food_melon = 1, snappy = 2, oddly_breakable_by_hand = 1,
-	flammable = 2, plant = 1
-}
-def.drop = "farming:melon_8"
-minetest.register_node("farming:melon_8", table.copy(def))
+minetest.register_node("farming:melon_8", {
+	description = S("Melon"),
+	tiles = {
+		"farming_melon_top.png",
+		"farming_melon_bottom.png",
+		"farming_melon_side.png"
+	},
+	groups = {
+		food_melon = 1, snappy = 2, oddly_breakable_by_hand = 1,
+		flammable = 2, plant = 1
+	},
+	drop = "farming:melon_8",
+	sounds = default.node_sound_wood_defaults(),
+	paramtype2 = "facedir",
+	on_place = minetest.rotate_node
+})
 
 -- add to registered_plants
 farming.registered_plants["farming:melon"] = {

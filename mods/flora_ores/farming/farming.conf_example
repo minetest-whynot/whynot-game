@@ -35,7 +35,11 @@ farming.blackberry = 0.002
 farming.lettuce = 0.001
 farming.soy = 0.001
 farming.vanilla = 0.001
+farming.artichoke = 0.001
+farming.parsley = 0.002
+farming.sunflower = 0.001
 farming.grains = true -- true or false only
+farming.rice = true
 
 -- default rarety of crops on map (higher number = more crops)
 farming.rarety = 0.002

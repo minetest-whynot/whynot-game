@@ -361,7 +361,7 @@ farming.add_to_scythe_not_drops = function(item)
 end
 
 minetest.register_tool("farming:scythe_mithril", {
-	description = S("Mithril Scythe (Right-click to harvest and replant crops)"),
+	description = S("Mithril Scythe (Use to harvest and replant crops)"),
 	inventory_image = "farming_scythe_mithril.png",
 	sound = {breaks = "default_tool_breaks"},
 

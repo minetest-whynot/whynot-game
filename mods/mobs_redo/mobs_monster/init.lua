@@ -28,6 +28,8 @@ dofile(path .. "tree_monster.lua")
 dofile(path .. "lava_flan.lua") -- Zeg9
 dofile(path .. "mese_monster.lua")
 dofile(path .. "spider.lua") -- AspireMint
+dofile(path .. "land_guard.lua")
+dofile(path .. "fire_spirit.lua")
 
 
 -- Load custom spawning
@@ -40,4 +42,4 @@ end
 dofile(path .. "lucky_block.lua")
 
 
-print (S("[MOD] Mobs Redo Monsters loaded"))
+print ("[MOD] Mobs Redo Monsters loaded")

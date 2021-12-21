@@ -66,6 +66,12 @@ else
 	}
 end
 
+-- default to legacy behaviour
+ccompass.stack_max = tonumber(minetest.settings:get("ccompass_stack_max") or 1) or 1
+ccompass.allow_using_stacks = minetest.settings:get_bool("ccompass_allow_using_stacks")
+
+ccompass.idle_interval = tonumber(minetest.settings:get("ccompass_idle_interval") or 1) or 1
+
 if minetest.settings:get_bool("ccompass_aliasses") then
 	minetest.register_alias("compass:0", "ccompass:0")
 	minetest.register_alias("compass:1", "ccompass:1")
@@ -229,7 +235,7 @@ local function teleport_above(playername, target, counter)
 	end
 end
 
--- get right image number for players compas
+-- get right image number for players compass
 local function get_compass_stack(player, stack)
 	local target = get_destination(player, stack)
 	local pos = player:get_pos()
@@ -245,7 +251,7 @@ local function get_compass_stack(player, stack)
 	-- create new stack with metadata copied
 	local metadata = stack:get_meta():to_table()
 
-	local newstack = ItemStack("ccompass:"..compass_image)
+	local newstack = ItemStack("ccompass:"..compass_image.." "..stack:get_count())
 	if metadata then
 		newstack:get_meta():from_table(metadata)
 	end
@@ -257,6 +263,11 @@ end
 
 -- Calibrate compass on pointed_thing
 local function on_use_function(itemstack, player, pointed_thing)
+	-- if using with a bunch together, need to check server preference
+	if 1 ~= itemstack:get_count() and not ccompass.allow_using_stacks then
+		minetest.chat_send_player(player:get_player_name(), "Use a single compass.")
+		return
+	end
 	-- possible only on nodes
 	if pointed_thing.type ~= "node" then --support nodes only for destination
 		minetest.chat_send_player(player:get_player_name(), "Calibration can be done on nodes only")
@@ -335,7 +346,8 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 end)
 
 -- update inventory
-minetest.register_globalstep(function(dtime)
+local function do_update_loop()
+	local found_compasses = false
 	for i,player in ipairs(minetest.get_connected_players()) do
 		if player:get_inventory() then
 			for i,stack in ipairs(player:get_inventory():get_list("main")) do
@@ -343,12 +355,17 @@ minetest.register_globalstep(function(dtime)
 					break
 				end
 				if string.sub(stack:get_name(), 0, 9) == "ccompass:" then
+					found_compasses = true
 					player:get_inventory():set_stack("main", i, get_compass_stack(player, stack))
 				end
 			end
 		end
 	end
-end)
+	-- if no compasses were found, idle for a time before checking again
+	local interval = found_compasses and 0 or ccompass.idle_interval
+	minetest.after(interval, do_update_loop)
+end
+minetest.after(0, do_update_loop)
 
 -- register items
 for i = 0, 15 do
@@ -357,12 +374,20 @@ for i = 0, 15 do
 	if i > 0 then
 		groups.not_in_creative_inventory = 1
 	end
-	minetest.register_tool("ccompass:"..i, {
+	local itemname = "ccompass:"..i
+	minetest.register_craftitem(itemname, {
 		description = "Compass",
 		inventory_image = image,
 		wield_image = image,
+		stack_max = ccompass.stack_max or 42,
 		groups = groups,
 		on_use = on_use_function,
+	})
+	-- reset recipe
+	minetest.register_craft({
+		type = "shapeless",
+		output = "ccompass:0",
+		recipe = { itemname }
 	})
 end
 
@@ -374,3 +399,13 @@ minetest.register_craft({
 		{'', 'default:steel_ingot', ''}
 	}
 })
+-- add an alternative recipe
+minetest.register_craft({
+	output = 'ccompass:0',
+	recipe = {
+		{'default:steel_ingot', '', 'default:steel_ingot'},
+		{'', 'default:mese_crystal_fragment', ''},
+		{'default:steel_ingot', '', 'default:steel_ingot'}
+	}
+})
+

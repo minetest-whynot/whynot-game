@@ -22,7 +22,7 @@
 if minetest.get_modpath("unified_inventory") and unified_inventory.register_craft_type then
 		unified_inventory.register_craft_type("pickling", {
 				description = "Dark room, wooden shelf",
-				icon = "pickling_icon.png",
+				icon = "canned_food_pickling_icon.png",
 				width = 1,
 				height = 1,
 				uses_crafting_grid = false,
@@ -305,9 +305,9 @@ for product, def in pairs(canned_food_definitions) do
 			local nodetable = {
 				description = def.proper_name,
 				drawtype = "plantlike",
-				tiles = {product .. ".png"},
-				inventory_image = product .. ".png",
-				wield_image = product .. ".png",
+				tiles = {"canned_food_" .. product .. ".png"},
+				inventory_image = "canned_food_" .. product .. ".png",
+				wield_image = "canned_food_" .. product .. ".png",
 				paramtype = "light",
 				is_ground_content = false,
 				walkable = false,
@@ -367,9 +367,9 @@ for product, def in pairs(canned_food_definitions) do
 				minetest.register_node("canned_food:" .. product .."_plus", {
 					description = def.transforms,
 					drawtype = "plantlike",
-					tiles = {product .. ".png^paper_lid_cover.png"},
-					inventory_image = product .. ".png^paper_lid_cover.png",
-					wield_image = product .. ".png^paper_lid_cover.png",
+					tiles = {"canned_food_" .. product .. ".png^canned_food_paper_lid_cover.png"},
+					inventory_image = "canned_food_" .. product .. ".png^canned_food_paper_lid_cover.png",
+					wield_image = "canned_food_" .. product .. ".png^canned_food_paper_lid_cover.png",
 					paramtype = "light",
 					is_ground_content = false,
 					walkable = false,

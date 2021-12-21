@@ -18,5 +18,7 @@ Based on Immersive Sounds .36 mod by Neuromancer and optimized to run on servers
 - 1.3 - Added API for use with other mods, code rewrite
 - 1.4 - Re-ordered water sets to come before fire and lava, day/night sounds play when leaves around and above ground
 - 1.5 - Added 'flame_sound' and fire redo check, code tidy and tweak, added ephemeral flag for background sounds.
+- 1.6 - Finding env_sounds disables water and lava sets, added 'ambience_water_move' flag to override water walking sounds, use eye level for head node.
+- 1.7 - Music will play every 20-30 minutes if found, use '/mvol 0' to stop playing music or disable in-game.
 
 Code license: MIT

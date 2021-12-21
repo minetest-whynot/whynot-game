@@ -6,31 +6,26 @@ local cdoor_list = {   --Number , Description , Inven Image , Image
 	{ "5", "Mese Door" , "mese", "mese_crystal"},
 }
 
+local function add_door(num, desc, img, itm)
+	doors.register_door("my_default_doors:door"..num.."_locked", {
+		description = desc.." Locked",
+		inventory_image = "mydoors_"..img.."_inv.png",
+		groups = {choppy=2,cracky=2,door=1},
+		tiles = {{name="mydoors_"..img..".png", backface_culling = true}},
+		protected = true,
+	})
 
-for i in ipairs(cdoor_list) do
-	local num = cdoor_list[i][1]
-	local desc = cdoor_list[i][2]
-	local img = cdoor_list[i][3]
-	local itm = cdoor_list[i][4]
+	-- Crafts
+	minetest.register_craft({
+		output = "my_default_doors:door"..num.."_locked 1",
+		recipe = {
+			{"", "", ""},
+			{"default:"..itm, "doors:door_steel", "default:"..itm},
+			{"", "default:steel_ingot", ""}
+		}
+	})
+end
 
-
-doors.register_door("my_default_doors:door"..num.."_locked", {
-	description = desc.." Locked",
-	inventory_image = "mydoors_"..img.."_inv.png",
-	groups = {choppy=2,cracky=2,door=1},
-	tiles = {{name="mydoors_"..img..".png", backface_culling = true}},
-	protected = true,
-})
-
-
--- Crafts
-
-minetest.register_craft({
-	output = "my_default_doors:door"..num.."_locked 1",
-	recipe = {
-		{"", "", ""},
-		{"default:"..itm, "doors:door_steel", "default:"..itm},
-		{"", "default:steel_ingot", ""}
-	}
-})
+for _,cdoor in ipairs(cdoor_list) do
+	add_door(unpack(cdoor))
 end

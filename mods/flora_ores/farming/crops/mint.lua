@@ -29,33 +29,15 @@ minetest.register_craftitem("farming:mint_tea", {
 
 minetest.register_craft({
 	output = "farming:mint_tea",
-	type = "shapeless",
 	recipe = {
-		"vessels:drinking_glass", "group:food_mint",
-		"group:food_mint", "group:food_mint",
-		"farming:juicer", "group:water_bucket"
+		{"group:food_mint", "group:food_mint", "group:food_mint"},
+		{"group:food_water_glass", "farming:juicer", ""}
 	},
 	replacements = {
-		{"group:food_juicer", "farming:juicer"},
-		{"group:water_bucket", "bucket:bucket_empty"}
+		{"group:food_juicer", "farming:juicer"}
 	}
 })
 
-if minetest.get_modpath("bucket_wooden") then
-	minetest.register_craft({
-		output = "farming:mint_tea",
-		type = "shapeless",
-		recipe = {
-			"vessels:drinking_glass", "group:food_mint",
-			"group:food_mint", "group:food_mint",
-			"farming:juicer", "group:water_bucket_wooden"
-		},
-		replacements = {
-			{"group:food_juicer", "farming:juicer"},
-			{"group:water_bucket_wooden", "bucket_wooden:bucket_empty"}
-		}
-	})
-end
 
 -- mint definition
 local def = {
@@ -92,7 +74,7 @@ def.drop = {
 		{items = {"farming:mint_leaf 2"}, rarity = 1},
 		{items = {"farming:mint_leaf 2"}, rarity = 2},
 		{items = {"farming:seed_mint 1"}, rarity = 1},
-		{items = {"farming:seed_mint 2"}, rarity = 2},
+		{items = {"farming:seed_mint 2"}, rarity = 2}
 	}
 }
 minetest.register_node("farming:mint_4", table.copy(def))

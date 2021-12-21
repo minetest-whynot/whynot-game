@@ -17,6 +17,23 @@ minetest.register_craftitem("farming:tomato", {
 	on_use = minetest.item_eat(4)
 })
 
+-- tomato soup
+minetest.register_craftitem("farming:tomato_soup", {
+	description = S("Tomato Soup"),
+	inventory_image = "farming_tomato_soup.png",
+	groups = {flammable = 2},
+	on_use = minetest.item_eat(8, "farming:bowl")
+})
+
+minetest.register_craft({
+	output = "farming:tomato_soup",
+	recipe = {
+		{"group:food_tomato"},
+		{"group:food_tomato"},
+		{"group:food_bowl"}
+	}
+})
+
 -- tomato definition
 local def = {
 	drawtype = "plantlike",

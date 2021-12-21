@@ -36,7 +36,8 @@ mobs:register_mob("mobs_monster:lava_flan", {
 		{name = "mobs:lava_orb", chance = 15, min = 1, max = 1},
 	},
 	water_damage = 8,
-	lava_damage = 0,
+	lava_damage = -1,
+	fire_damage = 0,
 	light_damage = 0,
 	immune_to = {
 		{"mobs:pick_lava", -2}, -- lava pick heals 2 health
@@ -52,7 +53,7 @@ mobs:register_mob("mobs_monster:lava_flan", {
 		run_start = 20,
 		run_end = 28,
 		punch_start = 20,
-		punch_end = 28,
+		punch_end = 28
 	},
 	on_die = function(self, pos)
 
@@ -173,9 +174,13 @@ minetest.register_tool(":mobs:pick_lava", {
 	inventory_image = "mobs_pick_lava.png",
 	tool_capabilities = {
 		full_punch_interval = 0.4,
-		max_drop_level=3,
-		groupcaps={
-			cracky = {times={[1]=1.80, [2]=0.80, [3]=0.40}, uses=40, maxlevel=3},
+		max_drop_level = 3,
+		groupcaps = {
+			cracky = {
+				times = {[1] = 1.80, [2] = 0.80, [3] = 0.40},
+				uses = 40,
+				maxlevel = 3
+			}
 		},
 		damage_groups = {fleshy = 6, fire = 1},
 	},
@@ -188,7 +193,7 @@ minetest.register_craft({
 	recipe = {
 		{"mobs:lava_orb", "mobs:lava_orb", "mobs:lava_orb"},
 		{"", "default:obsidian_shard", ""},
-		{"", "default:obsidian_shard", ""},
+		{"", "default:obsidian_shard", ""}
 	}
 })
 
@@ -240,6 +245,7 @@ mobs:register_mob("mobs_monster:obsidian_flan", {
 	},
 	water_damage = 0,
 	lava_damage = 8,
+	fire_damage = 0,
 	light_damage = 0,
 	animation = {
 		speed_normal = 15,
@@ -251,7 +257,7 @@ mobs:register_mob("mobs_monster:obsidian_flan", {
 		run_start = 20,
 		run_end = 28,
 		punch_start = 20,
-		punch_end = 28,
+		punch_end = 28
 	}
 })
 
@@ -294,9 +300,11 @@ mobs:register_arrow("mobs_monster:obsidian_arrow", {
 
 		local radius = 1
 		local def = minetest.registered_nodes[node]
+
 		if def then
-			node = { name = node }
+			node = {name = node}
 		end
+
 		if def and def.tiles and def.tiles[1] then
 			texture = def.tiles[1]
 		end
@@ -323,7 +331,7 @@ mobs:register_arrow("mobs_monster:obsidian_arrow", {
 			texture = texture,
 			-- ^ only as fallback for clients without support for `node` parameter
 			node = node,
-			collisiondetection = true,
+			collisiondetection = true
 		})
 
 		minetest.set_node(pos, {name = "air"})

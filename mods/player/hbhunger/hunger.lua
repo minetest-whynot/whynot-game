@@ -79,14 +79,24 @@ function hbhunger.item_eat(hunger_change, replace_with_item, poisen, heal, sound
 			if h == nil or hp == nil then
 				return
 			end
-			minetest.sound_play(
-				{name = sound or "hbhunger_eat_generic",
-				gain = 1},
-				{object=user,
-				max_hear_distance = 16,
-				pitch = 1 + math.random(-10, 10)*0.005,},
-				true
-			)
+			if user:is_player() then
+				local object, object_pos
+				-- Check if user is a "fake player" (unofficial imitation of a the player data structure)
+				if type(user) == "userdata" then
+					object = user
+				else
+					object_pos = user:get_pos()
+				end
+				minetest.sound_play(
+					{name = sound or "hbhunger_eat_generic",
+					gain = 1},
+					{object=object,
+					pos=object_pos,
+					max_hear_distance = 16,
+					pitch = 1 + math.random(-10, 10)*0.005,},
+					true
+				)
+			end
 
 			-- Saturation
 			if h < hbhunger.SAT_MAX and hunger_change then

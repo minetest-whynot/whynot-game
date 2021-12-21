@@ -5,7 +5,7 @@ statbars.
 This mod is compatible with the HUD Bars [`hudbars`] mod.
 Compability with other HUD-related mods is possible, but not guaranteed.
 
-Version: 1.0.0
+Version: 1.2.0
 
 ## Credits
 Released by Wuzzy.

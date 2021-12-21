@@ -7,7 +7,7 @@
 
 farming = {
 	mod = "redo",
-	version = "20201213",
+	version = "20211204",
 	path = minetest.get_modpath("farming"),
 	select = {
 		type = "fixed",
@@ -340,7 +340,6 @@ function farming.plant_growth_timer(pos, elapsed, node_name)
 	if max_growth == 1 or lambda < 2.0 then
 
 		local light = (minetest.get_node_light(light_pos) or 0)
-		--print ("light level:", light)
 
 		if light < MIN_LIGHT or light > MAX_LIGHT then
 			return true
@@ -426,7 +425,7 @@ function farming.place_seed(itemstack, placer, pointed_thing, plantname)
 	-- thanks to Krock for helping with this issue :)
 	local def = minetest.registered_nodes[under.name]
 	if placer and itemstack and def and def.on_rightclick then
-		return def.on_rightclick(pt.under, under, placer, itemstack)
+		return def.on_rightclick(pt.under, under, placer, itemstack, pt)
 	end
 
 	local above = minetest.get_node(pt.above)
@@ -633,7 +632,11 @@ farming.blackberry = 0.002
 farming.soy = 0.001
 farming.vanilla = 0.001
 farming.lettuce = 0.001
+farming.artichoke = 0.001
+farming.parsley = 0.002
+farming.sunflower = 0.001
 farming.grains = true
+farming.rice = true
 farming.rarety = 0.002
 
 
@@ -697,12 +700,16 @@ ddoo("peas.lua", farming.peas)
 ddoo("beetroot.lua", farming.beetroot)
 ddoo("chili.lua", farming.chili)
 ddoo("ryeoatrice.lua", farming.grains)
+ddoo("rice.lua", farming.rice)
 ddoo("mint.lua", farming.mint)
 ddoo("cabbage.lua", farming.cabbage)
 ddoo("blackberry.lua", farming.blackberry)
 ddoo("soy.lua", farming.soy)
 ddoo("vanilla.lua", farming.vanilla)
 ddoo("lettuce.lua", farming.lettuce)
+ddoo("artichoke.lua", farming.artichoke)
+ddoo("parsley.lua", farming.parsley)
+ddoo("sunflower.lua", farming.sunflower)
 
 dofile(farming.path .. "/food.lua")
 dofile(farming.path .. "/mapgen.lua")

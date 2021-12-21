@@ -8,7 +8,7 @@ minetest.register_craftitem("farming:vanilla", {
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:vanilla_1")
 	end,
-	on_use = minetest.item_eat(1),
+	on_use = minetest.item_eat(1)
 })
 
 -- crop definition
@@ -49,11 +49,11 @@ minetest.register_node("farming:vanilla_extract", {
 minetest.register_craft( {
 	output = "farming:vanilla_extract",
 	recipe = {
-		{ "group:food_vanilla", "group:food_vanilla", "group:food_vanilla"},
-		{ "group:food_vanilla", "farming:bottle_ethanol", "bucket:bucket_water"},
+		{"group:food_vanilla", "group:food_vanilla", "group:food_vanilla"},
+		{"group:food_vanilla", "farming:bottle_ethanol", "group:food_water_glass"},
 	},
 	replacements = {
-		{"bucket:bucket_water", "bucket:bucket_empty"},
+		{"group:food_water_glass", "vessels:drinking_glass"}
 	}
 })
 
@@ -61,7 +61,7 @@ minetest.register_craft({
 	type = "fuel",
 	recipe = "farming:vanilla_extract",
 	burntime = 25,
-	replacements = {{ "farming:vanilla_extract", "vessels:glass_bottle" }}
+	replacements = {{"farming:vanilla_extract", "vessels:glass_bottle"}}
 })
 
 -- stage 1
@@ -92,9 +92,9 @@ minetest.register_node("farming:vanilla_6", table.copy(def))
 def.tiles = {"farming_vanilla_7.png"}
 def.drop = {
 	items = {
-		{items = {'farming:vanilla'}, rarity = 1},
-		{items = {'farming:vanilla'}, rarity = 2},
-		{items = {'farming:vanilla'}, rarity = 3}
+		{items = {"farming:vanilla"}, rarity = 1},
+		{items = {"farming:vanilla"}, rarity = 2},
+		{items = {"farming:vanilla"}, rarity = 3}
 	}
 }
 minetest.register_node("farming:vanilla_7", table.copy(def))
@@ -104,10 +104,10 @@ def.tiles = {"farming_vanilla_8.png"}
 def.groups.growing = nil
 def.drop = {
 	items = {
-		{items = {'farming:vanilla 2'}, rarity = 1},
-		{items = {'farming:vanilla 2'}, rarity = 2},
-		{items = {'farming:vanilla 2'}, rarity = 2},
-		{items = {'farming:vanilla 2'}, rarity = 3}
+		{items = {"farming:vanilla 2"}, rarity = 1},
+		{items = {"farming:vanilla 2"}, rarity = 2},
+		{items = {"farming:vanilla 2"}, rarity = 2},
+		{items = {"farming:vanilla 2"}, rarity = 3}
 	}
 }
 minetest.register_node("farming:vanilla_8", table.copy(def))

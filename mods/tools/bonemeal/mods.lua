@@ -44,7 +44,10 @@ if farming and farming.mod and farming.mod == "redo" then
 		{"farming:lettuce_", 5},
 		{"farming:blackberry_", 4},
 		{"farming:vanilla_", 8},
-		{"farming:soy_", 7}
+		{"farming:soy_", 7},
+		{"farming:artichoke_", 5},
+		{"farming:parsley_", 3},
+		{"farming:sunflower_", 8}
 	})
 end
 
@@ -66,6 +69,7 @@ if minetest.get_modpath("ethereal") then
 		{"ethereal:mushroom_sapling", ethereal.grow_mushroom_tree, "soil"},
 		{"ethereal:willow_sapling", ethereal.grow_willow_tree, "soil"},
 		{"ethereal:redwood_sapling", ethereal.grow_redwood_tree, "soil"},
+		{"ethereal:giant_redwood_sapling", ethereal.grow_giant_redwood_tree, "soil"},
 		{"ethereal:orange_tree_sapling", ethereal.grow_orange_tree, "soil"},
 		{"ethereal:bamboo_sprout", ethereal.grow_bamboo_tree, "soil"},
 		{"ethereal:birch_sapling", ethereal.grow_birch_tree, "soil"},

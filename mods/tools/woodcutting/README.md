@@ -9,7 +9,8 @@ Forum: https://forum.minetest.net/viewtopic.php?f=9&t=18023
 ## Highlights / Features
   - Lag-free because the work is not done at once. You can observe the woodcutting.
   - You can stop the woodcutting by press sneak key second time
-  - You can add additional trees to process by digging other tree nodes manually
+  - Works with all trees. The cutting just follow connected tree (trunk) blocks in all directions for each cutted node and add them to the processing queue
+  - You can add additional trees to process by digging other tree nodes manually (without sneak key)
   - The distance to the player is used to prefer next node so the player can partially influence the work direction on big areas
   - The auto-mining speed is dependent on wielded tool, so the diamond axe is still advantageously than empty hand
   - All checks and functionalities are processed (like hunger damage and tool wear) as if the player did the mining manually

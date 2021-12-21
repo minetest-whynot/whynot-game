@@ -39,6 +39,7 @@ mobs:register_mob("mobs_monster:sand_monster", {
 	attack_type = "dogfight",
 	pathfinding = true,
 	--specific_attack = {"player", "mobs_npc:npc"},
+	--ignore_invisibility = true,
 	reach = 2,
 	damage = 1,
 	hp_min = 4,
@@ -49,6 +50,7 @@ mobs:register_mob("mobs_monster:sand_monster", {
 	mesh = "mobs_sand_monster.b3d",
 	textures = {
 		{"mobs_sand_monster.png"},
+		{"mobs_sand_monster2.png"},
 	},
 	blood_texture = "default_desert_sand.png",
 	makes_footstep_sound = true,

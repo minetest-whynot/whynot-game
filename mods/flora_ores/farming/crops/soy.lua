@@ -5,23 +5,46 @@ local S = farming.intllib
 minetest.register_craftitem("farming:soy_pod", {
 	description = S("Soy Pod"),
 	inventory_image = "farming_soy_pod.png",
-	groups = {seed = 2, food_soy_pod = 1, flammable = 2},
+	groups = {seed = 2, food_soy = 1, food_soy_pod = 1, flammable = 2},
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:soy_1")
 	end
 })
 
-minetest.register_craftitem("farming:soy_beans", {
-	description = S("Soy Beans"),
-	inventory_image = "farming_soy_beans.png",
-	groups = {food_soy = 1, flammable = 2},
-	on_use = minetest.item_eat(1)
+-- replacement for soy beans that was removed
+minetest.register_alias("farming:soy_beans", "farming:soy_pod")
+
+-- soy sauce
+minetest.register_node("farming:soy_sauce", {
+	description = S("Soy Sauce"),
+	drawtype = "plantlike",
+	tiles = {"farming_soy_sauce.png"},
+	inventory_image = "farming_soy_sauce.png",
+	wield_image = "farming_soy_sauce.png",
+	paramtype = "light",
+	walkable = false,
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.3, -0.5, -0.3, 0.3, 0.5, 0.3}
+	},
+	groups = {
+		vessel = 1, food_soy_sauce = 1, dig_immediate = 3, attached_node = 1
+	},
+	sounds = default.node_sound_glass_defaults()
 })
 
-minetest.register_craft({
-	type = "shapeless",
-	output = "farming:soy_beans",
-	recipe = {"farming:soy_pod"}
+-- soy sauce recipe
+minetest.register_craft( {
+	output = "farming:soy_sauce",
+	recipe = {
+		{"group:food_soy", "group:food_salt", "group:food_soy"},
+		{"", "group:food_juicer", ""},
+		{"", "bucket:bucket_water", "vessels:glass_bottle"}
+	},
+	replacements = {
+		{"bucket:bucket_water", "bucket:bucket_empty"},
+		{"group:food_juicer", "farming:juicer"}
+	}
 })
 
 -- soy milk
@@ -46,11 +69,10 @@ minetest.register_node("farming:soy_milk", {
 })
 
 minetest.register_craft( {
-	type = "shapeless",
 	output = "farming:soy_milk",
 	recipe = {
-		"group:food_soy", "group:food_soy", "group:food_soy",
-		"farming:vanilla_extract", "bucket:bucket_water", "vessels:drinking_glass"
+		{"group:food_soy", "group:food_soy", "group:food_soy"},
+		{"farming:vanilla_extract", "bucket:bucket_water", "vessels:drinking_glass"}
 	},
 	replacements = {
 		{"bucket:bucket_water", "bucket:bucket_empty"},
@@ -68,10 +90,9 @@ minetest.register_craftitem("farming:tofu", {
 
 minetest.register_craft({
 	output = "farming:tofu",
-	type = "shapeless",
 	recipe = {
-		"farming:baking_tray", "group:food_soy", "group:food_soy",
-		"group:food_soy", "group:food_soy", "group:food_soy",
+		{"farming:baking_tray", "group:food_soy", "group:food_soy"},
+		{"group:food_soy", "group:food_soy", "group:food_soy"}
 	},
 	replacements = {{"farming:baking_tray", "farming:baking_tray"}}
 })
@@ -131,7 +152,7 @@ minetest.register_node("farming:soy_4", table.copy(def))
 def.tiles = {"farming_soy_5.png"}
 def.drop = {
 	max_items = 1, items = {
-		{items = {'farming:soy_pod'}, rarity = 1},
+		{items = {"farming:soy_pod"}, rarity = 1},
 	}
 }
 minetest.register_node("farming:soy_5", table.copy(def))
@@ -140,9 +161,9 @@ minetest.register_node("farming:soy_5", table.copy(def))
 def.tiles = {"farming_soy_6.png"}
 def.drop = {
 	max_items = 3, items = {
-		{items = {'farming:soy_pod'}, rarity = 1},
-		{items = {'farming:soy_pod'}, rarity = 2},
-		{items = {'farming:soy_pod'}, rarity = 3},
+		{items = {"farming:soy_pod"}, rarity = 1},
+		{items = {"farming:soy_pod"}, rarity = 2},
+		{items = {"farming:soy_pod"}, rarity = 3}
 	}
 }
 minetest.register_node("farming:soy_6", table.copy(def))
@@ -152,18 +173,18 @@ def.tiles = {"farming_soy_7.png"}
 def.groups.growing = nil
 def.drop = {
 	max_items = 5, items = {
-		{items = {'farming:soy_pod'}, rarity = 1},
-		{items = {'farming:soy_pod'}, rarity = 2},
-		{items = {'farming:soy_pod'}, rarity = 3},
-		{items = {'farming:soy_pod'}, rarity = 4},
-		{items = {'farming:soy_pod'}, rarity = 5}
+		{items = {"farming:soy_pod"}, rarity = 1},
+		{items = {"farming:soy_pod"}, rarity = 2},
+		{items = {"farming:soy_pod"}, rarity = 3},
+		{items = {"farming:soy_pod"}, rarity = 4},
+		{items = {"farming:soy_pod"}, rarity = 5}
 	}
 }
 minetest.register_node("farming:soy_7", table.copy(def))
 
 -- add to registered_plants
 farming.registered_plants["farming:soy_pod"] = {
-	crop = "farming:soy",
+	crop = "farming:soy_pod",
 	seed = "farming:soy_pod",
 	minlight = farming.min_light,
 	maxlight = farming.max_light,

@@ -63,6 +63,11 @@ Created by VanessaE (License: CC BY 3.0):
   farming_cotton_7.png
   farming_cotton_8.png
 
+Created by 7eventy7 (https://www.planetminecraft.com/member/7eventy7/)
+  farming_melon_top.png
+  farming_melon_side.png
+  farming_melon_bottom.png
+
 Created by Doc (License: CC BY 3.0):
   farming_cucumber.png
   farming_cucumber_1.png
@@ -145,13 +150,33 @@ Created by mDiyo (Natura), modified by TenPlus1 (License: CC BY-SA 3.0):
   farming_barley.png
 
 Created by OgelGames (CC BY-SA 4.0)
-   farming_berry_smoothie.png
-   farming_cactus_juice.png
-   farming_salad.png
+  farming_berry_smoothie.png
+  farming_cactus_juice.png
+  farming_salad.png
 
 Created by Felfa (CC0)
-   farming_blackberry*.png
-   farming_lettuce*.png
-   farming_burger.png
-   farming_soy*.png
-   farming_vanilla*.png
+  farming_blackberry*.png
+  farming_lettuce*.png
+  farming_burger.png
+  farming_soy*.png
+  farming_vanilla*.png
+  farming_artichoke*.png
+  farming_parsley*.png
+  farming_paella.png
+  farming_potato_omelette.png
+  farming_spanish_potatoes.png
+  farming_vanilla_flan.png
+  farming_sunflower*.png
+
+Created by gorlock (CC0)
+  farming_salt_crystal.png
+
+Created by sirrobzeroone (CC0)
+  farming_gyoza.png
+  farming_pineapple_ring.png
+
+Created by TechM8 (https://www.deviantart.com/techm8)
+  farming_popcorn.png
+
+Created by RZR0 (CC-BY-NC-SA)
+  farming_blueberry_pie.png

@@ -1,6 +1,16 @@
 
 local S = mobs.intllib
 
+local master_types = {
+
+	{	nodes = {"nether:rack"},
+		skins = {"mobs_dungeon_master_nether.png"},
+	},
+	{	nodes = {"nether:rack_deep"},
+		skins = {"mobs_dungeon_master_netherdeep.png"},
+	}
+}
+
 
 -- Dungeon Master by PilzAdam
 
@@ -16,8 +26,8 @@ mobs:register_mob("mobs_monster:dungeon_master", {
 	shoot_interval = 2.2,
 	arrow = "mobs_monster:fireball",
 	shoot_offset = 1,
-	hp_min = 22,
-	hp_max = 45,
+	hp_min = 42,
+	hp_max = 75,
 	armor = 60,
 	collisionbox = {-0.7, -1, -0.7, 0.7, 1.6, 0.7},
 	visual = "mesh",
@@ -59,13 +69,39 @@ mobs:register_mob("mobs_monster:dungeon_master", {
 		speed_normal = 15,
 		speed_run = 15,
 	},
+
+	-- check surrounding nodes and spawn a specific monster
+	on_spawn = function(self)
+
+		local pos = self.object:get_pos() ; pos.y = pos.y - 1
+		local tmp
+
+		for n = 1, #master_types do
+
+			tmp = master_types[n]
+
+			if minetest.find_node_near(pos, 1, tmp.nodes) then
+
+				self.base_texture = tmp.skins
+				self.object:set_properties({textures = tmp.skins})
+
+				if tmp.drops then
+					self.drops = tmp.drops
+				end
+
+				return true
+			end
+		end
+
+		return true -- run only once, false/nil runs every activation
+	end
 })
 
 
 if not mobs.custom_spawn_monster then
 mobs:spawn({
 	name = "mobs_monster:dungeon_master",
-	nodes = {"default:stone"},
+	nodes = {"default:stone", "nether:rack", "nether:rack_deep"},
 	max_light = 5,
 	chance = 9000,
 	active_object_count = 1,

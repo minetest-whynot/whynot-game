@@ -25,14 +25,22 @@ ambience.add_set("underwater", {
 	end
 })
 
--- Splashing sound plays when player walks inside water nodes
+-- Splashing sound plays when player walks inside water nodes (if enabled)
+
+if minetest.settings:get_bool("ambience_water_move") ~= false then
+
+-- override default water sounds
+minetest.override_item("default:water_source", { sounds = {} })
+minetest.override_item("default:water_flowing", { sounds = {} })
+minetest.override_item("default:river_water_source", { sounds = {} })
+minetest.override_item("default:river_water_flowing", { sounds = {} })
 
 ambience.add_set("splash", {
 
 	frequency = 1000,
 
 	sounds = {
-		{name = "swim_splashing", length = 3},
+		{name = "swim_splashing", length = 3}
 	},
 
 	sound_check = function(def)
@@ -49,7 +57,9 @@ ambience.add_set("splash", {
 	end
 })
 
--- check for env_sounds mod, if not found enable water flowing sounds
+end
+
+-- check for env_sounds mod, if not found enable water flowing and lava sounds
 if not minetest.get_modpath("env_sounds") then
 
 -- Water sound plays when near flowing water
@@ -102,8 +112,34 @@ ambience.add_set("river", {
 	end
 })
 
+-- Lava sound plays when near lava
+
+ambience.add_set("lava", {
+
+	frequency = 1000,
+
+	sounds = {
+		{name = "lava", length = 7}
+	},
+
+	nodes = {"default:lava_source", "default:lava_flowing"},
+
+	sound_check = function(def)
+
+		local c = (def.totals["default:lava_source"] or 0)
+			+ (def.totals["default:lava_flowing"] or 0)
+
+		if c > 20 then
+			return "lava", 0.5
+
+		elseif c > 5 then
+			return "lava"
+		end
+	end
+})
+
 else
-	print ("[Ambience] found env_sounds, flowing water sounds disabled.")
+	print ("[Ambience] found env_sounds, flowing water and lava sounds disabled.")
 end
 
 -- Only add fire sounds set if flame_sound is disabled or fire redo active
@@ -170,32 +206,6 @@ ambience.add_set("largefire", {
 
 end
 
--- Lava sound plays when near lava
-
-ambience.add_set("lava", {
-
-	frequency = 1000,
-
-	sounds = {
-		{name = "lava", length = 7}
-	},
-
-	nodes = {"default:lava_source", "default:lava_flowing"},
-
-	sound_check = function(def)
-
-		local c = (def.totals["default:lava_source"] or 0)
-			+ (def.totals["default:lava_flowing"] or 0)
-
-		if c > 20 then
-			return "lava", 0.5
-
-		elseif c > 5 then
-			return "lava"
-		end
-	end
-})
-
 -- Beach sounds play when below y-pos 6 and 150+ water source found
 
 ambience.add_set("beach", {
@@ -228,7 +238,7 @@ ambience.add_set("ice", {
 	frequency = 250,
 
 	sounds = {
-		{name = "icecrack", length = 23},
+		{name = "icecrack", length = 23, gain = 0.7},
 		{name = "desertwind", length = 8},
 		{name = "wind", length = 9}
 	},
@@ -270,7 +280,7 @@ ambience.add_set("desert", {
 	end
 })
 
--- Cave sounds play when below player position Y -25
+-- Cave sounds play when below player position Y -25 and water nearby
 
 ambience.add_set("cave", {
 
@@ -283,7 +293,9 @@ ambience.add_set("cave", {
 
 	sound_check = function(def)
 
-		if def.pos.y < -25 then
+		local c = (def.totals["default:water_source"] or 0)
+
+		if c > 0 and def.pos.y < -25 then
 			return "cave"
 		end
 	end

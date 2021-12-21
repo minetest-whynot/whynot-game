@@ -72,6 +72,8 @@ if minetest.get_modpath("lucky_block") then
 			{name = "farming:seed_rice", max = 15},
 			{name = "farming:seed_oat", max = 15},
 			{name = "farming:soil_wet", max = 10},
+			{name = "farming:cotton_wild", max = 5},
+			{name = "farming:grapebush", max = 5},
 		}},
 	})
 end

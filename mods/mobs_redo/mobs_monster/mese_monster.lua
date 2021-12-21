@@ -12,6 +12,9 @@ mobs:register_mob("mobs_monster:mese_monster", {
 	shoot_interval = 0.5,
 	arrow = "mobs_monster:mese_arrow",
 	shoot_offset = 2,
+--arrow_override = function(self)
+--	self.velocity = 20
+--end,
 	hp_min = 10,
 	hp_max = 25,
 	armor = 80,

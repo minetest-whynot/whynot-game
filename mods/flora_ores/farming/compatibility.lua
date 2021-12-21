@@ -15,13 +15,6 @@ minetest.override_item("default:apple", {
 		leafdecay = 3, leafdecay_drop = 1}
 })
 
-if minetest.registered_nodes["flowers:mushroom_brown"] then
-minetest.override_item("flowers:mushroom_brown", {
-	light_source = 1,
-	groups = {food_mushroom = 1, snappy = 3, attached_node = 1, flammable = 2}
-})
-end
-
 --= Aliases
 
 -- Banana
@@ -33,9 +26,9 @@ else
 	minetest.register_node(":ethereal:banana", {
 		description = S("Banana"),
 		drawtype = "torchlike",
-		tiles = {"banana_single.png"},
-		inventory_image = "banana_single.png",
-		wield_image = "banana_single.png",
+		tiles = {"farming_banana_single.png"},
+		inventory_image = "farming_banana_single.png",
+		wield_image = "farming_banana_single.png",
 		paramtype = "light",
 		sunlight_propagates = true,
 		walkable = false,
@@ -50,9 +43,9 @@ else
 
 	minetest.register_node(":ethereal:bananaleaves", {
 		description = S("Banana Leaves"),
-		tiles = {"banana_leaf.png"},
-		inventory_image = "banana_leaf.png",
-		wield_image = "banana_leaf.png",
+		tiles = {"farming_banana_leaf.png"},
+		inventory_image = "farming_banana_leaf.png",
+		wield_image = "farming_banana_leaf.png",
 		paramtype = "light",
 		waving = 1,
 		groups = {snappy = 3, leafdecay = 3, leaves = 1, flammable = 2},
@@ -148,8 +141,8 @@ if eth then
 else
 	minetest.register_craftitem(":ethereal:strawberry", {
 		description = S("Strawberry"),
-		inventory_image = "strawberry.png",
-		wield_image = "strawberry.png",
+		inventory_image = "farming_strawberry.png",
+		wield_image = "farming_strawberry.png",
 		groups = {food_strawberry = 1, flammable = 2},
 		on_use = minetest.item_eat(1)
 	})

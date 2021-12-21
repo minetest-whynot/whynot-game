@@ -1,0 +1,11 @@
+#    Crafitem used as waffle maker casing.
+waffles.craftitem_maker_casing (Waffle maker casing craftitem) string default:tin_ingot
+
+#    Crafitem used as waffle maker wiring.
+waffles.craftitem_maker_wiring (Waffle maker wiring craftitem) string default:steel_ingot
+
+#    Crafitem used as waffle maker heating.
+waffles.craftitem_maker_heating (Waffle maker heating craftitem) string default:copper_ingot
+
+#    Space/comma-separated list of craftitems used to make waffle batter. `item=replacement` defines replacements.
+waffles.waffle_batter_recipe (Waffle batter recipe craftitems) string farming:flour farming:flour bucket:bucket_water=bucket:bucket_empty

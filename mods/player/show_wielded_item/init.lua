@@ -42,7 +42,7 @@ local function set_hud(player)
 		alignment = {x=0, y=0},
 		number = 0xFFFFFF ,
 		text = "",
-		z_index = 10,
+		z_index = 100,
 	})
 end
 
@@ -59,6 +59,15 @@ minetest.register_on_leaveplayer(function(player)
 	wield[name] = nil
 	wieldindex[name] = nil
 end)
+
+local function get_first_line(text)
+	-- Cut off text after first newline
+	local firstnewline = string.find(text, "\n")
+	if firstnewline then
+		text = string.sub(text, 1, firstnewline-1)
+	end
+	return text
+end
 
 minetest.register_globalstep(function(dtime)
 	for _, player in pairs(minetest.get_connected_players()) do
@@ -82,26 +91,43 @@ minetest.register_globalstep(function(dtime)
 
 			if huds[player_name] then 
 
+				-- Get description (various fallback checks for old Minetest versions)
 				local def = minetest.registered_items[wname]
-				local meta = wstack:get_meta()
-
-				--[[ Get description. Order of preference:
-				* description from metadata
-				* description from item definition
-				* itemstring ]]
-				local desc = meta:get_string("description")
-				if (desc == nil or desc == "") and def then
-					desc = def.description
+				local desc
+				if wstack.get_short_description then
+					-- get_short_description()
+					desc = wstack:get_short_description()
 				end
-				if desc == nil or desc == "" then
+				if (not desc or desc == "") and wstack.get_description then
+					-- get_description()
+					desc = wstack:get_description()
+					desc = get_first_line(desc)
+				end
+				if (not desc or desc == "") and not wstack.get_description then
+					-- Metadata (old versions only)
+					local meta = wstack:get_meta()
+					desc = meta:get_string("description")
+					desc = get_first_line(desc)
+				end
+				if not desc or desc == "" then
+					-- Item definition
+					desc = def.description
+					desc = get_first_line(desc)
+				end
+				if not desc or desc == "" then
+					-- Final fallback: itemstring
 					desc = wname
 				end
-				-- Cut off item description after first newline
-				local firstnewline = string.find(desc, "\n")
-				if firstnewline then
-					desc = string.sub(desc, 1, firstnewline-1)
+
+				-- Print description
+				if desc then
+					-- Optionally append the 'technical' itemname
+					local tech = minetest.settings:get_bool("show_wielded_item_itemname", false)
+					if tech and desc ~= "" then
+						desc = desc .. " ["..wname.."]"
+					end
+					player:hud_change(huds[player_name], 'text', desc)
 				end
-				player:hud_change(huds[player_name], 'text', desc)
 			end
 		end
 	end

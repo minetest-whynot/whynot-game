@@ -27,7 +27,7 @@ local function place_beans(itemstack, placer, pointed_thing, plantname)
 	-- thanks to Krock for helping with this issue :)
 	local def = minetest.registered_nodes[under.name]
 	if placer and itemstack and def and def.on_rightclick then
-		return def.on_rightclick(pt.under, under, placer, itemstack)
+		return def.on_rightclick(pt.under, under, placer, itemstack, pt)
 	end
 
 	-- is player planting crop?
@@ -81,9 +81,7 @@ minetest.register_craftitem("farming:beans", {
 -- beans can be used for green dye
 minetest.register_craft({
 	output = "dye:green",
-	recipe = {
-		{"farming:beans"}
-	}
+	recipe = {{"farming:beans"}}
 })
 
 -- beanpole
@@ -122,7 +120,7 @@ minetest.register_node("farming:beanpole", {
 		-- thanks to Krock for helping with this issue :)
 		local def = minetest.registered_nodes[under.name]
 		if def and def.on_rightclick then
-			return def.on_rightclick(pt.under, under, placer, itemstack)
+			return def.on_rightclick(pt.under, under, placer, itemstack, pt)
 		end
 
 		if minetest.is_protected(pt.above, placer:get_player_name()) then

@@ -53,6 +53,8 @@ register_plant("cabbage_6", 2, 10, nil, "", -1, farming.cabbage)
 register_plant("lettuce_5", 5, 30, nil, "", -1, farming.lettuce)
 register_plant("blackberry_4", 3, 10, nil, "", -1, farming.blackberry)
 register_plant("vanilla_7", 5, 35, nil, "", -1, farming.vanilla)
+register_plant("parsley_3", 10, 40, nil, "", -1, farming.parsley)
+register_plant("sunflower_8", 10, 40, nil, "", -1, farming.sunflower)
 register_plant("mint_4", 1, 75, {
 	"default:dirt_with_grass", "default:dirt_with_coniferous_litter"},
 	"group:water", 1, farming.mint)
@@ -123,6 +125,28 @@ minetest.register_decoration({
 	decoration = {"farming:chili_8"},
 	spawn_by = "group:tree",
 	num_spawn_by = 1
+})
+end
+
+
+if farming.artichoke then
+minetest.register_decoration({
+	deco_type = "simple",
+	place_on = {"default:dirt_with_grass"},
+	sidelen = 16,
+	noise_params = {
+		offset = 0,
+		scale = tonumber(farming.artichoke) or farming.rarety,
+		spread = {x = 100, y = 100, z = 100},
+		seed = 448,
+		octaves = 3,
+		persist = 0.6
+	},
+	y_min = 1,
+	y_max = 13,
+	decoration = {"farming:artichoke_5"},
+	spawn_by = "group:tree",
+	num_spawn_by = 1,
 })
 end
 

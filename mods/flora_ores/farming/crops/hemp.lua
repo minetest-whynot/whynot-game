@@ -65,7 +65,7 @@ minetest.register_craft({
 	type = "fuel",
 	recipe = "farming:hemp_oil",
 	burntime = 20,
-	replacements = {{ "farming:hemp_oil", "vessels:glass_bottle"}}
+	replacements = {{"farming:hemp_oil", "vessels:glass_bottle"}}
 })
 
 -- hemp fibre

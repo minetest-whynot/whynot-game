@@ -14,20 +14,20 @@ local cdoor_list = {   --Number , Description , Inven Image , Image
 --	{"Castle Door 13" , "door13"},
 }
 
-
-for i in ipairs(cdoor_list) do
-	local desc = cdoor_list[i][1]
-	local img = cdoor_list[i][2]
-
-
-doors.register("my_castle_doors:"..img.."_locked", {
-	description = desc.." Locked",
-	inventory_image = "mydoors_"..img.."_inv.png",
-	groups = {choppy=2,cracky=2,door=1},
-	tiles = {{ name = "mydoors_"..img..".png", backface_culling = true }},
-	protected = true,
-})
+local function add_door(desc, img)
+	doors.register("my_castle_doors:"..img.."_locked", {
+		description = desc.." Locked",
+		inventory_image = "mydoors_"..img.."_inv.png",
+		groups = {choppy=2,cracky=2,door=1},
+		tiles = {{ name = "mydoors_"..img..".png", backface_culling = true }},
+		protected = true,
+	})
 end
+
+for _,cdoor in ipairs(cdoor_list) do
+	add_door(unpack(cdoor))
+end
+
 
 ---[[ Crafts
 

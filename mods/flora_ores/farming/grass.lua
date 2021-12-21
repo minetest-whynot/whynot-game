@@ -39,7 +39,7 @@ minetest.override_item("default:junglegrass", {
 		max_items = 1,
 		items = {
 			{items = {"farming:seed_cotton"}, rarity = 8},
-			{items = {"farming:seed_rice"},rarity = 8},
+			{items = {"farming:rice"},rarity = 8},
 			{items = {"default:junglegrass"}}
 		}
 	}

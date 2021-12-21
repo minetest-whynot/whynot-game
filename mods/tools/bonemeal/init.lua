@@ -37,6 +37,17 @@ local function pine_grow(pos)
 end
 
 
+-- special function for cactus growth
+local function cactus_grow(pos)
+	default.grow_cactus(pos, minetest.get_node(pos))
+end
+
+-- special function for papyrus growth
+local function papyrus_grow(pos)
+	default.grow_papyrus(pos, minetest.get_node(pos))
+end
+
+
 -- default saplings
 local saplings = {
 	{"default:sapling", default.grow_new_apple_tree, "soil"},
@@ -49,7 +60,9 @@ local saplings = {
 	{"default:acacia_bush_sapling", default.grow_acacia_bush, "soil"},
 	{"default:large_cactus_seedling", default.grow_large_cactus, "sand"},
 	{"default:blueberry_bush_sapling", default.grow_blueberry_bush, "soil"},
-	{"default:pine_bush_sapling", default.grow_pine_bush, "soil"}
+	{"default:pine_bush_sapling", default.grow_pine_bush, "soil"},
+	{"default:cactus", cactus_grow, "sand"},
+	{"default:papyrus", papyrus_grow, "soil"},
 }
 
 -- helper tables ( "" denotes a blank item )
@@ -63,27 +76,27 @@ local dry_grass = {
 	"default:dry_grass_5", "", ""
 }
 
--- add all in-game flowers except waterlily
+-- loads mods then add all in-game flowers except waterlily
 local flowers = {}
 
-for node, def in pairs(minetest.registered_nodes) do
+minetest.after(0.1, function()
 
-	if def.groups.flower and not node:find("waterlily") then
-		flowers[#flowers + 1] = node
+	for node, def in pairs(minetest.registered_nodes) do
+
+		if def.groups
+		and def.groups.flower
+		and not node:find("waterlily")
+		and not node:find("xdecor:potted_") then
+			flowers[#flowers + 1] = node
+		end
 	end
-end
+end)
 
--- add additional bakedclay flowers if enabled
-if minetest.get_modpath("bakedclay") then
-	flowers[#flowers + 1] = "bakedclay:delphinium"
-	flowers[#flowers + 1] = "bakedclay:thistle"
-	flowers[#flowers + 1] = "bakedclay:lazarus"
-	flowers[#flowers + 1] = "bakedclay:mannagrass"
-	flowers[#flowers + 1] = ""
-end
 
 -- default biomes deco
 local deco = {
+	{"default:dry_dirt", dry_grass, {}},
+	{"default:dry_dirt_with_dry_grass", dry_grass, {}},
 	{"default:dirt_with_dry_grass", dry_grass, flowers},
 	{"default:sand", {}, {"default:dry_shrub", "", "", ""} },
 	{"default:desert_sand", {}, {"default:dry_shrub", "", "", ""} },
@@ -607,51 +620,51 @@ minetest.register_craft({
 
 -- bonemeal (from bone)
 minetest.register_craft({
-	type = "shapeless",
+--	type = "shapeless",
 	output = "bonemeal:bonemeal 2",
-	recipe = {"group:bone"}
+	recipe = {{"group:bone"}}
 })
 
 -- bonemeal (from player bones)
 minetest.register_craft({
-	type = "shapeless",
+--	type = "shapeless",
 	output = "bonemeal:bonemeal 4",
-	recipe = {"bones:bones"}
+	recipe = {{"bones:bones"}}
 })
 
 -- bonemeal (from coral skeleton)
 minetest.register_craft({
-	type = "shapeless",
+--	type = "shapeless",
 	output = "bonemeal:bonemeal 2",
-	recipe = {"default:coral_skeleton"}
+	recipe = {{"default:coral_skeleton"}}
 })
 
 -- mulch
 minetest.register_craft({
-	type = "shapeless",
+--	type = "shapeless",
 	output = "bonemeal:mulch 4",
 	recipe = {
-		"group:tree", "group:leaves", "group:leaves",
-		"group:leaves", "group:leaves", "group:leaves",
-		"group:leaves", "group:leaves", "group:leaves"
+		{"group:tree", "group:leaves", "group:leaves"},
+		{"group:leaves", "group:leaves", "group:leaves"},
+		{"group:leaves", "group:leaves", "group:leaves"}
 	}
 })
 
 minetest.register_craft({
-	type = "shapeless",
+--	type = "shapeless",
 	output = "bonemeal:mulch",
 	recipe = {
-		"group:seed", "group:seed", "group:seed",
-		"group:seed", "group:seed", "group:seed",
-		"group:seed", "group:seed", "group:seed"
+		{"group:seed", "group:seed", "group:seed"},
+		{"group:seed", "group:seed", "group:seed"},
+		{"group:seed", "group:seed", "group:seed"}
 	}
 })
 
 -- fertiliser
 minetest.register_craft({
-	type = "shapeless",
+--	type = "shapeless",
 	output = "bonemeal:fertiliser 2",
-	recipe = {"bonemeal:bonemeal", "bonemeal:mulch"}
+	recipe = {{"bonemeal:bonemeal", "bonemeal:mulch"}}
 })
 
 

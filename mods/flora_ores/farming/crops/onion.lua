@@ -27,12 +27,11 @@ minetest.register_craftitem("farming:onion_soup", {
 })
 
 minetest.register_craft({
-	type = "shapeless",
 	output = "farming:onion_soup",
 	recipe = {
-		"group:food_onion", "group:food_onion", "group:food_pot",
-		"group:food_onion", "group:food_onion",
-		"group:food_onion", "group:food_onion", "group:food_bowl"
+		{"group:food_onion", "group:food_onion", "group:food_onion"},
+		{"group:food_onion", "group:food_pot", "group:food_onion"},
+		{"", "group:food_bowl", ""}
 	},
 	replacements = {{"farming:pot", "farming:pot"}}
 })
@@ -81,7 +80,7 @@ def.drop = {
 		{items = {"farming:onion"}, rarity = 1},
 		{items = {"farming:onion"}, rarity = 2},
 		{items = {"farming:onion"}, rarity = 2},
-		{items = {"farming:onion"}, rarity = 5},
+		{items = {"farming:onion"}, rarity = 5}
 	}
 }
 minetest.register_node("farming:onion_5", table.copy(def))

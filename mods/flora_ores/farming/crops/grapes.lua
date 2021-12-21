@@ -22,7 +22,7 @@ local function place_grapes(itemstack, placer, pointed_thing, plantname)
 	-- thanks to Krock for helping with this issue :)
 	local def = minetest.registered_nodes[under.name]
 	if placer and itemstack and def and def.on_rightclick then
-		return def.on_rightclick(pt.under, under, placer, itemstack)
+		return def.on_rightclick(pt.under, under, placer, itemstack, pt)
 	end
 
 	-- is player planting seed?
@@ -76,9 +76,7 @@ minetest.register_craftitem("farming:grapes", {
 -- grapes can be used for violet dye
 minetest.register_craft({
 	output = "dye:violet",
-	recipe = {
-		{"farming:grapes"}
-	}
+	recipe = {{"farming:grapes"}}
 })
 
 -- trellis
@@ -117,7 +115,7 @@ minetest.register_node("farming:trellis", {
 		-- thanks to Krock for helping with this issue :)
 		local def = minetest.registered_nodes[under.name]
 		if def and def.on_rightclick then
-			return def.on_rightclick(pt.under, under, placer, itemstack)
+			return def.on_rightclick(pt.under, under, placer, itemstack, pt)
 		end
 
 		if minetest.is_protected(pt.above, placer:get_player_name()) then

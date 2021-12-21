@@ -15,6 +15,8 @@ This minetest mod adds a calibratable compass to the minetest. Original mod [her
 3. Now this compass leads you allways to this location. You can give it away to allow other users to find this place.
 4. Punch a teleport compatible node (by default mese block) to teleport back to the calibrated place
 
+Depending on servers many aspects can be different, see below.
+
 ## For server owners:
 The mod support the next settings:
 
@@ -29,7 +31,9 @@ The mod support the next settings:
     ccompass_nodes_over_target_allow_drawtypes: List of drawtypes to allow to be over target. Defaults are: airlike, flowingliquid, liquid, plantlike and plantlike_rooted
     ccompass_deny_climbable_target: Disabled by default -> allows climbable nodes to be over target. Set to true to not allow them.
     ccompass_allow_damage_target: Disabled by default -> will not teleport player into or over damaging nodes.
-
+    ccompass_stack_max: 1 by default. Sets maximum stack size, 1 to 65535
+    ccompass_allow_using_stacks: Disabled by default -> calibrating and teleporting only works when single compass in hand. Setting to true, allows callibrating stacks to same location.
+    ccompass_idle_interval: 1 by default. When no players have active compasses, the mod enters an idle state and only checks for compasses at this interval, measured in seconds. This setting is meant to reduce the load on the server.
 
 ##  For developers:
 1. It is possible to change compass settings from other mods by changing values in global table ccompass. So it is possible for example to add a waypoint node to the target-nodes by
@@ -44,6 +48,9 @@ The mod support the next settings:
 	ccompass.nodes_over_target_allow_drawtypes["liquid"] = nil
 	ccompass.allow_climbable_target = false
 	ccompass.allow_damaging_target = true
+	ccompass.allow_using_stacks = true
+	ccompass.stack_max = 42
+	ccompass.idle_interval = 0
 ```
 Also you can override ccompass.is_safe_target(target, nodename) for more granular checks.
 By default first nodes_over_target_allow is checked, then nodes_over_target_deny
@@ -63,7 +70,7 @@ more granular checks on what is under players feet.
           end,
 ```
 
-3. It is possible to create pre-calibrated compasses trough other mods. Just write the position to the Itemstack meta:
+3. It is possible to create pre-calibrated compasses through other mods. Just write the position to the Itemstack meta:
 
 ```
     stack:get_meta():set_string("target_pos", minetest.pos_to_string(pos))
@@ -87,4 +94,8 @@ more granular checks on what is under players feet.
         return modified_compass_stack
     end
 ```
+
+5. Setting ccompass.stack_max to 1 restores behaviour prior to stackable feature.
+Or going the other way: set ccompass.stack_max to 777 and also set ccompass.allow_using_stacks to true.
+This would allow players to make a big number of copies at once.
 
