@@ -1,7 +1,7 @@
 
 bell07	https://github.com/bell07/minetest_game (fetch)
 origin	https://github.com/minetest/minetest_game (fetch)
-* master                  a0f7623 [origin/stable-5: ahead 1] Fix builtin item metatable.
+* master                  6ebfc3b [origin/stable-5: ahead 2] Merge remote-tracking branch 'origin/stable-5'
 Mod: minetest_game/mods/beds
 Mod: minetest_game/mods/binoculars
 Mod: minetest_game/mods/boats
@@ -41,15 +41,15 @@ origin	https://github.com/minetest-mods/craftguide_reveal (fetch)
 Mod: libs/craftguide_reveal
 
 origin	http://repo.or.cz/minetest_doc.git (fetch)
-* master b7750f3 [origin/master] Use ephemeral sounds
+* master 1e3d464 [origin/master] Version 1.3.0
 Mod: libs/doc
 
 origin	http://repo.or.cz/minetest_doc_basics.git (fetch)
-* master fbb1327 [origin/master] Add newline before console input history
+* master d64d9d4 [origin/master] Update Minetest IRC channel
 Mod: libs/doc_basics
 
 origin	http://repo.or.cz/minetest_doc_items.git (fetch)
-* master fc2145a [origin/master] Pick original description if tt mod is used
+* master 76a9c3c [origin/master] Version 1.3.0
 Mod: libs/doc_items
 
 origin	http://repo.or.cz/minetest_doc_minetest_game.git (fetch)
@@ -61,7 +61,7 @@ origin	https://github.com/bell07/minetest-doc_reveal_chest (fetch)
 Mod: libs/doc_reveal_chest
 
 origin	https://github.com/minetest-mods/intllib (fetch)
-* master 016f8af [origin/master] Change deprecation title to be clearer
+* master 6ebdc53 [origin/master] Add `modname.lang.tr` locales support (#32)
 Mod: libs/intllib
 
 origin	https://github.com/bell07/minetest-whynot_compat (fetch)
@@ -81,15 +81,15 @@ origin	https://repo.or.cz/minetest_hbarmor.git (fetch)
 Mod: player/hbarmor
 
 origin	http://repo.or.cz/minetest_hbhunger (fetch)
-* master a92747c [origin/master] getpos → get_pos
+* master 470b0f6 [origin/master] Version 1.1.2
 Mod: player/hbhunger
 
 origin	https://github.com/minetest-mods/hbsprint (fetch)
-* master 1fe580a [origin/master] Don't drain hunger for players with fast privilege (#29)
+* master f566d0f [origin/master] Use inventory_image for nodes without tiles for particles
 Mod: player/hbsprint
 
 origin	https://repo.or.cz/minetest_hudbars.git (fetch)
-* master 0684bac [origin/master] Version 2.3.1
+* master 812b253 [origin/master] Version 2.3.3
 Mod: player/hudbars
 
 origin	https://github.com/dacmot/moarmour (fetch)
@@ -102,15 +102,15 @@ origin	https://github.com/minetest-mods/playeranim (fetch)
 Mod: player/playeranim
 
 origin	http://repo.or.cz/minetest_show_wielded_item.git (fetch)
-* master 83f1997 [origin/master] Add z_index to HUD definition
+* master 6f40e88 [origin/master] Version 1.2.0
 Mod: player/show_wielded_item
 
 origin	https://github.com/minetest-mods/wielded_light (fetch)
-* master            60b31d3 [origin/master] fix mt-5.4 compatibility Closes #7
+* master            1646439 [origin/master] Use get_luaentity rather than deprecated get_entity_name call (#19)
 Mod: player/wielded_light
 
 origin	https://github.com/bell07/minetest-player_api_modpack (fetch)
-* master cd91360 [origin/master] update 3d_armor mods
+* master e32b5c4 [origin/master: ahead 1] player_api updates from upstream
 Mod: player_api_modpack/3d_armor
 Mod: player_api_modpack/character_creator
 Mod: player_api_modpack/clothing
@@ -126,7 +126,7 @@ Mod: player_api_modpack/skinsdb5
 Mod: player_api_modpack/wieldview
 
 origin	https://github.com/minetest-mods/3d_armor (fetch)
-* master 42f7dac [origin/master] Update fire and water protection (#42)
+* master b6651fd [origin/master] add fire protection to nether armor (#67)
 Mod: 3d_armor/3d_armor_stand
 Mod: 3d_armor/shields
 Mod: 3d_armor/3d_armor_sfinv
@@ -141,7 +141,7 @@ Mod: smart_sfinv_modpack/smart_sfinv_creative_sitebar
 Mod: smart_sfinv_modpack/smart_sfinv_tweaks
 
 origin	https://notabug.org/TenPlus1/ambience (fetch)
-* master 9b1a57b [origin/master] update mod.conf info
+* master f7d5423 [origin/master] add join/leave nil checks, use pairs for player loop
 Mod: ambience/ambience
 
 origin	https://github.com/minetest-mods/lightning (fetch)
@@ -157,7 +157,7 @@ origin	https://gitlab.com/rautars/weather_pack (fetch)
 Mod: ambience/weather_pack
 
 origin	https://notabug.org/TenPlus1/farming (fetch)
-* master 79035d0 [origin/master] added extra compatibility for crops spawning on older v6 maps
+* master 211cedc [origin/master] fix cornstarch groups
 Mod: flora_ores/farming
 
 origin	https://github.com/minetest-technic/mese_crystals (fetch)
@@ -177,7 +177,7 @@ origin	https://github.com/minetest-mods/meseor (fetch)
 Mod: mapgen/meseor
 
 origin	https://notabug.org/TenPlus1/pbj_pup (fetch)
-* master a60d0cd [origin/master] add mod.conf
+* master 5a0d59e [origin/master] tweak code
 Mod: mapgen/pbj_pup
 
 origin	https://github.com/GreenXenith/tac_nayn (fetch)
@@ -189,15 +189,15 @@ origin	https://github.com/taikedz/everamzah-backpacks (fetch)
 Mod: tools/backpacks
 
 origin	https://notabug.org/tenplus1/bonemeal (fetch)
-* master 308baf3 [origin/master] update mod.conf info
+* master 2d7dbc7 [origin/master] added sunflowers to list
 Mod: tools/bonemeal
 
 origin	https://github.com/SmallJoker/boost_cart (fetch)
-* master 5b53183 [origin/master] Descend from cart using sneak (#31)
+* master 3bd7d6f [origin/master] Fix item pickups not working sometimes
 Mod: tools/boost_cart
 
 origin	https://github.com/minetest-mods/ccompass (fetch)
-* master 9845a89 [origin/master] hint how to disable teleporting
+* master 78d60b3 [origin/master] Idle when no player has an active compass (#21)
 Mod: tools/ccompass
 
 origin	https://github.com/minetest-mods/compost (fetch)
@@ -221,7 +221,7 @@ origin	https://github.com/minetest-mods/hopper (fetch)
 Mod: tools/hopper
 
 origin	https://github.com/minetest-mods/jumping (fetch)
-* master 811847b [origin/master] Update mod.conf
+* master b5205e4 [origin/master] opt-depend on default [squash] (#9)
 Mod: tools/jumping
 
 origin	https://github.com/minetest-mods/orbs_of_time/ (fetch)
@@ -245,7 +245,7 @@ origin	https://github.com/minetest-mods/trash_can (fetch)
 Mod: tools/trash_can
 
 origin	https://github.com/minetest-mods/woodcutting (fetch)
-* master                     17ebc11 [origin/master] Merge pull request #6 from Panquesito7/master
+* master                     94eb669 [origin/master] Update README.md
 Mod: tools/woodcutting
 
 origin	https://github.com/Amaz1/flight/ (fetch)
@@ -316,15 +316,15 @@ origin	https://github.com/v-rob/slats (fetch)
 Mod: decor/slats
 
 origin	https://github.com/minetest-mods/ts_furniture (fetch)
-* master d6a34f3 [origin/master] Fix undeclared variable warning
+* master 6cdb584 [origin/master] Dynamically use textures from base nodes
 Mod: decor/ts_furniture
 
 origin	https://gitlab.com/VanessaE/unifieddyes (fetch)
 * master         6873ad3 [origin/master] Merge branch 'translatable-color-string' into 'master'
 Mod: decor/unifieddyes
 
-origin	https://gitlab.com/VanessaE/homedecor_modpack/ (fetch)
-* master 6486037 [origin/master: ahead 6] Merge remote-tracking branch 'origin/master'
+origin	https://github.com/mt-mods/homedecor_modpack (fetch)
+* master a8fceb2 [origin/master] Merge pull request #16 from mt-mods/stairs
 Mod: homedecor_modpack/building_blocks
 Mod: homedecor_modpack/fake_fire
 Mod: homedecor_modpack/lavalamp
@@ -358,7 +358,7 @@ Mod: homedecor_modpack/homedecor_trash_cans
 Mod: homedecor_modpack/homedecor_windows_and_treatments
 
 origin	https://github.com/minetest-mods/mydoors (fetch)
-* master eef3b5f [origin/master] Merge pull request #9 from Jat15/master
+* master 1e7ace6 [origin/master] Merge: Mod rewrite by oversword
 Mod: mydoors/my_castle_doors
 Mod: mydoors/my_cottage_doors
 Mod: mydoors/my_default_doors
@@ -376,7 +376,7 @@ Mod: food_modpack/food
 Mod: food_modpack/food_basic
 
 origin	https://github.com/h-v-smacker/canned_food (fetch)
-* master 755526d [origin/master] readme with a picture
+* master 4d061e9 [origin/master] Merge pull request #4 from Bastrabun/master
 Mod: food/canned_food
 
 origin	https://github.com/rubenwardy/food_sweet (fetch)
@@ -389,15 +389,15 @@ origin	https://github.com/Philipbenr/mtfoods (fetch)
 Mod: food/mtfoods
 
 origin	https://notabug.org/TenPlus1/pie (fetch)
-* master 85016dc [origin/master] update mod.conf info
+* master b47a4a2 [origin/master] add pie rotation (thanks MoNTE48)
 Mod: food/pie
 
 origin	https://github.com/GreenXenith/waffles (fetch)
-* master 15bcdce [origin/master] Update license.
+* master e3fb87c [origin/master] Update screenshot.png
 Mod: food/waffles
 
 origin	https://github.com/minetest-mods/mesecons (fetch)
-* master 583d2c1 [origin/master] Replace mesecon.mergetable (#533)
+* master ecea0a2 [origin/master] Optimize light updates when turning conductors on and off (#578)
 Mod: mesecons/mesecons
 Mod: mesecons/mesecons_alias
 Mod: mesecons/mesecons_blinkyplant
@@ -428,9 +428,9 @@ origin	https://codeberg.org/Hamlet/mobs_ghost_redo (fetch)
 Mod: mobs_redo/mobs_ghost_redo
 
 origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
-* master 9835105 [origin/master] fix typo in mod.conf
+* master 23e24bf [origin/master] fix intllib return
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master 11e1d52 [origin/master] replace minetest 5.0 check
+* master 6a4a02f [origin/master] fix translations (thanks nixnoxus)
 Mod: mobs_redo/mobs_redo
