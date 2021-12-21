@@ -27,7 +27,7 @@ for _, c in ipairs(bookcolors) do
 	local color, hue = unpack(c)
 
 	local function book_dig(pos, node, digger)
-		if minetest.is_protected(pos, digger:get_player_name()) then return end
+		if not digger or minetest.is_protected(pos, digger:get_player_name()) then return end
 		local meta = minetest.get_meta(pos)
 		local data = minetest.serialize({
 			title = meta:get_string("title") or "",

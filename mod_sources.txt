@@ -110,7 +110,7 @@ origin	https://github.com/minetest-mods/wielded_light (fetch)
 Mod: player/wielded_light
 
 origin	https://github.com/bell07/minetest-player_api_modpack (fetch)
-* master e32b5c4 [origin/master: ahead 1] player_api updates from upstream
+* master cd91360 [origin/master] update 3d_armor mods
 Mod: player_api_modpack/3d_armor
 Mod: player_api_modpack/character_creator
 Mod: player_api_modpack/clothing
@@ -324,7 +324,7 @@ origin	https://gitlab.com/VanessaE/unifieddyes (fetch)
 Mod: decor/unifieddyes
 
 origin	https://github.com/mt-mods/homedecor_modpack (fetch)
-* master a8fceb2 [origin/master] Merge pull request #16 from mt-mods/stairs
+* whynot a6fa014 make beds sleepable https://github.com/mt-mods/homedecor_modpack/issues/13
 Mod: homedecor_modpack/building_blocks
 Mod: homedecor_modpack/fake_fire
 Mod: homedecor_modpack/lavalamp
