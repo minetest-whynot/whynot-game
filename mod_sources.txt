@@ -262,8 +262,8 @@ origin	https://github.com/Ezhh/abriglass (fetch)
 * master eec4fcd [origin/master] Improve cage glass
 Mod: decor/abriglass
 
-origin	https://gitlab.com/VanessaE/basic_materials (fetch)
-* master e72665b [origin/master] Merge branch 'italian' into 'master'
+origin	https://github.com/mt-mods/basic_materials (fetch)
+* master 0893974 [origin/master] github luacheck workflow
 Mod: decor/basic_materials
 
 origin	https://github.com/Napiophelios/campfire (fetch)
@@ -319,8 +319,8 @@ origin	https://github.com/minetest-mods/ts_furniture (fetch)
 * master 6cdb584 [origin/master] Dynamically use textures from base nodes
 Mod: decor/ts_furniture
 
-origin	https://gitlab.com/VanessaE/unifieddyes (fetch)
-* master         6873ad3 [origin/master] Merge branch 'translatable-color-string' into 'master'
+origin	https://github.com/mt-mods/unifieddyes (fetch)
+* master         ff3b2d3 [origin/master] Fix right-click crash on unknown nodes
 Mod: decor/unifieddyes
 
 origin	https://github.com/mt-mods/homedecor_modpack (fetch)
