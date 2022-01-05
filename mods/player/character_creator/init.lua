@@ -140,6 +140,10 @@ end
 
 local function save_skin(player)
 	local player_meta = player:get_meta()
+	if player_meta == nil then
+		-- The player disconnected before this function was dispatched
+		return
+	end
 
 	local function save_data(data_name)
 		local indexes = skin_indexes[player]
@@ -160,6 +164,11 @@ end
 
 local function get_texture(player)
 	local player_meta = player:get_meta()
+	if player_meta == nil then
+		-- The player disconnected before this function was dispatched
+		return ""
+	end
+
 	local indexes = skin_indexes[player]
 	local texture = ""
 	local gender = player_meta:get_string("character_creator:gender")
@@ -197,6 +206,10 @@ end
 
 local function change_skin(player)
 	local playername = player:get_player_name()
+	if playername == nil then
+		-- The player disconnected before this function was dispatched
+		return
+	end
 	local skin_obj = player_api.registered_skins["character_creator:"..playername]
 	skin_obj.textures = skin_obj.textures or {}
 	skin_obj.textures[1] = get_texture(player)

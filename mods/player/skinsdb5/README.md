@@ -22,3 +22,4 @@ If nothing else is specified, it is licensed as GPLv3.
 - cornernote (source code)
 - Krock (source code)
 - bell07 (source code)
+- stujones11 (player models)

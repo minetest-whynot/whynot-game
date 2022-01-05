@@ -1,17 +1,11 @@
-player_api.default_model = "multiskin_model.b3d"
-
-local function concat_texture(base, ext)
-	if base == "blank.png" or base == "" or base == nil then
-		return ext
-	elseif ext == "blank.png" then
-		return base
-	else
-		return base .. "^" .. ext
-	end
+-- Replace compatible default model
+local multiskin_model_name = "multiskin_model.b3d"
+if player_api.default_model == "character.b3d" then
+	player_api.default_model = multiskin_model_name
 end
 
-
-player_api.register_model("multiskin_model.b3d", {
+-- Register model with skin modifier
+player_api.register_model(multiskin_model_name, {
 	animation_speed = 30,
 	textures = {
 		"blank.png", -- V1.0 Skin
@@ -28,6 +22,16 @@ player_api.register_model("multiskin_model.b3d", {
 		sit = {x=81, y=160},
 	},
 	skin_modifier = function(model, textures, player)
+		local function concat_texture(base, ext)
+			if base == "blank.png" or base == "" or base == nil then
+				return ext
+			elseif ext == "blank.png" then
+				return base
+			else
+				return base .. "^" .. ext
+			end
+		end
+
 		if #textures < 4 then
 			-- fill up with blanks
 			for i = #textures, 4 do
@@ -53,6 +57,7 @@ player_api.register_model("multiskin_model.b3d", {
 	end,
 })
 
+-- Compatibility skin modifier for 1.8 skins
 player_api.register_skin_modifier(function(textures, player, player_model, player_skin)
 	if player_model ~= "multiskin_model.b3d" then
 		return
@@ -83,14 +88,29 @@ function multiskin_model.get_skin_format(file)
 	end
 end
 
-local old_register_skin = player_api.register_skin
-function player_api.register_skin(name, skin)
-	old_register_skin(name, skin)
+-- Change default model and determine the skin type
+local function add_multiskin(name, skin)
+	if skin.model_name == "character.b3d" then -- compatible replacement
+		skin.model_name = multiskin_model_name
+	end
+
 	if skin.filename and not skin.format then
 		local file = io.open(skin.filename, "r")
 		skin.format = multiskin_model.get_skin_format(file)
 		file:close()
 	end
+end
+
+-- override player_api.register_skin for next registered skins
+local old_register_skin = player_api.register_skin
+function player_api.register_skin(name, skin)
+	old_register_skin(name, skin)
+	add_multiskin(name, skin)
+end
+
+-- process already registered skins
+for name, skin in pairs(player_api.registered_skins) do
+ add_multiskin(name, skin)
 end
 
 player_api.read_textures_and_meta()

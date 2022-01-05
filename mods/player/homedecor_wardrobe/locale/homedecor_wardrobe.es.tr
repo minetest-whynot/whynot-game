@@ -1,0 +1,8 @@
+# textdomain: homedecor_wardrobe
+
+
+### init.lua ###
+
+Clothes=Ropa
+Storage=Almacenamiento
+Wardrobe=Guardarropa

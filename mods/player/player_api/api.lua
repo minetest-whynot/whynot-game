@@ -165,13 +165,16 @@ end
 -- Get current assigned or default skin for player
 function player_api.get_skin(player)
 	local assigned_skin = player:get_meta():get_string("player_api:skin")
-	if assigned_skin then
+	if assigned_skin ~= "" then
+print("assigned", assigned_skin)
 		return assigned_skin, false
 	end
 	local skinname = "player_"..player:get_player_name():lower()
 	if player_api.registered_skins[skinname] then
+print("player skin", skinname)
 		return skinname, true
 	end
+print("default skin", player_api.default_skin )
 	return player_api.default_skin, true
 end
 

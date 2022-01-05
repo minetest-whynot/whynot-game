@@ -46,8 +46,7 @@ local function get_preview(texture, format)
 	skin = skin .. "([combine:16x32:4,-32=" .. player_skin .. "^[mask:(skindb_mask_rleg.png^[transformFX))"
 
 	-- Full Preview
-	skin = "(((" .. skin .. ")^[resize:64x128)^[mask:skindb_transform.png)"
-	return minetest.formspec_escape(skin)
+	return "(((" .. skin .. ")^[resize:64x128)^[mask:skindb_transform.png)"
 end
 
 -- Generate preview if not defined

@@ -1,5 +1,0 @@
-homedecor_common
-default
-homedecor_kitchen?
-homedecor_misc?
-player_api

@@ -1,4 +1,4 @@
--- Rework 2018-2020 by bell07
+-- Rework 2018-2022 by bell07
 -- License: GPLv3
 
 skinsdb5 = {}
@@ -24,5 +24,3 @@ minetest.register_on_leaveplayer(function(player)
 	skinsdb5.ui_context[player:get_player_name()] = nil
 end)
 
--- Read current mod textures- and meta- folder
-player_api.read_textures_and_meta()

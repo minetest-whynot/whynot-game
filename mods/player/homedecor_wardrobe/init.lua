@@ -1,15 +1,16 @@
-local modpath = minetest.get_modpath("homedecor_wardrobe")
+local S = minetest.get_translator("homedecor_wardrobe")
+modpath = minetest.get_modpath("homedecor_wardrobe")
 
-screwdriver = screwdriver or {}
-
-local placeholder_node = "air"
 local wd_cbox = {type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, 1.5, 0.5}}
 
 local skinslist = {"male1", "male2", "male3", "male4", "male5"}
 local default_skin = "character.png"
 
+
 for _, shrt in ipairs(skinslist) do
+
 	for _, prefix in ipairs({"", "fe"}) do
+
 		local skin_name = prefix..shrt
 		local skin = {
 			texture =  "homedecor_clothes_"..skin_name..".png",
@@ -24,13 +25,14 @@ for _, shrt in ipairs(skinslist) do
 	end
 end
 
+
 local function set_player_skin(player, skin, save)
 	player_api.set_skin(player, skin, not save)
 end
 
 local def = {
 
-	description = "Wardrobe",
+	description = S("Wardrobe"),
 	drawtype = "mesh",
 	mesh = "homedecor_bedroom_wardrobe.obj",
 	tiles = {
@@ -48,7 +50,7 @@ local def = {
 	collision_box = wd_cbox,
 	sounds = default.node_sound_wood_defaults(),
 
-	on_rotate = screwdriver.rotate_simple,
+	on_rotate = minetest.get_modpath("screwdriver") and screwdriver.rotate_simple or nil,
 
 	on_place = function(itemstack, placer, pointed_thing)
 
@@ -67,7 +69,7 @@ local def = {
 
 		local meta = minetest.get_meta(pos)
 
-		meta:set_string("infotext", "Wardrobe")
+		meta:set_string("infotext", S("Wardrobe"))
 
 		meta:get_inventory():set_size("main", 10)
 
@@ -87,10 +89,10 @@ local def = {
 
 		meta:set_string("formspec",  "size[5.5,8.5]" ..
 			default.gui_bg .. default.gui_bg_img .. default.gui_slots ..
-			"vertlabel[0,0.5;" .. minetest.formspec_escape("Clothes") .. "]" ..
+			"vertlabel[0,0.5;" .. minetest.formspec_escape(S("Clothes")) .. "]" ..
 			"button_exit[0,3.29;0.6,0.6;default;x]" ..
 			clothes_strings ..
-			"vertlabel[0,5.2;" .. minetest.formspec_escape("Storage") .. "]" ..
+			"vertlabel[0,5.2;" .. minetest.formspec_escape(S("Storage")) .. "]" ..
 			"list[current_name;main;0.5,4.5;5,2;]" ..
 			"list[current_player;main;0.5,6.8;5,2;]" ..
 			"listring[]"
@@ -134,7 +136,7 @@ minetest.register_craft( {
 	output = "homedecor:wardrobe",
 	recipe = {
 		{ "homedecor:drawer_small", "homedecor:kitchen_cabinet" },
-		{ "homedecor:drawer_small", "default:wood" },
-		{ "homedecor:drawer_small", "default:wood" }
+		{ "homedecor:drawer_small", "group:wood" },
+		{ "homedecor:drawer_small", "group:wood" }
 	},
 })

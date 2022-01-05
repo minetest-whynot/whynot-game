@@ -1,27 +1,28 @@
 # [mod] Visible Player Armor [3d_armor]
- 
+
 |  |  |  |  | 
 |--|--|--|--|
-|-[Overview](#overview)                                                      |||-[API](#api)|
-|-[Armor Configuration](#armor-configuration)                                |||- - [3d_Armor Item Storage](#3d_armor-item-storage)
-|- - [disable_specific_materials](#to-disable-individual-armor-materials)    |||- - [Armor Registration](#armor-registration)
-|- - [armor_init_delay](#initialization-glitches-when-a-player-first-joins)  |||- - [Registering Armor Groups](#registering-armor-groups)
-|- - [armor_init_times](#number-of-initialization-attempts)                  |||- - [Groups used by 3d_Armor](#groups-used-by-3d_armor)
-|- - [armor_bones_delay](#armor-not-in-bones-due-to-server-lag)              |||- - - [Elements](#elements)
-|- - [armor_update_time](#how-often-player-armor-items-are-updated)          |||- - - [Attributes](#attributes)
-|- - [armor_drop](#drop-armor-when-a-player-dies)                            |||- - - [Physics](#physics)
-|- - [armor_destroy](#destroy-armor-when-a-player-dies)                      |||- - - [Durability](#durability)
-|- - [armor_level_multiplier](#armor-level-multiplyer)                       |||- - [Armour Functions](#armour-functions)
-|- - [armor_heal_multiplier](#armor-healing-multiplyer)                      |||- - - [armor:set_player_armor](#armor-set_player_armor)
-|- - [armor_water_protect](#enable-water-protection)                         |||- - - [armor:punch](#armor-punch)
-|- - [armor_fire_protect](#enable-fire-protection)                           |||- - - [armor:damage](#armor-damage)
-|- - [armor_punch_damage](#enable-punch-damage-effects)                      |||- - - [armor:remove_all](#armor-remove_all)
-|- - [armor_migrate_old_inventory](#migration-of-old-armor-inventories)      |||- - - [armor:equip](#armor-equip)
-|- - [wieldview_update_time](#how-often-player-wield-items-are-updated)      |||- - - [armor:unequip](#armor-unequip)
-| - [Credits](#credits)                                                      |||- - - [armor:update_skin](#armor-update_skin)
-|                                                                            |||- - [Callbacks](#Callbacks)
-|                                                                            |||- - - [Item callbacks](#item-callbacks)
-|                                                                            |||- - - [Global callbacks](#global-callbacks)
+|-[Overview](#overview)                                                     |||-[API](#api)
+|-[Armor Configuration](#armor-configuration)                               |||- - [3d_Armor Item Storage](#3d_armor-item-storage)
+|- - [disable_specific_materials](#to-disable-individual-armor-materials)   |||- - [Armor Registration](#armor-registration)
+|- - [armor_init_delay](#initialization-glitches-when-a-player-first-joins) |||- - [Registering Armor Groups](#registering-armor-groups)
+|- - [armor_init_times](#number-of-initialization-attempts)                 |||- - [Groups used by 3d_Armor](#groups-used-by-3d_armor)
+|- - [armor_bones_delay](#armor-not-in-bones-due-to-server-lag)             |||- - - [Elements](#elements)
+|- - [armor_update_time](#how-often-player-armor-items-are-updated)         |||- - - [Attributes](#attributes)
+|- - [armor_drop](#drop-armor-when-a-player-dies)                           |||- - - [Physics](#physics)
+|- - [armor_destroy](#destroy-armor-when-a-player-dies)                     |||- - - [Durability](#durability)
+|- - [armor_level_multiplier](#armor-level-multiplyer)                      |||- - - [Armor Material](#armor-material)
+|- - [armor_heal_multiplier](#armor-healing-multiplyer)                     |||- - [Armour Functions](#armor-functions)
+|- - [armor_set_elements](#allows-the-customisation-of-armor-set)           |||- - - [armor:set_player_armor](#armor-set_player_armor)
+|- - [armor_set_bonus](#armor-set-bonus-multiplier)                         |||- - - [armor:punch](#armor-punch)
+|- - [armor_water_protect](#enable-water-protection)                        |||- - - [armor:damage](#armor-damage)
+|- - [armor_fire_protect](#enable-fire-protection)                          |||- - - [armor:remove_all](#armor-remove_all)
+|- - [armor_punch_damage](#enable-punch-damage-effects)                     |||- - - [armor:equip](#armor-equip)
+|- - [armor_migrate_old_inventory](#migration-of-old-armor-inventories)     |||- - - [armor:unequip](#armor-unequip)
+|- - [wieldview_update_time](#how-often-player-wield-items-are-updated)     |||- - - [armor:update_skin](#armor-update_skin)
+|-[Credits](#credits)                                                       |||- - [Callbacks](#Callbacks)
+|                                                                           |||- - - [Item callbacks](#item-callbacks)
+|                                                                           |||- - - [Global callbacks](#global-callbacks)
 
 # Overview
 
@@ -39,7 +40,7 @@ Overall level is boosted by 10% when wearing a full matching set.
 
 # Armor Configuration
 
-Override the following default settings by adding them to your ***minetest.conf*** file.
+Change the following default settings by going to Main Menu>>Settings(Tab)>>All Settings(Button)>>Mods>>minetest-3d_Armor>>3d_Armor
 
 ### To disable individual armor materials
  **set the below to false**
@@ -52,6 +53,7 @@ Override the following default settings by adding them to your ***minetest.conf*
     armor_material_gold = true
     armor_material_mithril = true
     armor_material_crystal = true
+    armor_material_nether = true
 
 ### Initialization glitches when a player first joins
  **Increase to prevent glitches**
@@ -94,6 +96,17 @@ Override the following default settings by adding them to your ***minetest.conf*
  **eg: armor_heal_multiplier = 0 will disable healing altogether.**
 
     armor_heal_multiplier = 1
+	
+### Allows the customisation of armor set 
+ **Shields already configured as need to be worn to complete an armor set**   
+ **These names come from [Element names](#groups-used-by-3d_armor), the second half of the element name only is used eg armor_head is head**
+ 
+    armor_set_elements = head torso legs feet shield
+
+### Armor set bonus multiplier 
+ **Set to 1 to disable set bonus**
+ 
+    armor_set_multiplier = 1.1
 
 ### Enable water protection
  **periodically restores breath when activated**
@@ -174,7 +187,7 @@ Wrapper function for `minetest.register_tool`, which enables the easy registrati
     	preview = "mod_name_leather_chestplate_preview.png",
     	groups = {armor_torso=1, armor_heal=0, armor_use=2000, flammable=1},
     	armor_groups = {fleshy=10},
-        damage_groups = {cracky=3, snappy=2, choppy=3, crumbly=2, level=1}
+    	damage_groups = {cracky=3, snappy=2, choppy=3, crumbly=2, level=1}
     })
 *See ***armor.lua*** under **3d_armor>>3d_armor** for further examples*
 
@@ -254,13 +267,9 @@ Adding Elements is more complex but the below code can be used to add new elemen
 
     if minetest.global_exists("armor") and armor.elements then
     	table.insert(armor.elements, "hands")
-    	local mult = armor.config.level_multiplier or 1
-    	armor.config.level_multiplier = mult * 0.5
     end
 **1st line** not strictly needed but checks that the global table "armor" and subtable "elements" exists   
-**2nd line** adds a new value to the armor.elements table called "hands"   
-**3rd line** in this case will be set to one ***note: need more detail here***    
-**4th line** simply sets the multiplier, by setting 0.5 smaller armor becomes less effective and larger more effective. good values are between 0.1 and 1 in increments of 0.1.   
+**2nd line** adds a new value to the armor.elements table called "hands"  
 
 See ***init.lua*** under **3d_armor>>shields** for a further example
 
@@ -350,9 +359,45 @@ Durability is determined by the value assigned to the group ***armor_use***. The
  All diamond armor items have an  ***armor_use=200***;
  
 	65535/2000 = 327.6 (327)   
- After 327 uses(hits) the armor item will break.   
+ After 327 uses(hits) the armor item will break. 
+
+### Armor Material 
+The material the armor is made from is defined by adding the material to the end of registered armor item name. It is very important the material is the last item in the registered item name and it is preceeded by an "_" eg "_materialname".
+The material name is what 3d_armor uses to determine if a player is wearing a set of armor. To recieve the set bonus all items worn must be made of the same material.
+So to get a set bonus under the default set settings the players armor items listed below must be made of the same material:
+* head - Helmet
+* torso - Chestplate
+* legs - Leggings
+* feet - Boots
+* shield - Shields   
+
+If all of the above were made of material "wood" the player would recieve an ***armor_set_bonus*** of armor_level * 1.1, essentially +10%  
+
+ **Example One** 
+ 
+	armor:register_armor("3d_armor:helmet_bronze", {
+		description = S("Bronze Helmet"),
+		inventory_image = "3d_armor_inv_helmet_bronze.png",
+		groups = {armor_head=1, armor_heal=6, armor_use=400, physics_speed=-0.01, physics_gravity=0.01},
+		armor_groups = {fleshy=10},
+		damage_groups = {cracky=3, snappy=2, choppy=2, crumbly=1, level=2},
+	})
+	
+ **Example Two** 
+ 
+	armor:register_armor("new_mod:helmet_spartan_bronze", {
+		description = S("Spartan Helmet"),
+		inventory_image = "new_mod_inv_helmet_spartan_bronze.png",
+		groups = {armor_head=1, armor_heal=6, armor_use=350, physics_speed=-0.01, physics_gravity=0.01},
+		armor_groups = {fleshy=12},
+		damage_groups = {cracky=3, snappy=2, choppy=2, crumbly=1, level=2},
+	})
+
+***Note: At the moment an armor item can only be made of one material***
 
 ## Armor Functions
+
+See also: [API Reference](https://minetest-mods.github.io/3d_armor/reference/)
 
 ### armor set_player_armor
 

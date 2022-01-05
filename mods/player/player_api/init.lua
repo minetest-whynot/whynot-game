@@ -25,7 +25,12 @@ player_api.register_model("upright_sprite", {
 	eye_height = 1.625,
 })
 
-player_api.read_textures_and_meta()
+player_api.register_skin("character", {
+	description = "Sam",
+	author = "Jordach",
+	textures = {"character.png"},
+	model_name = "character.b3d"
+})
 
 player_api.register_skin("sprite", {
 	description = "Demo sprite player",

@@ -43,8 +43,7 @@ minetest.register_chatcommand("skinsdb", {
 				else
 					return false, S("invalid skin").." "..parameter
 				end
-			else
-				return false, S("requires skin key")
+			else return false, S("Requires skin key")
 			end
 		elseif command == "list" then
 			local list
