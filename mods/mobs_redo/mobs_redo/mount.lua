@@ -218,7 +218,7 @@ function mobs.drive(entity, moving_anim, stand_anim, can_fly, dtime)
 	end
 
 	local acce_y = 0
-	local velo = entity.object:get_velocity()
+	local velo = entity.object:get_velocity() ; if not velo then return end
 
 	entity.v = get_v(velo) * get_sign(entity.v)
 
@@ -427,7 +427,7 @@ end
 -- directional flying routine by D00Med (edited by TenPlus1)
 function mobs.fly(entity, _, speed, shoots, arrow, moving_anim, stand_anim)
 
-	local ctrl = entity.driver:get_player_control()
+	local ctrl = entity.driver:get_player_control() ; if not ctrl then return end
 	local velo = entity.object:get_velocity()
 	local dir = entity.driver:get_look_dir()
 	local yaw = entity.driver:get_look_horizontal() + 1.57 -- offset fix between old and new commands

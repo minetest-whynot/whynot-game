@@ -1,7 +1,7 @@
 
 bell07	https://github.com/bell07/minetest_game (fetch)
 origin	https://github.com/minetest/minetest_game (fetch)
-* master                  6ebfc3b [origin/stable-5: ahead 2] Merge remote-tracking branch 'origin/stable-5'
+* master                  dd7eed9 [origin/stable-5] Merge remote-tracking branch 'origin/stable-5' into HEAD
 Mod: minetest_game/mods/beds
 Mod: minetest_game/mods/binoculars
 Mod: minetest_game/mods/boats
@@ -110,7 +110,7 @@ origin	https://github.com/minetest-mods/wielded_light (fetch)
 Mod: player/wielded_light
 
 origin	https://github.com/bell07/minetest-player_api_modpack (fetch)
-* master cd91360 [origin/master] update 3d_armor mods
+* master aef3182 [origin/master: ahead 7] move minetest.formspec_escape() from skins_preview to skinsdb5
 Mod: player_api_modpack/3d_armor
 Mod: player_api_modpack/character_creator
 Mod: player_api_modpack/clothing
@@ -160,8 +160,8 @@ origin	https://notabug.org/TenPlus1/farming (fetch)
 * master 211cedc [origin/master] fix cornstarch groups
 Mod: flora_ores/farming
 
-origin	https://github.com/minetest-technic/mese_crystals (fetch)
-* master c11160f [origin/master: ahead 1] fix leaked globals
+origin	https://github.com/bell07/minetest-mese_crystals (fetch)
+* master 33b477e [origin/master] Merge pull request #1 from bell07/patch-1
 Mod: flora_ores/mese_crystals
 
 origin	https://github.com/Treer/cloudlands/ (fetch)
@@ -383,9 +383,8 @@ origin	https://github.com/rubenwardy/food_sweet (fetch)
 * master 5c9966d [origin/master] Add mod.conf and screenshot.png
 Mod: food/food_sweet
 
-bell07	https://github.com/bell07/mtfoods (fetch)
-origin	https://github.com/Philipbenr/mtfoods (fetch)
-* master ae3eb42 [origin/master: ahead 1] replace global "ing" by more meaningful global mtfoods.ingredients variable
+origin	https://github.com/minetest-mods/mtfoods (fetch)
+* master ae3eb42 [origin/master] replace global "ing" by more meaningful global mtfoods.ingredients variable
 Mod: food/mtfoods
 
 origin	https://notabug.org/TenPlus1/pie (fetch)
@@ -432,5 +431,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master 6a4a02f [origin/master] fix translations (thanks nixnoxus)
+* master e5d1958 [origin/master] add nil checks for riding mobs
 Mod: mobs_redo/mobs_redo
