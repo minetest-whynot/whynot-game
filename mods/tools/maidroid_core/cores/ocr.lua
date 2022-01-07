@@ -100,10 +100,11 @@ local function get_code(self)
 	for i = 1,#list do
 		local stack = list[i]
 		if stack:get_name() == "default:book_written" then
-			local data = minetest.deserialize(stack:get_metadata())
-			if data
-			and data.title == "main" then
-				return data.text
+			local stktbl = stack:to_table()
+			if stktbl
+			and stktbl["meta"]
+			and stktbl["meta"]["title"] == "main" then
+				return stktbl["meta"]["text"]
 			end
 		end
 	end
@@ -140,7 +141,9 @@ local function on_step(self)
 end
 
 local function on_resume(self)
-	self.thread:continue()
+	on_stop(self)
+	on_start(self)
+	-- self.thread:continue()
 end
 
 local function on_pause(self)

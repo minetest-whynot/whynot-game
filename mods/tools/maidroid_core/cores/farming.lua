@@ -11,10 +11,20 @@ local state = {
 	MOW           = 4,
 }
 
-local target_plants = {
-	"farming:cotton_8",
-	"farming:wheat_8",
-}
+local target_plants = {}
+if not farming or not farming.mod or farming.mod ~= "redo" then
+        target_plants = {
+                "farming:cotton_8",
+                "farming:wheat_8",
+        }
+else
+        local n = 0
+        for k, v in pairs(farming.registered_plants) do
+                n = n + 1
+                local plant = k .. "_" .. v.steps
+                target_plants[n] = plant
+        end
+end
 
 local _aux = maidroid_core._aux
 
@@ -153,10 +163,22 @@ to_walk_to_mow = function(self, path, destination)
 	self:set_animation(maidroid.animation_frames.WALK)
 end
 
+local is_seed = function(name)
+        if minetest.get_item_group(name, "seed") > 0 then
+                return true
+        end
+        for _, v in pairs(farming.registered_plants) do
+                if name == v.seed then
+                        return true
+                end
+        end
+        return false
+end
+
 to_plant = function(self)
 	local wield_stack = self:get_wield_item_stack()
-	if minetest.get_item_group(wield_stack:get_name(), "seed") > 0
-	or self:move_main_to_wield(function(itemname)	return (minetest.get_item_group(itemname, "seed") > 0) end) then
+	if is_seed(wield_stack:get_name())
+        or self:move_main_to_wield(is_seed) then
 		self.state = state.PLANT
 		self.time_counters[1] = 0
 		self.object:setvelocity{x = 0, y = 0, z = 0}
@@ -236,6 +258,15 @@ walk_to_plant_and_mow_common = function(self, dtime)
 	end
 end
 
+local get_plantname = function(itemname)
+        for k, v in pairs(farming.registered_plants) do
+                if v.seed == itemname then
+                       return k .. "_1" 
+                end
+        end
+        return itemname
+end
+
 plant = function(self, dtime)
 	if self.time_counters[1] >= 15 then
 		if is_plantable_place(self.destination) then
@@ -247,7 +278,9 @@ plant = function(self, dtime)
 				under = vector.add(self.destination, {x = 0, y = -1, z = 0}),
 				above = self.destination,
 			}
-			farming.place_seed(stack, minetest.get_player_by_name(self.owner_name), pointed_thing, stack:get_name())
+
+                        local plantname = get_plantname(itemname)
+			farming.place_seed(stack, minetest.get_player_by_name(self.owner_name), pointed_thing, plantname)
 
 			stack:take_item(1)
 			self:set_wield_item_stack(stack)

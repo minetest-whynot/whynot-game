@@ -251,7 +251,7 @@ origin	https://github.com/Amaz1/flight/ (fetch)
 Mod: flight/flyingcarpet
 
 origin	https://github.com/thePlasm/maidroid (fetch)
-* (HEAD detached at ec56bc4) ec56bc4 Update README.md
+* (HEAD detached at 4982e89) 4982e89 Added support for farming redo
 Mod: maidroid/maidroid
 Mod: maidroid/maidroid_core
 Mod: maidroid/maidroid_tool
