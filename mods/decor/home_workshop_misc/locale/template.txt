@@ -1,0 +1,12 @@
+# textdomain: home_workshop_misc
+
+### init.lua ###
+
+Metal tool cabinet and work table=
+Ahh, a frosty cold beer - look in your inventory for it!=
+Beer mug=
+Beer tap=
+No room in your inventory to add a beer mug!=
+Please insert a 25 Mg cent coin in the machine.=
+Soda Can=
+Soda vending machine=

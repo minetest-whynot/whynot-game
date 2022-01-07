@@ -91,6 +91,10 @@ homedecor.register("medicine_cabinet", {
 		node.name = "homedecor:medicine_cabinet_open"
 		minetest.swap_node(pos, node)
 	end,
+	can_dig = function(pos)
+		local inv = minetest.get_meta(pos):get_inventory("main")
+		return inv:is_empty("main")
+	end,
 	infotext=S("Medicine cabinet"),
 	inventory = {
 		size=6,
@@ -114,6 +118,10 @@ homedecor.register("medicine_cabinet_open", {
 	on_punch = function(pos, node, puncher, pointed_thing)
 		node.name = "homedecor:medicine_cabinet"
 		minetest.swap_node(pos, node)
+	end,
+	can_dig = function(pos)
+		local inv = minetest.get_meta(pos):get_inventory("main")
+		return inv:is_empty("main")
 	end,
 })
 
@@ -239,9 +247,7 @@ local function taps_on_rightclick(pos, node, clicker, itemstack, pointed_thing)
 	local below = minetest.get_node_or_nil({x=pos.x, y=pos.y-1, z=pos.z})
 	if below and
 	  below.name == "homedecor:shower_tray" or
-	  below.name == "homedecor:sink" or
-	  below.name == "homedecor:kitchen_cabinet_with_sink" or
-	  below.name == "homedecor:kitchen_cabinet_with_sink_locked" then
+	  string.find(below.name, "homedecor:.*sink") then
 		local particledef = {
 			outlet      = { x = 0, y = -0.44, z = 0.28 },
 			velocity_x  = { min = -0.1, max = 0.1 },

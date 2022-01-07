@@ -373,30 +373,6 @@ homedecor.register("skateboard", {
 	on_place = minetest.rotate_node
 })
 
-homedecor.register("tool_cabinet", {
-	description = S("Metal tool cabinet and work table"),
-	mesh = "homedecor_tool_cabinet.obj",
-	tiles = {
-		{ name = "homedecor_generic_metal.png", color = 0xffd00000 },
-		"homedecor_tool_cabinet_drawers.png",
-		{ name = "homedecor_generic_metal.png", color = 0xff006000 },
-		{ name = "homedecor_generic_metal.png", color = homedecor.color_med_grey },
-		"homedecor_generic_metal_bright.png",
-		"homedecor_tool_cabinet_misc.png",
-	},
-	inventory_image = "homedecor_tool_cabinet_inv.png",
-	on_rotate = minetest.get_modpath("screwdriver") and screwdriver.rotate_simple or nil,
-	groups = { snappy=3 },
-	selection_box = homedecor.nodebox.slab_y(2),
-	expand = { top="placeholder" },
-	inventory = {
-		size=24,
-	}
-})
-
-minetest.register_alias("homedecor:tool_cabinet_bottom", "homedecor:tool_cabinet")
-minetest.register_alias("homedecor:tool_cabinet_top", "air")
-
 homedecor_misc.banister_materials = {
 	{
 		"wood",
@@ -935,15 +911,6 @@ minetest.register_craft({
 		{ "dye:yellow","dye:green","dye:blue" },
 		{ "homedecor:wood_table_small_square","homedecor:wood_table_small_square","homedecor:wood_table_small_square" },
 		{ "default:steel_ingot","","default:steel_ingot" }
-	},
-})
-
-minetest.register_craft({
-	output = "homedecor:tool_cabinet",
-	recipe = {
-		{ "basic_materials:motor", "default:axe_steel", "default:pick_steel" },
-		{ "default:steel_ingot", "homedecor:drawer_small", "default:steel_ingot" },
-		{ "default:steel_ingot", "homedecor:drawer_small", "default:steel_ingot" }
 	},
 })
 

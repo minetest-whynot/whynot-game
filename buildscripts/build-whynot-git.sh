@@ -77,6 +77,9 @@ mod_install decor homedecor_modpack/homedecor_trash_cans
 # warderobe is from player_api fork
 mod_install decor homedecor_modpack/homedecor_windows_and_treatments
 
+mod_install decor home_workshop_modpack/home_vending_machines
+mod_install decor home_workshop_modpack/home_workshop_misc
+
 mod_install decor mydoors/my_castle_doors
 mod_install decor mydoors/my_cottage_doors
 mod_install decor mydoors/my_default_doors

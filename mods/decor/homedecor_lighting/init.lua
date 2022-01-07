@@ -1789,6 +1789,14 @@ unifieddyes.register_color_craft({
 	}
 })
 
+
+minetest.register_craft({
+	output = "homedecor:torch_wall 10",
+	recipe = {
+		{ "default:coal_lump" },
+		{ "default:steel_ingot" },
+	},
+})
 -- aliases
 
 minetest.register_alias("chains:chain_top",                    "homedecor:chain_steel_top")

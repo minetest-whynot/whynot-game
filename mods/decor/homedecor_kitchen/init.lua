@@ -137,43 +137,159 @@ homedecor.register("dishwasher_"..m, {
 end
 
 local cabinet_sides = "(default_wood.png^[transformR90)^homedecor_kitchen_cabinet_bevel.png"
-local cabinet_bottom = "(default_wood.png^[colorize:#000000:100)"
-	.."^(homedecor_kitchen_cabinet_bevel.png^[colorize:#46321580)"
+local cabinet_sides_colored = "(homedecor_generic_wood_plain.png^[transformR90)^homedecor_kitchen_cabinet_bevel.png"
+
+local ic_cabinet_sides = string.gsub(cabinet_sides, "%^", "&")
+local ic_cabinet_sides_colored = string.gsub(cabinet_sides_colored, "%^", "&")
+
+local cabinet_bottom = "(default_wood.png^[colorize:#000000:100)^homedecor_kitchen_cabinet_bevel.png"
+local cabinet_bottom_colored = "homedecor_generic_wood_plain.png^homedecor_kitchen_cabinet_bevel.png"
 
 local function N_(x) return x end
 
 local counter_materials = { "", N_("granite"), N_("marble"), N_("steel") }
 
+homedecor.kitchen_convert_nodes = {}
+
 for _, mat in ipairs(counter_materials) do
 
 	local desc = S("Kitchen Cabinet")
+	local desc2 = S("Kitchen Cabinet with drawers")
 	local material = ""
 
 	if mat ~= "" then
 		desc = S("Kitchen Cabinet (@1 top)", S(mat))
+		desc2 = S("Kitchen Cabinet with drawers (@1 top)", S(mat))
 		material = "_"..mat
 	end
 
-	homedecor.register("kitchen_cabinet"..material, {
+	homedecor.register("kitchen_cabinet_colorable"..material, {
 		description = desc,
-		tiles = { 'homedecor_kitchen_cabinet_top'..material..'.png',
-				cabinet_bottom,
-				cabinet_sides,
-				cabinet_sides,
-				cabinet_sides,
-				'homedecor_kitchen_cabinet_front.png'},
-		groups = { snappy = 3 },
+		tiles = {
+			'homedecor_kitchen_cabinet_top'..material..'.png',
+			cabinet_bottom,
+			cabinet_sides,
+			cabinet_sides,
+			cabinet_sides,
+			'homedecor_kitchen_cabinet_front.png^homedecor_kitchen_cabinet_bevel.png'
+		},
+		inventory_image = "[inventorycube"
+			.."{homedecor_kitchen_cabinet_top"..material..".png"
+			.."{homedecor_kitchen_cabinet_front.png"
+			.."{"..ic_cabinet_sides,
+		mesh = "homedecor_kitchen_cabinet.obj",
+		paramtype2 = "wallmounted",
+		palette = "unifieddyes_palette_colorwallmounted.png",
+		airbrush_replacement_node = "homedecor:kitchen_cabinet_colored"..material,
+		place_param2 = 0,
+		groups = { snappy = 3, ud_param2_colorable = 1},
 		sounds = default.node_sound_wood_defaults(),
 		infotext=S("Kitchen Cabinet"),
 		inventory = {
 			size=24,
 			lockable=true,
 		},
+		after_place_node = function(pos, placer, itemstack, pointed_thing)
+			unifieddyes.fix_rotation_nsew(pos, placer, itemstack, pointed_thing)
+		end
 	})
+
+	homedecor.register("kitchen_cabinet_colored"..material, {
+		description = desc,
+		tiles = {
+			{name = 'homedecor_kitchen_cabinet_top'..material..'.png', color = 0xFFFFFFFF},
+			{name = cabinet_bottom, color = 0xFFFFFFFF },
+			cabinet_sides_colored,
+			cabinet_sides_colored,
+			cabinet_sides_colored,
+			'homedecor_kitchen_cabinet_colored_front.png^homedecor_kitchen_cabinet_bevel.png'
+		},
+		inventory_image = "[inventorycube"
+			.."{homedecor_kitchen_cabinet_top"..material..".png"
+			.."{homedecor_kitchen_cabinet_front.png"
+			.."{"..ic_cabinet_sides_colored,
+		mesh = "homedecor_kitchen_cabinet.obj",
+		paramtype2 = "colorwallmounted",
+		palette = "unifieddyes_palette_colorwallmounted.png",
+		groups = { snappy = 3, ud_param2_colorable = 1, not_in_creative_inventory = 1 },
+		sounds = default.node_sound_wood_defaults(),
+		infotext=S("Kitchen Cabinet"),
+		inventory = {
+			size=24,
+			lockable=true,
+		},
+		after_place_node = function(pos, placer, itemstack, pointed_thing)
+			unifieddyes.fix_rotation_nsew(pos, placer, itemstack, pointed_thing)
+		end
+	})
+
+	homedecor.register("kitchen_cabinet_colorable_with_drawers"..material, {
+		description = desc2,
+		tiles = {
+			'homedecor_kitchen_cabinet_top'..material..'.png',
+			cabinet_bottom,
+			cabinet_sides,
+			cabinet_sides,
+			cabinet_sides,
+			'homedecor_kitchen_cabinet_front_with_drawers.png^homedecor_kitchen_cabinet_bevel.png'
+		},
+		inventory_image = "[inventorycube"
+			.."{homedecor_kitchen_cabinet_top"..material..".png"
+			.."{homedecor_kitchen_cabinet_front_with_drawers.png"
+			.."{"..ic_cabinet_sides,
+		mesh = "homedecor_kitchen_cabinet.obj",
+		paramtype2 = "wallmounted",
+		palette = "unifieddyes_palette_colorwallmounted.png",
+		airbrush_replacement_node = "homedecor:kitchen_cabinet_colored_with_drawers"..material,
+		groups = { snappy = 3, ud_param2_colorable = 1},
+		sounds = default.node_sound_wood_defaults(),
+		infotext=S("Kitchen Cabinet with drawers"),
+		inventory = {
+			size=24,
+			lockable=true,
+		},
+		after_place_node = function(pos, placer, itemstack, pointed_thing)
+			unifieddyes.fix_rotation_nsew(pos, placer, itemstack, pointed_thing)
+		end
+	})
+
+	homedecor.register("kitchen_cabinet_colored_with_drawers"..material, {
+		description = desc2,
+		tiles = {
+			{name = 'homedecor_kitchen_cabinet_top'..material..'.png', color = 0xFFFFFFFF},
+			{name = cabinet_bottom, color = 0xFFFFFFFF },
+			cabinet_sides_colored,
+			cabinet_sides_colored,
+			cabinet_sides_colored,
+			'homedecor_kitchen_cabinet_colored_front_with_drawers.png^homedecor_kitchen_cabinet_bevel.png'
+		},
+		inventory_image = "[inventorycube"
+			.."{homedecor_kitchen_cabinet_top"..material..".png"
+			.."{homedecor_kitchen_cabinet_colored_front_with_drawers.png"
+			.."{"..ic_cabinet_sides_colored,
+		mesh = "homedecor_kitchen_cabinet.obj",
+		paramtype2 = "colorwallmounted",
+		palette = "unifieddyes_palette_colorwallmounted.png",
+		groups = { snappy = 3, ud_param2_colorable = 1, not_in_creative_inventory = 1 },
+		sounds = default.node_sound_wood_defaults(),
+		infotext=S("Kitchen Cabinet with drawers"),
+		inventory = {
+			size=24,
+			lockable=true,
+		},
+		after_place_node = function(pos, placer, itemstack, pointed_thing)
+			unifieddyes.fix_rotation_nsew(pos, placer, itemstack, pointed_thing)
+		end
+	})
+
+	homedecor.kitchen_convert_nodes[#homedecor.kitchen_convert_nodes + 1] = "homedecor:kitchen_cabinet"..material
+	homedecor.kitchen_convert_nodes[#homedecor.kitchen_convert_nodes + 1] = "homedecor:kitchen_cabinet"..material.."_locked"
+
 end
 
-local kitchen_cabinet_half_box = homedecor.nodebox.slab_y(0.5, 0.5)
-homedecor.register("kitchen_cabinet_half", {
+local kitchen_cabinet_half_box = homedecor.nodebox.slab_z(0.5, 0.5)
+
+homedecor.register("kitchen_cabinet_colorable_half", {
 	description = S('Half-height Kitchen Cabinet (on ceiling)'),
 	tiles = {
 		cabinet_sides,
@@ -181,29 +297,77 @@ homedecor.register("kitchen_cabinet_half", {
 		cabinet_sides,
 		cabinet_sides,
 		cabinet_sides,
-		'homedecor_kitchen_cabinet_front_half.png'
+		'homedecor_kitchen_cabinet_front_half.png^homedecor_kitchen_cabinet_half_bevel.png'
 	},
+	mesh = "homedecor_kitchen_cabinet_half.obj",
+	paramtype2 = "wallmounted",
+	palette = "unifieddyes_palette_colorwallmounted.png",
+	airbrush_replacement_node = "homedecor:kitchen_cabinet_colored_half",
+	place_param2 = 0,
 	selection_box = kitchen_cabinet_half_box,
 	node_box = kitchen_cabinet_half_box,
-	groups = { snappy = 3 },
+	groups = { snappy = 3, ud_param2_colorable = 1 },
 	sounds = default.node_sound_wood_defaults(),
 	infotext=S("Kitchen Cabinet"),
 	inventory = {
 		size=12,
 		lockable=true,
 	},
+	after_place_node = function(pos, placer, itemstack, pointed_thing)
+		unifieddyes.fix_rotation_nsew(pos, placer, itemstack, pointed_thing)
+	end
 })
 
-homedecor.register("kitchen_cabinet_with_sink", {
+homedecor.kitchen_convert_nodes[#homedecor.kitchen_convert_nodes + 1] = "homedecor:kitchen_cabinet_half"
+homedecor.kitchen_convert_nodes[#homedecor.kitchen_convert_nodes + 1] = "homedecor:kitchen_cabinet_half_locked"
+
+homedecor.register("kitchen_cabinet_colored_half", {
+	description = S('Half-height Kitchen Cabinet (on ceiling)'),
+	tiles = {
+		{ name = cabinet_sides, color = 0xFFFFFFFF },
+		cabinet_bottom_colored,
+		cabinet_sides_colored,
+		cabinet_sides_colored,
+		cabinet_sides_colored,
+		'homedecor_kitchen_cabinet_colored_front_half.png^homedecor_kitchen_cabinet_half_bevel.png'
+	},
+	mesh = "homedecor_kitchen_cabinet_half.obj",
+	paramtype2 = "colorwallmounted",
+	palette = "unifieddyes_palette_colorwallmounted.png",
+	selection_box = kitchen_cabinet_half_box,
+	node_box = kitchen_cabinet_half_box,
+	groups = { snappy = 3, ud_param2_colorable = 1, not_in_creative_inventory = 1  },
+	sounds = default.node_sound_wood_defaults(),
+	infotext=S("Kitchen Cabinet"),
+	inventory = {
+		size=12,
+		lockable=true,
+	},
+	after_place_node = function(pos, placer, itemstack, pointed_thing)
+		unifieddyes.fix_rotation_nsew(pos, placer, itemstack, pointed_thing)
+	end
+})
+
+homedecor.register("kitchen_cabinet_colorable_with_sink", {
 	description = S("Kitchen Cabinet with sink"),
 	mesh = "homedecor_kitchen_sink.obj",
 	tiles = {
 		"homedecor_kitchen_sink_top.png",
-		"homedecor_kitchen_cabinet_front.png",
+		cabinet_bottom,
 		cabinet_sides,
-		cabinet_bottom
+		cabinet_sides,
+		cabinet_sides,
+		"homedecor_kitchen_cabinet_front.png^homedecor_kitchen_cabinet_bevel.png"
 	},
-	groups = { snappy = 3 },
+		inventory_image = "[inventorycube"
+			.."{homedecor_kitchen_sink_top.png"
+			.."{homedecor_kitchen_cabinet_front.png"
+			.."{"..ic_cabinet_sides,
+	paramtype2 = "wallmounted",
+	palette = "unifieddyes_palette_colorwallmounted.png",
+	airbrush_replacement_node = "homedecor:kitchen_cabinet_colored_with_sink",
+	place_param2 = 0,
+	groups = { snappy = 3, ud_param2_colorable = 1 },
 	sounds = default.node_sound_wood_defaults(),
 	infotext=S("Under-sink cabinet"),
 	inventory = {
@@ -222,6 +386,54 @@ homedecor.register("kitchen_cabinet_with_sink", {
 	},
 	on_destruct = function(pos)
 		homedecor.stop_particle_spawner({x=pos.x, y=pos.y+1, z=pos.z})
+	end,
+	after_place_node = function(pos, placer, itemstack, pointed_thing)
+		unifieddyes.fix_rotation_nsew(pos, placer, itemstack, pointed_thing)
+	end
+})
+
+homedecor.kitchen_convert_nodes[#homedecor.kitchen_convert_nodes + 1] = "homedecor:kitchen_cabinet_with_sink"
+homedecor.kitchen_convert_nodes[#homedecor.kitchen_convert_nodes + 1] = "homedecor:kitchen_cabinet_with_sink_locked"
+
+homedecor.register("kitchen_cabinet_colored_with_sink", {
+	description = S("Kitchen Cabinet with sink"),
+	mesh = "homedecor_kitchen_sink.obj",
+	tiles = {
+		{ name = "homedecor_kitchen_sink_top.png", color = 0xFFFFFFFF },
+		{ name = cabinet_bottom, color = 0xFFFFFFFF},
+		cabinet_sides_colored,
+		cabinet_sides_colored,
+		cabinet_sides_colored,
+		"homedecor_kitchen_cabinet_colored_front.png^homedecor_kitchen_cabinet_bevel.png",
+	},
+		inventory_image = "[inventorycube"
+			.."{homedecor_kitchen_sink_top.png"
+			.."{homedecor_kitchen_cabinet_front.png"
+			.."{"..ic_cabinet_sides_colored,
+	paramtype2 = "colorwallmounted",
+	palette = "unifieddyes_palette_colorwallmounted.png",
+	groups = { snappy = 3, ud_param2_colorable = 1,  not_in_creative_inventory = 1 },
+	sounds = default.node_sound_wood_defaults(),
+	infotext=S("Under-sink cabinet"),
+	inventory = {
+		size=16,
+		lockable=true,
+	},
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{ -8/16, -8/16, -8/16,  8/16, 6/16,  8/16 },
+			{ -8/16,  6/16, -8/16, -6/16, 8/16,  8/16 },
+			{  6/16,  6/16, -8/16,  8/16, 8/16,  8/16 },
+			{ -8/16,  6/16, -8/16,  8/16, 8/16, -6/16 },
+			{ -8/16,  6/16,  6/16,  8/16, 8/16,  8/16 },
+		}
+	},
+	on_destruct = function(pos)
+		homedecor.stop_particle_spawner({x=pos.x, y=pos.y+1, z=pos.z})
+	end,
+	after_place_node = function(pos, placer, itemstack, pointed_thing)
+		unifieddyes.fix_rotation_nsew(pos, placer, itemstack, pointed_thing)
 	end
 })
 
@@ -257,10 +469,7 @@ homedecor.register("kitchen_faucet", {
 	on_rotate = minetest.get_modpath("screwdriver") and screwdriver.disallow or nil,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		local below = minetest.get_node_or_nil({x=pos.x, y=pos.y-1, z=pos.z})
-		if below and
-		  below.name == "homedecor:sink" or
-		  below.name == "homedecor:kitchen_cabinet_with_sink" or
-		  below.name == "homedecor:kitchen_cabinet_with_sink_locked" then
+		if below and string.find(below.name, "homedecor:.*sink") then
 			local particledef = {
 				outlet      = { x = 0, y = -0.19, z = 0.13 },
 				velocity_x  = { min = -0.05, max = 0.05 },
@@ -361,7 +570,7 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-        output = "homedecor:kitchen_cabinet",
+        output = "homedecor:kitchen_cabinet_colorable",
         recipe = {
 		{"group:wood", "group:stick", "group:wood", },
 		{"group:wood", "group:stick", "group:wood", },
@@ -370,53 +579,53 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-        output = "homedecor:kitchen_cabinet_steel",
+        output = "homedecor:kitchen_cabinet_colorable_steel",
         recipe = {
 			{"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"},
-			{"", "homedecor:kitchen_cabinet", ""},
+			{"", "homedecor:kitchen_cabinet_colorable", ""},
 	}
 })
 
 minetest.register_craft({
-        output = "homedecor:kitchen_cabinet_steel",
+        output = "homedecor:kitchen_cabinet_colorable_steel",
         recipe = {
 			{"moreblocks:slab_steelblock_1"},
-			{ "homedecor:kitchen_cabinet" },
+			{ "homedecor:kitchen_cabinet_colorable" },
 	}
 })
 
 minetest.register_craft({
-        output = "homedecor:kitchen_cabinet_marble",
+        output = "homedecor:kitchen_cabinet_colorable_marble",
         recipe = {
 			{"building_blocks:slab_marble"},
-			{"homedecor:kitchen_cabinet"},
+			{"homedecor:kitchen_cabinet_colorable"},
 	}
 })
 
 minetest.register_craft({
-        output = "homedecor:kitchen_cabinet_marble",
+        output = "homedecor:kitchen_cabinet_colorable_marble",
         recipe = {
 			{"technic:slab_marble_1"},
-			{"homedecor:kitchen_cabinet"},
+			{"homedecor:kitchen_cabinet_colorable"},
 	}
 })
 
 minetest.register_craft({
-        output = "homedecor:kitchen_cabinet_granite",
+        output = "homedecor:kitchen_cabinet_colorable_granite",
         recipe = {
 			{"technic:slab_granite_1"},
-			{"homedecor:kitchen_cabinet"},
+			{"homedecor:kitchen_cabinet_colorable"},
 	}
 })
 
 minetest.register_craft({
 	type = "shapeless",
-        output = "homedecor:kitchen_cabinet_half 2",
-        recipe = { "homedecor:kitchen_cabinet" }
+        output = "homedecor:kitchen_cabinet_colorable_half 2",
+        recipe = { "homedecor:kitchen_cabinet_colorable" }
 })
 
 minetest.register_craft({
-        output = "homedecor:kitchen_cabinet_with_sink",
+        output = "homedecor:kitchen_cabinet_colorable_with_sink",
         recipe = {
 		{"group:wood", "default:steel_ingot", "group:wood", },
 		{"group:wood", "default:steel_ingot", "group:wood", },
@@ -554,4 +763,30 @@ minetest.register_craft({
     recipe = {
 		{ "homedecor:toilet_paper", "homedecor:toilet_paper" }
     },
+})
+
+minetest.register_lbm({
+	name = ":homedecor:convert_kitchen_cabinets",
+	label = "Convert homedecor kitchen cabinets to use [color]wallmounted",
+	run_at_every_load = false,
+	nodenames = homedecor.kitchen_convert_nodes,
+	action = function(pos, node)
+		local name = node.name
+		local newname = string.gsub(name, "_cabinet", "_cabinet_colorable")
+
+		local old_fdir = math.floor(node.param2 % 32)
+		local new_fdir = 3
+
+		if old_fdir == 0 then
+			new_fdir = 3
+		elseif old_fdir == 1 then
+			new_fdir = 4
+		elseif old_fdir == 2 then
+			new_fdir = 2
+		elseif old_fdir == 3 then
+			new_fdir = 5
+		end
+
+		minetest.swap_node(pos, { name = newname, param2 = new_fdir })
+	end
 })

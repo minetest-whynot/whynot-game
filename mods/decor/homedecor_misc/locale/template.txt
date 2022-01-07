@@ -20,7 +20,6 @@ Japanese tatami=
 Japanese wall=
 Japanese wall (bottom)=
 Japanese wall (top)=
-Metal tool cabinet and work table=
 Piano=
 Pool Table=
 Potted flower (@1)=

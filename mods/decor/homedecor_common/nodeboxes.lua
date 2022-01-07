@@ -9,16 +9,17 @@ homedecor.box = {
 	-- bottom slab (starting from -y) with height optionally shifted upwards
 	slab_y = function(height, shift) return { -0.5, -0.5+(shift or 0), -0.5, 0.5, -0.5+height+(shift or 0), 0.5 } end,
 	-- slab starting from -z (+z with negative depth)
-	slab_z = function(depth)
+	slab_z = function(depth, shift)
 		-- for consistency with the other functions here, we have to assume that a "z" slab starts from -z and extends by depth,
 		-- but since conventionally a lot of nodes place slabs against +z for player convenience, we define
 		-- a "negative" depth as a depth extending from the other side, i.e. +z
+		local s = shift or 0
 		if depth > 0 then
 			-- slab starting from -z
-			return { -0.5, -0.5, -0.5, 0.5, 0.5, -0.5+depth }
+			return { -0.5, -0.5, -0.5+s, 0.5, 0.5, -0.5+depth+s }
 		else
 			-- slab starting from +z (z1=0.5-(-depth))
-			return { -0.5, -0.5, 0.5+depth, 0.5, 0.5, 0.5 }
+			return { -0.5, -0.5, 0.5+depth+s, 0.5, 0.5, 0.5+s }
 		end
 	end,
 	bar_y = function(radius) return {-radius, -0.5, -radius, radius, 0.5, radius} end,

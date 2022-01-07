@@ -26,11 +26,12 @@ local function make_formspec(furnacedef, percent)
 	local h = math.ceil(furnacedef.output_slots / furnacedef.output_width)
 
 	return "size["..math.max(8, 6 + w)..",9]"..
-		"image[2,2;1,1;"..fire.."]"..
-		"list[current_name;fuel;2,3;1,1;]"..
-		"list[current_name;src;2,1;1,1;]"..
-		"list[current_name;dst;5,1;"..w..","..h..";]"..
-		"list[current_player;main;0,5;8,4;]"..
+		"image[2.75,1.5;1,1;"..fire.."]"..
+		"list[current_name;fuel;2.75,2.5;1,1;]"..
+		"list[current_name;src;2.75,0.5;1,1;]"..
+		"list[current_name;dst;4.75,0.96;"..w..","..h..";]"..
+		"list[current_player;main;0,4.25;8,1;]"..
+		"list[current_player;main;0,5.5;8,3;8]"..
 		"listring[current_name;dst]"..
 		"listring[current_player;main]"..
 		"listring[current_name;src]"..

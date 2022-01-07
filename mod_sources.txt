@@ -323,7 +323,7 @@ origin	https://github.com/mt-mods/unifieddyes (fetch)
 Mod: decor/unifieddyes
 
 origin	https://github.com/mt-mods/homedecor_modpack (fetch)
-* whynot a6fa014 make beds sleepable https://github.com/mt-mods/homedecor_modpack/issues/13
+* whynot 08119f9 fix health expliot https://github.com/mt-mods/homedecor_modpack/issues/14
 Mod: homedecor_modpack/building_blocks
 Mod: homedecor_modpack/fake_fire
 Mod: homedecor_modpack/lavalamp
@@ -355,6 +355,11 @@ Mod: homedecor_modpack/homedecor_seating
 Mod: homedecor_modpack/homedecor_tables
 Mod: homedecor_modpack/homedecor_trash_cans
 Mod: homedecor_modpack/homedecor_windows_and_treatments
+
+origin	https://github.com/mt-mods/home_workshop_modpack (fetch)
+* master 2058c58 [origin/master] Merge pull request #3 from mt-mods/mtg_removal
+Mod: home_workshop_modpack/home_vending_machines
+Mod: home_workshop_modpack/home_workshop_misc
 
 origin	https://github.com/minetest-mods/mydoors (fetch)
 * master 1e7ace6 [origin/master] Merge: Mod rewrite by oversword

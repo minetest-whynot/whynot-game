@@ -2,25 +2,58 @@
 
 local S = minetest.get_translator("homedecor_tables")
 
-local materials = {
+-- Various kinds of table legs
+
+local table_shapes = {"large_square", "small_square", "small_round"}
+
+local tabletop_materials = {
 	{ "glass",
-		S("Small square glass table"),
-		S("Small round glass table"),
-		S("Large glass table piece"),
+		S("Small square glass tabletop"),
+		S("Small round glass tabletop"),
+		S("Large glass tabletop piece"),
 	},
 	{ "wood",
-		S("Small square wooden table"),
-		S("Small round wooden table"),
-		S("Large wooden table piece"),
+		S("Small square wooden tabletop"),
+		S("Small round wooden tabletop"),
+		S("Large wooden tabletop piece"),
 	}
 }
+
+leg_materials = {
+	{ "brass",          S("brass") },
+	{ "wrought_iron",   S("wrought iron") },
+	{ "wood",           S("wood") }
+}
+
+for _, t in ipairs(leg_materials) do
+	local name, desc = unpack(t)
+	homedecor.register("table_legs_"..name, {
+		description = S("Table Legs (@1)", desc),
+		drawtype = "plantlike",
+		tiles = {"homedecor_table_legs_"..name..".png"},
+		inventory_image = "homedecor_table_legs_"..name..".png",
+		wield_image = "homedecor_table_legs_"..name..".png",
+		walkable = false,
+		groups = {snappy=3},
+		sounds = default.node_sound_wood_defaults(),
+		selection_box = {
+			type = "fixed",
+			fixed = { -0.37, -0.5, -0.37, 0.37, 0.5, 0.37 }
+		},
+	})
+end
+
+minetest.register_alias("homedecor:utility_table_legs", "homedecor:table_legs_wood")
+minetest.register_alias("homedecor:utility_table_top",  "homedecor:wood_table_small_square")
+
+-- table tops and combined tables
 
 local tables_cbox = {
 	type = "fixed",
 	fixed = { -0.5, -0.5,    -0.5,  0.5,    -0.4375, 0.5 },
 }
 
-for i, mat in ipairs(materials) do
+for i, mat in ipairs(tabletop_materials) do
 	local m, small_s, small_r, large = unpack(mat)
 	local s
 
@@ -30,178 +63,101 @@ for i, mat in ipairs(materials) do
 		s = default.node_sound_wood_defaults()
 	end
 
--- small square tables
+	for _, shape in ipairs(table_shapes) do
 
-	homedecor.register(m.."_table_small_square", {
-		description = small_s,
-		mesh = "homedecor_table_small_square.obj",
-		tiles = { 'homedecor_'..m..'_table_small_square.png' },
-		wield_image = 'homedecor_'..m..'_table_small_square_inv.png',
-		inventory_image = 'homedecor_'..m..'_table_small_square_inv.png',
-		groups = { snappy = 3 },
-		sounds = s,
-		selection_box = tables_cbox,
-		collision_box = tables_cbox,
-		on_place = minetest.rotate_node
-	})
+		homedecor.register(m.."_table_"..shape, {
+			description = shape.." "..m.." tabletop",
+			mesh = "homedecor_table_"..shape..".obj",
+			tiles = {
+				'homedecor_'..m..'_table_'..shape..'.png',
+				'homedecor_'..m..'_table_edges.png',
+				'homedecor_blanktile.png',
+				'homedecor_blanktile.png',
+				'homedecor_blanktile.png',
+			},
+			wield_image = 'homedecor_'..m..'_table_'..shape..'_inv.png',
+			groups = { snappy = 3 },
+			sounds = s,
+			selection_box = tables_cbox,
+			collision_box = tables_cbox,
+			on_place = function(itemstack, placer, pointed_thing)
+				local player_name = placer:get_player_name()
+				if minetest.is_protected(pointed_thing.under, player_name) then return end
+				local node = minetest.get_node(pointed_thing.under)
+				if string.find(node.name, "homedecor:table_legs") then
+					local newname = string.format("homedecor:%s_table_%s_with_%s_legs",
+						m, shape, string.sub(node.name, 22))
+					minetest.set_node(pointed_thing.under, {name = newname})
+					if not creative.is_enabled_for(player_name) then
+						itemstack:take_item()
+						return itemstack
+					end
+				else
+					return minetest.rotate_node(itemstack, placer, pointed_thing)
+				end
+			end
+		})
 
--- small round tables
+		for _, l in ipairs(leg_materials) do
+			local leg_mat, desc = unpack(l)
 
-	homedecor.register(m..'_table_small_round', {
-		description = small_r,
-		mesh = "homedecor_table_small_round.obj",
-		tiles = { "homedecor_"..m.."_table_small_round.png" },
-		wield_image = 'homedecor_'..m..'_table_small_round_inv.png',
-		inventory_image = 'homedecor_'..m..'_table_small_round_inv.png',
-		groups = { snappy = 3 },
-		sounds = s,
-		selection_box = tables_cbox,
-		collision_box = tables_cbox,
-		on_place = minetest.rotate_node
-	})
-
--- Large square table pieces
-
-	homedecor.register(m..'_table_large', {
-		description = large,
-		tiles = {
-			'homedecor_'..m..'_table_large_tb.png',
-			'homedecor_'..m..'_table_large_tb.png',
-			'homedecor_'..m..'_table_large_edges.png',
-			'homedecor_'..m..'_table_large_edges.png',
-			'homedecor_'..m..'_table_large_edges.png',
-			'homedecor_'..m..'_table_large_edges.png'
-		},
-		wield_image = 'homedecor_'..m..'_table_large_inv.png',
-		inventory_image = 'homedecor_'..m..'_table_large_inv.png',
-		groups = { snappy = 3 },
-		sounds = s,
-		node_box = {
-			type = "fixed",
-			fixed = { -0.5, -0.5, -0.5, 0.5, -0.4375, 0.5 },
-		},
-		selection_box = tables_cbox,
-		on_place = minetest.rotate_node
-	})
+			homedecor.register(string.format("%s_table_%s_with_%s_legs", m, shape, leg_mat), {
+				description = string.format("%s %s table with %s legs", shape, m, leg_mat),
+				mesh = "homedecor_table_"..shape..".obj",
+				tiles = {
+					'homedecor_blanktile.png',
+					'homedecor_blanktile.png',
+					'homedecor_'..m..'_table_'..shape..'.png',
+					'homedecor_'..m..'_table_edges.png',
+					"homedecor_table_legs_"..leg_mat..".png",
+				},
+				groups = { snappy = 3 },
+				sounds = s,
+			})
+		end
+	end
 
 	minetest.register_alias('homedecor:'..m..'_table_large_b', 'homedecor:'..m..'_table_large')
 	minetest.register_alias('homedecor:'..m..'_table_small_square_b', 'homedecor:'..m..'_table_small_square')
 	minetest.register_alias('homedecor:'..m..'_table_small_round_b', 'homedecor:'..m..'_table_small_round')
+	minetest.register_alias('homedecor:'..m..'_table_large', 'homedecor:'..m..'_table_large_square')
 
 end
 
--- conversion routines for old non-6dfacedir tables
+-- old-style tables that used to be from 3dforniture.
 
-local tlist_s = {}
-local tlist_t = {}
-local dirs2 = { 9, 18, 7, 12 }
-
-for i in ipairs(materials) do
-	local m = materials[i][1]
-	table.insert(tlist_s, "homedecor:"..m.."_table_large_s")
-	table.insert(tlist_s, "homedecor:"..m.."_table_small_square_s")
-	table.insert(tlist_s, "homedecor:"..m.."_table_small_round_s")
-
-	table.insert(tlist_t, "homedecor:"..m.."_table_large_t")
-	table.insert(tlist_t, "homedecor:"..m.."_table_small_square_t")
-	table.insert(tlist_t, "homedecor:"..m.."_table_small_round_t")
-end
-
-minetest.register_abm({
-	nodenames = tlist_s,
-	interval = 1,
-	chance = 1,
-	action = function(pos, node, active_object_count, active_object_count_wider)
-		local newnode = string.sub(node.name, 1, -3) -- strip the "_s" from the name
-		local fdir = node.param2 or 0
-		minetest.set_node(pos, {name = newnode, param2 = dirs2[fdir+1]})
-	end
-})
-
-minetest.register_abm({
-	nodenames = tlist_t,
-	interval = 1,
-	chance = 1,
-	action = function(pos, node, active_object_count, active_object_count_wider)
-		local newnode = string.sub(node.name, 1, -3) -- strip the "_t" from the name
-		minetest.set_node(pos, { name = newnode, param2 = 20 })
-	end
-})
-
--- other tables
-
-homedecor.register("utility_table_top", {
-	description = S("Utility Table"),
-	tiles = {
-		'homedecor_utility_table_tb.png',
-		'homedecor_utility_table_tb.png',
-		'homedecor_utility_table_edges.png',
-		'homedecor_utility_table_edges.png',
-		'homedecor_utility_table_edges.png',
-		'homedecor_utility_table_edges.png'
-	},
-	wield_image = 'homedecor_utility_table_tb.png',
-	inventory_image = 'homedecor_utility_table_tb.png',
-	groups = { snappy = 3 },
-	sounds = default.node_sound_wood_defaults(),
-	paramtype2 = "wallmounted",
-	node_box = {
-		type = "wallmounted",
-		wall_bottom = { -0.5, -0.5,    -0.5,  0.5,   -0.4375, 0.5 },
-		wall_top =    { -0.5,  0.4375, -0.5,  0.5,    0.5,    0.5 },
-		wall_side =   { -0.5, -0.5,    -0.5, -0.4375, 0.5,    0.5 },
-	},
-	selection_box = {
-		type = "wallmounted",
-		wall_bottom = { -0.5, -0.5,    -0.5,  0.5,   -0.4375, 0.5 },
-		wall_top =    { -0.5,  0.4375, -0.5,  0.5,    0.5,    0.5 },
-		wall_side =   { -0.5, -0.5,    -0.5, -0.4375, 0.5,    0.5 },
-	},
-})
-
--- Various kinds of table legs
-
--- local above
-materials = {
-	{ "brass",          S("brass") },
-	{ "wrought_iron",   S("wrought iron") },
+local table_colors = {
+	{ "",           S("Table"),           homedecor.plain_wood },
+	{ "_mahogany",  S("Mahogany Table"),  homedecor.mahogany_wood },
+	{ "_white",     S("White Table"),     homedecor.white_wood }
 }
 
-for _, t in ipairs(materials) do
-local name, desc = unpack(t)
-homedecor.register("table_legs_"..name, {
-	description = S("Table Legs (@1)", desc),
-	drawtype = "plantlike",
-	tiles = {"homedecor_table_legs_"..name..".png"},
-	inventory_image = "homedecor_table_legs_"..name..".png",
-	wield_image = "homedecor_table_legs_"..name..".png",
-	walkable = false,
-	groups = {snappy=3},
-	sounds = default.node_sound_wood_defaults(),
-	selection_box = {
-		type = "fixed",
-		fixed = { -0.37, -0.5, -0.37, 0.37, 0.5, 0.37 }
-	},
-})
+for _, t in ipairs(table_colors) do
+	local suffix, desc, texture = unpack(t)
+
+	homedecor.register("table"..suffix, {
+		description = desc,
+		tiles = { texture },
+		node_box = {
+			type = "fixed",
+			fixed = {
+				{ -0.4, -0.5, -0.4, -0.3,  0.4, -0.3 },
+				{  0.3, -0.5, -0.4,  0.4,  0.4, -0.3 },
+				{ -0.4, -0.5,  0.3, -0.3,  0.4,  0.4 },
+				{  0.3, -0.5,  0.3,  0.4,  0.4,  0.4 },
+				{ -0.5,  0.4, -0.5,  0.5,  0.5,  0.5 },
+				{ -0.4, -0.2, -0.3, -0.3, -0.1,  0.3 },
+				{  0.3, -0.2, -0.4,  0.4, -0.1,  0.3 },
+				{ -0.3, -0.2, -0.4,  0.4, -0.1, -0.3 },
+				{ -0.3, -0.2,  0.3,  0.3, -0.1,  0.4 },
+			},
+		},
+		groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2},
+		sounds = default.node_sound_wood_defaults(),
+	})
 end
 
-homedecor.register("utility_table_legs", {
-	description = S("Legs for Utility Table"),
-	drawtype = "plantlike",
-	tiles = { 'homedecor_utility_table_legs.png' },
-	inventory_image = 'homedecor_utility_table_legs_inv.png',
-	wield_image = 'homedecor_utility_table_legs.png',
-	walkable = false,
-	groups = { snappy = 3 },
-	sounds = default.node_sound_wood_defaults(),
-	selection_box = {
-		type = "fixed",
-		fixed = { -0.37, -0.5, -0.37, 0.37, 0.5, 0.37 }
-	},
-})
-
 -- crafting
-
 
 minetest.register_craft( {
         output = "homedecor:glass_table_small_round_b 15",
@@ -225,8 +181,6 @@ minetest.register_craft( {
 		{ "homedecor:glass_table_small_square", "homedecor:glass_table_small_square" },
 	}
 })
-
---
 
 minetest.register_craft( {
         output = "homedecor:wood_table_small_round_b 15",
@@ -305,7 +259,73 @@ minetest.register_craft({
         burntime = 30,
 })
 
+for _, shape in ipairs (table_shapes) do
+	for _, leg in ipairs(leg_materials) do
+		for _, mat in ipairs(tabletop_materials) do
+			minetest.register_craft({
+				output = "homedecor:"..mat[1].."_table_"..shape.."_with_"..leg[1].."_legs",
+				type = "shapeless",
+				recipe = {
+					"homedecor:"..mat[1].."_table_"..shape,
+					"homedecor:table_legs_"..leg[1]
+				},
+			})
+		end
+	end
+end
 
+minetest.register_craft({
+	output = "homedecor:table",
+	recipe = {
+		{ "group:wood","group:wood", "group:wood" },
+		{ "group:stick", "", "group:stick" },
+	},
+})
+
+minetest.register_craft({
+	type = "shapeless",
+	output = "homedecor:table_mahogany",
+	recipe = {
+		"homedecor:table",
+		"dye:brown",
+	},
+})
+
+minetest.register_craft({
+	type = "shapeless",
+	output = "homedecor:table_mahogany",
+	recipe = {
+		"homedecor:table",
+		"unifieddyes:dark_orange",
+	},
+})
+
+minetest.register_craft({
+	type = "shapeless",
+	output = "homedecor:table_white",
+	recipe = {
+		"homedecor:table",
+		"dye:white",
+	},
+})
+
+minetest.register_craft({
+	type = "fuel",
+	recipe = "homedecor:table",
+	burntime = 30,
+})
+
+minetest.register_craft({
+	type = "fuel",
+	recipe = "homedecor:table_mahogany",
+	burntime = 30,
+})
+
+minetest.register_craft({
+	type = "fuel",
+	recipe = "homedecor:table_white",
+	burntime = 30,
+})
 
 -- recycling
 
@@ -368,3 +388,8 @@ minetest.register_craft({
 		"homedecor:wood_table_large"
 	}
 })
+
+-- Aliases for the above 3dforniture-like tables
+
+minetest.register_alias("3dforniture:table", "homedecor:table")
+minetest.register_alias('table', 'homedecor:table')
