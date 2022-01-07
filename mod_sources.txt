@@ -1,7 +1,6 @@
 
-bell07	https://github.com/bell07/minetest_game (fetch)
 origin	https://github.com/minetest/minetest_game (fetch)
-* master                  dd7eed9 [origin/stable-5] Merge remote-tracking branch 'origin/stable-5' into HEAD
+* (HEAD detached at dd7eed9) dd7eed9 Merge remote-tracking branch 'origin/stable-5' into HEAD
 Mod: minetest_game/mods/beds
 Mod: minetest_game/mods/binoculars
 Mod: minetest_game/mods/boats
@@ -33,83 +32,83 @@ Mod: minetest_game/mods/wool
 Mod: minetest_game/mods/xpanes
 
 origin	https://github.com/minetest-mods/craftguide/ (fetch)
-* mt-5.3   58e4516 Update Screenshot
+* (no branch) 58e4516 Update Screenshot
 Mod: libs/craftguide
 
 origin	https://github.com/minetest-mods/craftguide_reveal (fetch)
-* master ddd1483 [origin/master] Merge pull request #1 from Panquesito7/master
+* (HEAD detached at ddd1483) ddd1483 Merge pull request #1 from Panquesito7/master
 Mod: libs/craftguide_reveal
 
-origin	http://repo.or.cz/minetest_doc.git (fetch)
-* master 1e3d464 [origin/master] Version 1.3.0
+origin	https://repo.or.cz/minetest_doc.git (fetch)
+* (HEAD detached at 1e3d464) 1e3d464 Version 1.3.0
 Mod: libs/doc
 
-origin	http://repo.or.cz/minetest_doc_basics.git (fetch)
-* master d64d9d4 [origin/master] Update Minetest IRC channel
+origin	https://repo.or.cz/minetest_doc_basics.git (fetch)
+* (HEAD detached at d64d9d4) d64d9d4 Update Minetest IRC channel
 Mod: libs/doc_basics
 
-origin	http://repo.or.cz/minetest_doc_items.git (fetch)
-* master 76a9c3c [origin/master] Version 1.3.0
+origin	https://repo.or.cz/minetest_doc_items.git (fetch)
+* (HEAD detached at 76a9c3c) 76a9c3c Version 1.3.0
 Mod: libs/doc_items
 
-origin	http://repo.or.cz/minetest_doc_minetest_game.git (fetch)
-* master 9d5edf9 [origin/master] Update help texts (14/10/2018)
+origin	https://repo.or.cz/minetest_doc_minetest_game.git (fetch)
+* (HEAD detached at 9d5edf9) 9d5edf9 Update help texts (14/10/2018)
 Mod: libs/doc_minetest_game
 
-origin	https://github.com/bell07/minetest-doc_reveal_chest (fetch)
-* master d487a9a [origin/master] initial commit
+origin	https://github.com/minetest-mods/doc_reveal_chest (fetch)
+* (HEAD detached at d487a9a) d487a9a initial commit
 Mod: libs/doc_reveal_chest
 
 origin	https://github.com/minetest-mods/intllib (fetch)
-* master 6ebdc53 [origin/master] Add `modname.lang.tr` locales support (#32)
+* (HEAD detached at 6ebdc53) 6ebdc53 Add `modname.lang.tr` locales support (#32)
 Mod: libs/intllib
 
 origin	https://github.com/bell07/minetest-whynot_compat (fetch)
-* master 4e743e9 [origin/master] solve sand recipe overlap between lemon vs egg
+* (HEAD detached from 557f1b9) 4e743e9 solve sand recipe overlap between lemon vs egg
 Mod: libs/whynot_compat
 
 origin	https://github.com/minetest-mods/awards (fetch)
-* master 37082d1 [origin/master] Rename background to hud_background
+* (HEAD detached at 37082d1) 37082d1 Rename background to hud_background
 Mod: player/awards
 
 origin	https://github.com/minetest-mods/cozy (fetch)
-* master b51cd03 [origin/master] Use mod.conf for dependencies, and description (#3)
+* (HEAD detached at b51cd03) b51cd03 Use mod.conf for dependencies, and description (#3)
 Mod: player/cozy
 
 origin	https://repo.or.cz/minetest_hbarmor.git (fetch)
-* master 93d994c [origin/master] Version 1.0.0
+* (HEAD detached at 93d994c) 93d994c Version 1.0.0
 Mod: player/hbarmor
 
 origin	http://repo.or.cz/minetest_hbhunger (fetch)
-* master 470b0f6 [origin/master] Version 1.1.2
+* (HEAD detached at 470b0f6) 470b0f6 Version 1.1.2
 Mod: player/hbhunger
 
 origin	https://github.com/minetest-mods/hbsprint (fetch)
-* master f566d0f [origin/master] Use inventory_image for nodes without tiles for particles
+* (HEAD detached at f566d0f) f566d0f Use inventory_image for nodes without tiles for particles
 Mod: player/hbsprint
 
 origin	https://repo.or.cz/minetest_hudbars.git (fetch)
-* master 812b253 [origin/master] Version 2.3.3
+* (HEAD detached at 812b253) 812b253 Version 2.3.3
 Mod: player/hudbars
 
 origin	https://github.com/dacmot/moarmour (fetch)
-* master dfba7ef [origin/master] Update README.md
+* (HEAD detached at dfba7ef) dfba7ef Update README.md
 Mod: player/moarmour
 
 origin	https://github.com/minetest-mods/playeranim (fetch)
-* master 9dab03f [origin/master] Clear up all animations of all registered models (#1)
+* (HEAD detached at 9dab03f) 9dab03f Clear up all animations of all registered models (#1)
 Mod: player/playeranim
 
 origin	http://repo.or.cz/minetest_show_wielded_item.git (fetch)
-* master 6f40e88 [origin/master] Version 1.2.0
+* (HEAD detached at 6f40e88) 6f40e88 Version 1.2.0
 Mod: player/show_wielded_item
 
 origin	https://github.com/minetest-mods/wielded_light (fetch)
-* master            1646439 [origin/master] Use get_luaentity rather than deprecated get_entity_name call (#19)
+* (HEAD detached at 1646439) 1646439 Use get_luaentity rather than deprecated get_entity_name call (#19)
 Mod: player/wielded_light
 
 origin	https://github.com/bell07/minetest-player_api_modpack (fetch)
-* master 03b1a28 [origin/master] player_api: fix initial skin assignment
+* (HEAD detached from cd91360) 03b1a28 player_api: fix initial skin assignment
 Mod: player_api_modpack/3d_armor
 Mod: player_api_modpack/character_creator
 Mod: player_api_modpack/clothing
@@ -125,13 +124,13 @@ Mod: player_api_modpack/skinsdb5
 Mod: player_api_modpack/wieldview
 
 origin	https://github.com/minetest-mods/3d_armor (fetch)
-* master b6651fd [origin/master] add fire protection to nether armor (#67)
+* (no branch) b6651fd add fire protection to nether armor (#67)
 Mod: 3d_armor/3d_armor_stand
 Mod: 3d_armor/shields
 Mod: 3d_armor/3d_armor_sfinv
 
 origin	https://github.com/bell07/minetest-smart_sfinv (fetch)
-* master 0f6bcdc [origin/master] added moarmour => armor group mapping for smart_sfinv_creative_bymod
+* (no branch) 0f6bcdc added moarmour => armor group mapping for smart_sfinv_creative_bymod
 Mod: smart_sfinv_modpack/creative_maxstack
 Mod: smart_sfinv_modpack/sfinv_buttons
 Mod: smart_sfinv_modpack/smart_sfinv_api
@@ -140,190 +139,189 @@ Mod: smart_sfinv_modpack/smart_sfinv_creative_sitebar
 Mod: smart_sfinv_modpack/smart_sfinv_tweaks
 
 origin	https://notabug.org/TenPlus1/ambience (fetch)
-* master f7d5423 [origin/master] add join/leave nil checks, use pairs for player loop
+* (HEAD detached at f7d5423) f7d5423 add join/leave nil checks, use pairs for player loop
 Mod: ambience/ambience
 
 origin	https://github.com/minetest-mods/lightning (fetch)
-* master 1059546 [origin/master] Add a setting to disable the random fire chance. (#18)
+* (HEAD detached at 1059546) 1059546 Add a setting to disable the random fire chance. (#18)
 Mod: ambience/lightning
 
 origin	https://github.com/Ezhh/under_sky (fetch)
-* master 5f8d570 [origin/master] Hide sun, moon and stars when underground
+* (HEAD detached at 5f8d570) 5f8d570 Hide sun, moon and stars when underground
 Mod: ambience/under_sky
 
 origin	https://gitlab.com/rautars/weather_pack (fetch)
-* master fa9e156 [origin/master] Decrease chance for weather flickering effect (#9)
+* (HEAD detached at fa9e156) fa9e156 Decrease chance for weather flickering effect (#9)
 Mod: ambience/weather_pack
 
 origin	https://notabug.org/TenPlus1/farming (fetch)
-* master 211cedc [origin/master] fix cornstarch groups
+* (HEAD detached at 211cedc) 211cedc fix cornstarch groups
 Mod: flora_ores/farming
 
 origin	https://github.com/bell07/minetest-mese_crystals (fetch)
-* master 33b477e [origin/master] Merge pull request #1 from bell07/patch-1
+* (HEAD detached at 33b477e) 33b477e Merge pull request #1 from bell07/patch-1
 Mod: flora_ores/mese_crystals
 
 origin	https://github.com/Treer/cloudlands/ (fetch)
-* master 0009137 [origin/master] Update README.md
+* (HEAD detached at 0009137) 0009137 Update README.md
 Mod: mapgen/cloudlands
 
 origin	https://notabug.org/dacmot/maple (fetch)
-* master 033bdca [origin/master] Add maple wood fence gate
+* (HEAD detached at 033bdca) 033bdca Add maple wood fence gate
 Mod: mapgen/maple
 
 origin	https://github.com/minetest-mods/meseor (fetch)
-* master b0a99d3 [origin/master] Update
+* (HEAD detached at b0a99d3) b0a99d3 Update
 Mod: mapgen/meseor
 
 origin	https://notabug.org/TenPlus1/pbj_pup (fetch)
-* master 5a0d59e [origin/master] tweak code
+* (HEAD detached at 5a0d59e) 5a0d59e tweak code
 Mod: mapgen/pbj_pup
 
 origin	https://github.com/GreenXenith/tac_nayn (fetch)
-* master f07b884 [origin/master] Update license and README.
+* (no branch) f07b884 Update license and README.
 Mod: mapgen/tac_nayn
 
 origin	https://github.com/taikedz/everamzah-backpacks (fetch)
-* master 7f617df [origin/master] removing rabbit_hide as it does not seem to be standard mobs_redo content
+* (HEAD detached at 7f617df) 7f617df removing rabbit_hide as it does not seem to be standard mobs_redo content
 Mod: tools/backpacks
 
 origin	https://notabug.org/tenplus1/bonemeal (fetch)
-* master 2d7dbc7 [origin/master] added sunflowers to list
+* (HEAD detached at 2d7dbc7) 2d7dbc7 added sunflowers to list
 Mod: tools/bonemeal
 
 origin	https://github.com/SmallJoker/boost_cart (fetch)
-* master 3bd7d6f [origin/master] Fix item pickups not working sometimes
+* (HEAD detached at 3bd7d6f) 3bd7d6f Fix item pickups not working sometimes
 Mod: tools/boost_cart
 
 origin	https://github.com/minetest-mods/ccompass (fetch)
-* master 78d60b3 [origin/master] Idle when no player has an active compass (#21)
+* (HEAD detached at 78d60b3) 78d60b3 Idle when no player has an active compass (#21)
 Mod: tools/ccompass
 
 origin	https://github.com/minetest-mods/compost (fetch)
-* master a11176b [origin/master] move depends to mod.conf, clanup description.txt and update README.md to markdown
+* (HEAD detached at a11176b) a11176b move depends to mod.conf, clanup description.txt and update README.md to markdown
 Mod: tools/compost
 
 origin	https://github.com/orwell96/engrave/ (fetch)
-* master d7c01a1 [origin/master] Make the formspec a textarea when the player has the engrave_long_names privilege
+* (HEAD detached at d7c01a1) d7c01a1 Make the formspec a textarea when the player has the engrave_long_names privilege
 Mod: tools/engrave
 
 origin	https://github.com/Ezhh/handholds (fetch)
-* master 4b88f2a [origin/master] Fix incorrect sRGB profile 
+* (HEAD detached at 4b88f2a) 4b88f2a Fix incorrect sRGB profile 
 Mod: tools/handholds
 
 origin	https://github.com/petermaloney/helicopter (fetch)
-* master 95c5287 [origin/master] Merge pull request #7 from bell07/patch-1
+* (HEAD detached at 95c5287) 95c5287 Merge pull request #7 from bell07/patch-1
 Mod: tools/helicopter
 
 origin	https://github.com/minetest-mods/hopper (fetch)
-* master 6ac1b61 [origin/master] bring in translations from weblate.org
+* (HEAD detached at 6ac1b61) 6ac1b61 bring in translations from weblate.org
 Mod: tools/hopper
 
 origin	https://github.com/minetest-mods/jumping (fetch)
-* master b5205e4 [origin/master] opt-depend on default [squash] (#9)
+* (HEAD detached at b5205e4) b5205e4 opt-depend on default [squash] (#9)
 Mod: tools/jumping
 
 origin	https://github.com/minetest-mods/orbs_of_time/ (fetch)
-* master 2bf8783 [origin/master] switch to client-side translation
+* (HEAD detached at 2bf8783) 2bf8783 switch to client-side translation
 Mod: tools/orbs_of_time
 
 origin	https://github.com/dkartaschew/minetest-rainbowswords (fetch)
-* master 5196d61 [origin/master] Update README.md
+* (HEAD detached at 5196d61) 5196d61 Update README.md
 Mod: tools/rainbowswords
 
-origin	https://github.com/bell07/minetest-subspacewalker (fetch)
-* master 245cca9 [origin/master] Update README.md
+origin	https://github.com/minetest-mods/subspacewalker (fetch)
+* (HEAD detached at 245cca9) 245cca9 Update README.md
 Mod: tools/subspacewalker
 
 origin	https://github.com/lisacvuk/minetest-toolranks (fetch)
-* master 8010feb [origin/master] Add nil check afteruse
+* (HEAD detached at 8010feb) 8010feb Add nil check afteruse
 Mod: tools/toolranks
 
 origin	https://github.com/minetest-mods/trash_can (fetch)
-* master 423b0f2 [origin/master] Use listrings for inventories (#12)
+* (HEAD detached at 423b0f2) 423b0f2 Use listrings for inventories (#12)
 Mod: tools/trash_can
 
 origin	https://github.com/minetest-mods/woodcutting (fetch)
-* master                     b265a97 [origin/master] Cleanup treenodes_sorted in one place pass poshash to functions instead of recalculation
+* (HEAD detached at b265a97) b265a97 Cleanup treenodes_sorted in one place pass poshash to functions instead of recalculation
 Mod: tools/woodcutting
 
 origin	https://github.com/Amaz1/flight/ (fetch)
-* master 82ddbce [origin/master] Change license to MIT
+* (HEAD detached at 82ddbce) 82ddbce Change license to MIT
 Mod: flight/flyingcarpet
 
-origin	https://github.com/tacigar/maidroid (fetch)
-* master ec56bc4 [origin/master] Update README.md
+origin	https://github.com/thePlasm/maidroid (fetch)
+* (HEAD detached at ec56bc4) ec56bc4 Update README.md
 Mod: maidroid/maidroid
 Mod: maidroid/maidroid_core
 Mod: maidroid/maidroid_tool
 
-origin	https://github.com/Ezhh/abriglass (fetch)
-* master eec4fcd [origin/master] Improve cage glass
+origin	https://github.com/Ezhh/abriglass/ (fetch)
+* (HEAD detached at eec4fcd) eec4fcd Improve cage glass
 Mod: decor/abriglass
 
 origin	https://github.com/mt-mods/basic_materials (fetch)
-* master 0893974 [origin/master] github luacheck workflow
+* (HEAD detached at 0893974) 0893974 github luacheck workflow
 Mod: decor/basic_materials
 
 origin	https://github.com/Napiophelios/campfire (fetch)
-* master 1058f1d [origin/master] Merge pull request #5 from h4ml3t/development
+* (HEAD detached at 1058f1d) 1058f1d Merge pull request #5 from h4ml3t/development
 Mod: decor/campfire
 
 origin	https://github.com/pithydon/curtain (fetch)
-* master 600e39f [origin/master] Change selection box.
+* (HEAD detached at 600e39f) 600e39f Change selection box.
 Mod: decor/curtain
 
-origin	http://repo.or.cz/minetest_dice2.git (fetch)
-* master 1feb5bb [origin/master] Add TRUE ephemeral sounds
+origin	https://repo.or.cz/minetest_dice2.git (fetch)
+* (HEAD detached at 1feb5bb) 1feb5bb Add TRUE ephemeral sounds
 Mod: decor/dice2
 
 origin	https://github.com/cdqwertz/flower_pot (fetch)
-* master 8a62a78 [origin/master] uploaded
+* (HEAD detached at 8a62a78) 8a62a78 uploaded
 Mod: decor/flower_pot
 
 origin	https://github.com/HybridDog/heads (fetch)
-* master b0f32e2 [origin/master] avoid leaked globals
+* (HEAD detached at b0f32e2) b0f32e2 avoid leaked globals
 Mod: decor/heads
 
-bell07	https://github.com/bell07/minetest-laptop (fetch)
-origin	https://github.com/Gerold55/laptop (fetch)
-* master 8943f55 [bell07/master] add compatibility code for last change
+origin	https://github.com/bell07/minetest-laptop (fetch)
+* (HEAD detached at 8943f55) 8943f55 add compatibility code for last change
 Mod: decor/laptop
 
-origin	http://repo.or.cz/minetest_mtg_plus.git (fetch)
-* master d10ec7c [origin/master] Version 1.1.0
+origin	https://repo.or.cz/minetest_mtg_plus.git (fetch)
+* (HEAD detached at d10ec7c) d10ec7c Version 1.1.0
 Mod: decor/mtg_plus
 
 origin	https://github.com/minetest-mods/myroofs (fetch)
-* master fe98461 [origin/master] Merge pull request #7 from AntumMT/recipe_fixes
+* (HEAD detached at fe98461) fe98461 Merge pull request #7 from AntumMT/recipe_fixes
 Mod: decor/myroofs
 
 origin	https://github.com/sbrl/plasticbox (fetch)
-* master dad7dc1 [origin/master] Add changelog
+* (HEAD detached at dad7dc1) dad7dc1 Add changelog
 Mod: decor/plasticbox
 
 origin	https://github.com/pithydon/princess (fetch)
-* master 122f28d [origin/master] Fence rail and update for new furniture.
+* (HEAD detached at 122f28d) 122f28d Fence rail and update for new furniture.
 Mod: decor/princess
 
 origin	https://github.com/minetest-mods/realchess (fetch)
-* master ebda4aa [origin/master] Change preview image
+* (HEAD detached at ebda4aa) ebda4aa Change preview image
 Mod: decor/realchess
 
 origin	https://github.com/v-rob/slats (fetch)
-* master 40b2390 [origin/master] Add screenshot
+* (HEAD detached at 40b2390) 40b2390 Add screenshot
 Mod: decor/slats
 
 origin	https://github.com/minetest-mods/ts_furniture (fetch)
-* master 6cdb584 [origin/master] Dynamically use textures from base nodes
+* (HEAD detached at 6cdb584) 6cdb584 Dynamically use textures from base nodes
 Mod: decor/ts_furniture
 
 origin	https://github.com/mt-mods/unifieddyes (fetch)
-* master         ff3b2d3 [origin/master] Fix right-click crash on unknown nodes
+* (HEAD detached at ff3b2d3) ff3b2d3 Fix right-click crash on unknown nodes
 Mod: decor/unifieddyes
 
 origin	https://github.com/mt-mods/homedecor_modpack (fetch)
-* whynot 63ad77e make beds sleepable https://github.com/mt-mods/homedecor_modpack/issues/13
+* (HEAD detached at 63ad77e2) 63ad77e2 make beds sleepable https://github.com/mt-mods/homedecor_modpack/issues/13
 Mod: homedecor_modpack/building_blocks
 Mod: homedecor_modpack/fake_fire
 Mod: homedecor_modpack/lavalamp
@@ -357,12 +355,12 @@ Mod: homedecor_modpack/homedecor_trash_cans
 Mod: homedecor_modpack/homedecor_windows_and_treatments
 
 origin	https://github.com/mt-mods/home_workshop_modpack (fetch)
-* master 2058c58 [origin/master] Merge pull request #3 from mt-mods/mtg_removal
+* (no branch) 2058c58 Merge pull request #3 from mt-mods/mtg_removal
 Mod: home_workshop_modpack/home_vending_machines
 Mod: home_workshop_modpack/home_workshop_misc
 
 origin	https://github.com/minetest-mods/mydoors (fetch)
-* master 1e7ace6 [origin/master] Merge: Mod rewrite by oversword
+* (HEAD detached at 1e7ace6) 1e7ace6 Merge: Mod rewrite by oversword
 Mod: mydoors/my_castle_doors
 Mod: mydoors/my_cottage_doors
 Mod: mydoors/my_default_doors
@@ -375,32 +373,32 @@ Mod: mydoors/my_old_doors
 Mod: mydoors/my_old_doors
 
 origin	https://github.com/rubenwardy/food (fetch)
-* master 9b97006 [origin/master] Add Russian translation
+* (no branch) 9b97006 Add Russian translation
 Mod: food_modpack/food
 Mod: food_modpack/food_basic
 
 origin	https://github.com/h-v-smacker/canned_food (fetch)
-* master 4d061e9 [origin/master] Merge pull request #4 from Bastrabun/master
+* (HEAD detached at 4d061e9) 4d061e9 Merge pull request #4 from Bastrabun/master
 Mod: food/canned_food
 
 origin	https://github.com/rubenwardy/food_sweet (fetch)
-* master 5c9966d [origin/master] Add mod.conf and screenshot.png
+* (HEAD detached at 5c9966d) 5c9966d Add mod.conf and screenshot.png
 Mod: food/food_sweet
 
 origin	https://github.com/minetest-mods/mtfoods (fetch)
-* master ae3eb42 [origin/master] replace global "ing" by more meaningful global mtfoods.ingredients variable
+* (HEAD detached at ae3eb42) ae3eb42 replace global "ing" by more meaningful global mtfoods.ingredients variable
 Mod: food/mtfoods
 
 origin	https://notabug.org/TenPlus1/pie (fetch)
-* master b47a4a2 [origin/master] add pie rotation (thanks MoNTE48)
+* (HEAD detached at b47a4a2) b47a4a2 add pie rotation (thanks MoNTE48)
 Mod: food/pie
 
 origin	https://github.com/GreenXenith/waffles (fetch)
-* master e3fb87c [origin/master] Update screenshot.png
+* (HEAD detached at e3fb87c) e3fb87c Update screenshot.png
 Mod: food/waffles
 
 origin	https://github.com/minetest-mods/mesecons (fetch)
-* master ecea0a2 [origin/master] Optimize light updates when turning conductors on and off (#578)
+* (HEAD detached at ecea0a2) ecea0a2 Optimize light updates when turning conductors on and off (#578)
 Mod: mesecons/mesecons
 Mod: mesecons/mesecons_alias
 Mod: mesecons/mesecons_blinkyplant
@@ -427,13 +425,13 @@ Mod: mesecons/mesecons_walllever
 Mod: mesecons/mesecons_wires
 
 origin	https://codeberg.org/Hamlet/mobs_ghost_redo (fetch)
-* master ac9c013 [origin/master] v0.7.0
+* (HEAD detached at ac9c013) ac9c013 v0.7.0
 Mod: mobs_redo/mobs_ghost_redo
 
 origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
-* master 23e24bf [origin/master] fix intllib return
+* (HEAD detached at 23e24bf) 23e24bf fix intllib return
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* master e5d1958 [origin/master] add nil checks for riding mobs
+* (HEAD detached from 6a4a02f) e5d1958 add nil checks for riding mobs
 Mod: mobs_redo/mobs_redo

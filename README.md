@@ -1,4 +1,4 @@
-# minetest-game-whynot
+# whynot-game
 
 A Game for MineTest in mod-collection style
 
@@ -8,12 +8,21 @@ The name describes the way the mods are applied to the game. The game does not h
 
 ### List of already included mods
 
-Generated file: [mod_sources.txt](https://github.com/bell07/minetest-game-whynot/blob/master/mod_sources.txt)
+Generated file: [mod_sources.txt](https://github.com/minetest-whynot/whynot-game/blob/master/mod_sources.txt)
 
 ### License statement
 
 Each of the mods do have their own free license.
 The whynot related work (such as the buiding scripts) are GPL-V3
+
+### Contribution
+
+If you find bugs in mods - please report them directly to the upstream. 
+In case the bugs cannot be solved by upstream, please open issue in repository https://github.com/minetest-whynot/whynot-builder. In this case we consider if we can help upstream or if we remove the mod from whynot.
+
+Issues for new mod suggestions and proposals can be opened in https://github.com/minetest-whynot/whynot-builder too. The mod will be reviewed and included or a discussion started if a whynot rule appears.
+
+General whynot issues can be reported in https://github.com/minetest-whynot/whynot-game repositoriy.
 
 ## Whynot Rules for mods
 
@@ -56,7 +65,3 @@ The mods should not feel like cheats. The tools should be worn, walking through 
 ### 8 Mod under version control
 
 This game is not a new home for mods. Each mod remains within and have their own upstream. Access by version control is required for scripted updates to the game. If bugs are found in mods in this game, please report them to the upstream sources.
-
-## How to include a new mod to this game
-
-Just open a new issue in the github-repository <https://github.com/bell07/minetest-game-whynot>. The mod will be reviewed and included or a discussion started if a whynot rule appears.
