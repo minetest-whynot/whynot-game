@@ -36,6 +36,13 @@ function food.support(group, item)
 	end
 	local mod = string.sub(item, 1, idx - 1)
 
+	if not minetest.get_modpath(mod) then
+		if food.debug then
+			print("[Food Debug] Mod '"..mod.."' is not installed")
+		end
+		return
+	end
+
 	local data = minetest.registered_items[item]
 	if not data then
 		print("[Food Warning] Item '"..item.."' not found")

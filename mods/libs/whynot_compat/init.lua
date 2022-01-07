@@ -131,3 +131,18 @@ if minetest.get_modpath('bonemeal') and minetest.get_modpath('heads') then
 		recipe = {"bones:bones"}
 	})
 end
+
+-- https://github.com/rubenwardy/food/issues/32
+if minetest.get_modpath('food_basic') and minetest.get_modpath('food_sweet') then
+	-- Replace egg recipe by one with water to avoid conflict with lemon
+	minetest.clear_craft({output = "food:egg"})
+	minetest.register_craft({
+		output = "food:egg",
+		recipe = {
+			{"", "default:sand", ""},
+			{"default:sand", "bucket:bucket_water", "default:sand"},
+			{"", "default:sand", ""}
+		},
+		replacements = {{"bucket:bucket_water", "bucket:bucket_empty"}},
+	})
+end

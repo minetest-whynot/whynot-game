@@ -112,8 +112,7 @@ end
 ----------------------------------
 --- Get the delay time before processing the node at pos
 ----------------------------------
-function woodcutting_class:get_delay_time(pos)
-	local poshash = minetest.hash_node_position(pos)
+function woodcutting_class:get_delay_time(pos, poshash)
 	local nodedef = minetest.registered_nodes[self.treenodes_hashed[poshash]]
 	local capabilities = self._player:get_wielded_item():get_tool_capabilities()
 	local dig_params = minetest.get_dig_params(nodedef.groups, capabilities)
@@ -131,7 +130,7 @@ end
 ----------------------------------
 --- Check node removal allowed
 ----------------------------------
-function woodcutting_class:check_processing_allowed(pos)
+function woodcutting_class:check_processing_allowed(pos, poshash)
 	return vector.distance(pos, self._player:get_pos()) < self.player_distance
 		and self._player:get_wielded_item():get_wear() <= self.wear_limit
 end
@@ -151,7 +150,20 @@ function woodcutting_class:select_next_tree_node()
 		end
 		return aval < bval
 	end)
-	return self.treenodes_sorted[1]
+
+	-- Search for first unprocessed node. Cleanup tables
+	while true do
+		local pos = self.treenodes_sorted[1]
+		if not pos then --Finished
+			return
+		end
+		local poshash = minetest.hash_node_position(pos)
+		if not self.treenodes_hashed[poshash] then
+			table.remove(self.treenodes_sorted, 1)
+		else
+			return pos, poshash
+		end
+	end
 end
 
 ----------------------------------
@@ -170,14 +182,13 @@ function woodcutting_class:process_woodcut_step()
 			return
 		end
 
-		local pos = process:select_next_tree_node()
+		local pos, poshash = process:select_next_tree_node()
 		process:show_hud(pos)
 		if pos then
-			if process:check_processing_allowed(pos) then
+			if process:check_processing_allowed(pos, poshash) then
 				-- dig the node
-				local delaytime = process:get_delay_time(pos)
+				local delaytime = process:get_delay_time(pos, poshash)
 				if delaytime then
-					table.remove(process.treenodes_sorted, 1)
 					process:woodcut_node(pos, delaytime)
 				else
 					-- wait for right tool is used, try again
@@ -185,8 +196,6 @@ function woodcutting_class:process_woodcut_step()
 				end
 			else
 				-- just remove from hashed table and trigger the next step
-				local poshash = minetest.hash_node_position(pos)
-				table.remove(process.treenodes_sorted, 1)
 				process.treenodes_hashed[poshash] = nil
 				process:process_woodcut_step()
 			end

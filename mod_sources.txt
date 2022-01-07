@@ -65,7 +65,7 @@ origin	https://github.com/minetest-mods/intllib (fetch)
 Mod: libs/intllib
 
 origin	https://github.com/bell07/minetest-whynot_compat (fetch)
-* master 557f1b9 [origin/master] resolve conflict between heads and bonemeal
+* master 4e743e9 [origin/master] solve sand recipe overlap between lemon vs egg
 Mod: libs/whynot_compat
 
 origin	https://github.com/minetest-mods/awards (fetch)
@@ -96,7 +96,6 @@ origin	https://github.com/dacmot/moarmour (fetch)
 * master dfba7ef [origin/master] Update README.md
 Mod: player/moarmour
 
-bell07	https://github.com/bell07/playeranim (fetch)
 origin	https://github.com/minetest-mods/playeranim (fetch)
 * master 9dab03f [origin/master] Clear up all animations of all registered models (#1)
 Mod: player/playeranim
@@ -110,7 +109,7 @@ origin	https://github.com/minetest-mods/wielded_light (fetch)
 Mod: player/wielded_light
 
 origin	https://github.com/bell07/minetest-player_api_modpack (fetch)
-* master aef3182 [origin/master: ahead 7] move minetest.formspec_escape() from skins_preview to skinsdb5
+* master 03b1a28 [origin/master] player_api: fix initial skin assignment
 Mod: player_api_modpack/3d_armor
 Mod: player_api_modpack/character_creator
 Mod: player_api_modpack/clothing
@@ -181,7 +180,7 @@ origin	https://notabug.org/TenPlus1/pbj_pup (fetch)
 Mod: mapgen/pbj_pup
 
 origin	https://github.com/GreenXenith/tac_nayn (fetch)
-* master c84756c [origin/master: ahead 1] disable generation for pbj_pup_generate = false
+* master f07b884 [origin/master] Update license and README.
 Mod: mapgen/tac_nayn
 
 origin	https://github.com/taikedz/everamzah-backpacks (fetch)
@@ -245,7 +244,7 @@ origin	https://github.com/minetest-mods/trash_can (fetch)
 Mod: tools/trash_can
 
 origin	https://github.com/minetest-mods/woodcutting (fetch)
-* master                     94eb669 [origin/master] Update README.md
+* master                     b265a97 [origin/master] Cleanup treenodes_sorted in one place pass poshash to functions instead of recalculation
 Mod: tools/woodcutting
 
 origin	https://github.com/Amaz1/flight/ (fetch)
@@ -371,7 +370,7 @@ Mod: mydoors/my_old_doors
 Mod: mydoors/my_old_doors
 
 origin	https://github.com/rubenwardy/food (fetch)
-* master ae376e8 [origin/master: ahead 2] removed redundant check for installed mod
+* master 9b97006 [origin/master] Add Russian translation
 Mod: food_modpack/food
 Mod: food_modpack/food_basic
 

@@ -142,10 +142,9 @@ food.module("egg", function()
 		output = "food:egg",
 		recipe = {
 			{"", "default:sand", ""},
-			{"default:sand", "bucket:bucket_water", "default:sand"},
+			{"default:sand", "", "default:sand"},
 			{"", "default:sand", ""}
-		},
-		replacements = {{"bucket:bucket_water", "bucket:bucket_empty"}},
+		}
 	})
 end, true)
 

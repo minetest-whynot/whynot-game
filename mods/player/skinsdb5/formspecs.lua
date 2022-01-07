@@ -53,7 +53,6 @@ end
 function skinsdb5.get_skin_selection_formspec(player, context, perplayer_formspec)
 	local skins_list = skinsdb5.get_skinlist_for_player(player:get_player_name())
 	local current_skin = player_api.registered_skins[player_api.get_skin(player)]
-print("current_skin", player_api.get_skin(player), dump(player_api.registered_skins))
 	context.total_pages = 1
 	local xoffs = 0
 	local yoffs = 4
