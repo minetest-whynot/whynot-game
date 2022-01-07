@@ -323,7 +323,7 @@ origin	https://github.com/mt-mods/unifieddyes (fetch)
 Mod: decor/unifieddyes
 
 origin	https://github.com/mt-mods/homedecor_modpack (fetch)
-* whynot 08119f9 fix health expliot https://github.com/mt-mods/homedecor_modpack/issues/14
+* whynot 63ad77e make beds sleepable https://github.com/mt-mods/homedecor_modpack/issues/13
 Mod: homedecor_modpack/building_blocks
 Mod: homedecor_modpack/fake_fire
 Mod: homedecor_modpack/lavalamp
