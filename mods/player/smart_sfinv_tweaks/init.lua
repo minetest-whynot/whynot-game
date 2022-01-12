@@ -16,12 +16,28 @@ sfinv_buttons.register_button('compress', {
 sfinv_buttons.register_button('rotate', {
 	image = "smart_sfinv_tweaks_rotate.png",
 	tooltip = "Rotate inventory rows",
-	position = 7,
+	position = 8,
 	action = function(player)
 		maininv.get(player):rotate_rows()
 	end,
 	show = function(player, context, content, show_inv)
 		return show_inv
+	end
+})
+
+sfinv_buttons.register_button('trash', {
+	image = "smart_sfinv_tweaks_trash_button.png",
+	tooltip = "Remove all items from inventory",
+	position = 9,
+	action = function(player)
+		maininv.get(player):remove_all()
+	end,
+	show = function(player, context, content, show_inv)
+		if context.page:sub(1,9) == "creative:" then
+			return show_inv
+		else
+			return false
+		end
 	end
 })
 

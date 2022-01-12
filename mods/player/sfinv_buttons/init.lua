@@ -42,14 +42,14 @@ smart_sfinv_api.register_enhancement({
 			return 
 		end
 
-		handler.formspec_size_add_w = handler.formspec_size_add_w + math.floor(last_button / sfinv_buttons.MAX_ROWS) + 1
+		handler.formspec_size_add_w = handler.formspec_size_add_w + math.floor((last_button - 1) / sfinv_buttons.MAX_ROWS) + 1
 
 		local retval = ""
 
 		for idx = 1, last_button do
 			local def = sfinv_buttons.registered_buttons[idx]
 
-			local x = 8.1 + math.floor(idx / sfinv_buttons.MAX_ROWS)
+			local x = 8.1 + math.floor((idx - 1)/ sfinv_buttons.MAX_ROWS)
 			local y = (idx - 1) % sfinv_buttons.MAX_ROWS
 
 			if def and (def.show == nil or def.show == true or def.show(player, context, content, show_inv) == true) then

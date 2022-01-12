@@ -1,5 +1,5 @@
 whynot-builder branch:
-* main 3f542f8 [origin/main] update mods_src/tools/bonemeal (non-functional)
+* main 80e6b91 [origin/main] update smart_sfinv_modpack - new trash button for creative
 
 
 origin	https://github.com/minetest/minetest_game (fetch)
@@ -133,7 +133,7 @@ Mod: 3d_armor/shields
 Mod: 3d_armor/3d_armor_sfinv
 
 origin	https://github.com/bell07/minetest-smart_sfinv (fetch)
-* (no branch) 0f6bcdc added moarmour => armor group mapping for smart_sfinv_creative_bymod
+* (no branch) 25c2c5b smart_sfinv_tweaks: Add trash button for creative pages
 Mod: smart_sfinv_modpack/creative_maxstack
 Mod: smart_sfinv_modpack/sfinv_buttons
 Mod: smart_sfinv_modpack/smart_sfinv_api
