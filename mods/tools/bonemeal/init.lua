@@ -689,4 +689,4 @@ minetest.override_item("default:dirt", {
 dofile(path .. "/mods.lua")
 dofile(path .. "/lucky_block.lua")
 
-print (S("[MOD] bonemeal loaded"))
+print ("[MOD] bonemeal loaded")

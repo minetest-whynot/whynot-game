@@ -33,5 +33,6 @@ Changelog:
 - 1.1 - Added {can_bonemeal=1} group for special nodes
 - 1.2 - Added support for minetest 5.0 cactus seedling, blueberry bush sapling and emergent jungle tree saplings, additional flowers and pine bush sapling.
 - 1.3 - Ability to craft dye from mulch, bonemeal and fertiliser (thanks orbea)
+- 1.4 - Add support for fern saplings from plantlife mod (thanks nixnoxus)
 
 Lucky Blocks: 6

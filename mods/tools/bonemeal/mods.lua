@@ -3,9 +3,8 @@
 if minetest.get_modpath("animalmaterials") then
 
 	minetest.register_craft({
-		type = "shapeless",
 		output = "bonemeal:bonemeal 2",
-		recipe = {"animalmaterials:bone"}
+		recipe = {{"animalmaterials:bone"}}
 	})
 end
 
@@ -115,13 +114,11 @@ if minetest.get_modpath("moretrees") then
 		{"moretrees:apple_tree_sapling", moretrees.spawn_apple_tree_object, "soil"},
 		{"moretrees:oak_sapling", moretrees.spawn_oak_object, "soil"},
 		{"moretrees:sequoia_sapling", moretrees.spawn_sequoia_object, "soil"},
-		--{"moretrees:birch_sapling", moretrees.spawn_birch_object, "soil"},
 		{"moretrees:birch_sapling", moretrees.grow_birch, "soil"},
 		{"moretrees:palm_sapling", moretrees.spawn_palm_object, "soil"},
 		{"moretrees:palm_sapling", moretrees.spawn_palm_object, "sand"},
 		{"moretrees:date_palm_sapling", moretrees.spawn_date_palm_object, "soil"},
 		{"moretrees:date_palm_sapling", moretrees.spawn_date_palm_object, "sand"},
-		--{"moretrees:spruce_sapling", moretrees.spawn_spruce_object, "soil"},
 		{"moretrees:spruce_sapling", moretrees.grow_spruce, "soil"},
 		{"moretrees:cedar_sapling", moretrees.spawn_cedar_object, "soil"},
 		{"moretrees:poplar_sapling", moretrees.spawn_poplar_object, "soil"},
@@ -151,6 +148,29 @@ if minetest.get_modpath("caverealms") then
 
 	bonemeal:add_sapling({
 		{"caverealms:mushroom_sapling", add_shroom, "soil"}
+	})
+end
+
+
+local function y_func(grow_func)
+	return function(pos)
+		grow_func({x = pos.x, y = pos.y - 1, z = pos.z})
+	end
+end
+
+if minetest.get_modpath("ferns") then
+
+	bonemeal:add_sapling({
+		{"ferns:sapling_giant_tree_fern", y_func(abstract_ferns.grow_giant_tree_fern), "soil"},
+		{"ferns:sapling_giant_tree_fern", y_func(abstract_ferns.grow_giant_tree_fern), "sand"},
+		{"ferns:sapling_tree_fern", y_func(abstract_ferns.grow_tree_fern), "soil"}
+	})
+end
+
+if minetest.get_modpath("dryplants") then
+
+	bonemeal:add_sapling({
+		{"dryplants:reedmace_sapling", y_func(abstract_dryplants.grow_reedmace), "soil"}
 	})
 end
 

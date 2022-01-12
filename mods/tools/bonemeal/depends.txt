@@ -7,3 +7,5 @@ technic_worldgen?
 lucky_block?
 flowers?
 dye?
+ferns?
+dryplants?

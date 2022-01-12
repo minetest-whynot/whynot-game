@@ -22,8 +22,7 @@ if minetest.get_modpath("lucky_block") then
 		{"nod", "default:chest", 0, {
 			{name = "bonemeal:mulch", max = 20},
 			{name = "bonemeal:bonemeal", max = 15},
-			{name = "bonemeal:fertiliser", max = 10},
-		}},
+			{name = "bonemeal:fertiliser", max = 10}
+		}}
 	})
-
 end
