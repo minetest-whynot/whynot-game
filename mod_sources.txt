@@ -1,6 +1,3 @@
-whynot-game branch:
-* main   748056c1 [origin/main] add builder scripts and update README's
-
 
 origin	https://github.com/minetest/minetest_game (fetch)
 * (HEAD detached at dd7eed9) dd7eed9 Merge remote-tracking branch 'origin/stable-5' into HEAD

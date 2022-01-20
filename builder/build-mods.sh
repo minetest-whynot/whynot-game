@@ -8,6 +8,9 @@ LOG="$PROJ"/mod_sources.txt
 source "$PROJ"/builder/build-whynot.lib
 cd "$SRC" # for proper resolving the '*'
 
+# Remove old log
+rm "$LOG" 2>/dev/null
+
 ## Sync minetest_game
 # exclude env_sounds => Tenplus1/ambience is used
 # exclude farming =>Tenplus1/farming is used
