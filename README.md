@@ -17,12 +17,9 @@ The whynot related work (such as the buiding scripts) are GPL-V3
 
 ### Contribution
 
-If you find bugs in mods - please report them directly to the upstream. 
-In case the bugs cannot be solved by upstream, please open issue in repository https://github.com/minetest-whynot/whynot-builder. In this case we consider if we can help upstream or if we remove the mod from whynot.
+If you find bugs in mods - please report them directly to the upstream.
 
-Issues for new mod suggestions and proposals can be opened in https://github.com/minetest-whynot/whynot-builder too. The mod will be reviewed and included or a discussion started if a whynot rule appears.
-
-General whynot issues can be reported in https://github.com/minetest-whynot/whynot-game repositoriy.
+Whynot related issues, new mod suggestions or if the bugs cannot be solved by upstream, please open issue in repository https://github.com/minetest-whynot/whynot-game.
 
 ## Whynot Rules for mods
 
