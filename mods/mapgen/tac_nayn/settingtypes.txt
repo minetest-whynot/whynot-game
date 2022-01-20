@@ -1,0 +1,2 @@
+#    If enabled generates Tac Nayn in world
+tac_nayn_generate (Generate Tac Nayn) bool true

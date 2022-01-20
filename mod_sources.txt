@@ -1,5 +1,5 @@
 whynot-builder branch:
-* main 80e6b91 [origin/main] update smart_sfinv_modpack - new trash button for creative
+* main 76ba3d3 [origin/main] upgate tac_nayn
 
 
 origin	https://github.com/minetest/minetest_game (fetch)
@@ -182,7 +182,7 @@ origin	https://notabug.org/TenPlus1/pbj_pup (fetch)
 Mod: mapgen/pbj_pup
 
 origin	https://github.com/GreenXenith/tac_nayn (fetch)
-* (no branch) f07b884 Update license and README.
+* (no branch) 2625716 Merge pull request #2 from bell07/master
 Mod: mapgen/tac_nayn
 
 origin	https://github.com/taikedz/everamzah-backpacks (fetch)
@@ -436,5 +436,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* (HEAD detached from 6a4a02f) e5d1958 add nil checks for riding mobs
+* (HEAD detached at e5d1958) e5d1958 add nil checks for riding mobs
 Mod: mobs_redo/mobs_redo

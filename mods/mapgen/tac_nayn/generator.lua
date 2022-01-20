@@ -24,7 +24,12 @@ function tac_nayn.make_tacnayn(pos, facedir, length)
 		minetest.set_node(p, {name="tac_nayn:tacnayn_rainbow", param2=facedir})
 	end
 end
-                         
+
+-- Do we generate Tac Nayn in world?
+if minetest.settings:get_bool("tac_nayn_generate") == false then
+	return
+end
+
 local function generate_tacnayns(seed, minp, maxp)
 	local height_min = -31000
 	local height_max = -32
