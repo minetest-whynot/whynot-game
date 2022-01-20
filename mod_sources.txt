@@ -1,5 +1,5 @@
-whynot-builder branch:
-* main 76ba3d3 [origin/main] upgate tac_nayn
+whynot-game branch:
+* main   748056c1 [origin/main] add builder scripts and update README's
 
 
 origin	https://github.com/minetest/minetest_game (fetch)

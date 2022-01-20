@@ -71,6 +71,6 @@ echo "Process repo $mod"
 }
 
 # Write header with current whynot-builder version
-echo "whynot-builder branch:" > "$LOG"
+echo "whynot-game branch:" > "$LOG"
 git branch -vv | grep '^[*]' >> "$LOG"
 echo ""  >> "$LOG"
