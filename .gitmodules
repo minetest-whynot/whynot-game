@@ -1,0 +1,243 @@
+[submodule "builder/mods_src/ambience/ambience"]
+	path = builder/mods_src/ambience/ambience
+	url = https://notabug.org/TenPlus1/ambience
+[submodule "builder/mods_src/ambience/lightning"]
+	path = builder/mods_src/ambience/lightning
+	url = https://github.com/minetest-mods/lightning
+[submodule "builder/mods_src/ambience/under_sky"]
+	path = builder/mods_src/ambience/under_sky
+	url = https://github.com/Ezhh/under_sky
+[submodule "builder/mods_src/ambience/weather_pack"]
+	path = builder/mods_src/ambience/weather_pack
+	url = https://gitlab.com/rautars/weather_pack
+[submodule "builder/mods_src/decor/abriglass"]
+	path = builder/mods_src/decor/abriglass
+	url = https://github.com/Ezhh/abriglass/
+[submodule "builder/mods_src/decor/basic_materials"]
+	path = builder/mods_src/decor/basic_materials
+	url = https://github.com/mt-mods/basic_materials
+[submodule "builder/mods_src/decor/campfire"]
+	path = builder/mods_src/decor/campfire
+	url = https://github.com/Napiophelios/campfire
+[submodule "builder/mods_src/decor/curtain"]
+	path = builder/mods_src/decor/curtain
+	url = https://github.com/pithydon/curtain
+[submodule "builder/mods_src/decor/dice2"]
+	path = builder/mods_src/decor/dice2
+	url = https://repo.or.cz/minetest_dice2.git
+[submodule "builder/mods_src/decor/flower_pot"]
+	path = builder/mods_src/decor/flower_pot
+	url = https://github.com/cdqwertz/flower_pot
+[submodule "builder/mods_src/decor/heads"]
+	path = builder/mods_src/decor/heads
+	url = https://github.com/HybridDog/heads
+[submodule "builder/mods_src/decor/laptop"]
+	path = builder/mods_src/decor/laptop
+	url = https://github.com/bell07/minetest-laptop
+[submodule "builder/mods_src/decor/mtg_plus"]
+	path = builder/mods_src/decor/mtg_plus
+	url = https://repo.or.cz/minetest_mtg_plus.git
+[submodule "builder/mods_src/decor/myroofs"]
+	path = builder/mods_src/decor/myroofs
+	url = https://github.com/minetest-mods/myroofs
+[submodule "builder/mods_src/decor/plasticbox"]
+	path = builder/mods_src/decor/plasticbox
+	url = https://github.com/sbrl/plasticbox
+[submodule "builder/mods_src/decor/princess"]
+	path = builder/mods_src/decor/princess
+	url = https://github.com/pithydon/princess
+[submodule "builder/mods_src/decor/realchess"]
+	path = builder/mods_src/decor/realchess
+	url = https://github.com/minetest-mods/realchess
+[submodule "builder/mods_src/decor/slats"]
+	path = builder/mods_src/decor/slats
+	url = https://github.com/v-rob/slats
+[submodule "builder/mods_src/decor/ts_furniture"]
+	path = builder/mods_src/decor/ts_furniture
+	url = https://github.com/minetest-mods/ts_furniture
+[submodule "builder/mods_src/decor/unifieddyes"]
+	path = builder/mods_src/decor/unifieddyes
+	url = https://github.com/mt-mods/unifieddyes
+[submodule "builder/mods_src/flight"]
+	path = builder/mods_src/flight
+	url = https://github.com/Amaz1/flight/
+[submodule "builder/mods_src/flora_ores/farming"]
+	path = builder/mods_src/flora_ores/farming
+	url = https://notabug.org/TenPlus1/farming
+[submodule "builder/mods_src/flora_ores/mese_crystals"]
+	path = builder/mods_src/flora_ores/mese_crystals
+	url = https://github.com/bell07/minetest-mese_crystals
+[submodule "builder/mods_src/food/canned_food"]
+	path = builder/mods_src/food/canned_food
+	url = https://github.com/h-v-smacker/canned_food
+[submodule "builder/mods_src/food/food_sweet"]
+	path = builder/mods_src/food/food_sweet
+	url = https://github.com/rubenwardy/food_sweet
+[submodule "builder/mods_src/food/mtfoods"]
+	path = builder/mods_src/food/mtfoods
+	url = https://github.com/minetest-mods/mtfoods
+[submodule "builder/mods_src/food/pie"]
+	path = builder/mods_src/food/pie
+	url = https://notabug.org/TenPlus1/pie
+[submodule "builder/mods_src/food/waffles"]
+	path = builder/mods_src/food/waffles
+	url = https://github.com/GreenXenith/waffles
+[submodule "builder/mods_src/libs/doc"]
+	path = builder/mods_src/libs/doc
+	url = https://repo.or.cz/minetest_doc.git
+[submodule "builder/mods_src/libs/doc_basics"]
+	path = builder/mods_src/libs/doc_basics
+	url = https://repo.or.cz/minetest_doc_basics.git
+[submodule "builder/mods_src/libs/doc_items"]
+	path = builder/mods_src/libs/doc_items
+	url = https://repo.or.cz/minetest_doc_items.git
+[submodule "builder/mods_src/libs/doc_minetest_game"]
+	path = builder/mods_src/libs/doc_minetest_game
+	url = https://repo.or.cz/minetest_doc_minetest_game.git
+[submodule "builder/mods_src/libs/doc_reveal_chest"]
+	path = builder/mods_src/libs/doc_reveal_chest
+	url = https://github.com/minetest-mods/doc_reveal_chest
+[submodule "builder/mods_src/libs/intllib"]
+	path = builder/mods_src/libs/intllib
+	url = https://github.com/minetest-mods/intllib
+[submodule "builder/mods_src/libs/whynot_compat"]
+	path = builder/mods_src/libs/whynot_compat
+	url = https://github.com/bell07/minetest-whynot_compat
+[submodule "builder/mods_src/libs/craftguide_reveal"]
+	path = builder/mods_src/libs/craftguide_reveal
+	url = https://github.com/minetest-mods/craftguide_reveal
+[submodule "builder/mods_src/maidroid"]
+	path = builder/mods_src/maidroid
+	url = https://github.com/thePlasm/maidroid
+[submodule "builder/mods_src/mapgen/cloudlands"]
+	path = builder/mods_src/mapgen/cloudlands
+	url = https://github.com/Treer/cloudlands/
+[submodule "builder/mods_src/mapgen/maple"]
+	path = builder/mods_src/mapgen/maple
+	url = https://notabug.org/dacmot/maple
+[submodule "builder/mods_src/mapgen/meseor"]
+	path = builder/mods_src/mapgen/meseor
+	url = https://github.com/minetest-mods/meseor
+[submodule "builder/mods_src/mapgen/pbj_pup"]
+	path = builder/mods_src/mapgen/pbj_pup
+	url = https://notabug.org/TenPlus1/pbj_pup
+[submodule "builder/mods_src/mesecons"]
+	path = builder/mods_src/mesecons
+	url = https://github.com/minetest-mods/mesecons
+[submodule "builder/mods_src/minetest_game"]
+	path = builder/mods_src/minetest_game
+	url = https://github.com/minetest/minetest_game
+[submodule "builder/mods_src/mobs_redo/mobs_ghost_redo"]
+	path = builder/mods_src/mobs_redo/mobs_ghost_redo
+	url = https://codeberg.org/Hamlet/mobs_ghost_redo
+[submodule "builder/mods_src/mobs_redo/mobs_monster"]
+	path = builder/mods_src/mobs_redo/mobs_monster
+	url = https://notabug.org/TenPlus1/mobs_monster
+[submodule "builder/mods_src/mobs_redo/mobs_redo"]
+	path = builder/mods_src/mobs_redo/mobs_redo
+	url = https://notabug.org/TenPlus1/mobs_redo
+[submodule "builder/mods_src/mydoors"]
+	path = builder/mods_src/mydoors
+	url = https://github.com/minetest-mods/mydoors
+[submodule "builder/mods_src/player_api_modpack"]
+	path = builder/mods_src/player_api_modpack
+	url = https://github.com/bell07/minetest-player_api_modpack
+[submodule "builder/mods_src/player/awards"]
+	path = builder/mods_src/player/awards
+	url = https://github.com/minetest-mods/awards
+[submodule "builder/mods_src/player/cozy"]
+	path = builder/mods_src/player/cozy
+	url = https://github.com/minetest-mods/cozy
+[submodule "builder/mods_src/player/hbarmor"]
+	path = builder/mods_src/player/hbarmor
+	url = https://repo.or.cz/minetest_hbarmor.git
+[submodule "builder/mods_src/player/hbhunger"]
+	path = builder/mods_src/player/hbhunger
+	url = http://repo.or.cz/minetest_hbhunger
+[submodule "builder/mods_src/player/hbsprint"]
+	path = builder/mods_src/player/hbsprint
+	url = https://github.com/minetest-mods/hbsprint
+[submodule "builder/mods_src/player/hudbars"]
+	path = builder/mods_src/player/hudbars
+	url = https://repo.or.cz/minetest_hudbars.git
+[submodule "builder/mods_src/player/moarmour"]
+	path = builder/mods_src/player/moarmour
+	url = https://github.com/dacmot/moarmour
+[submodule "builder/mods_src/player/playeranim"]
+	path = builder/mods_src/player/playeranim
+	url = https://github.com/minetest-mods/playeranim
+[submodule "builder/mods_src/player/show_wielded_item"]
+	path = builder/mods_src/player/show_wielded_item
+	url = http://repo.or.cz/minetest_show_wielded_item.git
+[submodule "builder/mods_src/player/wielded_light"]
+	path = builder/mods_src/player/wielded_light
+	url = https://github.com/minetest-mods/wielded_light
+[submodule "builder/mods_src/tools/backpacks"]
+	path = builder/mods_src/tools/backpacks
+	url = https://github.com/taikedz/everamzah-backpacks
+[submodule "builder/mods_src/tools/bonemeal"]
+	path = builder/mods_src/tools/bonemeal
+	url = https://notabug.org/tenplus1/bonemeal
+[submodule "builder/mods_src/tools/boost_cart"]
+	path = builder/mods_src/tools/boost_cart
+	url = https://github.com/SmallJoker/boost_cart
+[submodule "builder/mods_src/tools/ccompass"]
+	path = builder/mods_src/tools/ccompass
+	url = https://github.com/minetest-mods/ccompass
+[submodule "builder/mods_src/tools/compost"]
+	path = builder/mods_src/tools/compost
+	url = https://github.com/minetest-mods/compost
+[submodule "builder/mods_src/tools/engrave"]
+	path = builder/mods_src/tools/engrave
+	url = https://github.com/orwell96/engrave/
+[submodule "builder/mods_src/tools/handholds"]
+	path = builder/mods_src/tools/handholds
+	url = https://github.com/Ezhh/handholds
+[submodule "builder/mods_src/tools/helicopter"]
+	path = builder/mods_src/tools/helicopter
+	url = https://github.com/petermaloney/helicopter
+[submodule "builder/mods_src/tools/hopper"]
+	path = builder/mods_src/tools/hopper
+	url = https://github.com/minetest-mods/hopper
+[submodule "builder/mods_src/tools/jumping"]
+	path = builder/mods_src/tools/jumping
+	url = https://github.com/minetest-mods/jumping
+[submodule "builder/mods_src/tools/orbs_of_time"]
+	path = builder/mods_src/tools/orbs_of_time
+	url = https://github.com/minetest-mods/orbs_of_time/
+[submodule "builder/mods_src/tools/rainbowswords"]
+	path = builder/mods_src/tools/rainbowswords
+	url = https://github.com/dkartaschew/minetest-rainbowswords
+[submodule "builder/mods_src/tools/subspacewalker"]
+	path = builder/mods_src/tools/subspacewalker
+	url = https://github.com/minetest-mods/subspacewalker
+[submodule "builder/mods_src/tools/toolranks"]
+	path = builder/mods_src/tools/toolranks
+	url = https://github.com/lisacvuk/minetest-toolranks
+[submodule "builder/mods_src/tools/trash_can"]
+	path = builder/mods_src/tools/trash_can
+	url = https://github.com/minetest-mods/trash_can
+[submodule "builder/mods_src/tools/woodcutting"]
+	path = builder/mods_src/tools/woodcutting
+	url = https://github.com/minetest-mods/woodcutting
+[submodule "builder/mods_src/smart_sfinv_modpack"]
+	path = builder/mods_src/smart_sfinv_modpack
+	url = https://github.com/bell07/minetest-smart_sfinv
+[submodule "builder/mods_src/3d_armor"]
+	path = builder/mods_src/3d_armor
+	url = https://github.com/minetest-mods/3d_armor
+[submodule "builder/mods_src/mapgen/tac_nayn"]
+	path = builder/mods_src/mapgen/tac_nayn
+	url = https://github.com/GreenXenith/tac_nayn
+[submodule "builder/mods_src/food_modpack"]
+	path = builder/mods_src/food_modpack
+	url = https://github.com/rubenwardy/food
+[submodule "builder/mods_src/libs/craftguide"]
+	path = builder/mods_src/libs/craftguide
+	url = https://github.com/minetest-mods/craftguide/
+[submodule "builder/mods_src/homedecor_modpack"]
+	path = builder/mods_src/homedecor_modpack
+	url = https://github.com/mt-mods/homedecor_modpack
+[submodule "builder/mods_src/home_workshop_modpack"]
+	path = builder/mods_src/home_workshop_modpack
+	url = https://github.com/mt-mods/home_workshop_modpack
