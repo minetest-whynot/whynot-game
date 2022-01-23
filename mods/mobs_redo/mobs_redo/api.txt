@@ -691,6 +691,12 @@ space to spawn mob [name], if so then a new position is returned for use,
 otherwise nil is returned.
 
 
+mobs:is_node_dangerous(mob_object, nodename)
+
+This function returns true if the node name given is harmful to the mob (mob_object),
+it is mainly used when a mob is near a node it has to avoid.
+
+
 External Settings for "minetest.conf"
 ------------------------------------
 

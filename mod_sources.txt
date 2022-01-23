@@ -429,9 +429,9 @@ origin	https://codeberg.org/Hamlet/mobs_ghost_redo (fetch)
 Mod: mobs_redo/mobs_ghost_redo
 
 origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
-* (HEAD detached at 23e24bf) 23e24bf fix intllib return
+* (HEAD detached at ae0e50b) ae0e50b add spanish translation (thanks mckaygerhard)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* (HEAD detached at e5d1958) e5d1958 add nil checks for riding mobs
+* (HEAD detached at 18c7f0a) 18c7f0a update translation checks (thanks mckaygerhard)
 Mod: mobs_redo/mobs_redo

@@ -1,6 +1,5 @@
 
-local S = mobs.intllib
-
+local S = mobs.intllib_monster
 
 -- custom particle effects
 local effect = function(

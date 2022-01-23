@@ -1,14 +1,34 @@
--- Load support for intllib.
 local MP = minetest.get_modpath(minetest.get_current_modname())
-local S = minetest.get_translator and minetest.get_translator("mobs") or
-		dofile(MP .. "/intllib.lua")
+
+-- Check for translation method
+local S
+if minetest.get_translator ~= nil then
+	S = minetest.get_translator("mobs") -- 5.x translation function
+else
+	if minetest.get_modpath("intllib") then
+		dofile(minetest.get_modpath("intllib") .. "/init.lua")
+		if intllib.make_gettext_pair then
+			gettext, ngettext = intllib.make_gettext_pair() -- new gettext method
+		else
+			gettext = intllib.Getter() -- old text file method
+		end
+		S = gettext
+	else -- boilerplate function
+		S = function(str, ...)
+			local args = {...}
+			return str:gsub("@%d+", function(match)
+				return args[tonumber(match:sub(2))]
+			end)
+		end
+	end
+end
 
 -- CMI support check
 local use_cmi = minetest.global_exists("cmi")
 
 mobs = {
 	mod = "redo",
-	version = "20211212",
+	version = "20220120",
 	intllib = S,
 	invis = minetest.global_exists("invisibility") and invisibility or {}
 }
@@ -1002,19 +1022,19 @@ end
 
 
 -- Returns true is node can deal damage to self
-local is_node_dangerous = function(self, nodename)
+function mobs:is_node_dangerous(mob_object, nodename)
 
-	if self.water_damage > 0
+	if mob_object.water_damage > 0
 	and minetest.get_item_group(nodename, "water") ~= 0 then
 		return true
 	end
 
-	if self.lava_damage > 0
+	if mob_object.lava_damage > 0
 	and minetest.get_item_group(nodename, "lava") ~= 0 then
 		return true
 	end
 
-	if self.fire_damage > 0
+	if mob_object.fire_damage > 0
 	and minetest.get_item_group(nodename, "fire") ~= 0 then
 		return true
 	end
@@ -1024,6 +1044,10 @@ local is_node_dangerous = function(self, nodename)
 	end
 
 	return false
+end
+
+local function is_node_dangerous(mob_object, nodename)
+	return mobs:is_node_dangerous(mob_object, nodename)
 end
 
 

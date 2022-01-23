@@ -1,5 +1,5 @@
 
-local S = mobs.intllib
+local S = mobs.intllib_monster
 
 local get_velocity = function(self)
 
