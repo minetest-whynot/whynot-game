@@ -92,7 +92,7 @@ origin	https://repo.or.cz/minetest_hudbars.git (fetch)
 Mod: player/hudbars
 
 origin	https://github.com/dacmot/moarmour (fetch)
-* (HEAD detached at dfba7ef) dfba7ef Update README.md
+* (HEAD detached at 509a3a5) 509a3a5 Merge pull request #1 from Lazerbeak12345/fix_dependancy
 Mod: player/moarmour
 
 origin	https://github.com/minetest-mods/playeranim (fetch)
@@ -269,7 +269,7 @@ origin	https://github.com/Napiophelios/campfire (fetch)
 Mod: decor/campfire
 
 origin	https://github.com/pithydon/curtain (fetch)
-* (HEAD detached at 600e39f) 600e39f Change selection box.
+* (HEAD detached at 10775ab) 10775ab switch license to CC0
 Mod: decor/curtain
 
 origin	https://repo.or.cz/minetest_dice2.git (fetch)
