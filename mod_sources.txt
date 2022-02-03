@@ -398,7 +398,7 @@ origin	https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin	https://github.com/minetest-mods/mesecons (fetch)
-* (HEAD detached at ecea0a2) ecea0a2 Optimize light updates when turning conductors on and off (#578)
+* (HEAD detached at 4c5b13a) 4c5b13a Fix conductor lighting when aliases are used (#582)
 Mod: mesecons/mesecons
 Mod: mesecons/mesecons_alias
 Mod: mesecons/mesecons_blinkyplant
