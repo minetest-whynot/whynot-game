@@ -1,0 +1,18 @@
+# textdomain: maple
+Maple Fence=
+Maple Fence Rail=
+Maple Drawers=
+Maple Slab=
+Maple Stair=
+Maple Trunk=
+Maple Trunk Slab=
+Maple Trunk Stair=
+Maple Wood=
+Maple Wood Fence Gate=
+Maple Wood Slab=
+Maple Wood Stair=
+Maple Leaves=
+Maple Sapling=
+Maple Tree=
+Maple Wood Planks=
+Maple sapling placed.=
