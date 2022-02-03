@@ -1,8 +1,6 @@
 # textdomain: moarmour
 
-
-### armor.lua ###
-
+### armour.lua ###
 Amethyst Boots=
 Amethyst Chestplate=
 Amethyst Helmet=
@@ -140,11 +138,9 @@ Waffle Leggings=
 Waffle Shield=
 
 ### crafts.lua ###
-
 Bone Pile=
 Bone Plate=
 
 ### nodes.lua ###
-
 Ibrog=
 Waffle Block=

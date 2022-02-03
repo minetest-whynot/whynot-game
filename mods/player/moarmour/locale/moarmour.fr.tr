@@ -1,8 +1,6 @@
 # textdomain: moarmour
 
-
-### armor.lua ###
-
+### armour.lua ###
 Amethyst Boots=BottesBottes d'améthyste
 Amethyst Chestplate=CuirasseCuirasse d'améthyste
 Amethyst Helmet=CasqueCasque d'améthyste
@@ -140,11 +138,9 @@ Waffle Leggings=Jambières de gauffre
 Waffle Shield=Bouclier de gauffre
 
 ### crafts.lua ###
-
 Bone Pile=Pile d'os
 Bone Plate=Plaque d'os
 
 ### nodes.lua ###
-
 Ibrog=Ibrog
 Waffle Block=Bloc de gauffre

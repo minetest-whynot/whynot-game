@@ -92,7 +92,7 @@ origin	https://repo.or.cz/minetest_hudbars.git (fetch)
 Mod: player/hudbars
 
 origin	https://github.com/dacmot/moarmour (fetch)
-* (HEAD detached at 509a3a5) 509a3a5 Merge pull request #1 from Lazerbeak12345/fix_dependancy
+* (HEAD detached at ad58ea9) ad58ea9 Run update translations script
 Mod: player/moarmour
 
 origin	https://github.com/minetest-mods/playeranim (fetch)
