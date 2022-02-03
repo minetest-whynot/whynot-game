@@ -48,9 +48,9 @@ minetest.register_node("home_workshop_misc:beer_tap", {
 		local wieldname = itemstack:get_name()
 		if wieldname == "vessels:drinking_glass" then
 			if inv:room_for_item("main", "home_workshop_misc:beer_mug 1") then
+				inv:add_item("main", "home_workshop_misc:beer_mug 1")
 				itemstack:take_item()
 				clicker:set_wielded_item(itemstack)
-				inv:add_item("main", "home_workshop_misc:beer_mug 1")
 				minetest.chat_send_player(clicker:get_player_name(),
 						S("Ahh, a frosty cold beer - look in your inventory for it!"))
 			else

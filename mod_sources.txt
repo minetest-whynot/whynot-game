@@ -355,7 +355,7 @@ Mod: homedecor_modpack/homedecor_trash_cans
 Mod: homedecor_modpack/homedecor_windows_and_treatments
 
 origin	https://github.com/mt-mods/home_workshop_modpack (fetch)
-* (no branch) 2058c58 Merge pull request #3 from mt-mods/mtg_removal
+* (HEAD detached at eacbe80) eacbe80 Merge pull request #6 from mt-mods/vending_crafts
 Mod: home_workshop_modpack/home_vending_machines
 Mod: home_workshop_modpack/home_workshop_misc
 

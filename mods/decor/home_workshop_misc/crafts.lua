@@ -15,12 +15,3 @@ minetest.register_craft({
 		{ "default:steel_ingot",       "default:steel_ingot", "default:steel_ingot" }
 	},
 })
-
-minetest.register_craft({
-	output = "homedecor:soda_machine",
-	recipe = {
-		{"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"},
-		{"default:steel_ingot", "dye:red",             "default:steel_ingot"},
-		{"default:steel_ingot", "default:copperblock", "default:steel_ingot"},
-	},
-})
