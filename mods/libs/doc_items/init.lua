@@ -23,7 +23,6 @@ local mininggroups = {}
 local miscgroups = {}
 local item_name_overrides = {
 	[""] = S("Hand"),
-	["air"] = S("Air")
 }
 local suppressed = {
 	["ignore"] = true,

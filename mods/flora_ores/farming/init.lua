@@ -29,8 +29,27 @@ end
 local statistics = dofile(farming.path .. "/statistics.lua")
 
 -- Intllib
-local S = minetest.get_translator and minetest.get_translator("farming") or
-		dofile(farming.path .. "/intllib.lua")
+local S
+if minetest.get_translator ~= nil then
+	S = minetest.get_translator("farming") -- 5.x translation function
+else
+	if minetest.get_modpath("intllib") then
+		dofile(minetest.get_modpath("intllib") .. "/init.lua")
+		if intllib.make_gettext_pair then
+			gettext, ngettext = intllib.make_gettext_pair() -- new gettext method
+		else
+			gettext = intllib.Getter() -- old text file method
+		end
+		S = gettext
+	else -- boilerplate function
+		S = function(str, ...)
+			local args = {...}
+			return str:gsub("@%d+", function(match)
+				return args[tonumber(match:sub(2))]
+			end)
+		end
+	end
+end
 
 farming.intllib = S
 

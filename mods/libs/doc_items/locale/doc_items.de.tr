@@ -15,7 +15,6 @@
  and = und 
 1 second=1 Sekunde
 A transparent block, basically empty space. It is usually left behind after digging something.=Ein transparenter Block, praktisch leerer Raum. Er wird üblicherweise hinterlassen, nachdem man etwas ausgegraben hat.
-Air=Luft
 Blocks=Blöcke
 Building another block at this block will place it inside and replace it.=Wird ein anderer Block an diesem Block gebaut, wird dieser andere Block seine Stelle einnehmen.
 Building this block is completely silent.=Das Bauen dieses Blocks ist völlig lautlos.

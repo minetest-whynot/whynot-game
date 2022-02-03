@@ -43,6 +43,12 @@ minetest.register_craft({
 	replacements = {{"group:food_baking_tray", "farming:baking_tray"}}
 })
 
+-- Bue Dye
+minetest.register_craft({
+	output = "dye:blue",
+	recipe = {{"farming:blueberries"}}
+})
+
 -- blueberry definition
 local def = {
 	drawtype = "plantlike",

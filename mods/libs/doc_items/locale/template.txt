@@ -15,7 +15,6 @@ Using it as fuel turns it into: @1.=
  and =
 1 second=
 A transparent block, basically empty space. It is usually left behind after digging something.=
-Air=
 Blocks=
 Building another block at this block will place it inside and replace it.=
 Building this block is completely silent.=

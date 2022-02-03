@@ -15,7 +15,6 @@
  and = e 
 1 second=1 segundo
 A transparent block, basically empty space. It is usually left behind after digging something.=Um bloco transparente, basicamente um vazio. Isso geralmente fica no lugar de um bloco removido.
-Air=Ár
 Blocks=Blocos
 Building another block at this block will place it inside and replace it.=Construir outro bloco nesse bloco vai subistitui-lo.
 Building this block is completely silent.=Construir esse bloco é completamente silencioso.

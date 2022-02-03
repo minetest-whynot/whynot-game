@@ -15,7 +15,6 @@ Using it as fuel turns it into: @1.=L'utiliser comme combustible le transforme e
  and = et 
 1 second=1 seconde
 A transparent block, basically empty space. It is usually left behind after digging something.=Un bloc transparent, tout simplement un espace vide. Il apparaît généralement après avoir creusé quelque chose.
-Air=Air
 Blocks=Blocs
 Building another block at this block will place it inside and replace it.=Construire un autre bloc sur ce bloc le placera à l'intérieur et le remplacera.
 Building this block is completely silent.=Construire ce bloc est complètement silentieux
