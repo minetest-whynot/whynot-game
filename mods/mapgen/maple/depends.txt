@@ -1,5 +1,6 @@
 default
-stairs
+stairs?
+doors?
 moreblocks?
 drawers?
 bonemeal?

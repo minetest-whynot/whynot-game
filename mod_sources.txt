@@ -167,7 +167,7 @@ origin	https://github.com/Treer/cloudlands/ (fetch)
 Mod: mapgen/cloudlands
 
 origin	https://notabug.org/dacmot/maple (fetch)
-* (HEAD detached at 80fce71) 80fce71 Run update translations script (sorted)
+* (HEAD detached at 56ec069) 56ec069 Update dependencies
 Mod: mapgen/maple
 
 origin	https://github.com/minetest-mods/meseor (fetch)

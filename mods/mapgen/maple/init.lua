@@ -1,4 +1,4 @@
-minetest.log("[MOD] Loading maple module...")
+minetest.log("verbose", "[MOD] Loading maple module...")
 
 local S = minetest.get_translator(minetest.get_current_modname())
 local modpath = minetest.get_modpath(minetest.get_current_modname())

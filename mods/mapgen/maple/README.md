@@ -9,17 +9,7 @@ This mod adds a maple tree to the minetest game. Originally written for the Home
 
 ## Bonemeal
 
-The mod now registers itself with the bonemeal API, and saplings should be recognized automatically.
-
-~~If you are using the bonemeal mod, you can add this to mods.lua to enable maple support:~~
-
-```
-if minetest.get_modpath("maple") then
-	bonemeal:add_sapling({
-		{"maple:maple_sapling", maple.grow_sapling, "soil"},
-	})
-end
-```
+The mod now registers itself with the bonemeal API (optional). Saplings should be recognized automatically, and grow faster with bonemeal.
 
 ## Technic chainsaw
 
@@ -35,9 +25,9 @@ if minetest.get_modpath("maple") then
 end
 ```
 
-## Stairs and slabs
+## Stairs, slabs and doors
 
-Maple tries to register fancy wooden shapes for maple wood with stairs or moreblocks.
+Maple tries to register fancy wooden shapes for maple wood with stairs, moreblocks, and doors.
 
 ## Drawers
 
