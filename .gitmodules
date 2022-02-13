@@ -100,9 +100,6 @@
 [submodule "builder/mods_src/libs/intllib"]
 	path = builder/mods_src/libs/intllib
 	url = https://github.com/minetest-mods/intllib
-[submodule "builder/mods_src/libs/whynot_compat"]
-	path = builder/mods_src/libs/whynot_compat
-	url = https://github.com/bell07/minetest-whynot_compat
 [submodule "builder/mods_src/libs/craftguide_reveal"]
 	path = builder/mods_src/libs/craftguide_reveal
 	url = https://github.com/minetest-mods/craftguide_reveal
