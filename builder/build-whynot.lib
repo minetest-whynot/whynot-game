@@ -30,7 +30,6 @@ function mod_install {
 		fi
 	done
 
-#echo "excluded files:" ${excluded[@]}
 	function in_excluded {
 		for entry in "${excluded[@]}"; do
 			[[ "$entry" == "$1" ]] && echo "found";
@@ -43,7 +42,6 @@ function mod_install {
 	else
 		sync_list=(${@})
 	fi
-#echo "sync_list:" ${sync_list[@]}
 
 	if ! [ -d "$DST"/"$group" ]; then
 		mkdir "$DST"/"$group"
@@ -54,15 +52,23 @@ function mod_install {
 
 	for mod in ${sync_list[@]}; do
 		if [ -d "$mod" ] && [ -z "$(in_excluded "$(basename $mod)")" ]; then
-echo "Process repo $mod"
+			echo "Process repo $mod"
 			cd "$mod"
-			GIT_REPO="$(git remote -v | grep '\(fetch\)' )"
-			if [ -z "$(in_git_repositories "$GIT_REPO")" ]; then
+			 # Search 0-2 levels down for git reporistory.
+			 # The root should not be reached because at least 3 levels (builder/mods_src/group)
+			if [ -e ".git" ] || [ -e "../.git" ] || [ -e "../../.git" ]; then
+				GIT_REPO="$(git remote -v | grep '\(fetch\)' )"
+				if [ -z "$(in_git_repositories "$GIT_REPO")" ]; then
+					echo '' >> "$LOG"
+					echo "$GIT_REPO" >> "$LOG"
+					git branch -vv | grep '^[*]' >> "$LOG"
+					git_repositories=(${git_repositories[@]} "$GIT_REPO")
+				fi
+			else
 				echo '' >> "$LOG"
-				echo "$GIT_REPO" >> "$LOG"
-				git branch -vv | grep '^[*]' >> "$LOG"
-				git_repositories=(${git_repositories[@]} "$GIT_REPO")
+				echo "Embedded into game repository:" >> "$LOG"
 			fi
+
 			echo "Mod: $mod" >> "$LOG"
 			cd - >/dev/null
 			$RSYNC $excluded_string "$SRC"/"$mod" "$DST"/"$group"/

@@ -63,8 +63,7 @@ origin	https://github.com/minetest-mods/intllib (fetch)
 * (HEAD detached at 6ebdc53) 6ebdc53 Add `modname.lang.tr` locales support (#32)
 Mod: libs/intllib
 
-origin	https://github.com/bell07/minetest-whynot_compat (fetch)
-* (HEAD detached from 557f1b9) 4e743e9 solve sand recipe overlap between lemon vs egg
+Embedded into game repository:
 Mod: libs/whynot_compat
 
 origin	https://github.com/minetest-mods/awards (fetch)
