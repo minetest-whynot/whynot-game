@@ -46,11 +46,9 @@ local function on_mvps_move(moved_nodes)
 	end
 end
 
-function mesecon.mvps_process_stack(stack)
-	-- update mesecons for placed nodes ( has to be done after all nodes have been added )
-	for _, n in ipairs(stack) do
-		mesecon.on_placenode(n.pos, minetest.get_node(n.pos))
-	end
+function mesecon.mvps_process_stack()
+	-- This function is kept for compatibility.
+	-- It used to call on_placenode on moved nodes, but that is now done automatically.
 end
 
 -- tests if the node can be pushed into, e.g. air, water, grass
@@ -273,7 +271,6 @@ function mesecon.mvps_push_or_pull(pos, stackdir, movedir, maximum, all_pull_sti
 end
 
 function mesecon.mvps_move_objects(pos, dir, nodestack, movefactor)
-	local objects_to_move = {}
 	local dir_k
 	local dir_l
 	for k, v in pairs(dir) do
