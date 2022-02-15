@@ -13,3 +13,5 @@ LICENSE  text
 *.png   binary
 *.mts   binary
 *.xcf   binary
+
+.* export-ignore

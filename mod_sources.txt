@@ -94,7 +94,7 @@ origin	https://repo.or.cz/minetest_hudbars.git (fetch)
 Mod: player/hudbars
 
 origin	https://github.com/dacmot/moarmour (fetch)
-* (HEAD detached at ad58ea9) ad58ea9 Run update translations script
+* (HEAD detached at 1c77f5d) 1c77f5d Add min_minetest_version = 5.0
 Mod: player/moarmour
 
 origin	https://github.com/minetest-mods/playeranim (fetch)
@@ -114,7 +114,7 @@ origin	https://github.com/minetest-mods/wielded_light (fetch)
 Mod: player/wielded_light
 
 origin	https://github.com/minetest-mods/3d_armor (fetch)
-* (no branch) b6651fd add fire protection to nether armor (#67)
+* (HEAD detached at a9b8bc4) a9b8bc4 Enhance mithril armor (#70)
 Mod: 3d_armor/3d_armor
 Mod: 3d_armor/3d_armor_sfinv
 Mod: 3d_armor/3d_armor_stand
