@@ -86,6 +86,19 @@ if minetest.get_modpath("technic") then
 		"label[5,2.5;"..F(S("Radiation"))..": armor_group_radiation]"
 	armor:register_armor_group("radiation")
 end
+local skin_mods = {"skins", "u_skins", "simple_skins", "wardrobe"}
+for _, mod in pairs(skin_mods) do
+	local path = minetest.get_modpath(mod)
+	if path then
+		local dir_list = minetest.get_dir_list(path.."/textures")
+		for _, fn in pairs(dir_list) do
+			if fn:find("_preview.png$") then
+				armor:add_preview(fn)
+			end
+		end
+		armor.set_skin_mod(mod)
+	end
+end
 if not minetest.get_modpath("moreores") then
 	armor.materials.mithril = nil
 end
@@ -263,14 +276,71 @@ local function init_player_armor(initplayer)
 	for group, _ in pairs(armor.registered_groups) do
 		armor.def[name].groups[group] = 0
 	end
-	armor.textures[name] = {}
+	local skin = armor:get_player_skin(name)
+	armor.textures[name] = {
+		skin = skin,
+		armor = "3d_armor_trans.png",
+		wielditem = "3d_armor_trans.png",
+		preview = armor.default_skin.."_preview.png",
+	}
+	local texture_path = minetest.get_modpath("player_textures")
+	if texture_path then
+		local dir_list = minetest.get_dir_list(texture_path.."/textures")
+		for _, fn in pairs(dir_list) do
+			if fn == "player_"..name..".png" then
+				armor.textures[name].skin = fn
+				break
+			end
+		end
+	end
+	armor:set_player_armor(initplayer)
+	return true
 end
 
-local orig_init_on_joinplayer = player_api.init_on_joinplayer
-function player_api.init_on_joinplayer(player)
-	init_player_armor(player)
-	orig_init_on_joinplayer(player)
-end
+-- Armor Player Model
+
+default.player_register_model("3d_armor_character.b3d", {
+	animation_speed = 30,
+	textures = {
+		armor.default_skin..".png",
+		"3d_armor_trans.png",
+		"3d_armor_trans.png",
+	},
+	animations = {
+		stand = {x=0, y=79},
+		lay = {x=162, y=166},
+		walk = {x=168, y=187},
+		mine = {x=189, y=198},
+		walk_mine = {x=200, y=219},
+		sit = {x=81, y=160},
+	},
+})
+
+minetest.register_on_player_receive_fields(function(player, formname, fields)
+	local name = armor:get_valid_player(player, "[on_player_receive_fields]")
+	if not name then
+		return
+	end
+	local player_name = player:get_player_name()
+	for field, _ in pairs(fields) do
+		if string.find(field, "skins_set") then
+			armor:update_skin(player_name)
+		end
+	end
+end)
+
+minetest.register_on_joinplayer(function(player)
+	default.player_set_model(player, "3d_armor_character.b3d")
+	local player_name = player:get_player_name()
+
+	minetest.after(0, function()
+		-- TODO: Added in 7566ecc - What's the prupose?
+		local pplayer = minetest.get_player_by_name(player_name)
+		if pplayer and init_player_armor(pplayer) == false then
+			pending_players[pplayer] = 0
+		end
+	end)
+end)
 
 minetest.register_on_leaveplayer(function(player)
 	local name = player:get_player_name()
@@ -435,20 +505,3 @@ if armor.config.fire_protect == true then
 		return hp_change
 	end, true)
 end
-
--- Skin modifier
-
-player_api.register_skin_modifier(function(textures, player, player_model, player_skin)
-	local name = player:get_player_name()
-	local player_armor = armor.textures[name] and armor.textures[name].armor
-	if textures.armor and player_armor then
-		textures.armor = textures.armor..'^'..player_armor
-	else
-		textures.armor = textures.armor or player_armor or "blank.png"
-	end
-end)
-
--- Update the armor
-player_api.register_on_skin_change(function(player, model_name, skin_name)
-	armor:set_player_armor(player)
-end)
