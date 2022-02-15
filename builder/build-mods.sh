@@ -73,7 +73,7 @@ mod_install decor homedecor_modpack/homedecor_roofing
 mod_install decor homedecor_modpack/homedecor_seating
 mod_install decor homedecor_modpack/homedecor_tables
 mod_install decor homedecor_modpack/homedecor_trash_cans
-mod_install decor homedecor_modpack/homedecor_warderobe
+mod_install decor homedecor_modpack/homedecor_wardrobe
 mod_install decor homedecor_modpack/homedecor_windows_and_treatments
 
 mod_install decor home_workshop_modpack/home_vending_machines

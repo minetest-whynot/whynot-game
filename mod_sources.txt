@@ -114,7 +114,7 @@ origin	http://repo.or.cz/minetest_show_wielded_item.git (fetch)
 Mod: player/show_wielded_item
 
 origin	https://github.com/minetest-mods/skinsdb (fetch)
-* master c51905d [origin/master] Added russian (ru) translation
+* (HEAD detached at cf712e5) cf712e5 fix skins.set_player_skin call with skin name parameter this fix the homedecor_wardrobe compatibility
 Mod: player/skinsdb
 
 origin	https://github.com/minetest-mods/wielded_light (fetch)
@@ -352,6 +352,7 @@ Mod: homedecor_modpack/homedecor_roofing
 Mod: homedecor_modpack/homedecor_seating
 Mod: homedecor_modpack/homedecor_tables
 Mod: homedecor_modpack/homedecor_trash_cans
+Mod: homedecor_modpack/homedecor_wardrobe
 Mod: homedecor_modpack/homedecor_windows_and_treatments
 
 origin	https://github.com/mt-mods/home_workshop_modpack (fetch)
