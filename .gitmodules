@@ -241,3 +241,6 @@
 [submodule "builder/mods_src/player/skinsdb"]
 	path = builder/mods_src/player/skinsdb
 	url = https://github.com/minetest-mods/skinsdb
+[submodule "builder/mods_src/player/character_creator"]
+	path = builder/mods_src/player/character_creator
+	url = https://github.com/minetest-mods/character_creator
