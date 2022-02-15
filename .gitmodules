@@ -244,3 +244,6 @@
 [submodule "builder/mods_src/player/character_creator"]
 	path = builder/mods_src/player/character_creator
 	url = https://github.com/minetest-mods/character_creator
+[submodule "builder/mods_src/player/clothing"]
+	path = builder/mods_src/player/clothing
+	url = https://github.com/stujones11/clothing

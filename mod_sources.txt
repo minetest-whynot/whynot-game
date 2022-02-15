@@ -73,6 +73,14 @@ origin	https://github.com/minetest-mods/awards (fetch)
 * (HEAD detached at 37082d1) 37082d1 Rename background to hud_background
 Mod: player/awards
 
+origin	https://github.com/minetest-mods/character_creator (fetch)
+* master e026a1f [origin/master] Prevent runtime error after player leave (#26)
+Mod: player/character_creator
+
+origin	https://github.com/stujones11/clothing (fetch)
+* master d7d1ccc [origin/master] fix for #16
+Mod: player/clothing
+
 origin	https://github.com/minetest-mods/cozy (fetch)
 * (HEAD detached at b51cd03) b51cd03 Use mod.conf for dependencies, and description (#3)
 Mod: player/cozy
