@@ -238,3 +238,6 @@
 [submodule "builder/mods_src/home_workshop_modpack"]
 	path = builder/mods_src/home_workshop_modpack
 	url = https://github.com/mt-mods/home_workshop_modpack
+[submodule "builder/mods_src/player/skinsdb"]
+	path = builder/mods_src/player/skinsdb
+	url = https://github.com/minetest-mods/skinsdb
