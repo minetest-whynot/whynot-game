@@ -26,6 +26,7 @@ if skinsdb_mod_path then
 
 			skin_obj:set_preview("homedecor_clothes_"..skin_name.."_preview.png")
 			skin_obj:set_texture("homedecor_clothes_"..skin_name..".png")
+			skin_obj:set_hand_from_texture()
 			skin_obj:set_meta("name", S("Wardrobe").." "..skin_name)
 			skin_obj:set_meta("author", 'Calinou and Jordach')
 			skin_obj:set_meta("license", 'CC-by-SA-4.0')

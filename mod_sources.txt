@@ -322,8 +322,9 @@ origin	https://github.com/mt-mods/unifieddyes (fetch)
 * (HEAD detached at ff3b2d3) ff3b2d3 Fix right-click crash on unknown nodes
 Mod: decor/unifieddyes
 
+bell07	https://github.com/bell07/homedecor_modpack (fetch)
 origin	https://github.com/mt-mods/homedecor_modpack (fetch)
-* (HEAD detached at 63ad77e2) 63ad77e2 make beds sleepable https://github.com/mt-mods/homedecor_modpack/issues/13
+* (HEAD detached at 88348ad0) 88348ad0 add skinsdb hand support for wardrobe skins
 Mod: homedecor_modpack/building_blocks
 Mod: homedecor_modpack/fake_fire
 Mod: homedecor_modpack/lavalamp
