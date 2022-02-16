@@ -79,7 +79,7 @@ origin	https://repo.or.cz/minetest_hbarmor.git (fetch)
 * (HEAD detached at 93d994c) 93d994c Version 1.0.0
 Mod: player/hbarmor
 
-origin	http://repo.or.cz/minetest_hbhunger (fetch)
+origin	https://repo.or.cz/minetest_hbhunger.git (fetch)
 * (HEAD detached at 470b0f6) 470b0f6 Version 1.1.2
 Mod: player/hbhunger
 
@@ -99,7 +99,7 @@ origin	https://github.com/minetest-mods/playeranim (fetch)
 * (HEAD detached at 9dab03f) 9dab03f Clear up all animations of all registered models (#1)
 Mod: player/playeranim
 
-origin	http://repo.or.cz/minetest_show_wielded_item.git (fetch)
+origin	https://repo.or.cz/minetest_show_wielded_item.git (fetch)
 * (HEAD detached at 6f40e88) 6f40e88 Version 1.2.0
 Mod: player/show_wielded_item
 
@@ -150,7 +150,7 @@ origin	https://github.com/Ezhh/under_sky (fetch)
 * (HEAD detached at 5f8d570) 5f8d570 Hide sun, moon and stars when underground
 Mod: ambience/under_sky
 
-origin	https://gitlab.com/rautars/weather_pack (fetch)
+origin	https://gitlab.com/rautars/weather_pack.git (fetch)
 * (HEAD detached at fa9e156) fa9e156 Decrease chance for weather flickering effect (#9)
 Mod: ambience/weather_pack
 
@@ -434,5 +434,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* (HEAD detached at 18c7f0a) 18c7f0a update translation checks (thanks mckaygerhard)
+* (HEAD detached at 9f74408) 9f74408 remove owner infotext if no owner present
 Mod: mobs_redo/mobs_redo

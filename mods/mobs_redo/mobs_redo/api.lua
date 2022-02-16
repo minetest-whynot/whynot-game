@@ -28,7 +28,7 @@ local use_cmi = minetest.global_exists("cmi")
 
 mobs = {
 	mod = "redo",
-	version = "20220120",
+	version = "20220205",
 	intllib = S,
 	invis = minetest.global_exists("invisibility") and invisibility or {}
 }
@@ -785,7 +785,7 @@ function mob_class:update_tag()
 	end
 
 	self.infotext = "Health: " .. self.health .. " / " .. self.hp_max
-		.. "\n" .. "Owner: " .. self.owner
+		.. (self.owner == "" and "" or "\n" .. "Owner: " .. self.owner)
 		.. text
 
 	-- set changes

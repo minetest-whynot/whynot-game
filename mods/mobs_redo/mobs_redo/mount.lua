@@ -2,13 +2,13 @@
 
 local abs, cos, floor, sin, sqrt, pi =
 		math.abs, math.cos, math.floor, math.sin, math.sqrt, math.pi
-------------------------------------------------------------------------------
 
 --
 -- Helper functions
 --
 
 local node_ok = function(pos, fallback)
+
 	fallback = fallback or mobs.fallback_node
 
 	local node = minetest.get_node_or_nil(pos)
@@ -46,6 +46,7 @@ end
 
 
 local function get_sign(i)
+
 	i = i or 0
 
 	if i == 0 then
@@ -57,6 +58,7 @@ end
 
 
 local function get_velocity(v, yaw, y)
+
 	local x = -sin(yaw) * v
 	local z =  cos(yaw) * v
 
@@ -92,7 +94,6 @@ local function force_detach(player)
 
 end
 
--------------------------------------------------------------------------------
 
 minetest.register_on_leaveplayer(function(player)
 	force_detach(player)
@@ -112,7 +113,6 @@ minetest.register_on_dieplayer(function(player)
 	return true
 end)
 
--------------------------------------------------------------------------------
 
 -- Just for correct detaching
 local function find_free_pos(pos)
@@ -147,7 +147,6 @@ local function find_free_pos(pos)
 	return pos
 end
 
--------------------------------------------------------------------------------
 
 function mobs.attach(entity, player)
 
@@ -192,6 +191,7 @@ end
 
 
 function mobs.detach(player)
+
 	force_detach(player)
 
 	minetest.after(0.1, function()
@@ -262,6 +262,7 @@ function mobs.drive(entity, moving_anim, stand_anim, can_fly, dtime)
 		entity.object:set_yaw(horz - entity.rotate)
 
 		if can_fly then
+
 			-- fly up
 			if ctrl.jump then
 
@@ -430,11 +431,12 @@ function mobs.fly(entity, _, speed, shoots, arrow, moving_anim, stand_anim)
 	local ctrl = entity.driver:get_player_control() ; if not ctrl then return end
 	local velo = entity.object:get_velocity()
 	local dir = entity.driver:get_look_dir()
-	local yaw = entity.driver:get_look_horizontal() + 1.57 -- offset fix between old and new commands
+	local yaw = entity.driver:get_look_horizontal() + 1.57
 
-if not ctrl or not velo then return end
+	if not ctrl or not velo then return end
 
 	if ctrl.up then
+
 		entity.object:set_velocity({
 			x = dir.x * speed,
 			y = dir.y * speed + 2,
