@@ -174,7 +174,7 @@ if not skinsdb_mod_path then -- If not managed by skinsdb
 
 	minetest.register_on_joinplayer(function(player)
 
-		local skin = player:get_attribute("homedecor:player_skin")
+		local skin = player:get_meta():get("homedecor:player_skin")
 
 		if skin and skin ~= "" then
 

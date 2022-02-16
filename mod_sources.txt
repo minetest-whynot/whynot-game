@@ -1,7 +1,7 @@
 
 bell07	https://github.com/bell07/minetest_game (fetch)
-origin	https://github.com/minetest/minetest_game (fetch)
-* (HEAD detached from a23819f) b89cb50 player_api - fix compatibility code
+origin	https://github.com/bell07/minetest_game (fetch)
+* (HEAD detached from dd7eed9) b89cb50 player_api - fix compatibility code
 Mod: minetest_game/mods/beds
 Mod: minetest_game/mods/binoculars
 Mod: minetest_game/mods/boats
@@ -74,12 +74,12 @@ origin	https://github.com/minetest-mods/awards (fetch)
 Mod: player/awards
 
 bell07	https://github.com/bell07/character_creator (fetch)
-origin	https://github.com/minetest-mods/character_creator (fetch)
-* master 90c0ea7 [origin/master: ahead 1] add support for skinsdb hand
+origin	https://github.com/bell07/character_creator (fetch)
+* (HEAD detached at 90c0ea7) 90c0ea7 add support for skinsdb hand
 Mod: player/character_creator
 
 origin	https://github.com/stujones11/clothing (fetch)
-* master d7d1ccc [origin/master] fix for #16
+* (no branch) d7d1ccc fix for #16
 Mod: player/clothing
 
 origin	https://github.com/minetest-mods/cozy (fetch)
@@ -90,7 +90,7 @@ origin	https://repo.or.cz/minetest_hbarmor.git (fetch)
 * (HEAD detached at 93d994c) 93d994c Version 1.0.0
 Mod: player/hbarmor
 
-origin	http://repo.or.cz/minetest_hbhunger (fetch)
+origin	https://repo.or.cz/minetest_hbhunger.git (fetch)
 * (HEAD detached at 470b0f6) 470b0f6 Version 1.1.2
 Mod: player/hbhunger
 
@@ -103,19 +103,19 @@ origin	https://repo.or.cz/minetest_hudbars.git (fetch)
 Mod: player/hudbars
 
 origin	https://github.com/dacmot/moarmour (fetch)
-* (HEAD detached at 1c77f5d) 1c77f5d Add min_minetest_version = 5.0
+* (HEAD detached from ad58ea9) 1c77f5d Add min_minetest_version = 5.0
 Mod: player/moarmour
 
 origin	https://github.com/minetest-mods/playeranim (fetch)
 * (HEAD detached at 9dab03f) 9dab03f Clear up all animations of all registered models (#1)
 Mod: player/playeranim
 
-origin	http://repo.or.cz/minetest_show_wielded_item.git (fetch)
+origin	https://repo.or.cz/minetest_show_wielded_item.git (fetch)
 * (HEAD detached at 6f40e88) 6f40e88 Version 1.2.0
 Mod: player/show_wielded_item
 
 bell07	https://github.com/bell07/skinsdb (fetch)
-origin	https://github.com/minetest-mods/skinsdb (fetch)
+origin	https://github.com/bell07/skinsdb (fetch)
 * (HEAD detached from 6853854) 482a13b implement skinned 1st person view hand
 Mod: player/skinsdb
 
@@ -124,7 +124,7 @@ origin	https://github.com/minetest-mods/wielded_light (fetch)
 Mod: player/wielded_light
 
 origin	https://github.com/minetest-mods/3d_armor (fetch)
-* (HEAD detached at a9b8bc4) a9b8bc4 Enhance mithril armor (#70)
+* (HEAD detached from b6651fd) a9b8bc4 Enhance mithril armor (#70)
 Mod: 3d_armor/3d_armor
 Mod: 3d_armor/3d_armor_sfinv
 Mod: 3d_armor/3d_armor_stand
@@ -152,7 +152,7 @@ origin	https://github.com/Ezhh/under_sky (fetch)
 * (HEAD detached at 5f8d570) 5f8d570 Hide sun, moon and stars when underground
 Mod: ambience/under_sky
 
-origin	https://gitlab.com/rautars/weather_pack (fetch)
+origin	https://gitlab.com/rautars/weather_pack.git (fetch)
 * (HEAD detached at fa9e156) fa9e156 Decrease chance for weather flickering effect (#9)
 Mod: ambience/weather_pack
 
@@ -263,7 +263,7 @@ origin	https://github.com/Ezhh/abriglass/ (fetch)
 Mod: decor/abriglass
 
 origin	https://github.com/mt-mods/basic_materials (fetch)
-* (HEAD detached at 0893974) 0893974 github luacheck workflow
+* (HEAD detached at d9e0698) d9e0698 add README file and documentation
 Mod: decor/basic_materials
 
 origin	https://github.com/Napiophelios/campfire (fetch)
@@ -323,12 +323,11 @@ origin	https://github.com/mt-mods/unifieddyes (fetch)
 Mod: decor/unifieddyes
 
 bell07	https://github.com/bell07/homedecor_modpack (fetch)
-origin	https://github.com/mt-mods/homedecor_modpack (fetch)
-* (HEAD detached at 88348ad0) 88348ad0 add skinsdb hand support for wardrobe skins
+origin	https://github.com/bell07/homedecor_modpack (fetch)
+* (HEAD detached from 694bfe5f) dc20c0ba add skinsdb hand support for wardrobe skins
 Mod: homedecor_modpack/building_blocks
 Mod: homedecor_modpack/fake_fire
 Mod: homedecor_modpack/lavalamp
-Mod: homedecor_modpack/plasmascreen
 Mod: homedecor_modpack/homedecor_bathroom
 Mod: homedecor_modpack/homedecor_bedroom
 Mod: homedecor_modpack/homedecor_books
@@ -351,6 +350,7 @@ Mod: homedecor_modpack/homedecor_lighting
 Mod: homedecor_modpack/homedecor_misc
 Mod: homedecor_modpack/homedecor_office
 Mod: homedecor_modpack/homedecor_pictures_and_paintings
+Mod: homedecor_modpack/homedecor_plasmascreen
 Mod: homedecor_modpack/homedecor_roofing
 Mod: homedecor_modpack/homedecor_seating
 Mod: homedecor_modpack/homedecor_tables
@@ -402,7 +402,7 @@ origin	https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin	https://github.com/minetest-mods/mesecons (fetch)
-* (HEAD detached at 4dfadd9) 4dfadd9 Fix luacheck warning
+* (HEAD detached at fef5c8c) fef5c8c Resolve license information inconsistency
 Mod: mesecons/mesecons
 Mod: mesecons/mesecons_alias
 Mod: mesecons/mesecons_blinkyplant
@@ -437,5 +437,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* (HEAD detached at 18c7f0a) 18c7f0a update translation checks (thanks mckaygerhard)
+* (HEAD detached at 9f74408) 9f74408 remove owner infotext if no owner present
 Mod: mobs_redo/mobs_redo
