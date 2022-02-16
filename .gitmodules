@@ -9,7 +9,7 @@
 	url = https://github.com/Ezhh/under_sky
 [submodule "builder/mods_src/ambience/weather_pack"]
 	path = builder/mods_src/ambience/weather_pack
-	url = https://gitlab.com/rautars/weather_pack
+	url = https://gitlab.com/rautars/weather_pack.git
 [submodule "builder/mods_src/decor/abriglass"]
 	path = builder/mods_src/decor/abriglass
 	url = https://github.com/Ezhh/abriglass/
@@ -150,7 +150,7 @@
 	url = https://repo.or.cz/minetest_hbarmor.git
 [submodule "builder/mods_src/player/hbhunger"]
 	path = builder/mods_src/player/hbhunger
-	url = http://repo.or.cz/minetest_hbhunger
+	url = https://repo.or.cz/minetest_hbhunger.git
 [submodule "builder/mods_src/player/hbsprint"]
 	path = builder/mods_src/player/hbsprint
 	url = https://github.com/minetest-mods/hbsprint
@@ -165,7 +165,7 @@
 	url = https://github.com/minetest-mods/playeranim
 [submodule "builder/mods_src/player/show_wielded_item"]
 	path = builder/mods_src/player/show_wielded_item
-	url = http://repo.or.cz/minetest_show_wielded_item.git
+	url = https://repo.or.cz/minetest_show_wielded_item.git
 [submodule "builder/mods_src/player/wielded_light"]
 	path = builder/mods_src/player/wielded_light
 	url = https://github.com/minetest-mods/wielded_light

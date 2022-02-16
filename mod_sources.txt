@@ -1,4 +1,5 @@
 
+bell07	https://github.com/bell07/minetest_game (fetch)
 origin	https://github.com/minetest/minetest_game (fetch)
 * (HEAD detached at dd7eed9) dd7eed9 Merge remote-tracking branch 'origin/stable-5' into HEAD
 Mod: minetest_game/mods/beds
@@ -123,7 +124,7 @@ Mod: player_api_modpack/skinsdb5
 Mod: player_api_modpack/wieldview
 
 origin	https://github.com/minetest-mods/3d_armor (fetch)
-* (no branch) b6651fd add fire protection to nether armor (#67)
+* (HEAD detached at b6651fd) b6651fd add fire protection to nether armor (#67)
 Mod: 3d_armor/3d_armor_stand
 Mod: 3d_armor/shields
 Mod: 3d_armor/3d_armor_sfinv
@@ -319,6 +320,7 @@ origin	https://github.com/mt-mods/unifieddyes (fetch)
 * (HEAD detached at ff3b2d3) ff3b2d3 Fix right-click crash on unknown nodes
 Mod: decor/unifieddyes
 
+bell07	https://github.com/bell07/homedecor_modpack (fetch)
 origin	https://github.com/mt-mods/homedecor_modpack (fetch)
 * (HEAD detached at 63ad77e2) 63ad77e2 make beds sleepable https://github.com/mt-mods/homedecor_modpack/issues/13
 Mod: homedecor_modpack/building_blocks
