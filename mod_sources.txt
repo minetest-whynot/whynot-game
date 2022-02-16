@@ -73,8 +73,9 @@ origin	https://github.com/minetest-mods/awards (fetch)
 * (HEAD detached at 37082d1) 37082d1 Rename background to hud_background
 Mod: player/awards
 
+bell07	https://github.com/bell07/character_creator (fetch)
 origin	https://github.com/minetest-mods/character_creator (fetch)
-* master e026a1f [origin/master] Prevent runtime error after player leave (#26)
+* master 90c0ea7 [origin/master: ahead 1] add support for skinsdb hand
 Mod: player/character_creator
 
 origin	https://github.com/stujones11/clothing (fetch)
@@ -115,7 +116,7 @@ Mod: player/show_wielded_item
 
 bell07	https://github.com/bell07/skinsdb (fetch)
 origin	https://github.com/minetest-mods/skinsdb (fetch)
-* (HEAD detached from cf712e5) 6853854 implement skinned 1st person view hand
+* (HEAD detached from 6853854) 482a13b implement skinned 1st person view hand
 Mod: player/skinsdb
 
 origin	https://github.com/minetest-mods/wielded_light (fetch)

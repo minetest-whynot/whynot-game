@@ -4,6 +4,14 @@ character_creator.skins = dofile(minetest.get_modpath("character_creator") .. "/
 local skinsdb
 if minetest.get_modpath("skinsdb") and minetest.global_exists("skins") then
 	skinsdb = skins
+
+	-- Create dummy skins with hand
+	for skin_name, skin_texture in pairs(character_creator.skins.skin ) do
+		local hand_skin = skinsdb.new("character_creator:"..skin_name)
+		hand_skin:set_texture(skin_texture)
+		hand_skin:set_hand_from_texture()
+		hand_skin:set_meta("in_inventory_list", false)
+	end
 end
 
 local skin_default = {
@@ -290,6 +298,14 @@ minetest.register_on_joinplayer(function(player)
 		end
 		function skin_obj:get_texture()
 			return get_texture(minetest.get_player_by_name(self:get_meta("playername")))
+		end
+		function skin_obj:get_hand()
+			local player = minetest.get_player_by_name(self:get_meta("playername"))
+			local skin_key = skins_array.skin[skin_indexes[player].skin]
+			local hand_skin = skinsdb.get("character_creator:"..skin_key)
+			if hand_skin then
+				return hand_skin:get_hand()
+			end
 		end
 
 		-- set data
