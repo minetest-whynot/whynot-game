@@ -113,8 +113,9 @@ origin	http://repo.or.cz/minetest_show_wielded_item.git (fetch)
 * (HEAD detached at 6f40e88) 6f40e88 Version 1.2.0
 Mod: player/show_wielded_item
 
+bell07	https://github.com/bell07/skinsdb (fetch)
 origin	https://github.com/minetest-mods/skinsdb (fetch)
-* (HEAD detached at cf712e5) cf712e5 fix skins.set_player_skin call with skin name parameter this fix the homedecor_wardrobe compatibility
+* (HEAD detached from cf712e5) 6853854 implement skinned 1st person view hand
 Mod: player/skinsdb
 
 origin	https://github.com/minetest-mods/wielded_light (fetch)
