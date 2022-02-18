@@ -1,5 +1,12 @@
 local S = minetest.get_translator("homedecor_common")
 
+local has_hopper = minetest.get_modpath("hopper")
+local has_safe_hopper = has_hopper and
+	-- mod from https://github.com/minetest-mods/hopper respects the owner
+	(hopper.neighbors or
+	-- mod from https://notabug.org/TenPlus1/hopper respects the owner since 20220123
+	(hopper.version and hopper.version >= "20220123"))
+
 local default_can_dig = function(pos,player)
 	local meta = minetest.get_meta(pos)
 	return meta:get_inventory():is_empty("main")
@@ -97,6 +104,23 @@ function homedecor.handle_inventory(name, def, original_def)
 	end
 
 	local locked = inventory.locked
+
+	if has_hopper and (not locked or has_safe_hopper) then
+		if inventory.size then
+			hopper:add_container({
+				{"top",  "homedecor:"..name, "main"},
+				{"bottom", "homedecor:"..name, "main"},
+				{"side", "homedecor:"..name, "main"},
+			})
+		elseif original_def.is_furnace then
+			hopper:add_container({
+				{"top", "homedecor:"..name, "dst"},
+				{"bottom", "homedecor:"..name, "src"},
+				{"side", "homedecor:"..name, "fuel"},
+			})
+		end
+	end
+
 	if locked then
 		local after_place_node = def.after_place_node
 		def.after_place_node = function(pos, placer)

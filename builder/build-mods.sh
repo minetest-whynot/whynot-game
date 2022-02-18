@@ -46,7 +46,6 @@ mod_install decor homedecor_modpack/building_blocks #grate and marble in recipes
 mod_install decor homedecor_modpack/fake_fire
 # no inbox, itemframes
 mod_install decor homedecor_modpack/lavalamp
-mod_install decor homedecor_modpack/plasmascreen
 ## the homedecor blob was in whynot, therefore applied all at the first
 ## Next step is to check each mod for whynot rules
 # no 3d_extras
@@ -72,6 +71,7 @@ mod_install decor homedecor_modpack/homedecor_lighting
 mod_install decor homedecor_modpack/homedecor_misc
 mod_install decor homedecor_modpack/homedecor_office
 mod_install decor homedecor_modpack/homedecor_pictures_and_paintings
+mod_install decor homedecor_modpack/homedecor_plasmascreen
 mod_install decor homedecor_modpack/homedecor_roofing
 mod_install decor homedecor_modpack/homedecor_seating
 mod_install decor homedecor_modpack/homedecor_tables

@@ -6,6 +6,8 @@ local placeholder_node = "homedecor:expansion_placeholder"
 function homedecor.register(name, original_def)
 	local def = table.copy(original_def)
 
+	def.is_furnace = nil
+
 	def.drawtype = def.drawtype
 		or (def.mesh and "mesh")
 		or (def.node_box and "nodebox")

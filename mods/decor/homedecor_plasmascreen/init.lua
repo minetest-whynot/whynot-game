@@ -2,9 +2,9 @@ local S = minetest.get_translator("plasmascreen")
 
 local sc_disallow = minetest.get_modpath("screwdriver") and screwdriver.disallow or nil
 
-minetest.register_node("plasmascreen:stand", {
+homedecor.register("tv_stand", {
 	description = S("Plasma Screen TV Stand"),
-	tiles = {"plasmascreen_back.png"},
+	tiles = {"homedecor_plasmascreen_back.png"},
 	paramtype = "light",
 	paramtype2 = "facedir",
 	drawtype = "nodebox",
@@ -25,13 +25,6 @@ minetest.register_node("plasmascreen:stand", {
 	},
 	groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2},
 })
-
-minetest.register_alias("plasmascreen:screen1", "air")
-minetest.register_alias("plasmascreen:screen2", "air")
-minetest.register_alias("plasmascreen:screen3", "air")
-minetest.register_alias("plasmascreen:screen4", "air")
-minetest.register_alias("plasmascreen:screen5", "plasmascreen:tv")
-minetest.register_alias("plasmascreen:screen6", "air")
 
 local fdir_to_left = {
 	{ -1,  0 },
@@ -95,13 +88,13 @@ local function checkwall(pos)
 	return true
 end
 
-minetest.register_node("plasmascreen:tv", {
+homedecor.register("tv", {
 	description = S("Plasma TV"),
 	drawtype = "mesh",
-	mesh = "plasmascreen_tv.obj",
+	mesh = "homedecor_plasmascreen_tv.obj",
 	tiles = {
-		"plasmascreen_case.png",
-		{ name="plasmascreen_video.png",
+		"homedecor_plasmascreen_case.png",
+		{ name="homedecor_plasmascreen_video.png",
 			animation={
 				type="vertical_frames",
 				aspect_w = 42,
@@ -111,8 +104,8 @@ minetest.register_node("plasmascreen:tv", {
 		}
 
 	},
-	inventory_image = "plasmascreen_tv_inv.png",
-	wield_image = "plasmascreen_tv_inv.png",
+	inventory_image = "homedecor_plasmascreen_tv_inv.png",
+	wield_image = "homedecor_plasmascreen_tv_inv.png",
 	paramtype = "light",
 	paramtype2 = "facedir",
 	light_source = 10,
@@ -127,20 +120,20 @@ minetest.register_node("plasmascreen:tv", {
 		end
 	end,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
-		minetest.set_node(pos, {name = "plasmascreen:tv_off", param2 = node.param2})
+		minetest.set_node(pos, {name = "homedecor:tv_off", param2 = node.param2})
 	end
 })
 
-minetest.register_node("plasmascreen:tv_off", {
+homedecor.register("tv_off", {
 	description = S("Plasma TV (off)"),
 	drawtype = "mesh",
-	mesh = "plasmascreen_tv.obj",
+	mesh = "homedecor_plasmascreen_tv.obj",
 	tiles = {
-		"plasmascreen_case_off.png",
-		"plasmascreen_screen_off.png",
+		"homedecor_plasmascreen_case_off.png",
+		"homedecor_plasmascreen_screen_off.png",
 	},
-	inventory_image = "plasmascreen_tv_inv.png",
-	wield_image = "plasmascreen_tv_inv.png",
+	inventory_image = "homedecor_plasmascreen_tv_inv.png",
+	wield_image = "homedecor_plasmascreen_tv_inv.png",
 	paramtype = "light",
 	paramtype2 = "facedir",
 	light_source = 10,
@@ -155,15 +148,15 @@ minetest.register_node("plasmascreen:tv_off", {
 		end
 	end,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
-		minetest.set_node(pos, {name = "plasmascreen:tv", param2 = node.param2})
+		minetest.set_node(pos, {name = "homedecor:tv", param2 = node.param2})
 	end,
-	drop = "plasmascreen:tv"
+	drop = "homedecor:tv"
 })
 
 -- crafting recipes
 
 minetest.register_craft({
-	output = "plasmascreen:tv",
+	output = "homedecor:tv",
 	recipe = {
 		{'default:glass', 'default:coal_lump', 'default:glass'},
 		{'default:steel_ingot', 'default:copper_ingot', 'default:steel_ingot'},
@@ -173,15 +166,25 @@ minetest.register_craft({
 
 minetest.register_craft({
 	type = "shapeless",
-	output = "plasmascreen:tv",
+	output = "homedecor:tv",
 	recipe = {'homedecor:television', 'homedecor:television'},
 })
 
 minetest.register_craft({
-	output = "plasmascreen:stand",
+	output = "homedecor:tv_stand",
 	recipe = {
 		{'', '', ''},
 		{'', 'default:steel_ingot', ''},
 		{'group:stick', 'default:coal_lump', 'group:stick'},
 	}
 })
+
+minetest.register_alias("plasmascreen:screen1", "air")
+minetest.register_alias("plasmascreen:screen2", "air")
+minetest.register_alias("plasmascreen:screen3", "air")
+minetest.register_alias("plasmascreen:screen4", "air")
+minetest.register_alias("plasmascreen:screen6", "air")
+minetest.register_alias("plasmascreen:screen5", "homedecor:tv")
+minetest.register_alias("plasmascreen:stand", "homedecor:tv_stand")
+minetest.register_alias("plasmascreen:tv", "homedecor:tv")
+minetest.register_alias("plasmascreen:tv_off", "homedecor:tv_off")

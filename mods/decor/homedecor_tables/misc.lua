@@ -34,6 +34,7 @@ for _, t in ipairs(leg_materials) do
 		inventory_image = "homedecor_table_legs_"..name..".png",
 		wield_image = "homedecor_table_legs_"..name..".png",
 		walkable = false,
+		use_texture_alpha = "blend",
 		groups = {snappy=3},
 		sounds = default.node_sound_wood_defaults(),
 		selection_box = {
@@ -76,6 +77,7 @@ for i, mat in ipairs(tabletop_materials) do
 				'homedecor_blanktile.png',
 			},
 			wield_image = 'homedecor_'..m..'_table_'..shape..'_inv.png',
+			use_texture_alpha = "blend",
 			groups = { snappy = 3 },
 			sounds = s,
 			selection_box = tables_cbox,
@@ -111,6 +113,7 @@ for i, mat in ipairs(tabletop_materials) do
 					'homedecor_'..m..'_table_edges.png',
 					"homedecor_table_legs_"..leg_mat..".png",
 				},
+				use_texture_alpha = "blend",
 				groups = { snappy = 3 },
 				sounds = s,
 			})

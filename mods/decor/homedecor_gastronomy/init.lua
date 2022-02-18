@@ -136,6 +136,7 @@ homedecor.register("toaster", {
 	tiles = { "homedecor_toaster_sides.png" },
 	inventory_image = "homedecor_toaster_inv.png",
 	walkable = false,
+	use_texture_alpha = "clip",
 	groups = { snappy=3 },
 	node_box = {
 		type = "fixed",
@@ -165,6 +166,7 @@ homedecor.register("toaster_loaf", {
 		"homedecor_toaster_sides.png"
 	},
 	walkable = false,
+	use_texture_alpha = "clip",
 	groups = { snappy=3, not_in_creative_inventory=1 },
 	node_box = {
 		type = "fixed",
