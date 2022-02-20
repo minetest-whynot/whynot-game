@@ -261,7 +261,7 @@ origin	https://github.com/Ezhh/abriglass/ (fetch)
 Mod: decor/abriglass
 
 origin	https://github.com/mt-mods/basic_materials (fetch)
-* (HEAD detached at 0893974) 0893974 github luacheck workflow
+* (HEAD detached from d9e0698) 0893974 github luacheck workflow
 Mod: decor/basic_materials
 
 origin	https://github.com/Napiophelios/campfire (fetch)
@@ -322,7 +322,7 @@ Mod: decor/unifieddyes
 
 bell07	https://github.com/bell07/homedecor_modpack (fetch)
 origin	https://github.com/mt-mods/homedecor_modpack (fetch)
-* (HEAD detached at 63ad77e2) 63ad77e2 make beds sleepable https://github.com/mt-mods/homedecor_modpack/issues/13
+* (HEAD detached from 694bfe5f) 63ad77e2 make beds sleepable https://github.com/mt-mods/homedecor_modpack/issues/13
 Mod: homedecor_modpack/building_blocks
 Mod: homedecor_modpack/fake_fire
 Mod: homedecor_modpack/lavalamp
@@ -399,7 +399,7 @@ origin	https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin	https://github.com/minetest-mods/mesecons (fetch)
-* (HEAD detached at 4dfadd9) 4dfadd9 Fix luacheck warning
+* (HEAD detached at fef5c8c) fef5c8c Resolve license information inconsistency
 Mod: mesecons/mesecons
 Mod: mesecons/mesecons_alias
 Mod: mesecons/mesecons_blinkyplant
