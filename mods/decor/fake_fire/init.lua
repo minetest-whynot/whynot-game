@@ -179,6 +179,7 @@ minetest.register_node("fake_fire:fancy_fire", {
 	mesh = "fancy_fire.obj",
 	paramtype = "light",
 	paramtype2 = "facedir",
+	use_texture_alpha = "clip",
 	groups = {oddly_breakable_by_hand=3, flammable=0},
 	sunlight_propagates = true,
 	light_source = 13,

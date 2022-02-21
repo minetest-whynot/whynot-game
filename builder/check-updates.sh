@@ -5,7 +5,6 @@ PROJ="$(realpath $(dirname $0)/..)" # Subgame dir (..)
 # Repositories points to non-default branch
 declare -A BRANCHES=(
 	[minetest_game]=origin/stable-5 # Stay on stable version
-	[homedecor_modpack]=63ad77e2    # No updates. See Bug #49
 	[libs/craftguide]=58e4516       # No updates. See Bug #53
 )
 

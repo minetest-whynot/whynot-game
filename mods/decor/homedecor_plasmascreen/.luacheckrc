@@ -11,7 +11,7 @@ read_globals = {
 	"vector", "nodeupdate",
 	"VoxelManip", "VoxelArea",
 	"PseudoRandom", "ItemStack",
-	"screwdriver",
+	"screwdriver", "homedecor",
 }
 
 globals = {

@@ -261,7 +261,7 @@ origin	https://github.com/Ezhh/abriglass/ (fetch)
 Mod: decor/abriglass
 
 origin	https://github.com/mt-mods/basic_materials (fetch)
-* (HEAD detached from d9e0698) 0893974 github luacheck workflow
+* (HEAD detached at d9e0698) d9e0698 add README file and documentation
 Mod: decor/basic_materials
 
 origin	https://github.com/Napiophelios/campfire (fetch)
@@ -322,11 +322,10 @@ Mod: decor/unifieddyes
 
 bell07	https://github.com/bell07/homedecor_modpack (fetch)
 origin	https://github.com/mt-mods/homedecor_modpack (fetch)
-* (HEAD detached from 694bfe5f) 63ad77e2 make beds sleepable https://github.com/mt-mods/homedecor_modpack/issues/13
+* (HEAD detached at 694bfe5f) 694bfe5f namespace plasmascreen and inbox (#22)
 Mod: homedecor_modpack/building_blocks
 Mod: homedecor_modpack/fake_fire
 Mod: homedecor_modpack/lavalamp
-Mod: homedecor_modpack/plasmascreen
 Mod: homedecor_modpack/homedecor_bathroom
 Mod: homedecor_modpack/homedecor_bedroom
 Mod: homedecor_modpack/homedecor_books
@@ -349,6 +348,7 @@ Mod: homedecor_modpack/homedecor_lighting
 Mod: homedecor_modpack/homedecor_misc
 Mod: homedecor_modpack/homedecor_office
 Mod: homedecor_modpack/homedecor_pictures_and_paintings
+Mod: homedecor_modpack/homedecor_plasmascreen
 Mod: homedecor_modpack/homedecor_roofing
 Mod: homedecor_modpack/homedecor_seating
 Mod: homedecor_modpack/homedecor_tables

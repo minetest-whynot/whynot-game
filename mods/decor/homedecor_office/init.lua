@@ -77,6 +77,7 @@ homedecor.register("calendar", {
 		wall_bottom = { -4/16, -8/16, -8/16,  4/16, -5/16, 5/16 },
 		wall_top =    { -4/16,  5/16, -8/16,  4/16,  8/16, 5/16 }
 	},
+	use_texture_alpha = "clip",
 	groups = {choppy=2,attached_node=1},
 	legacy_wallmounted = true,
 	sounds = default.node_sound_defaults(),

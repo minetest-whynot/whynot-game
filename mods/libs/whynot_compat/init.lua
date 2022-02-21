@@ -133,3 +133,23 @@ minetest.register_craft({
 	},
 	replacements = {{"bucket:bucket_water", "bucket:bucket_empty"}},
 })
+
+--https://github.com/minetest-whynot/whynot-game/issues/49
+--https://github.com/mt-mods/homedecor_modpack/issues/17
+-- Add lost stairs and slabs back
+for _ , material in ipairs({ "Adobe", "fakegrass", "grate", "hardwood",
+		"Marble", "Roofing", "smoothglass", "Tar", "woodglass" }) do
+
+	local nodedef = minetest.registered_items["building_blocks:"..material]
+	stairs.register_stair_and_slab(
+			material,
+			nodedef.name,
+			table.copy(nodedef.groups),
+			table.copy(nodedef.tiles),
+			nodedef.description.." stair",
+			nodedef.description.." slab",
+			table.copy(nodedef.sounds),
+			false,
+			nodedef.description.." inner stair",
+			nodedef.description.." outer stair" )
+end

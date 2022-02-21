@@ -148,7 +148,8 @@ function homedecor.register_furnace(name, furnacedef)
 		can_dig = furnace_can_dig,
 		allow_metadata_inventory_put = furnace_allow_put,
 		allow_metadata_inventory_move = furnace_allow_move,
-		inventory = { lockable = true }
+		inventory = { lockable = true },
+		is_furnace = true
 	}
 
 	local def_active = {
@@ -162,7 +163,8 @@ function homedecor.register_furnace(name, furnacedef)
 		can_dig = furnace_can_dig,
 		allow_metadata_inventory_put = furnace_allow_put,
 		allow_metadata_inventory_move = furnace_allow_move,
-		inventory = { lockable = true }
+		inventory = { lockable = true },
+		is_furnace = true
 	}
 
 	if furnacedef.extra_nodedef_fields then

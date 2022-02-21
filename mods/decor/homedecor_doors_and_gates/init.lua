@@ -4,209 +4,137 @@ local S = minetest.get_translator("homedecor_doors_and_gates")
 local mesecons_mp = minetest.get_modpath("mesecons")
 homedecor_doors_and_gates = {}
 
--- new doors using minetest_game doors API
-
 local door_list = {
 	{
 		name = "wood_plain",
 		description = S("Plain Wooden Door"),
-		groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
-		sounds = {
-			main = default.node_sound_wood_defaults(),
-			open = "homedecor_door_open",
-			close = "homedecor_door_close",
-		}
+		sounds = default.node_sound_wood_defaults(),
+		sound_open = "homedecor_door_open",
+		sound_close = "homedecor_door_close",
 	},
-
 	{
 		name = "exterior_fancy",
 		description = S("Fancy Wood/Glass Door"),
-		groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
-		sounds = {
-			main = default.node_sound_wood_defaults(),
-			open = "homedecor_door_open",
-			close = "homedecor_door_close",
-		},
-		backface = true,
-		alpha = true,
-		custom_model = "homedecor_door_fancy"
+		sounds = default.node_sound_wood_defaults(),
+		sound_open = "homedecor_door_open",
+		sound_close = "homedecor_door_close",
+		mesh = "homedecor_door_fancy.obj"
 	},
-
 	{
 		name = "french_oak",
 		description = S("French door, Oak-colored"),
-		groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
-		sounds = {
-			main = default.node_sound_glass_defaults(),
-		},
-		backface = true,
-		alpha = true,
-		custom_model = "homedecor_door_french"
+		sounds = default.node_sound_glass_defaults(),
+		mesh = "homedecor_door_french.obj"
 	},
-
 	{
 		name = "french_mahogany",
 		description = S("French door, Mahogany-colored"),
-		groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
-		sounds = {
-			main = default.node_sound_glass_defaults(),
-		},
-		backface = true,
-		alpha = true,
-		custom_model = "homedecor_door_french"
+		sounds = default.node_sound_glass_defaults(),
+		mesh = "homedecor_door_french.obj"
 	},
-
 	{
 		name = "french_white",
 		description = S("French door, White"),
-		groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
-		sounds = {
-			main = default.node_sound_glass_defaults(),
-		},
-		backface = true,
-		alpha = true,
-		custom_model = "homedecor_door_french"
+		sounds = default.node_sound_glass_defaults(),
+		mesh = "homedecor_door_french.obj"
 	},
-
 	{
 		name = "basic_panel",
 		description = S("Basic white panel Door"),
-		groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
-		sounds = {
-			main = default.node_sound_wood_defaults(),
-			open = "homedecor_door_open",
-			close = "homedecor_door_close",
-		}
+		sounds = default.node_sound_wood_defaults(),
+		sound_open = "homedecor_door_open",
+		sound_close = "homedecor_door_close",
 	},
-
 	{
 		name = "wrought_iron",
 		description = S("Wrought Iron Gate/Door"),
-		groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
-		sounds = {
-			main = default.node_sound_metal_defaults(),
-			open = "doors_steel_door_open",
-			close = "doors_steel_door_close",
-		},
-		backface = true,
-		custom_model = "homedecor_door_wrought_iron"
+		sounds = default.node_sound_metal_defaults(),
+		sound_open = "doors_steel_door_open",
+		sound_close = "doors_steel_door_close",
+		mesh = "homedecor_door_wrought_iron.obj"
 	},
-
 	{
 		name = "carolina",
 		description = S("Wooden Carolina door"),
-		groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
-		sounds = {
-			main = default.node_sound_wood_defaults(),
-			open = "homedecor_door_open",
-			close = "homedecor_door_close",
-		},
-		backface = true,
-		alpha = true
+		sounds = default.node_sound_wood_defaults(),
+		sound_open = "homedecor_door_open",
+		sound_close = "homedecor_door_close",
 	},
-
 	{
 		name = "woodglass",
 		description = S("Wooden door with glass insert, type 3"),
-		groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
-		sounds = {
-			main = default.node_sound_wood_defaults(),
-			open = "homedecor_door_open",
-			close = "homedecor_door_close",
-		},
-		backface = true,
-		alpha = true,
-		custom_model = "homedecor_door_wood_glass_3"
+		sounds = default.node_sound_wood_defaults(),
+		sound_open = "homedecor_door_open",
+		sound_close = "homedecor_door_close",
+		mesh = "homedecor_door_wood_glass_3.obj"
 	},
-
 	{
 		name = "closet_mahogany",
 		description = S("Mahogany Closet Door"),
-		groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
-		sounds = {
-			main = default.node_sound_wood_defaults(),
-		},
-		custom_model = "homedecor_door_closet"
+		sounds = default.node_sound_wood_defaults(),
+		mesh = "homedecor_door_closet.obj"
 	},
-
 	{
 		name = "closet_oak",
 		description = S("Oak Closet Door"),
-		groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
-		sounds = {
-			main = default.node_sound_wood_defaults(),
-		},
-		custom_model = "homedecor_door_closet"
+		sounds = default.node_sound_wood_defaults(),
+		mesh = "homedecor_door_closet"
 	},
 }
 
 local old_doors = {}
-local mesecons
 
--- This part blatantly copied from Mesecons, and modified :-)
-if mesecons_mp then
-	mesecons = {
-		effector = {
-			action_on = function(pos, node)
-				local door = doors.get(pos)
-				if door then
-					door:open()
-				end
-			end,
-			action_off = function(pos, node)
-				local door = doors.get(pos)
-				if door then
-					door:close()
-				end
-			end,
-			rules = mesecon.rules.pplate
-		}
+local door_types = {"_a", "_b", "_c", "_d"}
+
+local function generate_door(def)
+	local default_settings = {
+		tiles = {{ name = "homedecor_door_" .. def.name .. ".png", backface_culling = true }},
+		inventory_image = "homedecor_door_" .. def.name .. "_inv.png",
+		use_texture_alpha = "blend",
+		groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
+		mesecons = {
+			effector = {
+				action_on = function(pos, node)
+					local door = doors.get(pos)
+					if door then door:open() end
+				end,
+				action_off = function(pos, node)
+					local door = doors.get(pos)
+					if door then door:close() end
+				end,
+				rules = mesecon and mesecon.rules.pplate or nil
+			}
+		},
 	}
+
+	for k, v in pairs(default_settings) do
+		if not def[k] then def[k] = v end
+	end
+
+	def.name = nil
+
+	return def
 end
 
-local hd_3d = minetest.get_modpath("homedecor_3d_extras")
-
 for _, door in ipairs(door_list) do
-	doors.register("homedecor_"..door.name, {
-			tiles = {{ name = "homedecor_door_"..door.name..".png", backface_culling = door.backface }},
-			description = door.description,
-			inventory_image = "homedecor_door_"..door.name.."_inv.png",
-			groups = table.copy(door.groups),
-			sounds = door.sounds.main,
-			sound_open = door.sounds.open,
-			sound_close = door.sounds.close,
-			mesecons = mesecons
-	})
+	local name = door.name
+	doors.register("homedecor_" .. name, generate_door(door))
 
-	local nn_a = "doors:homedecor_"..door.name.."_a"
-	local nn_b = "doors:homedecor_"..door.name.."_b"
-
-	if door.alpha then
-		local def = table.copy(minetest.registered_nodes[nn_a])
-			def.use_texture_alpha = true
-			def.mesh = "door_a.obj"                -- leaving this out will break the _a model
-			minetest.register_node(":"..nn_a, def) -- assignment when the override takes place
-
-		def = table.copy(minetest.registered_nodes[nn_b])
-			def.use_texture_alpha = true
-			minetest.register_node(":"..nn_b, def)
+	--hack to get around doors not allowing custom meshes
+	if door.mesh then
+		for _, v in pairs(door_types) do
+			minetest.override_item("doors:homedecor_" .. name .. v, {
+				mesh = door.mesh
+			})
+		end
 	end
 
-	if door.custom_model and hd_3d then
-		def = table.copy(minetest.registered_nodes[nn_a])
-			def.mesh = door.custom_model.."_a.obj"
-			minetest.register_node(":"..nn_a, def)
+	--compatibility
+	old_doors[#old_doors + 1] = "homedecor:door_"..name.."_left"
+	old_doors[#old_doors + 1] = "homedecor:door_"..name.."_right"
 
-		def = table.copy(minetest.registered_nodes[nn_b])
-			def.mesh = door.custom_model.."_b.obj"
-			minetest.register_node(":"..nn_b, def)
-	end
-
-	old_doors[#old_doors + 1] = "homedecor:door_"..door.name.."_left"
-	old_doors[#old_doors + 1] = "homedecor:door_"..door.name.."_right"
-
-	minetest.register_alias("doors:"..door.name.."_a", "doors:homedecor_"..door.name.."_a")
-	minetest.register_alias("doors:"..door.name.."_b", "doors:homedecor_"..door.name.."_b")
+	minetest.register_alias("doors:"..name.."_a", "doors:homedecor_"..name.."_a")
+	minetest.register_alias("doors:"..name.."_b", "doors:homedecor_"..name.."_b")
 end
 
 -- Gates
@@ -307,6 +235,7 @@ for i, g in ipairs(gate_list) do
 		description = gatedesc,
 		tiles = tiles,
 		paramtype = "light",
+		use_texture_alpha = "clip",
 		groups = {snappy=3},
 		sounds = default.node_sound_wood_defaults(),
 		paramtype2 = "facedir",

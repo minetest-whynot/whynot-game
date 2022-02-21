@@ -10,6 +10,7 @@ homedecor.register("air_conditioner", {
 		"default_glass.png"
 	},
 	groups = { snappy = 3 },
+	use_texture_alpha = "clip",
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = { type="regular" },
 })
@@ -95,6 +96,7 @@ homedecor.register("ceiling_fan", {
 			{ -0.0625, 0.375, -0.0625, 0.0625, 0.5, 0.0625 }
 		}
 	},
+	use_texture_alpha = "clip",
 	groups = { snappy = 3 },
 	light_source = default.LIGHT_MAX-1,
 	sounds = default.node_sound_glass_defaults(),

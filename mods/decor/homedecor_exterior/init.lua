@@ -94,6 +94,7 @@ homedecor.register("lattice_"..name, {
 	description = S("Garden Lattice (@1)", desc),
 	tiles = {"homedecor_lattice"..texture},
 	inventory_image = "homedecor_lattice"..texture,
+	use_texture_alpha = "clip",
 	groups = { snappy=3 },
 	node_box = {
 		type = "fixed",
@@ -121,6 +122,7 @@ homedecor.register("swing", {
 		"homedecor_swing_top.png"
 	},
 	inventory_image = "homedecor_swing_inv.png",
+	use_texture_alpha = "clip",
 	groups = { snappy=3, oddly_breakable_by_hand=3 },
 	sounds = default.node_sound_wood_defaults(),
 	walkable = false,
@@ -219,6 +221,7 @@ homedecor.register("well", {
 	},
 	inventory_image = "homedecor_well_inv.png",
 	description = S("Water well"),
+	use_texture_alpha = "clip",
 	groups = { snappy = 3 },
 	selection_box = homedecor.nodebox.slab_y(2),
 	collision_box = homedecor.nodebox.slab_y(2),
@@ -265,6 +268,7 @@ for color, color_loc in pairs(homedecor_exterior.shrub_colors) do
 		tiles = {"homedecor_shrubbery_"..color..".png"},
 		paramtype = "light",
 		is_ground_content = false,
+		use_texture_alpha = "clip",
 		groups = {snappy=3, flammable=2},
 		sounds = default.node_sound_leaves_defaults(),
 	})
@@ -280,6 +284,7 @@ for color, color_loc in pairs(homedecor_exterior.shrub_colors) do
 		},
 		paramtype = "light",
 		is_ground_content = false,
+		use_texture_alpha = "clip",
 		groups = {snappy=3, flammable=2},
 		sounds = default.node_sound_leaves_defaults(),
 		selection_box = shrub_cbox,

@@ -61,6 +61,7 @@ homedecor.register("trash_can", {
 	tiles = { "homedecor_trash_can.png" },
 	inventory_image = "homedecor_trash_can_inv.png",
 	description = S("Small Trash Can"),
+	use_texture_alpha = "clip",
 	groups = {snappy=3},
 	selection_box = trash_cbox,
 	collision_box = trash_cbox,

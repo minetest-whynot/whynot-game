@@ -88,6 +88,7 @@ homedecor.register("grandfather_clock", {
 		"homedecor_grandfather_clock_face_edge.png",
 		"homedecor_generic_metal_brass.png"
 	},
+	use_texture_alpha = "clip",
 	inventory_image = "homedecor_grandfather_clock_inv.png",
 	groups = { snappy = 3 },
 	selection_box = gf_cbox,

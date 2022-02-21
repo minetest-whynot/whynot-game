@@ -20,7 +20,7 @@ minetest.register_node(":homedecor:skylight_frosted", {
 	tiles = { "homedecor_skylight_frosted.png" },
 	wield_image = "homedecor_skylight_frosted.png",
 	inventory_image = "homedecor_skylight_frosted_inv.png",
-	use_texture_alpha = true,
+	use_texture_alpha = "blend",
 	groups = { snappy = 3 },
 	paramtype = "light",
 	sounds = default.node_sound_glass_defaults(),
@@ -134,6 +134,7 @@ homedecor_roofing.register_slope = function(modname, subname, recipeitem, groups
 		paramtype2 = "facedir",
 		selection_box = slope_cbox,
 		collision_box = slope_cbox,
+		use_texture_alpha = "blend",
 		groups = groups,
 		on_place = minetest.rotate_node,
 		sounds = default.node_sound_wood_defaults()
