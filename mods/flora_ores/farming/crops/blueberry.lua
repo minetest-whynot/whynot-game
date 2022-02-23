@@ -43,7 +43,7 @@ minetest.register_craft({
 	replacements = {{"group:food_baking_tray", "farming:baking_tray"}}
 })
 
--- Bue Dye
+-- Blue Dye
 minetest.register_craft({
 	output = "dye:blue",
 	recipe = {{"farming:blueberries"}}

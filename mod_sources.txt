@@ -155,7 +155,7 @@ origin	https://gitlab.com/rautars/weather_pack.git (fetch)
 Mod: ambience/weather_pack
 
 origin	https://notabug.org/TenPlus1/farming (fetch)
-* (HEAD detached at d59e200) d59e200 better translation support
+* (HEAD detached at 11a829b) 11a829b typo
 Mod: flora_ores/farming
 
 origin	https://github.com/bell07/minetest-mese_crystals (fetch)
@@ -317,7 +317,7 @@ origin	https://github.com/minetest-mods/ts_furniture (fetch)
 Mod: decor/ts_furniture
 
 origin	https://github.com/mt-mods/unifieddyes (fetch)
-* (HEAD detached at ff3b2d3) ff3b2d3 Fix right-click crash on unknown nodes
+* (HEAD detached at 521b73d) 521b73d update api link
 Mod: decor/unifieddyes
 
 bell07	https://github.com/bell07/homedecor_modpack (fetch)
