@@ -37,7 +37,7 @@ origin	https://github.com/minetest-mods/craftguide/ (fetch)
 Mod: libs/craftguide
 
 origin	https://github.com/minetest-mods/craftguide_reveal (fetch)
-* (HEAD detached at ddd1483) ddd1483 Merge pull request #1 from Panquesito7/master
+* (HEAD detached at 3075404) 3075404 break loops and cache revealed results for faster runtime
 Mod: libs/craftguide_reveal
 
 origin	https://repo.or.cz/minetest_doc.git (fetch)
