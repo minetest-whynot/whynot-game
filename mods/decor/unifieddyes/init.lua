@@ -31,8 +31,6 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 unifieddyes = {}
 
-local creative_mode = minetest.settings:get_bool("creative_mode")
-
 local S = minetest.get_translator("unifieddyes")
 local modpath=minetest.get_modpath(minetest.get_current_modname())
 
@@ -43,3 +41,4 @@ dofile(modpath.."/dyes-crafting.lua")
 dofile(modpath.."/aliases.lua")
 
 print(S("[UnifiedDyes] Loaded!"))
+unifieddyes.init = true

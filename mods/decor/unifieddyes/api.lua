@@ -1,7 +1,5 @@
 -- This file supplies the majority of Unified Dyes' API
 
-local S = minetest.get_translator("unifieddyes")
-
 unifieddyes.player_current_dye = {}
 unifieddyes.player_selected_dye = {}
 unifieddyes.player_last_right_clicked = {}
@@ -51,7 +49,7 @@ minetest.register_on_placenode(
 
 local function move_item(item, pos, inv, digger, fix_color)
 	if not (digger and digger:is_player()) then return end
-	local creative = creative_mode or minetest.check_player_privs(digger, "creative")
+	local creative = minetest.is_creative_enabled(digger:get_player_name())
 	item = unifieddyes.fix_bad_color_info(item, fix_color)
 	if inv:room_for_item("main", item)
 	  and (not creative or not inv:contains_item("main", item, true)) then
@@ -65,7 +63,7 @@ end
 function unifieddyes.on_dig(pos, node, digger)
 	if not digger then return end
 	local playername = digger:get_player_name()
-	if minetest.is_protected(pos, playername) then 
+	if minetest.is_protected(pos, playername) then
 		minetest.record_protection_violation(pos, playername)
 		return
 	end
@@ -78,9 +76,11 @@ function unifieddyes.on_dig(pos, node, digger)
 		fix_color = 240
 	elseif def.paramtype2 == "color" and oldparam2 == 0 and def.palette == "unifieddyes_palette_extended.png" then
 		fix_color = 0
-	elseif def.paramtype2 == "colorwallmounted" and math.floor(oldparam2 / 8) == 0 and def.palette == "unifieddyes_palette_colorwallmounted.png" then
+	elseif def.paramtype2 == "colorwallmounted" and math.floor(oldparam2 / 8) == 0
+	and def.palette == "unifieddyes_palette_colorwallmounted.png" then
 		fix_color = 0
-	elseif def.paramtype2 == "colorfacedir" and math.floor(oldparam2 / 32) == 0 and string.find(def.palette, "unifieddyes_palette_") then
+	elseif def.paramtype2 == "colorfacedir" and math.floor(oldparam2 / 32) == 0
+	and string.find(def.palette, "unifieddyes_palette_") then
 		fix_color = 0
 	end
 
@@ -147,7 +147,7 @@ end
 
 local function register_c(craft, h, sat, val)
 	local hue = (type(h) == "table") and h[1] or h
-	local color = ""
+	local color
 	if val then
 		if craft.palette == "wallmounted" then
 			color = val..hue..sat
@@ -288,9 +288,9 @@ end
 
 function unifieddyes.get_hsv(name) -- expects a node/item name
 	local hue = ""
-	local a,b
+	local a
 	for _, i in ipairs(unifieddyes.HUES_EXTENDED) do
-		a,b = string.find(name, "_"..i[1])
+		a,_ = string.find(name, "_"..i[1])
 		if a then
 			hue = i[1]
 			break
@@ -327,8 +327,6 @@ end
 -- "wallmounted" = 32-color abridged palette
 
 function unifieddyes.getpaletteidx(color, palette_type)
-
-	local origcolor = color
 
 	if string.sub(color,1,4) == "dye:" then
 		color = string.sub(color,5,-1)
@@ -383,7 +381,8 @@ function unifieddyes.getpaletteidx(color, palette_type)
 		elseif color == "pink" then return 56,7
 		elseif color == "blue" and shade == "light" then return 40,5
 		elseif unifieddyes.gpidx_hues_wallmounted[color] and unifieddyes.gpidx_shades_wallmounted[shade] then
-			return (unifieddyes.gpidx_shades_wallmounted[shade] * 64 + unifieddyes.gpidx_hues_wallmounted[color] * 8), unifieddyes.gpidx_hues_wallmounted[color]
+			return (unifieddyes.gpidx_shades_wallmounted[shade] * 64 + unifieddyes.gpidx_hues_wallmounted[color] * 8),
+			unifieddyes.gpidx_hues_wallmounted[color]
 		end
 	else
 		if color == "brown" then
@@ -399,7 +398,8 @@ function unifieddyes.getpaletteidx(color, palette_type)
 			end
 		elseif palette_type == "extended" then
 			if unifieddyes.gpidx_hues_extended[color] and unifieddyes.gpidx_shades_extended[shade] then
-				return (unifieddyes.gpidx_hues_extended[color] + unifieddyes.gpidx_shades_extended[shade]*24), unifieddyes.gpidx_hues_extended[color]
+				return (unifieddyes.gpidx_hues_extended[color] + unifieddyes.gpidx_shades_extended[shade]*24),
+				unifieddyes.gpidx_hues_extended[color]
 			end
 		end
 	end
@@ -427,7 +427,7 @@ function unifieddyes.color_to_name(param2, def)
 		local color = param2
 
 		local v = 0
-		local s = 1 
+		local s = 1
 		if color < 24 then v = 1
 		elseif color > 23  and color < 48  then v = 2
 		elseif color > 47  and color < 72  then v = 3
@@ -445,7 +445,7 @@ function unifieddyes.color_to_name(param2, def)
 			elseif color == 244 then return "light_grey"
 			elseif color == 247 then return "grey"
 			elseif color == 251 then return "dark_grey"
-			elseif color == 255 then return "black" 
+			elseif color == 255 then return "black"
 			else return "grey_"..15-(color-240)
 			end
 		else

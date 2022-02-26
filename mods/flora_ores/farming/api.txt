@@ -16,6 +16,7 @@ The farming API allows you to easily register plants and hoes.
     'minlight' min light level needed to grow
     'maxlight' max light level needed to grow
     'steps' number of steps crop has in growth cycle
+    'trellis' name of trellis node (e.g. "farming:trellis"), default: nil
 
 ### Hoe Definition
 

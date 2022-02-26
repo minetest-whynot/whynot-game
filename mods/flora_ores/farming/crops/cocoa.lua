@@ -199,6 +199,7 @@ minetest.register_node("farming:cocoa_4", table.copy(def))
 
 -- add to registered_plants
 farming.registered_plants["farming:cocoa_beans"] = {
+	trellis = "default:jungletree",
 	crop = "farming:cocoa",
 	seed = "farming:cocoa_beans_raw",
 	minlight = farming.min_light,

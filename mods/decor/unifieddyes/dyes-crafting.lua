@@ -56,11 +56,11 @@ for _, h in ipairs(unifieddyes.HUES_EXTENDED) do
 			local g3 = math.floor(p+(g2-p)*0.5)
 			local b3 = math.floor(p+(b2-p)*0.5)
 
-			local color = string.format("%02x", r3)..string.format("%02x", g3)..string.format("%02x", b3)
+			local ccolor = string.format("%02x", r3)..string.format("%02x", g3)..string.format("%02x", b3)
 
 			minetest.register_craftitem(":dye:"..val..hue.."_s50", {
 				description = S(desc.." (low saturation)"),
-				inventory_image = "unifieddyes_dye.png^[colorize:#"..color..":200",
+				inventory_image = "unifieddyes_dye.png^[colorize:#"..ccolor..":200",
 				groups = { dye=1, not_in_creative_inventory=1 },
 			})
 			minetest.register_alias("unifieddyes:"..val..hue.."_s50", "dye:"..val..hue.."_s50")
@@ -87,19 +87,21 @@ for y = 1, 14 do -- colors 0 and 15 are black and white, default dyes
 	end
 end
 
-minetest.override_item("dye:grey", {
-	inventory_image = "unifieddyes_dye.png^[colorize:#888888:200",
-})
+if minetest.get_modpath("dye") then
+	minetest.override_item("dye:grey", {
+		inventory_image = "unifieddyes_dye.png^[colorize:#888888:200",
+	})
 
-minetest.override_item("dye:dark_grey", {
-	inventory_image = "unifieddyes_dye.png^[colorize:#444444:200",
-})
+	minetest.override_item("dye:dark_grey", {
+		inventory_image = "unifieddyes_dye.png^[colorize:#444444:200",
+	})
 
-minetest.register_craftitem(":dye:light_grey", {
-	description = S("Light grey Dye"),
-	inventory_image = "unifieddyes_dye.png^[colorize:#cccccc:200",
-	groups = { dye=1, not_in_creative_inventory=1 },
-})
+	minetest.register_craftitem(":dye:light_grey", {
+		description = S("Light grey Dye"),
+		inventory_image = "unifieddyes_dye.png^[colorize:#cccccc:200",
+		groups = { dye=1, not_in_creative_inventory=1 },
+	})
+end
 
 -- build a table of color <-> palette associations to reduce the need for
 -- realtime lookups with getpaletteidx()
@@ -122,7 +124,7 @@ for _, palette in ipairs({"extended", "split", "wallmounted"}) do
 	for y = 0, 15 do
 		local grey = "grey_"..y
 
-		if y == 0 then grey = "black" 
+		if y == 0 then grey = "black"
 		elseif y == 4 then grey = "dark_grey"
 		elseif y == 8 then grey = "grey"
 		elseif y == 11 then grey = "light_grey"
