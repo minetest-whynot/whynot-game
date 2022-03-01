@@ -62,3 +62,7 @@ The mods should not feel like cheats. The tools should be worn, walking through 
 ### 8 Mod under version control
 
 This game is not a new home for mods. Each mod remains within and have their own upstream. Access by version control is required for scripted updates to the game. If bugs are found in mods in this game, please report them to the upstream sources.
+
+### 9 Mod must not be incompatible with other mods
+
+New mods should not require compatiblity code to be added to our `whynot-compat` mod (for related reasons to rule 8). If we find a mod to be incompatible we expect upstream changes to any needed upstream source to happen to make it compatible before we will add the mod to whynot. (In some cases, such as if we like the mod, we may even fight for you and send them PRs to fix their mod)
