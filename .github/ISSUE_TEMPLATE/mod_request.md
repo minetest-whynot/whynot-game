@@ -12,23 +12,6 @@ This is the URL for the mod I would like to be added:
 
 https://www.example.com
 
-This url iss a:
-
-- [ ] contentDB link
-- [ ] Forum link
-- [ ] Git repo link
-- [ ] Other (explain)
-
-## Dependancies
-
-The dependancies of this mod are:
-
-- `example_dep`
-
-The optional dependancies of this mod are:
-
-- `example_dep_2`
-
 ## My opinion on how it fits with the whynot rules:
 
 > Refer to the [Whynot Readme](https://github.com/minetest-whynot/whynot-game#readme) for full rule descriptions/reasons.
