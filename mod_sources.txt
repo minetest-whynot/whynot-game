@@ -1,7 +1,7 @@
 
 bell07	https://github.com/bell07/minetest_game (fetch)
 origin	https://github.com/bell07/minetest_game (fetch)
-* (HEAD detached from dd7eed9) b89cb50 player_api - fix compatibility code
+* (HEAD detached at b89cb50) b89cb50 player_api - fix compatibility code
 Mod: minetest_game/mods/beds
 Mod: minetest_game/mods/binoculars
 Mod: minetest_game/mods/boats
@@ -103,7 +103,7 @@ origin	https://repo.or.cz/minetest_hudbars.git (fetch)
 Mod: player/hudbars
 
 origin	https://github.com/dacmot/moarmour (fetch)
-* (HEAD detached from ad58ea9) 1c77f5d Add min_minetest_version = 5.0
+* (HEAD detached at 1c77f5d) 1c77f5d Add min_minetest_version = 5.0
 Mod: player/moarmour
 
 origin	https://github.com/minetest-mods/playeranim (fetch)
@@ -114,9 +114,8 @@ origin	https://repo.or.cz/minetest_show_wielded_item.git (fetch)
 * (HEAD detached at 6f40e88) 6f40e88 Version 1.2.0
 Mod: player/show_wielded_item
 
-bell07	https://github.com/bell07/skinsdb (fetch)
-origin	https://github.com/bell07/skinsdb (fetch)
-* (HEAD detached from 6853854) 482a13b implement skinned 1st person view hand
+origin	https://github.com/minetest-mods/skinsdb (fetch)
+* (HEAD detached at c9fa5d9) c9fa5d9 fix Undeclared global variable "unified_inventory" accessed
 Mod: player/skinsdb
 
 origin	https://github.com/minetest-mods/wielded_light (fetch)
@@ -124,7 +123,7 @@ origin	https://github.com/minetest-mods/wielded_light (fetch)
 Mod: player/wielded_light
 
 origin	https://github.com/minetest-mods/3d_armor (fetch)
-* (HEAD detached from b6651fd) a9b8bc4 Enhance mithril armor (#70)
+* (HEAD detached at a9b8bc4) a9b8bc4 Enhance mithril armor (#70)
 Mod: 3d_armor/3d_armor
 Mod: 3d_armor/3d_armor_sfinv
 Mod: 3d_armor/3d_armor_stand
@@ -324,7 +323,7 @@ Mod: decor/unifieddyes
 
 bell07	https://github.com/bell07/homedecor_modpack (fetch)
 origin	https://github.com/bell07/homedecor_modpack (fetch)
-* (HEAD detached from 694bfe5f) dc20c0ba add skinsdb hand support for wardrobe skins
+* (HEAD detached at dc20c0ba) dc20c0ba add skinsdb hand support for wardrobe skins
 Mod: homedecor_modpack/building_blocks
 Mod: homedecor_modpack/fake_fire
 Mod: homedecor_modpack/lavalamp
