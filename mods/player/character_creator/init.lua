@@ -6,11 +6,13 @@ if minetest.get_modpath("skinsdb") and minetest.global_exists("skins") then
 	skinsdb = skins
 
 	-- Create dummy skins with hand
-	for skin_name, skin_texture in pairs(character_creator.skins.skin ) do
-		local hand_skin = skinsdb.new("character_creator:"..skin_name)
-		hand_skin:set_texture(skin_texture)
-		hand_skin:set_hand_from_texture()
-		hand_skin:set_meta("in_inventory_list", false)
+	if skins.skin_class.set_hand_from_texture then
+		for skin_name, skin_texture in pairs(character_creator.skins.skin ) do
+			local hand_skin = skinsdb.new("character_creator:"..skin_name)
+			hand_skin:set_texture(skin_texture)
+			hand_skin:set_hand_from_texture()
+			hand_skin:set_meta("in_inventory_list", false)
+		end
 	end
 end
 

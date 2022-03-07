@@ -231,7 +231,7 @@
 	url = https://github.com/minetest-mods/craftguide/
 [submodule "builder/mods_src/homedecor_modpack"]
 	path = builder/mods_src/homedecor_modpack
-	url = https://github.com/bell07/homedecor_modpack
+	url = https://github.com/mt-mods/homedecor_modpack
 [submodule "builder/mods_src/home_workshop_modpack"]
 	path = builder/mods_src/home_workshop_modpack
 	url = https://github.com/mt-mods/home_workshop_modpack

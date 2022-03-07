@@ -75,7 +75,7 @@ Mod: player/awards
 
 bell07	https://github.com/bell07/character_creator (fetch)
 origin	https://github.com/bell07/character_creator (fetch)
-* (HEAD detached at 90c0ea7) 90c0ea7 add support for skinsdb hand
+* (HEAD detached from 90c0ea7) 37fd275 add compatibility to previous skinsdb versions
 Mod: player/character_creator
 
 origin	https://github.com/stujones11/clothing (fetch)
@@ -321,9 +321,8 @@ origin	https://github.com/mt-mods/unifieddyes (fetch)
 * (HEAD detached at ff3b2d3) ff3b2d3 Fix right-click crash on unknown nodes
 Mod: decor/unifieddyes
 
-bell07	https://github.com/bell07/homedecor_modpack (fetch)
-origin	https://github.com/bell07/homedecor_modpack (fetch)
-* (HEAD detached at dc20c0ba) dc20c0ba add skinsdb hand support for wardrobe skins
+origin	https://github.com/mt-mods/homedecor_modpack (fetch)
+* (HEAD detached at 2f0e52f9) 2f0e52f9 add skinsdb hand support for wardrobe skins (#24)
 Mod: homedecor_modpack/building_blocks
 Mod: homedecor_modpack/fake_fire
 Mod: homedecor_modpack/lavalamp
