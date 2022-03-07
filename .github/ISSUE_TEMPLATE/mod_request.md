@@ -32,5 +32,7 @@ https://www.example.com
   - 
 8. Does this mod use the software "git" for version control? (note: we are asking about git. Github, Gitlab, notabug and hundreds of other git _providers_ exist but are not specificly needed, although these do qualify).
   - 
+9. Upon testing this mod, what errors, odd behavior, or other incompatibilities were noticed?
+  - 
 
 ## Other comments
