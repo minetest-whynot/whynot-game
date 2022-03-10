@@ -65,4 +65,4 @@ This game is not a new home for mods. Each mod remains within and have their own
 
 ### 9 Mod must not be incompatible with other mods
 
-Mods should not require compatibility code to be added to the Why Not? game, and thus requiring extra maintenance work on our part. If we find incompatibilities (ex. recipes conflicts, redundant items, keypress overlap) we expect any required changes to happen upstream before the mod is added to whynot. Some exceptions may be considered on a case-by-case basis.
+Mods should not require compatibility code to be added to the Whynot game, and thus requiring extra maintenance work on our part. If we find incompatibilities (ex. recipes conflicts, redundant items, keypress overlap) we expect any required changes to happen upstream before the mod is added to whynot. Some exceptions may be considered on a case-by-case basis.
