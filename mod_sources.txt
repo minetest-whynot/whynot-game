@@ -261,7 +261,7 @@ origin	https://github.com/Ezhh/abriglass/ (fetch)
 Mod: decor/abriglass
 
 origin	https://github.com/mt-mods/basic_materials (fetch)
-* (HEAD detached at d9e0698) d9e0698 add README file and documentation
+* (HEAD detached at 8631a26) 8631a26 Hades branch improvements (#12)
 Mod: decor/basic_materials
 
 origin	https://github.com/Napiophelios/campfire (fetch)
@@ -320,7 +320,6 @@ origin	https://github.com/mt-mods/unifieddyes (fetch)
 * (HEAD detached at 41dd54d) 41dd54d Merge pull request #5 from mt-mods/luacheck
 Mod: decor/unifieddyes
 
-bell07	https://github.com/bell07/homedecor_modpack (fetch)
 origin	https://github.com/mt-mods/homedecor_modpack (fetch)
 * (HEAD detached at 694bfe5f) 694bfe5f namespace plasmascreen and inbox (#22)
 Mod: homedecor_modpack/building_blocks

@@ -128,3 +128,10 @@ minetest.register_craftitem("basic_materials:padlock", {
 	description = S("Padlock"),
 	inventory_image = "basic_materials_padlock.png"
 })
+
+if minetest.get_modpath("hades_materials") then
+	minetest.register_alias_force("basic_materials:plastic_sheet", "hades_materials:plastic_sheeting")
+	minetest.register_alias_force("basic_materials:paraffin", "hades_materials:plastic_base")
+	minetest.register_alias_force("hades_extramaterials:silicon", "hades_materials:silicon")
+end
+
