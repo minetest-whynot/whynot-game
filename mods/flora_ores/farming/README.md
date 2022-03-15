@@ -1,18 +1,169 @@
-# Farming Redo Mod
-### by TenPlus1
+minetest mod Farming Redo
+=========================
 
-https://forum.minetest.net/viewtopic.php?id=9019
+This mod improves all food and farming related content
+
+Information
+-----------
+
+This mod must be named `farming` a simplified but improved version of the built-in farming
+mod in minetest but with more foods, it comes with wheat, cotton, carrot, cucumber,
+potato, melon, cotton, cocoa, corn, better pumpkin and tomato to start out with which
+spawn throughout the map...
+
+It also features that foods can be planted on tilled soil so for those then no seeds are required,
+original wheat and cotton will require seeds which are found inside normal and jungle grass...
+
+![screenshot.png](screenshot.png)
+
+Tech information
+----------------
 
 Farming Redo is a simplified version of the built-in farming mod in minetest and comes with wheat, cotton, carrot, cucumber, potato and tomato to start out with which spawn throughout the map... new foods need only be planted on tilled soil so no seeds are required, original wheat and cotton will require seeds which are found inside normal and jungle grass...
 
 This mod works by adding your new plant to the {growing=1} group and numbering the stages from _1 to as many stages as you like, but the underscore MUST be used only once in the node name to separate plant from stage number e.g.
 
-"farming:cotton_1"      through to   "farming:cotton_8"
-"farming:wheat_1"       through to   "farming:wheat_8"
-"farming:cucumber_4"    through to   "farming:cucumber_4"
+* "farming:cotton_1"      through to   "farming:cotton_8"
+* "farming:wheat_1"       through to   "farming:wheat_8"
+* "farming:cucumber_1"    through to   "farming:cucumber_4"
+
+https://forum.minetest.net/viewtopic.php?id=9019
+
+Farming Redo also works with Bonemeal mod for quick growing crops and saplings which can
+be found at https://notabug.org/TenPlus1/bonemeal
+
+#### Dependencies
+
+* default
+
+Optional dependences:
+
+* stairs
+* intllib (only for older engines)
+* lucky_block (adds 47 lucky blocks)
+* toolranks
+
+#### Configuration
+
+It reads the configuration values from two places, `minetest.conf` and `farming.conf`, this last
+must be at world path, if you have older place at mod path will be read but must be deprecated.
+
+
+| Configuration        | type  | default | place file   |  Notes about                             |
+| -------------------- | ----- | ------- | ------------ | ----------------------------------------- |
+| time_speed           | float |    73   | minetest.conf | Speed to grow up the plants on engine (used as base for seed) |
+| farming_stage_length | float |  160.0  | minetest.conf | Contains a value used for speed of crop growth in seconds |
+| farming.rarety       | float |  0.002  | farming.conf | default rarety of crops on map (higher number = more crops) |
+| farming.min_light    |  int  |    12   | farming.conf | default minimum and maximum light levels crops need to grow |
+| farming.max_light    |  int  |    15   | farming.conf | default minimum and maximum light levels crops need to grow |
+| farming.carrot       | float |  0.001  | farming.conf | true to enable crop/food in-game and on mapgen set spawn rarety |
+| farming.potato       | float |  0.001  | farming.conf | true to enable crop/food in-game and on mapgen set spawn rarety |
+| farming.tomato       | float |  0.001  | farming.conf | true to enable crop/food in-game and on mapgen set spawn rarety |
+| farming.cucumber     | float |  0.001  | farming.conf | true to enable crop/food in-game and on mapgen set spawn rarety |
+| farming.corn         | float |  0.001  | farming.conf | true to enable crop/food in-game and on mapgen set spawn rarety |
+| farming.coffee       | float |  0.001  | farming.conf | true to enable crop/food in-game and on mapgen set spawn rarety |
+| farming.melon        | float |  0.001  | farming.conf | true to enable crop/food in-game and on mapgen set spawn rarety |
+| farming.pumpkin      | float |  0.001  | farming.conf | true to enable crop/food in-game and on mapgen set spawn rarety |
+| farming.cocoa        |  bool |  true   | farming.conf | true or false only |
+| farming.raspberry    | float |  0.001  | farming.conf | true to enable crop/food in-game and on mapgen set spawn rarety |
+| farming.blueberry    | float |  0.001  | farming.conf | true to enable crop/food in-game and on mapgen set spawn rarety |
+| farming.rhubarb      | float |  0.001  | farming.conf | true to enable crop/food in-game and on mapgen set spawn rarety |
+| farming.beans        | float |  0.001  | farming.conf | true to enable crop/food in-game and on mapgen set spawn rarety |
+| farming.grapes       | float |  0.001  | farming.conf | true to enable crop/food in-game and on mapgen set spawn rarety |
+| farming.barley       |  bool |  true   | farming.conf | true or false only |
+| farming.chili        | float |  0.003  | farming.conf | true to enable crop/food in-game and on mapgen set spawn rarety |
+| farming.hemp         | float |  0.003  | farming.conf | true to enable crop/food in-game and on mapgen set spawn rarety |
+| farming.garlic       | float |  0.001  | farming.conf | true to enable crop/food in-game and on mapgen set spawn rarety |
+| farming.onion        | float |  0.001  | farming.conf | true to enable crop/food in-game and on mapgen set spawn rarety |
+| farming.pepper       | float |  0.002  | farming.conf | true to enable crop/food in-game and on mapgen set spawn rarety |
+| farming.pineapple    | float |  0.001  | farming.conf | true to enable crop/food in-game and on mapgen set spawn rarety |
+| farming.peas         | float |  0.001  | farming.conf | true to enable crop/food in-game and on mapgen set spawn rarety |
+| farming.beetroot     | float |  0.001  | farming.conf | true to enable crop/food in-game and on mapgen set spawn rarety |
+| farming.mint         | float |  0.005  | farming.conf | true to enable crop/food in-game and on mapgen set spawn rarety |
+| farming.cabbage      | float |  0.001  | farming.conf | true to enable crop/food in-game and on mapgen set spawn rarety |
+| farming.blackberry   | float |  0.002  | farming.conf | true to enable crop/food in-game and on mapgen set spawn rarety |
+| farming.lettuce      | float |  0.001  | farming.conf | true to enable crop/food in-game and on mapgen set spawn rarety |
+| farming.soy          | float |  0.001  | farming.conf | true to enable crop/food in-game and on mapgen set spawn rarety |
+| farming.vanilla      | float |  0.001  | farming.conf | true to enable crop/food in-game and on mapgen set spawn rarety |
+| farming.artichoke    | float |  0.001  | farming.conf | true to enable crop/food in-game and on mapgen set spawn rarety |
+| farming.parsley      | float |  0.002  | farming.conf | true to enable crop/food in-game and on mapgen set spawn rarety |
+| farming.sunflower    | float |  0.001  | farming.conf | true to enable crop/food in-game and on mapgen set spawn rarety |
+| farming.grains       |  bool |  true   | farming.conf | true or false only |
+| farming.rice         |  bool |  true   | farming.conf | true to enable crop/food in-game and on mapgen set spawn rarety |
+
+#### Nodes and food
+
+This farming mod provides a large featured basic foods production of farming:
+
+| Node name               | Description name      |
+| ----------------------- | --------------------- |
+| farming:salt            | Salt                  |
+| farming:salt_crystal    | Salt crystal          |
+| farming:rose_water      | Rose Water            |
+| farming:glass_water     | Glass of Water        |
+| farming:sugar           | Sugar                 |
+| farming:caramel         | Caramel               |
+| farming:turkish_delight | Turkish Delight       |
+| farming:garlic_bread    | Garlic Bread          |
+| farming:donut           | Donut                 |
+| farming:donut_chocolate | Chocolate Donut       |
+| farming:donut_apple     | Apple Donut           |
+| farming:porridge        | Porridge              |
+| farming:jaffa_cake      | Jaffa Cake            |
+| farming:apple_pie       | Apple Pie             |
+| farming:cactus_juice    | Cactus Juice          |
+| farming:pasta           | Pasta                 |
+| farming:spaghetti       | Spaghetti             |
+| farming:bibimbap        | Bibimbap              |
+| farming:burger          | Burger                |
+| farming:salad           | Salad                 |
+| farming:smoothie_berry  | Triple Berry Smoothie |
+| farming:spanish_potatoes | Spanish Potatoes     |
+| farming:potato_omelet   | Potato omelet         |
+| farming:paella          | Paella                |
+| farming:flan            | Vanilla Flan          |
+| farming:cheese_vegan    | Vegan Cheese          |
+| farming:onigiri         | Onirigi               |
+| farming:gyoza           | Gyoza                 |
+| farming:mochi           | Mochi                 |
+
+#### Items tools
+
+| node name               | Description           |
+| ----------------------- | --------------------- |
+| farming:scythe_mithril  | Mithril Scythe (Use to harvest and replant crops)        |
+| farming:hoe_bomb        | Hoe Bomb (use or throw on grassy areas to hoe land) |
+| farming:hoe_wood        | Wooden Hoe            |
+| farming:hoe_stone       | Stone Hoe             |
+| farming:hoe_steel       | Steel Hoe             |
+| farming:hoe_bronze      | Bronze Hoe            |
+| farming:hoe_mese        | Mese Hoe              |
+| farming:hoe_diamond     | Diamond Hoe           |
+| farming:bowl            | Wooden Bowl           |
+| farming:saucepan        | Saucepan              |
+| farming:pot             | Cooking Pot           |
+| farming:baking_tray     | Baking Tray           |
+| farming:skillet         | Skillet               |
+| farming:mortar_pestle   | Mortar and Pestle     |
+| farming:cutting_board   | Cutting Board         |
+| farming:juicer          | Juicer                |
+| farming:mixing_bowl     | Glass Mixing Bowl     |
+| moreores:hoe_silver     | Silver Hoe            |
+| moreores:hoe_mithril    | Mitril Hoe            |
+
+#### Nodes and Aliasing
+
+This mod is a direct replacement for the old Farming Plus mod and
+replaces all of it's nodes and items with one's found within
+Farming Redo.
+
+#### AMB
+
+There is one abm for new group `group:growing`.
 
 ### Changelog:
 
+- NEXT - Now blueberries can make blue dye, tweak soil types to work better with older 0.4.x clients and add spanish translation (thx mckaygerhard), add trellis setting to registered_crops and fix pea and soy crop names (thx nixnoxus)
 - 1.46 - Added min/max default light settings, added lettuce and blackberries with food items (thanks OgelGames), added soya, vanilla and sunflowers (thanks Felfa), added tofu, added salt crystals (thanks gorlock)
 - 1.45 - Dirt and Hoes are more in line with default by using dry/wet/base, added cactus juice, added pasta, spaghetti, cabbage, korean bibimbap, code tidy
 options, onion soup added (thanks edcrypt), Added apple pie, added wild cotton to savanna

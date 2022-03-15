@@ -101,7 +101,8 @@ minetest.register_node("farming:hemp_block", {
 	description = S("Hemp Block"),
 	tiles = {"farming_hemp_block.png"},
 	paramtype = "light",
-	groups = {snappy = 1, oddly_breakable_by_hand = 1, flammable = 2}
+	groups = {snappy = 1, oddly_breakable_by_hand = 1, flammable = 2},
+	sounds =  default.node_sound_leaves_defaults()
 })
 
 minetest.register_craft( {

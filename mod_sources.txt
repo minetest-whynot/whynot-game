@@ -155,7 +155,7 @@ origin	https://gitlab.com/rautars/weather_pack.git (fetch)
 Mod: ambience/weather_pack
 
 origin	https://notabug.org/TenPlus1/farming (fetch)
-* (HEAD detached at a897924) a897924 update translations (thanks SwissalpS)
+* (HEAD detached at 0b06c7c) 0b06c7c add sound to hemp block
 Mod: flora_ores/farming
 
 origin	https://github.com/bell07/minetest-mese_crystals (fetch)
