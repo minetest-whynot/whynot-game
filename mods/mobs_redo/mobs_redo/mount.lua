@@ -1,5 +1,7 @@
 -- lib_mount by Blert2112 (edited by TenPlus1)
 
+local is_50 = minetest.get_modpath("player_api") -- 5.x compatibility
+
 local abs, cos, floor, sin, sqrt, pi =
 		math.abs, math.cos, math.floor, math.sin, math.sqrt, math.pi
 
@@ -73,6 +75,8 @@ end
 
 local function force_detach(player)
 
+	if not player then return end
+
 	local attached_to = player:get_attach()
 
 	if not attached_to then
@@ -87,17 +91,26 @@ local function force_detach(player)
 	end
 
 	player:set_detach()
-	player_api.player_attached[player:get_player_name()] = false
-	player:set_eye_offset({x = 0, y = 0, z = 0}, {x = 0, y = 0, z = 0})
-	player_api.set_animation(player, "stand", 30)
-	player:set_properties({visual_size = {x = 1, y = 1}})
 
+	local name = player:get_player_name()
+
+	if is_50 then
+		player_api.player_attached[name] = false
+		player_api.set_animation(player, "stand", 30)
+	else
+		default.player_attached[name] = false
+		default.player_set_animation(player, "stand", 30)
+	end
+
+	player:set_eye_offset({x = 0, y = 0, z = 0}, {x = 0, y = 0, z = 0})
+	player:set_properties({visual_size = {x = 1, y = 1}})
 end
 
 
 minetest.register_on_leaveplayer(function(player)
 	force_detach(player)
 end)
+
 
 minetest.register_on_shutdown(function()
 
@@ -107,6 +120,7 @@ minetest.register_on_shutdown(function()
 		force_detach(players[i])
 	end
 end)
+
 
 minetest.register_on_dieplayer(function(player)
 	force_detach(player)
@@ -168,8 +182,13 @@ function mobs.attach(entity, player)
 
 	force_detach(player)
 
+	if is_50 then
+		player_api.player_attached[player:get_player_name()] = true
+	else
+		default.player_attached[player:get_player_name()] = true
+	end
+
 	player:set_attach(entity.object, "", attach_at, entity.player_rotation)
-	player_api.player_attached[player:get_player_name()] = true
 	player:set_eye_offset(eye_offset, {x = 0, y = 0, z = 0})
 
 	player:set_properties({
@@ -182,7 +201,12 @@ function mobs.attach(entity, player)
 	minetest.after(0.2, function()
 
 		if player and player:is_player() then
-			player_api.set_animation(player, "sit", 30)
+
+			if is_50 then
+				player_api.set_animation(player, "sit", 30)
+			else
+				default.player_set_animation(player, "sit", 30)
+			end
 		end
 	end)
 

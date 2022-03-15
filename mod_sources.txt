@@ -433,5 +433,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* (HEAD detached at 9f74408) 9f74408 remove owner infotext if no owner present
+* (HEAD detached at fb42be6) fb42be6 nil checks
 Mod: mobs_redo/mobs_redo
