@@ -2,7 +2,6 @@
 name: Mod Request
 about: Request a new mod to be added to Whynot-Game
 title: '[Mod Request]: `mod name here`'
-labels: bug
 assignees: 'New mod proposal'
 
 ---
