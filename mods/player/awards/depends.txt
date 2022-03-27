@@ -12,3 +12,6 @@ moreblocks?
 fire?
 flowers?
 nyancat?
+cmi?
+mobs?
+mobs_animal?
