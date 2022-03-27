@@ -250,6 +250,10 @@ Callbacks (register a function to be run)
 * join type: Join the server.
 * eat type: Eat an item.
 	* item: the eaten item type. If nil, all eaten items are counted
+* punch type: Punch a mob (requires [cmi](https://content.minetest.net/packages/Byakuren/cmi/) mod); optional)
+	* mob: the punched mob type. Ex. "cow"
+* kill type: Kill a mob (requires [cmi](https://content.minetest.net/packages/Byakuren/cmi/) mod; optional)
+	* mob: the killed mob type. Ex. "sheep"
 
 (for all types) target - how many times to dig/place/craft/etc.
 
@@ -326,3 +330,24 @@ trigger = {
 	target = 100,
 }
 ```
+
+### punch_mob
+
+```lua
+trigger = {
+	type   = "punch_mob",
+	item   = "cow",
+	target = 5,
+}
+```
+
+### kill_mob
+
+```lua
+trigger = {
+	type   = "kill_mob",
+	item   = "sheep",
+	target = 5,
+}
+```
+
