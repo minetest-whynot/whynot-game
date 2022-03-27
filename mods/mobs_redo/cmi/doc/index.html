@@ -1,0 +1,1071 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>ldoc</h1>
+
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Types">Types </a></li>
+<li><a href="#Callback_Registration">Callback Registration </a></li>
+<li><a href="#Querying">Querying </a></li>
+<li><a href="#Health_related">Health-related </a></li>
+<li><a href="#Components">Components </a></li>
+<li><a href="#Unique_Ids">Unique Ids </a></li>
+<li><a href="#Implementation__event_notification">Implementation: event notification </a></li>
+<li><a href="#Implementation__components">Implementation: components </a></li>
+<li><a href="#Implementation__health">Implementation: health </a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><strong>cmi</strong></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>cmi</code></h1>
+<p>The Common Mob Interface</p>
+<p></p>
+    <h3>Info:</h3>
+    <ul>
+        <li><strong>Author</strong>: raymoo</li>
+    </ul>
+
+
+<h2><a href="#Types">Types </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Id">Id</a></td>
+	<td class="summary">Object Identifiers.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#PunchCallback">PunchCallback (mob, hitter, time_from_last_punch, tool_capabilities, dir, damage, attacker)</a></td>
+	<td class="summary">Punch callbacks.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#DeathCause">DeathCause</a></td>
+	<td class="summary">Reasons a mob could die.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#DeathCallback">DeathCallback (mob, cause)</a></td>
+	<td class="summary">Death callbacks.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#ActivationCallback">ActivationCallback (mob, dtime)</a></td>
+	<td class="summary">Activation callbacks.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#StepCallback">StepCallback (mob, dtime)</a></td>
+	<td class="summary">Step callbacks.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#ComponentDef">ComponentDef</a></td>
+	<td class="summary">Component definitions.</td>
+	</tr>
+</table>
+<h2><a href="#Callback_Registration">Callback Registration </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#register_on_punchmob">register_on_punchmob (func)</a></td>
+	<td class="summary">Register a callback to be run when a mob is punched.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#register_on_diemob">register_on_diemob (func)</a></td>
+	<td class="summary">Register a callback to be run when a mob dies.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#register_on_activatemob">register_on_activatemob (func)</a></td>
+	<td class="summary">Register a callback to be run when a mob is activated.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#register_on_stepmob">register_on_stepmob (func)</a></td>
+	<td class="summary">Register a callback to be run on mob step.</td>
+	</tr>
+</table>
+<h2><a href="#Querying">Querying </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#is_mob">is_mob (object)</a></td>
+	<td class="summary">Checks if an object is a mob.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#get_mob_description">get_mob_description (object)</a></td>
+	<td class="summary">Gets a player-readable mob name.</td>
+	</tr>
+</table>
+<h2><a href="#Health_related">Health-related </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#attack">attack (mob, puncher, time_from_last_punch, tool_capabilities, direction, attacker)</a></td>
+	<td class="summary">Attack a mob.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#damage_calculator">damage_calculator (mob, puncher, time_from_last_punch, tool_capabilities, direction, attacker)</a></td>
+	<td class="summary">Punch damage calculator.</td>
+	</tr>
+</table>
+<h2><a href="#Components">Components </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#register_component">register_component (component_def)</a></td>
+	<td class="summary">Register a mob component.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#get_mob_component">get_mob_component (ObjectRef, component_name)</a></td>
+	<td class="summary">Get a component from a mob.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#set_mob_component">set_mob_component (ObjectRef, component_name, new_value)</a></td>
+	<td class="summary">Set a component in a mob.</td>
+	</tr>
+</table>
+<h2><a href="#Unique_Ids">Unique Ids </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#get_uid">get_uid (mob)</a></td>
+	<td class="summary">Get the unique ID of a mob.</td>
+	</tr>
+</table>
+<h2><a href="#Implementation__event_notification">Implementation: event notification </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#notify_punch">notify_punch (mob, hitter, time_from_last_punch, tool_capabilities, dir, damage, attacker)</a></td>
+	<td class="summary">Notify CMI that your mob has been punched.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#notify_die">notify_die (mob, cause)</a></td>
+	<td class="summary">Notify CMI that your mob has died.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#notify_activate">notify_activate (mob, dtime)</a></td>
+	<td class="summary">Notify CMI that your mob has been activated.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#notify_step">notify_step (mob, dtime)</a></td>
+	<td class="summary">Notify CMI that your mob is taking a step.</td>
+	</tr>
+</table>
+<h2><a href="#Implementation__components">Implementation: components </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#activate_components">activate_components (serialized_data)</a></td>
+	<td class="summary">Activates component data.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#serialize_components">serialize_components (component_data)</a></td>
+	<td class="summary">Serialized component data.</td>
+	</tr>
+</table>
+<h2><a href="#Implementation__health">Implementation: health </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#calculate_damage">calculate_damage (mob, puncher, time_from_last_punch, tool_capabilities, direction, attacker)</a></td>
+	<td class="summary">Calculate damage.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2><a name="Types"></a>Types </h2>
+
+
+ The various data structures used in the API.
+    <dl class="function">
+    <dt>
+    <a name = "Id"></a>
+    <strong>Id</strong>
+    </dt>
+    <dd>
+    Object Identifiers.
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">type</span>
+            <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         Either "player" or "mob"
+        </li>
+        <li><span class="parameter">identifier</span>
+            <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         For players, is a player name. For mobs, is a unique ID.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "PunchCallback"></a>
+    <strong>PunchCallback (mob, hitter, time_from_last_punch, tool_capabilities, dir, damage, attacker)</strong>
+    </dt>
+    <dd>
+    Punch callbacks.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">mob</span>
+            <span class="types"><span class="type">ObjectRef</span></span>
+
+        </li>
+        <li><span class="parameter">hitter</span>
+            <span class="types">optional <span class="type">ObjectRef</span></span>
+
+        </li>
+        <li><span class="parameter">time_from_last_punch</span>
+            <span class="types"><span class="type">number</span></span>
+
+        </li>
+        <li><span class="parameter">tool_capabilities</span>
+            <span class="types"><span class="type">tab</span></span>
+
+        </li>
+        <li><span class="parameter">dir</span>
+            <span class="types">optional <span class="type">vector</span></span>
+
+        </li>
+        <li><span class="parameter">damage</span>
+            <span class="types"><span class="type">number</span></span>
+
+        </li>
+        <li><span class="parameter">attacker</span>
+            <span class="types">optional <a class="type" href="index.html#Id">Id</a></span>
+         Any indirect owner of the punch, for example a
+ player who fired an arrow.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "DeathCause"></a>
+    <strong>DeathCause</strong>
+    </dt>
+    <dd>
+    Reasons a mob could die.
+ The type field determines what kind of cause a <a href="index.html#DeathCause">DeathCause</a> is. It can be one
+ of those specified here, or a custom one provided by a mod. For custom types,
+ the fields should be specified by the mod introducing it.
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">type</span>
+            <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         The predefined types are "punch" and "environment".
+        </li>
+        <li><span class="parameter">puncher</span>
+            <span class="types">optional <span class="type">ObjectRef</span></span>
+         If type == "punch", contains the puncher. The
+ puncher can be nil.
+        </li>
+        <li><span class="parameter">attacker</span>
+            <span class="types">optional <a class="type" href="index.html#Id">Id</a></span>
+         If type == "punch", contains the attacker if it exists
+ and is known.
+        </li>
+        <li><span class="parameter">pos</span>
+            <span class="types">optional <span class="type">vector</span></span>
+         If type == "environment", is the position of the damaging
+ node.
+        </li>
+        <li><span class="parameter">node</span>
+            <span class="types">optional <span class="type">node</span></span>
+         If type == "environment", describes the damaging node.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "DeathCallback"></a>
+    <strong>DeathCallback (mob, cause)</strong>
+    </dt>
+    <dd>
+    Death callbacks.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">mob</span>
+            <span class="types"><span class="type">ObjectRef</span></span>
+         the dying mob
+        </li>
+        <li><span class="parameter">cause</span>
+            <span class="types"><a class="type" href="index.html#DeathCause">DeathCause</a></span>
+         cause of death
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "ActivationCallback"></a>
+    <strong>ActivationCallback (mob, dtime)</strong>
+    </dt>
+    <dd>
+    Activation callbacks.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">mob</span>
+            <span class="types"><span class="type">ObjectRef</span></span>
+         the mob being activated
+        </li>
+        <li><span class="parameter">dtime</span>
+            <span class="types"><span class="type">number</span></span>
+         the time since the mob was unloaded
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "StepCallback"></a>
+    <strong>StepCallback (mob, dtime)</strong>
+    </dt>
+    <dd>
+    Step callbacks.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">mob</span>
+            <span class="types"><span class="type">ObjectRef</span></span>
+
+        </li>
+        <li><span class="parameter">dtime</span>
+            <span class="types"><span class="type">number</span></span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "ComponentDef"></a>
+    <strong>ComponentDef</strong>
+    </dt>
+    <dd>
+    Component definitions.
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">name</span>
+            <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         a unique name for the component, prefixed with the mod name
+        </li>
+        <li><span class="parameter">initialize</span>
+            <span class="types"><span class="type">func</span></span>
+         a function taking no arguments and returning a new instance
+ of the data
+        </li>
+        <li><span class="parameter">serialize</span>
+            <span class="types"><span class="type">func</span></span>
+         a function taking your component's data as an input and
+ returning it serialized as a string
+        </li>
+        <li><span class="parameter">deserialize</span>
+            <span class="types"><span class="type">func</span></span>
+         a function taking the serialized form of your data and
+ turning it back into the original data
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2><a name="Callback_Registration"></a>Callback Registration </h2>
+
+
+ Functions for registering mob callbacks.
+    <dl class="function">
+    <dt>
+    <a name = "register_on_punchmob"></a>
+    <strong>register_on_punchmob (func)</strong>
+    </dt>
+    <dd>
+    Register a callback to be run when a mob is punched.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">func</span>
+            <span class="types"><a class="type" href="index.html#PunchCallback">PunchCallback</a></span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "register_on_diemob"></a>
+    <strong>register_on_diemob (func)</strong>
+    </dt>
+    <dd>
+    Register a callback to be run when a mob dies.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">func</span>
+            <span class="types"><a class="type" href="index.html#DeathCallback">DeathCallback</a></span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "register_on_activatemob"></a>
+    <strong>register_on_activatemob (func)</strong>
+    </dt>
+    <dd>
+    Register a callback to be run when a mob is activated.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">func</span>
+            <span class="types"><a class="type" href="index.html#ActivationCallback">ActivationCallback</a></span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "register_on_stepmob"></a>
+    <strong>register_on_stepmob (func)</strong>
+    </dt>
+    <dd>
+    Register a callback to be run on mob step.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">func</span>
+            <span class="types"><a class="type" href="index.html#StepCallback">StepCallback</a></span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2><a name="Querying"></a>Querying </h2>
+
+
+ Functions for getting information about mobs.
+    <dl class="function">
+    <dt>
+    <a name = "is_mob"></a>
+    <strong>is_mob (object)</strong>
+    </dt>
+    <dd>
+    Checks if an object is a mob.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">object</span>
+            <span class="types"><span class="type">ObjectRef</span> or <span class="type">luaentity</span></span>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">bool</span></span>
+        true if the object is a mob, otherwise returns a falsey value
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "get_mob_description"></a>
+    <strong>get_mob_description (object)</strong>
+    </dt>
+    <dd>
+    Gets a player-readable mob name.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">object</span>
+            <span class="types"><span class="type">ObjectRef</span> or <span class="type">luaentity</span></span>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+    </ol>
+
+
+
+
+</dd>
+</dl>
+    <h2><a name="Health_related"></a>Health-related </h2>
+
+
+ Functions related to hurting or healing mobs.
+    <dl class="function">
+    <dt>
+    <a name = "attack"></a>
+    <strong>attack (mob, puncher, time_from_last_punch, tool_capabilities, direction, attacker)</strong>
+    </dt>
+    <dd>
+    Attack a mob.
+ Functions like the punch method of ObjectRef, but takes an additional optional
+ argument for an indirect attacker. Also works on non-mob entities that define
+ an appropriate _cmi_attack method.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">mob</span>
+            <span class="types"><span class="type">ObjectRef</span> or <span class="type">luaentity</span></span>
+
+        </li>
+        <li><span class="parameter">puncher</span>
+            <span class="types"><span class="type">ObjectRef</span></span>
+
+        </li>
+        <li><span class="parameter">time_from_last_punch</span>
+            <span class="types"><span class="type">number</span></span>
+
+        </li>
+        <li><span class="parameter">tool_capabilities</span>
+            <span class="types"><span class="type">tab</span></span>
+
+        </li>
+        <li><span class="parameter">direction</span>
+            <span class="types"><span class="type">vector</span></span>
+
+        </li>
+        <li><span class="parameter">attacker</span>
+            <span class="types">optional <a class="type" href="index.html#Id">Id</a></span>
+         An indirect owner of the punch. For example, the player
+ who fired an arrow that punches the mob.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "damage_calculator"></a>
+    <strong>damage_calculator (mob, puncher, time_from_last_punch, tool_capabilities, direction, attacker)</strong>
+    </dt>
+    <dd>
+    Punch damage calculator.
+ By default, this just calculates damage in the vanilla way. Switch it out for
+ something else to change the default damage mechanism for mobs.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">mob</span>
+            <span class="types"><span class="type">ObjectRef</span></span>
+
+        </li>
+        <li><span class="parameter">puncher</span>
+            <span class="types">optional <span class="type">ObjectRef</span></span>
+
+        </li>
+        <li><span class="parameter">time_from_last_punch</span>
+            <span class="types"><span class="type">number</span></span>
+
+        </li>
+        <li><span class="parameter">tool_capabilities</span>
+            <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+
+        </li>
+        <li><span class="parameter">direction</span>
+            <span class="types">optional <span class="type">vector</span></span>
+
+        </li>
+        <li><span class="parameter">attacker</span>
+            <span class="types">optional <a class="type" href="index.html#Id">Id</a></span>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+        The calculated damage
+    </ol>
+
+
+
+
+</dd>
+</dl>
+    <h2><a name="Components"></a>Components </h2>
+
+
+ Components are data stored in a mob, that every mob is guaranteed to contain.
+ You can use them in conjunction with callbacks to extend mobs with new
+ functionality, without explicit support from mob mods.
+    <dl class="function">
+    <dt>
+    <a name = "register_component"></a>
+    <strong>register_component (component_def)</strong>
+    </dt>
+    <dd>
+    Register a mob component.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">component_def</span>
+            <span class="types"><a class="type" href="index.html#ComponentDef">ComponentDef</a></span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "get_mob_component"></a>
+    <strong>get_mob_component (ObjectRef, component_name)</strong>
+    </dt>
+    <dd>
+    Get a component from a mob.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">ObjectRef</span>
+            <span class="types"><span class="type">mob</span></span>
+        |luaentity mob
+        </li>
+        <li><span class="parameter">component_name</span>
+            <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        The requested component, or nil if it doesn't exist
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "set_mob_component"></a>
+    <strong>set_mob_component (ObjectRef, component_name, new_value)</strong>
+    </dt>
+    <dd>
+    Set a component in a mob.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">ObjectRef</span>
+            <span class="types"><span class="type">mob</span></span>
+        |luaentity mob
+        </li>
+        <li><span class="parameter">component_name</span>
+            <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+        </li>
+        <li><span class="parameter">new_value</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2><a name="Unique_Ids"></a>Unique Ids </h2>
+
+
+ Every mob gets a unique ID when they are created. This feature is implemented
+ as a component, so you can use it as an example.
+    <dl class="function">
+    <dt>
+    <a name = "get_uid"></a>
+    <strong>get_uid (mob)</strong>
+    </dt>
+    <dd>
+    Get the unique ID of a mob.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">mob</span>
+            <span class="types"><span class="type">ObjectRef</span> or <span class="type">luaentity</span></span>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+    </ol>
+
+
+
+
+</dd>
+</dl>
+    <h2><a name="Implementation__event_notification"></a>Implementation: event notification </h2>
+
+
+ Functions used to notify CMI when things happen to your mob. Only necessary
+ when you are implementing the interface.
+    <dl class="function">
+    <dt>
+    <a name = "notify_punch"></a>
+    <strong>notify_punch (mob, hitter, time_from_last_punch, tool_capabilities, dir, damage, attacker)</strong>
+    </dt>
+    <dd>
+    Notify CMI that your mob has been punched.
+ Call this before doing any punch handling that is not "read-only".
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">mob</span>
+            <span class="types"><span class="type">ObjectRef</span></span>
+
+        </li>
+        <li><span class="parameter">hitter</span>
+            <span class="types">optional <span class="type">ObjectRef</span></span>
+
+        </li>
+        <li><span class="parameter">time_from_last_punch</span>
+            <span class="types"><span class="type">number</span></span>
+
+        </li>
+        <li><span class="parameter">tool_capabilities</span>
+            <span class="types"><span class="type">tab</span></span>
+
+        </li>
+        <li><span class="parameter">dir</span>
+            <span class="types">optional <span class="type">vector</span></span>
+
+        </li>
+        <li><span class="parameter">damage</span>
+            <span class="types"><span class="type">number</span></span>
+
+        </li>
+        <li><span class="parameter">attacker</span>
+            <span class="types">optional <a class="type" href="index.html#Id">Id</a></span>
+
+ unknown.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        Returns true if punch handling should be aborted.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "notify_die"></a>
+    <strong>notify_die (mob, cause)</strong>
+    </dt>
+    <dd>
+    Notify CMI that your mob has died.
+ Call this right before calling remove.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">mob</span>
+            <span class="types"><span class="type">ObjectRef</span></span>
+         the dying mob
+        </li>
+        <li><span class="parameter">cause</span>
+            <span class="types"><a class="type" href="index.html#DeathCause">DeathCause</a></span>
+         cause of death
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "notify_activate"></a>
+    <strong>notify_activate (mob, dtime)</strong>
+    </dt>
+    <dd>
+    Notify CMI that your mob has been activated.
+ Call this after all other mob initialization.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">mob</span>
+            <span class="types"><span class="type">ObjectRef</span></span>
+         the mob being activated
+        </li>
+        <li><span class="parameter">dtime</span>
+            <span class="types"><span class="type">number</span></span>
+         the time since the mob was unloaded
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "notify_step"></a>
+    <strong>notify_step (mob, dtime)</strong>
+    </dt>
+    <dd>
+    Notify CMI that your mob is taking a step.
+ Call this on every step. It is suggested to call it before or after all other
+ processing, to avoid logic errors caused by callbacks handling the same state
+ as your entity's normal step logic.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">mob</span>
+            <span class="types"><span class="type">ObjectRef</span></span>
+
+        </li>
+        <li><span class="parameter">dtime</span>
+            <span class="types"><span class="type">number</span></span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2><a name="Implementation__components"></a>Implementation: components </h2>
+
+
+ Functions related to implementing entity components. Only necessary when you
+ are implementing the interface.
+    <dl class="function">
+    <dt>
+    <a name = "activate_components"></a>
+    <strong>activate_components (serialized_data)</strong>
+    </dt>
+    <dd>
+    Activates component data.
+ On mob activation, call this and put the result in the _cmi_components field of
+ its luaentity.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">serialized_data</span>
+            <span class="types">optional <a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         the serialized form of the string, if
+ available. If the mob has never had component data, do not pass this argument.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        component data
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "serialize_components"></a>
+    <strong>serialize_components (component_data)</strong>
+    </dt>
+    <dd>
+    Serialized component data.
+ When serializing your mob data, call this and put the result somewhere safe,
+ where it can be retrieved on activation to be passed to
+ #{activate_components}.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">component_data</span>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+    </ol>
+
+
+
+
+</dd>
+</dl>
+    <h2><a name="Implementation__health"></a>Implementation: health </h2>
+
+
+ Functions related to health that are needed for implementation of the
+ interface. Only necessary if you are implementing the interface.
+    <dl class="function">
+    <dt>
+    <a name = "calculate_damage"></a>
+    <strong>calculate_damage (mob, puncher, time_from_last_punch, tool_capabilities, direction, attacker)</strong>
+    </dt>
+    <dd>
+    Calculate damage.
+ Use this function when you want to calculate the "default" damage. If you
+ are a modder who wants to switch out the damage mechanism, do not replace
+ this function. Replace #{damage_calculator} instead.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">mob</span>
+            <span class="types"><span class="type">ObjectRef</span></span>
+
+        </li>
+        <li><span class="parameter">puncher</span>
+            <span class="types">optional <span class="type">ObjectRef</span></span>
+
+        </li>
+        <li><span class="parameter">time_from_last_punch</span>
+            <span class="types"><span class="type">number</span></span>
+
+        </li>
+        <li><span class="parameter">tool_capabilities</span>
+            <span class="types"><a class="type" href="http://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+
+        </li>
+        <li><span class="parameter">direction</span>
+            <span class="types">optional <span class="type">vector</span></span>
+
+        </li>
+        <li><span class="parameter">attacker</span>
+            <span class="types">optional <a class="type" href="index.html#Id">Id</a></span>
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+
+    </ol>
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.3</a></i>
+<i style="float:right;">Last updated 2017-06-18 14:58:46 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

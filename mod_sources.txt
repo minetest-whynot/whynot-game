@@ -1,5 +1,4 @@
 
-bell07	https://github.com/bell07/minetest_game (fetch)
 origin	https://github.com/minetest/minetest_game (fetch)
 * (HEAD detached at dd7eed9) dd7eed9 Merge remote-tracking branch 'origin/stable-5' into HEAD
 Mod: minetest_game/mods/beds
@@ -33,7 +32,7 @@ Mod: minetest_game/mods/wool
 Mod: minetest_game/mods/xpanes
 
 origin	https://github.com/minetest-mods/craftguide/ (fetch)
-* (no branch) 58e4516 Update Screenshot
+* (HEAD detached at 58e4516) 58e4516 Update Screenshot
 Mod: libs/craftguide
 
 origin	https://github.com/minetest-mods/craftguide_reveal (fetch)
@@ -79,7 +78,7 @@ origin	https://repo.or.cz/minetest_hbarmor.git (fetch)
 * (HEAD detached at 93d994c) 93d994c Version 1.0.0
 Mod: player/hbarmor
 
-origin	https://repo.or.cz/minetest_hbhunger.git (fetch)
+origin	http://repo.or.cz/minetest_hbhunger (fetch)
 * (HEAD detached at 470b0f6) 470b0f6 Version 1.1.2
 Mod: player/hbhunger
 
@@ -99,7 +98,7 @@ origin	https://github.com/minetest-mods/playeranim (fetch)
 * (HEAD detached at 9dab03f) 9dab03f Clear up all animations of all registered models (#1)
 Mod: player/playeranim
 
-origin	https://repo.or.cz/minetest_show_wielded_item.git (fetch)
+origin	http://repo.or.cz/minetest_show_wielded_item.git (fetch)
 * (HEAD detached at 6f40e88) 6f40e88 Version 1.2.0
 Mod: player/show_wielded_item
 
@@ -108,7 +107,7 @@ origin	https://github.com/minetest-mods/wielded_light (fetch)
 Mod: player/wielded_light
 
 origin	https://github.com/bell07/minetest-player_api_modpack (fetch)
-* (HEAD detached from cd91360) 03b1a28 player_api: fix initial skin assignment
+* (HEAD detached at 03b1a28) 03b1a28 player_api: fix initial skin assignment
 Mod: player_api_modpack/3d_armor
 Mod: player_api_modpack/character_creator
 Mod: player_api_modpack/clothing
@@ -130,7 +129,7 @@ Mod: 3d_armor/shields
 Mod: 3d_armor/3d_armor_sfinv
 
 origin	https://github.com/bell07/minetest-smart_sfinv (fetch)
-* (no branch) 25c2c5b smart_sfinv_tweaks: Add trash button for creative pages
+* (HEAD detached at 25c2c5b) 25c2c5b smart_sfinv_tweaks: Add trash button for creative pages
 Mod: smart_sfinv_modpack/creative_maxstack
 Mod: smart_sfinv_modpack/sfinv_buttons
 Mod: smart_sfinv_modpack/smart_sfinv_api
@@ -150,7 +149,7 @@ origin	https://github.com/Ezhh/under_sky (fetch)
 * (HEAD detached at 5f8d570) 5f8d570 Hide sun, moon and stars when underground
 Mod: ambience/under_sky
 
-origin	https://gitlab.com/rautars/weather_pack.git (fetch)
+origin	https://gitlab.com/rautars/weather_pack (fetch)
 * (HEAD detached at fa9e156) fa9e156 Decrease chance for weather flickering effect (#9)
 Mod: ambience/weather_pack
 
@@ -179,7 +178,7 @@ origin	https://notabug.org/TenPlus1/pbj_pup (fetch)
 Mod: mapgen/pbj_pup
 
 origin	https://github.com/GreenXenith/tac_nayn (fetch)
-* (no branch) 2625716 Merge pull request #2 from bell07/master
+* (HEAD detached at 2625716) 2625716 Merge pull request #2 from bell07/master
 Mod: mapgen/tac_nayn
 
 origin	https://github.com/taikedz/everamzah-backpacks (fetch)
@@ -187,7 +186,7 @@ origin	https://github.com/taikedz/everamzah-backpacks (fetch)
 Mod: tools/backpacks
 
 origin	https://notabug.org/tenplus1/bonemeal (fetch)
-* (HEAD detached at origin/master) 79f9cb3 support for fern saplings in plantlife mod (thanks nixnoxus)
+* (HEAD detached at 79f9cb3) 79f9cb3 support for fern saplings in plantlife mod (thanks nixnoxus)
 Mod: tools/bonemeal
 
 origin	https://github.com/SmallJoker/boost_cart (fetch)
@@ -373,7 +372,7 @@ Mod: mydoors/my_old_doors
 Mod: mydoors/my_old_doors
 
 origin	https://github.com/rubenwardy/food (fetch)
-* (no branch) 9b97006 Add Russian translation
+* (HEAD detached at 9b97006) 9b97006 Add Russian translation
 Mod: food_modpack/food
 Mod: food_modpack/food_basic
 
@@ -423,6 +422,10 @@ Mod: mesecons/mesecons_switch
 Mod: mesecons/mesecons_torch
 Mod: mesecons/mesecons_walllever
 Mod: mesecons/mesecons_wires
+
+origin	https://github.com/raymoo/cmi.git (fetch)
+* master 3f505ac [origin/master] Add doc to main repo
+Mod: mobs_redo/cmi
 
 origin	https://codeberg.org/Hamlet/mobs_ghost_redo (fetch)
 * (HEAD detached at ac9c013) ac9c013 v0.7.0
