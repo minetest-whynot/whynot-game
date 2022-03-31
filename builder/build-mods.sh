@@ -17,16 +17,13 @@ rm "$LOG" 2>/dev/null
 # exclude mtg_craftguide => minetest-mods/craftguide is used
 # exclude player_api => bell07/player_api_modpack is used
 
-mod_install minetest_game --exclude=farming --exclude=player_api --exclude=env_sounds --exclude=mtg_craftguide minetest_game/mods/*
+mod_install minetest_game --exclude=farming --exclude=env_sounds --exclude=mtg_craftguide minetest_game/mods/*
 
 mod_install libs
 
 mod_install player
-mod_install player --exclude=skins player_api_modpack/* #skinsdb5 should be used, therefore skins masked
 
-mod_install player 3d_armor/3d_armor_stand
-mod_install player 3d_armor/shields
-mod_install player 3d_armor/3d_armor_sfinv
+mod_install player --exclude=3d_armor_ip --exclude=3d_armor_ui 3d_armor/*
 
 mod_install player smart_sfinv_modpack/*
 
@@ -76,7 +73,7 @@ mod_install decor homedecor_modpack/homedecor_roofing
 mod_install decor homedecor_modpack/homedecor_seating
 mod_install decor homedecor_modpack/homedecor_tables
 mod_install decor homedecor_modpack/homedecor_trash_cans
-# warderobe is from player_api fork
+mod_install decor homedecor_modpack/homedecor_wardrobe
 mod_install decor homedecor_modpack/homedecor_windows_and_treatments
 
 mod_install decor home_workshop_modpack/home_vending_machines

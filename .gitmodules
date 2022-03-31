@@ -123,7 +123,7 @@
 	url = https://github.com/minetest-mods/mesecons
 [submodule "builder/mods_src/minetest_game"]
 	path = builder/mods_src/minetest_game
-	url = https://github.com/minetest/minetest_game
+	url = https://github.com/bell07/minetest_game
 [submodule "builder/mods_src/mobs_redo/mobs_ghost_redo"]
 	path = builder/mods_src/mobs_redo/mobs_ghost_redo
 	url = https://codeberg.org/Hamlet/mobs_ghost_redo
@@ -136,9 +136,6 @@
 [submodule "builder/mods_src/mydoors"]
 	path = builder/mods_src/mydoors
 	url = https://github.com/minetest-mods/mydoors
-[submodule "builder/mods_src/player_api_modpack"]
-	path = builder/mods_src/player_api_modpack
-	url = https://github.com/bell07/minetest-player_api_modpack
 [submodule "builder/mods_src/player/awards"]
 	path = builder/mods_src/player/awards
 	url = https://gitlab.com/dacmot/awards.git
@@ -238,3 +235,12 @@
 [submodule "builder/mods_src/home_workshop_modpack"]
 	path = builder/mods_src/home_workshop_modpack
 	url = https://github.com/mt-mods/home_workshop_modpack
+[submodule "builder/mods_src/player/skinsdb"]
+	path = builder/mods_src/player/skinsdb
+	url = https://github.com/minetest-mods/skinsdb
+[submodule "builder/mods_src/player/character_creator"]
+	path = builder/mods_src/player/character_creator
+	url = https://github.com/bell07/character_creator
+[submodule "builder/mods_src/player/clothing"]
+	path = builder/mods_src/player/clothing
+	url = https://github.com/stujones11/clothing

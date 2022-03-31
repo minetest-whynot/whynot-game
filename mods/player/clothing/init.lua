@@ -78,16 +78,16 @@ local function save_clothing_metadata(player, clothing_inv)
 		end
 	end
 	if is_empty then
-		player:get_meta():set_string("clothing:inventory", "")
+		player:set_attribute("clothing:inventory", nil)
 	else
-		player:get_meta():set_string("clothing:inventory",
+		player:set_attribute("clothing:inventory",
 			minetest.serialize(clothes))
 	end
 end
 
 local function load_clothing_metadata(player, clothing_inv)
 	local player_inv = player:get_inventory()
-	local clothing_meta = player:get_meta():get_string("clothing:inventory")
+	local clothing_meta = player:get_attribute("clothing:inventory")
 	local clothes = clothing_meta and minetest.deserialize(clothing_meta) or {}
 	local dirty_meta = false
 	if not clothing_meta then
@@ -115,8 +115,7 @@ local function load_clothing_metadata(player, clothing_inv)
 	player_inv:set_size("clothing", 0)
 end
 
-local orig_init_on_joinplayer = player_api.init_on_joinplayer
-function player_api.init_on_joinplayer(player)
+minetest.register_on_joinplayer(function(player)
 	local name = player:get_player_name()
 	local player_inv = player:get_inventory()
 	local clothing_inv = minetest.create_detached_inventory(name.."_clothing",{
@@ -153,6 +152,8 @@ function player_api.init_on_joinplayer(player)
 	end
 
 	load_clothing_metadata(player, clothing_inv)
-	orig_init_on_joinplayer(player)
-	clothing:set_player_clothing(player)
-end
+	minetest.after(1, function(name)
+		-- Ensure the ObjectRef is valid after 1s
+		clothing:set_player_clothing(minetest.get_player_by_name(name))
+	end, name)
+end)
