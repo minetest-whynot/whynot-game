@@ -40,5 +40,5 @@ dofile(modpath.."/airbrush.lua")
 dofile(modpath.."/dyes-crafting.lua")
 dofile(modpath.."/aliases.lua")
 
-print(S("[UnifiedDyes] Loaded!"))
+print("[UnifiedDyes] Loaded!")
 unifieddyes.init = true
