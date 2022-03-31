@@ -400,7 +400,7 @@ origin	https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin	https://github.com/minetest-mods/mesecons (fetch)
-* (HEAD detached at 399ee9f) 399ee9f Avoid duplicating VManip data in Lua memory (#600)
+* (HEAD detached at b630ff9) b630ff9 Fix error prone negation reported by luacheck
 Mod: mesecons/mesecons
 Mod: mesecons/mesecons_alias
 Mod: mesecons/mesecons_blinkyplant
