@@ -322,7 +322,7 @@ origin	https://github.com/mt-mods/unifieddyes (fetch)
 Mod: decor/unifieddyes
 
 origin	https://github.com/mt-mods/homedecor_modpack (fetch)
-* (HEAD detached at 2f0e52f9) 2f0e52f9 add skinsdb hand support for wardrobe skins (#24)
+* (HEAD detached at 3ba59dc2) 3ba59dc2 fix almost all warning spam (#26)
 Mod: homedecor_modpack/building_blocks
 Mod: homedecor_modpack/fake_fire
 Mod: homedecor_modpack/lavalamp

@@ -22,7 +22,7 @@ minetest.register_node("lavalamp:lavalamp", {
 			},
 		},
 	},
-	use_texture_alpha = true,
+	use_texture_alpha = "blend",
 	inventory_image = "lavalamp_lamp_inv.png",
 	paramtype = "light",
 	paramtype2 = "color",

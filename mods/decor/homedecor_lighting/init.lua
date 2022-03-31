@@ -263,7 +263,7 @@ for brightness_level = 0, 14 do
 		description = S("Thick Glowlight"),
 		tiles = tiles,
 		overlay_tiles = overlay,
-		use_texture_alpha = true,
+		use_texture_alpha = "blend",
 		drawtype = "nodebox",
 		paramtype = "light",
 		paramtype2 = "colorwallmounted",
@@ -329,7 +329,7 @@ for brightness_level = 0, 14 do
 		description = S("Thin Glowlight"),
 		tiles = tiles,
 		overlay_tiles = overlay,
-		use_texture_alpha = true,
+		use_texture_alpha = "blend",
 		drawtype = "nodebox",
 		paramtype = "light",
 		paramtype2 = "colorwallmounted",
@@ -396,7 +396,7 @@ for brightness_level = 0, 14 do
 		description = S("Small Glowlight Cube"),
 		tiles = tiles,
 		overlay_tiles = overlay,
-		use_texture_alpha = true,
+		use_texture_alpha = "blend",
 		paramtype = "light",
 		paramtype2 = "colorwallmounted",
 		drawtype = "nodebox",
@@ -448,7 +448,7 @@ for brightness_level = 0, 14 do
 			"default_gold_block.png",
 			lighttex
 		},
-		use_texture_alpha = true,
+		use_texture_alpha = "blend",
 		light_source = brightness_level,
 		sunlight_propagates = true,
 		groups = {cracky=3, oddly_breakable_by_hand=3, not_in_creative_inventory = nici},
@@ -473,7 +473,7 @@ for brightness_level = 0, 14 do
 		description = S("Ground Lantern/Light"),
 		mesh = "homedecor_ground_lantern.obj",
 		tiles = { gen_ls_tex_yellow, "homedecor_generic_metal_wrought_iron.png" },
-		use_texture_alpha = true,
+		use_texture_alpha = "blend",
 		inventory_image = "homedecor_ground_lantern_inv.png",
 		wield_image = "homedecor_ground_lantern_inv.png",
 		groups = {snappy=3, not_in_creative_inventory = nici},
@@ -500,7 +500,7 @@ for brightness_level = 0, 14 do
 		description = S("Hanging Lantern/Light"),
 		mesh = "homedecor_hanging_lantern.obj",
 		tiles = { "homedecor_generic_metal_wrought_iron.png", gen_ls_tex_yellow },
-		use_texture_alpha = true,
+		use_texture_alpha = "blend",
 		inventory_image = "homedecor_hanging_lantern_inv.png",
 		wield_image = "homedecor_hanging_lantern_inv.png",
 		groups = {snappy=3, not_in_creative_inventory = nici},
@@ -527,7 +527,7 @@ for brightness_level = 0, 14 do
 		drawtype = "mesh",
 		mesh = "homedecor_ceiling_lantern.obj",
 		tiles = { gen_ls_tex_yellow, "homedecor_generic_metal_wrought_iron.png" },
-		use_texture_alpha = true,
+		use_texture_alpha = "blend",
 		inventory_image = "homedecor_ceiling_lantern_inv.png",
 		description = S("Ceiling Lantern/Light"),
 		groups = {snappy=3, not_in_creative_inventory = nici},
@@ -549,6 +549,7 @@ for brightness_level = 0, 14 do
 		homedecor.register("lattice_lantern_large_"..brightness_level, {
 			description = S("Lattice lantern/Light (large)"),
 			tiles = { gen_ls_tex_yellow.."^homedecor_lattice_lantern_large_overlay.png" },
+			use_texture_alpha = "clip",
 			groups = { snappy = 3, not_in_creative_inventory = nici },
 			light_source = brightness_level,
 			sounds = default.node_sound_glass_defaults(),
@@ -590,6 +591,7 @@ for brightness_level = 0, 14 do
 			type = "fixed",
 			fixed = { -0.25, -0.5, -0.25, 0.25, 0, 0.25 }
 		},
+		use_texture_alpha = "clip",
 		groups = { snappy = 3, not_in_creative_inventory = nici },
 		light_source = brightness_level,
 		sounds = default.node_sound_glass_defaults(),
@@ -792,7 +794,7 @@ for _, light_brightn_name in ipairs({"off", "on"}) do
 			fixed = { -0.1875, -0.5, -0.1875, 0.1875, 0, 0.1875 }
 		},
 		walkable = false,
-		use_texture_alpha = true,
+		use_texture_alpha = "blend",
 		light_source = onflag and (default.LIGHT_MAX - 5) or nil,
 		sunlight_propagates = true,
 		groups = {cracky=3, oddly_breakable_by_hand=3, not_in_creative_inventory = nici},
@@ -916,7 +918,7 @@ for _, light_brightn_name in ipairs({"off", "on"}) do
 			gen_ls_tex_yellow,
 			"homedecor_generic_metal_wrought_iron.png"
 		},
-		use_texture_alpha = true,
+		use_texture_alpha = "blend",
 		inventory_image = "homedecor_wall_lamp_inv.png",
 		groups = {snappy=3, not_in_creative_inventory = nici},
 		light_source = onflag and (default.LIGHT_MAX - 3) or nil,
@@ -954,6 +956,7 @@ homedecor.register("candle", {
 	inventory_image = "homedecor_candle_inv.png",
 	selection_box = tc_cbox,
 	walkable = false,
+	use_texture_alpha = "clip",
 	groups = { snappy = 3 },
 	light_source = default.LIGHT_MAX-4,
 })
@@ -975,6 +978,7 @@ homedecor.register("candle_thin", {
 	inventory_image = "homedecor_candle_thin_inv.png",
 	selection_box = c_cbox,
 	walkable = false,
+	use_texture_alpha = "clip",
 	groups = { snappy = 3 },
 	light_source = default.LIGHT_MAX-4,
 })
@@ -997,6 +1001,7 @@ homedecor.register("candlestick_wrought_iron", {
 	inventory_image = "homedecor_candlestick_wrought_iron_inv.png",
 	selection_box = cs_cbox,
 	walkable = false,
+	use_texture_alpha = "clip",
 	groups = { snappy = 3 },
 	light_source = default.LIGHT_MAX-4,
 })
@@ -1012,6 +1017,7 @@ homedecor.register("candlestick_brass", {
 	inventory_image = "homedecor_candlestick_brass_inv.png",
 	selection_box = cs_cbox,
 	walkable = false,
+	use_texture_alpha = "clip",
 	groups = { snappy = 3 },
 	light_source = default.LIGHT_MAX-4,
 })
@@ -1031,6 +1037,7 @@ homedecor.register("wall_sconce", {
 		fixed = { -0.1875, -0.25, 0.3125, 0.1875, 0.25, 0.5 }
 	},
 	walkable = false,
+	use_texture_alpha = "clip",
 	groups = { snappy = 3 },
 	light_source = default.LIGHT_MAX-4,
 })
@@ -1053,7 +1060,7 @@ homedecor.register("oil_lamp", {
 		{ name = "homedecor_generic_metal.png", color = 0xffa00000 },
 		"homedecor_oil_lamp_glass.png",
 	},
-	use_texture_alpha = true,
+	use_texture_alpha = "blend",
 	inventory_image = "homedecor_oil_lamp_inv.png",
 	selection_box = ol_cbox,
 	walkable = false,
@@ -1132,6 +1139,7 @@ minetest.register_node(":homedecor:chandelier_steel", {
 	},
 	drawtype = "mesh",
 	mesh = "homedecor_chandelier.obj",
+	use_texture_alpha = "clip",
 	groups = {cracky=3},
 	sounds =  default.node_sound_stone_defaults(),
 })
@@ -1158,6 +1166,7 @@ minetest.register_node(":homedecor:chandelier_brass", {
 	},
 	drawtype = "mesh",
 	mesh = "homedecor_chandelier.obj",
+	use_texture_alpha = "clip",
 	groups = {cracky=3},
 	sounds =  default.node_sound_stone_defaults(),
 })
@@ -1186,6 +1195,7 @@ homedecor.register("torch_wall", {
 		type = "fixed",
 		fixed = { -0.15, -0.45, 0.15, 0.15,0.35, 0.5 },
 	},
+	use_texture_alpha = "clip",
 	groups = {cracky=3},
 })
 

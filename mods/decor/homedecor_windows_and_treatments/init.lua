@@ -12,7 +12,7 @@ homedecor.register("window_quartered", {
 		"homedecor_window_quartered.png",
 		"homedecor_window_quartered.png"
 	},
-	use_texture_alpha = true,
+	use_texture_alpha = "blend",
 	groups = {snappy=3},
 	sounds = default.node_sound_glass_defaults(),
 	node_box = {
@@ -43,7 +43,7 @@ homedecor.register("window_plain", {
 		"homedecor_window_frame.png",
 		"homedecor_window_frame.png"
 	},
-	use_texture_alpha = true,
+	use_texture_alpha = "blend",
 	groups = {snappy=3},
 	sounds = default.node_sound_glass_defaults(),
 	node_box = {
@@ -105,7 +105,7 @@ minetest.register_node(":homedecor:curtain_closed", {
 	tiles = { "homedecor_curtain.png" },
 	inventory_image = "homedecor_curtain.png",
 	drawtype = 'signlike',
-	use_texture_alpha = true,
+	use_texture_alpha = "blend",
 	walkable = false,
 	groups = { snappy = 3, ud_param2_colorable = 1, not_in_creative_inventory=1 },
 	sounds = default.node_sound_leaves_defaults(),
@@ -128,7 +128,7 @@ minetest.register_node(":homedecor:curtain_open", {
 	tiles = { "homedecor_curtain_open.png" },
 	inventory_image = "homedecor_curtain_open.png",
 	drawtype = 'signlike',
-	use_texture_alpha = true,
+	use_texture_alpha = "blend",
 	walkable = false,
 	groups = { snappy = 3, ud_param2_colorable = 1 },
 	sounds = default.node_sound_leaves_defaults(),
@@ -179,6 +179,7 @@ homedecor.register("window_flowerbox", {
 	},
 	inventory_image = "homedecor_flowerbox_inv.png",
 	sounds = default.node_sound_stone_defaults(),
+	use_texture_alpha = "clip",
 	groups = { snappy = 3 },
 	node_box = {
 		type = "fixed",
@@ -195,7 +196,7 @@ homedecor.register("stained_glass", {
 	tiles = {"homedecor_stained_glass.png"},
 	inventory_image = "homedecor_stained_glass.png",
 	groups = {snappy=3},
-	use_texture_alpha = true,
+	use_texture_alpha = "blend",
 	light_source = 3,
 	sounds = default.node_sound_glass_defaults(),
 	node_box = {

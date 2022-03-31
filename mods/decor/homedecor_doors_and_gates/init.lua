@@ -102,7 +102,7 @@ local function generate_door(def)
 					local door = doors.get(pos)
 					if door then door:close() end
 				end,
-				rules = mesecon and mesecon.rules.pplate or nil
+				rules = minetest.global_exists("mesecon") and mesecon.rules.pplate or nil
 			}
 		},
 	}
