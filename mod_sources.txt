@@ -103,7 +103,7 @@ origin	https://repo.or.cz/minetest_hudbars.git (fetch)
 Mod: player/hudbars
 
 origin	https://github.com/dacmot/moarmour (fetch)
-* (HEAD detached at 1c77f5d) 1c77f5d Add min_minetest_version = 5.0
+* (HEAD detached at 2523692) 2523692 Update README.md
 Mod: player/moarmour
 
 origin	https://github.com/minetest-mods/playeranim (fetch)

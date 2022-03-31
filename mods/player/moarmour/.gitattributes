@@ -1,13 +1,13 @@
 .gitattributes text
 .gitignore     text
 
-*.pl     text
-*.lua    text
-*.tr     text
-*.md     text
-*.txt    text
-mod.conf text
-LICENSE  text
+*.lua       text
+*.tr        text
+*.md        text
+*.txt       text
+mod.conf    text
+.luacheckrc text
+LICENSE     text
 
 *.jpg   binary
 *.png   binary
