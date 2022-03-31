@@ -188,7 +188,7 @@ origin	https://github.com/taikedz/everamzah-backpacks (fetch)
 Mod: tools/backpacks
 
 origin	https://notabug.org/tenplus1/bonemeal (fetch)
-* (HEAD detached at 79f9cb3) 79f9cb3 support for fern saplings in plantlife mod (thanks nixnoxus)
+* (HEAD detached at 4c50a02) 4c50a02 change of jungle grass on rainforest litter (thx nixnoxus)
 Mod: tools/bonemeal
 
 origin	https://github.com/SmallJoker/boost_cart (fetch)
