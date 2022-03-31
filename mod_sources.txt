@@ -115,7 +115,7 @@ origin	https://repo.or.cz/minetest_show_wielded_item.git (fetch)
 Mod: player/show_wielded_item
 
 origin	https://github.com/minetest-mods/skinsdb (fetch)
-* (HEAD detached at c9fa5d9) c9fa5d9 fix Undeclared global variable "unified_inventory" accessed
+* (HEAD detached at 03d424f) 03d424f fix hand node not respected the range
 Mod: player/skinsdb
 
 origin	https://github.com/minetest-mods/wielded_light (fetch)
