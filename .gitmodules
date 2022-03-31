@@ -138,7 +138,7 @@
 	url = https://github.com/minetest-mods/mydoors
 [submodule "builder/mods_src/player/awards"]
 	path = builder/mods_src/player/awards
-	url = https://github.com/minetest-mods/awards
+	url = https://gitlab.com/dacmot/awards.git
 [submodule "builder/mods_src/player/cozy"]
 	path = builder/mods_src/player/cozy
 	url = https://github.com/minetest-mods/cozy

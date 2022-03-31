@@ -7,7 +7,7 @@
 
 farming = {
 	mod = "redo",
-	version = "20211204",
+	version = "20220309",
 	path = minetest.get_modpath("farming"),
 	select = {
 		type = "fixed",
@@ -407,6 +407,8 @@ end
 -- refill placed plant by crabman (26/08/2015) updated by TenPlus1
 function farming.refill_plant(player, plantname, index)
 
+	if not player then return end
+
 	local inv = player:get_inventory()
 	local old_stack = inv:get_stack("main", index)
 
@@ -493,7 +495,7 @@ function farming.place_seed(itemstack, placer, pointed_thing, plantname)
 			-- check for refill
 			if itemstack:get_count() == 0 then
 
-				minetest.after(0.10,
+				minetest.after(0.2,
 					farming.refill_plant,
 					placer,
 					name,

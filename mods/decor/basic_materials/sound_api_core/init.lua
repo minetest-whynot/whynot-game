@@ -56,6 +56,8 @@ function sound_api.node_sound_default(table)
         return ks.node_sound_default(table)
     elseif minetest.get_modpath("nodes_nature") then
         return nodes_nature.node_sound_default(table)
+    elseif minetest.get_modpath("hades_sounds") then
+        return hades_sounds.node_sound_defaults(table)
     else
         return table
     end
@@ -70,6 +72,8 @@ function sound_api.node_sound_stone_defaults(table)
         return nodes_nature.node_sound_stone_defaults(table)
     elseif minetest.get_modpath("fl_stone") then
         return fl_stone.sounds.stone(table)
+    elseif minetest.get_modpath("hades_sounds") then
+        return hades_sounds.node_sound_stone_defaults(table)
     else
         return table
     end
@@ -85,6 +89,8 @@ function sound_api.node_sound_dirt_defaults(table)
     --s/dirt/grass
     elseif minetest.get_modpath("fl_topsoil") then
         return fl_topsoil.sounds.grass(table)
+    elseif minetest.get_modpath("hades_sounds") then
+        return hades_sounds.node_sound_dirt_defaults(table)
     else
         return table
     end
@@ -92,7 +98,11 @@ end
 
 --return dirt as some games use dirt vs grass
 function sound_api.node_sound_grass_defaults(table)
-    return sound_api.node_sound_dirt_defaults(table)
+    if minetest.get_modpath("hades_sounds") then
+        return hades_sounds.node_sound_grass_defaults(table)
+    else
+        return sound_api.node_sound_dirt_defaults(table)
+    end
 end
 
 function sound_api.node_sound_sand_defaults(table)
@@ -104,6 +114,8 @@ function sound_api.node_sound_sand_defaults(table)
         return nodes_nature.node_sound_sand_defaults(table)
     elseif minetest.get_modpath("fl_stone") then
         return fl_stone.sounds.sand(table)
+    elseif minetest.get_modpath("hades_sounds") then
+        return hades_sounds.node_sound_sand_defaults(table)
     else
         return table
     end
@@ -119,6 +131,8 @@ function sound_api.node_sound_gravel_defaults(table)
         return nodes_nature.node_sound_gravel_defaults(table)
     elseif minetest.get_modpath("fl_topsoil") then
         return fl_topsoil.sounds.gravel(table)
+    elseif minetest.get_modpath("hades_sounds") then
+        return hades_sounds.node_sound_gravel_defaults(table)
     else
         return table
     end
@@ -135,6 +149,8 @@ function sound_api.node_sound_wood_defaults(table)
         return nodes_nature.node_sound_wood_defaults(table)
     elseif minetest.get_modpath("fl_trees") then
         return fl_trees.sounds.wood(table)
+    elseif minetest.get_modpath("hades_sounds") then
+        return hades_sounds.node_sound_wood_defaults(table)
     else
         return table
     end
@@ -149,6 +165,8 @@ function sound_api.node_sound_leaves_defaults(table)
         return ks.node_sound_leaves_default(table)
     elseif minetest.get_modpath("nodes_nature") then
         return nodes_nature.node_sound_leaves_defaults(table)
+    elseif minetest.get_modpath("hades_sounds") then
+        return hades_sounds.node_sound_leaves_defaults(table)
     else
         return table
     end
@@ -161,6 +179,8 @@ function sound_api.node_sound_glass_defaults(table)
         return mcl_sounds.node_sound_glass_defaults(table)
     elseif minetest.get_modpath("nodes_nature") then
         return nodes_nature.node_sound_glass_defaults(table)
+    elseif minetest.get_modpath("hades_sounds") then
+        return hades_sounds.node_sound_glass_defaults(table)
     else
         return table
     end
@@ -176,6 +196,9 @@ function sound_api.node_sound_ice_defaults(table)
     --s/ice/glass
     elseif minetest.get_modpath("nodes_nature") then
         return nodes_nature.node_sound_glass_defaults(table)
+    --s/ice/glass
+    elseif minetest.get_modpath("hades_sounds") then
+        return hades_sounds.node_sound_glass_defaults(table)
     else
         return table
     end
@@ -186,6 +209,8 @@ function sound_api.node_sound_metal_defaults(table)
         return default.node_sound_metal_defaults(table)
     elseif minetest.get_modpath("mcl_sounds") then
         return mcl_sounds.node_sound_metal_defaults(table)
+    elseif minetest.get_modpath("hades_sounds") then
+        return hades_sounds.node_sound_metal_defaults(table)
     else
         return table
     end
@@ -198,6 +223,8 @@ function sound_api.node_sound_water_defaults(table)
         return mcl_sounds.node_sound_water_defaults(table)
     elseif minetest.get_modpath("nodes_nature") then
         return nodes_nature.node_sound_water_defaults(table)
+    elseif minetest.get_modpath("hades_sounds") then
+        return hades_sounds.node_sound_water_defaults(table)
     else
         return table
     end
@@ -212,6 +239,8 @@ function sound_api.node_sound_lava_defaults(table)
     --s/lava/water
     elseif minetest.get_modpath("nodes_nature") then
         return nodes_nature.node_sound_water_defaults(table)
+    elseif minetest.get_modpath("hades_sounds") then
+        return hades_sounds.node_sound_lava_defaults(table)
     else
         return table
     end

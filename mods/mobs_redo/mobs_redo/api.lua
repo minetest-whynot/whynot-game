@@ -28,7 +28,7 @@ local use_cmi = minetest.global_exists("cmi")
 
 mobs = {
 	mod = "redo",
-	version = "20220205",
+	version = "20220314",
 	intllib = S,
 	invis = minetest.global_exists("invisibility") and invisibility or {}
 }
@@ -274,9 +274,9 @@ local check_for = function(look_for, look_inside)
 				return true
 			end
 
-			if str:find("group:") then
+			if str and str:find("group:") then
 
-				local group = str:split(":")[2]
+				local group = str:split(":")[2] or ""
 
 				if minetest.get_item_group(look_for, group) ~= 0 then
 					return true
@@ -2132,7 +2132,7 @@ function mob_class:follow_flop()
 
 		for n = 1, #players do
 
-			if get_distance(players[n]:get_pos(), s) < self.view_range
+			if players[n] and get_distance(players[n]:get_pos(), s) < self.view_range
 			and not is_invisible(self, players[n]:get_player_name()) then
 
 				self.following = players[n]

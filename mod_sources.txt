@@ -35,11 +35,11 @@ Mod: minetest_game/mods/wool
 Mod: minetest_game/mods/xpanes
 
 origin	https://github.com/minetest-mods/craftguide/ (fetch)
-* (no branch) 58e4516 Update Screenshot
+* (HEAD detached at 58e4516) 58e4516 Update Screenshot
 Mod: libs/craftguide
 
 origin	https://github.com/minetest-mods/craftguide_reveal (fetch)
-* (HEAD detached at ddd1483) ddd1483 Merge pull request #1 from Panquesito7/master
+* (HEAD detached at 3075404) 3075404 break loops and cache revealed results for faster runtime
 Mod: libs/craftguide_reveal
 
 origin	https://repo.or.cz/minetest_doc.git (fetch)
@@ -69,8 +69,8 @@ Mod: libs/intllib
 Embedded into game repository:
 Mod: libs/whynot_compat
 
-origin	https://github.com/minetest-mods/awards (fetch)
-* (HEAD detached at 37082d1) 37082d1 Rename background to hud_background
+origin	https://gitlab.com/dacmot/awards.git (fetch)
+* (HEAD detached at origin/master) 16ca508 Merge remote-tracking branch 'remotes/dacmot/punch_kill_entities'
 Mod: player/awards
 
 bell07	https://github.com/bell07/character_creator (fetch)
@@ -131,7 +131,7 @@ Mod: 3d_armor/shields
 Mod: 3d_armor/wieldview
 
 origin	https://github.com/bell07/minetest-smart_sfinv (fetch)
-* (no branch) 25c2c5b smart_sfinv_tweaks: Add trash button for creative pages
+* (HEAD detached at 25c2c5b) 25c2c5b smart_sfinv_tweaks: Add trash button for creative pages
 Mod: smart_sfinv_modpack/creative_maxstack
 Mod: smart_sfinv_modpack/sfinv_buttons
 Mod: smart_sfinv_modpack/smart_sfinv_api
@@ -156,7 +156,7 @@ origin	https://gitlab.com/rautars/weather_pack.git (fetch)
 Mod: ambience/weather_pack
 
 origin	https://notabug.org/TenPlus1/farming (fetch)
-* (HEAD detached at d59e200) d59e200 better translation support
+* (HEAD detached at 0b06c7c) 0b06c7c add sound to hemp block
 Mod: flora_ores/farming
 
 origin	https://github.com/bell07/minetest-mese_crystals (fetch)
@@ -180,7 +180,7 @@ origin	https://notabug.org/TenPlus1/pbj_pup (fetch)
 Mod: mapgen/pbj_pup
 
 origin	https://github.com/GreenXenith/tac_nayn (fetch)
-* (no branch) 2625716 Merge pull request #2 from bell07/master
+* (HEAD detached at 2625716) 2625716 Merge pull request #2 from bell07/master
 Mod: mapgen/tac_nayn
 
 origin	https://github.com/taikedz/everamzah-backpacks (fetch)
@@ -188,7 +188,7 @@ origin	https://github.com/taikedz/everamzah-backpacks (fetch)
 Mod: tools/backpacks
 
 origin	https://notabug.org/tenplus1/bonemeal (fetch)
-* (HEAD detached at origin/master) 79f9cb3 support for fern saplings in plantlife mod (thanks nixnoxus)
+* (HEAD detached at 79f9cb3) 79f9cb3 support for fern saplings in plantlife mod (thanks nixnoxus)
 Mod: tools/bonemeal
 
 origin	https://github.com/SmallJoker/boost_cart (fetch)
@@ -262,7 +262,7 @@ origin	https://github.com/Ezhh/abriglass/ (fetch)
 Mod: decor/abriglass
 
 origin	https://github.com/mt-mods/basic_materials (fetch)
-* (HEAD detached at d9e0698) d9e0698 add README file and documentation
+* (HEAD detached at 8631a26) 8631a26 Hades branch improvements (#12)
 Mod: decor/basic_materials
 
 origin	https://github.com/Napiophelios/campfire (fetch)
@@ -318,7 +318,7 @@ origin	https://github.com/minetest-mods/ts_furniture (fetch)
 Mod: decor/ts_furniture
 
 origin	https://github.com/mt-mods/unifieddyes (fetch)
-* (HEAD detached at ff3b2d3) ff3b2d3 Fix right-click crash on unknown nodes
+* (HEAD detached at 41dd54d) 41dd54d Merge pull request #5 from mt-mods/luacheck
 Mod: decor/unifieddyes
 
 origin	https://github.com/mt-mods/homedecor_modpack (fetch)
@@ -375,7 +375,7 @@ Mod: mydoors/my_old_doors
 Mod: mydoors/my_old_doors
 
 origin	https://github.com/rubenwardy/food (fetch)
-* (no branch) 9b97006 Add Russian translation
+* (HEAD detached at 9b97006) 9b97006 Add Russian translation
 Mod: food_modpack/food
 Mod: food_modpack/food_basic
 
@@ -400,7 +400,7 @@ origin	https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin	https://github.com/minetest-mods/mesecons (fetch)
-* (HEAD detached at fef5c8c) fef5c8c Resolve license information inconsistency
+* (HEAD detached at 399ee9f) 399ee9f Avoid duplicating VManip data in Lua memory (#600)
 Mod: mesecons/mesecons
 Mod: mesecons/mesecons_alias
 Mod: mesecons/mesecons_blinkyplant
@@ -435,5 +435,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* (HEAD detached at 9f74408) 9f74408 remove owner infotext if no owner present
+* (HEAD detached at fb42be6) fb42be6 nil checks
 Mod: mobs_redo/mobs_redo

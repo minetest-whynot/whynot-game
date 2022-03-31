@@ -11,4 +11,5 @@ read_globals = {
 	"vector", "default", "ItemStack",
 	"dump", "sfinv", "intllib",
 	"unified_inventory",
+	"cmi",
 }

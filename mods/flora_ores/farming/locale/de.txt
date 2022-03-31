@@ -2,7 +2,8 @@
 # textdomain: farming
 # author: Xanthin
 # author: TheDarkTiger
-# last update: 2020/Apr/26
+# author: SwissalpS
+# last update: 2022/Feb/26
 
 ###### folder . ######
 
@@ -10,22 +11,22 @@
 Seed=Saatgut
 
 ### compatibility.lua ###
-Banana=
-Banana Leaves=
-Orange=
-Strawberry=
+Banana=Banane
+Banana Leaves=Bananenblätter
+Orange=Apfelsine
+Strawberry=Erdbeere
 
 ### food.lua ###
 Sugar=Zucker
-Salt=
-Rose Water=
-Turkish Delight=
-Garlic Bread=
+Salt=Salz
+Rose Water=Rosenwasser
+Turkish Delight=Lokum
+Garlic Bread=Knoblauchbrot
 Donut=Donut
 Chocolate Donut=Schokodonut
 Apple Donut=Apfeldonut
-Porridge=
-Jaffa Cake=
+Porridge=Haferbrei
+Jaffa Cake=Jaffakeks
 
 ### hoes.lua ###
 Hoe=Hacke
@@ -36,8 +37,8 @@ Bronze Hoe=Bronzehacke
 Mese Hoe=Mesehacke
 Diamond Hoe=Diamanthacke
 # Surcharge du mod [Toolranks] à faire #
-Hoe Bomb (use or throw on grassy areas to hoe land)=
-Mithril Scythe (Right-click to harvest and replant crops)=
+Hoe Bomb (use or throw on grassy areas to hoe land)=Hackbombe (Auf Grasland werfen oder benutzen)
+Mithril Scythe (Right-click to harvest and replant crops)=Mithril-Sense (Rechts-Klick zum Ernten und Wiedereinpflanzen)
 # Surcharge du mod [Toolranks] à faire #
 
 ### soil.lua ###
@@ -45,15 +46,15 @@ Soil=Ackerboden
 Wet Soil=Bewässerter Ackerboden
 
 ### utensils.lua ###
-Wooden Bowl=
-Saucepan=
-Cooking Pot=
-Baking Tray=
-Skillet=
-Mortar and Pestle=
-Cutting Board=
-Juicer=
-Glass Mixing Bowl=
+Wooden Bowl=Holzschale
+Saucepan=Kasserolle
+Cooking Pot=Kochtopf
+Baking Tray=Kuchenblech
+Skillet=Bratpfanne
+Mortar and Pestle=Mörser und Stößel
+Cutting Board=Schneidebrett
+Juicer=Entsafter
+Glass Mixing Bowl=Glasschüssel
 
 
 ###### folder ./crops ######
@@ -67,28 +68,28 @@ Green Beans=Grüne Bohnen
 Bean Pole (place on soil before planting beans)=Bohnenstange (vor dem Pflanzen der Bohnen auf den\nAckerboden stellen)
 
 ### beetroot.lua ###
-Beetroot=
-Beetroot Soup=
+Beetroot=Rote Beete
+Beetroot Soup=Rote Beete Suppe
 
 ### blueberry.lua ###
 Blueberries=Blaubeeren
 Blueberry Muffin=Blaubeermuffin
-Blueberry Pie=
+Blueberry Pie=Blaubeerkuchen
 
 ### carrot.lua ##
 Carrot=Möhre
-Carrot Juice=
+Carrot Juice=Möhrensaft
 Golden Carrot=Goldene Möhre
 
 ### chili.lua ###
-Chili Pepper=
-Bowl of Chili=
+Chili Pepper=Chili
+Bowl of Chili=Chili Schale
 
 ### cocoa.lua ###
 Cocoa Beans=Kakaobohne
 Cookie=Keks
 Bar of Dark Chocolate=Tafel Zartbitterschokolade
-Chocolate Block=
+Chocolate Block=Schokoladenstück
 
 ### coffee.lua ###
 Coffee Beans=Kaffeebohnen
@@ -97,21 +98,21 @@ Cup of Coffee=Tasse Kaffee
 ### corn.lua ###
 Corn=Mais
 Corn on the Cob=Maiskolben
-Cornstarch=
+Cornstarch=Speisestärke
 Bottle of Ethanol=Flasche Ethanol
 
 ### cotton.lua ###
 Cotton Seed=Baumwollsamen
 Cotton=Baumwolle
-String=
+String=Faden
 
 ### cucumber.lua ###
 Cucumber=Gurke
 
 ### garlic.lua ###
-Garlic clove=
-Garlic=
-Garlic Braid=
+Garlic clove=Knoblauchzehe
+Garlic=Knoblauch
+Garlic Braid=Knoblauchzopf
 
 ### grapes.lua ###
 Grapes=Weintrauben
@@ -122,7 +123,7 @@ Hemp Seed=Hanfsamen
 Hemp Leaf=Hanfblatt
 Bottle of Hemp Oil=Flasche mit Hanföl
 Hemp Fibre=Hanffaser
-Hemp Block=
+Hemp Block=Hanfblock
 Hemp Rope=Hanfseil
 
 ### melon.lua ###
@@ -130,33 +131,33 @@ Melon Slice=Melonenscheibe
 Melon=Melone
 
 ### onion.lua ###
-Onion=
+Onion=Zwiebel
 
 ### peas.lua ###
-Pea Pod=
-Peas=
-Pea Soup=
+Pea Pod=Erbsenschote
+Peas=Erbsen
+Pea Soup=Erbsensuppe
 
 ### pepper.lua ###
-Peppercorn=
-Pepper=
-Ground Pepper=
+Peppercorn=Pfefferkorn
+Pepper=Pfeffer
+Ground Pepper=Gemahlener Pfeffer
 
 ### pinapple.lua ###
-Pineapple Top=
-Pineapple=
-Pineapple Ring=
-Pineapple Juice=
+Pineapple Top=Ananasdeckel
+Pineapple=Ananas
+Pineapple Ring=Ananasscheibe
+Pineapple Juice=Ananassaft
 
 ### potato.lua ###
 Potato=Kartoffel
 Baked Potato=Ofenkartoffel
-Cucumber and Potato Salad=
+Cucumber and Potato Salad=Gurken und Tomatensalat
 
 ### pumpkin.lua ###
 Pumpkin Slice=Kürbisscheibe
 Jack 'O Lantern (punch to turn on and off)=Kürbislaterne (Punch zum Ein- und Ausschalten)
-Scarecrow Bottom=
+Scarecrow Bottom=Vogelscheuchengestell
 Pumpkin Bread=Kürbisbrot
 Pumpkin Dough=Kürbisteig
 Pumpkin=Kürbis
@@ -170,16 +171,16 @@ Rhubarb=Rhabarber
 Rhubarb Pie=Rhabarberkuchen
 
 ### ryeoatrice.lua ###
-Rye=
-Rye seed=
-Oat=
-Oat seed=
-Rice=
-Rice grains=
-Rice Bread=
-Rice Flour=
-Multigrain Flour=
-Multigrain Bread=
+Rye=Roggen
+Rye seed=Roggensaat
+Oat=Hafer
+Oat seed=Hafersamen
+Rice=Reis
+Rice grains=Reissaat
+Rice Bread=Reiswaffel
+Rice Flour=Reismehl
+Multigrain Flour=Mehrkornmehl
+Multigrain Bread=Mehrkornbrot
 
 ### tomato.lua ###
 Tomato=Tomate
@@ -190,6 +191,6 @@ Wheat=Weizen
 Straw=Stroh
 Flour=Mehl
 Bread=Brot
-Sliced Bread=
-Toast=
-Toast Sandwich=
+Sliced Bread=Geschnittenes Brot
+Toast=Toast
+Toast Sandwich=Toast Sandwich

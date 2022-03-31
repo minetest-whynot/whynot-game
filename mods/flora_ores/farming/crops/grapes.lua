@@ -229,6 +229,7 @@ minetest.register_node("farming:grapes_8", table.copy(def))
 
 -- add to registered_plants
 farming.registered_plants["farming:grapes"] = {
+	trellis = "farming:trellis",
 	crop = "farming:grapes",
 	seed = "farming:grapes",
 	minlight = farming.min_light,

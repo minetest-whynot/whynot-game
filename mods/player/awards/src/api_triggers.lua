@@ -1,6 +1,10 @@
 -- Copyright (c) 2013-18 rubenwardy. MIT.
 
-local S, NS = awards.gettext, awards.ngettext
+local function ngettext(msgid, msgid_plural, n, ...)
+	return awards.get_translator(n==1 and msgid or msgid_plural, ...)
+end
+
+local S, NS = awards.get_translator, ngettext
 
 awards.on = {}
 
@@ -139,6 +143,12 @@ function awards.register_trigger(tname, tdef)
 		end
 
 		function tdef.notify(player, key, n)
+
+			assert(player)
+			assert(player.is_player)
+			assert(player:is_player())
+			assert(key)
+
 			n = n or 1
 
 			if tdef.key_is_item and key:sub(1, 6) ~= "group:" then
@@ -152,7 +162,6 @@ function awards.register_trigger(tname, tdef)
 				end
 			end
 
-			assert(player and player.is_player and player:is_player() and key)
 			local name = player:get_player_name()
 			local data = awards.player(name)
 
@@ -178,6 +187,7 @@ function awards.register_trigger(tname, tdef)
 					return entry.award
 				end
 			end)
+
 		end
 
 		awards["notify_" .. tname] = tdef.notify

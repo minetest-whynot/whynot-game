@@ -83,7 +83,7 @@ minetest.register_node("farming:pea_5", table.copy(def))
 
 -- add to registered_plants
 farming.registered_plants["farming:pea_pod"] = {
-	crop = "farming:pea_pod",
+	crop = "farming:pea",
 	seed = "farming:pea_pod",
 	minlight = farming.min_light,
 	maxlight = farming.max_light,

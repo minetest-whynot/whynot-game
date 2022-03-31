@@ -91,24 +91,6 @@ for i = 1, 14 do
 	end
 end
 
-local default_dyes = {
-	"black",
-	"blue",
-	"brown",
-	"cyan",
-	"dark_green",
-	"dark_grey",
-	"green",
-	"grey",
-	"magenta",
-	"orange",
-	"pink",
-	"red",
-	"violet",
-	"white",
-	"yellow"
-}
-
 -- reverse lookups for getpaletteidx()
 
 unifieddyes.gpidx_aliases = {
