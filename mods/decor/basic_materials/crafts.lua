@@ -16,6 +16,10 @@ local materials = {
 	silicon = "mesecons_materials:silicon",
 }
 
+if minetest.get_modpath("moreores") then
+	materials.silver_ingot = "moreores:silver_ingot"
+end
+
 if minetest.get_modpath("mcl_core") then
 	materials = {
 		dirt = "mcl_core:dirt",
@@ -376,22 +380,24 @@ minetest.register_craft( {
 	},
 })
 
-minetest.register_craft( {
-	output = "basic_materials:silver_wire 2",
-	type = "shapeless",
-	recipe = {
-		materials.silver_ingot,
-		"basic_materials:empty_spool",
-		"basic_materials:empty_spool",
-	},
-})
+if materials.silver_ingot then
+	minetest.register_craft( {
+		output = "basic_materials:silver_wire 2",
+		type = "shapeless",
+		recipe = {
+			materials.silver_ingot,
+			"basic_materials:empty_spool",
+			"basic_materials:empty_spool",
+		},
+	})
 
-minetest.register_craft( {
-	type = "shapeless",
-	output = "basic_materials:brass_ingot 3",
-	recipe = {
-		materials.copper_ingot,
-		materials.copper_ingot,
-		materials.silver_ingot,
-	},
-})
+	minetest.register_craft( {
+		type = "shapeless",
+		output = "basic_materials:brass_ingot 3",
+		recipe = {
+			materials.copper_ingot,
+			materials.copper_ingot,
+			materials.silver_ingot,
+		},
+	})
+end

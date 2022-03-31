@@ -70,7 +70,7 @@ Embedded into game repository:
 Mod: libs/whynot_compat
 
 origin	https://gitlab.com/dacmot/awards.git (fetch)
-* (HEAD detached at origin/master) 16ca508 Merge remote-tracking branch 'remotes/dacmot/punch_kill_entities'
+* (HEAD detached at 16ca508) 16ca508 Merge remote-tracking branch 'remotes/dacmot/punch_kill_entities'
 Mod: player/awards
 
 bell07	https://github.com/bell07/character_creator (fetch)
@@ -262,7 +262,7 @@ origin	https://github.com/Ezhh/abriglass/ (fetch)
 Mod: decor/abriglass
 
 origin	https://github.com/mt-mods/basic_materials (fetch)
-* (HEAD detached at 8631a26) 8631a26 Hades branch improvements (#12)
+* (HEAD detached at 9d55f99) 9d55f99 Fix item alias in Hades Revisited integration. (#13)
 Mod: decor/basic_materials
 
 origin	https://github.com/Napiophelios/campfire (fetch)
