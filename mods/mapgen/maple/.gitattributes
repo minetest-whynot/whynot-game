@@ -1,7 +1,9 @@
 .gitattributes text
 .gitignore     text
 
-*.pl    text
+mod.conf       text
+.luacheckrc    text
+
 *.lua   text
 *.tr    text
 *.md    text

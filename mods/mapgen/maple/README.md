@@ -1,3 +1,5 @@
+![luacheck](https://github.com/dacmot/maple/actions/workflows/luacheck.yml/badge.svg)
+
 # Maple
 Maple Tree for Minetest by ExeterDad
 

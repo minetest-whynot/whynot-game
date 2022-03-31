@@ -168,7 +168,7 @@ origin	https://github.com/Treer/cloudlands/ (fetch)
 Mod: mapgen/cloudlands
 
 origin	https://notabug.org/dacmot/maple (fetch)
-* (HEAD detached at 56ec069) 56ec069 Update dependencies
+* (HEAD detached at 97a4f2b) 97a4f2b Add luacheck CI
 Mod: mapgen/maple
 
 origin	https://github.com/minetest-mods/meseor (fetch)

@@ -1,5 +1,3 @@
-local S = maple.get_translator;
-
 minetest.register_decoration({
   deco_type = "schematic",
   place_on = {"default:dirt_with_grass"},
