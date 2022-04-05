@@ -400,7 +400,7 @@ origin	https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin	https://github.com/minetest-mods/mesecons (fetch)
-* (HEAD detached at b630ff9) b630ff9 Fix error prone negation reported by luacheck
+* (HEAD detached at f4070d3) f4070d3 Use FIFO queue for mvps (#599)
 Mod: mesecons/mesecons
 Mod: mesecons/mesecons_alias
 Mod: mesecons/mesecons_blinkyplant
