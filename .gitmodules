@@ -100,9 +100,6 @@
 [submodule "builder/mods_src/libs/intllib"]
 	path = builder/mods_src/libs/intllib
 	url = https://github.com/minetest-mods/intllib
-[submodule "builder/mods_src/libs/craftguide_reveal"]
-	path = builder/mods_src/libs/craftguide_reveal
-	url = https://github.com/minetest-mods/craftguide_reveal
 [submodule "builder/mods_src/maidroid"]
 	path = builder/mods_src/maidroid
 	url = https://github.com/thePlasm/maidroid
@@ -226,9 +223,6 @@
 [submodule "builder/mods_src/food_modpack"]
 	path = builder/mods_src/food_modpack
 	url = https://github.com/rubenwardy/food
-[submodule "builder/mods_src/libs/craftguide"]
-	path = builder/mods_src/libs/craftguide
-	url = https://github.com/minetest-mods/craftguide/
 [submodule "builder/mods_src/homedecor_modpack"]
 	path = builder/mods_src/homedecor_modpack
 	url = https://github.com/mt-mods/homedecor_modpack
