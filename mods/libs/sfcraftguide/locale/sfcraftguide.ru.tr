@@ -1,0 +1,57 @@
+# textdomain: sfcraftguide
+
+### craftguide.lua ###
+Any black dye=Любая чёрная краска
+Any black flower=Любой чёрный цветок
+Any blue dye=Любая синяя краска
+Any blue flower=Любой синий цветок
+Any brown dye=Любая коричневая краска
+Any coal=Любой уголь
+Any cyan dye=Любая сине-зелёная краска
+Any dark green dye=Любая тёмно-зелёная краска
+Any dark grey dye=Любая тёмно-серая краска
+Any green dye=Любая зелёная краска
+Any green flower=Любой зелёный цветок
+Any grey dye=Любая серая краска
+Any item belonging to the group(s): @1=Любой предмет из групп(ы): @1
+Any kind of stone block=Любой каменный блок
+Any magenta dye=Любая пурпурная краска
+Any orange dye=Любая оранжевая краска
+Any orange flower=Любой оранжевый цветок
+Any pink dye=Любая розовая краска
+Any red dye=Любая красная краска
+Any red flower=Любой красный цветок
+Any sand=Любой песок
+Any stick=Любая палка
+Any vessel=Любой сосуд
+Any violet dye=Любая фиолетовая краска
+Any violet flower=Любой фиолетовый цветок
+Any white dye=Любая белая краска
+Any white flower=Любой белый цветок
+Any wood planks=Любые деревянные палки
+Any wool=Любая шерсть
+Any yellow dye=Любая жёлтая краска
+Any yellow flower=Любой жёлтый цветок
+Fuel=Топливо
+# Label for group ingredients
+G=
+Unknown Item=Неизвествый предмет
+
+### sfinv.lua ###
+Click again to show recipes.=Нажмите снова для отображения рецептов.
+Click again to show usages.=
+Cooking time: @1=Время изготовления: @1
+Next page=Следующая страница
+Next recipe=Следующий рецепт
+No items to show.=Нет элементов для отображения.
+No recipes.=Нет рецептов.
+No usages.=
+Previous page=Предыдущая страница
+Previous recipe=Предыдущий рецепт
+Recipe @1 of @2=
+Recipe is too big to be displayed.=Рецепт слишком большой для показа
+Recipes=Рецепты
+Reset=Сбросить
+Search=Поиск
+Shapeless=
+Usage @1 of @2=

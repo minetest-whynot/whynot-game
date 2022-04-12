@@ -238,3 +238,6 @@
 [submodule "builder/mods_src/player/clothing"]
 	path = builder/mods_src/player/clothing
 	url = https://github.com/stujones11/clothing
+[submodule "builder/mods_src/libs/sfcraftguide"]
+	path = builder/mods_src/libs/sfcraftguide
+	url = https://github.com/dacmot/sfcraftguide.git
