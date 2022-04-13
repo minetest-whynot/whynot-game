@@ -123,7 +123,7 @@ origin	https://github.com/minetest-mods/wielded_light (fetch)
 Mod: player/wielded_light
 
 origin	https://github.com/minetest-mods/3d_armor (fetch)
-* (HEAD detached at ac445a6) ac445a6 use `player_api` to register player model
+* (HEAD detached at e1a262b) e1a262b add feather falling (#73)
 Mod: 3d_armor/3d_armor
 Mod: 3d_armor/3d_armor_sfinv
 Mod: 3d_armor/3d_armor_stand
