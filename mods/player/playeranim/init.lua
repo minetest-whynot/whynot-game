@@ -274,7 +274,15 @@ end
 
 
 local function animate_player(player, dtime)
-	local animation = get_animation(player).animation
+	local data = get_animation(player)
+	if not data then
+		-- Minetest Engine workaround for 5.6.0-dev and older
+		-- minetest.register_globalstep may call to this function before the player is
+		-- initialized by minetest.register_on_joinplayer in player_api
+		return
+	end
+
+	local animation = data.animation
 
 	-- Yaw history
 	if animation == "lay" or animation == "sit" then

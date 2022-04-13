@@ -107,7 +107,7 @@ origin	https://github.com/dacmot/moarmour (fetch)
 Mod: player/moarmour
 
 origin	https://github.com/minetest-mods/playeranim (fetch)
-* (HEAD detached at 9dab03f) 9dab03f Clear up all animations of all registered models (#1)
+* (HEAD detached at e0acae8) e0acae8 Workaround for Minetest #12189
 Mod: player/playeranim
 
 origin	https://repo.or.cz/minetest_show_wielded_item.git (fetch)
