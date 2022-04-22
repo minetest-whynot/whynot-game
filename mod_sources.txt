@@ -1,5 +1,5 @@
 
-origin	https://github.com/bell07/minetest_game.git (fetch)
+origin	https://github.com/bell07/minetest_game (fetch)
 * (HEAD detached at b89cb50) b89cb50 player_api - fix compatibility code
 Mod: minetest_game/mods/beds
 Mod: minetest_game/mods/binoculars
@@ -42,7 +42,7 @@ origin	https://repo.or.cz/minetest_doc_basics.git (fetch)
 Mod: libs/doc_basics
 
 origin	https://repo.or.cz/minetest_doc_items.git (fetch)
-* master 642da2e [origin/master] Remove item name override of air
+* (HEAD detached at 642da2e) 642da2e Remove item name override of air
 Mod: libs/doc_items
 
 origin	https://repo.or.cz/minetest_doc_minetest_game.git (fetch)
@@ -58,14 +58,15 @@ origin	https://github.com/minetest-mods/intllib (fetch)
 Mod: libs/intllib
 
 origin	https://github.com/dacmot/sfcraftguide.git (fetch)
-* main 4282141 [origin/main] Add screenshot for ContentDB
+* main c939ce0 [origin/main] Merge pull request #2 from dacmot/Lazerbeak12345-patch-1
 Mod: libs/sfcraftguide
 
-Embedded into game repository:
+origin	https://github.com/bell07/minetest-whynot_compat (fetch)
+* (HEAD detached at 4e743e9) 4e743e9 solve sand recipe overlap between lemon vs egg
 Mod: libs/whynot_compat
 
 origin	https://gitlab.com/dacmot/awards.git (fetch)
-* master 16ca508 [origin/master] Merge remote-tracking branch 'remotes/dacmot/punch_kill_entities'
+* (HEAD detached at 16ca508) 16ca508 Merge remote-tracking branch 'remotes/dacmot/punch_kill_entities'
 Mod: player/awards
 
 origin	https://github.com/bell07/character_creator (fetch)
@@ -93,11 +94,11 @@ origin	https://github.com/minetest-mods/hbsprint (fetch)
 Mod: player/hbsprint
 
 origin	https://repo.or.cz/minetest_hudbars.git (fetch)
-* (HEAD detached at 812b253) 812b253 Version 2.3.3
+* master 812b253 [origin/master] Version 2.3.3
 Mod: player/hudbars
 
 origin	https://github.com/dacmot/moarmour (fetch)
-* master 2523692 [origin/master] Update README.md
+* (HEAD detached at 2523692) 2523692 Update README.md
 Mod: player/moarmour
 
 origin	https://github.com/minetest-mods/playeranim (fetch)
@@ -150,7 +151,7 @@ origin	https://gitlab.com/rautars/weather_pack.git (fetch)
 Mod: ambience/weather_pack
 
 origin	https://notabug.org/TenPlus1/farming (fetch)
-* master 0b06c7c [origin/master] add sound to hemp block
+* (HEAD detached at 0b06c7c) 0b06c7c add sound to hemp block
 Mod: flora_ores/farming
 
 origin	https://github.com/bell07/minetest-mese_crystals (fetch)
@@ -162,7 +163,7 @@ origin	https://github.com/Treer/cloudlands/ (fetch)
 Mod: mapgen/cloudlands
 
 origin	https://notabug.org/dacmot/maple (fetch)
-* master 97a4f2b [origin/master] Add luacheck CI
+* (HEAD detached at 97a4f2b) 97a4f2b Add luacheck CI
 Mod: mapgen/maple
 
 origin	https://github.com/minetest-mods/meseor (fetch)
@@ -182,7 +183,7 @@ origin	https://github.com/taikedz/everamzah-backpacks (fetch)
 Mod: tools/backpacks
 
 origin	https://notabug.org/tenplus1/bonemeal (fetch)
-* master 4c50a02 [origin/master] change of jungle grass on rainforest litter (thx nixnoxus)
+* (HEAD detached at 4c50a02) 4c50a02 change of jungle grass on rainforest litter (thx nixnoxus)
 Mod: tools/bonemeal
 
 origin	https://github.com/SmallJoker/boost_cart (fetch)
@@ -234,7 +235,7 @@ origin	https://github.com/lisacvuk/minetest-toolranks (fetch)
 Mod: tools/toolranks
 
 origin	https://github.com/minetest-mods/trash_can (fetch)
-* (HEAD detached at 423b0f2) 423b0f2 Use listrings for inventories (#12)
+* master 423b0f2 [origin/master] Use listrings for inventories (#12)
 Mod: tools/trash_can
 
 origin	https://github.com/minetest-mods/woodcutting (fetch)
@@ -256,7 +257,7 @@ origin	https://github.com/Ezhh/abriglass/ (fetch)
 Mod: decor/abriglass
 
 origin	https://github.com/mt-mods/basic_materials (fetch)
-* master 9d55f99 [origin/master] Fix item alias in Hades Revisited integration. (#13)
+* (HEAD detached at 9d55f99) 9d55f99 Fix item alias in Hades Revisited integration. (#13)
 Mod: decor/basic_materials
 
 origin	https://github.com/Napiophelios/campfire (fetch)
@@ -312,11 +313,11 @@ origin	https://github.com/minetest-mods/ts_furniture (fetch)
 Mod: decor/ts_furniture
 
 origin	https://github.com/mt-mods/unifieddyes (fetch)
-* master 26994e3 [origin/master] fix https://github.com/mt-mods/unifieddyes/issues/6
+* (HEAD detached at 26994e3) 26994e3 fix https://github.com/mt-mods/unifieddyes/issues/6
 Mod: decor/unifieddyes
 
 origin	https://github.com/mt-mods/homedecor_modpack (fetch)
-* master 3ba59dc2 [origin/master] fix almost all warning spam (#26)
+* (HEAD detached at 3ba59dc2) 3ba59dc2 fix almost all warning spam (#26)
 Mod: homedecor_modpack/building_blocks
 Mod: homedecor_modpack/fake_fire
 Mod: homedecor_modpack/lavalamp
@@ -351,7 +352,7 @@ Mod: homedecor_modpack/homedecor_wardrobe
 Mod: homedecor_modpack/homedecor_windows_and_treatments
 
 origin	https://github.com/mt-mods/home_workshop_modpack (fetch)
-* master eacbe80 [origin/master] Merge pull request #6 from mt-mods/vending_crafts
+* (HEAD detached at eacbe80) eacbe80 Merge pull request #6 from mt-mods/vending_crafts
 Mod: home_workshop_modpack/home_vending_machines
 Mod: home_workshop_modpack/home_workshop_misc
 
@@ -421,11 +422,11 @@ Mod: mesecons/mesecons_walllever
 Mod: mesecons/mesecons_wires
 
 origin	https://codeberg.org/Hamlet/mobs_ghost_redo (fetch)
-* (HEAD detached at ac9c013) ac9c013 v0.7.0
+* master ac9c013 [origin/master] v0.7.0
 Mod: mobs_redo/mobs_ghost_redo
 
 origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
-* (HEAD detached at ae0e50b) ae0e50b add spanish translation (thanks mckaygerhard)
+* master ae0e50b [origin/master] add spanish translation (thanks mckaygerhard)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)

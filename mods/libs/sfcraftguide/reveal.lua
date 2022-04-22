@@ -126,13 +126,14 @@ local function async_update()
 end
 
 function doc.mark_entry_as_revealed(playername, category_id, entry_id)
-  if not doc.entry_revealed(playername, category_id, entry_id) then
+  -- Temp Fix: `doc.entry_revealed()` crashes on some items like farming:* because they're given the wrong category_id
+  -- if not doc.entry_revealed(playername, category_id, entry_id) then
     orig_mark_entry_as_revealed(playername, category_id, entry_id)
     if not next(async_update_users) then
       minetest.after(0, async_update)
       async_update_users[playername] = true
     end
-  end
+  -- end
 end
 
 

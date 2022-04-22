@@ -20,7 +20,7 @@ end
 
 dofile(modpath.."/craftguide.lua")
 dofile(modpath.."/reveal.lua")
-if (minetest.get_modpath("sfinv") and minetest.global_exists("sfinv")) then
+if (minetest.get_modpath("sfinv") and minetest.global_exists("sfinv")) and sfinv.enabled then
 	dofile(modpath.."/sfinv.lua")
 end
 
