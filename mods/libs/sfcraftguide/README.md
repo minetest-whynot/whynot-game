@@ -3,7 +3,7 @@
 sfcraftguide
 ============
 
-An augmented mtg_craftguide. Supports a progressive reveal system that follows doc items help.
+An augmented mtg_craftguide. Supports a progressive reveal system that follows the documentation mod item help.
 
 Based on [mtg_craftguide](https://github.com/minetest/minetest_game), which itself is based on [craftguide](https://github.com/minetest-mods/craftguide).
 

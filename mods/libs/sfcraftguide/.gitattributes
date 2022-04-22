@@ -17,4 +17,5 @@ LICENSE     text
 *.xcf   binary
 
 .*           export-ignore
+*.cdb.json   export-ignore
 Screenshot.* export-ignore

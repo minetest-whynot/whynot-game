@@ -18,8 +18,14 @@ function sfcg.get_recipes(data, item)
 	return sfcg.recipes_cache[item]
 end
 
+-- Loading components
+
 dofile(modpath.."/craftguide.lua")
-dofile(modpath.."/reveal.lua")
+
+if (minetest.get_modpath("doc") and minetest.get_modpath("doc_items")) then
+	dofile(modpath.."/reveal.lua")
+end
+
 if (minetest.get_modpath("sfinv") and minetest.global_exists("sfinv")) and sfinv.enabled then
 	dofile(modpath.."/sfinv.lua")
 end

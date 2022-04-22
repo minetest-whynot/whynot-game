@@ -58,7 +58,7 @@ origin	https://github.com/minetest-mods/intllib (fetch)
 Mod: libs/intllib
 
 origin	https://github.com/dacmot/sfcraftguide.git (fetch)
-* main c939ce0 [origin/main] Merge pull request #2 from dacmot/Lazerbeak12345-patch-1
+* main 3df7b1e [origin/main] Update README
 Mod: libs/sfcraftguide
 
 origin	https://github.com/bell07/minetest-whynot_compat (fetch)

@@ -55,11 +55,7 @@ local function revealed_show_recipe(recipe, playername)
 end
 
 
-local orig_execute_search = sfcg.execute_search
 local orig_get_usages = sfcg.get_usages
-local orig_get_recipes = sfcg.get_recipes
-local orig_mark_entry_as_revealed = doc.mark_entry_as_revealed
-
 function sfcg.get_usages(data, item)
   local recipes = orig_get_usages(data, item)
   if not recipes then
@@ -77,6 +73,8 @@ function sfcg.get_usages(data, item)
   end
 end
 
+
+local orig_get_recipes = sfcg.get_recipes
 function sfcg.get_recipes(data, item)
   local recipes = orig_get_recipes(data, item)
   if not recipes then
@@ -94,6 +92,8 @@ function sfcg.get_recipes(data, item)
   end
 end
 
+
+local orig_execute_search = sfcg.execute_search
 function sfcg.execute_search(data)
   -- Only needed if doc is an optional dependency
   --
@@ -125,6 +125,8 @@ local function async_update()
   end
 end
 
+
+local orig_mark_entry_as_revealed = doc.mark_entry_as_revealed
 function doc.mark_entry_as_revealed(playername, category_id, entry_id)
   -- Temp Fix: `doc.entry_revealed()` crashes on some items like farming:* because they're given the wrong category_id
   -- if not doc.entry_revealed(playername, category_id, entry_id) then
