@@ -48,7 +48,8 @@ minetest.register_node("mtg_plus:goldwood", {
 	_doc_items_longdesc = S("Goldwood is a precious artificial kind of wood made by enriching wood with gold. Goldwood is fireproof and notable for its bright yellowy appearance."),
 	tiles = {"mtg_plus_goldwood.png"},
 	is_ground_content = false,
-	groups = {choppy = 2, wood = 1},
+	-- Intentionally not part of the 'wood' group, so it can be used for crafting wood items or as fuel
+	groups = {choppy = 2},
 	sounds = default.node_sound_wood_defaults(),
 })
 
@@ -56,10 +57,4 @@ minetest.register_craft({
 	output = "mtg_plus:goldwood",
 	type = "shapeless",
 	recipe = { "group:wood", "default:gold_ingot" },
-})
-
--- Prevent goldwood from being used as furnace fuel
-minetest.clear_craft({
-	type = "fuel",
-	recipe = "mtg_plus:goldwood",
 })

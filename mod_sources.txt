@@ -290,7 +290,7 @@ origin	https://github.com/bell07/minetest-laptop (fetch)
 Mod: decor/laptop
 
 origin	https://repo.or.cz/minetest_mtg_plus.git (fetch)
-* (HEAD detached at d10ec7c) d10ec7c Version 1.1.0
+* (HEAD detached at 5542449) 5542449 Add translator credits
 Mod: decor/mtg_plus
 
 origin	https://github.com/minetest-mods/myroofs (fetch)
