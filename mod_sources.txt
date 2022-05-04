@@ -318,7 +318,7 @@ origin	https://github.com/minetest-mods/ts_furniture (fetch)
 Mod: decor/ts_furniture
 
 origin	https://github.com/mt-mods/unifieddyes (fetch)
-* (HEAD detached at ed89573) ed89573 fix luacheck error
+* (HEAD detached at c079888) c079888 workaround patch for https://github.com/minetest-mods/i3/issues/68 closes https://github.com/mt-mods/unifieddyes/issues/7
 Mod: decor/unifieddyes
 
 origin	https://github.com/mt-mods/homedecor_modpack (fetch)
