@@ -296,7 +296,7 @@ function mobs.drive(entity, moving_anim, stand_anim, can_fly, dtime)
 
 			elseif velo.y > 0 then
 
-				velo.y = velo.y - 0.1
+				velo.y = velo.y - dtime
 
 				if velo.y < 0 then velo.y = 0 end
 			end
@@ -310,7 +310,7 @@ function mobs.drive(entity, moving_anim, stand_anim, can_fly, dtime)
 
 			elseif velo.y < 0 then
 
-				velo.y = velo.y + 0.1
+				velo.y = velo.y + dtime
 
 				if velo.y > 0 then velo.y = 0 end
 			end
@@ -366,7 +366,7 @@ function mobs.drive(entity, moving_anim, stand_anim, can_fly, dtime)
 
 	if not p then return end
 
-	local new_acce = {x = 0, y = -9.81, z = 0}
+	local new_acce = {x = 0, y = entity.fall_speed, z = 0}
 
 	p.y = p.y - 0.5
 

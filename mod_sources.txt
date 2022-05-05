@@ -435,5 +435,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* (HEAD detached at 0e72f0c) 0e72f0c tweak mobs.drive() speed (thanks auouymous)
+* (HEAD detached at 6f8b6fe) 6f8b6fe select proper animation for flying mobs
 Mod: mobs_redo/mobs_redo
