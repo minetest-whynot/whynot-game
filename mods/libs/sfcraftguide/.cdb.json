@@ -1,0 +1,18 @@
+{
+  "type": "MOD",
+  "title": "sfcraftguide",
+  "name": "sfcraftguide",
+  "short_description": "An augmented mtg_craftguide. Supports a progressive reveal system that follows doc items help.",
+  "tags": [
+    "crafting",
+    "survival",
+    "gui",
+    "mtg"
+  ],
+  "dev_state": "WIP",
+  "license": "MIT",
+  "media_license": "CC-BY-SA-3.0",
+  "repo": "https://github.com/dacmot/sfcraftguide",
+  "website": null,
+  "issue_tracker": "https://github.com/dacmot/sfcraftguide/issues"
+}

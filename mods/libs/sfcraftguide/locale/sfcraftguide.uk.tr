@@ -1,0 +1,57 @@
+# textdomain: sfcraftguide
+
+### craftguide.lua ###
+Any black dye=Будь-яка чорна фарба
+Any black flower=Будь-яка чорна квітка
+Any blue dye=Будь-яка синя фарба
+Any blue flower=Будь-яка синя квітка
+Any brown dye=Будь-яка коричнева фарба
+Any coal=Будь-яке вугілля
+Any cyan dye=Будь-яка синьо-зелена фарба
+Any dark green dye=Будь-яка темно-зелена фарба
+Any dark grey dye=Будь-яка темно-сіра фарба
+Any green dye=Будь-яка зелена фарба
+Any green flower=Будь-яка зелена квітка
+Any grey dye=Будь-яка сіра фарба
+Any item belonging to the group(s): @1=Будь-який предмет з груп(и): @1
+Any kind of stone block=Будь-який кам'яний блок
+Any magenta dye=Будь-який пурпурна фарба
+Any orange dye=Будь-яка помаранчева фарба
+Any orange flower=Будь-яка помаранчева квітка
+Any pink dye=Будь-яка рожева фарба
+Any red dye=Будь-яка червона фарба
+Any red flower=Будь-яка червона квітка
+Any sand=Будь-якій пісок
+Any stick=Будь-яка паличка
+Any vessel=Будь-який посуд
+Any violet dye=Будь-яка фіолетова фарба
+Any violet flower=Будь-яка фіолетова квітка
+Any white dye=Будь-яка біла фарба
+Any white flower=Будь-яка біла квітка
+Any wood planks=Будь-які дерев'яні палички
+Any wool=Будь-яка вовна
+Any yellow dye=Будь-яка жовта фарба
+Any yellow flower=Будь-яка жовта квітка
+Fuel=Паливо
+# Label for group ingredients
+G=
+Unknown Item=Невідомий предмет
+
+### sfinv.lua ###
+Click again to show recipes.=Натисніть ще раз, щоб показати рецепти.
+Click again to show usages.=Натисніть ще раз, щоб показати використання.
+Cooking time: @1=Час виготовлення: @1
+Next page=Наступна сторінка
+Next recipe=Наступний рецепт
+No items to show.=Немає елементів для показу.
+No recipes.=Немає рецептів.
+No usages.=Не використовується.
+Previous page=Попередня сторінка
+Previous recipe=Попередній рецепт
+Recipe @1 of @2=Рецепт @1 з @2
+Recipe is too big to be displayed.=Рецепт занадто великий для показу.
+Recipes=Рецепти
+Reset=Скинути
+Search=Пошук
+Shapeless=Безформний
+Usage @1 of @2=Використано @1 з @2

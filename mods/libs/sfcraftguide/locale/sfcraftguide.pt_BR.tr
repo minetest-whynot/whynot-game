@@ -1,0 +1,57 @@
+# textdomain: sfcraftguide
+
+### craftguide.lua ###
+Any black dye=Qualquer tinta preto
+Any black flower=Qualquer flor preta
+Any blue dye=Qualquer tinta azul
+Any blue flower=Qualquer flor azul
+Any brown dye=Qualquer tinta marrom
+Any coal=Qualquer carvão
+Any cyan dye=Qualquer tinta ciano
+Any dark green dye=Qualquer tinta cinza-escuro
+Any dark grey dye=Qualquer tinta cinza-escuro
+Any green dye=Qualquer tinta verde
+Any green flower=Qualquer flor verde
+Any grey dye=Qualquer tinta cinza
+Any item belonging to the group(s): @1=Qualquer item pertencente ao(s) grupo(s): @1
+Any kind of stone block=Qualquer tipo de bloco de pedra
+Any magenta dye=Qualquer tinta magenta
+Any orange dye=Qualquer tinta laranja
+Any orange flower=Qualquer flor laranja
+Any pink dye=Qualquer tinta rosa
+Any red dye=Qualquer tinta vermelha
+Any red flower=Qualquer flor vermelha
+Any sand=Qualquer areia
+Any stick=Qualquer graveto
+Any vessel=Qualquer navio
+Any violet dye=Qualquer tinta violeta
+Any violet flower=Qualquer flor violeta
+Any white dye=Qualquer tinta branca
+Any white flower=Qualquer flor branca
+Any wood planks=Qualquer tábua de madeira
+Any wool=Qualquer madeira
+Any yellow dye=Qualquer tinta amarela
+Any yellow flower=Qualquer flor amarela
+Fuel=Combustível
+# Label for group ingredients
+G=G
+Unknown Item=Item Desconhecido
+
+### sfinv.lua ###
+Click again to show recipes.=Clique novamente para mostrar receitas.
+Click again to show usages.=Clique novamente para mostrar os usos.
+Cooking time: @1=Tempo de Cozimento: @1
+Next page=Próxima página
+Next recipe=Próxima receita
+No items to show.=Nenhum item para mostrar.
+No recipes.=Nenhuma receita.
+No usages.=Nenhum uso.
+Previous page=Página anterior
+Previous recipe=Receita anterior
+Recipe @1 of @2=Receita @1 de @2
+Recipe is too big to be displayed.=Receita é muito grande para ser exibida.
+Recipes=Receitas
+Reset=Redefinir
+Search=Buscar
+Shapeless=Sem forma
+Usage @1 of @2=Uso @1 de @2

@@ -14,7 +14,7 @@ rm "$LOG" 2>/dev/null
 ## Sync minetest_game
 # exclude env_sounds => Tenplus1/ambience is used
 # exclude farming =>Tenplus1/farming is used
-# exclude mtg_craftguide => minetest-mods/craftguide is used
+# exclude mtg_craftguide => sfcraftguide is used
 # exclude player_api => bell07/player_api_modpack is used
 
 mod_install minetest_game --exclude=farming --exclude=env_sounds --exclude=mtg_craftguide minetest_game/mods/*
