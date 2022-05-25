@@ -102,7 +102,7 @@ origin	https://github.com/dacmot/moarmour (fetch)
 Mod: player/moarmour
 
 origin	https://github.com/minetest-mods/playeranim (fetch)
-* (HEAD detached at 9dab03f) 9dab03f Clear up all animations of all registered models (#1)
+* (HEAD detached at e0acae8) e0acae8 Workaround for Minetest #12189
 Mod: player/playeranim
 
 origin	https://repo.or.cz/minetest_show_wielded_item.git (fetch)
@@ -118,7 +118,7 @@ origin	https://github.com/minetest-mods/wielded_light (fetch)
 Mod: player/wielded_light
 
 origin	https://github.com/minetest-mods/3d_armor (fetch)
-* (HEAD detached at ac445a6) ac445a6 use `player_api` to register player model
+* (HEAD detached at e1a262b) e1a262b add feather falling (#73)
 Mod: 3d_armor/3d_armor
 Mod: 3d_armor/3d_armor_sfinv
 Mod: 3d_armor/3d_armor_stand
@@ -285,7 +285,7 @@ origin	https://github.com/bell07/minetest-laptop (fetch)
 Mod: decor/laptop
 
 origin	https://repo.or.cz/minetest_mtg_plus.git (fetch)
-* master d10ec7c [origin/master] Version 1.1.0
+* (HEAD detached at 5542449) 5542449 Add translator credits
 Mod: decor/mtg_plus
 
 origin	https://github.com/minetest-mods/myroofs (fetch)
@@ -313,7 +313,7 @@ origin	https://github.com/minetest-mods/ts_furniture (fetch)
 Mod: decor/ts_furniture
 
 origin	https://github.com/mt-mods/unifieddyes (fetch)
-* (HEAD detached at 26994e3) 26994e3 fix https://github.com/mt-mods/unifieddyes/issues/6
+* (HEAD detached at c079888) c079888 workaround patch for https://github.com/minetest-mods/i3/issues/68 closes https://github.com/mt-mods/unifieddyes/issues/7
 Mod: decor/unifieddyes
 
 origin	https://github.com/mt-mods/homedecor_modpack (fetch)
@@ -395,7 +395,7 @@ origin	https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin	https://github.com/minetest-mods/mesecons (fetch)
-* (HEAD detached at b630ff9) b630ff9 Fix error prone negation reported by luacheck
+* (HEAD detached at f4070d3) f4070d3 Use FIFO queue for mvps (#599)
 Mod: mesecons/mesecons
 Mod: mesecons/mesecons_alias
 Mod: mesecons/mesecons_blinkyplant
@@ -430,5 +430,5 @@ origin	https://notabug.org/TenPlus1/mobs_monster (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin	https://notabug.org/TenPlus1/mobs_redo (fetch)
-* (HEAD detached at fb42be6) fb42be6 nil checks
+* (HEAD detached at 6f8b6fe) 6f8b6fe select proper animation for flying mobs
 Mod: mobs_redo/mobs_redo

@@ -28,7 +28,7 @@ local use_cmi = minetest.global_exists("cmi")
 
 mobs = {
 	mod = "redo",
-	version = "20220314",
+	version = "20220501",
 	intllib = S,
 	invis = minetest.global_exists("invisibility") and invisibility or {}
 }
@@ -1054,7 +1054,7 @@ end
 -- is mob facing a cliff
 function mob_class:is_at_cliff()
 
-	if self.fear_height == 0 then -- 0 for no falling protection!
+	if self.driver or self.fear_height == 0 then -- 0 for no falling protection!
 		return false
 	end
 
@@ -2389,11 +2389,22 @@ function mob_class:do_states(dtime)
 		else
 			self:set_velocity(self.walk_velocity)
 
+			-- figure out which animation to use while in motion
 			if self:flight_check()
 			and self.animation
 			and self.animation.fly_start
 			and self.animation.fly_end then
-				self:set_animation("fly")
+
+				local on_ground = minetest.registered_nodes[self.standing_on].walkable
+				local in_water = minetest.registered_nodes[self.standing_in].groups.water
+
+				if on_ground and in_water then
+					self:set_animation("fly")
+				elseif on_ground then
+					self:set_animation("walk")
+				else
+					self:set_animation("fly")
+				end
 			else
 				self:set_animation("walk")
 			end

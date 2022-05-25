@@ -31,7 +31,6 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 unifieddyes = {}
 
-local S = minetest.get_translator("unifieddyes")
 local modpath=minetest.get_modpath(minetest.get_current_modname())
 
 dofile(modpath.."/color-tables.lua")

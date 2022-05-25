@@ -7,7 +7,7 @@ The focus lies on:
 * Doors
 * Metals
 
-Current version: 1.1.0
+Current version: 1.1.2
 For Minetest/Minetest Game 5.1.0 or later
 
 ## Special stuff
@@ -43,3 +43,6 @@ They are licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-s
 * `mtg_plus_door_icesteel_open.ogg`: Derivate work of `door_steel_door_open.ogg` by HazMatt from Minetest Game, licensed under CC-BY 3.0
 * Everything else is licensed under the MIT License.
 
+### Translators
+* German: Wuzzy
+* French: Duvalon
