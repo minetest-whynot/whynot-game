@@ -254,7 +254,7 @@ function mobs.drive(entity, moving_anim, stand_anim, can_fly, dtime)
 		-- move forwards
 		if ctrl.up then
 
-			entity.v = entity.v + entity.accel / 10
+			entity.v = entity.v + entity.accel * dtime
 
 		-- move backwards
 		elseif ctrl.down then
@@ -263,7 +263,7 @@ function mobs.drive(entity, moving_anim, stand_anim, can_fly, dtime)
 				return
 			end
 
-			entity.v = entity.v - entity.accel / 10
+			entity.v = entity.v - entity.accel * dtime
 		end
 
 		-- mob rotation
@@ -296,7 +296,7 @@ function mobs.drive(entity, moving_anim, stand_anim, can_fly, dtime)
 
 			elseif velo.y > 0 then
 
-				velo.y = velo.y - 0.1
+				velo.y = velo.y - dtime
 
 				if velo.y < 0 then velo.y = 0 end
 			end
@@ -310,7 +310,7 @@ function mobs.drive(entity, moving_anim, stand_anim, can_fly, dtime)
 
 			elseif velo.y < 0 then
 
-				velo.y = velo.y + 0.1
+				velo.y = velo.y + dtime
 
 				if velo.y > 0 then velo.y = 0 end
 			end
@@ -355,14 +355,10 @@ function mobs.drive(entity, moving_anim, stand_anim, can_fly, dtime)
 	end
 
 	-- enforce speed limit forward and reverse
-	local max_spd = entity.max_speed_reverse
-
-	if get_sign(entity.v) >= 0 then
-		max_spd = entity.max_speed_forward
-	end
-
-	if abs(entity.v) > max_spd then
-		entity.v = entity.v - get_sign(entity.v)
+	if entity.v > entity.max_speed_forward then
+		entity.v = entity.max_speed_forward
+	elseif entity.v < -entity.max_speed_reverse then
+		entity.v = -entity.max_speed_reverse
 	end
 
 	-- Set position, velocity and acceleration
@@ -370,7 +366,7 @@ function mobs.drive(entity, moving_anim, stand_anim, can_fly, dtime)
 
 	if not p then return end
 
-	local new_acce = {x = 0, y = -9.81, z = 0}
+	local new_acce = {x = 0, y = entity.fall_speed, z = 0}
 
 	p.y = p.y - 0.5
 

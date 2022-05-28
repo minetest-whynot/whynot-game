@@ -297,7 +297,7 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-	output = "default:snowblock 4",
+	output = "default:snowblock",
 	recipe = { { "mtg_plus:snow_brick" } },
 })
 

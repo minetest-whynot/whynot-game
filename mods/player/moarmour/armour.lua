@@ -445,31 +445,36 @@ if minetest.get_modpath("nyancats_plus") and minetest.get_modpath("waffles") and
   minetest.register_tool("moarmour:helmet_tacnayn", {
     description = S("Tac Nayn Helmet"),
     inventory_image = "moarmour_inv_helmet_tacnayn.png",
-    groups = {armor_head=30, armor_heal=30, armor_use=0, physics_jump=0.05, physics_speed=0.10, radiation=40, armor_fire=5},
+    groups =
+      {armor_head=30, armor_heal=30, armor_use=0, physics_jump=0.05, physics_speed=0.10, radiation=40, armor_fire=5},
     wear = 0,
   })
   minetest.register_tool("moarmour:chestplate_tacnayn", {
     description = S("Tac Nayn Chestplate"),
     inventory_image = "moarmour_inv_chestplate_tacnayn.png",
-    groups = {armor_torso=40, armor_heal=30, armor_use=0, physics_jump=0.05, physics_speed=0.10, radiation=40, armor_fire=5},
+    groups =
+      {armor_torso=40, armor_heal=30, armor_use=0, physics_jump=0.05, physics_speed=0.10, radiation=40, armor_fire=5},
     wear = 0,
   })
   minetest.register_tool("moarmour:leggings_tacnayn", {
     description = S("Tac Nayn Leggings"),
     inventory_image = "moarmour_inv_leggings_tacnayn.png",
-    groups = {armor_legs=40, armor_heal=30, armor_use=0, physics_jump=0.05, physics_speed=0.10, radiation=40, armor_fire=5},
+    groups =
+      {armor_legs=40, armor_heal=30, armor_use=0, physics_jump=0.05, physics_speed=0.10, radiation=40, armor_fire=5},
     wear = 0,
   })
   minetest.register_tool("moarmour:boots_tacnayn", {
     description = S("Tac Nayn Boots"),
     inventory_image = "moarmour_inv_boots_tacnayn.png",
-    groups = {armor_feet=30, armor_heal=30, armor_use=0, physics_jump=0.05, physics_speed=0.10, radiation=40, armor_fire=5},
+    groups =
+      {armor_feet=30, armor_heal=30, armor_use=0, physics_jump=0.05, physics_speed=0.10, radiation=40, armor_fire=5},
     wear = 0,
   })
   minetest.register_tool("moarmour:shield_tacnayn", {
     description = S("Tac Nayn Shield"),
     inventory_image = "moarmour_inv_shield_tacnayn.png",
-    groups = {armor_shield=30, armor_heal=30, armor_use=0, physics_jump=0.05, physics_speed=0.10, radiation=40, armor_fire=5},
+    groups =
+      {armor_shield=30, armor_heal=30, armor_use=0, physics_jump=0.05, physics_speed=0.10, radiation=40, armor_fire=5},
     wear = 0,
   })
 
@@ -705,31 +710,36 @@ if minetest.get_modpath("gems") then
   minetest.register_tool("moarmour:helmet_shadow", {
     description = S("Shadow Helmet"),
     inventory_image = "moarmour_inv_helmet_shadow.png",
-    groups = {armor_head=10, armor_heal=5, armor_use=0, physics_speed=0.10, physics_gravity=-0.10, radiation=8, armor_water=1, armor_fire=5},
+    groups = {armor_head=10, armor_heal=5, armor_use=0, physics_speed=0.10, physics_gravity=-0.10, radiation=8,
+      armor_water=1, armor_fire=5},
     wear = 0,
   })
   minetest.register_tool("moarmour:chestplate_shadow", {
     description = S("Shadow Chestplate"),
     inventory_image = "moarmour_inv_chestplate_shadow.png",
-    groups = {armor_torso=15, armor_heal=5, armor_use=0, physics_speed=0.10, physics_gravity=-0.10, radiation=8, armor_water=1, armor_fire=5},
+    groups = {armor_torso=15, armor_heal=5, armor_use=0, physics_speed=0.10, physics_gravity=-0.10, radiation=8,
+        armor_water=1, armor_fire=5},
     wear = 0,
   })
   minetest.register_tool("moarmour:leggings_shadow", {
     description = S("Shadow Leggings"),
     inventory_image = "moarmour_inv_leggings_shadow.png",
-    groups = {armor_legs=15, armor_heal=5, armor_use=0, physics_speed=0.10, physics_gravity=-0.10, radiation=8, armor_water=1, armor_fire=5},
+    groups = {armor_legs=15, armor_heal=5, armor_use=0, physics_speed=0.10, physics_gravity=-0.10, radiation=8,
+      armor_water=1, armor_fire=5},
     wear = 0,
   })
   minetest.register_tool("moarmour:boots_shadow", {
     description = S("Shadow Boots"),
     inventory_image = "moarmour_inv_boots_shadow.png",
-    groups = {armor_feet=10, armor_heal=5, armor_use=0, physics_speed=0.10, physics_gravity=-0.10, radiation=8, armor_water=1, armor_fire=5},
+    groups = {armor_feet=10, armor_heal=5, armor_use=0, physics_speed=0.10, physics_gravity=-0.10, radiation=8,
+      armor_water=1, armor_fire=5},
     wear = 0,
   })
   minetest.register_tool("moarmour:shield_shadow", {
     description = S("Shadow Shield"),
     inventory_image = "moarmour_inv_shield_shadow.png",
-    groups = {armor_shield=10, armor_heal=5, armor_use=0, physics_speed=0.10, physics_gravity=-0.10, radiation=8, armor_water=1, armor_fire=5},
+    groups = {armor_shield=10, armor_heal=5, armor_use=0, physics_speed=0.10, physics_gravity=-0.10, radiation=8,
+      armor_water=1, armor_fire=5},
     wear = 0,
   })
 

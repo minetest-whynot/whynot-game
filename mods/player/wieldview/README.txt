@@ -1,7 +1,7 @@
 [mod] visible wielded items [wieldview]
 =======================================
 
-Depends on: multiskin_model
+Depends on: 3d_armor
 
 Makes hand wielded items visible to other players.
 

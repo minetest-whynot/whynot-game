@@ -112,6 +112,7 @@ for _, f in ipairs(flowers_list) do
 			"flowers_"..flower..".png"
 		},
 		walkable = false,
+		use_texture_alpha = "clip",
 		groups = {snappy = 3},
 		sounds = default.node_sound_glass_defaults(),
 		selection_box = {
@@ -183,7 +184,7 @@ homedecor.register("fishtank", {
 		"homedecor_fishtank_water_top.png",
 		"homedecor_fishtank_sides.png",
 	},
-	use_texture_alpha = true,
+	use_texture_alpha = "blend",
 	selection_box = ft_cbox,
 	collision_box = ft_cbox,
 	groups = {cracky=3,oddly_breakable_by_hand=3},
@@ -206,7 +207,7 @@ homedecor.register("fishtank_lighted", {
 		"homedecor_fishtank_sides_lighted.png",
 	},
 	light_source = default.LIGHT_MAX-4,
-	use_texture_alpha = true,
+	use_texture_alpha = "blend",
 	selection_box = ft_cbox,
 	collision_box = ft_cbox,
 	groups = {cracky=3,oddly_breakable_by_hand=3,not_in_creative_inventory=1},
@@ -225,6 +226,7 @@ homedecor.register("cardboard_box_big", {
 		'homedecor_cardbox_big_tb.png',
 		'homedecor_cardbox_big_sides.png',
 	},
+	use_texture_alpha = "clip",
 	groups = { snappy = 3 },
 	infotext=S("Cardboard box"),
 	inventory = {
@@ -245,6 +247,7 @@ homedecor.register("cardboard_box", {
 			{-0.3125, -0.5, -0.3125, 0.3125, 0, 0.3125},
 		}
 	},
+	use_texture_alpha = "clip",
 	groups = { snappy = 3 },
 	infotext=S("Cardboard box"),
 	inventory = {
@@ -366,6 +369,7 @@ homedecor.register("skateboard", {
 	tiles = { "homedecor_skateboard.png" },
 	inventory_image = "homedecor_skateboard_inv.png",
 	description = S("Skateboard"),
+	use_texture_alpha = "clip",
 	groups = {snappy=3},
 	selection_box = skate_cbox,
 	walkable = false,

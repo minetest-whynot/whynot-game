@@ -1,6 +1,6 @@
 -- Copyright (c) 2013-18 rubenwardy and Wuzzy. MIT.
 
-local S = awards.gettext
+local S = awards.get_translator
 
 
 -- Saint-Maclou
@@ -1098,7 +1098,7 @@ end
 
 if minetest.get_modpath("basic_materials") then
 	awards.register_award("awards_oil", {
-		title = S("Oil Typhoon"),
+		title = S("Oil Tycoon"),
 		description = S("Craft 500 times oil extract."),
 
 		trigger = {
@@ -1107,4 +1107,52 @@ if minetest.get_modpath("basic_materials") then
 			target = 500,
 		}
 	})
+end
+
+if (minetest.get_modpath("cmi") and minetest.get_modpath("mobs_animal")) then
+
+	awards.register_award("mobs:kill_chicken", {
+	title = S("There's a wolf in the pen"),
+	description = S("Kill chickens to obtain meat and feathers." ..
+	" Meat can be grilled and eaten to regain lost health. Feathers can be used to craft a variety of objects."),
+	difficulty = 0.001,
+	trigger = {
+	type = "kill_mob",
+	    mob = "chicken",
+	    target = 5
+	  }
+	})
+	awards.register_award("mobs:kill_sheep", {
+	  title = S("Wooly bully"),
+	  description = S("Kill sheep to obtain meat and wool." ..
+	    " Meat can be grilled and eaten to regain lost health. Wool can be used to craft a variety of objects."),
+	  difficulty = 0.001,
+	  trigger = {
+	    type = "kill_mob",
+	    mob = "sheep_white",
+	    target = 5
+	  }
+	})
+	awards.register_award("mobs:kill_cow", {
+	  title = S("Fetchez la vache!"),
+	  description = S("Kill cows to obtain meat and leather." ..
+	    " Meat can be grilled and eaten to regain lost health. Leather can be used to craft a variety of objects."),
+	  difficulty = 0.001,
+	  trigger = {
+	    type = "kill_mob",
+	    mob = "cow",
+	    target = 5
+	  }
+	})
+	awards.register_award("mobs:punch_cow", {
+	  title = S("Cow tipping"),
+	  description = S("Punch cows. Hey! That's not funny!"),
+	  difficulty = 0.001,
+	  trigger = {
+	    type = "punch_mob",
+	    mob = "cow",
+	    target = 5
+	  }
+	})
+
 end

@@ -80,6 +80,7 @@ local transparent_armor = minetest.settings:get_bool("armor_transparent", false)
 -- support for i18n
 local S = minetest.get_translator(minetest.get_current_modname())
 
+local skin_previews = {}
 local use_player_monoids = minetest.global_exists("player_monoids")
 local use_armor_monoid = minetest.global_exists("armor_monoid")
 local use_pova_mod = minetest.get_modpath("pova")
@@ -97,12 +98,21 @@ local armor_def = setmetatable({}, {
 		})
 	end,
 })
+local armor_textures = setmetatable({}, {
+	__index = function()
+		return setmetatable({}, {
+			__index = function()
+				return "blank.png"
+			end
+		})
+	end
+})
 
 armor = {
 	timer = 0,
 	elements = {"head", "torso", "legs", "feet"},
 	physics = {"jump", "speed", "gravity"},
-	attributes = {"heal", "fire", "water"},
+	attributes = {"heal", "fire", "water", "feather"},
 	formspec = "image[2.5,0;2,4;armor_preview]"..
 		default.gui_bg..
 		default.gui_bg_img..
@@ -111,7 +121,7 @@ armor = {
 		"list[current_player;main;0,4.7;8,1;]"..
 		"list[current_player;main;0,5.85;8,3;8]",
 	def = armor_def,
-	textures = {},
+	textures = armor_textures,
 	default_skin = "character",
 	materials = {
 		wood = "group:wood",
@@ -173,6 +183,7 @@ armor.config = {
 	water_protect = true,
 	fire_protect = minetest.get_modpath("ethereal") ~= nil,
 	fire_protect_torch = minetest.get_modpath("ethereal") ~= nil,
+	feather_fall = true,
 	punch_damage = true,
 }
 
@@ -330,6 +341,25 @@ armor.run_callbacks = function(self, callback, player, index, stack)
 			func(player, index, stack)
 		end
 	end
+end
+
+--- Updates visuals.
+--
+--  @function armor:update_player_visuals
+--  @tparam ObjectRef player
+armor.update_player_visuals = function(self, player)
+	if not player then
+		return
+	end
+	local name = player:get_player_name()
+	if self.textures[name] then
+		default.player_set_textures(player, {
+			self.textures[name].skin,
+			self.textures[name].armor,
+			self.textures[name].wielditem,
+		})
+	end
+	self:run_callbacks("on_update", player)
 end
 
 --- Sets player's armor attributes.
@@ -493,8 +523,7 @@ armor.set_player_armor = function(self, player)
 	self.def[name].level = self.def[name].groups.fleshy or 0
 	self.def[name].state = state
 	self.def[name].count = count
-	player_api.set_textures(player)
-	self:run_callbacks("on_update", player)
+	self:update_player_visuals(player)
 end
 
 --- Action when armor is punched.
@@ -710,17 +739,55 @@ armor.remove_all = function(self, player)
 	self:save_armor_inventory(player)
 end
 
+local skin_mod
+
+--- Retrieves player's current skin.
+--
+--  @function armor:get_player_skin
+--  @tparam string name Player name.
+--  @treturn string Skin filename.
+armor.get_player_skin = function(self, name)
+	if (skin_mod == "skins" or skin_mod == "simple_skins") and skins.skins[name] then
+		return skins.skins[name]..".png"
+	elseif skin_mod == "u_skins" and u_skins.u_skins[name] then
+		return u_skins.u_skins[name]..".png"
+	elseif skin_mod == "wardrobe" and wardrobe.playerSkins and wardrobe.playerSkins[name] then
+		return wardrobe.playerSkins[name]
+	end
+	return armor.default_skin..".png"
+end
+
+--- Updates skin.
+--
+--  @function armor:update_skin
+--  @tparam string name Player name.
+armor.update_skin = function(self, name)
+	minetest.after(0, function()
+		local pplayer = minetest.get_player_by_name(name)
+		if pplayer then
+			self.textures[name].skin = self:get_player_skin(name)
+			self:set_player_armor(pplayer)
+		end
+	end)
+end
+
+--- Adds preview for armor inventory.
+--
+--  @function armor:add_preview
+--  @tparam string preview Preview image filename.
+armor.add_preview = function(self, preview)
+	skin_previews[preview] = true
+end
+
 --- Retrieves preview for armor inventory.
 --
 --  @function armor:get_preview
 --  @tparam string name Player name.
 --  @treturn string Preview image filename.
 armor.get_preview = function(self, name)
-	local player = minetest.get_player_by_name(name)
-	if player then
-		local current_skin = player_api.get_skin(player)
-		return current_skin and player_api.registered_skins[current_skin] and
-				player_api.registered_skins[current_skin].preview or 'character_preview.png'
+	local preview = string.gsub(armor:get_player_skin(name), ".png", "_preview.png")
+	if skin_previews[preview] then
+		return preview
 	end
 	return "character_preview.png"
 end
@@ -890,4 +957,13 @@ armor.drop_armor = function(pos, stack)
 			obj:set_velocity({x=math.random(-1, 1), y=5, z=math.random(-1, 1)})
 		end
 	end
+end
+
+--- Allows skin mod to be set manually.
+--
+--  Useful for skin mod forks that do not use the same name.
+--
+--  @tparam string mod Name of skin mod. Recognized names are "simple\_skins", "u\_skins", & "wardrobe".
+armor.set_skin_mod = function(mod)
+	skin_mod = mod
 end

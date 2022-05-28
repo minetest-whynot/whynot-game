@@ -1,5 +1,7 @@
-minetest.register_alias("dye:light_red",  "dye:pink")
-minetest.register_alias("dye:medium_orange", "dye:brown")
+if minetest.get_modpath("dye") then
+    minetest.register_alias("dye:light_red",  "dye:pink")
+    minetest.register_alias("dye:medium_orange", "dye:brown")
+end
 
 minetest.register_alias("unifieddyes:black",      "dye:black")
 minetest.register_alias("unifieddyes:dark_grey",  "dye:dark_grey")

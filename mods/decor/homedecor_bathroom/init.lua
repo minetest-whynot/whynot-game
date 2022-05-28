@@ -171,6 +171,7 @@ homedecor.register("toilet_open", {
 	selection_box = toilet_sbox,
 	collision_box = toilet_cbox,
 	drop = "homedecor:toilet",
+	use_texture_alpha = "blend",
 	groups = {cracky=3},
 	sounds = default.node_sound_stone_defaults(),
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
@@ -231,6 +232,7 @@ homedecor.register("sink", {
 		"building_blocks_marble.png",
 		"default_water.png"
 	},
+	use_texture_alpha = "blend",
 	inventory_image="homedecor_bathroom_sink_inv.png",
 	selection_box = sink_sbox,
 	collision_box = sink_cbox,

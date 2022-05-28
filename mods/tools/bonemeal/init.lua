@@ -101,6 +101,7 @@ local deco = {
 	{"default:sand", {}, {"default:dry_shrub", "", "", ""} },
 	{"default:desert_sand", {}, {"default:dry_shrub", "", "", ""} },
 	{"default:silver_sand", {}, {"default:dry_shrub", "", "", ""} },
+	{"default:dirt_with_rainforest_litter", {}, {"default:junglegrass", "", "", ""}}
 }
 
 

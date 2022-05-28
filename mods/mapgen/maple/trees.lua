@@ -1,12 +1,10 @@
-local S = maple.get_translator;
 local random = math.random
 
-
 -- I don't remember if snow function is needed.
-local function is_snow_nearby(pos)
-  return minetest.find_node_near(pos, 1,
-    {"default:snow", "default:snowblock", "default:dirt_with_snow"})
-end
+-- local function is_snow_nearby(pos)
+--   return minetest.find_node_near(pos, 1,
+--     {"default:snow", "default:snowblock", "default:dirt_with_snow"})
+-- end
 
 
 -- Sapling ABM
@@ -14,11 +12,10 @@ end
 function maple.grow_sapling(pos)
   if not default.can_grow(pos) then
     -- Can't grow yet, try later.
-    minetest.get_node_timer(pos):start(math.random(240, 600))
+    minetest.get_node_timer(pos):start(random(240, 600))
     return
   end
 
-  local mg_name = minetest.get_mapgen_setting("mg_name")
   local node = minetest.get_node(pos)
 
   if node.name == "maple:maple_sapling" then
@@ -33,7 +30,7 @@ minetest.register_lbm({
   name = "maple:convert_saplings_to_node_timer",
   nodenames = {"maple:maple_sapling"},
   action = function(pos)
-    minetest.get_node_timer(pos):start(math.random(1200, 2400))
+    minetest.get_node_timer(pos):start(random(1200, 2400))
   end
 })
 

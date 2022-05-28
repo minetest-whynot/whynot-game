@@ -10,3 +10,7 @@ moarmour = {
 dofile(moarmour_path.."/nodes.lua")
 dofile(moarmour_path.."/crafts.lua")
 dofile(moarmour_path.."/armour.lua")
+-- Optional mod-specific stuff --
+if minetest.get_modpath("ediblestuff_api") then
+	dofile(moarmour_path.."/make_edible.lua")
+end

@@ -1,3 +1,5 @@
+![luacheck](https://github.com/dacmot/moarmour/actions/workflows/luacheck.yml/badge.svg)
+
 # MOAR! ARMOURS!
 
 (yes, that's how it's spelled!)
@@ -28,7 +30,7 @@ Optional dependencies (for **MOAR! ARMOURS!**)
 - bonemeal ([ContenDB](https://content.minetest.net/packages/TenPlus1/bonemeal/), [forums](https://forum.minetest.net/viewtopic.php?f=11&t=16446))
 - xpanes (found in minetest_game)
 - tac_nayn ([ContenDB](https://content.minetest.net/packages/GreenDimond/tac_nayn/), [forums](https://forum.minetest.net/viewtopic.php?t=13515))
-- sky_tools (can't find this one either...)
+- sky_tools ([forums](https://forum.minetest.net/viewtopic.php?f=9&t=18749))
 - emeralds ([GitHub](https://github.com/CC10MAGIC/emeralds), [forums](https://forum.minetest.net/viewtopic.php?t=15485))
 - gems ([GitHub](https://github.com/captainLAD/gems), [forums](https://forum.minetest.net/viewtopic.php?t=4294))
 - terumet ([GitHub](https://github.com/Terumoc/terumet), [forums](https://forum.minetest.net/viewtopic.php?t=19194))

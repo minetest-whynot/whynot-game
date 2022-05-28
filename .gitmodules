@@ -100,9 +100,6 @@
 [submodule "builder/mods_src/libs/intllib"]
 	path = builder/mods_src/libs/intllib
 	url = https://github.com/minetest-mods/intllib
-[submodule "builder/mods_src/libs/craftguide_reveal"]
-	path = builder/mods_src/libs/craftguide_reveal
-	url = https://github.com/minetest-mods/craftguide_reveal
 [submodule "builder/mods_src/maidroid"]
 	path = builder/mods_src/maidroid
 	url = https://github.com/thePlasm/maidroid
@@ -123,7 +120,7 @@
 	url = https://github.com/minetest-mods/mesecons
 [submodule "builder/mods_src/minetest_game"]
 	path = builder/mods_src/minetest_game
-	url = https://github.com/minetest/minetest_game
+	url = https://github.com/bell07/minetest_game
 [submodule "builder/mods_src/mobs_redo/mobs_ghost_redo"]
 	path = builder/mods_src/mobs_redo/mobs_ghost_redo
 	url = https://codeberg.org/Hamlet/mobs_ghost_redo
@@ -136,12 +133,9 @@
 [submodule "builder/mods_src/mydoors"]
 	path = builder/mods_src/mydoors
 	url = https://github.com/minetest-mods/mydoors
-[submodule "builder/mods_src/player_api_modpack"]
-	path = builder/mods_src/player_api_modpack
-	url = https://github.com/bell07/minetest-player_api_modpack
 [submodule "builder/mods_src/player/awards"]
 	path = builder/mods_src/player/awards
-	url = https://github.com/minetest-mods/awards
+	url = https://gitlab.com/dacmot/awards.git
 [submodule "builder/mods_src/player/cozy"]
 	path = builder/mods_src/player/cozy
 	url = https://github.com/minetest-mods/cozy
@@ -229,15 +223,24 @@
 [submodule "builder/mods_src/food_modpack"]
 	path = builder/mods_src/food_modpack
 	url = https://github.com/rubenwardy/food
-[submodule "builder/mods_src/libs/craftguide"]
-	path = builder/mods_src/libs/craftguide
-	url = https://github.com/minetest-mods/craftguide/
 [submodule "builder/mods_src/homedecor_modpack"]
 	path = builder/mods_src/homedecor_modpack
 	url = https://github.com/mt-mods/homedecor_modpack
 [submodule "builder/mods_src/home_workshop_modpack"]
 	path = builder/mods_src/home_workshop_modpack
 	url = https://github.com/mt-mods/home_workshop_modpack
+[submodule "builder/mods_src/player/skinsdb"]
+	path = builder/mods_src/player/skinsdb
+	url = https://github.com/minetest-mods/skinsdb
+[submodule "builder/mods_src/player/character_creator"]
+	path = builder/mods_src/player/character_creator
+	url = https://github.com/bell07/character_creator
+[submodule "builder/mods_src/player/clothing"]
+	path = builder/mods_src/player/clothing
+	url = https://github.com/stujones11/clothing
+[submodule "builder/mods_src/libs/sfcraftguide"]
+	path = builder/mods_src/libs/sfcraftguide
+	url = https://github.com/dacmot/sfcraftguide.git
 [submodule "builder/mods_src/mobs_redo/cmi"]
 	path = builder/mods_src/mobs_redo/cmi
 	url = https://github.com/raymoo/cmi.git

@@ -1,7 +1,7 @@
 -- Modified, from minetest_game/mods/doors/init.lua
 local function on_rightclick(pos, dir, check_name, replace, replace_dir, params)
 	pos.y = pos.y + dir
-	if not minetest.get_node(pos).name == check_name then
+	if minetest.get_node(pos).name ~= check_name then
 		return
 	end
 	local p2 = minetest.get_node(pos).param2
@@ -66,6 +66,10 @@ local function meseconify_door(name)
 		}
 		minetest.override_item(name .. "_a", override)
 		minetest.override_item(name .. "_b", override)
+		if minetest.registered_items[name .. "_c"] then
+			minetest.override_item(name .. "_c", override)
+			minetest.override_item(name .. "_d", override)
+		end
 	end
 end
 
