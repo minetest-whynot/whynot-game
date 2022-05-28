@@ -241,3 +241,6 @@
 [submodule "builder/mods_src/libs/sfcraftguide"]
 	path = builder/mods_src/libs/sfcraftguide
 	url = https://github.com/dacmot/sfcraftguide.git
+[submodule "builder/mods_src/mobs_redo/cmi"]
+	path = builder/mods_src/mobs_redo/cmi
+	url = https://github.com/raymoo/cmi.git

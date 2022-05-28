@@ -1,0 +1,14 @@
+Here lie implementation details that should be explained but aren't part of the
+public-facing API.
+
+Component Representation
+========================
+Mobs implementing CMI are required to keep track of a black box containing a
+mob's component data in a _cmi_components field. The actual representation is a
+table with these fields:
+
+old_serialization: A map from component names to their serialized form from when
+they were last deserialized. This is kept track of to prevent mobs from losing
+information in case a mod is accidentally uninstalled.
+
+components: A table from component names to their current data.

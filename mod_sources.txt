@@ -421,6 +421,10 @@ Mod: mesecons/mesecons_torch
 Mod: mesecons/mesecons_walllever
 Mod: mesecons/mesecons_wires
 
+origin	https://github.com/raymoo/cmi.git (fetch)
+* master 3f505ac [origin/master] Add doc to main repo
+Mod: mobs_redo/cmi
+
 origin	https://codeberg.org/Hamlet/mobs_ghost_redo (fetch)
 * master ac9c013 [origin/master] v0.7.0
 Mod: mobs_redo/mobs_ghost_redo

@@ -1,0 +1,7 @@
+A standard for mob usage.
+
+Provides some global callback registrations for things that can happen to mobs,
+and also outlines a standard for the interface mobs expose to other mobs.
+
+This mod also introduces "components" to mobs, in the sense of entity component
+system.
