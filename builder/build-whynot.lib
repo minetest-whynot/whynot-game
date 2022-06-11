@@ -61,7 +61,7 @@ function mod_install {
 				if [ -z "$(in_git_repositories "$GIT_REPO")" ]; then
 					echo '' >> "$LOG"
 					echo "$GIT_REPO" >> "$LOG"
-					git branch -vv | grep '^[*]' >> "$LOG"
+					git branch --format '%(HEAD) %(objectname) %(subject)' | grep '^[*]' >> "$LOG"
 					git_repositories=(${git_repositories[@]} "$GIT_REPO")
 				fi
 			else
