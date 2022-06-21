@@ -1,5 +1,5 @@
 
-origin	https://github.com/minetest/minetest_game.git (fetch)
+origin	https://github.com/minetest/minetest_game (fetch)
 * e86d0dff9466c1efd170fac7ddf86e1b92a3b242 TNT node drop particles: Only pick string tiles as fallback
 Mod: minetest_game/mods/beds
 Mod: minetest_game/mods/binoculars
