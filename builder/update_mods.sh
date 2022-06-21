@@ -80,6 +80,11 @@ function process_update_mods {
 }
 export -f process_update_mods
 
+
+####################
+# Start of script
+####################
+
 mkdir -p "$DST"
 cd "$SRC"
 
@@ -87,7 +92,7 @@ cd "$SRC"
 >"$LOG"
 
 echo -n "Updating local repository..."
-#git fetch --all --prune --prune-tags --tags --recurse-submodules=yes --quiet --job 4
+git fetch --all --prune --prune-tags --tags --recurse-submodules=yes --quiet --job 4
 echo " done."
 echo -n "Updating submodules..."
 git submodule update --init --recursive --quiet --jobs 4
@@ -95,8 +100,6 @@ echo " done."
 
 echo "Process updates of submodules..."
 git submodule status | xargs -P 1 -n 3 bash -c 'process_update_mods "$@"' _
-
-exit
 
 # Cleanup/delete unused mods
 
