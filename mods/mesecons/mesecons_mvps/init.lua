@@ -220,6 +220,8 @@ function mesecon.mvps_push_or_pull(pos, stackdir, movedir, maximum, all_pull_sti
 		minetest.remove_node(n.pos)
 	end
 
+	local oldstack = mesecon.tablecopy(nodes)
+
 	-- update mesecons for removed nodes ( has to be done after all nodes have been removed )
 	for _, n in ipairs(nodes) do
 		mesecon.on_dignode(n.pos, n.node)
@@ -229,6 +231,12 @@ function mesecon.mvps_push_or_pull(pos, stackdir, movedir, maximum, all_pull_sti
 	for _, n in ipairs(nodes) do
 		local np = vector.add(n.pos, movedir)
 
+		-- Turn off conductors in transit
+		local conductor = mesecon.get_conductor(n.node.name)
+		if conductor and conductor.state ~= mesecon.state.off then
+			n.node.name = conductor.offstate or conductor.states[1]
+		end
+
 		minetest.set_node(np, n.node)
 		minetest.get_meta(np):from_table(n.meta)
 		if n.node_timer then
@@ -237,7 +245,6 @@ function mesecon.mvps_push_or_pull(pos, stackdir, movedir, maximum, all_pull_sti
 	end
 
 	local moved_nodes = {}
-	local oldstack = mesecon.tablecopy(nodes)
 	for i in ipairs(nodes) do
 		moved_nodes[i] = {}
 		moved_nodes[i].oldpos = nodes[i].pos
@@ -310,31 +317,6 @@ end
 -- Never push into unloaded blocks. Don’t try to pull from them, either.
 -- TODO: load blocks instead, as with wires.
 mesecon.register_mvps_stopper("ignore")
-
--- All of the locked and internal nodes in Minetest Game
-for _, name in ipairs({
-	"default:chest_locked",
-	"default:chest_locked_open",
-	"doors:door_steel_b_1", -- old style doors
-	"doors:door_steel_b_2", --
-	"doors:door_steel_t_1", --
-	"doors:door_steel_t_2", --
-	"doors:door_steel_a",   -- new style doors
-	"doors:door_steel_b",   --
-	"doors:door_steel_c",   --
-	"doors:door_steel_d",   --
-	"doors:hidden",
-	"doors:trapdoor_steel",
-	"doors:trapdoor_steel_open",
-	"xpanes:door_steel_bar_a",
-	"xpanes:door_steel_bar_b",
-	"xpanes:door_steel_bar_c",
-	"xpanes:door_steel_bar_d",
-	"xpanes:trapdoor_steel_bar",
-	"xpanes:trapdoor_steel_bar_open",
-}) do
-	mesecon.register_mvps_stopper(name)
-end
 
 mesecon.register_on_mvps_move(mesecon.move_hot_nodes)
 mesecon.register_on_mvps_move(function(moved_nodes)

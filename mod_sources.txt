@@ -394,7 +394,7 @@ origin	https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin	https://github.com/minetest-mods/mesecons (fetch)
-* f4070d3e64652837e4c79967f29bf67f0ac559f4 Use FIFO queue for mvps (#599)
+* c4f9336a2677dcfaa6969d6c471acdb0c4c55f1f Exit with error if vports do not exist for any reason (#618)
 Mod: mesecons/mesecons
 Mod: mesecons/mesecons_alias
 Mod: mesecons/mesecons_blinkyplant
@@ -402,6 +402,7 @@ Mod: mesecons/mesecons_button
 Mod: mesecons/mesecons_delayer
 Mod: mesecons/mesecons_doors
 Mod: mesecons/mesecons_extrawires
+Mod: mesecons/mesecons_gamecompat
 Mod: mesecons/mesecons_insulated
 Mod: mesecons/mesecons_lamp
 Mod: mesecons/mesecons_lightstone
