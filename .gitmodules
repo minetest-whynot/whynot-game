@@ -59,7 +59,7 @@
 	path = builder/mods_src/decor/unifieddyes
 	url = https://github.com/mt-mods/unifieddyes
 [submodule "builder/mods_src/flight"]
-	path = builder/mods_src/flight
+	path = builder/mods_src/tools/flight
 	url = https://github.com/Amaz1/flight/
 [submodule "builder/mods_src/flora_ores/farming"]
 	path = builder/mods_src/flora_ores/farming
@@ -101,7 +101,7 @@
 	path = builder/mods_src/libs/intllib
 	url = https://github.com/minetest-mods/intllib
 [submodule "builder/mods_src/maidroid"]
-	path = builder/mods_src/maidroid
+	path = builder/mods_src/tools/maidroid
 	url = https://github.com/thePlasm/maidroid
 [submodule "builder/mods_src/mapgen/cloudlands"]
 	path = builder/mods_src/mapgen/cloudlands
@@ -116,10 +116,10 @@
 	path = builder/mods_src/mapgen/pbj_pup
 	url = https://notabug.org/TenPlus1/pbj_pup
 [submodule "builder/mods_src/mesecons"]
-	path = builder/mods_src/mesecons
+	path = builder/mods_src/mesecons/mesecons
 	url = https://github.com/minetest-mods/mesecons
 [submodule "builder/mods_src/minetest_game"]
-	path = builder/mods_src/minetest_game
+	path = builder/mods_src/minetest_game/minetest_game
 	url = https://github.com/minetest/minetest_game
 [submodule "builder/mods_src/mobs_redo/mobs_ghost_redo"]
 	path = builder/mods_src/mobs_redo/mobs_ghost_redo
@@ -131,7 +131,7 @@
 	path = builder/mods_src/mobs_redo/mobs_redo
 	url = https://notabug.org/TenPlus1/mobs_redo
 [submodule "builder/mods_src/mydoors"]
-	path = builder/mods_src/mydoors
+	path = builder/mods_src/decor/mydoors
 	url = https://github.com/minetest-mods/mydoors
 [submodule "builder/mods_src/player/awards"]
 	path = builder/mods_src/player/awards
@@ -212,22 +212,22 @@
 	path = builder/mods_src/tools/woodcutting
 	url = https://github.com/minetest-mods/woodcutting
 [submodule "builder/mods_src/smart_sfinv_modpack"]
-	path = builder/mods_src/smart_sfinv_modpack
+	path = builder/mods_src/player/smart_sfinv_modpack
 	url = https://github.com/bell07/minetest-smart_sfinv
 [submodule "builder/mods_src/3d_armor"]
-	path = builder/mods_src/3d_armor
+	path = builder/mods_src/player/3d_armor
 	url = https://github.com/minetest-mods/3d_armor
 [submodule "builder/mods_src/mapgen/tac_nayn"]
 	path = builder/mods_src/mapgen/tac_nayn
 	url = https://github.com/GreenXenith/tac_nayn
 [submodule "builder/mods_src/food_modpack"]
-	path = builder/mods_src/food_modpack
+	path = builder/mods_src/food/food_modpack
 	url = https://github.com/rubenwardy/food
 [submodule "builder/mods_src/homedecor_modpack"]
-	path = builder/mods_src/homedecor_modpack
+	path = builder/mods_src/decor/homedecor_modpack
 	url = https://github.com/mt-mods/homedecor_modpack
 [submodule "builder/mods_src/home_workshop_modpack"]
-	path = builder/mods_src/home_workshop_modpack
+	path = builder/mods_src/decor/home_workshop_modpack
 	url = https://github.com/mt-mods/home_workshop_modpack
 [submodule "builder/mods_src/player/skinsdb"]
 	path = builder/mods_src/player/skinsdb
