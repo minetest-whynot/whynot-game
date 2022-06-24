@@ -6,7 +6,8 @@ export SRC="$PROJ"/builder/$MODDIR
 export DST="$PROJ"/mods
 export LOG="$PROJ"/mod_sources.txt
 export DEFAULTBR="origin/HEAD"
-export RSYNC="rsync -a --info=NAME --delete --exclude=.git --exclude=.gitignore"
+export RSYNC="rsync -av --info=NAME --delete --exclude=.git --exclude=.gitignore"
+#export PS4='+(${BASH_SOURCE}:${LINENO}): ${FUNCNAME[0]:+${FUNCNAME[0]}(): }' # for debugging
 
 
 function process_update_mods {
@@ -54,14 +55,14 @@ function process_update_mods {
     echo ''
     git log $commit..$current
 
-    local CHOOSEDIFF=""
-    IFS= read -r -p "View full diff? [y/N] " CHOOSEDIFF < /dev/tty
+    local CHOOSEDIFF=''
+    IFS= read -r -p 'View full diff? [y/N] ' CHOOSEDIFF < /dev/tty
     if [[ "$CHOOSEDIFF" = "Y" ||  "$CHOOSEDIFF" = "y" ]]; then
       git diff $commit..$current
     fi
 
-    local CHOOSEMERGE=""
-    IFS= read -r -p "Merge all changes? [y/N] " CHOOSEMERGE < /dev/tty
+    local CHOOSEMERGE=''
+    IFS= read -r -p 'Merge all changes? [y/N] ' CHOOSEMERGE < /dev/tty
     if [[ "$CHOOSEMERGE" = "Y" ||  "$CHOOSEMERGE" = "y" ]]; then
 
       git merge $branch
@@ -73,23 +74,23 @@ function process_update_mods {
       mkdir -p $DSTPATH
       touch "$DSTPATH/modpack.conf"
 
-      local exclusionlist = ""
+      local exclusionlist=''
       if [ ${EXCLUDED[$subm]+_} ]; then
         exclusionlist=${EXCLUDED[$subm]}
       fi
 
-      if [ -e "$SRC/$subm/modpack.txt" || -e "$SRC/$subm/modpack.conf" || "$modname" == "minetest_game" ]; then
-        echo $RSYNC "$exclusionlist" `ls -d $SRC/$subm/*` "$DSTPATH/"
+      if [[ -e "$SRC/$subm/modpack.txt" || -e "$SRC/$subm/modpack.conf" || "$modname" == "minetest_game" ]]; then
+        $RSYNC "$exclusionlist" `find $SRC/$subm -mindepth 1 -maxdepth 1 -type d` "$DSTPATH/"
       else
-        echo $RSYNC "$exclusionlist" "$SRC/$subm" "$DSTPATH/"
+        $RSYNC "$exclusionlist" "$SRC/$subm" "$DSTPATH/"
       fi
 
-      local CHOOSECOMMIT=""
-      IFS= read -r -p "Commit now? [Y/n] " CHOOSECOMMIT < /dev/tty
+      local CHOOSECOMMIT=''
+      IFS= read -r -p 'Commit now? [Y/n] ' CHOOSECOMMIT < /dev/tty
       if [[ "$CHOOSECOMMIT" = "Y" ||  "$CHOOSECOMMIT" = "y" || "$CHOOSECOMMIT" = "" ]]; then
         cd $STARTDIR
-        git add .
-        git commit -m "Update $subm from upstream."
+        git add ..
+        git commit -m "Update $modname from upstream."
         cd $subm
       fi
 
@@ -124,4 +125,4 @@ git submodule update --init --recursive --quiet --jobs 4
 echo " done."
 
 echo "Process updates of submodules..."
-git submodule status | xargs -P 1 -n 3 bash -c 'process_update_mods "$@"' _
+git submodule status | xargs -P 1 -n 3 bash -xc 'process_update_mods "$@"' _
