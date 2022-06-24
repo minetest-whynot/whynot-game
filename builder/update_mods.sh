@@ -82,10 +82,10 @@ function process_update_mods {
       if [[ -e "$SRC/$subm/modpack.txt" || -e "$SRC/$subm/modpack.conf" || "$modname" == "minetest_game" ]]; then
         for childmod in `find $SRC/$subm -mindepth 1 -maxdepth 1 -type d`; do
           local childname=$(basename $childmod)
-          $RSYNC "$exclusionlist" "$childmod/" "$DSTPATH/$childname/"
+          $RSYNC $exclusionlist $childmod/ $DSTPATH/$childname/
         done
       else
-        $RSYNC "$exclusionlist" "$SRC/$subm/" "$DSTPATH/$modname/"
+        $RSYNC $exclusionlist $SRC/$subm/ $DSTPATH/$modname/
       fi
 
       local CHOOSECOMMIT=''
@@ -93,6 +93,7 @@ function process_update_mods {
       if [[ "$CHOOSECOMMIT" = "Y" ||  "$CHOOSECOMMIT" = "y" || "$CHOOSECOMMIT" = "" ]]; then
         cd $STARTDIR
         git add $PROJ
+        git reset $LOG
         git commit -m "Update $modname from upstream."
         cd $subm
       fi
