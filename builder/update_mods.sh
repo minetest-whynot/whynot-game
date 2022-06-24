@@ -1,12 +1,12 @@
 #!/bin/bash
 
-PROJ="$(realpath $(dirname $0)/..)"   # Absolute path
 MODDIR="mods_src"
+export PROJ="$(realpath $(dirname $0)/..)"   # Absolute path
 export SRC="$PROJ"/builder/$MODDIR
 export DST="$PROJ"/mods
 export LOG="$PROJ"/mod_sources.txt
 export DEFAULTBR="origin/HEAD"
-export RSYNC="rsync -av --info=NAME --delete --exclude=.git --exclude=.gitignore"
+export RSYNC="rsync -aq --delete --delete-excluded --exclude=.git*"
 #export PS4='+(${BASH_SOURCE}:${LINENO}): ${FUNCNAME[0]:+${FUNCNAME[0]}(): }' # for debugging
 
 
@@ -80,16 +80,19 @@ function process_update_mods {
       fi
 
       if [[ -e "$SRC/$subm/modpack.txt" || -e "$SRC/$subm/modpack.conf" || "$modname" == "minetest_game" ]]; then
-        $RSYNC "$exclusionlist" `find $SRC/$subm -mindepth 1 -maxdepth 1 -type d` "$DSTPATH/"
+        for childmod in `find $SRC/$subm -mindepth 1 -maxdepth 1 -type d`; do
+          local childname=$(basename $childmod)
+          $RSYNC "$exclusionlist" "$childmod/" "$DSTPATH/$childname/"
+        done
       else
-        $RSYNC "$exclusionlist" "$SRC/$subm" "$DSTPATH/"
+        $RSYNC "$exclusionlist" "$SRC/$subm/" "$DSTPATH/$modname/"
       fi
 
       local CHOOSECOMMIT=''
       IFS= read -r -p 'Commit now? [Y/n] ' CHOOSECOMMIT < /dev/tty
       if [[ "$CHOOSECOMMIT" = "Y" ||  "$CHOOSECOMMIT" = "y" || "$CHOOSECOMMIT" = "" ]]; then
         cd $STARTDIR
-        git add ..
+        git add $PROJ
         git commit -m "Update $modname from upstream."
         cd $subm
       fi
@@ -125,4 +128,4 @@ git submodule update --init --recursive --quiet --jobs 4
 echo " done."
 
 echo "Process updates of submodules..."
-git submodule status | xargs -P 1 -n 3 bash -xc 'process_update_mods "$@"' _
+git submodule status | xargs -P 1 -n 3 bash -c 'process_update_mods "$@"' _
