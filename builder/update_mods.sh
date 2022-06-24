@@ -1,26 +1,43 @@
 #!/bin/bash
 
 PROJ="$(realpath $(dirname $0)/..)"   # Absolute path
-export LOG="$PROJ"/mod_sources.txt
-export DEFAULTBR="origin/HEAD"
 MODDIR="mods_src"
 export SRC="$PROJ"/builder/$MODDIR
 export DST="$PROJ"/mods
+export LOG="$PROJ"/mod_sources.txt
+export DEFAULTBR="origin/HEAD"
 export RSYNC="rsync -a --info=NAME --delete --exclude=.git --exclude=.gitignore"
+
 
 function process_update_mods {
 
-  local commit=$1
-  local subm=$2
-  # ignore local branch=$(echo "$3" | tr -d '()')
-
   #
-  # Associative list of repositories that point to non-default branch
   # Modify as needed
+  # ================
+  # Associative list of repositories that point to non-default branch
   #
   declare -A BRANCHES=(
     [minetest_game]=origin/stable-5 # Stay on stable version
   )
+
+  #
+  # Modify as needed
+  # ================
+  # Associative list of modpacks with excluded modules
+  #
+  declare -A EXCLUDED=(
+    [minetest_game/minetest_game]='--exclude=farming --exclude=env_sounds --exclude=mtg_craftguide'
+    [player/3d_armor]='--exclude=3d_armor_ip --exclude=3d_armor_ui'
+    [mesecons/mesecons]='--exclude=mesecons_lucacontroller --exclude=mesecons_commandblock --exclude=mesecons_detector --exclude=mesecons_fpga --exclude=mesecons_gates --exclude=mesecons_hydroturbine --exclude=mesecons_luacontroller --exclude=mesecons_microcontroller --exclude=mesecons_stickyblocks'
+    [tools/flight]='--exclude=jetpack --exclude=wings'
+    [decor/homedecor_modpack]='--exclude=itemframes --exclude=homedecor_3d_extras --exclude=homedecor_inbox'
+    [decor/home_workshop_modpack]='--exclude=computers --exclude=home_workshop_machines'
+    [decor/mydoors]='--exclude=my_garage_door --exclude=my_saloon_doors --exclude=my_sliding_doors'
+  )
+
+  local commit=$1
+  local subm=$2
+  # ignore local branch=$(echo "$3" | tr -d '()')
 
   local STARTDIR=$(pwd)
   cd $subm
@@ -44,27 +61,35 @@ function process_update_mods {
     fi
 
     local CHOOSEMERGE=""
-    IFS= read -r -p "Merge all changes? [Y/n] " CHOOSEMERGE < /dev/tty
-    if [[ "$CHOOSEMERGE" = "Y" ||  "$CHOOSEMERGE" = "y" || "$CHOOSEMERGE" = "" ]]; then
+    IFS= read -r -p "Merge all changes? [y/N] " CHOOSEMERGE < /dev/tty
+    if [[ "$CHOOSEMERGE" = "Y" ||  "$CHOOSEMERGE" = "y" ]]; then
 
       git merge $branch
 
       local group=$(dirname $subm)
+      local modname=$(basename $subm)
       local DSTPATH="$DST/$group"
-      if [ "$group" == "." ]; then
-        DSTPATH="$DST"
-      fi
+
       mkdir -p $DSTPATH
-      if ! [ -e "$DSTPATH/modpack.conf" ]; then
-        touch "$DSTPATH/modpack.conf"
+      touch "$DSTPATH/modpack.conf"
+
+      local exclusionlist = ""
+      if [ ${EXCLUDED[$subm]+_} ]; then
+        exclusionlist=${EXCLUDED[$subm]}
       fi
-      $RSYNC "$SRC"/"$subm" "$DSTPATH/"
+
+      if [ -e "$SRC/$subm/modpack.txt" || -e "$SRC/$subm/modpack.conf" || "$modname" == "minetest_game" ]; then
+        echo $RSYNC "$exclusionlist" `ls -d $SRC/$subm/*` "$DSTPATH/"
+      else
+        echo $RSYNC "$exclusionlist" "$SRC/$subm" "$DSTPATH/"
+      fi
 
       local CHOOSECOMMIT=""
       IFS= read -r -p "Commit now? [Y/n] " CHOOSECOMMIT < /dev/tty
       if [[ "$CHOOSECOMMIT" = "Y" ||  "$CHOOSECOMMIT" = "y" || "$CHOOSECOMMIT" = "" ]]; then
         cd $STARTDIR
-        git commit -am "Update $subm from upstream."
+        git add .
+        git commit -m "Update $subm from upstream."
         cd $subm
       fi
 
@@ -92,7 +117,7 @@ cd "$SRC"
 >"$LOG"
 
 echo -n "Updating local repository..."
-git fetch --all --prune --prune-tags --tags --recurse-submodules=yes --quiet --job 4
+#git fetch --all --prune --prune-tags --tags --recurse-submodules=yes --quiet --job 4
 echo " done."
 echo -n "Updating submodules..."
 git submodule update --init --recursive --quiet --jobs 4
@@ -100,22 +125,3 @@ echo " done."
 
 echo "Process updates of submodules..."
 git submodule status | xargs -P 1 -n 3 bash -c 'process_update_mods "$@"' _
-
-# Cleanup/delete unused mods
-
-rm -r "$DST/minetest_game/farming"
-rm -r "$DST/minetest_game/env_sounds"
-rm -r "$DST/minetest_game/mtg_craftguide"
-
-rm -r "$DST/player/3d_armor_ip"
-rm -r "$DST/player/3d_armor_ui"
-
-rm -r "$DST/mesecons/mesecons_lucacontroller"
-rm -r "$DST/mesecons/mesecons_commandblock"
-rm -r "$DST/mesecons/mesecons_detector"
-rm -r "$DST/mesecons/mesecons_fpga"
-rm -r "$DST/mesecons/mesecons_gates"
-rm -r "$DST/mesecons/mesecons_hydroturbine"
-rm -r "$DST/mesecons/mesecons_luacontroller"
-rm -r "$DST/mesecons/mesecons_microcontroller"
-rm -r "$DST/mesecons/mesecons_stickyblocks"
