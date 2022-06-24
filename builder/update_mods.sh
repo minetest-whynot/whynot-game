@@ -11,14 +11,14 @@ export RSYNC="rsync -aq --delete --delete-excluded --exclude=.git*"
 
 
 function process_update_mods {
-
   #
   # Modify as needed
   # ================
   # Associative list of repositories that point to non-default branch
   #
   declare -A BRANCHES=(
-    [minetest_game]=origin/stable-5 # Stay on stable version
+    [minetest_game/minetest_game]=origin/stable-5 # Stay on stable version
+    [flora_ores/farming]=0b06c7cd450c5ec9a76b3c22a9c57f06e4f8a7c2# freeze due to incompatibility with milk buckets
   )
 
   #
@@ -65,7 +65,7 @@ function process_update_mods {
     IFS= read -r -p 'Merge all changes? [y/N] ' CHOOSEMERGE < /dev/tty
     if [[ "$CHOOSEMERGE" = "Y" ||  "$CHOOSEMERGE" = "y" ]]; then
 
-      git merge $branch
+      git --no-pager merge $branch
 
       local group=$(dirname $subm)
       local modname=$(basename $subm)
@@ -94,7 +94,7 @@ function process_update_mods {
         cd $STARTDIR
         git add $PROJ
         git reset $LOG
-        git commit -m "Update $modname from upstream."
+        git --no-pager commit -m "Update $modname from upstream."
         cd $subm
       fi
 
