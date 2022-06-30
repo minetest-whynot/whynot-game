@@ -22,7 +22,7 @@ cd "$SRC"
 >"$LOG"
 
 echo -n "Updating local repository..."
-#git fetch --all --prune --prune-tags --tags --recurse-submodules=yes --quiet --job 4
+git fetch --all --prune --prune-tags --tags --recurse-submodules=yes --quiet --job 4
 echo " done."
 echo -n "Updating submodules..."
 git submodule update --init --recursive --quiet --jobs 4
