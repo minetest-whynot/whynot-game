@@ -1,11 +1,3 @@
-GIT="git  --no-pager"
-GITPARAM="--color=always"
-RSYNC="rsync -a --info=NAME --delete --exclude=.git --exclude=.gitignore"
-
-export LC_ALL="C"
-
-! [ -e "$DST" ] && mkdir "$DST"
-
 declare -a git_repositories
 function in_git_repositories {
 	for entry in "${git_repositories[@]}"; do
