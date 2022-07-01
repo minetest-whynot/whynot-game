@@ -1,4 +1,7 @@
-return {
+-- TODO: Check if the indices are backwards-compatible after "translation"
+--local S = character_creator.S
+
+character_creator.skins = {
 	skin = {
 		["Fair Skin"] = "cc_skin_fair.png",
 		["Green Skin"] = "cc_skin_green.png",

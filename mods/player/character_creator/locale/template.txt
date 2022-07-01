@@ -1,0 +1,11 @@
+# textdomain: character_creator
+
+### init.lua ###
+Cancel=
+Done=
+Female=
+Male=
+Shorter=
+Taller=
+Thinner=
+Wider=

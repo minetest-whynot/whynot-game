@@ -1,5 +1,5 @@
 
-origin	https://github.com/minetest/minetest_game (fetch)
+origin	https://github.com/minetest/minetest_game.git (fetch)
 * e86d0dff9466c1efd170fac7ddf86e1b92a3b242 TNT node drop particles: Only pick string tiles as fallback
 Mod: minetest_game/mods/beds
 Mod: minetest_game/mods/binoculars
@@ -68,8 +68,8 @@ origin	https://gitlab.com/dacmot/awards.git (fetch)
 * 16ca5081a1360350e672b7b311f1b7560d0b8c30 Merge remote-tracking branch 'remotes/dacmot/punch_kill_entities'
 Mod: player/awards
 
-origin	https://github.com/bell07/character_creator (fetch)
-* 37fd275dc6be453fef3219785382b963cfb77b3b add compatibility to previous skinsdb versions
+origin	https://github.com/minetest-mods/character_creator.git (fetch)
+* 65a15d720f4f216379a8e91421528efc1c51f151 Textures: Run optipng -o7 -strip all
 Mod: player/character_creator
 
 origin	https://github.com/stujones11/clothing (fetch)

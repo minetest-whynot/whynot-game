@@ -1,5 +1,19 @@
+if not minetest.get_translator then
+	error("[character_creator] Translator API not found. "
+		.. "Please update Minetest to a recent version.")
+end
+
 character_creator = {}
-character_creator.skins = dofile(minetest.get_modpath("character_creator") .. "/skins.lua")
+-- Fill character_creator.skins
+dofile(minetest.get_modpath("character_creator") .. "/skins.lua")
+
+-- Update with /path/to/i18n.py -p -s .
+character_creator.S = minetest.get_translator("character_creator")
+character_creator.FS = function(...)
+	return minetest.formspec_escape(character_creator.S(...))
+end
+--local S = character_creator.S
+local FS = character_creator.S
 
 local skinsdb
 if minetest.get_modpath("skinsdb") and minetest.global_exists("skins") then
@@ -7,7 +21,7 @@ if minetest.get_modpath("skinsdb") and minetest.global_exists("skins") then
 
 	-- Create dummy skins with hand
 	if skins.skin_class.set_hand_from_texture then
-		for skin_name, skin_texture in pairs(character_creator.skins.skin ) do
+		for skin_name, skin_texture in pairs(character_creator.skins.skin) do
 			local hand_skin = skinsdb.new("character_creator:"..skin_name)
 			hand_skin:set_texture(skin_texture)
 			hand_skin:set_hand_from_texture()
@@ -31,11 +45,10 @@ local skin_default = {
 	shoes      = "Leather Shoes"
 }
 
-local skins = character_creator.skins
 local skins_array = {}
 
 minetest.after(0, function()
-	local function associative_to_array(associative)
+	local function table_keys_to_array(associative)
 		local array = {}
 		for key in pairs(associative) do
 			table.insert(array, key)
@@ -43,16 +56,10 @@ minetest.after(0, function()
 		return array
 	end
 
-	skins_array = {
-		skin       = associative_to_array(skins.skin),
-		face       = associative_to_array(skins.face),
-		hair       = associative_to_array(skins.hair),
-		hair_style = associative_to_array(skins.hair_style),
-		eyes       = associative_to_array(skins.eyes),
-		tshirt     = associative_to_array(skins.tshirt),
-		pants      = associative_to_array(skins.pants),
-		shoes      = associative_to_array(skins.shoes)
-	}
+	-- part: skin, face, hair, ....
+	for part, def in pairs(character_creator.skins) do
+		skins_array[part] = table_keys_to_array(def)
+	end
 end)
 
 -- Saved skins_array indexes in this
@@ -60,56 +67,42 @@ local skin_indexes = {}
 
 local function show_formspec(player)
 	local indexes = skin_indexes[player]
+	local order = {
+		"skin", "face", "hair", "hair_style", "eyes",
+		"tshirt", "pants", "shoes"
+	}
 
-	local formspec = "size[15,9.5]"
-		.. "no_prepend[]"
-		.. "bgcolor[#00000000]"
+	local fs = {
+		"formspec_version[2]",
+		"size[13,9]",
+		"no_prepend[]",
+		"bgcolor[#00000000]",
+		"style_type[button;noclip=true]",
 		-- Gender
-		.. "button[10,;2.5,.5;male;Male]"
-		.. "button[12.5,;2.5,.5;female;Female]"
+		"button[10,  0;2.5,.75;male;" .. FS("Male") .. "]",
+		"button[12.5,0;2.5,.75;female;" .. FS("Female") .. "]",
 		-- Height
-		.. "button[10,1.1;2.5,.5;taller;Taller]"
-		.. "button[10,2;2.5,.5;shorter;Shorter]"
+		"button[10  ,1;2.5,.75;taller;" .. FS("Taller") .. "]",
+		"button[10  ,2;2.5,.75;shorter;" .. FS("Shorter") .. "]",
 		-- Width
-		.. "button[12.5,1.1;2.5,.5;wider;Wider]"
-		.. "button[12.5,2;2.5,.5;thinner;Thinner]"
-		-- Skin
-		.. "button[10,2.75;5,1;skin;" .. skins_array.skin[indexes.skin] .. "]"
-		.. "button[10,2.75;1,1;skin_back;<<]"
-		.. "button[14,2.75;1,1;skin_next;>>]"
-		-- Face
-		.. "button[10,3.5;5,1;face;" .. skins_array.face[indexes.face] .. "]"
-		.. "button[10,3.5;1,1;face_back;<<]"
-		.. "button[14,3.5;1,1;face_next;>>]"
-		-- Hair
-		.. "button[10,4.25;5,1;hair;" .. skins_array.hair[indexes.hair] .. "]"
-		.. "button[10,4.25;1,1;hair_back;<<]"
-		.. "button[14,4.25;1,1;hair_next;>>]"
-		-- Hair Style
-		.. "button[10,5;5,1;hair_style;" .. skins_array.hair_style[indexes.hair_style] .. "]"
-		.. "button[10,5;1,1;hair_style_back;<<]"
-		.. "button[14,5;1,1;hair_style_next;>>]"
-		-- Eyes
-		.. "button[10,5.75;5,1;eyes;" .. skins_array.eyes[indexes.eyes] .. "]"
-		.. "button[10,5.75;1,1;eyes_back;<<]"
-		.. "button[14,5.75;1,1;eyes_next;>>]"
-		-- T-Shirt
-		.. "button[10,6.5;5,1;tshirt;" .. skins_array.tshirt[indexes.tshirt] .. "]"
-		.. "button[10,6.5;1,1;tshirt_back;<<]"
-		.. "button[14,6.5;1,1;tshirt_next;>>]"
-		-- Pants
-		.. "button[10,7.25;5,1;pants;" .. skins_array.pants[indexes.pants] .. "]"
-		.. "button[10,7.25;1,1;pants_back;<<]"
-		.. "button[14,7.25;1,1;pants_next;>>]"
-		-- Shoes
-		.. "button[10,8;5,1;shoes;" .. skins_array.shoes[indexes.shoes] .. "]"
-		.. "button[10,8;1,1;shoes_back;<<]"
-		.. "button[14,8;1,1;shoes_next;>>]"
-		-- Done
-		.. "button_exit[10,9;2.5,.5;done;Done]"
-		.. "button_exit[12.5,9;2.5,.5;cancel;Cancel]"
+		"button[12.5,1;2.5,.75;wider;" .. FS("Wider") .. "]",
+		"button[12.5,2;2.5,.75;thinner;" .. FS("Thinner") .. "]",
+	}
+	local x = 11
+	local y = 3
 
-	minetest.show_formspec(player:get_player_name(), "character_creator", formspec)
+	for _, part in ipairs(order) do
+		fs[#fs + 1] =
+			("button[%g,%g;1,.75;%s_back;<<]"):format(x - 1, y, part) ..
+			("button[%g,%g;3,.75;%s;%s]"     ):format(x + 0, y, part, skins_array[part][indexes[part]]) ..
+			("button[%g,%g;1,.75;%s_next;>>]"):format(x + 3, y, part)
+		y = y + 0.75
+	end
+	table.insert(fs,
+		"button_exit[10,9.2;2.5,.75;done;" .. FS("Done") .. "]" ..
+		"button_exit[12.5,9.2;2.5,.75;cancel;" .. FS("Cancel") .. "]")
+
+	minetest.show_formspec(player:get_player_name(), "character_creator", table.concat(fs))
 end
 
 local function load_skin(player)
@@ -176,44 +169,33 @@ end
 
 local function get_texture(player)
 	local player_meta = player:get_meta()
-	if player_meta == nil then
+	if not player_meta then
 		-- The player disconnected before this function was dispatched
 		return ""
 	end
 
-	local indexes = skin_indexes[player]
-	local texture = ""
+	local defs = {}
+	for part, selected in pairs(skin_indexes[player]) do
+		local key = skins_array[part][selected]
+		defs[part] = {
+			key = key,
+			-- Table reference to the selected hair/skin/...
+			val = character_creator.skins[part][key]
+		}
+	end
+
 	local gender = player_meta:get_string("character_creator:gender")
-
-	local skin_key = skins_array.skin[indexes.skin]
-	local skin = skins.skin[skin_key]
-	texture = texture .. "(" .. skin .. ")"
-
-	local face_key = skins_array.face[indexes.face]
-	local face = skins.face[face_key][gender][skin_key]
-	texture = texture .. "^(" .. face .. ")"
-
-	local eyes_key = skins_array.eyes[indexes.eyes]
-	local eyes = skins.eyes[eyes_key]
-	texture = texture .. "^(" .. eyes .. ")"
-
-	local hair_style = skins_array.hair_style[indexes.hair_style]
-	local hair_key = skins_array.hair[indexes.hair]
-	local hair = skins.hair[hair_key][gender][hair_style]
-	texture = texture .. "^(" .. hair .. ")"
-
-	local tshirt_key = skins_array.tshirt[indexes.tshirt]
-	local tshirt = skins.tshirt[tshirt_key]
-	texture = texture .. "^(" .. tshirt .. ")"
-
-	local pants_key = skins_array.pants[indexes.pants]
-	local pants = skins.pants[pants_key]
-	texture = texture .. "^(" .. pants .. ")"
-
-	local shoes_key = skins_array.shoes[indexes.shoes]
-	local shoes = skins.shoes[shoes_key]
-	texture = texture .. "^(" .. shoes .. ")"
-	return texture
+	local face = defs.face.val[gender][defs.skin.key]
+	local hair = defs.hair.val[gender][defs.hair_style.key]
+	return table.concat({
+			"(" .. defs.skin.val .. ")",
+			"(" .. face .. ")",
+			"(" .. defs.eyes.val .. ")",
+			"(" .. hair .. ")",
+			"(" .. defs.tshirt.val .. ")",
+			"(" .. defs.pants.val .. ")",
+			"(" .. defs.shoes.val .. ")",
+		}, "^")
 end
 
 local function change_skin(player)
@@ -240,7 +222,7 @@ local function change_skin(player)
 		minetest.after(0, function(name)
 			local player = minetest.get_player_by_name(name)
 			if player then
-				multiskin.layers[player_name].skin = texture
+				multiskin.layers[name].skin = texture
 				armor:set_player_armor(player)
 				multiskin:set_player_textures(player, {textures = {texture}})
 			end
@@ -479,7 +461,7 @@ elseif not skinsdb and minetest.get_modpath("sfinv_buttons") then
 		action = show_formspec,
 	})
 
-elseif not skinsdb and not minetest.get_modpath("sfinv_buttons") 
+elseif not skinsdb and not minetest.get_modpath("sfinv_buttons")
 	and minetest.global_exists("sfinv") and sfinv.enabled then
 
 	local old_func = sfinv.pages["sfinv:crafting"].get
