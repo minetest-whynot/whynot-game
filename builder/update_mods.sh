@@ -22,6 +22,7 @@ cd "$SRC"
 >"$LOG"
 
 echo -n "Updating local repository..."
+git submodule sync
 git fetch --all --prune --prune-tags --tags --recurse-submodules=yes --quiet --job 4
 echo " done."
 echo -n "Updating submodules..."
@@ -30,3 +31,5 @@ echo " done."
 
 echo "Process updates of submodules..."
 git submodule status | xargs -P 1 -n 3 bash -c 'process_update_mods "$@"' _
+
+git commit -m "update mod_sources.txt" "$LOG"
