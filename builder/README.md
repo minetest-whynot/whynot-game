@@ -1,12 +1,14 @@
+# Development and Maintenance
+
 Builder scripts allow you to generate and update the game from source mods.
 
-# Let's start - Clone the repository
+## Let's start - Clone the repository
 
 ```
 git clone --recurse-submodules https://github.com/minetest-whynot/whynot-game
 ```
 
-# Update using build-mods.sh
+## Update using build-mods.sh
 
 ```
 git pull --recurse-submodules
@@ -24,7 +26,7 @@ All mods sources are stored in `builder/mods_src` folder, connected as submodule
 ./builder/build-mods.sh
 ```
 
-# Update using update_mod.sh
+## Update using update_mod.sh
 
 If you wish to commit changes to the git repository, it may be more convenient to use the following :
 
