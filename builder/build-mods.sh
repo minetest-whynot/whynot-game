@@ -4,7 +4,7 @@ PROJ="$(realpath $(dirname $0)/..)"   # Absolute path
 SRC="$PROJ"/builder/mods_src/
 DST="$PROJ"/mods/            # Subgame mods
 LOG="$PROJ"/mod_sources.txt
-GIT="git  --no-pager"
+GIT="git --no-pager"
 GITPARAM="--color=always"
 RSYNC="rsync -a --info=NAME --delete --exclude=.git --exclude=.gitignore"
 
