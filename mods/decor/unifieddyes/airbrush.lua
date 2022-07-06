@@ -490,6 +490,10 @@ minetest.register_tool("unifieddyes:airbrush", {
 		if pos then node = minetest.get_node(pos) end
 		if node then def = minetest.registered_items[node.name] end
 
+		if keys.sneak and def and def.on_rightclick then
+			return def.on_rightclick(pos, node, placer, itemstack, pointed_thing)
+		end
+
 		unifieddyes.player_last_right_clicked[player_name] = {pos = pos, node = node, def = def}
 
 		if not keys.aux1 then
@@ -504,8 +508,6 @@ minetest.register_tool("unifieddyes:airbrush", {
 			else
 				minetest.chat_send_player(player_name, "*** That node is uncolored.")
 			end
-		elseif def.on_rightclick then
-			return def.on_rightclick(pos, node, placer, itemstack, pointed_thing)
 		end
 	end
 })

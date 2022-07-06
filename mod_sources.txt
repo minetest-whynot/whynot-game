@@ -68,8 +68,8 @@ origin	https://gitlab.com/dacmot/awards.git (fetch)
 * 16ca5081a1360350e672b7b311f1b7560d0b8c30 Merge remote-tracking branch 'remotes/dacmot/punch_kill_entities'
 Mod: player/awards
 
-origin	https://github.com/bell07/character_creator (fetch)
-* 37fd275dc6be453fef3219785382b963cfb77b3b add compatibility to previous skinsdb versions
+origin	https://github.com/minetest-mods/character_creator.git (fetch)
+* 65a15d720f4f216379a8e91421528efc1c51f151 Textures: Run optipng -o7 -strip all
 Mod: player/character_creator
 
 origin	https://github.com/stujones11/clothing (fetch)
@@ -394,7 +394,7 @@ origin	https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin	https://github.com/minetest-mods/mesecons (fetch)
-* f4070d3e64652837e4c79967f29bf67f0ac559f4 Use FIFO queue for mvps (#599)
+* c4f9336a2677dcfaa6969d6c471acdb0c4c55f1f Exit with error if vports do not exist for any reason (#618)
 Mod: mesecons/mesecons
 Mod: mesecons/mesecons_alias
 Mod: mesecons/mesecons_blinkyplant
@@ -402,6 +402,7 @@ Mod: mesecons/mesecons_button
 Mod: mesecons/mesecons_delayer
 Mod: mesecons/mesecons_doors
 Mod: mesecons/mesecons_extrawires
+Mod: mesecons/mesecons_gamecompat
 Mod: mesecons/mesecons_insulated
 Mod: mesecons/mesecons_lamp
 Mod: mesecons/mesecons_lightstone
