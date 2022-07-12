@@ -1,0 +1,7 @@
+
+# If enabled, places helicopter in inventory instead of destroying it
+# when punched.
+mount_punch_inv (Place in inventory) bool false
+
+# Use facing direction to turn instead of a/d keys by default.
+mount_turn_player_look (Turn with look direction) bool true

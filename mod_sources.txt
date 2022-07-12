@@ -205,8 +205,8 @@ origin	https://github.com/Ezhh/handholds (fetch)
 * 4b88f2a08d9d00ff99be465b80922606ecc75127 Fix incorrect sRGB profile 
 Mod: tools/handholds
 
-origin	https://github.com/petermaloney/helicopter (fetch)
-* 95c5287d59c70f12ae4a898bc1d2125dda9655d5 Merge pull request #7 from bell07/patch-1
+origin	https://github.com/APercy/helicopter.git (fetch)
+* 9afb728d1278fc0caed6067c7c44e799e0596570 fix passenger dettach
 Mod: tools/helicopter
 
 origin	https://github.com/minetest-mods/hopper (fetch)
