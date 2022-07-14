@@ -28,7 +28,7 @@ local use_cmi = minetest.global_exists("cmi")
 
 mobs = {
 	mod = "redo",
-	version = "20220501",
+	version = "20220712",
 	intllib = S,
 	invis = minetest.global_exists("invisibility") and invisibility or {}
 }
@@ -421,8 +421,7 @@ function mob_class:set_animation(anim, force)
 	self.object:set_animation({
 		x = self.animation[anim .. "_start"],
 		y = self.animation[anim .. "_end"]},
-		self.animation[anim .. "_speed"] or
-				self.animation.speed_normal or 15,
+		self.animation[anim .. "_speed"] or self.animation.speed_normal or 15,
 		0, self.animation[anim .. "_loop"] ~= false)
 end
 
@@ -545,6 +544,7 @@ local new_line_of_sight = function(self, pos1, pos2, stepsize)
 
 	return false
 end
+
 
 -- check line of sight using raycasting (thanks Astrobe)
 local ray_line_of_sight = function(self, pos1, pos2)
@@ -914,18 +914,7 @@ function mob_class:check_for_death(cmi_cause)
 			self.health = self.hp_max
 		end
 
-		-- backup nametag so we can show health stats
---		if not self.nametag2 then
---			self.nametag2 = self.nametag or ""
---		end
-
---		if show_health
---		and (cmi_cause and cmi_cause.type == "punch") then
-
---			self.htimer = 2
---			self.nametag = "♥ " .. self.health .. " / " .. self.hp_max
-			self:update_tag()
---		end
+		self:update_tag()
 
 		return false
 	end
@@ -1098,14 +1087,7 @@ function mob_class:do_env_damage()
 		self.htimer = self.htimer - 1
 	end
 
-	-- reset nametag after showing health stats
---	if self.htimer < 1 and self.nametag2 then
-
---		self.nametag = self.nametag2
---		self.nametag2 = nil
-
-		self:update_tag()
---	end
+	self:update_tag()
 
 	local pos = self.object:get_pos() ; if not pos then return end
 
@@ -1274,15 +1256,9 @@ function mob_class:do_jump()
 	-- set y_pos to base of mob
 	pos.y = pos.y + self.collisionbox[2]
 
-	-- what is in front of mob?
-	local nod = node_ok({
-		x = pos.x + dir_x, y = pos.y + 0.5, z = pos.z + dir_z
-	})
-
-	-- what is above and in front?
-	local nodt = node_ok({
-		x = pos.x + dir_x, y = pos.y + 1.5, z = pos.z + dir_z
-	})
+	-- what is in front of mob and above?
+	local nod = node_ok({x = pos.x + dir_x, y = pos.y + 0.5, z = pos.z + dir_z})
+	local nodt = node_ok({x = pos.x + dir_x, y = pos.y + 1.5, z = pos.z + dir_z})
 
 	local blocked = minetest.registered_nodes[nodt.name].walkable
 
@@ -1290,6 +1266,7 @@ function mob_class:do_jump()
 	if nod.name:find("fence") or nod.name:find("gate") or nod.name:find("wall") then
 		self.facing_fence = true
 	end
+
 --[[
 print("on: " .. self.standing_on
 	.. ", front: " .. nod.name
@@ -1298,6 +1275,13 @@ print("on: " .. self.standing_on
 	.. ", fence: " .. (self.facing_fence and "yes" or "no")
 )
 ]]
+
+	-- if mob can leap then remove blockages and let them try
+	if self.can_leap == true then
+		blocked = false
+		self.facing_fence = false
+	end
+
 	-- jump if standing on solid node (not snow) and not blocked
 	if (self.walk_chance == 0 or minetest.registered_items[nod.name].walkable)
 	and not blocked and not self.facing_fence and nod.name ~= node_snow then
@@ -1468,8 +1452,7 @@ function mob_class:breed()
 
 		local pos = self.object:get_pos()
 
-		effect({x = pos.x, y = pos.y + 1, z = pos.z}, 8,
-				"heart.png", 3, 4, 1, 0.1)
+		effect({x = pos.x, y = pos.y + 1, z = pos.z}, 8, "heart.png", 3, 4, 1, 0.1)
 
 		local objs = minetest.get_objects_inside_radius(pos, 3)
 		local ent
@@ -1490,6 +1473,7 @@ function mob_class:breed()
 					local selfname = self.name:split(":")
 
 					if entname[1] == selfname[1] then
+
 						entname = entname[2]:split("_")
 						selfname = selfname[2]:split("_")
 
@@ -1577,7 +1561,7 @@ function mob_class:breed()
 							self.base_selbox[4] * .5,
 							self.base_selbox[5] * .5,
 							self.base_selbox[6] * .5
-						},
+						}
 					})
 					-- tamed and owned by parents' owner
 					ent2.child = true
@@ -1653,13 +1637,10 @@ end
 function mob_class:day_docile()
 
 	if self.docile_by_day == false then
-
 		return false
-
 	elseif self.docile_by_day == true
 	and self.time_of_day > 0.2
 	and self.time_of_day < 0.8 then
-
 		return true
 	end
 end
@@ -1704,6 +1685,7 @@ end
 
 
 local pathfinder_mod = minetest.get_modpath("pathfinder")
+
 -- path finding and smart mob routine by rnd,
 -- line_of_sight and other edits by Elkien3
 function mob_class:smart_mobs(s, p, dist, dtime)
@@ -2653,7 +2635,7 @@ function mob_class:do_states(dtime)
 			yaw = yaw_to_pos(self, p)
 
 			-- move towards enemy if beyond mob reach
-			if dist > self.reach then
+			if dist > (self.reach + (self.reach_ext or 0)) then
 
 				-- path finding by rnd
 				if self.pathfinding -- only if mob has pathfinding enabled
@@ -2665,8 +2647,13 @@ function mob_class:do_states(dtime)
 				-- distance padding to stop spinning mob
 				local pad = abs(p.x - s.x) + abs(p.z - s.z)
 
+				self.reach_ext = 0 -- extended ready off by default
+
 				if self.at_cliff or pad < 0.2 then
 
+					-- when on top of player extend reach slightly so player can
+					-- still be attacked.
+					self.reach_ext = 0.8
 					self:set_velocity(0)
 					self:set_animation("stand")
 				else
@@ -3024,7 +3011,7 @@ function mob_class:on_punch(hitter, tflp, tool_capabilities, dir, damage)
 		if self:check_for_death({type = "punch", puncher = hitter, hot = hot}) then
 			return true
 		end
-	end -- END if damage
+	end
 
 	-- knock back effect (only on full punch)
 	if self.knock_back and tflp >= punch_interval then
@@ -3167,8 +3154,6 @@ function mob_class:mob_staticdata()
 		end
 	end
 
---print('===== '..self.name..'\n'.. dump(tmp)..'\n=====\n')
-
 	return minetest.serialize(tmp)
 end
 
@@ -3297,7 +3282,7 @@ function mob_class:mob_activate(staticdata, def, dtime)
 	if type(self.armor) == "table" then
 		armor = table_copy(self.armor)
 	else
-		armor = {fleshy = self.armor} -- immortal = 1
+		armor = {fleshy = self.armor, immortal = 1}
 	end
 	self.object:set_armor_groups(armor)
 
@@ -3379,8 +3364,7 @@ function mob_class:mob_expire(pos, dtime)
 				end
 			end
 
---			minetest.log("action",
---				S("lifetimer expired, removed @1", self.name))
+--			minetest.log("action", S("lifetimer expired, removed @1", self.name))
 
 			effect(pos, 15, "tnt_smoke.png", 2, 4, 2, 0)
 
@@ -3407,9 +3391,9 @@ function mob_class:on_step(dtime, moveresult)
 	-- early warning check, if no yaw then no entity, skip rest of function
 	if not yaw then return end
 
-	-- get node at foot level every quarter second
 	self.node_timer = (self.node_timer or 0) + dtime
 
+	-- get nodes above and below foot level every 1/4 second
 	if self.node_timer > 0.25 then
 
 		self.node_timer = 0
@@ -3431,8 +3415,7 @@ function mob_class:on_step(dtime, moveresult)
 
 		-- if standing inside solid block then jump to escape
 		if minetest.registered_nodes[self.standing_in].walkable
-		and minetest.registered_nodes[self.standing_in].drawtype
-				== "normal" then
+		and minetest.registered_nodes[self.standing_in].drawtype == "normal" then
 
 				self.object:set_velocity({
 					x = 0,
@@ -3606,6 +3589,7 @@ minetest.register_entity(name, setmetatable({
 	on_flop = def.on_flop,
 	do_custom = def.do_custom,
 	jump_height = def.jump_height,
+	can_leap = def.can_leap,
 	drawtype = def.drawtype, -- DEPRECATED, use rotate instead
 	rotate = rad(def.rotate or 0), -- 0=front 90=side 180=back 270=side2
 	glow = def.glow,
@@ -3707,7 +3691,7 @@ minetest.register_entity(name, setmetatable({
 
 	get_staticdata = function(self)
 		return self:mob_staticdata(self)
-	end,
+	end
 
 }, mob_class_meta))
 
@@ -3876,7 +3860,7 @@ function mobs:add_mob(pos, def)
 				ent.base_selbox[4] * .5,
 				ent.base_selbox[5] * .5,
 				ent.base_selbox[6] * .5
-			},
+			}
 		})
 
 		ent.child = true
@@ -4509,7 +4493,7 @@ end
 function mobs:capture_mob(self, clicker, chance_hand, chance_net,
 		chance_lasso, force_take, replacewith)
 
-	if not self --self.child
+	if not self
 	or not clicker:is_player()
 	or not clicker:get_inventory() then
 		return false
@@ -4678,8 +4662,7 @@ function mobs:protect(self, clicker)
 
 	pos.y = pos.y + self.collisionbox[2] + 0.5
 
-	effect(self.object:get_pos(), 25, "mobs_protect_particle.png",
-			0.5, 4, 2, 15)
+	effect(self.object:get_pos(), 25, "mobs_protect_particle.png", 0.5, 4, 2, 15)
 
 	self:mob_sound("mobs_spell")
 
@@ -4713,15 +4696,6 @@ function mobs:feed_tame(self, clicker, feed_count, breed, tame)
 		if self.health >= self.hp_max then
 
 			self.health = self.hp_max
-
---			if self.htimer < 1 then
-
---				minetest.chat_send_player(clicker:get_player_name(),
---					S("@1 at full health (@2)",
---					self.name:split(":")[2], tostring(self.health)))
-
---				self.htimer = 5
---			end
 		end
 
 		self.object:set_hp(self.health)
@@ -4729,7 +4703,6 @@ function mobs:feed_tame(self, clicker, feed_count, breed, tame)
 		-- make children grow quicker
 		if self.child == true then
 
---			self.hornytimer = self.hornytimer + 20
 			-- deduct 10% of the time to adulthood
 			self.hornytimer = math.floor(self.hornytimer + (
 					(CHILD_GROW_TIME - self.hornytimer) * 0.1))
@@ -4868,7 +4841,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 end)
 
 
--- compatibility function for old entities to new modpack entities
+-- compatibility function for old mobs entities to new mobs_redo modpack
 function mobs:alias_mob(old_name, new_name)
 
 	-- check old_name entity doesnt already exist
@@ -4899,3 +4872,44 @@ function mobs:alias_mob(old_name, new_name)
 		end
 	})
 end
+
+
+-- admin command to remove untamed mobs around players
+minetest.register_chatcommand("clear_mobs", {
+	params = "<text>",
+	description = "Remove untamed mobs from around players.",
+	privs = {server = true},
+
+	func = function (name, param)
+
+		local count = 0
+
+		for _, player in pairs(minetest.get_connected_players()) do
+
+			if player then
+
+				local pos = player:get_pos()
+
+				local objs = minetest.get_objects_inside_radius(pos, 28)
+
+				for _, obj in pairs(objs) do
+
+					if obj then
+
+						local ent = obj:get_luaentity()
+
+						-- only remove mobs redo mobs that are not tamed
+						if ent and ent._cmi_is_mob and ent.tamed ~= true then
+
+							remove_mob(ent, true)
+
+							count = count + 1
+						end
+					end
+				end
+			end
+		end
+
+		minetest.chat_send_player(name, S("@1 mobs removed.", count))
+	end
+})
