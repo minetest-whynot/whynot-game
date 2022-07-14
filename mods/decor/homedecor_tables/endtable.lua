@@ -17,7 +17,9 @@ minetest.register_node(":lrfurn:endtable", {
 	paramtype2 = "facedir",
 	use_texture_alpha = "blend",
 	groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
-	sounds = default.node_sound_wood_defaults(),
+	_sound_def = {
+		key = "node_sound_wood_defaults",
+	},
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -43,7 +45,7 @@ minetest.register_craft({
 	output = "lrfurn:endtable",
 	recipe = {
 		{"", "", "", },
-		{"stairs:slab_wood", "stairs:slab_wood", "", },
+		{homedecor.materials.slab_wood, homedecor.materials.slab_wood, "", },
 		{"group:stick", "group:stick", "", }
 	}
 })

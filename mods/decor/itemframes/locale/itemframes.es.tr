@@ -1,0 +1,9 @@
+# textdomain: itemframes
+
+
+### init.lua ###
+
+Item frame=Marco para objetos
+Item frame (owned by @1)=Marco para objetos (propiedad de @1)
+Pedestal=Pedestal
+Pedestal (owned by @1)=Pedestal (propiedad de @1)

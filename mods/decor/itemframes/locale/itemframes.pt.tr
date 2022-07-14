@@ -1,0 +1,9 @@
+# textdomain: itemframes
+
+
+### init.lua ###
+
+Item frame=Quadro de Item
+Item frame (owned by @1)=Quadro de item (pertence a @l)
+Pedestal=Pedestal
+Pedestal (owned by @1)=Pedestal (pertence a @l)

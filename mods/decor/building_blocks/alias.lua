@@ -8,16 +8,9 @@ if minetest.get_modpath("moreblocks") or minetest.get_modpath("stairs") then
 end
 
 if minetest.get_modpath("moreblocks") then
+	minetest.register_alias_force("moreblocks:tar", "building_blocks:Tar")
 	stairsplus:register_alias_all("building_blocks", "tar", "building_blocks", "Tar")
 	stairsplus:register_alias_all("building_blocks", "marble", "building_blocks", "Marble")
-	for _, i in ipairs(stairsplus.shapes_list) do
-		local class = i[1]
-		local cut = i[2]
-		minetest.unregister_item("moreblocks:"..class.."tar"..cut)
-		minetest.register_alias("moreblocks:"..class.."tar"..cut, "building_blocks:"..class.."tar"..cut)
-	end
-	minetest.unregister_item("moreblocks:tar")
-	minetest.register_alias("moreblocks:tar", "building_blocks:Tar")
 	stairsplus:register_alias_all("moreblocks", "tar", "building_blocks", "Tar")
 
 	if minetest.get_modpath("gloopblocks") then
@@ -40,8 +33,10 @@ if not minetest.get_modpath("technic") then
 		    description = S("Granite"),
 		    tiles = { "technic_granite.png" },
 		    is_ground_content = true,
-		    groups = {cracky=1},
-		    sounds = default.node_sound_stone_defaults(),
+		    groups = {cracky=1, dig_stone=2},
+		    _sound_def = {
+				key = "node_sound_stone_defaults",
+			},
 	})
 	minetest.register_craft({
 		output = "technic:granite 9",

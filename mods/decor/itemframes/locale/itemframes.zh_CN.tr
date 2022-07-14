@@ -1,0 +1,9 @@
+# textdomain: itemframes
+
+
+### init.lua ###
+
+Item frame=项目框架
+Item frame (owned by @1)=物品框架（归@1所有）
+Pedestal=底座
+Pedestal (owned by @1)=基座（归@1所有）

@@ -1,0 +1,9 @@
+# textdomain: itemframes
+
+
+### init.lua ###
+
+Item frame=Рамка предметов
+Item frame (owned by @1)=Рамка предметов (принадлежит @1)
+Pedestal=Пьедестал
+Pedestal (owned by @1)=Пьедестал (принадлежит @1)

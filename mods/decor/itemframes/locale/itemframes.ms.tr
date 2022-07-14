@@ -1,0 +1,9 @@
+# textdomain: itemframes
+
+
+### init.lua ###
+
+Item frame=Bingkai Item
+Item frame (owned by @1)=Bingkai Item (hak milik @1)
+Pedestal=Kekaki
+Pedestal (owned by @1)=Kekaki (hak milik @1)
