@@ -1,11 +1,14 @@
 local S = minetest.get_translator("hopper")
+local FS = hopper.translator_escaped
+
 local function get_chute_formspec(pos)
 	local spos = hopper.get_string_pos(pos)
 	local formspec =
 		"size[8,7]"
 		.. hopper.formspec_bg
-		.. "list[nodemeta:" .. spos .. ";main;3,0.3;2,2;]"
-		.. hopper.get_eject_button_texts(pos, 7, 0.8)
+		.. "label[3,-0.1;" .. FS("Hopper Chute") .."]"
+		.. "list[nodemeta:" .. spos .. ";main;3,0.4;2,2;]"
+		.. hopper.get_eject_button_texts(pos, 6, 0.8)
 		.. "list[current_player;main;0,2.85;8,1;]"
 		.. "list[current_player;main;0,4.08;8,3;8]"
 		.. "listring[nodemeta:" .. spos .. ";main]"
@@ -72,7 +75,7 @@ minetest.register_node("hopper:chute", {
 	end,
 
 	on_metadata_inventory_put = function(pos, listname, index, stack, player)
-		minetest.log("action", S("@1 moves stuff to chute at @2",
+		hopper.log_inventory(("%s moves stuff to chute at %s"):format(
 			player:get_player_name(), minetest.pos_to_string(pos)))
 
 		local timer = minetest.get_node_timer(pos)

@@ -1,4 +1,6 @@
 local S = minetest.get_translator("hopper")
+local FS = hopper.translator_escaped
+local ALPHA_CLIP = minetest.features.use_texture_alpha_string_modes and "clip" or true
 
 -- formspec
 local function get_hopper_formspec(pos)
@@ -6,8 +8,9 @@ local function get_hopper_formspec(pos)
 	local formspec =
 		"size[8,9]"
 		.. hopper.formspec_bg
-		.. "list[nodemeta:" .. spos .. ";main;2,0.3;4,4;]"
-		.. hopper.get_eject_button_texts(pos, 7, 2)
+		.. "label[3.5,-0.1;" .. FS("Hopper") .."]"
+		.. "list[nodemeta:" .. spos .. ";main;2,0.4;4,4;]"
+		.. hopper.get_eject_button_texts(pos, 6.5, 2)
 		.. "list[current_player;main;0,4.85;8,1;]"
 		.. "list[current_player;main;0,6.08;8,3;8]"
 		.. "listring[nodemeta:" .. spos .. ";main]"
@@ -68,6 +71,7 @@ minetest.register_node("hopper:hopper", {
 		"hopper_top_" .. hopper.config.texture_resolution .. ".png",
 		"hopper_front_" .. hopper.config.texture_resolution .. ".png"
 	},
+	use_texture_alpha = ALPHA_CLIP,
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -117,17 +121,17 @@ minetest.register_node("hopper:hopper", {
 	end,
 
 	on_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)
-		minetest.log("action", S("@1 moves stuff in hopper at @2",
+		minetest.log("action", ("%s moves stuff in hopper at %s"):format(
 			player:get_player_name(), minetest.pos_to_string(pos)))
 	end,
 
 	on_metadata_inventory_put = function(pos, listname, index, stack, player)
-		minetest.log("action", S("@1 moves stuff to hopper at @2",
+		hopper.log_inventory(("%s moves stuff to hopper at %s"):format(
 			player:get_player_name(), minetest.pos_to_string(pos)))
 	end,
 
 	on_metadata_inventory_take = function(pos, listname, index, stack, player)
-		minetest.log("action", S("@1 moves stuff from hopper at @2",
+		hopper.log_inventory(("%s moves stuff from hopper at %s"):format(
 			player:get_player_name(), minetest.pos_to_string(pos)))
 	end,
 })
@@ -160,6 +164,7 @@ minetest.register_node("hopper:hopper_side", {
 		"hopper_back_" .. hopper.config.texture_resolution .. ".png",
 		"hopper_back_" .. hopper.config.texture_resolution .. ".png"
 	},
+	use_texture_alpha = ALPHA_CLIP,
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -209,17 +214,18 @@ minetest.register_node("hopper:hopper_side", {
 	end,
 
 	on_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)
-		minetest.log("action", S("@1 moves stuff in hopper at @2",
+		-- Only players move items. "action" is generally okay here.
+		minetest.log("action", ("%s moves stuff in hopper at %s"):format(
 			player:get_player_name(), minetest.pos_to_string(pos)))
 	end,
 
 	on_metadata_inventory_put = function(pos, listname, index, stack, player)
-		minetest.log("action", S("@1 moves stuff to hopper at @2",
+		hopper.log_inventory(("%s moves stuff to hopper at%s"):format(
 			player:get_player_name(), minetest.pos_to_string(pos)))
 	end,
 
 	on_metadata_inventory_take = function(pos, listname, index, stack, player)
-		minetest.log("action", S("@1 moves stuff from hopper at @2",
+		hopper.log_inventory(("%s moves stuff from hopper at %s"):format(
 			player:get_player_name(), minetest.pos_to_string(pos)))
 	end,
 })
