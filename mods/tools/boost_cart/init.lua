@@ -9,7 +9,6 @@ boost_cart.modpath = minetest.get_modpath("boost_cart")
 boost_cart.MESECONS = minetest.global_exists("mesecon")
 boost_cart.MTG_CARTS = minetest.global_exists("carts") and carts.pathfinder
 boost_cart.PLAYER_API = minetest.global_exists("player_api")
-boost_cart.player_attached = {}
 
 local function getNum(setting)
 	return tonumber(minetest.settings:get(setting))
@@ -20,13 +19,8 @@ boost_cart.speed_max = getNum("boost_cart.speed_max") or 10
 -- Set to -1 to disable punching the cart from inside
 boost_cart.punch_speed_max = getNum("boost_cart.punch_speed_max") or 7
 -- Maximal distance for the path correction (for dtime peaks)
-boost_cart.path_distance_max = 3
+boost_cart.path_distance_max = 4
 
-
-if boost_cart.PLAYER_API then
-	-- This is a table reference!
-	boost_cart.player_attached = player_api.player_attached
-end
 
 dofile(boost_cart.modpath.."/functions.lua")
 dofile(boost_cart.modpath.."/rails.lua")

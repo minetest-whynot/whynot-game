@@ -49,17 +49,10 @@ function cart_entity:on_rightclick(clicker)
 	end
 	local player_name = clicker:get_player_name()
 	if self.driver and player_name == self.driver then
-		self.driver = nil
 		boost_cart:manage_attachment(clicker, nil)
 	elseif not self.driver then
-		self.driver = player_name
 		boost_cart:manage_attachment(clicker, self.object)
-
-		if default.player_set_animation then
-			-- player_api(/default) does not update the animation
-			-- when the player is attached, reset to default animation
-			default.player_set_animation(clicker, "stand")
-		end
+		self.driver = player_name
 	end
 end
 
@@ -94,8 +87,8 @@ end
 -- 0.5.x and later: When the driver leaves
 function cart_entity:on_detach_child(child)
 	if child and child:get_player_name() == self.driver then
-		self.driver = nil
 		boost_cart:manage_attachment(child, nil)
+		self.driver = nil
 	end
 end
 
@@ -185,11 +178,11 @@ function cart_entity:on_step(dtime)
 	end
 
 	local pos = self.object:get_pos()
-	local cart_dir = boost_cart:velocity_to_dir(vel)
-	local same_dir = vector.equals(cart_dir, self.old_dir)
+	local dir = boost_cart:velocity_to_dir(vel)
+	local dir_changed = not vector.equals(dir, self.old_dir)
 	local update = {}
 
-	if self.old_pos and not self.punched and same_dir then
+	if self.old_pos and not self.punched and not dir_changed then
 		local flo_pos = vector.round(pos)
 		local flo_old = vector.round(self.old_pos)
 		if vector.equals(flo_pos, flo_old) then
@@ -210,7 +203,7 @@ function cart_entity:on_step(dtime)
 	end
 
 	local stop_wiggle = false
-	if self.old_pos and same_dir then
+	if self.old_pos and not dir_changed then
 		-- Detection for "skipping" nodes (perhaps use average dtime?)
 		-- It's sophisticated enough to take the acceleration in account
 		local acc = self.object:get_acceleration()
@@ -225,7 +218,7 @@ function cart_entity:on_step(dtime)
 			-- No rail found: set to the expected position
 			pos = new_pos
 			update.pos = true
-			cart_dir = new_dir
+			dir = new_dir
 		end
 	elseif self.old_pos and self.old_dir.y ~= 1 and not self.punched then
 		-- Stop wiggle
@@ -235,20 +228,25 @@ function cart_entity:on_step(dtime)
 	-- dir:         New moving direction of the cart
 	-- switch_keys: Currently pressed L(1) or R(2) key,
 	--              used to ignore the key on the next rail node
-	local dir, switch_keys = boost_cart:get_rail_direction(
-		pos, cart_dir, ctrl, self.old_switch, self.railtype
+	local switch_keys
+	dir, switch_keys = boost_cart:get_rail_direction(
+		pos, dir, ctrl, self.old_switch, self.railtype
 	)
-	local dir_changed = not vector.equals(dir, self.old_dir)
+	dir_changed = not vector.equals(dir, self.old_dir)
 
 	local acc = 0
 	if stop_wiggle or vector.equals(dir, {x=0, y=0, z=0}) then
+		dir = vector.new(self.old_dir)
 		vel = {x=0, y=0, z=0}
 		local pos_r = vector.round(pos)
 		if not boost_cart:is_rail(pos_r, self.railtype)
 				and self.old_pos then
 			pos = self.old_pos
 		elseif not stop_wiggle then
+			-- End of rail: Smooth out.
 			pos = pos_r
+			dir_changed = false
+			dir.y = 0
 		else
 			pos.y = math.floor(pos.y + 0.5)
 		end
@@ -319,7 +317,7 @@ function cart_entity:on_step(dtime)
 
 		if acc then
 			-- Slow down or speed up, depending on Y direction
-			acc = acc + dir.y * -2.1
+			acc = acc + dir.y * -4
 		else
 			acc = 0
 		end
@@ -338,13 +336,8 @@ function cart_entity:on_step(dtime)
 	self.object:set_acceleration(vector.multiply(dir, acc))
 
 	self.old_pos = vector.round(pos)
-	local old_y_dir = self.old_dir.y
-	if not vector.equals(dir, {x=0, y=0, z=0}) and not stop_wiggle then
-		self.old_dir = dir
-	else
-		-- Cart stopped, set the animation to 0
-		self.old_dir.y = 0
-	end
+	local old_y_dir = self.old_dir.y -- For player tilt
+	self.old_dir = vector.new(dir)
 	self.old_switch = switch_keys
 
 	boost_cart:on_rail_step(self, self.old_pos, distance)
@@ -371,8 +364,6 @@ function cart_entity:on_step(dtime)
 	if not (update.vel or update.pos) then
 		return
 	end
-	-- Re-use "dir", localize self.old_dir
-	dir = self.old_dir
 
 	local yaw = 0
 	if dir.x < 0 then
