@@ -1,0 +1,6 @@
+# textdomain: home_workshop_machines
+
+### init.lua ###
+
+3D Printer ("bedflinger" design)=
+3D Printer (CoreXY design)=

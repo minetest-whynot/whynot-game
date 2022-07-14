@@ -1,0 +1,31 @@
+# textdomain: computers
+
+
+### computers.lua ###
+
+Admiral128=Admiral 128
+Admiral64=Admiral 64
+Computer Tower=Computerturm
+HUEG Box=YBOX
+Monitor and keyboard=Bildschirm und Tastatur
+Nientiendo Wee=Tinnendo iiW
+Not enough vertical space to place a server!=Es gibt nicht genug vertikalen Platz, um einen Server zu platzieren!
+Pony SlayStation=Pony Slaystation
+Pony SlayStation 2=Pony Slaystation 2
+Pony Vanio=Pony Oiva
+Rack Server=Serverschrank
+SX Specter=Z Inspektor
+SheFriendSOO=Freundin S00
+Snapple Piepad=Apfel-Ei-Pat
+WIFI Router=WiFi-Router
+Printer-Scanner Combo=Multifunktionsdrucker
+
+### tetris.lua ###
+
+L=L
+New Game=Neues Spiel
+Next...=Nächster…
+No room for place the Arcade!=Kein Platz, um den Arkadeautomaten zu platzieren!
+R=R
+Score: =Punktzahl: 
+Tetris Arcade=Tetris-Arkadeautomat

@@ -1,0 +1,31 @@
+# textdomain: computers
+
+
+### computers.lua ###
+
+Admiral128=
+Admiral64=
+Computer Tower=Системный блок
+HUEG Box=
+Monitor and keyboard=Монитор и клавиатура
+Nientiendo Wee=
+Not enough vertical space to place a server!=Недостаточно вертикального пространства для размещения сервера!
+Pony SlayStation=
+Pony SlayStation 2=
+Pony Vanio=
+Rack Server=Стоечный сервер
+SX Specter=
+SheFriendSOO=
+Snapple Piepad=
+WIFI Router=WIFI-роутер
+Printer-Scanner Combo=МФУ
+
+### tetris.lua ###
+
+L=
+New Game=Новая игра
+Next...=Далее...
+No room for place the Arcade!=Недостаточно места для размещения игрового автомата!
+R=
+Score: =Счёт: 
+Tetris Arcade=Игровой автомат Тетрис
