@@ -1,3 +1,37 @@
+function sync_mods_folder {
+
+  local subm=$1
+  local modname=$2
+
+  local group=$(dirname $subm)
+  local DSTPATH="$DST/$group"
+
+  mkdir -p $DSTPATH
+
+  local exclusionlist=''
+  if [ ${EXCLUDED[$subm]+_} ]; then
+    exclusionlist=${EXCLUDED[$subm]}
+  fi
+
+  if [[ -e "$SRC/$subm/modpack.txt" || -e "$SRC/$subm/modpack.conf" ]]; then
+    for childmod in `find $SRC/$subm -mindepth 1 -maxdepth 1 -type d`; do
+      local childname=$(basename $childmod)
+      if [[ ${childname:0:1} != "." && !( $exclusionlist =~ $childname$ || $exclusionlist =~ $childname[^[:alnum:]_] ) ]]; then
+        $RSYNC $exclusionlist $childmod/ $DSTPATH/$childname/
+      else
+        rm -rf $DSTPATH/$childname
+      fi
+    done
+  elif [[ "$modname" = "minetest_game" ]]; then
+    $RSYNC $exclusionlist $SRC/$subm/mods/ $DSTPATH/
+  else
+    $RSYNC $exclusionlist $SRC/$subm/ $DSTPATH/$modname/
+  fi
+
+  touch "$DSTPATH/modpack.conf"
+}
+export -f sync_mods_folder
+
 
 function process_update_mods {
 
@@ -13,6 +47,8 @@ function process_update_mods {
   if [ ${BRANCHES[$subm]+_} ]; then
     branch=${BRANCHES[$subm]}
   fi
+
+  local modname=$(basename $subm)
 
   local current=$(git rev-parse --verify --quiet $branch) #> /dev/null
 
@@ -30,48 +66,37 @@ function process_update_mods {
     IFS= read -r -p 'Merge all changes? [y/N] ' CHOOSEMERGE < /dev/tty
     if [[ "$CHOOSEMERGE" = "Y" ||  "$CHOOSEMERGE" = "y" ]]; then
 
-      git --no-pager merge $branch
+      git --quiet merge $branch
 
-      local group=$(dirname $subm)
-      local modname=$(basename $subm)
-      local DSTPATH="$DST/$group"
-
-      mkdir -p $DSTPATH
-      touch "$DSTPATH/modpack.conf"
-
-      local exclusionlist=''
-      if [ ${EXCLUDED[$subm]+_} ]; then
-        exclusionlist=${EXCLUDED[$subm]}
-      fi
-
-      if [[ -e "$SRC/$subm/modpack.txt" || -e "$SRC/$subm/modpack.conf" || "$modname" == "minetest_game" ]]; then
-        for childmod in `find $SRC/$subm -mindepth 1 -maxdepth 1 -type d`; do
-          local childname=$(basename $childmod)
-          $RSYNC $exclusionlist $childmod/ $DSTPATH/$childname/
-        done
-      else
-        $RSYNC $exclusionlist $SRC/$subm/ $DSTPATH/$modname/
-      fi
+      sync_mods_folder $subm $modname
 
       local CHOOSECOMMIT=''
       IFS= read -r -p 'Commit now? [Y/n] ' CHOOSECOMMIT < /dev/tty
       if [[ "$CHOOSECOMMIT" = "Y" ||  "$CHOOSECOMMIT" = "y" || "$CHOOSECOMMIT" = "" ]]; then
         cd $STARTDIR
-        git add $PROJ
-        git reset $LOG
-        git --no-pager commit -m "Update $modname from upstream."
+        git --quiet commit -m "Update $modname from upstream." -- $DST/$subm
         cd $subm
       fi
 
     fi
   else
     echo 'No changes.'
+    sync_mods_folder $subm $modname
+    cd $STARTDIR
+    local DSTPATH="$DST/$subm"
+    if [[ ! -e $DSTPATH ]]; then
+      local group=$(dirname $subm)
+      DSTPATH="$DST/$group"
+    fi
+    git diff --quiet $DSTPATH || git commit --quiet -m "Rsync cleanup for $modname" -- $DSTPATH
+    cd $subm
   fi
 
   echo '' >> "$LOG"
   echo `git remote -v | grep '\(fetch\)'` >> "$LOG"
   git branch --format '%(HEAD) %(objectname) %(subject)' | grep '^[*]' >> "$LOG"
   echo "Mod: $subm" >> "$LOG"
+
 }
 export -f process_update_mods
 
