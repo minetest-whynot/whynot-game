@@ -45,3 +45,7 @@ $RSYNC $SRC/libs/whynot_compat/ $DST/libs/whynot_compat/
 git diff --quiet $DST/libs/whynot_compat || git commit $VERBOSITY -m "Update whynot_compat" $DST/libs/whynot_compat
 
 git diff --quiet $LOG || git commit $VERBOSITY -m "Update mod_sources.txt" $LOG
+
+echo "Mods have been updated. Please review your commits before pushing using: "
+echo ""
+echo "  git difftool origin/main"
