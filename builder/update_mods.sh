@@ -32,4 +32,8 @@ echo " done."
 echo "Process updates of submodules..."
 git submodule status | xargs -P 1 -n 3 bash -c 'source "$PROJ"/builder/lib-config-whynot.sh; process_update_mods "$@"' _
 
-git commit -m "update mod_sources.txt" "$LOG"
+mkdir -p $DST/libs/whynot_compat
+$RSYNC $SRC/libs/whynot_compat/ $DST/libs/whynot_compat/
+git diff --quiet $DST/libs/whynot_compat || git commit --quiet -m "Update whynot_compat" $DST/libs/whynot_compat
+
+git diff --quiet $LOG || git commit --quiet --no-verify -m "Update mod_sources.txt" $LOG
