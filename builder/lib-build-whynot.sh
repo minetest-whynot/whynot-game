@@ -14,14 +14,18 @@ function sync_mods_folder {
   fi
 
   if [[ -e "$SRC/$subm/modpack.txt" || -e "$SRC/$subm/modpack.conf" ]]; then
+
     for childmod in `find $SRC/$subm -mindepth 1 -maxdepth 1 -type d`; do
       local childname=$(basename $childmod)
       if [[ ${childname:0:1} != "." && !( $exclusionlist =~ $childname$ || $exclusionlist =~ $childname[^[:alnum:]_] ) ]]; then
         $RSYNC $exclusionlist $childmod/ $DSTPATH/$childname/
       else
-        rm -rf $DSTPATH/$childname
+        local TMPV=''
+        [[ $VERBOSITY == '--verbose' ]] && TMPV=$VERBOSITY
+        rm -rf $TMPV $DSTPATH/$childname
       fi
     done
+
   elif [[ "$modname" = "minetest_game" ]]; then
     $RSYNC $exclusionlist $SRC/$subm/mods/ $DSTPATH/
   else
@@ -39,7 +43,6 @@ function process_update_mods {
   local subm=$2
   # ignore local branch=$(echo "$3" | tr -d '()')
 
-  local STARTDIR=$(pwd)
   cd $subm
   echo -n "Processing $subm... "
 
@@ -53,6 +56,7 @@ function process_update_mods {
   local current=$(git rev-parse --verify --quiet $branch) #> /dev/null
 
   if [ "$commit" != "$current" ]; then
+
     echo ''
     git log $commit..$current
 
@@ -65,31 +69,35 @@ function process_update_mods {
     local CHOOSEMERGE=''
     IFS= read -r -p 'Merge all changes? [y/N] ' CHOOSEMERGE < /dev/tty
     if [[ "$CHOOSEMERGE" = "Y" ||  "$CHOOSEMERGE" = "y" ]]; then
-
-      git --quiet merge $branch
-
+      git merge $VERBOSITY $branch
       sync_mods_folder $subm $modname
 
       local CHOOSECOMMIT=''
       IFS= read -r -p 'Commit now? [Y/n] ' CHOOSECOMMIT < /dev/tty
       if [[ "$CHOOSECOMMIT" = "Y" ||  "$CHOOSECOMMIT" = "y" || "$CHOOSECOMMIT" = "" ]]; then
-        cd $STARTDIR
-        git --quiet commit -m "Update $modname from upstream." -- $DST/$subm
-        cd $subm
+        cd $PROJ
+        local TMPV=''
+        [[ $VERBOSITY == '--verbose' ]] && TMPV=$VERBOSITY
+        git add $TMPV .
+        TMPV=''
+        [[ $VERBOSITY == '--quiet' ]] && TMPV=$VERBOSITY
+        git reset $TMPV $LOG
+        git commit $VERBOSITY -m "Update $modname from upstream."
       fi
-
     fi
+
   else
+
     echo 'No changes.'
     sync_mods_folder $subm $modname
-    cd $STARTDIR
+    cd $PROJ
     local DSTPATH="$DST/$subm"
     if [[ ! -e $DSTPATH ]]; then
       local group=$(dirname $subm)
       DSTPATH="$DST/$group"
     fi
-    git diff --quiet $DSTPATH || git commit --quiet -m "Rsync cleanup for $modname" -- $DSTPATH
-    cd $subm
+    git diff --quiet $DSTPATH || git commit $VERBOSITY -m "Rsync cleanup for $modname" -- $DSTPATH
+
   fi
 
   echo '' >> "$LOG"
