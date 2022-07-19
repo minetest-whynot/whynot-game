@@ -26,8 +26,12 @@ source "$PROJ"/builder/lib-build-whynot.sh
 mkdir -p "$DST"
 cd "$SRC"
 
-# Overwrite old log
->"$LOG"
+OLDSTASHSIZE=$(git stash list | wc -l)
+echo -n "Stashing uncommited changes..."
+[[ $VERBOSITY == '--quiet' ]] && TMPV=$VERBOSITY || TMPV=''
+git stash push $VERBOSITY --include-untracked -m "update_mod.sh: stashing uncommitted changes before updating mods"
+NEWSTASHSIZE=$(git stash list | wc -l)
+[[ $OLDSTASHSIZE -lt $NEWSTASHSIZE ]] && echo " done." || echo " nothing to stash."
 
 echo -n "Updating local repository..."
 git submodule sync $VERBOSITY
@@ -37,15 +41,28 @@ echo -n "Updating submodules..."
 git submodule update --init --recursive $VERBOSITY --jobs 4
 echo " done."
 
+# Overwrite old log
+>"$LOG"
+
 echo "Process updates of submodules..."
 git submodule status | xargs -P 1 -n 3 bash -c 'source "$PROJ"/builder/lib-config-whynot.sh; process_update_mods "$@"' _
 
-mkdir -p $DST/libs/whynot_compat
-$RSYNC $SRC/libs/whynot_compat/ $DST/libs/whynot_compat/
-git diff --quiet $DST/libs/whynot_compat || git commit $VERBOSITY -m "Update whynot_compat" $DST/libs/whynot_compat
+# Update built-in mods (not submodules)
+$RSYNC $SRC/libs/whynot_compat $DST/libs/
+git diff --quiet -- $DST/libs/whynot_compat || git commit $VERBOSITY -m "Update whynot_compat" $DST/libs/whynot_compat
 
-git diff --quiet $LOG || git commit $VERBOSITY -m "Update mod_sources.txt" $LOG
+# Finalize mods update by commiting mod_sources.txt
+git diff --quiet -- $LOG || git commit $VERBOSITY -m "Update mod_sources.txt" $LOG
 
-echo "Mods have been updated. Please review your commits before pushing using: "
+if [[ $OLDSTASHSIZE -lt $NEWSTASHSIZE ]]; then
+  echo -n "Restoring uncommited changes from stash..."
+  git stash pop --index $VERBOSITY
+  echo " done."
+fi
+
+echo ""
+echo "Mods have been updated as per your selections."
+echo "Please review your commits before pushing using: "
 echo ""
 echo "  git difftool origin/main"
+echo ""

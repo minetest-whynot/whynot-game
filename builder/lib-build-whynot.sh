@@ -79,8 +79,7 @@ function process_update_mods {
         local TMPV=''
         [[ $VERBOSITY == '--verbose' ]] && TMPV=$VERBOSITY
         git add $TMPV .
-        TMPV=''
-        [[ $VERBOSITY == '--quiet' ]] && TMPV=$VERBOSITY
+        [[ $VERBOSITY == '--quiet' ]] && TMPV=$VERBOSITY || TMPV=''
         git reset $TMPV $LOG
         git commit $VERBOSITY -m "Update $modname from upstream."
       fi
