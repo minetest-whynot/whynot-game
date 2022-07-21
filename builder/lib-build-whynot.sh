@@ -44,6 +44,7 @@ function process_update_mods {
   # ignore local branch=$(echo "$3" | tr -d '()')
 
   cd $subm
+  STARTDIR=$(pwd)
   echo -n "Processing $subm... "
 
   local branch="origin/HEAD"
@@ -99,6 +100,7 @@ function process_update_mods {
 
   fi
 
+  cd $STARTDIR
   echo '' >> "$LOG"
   echo `git remote -v | grep '\(fetch\)'` >> "$LOG"
   git branch --format '%(HEAD) %(objectname) %(subject)' | grep '^[*]' >> "$LOG"
