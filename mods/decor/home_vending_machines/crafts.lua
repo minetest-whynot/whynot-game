@@ -9,7 +9,7 @@ if minetest.get_modpath("default") then
             },
         })
     end
-    if minetest.get_modpath("vessel") then
+    if minetest.get_modpath("vessels") then
         minetest.register_craft({
             output = "home_vending_machines:drink_machine",
             recipe = {
@@ -19,7 +19,7 @@ if minetest.get_modpath("default") then
             },
         })
     end
-    if minetest.get_modpath("farming") then
+    if farming and farming.mod == "redo" then
         minetest.register_craft({
             output = "home_vending_machines:sweet_machine",
             recipe = {
