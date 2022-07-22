@@ -35,6 +35,7 @@ local power_decrease = function(pos, node)
 	end
 end
 
+local use_texture_alpha = minetest.features.use_texture_alpha_string_modes and "clip" or nil
 for i = 1, 6 do
 	minetest.register_node("jumping:trampoline"..i, {
 		description = "Trampoline",
@@ -48,6 +49,7 @@ for i = 1, 6 do
 		on_punch = trampoline_punch,
 		on_rightclick = power_decrease,
 		drop = "jumping:trampoline1",
+		use_texture_alpha = use_texture_alpha,
 		tiles = {
 			"jumping_trampoline_top.png",
 			"jumping_trampoline_bottom.png",
@@ -68,6 +70,7 @@ minetest.register_node("jumping:cushion", {
 	node_box = cushionbox,
 	selection_box = cushionbox,
 	paramtype = "light",
+	use_texture_alpha = use_texture_alpha,
 	tiles = {
 		"jumping_cushion_tb.png",
 		"jumping_cushion_tb.png",
