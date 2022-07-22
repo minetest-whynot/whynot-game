@@ -21,8 +21,10 @@ building_blocks_stairs("building_blocks:grate", {
 	sunlight_propagates = true,
 	is_ground_content = true,
 	use_texture_alpha = "clip",
-	groups = {cracky=1},
-	sounds = default.node_sound_metal_defaults(),
+	groups = {cracky=1, dig_generic=3},
+	_sound_def = {
+		key = "node_sound_metal_defaults",
+	},
 })
 building_blocks_stairs("building_blocks:smoothglass", {
 	drawtype = "glasslike",
@@ -33,7 +35,9 @@ building_blocks_stairs("building_blocks:smoothglass", {
 	is_ground_content = true,
 	use_texture_alpha = "clip",
 	groups = {snappy=3,cracky=3,oddly_breakable_by_hand=3},
-	sounds = default.node_sound_glass_defaults(),
+	_sound_def = {
+		key = "node_sound_glass_defaults",
+	},
 })
 building_blocks_stairs("building_blocks:woodglass", {
 	drawtype = "glasslike",
@@ -44,52 +48,68 @@ building_blocks_stairs("building_blocks:woodglass", {
 	is_ground_content = true,
 	use_texture_alpha = "clip",
 	groups = {snappy=3,cracky=3,oddly_breakable_by_hand=3},
-	sounds = default.node_sound_glass_defaults(),
+	_sound_def = {
+		key = "node_sound_glass_defaults",
+	},
 })
 
 building_blocks_stairs("building_blocks:Adobe", {
 	tiles = {"building_blocks_Adobe.png"},
 	description = S("Adobe"),
 	is_ground_content = true,
-	groups = {crumbly=3},
-	sounds = default.node_sound_stone_defaults(),
+	groups = {crumbly=3, dig_stone=2},
+	_sound_def = {
+		key = "node_sound_stone_defaults",
+	},
 })
+local grasstex = {"[combine:16x16^[noalpha^[colorize:#006400"}
+if minetest.get_modpath("default") then
+	grasstex = minetest.registered_nodes["default:dirt_with_grass"].tiles
+end
 building_blocks_stairs("building_blocks:fakegrass", {
-	tiles = {"default_grass.png", "default_dirt.png", "default_dirt.png^default_grass_side.png"},
+	tiles = grasstex,
 	description = S("Fake Grass"),
 	is_ground_content = true,
-	groups = {crumbly=3},
-	sounds = default.node_sound_dirt_defaults({
-		footstep = {name="default_grass_footstep", gain=0.4},
-	}),
+	groups = {crumbly=3, dig_sand=3},
+	_sound_def = {
+		key = "node_sound_dirt_defaults",
+	},
 })
 building_blocks_stairs("building_blocks:hardwood", {
 	tiles = {"building_blocks_hardwood.png"},
 	is_ground_content = true,
 	description = S("Hardwood"),
-	groups = {choppy=1,flammable=1},
-	sounds = default.node_sound_wood_defaults(),
+	groups = {choppy=1,flammable=1, dig_tree=1},
+	_sound_def = {
+		key = "node_sound_wood_defaults",
+	},
 })
 building_blocks_stairs("building_blocks:Roofing", {
 	tiles = {"building_blocks_Roofing.png"},
 	is_ground_content = true,
 	description = S("Roof block"),
-	groups = {snappy=3},
-	sounds = default.node_sound_stone_defaults(),
+	groups = {snappy=3, dig_generic=4},
+	_sound_def = {
+		key = "node_sound_stone_defaults",
+	},
 })
 building_blocks_stairs("building_blocks:Tar", {
 	description = S("Tar"),
 	tiles = {"building_blocks_tar.png"},
 	is_ground_content = true,
-	groups = {crumbly=1, tar_block = 1},
-	sounds = default.node_sound_stone_defaults(),
+	groups = {crumbly=1, tar_block = 1, dig_generic=4},
+	_sound_def = {
+		key = "node_sound_stone_defaults",
+	},
 })
 building_blocks_stairs("building_blocks:Marble", {
 	description = S("Marble"),
 	tiles = {"building_blocks_marble.png"},
 	is_ground_content = true,
-	groups = {cracky=3, marble = 1},
-	sounds = default.node_sound_stone_defaults(),
+	groups = {cracky=3, marble = 1, dig_stone=2},
+	_sound_def = {
+		key = "node_sound_stone_defaults",
+	},
 })
 
 minetest.register_node("building_blocks:brobble_spread", {
@@ -103,34 +123,37 @@ minetest.register_node("building_blocks:brobble_spread", {
 	walkable = false,
 	selection_box = {
 		type = "fixed",
-                -- but how to specify the dimensions for curved and sideways rails?
-                fixed = {-1/2, -1/2, -1/2, 1/2, -1/2+1/16, 1/2},
+        -- but how to specify the dimensions for curved and sideways rails?
+        fixed = {-1/2, -1/2, -1/2, 1/2, -1/2+1/16, 1/2},
 	},
 	sunlight_propagates = true,
 	is_ground_content = true,
-	groups = {crumbly=3},
+	groups = {crumbly=3, dig_generic=4},
 })
 
 if not minetest.get_modpath("moreblocks") or not minetest.get_modpath("gloopblocks") then
+	local graveltex = "[combine:16x16^[noalpha^[colorize:#3a3b3c"
+	if minetest.get_modpath("default") then
+		graveltex = "default_gravel.png"
+	end
 	minetest.register_node("building_blocks:gravel_spread", {
 		drawtype = "raillike",
 		description = S("Gravel Spread"),
-		tiles = {"default_gravel.png"},
+		tiles = {graveltex},
 		inventory_image = "building_blocks_gravel_spread_inv.png",
 		paramtype = "light",
 		walkable = false,
 		selection_box = {
 			type = "fixed",
-					-- but how to specify the dimensions for curved and sideways rails?
-					fixed = {-1/2, -1/2, -1/2, 1/2, -1/2+1/16, 1/2},
+			-- but how to specify the dimensions for curved and sideways rails?
+			fixed = {-1/2, -1/2, -1/2, 1/2, -1/2+1/16, 1/2},
 		},
 		sunlight_propagates = true,
 		is_ground_content = true,
-		groups = {crumbly=2},
-		sounds = default.node_sound_dirt_defaults({
-			footstep = {name="default_gravel_footstep", gain=0.5},
-			dug = {name="default_gravel_footstep", gain=1.0},
-		}),
+		groups = {crumbly=2, dig_generic=4},
+		_sound_def = {
+			key = "node_sound_dirt_defaults",
+		},
 	})
 end
 
@@ -143,13 +166,15 @@ minetest.register_node("building_blocks:Tarmac_spread", {
 	walkable = false,
 	selection_box = {
 		type = "fixed",
-                -- but how to specify the dimensions for curved and sideways rails?
-                fixed = {-1/2, -1/2, -1/2, 1/2, -1/2+1/16, 1/2},
+        -- but how to specify the dimensions for curved and sideways rails?
+        fixed = {-1/2, -1/2, -1/2, 1/2, -1/2+1/16, 1/2},
 	},
 	sunlight_propagates = true,
 	is_ground_content = true,
-	groups = {cracky=3},
-	sounds = default.node_sound_dirt_defaults(),
+	groups = {cracky=3, dig_generic=4},
+	_sound_def = {
+		key = "node_sound_dirt_defaults",
+	},
 })
 minetest.register_node("building_blocks:terrycloth_towel", {
 	drawtype = "raillike",
@@ -160,12 +185,12 @@ minetest.register_node("building_blocks:terrycloth_towel", {
 	walkable = false,
 	selection_box = {
 		type = "fixed",
-                -- but how to specify the dimensions for curved and sideways rails?
-                fixed = {-1/2, -1/2, -1/2, 1/2, -1/2+1/16, 1/2},
+        -- but how to specify the dimensions for curved and sideways rails?
+        fixed = {-1/2, -1/2, -1/2, 1/2, -1/2+1/16, 1/2},
 	},
 	sunlight_propagates = true,
 	is_ground_content = true,
-	groups = {crumbly=3},
+	groups = {crumbly=3, dig_generic=4},
 })
 
 minetest.register_node("building_blocks:BWtile", {
@@ -188,7 +213,7 @@ minetest.register_node("building_blocks:BWtile", {
 	},
 	sunlight_propagates = true,
 	is_ground_content = true,
-	groups = {crumbly=3},
+	groups = {crumbly=3, dig_generic=4},
 })
 
 minetest.register_node("building_blocks:Fireplace", {
@@ -201,9 +226,11 @@ minetest.register_node("building_blocks:Fireplace", {
 	},
 	paramtype = "light",
 	paramtype2 = "facedir",
-	light_source = default.LIGHT_MAX,
+	light_source = minetest.LIGHT_MAX,
 	sunlight_propagates = true,
 	is_ground_content = true,
-	groups = {cracky=2},
-	sounds = default.node_sound_stone_defaults(),
+	groups = {cracky=2, dig_generic=4},
+	_sound_def = {
+		key = "node_sound_stone_defaults",
+	},
 })

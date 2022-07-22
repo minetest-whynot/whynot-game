@@ -19,7 +19,23 @@ homedecor.register("washing_machine", {
 		}
 	},
 	selection_box = { type = "regular" },
-	groups = { snappy = 3 },
+	groups = { snappy = 3, dig_stone=3 },
+	crafts = {
+		{
+			recipe = {
+				{ "steel_ingot", "steel_ingot", "basic_materials:ic" },
+				{ "steel_ingot", "water_bucket", "steel_ingot" },
+				{ "steel_ingot", "basic_materials:motor", "steel_ingot" }
+			},
+		},
+		{
+			recipe = {
+				{ "steel_ingot", "steel_ingot", "basic_materials:ic" },
+				{ "steel_ingot", "water_bucket", "steel_ingot" },
+				{ "steel_ingot", "basic_materials:motor", "steel_ingot" }
+			},
+		}
+	}
 })
 
 homedecor.register("dryer", {
@@ -40,7 +56,23 @@ homedecor.register("dryer", {
 		}
 	},
 	selection_box = { type = "regular" },
-	groups = { snappy = 3 },
+	groups = { snappy = 3, dig_stone=3 },
+	crafts = {
+		{
+			recipe = {
+				{ "steel_ingot", "steel_ingot", "basic_materials:ic" },
+				{ "steel_ingot", "empty_bucket", "basic_materials:motor" },
+				{ "steel_ingot", "basic_materials:heating_element", "steel_ingot" }
+			},
+		},
+		{
+			recipe = {
+				{ "steel_ingot", "steel_ingot", "basic_materials:ic" },
+				{ "steel_ingot", "empty_bucket", "basic_materials:motor" },
+				{ "steel_ingot", "basic_materials:heating_element", "steel_ingot" }
+			},
+		}
+	}
 })
 
 local ib_cbox = {
@@ -48,66 +80,27 @@ local ib_cbox = {
 	fixed = { -6/16, -8/16, -4/16, 17/16, 4/16, 4/16 }
 }
 
+local wool_tex = "wool_grey.png"
+if not minetest.get_modpath("wool") then wool_tex = "[combine:16x16^[noalpha^[colorize:#3A3B3C" end
+
 homedecor.register("ironing_board", {
 	description = S("Ironing board"),
 	mesh = "homedecor_ironing_board.obj",
 	tiles = {
-		"wool_grey.png",
+		wool_tex,
 		{ name = "homedecor_generic_metal.png", color = homedecor.color_med_grey },
 	},
 	expand = {right = "placeholder"},
-	groups = { snappy = 3 },
+	groups = { snappy = 3, dig_stone=3 },
 	selection_box = ib_cbox,
-	collision_box = ib_cbox
+	collision_box = ib_cbox,
+	crafts = {
+		{
+			recipe = {
+				{ "wool_grey", "wool_grey", "wool_grey"},
+				{ "", "steel_ingot", "" },
+				{ "steel_ingot", "", "steel_ingot" }
+			},
+		}
+	}
 })
-
--- crafting
-
-
--- laundry stuff
-
-minetest.register_craft( {
-    output = "homedecor:washing_machine",
-    recipe = {
-		{ "default:steel_ingot", "default:steel_ingot", "basic_materials:ic" },
-		{ "default:steel_ingot", "bucket:bucket_water", "default:steel_ingot" },
-		{ "default:steel_ingot", "basic_materials:motor", "default:steel_ingot" }
-    },
-})
-
-minetest.register_craft( {
-    output = "homedecor:washing_machine",
-    recipe = {
-		{ "default:steel_ingot", "default:steel_ingot", "basic_materials:ic" },
-		{ "default:steel_ingot", "bucket:bucket_water", "default:steel_ingot" },
-		{ "default:steel_ingot", "basic_materials:motor", "default:steel_ingot" }
-    },
-})
-
-minetest.register_craft( {
-    output = "homedecor:dryer",
-    recipe = {
-		{ "default:steel_ingot", "default:steel_ingot", "basic_materials:ic" },
-		{ "default:steel_ingot", "bucket:bucket_empty", "basic_materials:motor" },
-		{ "default:steel_ingot", "basic_materials:heating_element", "default:steel_ingot" }
-    },
-})
-
-minetest.register_craft( {
-    output = "homedecor:dryer",
-    recipe = {
-		{ "default:steel_ingot", "default:steel_ingot", "basic_materials:ic" },
-		{ "default:steel_ingot", "bucket:bucket_empty", "basic_materials:motor" },
-		{ "default:steel_ingot", "basic_materials:heating_element", "default:steel_ingot" }
-    },
-})
-
-minetest.register_craft( {
-    output = "homedecor:ironing_board",
-    recipe = {
-		{ "wool:grey", "wool:grey", "wool:grey"},
-		{ "", "default:steel_ingot", "" },
-		{ "default:steel_ingot", "", "default:steel_ingot" }
-    },
-})
-

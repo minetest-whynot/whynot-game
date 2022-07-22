@@ -24,6 +24,15 @@ homedecor.register("tv_stand", {
 		}
 	},
 	groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2},
+	crafts = {
+		{
+			recipe = {
+				{'', '', ''},
+				{'', 'steel_ingot', ''},
+				{'group:stick', 'coal_lump', 'group:stick'},
+			}
+		}
+	}
 })
 
 local fdir_to_left = {
@@ -121,7 +130,20 @@ homedecor.register("tv", {
 	end,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		minetest.set_node(pos, {name = "homedecor:tv_off", param2 = node.param2})
-	end
+	end,
+	crafts = {
+		{
+			recipe = {
+				{'glass_block', 'coal_lump', 'glass_block'},
+				{'steel_ingot', 'copper_ingot', 'steel_ingot'},
+				{'glass_block', 'glass_block', 'glass_block'},
+			}
+		},
+		{
+			type = "shapeless",
+			recipe = {'homedecor:television', 'homedecor:television'},
+		}
+	}
 })
 
 homedecor.register("tv_off", {
@@ -150,33 +172,7 @@ homedecor.register("tv_off", {
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		minetest.set_node(pos, {name = "homedecor:tv", param2 = node.param2})
 	end,
-	drop = "homedecor:tv"
-})
-
--- crafting recipes
-
-minetest.register_craft({
-	output = "homedecor:tv",
-	recipe = {
-		{'default:glass', 'default:coal_lump', 'default:glass'},
-		{'default:steel_ingot', 'default:copper_ingot', 'default:steel_ingot'},
-		{'default:glass', 'default:glass', 'default:glass'},
-	}
-})
-
-minetest.register_craft({
-	type = "shapeless",
-	output = "homedecor:tv",
-	recipe = {'homedecor:television', 'homedecor:television'},
-})
-
-minetest.register_craft({
-	output = "homedecor:tv_stand",
-	recipe = {
-		{'', '', ''},
-		{'', 'default:steel_ingot', ''},
-		{'group:stick', 'default:coal_lump', 'group:stick'},
-	}
+	drop = "homedecor:tv",
 })
 
 minetest.register_alias("plasmascreen:screen1", "air")
