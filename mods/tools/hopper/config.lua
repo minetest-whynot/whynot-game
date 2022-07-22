@@ -15,3 +15,5 @@ hopper.config.eject_button_enabled = minetest.settings:get_bool("hopper_eject_bu
 if hopper.config.eject_button_enabled == nil then
 	hopper.config.eject_button_enabled = true
 end
+
+hopper.config.inv_log_level = minetest.settings:get("hopper_inventory_log_level") or "info"

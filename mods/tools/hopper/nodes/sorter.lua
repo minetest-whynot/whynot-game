@@ -1,4 +1,5 @@
 local S = minetest.get_translator("hopper")
+local FS = hopper.translator_escaped
 
 local facedir_to_bottomdir = {
 	[0]={x=0, y=-1, z=0},
@@ -18,15 +19,15 @@ local function get_sorter_formspec(pos)
 	
 	local filter_all = minetest.get_meta(pos):get_string("filter_all") == "true"
 	local y_displace = 0
-	local filter_button_text, filter_button_tooltip, filter_body
+	local filter_texture, filter_button_tooltip, filter_body
 	if filter_all then
 		filter_body = ""
-		filter_button_text = S("Selective\nFilter")
-		filter_button_tooltip = S("This sorter is currently set to try sending all items\nin the direction of the arrow. Click this button\nto enable an item-type-specific filter.")
+		filter_texture = "hopper_mode_off.png"
+		filter_button_tooltip = FS("This sorter is currently set to try sending all items\nin the direction of the arrow. Click this button\nto enable an item-type-specific filter.")
 	else
-		filter_body = "label[3.7,0;"..S("Filter").."]list[nodemeta:" .. spos .. ";filter;0,0.5;8,1;]"
-		filter_button_text = S("Filter\nAll")
-		filter_button_tooltip = S("This sorter is currently set to only send items listed\nin the filter list in the direction of the arrow.\nClick this button to set it to try sending all\nitems that way first.")
+		filter_body = "label[3.7,0;"..FS("Filter").."]list[nodemeta:" .. spos .. ";filter;0,0.5;8,1;]"
+		filter_texture = "hopper_mode_on.png"
+		filter_button_tooltip = FS("This sorter is currently set to only send items listed\nin the filter list in the direction of the arrow.\nClick this button to set it to try sending all\nitems that way first.")
 		y_displace = 1.6
 	end
 	
@@ -35,7 +36,8 @@ local function get_sorter_formspec(pos)
 		.. hopper.formspec_bg
 		.. filter_body		
 		.. "list[nodemeta:" .. spos .. ";main;3,".. tostring(0.3 + y_displace) .. ";2,2;]"
-		.. "button_exit[7,".. tostring(0.8 + y_displace) .. ";1,1;filter_all;".. filter_button_text .. "]tooltip[filter_all;" .. filter_button_tooltip.. "]"
+		.. ("image_button_exit[0,%g;1,1;%s;filter_all;]"):format(y_displace, filter_texture)
+		.. "tooltip[filter_all;" .. filter_button_tooltip.. "]"
 		.. hopper.get_eject_button_texts(pos, 6, 0.8 + y_displace)
 		.. "list[current_player;main;0,".. tostring(2.85 + y_displace) .. ";8,1;]"
 		.. "list[current_player;main;0,".. tostring(4.08 + y_displace) .. ";8,3;8]"
@@ -139,7 +141,7 @@ minetest.register_node("hopper:sorter", {
 	end,
 	
 	on_metadata_inventory_put = function(pos, listname, index, stack, player)
-		minetest.log("action", S("@1 moves stuff to sorter at @2",
+		hopper.log_inventory(("%s moves stuff to sorter at %s"):format(
 			player:get_player_name(), minetest.pos_to_string(pos)))
 
 		local timer = minetest.get_node_timer(pos)

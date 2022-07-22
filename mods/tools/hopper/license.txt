@@ -1,3 +1,6 @@
+Code license
+============
+
 The MIT License (MIT)
 
 Copyright (c) 2016 TenPlus1 and FaceDeer
@@ -19,3 +22,13 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+
+
+
+Texture licenses
+================
+
+
+SmallJoker/Krock (CC0)
+
+ * hopper_mode_*.png (created with LibreOffice Draw)
