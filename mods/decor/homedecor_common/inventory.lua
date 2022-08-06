@@ -12,46 +12,47 @@ local default_can_dig = function(pos,player)
 	return meta:get_inventory():is_empty("main")
 end
 
-
+local background = default.gui_bg .. default.gui_bg_img .. default.gui_slots
 local default_inventory_formspecs = {
-	["4"]="size[8,6]"..
+	["4"]="size[8,6]".. background ..
 	"list[context;main;2,0;4,1;]" ..
 	"list[current_player;main;0,2;8,4;]" ..
 	"listring[]",
 
-	["6"]="size[8,6]"..
+	["6"]="size[8,6]".. background ..
 	"list[context;main;1,0;6,1;]"..
 	"list[current_player;main;0,2;8,4;]" ..
 	"listring[]",
 
-	["8"]="size[8,6]"..
+	["8"]="size[8,6]".. background ..
 	"list[context;main;0,0;8,1;]"..
 	"list[current_player;main;0,2;8,4;]" ..
 	"listring[]",
 
-	["12"]="size[8,7]"..
+	["12"]="size[8,7]".. background ..
 	"list[context;main;1,0;6,2;]"..
 	"list[current_player;main;0,3;8,4;]" ..
 	"listring[]",
 
-	["16"]="size[8,7]"..
+	["16"]="size[8,7]".. background ..
 	"list[context;main;0,0;8,2;]"..
 	"list[current_player;main;0,3;8,4;]" ..
 	"listring[]",
 
-	["24"]="size[8,8]"..
+	["24"]="size[8,8]".. background ..
 	"list[context;main;0,0;8,3;]"..
 	"list[current_player;main;0,4;8,4;]" ..
 	"listring[]",
 
-	["32"]="size[8,9]"..
+	["32"]="size[8,9]".. background ..
 	"list[context;main;0,0.3;8,4;]"..
 	"list[current_player;main;0,4.85;8,1;]"..
 	"list[current_player;main;0,6.08;8,3;8]"..
 	"listring[context;main]" ..
-	"listring[current_player;main]",
+	"listring[current_player;main]" ..
+	default.get_hotbar_bg(0,4.85),
 
-	["50"]="size[10,10]"..
+	["50"]="size[10,10]".. background ..
 	"list[context;main;0,0;10,5;]"..
 	"list[current_player;main;1,6;8,4;]" ..
 	"listring[]",

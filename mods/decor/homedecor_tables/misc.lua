@@ -19,7 +19,7 @@ local tabletop_materials = {
 	}
 }
 
-local leg_materials = {
+leg_materials = {
 	{ "brass",          S("brass") },
 	{ "wrought_iron",   S("wrought iron") },
 	{ "wood",           S("wood") }
@@ -35,10 +35,8 @@ for _, t in ipairs(leg_materials) do
 		wield_image = "homedecor_table_legs_"..name..".png",
 		walkable = false,
 		use_texture_alpha = "blend",
-		groups = {snappy=3, dig_tree=2},
-		_sound_def = {
-			key = "node_sound_wood_defaults",
-		},
+		groups = {snappy=3},
+		sounds = default.node_sound_wood_defaults(),
 		selection_box = {
 			type = "fixed",
 			fixed = { -0.37, -0.5, -0.37, 0.37, 0.5, 0.37 }
@@ -57,13 +55,13 @@ local tables_cbox = {
 }
 
 for i, mat in ipairs(tabletop_materials) do
-	local m = unpack(mat)
+	local m, small_s, small_r, large = unpack(mat)
 	local s
 
 	if m == "glass" then
-		s = "node_sound_glass_defaults"
+		s = default.node_sound_glass_defaults()
 	else
-		s = "node_sound_wood_defaults"
+		s = default.node_sound_wood_defaults()
 	end
 
 	for _, shape in ipairs(table_shapes) do
@@ -80,10 +78,8 @@ for i, mat in ipairs(tabletop_materials) do
 			},
 			wield_image = 'homedecor_'..m..'_table_'..shape..'_inv.png',
 			use_texture_alpha = "blend",
-			groups = { snappy = 3, dig_tree=2 },
-			_sound_def = {
-				key = s,
-			},
+			groups = { snappy = 3 },
+			sounds = s,
 			selection_box = tables_cbox,
 			collision_box = tables_cbox,
 			on_place = function(itemstack, placer, pointed_thing)
@@ -105,7 +101,7 @@ for i, mat in ipairs(tabletop_materials) do
 		})
 
 		for _, l in ipairs(leg_materials) do
-			local leg_mat = unpack(l)
+			local leg_mat, desc = unpack(l)
 
 			homedecor.register(string.format("%s_table_%s_with_%s_legs", m, shape, leg_mat), {
 				description = string.format("%s %s table with %s legs", shape, m, leg_mat),
@@ -118,10 +114,8 @@ for i, mat in ipairs(tabletop_materials) do
 					"homedecor_table_legs_"..leg_mat..".png",
 				},
 				use_texture_alpha = "blend",
-				groups = { snappy = 3, dig_tree=2 },
-				_sound_def = {
-					key = s
-				},
+				groups = { snappy = 3 },
+				sounds = s,
 			})
 		end
 	end
@@ -162,9 +156,7 @@ for _, t in ipairs(table_colors) do
 			},
 		},
 		groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2},
-		_sound_def = {
-			key = "node_sound_wood_defaults",
-		},
+		sounds = default.node_sound_wood_defaults(),
 	})
 end
 
@@ -173,9 +165,9 @@ end
 minetest.register_craft( {
         output = "homedecor:glass_table_small_round_b 15",
         recipe = {
-			{ "", homedecor.materials.glass_block, "" },
-			{ homedecor.materials.glass_block, homedecor.materials.glass_block, homedecor.materials.glass_block },
-			{ "", homedecor.materials.glass_block, "" },
+                { "", "default:glass", "" },
+                { "default:glass", "default:glass", "default:glass" },
+                { "", "default:glass", "" },
         },
 })
 
@@ -240,9 +232,9 @@ minetest.register_craft({
 minetest.register_craft( {
         output = "homedecor:table_legs_wrought_iron 3",
         recipe = {
-                { "", homedecor.materials.iron_lump, "" },
-                { "", homedecor.materials.iron_lump, "" },
-                { homedecor.materials.iron_lump, homedecor.materials.iron_lump, homedecor.materials.iron_lump },
+                { "", "default:iron_lump", "" },
+                { "", "default:iron_lump", "" },
+                { "default:iron_lump", "default:iron_lump", "default:iron_lump" },
         },
 })
 
@@ -298,7 +290,7 @@ minetest.register_craft({
 	output = "homedecor:table_mahogany",
 	recipe = {
 		"homedecor:table",
-		homedecor.materials.dye_brown,
+		"dye:brown",
 	},
 })
 
@@ -316,7 +308,7 @@ minetest.register_craft({
 	output = "homedecor:table_white",
 	recipe = {
 		"homedecor:table",
-		homedecor.materials.dye_white,
+		"dye:white",
 	},
 })
 

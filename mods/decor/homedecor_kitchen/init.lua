@@ -8,10 +8,8 @@ homedecor.register("refrigerator_steel", {
 	tiles = { "homedecor_refrigerator_steel.png" },
 	inventory_image = "homedecor_refrigerator_steel_inv.png",
 	description = S("Refrigerator (stainless steel)"),
-	groups = {snappy=3, dig_stone=1},
-	_sound_def = {
-		key = "node_sound_stone_defaults",
-	},
+	groups = {snappy=3},
+	sounds = default.node_sound_stone_defaults(),
 	selection_box = homedecor.nodebox.slab_y(2),
 	collision_box = homedecor.nodebox.slab_y(2),
 	expand = { top="placeholder" },
@@ -29,12 +27,10 @@ homedecor.register("refrigerator_white", {
 	tiles = { "homedecor_refrigerator_white.png" },
 	inventory_image = "homedecor_refrigerator_white_inv.png",
 	description = S("Refrigerator"),
-	groups = {snappy=3, dig_stone=1},
+	groups = {snappy=3},
 	selection_box = homedecor.nodebox.slab_y(2),
 	collision_box = homedecor.nodebox.slab_y(2),
-	_sound_def = {
-		key = "node_sound_stone_defaults",
-	},
+	sounds = default.node_sound_stone_defaults(),
 	expand = { top="placeholder" },
 	infotext=S("Refrigerator"),
 	inventory = {
@@ -119,10 +115,8 @@ homedecor.register("dishwasher", {
 		}
 	},
 	selection_box = { type = "regular" },
-	_sound_def = {
-		key = "node_sound_stone_defaults",
-	},
-	groups = { snappy = 3, dig_stone=1 },
+	sounds = default.node_sound_stone_defaults(),
+	groups = { snappy = 3 },
 })
 
 local materials = { ["granite"] = S("granite"), ["marble"] = S("marble"), ["steel"] = S("steel"), ["wood"] = S("wood") }
@@ -138,21 +132,18 @@ homedecor.register("dishwasher_"..m, {
 		"homedecor_dishwasher_back.png",
 		"homedecor_dishwasher_front.png"
 	},
-	groups = { snappy = 3, dig_tree=1 },
-	_sound_def = {
-		key = "node_sound_stone_defaults",
-	},
+	groups = { snappy = 3 },
+	sounds = default.node_sound_stone_defaults(),
 })
 end
 
-local wood_tex = homedecor.textures.default_wood
-local cabinet_sides = "("..wood_tex.."^[transformR90)^homedecor_kitchen_cabinet_bevel.png"
+local cabinet_sides = "(default_wood.png^[transformR90)^homedecor_kitchen_cabinet_bevel.png"
 local cabinet_sides_colored = "(homedecor_generic_wood_plain.png^[transformR90)^homedecor_kitchen_cabinet_bevel.png"
 
 local ic_cabinet_sides = string.gsub(cabinet_sides, "%^", "&")
 local ic_cabinet_sides_colored = string.gsub(cabinet_sides_colored, "%^", "&")
 
-local cabinet_bottom = "("..wood_tex.."^[colorize:#000000:100)^homedecor_kitchen_cabinet_bevel.png"
+local cabinet_bottom = "(default_wood.png^[colorize:#000000:100)^homedecor_kitchen_cabinet_bevel.png"
 local cabinet_bottom_colored = "homedecor_generic_wood_plain.png^homedecor_kitchen_cabinet_bevel.png"
 
 local function N_(x) return x end
@@ -192,10 +183,8 @@ for _, mat in ipairs(counter_materials) do
 		palette = "unifieddyes_palette_colorwallmounted.png",
 		airbrush_replacement_node = "homedecor:kitchen_cabinet_colored"..material,
 		place_param2 = 0,
-		groups = { snappy = 3, ud_param2_colorable = 1, dig_tree=1},
-		_sound_def = {
-			key = "node_sound_stone_defaults",
-		},
+		groups = { snappy = 3, ud_param2_colorable = 1},
+		sounds = default.node_sound_wood_defaults(),
 		infotext=S("Kitchen Cabinet"),
 		inventory = {
 			size=24,
@@ -223,10 +212,8 @@ for _, mat in ipairs(counter_materials) do
 		mesh = "homedecor_kitchen_cabinet.obj",
 		paramtype2 = "colorwallmounted",
 		palette = "unifieddyes_palette_colorwallmounted.png",
-		groups = { snappy = 3, ud_param2_colorable = 1, not_in_creative_inventory = 1, dig_tree=1 },
-		_sound_def = {
-			key = "node_sound_wood_defaults",
-		},
+		groups = { snappy = 3, ud_param2_colorable = 1, not_in_creative_inventory = 1 },
+		sounds = default.node_sound_wood_defaults(),
 		infotext=S("Kitchen Cabinet"),
 		inventory = {
 			size=24,
@@ -255,10 +242,8 @@ for _, mat in ipairs(counter_materials) do
 		paramtype2 = "colorwallmounted",
 		palette = "unifieddyes_palette_colorwallmounted.png",
 		airbrush_replacement_node = "homedecor:kitchen_cabinet_colored_with_drawers"..material,
-		groups = { snappy = 3, ud_param2_colorable = 1, dig_tree=1},
-		_sound_def = {
-			key = "node_sound_wood_defaults",
-		},
+		groups = { snappy = 3, ud_param2_colorable = 1},
+		sounds = default.node_sound_wood_defaults(),
 		infotext=S("Kitchen Cabinet with drawers"),
 		inventory = {
 			size=24,
@@ -286,10 +271,8 @@ for _, mat in ipairs(counter_materials) do
 		mesh = "homedecor_kitchen_cabinet.obj",
 		paramtype2 = "colorwallmounted",
 		palette = "unifieddyes_palette_colorwallmounted.png",
-		groups = { snappy = 3, ud_param2_colorable = 1, not_in_creative_inventory = 1, dig_tree=1 },
-		_sound_def = {
-			key = "node_sound_wood_defaults",
-		},
+		groups = { snappy = 3, ud_param2_colorable = 1, not_in_creative_inventory = 1 },
+		sounds = default.node_sound_wood_defaults(),
 		infotext=S("Kitchen Cabinet with drawers"),
 		inventory = {
 			size=24,
@@ -300,8 +283,8 @@ for _, mat in ipairs(counter_materials) do
 		end
 	})
 
-	homedecor.kitchen_convert_nodes[#homedecor.kitchen_convert_nodes + 1]="homedecor:kitchen_cabinet"..material
-	homedecor.kitchen_convert_nodes[#homedecor.kitchen_convert_nodes + 1]="homedecor:kitchen_cabinet"..material.."_locked"
+	homedecor.kitchen_convert_nodes[#homedecor.kitchen_convert_nodes + 1] = "homedecor:kitchen_cabinet"..material
+	homedecor.kitchen_convert_nodes[#homedecor.kitchen_convert_nodes + 1] = "homedecor:kitchen_cabinet"..material.."_locked"
 
 end
 
@@ -324,10 +307,8 @@ homedecor.register("kitchen_cabinet_colorable_half", {
 	place_param2 = 0,
 	selection_box = kitchen_cabinet_half_box,
 	node_box = kitchen_cabinet_half_box,
-	groups = { snappy = 3, ud_param2_colorable = 1, dig_tree=1 },
-	_sound_def = {
-		key = "node_sound_wood_defaults",
-	},
+	groups = { snappy = 3, ud_param2_colorable = 1 },
+	sounds = default.node_sound_wood_defaults(),
 	infotext=S("Kitchen Cabinet"),
 	inventory = {
 		size=12,
@@ -356,10 +337,8 @@ homedecor.register("kitchen_cabinet_colored_half", {
 	palette = "unifieddyes_palette_colorwallmounted.png",
 	selection_box = kitchen_cabinet_half_box,
 	node_box = kitchen_cabinet_half_box,
-	groups = { snappy = 3, ud_param2_colorable = 1, not_in_creative_inventory = 1, dig_tree=1  },
-	_sound_def = {
-		key = "node_sound_wood_defaults",
-	},
+	groups = { snappy = 3, ud_param2_colorable = 1, not_in_creative_inventory = 1  },
+	sounds = default.node_sound_wood_defaults(),
 	infotext=S("Kitchen Cabinet"),
 	inventory = {
 		size=12,
@@ -389,10 +368,8 @@ homedecor.register("kitchen_cabinet_colorable_with_sink", {
 	palette = "unifieddyes_palette_colorwallmounted.png",
 	airbrush_replacement_node = "homedecor:kitchen_cabinet_colored_with_sink",
 	place_param2 = 0,
-	groups = { snappy = 3, ud_param2_colorable = 1, dig_tree=1 },
-	_sound_def = {
-		key = "node_sound_wood_defaults",
-	},
+	groups = { snappy = 3, ud_param2_colorable = 1 },
+	sounds = default.node_sound_wood_defaults(),
 	infotext=S("Under-sink cabinet"),
 	inventory = {
 		size=16,
@@ -436,10 +413,8 @@ homedecor.register("kitchen_cabinet_colored_with_sink", {
 			.."{"..ic_cabinet_sides_colored,
 	paramtype2 = "colorwallmounted",
 	palette = "unifieddyes_palette_colorwallmounted.png",
-	groups = { snappy = 3, ud_param2_colorable = 1,  not_in_creative_inventory = 1, dig_tree=1 },
-	_sound_def = {
-		key = "node_sound_wood_defaults",
-	},
+	groups = { snappy = 3, ud_param2_colorable = 1,  not_in_creative_inventory = 1 },
+	sounds = default.node_sound_wood_defaults(),
 	infotext=S("Under-sink cabinet"),
 	inventory = {
 		size=16,
@@ -473,7 +448,7 @@ homedecor.register("copper_pans", {
 	mesh = "homedecor_copper_pans.obj",
 	tiles = { "homedecor_polished_copper.png" },
 	inventory_image = "homedecor_copper_pans_inv.png",
-	groups = { snappy=3, dig_stone=1 },
+	groups = { snappy=3 },
 	selection_box = cp_cbox,
 	walkable = false,
 	on_place = minetest.rotate_node
@@ -489,7 +464,7 @@ homedecor.register("kitchen_faucet", {
 	tiles = { "homedecor_generic_metal_bright.png" },
 	inventory_image = "homedecor_kitchen_faucet_inv.png",
 	description = S("Kitchen Faucet"),
-	groups = {snappy=3, dig_stone=1},
+	groups = {snappy=3},
 	selection_box = kf_cbox,
 	walkable = false,
 	on_rotate = minetest.get_modpath("screwdriver") and screwdriver.disallow or nil,
@@ -514,11 +489,11 @@ homedecor.register("paper_towel", {
 	mesh = "homedecor_paper_towel.obj",
 	tiles = {
 		"homedecor_generic_quilted_paper.png",
-		wood_tex
+		"default_wood.png"
 	},
 	inventory_image = "homedecor_paper_towel_inv.png",
 	description = S("Paper towels"),
-	groups = { snappy=3, dig_tree=1 },
+	groups = { snappy=3 },
 	walkable = false,
 	selection_box = {
 		type = "fixed",
@@ -532,18 +507,18 @@ homedecor.register("paper_towel", {
 minetest.register_craft({
         output = "homedecor:oven_steel",
         recipe = {
-		{"basic_materials:heating_element", homedecor.materials.steel_ingot, "basic_materials:heating_element", },
-		{homedecor.materials.steel_ingot, "moreblocks:iron_glass", homedecor.materials.steel_ingot, },
-		{homedecor.materials.steel_ingot, "basic_materials:heating_element", homedecor.materials.steel_ingot, },
+		{"basic_materials:heating_element", "default:steel_ingot", "basic_materials:heating_element", },
+		{"default:steel_ingot", "moreblocks:iron_glass", "default:steel_ingot", },
+		{"default:steel_ingot", "basic_materials:heating_element", "default:steel_ingot", },
 	}
 })
 
 minetest.register_craft({
         output = "homedecor:oven_steel",
         recipe = {
-		{"basic_materials:heating_element", homedecor.materials.steel_ingot, "basic_materials:heating_element", },
-		{homedecor.materials.steel_ingot, homedecor.materials.glass_block, homedecor.materials.steel_ingot, },
-		{homedecor.materials.steel_ingot, "basic_materials:heating_element", homedecor.materials.steel_ingot, },
+		{"basic_materials:heating_element", "default:steel_ingot", "basic_materials:heating_element", },
+		{"default:steel_ingot", "default:glass", "default:steel_ingot", },
+		{"default:steel_ingot", "basic_materials:heating_element", "default:steel_ingot", },
 	}
 })
 
@@ -552,35 +527,35 @@ minetest.register_craft({
 	output = "homedecor:oven",
 	recipe = {
 		"homedecor:oven_steel",
-		homedecor.materials.dye_white,
-		homedecor.materials.dye_white,
+		"dye:white",
+		"dye:white",
 	}
 })
 
 minetest.register_craft({
         output = "homedecor:microwave_oven 2",
         recipe = {
-		{homedecor.materials.steel_ingot, homedecor.materials.steel_ingot, homedecor.materials.steel_ingot, },
-		{homedecor.materials.steel_ingot, "moreblocks:iron_glass", "basic_materials:ic", },
-		{homedecor.materials.steel_ingot, homedecor.materials.copper_ingot, "basic_materials:energy_crystal_simple", },
+		{"default:steel_ingot", "default:steel_ingot", "default:steel_ingot", },
+		{"default:steel_ingot", "moreblocks:iron_glass", "basic_materials:ic", },
+		{"default:steel_ingot", "default:copper_ingot", "basic_materials:energy_crystal_simple", },
 	}
 })
 
 minetest.register_craft({
         output = "homedecor:microwave_oven 2",
         recipe = {
-		{homedecor.materials.steel_ingot, homedecor.materials.steel_ingot, homedecor.materials.steel_ingot, },
-		{homedecor.materials.steel_ingot, homedecor.materials.glass_block, "basic_materials:ic", },
-		{homedecor.materials.steel_ingot, homedecor.materials.copper_ingot, "basic_materials:energy_crystal_simple", },
+		{"default:steel_ingot", "default:steel_ingot", "default:steel_ingot", },
+		{"default:steel_ingot", "default:glass", "basic_materials:ic", },
+		{"default:steel_ingot", "default:copper_ingot", "basic_materials:energy_crystal_simple", },
 	}
 })
 
 minetest.register_craft({
 	output = "homedecor:refrigerator_steel",
 	recipe = {
-		{homedecor.materials.steel_ingot, "homedecor:glowlight_small_cube", homedecor.materials.steel_ingot, },
-		{homedecor.materials.steel_ingot, homedecor.materials.copper_ingot, homedecor.materials.steel_ingot, },
-		{homedecor.materials.steel_ingot, homedecor.materials.clay_lump, homedecor.materials.steel_ingot, },
+		{"default:steel_ingot", "homedecor:glowlight_small_cube", "default:steel_ingot", },
+		{"default:steel_ingot", "default:copperblock", "default:steel_ingot", },
+		{"default:steel_ingot", "default:clay", "default:steel_ingot", },
 	}
 })
 
@@ -589,9 +564,9 @@ minetest.register_craft({
 	output = "homedecor:refrigerator_white",
 	recipe = {
 		"homedecor:refrigerator_steel",
-		homedecor.materials.dye_white,
-		homedecor.materials.dye_white,
-		homedecor.materials.dye_white,
+		"dye:white",
+		"dye:white",
+		"dye:white",
 	}
 })
 
@@ -607,7 +582,7 @@ minetest.register_craft({
 minetest.register_craft({
         output = "homedecor:kitchen_cabinet_colorable_steel",
         recipe = {
-			{homedecor.materials.steel_ingot, homedecor.materials.steel_ingot, homedecor.materials.steel_ingot},
+			{"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"},
 			{"", "homedecor:kitchen_cabinet_colorable", ""},
 	}
 })
@@ -653,8 +628,8 @@ minetest.register_craft({
 minetest.register_craft({
         output = "homedecor:kitchen_cabinet_colorable_with_sink",
         recipe = {
-		{"group:wood", homedecor.materials.steel_ingot, "group:wood", },
-		{"group:wood", homedecor.materials.steel_ingot, "group:wood", },
+		{"group:wood", "default:steel_ingot", "group:wood", },
+		{"group:wood", "default:steel_ingot", "group:wood", },
 		{"group:wood", "group:stick", "group:wood", },
 	}
 })
@@ -662,18 +637,18 @@ minetest.register_craft({
 minetest.register_craft( {
     output = "homedecor:dishwasher",
     recipe = {
-		{ "basic_materials:ic",  "building_blocks:slab_grate_1",    homedecor.materials.steel_ingot,  },
-		{ homedecor.materials.steel_ingot, "homedecor:shower_head",           "basic_materials:motor" },
-		{ homedecor.materials.steel_ingot, "basic_materials:heating_element", homedecor.materials.water_bucket   }
+		{ "basic_materials:ic",  "building_blocks:slab_grate_1",    "default:steel_ingot",  },
+		{ "default:steel_ingot", "homedecor:shower_head",           "basic_materials:motor" },
+		{ "default:steel_ingot", "basic_materials:heating_element", "bucket:bucket_water"   }
     },
 })
 
 minetest.register_craft( {
     output = "homedecor:dishwasher",
     recipe = {
-		{ "basic_materials:ic", "homedecor:fence_chainlink", homedecor.materials.steel_ingot,  },
-		{ homedecor.materials.steel_ingot, "homedecor:shower_head", "basic_materials:motor" },
-		{ homedecor.materials.steel_ingot, "basic_materials:heating_element", homedecor.materials.water_bucket }
+		{ "basic_materials:ic", "homedecor:fence_chainlink", "default:steel_ingot",  },
+		{ "default:steel_ingot", "homedecor:shower_head", "basic_materials:motor" },
+		{ "default:steel_ingot", "basic_materials:heating_element", "bucket:bucket_water" }
     },
 })
 
@@ -704,7 +679,7 @@ minetest.register_craft( {
 minetest.register_craft( {
     output = "homedecor:dishwasher_steel",
     recipe = {
-		{ homedecor.materials.steel_ingot, homedecor.materials.steel_ingot, homedecor.materials.steel_ingot },
+		{ "default:steel_ingot", "default:steel_ingot", "default:steel_ingot" },
 		{ "", "homedecor:dishwasher", "" },
     },
 })
@@ -744,8 +719,8 @@ minetest.register_craft( {
 minetest.register_craft( {
         output = "homedecor:kitchen_faucet",
         recipe = {
-			{ "", homedecor.materials.steel_ingot },
-			{ homedecor.materials.steel_ingot, "" },
+			{ "", "default:steel_ingot" },
+			{ "default:steel_ingot", "" },
 			{ "homedecor:taps", "" }
         },
 })
@@ -753,8 +728,8 @@ minetest.register_craft( {
 minetest.register_craft( {
         output = "homedecor:kitchen_faucet",
         recipe = {
-			{ homedecor.materials.steel_ingot,"" },
-			{ "", homedecor.materials.steel_ingot },
+			{ "default:steel_ingot","" },
+			{ "", "default:steel_ingot" },
 			{ "", "homedecor:taps" }
         },
 })
@@ -779,8 +754,8 @@ minetest.register_craft({
 	output = "homedecor:copper_pans",
 	recipe = {
 		{ "basic_materials:copper_strip","","basic_materials:copper_strip" },
-		{ homedecor.materials.copper_ingot,"",homedecor.materials.copper_ingot },
-		{ homedecor.materials.copper_ingot,"",homedecor.materials.copper_ingot }
+		{ "default:copper_ingot","","default:copper_ingot" },
+		{ "default:copper_ingot","","default:copper_ingot" }
 	},
 })
 

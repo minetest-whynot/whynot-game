@@ -18,10 +18,8 @@ minetest.register_node(":lrfurn:sofa", {
 	palette = "unifieddyes_palette_colorwallmounted.png",
 	inventory_image = "lrfurn_sofa_inv.png",
 	wield_scale = { x = 0.6, y = 0.6, z = 0.6 },
-	groups = {snappy=3, ud_param2_colorable = 1, dig_tree=2},
-	_sound_def = {
-		key = "node_sound_wood_defaults",
-	},
+	groups = {snappy=3, ud_param2_colorable = 1},
+	sounds = default.node_sound_wood_defaults(),
 	selection_box = sofa_cbox,
 	node_box = sofa_cbox,
 	on_rotate = minetest.get_modpath("screwdriver") and screwdriver.disallow or nil,
@@ -33,7 +31,7 @@ minetest.register_node(":lrfurn:sofa", {
 		local fdir = minetest.dir_to_facedir(placer:get_look_dir(), false)
 
 		if lrfurn.check_right(pos, fdir, false, placer) then
-			if not minetest.is_creative_enabled(playername) then
+			if not creative.is_enabled_for(playername) then
 				itemstack:take_item()
 			end
 		else
@@ -44,15 +42,20 @@ minetest.register_node(":lrfurn:sofa", {
 	end,
 	on_dig = unifieddyes.on_dig,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
-		return lrfurn.sit(pos, node, clicker, itemstack, pointed_thing, 2)
+		if not clicker:is_player() then
+			return itemstack
+		end
+		pos.y = pos.y-0.5
+		clicker:setpos(pos)
+		return itemstack
 	end
 })
 
 minetest.register_craft({
 	output = "lrfurn:sofa",
 	recipe = {
-		{homedecor.materials.wool_white, homedecor.materials.wool_white, "", },
-		{homedecor.materials.slab_wood, homedecor.materials.slab_wood, "", },
+		{"wool:white", "wool:white", "", },
+		{"stairs:slab_wood", "stairs:slab_wood", "", },
 		{"group:stick", "group:stick", "", }
 	}
 })
@@ -60,7 +63,7 @@ minetest.register_craft({
 minetest.register_craft({
 	output = "lrfurn:sofa",
 	recipe = {
-		{homedecor.materials.wool_white, homedecor.materials.wool_white, "", },
+		{"wool:white", "wool:white", "", },
 		{"moreblocks:slab_wood", "moreblocks:slab_wood", "", },
 		{"group:stick", "group:stick", "", }
 	}

@@ -14,12 +14,10 @@ homedecor.register("cutlery_set", {
 	tiles = { "homedecor_cutlery_set.png"	},
 	inventory_image = "homedecor_cutlery_set_inv.png",
 	description = S("Cutlery set"),
-	groups = {snappy=3, dig_stone=3},
+	groups = {snappy=3},
 	selection_box = cutlery_cbox,
 	walkable = false,
-	_sound_def = {
-		key = "node_sound_glass_defaults",
-	},
+	sounds = default.node_sound_glass_defaults(),
 })
 
 local bottle_cbox = {
@@ -51,10 +49,8 @@ for _, b in ipairs(bottle_colors) do
 		description = desc,
 		mesh = "homedecor_bottle.obj",
 		walkable = false,
-		groups = {snappy=3, dig_stone=3},
-		_sound_def = {
-			key = "node_sound_glass_defaults",
-		},
+		groups = {snappy=3},
+		sounds = default.node_sound_glass_defaults(),
 		selection_box = bottle_cbox
 	})
 
@@ -69,10 +65,8 @@ for _, b in ipairs(bottle_colors) do
 		description = desc4,
 		mesh = "homedecor_4_bottles.obj",
 		walkable = false,
-		groups = {snappy=3, dig_stone=3},
-		_sound_def = {
-			key = "node_sound_glass_defaults",
-		},
+		groups = {snappy=3},
+		sounds = default.node_sound_glass_defaults(),
 		selection_box = fbottle_cbox
 	})
 end
@@ -85,11 +79,9 @@ homedecor.register("4_bottles_multi", {
 	inventory_image = "homedecor_4_bottles_multi_inv.png",
 	description = S("Four misc brown/green bottles"),
 	mesh = "homedecor_4_bottles.obj",
-	groups = {snappy=3, dig_stone=3},
+	groups = {snappy=3},
 	walkable = false,
-	_sound_def = {
-		key = "node_sound_glass_defaults",
-	},
+	sounds = default.node_sound_glass_defaults(),
 	selection_box = fbottle_cbox
 })
 
@@ -105,12 +97,10 @@ homedecor.register("wine_rack", {
 		"homedecor_bottle_brown4.png"
 	},
 	inventory_image = "homedecor_wine_rack_inv.png",
-	groups = {choppy=2, dig_tree=2},
+	groups = {choppy=2},
 	selection_box = wine_cbox,
 	collision_box = wine_cbox,
-	_sound_def = {
-		key = "node_sound_defaults",
-	},
+	sounds = default.node_sound_defaults(),
 })
 
 -- coffee!
@@ -135,19 +125,10 @@ homedecor.register("coffee_maker", {
 	description = S("Coffee Maker"),
 	inventory_image = "homedecor_coffeemaker_inv.png",
 	walkable = false,
-	groups = {snappy=3, dig_stone=3},
+	groups = {snappy=3},
 	selection_box = cm_cbox,
 	node_box = cm_cbox,
 	on_rotate = minetest.get_modpath("screwdriver") and screwdriver.disallow or nil,
-	crafts = {
-		{
-			recipe = {
-				{"basic_materials:plastic_sheet", "bucket:bucket_water", "basic_materials:plastic_sheet"},
-				{"basic_materials:plastic_sheet", "glass_block", "basic_materials:plastic_sheet"},
-				{"basic_materials:plastic_sheet", "basic_materials:heating_element", "basic_materials:plastic_sheet"}
-			},
-		}
-	}
 })
 
 homedecor.register("toaster", {
@@ -156,7 +137,7 @@ homedecor.register("toaster", {
 	inventory_image = "homedecor_toaster_inv.png",
 	walkable = false,
 	use_texture_alpha = "clip",
-	groups = { snappy=3, dig_stone=3 },
+	groups = { snappy=3 },
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -172,15 +153,7 @@ homedecor.register("toaster", {
 			max_hear_distance = 5
 		})
 		return itemstack
-	end,
-	crafts = {
-		{
-			recipe = {
-				{ "steel_ingot", "basic_materials:heating_element", "steel_ingot" },
-				{ "steel_ingot", "basic_materials:heating_element", "steel_ingot" }
-			},
-		}
-	}
+	end
 })
 
 homedecor.register("toaster_loaf", {
@@ -194,7 +167,7 @@ homedecor.register("toaster_loaf", {
 	},
 	walkable = false,
 	use_texture_alpha = "clip",
-	groups = { snappy=3, not_in_creative_inventory=1, dig_stone=3 },
+	groups = { snappy=3, not_in_creative_inventory=1 },
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -253,16 +226,34 @@ minetest.register_abm({
 minetest.register_craft( {
         output = "homedecor:bottle_green",
         recipe = {
-			{ homedecor.materials["glass_bottle"], homedecor.materials["dye_green"] }
+			{ "vessels:glass_bottle", "dye:green" }
         },
 })
 
 minetest.register_craft( {
         output = "homedecor:bottle_brown",
         recipe = {
-			{ homedecor.materials["glass_bottle"], homedecor.materials["dye_brown"] }
+			{ "vessels:glass_bottle", "dye:brown" }
         },
 })
+
+minetest.register_craft({
+	output = "homedecor:coffee_maker",
+	recipe = {
+	    {"basic_materials:plastic_sheet", "bucket:bucket_water", "basic_materials:plastic_sheet"},
+	    {"basic_materials:plastic_sheet", "default:glass", "basic_materials:plastic_sheet"},
+	    {"basic_materials:plastic_sheet", "basic_materials:heating_element", "basic_materials:plastic_sheet"}
+	},
+})
+
+minetest.register_craft({
+	output = "homedecor:toaster",
+	recipe = {
+		{ "default:steel_ingot", "basic_materials:heating_element", "default:steel_ingot" },
+		{ "default:steel_ingot", "basic_materials:heating_element", "default:steel_ingot" }
+	},
+})
+
 
 minetest.register_craft({
 	type = "shapeless",

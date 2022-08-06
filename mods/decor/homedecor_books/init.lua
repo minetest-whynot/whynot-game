@@ -97,7 +97,7 @@ for _, c in ipairs(bookcolors) do
 			if data.title and data.title ~= "" then
 				meta:set_string("infotext", data.title)
 			end
-			if not minetest.is_creative_enabled(plname) then
+			if not creative.is_enabled_for(plname) then
 				itemstack:take_item()
 			end
 			return itemstack
@@ -128,15 +128,16 @@ for _, c in ipairs(bookcolors) do
 			local owner = meta:get_string("owner") or ""
 			local formspec
 			if owner == "" or owner == player_name then
-				formspec = "size[8,8]"..
+				formspec = "size[8,8]"..default.gui_bg..default.gui_bg_img..
 					"field[0.5,1;7.5,0;title;Book title :;"..
 						minetest.formspec_escape(title).."]"..
 					"textarea[0.5,1.5;7.5,7;text;Book content :;"..
 						minetest.formspec_escape(text).."]"..
 					"button_exit[2.5,7.5;3,1;save;Save]"
 			else
-				formspec = "size[8,8]"..
+				formspec = "size[8,8]"..default.gui_bg..
 				"button_exit[7,0.25;1,0.5;close;X]"..
+				default.gui_bg_img..
 					"label[0.5,0.5;by "..owner.."]"..
 					"label[0.5,0;"..minetest.formspec_escape(title).."]"..
 					"textarea[0.5,1.5;7.5,7;;"..minetest.formspec_escape(text)..";]"
@@ -166,7 +167,7 @@ for _, c in ipairs(bookcolors) do
 		output = "homedecor:book_"..color,
 		recipe = {
 			"dye:"..color,
-			homedecor.materials.book
+			"default:book"
 		},
 	})
 
@@ -194,7 +195,7 @@ minetest.register_on_player_receive_fields(function(player, form_name, fields)
 		meta:set_string("infotext", fields.title)
 	end
 	minetest.log("action", S("@1 has written in a book (title: \"@2\"): \"@3\" at location @4",
-			player:get_player_name(), fields.title, fields.text, minetest.pos_to_string(player:get_pos())))
+			player:get_player_name(), fields.title, fields.text, minetest.pos_to_string(player:getpos())))
 
 	player_current_book[player_name] = nil
 	return true

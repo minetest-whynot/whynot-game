@@ -21,56 +21,32 @@ homedecor.register("barbecue", {
 		},
 		"homedecor_barbecue_meat.png",
 	},
-	groups = { snappy=3, dig_tree = 2 },
+	groups = { snappy=3 },
 	light_source = 9,
 	selection_box = bbq_cbox,
 	collision_box = bbq_cbox,
-	_sound_def = {
-		key = "node_sound_stone_defaults",
-	},
+	sounds = default.node_sound_stone_defaults(),
 	-- no need for placeholder it appears
 	expand = { top="air" },
-	crafts = {
-		{
-			recipe = {
-				{ "","homedecor:fence_chainlink","" },
-				{ "steel_ingot","fake_fire:embers","steel_ingot" },
-				{ "basic_materials:steel_bar","steel_ingot","basic_materials:steel_bar" }
-			},
-		}
-	}
 })
 
 minetest.register_alias("homedecor:barbecue_meat", "air")
-
-local wood_tex = homedecor.textures.default_wood
 
 homedecor.register("doghouse", {
 	mesh = "homedecor_doghouse.obj",
 	tiles = {
 		"homedecor_shingles_terracotta.png",
-		wood_tex,
+		"default_wood.png",
 		"building_blocks_towel.png"
 	},
 	description = S("Doghouse"),
 	inventory_image = "homedecor_doghouse_inv.png",
 	selection_box = homedecor.nodebox.slab_y(1.5),
 	collision_box = homedecor.nodebox.slab_y(1.5),
-	groups = {snappy=3, dig_tree = 2},
+	groups = {snappy=3},
 	expand = { top="placeholder" },
-	_sound_def = {
-		key = "node_sound_wood_defaults",
-	},
+	sounds = default.node_sound_wood_defaults(),
 	on_rotate = minetest.get_modpath("screwdriver") and screwdriver.rotate_simple or nil,
-	crafts = {
-		{
-			recipe = {
-				{"homedecor:shingles_terracotta", "homedecor:shingles_terracotta", "homedecor:shingles_terracotta"},
-				{"group:wood", "", "group:wood"},
-				{"group:wood", "building_blocks:terrycloth_towel", "group:wood"}
-			},
-		}
-	}
 })
 
 minetest.register_alias("homedecor:doghouse_roof", "air")
@@ -79,10 +55,10 @@ minetest.register_alias("homedecor:doghouse_base", "homedecor:doghouse")
 homedecor.register("stonepath", {
 	description = S("Garden stone path"),
 	tiles = {
-		minetest.registered_nodes["mapgen_stone"].tiles[1],
+		"default_stone.png"
 	},
 	inventory_image = "homedecor_stonepath_inv.png",
-	groups = { snappy=3, dig_stone = 2 },
+	groups = { snappy=3 },
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -100,35 +76,7 @@ homedecor.register("stonepath", {
 		type = "fixed",
 		fixed = { -0.4375, -0.5, -0.4375, 0.4375, -0.4, 0.4375 }
 	},
-	_sound_def = {
-		key = "node_sound_stone_defaults",
-	},
-	crafts = {
-		{
-			output = "homedecor:stonepath 16",
-			recipe = {
-				{ "slab_stone","","slab_stone" },
-				{ "","slab_stone","" },
-				{ "slab_stone","","slab_stone" }
-			},
-		},
-		{
-			output = "homedecor:stonepath 16",
-			recipe = {
-				{ "moreblocks:slab_stone","","moreblocks:slab_stone" },
-				{ "","moreblocks:slab_stone","" },
-				{ "moreblocks:slab_stone","","moreblocks:slab_stone" }
-			},
-		},
-		{
-			output = "homedecor:stonepath 3",
-			recipe = {
-				{ "moreblocks:micro_stone_1","","moreblocks:micro_stone_1" },
-				{ "","moreblocks:micro_stone_1","" },
-				{ "moreblocks:micro_stone_1","","moreblocks:micro_stone_1" }
-			},
-		}
-	}
+	sounds = default.node_sound_stone_defaults(),
 })
 
 local lattice_colors = {
@@ -147,7 +95,7 @@ homedecor.register("lattice_"..name, {
 	tiles = {"homedecor_lattice"..texture},
 	inventory_image = "homedecor_lattice"..texture,
 	use_texture_alpha = "clip",
-	groups = { snappy=3, dig_tree = 2 },
+	groups = { snappy=3 },
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -162,9 +110,7 @@ homedecor.register("lattice_"..name, {
 		type = "fixed",
 		fixed = {-0.5, -0.5, 0.44, 0.5, 0.5, 0.5}
 	},
-	_sound_def = {
-		key = "node_sound_wood_defaults",
-	},
+	sounds = default.node_sound_wood_defaults(),
 })
 end
 
@@ -177,10 +123,8 @@ homedecor.register("swing", {
 	},
 	inventory_image = "homedecor_swing_inv.png",
 	use_texture_alpha = "clip",
-	groups = { snappy=3, oddly_breakable_by_hand=3, dig_tree = 2 },
-	_sound_def = {
-		key = "node_sound_wood_defaults",
-	},
+	groups = { snappy=3, oddly_breakable_by_hand=3 },
+	sounds = default.node_sound_wood_defaults(),
 	walkable = false,
 	on_rotate = minetest.get_modpath("screwdriver") and screwdriver.disallow or nil,
 	node_box = {
@@ -228,7 +172,7 @@ homedecor.register("swing", {
 
 			minetest.set_node({ x=pos.x, y=pos.y-height, z=pos.z }, { name = "homedecor:swing", param2 = fdir })
 
-			if not minetest.is_creative_enabled(placer_name) then
+			if not creative.is_enabled_for(placer_name) then
 				itemstack:take_item()
 			end
 		else
@@ -246,30 +190,7 @@ homedecor.register("swing", {
 				return
 			end
 		end
-	end,
-	crafts = {
-		{
-			recipe = {
-				{ "string","","string" },
-				{ "string","","string" },
-				{ "string","slab_wood","string" }
-			},
-		},
-		{
-			recipe = {
-				{ "string","","string" },
-				{ "string","","string" },
-				{ "string","moreblocks:slab_wood","string" }
-			},
-		},
-		{
-			recipe = {
-				{ "string","","string" },
-				{ "string","","string" },
-				{ "string","moreblocks:panel_wood_1","string" }
-			},
-		}
-	}
+	end
 })
 
 homedecor.register("swing_rope", {
@@ -288,50 +209,28 @@ homedecor.register("swing_rope", {
 	selection_box = homedecor.nodebox.null
 })
 
-local water_tex = "default_water.png"
-if not minetest.get_modpath("default") then water_tex = "[combine:16x16^[noalpha^[colorize:#00008b" end
-local cobble_tex = minetest.registered_nodes["mapgen_stone"].tiles[1]
-local stone_drop = minetest.registered_nodes["mapgen_stone"].drop
-if stone_drop and type(stone_drop) == "string" then
-	cobble_tex = minetest.registered_nodes[stone_drop].tiles[1]
-elseif stone_drop and type(stone_drop) == "table" then
-	cobble_tex = minetest.registered_nodes[stone_drop.items[1].items[1]].tiles[1]
-end
-
 homedecor.register("well", {
 	mesh = "homedecor_well.obj",
 	tiles = {
 		"homedecor_rope_texture.png",
 		{ name = "homedecor_generic_metal.png", color = homedecor.color_med_grey },
-		water_tex,
-		cobble_tex,
-		wood_tex,
+		"default_water.png",
+		"default_cobble.png",
+		"default_wood.png",
 		"homedecor_shingles_wood.png"
 	},
 	inventory_image = "homedecor_well_inv.png",
 	description = S("Water well"),
 	use_texture_alpha = "clip",
-	groups = { snappy = 3, dig_stone = 1 },
+	groups = { snappy = 3 },
 	selection_box = homedecor.nodebox.slab_y(2),
 	collision_box = homedecor.nodebox.slab_y(2),
 	expand = { top="placeholder" },
-	_sound_def = {
-		key = "node_sound_wood_defaults",
-	},
+	sounds = default.node_sound_stone_defaults(),
 	on_rotate = minetest.get_modpath("screwdriver") and screwdriver.rotate_simple or nil,
-	crafts = {
-		{
-			recipe = {
-				{ "homedecor:shingles_wood", "homedecor:shingles_wood", "homedecor:shingles_wood" },
-				{ "group:wood", "group:stick", "group:wood" },
-				{ "group:stone", "", "group:stone" }
-			},
-		}
-	}
 })
 
---because the engine of all people cant follow right to a name, need to verify bucket empty
-if minetest.get_modpath("bucket") and minetest.registered_items["bucket:bucket_empty"] then
+if minetest.get_modpath("bucket") then
 	local original_bucket_on_use = minetest.registered_items["bucket:bucket_empty"].on_use
 	minetest.override_item("bucket:bucket_empty", {
 		on_use = function(itemstack, user, pointed_thing)
@@ -370,18 +269,8 @@ for color, color_loc in pairs(homedecor_exterior.shrub_colors) do
 		paramtype = "light",
 		is_ground_content = false,
 		use_texture_alpha = "clip",
-		groups = {snappy=3, flammable=2, dig_tree = 3},
-		_sound_def = {
-			key = "node_sound_leaves_defaults",
-		},
-		crafts = {
-			{
-				type = "shapeless",
-				recipe = {
-					"homedecor:shrubbery_"..color
-				}
-			}
-		}
+		groups = {snappy=3, flammable=2},
+		sounds = default.node_sound_leaves_defaults(),
 	})
 
 	minetest.register_node(":homedecor:shrubbery_"..color, {
@@ -396,45 +285,104 @@ for color, color_loc in pairs(homedecor_exterior.shrub_colors) do
 		paramtype = "light",
 		is_ground_content = false,
 		use_texture_alpha = "clip",
-		groups = {snappy=3, flammable=2, dig_tree = 3},
-		_sound_def = {
-			key = "node_sound_leaves_defaults",
-		},
+		groups = {snappy=3, flammable=2},
+		sounds = default.node_sound_leaves_defaults(),
 		selection_box = shrub_cbox,
 		collision_box = shrub_cbox,
-		crafts = {
-			{
-				type = "shapeless",
-				recipe = {
-					"homedecor:shrubbery_large_"..color
-				}
-			}
-		}
 	})
-
-	if color ~= "green" then
-		minetest.register_craft({
-			type = "shapeless",
-			output = "homedecor:shrubbery_large_"..color,
-			recipe = {
-				"homedecor:shrubbery_large_green",
-				homedecor.materials["dye_"..color]
-			}
-		})
-
-		minetest.register_craft({
-			type = "shapeless",
-			output = "homedecor:shrubbery_"..color,
-			recipe = {
-				"homedecor:shrubbery_green",
-				homedecor.materials["dye_"..color]
-			}
-		})
-
-	end
 end
 
 -- crafting
+
+minetest.register_craft({
+        output = "homedecor:chimney 2",
+        recipe = {
+			{ "default:clay_brick", "", "default:clay_brick" },
+			{ "default:clay_brick", "", "default:clay_brick" },
+			{ "default:clay_brick", "", "default:clay_brick" },
+        },
+})
+
+minetest.register_craft( {
+        output = "homedecor:doghouse",
+        recipe = {
+			{"homedecor:shingles_terracotta", "homedecor:shingles_terracotta", "homedecor:shingles_terracotta"},
+			{"group:wood", "", "group:wood"},
+			{"group:wood", "building_blocks:terrycloth_towel", "group:wood"}
+        },
+})
+
+minetest.register_craft( {
+        output = "homedecor:well",
+        recipe = {
+			{ "homedecor:shingles_wood", "homedecor:shingles_wood", "homedecor:shingles_wood" },
+			{ "group:wood", "group:stick", "group:wood" },
+			{ "group:stone", "", "group:stone" }
+        },
+})
+
+minetest.register_craft({
+	output = "homedecor:stonepath 16",
+	recipe = {
+		{ "stairs:slab_stone","","stairs:slab_stone" },
+		{ "","stairs:slab_stone","" },
+		{ "stairs:slab_stone","","stairs:slab_stone" }
+	},
+})
+
+minetest.register_craft({
+	output = "homedecor:stonepath 16",
+	recipe = {
+		{ "moreblocks:slab_stone","","moreblocks:slab_stone" },
+		{ "","moreblocks:slab_stone","" },
+		{ "moreblocks:slab_stone","","moreblocks:slab_stone" }
+	},
+})
+
+minetest.register_craft({
+	output = "homedecor:stonepath 3",
+	recipe = {
+		{ "moreblocks:micro_stone_1","","moreblocks:micro_stone_1" },
+		{ "","moreblocks:micro_stone_1","" },
+		{ "moreblocks:micro_stone_1","","moreblocks:micro_stone_1" }
+	},
+})
+
+minetest.register_craft({
+	output = "homedecor:barbecue",
+	recipe = {
+		{ "","homedecor:fence_chainlink","" },
+		{ "default:steel_ingot","fake_fire:embers","default:steel_ingot" },
+		{ "basic_materials:steel_bar","default:steel_ingot","basic_materials:steel_bar" }
+	},
+})
+
+minetest.register_craft({
+	output = "homedecor:swing",
+	recipe = {
+		{ "farming:string","","farming:string" },
+		{ "farming:string","","farming:string" },
+		{ "farming:string","stairs:slab_wood","farming:string" }
+	},
+})
+
+minetest.register_craft({
+	output = "homedecor:swing",
+	recipe = {
+		{ "farming:string","","farming:string" },
+		{ "farming:string","","farming:string" },
+		{ "farming:string","moreblocks:slab_wood","farming:string" }
+	},
+})
+
+minetest.register_craft({
+	output = "homedecor:swing",
+	recipe = {
+		{ "farming:string","","farming:string" },
+		{ "farming:string","","farming:string" },
+		{ "farming:string","moreblocks:panel_wood_1","farming:string" }
+	},
+})
 
 minetest.register_craft({
 	output = "homedecor:lattice_wood 8",
@@ -449,7 +397,7 @@ minetest.register_craft({
 	output = "homedecor:lattice_white_wood 8",
 	recipe = {
 		{"group:stick", "group:wood", "group:stick"},
-		{"group:wood", homedecor.materials["dye_white"], "group:wood"},
+		{"group:wood", "dye:white", "group:wood"},
 		{"group:stick", "group:wood", "group:stick"},
 	},
 })
@@ -468,7 +416,7 @@ minetest.register_craft({
 	recipe = {
 		{"group:stick", "group:wood", "group:stick"},
 		{"group:wood", "group:leaves", "group:wood"},
-		{"group:stick", homedecor.materials["dye_white"], "group:stick"},
+		{"group:stick", "dye:white", "group:stick"},
 	},
 })
 
@@ -481,6 +429,46 @@ minetest.register_craft({
 		{ "group:stick", "group:stick", "group:stick" }
 	}
 })
+
+for color, _ in pairs(homedecor_exterior.shrub_colors) do
+
+	minetest.register_craft({
+		type = "shapeless",
+		output = "homedecor:shrubbery_large_"..color,
+		recipe = {
+			"homedecor:shrubbery_"..color
+		}
+	})
+
+	minetest.register_craft({
+		type = "shapeless",
+		output = "homedecor:shrubbery_"..color,
+		recipe = {
+			"homedecor:shrubbery_large_"..color
+		}
+	})
+
+	if color ~= "green" then
+		minetest.register_craft({
+			type = "shapeless",
+			output = "homedecor:shrubbery_large_"..color,
+			recipe = {
+				"homedecor:shrubbery_large_green",
+				"dye:"..color
+			}
+		})
+
+		minetest.register_craft({
+			type = "shapeless",
+			output = "homedecor:shrubbery_"..color,
+			recipe = {
+				"homedecor:shrubbery_green",
+				"dye:"..color
+			}
+		})
+
+	end
+end
 
 -- aliases
 

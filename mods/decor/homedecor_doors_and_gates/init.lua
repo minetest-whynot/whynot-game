@@ -1,13 +1,5 @@
 -- Node definitions for Homedecor doors
 
-if not minetest.get_modpath("doors") or not minetest.get_modpath("default") then
-	minetest.log(
-		"action",
-		"[homedecor_doors_and_gates]: minetest game not detected, disabling as this mod is minetest game only at this time"
-	)
-	return
-end
-
 local S = minetest.get_translator("homedecor_doors_and_gates")
 local mesecons_mp = minetest.get_modpath("mesecons")
 homedecor_doors_and_gates = {}

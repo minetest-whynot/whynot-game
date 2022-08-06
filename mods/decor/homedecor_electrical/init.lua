@@ -53,16 +53,7 @@ homedecor.register("power_outlet", {
 		}
 	},
 	groups = {cracky=3,dig_immediate=2},
-	walkable = false,
-	crafts = {
-		{
-			recipe = {
-				{"basic_materials:plastic_sheet", "basic_materials:copper_strip"},
-				{"basic_materials:plastic_sheet", ""},
-				{"basic_materials:plastic_sheet", "basic_materials:copper_strip"}
-			},
-		}
-	}
+	walkable = false
 })
 
 for _, onoff in ipairs ({"on", "off"}) do
@@ -129,7 +120,7 @@ homedecor.register("doorbell", {
 	tiles = { "homedecor_doorbell.png" },
 	inventory_image = "homedecor_doorbell_inv.png",
 	description = S("Doorbell"),
-    groups = {snappy=3, dig_tree = 3},
+    groups = {snappy=3},
     walkable = false,
 	node_box = {
 		type = "fixed",
@@ -144,17 +135,19 @@ homedecor.register("doorbell", {
 			gain = 1.0,
 			max_hear_distance = 15
 		})
-	end,
-	crafts = {
-		{
-			recipe = {
-				{ "homedecor:light_switch_off", "basic_materials:energy_crystal_simple", "homedecor:speaker_driver" }
-			},
-		}
-	}
+	end
 })
 
 -- crafting
+
+minetest.register_craft( {
+        output = "homedecor:power_outlet",
+        recipe = {
+			{"basic_materials:plastic_sheet", "basic_materials:copper_strip"},
+			{"basic_materials:plastic_sheet", ""},
+			{"basic_materials:plastic_sheet", "basic_materials:copper_strip"}
+        },
+})
 
 minetest.register_craft( {
         output = "homedecor:light_switch_off",
@@ -162,6 +155,13 @@ minetest.register_craft( {
 			{"", "basic_materials:plastic_sheet", "basic_materials:copper_strip"},
 			{"basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:copper_strip"},
 			{"", "basic_materials:plastic_sheet", "basic_materials:copper_strip"}
+        },
+})
+
+minetest.register_craft( {
+        output = "homedecor:doorbell",
+        recipe = {
+			{ "homedecor:light_switch_off", "basic_materials:energy_crystal_simple", "homedecor:speaker_driver" }
         },
 })
 

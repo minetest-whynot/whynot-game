@@ -1,30 +1,5 @@
+
 local S = minetest.get_translator("homedecor_clocks")
-
-local wood
-if minetest.get_modpath("default") then
-	wood = "default_wood.png"
-else
-
-	wood = "[combine:16x16^[noalpha^[colorize:#563d2d"
-end
-
-local plastic_craft = {
-    output = "homedecor:analog_clock_plastic 2",
-    recipe = {
-		{ "basic_materials:plastic_sheet", "dye_black", "basic_materials:plastic_sheet" },
-		{ "basic_materials:plastic_sheet", "basic_materials:ic", "basic_materials:plastic_sheet" },
-		{ "basic_materials:plastic_sheet", "dye_black", "basic_materials:plastic_sheet" },
-    },
-}
-
-local wood_craft = {
-    output = "homedecor:analog_clock_wood 2",
-    recipe = {
-		{ "group:stick", "dye_black", "group:stick" },
-		{ "group:stick", "basic_materials:ic", "group:stick" },
-		{ "group:stick", "dye_black", "group:stick" },
-    },
-}
 
 local clock_sbox = {
 	type = "fixed",
@@ -32,12 +7,12 @@ local clock_sbox = {
 }
 
 local clock_materials = {
-	{"plastic", S("Plastic analog clock"), "homedecor_generic_plastic.png", plastic_craft},
-	{"wood", S("Wooden analog clock"), wood, wood_craft}
+	{ "plastic", S("Plastic analog clock"), "homedecor_generic_plastic.png" },
+	{ "wood", S("Wooden analog clock"), "default_wood.png" }
 }
 
 for _, mat in ipairs(clock_materials) do
-	local name, desc, tex, craft = unpack(mat)
+	local name, desc, tex = unpack(mat)
 	homedecor.register("analog_clock_"..name, {
 		description = desc,
 		mesh = "homedecor_analog_clock.obj",
@@ -49,13 +24,8 @@ for _, mat in ipairs(clock_materials) do
 		inventory_image = "homedecor_analog_clock_"..name.."_inv.png",
 		walkable = false,
 		selection_box = clock_sbox,
-		groups = {snappy=3, dig_tree=2},
-		_sound_def = {
-			key = "node_sound_wood_defaults",
-		},
-		crafts = {
-			craft
-		}
+		groups = {snappy=3},
+		sounds = default.node_sound_wood_defaults(),
 	})
 end
 
@@ -77,20 +47,8 @@ homedecor.register("digital_clock", {
 		}
 	},
 	walkable = false,
-	_sound_def = {
-		key = "node_sound_wood_defaults",
-	},
-	groups = {snappy=3, dig_tree=2},
-	crafts = {
-		{
-			output = "homedecor:digital_clock 2",
-			recipe = {
-				{ "basic_materials:plastic_sheet", "paper", "basic_materials:plastic_sheet" },
-				{ "basic_materials:plastic_sheet", "basic_materials:ic", "basic_materials:plastic_sheet" },
-				{ "basic_materials:plastic_sheet", "basic_materials:energy_crystal_simple", "basic_materials:plastic_sheet" },
-			},
-		}
-	}
+	sounds = default.node_sound_wood_defaults(),
+	groups = {snappy=3},
 })
 
 homedecor.register("alarm_clock", {
@@ -111,19 +69,8 @@ homedecor.register("alarm_clock", {
 		}
 	},
 	walkable = false,
-	_sound_def = {
-		key = "node_sound_wood_defaults",
-	},
-	groups = {snappy=3, dig_tree=2},
-	crafts = {
-		{
-			recipe = {
-				{ "basic_materials:plastic_sheet", "homedecor:speaker_driver", "basic_materials:plastic_sheet" },
-				{ "basic_materials:plastic_sheet", "homedecor:digital_clock", "basic_materials:plastic_sheet" },
-				{ "basic_materials:plastic_sheet", "basic_materials:energy_crystal_simple", "basic_materials:plastic_sheet" },
-			},
-		}
-	}
+	sounds = default.node_sound_wood_defaults(),
+	groups = {snappy=3},
 })
 
 local gf_cbox = {
@@ -135,7 +82,7 @@ homedecor.register("grandfather_clock", {
 	description = S("Grandfather Clock"),
 	mesh = "homedecor_grandfather_clock.obj",
 	tiles = {
-		homedecor.textures.glass,
+		"default_glass.png",
 		"homedecor_grandfather_clock_face.png",
 		homedecor.lux_wood,
 		"homedecor_grandfather_clock_face_edge.png",
@@ -143,23 +90,60 @@ homedecor.register("grandfather_clock", {
 	},
 	use_texture_alpha = "clip",
 	inventory_image = "homedecor_grandfather_clock_inv.png",
-	groups = {snappy = 3, dig_tree=2},
+	groups = { snappy = 3 },
 	selection_box = gf_cbox,
 	collision_box = gf_cbox,
-	_sound_def = {
-		key = "node_sound_wood_defaults",
-	},
+	sounds = default.node_sound_wood_defaults(),
 	expand = { top="placeholder" },
 	on_rotate = minetest.get_modpath("screwdriver") and screwdriver.rotate_simple or nil,
-	crafts = {
-		{
-			recipe = {
-				{ "building_blocks:slab_hardwood","homedecor:analog_clock_wood","building_blocks:slab_hardwood" },
-				{ "building_blocks:slab_hardwood","basic_materials:brass_ingot","building_blocks:slab_hardwood" },
-				{ "building_blocks:slab_hardwood","basic_materials:brass_ingot","building_blocks:slab_hardwood" }
-			},
-		}
-	}
+})
+
+-- crafting
+
+
+minetest.register_craft({
+    output = "homedecor:analog_clock_plastic 2",
+    recipe = {
+		{ "basic_materials:plastic_sheet", "dye:black", "basic_materials:plastic_sheet" },
+		{ "basic_materials:plastic_sheet", "basic_materials:ic", "basic_materials:plastic_sheet" },
+		{ "basic_materials:plastic_sheet", "dye:black", "basic_materials:plastic_sheet" },
+    },
+})
+
+minetest.register_craft({
+    output = "homedecor:analog_clock_wood 2",
+    recipe = {
+		{ "group:stick", "dye:black", "group:stick" },
+		{ "group:stick", "basic_materials:ic", "group:stick" },
+		{ "group:stick", "dye:black", "group:stick" },
+    },
+})
+
+minetest.register_craft({
+    output = "homedecor:digital_clock 2",
+    recipe = {
+		{ "basic_materials:plastic_sheet", "default:paper", "basic_materials:plastic_sheet" },
+		{ "basic_materials:plastic_sheet", "basic_materials:ic", "basic_materials:plastic_sheet" },
+		{ "basic_materials:plastic_sheet", "basic_materials:energy_crystal_simple", "basic_materials:plastic_sheet" },
+    },
+})
+
+minetest.register_craft({
+    output = "homedecor:alarm_clock",
+    recipe = {
+		{ "basic_materials:plastic_sheet", "homedecor:speaker_driver", "basic_materials:plastic_sheet" },
+		{ "basic_materials:plastic_sheet", "homedecor:digital_clock", "basic_materials:plastic_sheet" },
+		{ "basic_materials:plastic_sheet", "basic_materials:energy_crystal_simple", "basic_materials:plastic_sheet" },
+    },
+})
+
+minetest.register_craft({
+	output = "homedecor:grandfather_clock",
+	recipe = {
+		{ "building_blocks:slab_hardwood","homedecor:analog_clock_wood","building_blocks:slab_hardwood" },
+		{ "building_blocks:slab_hardwood","basic_materials:brass_ingot","building_blocks:slab_hardwood" },
+		{ "building_blocks:slab_hardwood","basic_materials:brass_ingot","building_blocks:slab_hardwood" }
+	},
 })
 
 -- aliases

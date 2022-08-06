@@ -2,10 +2,7 @@ local S = minetest.get_translator("homedecor_bathroom")
 
 local sc_disallow = minetest.get_modpath("screwdriver") and screwdriver.disallow or nil
 
-local wood_tex = homedecor.textures.default_wood
-local water_tex = homedecor.textures.water
-
-homedecor.register("bathroom_tiles_dark", {
+minetest.register_node(":homedecor:bathroom_tiles_dark", {
 	description = S("Bathroom/kitchen tiles (dark)"),
 	tiles = {
 		"homedecor_bathroom_tiles_bg.png"
@@ -16,24 +13,13 @@ homedecor.register("bathroom_tiles_dark", {
 	paramtype = "light",
 	paramtype2 = "color",
 	palette = "unifieddyes_palette_extended.png",
-	groups = {cracky=3, ud_param2_colorable = 1, dig_stone = 2},
-	_sound_def = {
-		key = "node_sound_stone_defaults",
-	},
+	groups = {cracky=3, ud_param2_colorable = 1},
+	sounds = default.node_sound_stone_defaults(),
 	on_construct = unifieddyes.on_construct,
 	on_dig = unifieddyes.on_dig,
-	crafts = {
-		{
-			output = "homedecor:bathroom_tiles_dark 4",
-			recipe = {
-				{ "group:marble", "group:marble", "" },
-				{ "group:marble", "group:marble", "dye_dark_grey" }
-			},
-		}
-	}
 })
 
-homedecor.register("bathroom_tiles_medium", {
+minetest.register_node(":homedecor:bathroom_tiles_medium", {
 	description = S("Bathroom/kitchen tiles (medium)"),
 	tiles = {
 		"homedecor_bathroom_tiles_bg.png"
@@ -44,24 +30,13 @@ homedecor.register("bathroom_tiles_medium", {
 	paramtype = "light",
 	paramtype2 = "color",
 	palette = "unifieddyes_palette_extended.png",
-	groups = {cracky=3, ud_param2_colorable = 1, dig_stone = 2},
-	_sound_def = {
-		key = "node_sound_stone_defaults",
-	},
+	groups = {cracky=3, ud_param2_colorable = 1},
+	sounds = default.node_sound_stone_defaults(),
 	on_construct = unifieddyes.on_construct,
 	on_dig = unifieddyes.on_dig,
-	crafts = {
-		{
-			output = "homedecor:bathroom_tiles_medium 4",
-			recipe = {
-				{ "group:marble", "group:marble", "" },
-				{ "group:marble", "group:marble", "dye_grey" }
-			},
-		}
-	}
 })
 
-homedecor.register("bathroom_tiles_light", {
+minetest.register_node(":homedecor:bathroom_tiles_light", {
 	description = S("Bathroom/kitchen tiles (light)"),
 	tiles = {
 		"homedecor_bathroom_tiles_bg.png"
@@ -72,21 +47,10 @@ homedecor.register("bathroom_tiles_light", {
 	paramtype = "light",
 	paramtype2 = "color",
 	palette = "unifieddyes_palette_extended.png",
-	groups = {cracky=3, ud_param2_colorable = 1, dig_stone = 2},
-	_sound_def = {
-		key = "node_sound_stone_defaults",
-	},
+	groups = {cracky=3, ud_param2_colorable = 1},
+	sounds = default.node_sound_stone_defaults(),
 	on_construct = unifieddyes.on_construct,
 	on_dig = unifieddyes.on_dig,
-	crafts = {
-		{
-			output = "homedecor:bathroom_tiles_light 4",
-			recipe = {
-				{ "group:marble", "group:marble" },
-				{ "group:marble", "group:marble" }
-			},
-		}
-	}
 })
 
 local tr_cbox = {
@@ -99,30 +63,20 @@ homedecor.register("towel_rod", {
 	mesh = "homedecor_towel_rod.obj",
 	tiles = {
 		"homedecor_generic_terrycloth.png",
-		wood_tex,
+		"default_wood.png",
 	},
 	inventory_image = "homedecor_towel_rod_inv.png",
 	selection_box = tr_cbox,
 	walkable = false,
-	groups = {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,dig_tree=2},
-	_sound_def = {
-		key = "node_sound_defaults",
-	},
-	crafts = {
-		{
-			recipe = {
-				{ "group:wood", "group:stick", "group:wood" },
-				{ "", "building_blocks:terrycloth_towel", "" },
-			},
-		}
-	}
+	groups = {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3},
+	sounds = default.node_sound_defaults(),
 })
 
 homedecor.register("medicine_cabinet", {
 	description = S("Medicine cabinet"),
 	mesh = "homedecor_medicine_cabinet.obj",
 	tiles = {
-		wood_tex,
+		'default_wood.png',
 		'homedecor_medicine_cabinet_mirror.png'
 	},
 	inventory_image = "homedecor_medicine_cabinet_inv.png",
@@ -131,10 +85,8 @@ homedecor.register("medicine_cabinet", {
 		fixed = {-0.3125, -0.1875, 0.3125, 0.3125, 0.5, 0.5}
 	},
 	walkable = false,
-	groups = { snappy = 3, dig_stone = 2 },
-	_sound_def = {
-		key = "node_sound_wood_defaults",
-	},
+	groups = { snappy = 3 },
+	sounds = default.node_sound_wood_defaults(),
 	on_punch = function(pos, node, puncher, pointed_thing)
 		node.name = "homedecor:medicine_cabinet_open"
 		minetest.swap_node(pos, node)
@@ -147,21 +99,12 @@ homedecor.register("medicine_cabinet", {
 	inventory = {
 		size=6,
 	},
-	crafts = {
-		{
-			recipe = {
-				{ "group:stick", "glass_block", "group:stick" },
-				{ "group:stick", "glass_block", "group:stick" },
-				{ "group:stick", "glass_block", "group:stick" }
-			},
-		}
-	}
 })
 
 homedecor.register("medicine_cabinet_open", {
 	mesh = "homedecor_medicine_cabinet_open.obj",
 	tiles = {
-		wood_tex,
+		'default_wood.png',
 		'homedecor_medicine_cabinet_mirror.png',
 		'homedecor_medicine_cabinet_inside.png'
 	},
@@ -170,7 +113,7 @@ homedecor.register("medicine_cabinet_open", {
 		fixed = {-0.3125, -0.1875, -0.25, 0.3125, 0.5, 0.5}
 	},
 	walkable = false,
-	groups = { snappy = 3, not_in_creative_inventory=1, dig_stone = 2 },
+	groups = { snappy = 3, not_in_creative_inventory=1 },
 	drop = "homedecor:medicine_cabinet",
 	on_punch = function(pos, node, puncher, pointed_thing)
 		node.name = "homedecor:medicine_cabinet"
@@ -208,23 +151,12 @@ homedecor.register("toilet", {
 	},
 	selection_box = toilet_sbox,
 	node_box = toilet_cbox,
-	groups = {cracky=3, dig_stone = 2},
-	_sound_def = {
-		key = "node_sound_stone_defaults",
-	},
+	groups = {cracky=3},
+	sounds = default.node_sound_stone_defaults(),
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		node.name = "homedecor:toilet_open"
 		minetest.set_node(pos, node)
-	end,
-	crafts = {
-		{
-			recipe = {
-				{ "","","water_bucket"},
-				{ "group:marble","group:marble", "group:marble" },
-				{ "", "empty_bucket", "" },
-			},
-		}
-	}
+	end
 })
 
 homedecor.register("toilet_open", {
@@ -233,17 +165,15 @@ homedecor.register("toilet_open", {
 		"building_blocks_marble.png",
 		"building_blocks_marble.png",
 		"building_blocks_marble.png",
-		water_tex,
+		"default_water.png",
 		{ name = "homedecor_generic_metal.png", color = homedecor.color_med_grey }
 	},
 	selection_box = toilet_sbox,
 	collision_box = toilet_cbox,
 	drop = "homedecor:toilet",
 	use_texture_alpha = "blend",
-	groups = {cracky=3, dig_stone = 2},
-	_sound_def = {
-		key = "node_sound_stone_defaults",
-	},
+	groups = {cracky=3},
+	sounds = default.node_sound_stone_defaults(),
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		node.name = "homedecor:toilet"
 		minetest.set_node(pos, node)
@@ -267,24 +197,13 @@ homedecor.register("toilet_paper", {
 	mesh = "homedecor_toilet_paper.obj",
 	tiles = {
 		"homedecor_generic_quilted_paper.png",
-		wood_tex
+		"default_wood.png"
 	},
 	inventory_image = "homedecor_toilet_paper_inv.png",
 	selection_box = tp_cbox,
 	walkable = false,
-	groups = {snappy=3,oddly_breakable_by_hand=3, dig_stone = 2},
-	_sound_def = {
-		key = "node_sound_defaults",
-	},
-	crafts = {
-		{
-			recipe = {
-				{ "", "paper", "paper" },
-				{ "group:wood", "group:stick", "paper" },
-				{ "", "paper", "paper" },
-			},
-		}
-	}
+	groups = {snappy=3,oddly_breakable_by_hand=3},
+	sounds = default.node_sound_defaults(),
 })
 
 --Sink
@@ -311,27 +230,17 @@ homedecor.register("sink", {
 	tiles = {
 		"building_blocks_marble.png",
 		"building_blocks_marble.png",
-		water_tex
+		"default_water.png"
 	},
 	use_texture_alpha = "blend",
 	inventory_image="homedecor_bathroom_sink_inv.png",
 	selection_box = sink_sbox,
 	collision_box = sink_cbox,
-	groups = {cracky=3, dig_stone = 2},
-	_sound_def = {
-		key = "node_sound_stone_defaults",
-	},
+	groups = {cracky=3},
+	sounds = default.node_sound_stone_defaults(),
 	on_destruct = function(pos)
 		homedecor.stop_particle_spawner({x=pos.x, y=pos.y+1, z=pos.z})
-	end,
-	crafts = {
-		{
-			recipe = {
-				{ "group:marble","empty_bucket", "group:marble" },
-				{ "", "group:marble", "" }
-			},
-		}
-	}
+	end
 })
 
 --Taps
@@ -370,20 +279,11 @@ homedecor.register("taps", {
 		fixed = { -4/16, -7/16, 4/16, 4/16, -4/16, 8/16 },
 	},
 	walkable = false,
-	groups = {cracky=3, dig_stone = 2},
-	_sound_def = {
-		key = "node_sound_stone_defaults",
-	},
+	groups = {cracky=3},
+	sounds = default.node_sound_stone_defaults(),
 	on_rightclick = taps_on_rightclick,
 	on_destruct = homedecor.stop_particle_spawner,
-	on_rotate = sc_disallow or nil,
-	crafts = {
-		{
-			recipe = {
-				{ "steel_ingot","water_bucket", "steel_ingot" },
-			},
-		}
-	}
+	on_rotate = sc_disallow or nil
 })
 
 homedecor.register("taps_brass", {
@@ -402,20 +302,11 @@ homedecor.register("taps_brass", {
 		fixed = { -4/16, -7/16, 4/16, 4/16, -4/16, 8/16 },
 	},
 	walkable = false,
-	groups = {cracky=3, dig_stone = 2},
-	_sound_def = {
-		key = "node_sound_stone_defaults",
-	},
+	groups = {cracky=3},
+	sounds = default.node_sound_stone_defaults(),
 	on_rightclick = taps_on_rightclick,
 	on_destruct = homedecor.stop_particle_spawner,
 	on_rotate = sc_disallow or nil,
-	crafts = {
-		{
-			recipe = {
-				{ "basic_materials:brass_ingot","water_bucket", "basic_materials:brass_ingot" },
-			},
-		}
-	}
 })
 
 --Shower Tray
@@ -437,21 +328,12 @@ homedecor.register("shower_tray", {
 		},
 	},
 	selection_box = homedecor.nodebox.slab_y(0.1),
-	groups = {cracky=2, dig_stone = 2},
-	_sound_def = {
-		key = "node_sound_stone_defaults",
-	},
+	groups = {cracky=2},
+	sounds = default.node_sound_stone_defaults(),
 	on_destruct = function(pos)
 		homedecor.stop_particle_spawner({x=pos.x, y=pos.y+2, z=pos.z}) -- the showerhead
 		homedecor.stop_particle_spawner({x=pos.x, y=pos.y+1, z=pos.z}) -- the taps, if any
-	end,
-	crafts = {
-		{
-			recipe = {
-				{ "group:marble","empty_bucket", "group:marble" },
-			},
-		}
-	}
+	end
 })
 
 --Shower Head
@@ -471,7 +353,7 @@ homedecor.register("shower_head", {
 	},
 	inventory_image = "homedecor_shower_head_inv.png",
 	description = S("Shower Head"),
-	groups = {snappy=3, dig_stone = 2},
+	groups = {snappy=3},
 	selection_box = sh_cbox,
 	walkable = false,
 	on_rotate = sc_disallow or nil,
@@ -494,14 +376,7 @@ homedecor.register("shower_head", {
 	end,
 	on_destruct = function(pos)
 		homedecor.stop_particle_spawner(pos)
-	end,
-	crafts = {
-		{
-			recipe = {
-				{"steel_ingot", "water_bucket"},
-			},
-		}
-	}
+	end
 })
 
 local tub_sbox = {
@@ -537,21 +412,10 @@ homedecor.register("bathtub_clawfoot_brass_taps", {
 		"homedecor_bathtub_clawfoot_bottom_inside.png",
 	},
 	description = S("Bathtub, clawfoot, with brass taps"),
-	groups = {cracky=3, dig_stone = 2},
+	groups = {cracky=3},
 	selection_box = tub_sbox,
 	node_box = tub_cbox,
-	_sound_def = {
-		key = "node_sound_stone_defaults",
-	},
-	crafts = {
-		{
-			recipe = {
-				{ "homedecor:taps_brass", "", "" },
-				{ "group:marble", "", "group:marble" },
-				{ "steel_ingot", "group:marble", "steel_ingot"},
-			},
-		}
-	}
+	sounds = default.node_sound_stone_defaults(),
 })
 
 homedecor.register("bathtub_clawfoot_chrome_taps", {
@@ -566,21 +430,10 @@ homedecor.register("bathtub_clawfoot_chrome_taps", {
 		"homedecor_bathtub_clawfoot_bottom_inside.png",
 	},
 	description = S("Bathtub, clawfoot, with chrome taps"),
-	groups = {cracky=3, dig_stone = 2},
+	groups = {cracky=3},
 	selection_box = tub_sbox,
 	node_box = tub_cbox,
-	_sound_def = {
-		key = "node_sound_stone_defaults",
-	},
-	crafts = {
-		{
-			recipe = {
-				{ "homedecor:taps", "", "" },
-				{ "group:marble", "", "group:marble" },
-				{"steel_ingot", "group:marble", "steel_ingot"},
-			},
-		}
-	}
+	sounds = default.node_sound_stone_defaults(),
 })
 
 local bs_cbox = {
@@ -600,21 +453,10 @@ homedecor.register("bathroom_set", {
 	},
 	inventory_image = "homedecor_bathroom_set_inv.png",
 	description = S("Bathroom sundries set"),
-	groups = {snappy=3, dig_stone = 2},
+	groups = {snappy=3},
 	selection_box = bs_cbox,
 	walkable = false,
-	_sound_def = {
-		key = "node_sound_glass_defaults",
-	},
-	crafts = {
-		{
-			recipe = {
-				{ "", "homedecor:glass_table_small_round", "" },
-				{ "basic_materials:plastic_sheet", "homedecor:glass_table_small_round", "basic_materials:plastic_sheet" },
-				{ "group:stick", "basic_materials:plastic_sheet", "group:stick" }
-			},
-		}
-	}
+	sounds = default.node_sound_glass_defaults(),
 })
 
 -- aliases
@@ -686,7 +528,45 @@ minetest.register_lbm({
 	end
 })
 
--- color crafting
+-- crafting
+
+
+minetest.register_craft({
+    output = "homedecor:towel_rod",
+    recipe = {
+		{ "group:wood", "group:stick", "group:wood" },
+		{ "", "building_blocks:terrycloth_towel", "" },
+    },
+})
+
+minetest.register_craft({
+    output = "homedecor:toilet_paper",
+    recipe = {
+		{ "", "default:paper", "default:paper" },
+		{ "group:wood", "group:stick", "default:paper" },
+		{ "", "default:paper", "default:paper" },
+    },
+})
+
+minetest.register_craft({
+    output = "homedecor:medicine_cabinet",
+    recipe = {
+		{ "group:stick", "default:glass", "group:stick" },
+		{ "group:stick", "default:glass", "group:stick" },
+		{ "group:stick", "default:glass", "group:stick" }
+    },
+})
+
+
+-- bathroom/kitchen tiles
+
+minetest.register_craft( {
+		output = "homedecor:bathroom_tiles_light 4",
+		recipe = {
+			{ "group:marble", "group:marble" },
+			{ "group:marble", "group:marble" }
+		},
+})
 
 unifieddyes.register_color_craft({
 	output = "homedecor:bathroom_tiles_light",
@@ -697,6 +577,14 @@ unifieddyes.register_color_craft({
 		"NEUTRAL_NODE",
 		"MAIN_DYE"
 	}
+})
+
+minetest.register_craft( {
+		output = "homedecor:bathroom_tiles_medium 4",
+		recipe = {
+			{ "group:marble", "group:marble", "" },
+			{ "group:marble", "group:marble", "dye:grey" }
+		},
 })
 
 unifieddyes.register_color_craft({
@@ -710,6 +598,14 @@ unifieddyes.register_color_craft({
 	}
 })
 
+minetest.register_craft( {
+		output = "homedecor:bathroom_tiles_dark 4",
+		recipe = {
+			{ "group:marble", "group:marble", "" },
+			{ "group:marble", "group:marble", "dye:dark_grey" }
+		},
+})
+
 unifieddyes.register_color_craft({
 	output = "homedecor:bathroom_tiles_dark",
 	palette = "extended",
@@ -719,5 +615,77 @@ unifieddyes.register_color_craft({
 		"NEUTRAL_NODE",
 		"MAIN_DYE"
 	}
+})
+
+minetest.register_craft({
+	output = "homedecor:bathroom_set",
+	recipe = {
+		{ "", "homedecor:glass_table_small_round", "" },
+		{ "basic_materials:plastic_sheet", "homedecor:glass_table_small_round", "basic_materials:plastic_sheet" },
+		{ "group:stick", "basic_materials:plastic_sheet", "group:stick" }
+	},
+})
+
+minetest.register_craft({
+	output = "homedecor:toilet",
+	recipe = {
+		{ "","","bucket:bucket_water"},
+		{ "group:marble","group:marble", "group:marble" },
+		{ "", "bucket:bucket_empty", "" },
+	},
+})
+
+minetest.register_craft({
+	output = "homedecor:sink",
+	recipe = {
+		{ "group:marble","bucket:bucket_empty", "group:marble" },
+		{ "", "group:marble", "" }
+	},
+})
+
+minetest.register_craft({
+	output = "homedecor:taps",
+	recipe = {
+		{ "default:steel_ingot","bucket:bucket_water", "default:steel_ingot" },
+	},
+})
+
+minetest.register_craft({
+	output = "homedecor:taps_brass",
+	recipe = {
+		{ "basic_materials:brass_ingot","bucket:bucket_water", "basic_materials:brass_ingot" },
+	},
+})
+
+minetest.register_craft({
+	output = "homedecor:shower_tray",
+	recipe = {
+		{ "group:marble","bucket:bucket_empty", "group:marble" },
+	},
+})
+
+minetest.register_craft({
+	output = "homedecor:shower_head",
+	recipe = {
+		{"default:steel_ingot", "bucket:bucket_water"},
+	},
+})
+
+minetest.register_craft({
+	output = "homedecor:bathtub_clawfoot_brass_taps",
+	recipe = {
+		{ "homedecor:taps_brass", "", "" },
+		{ "group:marble", "", "group:marble" },
+		{ "default:steel_ingot", "group:marble", "default:steel_ingot"},
+	},
+})
+
+minetest.register_craft({
+	output = "homedecor:bathtub_clawfoot_chrome_taps",
+	recipe = {
+		{ "homedecor:taps", "", "" },
+		{ "group:marble", "", "group:marble" },
+		{"default:steel_ingot", "group:marble", "default:steel_ingot"},
+	},
 })
 

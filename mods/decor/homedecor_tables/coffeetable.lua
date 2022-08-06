@@ -59,9 +59,7 @@ minetest.register_node(":lrfurn:coffeetable", {
 	paramtype2 = "facedir",
 	use_texture_alpha = "blend",
 	groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
-	_sound_def = {
-		key = "node_sound_wood_defaults",
-	},
+	sounds = default.node_sound_wood_defaults(),
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -110,7 +108,7 @@ minetest.register_craft({
 	output = "lrfurn:coffeetable",
 	recipe = {
 		{"", "", "", },
-		{homedecor.materials.slab_wood, homedecor.materials.slab_wood, homedecor.materials.slab_wood, },
+		{"stairs:slab_wood", "stairs:slab_wood", "stairs:slab_wood", },
 		{"group:stick", "", "group:stick", }
 	}
 })

@@ -1,13 +1,5 @@
-if not minetest.get_modpath("player_api") then
-	minetest.log(
-		"action",
-		"[homedecor_wardrobe]: minetest game not detected, disabling as this mod is minetest game only at this time"
-	)
-	return
-end
-
 local S = minetest.get_translator("homedecor_wardrobe")
-local modpath = minetest.get_modpath("homedecor_wardrobe")
+modpath = minetest.get_modpath("homedecor_wardrobe")
 
 local wd_cbox = {type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, 1.5, 0.5}}
 

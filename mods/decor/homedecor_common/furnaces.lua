@@ -143,10 +143,7 @@ function homedecor.register_furnace(name, furnacedef)
 		description = description,
 		tiles = make_tiles(furnacedef.tiles, furnacedef.tile_format, false),
 		groups = furnacedef.groups or {cracky=2},
-		sounds = furnacedef.sounds,
-		_sound_def = {
-			key = "node_sound_wood_defaults",
-		},
+		sounds = furnacedef.sounds or default.node_sound_wood_defaults(),
 		on_construct = furnace_construct,
 		can_dig = furnace_can_dig,
 		allow_metadata_inventory_put = furnace_allow_put,
@@ -161,10 +158,7 @@ function homedecor.register_furnace(name, furnacedef)
 		light_source = 8,
 		drop = "homedecor:" .. name,
 		groups = furnacedef.groups or {cracky=2, not_in_creative_inventory=1},
-		sounds = furnacedef.sounds,
-		_sound_def = {
-			key = "node_sound_stone_defaults",
-		},
+		sounds = furnacedef.sounds or default.node_sound_stone_defaults(),
 		on_construct = furnace_construct,
 		can_dig = furnace_can_dig,
 		allow_metadata_inventory_put = furnace_allow_put,

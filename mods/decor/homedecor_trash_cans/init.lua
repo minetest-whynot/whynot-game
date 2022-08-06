@@ -13,28 +13,19 @@ homedecor.register("trash_can_green", {
 	tiles = { { name = "homedecor_generic_plastic.png", color = trashcan_green } },
 	inventory_image = "homedecor_trash_can_green_inv.png",
 	description = S("Green Trash Can"),
-	groups = {snappy=3, dig_stone=3},
+	groups = {snappy=3},
 	selection_box = tg_cbox,
 	collision_box = tg_cbox,
 	on_punch = function(pos, node, puncher, pointed_thing)
 		minetest.set_node(pos, {name = "homedecor:trash_can_green_open", param2 = node.param2})
-	end,
-	crafts = {
-		{
-			recipe = {
-				{ "basic_materials:plastic_sheet", "", "basic_materials:plastic_sheet" },
-				{ "basic_materials:plastic_sheet", "dye_green", "basic_materials:plastic_sheet" },
-				{ "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" }
-			},
-		}
-	}
+	end
 })
 
 homedecor.register("trash_can_green_open", {
 	drawtype = "mesh",
 	mesh = "homedecor_trash_can_green_open.obj",
 	tiles = { { name = "homedecor_generic_plastic.png", color = trashcan_green } },
-	groups = {snappy=3, not_in_creative_inventory=1, dig_stone=3},
+	groups = {snappy=3, not_in_creative_inventory=1},
 	selection_box = tg_cbox,
 	collision_box = tg_cbox,
 	drop = "homedecor:trash_can_green",
@@ -44,7 +35,7 @@ homedecor.register("trash_can_green_open", {
 	infotext=S("Trash Can"),
 	inventory= {
 		size = 9,
-		formspec = "size[8,9]"..
+		formspec = "size[8,9]" .. default.gui_bg .. default.gui_bg_img .. default.gui_slots ..
 		"button[2.5,3.8;3,1;empty;Empty Trash]"..
 		"list[context;main;2.5,0.5;3,3;]"..
 		"list[current_player;main;0,5;8,4;]" ..
@@ -71,16 +62,27 @@ homedecor.register("trash_can", {
 	inventory_image = "homedecor_trash_can_inv.png",
 	description = S("Small Trash Can"),
 	use_texture_alpha = "clip",
-	groups = {snappy=3, dig_stone=3},
+	groups = {snappy=3},
 	selection_box = trash_cbox,
 	collision_box = trash_cbox,
-	crafts = {
-		{
-			output = "homedecor:trash_can 3",
-			recipe = {
-				{ "basic_materials:steel_wire", "", "basic_materials:steel_wire" },
-				{ "steel_ingot", "steel_ingot", "steel_ingot" }
-			},
-		},
-	}
+})
+
+-- crafting
+
+
+minetest.register_craft( {
+        output = "homedecor:trash_can 3",
+        recipe = {
+			{ "basic_materials:steel_wire", "", "basic_materials:steel_wire" },
+			{ "default:steel_ingot", "default:steel_ingot", "default:steel_ingot" }
+        },
+})
+
+minetest.register_craft({
+	output = "homedecor:trash_can_green",
+	recipe = {
+		{ "basic_materials:plastic_sheet", "", "basic_materials:plastic_sheet" },
+		{ "basic_materials:plastic_sheet", "dye:green", "basic_materials:plastic_sheet" },
+		{ "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" }
+	},
 })
