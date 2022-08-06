@@ -6,6 +6,8 @@
   declare -Ag BRANCHES=(
     [minetest_game/minetest_game]=origin/stable-5 # Stay on stable version
     [flora_ores/farming]=0b06c7cd450c5ec9a76b3c22a9c57f06e4f8a7c2 # freeze due to incompatibility with milk buckets
+    [decor/basic_materials]=9d55f9916d20779ecbf93c7e95dae8adebd2079b # freeze due to usage of sound_api
+    [decor/homedecor_modpack]=3ba59dc2d5d14c74bc2664eebcbff764f96f6f26 # freeze due to usage of sound_api
   )
 
   #
