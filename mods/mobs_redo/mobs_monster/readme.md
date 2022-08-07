@@ -15,7 +15,7 @@ Lava Flan
 
 Mese Monster
 
-- These mobs are territorial and spawn below -20 and will fire mese shards at passers by, so best avoided. Will drop mese when killed.
+- These mobs are territorial and spawn below -20 and will fire mese shards at passers by, so best avoided. The deeper you go the tougher they seem to get. Will drop mese when killed.
 
 Oerkki
 

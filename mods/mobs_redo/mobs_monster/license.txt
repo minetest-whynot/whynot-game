@@ -31,6 +31,14 @@ mobs.fireball.png was originally made by Sapier and edited by Benrob:
 -- (c) Sapier
 -- Contact sapier a t gmx net
 
-Textures created by wwar (cc0)
+Textures created by wwar (CC0)
   mobs_dungeon_master_nether.png
   mobs_dungeon_master_netherdeep.png
+
+Textures and Model created by SirrobZeroone (CC0)
+  mobs_mese_monster_red.png
+  mobs_mese_monster_blue.png
+  mobs_mese_monster_green.png
+  mobs_mese_monster_purple.png
+  mobs_mese_arrow.png
+  mobs_mese_monster.b3d

@@ -190,3 +190,89 @@ if minetest.get_modpath("dye") then
 		})
 	end
 end
+
+
+if minetest.get_modpath("df_trees") then
+
+	local function spore_tree_fix(pos)
+		minetest.set_node(pos, {name = "air"})
+		df_trees.spawn_spore_tree(pos)
+	end
+
+	local function fungiwood_fix(pos)
+		minetest.set_node(pos, {name = "air"})
+		df_trees.spawn_fungiwood(pos)
+	end
+
+	bonemeal:add_sapling({
+		{"df_trees:black_cap_sapling", df_trees.spawn_black_cap, "soil", true},
+		{"df_trees:fungiwood_sapling", fungiwood_fix, "soil", true},
+		{"df_trees:goblin_cap_sapling", df_trees.spawn_goblin_cap, "soil", true},
+		{"df_trees:spore_tree_sapling", spore_tree_fix, "soil", true},
+		{"df_trees:tower_cap_sapling", df_trees.spawn_tower_cap, "soil", true},
+		{"df_trees:tunnel_tube_sapling", df_trees.spawn_tunnel_tube, "soil", true},
+		{"df_trees:nether_cap_sapling", df_trees.spawn_nether_cap, "group:nether_cap", true},
+		{"df_trees:nether_cap_sapling", df_trees.spawn_nether_cap, "group:cools_lava", true}
+	})
+end
+
+
+if minetest.get_modpath("df_farming") then
+
+	bonemeal:add_crop({
+		{"df_farming:cave_wheat_", 8, "df_farming:cave_wheat_seed", true},
+		{"df_farming:dimple_cup_", 4, "df_farming:dimple_cup_seed", true},
+		{"df_farming:pig_tail_", 8, "df_farming:pig_tail_seed", true},
+		{"df_farming:plump_helmet_", 4, "df_farming:plump_helmet_spawn", true},
+		{"df_farming:quarry_bush_", 5, "df_farming:quarry_bush_seed", true},
+		{"df_farming:sweet_pod_", 6, "df_farming:sweet_pod_seed", true}
+	})
+end
+
+
+if minetest.get_modpath("df_primordial_items") then
+
+	local function mush_fix(pos)
+		minetest.set_node(pos, {name = "air"})
+		mapgen_helper.place_schematic(pos,
+			df_primordial_items.get_primordial_mushroom(), (math.random(1,4)-1)*90)
+	end
+
+	local function fern_fix(pos)
+		minetest.set_node(pos, {name = "air"})
+		local rotations = {0, 90, 180, 270}
+		mapgen_helper.place_schematic(pos,
+			df_primordial_items.get_fern_schematic(), rotations[math.random(1,#rotations)])
+	end
+
+	bonemeal:add_sapling({
+		{"df_primordial_items:jungle_mushroom_sapling",
+			df_primordial_items.spawn_jungle_mushroom, "soil", true},
+		{"df_primordial_items:jungletree_sapling",
+			df_primordial_items.spawn_jungle_tree, "soil", true},
+		{"df_primordial_items:mush_sapling", mush_fix, "soil", true},
+		{"df_primordial_items:fern_sapling", fern_fix, "soil", true}
+	})
+
+	local jgrass = {
+		"df_primordial_items:jungle_grass_1",
+		"df_primordial_items:jungle_grass_2",
+		"df_primordial_items:jungle_grass_3",
+		"df_primordial_items:fern_1",
+		"df_primordial_items:fern_2",
+		"", "", "", ""
+	}
+
+	local jdeco = {
+		"df_primordial_items:jungle_mushroom_1",
+		"df_primordial_items:jungle_mushroom_2",
+		"df_primordial_items:glow_plant_1",
+		"df_primordial_items:glow_plant_2",
+		"df_primordial_items:glow_plant_3",
+		"", "", ""
+	}
+
+	bonemeal:add_deco({
+		{"df_primordial_items:dirt_with_jungle_grass", jgrass, jdeco}
+	})
+end

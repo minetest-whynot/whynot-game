@@ -110,7 +110,7 @@ for _ , material in ipairs({ "Adobe", "fakegrass", "grate", "hardwood",
 			table.copy(nodedef.tiles),
 			nodedef.description.." stair",
 			nodedef.description.." slab",
-			table.copy(nodedef.sounds),
+			table.copy(nodedef.sounds or nodedef._sound_def),
 			false,
 			nodedef.description.." inner stair",
 			nodedef.description.." outer stair" )
