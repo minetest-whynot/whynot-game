@@ -43,13 +43,8 @@ function process_update_mods {
   local subm=$2
   # ignore local branch=$(echo "$3" | tr -d '()')
 
-  cd $subm
+  pushd $subm > /dev/null
   echo -n "Processing $subm... "
-
-  echo '' >> "$LOG"
-  echo `git remote -v | grep '\(fetch\)'` >> "$LOG"
-  git branch --format '%(HEAD) %(objectname) %(subject)' | grep '^[*]' >> "$LOG"
-  echo "Mod: $subm" >> "$LOG"
 
   local branch="origin/HEAD"
   if [ ${BRANCHES[$subm]+_} ]; then
@@ -103,6 +98,12 @@ function process_update_mods {
     git diff --quiet $DSTPATH || git commit $VERBOSITY -m "Rsync cleanup for $modname" -- $DSTPATH
 
   fi
+
+  popd > /dev/null
+  echo '' >> "$LOG"
+  echo `git remote -v | grep '\(fetch\)'` >> "$LOG"
+  git branch --format '%(HEAD) %(objectname) %(subject)' | grep '^[*]' >> "$LOG"
+  echo "Mod: $subm" >> "$LOG"
 
 }
 export -f process_update_mods
