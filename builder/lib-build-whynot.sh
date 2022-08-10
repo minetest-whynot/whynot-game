@@ -20,9 +20,7 @@ function sync_mods_folder {
       if [[ ${childname:0:1} != "." && !( $exclusionlist =~ $childname$ || $exclusionlist =~ $childname[^[:alnum:]_] ) ]]; then
         $RSYNC $exclusionlist $childmod/ $DSTPATH/$childname/
       else
-        local TMPV=''
-        [[ $VERBOSITY == '--verbose' ]] && TMPV=$VERBOSITY
-        rm -rf $TMPV $DSTPATH/$childname
+        rm -rf $VERBOSEONLY $DSTPATH/$childname
       fi
     done
 
@@ -76,11 +74,8 @@ function process_update_mods {
       IFS= read -r -p 'Commit now? [Y/n] ' CHOOSECOMMIT < /dev/tty
       if [[ "$CHOOSECOMMIT" = "Y" ||  "$CHOOSECOMMIT" = "y" || "$CHOOSECOMMIT" = "" ]]; then
         cd $PROJ
-        local TMPV=''
-        [[ $VERBOSITY == '--verbose' ]] && TMPV=$VERBOSITY
-        git add $TMPV .
-        [[ $VERBOSITY == '--quiet' ]] && TMPV=$VERBOSITY || TMPV=''
-        git reset $TMPV $LOG
+        git add $VERBOSEONLY .
+        git reset $QUIETONLY $LOG
         git commit $VERBOSITY -m "Update $modname from upstream."
       fi
     fi
@@ -95,7 +90,9 @@ function process_update_mods {
       local group=$(dirname $subm)
       DSTPATH="$DST/$group"
     fi
-    git diff --quiet $DSTPATH || git commit $VERBOSITY -m "Rsync cleanup for $modname" -- $DSTPATH
+    git add $VERBOSEONLY .
+    git reset $QUIETONLY $LOG
+    git diff --quiet --cached -- $DSTPATH || git commit $VERBOSITY -m "Rsync cleanup for $modname" -- $DSTPATH
 
   fi
 
