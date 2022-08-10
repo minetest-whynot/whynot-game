@@ -28,7 +28,7 @@ local use_cmi = minetest.global_exists("cmi")
 
 mobs = {
 	mod = "redo",
-	version = "20220712",
+	version = "20220804",
 	intllib = S,
 	invis = minetest.global_exists("invisibility") and invisibility or {}
 }
@@ -106,8 +106,8 @@ local stuck_timeout = 3 -- how long before stuck mod starts searching
 local stuck_path_timeout = 5 -- how long will mob follow path before giving up
 
 -- default nodes
-local node_fire = "fire:basic_flame"
-local node_permanent_flame = "fire:permanent_flame"
+--local node_fire = "fire:basic_flame"
+--local node_permanent_flame = "fire:permanent_flame"
 local node_ice = "default:ice"
 local node_snowblock = "default:snowblock"
 local node_snow = "default:snow"
@@ -750,7 +750,7 @@ local HORNY_AGAIN_TIME = 60 * 5 -- 5 minutes
 local CHILD_GROW_TIME = 60 * 20 -- 20 minutes
 
 
--- update nametag colour
+-- update nametag and infotext
 function mob_class:update_tag()
 
 	local col = "#00FF00"
@@ -784,8 +784,16 @@ function mob_class:update_tag()
 
 	end
 
+	if self.protected then
+		if self.protected == 2 then
+			text = text .. "\nProtection: Level 2"
+		else
+			text = text .. "\nProtection: Level 1"
+		end
+	end
+
 	self.infotext = "Health: " .. self.health .. " / " .. self.hp_max
-		.. (self.owner == "" and "" or "\n" .. "Owner: " .. self.owner)
+		.. (self.owner == "" and "" or "\nOwner: " .. self.owner)
 		.. text
 
 	-- set changes
@@ -998,15 +1006,13 @@ end
 -- get node but use fallback for nil or unknown
 local node_ok = function(pos, fallback)
 
-	fallback = fallback or mobs.fallback_node
-
 	local node = minetest.get_node_or_nil(pos)
 
 	if node and minetest.registered_nodes[node.name] then
 		return node
 	end
 
-	return minetest.registered_nodes[fallback]
+	return minetest.registered_nodes[(fallback or mobs.fallback_node)]
 end
 
 
@@ -1066,7 +1072,7 @@ function mob_class:is_at_cliff()
 		return true
 	end
 
-	local bnode = node_ok(blocker)
+	local bnode = node_ok(blocker, "air")
 
 	-- will we drop onto dangerous node?
 	if is_node_dangerous(self, bnode.name) then
@@ -3674,6 +3680,7 @@ minetest.register_entity(name, setmetatable({
 	stay_near = def.stay_near,
 	randomly_turn = def.randomly_turn ~= false,
 	ignore_invisibility = def.ignore_invisibility,
+	messages = def.messages,
 
 	on_spawn = def.on_spawn,
 
