@@ -68,6 +68,7 @@ function process_update_mods {
     IFS= read -r -p 'Merge all changes? [y/N] ' CHOOSEMERGE < /dev/tty
     if [[ "$CHOOSEMERGE" = "Y" ||  "$CHOOSEMERGE" = "y" ]]; then
       git merge $VERBOSITY $branch
+      git submodule update --init --recursive $VERBOSITY
       sync_mods_folder $subm $modname
 
       local CHOOSECOMMIT=''
