@@ -19,7 +19,7 @@ if minetest.get_modpath("default") then
             },
         })
     end
-    if farming and farming.mod == "redo" then
+    if minetest.global_exists("farming") and farming.mod == "redo" then
         minetest.register_craft({
             output = "home_vending_machines:sweet_machine",
             recipe = {
