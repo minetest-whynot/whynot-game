@@ -41,7 +41,7 @@ function process_update_mods {
   local subm=$2
   # ignore local branch=$(echo "$3" | tr -d '()')
 
-  pushd $subm > /dev/null
+  cd $subm
   echo -n "Processing $subm... "
 
   local branch="origin/HEAD"
@@ -73,7 +73,7 @@ function process_update_mods {
       local CHOOSECOMMIT=''
       IFS= read -r -p 'Commit now? [Y/n] ' CHOOSECOMMIT < /dev/tty
       if [[ "$CHOOSECOMMIT" = "Y" ||  "$CHOOSECOMMIT" = "y" || "$CHOOSECOMMIT" = "" ]]; then
-        cd $PROJ
+        pushd $PROJ > /dev/null
         git add $VERBOSEONLY .
         git reset $QUIETONLY $LOG
         git commit $VERBOSITY -m "Update $modname from upstream."
@@ -84,7 +84,7 @@ function process_update_mods {
 
     echo 'No changes.'
     sync_mods_folder $subm $modname
-    cd $PROJ
+    pushd $PROJ > /dev/null
     local DSTPATH="$DST/$subm"
     if [[ ! -e $DSTPATH ]]; then
       local group=$(dirname $subm)
@@ -96,7 +96,7 @@ function process_update_mods {
 
   fi
 
-  popd > /dev/null
+  popd &> /dev/null
   echo '' >> "$LOG"
   echo `git remote -v | grep '\(fetch\)'` >> "$LOG"
   git branch --format '%(HEAD) %(objectname) %(subject)' | grep '^[*]' >> "$LOG"
