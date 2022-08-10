@@ -142,7 +142,7 @@ minetest.register_node("fake_fire:ice_fire", {
 	drawtype = "plantlike",
 	paramtype = "light",
 	paramtype2 = "facedir",
-	groups = {dig_immediate=3, not_in_creative_inventory=1},
+	groups = {dig_immediate=3, not_in_creative_inventory=1, dig_generic=3},
 	sunlight_propagates = true,
 	buildable_to = true,
 	walkable = false,
@@ -172,6 +172,8 @@ local sbox = {
 	fixed = { -8/16, -8/16, -8/16, 8/16, -6/16, 8/16},
 }
 
+local wtex = homedecor.textures.default_junglewood
+
 minetest.register_node("fake_fire:fancy_fire", {
 	inventory_image = "fancy_fire_inv.png",
 	description = S("Fancy Fire"),
@@ -189,7 +191,7 @@ minetest.register_node("fake_fire:fancy_fire", {
 	selection_box = sbox,
 	tiles = {
 		"basic_materials_concrete_block.png",
-		"default_junglewood.png",
+		wtex,
 		"fake_fire_empty_tile.png"
 	},
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
@@ -224,25 +226,41 @@ minetest.register_node("fake_fire:embers", {
 		aspect_w=16, aspect_h=16, length=2}},
 	},
 	light_source = 9,
-	groups = {crumbly=3},
+	groups = {crumbly=3, dig_stone=2},
 	paramtype = "light",
-	sounds = default.node_sound_dirt_defaults(),
+	_sound_def = {
+		key = "node_sound_dirt_defaults",
+	},
 })
+
+local sandstone_tex = "default_sandstone.png"
+if not minetest.get_modpath("default") then
+	local sname = minetest.registered_nodes["mapgen_stone"].name
+	local names = sname:split(":")
+	local nitem = names[2] and string.gsub(names[2], "stone", "sandstone") or nil
+	if nitem and minetest.registered_nodes[names[1]..":"..nitem] then
+		sandstone_tex = minetest.registered_nodes[names[1]..":"..nitem].tiles[1]
+	else
+		sandstone_tex = "[combine:16x16^[noalpha^[colorize:#fefebe"
+	end
+end
 
 -- CHIMNEYS
 local materials = {
-	{ "stone",     S("Stone chimney top") },
-	{ "sandstone", S("Sandstone chimney top") },
+	{ "stone",     S("Stone chimney top"), minetest.registered_nodes["mapgen_stone"].tiles[1] },
+	{ "sandstone", S("Sandstone chimney top"), sandstone_tex },
 }
 
 for _, mat in ipairs(materials) do
-	local name, desc = unpack(mat)
+	local name, desc, tex = unpack(mat)
 	minetest.register_node("fake_fire:chimney_top_"..name, {
 		description = desc,
-		tiles = {"default_"..name..".png^chimney_top.png", "default_"..name..".png"},
-		groups = {snappy=3},
+		tiles = {tex.."^chimney_top.png", tex},
+		groups = {snappy=3, dig_stone=2},
 		paramtype = "light",
-		sounds = default.node_sound_stone_defaults(),
+		_sound_def = {
+			key = "node_sound_stone_defaults",
+		},
 		drawtype = "nodebox",
 		node_box = {
 			type = "fixed",
@@ -258,37 +276,42 @@ for _, mat in ipairs(materials) do
 		end
 	})
 
-	minetest.register_craft({
-		type = "shapeless",
-		output = 'fake_fire:chimney_top_'..name,
-		recipe = {"default:torch", "stairs:slab_"..name}
-	})
+	if minetest.get_modpath("default") then
+		minetest.register_craft({
+			type = "shapeless",
+			output = 'fake_fire:chimney_top_'..name,
+			recipe = {"default:torch", "stairs:slab_"..name}
+		})
+	end
 end
 
 minetest.register_alias("fake_fire:flint_and_steel", "fire:flint_and_steel")
 
-minetest.override_item("default:ice", {
-	on_ignite = function(pos, igniter)
-		local flame_pos = {x = pos.x, y = pos.y + 1, z = pos.z}
-		if minetest.get_node(flame_pos).name == "air" then
-			minetest.set_node(flame_pos, {name = "fake_fire:ice_fire"})
+if minetest.get_modpath("default") then
+	minetest.override_item("default:ice", {
+		on_ignite = function(pos, igniter)
+			local flame_pos = {x = pos.x, y = pos.y + 1, z = pos.z}
+			if minetest.get_node(flame_pos).name == "air" then
+				minetest.set_node(flame_pos, {name = "fake_fire:ice_fire"})
+			end
 		end
-	end
-})
+	})
+end
 
 -- CRAFTS
+if minetest.get_modpath("default") then
+	minetest.register_craft({
+		type = "shapeless",
+		output = 'fake_fire:embers',
+		recipe = {"default:torch", "group:wood", "default:torch"}
+	})
 
-minetest.register_craft({
-	type = "shapeless",
-	output = 'fake_fire:embers',
-	recipe = {"default:torch", "group:wood", "default:torch"}
-})
-
-minetest.register_craft({
-	type = "shapeless",
-	output = 'fake_fire:fancy_fire',
-	recipe = {"default:torch", "building_blocks:sticks", "default:torch" }
-})
+	minetest.register_craft({
+		type = "shapeless",
+		output = 'fake_fire:fancy_fire',
+		recipe = {"default:torch", "building_blocks:sticks", "default:torch" }
+	})
+end
 
 -- ALIASES
 

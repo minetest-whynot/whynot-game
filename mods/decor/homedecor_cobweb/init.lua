@@ -1,7 +1,7 @@
 local S = minetest.get_translator("homedecor_cobweb")
 homedecor_cobweb = {}
 
-minetest.register_node(":homedecor:cobweb_corner", {
+homedecor.register("cobweb_corner", {
 	description = S("Cobweb"),
 	drawtype = "torchlike",
 	tiles = { "homedecor_cobweb_torchlike.png" },
@@ -19,13 +19,23 @@ minetest.register_node(":homedecor:cobweb_corner", {
 	walkable = false,
 	selection_box = { type = "regular" },
 	visual_scale = 1.4,
-	groups = { snappy = 3, liquid=3 },
+	groups = { snappy = 3, liquid=3, dig_glass = 1 },
 	after_place_node = function(pos, placer, itemstack, pointed_thing)
 		homedecor_cobweb.rotate(pos)
-	end
+	end,
+	crafts = {
+		{
+			output = "homedecor:cobweb_corner 5",
+			recipe = {
+				{"string", "", "string"},
+				{"", "string", ""},
+				{"string", "", "string"}
+			},
+		}
+	}
 })
 
-minetest.register_node(":homedecor:cobweb_centered", {
+homedecor.register("cobweb_centered", {
 	description = S("Cobweb"),
 	drawtype = "nodebox",
 	tiles = { "homedecor_cobweb.png" },
@@ -49,11 +59,11 @@ minetest.register_node(":homedecor:cobweb_centered", {
 		type = "fixed",
 		fixed = { -0.5, -0.5, 0, 0.5, 0.5, 0 }
 	},
-	groups = { snappy = 3, liquid=3, not_in_creative_inventory = 1 },
+	groups = { snappy = 3, liquid=3, dig_glass = 1, not_in_creative_inventory = 1 },
 	drop = "homedecor:cobweb_corner"
 })
 
-minetest.register_node(":homedecor:cobweb_flat", {
+homedecor.register("cobweb_flat", {
 	description = S("Cobweb"),
 	drawtype = "nodebox",
 	tiles = { "homedecor_cobweb.png" },
@@ -77,11 +87,11 @@ minetest.register_node(":homedecor:cobweb_flat", {
 		type = "fixed",
 		fixed = { -0.5, -0.5, 0.495, 0.5, 0.5, 0.495 }
 	},
-	groups = { snappy = 3, liquid=3, not_in_creative_inventory = 1 },
+	groups = { snappy = 3, liquid=3, dig_glass = 1, not_in_creative_inventory = 1 },
 	drop = "homedecor:cobweb_corner"
 })
 
-minetest.register_node(":homedecor:cobweb_plantlike", {
+homedecor.register("cobweb_plantlike", {
 	description = S("Cobweb"),
 	drawtype = "plantlike",
 	tiles = { "homedecor_cobweb_plantlike.png" },
@@ -98,7 +108,7 @@ minetest.register_node(":homedecor:cobweb_plantlike", {
 	walkable = false,
 	selection_box = { type = "regular" },
 	visual_scale = 1.189,
-	groups = { snappy = 3, liquid=3, not_in_creative_inventory = 1 },
+	groups = { snappy = 3, liquid=3, dig_glass = 1, not_in_creative_inventory = 1 },
 	drop = "homedecor:cobweb_corner"
 })
 
@@ -159,14 +169,3 @@ function homedecor_cobweb.rotate(pos)
 	end
 
 end
-
--- crafting
-
-minetest.register_craft( {
-        output = "homedecor:cobweb_corner 5",
-        recipe = {
-			{ "farming:string", "", "farming:string" },
-			{ "", "farming:string", "" },
-			{ "farming:string", "", "farming:string" }
-        },
-})

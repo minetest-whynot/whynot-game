@@ -13,8 +13,10 @@ homedecor.register("window_quartered", {
 		"homedecor_window_quartered.png"
 	},
 	use_texture_alpha = "blend",
-	groups = {snappy=3},
-	sounds = default.node_sound_glass_defaults(),
+	groups = {snappy=3, dig_glass=2},
+	_sound_def = {
+		key = "node_sound_glass_defaults",
+	},
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -44,8 +46,10 @@ homedecor.register("window_plain", {
 		"homedecor_window_frame.png"
 	},
 	use_texture_alpha = "blend",
-	groups = {snappy=3},
-	sounds = default.node_sound_glass_defaults(),
+	groups = {snappy=3, dig_glass=2},
+	_sound_def = {
+		key = "node_sound_glass_defaults",
+	},
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -76,8 +80,10 @@ homedecor.register("blinds_thick", {
 		"homedecor_windowblinds.png"
 	},
 	walkable = false,
-	groups = {snappy=3},
-	sounds = default.node_sound_wood_defaults(),
+	groups = {snappy=3, dig_glass=2},
+	_sound_def = {
+		key = "node_sound_wood_defaults",
+	},
 	selection_box = wb1_cbox
 })
 
@@ -95,20 +101,24 @@ homedecor.register("blinds_thin", {
 		"homedecor_windowblinds.png"
 	},
 	walkable = false,
-	groups = {snappy=3},
-	sounds = default.node_sound_wood_defaults(),
+	groups = {snappy=3, dig_glass=2},
+	_sound_def = {
+		key = "node_sound_wood_defaults",
+	},
 	selection_box = wb2_cbox
 })
 
-minetest.register_node(":homedecor:curtain_closed", {
+homedecor.register("curtain_closed", {
 	description = S("Curtains"),
 	tiles = { "homedecor_curtain.png" },
 	inventory_image = "homedecor_curtain.png",
 	drawtype = 'signlike',
 	use_texture_alpha = "blend",
 	walkable = false,
-	groups = { snappy = 3, ud_param2_colorable = 1, not_in_creative_inventory=1 },
-	sounds = default.node_sound_leaves_defaults(),
+	groups = { snappy = 3, ud_param2_colorable = 1, not_in_creative_inventory=1, dig_glass=2 },
+	_sound_def = {
+		key = "node_sound_leaves_defaults",
+	},
 	paramtype = "light",
 	paramtype2 = "colorwallmounted",
 	palette = "unifieddyes_palette_colorwallmounted.png",
@@ -123,15 +133,17 @@ minetest.register_node(":homedecor:curtain_closed", {
 	end
 })
 
-minetest.register_node(":homedecor:curtain_open", {
+homedecor.register("curtain_open", {
 	description = S("Curtains (open)"),
 	tiles = { "homedecor_curtain_open.png" },
 	inventory_image = "homedecor_curtain_open.png",
 	drawtype = 'signlike',
 	use_texture_alpha = "blend",
 	walkable = false,
-	groups = { snappy = 3, ud_param2_colorable = 1 },
-	sounds = default.node_sound_leaves_defaults(),
+	groups = { snappy = 3, ud_param2_colorable = 1, dig_glass=2 },
+	_sound_def = {
+		key = "node_sound_leaves_defaults",
+	},
 	paramtype = "light",
 	paramtype2 = "colorwallmounted",
 	palette = "unifieddyes_palette_colorwallmounted.png",
@@ -149,7 +161,7 @@ minetest.register_node(":homedecor:curtain_open", {
 local mats = {
 	{ "brass", S("brass"), "homedecor_generic_metal_brass.png" },
 	{ "wrought_iron", S("wrought iron"), "homedecor_generic_metal_wrought_iron.png" },
-	{ "wood", S("wood"), "default_wood.png" }
+	{ "wood", S("wood"), homedecor.textures.default_wood }
 }
 
 for _, m in ipairs(mats) do
@@ -158,7 +170,7 @@ for _, m in ipairs(mats) do
 		tiles = { texture },
 		inventory_image  = "homedecor_curtainrod_"..material.."_inv.png",
 		description = S("Curtain Rod (@1)", mat_name),
-		groups = { snappy = 3 },
+		groups = { snappy = 3, dig_glass=2 },
 		node_box = {
 			type = "fixed",
 			fixed = {
@@ -178,9 +190,11 @@ homedecor.register("window_flowerbox", {
 		"homedecor_flowerbox_sides.png"
 	},
 	inventory_image = "homedecor_flowerbox_inv.png",
-	sounds = default.node_sound_stone_defaults(),
+	_sound_def = {
+		key = "node_sound_stone_defaults",
+	},
 	use_texture_alpha = "clip",
-	groups = { snappy = 3 },
+	groups = { snappy = 3, dig_wood=2 },
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -195,10 +209,12 @@ homedecor.register("stained_glass", {
 	description = S("Stained Glass"),
 	tiles = {"homedecor_stained_glass.png"},
 	inventory_image = "homedecor_stained_glass.png",
-	groups = {snappy=3},
+	groups = {snappy=3, dig_glass=2},
 	use_texture_alpha = "blend",
 	light_source = 3,
-	sounds = default.node_sound_glass_defaults(),
+	_sound_def = {
+		key = "node_sound_glass_defaults",
+	},
 	node_box = {
 		type = "fixed",
 		fixed = { {-0.5, -0.5, 0.46875, 0.5, 0.5, 0.5} }
@@ -240,8 +256,10 @@ homedecor.register("shutter", {
 	paramtype2 = "colorwallmounted",
 	palette = "unifieddyes_palette_colorwallmounted.png",
 	airbrush_replacement_node = "homedecor:shutter_colored",
-	groups = { snappy = 3, ud_param2_colorable = 1 },
-	sounds = default.node_sound_wood_defaults(),
+	groups = { snappy = 3, ud_param2_colorable = 1, dig_wood = 2 },
+	_sound_def = {
+		key = "node_sound_wood_defaults",
+	},
 	selection_box = shutter_cbox,
 	node_box = shutter_cbox,
 	after_place_node = function(pos, placer, itemstack, pointed_thing)
@@ -258,8 +276,10 @@ homedecor.register("shutter_colored", {
 	wield_image = "homedecor_window_shutter_inv.png",
 	paramtype2 = "colorwallmounted",
 	palette = "unifieddyes_palette_colorwallmounted.png",
-	groups = { snappy = 3 , not_in_creative_inventory = 1, ud_param2_colorable = 1},
-	sounds = default.node_sound_wood_defaults(),
+	groups = { snappy = 3 , not_in_creative_inventory = 1, ud_param2_colorable = 1, dig_wood = 2},
+	_sound_def = {
+		key = "node_sound_wood_defaults",
+	},
 	selection_box = shutter_cbox,
 	node_box = shutter_cbox,
 	after_place_node = function(pos, placer, itemstack, pointed_thing)
@@ -388,9 +408,9 @@ minetest.register_craft({
 minetest.register_craft( {
 	output = "homedecor:curtain_open 4",
 		recipe = {
-		{ "wool:white", "", ""},
-		{ "wool:white", "", ""},
-		{ "wool:white", "", ""},
+		{ homedecor.materials.wool_white, "", ""},
+		{ homedecor.materials.wool_white, "", ""},
+		{ homedecor.materials.wool_white, "", ""},
 	},
 })
 
@@ -446,10 +466,10 @@ minetest.register_craft({
 	type = "shapeless",
     output = "homedecor:window_plain 8",
     recipe = {
-		"dye:white",
-		"dye:white",
-		"dye:white",
-		"dye:white",
+		homedecor.materials.dye_white,
+		homedecor.materials.dye_white,
+		homedecor.materials.dye_white,
+		homedecor.materials.dye_white,
 		"building_blocks:woodglass"
     }
 })
@@ -458,7 +478,7 @@ minetest.register_craft({
 	type = "shapeless",
     output = "homedecor:window_quartered",
     recipe = {
-		"dye:white",
+		homedecor.materials.dye_white,
 		"group:stick",
 		"group:stick",
 		"homedecor:window_plain"
@@ -486,8 +506,8 @@ minetest.register_craft({
 minetest.register_craft( {
         output = "homedecor:window_flowerbox",
         recipe = {
-                { "homedecor:roof_tile_terracotta", "default:dirt", "homedecor:roof_tile_terracotta" },
-                { "", "homedecor:roof_tile_terracotta", "" },
+            { "homedecor:roof_tile_terracotta", homedecor.materials.dirt, "homedecor:roof_tile_terracotta" },
+            { "", "homedecor:roof_tile_terracotta", "" },
         },
 })
 

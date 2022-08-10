@@ -11,6 +11,9 @@ local S = minetest.get_translator("homedecor_misc")
 
 homedecor_misc = {}
 
+local wool_black, wool_grey = homedecor.textures.wool_black, homedecor.textures.wool_grey
+local wood_tex = homedecor.textures.default_wood
+
 homedecor.register("ceiling_paint", {
 	description = S("Textured Ceiling Paint"),
 	drawtype = 'signlike',
@@ -19,7 +22,9 @@ homedecor.register("ceiling_paint", {
 	wield_image = 'homedecor_ceiling_paint_roller.png',
 	walkable = false,
 	groups = { snappy = 3 },
-	sounds = default.node_sound_leaves_defaults(),
+	_sound_def = {
+		key = "node_sound_leaves_defaults",
+	},
 	selection_box = { type = "wallmounted" },
 })
 
@@ -31,7 +36,9 @@ homedecor.register("ceiling_tile", {
 	inventory_image = 'homedecor_ceiling_tile.png',
 	walkable = false,
 	groups = { snappy = 3 },
-	sounds = default.node_sound_leaves_defaults(),
+	_sound_def = {
+		key = "node_sound_leaves_defaults",
+	},
 	selection_box = { type = "wallmounted" },
 })
 
@@ -46,7 +53,7 @@ for _, rt in ipairs(rug_types) do
 
 	local mesh = m
 	local nodebox = nil
-	local tiles = { "homedecor_rug_"..s..".png", "wool_grey.png" }
+	local tiles = { "homedecor_rug_"..s..".png", wool_grey }
 
 	if type(m) == "table" then
 		mesh = nil
@@ -56,7 +63,7 @@ for _, rt in ipairs(rug_types) do
 		}
 		tiles = {
 			"homedecor_rug_"..s..".png",
-			"wool_grey.png",
+			wool_grey,
 			"homedecor_rug_"..s..".png"
 		}
 	end
@@ -69,7 +76,9 @@ for _, rt in ipairs(rug_types) do
 		paramtype2 = "wallmounted",
 		walkable = false,
 		groups = {snappy = 3},
-		sounds = default.node_sound_leaves_defaults(),
+		_sound_def = {
+			key = "node_sound_leaves_defaults",
+		},
 		selection_box = { type = "wallmounted" },
 	})
 end
@@ -82,54 +91,59 @@ homedecor.register("flower_pot_"..p, {
 	mesh = "homedecor_flowerpot.obj",
 	tiles = {
 		"homedecor_flower_pot_"..p..".png",
-		{ name = "default_dirt.png", color = 0xff505050 },
+		{ name = default and "default_dirt.png" or wood_tex, color = 0xff505050 },
 	},
 	groups = { snappy = 3, potting_soil=1 },
-	sounds = default.node_sound_stone_defaults(),
+	_sound_def = {
+		key = "node_sound_stone_defaults",
+	},
 })
 end
+if minetest.get_modpath("flowers") then
+	local flowers_list = {
+		{ S("Rose"),				"rose",				"flowers:rose" },
+		{ S("Tulip"),				"tulip",			"flowers:tulip" },
+		{ S("Yellow Dandelion"),	"dandelion_yellow",	"flowers:dandelion_yellow" },
+		{ S("White Dandelion"), 	"dandelion_white",	"flowers:dandelion_white" },
+		{ S("Blue Geranium"),		"geranium",			"flowers:geranium" },
+		{ S("Viola"),				"viola",			"flowers:viola" },
+		{ S("Cactus"),				"cactus",			"default:cactus" },
+		{ S("Bonsai"),				"bonsai",			"default:sapling" }
+	}
 
-local flowers_list = {
-	{ S("Rose"),				"rose",				"flowers:rose" },
-	{ S("Tulip"),				"tulip",			"flowers:tulip" },
-	{ S("Yellow Dandelion"),	"dandelion_yellow",	"flowers:dandelion_yellow" },
-	{ S("White Dandelion"), 	"dandelion_white",	"flowers:dandelion_white" },
-	{ S("Blue Geranium"),		"geranium",			"flowers:geranium" },
-	{ S("Viola"),				"viola",			"flowers:viola" },
-	{ S("Cactus"),				"cactus",			"default:cactus" },
-	{ S("Bonsai"),				"bonsai",			"default:sapling" }
-}
+	for _, f in ipairs(flowers_list) do
+		local flowerdesc, flower, craftwith = unpack(f)
 
-for _, f in ipairs(flowers_list) do
-	local flowerdesc, flower, craftwith = unpack(f)
+		homedecor.register("potted_"..flower, {
+			description = S("Potted flower (@1)", flowerdesc),
+			mesh = "homedecor_potted_plant.obj",
+			tiles = {
+				"homedecor_flower_pot_terracotta.png",
+				{ name = "default_dirt.png", color = 0xff303030 },
+				"flowers_"..flower..".png"
+			},
+			walkable = false,
+			use_texture_alpha = "clip",
+			groups = {snappy = 3},
+			_sound_def = {
+				key = "node_sound_glass_defaults",
+			},
+			selection_box = {
+				type = "fixed",
+				fixed = { -0.2, -0.5, -0.2, 0.2, 0.3, 0.2 }
+			}
+		})
 
-	homedecor.register("potted_"..flower, {
-		description = S("Potted flower (@1)", flowerdesc),
-		mesh = "homedecor_potted_plant.obj",
-		tiles = {
-			"homedecor_flower_pot_terracotta.png",
-			{ name = "default_dirt.png", color = 0xff303030 },
-			"flowers_"..flower..".png"
-		},
-		walkable = false,
-		use_texture_alpha = "clip",
-		groups = {snappy = 3},
-		sounds = default.node_sound_glass_defaults(),
-		selection_box = {
-			type = "fixed",
-			fixed = { -0.2, -0.5, -0.2, 0.2, 0.3, 0.2 }
-		}
-	})
+		minetest.register_craft({
+			type = "shapeless",
+			output = "homedecor:potted_"..flower,
+			recipe = { craftwith, "homedecor:flower_pot_small" }
+		})
 
-	minetest.register_craft({
-		type = "shapeless",
-		output = "homedecor:potted_"..flower,
-		recipe = { craftwith, "homedecor:flower_pot_small" }
-	})
-
-	minetest.register_alias("flowers:flower_"..flower.."_pot", "homedecor:potted_"..flower)
-	minetest.register_alias("flowers:potted_"..flower, "homedecor:potted_"..flower)
-	minetest.register_alias("flowers:flower_pot", "homedecor:flower_pot_small")
+		minetest.register_alias("flowers:flower_"..flower.."_pot", "homedecor:potted_"..flower)
+		minetest.register_alias("flowers:potted_"..flower, "homedecor:potted_"..flower)
+		minetest.register_alias("flowers:flower_pot", "homedecor:flower_pot_small")
+	end
 end
 
 homedecor.register("pole_brass", {
@@ -147,7 +161,9 @@ homedecor.register("pole_brass", {
 		fixed = { -0.125, -0.5, -0.125, 0.125, 0.5, 0.125 },
 	},
 	groups = {snappy=3},
-	sounds = default.node_sound_wood_defaults(),
+	_sound_def = {
+		key = "node_sound_wood_defaults",
+	},
 	check_for_pole = true
 })
 
@@ -165,7 +181,9 @@ homedecor.register("pole_wrought_iron", {
                 fixed = {-0.0625, -0.5, -0.0625, 0.0625, 0.5, 0.0625}
 	},
     groups = {snappy=3},
-    sounds = default.node_sound_wood_defaults(),
+    _sound_def = {
+		key = "node_sound_wood_defaults",
+	},
 })
 
 local ft_cbox = {
@@ -188,7 +206,9 @@ homedecor.register("fishtank", {
 	selection_box = ft_cbox,
 	collision_box = ft_cbox,
 	groups = {cracky=3,oddly_breakable_by_hand=3},
-	sounds = default.node_sound_glass_defaults(),
+	_sound_def = {
+		key = "node_sound_glass_defaults",
+	},
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		minetest.set_node(pos, {name = "homedecor:fishtank_lighted", param2 = node.param2})
 		return itemstack
@@ -206,12 +226,14 @@ homedecor.register("fishtank_lighted", {
 		"homedecor_fishtank_water_top_lighted.png",
 		"homedecor_fishtank_sides_lighted.png",
 	},
-	light_source = default.LIGHT_MAX-4,
+	light_source = minetest.LIGHT_MAX-4,
 	use_texture_alpha = "blend",
 	selection_box = ft_cbox,
 	collision_box = ft_cbox,
 	groups = {cracky=3,oddly_breakable_by_hand=3,not_in_creative_inventory=1},
-	sounds = default.node_sound_glass_defaults(),
+	_sound_def = {
+		key = "node_sound_glass_defaults",
+	},
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		minetest.set_node(pos, {name = "homedecor:fishtank", param2 = node.param2})
 		return itemstack
@@ -259,13 +281,23 @@ homedecor.register("dvd_cd_cabinet", {
 	description = S("DVD/CD cabinet"),
 	mesh = "homedecor_dvd_cabinet.obj",
 	tiles = {
-		"default_wood.png",
+		wood_tex,
 		"homedecor_dvdcd_cabinet_front.png",
 		"homedecor_dvdcd_cabinet_back.png"
 	},
 	selection_box = homedecor.nodebox.slab_z(-0.5),
 	groups = {choppy=2,oddly_breakable_by_hand=2},
-	sounds = default.node_sound_wood_defaults(),
+	_sound_def = {
+		key = "node_sound_wood_defaults",
+	},
+	crafts = {
+		{
+			type = "shapeless",
+			recipe = {
+				"homedecor:dvd_player", "homedecor:kitchen_cabinet_colorable"
+			}
+		}
+	}
 })
 
 local pooltable_cbox = {
@@ -288,7 +320,9 @@ homedecor.register("pool_table", {
 	selection_box = pooltable_cbox,
 	collision_box = pooltable_cbox,
 	expand = { forward="placeholder" },
-	sounds = default.node_sound_wood_defaults(),
+	_sound_def = {
+		key = "node_sound_wood_defaults",
+	},
 	on_rotate = minetest.get_modpath("screwdriver") and screwdriver.disallow or nil,
 })
 
@@ -312,7 +346,9 @@ homedecor.register("piano", {
 	selection_box = piano_cbox,
 	collision_box = piano_cbox,
 	expand = { right="placeholder" },
-	sounds = default.node_sound_wood_defaults(),
+	_sound_def = {
+		key = "node_sound_wood_defaults",
+	},
 	on_rotate = minetest.get_modpath("screwdriver") and screwdriver.disallow or nil,
 })
 
@@ -328,7 +364,7 @@ homedecor.register("trophy", {
 	description = S("Trophy"),
 	mesh = "homedecor_trophy.obj",
 	tiles = {
-		"default_wood.png",
+		wood_tex,
 		"homedecor_generic_metal_gold.png"
 	},
 	inventory_image = "homedecor_trophy_inv.png",
@@ -349,13 +385,15 @@ homedecor.register("sportbench", {
 		"homedecor_generic_metal_wrought_iron.png",
 		"homedecor_generic_metal_bright.png",
 		{ name = "homedecor_generic_metal.png", color = homedecor.color_black },
-		"wool_black.png"
+		wool_black
 	},
 	inventory_image = "homedecor_sport_bench_inv.png",
 	groups = { snappy=3 },
 	selection_box = sb_cbox,
 	walkable = false,
-	sounds = default.node_sound_wood_defaults(),
+	_sound_def = {
+		key = "node_sound_wood_defaults",
+	},
 })
 
 local skate_cbox = {
@@ -373,7 +411,9 @@ homedecor.register("skateboard", {
 	groups = {snappy=3},
 	selection_box = skate_cbox,
 	walkable = false,
-	sounds = default.node_sound_wood_defaults(),
+	_sound_def = {
+		key = "node_sound_wood_defaults",
+	},
 	on_place = minetest.rotate_node
 })
 
@@ -381,8 +421,8 @@ homedecor_misc.banister_materials = {
 	{
 		"wood",
 		S("wood"),
-		"default_wood.png",
-		"default_wood.png",
+		wood_tex,
+		wood_tex,
 		"group:wood",
 		"group:stick",
 		"",
@@ -519,7 +559,9 @@ homedecor.register("spiral_staircase", {
 		}
 	},
 	groups = {cracky = 1},
-	sounds = default.node_sound_wood_defaults(),
+	_sound_def = {
+		key = "node_sound_wood_defaults",
+	},
 	on_rotate = minetest.get_modpath("screwdriver") and screwdriver.rotate_simple or nil,
 	after_place_node = function(pos, placer, itemstack, pointed_thing)
 		local fdir = minetest.dir_to_facedir(placer:get_look_dir())
@@ -609,7 +651,9 @@ homedecor.register("dartboard", {
 	},
 	groups = {choppy=2,dig_immediate=2,attached_node=1},
 	legacy_wallmounted = true,
-	sounds = default.node_sound_wood_defaults(),
+	_sound_def = {
+		key = "node_sound_wood_defaults",
+	},
 })
 
 -- crafting
@@ -621,7 +665,7 @@ homedecor.register("dartboard", {
 minetest.register_craft( {
 	output = "homedecor:flower_pot_terracotta",
 	recipe = {
-		{ "homedecor:roof_tile_terracotta", "default:dirt", "homedecor:roof_tile_terracotta" },
+		{ "homedecor:roof_tile_terracotta", homedecor.materials.dirt, "homedecor:roof_tile_terracotta" },
 		{ "homedecor:roof_tile_terracotta", "homedecor:roof_tile_terracotta", "homedecor:roof_tile_terracotta" },
 	},
 })
@@ -630,7 +674,7 @@ minetest.register_craft( {
 	output = "homedecor:flower_pot_green",
 	recipe = {
 		{ "", "dye:dark_green", "" },
-		{ "basic_materials:plastic_sheet", "default:dirt", "basic_materials:plastic_sheet" },
+		{ "basic_materials:plastic_sheet", homedecor.materials.dirt, "basic_materials:plastic_sheet" },
 		{ "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" },
 	},
 })
@@ -638,8 +682,8 @@ minetest.register_craft( {
 minetest.register_craft( {
 	output = "homedecor:flower_pot_black",
 	recipe = {
-		{ "dye:black", "dye:black", "dye:black" },
-		{ "basic_materials:plastic_sheet", "default:dirt", "basic_materials:plastic_sheet" },
+		{ homedecor.materials.dye_black, homedecor.materials.dye_black, homedecor.materials.dye_black },
+		{ "basic_materials:plastic_sheet", homedecor.materials.dirt, "basic_materials:plastic_sheet" },
 		{ "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" },
 	},
 })
@@ -648,26 +692,26 @@ minetest.register_craft( {
 	type = "shapeless",
 	output = "homedecor:ceiling_paint 20",
 	recipe = {
-		"dye:white",
-		"dye:white",
-		"default:sand",
-		"bucket:bucket_water",
+		homedecor.materials.dye_white,
+		homedecor.materials.dye_white,
+		homedecor.materials.sand,
+		homedecor.materials.water_bucket,
 	},
-	replacements = { { "bucket:bucket_water","bucket:bucket_empty" } }
+	replacements = { { homedecor.materials.water_bucket,homedecor.materials.empty_bucket } }
 })
 
 minetest.register_craft( {
 	output = "homedecor:ceiling_tile 10",
 	recipe = {
-		{ "", "dye:white", "" },
-		{ "default:steel_ingot", "default:stone", "default:steel_ingot" },
+		{ "", homedecor.materials.dye_white, "" },
+		{ homedecor.materials.steel_ingot, homedecor.materials.stone, homedecor.materials.steel_ingot },
 	},
 })
 
 minetest.register_craft( {
 	output = "homedecor:drawer_small",
 	recipe = {
-		{ "group:wood", "default:steel_ingot", "group:wood" },
+		{ "group:wood", homedecor.materials.steel_ingot, "group:wood" },
 	},
 })
 
@@ -691,9 +735,9 @@ minetest.register_craft( {
 minetest.register_craft( {
 	output = "homedecor:pole_wrought_iron 4",
 	recipe = {
-		{ "default:iron_lump", },
-		{ "default:iron_lump", },
-		{ "default:iron_lump", },
+		{ homedecor.materials.iron_lump, },
+		{ homedecor.materials.iron_lump, },
+		{ homedecor.materials.iron_lump, },
 	},
 })
 
@@ -777,35 +821,26 @@ minetest.register_craft({
 	output = "homedecor:fishtank",
 	recipe = {
 		{ "basic_materials:plastic_sheet", "homedecor:glowlight_small_cube", "basic_materials:plastic_sheet" },
-		{ "default:glass", "bucket:bucket_water", "default:glass" },
-		{ "default:glass", "building_blocks:gravel_spread", "default:glass" },
+		{ homedecor.materials.glass_block, homedecor.materials.water_bucket, homedecor.materials.glass_block },
+		{ homedecor.materials.glass_block, "building_blocks:gravel_spread", homedecor.materials.glass_block },
 	},
-	replacements = { {"bucket:bucket_water", "bucket:bucket_empty"} }
+	replacements = { {homedecor.materials.water_bucket, homedecor.materials.empty_bucket} }
 })
 
 minetest.register_craft({
 	output = "homedecor:cardboard_box 2",
 	recipe = {
-		{ "default:paper", "", "default:paper" },
-		{ "default:paper", "default:paper", "default:paper" },
+		{ homedecor.materials.paper, "", homedecor.materials.paper },
+		{ homedecor.materials.paper, homedecor.materials.paper, homedecor.materials.paper },
 	},
 })
 
 minetest.register_craft({
 	output = "homedecor:cardboard_box_big 2",
 	recipe = {
-		{ "default:paper", "", "default:paper" },
-		{ "default:paper", "", "default:paper" },
-		{ "default:paper", "default:paper", "default:paper" },
-	},
-})
-
-minetest.register_craft( {
-	output = "homedecor:openframe_bookshelf",
-	recipe = {
-		{"group:wood", "", "group:wood"},
-		{"default:book", "default:book", "default:book"},
-		{"group:wood", "", "group:wood"},
+		{ homedecor.materials.paper, "", homedecor.materials.paper },
+		{ homedecor.materials.paper, "", homedecor.materials.paper },
+		{ homedecor.materials.paper, homedecor.materials.paper, homedecor.materials.paper },
 	},
 })
 
@@ -814,18 +849,18 @@ minetest.register_craft( {
 minetest.register_craft( {
 	output = "homedecor:japanese_wall_top",
 	recipe = {
-		{"group:stick", "default:paper"},
-		{"default:paper", "group:stick"},
-		{"group:stick", "default:paper"}
+		{"group:stick", homedecor.materials.paper},
+		{ homedecor.materials.paper, "group:stick"},
+		{"group:stick", homedecor.materials.paper}
 	},
 })
 
 minetest.register_craft( {
 	output = "homedecor:japanese_wall_top",
 	recipe = {
-		{"default:paper", "group:stick"},
-		{"group:stick", "default:paper"},
-		{"default:paper", "group:stick"}
+		{homedecor.materials.paper, "group:stick"},
+		{"group:stick", homedecor.materials.paper},
+		{homedecor.materials.paper, "group:stick"}
 	},
 })
 
@@ -996,7 +1031,9 @@ minetest.register_node(":homedecor:japanese_wall_top", {
 	groups = {snappy=3},
 	selection_box = jp_cbox,
 	collision_box = jp_cbox,
-	sounds = default.node_sound_wood_defaults(),
+	_sound_def = {
+		key = "node_sound_wood_defaults",
+	},
 })
 
 minetest.register_node(":homedecor:japanese_wall_middle", {
@@ -1012,7 +1049,9 @@ minetest.register_node(":homedecor:japanese_wall_middle", {
 	groups = {snappy=3},
 	selection_box = jp_cbox,
 	collision_box = jp_cbox,
-	sounds = default.node_sound_wood_defaults(),
+	_sound_def = {
+		key = "node_sound_wood_defaults",
+	},
 })
 
 minetest.register_node(":homedecor:japanese_wall_bottom", {
@@ -1028,5 +1067,7 @@ minetest.register_node(":homedecor:japanese_wall_bottom", {
 	groups = {snappy=3},
 	selection_box = jp_cbox,
 	collision_box = jp_cbox,
-	sounds = default.node_sound_wood_defaults(),
+	_sound_def = {
+		key = "node_sound_wood_defaults",
+	},
 })

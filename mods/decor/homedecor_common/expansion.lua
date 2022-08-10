@@ -103,7 +103,7 @@ local function stack(itemstack, placer, fdir, pos, def, pos2, node1, node2, poin
 			ctrl_node_def.after_place_node(pos, placer, itemstack, pointed_thing)
 		end
 
-		if not creative.is_enabled_for(placer_name) then
+		if not minetest.is_creative_enabled(placer_name) then
 			itemstack:take_item()
 		end
 	end
@@ -133,7 +133,8 @@ function homedecor.stack_vertically(itemstack, placer, pointed_thing, node1, nod
 end
 
 -- Stack one door node above another
--- like  homedecor.stack_vertically but tests first if it was placed as a right wing, then uses node1_right and node2_right instead
+-- like  homedecor.stack_vertically but tests first if it was placed as a right wing,
+-- then uses node1_right and node2_right instead
 
 function homedecor.stack_wing(itemstack, placer, pointed_thing, node1, node2, node1_right, node2_right)
 	local rightclick_result = rightclick_pointed_thing(pointed_thing.under, placer, itemstack, pointed_thing)
@@ -230,8 +231,9 @@ function homedecor.bed_expansion(pos, placer, itemstack, pointed_thing, trybunks
 
 	if trybunks and is_buildable_to(placer_name, toppos, topposfwd) then
 		local newname = string.gsub(thisnode.name, "_regular", "_extended")
-		local newparam2 = param2 % 8
-		-- FIXME: is newparam2 a legacy unused variable from a8729575abfbd15cc622b413b71976c9157fbab4? or should this variable be used somewhere?
+		-- local newparam2 = param2 % 8
+		-- FIXME: is newparam2 a legacy unused variable from a8729575abfbd15cc622b413b71976c9157fbab4?
+		-- or should this variable be used somewhere?
 		minetest.swap_node(toppos, { name = thisnode.name, param2 = param2})
 		minetest.swap_node(pos, { name = newname, param2 = param2})
 		itemstack:take_item()
