@@ -207,7 +207,7 @@ minetest.register_node("my_misc_doors:door2d", {
 minetest.register_craft({
 	output = "my_misc_doors:door2a 1",
 	recipe = {
-		{"default:steel_ingot", "default:steelblock", ""},
+		{"default:steelblock", "default:steel_ingot", ""},
 		{"default:steel_ingot", "default:steel_ingot", ""},
 		{"default:steelblock", "default:steel_ingot", ""}
 	}
