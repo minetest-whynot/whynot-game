@@ -20,7 +20,7 @@ origin https://github.com/Ezhh/abriglass/ (fetch)
 Mod: decor/abriglass
 
 origin https://github.com/mt-mods/basic_materials (fetch)
-* a4dab9c4c808a3ea10e76e358d3af1a1be4c2f0b Fix materials for Hades Revisited 0.15.2 (#14)
+* b9ac85790df6416085870d8acbb7eb4a3f5d4040 Add lead strip, carbon steel bar and stainless steel wire if technic is enabled. (#15)
 Mod: decor/basic_materials
 
 origin https://github.com/Napiophelios/campfire (fetch)
@@ -48,7 +48,7 @@ origin https://github.com/mt-mods/home_workshop_modpack (fetch)
 Mod: decor/home_workshop_modpack
 
 origin https://github.com/mt-mods/homedecor_modpack (fetch)
-* 806c8c5e78db52ef8020f0368f82bfc365a61c44 last craft
+* 0403f47f867ddf1623cd0bc78bffcf0ee2351003 fix https://github.com/mt-mods/homedecor_modpack/issues/44
 Mod: decor/homedecor_modpack
 
 origin https://github.com/bell07/minetest-laptop (fetch)
@@ -152,7 +152,7 @@ origin https://github.com/dacmot/sfcraftguide.git (fetch)
 Mod: libs/sfcraftguide
 
 origin https://github.com/mt-mods/sound_api.git (fetch)
-* 42d876fa75c690f398bab33caee38adf61d2358f improve/split readme per sx suggestions
+* d13501cc10059149cde3c266df7e623556e9a5ef Avoid crash when sound_api function for a key is undefined (#4)
 Mod: libs/sound_api
 
 origin https://github.com/Treer/cloudlands/ (fetch)
@@ -192,7 +192,7 @@ origin https://codeberg.org/Hamlet/mobs_ghost_redo (fetch)
 Mod: mobs_redo/mobs_ghost_redo
 
 origin https://notabug.org/TenPlus1/mobs_monster (fetch)
-* 1ba32b39eb586e29e7d9a8c757ecb45c9d9068a5 add can_leap setting to mese monster
+* a097ee9388944365817b7c454165d520e8f2a751 harden lava flan code
 Mod: mobs_redo/mobs_monster
 
 origin https://notabug.org/TenPlus1/mobs_redo (fetch)
