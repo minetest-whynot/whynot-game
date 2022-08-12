@@ -128,7 +128,7 @@ homedecor.register("calendar", {
 	groups = {choppy=2,attached_node=1, dig_tree=2},
 	legacy_wallmounted = true,
 	_sound_def = {
-		key = "node_sound_defaults",
+		key = "node_sound_default",
 	},
 	infotext = S("Date (right-click to update):\n@1", os.date("%Y-%m-%d")), -- ISO 8601 format
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)

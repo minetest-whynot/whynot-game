@@ -18,6 +18,9 @@ homedecor.register("deckchair", {
 	selection_box = dc_cbox,
 	collision_box = dc_cbox,
 	on_rotate = minetest.get_modpath("screwdriver") and screwdriver.disallow or nil,
+	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
+		return lrfurn.sit(pos, node, clicker, itemstack, pointed_thing, 1)
+	end
 })
 
 minetest.register_alias("homedecor:deckchair_foot", "homedecor:deckchair")
@@ -35,6 +38,9 @@ homedecor.register("deckchair_striped_blue", {
 	selection_box = dc_cbox,
 	collision_box = dc_cbox,
 	on_rotate = minetest.get_modpath("screwdriver") and screwdriver.disallow or nil,
+	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
+		return lrfurn.sit(pos, node, clicker, itemstack, pointed_thing, 1)
+	end
 })
 
 homedecor.register("simple_bench", {
@@ -52,6 +58,9 @@ homedecor.register("simple_bench", {
 	_sound_def = {
 		key = "node_sound_wood_defaults",
 	},
+	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
+		return lrfurn.sit(pos, node, clicker, itemstack, pointed_thing, 1)
+	end
 })
 
 local bl1_sbox = {
@@ -142,9 +151,7 @@ homedecor.register("kitchen_chair_wood", {
 	after_place_node = unifieddyes.fix_rotation_nsew,
 	on_rotate = unifieddyes.fix_after_screwdriver_nsew,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
-		pos.y = pos.y+0 -- where do I put my ass ?
-		homedecor.sit(pos, node, clicker)
-		return itemstack
+		return lrfurn.sit(pos, node, clicker, itemstack, pointed_thing, 1)
 	end
 })
 
@@ -170,9 +177,7 @@ homedecor.register("kitchen_chair_padded", {
 	on_dig = unifieddyes.on_dig,
 	on_rotate = unifieddyes.fix_after_screwdriver_nsew,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
-		pos.y = pos.y+0 -- where do I put my ass ?
-		homedecor.sit(pos, node, clicker)
-		return itemstack
+		return lrfurn.sit(pos, node, clicker, itemstack, pointed_thing, 1)
 	end
 })
 
@@ -210,6 +215,9 @@ for _, c in pairs(chairs) do
 		collision_box = ofchairs_cbox,
 		expand = { top = "placeholder" },
 		on_rotate = minetest.get_modpath("screwdriver") and screwdriver.rotate_simple or nil,
+		on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
+			return lrfurn.sit(pos, node, clicker, itemstack, pointed_thing, 1)
+		end
 	})
 end
 

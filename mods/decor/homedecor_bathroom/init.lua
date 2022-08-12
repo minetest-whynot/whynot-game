@@ -106,7 +106,7 @@ homedecor.register("towel_rod", {
 	walkable = false,
 	groups = {snappy=2,choppy=2,oddly_breakable_by_hand=3,flammable=3,dig_tree=2},
 	_sound_def = {
-		key = "node_sound_defaults",
+		key = "node_sound_default",
 	},
 	crafts = {
 		{
@@ -274,7 +274,7 @@ homedecor.register("toilet_paper", {
 	walkable = false,
 	groups = {snappy=3,oddly_breakable_by_hand=3, dig_stone = 2},
 	_sound_def = {
-		key = "node_sound_defaults",
+		key = "node_sound_default",
 	},
 	crafts = {
 		{

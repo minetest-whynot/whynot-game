@@ -109,7 +109,7 @@ homedecor.register("wine_rack", {
 	selection_box = wine_cbox,
 	collision_box = wine_cbox,
 	_sound_def = {
-		key = "node_sound_defaults",
+		key = "node_sound_default",
 	},
 })
 
