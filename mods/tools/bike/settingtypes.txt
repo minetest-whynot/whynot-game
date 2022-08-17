@@ -1,0 +1,38 @@
+# The maximum speed of a bike in m/s
+bike_max_speed (Maximum speed) float 6.9
+
+# The acceleration of a bike in m/s^2
+bike_acceleration (Acceleration) float 3.16
+
+# The decceleration of a bike caused by braking in m/s^2
+bike_decceleration (Decceleration) float 7.9
+
+# The decceleration of a bike caused by friciton in m/s^2
+bike_friction (Friction) float 0.79
+
+# The turning speed of a stopped bike in rad/s
+bike_turn_speed (Turn speed) float 1.58
+
+# The speed in m/s bellow which the bike accelerates linearily
+bike_friction_cone (Friction cone) float 0.4
+
+# How many nodes can be climbed/jumped
+bike_stepheight (Step height) float 0.6 0
+
+# How many nodes can be climbed/jumped with wheely
+bike_wheely_stepheight (Wheely step height) float 0.6 0
+
+# The factor by which the turning speed is increased by wheely
+bike_wheely_factor (Wheely factor) float 2.0
+
+# The factor by which the bike slows down per second in water
+bike_water_friction (Water friction) float 13.8
+
+# The factor by which the bike slows down per second offroad
+bike_offroad_friction (Offroad friction) float 1.62
+
+# Bike turns with player look direction instead of a/d keys.
+mount_turn_player_look (Turn with look direction) bool false
+
+# Bikes can only be used and picked up by owners.
+mount_ownable (Ownable bikes) bool false
