@@ -138,16 +138,16 @@
 	url = https://github.com/minetest-mods/cozy
 [submodule "builder/mods_src/player/hbarmor"]
 	path = builder/mods_src/player/hbarmor
-	url = https://repo.or.cz/minetest_hbarmor.git
+	url = https://codeberg.org/Wuzzy/minetest_hbarmor.git
 [submodule "builder/mods_src/player/hbhunger"]
 	path = builder/mods_src/player/hbhunger
-	url = https://repo.or.cz/minetest_hbhunger.git
+	url = https://codeberg.org/Wuzzy/minetest_hbhunger.git
 [submodule "builder/mods_src/player/hbsprint"]
 	path = builder/mods_src/player/hbsprint
 	url = https://github.com/minetest-mods/hbsprint
 [submodule "builder/mods_src/player/hudbars"]
 	path = builder/mods_src/player/hudbars
-	url = https://repo.or.cz/minetest_hudbars.git
+	url = https://codeberg.org/Wuzzy/minetest_hudbars.git
 [submodule "builder/mods_src/player/moarmour"]
 	path = builder/mods_src/player/moarmour
 	url = https://github.com/dacmot/moarmour
