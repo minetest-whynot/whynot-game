@@ -135,10 +135,6 @@ origin https://repo.or.cz/minetest_doc_items.git (fetch)
 * 642da2e83c7c3c7cfb4dc5f62fd850bc6404117f Remove item name override of air
 Mod: libs/doc_items
 
-origin https://repo.or.cz/minetest_doc_minetest_game.git (fetch)
-* 9d5edf9e0c8db8004bc7602a414c5f33471b89ac Update help texts (14/10/2018)
-Mod: libs/doc_minetest_game
-
 origin https://github.com/minetest-mods/doc_reveal_chest (fetch)
 * d487a9a390cb7331d67495a0b83610a4262ee2cb initial commit
 Mod: libs/doc_reveal_chest
@@ -219,11 +215,11 @@ origin https://github.com/minetest-mods/cozy (fetch)
 * b51cd0326ca30c9f8aaa9f66603e225c1aa50a02 Use mod.conf for dependencies, and description (#3)
 Mod: player/cozy
 
-origin https://repo.or.cz/minetest_hbarmor.git (fetch)
+origin https://codeberg.org/Wuzzy/minetest_hbarmor.git (fetch)
 * a231a5fb82e4430f4022ee670731a2d02cad819f Version 1.0.1
 Mod: player/hbarmor
 
-origin https://repo.or.cz/minetest_hbhunger.git (fetch)
+origin https://codeberg.org/Wuzzy/minetest_hbhunger.git (fetch)
 * 0777594e783b3faa749f2c72dff39aff229e60c8 Add Wuzzy to mailmap
 Mod: player/hbhunger
 
@@ -231,7 +227,7 @@ origin https://github.com/minetest-mods/hbsprint (fetch)
 * f566d0ff26a2fb6371c617513a7f0c08cffbff0f Use inventory_image for nodes without tiles for particles
 Mod: player/hbsprint
 
-origin https://repo.or.cz/minetest_hudbars.git (fetch)
+origin https://codeberg.org/Wuzzy/minetest_hudbars.git (fetch)
 * dd2a9a008d63ae0be705903f1c56899f61029e7a Add mailmap for Wuzzy
 Mod: player/hudbars
 
@@ -324,7 +320,7 @@ origin https://github.com/lisacvuk/minetest-toolranks (fetch)
 Mod: tools/toolranks
 
 origin https://github.com/minetest-mods/trash_can (fetch)
-* 423b0f26a827fd3b0092d29d859199ff6776b212 Use listrings for inventories (#12)
+* 78611b3ccd06956ed753c6f97c63e76edc9af177 zh_TW Translations (#13)
 Mod: tools/trash_can
 
 origin https://github.com/minetest-mods/woodcutting (fetch)
