@@ -15,9 +15,9 @@ awards.register_award("whynot_spawnpoint", {
 
 })
 
-local orig_beds_on_rgihtclick = beds.on_rightclick
+local orig_beds_on_rightclick = beds.on_rightclick
 function beds.on_rightclick(pos, player)
-	orig_beds_on_rgihtclick(pos, player)
+	orig_beds_on_rightclick(pos, player)
 	local player_name = player:get_player_name()
 	if beds.player[player_name] then
 		awards.unlock(player_name, "whynot_spawnpoint")
