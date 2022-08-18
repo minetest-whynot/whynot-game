@@ -9,11 +9,29 @@ homedecor.register("speaker", {
 		"homedecor_speaker_sides.png",
 		"homedecor_speaker_front.png"
 	},
-	groups = { snappy = 3 },
-	sounds = default.node_sound_wood_defaults(),
+	groups = { snappy = 3, dig_tree = 2 },
+	_sound_def = {
+		key = "node_sound_wood_defaults",
+	},
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		minetest.set_node(pos, {name = "homedecor:speaker_open", param2 = node.param2})
-	end
+	end,
+	crafts = {
+		{
+			recipe = {
+				{ "wool_black", "homedecor:speaker_driver", "group:wood" },
+				{ "wool_black", "homedecor:speaker_driver", "group:wood" },
+				{ "wool_black", "group:wood", "group:wood" },
+			},
+		},
+		{
+			recipe = {
+				{ "cotton:black", "homedecor:speaker_driver", "group:wood" },
+				{ "cotton:black", "homedecor:speaker_driver", "group:wood" },
+				{ "cotton:black", "group:wood", "group:wood" },
+			},
+		}
+	}
 })
 
 homedecor.register("speaker_open", {
@@ -25,8 +43,10 @@ homedecor.register("speaker_open", {
 		"homedecor_speaker_open_front.png",
 		{ name = "homedecor_generic_metal.png", color = homedecor.color_black }
 	},
-	groups = { snappy = 3, not_in_creative_inventory=1 },
-	sounds = default.node_sound_wood_defaults(),
+	groups = { snappy = 3, not_in_creative_inventory=1, dig_tree = 2 },
+	_sound_def = {
+		key = "node_sound_wood_defaults",
+	},
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		minetest.set_node(pos, {name = "homedecor:speaker", param2 = node.param2})
 	end
@@ -46,8 +66,22 @@ homedecor.register("speaker_small", {
 	},
 	selection_box = spk_cbox,
 	walkable = false,
-	groups = { snappy = 3 },
-	sounds = default.node_sound_wood_defaults(),
+	groups = { snappy = 3, dig_tree = 2 },
+	_sound_def = {
+		key = "node_sound_wood_defaults",
+	},
+	crafts = {
+		{
+			recipe = {
+				{ "wool_black", "homedecor:speaker_driver", "group:wood" },
+			},
+		},
+		{
+			recipe = {
+				{ "cotton:black", "homedecor:speaker_driver", "group:wood" },
+			},
+		}
+	}
 })
 
 homedecor.register("stereo", {
@@ -58,8 +92,19 @@ homedecor.register("stereo", {
 			'homedecor_stereo_left.png',
 			'homedecor_stereo_back.png',
 			'homedecor_stereo_front.png'},
-	groups = { snappy = 3 },
-	sounds = default.node_sound_wood_defaults(),
+	groups = { snappy = 3, dig_tree = 2 },
+	_sound_def = {
+		key = "node_sound_wood_defaults",
+	},
+	crafts = {
+		{
+			recipe = {
+				{ "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" },
+				{ "basic_materials:plastic_sheet", "basic_materials:ic", "basic_materials:plastic_sheet" },
+				{ "steel_ingot", "basic_materials:ic", "steel_ingot" },
+			},
+		}
+	}
 })
 
 homedecor.register("projection_screen", {
@@ -69,13 +114,25 @@ homedecor.register("projection_screen", {
 	wield_image = 'homedecor_projection_screen_inv.png',
 	inventory_image = 'homedecor_projection_screen_inv.png',
 	walkable = false,
-	groups = { snappy = 3 },
-	sounds = default.node_sound_leaves_defaults(),
+	groups = { snappy = 3, dig_tree = 2 },
+	_sound_def = {
+		key = "node_sound_leaves_defaults",
+	},
 	paramtype2 = 'wallmounted',
 	selection_box = {
 		type = "wallmounted",
 		--wall_side = = <default>
 	},
+	crafts = {
+		{
+			output = "homedecor:projection_screen 3",
+			recipe = {
+				{ "", "glass_block", "" },
+				{ "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" },
+				{ "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" },
+			},
+		},
+	}
 })
 
 homedecor.register("television", {
@@ -94,9 +151,27 @@ homedecor.register("television", {
 			  }
 		   }
 	},
-	light_source = default.LIGHT_MAX - 1,
-	groups = { snappy = 3 },
-	sounds = default.node_sound_wood_defaults(),
+	light_source = minetest.LIGHT_MAX - 1,
+	groups = { snappy = 3, dig_tree = 2 },
+	_sound_def = {
+		key = "node_sound_wood_defaults",
+	},
+	crafts = {
+		{
+			recipe = {
+				{ "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" },
+				{ "basic_materials:plastic_sheet", "glass_block", "basic_materials:plastic_sheet" },
+				{ "basic_materials:ic", "basic_materials:energy_crystal_simple", "basic_materials:ic" },
+			},
+		},
+		{
+			recipe = {
+				{ "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" },
+				{ "basic_materials:plastic_sheet", "moreblocks:glow_glass", "basic_materials:plastic_sheet" },
+				{ "basic_materials:ic", "basic_materials:ic", "basic_materials:ic" },
+			},
+		}
+	}
 })
 
 homedecor.register("dvd_vcr", {
@@ -117,8 +192,28 @@ homedecor.register("dvd_vcr", {
 			{-0.25, -0.5, -0.25, 0.25, -0.1875, 0.125},
 		}
 	},
-	groups = { snappy = 3 },
-	sounds = default.node_sound_wood_defaults(),
+	groups = { snappy = 3, dig_tree = 2 },
+	_sound_def = {
+		key = "node_sound_wood_defaults",
+	},
+	crafts = {
+		{
+			output = "homedecor:dvd_player 2",
+			recipe = {
+				{ "", "basic_materials:plastic_sheet", "" },
+				{ "obsidian_glass", "basic_materials:motor", "basic_materials:motor" },
+				{ "mese_crystal_fragment", "basic_materials:ic", "basic_materials:energy_crystal_simple" },
+			},
+		},
+		{
+			type = "shapeless",
+			output = "homedecor:dvd_vcr",
+			recipe = {
+				"homedecor:vcr",
+				"homedecor:dvd_player"
+			},
+		}
+	}
 })
 
 local tel_cbox = {
@@ -136,13 +231,24 @@ homedecor.register("telephone", {
 	},
 	inventory_image = "homedecor_telephone_inv.png",
 	description = S("Telephone"),
-	groups = {snappy=3},
+	groups = {snappy=3, dig_tree = 2},
 	selection_box = tel_cbox,
 	walkable = false,
-	sounds = default.node_sound_wood_defaults(),
+	_sound_def = {
+		key = "node_sound_wood_defaults",
+	},
+	crafts = {
+		{
+			recipe = {
+				{ "homedecor:speaker_driver", "basic_materials:copper_wire", "homedecor:speaker_driver" },
+				{ "basic_materials:plastic_sheet", "steel_ingot", "basic_materials:plastic_sheet" },
+				{ "steel_ingot", "steel_ingot", "steel_ingot" }
+			},
+		}
+	}
 })
 
--- crafting
+-- craft items
 
 minetest.register_craftitem(":homedecor:vcr", {
 	description = S("VCR"),
@@ -159,21 +265,7 @@ minetest.register_craftitem(":homedecor:speaker_driver", {
 	inventory_image = "homedecor_speaker_driver_inv.png"
 })
 
-minetest.register_craft( {
-	output = "homedecor:projection_screen 3",
-	recipe = {
-		{ "", "default:glass", "" },
-		{ "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" },
-		{ "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" },
-	},
-})
-
-minetest.register_craft({
-	type = "fuel",
-	recipe = "homedecor:projection_screen",
-	burntime = 30,
-})
-
+--crafts
 
 minetest.register_craft( {
 	output = "basic_materials:ic 4",
@@ -184,109 +276,25 @@ minetest.register_craft( {
 })
 
 minetest.register_craft( {
-	output = "homedecor:television",
-	recipe = {
-		{ "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" },
-		{ "basic_materials:plastic_sheet", "moreblocks:glow_glass", "basic_materials:plastic_sheet" },
-		{ "basic_materials:ic", "basic_materials:ic", "basic_materials:ic" },
-	},
-})
-
-minetest.register_craft( {
-	output = "homedecor:television",
-	recipe = {
-		{ "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" },
-		{ "basic_materials:plastic_sheet", "default:glass", "basic_materials:plastic_sheet" },
-		{ "basic_materials:ic", "basic_materials:energy_crystal_simple", "basic_materials:ic" },
-	},
-})
-
-minetest.register_craft( {
-	output = "homedecor:stereo",
-	recipe = {
-		{ "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" },
-		{ "basic_materials:plastic_sheet", "basic_materials:ic", "basic_materials:plastic_sheet" },
-		{ "default:steel_ingot", "basic_materials:ic", "default:steel_ingot" },
-	},
-})
-
-
-minetest.register_craft( {
 	output = "homedecor:speaker_driver 2",
 	recipe = {
-		{ "", "default:steel_ingot", "" },
-		{ "default:paper", "basic_materials:copper_wire", "default:iron_lump" },
-		{ "", "default:steel_ingot", "" },
+		{ "", homedecor.materials["steel_ingot"], "" },
+		{ homedecor.materials["paper"], "basic_materials:copper_wire", homedecor.materials["iron_lump"] },
+		{ "", homedecor.materials["steel_ingot"], "" },
 	},
 })
-
-minetest.register_craft( {
-	output = "homedecor:speaker_small",
-	recipe = {
-		{ "wool:black", "homedecor:speaker_driver", "group:wood" },
-	},
-})
-
-minetest.register_craft( {
-	output = "homedecor:speaker",
-	recipe = {
-		{ "wool:black", "homedecor:speaker_driver", "group:wood" },
-		{ "wool:black", "homedecor:speaker_driver", "group:wood" },
-		{ "wool:black", "group:wood", "group:wood" },
-	},
-})
-
--- cotton version
-
-minetest.register_craft( {
-	output = "homedecor:speaker_small",
-	recipe = {
-		{ "cotton:black", "homedecor:speaker_driver", "group:wood" },
-	},
-})
-
-minetest.register_craft( {
-	output = "homedecor:speaker",
-	recipe = {
-		{ "cotton:black", "homedecor:speaker_driver", "group:wood" },
-		{ "cotton:black", "homedecor:speaker_driver", "group:wood" },
-		{ "cotton:black", "group:wood", "group:wood" },
-	},
-})
-
 
 minetest.register_craft({
 	output = "homedecor:vcr 2",
 	recipe = {
-		{ "basic_materials:ic", "default:steel_ingot", "basic_materials:plastic_sheet" },
-		{ "default:iron_lump", "default:iron_lump", "default:iron_lump" },
+		{ "basic_materials:ic", homedecor.materials["steel_ingot"], "basic_materials:plastic_sheet" },
+		{ homedecor.materials["iron_lump"], homedecor.materials["iron_lump"], homedecor.materials["iron_lump"] },
 		{ "basic_materials:plastic_sheet", "", "basic_materials:plastic_sheet" },
 	},
 })
 
 minetest.register_craft({
-	output = "homedecor:dvd_player 2",
-	recipe = {
-		{ "", "basic_materials:plastic_sheet", "" },
-		{ "default:obsidian_glass", "basic_materials:motor", "basic_materials:motor" },
-		{ "default:mese_crystal_fragment", "basic_materials:ic", "basic_materials:energy_crystal_simple" },
-	},
-})
-
-minetest.register_craft({
-	type = "shapeless",
-	output = "homedecor:dvd_vcr",
-	recipe = {
-		"homedecor:vcr",
-		"homedecor:dvd_player"
-	},
-})
-
-minetest.register_craft( {
-	output = "homedecor:telephone",
-	recipe = {
-		{ "homedecor:speaker_driver", "basic_materials:copper_wire", "homedecor:speaker_driver" },
-		{ "basic_materials:plastic_sheet", "default:steel_ingot", "basic_materials:plastic_sheet" },
-		{ "default:steel_ingot", "default:steel_ingot", "default:steel_ingot" }
-	},
+	type = "fuel",
+	recipe = "homedecor:projection_screen",
+	burntime = 30,
 })

@@ -17,6 +17,11 @@ export LOG="$PROJ"/mod_sources.txt
 export DEFAULTBR="origin/HEAD"
 export RSYNC="rsync -a $VERBOSITY --delete --delete-excluded --exclude=.git*"
 
+[[ $VERBOSITY == '--quiet' ]] && QUIETONLY=$VERBOSITY || QUIETONLY=''
+[[ $VERBOSITY == '--verbose' ]] && VERBOSEONLY=$VERBOSITY || VERBOSEONLY=''
+export QUIETONLY
+export VERBOSEONLY
+
 #####################
 ### Start of script
 #####################
@@ -28,8 +33,7 @@ cd "$SRC"
 
 OLDSTASHSIZE=$(git stash list | wc -l)
 echo -n "Stashing uncommited changes..."
-[[ $VERBOSITY == '--quiet' ]] && TMPV=$VERBOSITY || TMPV=''
-git stash push $VERBOSITY --include-untracked -m "update_mod.sh: stashing uncommitted changes before updating mods"
+git stash push $QUIETONLY --include-untracked -m "update_mod.sh: stashing uncommitted changes before updating mods"
 NEWSTASHSIZE=$(git stash list | wc -l)
 [[ $OLDSTASHSIZE -lt $NEWSTASHSIZE ]] && echo " done." || echo " nothing to stash."
 

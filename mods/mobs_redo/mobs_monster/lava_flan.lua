@@ -18,13 +18,13 @@ mobs:register_mob("mobs_monster:lava_flan", {
 	textures = {
 		{"zmobs_lava_flan.png"},
 		{"zmobs_lava_flan2.png"},
-		{"zmobs_lava_flan3.png"},
+		{"zmobs_lava_flan3.png"}
 	},
 	blood_texture = "fire_basic_flame.png",
 	makes_footstep_sound = false,
 	sounds = {
 		random = "mobs_lavaflan",
-		war_cry = "mobs_lavaflan",
+		war_cry = "mobs_lavaflan"
 	},
 	walk_velocity = 0.5,
 	run_velocity = 2,
@@ -32,14 +32,14 @@ mobs:register_mob("mobs_monster:lava_flan", {
 	view_range = 10,
 	floats = 1,
 	drops = {
-		{name = "mobs:lava_orb", chance = 15, min = 1, max = 1},
+		{name = "mobs:lava_orb", chance = 15, min = 1, max = 1}
 	},
 	water_damage = 8,
 	lava_damage = -1,
 	fire_damage = 0,
 	light_damage = 0,
 	immune_to = {
-		{"mobs:pick_lava", -2}, -- lava pick heals 2 health
+		{"mobs:pick_lava", -2} -- lava pick heals 2 health
 	},
 	fly_in = {"default:lava_source", "default:lava_flowing"},
 	animation = {
@@ -54,6 +54,8 @@ mobs:register_mob("mobs_monster:lava_flan", {
 		punch_start = 20,
 		punch_end = 28
 	},
+
+	-- custom death function
 	on_die = function(self, pos)
 
 		local cod = self.cause_of_death or {}
@@ -66,17 +68,19 @@ mobs:register_mob("mobs_monster:lava_flan", {
 			mobs:effect(pos, 40, "tnt_smoke.png", 3, 5, 2, 0.5, nil, false)
 
 			minetest.sound_play("fire_extinguish_flame",
-				{pos = pos, max_hear_distance = 12, gain = 1.5}, true)
+					{pos = pos, max_hear_distance = 12, gain = 1.5}, true)
 
 			self.object:remove()
 
 			if math.random(4) == 1 then
-				mobs:add_mob(pos, {
-					name = "mobs_monster:obsidian_flan",
-				})
+				mobs:add_mob(pos, {name = "mobs_monster:obsidian_flan"})
 			end
-		else
-			if minetest.get_node(pos).name == "air" then
+		else -- place flame if position empty and flame exists
+			local nod = minetest.get_node(pos)
+			local def = nod.name and minetest.registered_nodes[nod.name]
+
+			if def and def.buildable_to == true
+			and minetest.registered_nodes["fire:basic_flame"] then
 				minetest.set_node(pos, {name = "fire:basic_flame"})
 			end
 
@@ -85,7 +89,7 @@ mobs:register_mob("mobs_monster:lava_flan", {
 			self.object:remove()
 		end
 	end,
-	glow = 10,
+	glow = 10
 })
 
 
@@ -95,21 +99,24 @@ mobs:spawn({
 	nodes = {"default:lava_source"},
 	chance = 1500,
 	active_object_count = 1,
-	max_height = 0,
+	max_height = 0
 })
 end
 
 
+-- add spawn egg
 mobs:register_egg("mobs_monster:lava_flan", S("Lava Flan"), "default_lava.png", 1)
 
-mobs:alias_mob("mobs:lava_flan", "mobs_monster:lava_flan") -- compatibility
+
+-- compatibility alias, only needed for servers who used the old mobs mod
+mobs:alias_mob("mobs:lava_flan", "mobs_monster:lava_flan")
 
 
 -- lava orb
 minetest.register_craftitem(":mobs:lava_orb", {
 	description = S("Lava orb"),
 	inventory_image = "zmobs_lava_orb.png",
-	light_source = 14,
+	light_source = 14
 })
 
 minetest.register_alias("zmobs:lava_orb", "mobs:lava_orb")
@@ -117,7 +124,7 @@ minetest.register_alias("zmobs:lava_orb", "mobs:lava_orb")
 minetest.register_craft({
 	type = "fuel",
 	recipe = "mobs:lava_orb",
-	burntime = 80,
+	burntime = 80
 })
 
 
@@ -225,13 +232,12 @@ mobs:register_mob("mobs_monster:obsidian_flan", {
 	visual = "mesh",
 	mesh = "zmobs_lava_flan.x",
 	textures = {
-		{"mobs_obsidian_flan.png"},
+		{"mobs_obsidian_flan.png"}
 	},
 	blood_texture = "default_obsidian.png",
 	makes_footstep_sound = true,
 	sounds = {
-		random = "mobs_lavaflan",
---		war_cry = "mobs_lavaflan",
+		random = "mobs_lavaflan"
 	},
 	walk_velocity = 0.1,
 	run_velocity = 0.5,
@@ -240,7 +246,7 @@ mobs:register_mob("mobs_monster:obsidian_flan", {
 	floats = 0,
 	drops = {
 		{name = "default:obsidian_shard", chance = 1, min = 1, max = 5},
-		{name = "default:obsidian", chance = 3, min = 0, max = 2},
+		{name = "default:obsidian", chance = 3, min = 0, max = 2}
 	},
 	water_damage = 0,
 	lava_damage = 8,
@@ -260,6 +266,8 @@ mobs:register_mob("mobs_monster:obsidian_flan", {
 	}
 })
 
+
+-- add spawn egg
 mobs:register_egg("mobs_monster:obsidian_flan", S("Obsidian Flan"),
 		"default_obsidian.png", 1)
 
@@ -269,11 +277,9 @@ local mobs_griefing = minetest.settings:get_bool("mobs_griefing") ~= false
 -- mese arrow (weapon)
 mobs:register_arrow("mobs_monster:obsidian_arrow", {
 	visual = "sprite",
---	visual = "wielditem",
 	visual_size = {x = 0.5, y = 0.5},
 	textures = {"default_obsidian_shard.png"},
 	velocity = 6,
---	rotate = 180,
 
 	hit_player = function(self, player)
 		player:punch(self.object, 1.0, {

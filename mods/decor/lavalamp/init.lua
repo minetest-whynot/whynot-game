@@ -35,7 +35,9 @@ minetest.register_node("lavalamp:lavalamp", {
 		fixed = { -0.25, -0.5, -0.25, 0.25,0.5, 0.25 },
 	},
 	groups = {snappy=2,cracky=3,oddly_breakable_by_hand=3, ud_param2_colorable = 1},
-	sounds = default.node_sound_glass_defaults(),
+	_sound_def = {
+		key = "node_sound_glass_defaults",
+	},
 	on_construct = unifieddyes.on_construct,
 	on_dig = unifieddyes.on_dig,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
@@ -63,7 +65,9 @@ minetest.register_node("lavalamp:lavalamp_off", {
 		fixed = { -0.25, -0.5, -0.25, 0.25,0.5, 0.25 },
 	},
 	groups = {snappy=2,cracky=3,oddly_breakable_by_hand=3, not_in_creative_inventory=1},
-	sounds = default.node_sound_glass_defaults(),
+	_sound_def = {
+		key = "node_sound_glass_defaults",
+	},
 	on_construct = unifieddyes.on_construct,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		node.name = "lavalamp:lavalamp"
@@ -80,9 +84,9 @@ minetest.register_node("lavalamp:lavalamp_off", {
 minetest.register_craft({
 	output = "lavalamp:lavalamp",
 	recipe = {
-		{"", "wool:white", "", },
-		{"", "bucket:bucket_water", "", },
-		{"", "wool:black", "", }
+		{"", homedecor.materials.wool_white, "", },
+		{"", homedecor.materials.water_bucket, "", },
+		{"", homedecor.materials.wool_black, "", }
 	}
 })
 

@@ -17,8 +17,19 @@ homedecor.register("bars", {
 		type = "fixed",
 		fixed = { -0.5, -0.5, -0.1, 0.5, 0.5, 0.1 },
 	},
-	groups = {cracky=3},
-	sounds = default.node_sound_stone_defaults(),
+	groups = {cracky=3, dig_stone=1},
+	_sound_def = {
+		key = "node_sound_stone_defaults",
+	},
+	crafts = {
+		{
+			output = "homedecor:bars 6",
+			recipe = {
+				{ "steel_ingot","steel_ingot","steel_ingot" },
+				{ "homedecor:pole_wrought_iron","homedecor:pole_wrought_iron","homedecor:pole_wrought_iron" },
+			},
+		}
+	}
 })
 
 --L Binding Bars
@@ -37,8 +48,19 @@ homedecor.register("L_binding_bars", {
 			{ -0.05,  0.45, -0.50,  0.05,  0.50,  0.00 },
 		},
 	},
-	groups = {cracky=3},
-	sounds = default.node_sound_stone_defaults(),
+	groups = {cracky=3, dig_stone=1},
+	_sound_def = {
+		key = "node_sound_stone_defaults",
+	},
+	crafts = {
+		{
+			output = "homedecor:L_binding_bars 3",
+			recipe = {
+				{ "homedecor:bars","" },
+				{ "homedecor:bars","homedecor:bars" },
+			},
+		}
+	}
 })
 
 local chain_cbox = {
@@ -53,26 +75,19 @@ homedecor.register("chains", {
 	inventory_image="forniture_chains_inv.png",
 	selection_box = chain_cbox,
 	walkable = false,
-	groups = {cracky=3},
-	sounds = default.node_sound_stone_defaults(),
-})
-
--- Crafts
-
-minetest.register_craft({
-	output = "homedecor:bars 6",
-	recipe = {
-		{ "default:steel_ingot","default:steel_ingot","default:steel_ingot" },
-		{ "homedecor:pole_wrought_iron","homedecor:pole_wrought_iron","homedecor:pole_wrought_iron" },
+	groups = {cracky=3, dig_stone=1},
+	_sound_def = {
+		key = "node_sound_stone_defaults",
 	},
-})
-
-minetest.register_craft({
-	output = "homedecor:L_binding_bars 3",
-	recipe = {
-		{ "homedecor:bars","" },
-		{ "homedecor:bars","homedecor:bars" },
-	},
+	crafts = {
+		{
+			output = "homedecor:chains 4",
+			recipe = {
+				{ "steel_ingot","" },
+				{ "homedecor:bars","homedecor:bars" },
+			},
+		}
+	}
 })
 
 minetest.register_alias("3dforniture:bars", "homedecor:bars")

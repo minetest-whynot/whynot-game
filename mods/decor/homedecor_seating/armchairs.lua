@@ -19,8 +19,10 @@ minetest.register_node(":lrfurn:armchair", {
 	paramtype2 = "colorwallmounted",
 	palette = "unifieddyes_palette_colorwallmounted.png",
 	inventory_image = "lrfurn_armchair_inv.png",
-	groups = {snappy=3, ud_param2_colorable = 1},
-	sounds = default.node_sound_wood_defaults(),
+	groups = {snappy=3, ud_param2_colorable = 1, dig_tree=2},
+	_sound_def = {
+		key = "node_sound_wood_defaults",
+	},
 	node_box = armchair_cbox,
 	after_place_node = function(pos, placer, itemstack, pointed_thing)
 		unifieddyes.fix_rotation_nsew(pos, placer, itemstack, pointed_thing)
@@ -28,13 +30,7 @@ minetest.register_node(":lrfurn:armchair", {
 	on_dig = unifieddyes.on_dig,
 	on_rotate = unifieddyes.fix_after_screwdriver_nsew,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
-		if not clicker:is_player() then
-			return itemstack
-		end
-		pos.y = pos.y-0.5
-		clicker:setpos(pos)
-		clicker:set_hp(20)
-		return itemstack
+		return lrfurn.sit(pos, node, clicker, itemstack, pointed_thing, 1)
 	end
 })
 
@@ -42,21 +38,26 @@ homedecor.register("armchair", {
 	description = S("Armchair"),
 	mesh = "forniture_armchair.obj",
 	tiles = {
-		"wool_white.png",
-		{ name = "wool_dark_grey.png", color = 0xffffffff },
-		{ name = "default_wood.png", color = 0xffffffff }
+		homedecor.textures.wool_white,
+		{ name = homedecor.textures.wool_dark_grey, color = 0xffffffff },
+		{ name = homedecor.textures.default_wood, color = 0xffffffff }
 	},
 	inventory_image = "homedecor_armchair_inv.png",
 	paramtype2 = "colorwallmounted",
 	palette = "unifieddyes_palette_colorwallmounted.png",
-	groups = {snappy=3, ud_param2_colorable = 1},
-	sounds = default.node_sound_wood_defaults(),
+	groups = {snappy=3, ud_param2_colorable = 1, dig_tree=2},
+	_sound_def = {
+		key = "node_sound_wood_defaults",
+	},
 	node_box = armchair_cbox,
 	after_place_node = function(pos, placer, itemstack, pointed_thing)
 		unifieddyes.fix_rotation_nsew(pos, placer, itemstack, pointed_thing)
 	end,
 	on_dig = unifieddyes.on_dig,
 	on_rotate = unifieddyes.fix_after_screwdriver_nsew,
+	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
+		return lrfurn.sit(pos, node, clicker, itemstack, pointed_thing, 1)
+	end
 })
 
 -- crafts
@@ -65,7 +66,7 @@ minetest.register_craft({
 	output = "lrfurn:armchair",
 	recipe = {
 		{"wool:white", "", "", },
-		{"stairs:slab_wood", "", "", },
+		{homedecor.materials.slab_wood, "", "", },
 		{"group:stick", "", "", }
 	}
 })
@@ -93,9 +94,9 @@ unifieddyes.register_color_craft({
 minetest.register_craft({
 	output = "homedecor:armchair 2",
 	recipe = {
-	{ "wool:white",""},
+	{ homedecor.materials.wool_white,""},
 	{ "group:wood","group:wood" },
-	{ "wool:white","wool:white" },
+	{ homedecor.materials.wool_white,homedecor.materials.wool_white },
 	},
 })
 

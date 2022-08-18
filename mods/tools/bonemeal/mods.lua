@@ -204,13 +204,18 @@ if minetest.get_modpath("df_trees") then
 		df_trees.spawn_fungiwood(pos)
 	end
 
+	local function tunnel_fix(pos)
+		minetest.set_node(pos, {name = "air"})
+		df_trees.spawn_tunnel_tube(pos)
+	end
+
 	bonemeal:add_sapling({
 		{"df_trees:black_cap_sapling", df_trees.spawn_black_cap, "soil", true},
 		{"df_trees:fungiwood_sapling", fungiwood_fix, "soil", true},
 		{"df_trees:goblin_cap_sapling", df_trees.spawn_goblin_cap, "soil", true},
 		{"df_trees:spore_tree_sapling", spore_tree_fix, "soil", true},
 		{"df_trees:tower_cap_sapling", df_trees.spawn_tower_cap, "soil", true},
-		{"df_trees:tunnel_tube_sapling", df_trees.spawn_tunnel_tube, "soil", true},
+		{"df_trees:tunnel_tube_sapling", tunnel_fix, "soil", true},
 		{"df_trees:nether_cap_sapling", df_trees.spawn_nether_cap, "group:nether_cap", true},
 		{"df_trees:nether_cap_sapling", df_trees.spawn_nether_cap, "group:cools_lava", true}
 	})
@@ -245,13 +250,18 @@ if minetest.get_modpath("df_primordial_items") then
 			df_primordial_items.get_fern_schematic(), rotations[math.random(1,#rotations)])
 	end
 
+	local function blood_fix(pos)
+		df_trees.grow_blood_thorn(pos, minetest.get_node(pos))
+	end
+
 	bonemeal:add_sapling({
 		{"df_primordial_items:jungle_mushroom_sapling",
 			df_primordial_items.spawn_jungle_mushroom, "soil", true},
 		{"df_primordial_items:jungletree_sapling",
 			df_primordial_items.spawn_jungle_tree, "soil", true},
 		{"df_primordial_items:mush_sapling", mush_fix, "soil", true},
-		{"df_primordial_items:fern_sapling", fern_fix, "soil", true}
+		{"df_primordial_items:fern_sapling", fern_fix, "soil", true},
+		{"df_trees:blood_thorn", blood_fix, "sand", true}
 	})
 
 	local jgrass = {
@@ -274,5 +284,21 @@ if minetest.get_modpath("df_primordial_items") then
 
 	bonemeal:add_deco({
 		{"df_primordial_items:dirt_with_jungle_grass", jgrass, jdeco}
+	})
+
+	local fgrass = {
+		"df_primordial_items:fungal_grass_1",
+		"df_primordial_items:fungal_grass_2",
+		"", "", "", ""
+	}
+
+	local fdeco = {
+		"df_primordial_items:glow_orb_stalks",
+		"df_primordial_items:glow_pods",
+		"", "", ""
+	}
+
+	bonemeal:add_deco({
+		{"df_primordial_items:dirt_with_mycelium", fgrass, fdeco}
 	})
 end

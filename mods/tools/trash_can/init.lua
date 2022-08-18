@@ -2,6 +2,7 @@
 
 local moditems = {}  -- switcher
 local mineclone_path = minetest.get_modpath("mcl_core") and mcl_core
+local S = minetest.get_translator("trash_can")
 
 if mineclone_path then -- means MineClone 2 is loaded
 	moditems.iron_item = "mcl_core:iron_ingot" -- MCL version of iron ingot
@@ -20,8 +21,8 @@ else -- fallback, assume default (Minetest Game) is loaded
 	moditems.coal_item = "default:coalblock"   -- MTG coal block
 	moditems.green_dye = "dye:dark_green"      -- MTG version of green dye
 	moditems.sounds = default.node_sound_defaults
-	moditems.trashcan_infotext = "Trash Can"
-	moditems.dumpster_infotext = "Dumpster"
+	moditems.trashcan_infotext = S("Trash Can")
+	moditems.dumpster_infotext = S("Dumpster")
 	moditems.boxart = ""
 	moditems.trashbin_groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3}
 	moditems.dumpster_groups = {cracky=3,oddly_breakable_by_hand=1}
@@ -98,7 +99,7 @@ local dumpster_nodebox = {
 
 -- Normal Trash Can
 minetest.register_node("trash_can:trash_can_wooden",{
-	description = "Wooden Trash Can",
+	description = S("Wooden Trash Can"),
 	drawtype="nodebox",
 	paramtype = "light",
 	tiles = {
@@ -117,7 +118,7 @@ minetest.register_node("trash_can:trash_can_wooden",{
 		local meta = minetest.get_meta(pos)
 		meta:set_string("formspec",
 			"size[8,9]" ..
-			"button[0,0;2,1;empty;Empty Trash]" ..
+			"button[0,0;2,1;empty;" .. S("Empty Trash") .. "]" ..
 			"list[context;trashlist;3,1;2,3;]" ..
 			"list[current_player;main;0,5;8,4;]" ..
 			"listring[]" ..
@@ -159,7 +160,7 @@ minetest.register_node("trash_can:trash_can_wooden",{
 
 -- Dumpster
 minetest.register_node("trash_can:dumpster", {
-	description = "Dumpster",
+	description = S("Dumpster"),
 	paramtype = "light",
 	paramtype2 = "facedir",
 	inventory_image = "dumpster_wield.png",
@@ -188,7 +189,7 @@ minetest.register_node("trash_can:dumpster", {
 		local meta = minetest.get_meta(pos)
 		meta:set_string("formspec",
 			"size[8,9]" ..
-			"button[0,0;2,1;empty;Empty Trash]" ..
+			"button[0,0;2,1;empty;" .. S("Empty Trash") .. "]" ..
 			"list[context;main;1,1;6,3;]" ..
 			"list[current_player;main;0,5;8,4;]"..
 			"listring[]" ..

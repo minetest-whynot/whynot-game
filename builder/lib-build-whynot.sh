@@ -20,9 +20,7 @@ function sync_mods_folder {
       if [[ ${childname:0:1} != "." && !( $exclusionlist =~ $childname$ || $exclusionlist =~ $childname[^[:alnum:]_] ) ]]; then
         $RSYNC $exclusionlist $childmod/ $DSTPATH/$childname/
       else
-        local TMPV=''
-        [[ $VERBOSITY == '--verbose' ]] && TMPV=$VERBOSITY
-        rm -rf $TMPV $DSTPATH/$childname
+        rm -rf $VERBOSEONLY $DSTPATH/$childname
       fi
     done
 
@@ -45,11 +43,6 @@ function process_update_mods {
 
   cd $subm
   echo -n "Processing $subm... "
-
-  echo '' >> "$LOG"
-  echo `git remote -v | grep '\(fetch\)'` >> "$LOG"
-  git branch --format '%(HEAD) %(objectname) %(subject)' | grep '^[*]' >> "$LOG"
-  echo "Mod: $subm" >> "$LOG"
 
   local branch="origin/HEAD"
   if [ ${BRANCHES[$subm]+_} ]; then
@@ -75,17 +68,15 @@ function process_update_mods {
     IFS= read -r -p 'Merge all changes? [y/N] ' CHOOSEMERGE < /dev/tty
     if [[ "$CHOOSEMERGE" = "Y" ||  "$CHOOSEMERGE" = "y" ]]; then
       git merge $VERBOSITY $branch
+      git submodule update --init --recursive $VERBOSITY
       sync_mods_folder $subm $modname
 
       local CHOOSECOMMIT=''
       IFS= read -r -p 'Commit now? [Y/n] ' CHOOSECOMMIT < /dev/tty
       if [[ "$CHOOSECOMMIT" = "Y" ||  "$CHOOSECOMMIT" = "y" || "$CHOOSECOMMIT" = "" ]]; then
-        cd $PROJ
-        local TMPV=''
-        [[ $VERBOSITY == '--verbose' ]] && TMPV=$VERBOSITY
-        git add $TMPV .
-        [[ $VERBOSITY == '--quiet' ]] && TMPV=$VERBOSITY || TMPV=''
-        git reset $TMPV $LOG
+        pushd $PROJ > /dev/null
+        git add $VERBOSEONLY .
+        git reset $QUIETONLY $LOG
         git commit $VERBOSITY -m "Update $modname from upstream."
       fi
     fi
@@ -94,15 +85,23 @@ function process_update_mods {
 
     echo 'No changes.'
     sync_mods_folder $subm $modname
-    cd $PROJ
+    pushd $PROJ > /dev/null
     local DSTPATH="$DST/$subm"
     if [[ ! -e $DSTPATH ]]; then
       local group=$(dirname $subm)
       DSTPATH="$DST/$group"
     fi
-    git diff --quiet $DSTPATH || git commit $VERBOSITY -m "Rsync cleanup for $modname" -- $DSTPATH
+    git add $VERBOSEONLY .
+    git reset $QUIETONLY $LOG
+    git diff --quiet --cached -- $DSTPATH || git commit $VERBOSITY -m "Rsync cleanup for $modname" -- $DSTPATH
 
   fi
+
+  popd &> /dev/null
+  echo '' >> "$LOG"
+  echo `git remote -v | grep '\(fetch\)'` >> "$LOG"
+  git branch --format '%(HEAD) %(objectname) %(subject)' | grep '^[*]' >> "$LOG"
+  echo "Mod: $subm" >> "$LOG"
 
 }
 export -f process_update_mods

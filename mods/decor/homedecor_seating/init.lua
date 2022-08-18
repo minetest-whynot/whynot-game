@@ -78,6 +78,53 @@ function lrfurn.fix_sofa_rotation_nsew(pos, placer, itemstack, pointed_thing)
 	minetest.swap_node(pos, { name = node.name, param2 = fdir+colorbits })
 end
 
+function lrfurn.sit(pos, node, clicker, itemstack, pointed_thing, seats)
+	if not clicker:is_player() then
+		return itemstack
+	end
+	--conversion table for param2 to dir
+	local p2d = {
+		vector.new(0, 0, 0),
+		vector.new(0, 0, -1),
+		vector.new(0, 0, 1),
+		vector.new(1, 0, 0),
+		vector.new(-1, 0, 0),
+		vector.new(0, 0, 0),
+		vector.new(0, 0, 0)
+	}
+
+	--generate posible seat positions
+	local valid_seats = {[minetest.hash_node_position(pos)] = pos}
+	if seats > 1 then
+		for i=1,seats-1 do
+			--since this are hardware colored nodes, node.param2 gives us a actual param to get a dir from
+			local npos = vector.add(pos, vector.multiply(p2d[node.param2 % 8], i))
+			valid_seats[minetest.hash_node_position(npos)] = npos
+		end
+	end
+
+	--see if we can find a non occupied seat
+	local sit_pos
+	for hash, spos in pairs(valid_seats) do
+		local pstatus = false
+		for _, ref in pairs(minetest.get_objects_inside_radius(spos, 0.5)) do
+			if ref:is_player() then
+				pstatus = true
+			end
+		end
+		if not pstatus then sit_pos = spos end
+	end
+	if not sit_pos then
+		minetest.chat_send_player(clicker:get_player_name(), "sorry, this seat is currently occupied")
+		return itemstack
+	end
+
+	--seat the player
+	sit_pos.y = sit_pos.y-0.5
+	clicker:set_pos(sit_pos)
+	return itemstack
+end
+
 dofile(modpath.."/longsofas.lua")
 dofile(modpath.."/sofas.lua")
 dofile(modpath.."/armchairs.lua")

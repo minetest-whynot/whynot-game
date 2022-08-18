@@ -59,8 +59,8 @@ minetest.register_craft({
 minetest.register_craft({
 	output = "my_castle_doors:door4 1",
 	recipe = {
-		{"my_door_wood:wood_brown", "default:steel_ingot", ""},
 		{"my_door_wood:wood_brown", "my_door_wood:wood_brown", ""},
+		{"my_door_wood:wood_brown", "default:steel_ingot", ""},
 		{"my_door_wood:wood_brown", "my_door_wood:wood_brown", ""}
 	}
 })

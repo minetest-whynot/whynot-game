@@ -1,5 +1,7 @@
 local S = minetest.get_translator("homedecor_pictures_and_paintings")
 
+local wood_tex = homedecor.textures.default_wood
+
 local pframe_cbox = {
 	type = "fixed",
 	fixed = { -0.18, -0.5, -0.08, 0.18, -0.08, 0.18 }
@@ -17,10 +19,12 @@ for _, i in ipairs(n) do
 		},
 		inventory_image = "homedecor_picture_frame"..i.."_inv.png",
 		wield_image = "homedecor_picture_frame"..i.."_inv.png",
-		groups = {snappy = 3},
+		groups = {snappy = 3, dig_tree = 3},
 		selection_box = pframe_cbox,
 		walkable = false,
-		sounds = default.node_sound_glass_defaults()
+		_sound_def = {
+			key = "node_sound_glass_defaults",
+		},
 	})
 end
 
@@ -36,14 +40,16 @@ for i = 1,20 do
 		description = S("Decorative painting #@1", i),
 		mesh = "homedecor_painting.obj",
 		tiles = {
-			"default_wood.png",
+			wood_tex,
 			"homedecor_blank_canvas.png",
 			"homedecor_painting"..i..".png"
 		},
 		selection_box = p_cbox,
 		walkable = false,
-		groups = {snappy=3},
-		sounds = default.node_sound_wood_defaults(),
+		groups = {snappy=3, dig_tree = 3},
+		_sound_def = {
+			key = "node_sound_wood_defaults",
+		},
 	})
 end
 
@@ -60,7 +66,7 @@ minetest.register_craft({
     output = "homedecor:blank_canvas",
     recipe = {
 		{ "", "group:stick", "" },
-		{ "group:stick", "wool:white", "group:stick" },
+		{ "group:stick", homedecor.materials["wool_white"], "group:stick" },
 		{ "", "group:stick", "" },
     }
 })
@@ -129,12 +135,12 @@ local painting_patterns = {
 
 for i,recipe in pairs(painting_patterns) do
 
-	local item1 = "dye:"..recipe[1][1]
-	local item2 = "dye:"..recipe[1][2]
-	local item3 = "dye:"..recipe[1][3]
-	local item4 = "dye:"..recipe[2][1]
-	local item5 = "dye:"..recipe[2][2]
-	local item6 = "dye:"..recipe[2][3]
+	local item1 = homedecor.materials["dye_"..recipe[1][1]]
+	local item2 = homedecor.materials["dye_"..recipe[1][2]]
+	local item3 = homedecor.materials["dye_"..recipe[1][3]]
+	local item4 = homedecor.materials["dye_"..recipe[2][1]]
+	local item5 = homedecor.materials["dye_"..recipe[2][2]]
+	local item6 = homedecor.materials["dye_"..recipe[2][3]]
 
 	minetest.register_craft({
 		output = "homedecor:painting_"..i,
@@ -147,16 +153,28 @@ for i,recipe in pairs(painting_patterns) do
 end
 
 local picture_dyes = {
-	{"dye:brown", "dye:green"}, -- the figure sitting by the tree, wielding a pick
-	{"dye:green", "dye:blue"}	-- the "family photo"
+	{"dye_brown", "dye_green"}, -- the figure sitting by the tree, wielding a pick
+	{"dye_green", "dye_blue"}	-- the "family photo"
 }
 
 for i in ipairs(picture_dyes) do
 	minetest.register_craft({
 		output = "homedecor:picture_frame"..i,
 		recipe = {
-			{ picture_dyes[i][1], picture_dyes[i][2] },
+			{ homedecor.materials[picture_dyes[i][1]], homedecor.materials[picture_dyes[i][2]] },
 			{ "homedecor:blank_canvas", "group:stick" },
 		},
+	})
+end
+
+local numbers = {}
+for i = 2,20 do
+	table.insert(numbers, i)
+end
+
+if minetest.get_modpath("i3") then
+	i3.compress("homedecor:painting_1", {
+		replace = "1",
+		by = numbers
 	})
 end

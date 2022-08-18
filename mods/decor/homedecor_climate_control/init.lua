@@ -7,12 +7,30 @@ homedecor.register("air_conditioner", {
 	mesh = "homedecor_ac.obj",
 	tiles = {
 		"homedecor_ac.png",
-		"default_glass.png"
+		homedecor.textures.glass
 	},
-	groups = { snappy = 3 },
+	groups = { snappy = 3, dig_stone = 3 },
 	use_texture_alpha = "clip",
-	sounds = default.node_sound_leaves_defaults(),
+	_sound_def = {
+		key = "node_sound_leaves_defaults",
+	},
 	selection_box = { type="regular" },
+	crafts = {
+		{
+			recipe = {
+				{ "steel_ingot", "building_blocks:grate", "steel_ingot" },
+				{ "steel_ingot", "homedecor:fan_blades", "basic_materials:motor" },
+				{ "steel_ingot", "basic_materials:motor", "steel_ingot" },
+			},
+		},
+		{
+			recipe = {
+				{ "steel_ingot", "building_blocks:grate", "steel_ingot" },
+				{ "steel_ingot", "basic_materials:motor", "steel_ingot" },
+				{ "steel_ingot", "basic_materials:motor", "steel_ingot" },
+			},
+		}
+	}
 })
 
 -- fans
@@ -29,13 +47,13 @@ local add_mesh_desk_fan_entity = function(pos)
 	local param2 = minetest.get_node(pos).param2
 	local entity = minetest.add_entity(pos, "homedecor:mesh_desk_fan")
 	if param2 == 0 then
-		entity:setyaw(3.142) -- 180 degrees
+		entity:set_yaw(3.142) -- 180 degrees
 	elseif minetest.get_node(pos).param2 == 1 then
-		entity:setyaw(3.142/2) -- 90 degrees
+		entity:set_yaw(3.142/2) -- 90 degrees
 	elseif minetest.get_node(pos).param2 == 3 then
-		entity:setyaw((-3.142/2)) -- 270 degrees
+		entity:set_yaw((-3.142/2)) -- 270 degrees
 	else
-		entity:setyaw(0)
+		entity:set_yaw(0)
 	end
 	return entity
 end
@@ -75,6 +93,14 @@ homedecor.register("desk_fan", {
 		local entities = minetest.get_objects_inside_radius(pos, 0.1)
 		if entities[1] then entities[1]:remove() end
 	end,
+	crafts = {
+		{
+			recipe = {
+				{"steel_ingot", "homedecor:fan_blades", "basic_materials:motor"},
+				{"", "steel_ingot", ""}
+			},
+		}
+	}
 })
 
 -- ceiling fan
@@ -97,9 +123,27 @@ homedecor.register("ceiling_fan", {
 		}
 	},
 	use_texture_alpha = "clip",
-	groups = { snappy = 3 },
-	light_source = default.LIGHT_MAX-1,
-	sounds = default.node_sound_glass_defaults(),
+	groups = { snappy = 3, dig_stone = 3 },
+	light_source = minetest.LIGHT_MAX-1,
+	_sound_def = {
+		key = "node_sound_glass_defaults",
+	},
+	crafts = {
+		{
+			recipe = {
+				{ "basic_materials:motor" },
+				{ "homedecor:fan_blades" },
+				{ "homedecor:glowlight_small_cube" }
+			}
+		},
+		{
+			recipe = {
+				{ "basic_materials:motor" },
+				{ "homedecor:fan_blades" },
+				{ "homedecor:glowlight_small_cube" }
+			}
+		}
+	}
 })
 
 -- heating devices
@@ -115,8 +159,10 @@ homedecor.register("space_heater", {
 	},
 	inventory_image = "homedecor_heater_inv.png",
 	walkable = false,
-	groups = { snappy = 3 },
-	sounds = default.node_sound_wood_defaults(),
+	groups = { snappy = 3, dig_stone = 3 },
+	_sound_def = {
+		key = "node_sound_wood_defaults",
+	},
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -126,6 +172,15 @@ homedecor.register("space_heater", {
 	selection_box = {
 		type = "fixed",
 		fixed = {-0.1875, -0.5, 0.0625, 0.1875, 0, 0.3125}
+	},
+	crafts = {
+		{
+			recipe = {
+				{"basic_materials:plastic_sheet", "basic_materials:heating_element", "basic_materials:plastic_sheet"},
+				{"basic_materials:plastic_sheet", "homedecor:fan_blades", "basic_materials:motor"},
+				{"basic_materials:plastic_sheet", "basic_materials:heating_element", "basic_materials:plastic_sheet"}
+			},
+		}
 	}
 })
 
@@ -138,10 +193,21 @@ homedecor.register("radiator", {
 	},
 	inventory_image = "homedecor_radiator_inv.png",
 	description = S("Radiator heater"),
-	groups = {snappy=3},
+	groups = {snappy=3, dig_stone = 3},
 	selection_box = r_cbox,
 	collision_box = r_cbox,
-	sounds = default.node_sound_wood_defaults(),
+	_sound_def = {
+		key = "node_sound_wood_defaults",
+	},
+	crafts = {
+		{
+			recipe = {
+				{ "steel_ingot", "basic_materials:heating_element", "steel_ingot" },
+				{ "basic_materials:ic", "basic_materials:heating_element", "" },
+				{ "steel_ingot", "basic_materials:heating_element", "steel_ingot" }
+			},
+		}
+	}
 })
 
 -- crafting
@@ -154,70 +220,7 @@ minetest.register_craft( {
     output = "homedecor:fan_blades 2",
     recipe = {
 		{ "", "basic_materials:plastic_sheet", "" },
-		{ "", "default:steel_ingot", "" },
+		{ "", homedecor.materials.steel_ingot, "" },
 		{ "basic_materials:plastic_sheet", "", "basic_materials:plastic_sheet" }
     },
-})
-
-minetest.register_craft({
-    output = "homedecor:air_conditioner",
-    recipe = {
-		{ "default:steel_ingot", "building_blocks:grate", "default:steel_ingot" },
-		{ "default:steel_ingot", "homedecor:fan_blades", "basic_materials:motor" },
-		{ "default:steel_ingot", "basic_materials:motor", "default:steel_ingot" },
-    },
-})
-
-minetest.register_craft({
-    output = "homedecor:air_conditioner",
-    recipe = {
-		{ "default:steel_ingot", "building_blocks:grate", "default:steel_ingot" },
-		{ "default:steel_ingot", "basic_materials:motor", "default:steel_ingot" },
-		{ "default:steel_ingot", "basic_materials:motor", "default:steel_ingot" },
-    },
-})
-
-minetest.register_craft({
-    output = "homedecor:ceiling_fan",
-    recipe = {
-		{ "basic_materials:motor" },
-		{ "homedecor:fan_blades" },
-		{ "homedecor:glowlight_small_cube" }
-	}
-})
-
-minetest.register_craft({
-    output = "homedecor:ceiling_fan",
-    recipe = {
-		{ "basic_materials:motor" },
-		{ "homedecor:fan_blades" },
-		{ "homedecor:glowlight_small_cube" }
-	}
-})
-
-
-minetest.register_craft( {
-        output = "homedecor:desk_fan",
-        recipe = {
-			{"default:steel_ingot", "homedecor:fan_blades", "basic_materials:motor"},
-			{"", "default:steel_ingot", ""}
-        },
-})
-
-minetest.register_craft( {
-        output = "homedecor:space_heater",
-        recipe = {
-			{"basic_materials:plastic_sheet", "basic_materials:heating_element", "basic_materials:plastic_sheet"},
-			{"basic_materials:plastic_sheet", "homedecor:fan_blades", "basic_materials:motor"},
-			{"basic_materials:plastic_sheet", "basic_materials:heating_element", "basic_materials:plastic_sheet"}
-        },
-})
-
-minetest.register_craft( {
-        output = "homedecor:radiator",
-        recipe = {
-			{ "default:steel_ingot", "basic_materials:heating_element", "default:steel_ingot" },
-			{ "basic_materials:ic", "basic_materials:heating_element", "" },
-			{ "default:steel_ingot", "basic_materials:heating_element", "default:steel_ingot" }
-        },
 })
