@@ -216,7 +216,7 @@ origin https://github.com/minetest-mods/cozy (fetch)
 Mod: player/cozy
 
 origin https://codeberg.org/Wuzzy/minetest_hbarmor.git (fetch)
-* a231a5fb82e4430f4022ee670731a2d02cad819f Version 1.0.1
+* be459fa222eef0fe0e7d44360bbc34750ec90a62 Version 1.0.1
 Mod: player/hbarmor
 
 origin https://codeberg.org/Wuzzy/minetest_hbhunger.git (fetch)
