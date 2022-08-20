@@ -259,6 +259,10 @@ origin https://github.com/taikedz/everamzah-backpacks (fetch)
 * 7f617df442bfd75209ce64ffa46402c96a30ff4f removing rabbit_hide as it does not seem to be standard mobs_redo content
 Mod: tools/backpacks
 
+origin https://gitlab.com/h2mm/bike.git (fetch)
+* c5b287c3ce20ad5c4cb5eba67e47d68ce04c046c Use moveresult to detect whether or not the bike rides on a road
+Mod: tools/bike
+
 origin https://notabug.org/tenplus1/bonemeal (fetch)
 * 1f4c1a1fd757835127c65c3199e5b9f67dea9053 fix df_trees tunnel tube growth
 Mod: tools/bonemeal
