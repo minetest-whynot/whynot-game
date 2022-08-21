@@ -1,0 +1,1 @@
+ediblestuff_api.hunger_threshold (Threshold at which the player will start eating their equipped armor or tool) float 0.5

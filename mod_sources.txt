@@ -139,6 +139,10 @@ origin https://github.com/minetest-mods/doc_reveal_chest (fetch)
 * d487a9a390cb7331d67495a0b83610a4262ee2cb initial commit
 Mod: libs/doc_reveal_chest
 
+origin https://github.com/Lazerbeak12345/ediblestuff_api.git (fetch)
+* d90e8ab1fd523476f2e6bc4312276a46f3abc4f7 Merge pull request #1 from dacmot/patch-1
+Mod: libs/ediblestuff_api
+
 origin https://github.com/minetest-mods/intllib (fetch)
 * 6ebdc5388dd8583fbcbb556817769604a5a4cddf Add `modname.lang.tr` locales support (#32)
 Mod: libs/intllib
