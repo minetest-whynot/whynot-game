@@ -14,8 +14,6 @@ export PROJ="$(realpath $(dirname $0)/..)"   # Absolute path
 export SRC="$PROJ"/builder/$MODDIR
 export DST="$PROJ"/mods
 export LOG="$PROJ"/mod_sources.txt
-export DEFAULTBR="origin/HEAD"
-export RSYNC="rsync -a $VERBOSITY --delete --delete-excluded --exclude=.git*"
 
 [[ $VERBOSITY == '--quiet' ]] && QUIETONLY=$VERBOSITY || QUIETONLY=''
 [[ $VERBOSITY == '--verbose' ]] && VERBOSEONLY=$VERBOSITY || VERBOSEONLY=''

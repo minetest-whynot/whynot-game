@@ -1,3 +1,6 @@
+[[ -n "$VERBOSITY" ]] && RSYNC_VERBOSITY="$VERBOSITY" || RSYNC_VERBOSITY="--info=NAME"
+export RSYNC="rsync -a $RSYNC_VERBOSITY --delete --delete-excluded --exclude=.git*"
+
 function sync_mods_folder {
 
   local subm=$1
@@ -105,6 +108,66 @@ function process_update_mods {
 
 }
 export -f process_update_mods
+
+
+function check_update_mods {
+
+  local commit=$1
+  local subm=$2
+  # ignore local branch=$(echo "$3" | tr -d '()')
+
+  cd $subm
+  echo -n "Checking $subm... "
+
+  local branch="origin/HEAD"
+  if [ ${BRANCHES[$subm]+_} ]; then
+    branch=${BRANCHES[$subm]}
+  fi
+
+  local modname=$(basename $subm)
+
+  git fetch
+  local current=$(git rev-parse --verify --quiet $branch) #> /dev/null
+
+  if [ "$commit" != "$current" ]; then
+
+    echo ''
+    git --no-pager log $commit..$current
+
+  else
+    echo 'No changes.'
+  fi
+}
+export -f check_update_mods
+
+
+function process_rebuild_mods {
+
+  local commit=$1
+  local subm=$2
+  # ignore local branch=$(echo "$3" | tr -d '()')
+
+  cd $subm
+  echo "Processing $subm... "
+
+  local modname=$(basename $subm)
+
+  sync_mods_folder $subm $modname
+  pushd $PROJ > /dev/null
+  local DSTPATH="$DST/$subm"
+  if [[ ! -e $DSTPATH ]]; then
+    local group=$(dirname $subm)
+    DSTPATH="$DST/$group"
+  fi
+
+  popd &> /dev/null
+  echo '' >> "$LOG"
+  echo `git remote -v | grep '\(fetch\)'` >> "$LOG"
+  git branch --format '%(HEAD) %(objectname) %(subject)' | grep '^[*]' >> "$LOG"
+  echo "Mod: $subm" >> "$LOG"
+
+}
+export -f process_rebuild_mods
 
 
 declare -a git_repositories
