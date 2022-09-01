@@ -51,8 +51,8 @@ origin https://github.com/mt-mods/homedecor_modpack (fetch)
 * 0403f47f867ddf1623cd0bc78bffcf0ee2351003 fix https://github.com/mt-mods/homedecor_modpack/issues/44
 Mod: decor/homedecor_modpack
 
-origin https://github.com/bell07/minetest-laptop (fetch)
-* d6ed99d8845653d473fc20890299564e2a280137 Fix #142 
+origin https://github.com/Gerold55/laptop.git (fetch)
+* 03b33937def3f2537ee87a733ca35526efe599e4 Merge pull request #144 from sfence/sfence_painting
 Mod: decor/laptop
 
 origin https://repo.or.cz/minetest_mtg_plus.git (fetch)
