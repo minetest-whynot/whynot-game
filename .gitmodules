@@ -1,6 +1,6 @@
 [submodule "builder/mods_src/ambience/ambience"]
 	path = builder/mods_src/ambience/ambience
-	url = https://notabug.org/TenPlus1/ambience
+	url = https://github.com/minetest-mirrors/ambience.git
 [submodule "builder/mods_src/ambience/lightning"]
 	path = builder/mods_src/ambience/lightning
 	url = https://github.com/minetest-mods/lightning
@@ -63,7 +63,7 @@
 	url = https://github.com/Amaz1/flight/
 [submodule "builder/mods_src/flora_ores/farming"]
 	path = builder/mods_src/flora_ores/farming
-	url = https://notabug.org/TenPlus1/farming
+	url = https://github.com/minetest-mirrors/farming.git
 [submodule "builder/mods_src/flora_ores/mese_crystals"]
 	path = builder/mods_src/flora_ores/mese_crystals
 	url = https://github.com/bell07/minetest-mese_crystals
@@ -78,7 +78,7 @@
 	url = https://github.com/minetest-mods/mtfoods
 [submodule "builder/mods_src/food/pie"]
 	path = builder/mods_src/food/pie
-	url = https://notabug.org/TenPlus1/pie
+	url = https://github.com/minetest-mirrors/pie.git
 [submodule "builder/mods_src/food/waffles"]
 	path = builder/mods_src/food/waffles
 	url = https://github.com/GreenXenith/waffles
@@ -105,13 +105,13 @@
 	url = https://github.com/Treer/cloudlands/
 [submodule "builder/mods_src/mapgen/maple"]
 	path = builder/mods_src/mapgen/maple
-	url = https://notabug.org/dacmot/maple
+	url = https://codeberg.org/Dacmot/maple.git
 [submodule "builder/mods_src/mapgen/meseor"]
 	path = builder/mods_src/mapgen/meseor
 	url = https://github.com/minetest-mods/meseor
 [submodule "builder/mods_src/mapgen/pbj_pup"]
 	path = builder/mods_src/mapgen/pbj_pup
-	url = https://notabug.org/TenPlus1/pbj_pup
+	url = https://github.com/minetest-mirrors/pbj_pup.git
 [submodule "builder/mods_src/mesecons"]
 	path = builder/mods_src/mesecons/mesecons
 	url = https://github.com/minetest-mods/mesecons
@@ -123,10 +123,10 @@
 	url = https://codeberg.org/Hamlet/mobs_ghost_redo
 [submodule "builder/mods_src/mobs_redo/mobs_monster"]
 	path = builder/mods_src/mobs_redo/mobs_monster
-	url = https://notabug.org/TenPlus1/mobs_monster
+	url = https://github.com/minetest-mirrors/mobs_monster.git
 [submodule "builder/mods_src/mobs_redo/mobs_redo"]
 	path = builder/mods_src/mobs_redo/mobs_redo
-	url = https://notabug.org/TenPlus1/mobs_redo
+	url = https://github.com/minetest-mirrors/mobs_redo.git
 [submodule "builder/mods_src/mydoors"]
 	path = builder/mods_src/decor/mydoors
 	url = https://github.com/minetest-mods/mydoors
@@ -165,7 +165,7 @@
 	url = https://github.com/taikedz/everamzah-backpacks
 [submodule "builder/mods_src/tools/bonemeal"]
 	path = builder/mods_src/tools/bonemeal
-	url = https://notabug.org/tenplus1/bonemeal
+	url = https://github.com/minetest-mirrors/bonemeal.git
 [submodule "builder/mods_src/tools/boost_cart"]
 	path = builder/mods_src/tools/boost_cart
 	url = https://github.com/SmallJoker/boost_cart
