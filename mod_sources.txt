@@ -1,5 +1,5 @@
 
-origin https://notabug.org/TenPlus1/ambience (fetch)
+origin https://github.com/minetest-mirrors/ambience.git (fetch)
 * f7d54237f60ad3d5649985c73dfa618bc605c5cb add join/leave nil checks, use pairs for player loop
 Mod: ambience/ambience
 
@@ -91,7 +91,7 @@ origin https://github.com/mt-mods/unifieddyes (fetch)
 * 878377301f376b21d4d4529da2a5c082f49792fe respect the shift click convention and fix unreachable if else(if) tree
 Mod: decor/unifieddyes
 
-origin https://notabug.org/TenPlus1/farming (fetch)
+origin https://github.com/minetest-mirrors/farming.git (fetch)
 * 0b06c7cd450c5ec9a76b3c22a9c57f06e4f8a7c2 add sound to hemp block
 Mod: flora_ores/farming
 
@@ -115,7 +115,7 @@ origin https://github.com/minetest-mods/mtfoods (fetch)
 * ae3eb42c9ba6591e3fda13a25e902e64ff012340 replace global "ing" by more meaningful global mtfoods.ingredients variable
 Mod: food/mtfoods
 
-origin https://notabug.org/TenPlus1/pie (fetch)
+origin https://github.com/minetest-mirrors/pie.git (fetch)
 * b47a4a25407e36aa7a31997031903254a142dca7 add pie rotation (thanks MoNTE48)
 Mod: food/pie
 
@@ -159,7 +159,7 @@ origin https://github.com/Treer/cloudlands/ (fetch)
 * 0009137327942697a5df048d1a4f6706970509aa Update README.md
 Mod: mapgen/cloudlands
 
-origin https://notabug.org/dacmot/maple (fetch)
+origin https://codeberg.org/Dacmot/maple.git (fetch)
 * 97a4f2bee565ac590dcf4103729ea527c407be6d Add luacheck CI
 Mod: mapgen/maple
 
@@ -167,7 +167,7 @@ origin https://github.com/minetest-mods/meseor (fetch)
 * b0a99d3acb25007b840741db6216c00337eba247 Update
 Mod: mapgen/meseor
 
-origin https://notabug.org/TenPlus1/pbj_pup (fetch)
+origin https://github.com/minetest-mirrors/pbj_pup.git (fetch)
 * 5a0d59e5a8c7c793dce046437c7527a98f31336d tweak code
 Mod: mapgen/pbj_pup
 
@@ -191,11 +191,11 @@ origin https://codeberg.org/Hamlet/mobs_ghost_redo (fetch)
 * ac9c013e47939c05df4671cab5de841e61e3837c v0.7.0
 Mod: mobs_redo/mobs_ghost_redo
 
-origin https://notabug.org/TenPlus1/mobs_monster (fetch)
+origin https://github.com/minetest-mirrors/mobs_monster.git (fetch)
 * a097ee9388944365817b7c454165d520e8f2a751 harden lava flan code
 Mod: mobs_redo/mobs_monster
 
-origin https://notabug.org/TenPlus1/mobs_redo (fetch)
+origin https://github.com/minetest-mirrors/mobs_redo.git (fetch)
 * 83f0b901a4e0e127129c290d727af710da79d15a add self.messages field
 Mod: mobs_redo/mobs_redo
 
@@ -263,7 +263,7 @@ origin https://github.com/taikedz/everamzah-backpacks (fetch)
 * 7f617df442bfd75209ce64ffa46402c96a30ff4f removing rabbit_hide as it does not seem to be standard mobs_redo content
 Mod: tools/backpacks
 
-origin https://notabug.org/tenplus1/bonemeal (fetch)
+origin https://github.com/minetest-mirrors/bonemeal.git (fetch)
 * 1f4c1a1fd757835127c65c3199e5b9f67dea9053 fix df_trees tunnel tube growth
 Mod: tools/bonemeal
 
