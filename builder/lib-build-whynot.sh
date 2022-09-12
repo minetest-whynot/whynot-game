@@ -153,12 +153,6 @@ function process_rebuild_mods {
   local modname=$(basename $subm)
 
   sync_mods_folder $subm $modname
-  pushd $PROJ > /dev/null
-  local DSTPATH="$DST/$subm"
-  if [[ ! -e $DSTPATH ]]; then
-    local group=$(dirname $subm)
-    DSTPATH="$DST/$group"
-  fi
 
   popd &> /dev/null
   echo '' >> "$LOG"
