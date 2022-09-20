@@ -48,7 +48,7 @@ origin https://github.com/mt-mods/home_workshop_modpack (fetch)
 Mod: decor/home_workshop_modpack
 
 origin https://github.com/mt-mods/homedecor_modpack (fetch)
-* 0403f47f867ddf1623cd0bc78bffcf0ee2351003 fix https://github.com/mt-mods/homedecor_modpack/issues/44
+* a598fa3067e81babeb09f39e42d14a6d720383f4 add not in creative inventory group to bed extended since it is made by placing a bed over top of another
 Mod: decor/homedecor_modpack
 
 origin https://github.com/Gerold55/laptop.git (fetch)
@@ -88,7 +88,7 @@ origin https://github.com/minetest-mods/ts_furniture (fetch)
 Mod: decor/ts_furniture
 
 origin https://github.com/mt-mods/unifieddyes (fetch)
-* 878377301f376b21d4d4529da2a5c082f49792fe respect the shift click convention and fix unreachable if else(if) tree
+* 96a939c06944c2643cf18b25d3cf43800aca22cb Airbrush: Fix dye selection by not relying on internal behaviour of minetest.serialize (#10)
 Mod: decor/unifieddyes
 
 origin https://github.com/minetest-mirrors/farming.git (fetch)
@@ -120,7 +120,7 @@ origin https://github.com/minetest-mirrors/pie.git (fetch)
 Mod: food/pie
 
 origin https://github.com/GreenXenith/waffles (fetch)
-* e3fb87c3dba1900a861700fff29afa6e63f01c3a Update screenshot.png
+* 9486f8d67ac4f8510319789928b226167c7e7da9 Confirm that batter is removed when removing the maker
 Mod: food/waffles
 
 origin https://repo.or.cz/minetest_doc.git (fetch)
@@ -140,7 +140,7 @@ origin https://github.com/minetest-mods/doc_reveal_chest (fetch)
 Mod: libs/doc_reveal_chest
 
 origin https://github.com/Lazerbeak12345/ediblestuff_api.git (fetch)
-* d90e8ab1fd523476f2e6bc4312276a46f3abc4f7 Merge pull request #1 from dacmot/patch-1
+* 0e79e0a056ffd8a0b91a6db727d780a6c1f3c593 Modularize codebase
 Mod: libs/ediblestuff_api
 
 origin https://github.com/minetest-mods/intllib (fetch)
@@ -176,11 +176,11 @@ origin https://github.com/GreenXenith/tac_nayn (fetch)
 Mod: mapgen/tac_nayn
 
 origin https://github.com/minetest-mods/mesecons (fetch)
-* da57a6214af9b23e50e319a5902b390e613725ee microcontroller: fix unsafe pattern usage (#620)
+* 121082859fd8d68f66bd5723c9c23fe8b1e3b0d6 Handle invalid param2 in presets.lua (#623)
 Mod: mesecons/mesecons
 
 origin https://github.com/minetest/minetest_game (fetch)
-* b55329d3e13120df0f4d70e742bf44e8edf79faf Merge remote-tracking branch 'origin/stable-5' into HEAD
+* 08057e8e0f01b443515ff81423215e4367f84872 Merge remote-tracking branch 'origin/stable-5' into HEAD
 Mod: minetest_game/minetest_game
 
 origin https://github.com/raymoo/cmi.git (fetch)
@@ -192,11 +192,11 @@ origin https://codeberg.org/Hamlet/mobs_ghost_redo (fetch)
 Mod: mobs_redo/mobs_ghost_redo
 
 origin https://github.com/minetest-mirrors/mobs_monster.git (fetch)
-* a097ee9388944365817b7c454165d520e8f2a751 harden lava flan code
+* 1ee293dae0c3d54b4e3b88969a15801d1bb3d9f1 add screenshot.jpg
 Mod: mobs_redo/mobs_monster
 
 origin https://github.com/minetest-mirrors/mobs_redo.git (fetch)
-* 83f0b901a4e0e127129c290d727af710da79d15a add self.messages field
+* 2935d1ee5dbfaaaf8261e435b7a12392be2fdc68 have mobs jump slightly when grown to avoid being caught in floor
 Mod: mobs_redo/mobs_redo
 
 origin https://github.com/minetest-mods/3d_armor (fetch)
@@ -264,7 +264,7 @@ origin https://github.com/taikedz/everamzah-backpacks (fetch)
 Mod: tools/backpacks
 
 origin https://github.com/minetest-mirrors/bonemeal.git (fetch)
-* 1f4c1a1fd757835127c65c3199e5b9f67dea9053 fix df_trees tunnel tube growth
+* 70c51d18bb7e9a5df6132cb4c242878f688b7e15 update rhubarb and strawberry growth
 Mod: tools/bonemeal
 
 origin https://github.com/SmallJoker/boost_cart (fetch)
