@@ -14,6 +14,7 @@ minetest.register_node(MODNAME .. ":waffle", {
     drawtype = "mesh",
     mesh = "waffles_waffle.obj",
     tiles = {"waffles_waffle.png"},
+    use_texture_alpha = "clip",
     inventory_image = "waffles_waffle_inv.png",
     wield_image = "waffles_waffle_inv.png",
     paramtype = "light",

@@ -6,7 +6,7 @@ local waffles = {}
 
 -- Return default sounds if available
 waffles.default_sounds = function(name)
-    if default and default[name] then return default[name]() end
+    if minetest.global_exists("default") and default[name] then return default[name]() end
 end
 
 waffles.setting_or = function(name, default)

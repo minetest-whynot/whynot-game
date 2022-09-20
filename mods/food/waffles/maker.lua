@@ -46,6 +46,7 @@ local def_base = {
     description = S("Waffle Maker"),
     drawtype = "mesh",
     tiles = {"waffles_waffle_maker.png"},
+    use_texture_alpha = "clip",
     paramtype = "light",
     sunlight_propagates = true,
     paramtype2 = "facedir",
@@ -148,7 +149,11 @@ local def_base = {
                 minetest.registered_nodes[MODNAME .. ":waffle_maker"].on_rightclick(pos, minetest.get_node(pos), nil, ItemStack(""))
             end
         end
-    end
+    end,
+    can_dig = function(pos)
+        return minetest.get_meta(pos):get_float("cooked") == -1
+    end,
+    on_destruct = remove_batter,
 }
 
 minetest.register_lbm({
