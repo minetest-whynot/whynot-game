@@ -101,7 +101,7 @@ homedecor.register("bed_extended", {
 	palette = "unifieddyes_palette_colorwallmounted.png",
 	selection_box = bed_sbox,
 	node_box = bed_cbox,
-	groups = {snappy=3, ud_param2_colorable = 1, dig_generic=2},
+	groups = {snappy=3, ud_param2_colorable = 1, dig_generic=2, not_in_creative_inventory=1},
 	_sound_def = {
 		key = "node_sound_wood_defaults",
 	},

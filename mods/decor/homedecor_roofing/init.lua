@@ -14,6 +14,7 @@ minetest.register_node(":homedecor:skylight", {
 		key = "node_sound_glass_defaults",
 	},
 	selection_box = homedecor.nodebox.slab_y(0.1),
+	collision_box = homedecor.nodebox.slab_y(0.1),
 })
 
 minetest.register_node(":homedecor:skylight_frosted", {
@@ -29,6 +30,7 @@ minetest.register_node(":homedecor:skylight_frosted", {
 		key = "node_sound_glass_defaults",
 	},
 	selection_box = homedecor.nodebox.slab_y(0.1),
+	collision_box = homedecor.nodebox.slab_y(0.1),
 })
 
 for s, s_loc in pairs({ ["asphalt"] = S("asphalt"), ["terracotta"] = S("terracotta"), ["wood"] = S("wood") }) do
