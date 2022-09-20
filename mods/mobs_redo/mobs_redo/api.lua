@@ -28,7 +28,7 @@ local use_cmi = minetest.global_exists("cmi")
 
 mobs = {
 	mod = "redo",
-	version = "20220804",
+	version = "20220918",
 	intllib = S,
 	invis = minetest.global_exists("invisibility") and invisibility or {}
 }
@@ -1364,7 +1364,7 @@ local entity_physics = function(pos, radius)
 		-- punches work on entities AND players
 		objs[n]:punch(objs[n], 1.0, {
 			full_punch_interval = 1.0,
-			damage_groups = {fleshy = damage},
+			damage_groups = {fleshy = damage}
 		}, pos)
 	end
 end
@@ -1430,7 +1430,7 @@ function mob_class:breed()
 				self.object:set_pos(pos)
 
 				-- jump slightly when fully grown so as not to fall into ground
-				self.object:set_velocity({x = 0, y = 0.5, z = 0 })
+				self.object:set_velocity({x = 0, y = 2, z = 0 })
 			end
 		end
 
@@ -2120,8 +2120,9 @@ function mob_class:follow_flop()
 
 		for n = 1, #players do
 
-			if players[n] and get_distance(players[n]:get_pos(), s) < self.view_range
-			and not is_invisible(self, players[n]:get_player_name()) then
+			if players[n]
+			and not is_invisible(self, players[n]:get_player_name())
+			and get_distance(players[n]:get_pos(), s) < self.view_range then
 
 				self.following = players[n]
 
@@ -2178,10 +2179,11 @@ function mob_class:follow_flop()
 				yaw_to_pos(self, p)
 
 				-- anyone but standing npc's can move along
-				if dist > self.reach
+				if dist >= self.reach
 				and self.order ~= "stand" then
 
 					self:set_velocity(self.walk_velocity)
+					self.follow_stop = nil
 
 					if self.walk_chance ~= 0 then
 						self:set_animation("walk")
@@ -2189,6 +2191,7 @@ function mob_class:follow_flop()
 				else
 					self:set_velocity(0)
 					self:set_animation("stand")
+					self.follow_stop = true
 				end
 
 				return
@@ -2258,7 +2261,7 @@ function mob_class:do_states(dtime)
 
 	local yaw = self.object:get_yaw() ; if not yaw then return end
 
-	if self.state == "stand" then
+	if self.state == "stand" and not self.follow_stop then
 
 		if self.randomly_turn and random(4) == 1 then
 
@@ -3795,6 +3798,12 @@ end
 -- global functions
 
 function mobs:add_mob(pos, def)
+
+	-- nil check
+	if not pos or not def then
+--print("--- no position or definition given")
+		return
+	end
 
 	-- is mob actually registered?
 	if not mobs.spawning_mobs[def.name]
