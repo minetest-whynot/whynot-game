@@ -9,11 +9,16 @@ When an `edible_while_wearing` armor peice is equipped, the player will eat some
 of that armor if their saturation (or health in absence of a hunger 
 mod) is below 85%. This reduces the durability of a random armor piece.
 
-This mod was created for the [`chocolatestuff`][cs] mod, and so you can make your own armors like it - without needing to depend on `farming`.
+This mod was created for the [`chocolatestuff`][cs] mod, and so you can make
+your own armors like it - without needing to depend on `farming`.
 
 [cs]: https://github.com/Lazerbeak12345/chocolatestuff
 
 > This mod only provides the api to register a tool as edible.
+
+## Versioning
+
+Uses [semver](https://semver.org)
 
 ## Requires
 
@@ -33,6 +38,10 @@ Nothing! But it has optional integration with:
 - `mcl_hunger`
 
 For all the above, this mod (currently) assumes you are on a fairly recent version of that mod.
+
+## Settings
+
+See `settingtypes.txt` for information about settings.
 
 ## API
 
