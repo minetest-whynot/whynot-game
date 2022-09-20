@@ -75,16 +75,20 @@ mobs:register_mob("mobs_monster:lava_flan", {
 			if math.random(4) == 1 then
 				mobs:add_mob(pos, {name = "mobs_monster:obsidian_flan"})
 			end
-		else -- place flame if position empty and flame exists
-			local nod = minetest.get_node(pos)
-			local def = nod.name and minetest.registered_nodes[nod.name]
+		else
+			mobs:effect(pos, 40, "fire_basic_flame.png", 2, 3, 2, 5, 10, nil)
 
-			if def and def.buildable_to == true
+			local nods = minetest.find_nodes_in_area(
+				{x = pos.x, y = pos.y + 1, z = pos.z},
+				{x = pos.x, y = pos.y, z = pos.z}, "air")
+
+			 -- place flame if position empty and flame exists
+			if nods and #nods > 0
 			and minetest.registered_nodes["fire:basic_flame"] then
+
+				pos = nods[math.random(#nods)]
 				minetest.set_node(pos, {name = "fire:basic_flame"})
 			end
-
-			mobs:effect(pos, 40, "fire_basic_flame.png", 2, 3, 2, 5, 10, nil)
 
 			self.object:remove()
 		end
