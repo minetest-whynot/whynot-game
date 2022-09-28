@@ -13,7 +13,7 @@ Generated file: [mod_sources.txt](https://github.com/minetest-whynot/whynot-game
 ### License statement
 
 Each of the mods do have their own free license.
-The whynot related work (such as the buiding scripts) are GPL-V3
+The whynot related work (such as the buiding scripts) are GPLv3-only
 
 ### Contribution
 
