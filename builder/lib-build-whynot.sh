@@ -22,6 +22,7 @@ function sync_mods_folder {
       local childname=$(basename $childmod)
       if [[ ${childname:0:1} != "." && !( $exclusionlist =~ $childname$ || $exclusionlist =~ $childname[^[:alnum:]_] ) ]]; then
         $RSYNC $exclusionlist $childmod/ $DSTPATH/$childname/
+        cp [Ll][Ii][Cc][Ee][Nn][Ss][Ee]* $DSTPATH/$childname/
       else
         rm -rf $VERBOSEONLY $DSTPATH/$childname
       fi
@@ -29,6 +30,7 @@ function sync_mods_folder {
 
   elif [[ "$modname" = "minetest_game" ]]; then
     $RSYNC $exclusionlist $SRC/$subm/mods/ $DSTPATH/
+    cp [Ll][Ii][Cc][Ee][Nn][Ss][Ee]* $DSTPATH/
   else
     $RSYNC $exclusionlist $SRC/$subm/ $DSTPATH/$modname/
   fi
