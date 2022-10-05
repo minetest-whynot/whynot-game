@@ -320,7 +320,7 @@ origin https://github.com/minetest-mods/subspacewalker (fetch)
 Mod: tools/subspacewalker
 
 origin https://github.com/lisacvuk/minetest-toolranks (fetch)
-* 8010feb5bfecd369c7a9353ac786bc6c83384174 Add nil check afteruse
+* 05eea5177e4c804eea6fdf77eccd141405b38613 Update README.md
 Mod: tools/toolranks
 
 origin https://github.com/minetest-mods/trash_can (fetch)
