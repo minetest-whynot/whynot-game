@@ -1,2 +1,3 @@
 .*	export-ignore
 builder	export-ignore
+private export-ignore
