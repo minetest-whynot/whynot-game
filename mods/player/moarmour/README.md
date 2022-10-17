@@ -1,18 +1,36 @@
 ![luacheck](https://github.com/dacmot/moarmour/actions/workflows/luacheck.yml/badge.svg)
 
-# MOAR! ARMOURS!
+MOAR! ARMOURS!
+================
 
 (yes, that's how it's spelled!)
 
 ![MOAR! ARMOURS!](https://raw.githubusercontent.com/dacmot/moarmour/master/screenshot_20180211_181156.png)
 
-Forked from [armor_addon](https://forum.minetest.net/viewtopic.php?t=18403) to bring it into the new decade! MT v5 translation support, French translation, and a modified craft chain to be able to use both dead player bones (MTG's bones) and the bonemeal-mod bones found while digging dirt to create the skeletal armour!
+Forked from [armor_addon](https://forum.minetest.net/viewtopic.php?t=18403) ([Github](https://github.com/Chemguy99/armor_addon)) to bring it into the new decade! MT v5 translation support, French translation, and a modified craft chain to be able to use both dead player bones (MTG's bones) and the bonemeal-mod bones found while digging dirt to create the skeletal armour!
 
 Download from within the game's content DB ([website](https://content.minetest.net/packages/Duvalon/moarmour/)), or [GitHub](https://github.com/dacmot/moarmour/releases).
 
-**License:** [GPL 2.0](https://github.com/dacmot/moarmour/blob/master/LICENSE)
+License
+-------
 
-Dependencies:
+Copyright (C) 2020-2022  Olivier Dragon</br>
+Copyright (C) 2017-2018  ChemGuy99 aka Chem871
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+
+Dependencies
+------------
+
 - default mod (found in minetest_game)
 - 3d_armor ([ContenDB](https://content.minetest.net/packages/stu/3d_armor/), [forums](https://forum.minetest.net/viewtopic.php?t=4654))
 
@@ -37,7 +55,8 @@ Optional dependencies (for **MOAR! ARMOURS!**)
 
 Bugs can be reported directly in GitHub issues. Pull requests welcome.
 
-# Installation
+Installation
+------------
 
 Unzip the archive, rename the folder to moarmour and
 place it in minetest/mods/
