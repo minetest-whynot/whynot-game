@@ -95,9 +95,9 @@ origin https://github.com/minetest-mirrors/farming.git (fetch)
 * 0b06c7cd450c5ec9a76b3c22a9c57f06e4f8a7c2 add sound to hemp block
 Mod: flora_ores/farming
 
-origin https://github.com/bell07/minetest-mese_crystals (fetch)
-* 33b477e3d95526e49156354e9e61100bf6052e1c Merge pull request #1 from bell07/patch-1
-Mod: flora_ores/mese_crystals
+origin https://codeberg.org/Dacmot/YellowCrystals.git (fetch)
+* 01f7faa3dd2424c2f6959d022ebb07111077d652 Adding link to WTFPL
+Mod: flora_ores/yellow_crystal
 
 origin https://github.com/h-v-smacker/canned_food (fetch)
 * 4d061e9ded8632a6fd232bf497350c138c718321 Merge pull request #4 from Bastrabun/master
