@@ -236,7 +236,7 @@ origin https://codeberg.org/Wuzzy/minetest_hudbars.git (fetch)
 Mod: player/hudbars
 
 origin https://github.com/dacmot/moarmour (fetch)
-* 252369262d95edfa9be0f4b0291baacd158733c5 Update README.md
+* 7fe7a1ac15a19a2befd9faa1de8de8ad7857cd23 Update armour.lua
 Mod: player/moarmour
 
 origin https://github.com/minetest-mods/playeranim (fetch)
