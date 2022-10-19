@@ -64,9 +64,6 @@
 [submodule "builder/mods_src/flora_ores/farming"]
 	path = builder/mods_src/flora_ores/farming
 	url = https://github.com/minetest-mirrors/farming.git
-[submodule "builder/mods_src/flora_ores/mese_crystals"]
-	path = builder/mods_src/flora_ores/mese_crystals
-	url = https://github.com/bell07/minetest-mese_crystals
 [submodule "builder/mods_src/food/canned_food"]
 	path = builder/mods_src/food/canned_food
 	url = https://github.com/h-v-smacker/canned_food
@@ -247,3 +244,6 @@
 [submodule "builder/mods_src/libs/ediblestuff_api"]
 	path = builder/mods_src/libs/ediblestuff_api
 	url = https://github.com/Lazerbeak12345/ediblestuff_api.git
+[submodule "builder/mods_src/mapgen/yellow_crystal"]
+	path = builder/mods_src/flora_ores/yellow_crystal
+	url = https://codeberg.org/Dacmot/YellowCrystals.git
