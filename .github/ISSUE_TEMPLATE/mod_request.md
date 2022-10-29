@@ -30,10 +30,10 @@ https://www.example.com
 7. When does this mod feel like cheating?
    * 
 8. Does this mod use the software "git" for version control? (note: we are asking about git. Github, Gitlab, notabug and hundreds of other git _providers_ exist but are not specificly needed, although these do qualify).
-   *
+   * 
 9. Upon testing this mod, what errors, odd behavior, or other incompatibilities were noticed?
-   *
+   * 
 10. Is the licence one that we can include in WhyNot? (Whynot is under the GPLv3 only. Be sure you know what you are talking about or cite your source)
-   *
+   * 
 
 ## Other comments
