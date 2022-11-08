@@ -140,7 +140,7 @@ origin https://github.com/minetest-mods/doc_reveal_chest (fetch)
 Mod: libs/doc_reveal_chest
 
 origin https://github.com/Lazerbeak12345/ediblestuff_api.git (fetch)
-* 0e79e0a056ffd8a0b91a6db727d780a6c1f3c593 Modularize codebase
+* 63791798d1b5b8bae1e885a95f5d962ce679cf28 Don't use `hbhunger` if damage is disabled
 Mod: libs/ediblestuff_api
 
 origin https://github.com/minetest-mods/intllib (fetch)
