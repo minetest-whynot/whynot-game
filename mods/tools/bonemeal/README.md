@@ -35,5 +35,6 @@ Changelog:
 - 1.3 - Ability to craft dye from mulch, bonemeal and fertiliser (thanks orbea)
 - 1.4 - Add support for fern saplings from plantlife mod (thanks nixnoxus)
 - 1.5 - Add support for farming redo's asparagus, eggplant, spinach
+- 1.6 - Add helper function for position and protection check, add ginger support
 
 Lucky Blocks: 6
