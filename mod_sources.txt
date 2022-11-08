@@ -48,7 +48,7 @@ origin https://github.com/mt-mods/home_workshop_modpack (fetch)
 Mod: decor/home_workshop_modpack
 
 origin https://github.com/mt-mods/homedecor_modpack (fetch)
-* a598fa3067e81babeb09f39e42d14a6d720383f4 add not in creative inventory group to bed extended since it is made by placing a bed over top of another
+* 8893d66dc64e4d8d1b51cb9da1ccf9fe43e802d7 fix https://github.com/mt-mods/dreambuilder_game/issues/20 - quote on quote improper dor rotation which turned out to be badly applied model work around
 Mod: decor/homedecor_modpack
 
 origin https://github.com/Gerold55/laptop.git (fetch)
@@ -176,7 +176,7 @@ origin https://github.com/GreenXenith/tac_nayn (fetch)
 Mod: mapgen/tac_nayn
 
 origin https://github.com/minetest-mods/mesecons (fetch)
-* 121082859fd8d68f66bd5723c9c23fe8b1e3b0d6 Handle invalid param2 in presets.lua (#623)
+* bd07fb0c79fe332d900fdd089014c20cb21fa0d8 Fix typo in hydroturbine recipe (#624)
 Mod: mesecons/mesecons
 
 origin https://github.com/minetest/minetest_game (fetch)
@@ -192,11 +192,11 @@ origin https://codeberg.org/Hamlet/mobs_ghost_redo (fetch)
 Mod: mobs_redo/mobs_ghost_redo
 
 origin https://github.com/minetest-mirrors/mobs_monster.git (fetch)
-* 1ee293dae0c3d54b4e3b88969a15801d1bb3d9f1 add screenshot.jpg
+* 78354ea87ff266a1983d4430bebe2ecbf96ee139 fix lava_pick outputs (thanks fluxionary)
 Mod: mobs_redo/mobs_monster
 
 origin https://github.com/minetest-mirrors/mobs_redo.git (fetch)
-* 2935d1ee5dbfaaaf8261e435b7a12392be2fdc68 have mobs jump slightly when grown to avoid being caught in floor
+* b0df8145bdbe916ed42b5c35f8eac0f9a2afb58d update settingtypes.txt
 Mod: mobs_redo/mobs_redo
 
 origin https://github.com/minetest-mods/3d_armor (fetch)
@@ -248,7 +248,7 @@ origin https://repo.or.cz/minetest_show_wielded_item.git (fetch)
 Mod: player/show_wielded_item
 
 origin https://github.com/minetest-mods/skinsdb (fetch)
-* b769824d249b432a4f4f6a659aa6dae1a09071a8 Add Continuous Integration and LuaCheck (#71)
+* e275159dd07adb6a7e4e41642ff54591ec2de954 Add uv wrapped 1.8 hand model (#74)
 Mod: player/skinsdb
 
 origin https://github.com/bell07/minetest-smart_sfinv (fetch)
@@ -264,7 +264,7 @@ origin https://github.com/taikedz/everamzah-backpacks (fetch)
 Mod: tools/backpacks
 
 origin https://github.com/minetest-mirrors/bonemeal.git (fetch)
-* 70c51d18bb7e9a5df6132cb4c242878f688b7e15 update rhubarb and strawberry growth
+* b9cf957dccb06b58b80e908cba9db28981f37d4b tidy helper function
 Mod: tools/bonemeal
 
 origin https://github.com/SmallJoker/boost_cart (fetch)
@@ -276,7 +276,7 @@ origin https://github.com/minetest-mods/ccompass (fetch)
 Mod: tools/ccompass
 
 origin https://github.com/minetest-mods/compost (fetch)
-* a11176b8de8d69d9e6814c0cff9713b79a604792 move depends to mod.conf, clanup description.txt and update README.md to markdown
+* ba65c29cb93a2239db1ee8ead3b7f5f9dfbea98f Luacheck: loop is executed at most once
 Mod: tools/compost
 
 origin https://github.com/orwell96/engrave/ (fetch)
@@ -324,7 +324,7 @@ origin https://github.com/lisacvuk/minetest-toolranks (fetch)
 Mod: tools/toolranks
 
 origin https://github.com/minetest-mods/trash_can (fetch)
-* 78611b3ccd06956ed753c6f97c63e76edc9af177 zh_TW Translations (#13)
+* 0c773c4684f225c8fa6549fa34d33516ff81b188 Add Esperanto translation (#15)
 Mod: tools/trash_can
 
 origin https://github.com/minetest-mods/woodcutting (fetch)
