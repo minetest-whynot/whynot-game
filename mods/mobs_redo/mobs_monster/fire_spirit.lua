@@ -82,16 +82,17 @@ mobs:register_mob("mobs_monster:fire_spirit", {
 
 
 if not mobs.custom_spawn_monster then
-mobs:spawn({
-	name = "mobs_monster:fire_spirit",
-	nodes = {"default:obsidian", "caverealms:hot_cobble"},
-	neighbors = {"group:fire"},
-	min_light = 12,
-	max_light = 15,
-	chance = 1500,
-	active_object_count = 1,
-	max_height = -150
-})
+
+	mobs:spawn({
+		name = "mobs_monster:fire_spirit",
+		nodes = {"default:obsidian", "caverealms:hot_cobble"},
+		neighbors = {"group:fire"},
+		min_light = 12,
+		max_light = 15,
+		chance = 1500,
+		active_object_count = 1,
+		max_height = -150
+	})
 end
 
 

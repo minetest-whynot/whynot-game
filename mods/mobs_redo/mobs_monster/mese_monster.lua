@@ -144,9 +144,9 @@ mobs:register_mob("mobs_monster:mese_monster", {
 	shoot_interval = 0.5,
 	arrow = "mobs_monster:mese_arrow",
 	shoot_offset = 0.75,
---arrow_override = function(self)
---	self.velocity = 20
---end,
+--	arrow_override = function(self)
+--		self.velocity = 20
+--	end,
 	knock_back = true,
 	hp_min = 10,
 	hp_max = 25,
@@ -296,14 +296,14 @@ mobs:register_arrow("mobs_monster:mese_arrow", {
 	hit_player = function(self, player)
 		player:punch(self.object, 1.0, {
 			full_punch_interval = 1.0,
-			damage_groups = {fleshy = self.damage},
+			damage_groups = {fleshy = self.damage}
 		}, nil)
 	end,
 
 	hit_mob = function(self, player)
 		player:punch(self.object, 1.0, {
 			full_punch_interval = 1.0,
-			damage_groups = {fleshy = self.damage},
+			damage_groups = {fleshy = self.damage}
 		}, nil)
 	end,
 
@@ -313,14 +313,15 @@ mobs:register_arrow("mobs_monster:mese_arrow", {
 
 
 if not mobs.custom_spawn_monster then
-mobs:spawn({
-	name = "mobs_monster:mese_monster",
-	nodes = {"default:stone"},
-	max_light = 7,
-	chance = 5000,
-	active_object_count = 1,
-	max_height = -20
-})
+
+	mobs:spawn({
+		name = "mobs_monster:mese_monster",
+		nodes = {"default:stone"},
+		max_light = 7,
+		chance = 5000,
+		active_object_count = 1,
+		max_height = -20
+	})
 end
 
 

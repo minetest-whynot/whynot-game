@@ -31,11 +31,11 @@ mobs:register_mob("mobs_monster:stone_monster", {
 	mesh = "mobs_stone_monster.b3d",
 	textures = {
 		{"mobs_stone_monster.png"},
-		{"mobs_stone_monster2.png"}, -- by AMMOnym
+		{"mobs_stone_monster2.png"} -- by AMMOnym
 	},
 	makes_footstep_sound = true,
 	sounds = {
-		random = "mobs_stonemonster",
+		random = "mobs_stonemonster"
 	},
 	walk_velocity = 1,
 	run_velocity = 2,
@@ -61,7 +61,7 @@ mobs:register_mob("mobs_monster:stone_monster", {
 		run_start = 40,
 		run_end = 63,
 		punch_start = 40,
-		punch_end = 63,
+		punch_end = 63
 	},
 	immune_to = {
 		{"default:pick_wood", 0}, -- wooden pick doesnt hurt stone monster
@@ -69,7 +69,7 @@ mobs:register_mob("mobs_monster:stone_monster", {
 		{"default:pick_bronze", 5},
 		{"default:pick_steel", 5},
 		{"default:pick_mese", 6},
-		{"default:pick_diamond", 7},
+		{"default:pick_diamond", 7}
 	},
 
 	-- check surrounding nodes and spawn a specific spider
@@ -101,13 +101,14 @@ mobs:register_mob("mobs_monster:stone_monster", {
 
 
 if not mobs.custom_spawn_monster then
-mobs:spawn({
-	name = "mobs_monster:stone_monster",
-	nodes = {"default:stone", "default:desert_stone", "default:sandstone"},
-	max_light = 7,
-	chance = 7000,
-	max_height = 0,
-})
+
+	mobs:spawn({
+		name = "mobs_monster:stone_monster",
+		nodes = {"default:stone", "default:desert_stone", "default:sandstone"},
+		max_light = 7,
+		chance = 7000,
+		max_height = 0
+	})
 end
 
 

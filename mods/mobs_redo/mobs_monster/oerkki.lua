@@ -19,11 +19,11 @@ mobs:register_mob("mobs_monster:oerkki", {
 	textures = {
 		{"mobs_oerkki.png"},
 		{"mobs_oerkki2.png"},
-		{"mobs_oerkki3.png"},
+		{"mobs_oerkki3.png"}
 	},
 	makes_footstep_sound = false,
 	sounds = {
-		random = "mobs_oerkki",
+		random = "mobs_oerkki"
 	},
 	walk_velocity = 1,
 	run_velocity = 3,
@@ -31,7 +31,7 @@ mobs:register_mob("mobs_monster:oerkki", {
 	jump = true,
 	drops = {
 		{name = "default:obsidian", chance = 3, min = 0, max = 2},
-		{name = "default:gold_lump", chance = 2, min = 0, max = 2},
+		{name = "default:gold_lump", chance = 2, min = 0, max = 2}
 	},
 	water_damage = 2,
 	lava_damage = 4,
@@ -47,7 +47,7 @@ mobs:register_mob("mobs_monster:oerkki", {
 		punch_start = 37,
 		punch_end = 49,
 		speed_normal = 15,
-		speed_run = 15,
+		speed_run = 15
 	},
 	replace_rate = 5,
 	replace_what = {"default:torch"},
@@ -55,19 +55,20 @@ mobs:register_mob("mobs_monster:oerkki", {
 	replace_offset = -1,
 	immune_to = {
 		{"default:sword_wood", 0}, -- no damage
-		{"default:gold_lump", -10}, -- heals by 10 points
+		{"default:gold_lump", -10} -- heals by 10 points
 	},
 })
 
 
 if not mobs.custom_spawn_monster then
-mobs:spawn({
-	name = "mobs_monster:oerkki",
-	nodes = {"default:stone"},
-	max_light = 7,
-	chance = 7000,
-	max_height = -10,
-})
+
+	mobs:spawn({
+		name = "mobs_monster:oerkki",
+		nodes = {"default:stone"},
+		max_light = 7,
+		chance = 7000,
+		max_height = -10
+	})
 end
 
 
