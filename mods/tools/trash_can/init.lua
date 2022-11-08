@@ -20,7 +20,7 @@ else -- fallback, assume default (Minetest Game) is loaded
 	moditems.iron_item = "default:steel_ingot" -- MTG iron ingot
 	moditems.coal_item = "default:coalblock"   -- MTG coal block
 	moditems.green_dye = "dye:dark_green"      -- MTG version of green dye
-	moditems.sounds = default.node_sound_defaults
+	moditems.sounds = default and default.node_sound_defaults
 	moditems.trashcan_infotext = S("Trash Can")
 	moditems.dumpster_infotext = S("Dumpster")
 	moditems.boxart = ""
