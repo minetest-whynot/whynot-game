@@ -21,5 +21,6 @@ Change log:
 - 0.5 - Added Orange and Bread cake (thanks to CalebDavis)
 - 0.6 - Now uses food_ groups to craft cakes easier
 - 0.7 - Added aliases for older pie mod by Mitroman
+- 0.8 - Redo textures, make default optional, initial mineclone2 support
 
 Lucky Blocks: 12
