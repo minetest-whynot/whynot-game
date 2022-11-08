@@ -1,6 +1,6 @@
 
 origin https://github.com/minetest-mirrors/ambience.git (fetch)
-* f7d54237f60ad3d5649985c73dfa618bc605c5cb add join/leave nil checks, use pairs for player loop
+* 65f8a02c16314d8c2e8d04195816ab092a74b013 player can set sound and music volumes which are saved
 Mod: ambience/ambience
 
 origin https://github.com/minetest-mods/lightning (fetch)
@@ -20,7 +20,7 @@ origin https://github.com/Ezhh/abriglass/ (fetch)
 Mod: decor/abriglass
 
 origin https://github.com/mt-mods/basic_materials (fetch)
-* b9ac85790df6416085870d8acbb7eb4a3f5d4040 Add lead strip, carbon steel bar and stainless steel wire if technic is enabled. (#15)
+* d52bb607a08e94d7af622de789351944a0a6b3dc Add aluminum bar, strip and wire, gold strip and stainless steel bar and strip. (#16)
 Mod: decor/basic_materials
 
 origin https://github.com/Napiophelios/campfire (fetch)
@@ -116,7 +116,7 @@ origin https://github.com/minetest-mods/mtfoods (fetch)
 Mod: food/mtfoods
 
 origin https://github.com/minetest-mirrors/pie.git (fetch)
-* b47a4a25407e36aa7a31997031903254a142dca7 add pie rotation (thanks MoNTE48)
+* 6e1d745cd6bf8b3c9caa265f8c0c9c4b6ad2535c add mineclone2 recipes
 Mod: food/pie
 
 origin https://github.com/GreenXenith/waffles (fetch)
