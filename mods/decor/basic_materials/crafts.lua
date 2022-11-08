@@ -26,6 +26,10 @@ if minetest.get_modpath("technic") then
 	materials.stainless_steel_ingot = "technic:stainless_steel_ingot"
 end
 
+if minetest.get_modpath("aloz") then
+	materials["aluminum_ingot"] = "aloz:aluminum_ingot"
+end
+
 if minetest.get_modpath("mcl_core") then
 	materials = {
 		dirt = "mcl_core:dirt",
@@ -96,6 +100,7 @@ elseif minetest.get_modpath("hades_core") then
 	end
 	if minetest.get_modpath("hades_extraores") then
 		materials["silver_ingot"] = "hades_extraores:silver_ingot"
+		materials["aluminum_ingot"] = "hades_extraores:aluminum_ingot"
 	end
 	if minetest.get_modpath("hades_technic") then
 		materials.lead_ingot = "hades_technic:lead_ingot"
@@ -299,6 +304,18 @@ if materials.stainless_steel_ingot then
 	})
 end
 
+if materials.aluminum_ingot then
+	minetest.register_craft( {
+		output = "basic_materials:aluminum_wire 2",
+		type = "shapeless",
+		recipe = {
+			materials.aluminum_ingot,
+			"basic_materials:empty_spool",
+			"basic_materials:empty_spool",
+		},
+	})
+end
+
 minetest.register_craft( {
 	output = "basic_materials:steel_strip 12",
 	recipe = {
@@ -315,12 +332,40 @@ minetest.register_craft( {
 	},
 })
 
+minetest.register_craft( {
+	output = "basic_materials:gold_strip 12",
+	recipe = {
+		{"", materials.gold_ingot, ""},
+		{materials.gold_ingot, "", ""},
+	},
+})
+
 if materials.lead_ingot then
 	minetest.register_craft( {
 		output = "basic_materials:lead_strip 12",
 		recipe = {
 			{"", materials.lead_ingot, ""},
 			{materials.lead_ingot, "", ""},
+		},
+	})
+end
+
+if materials.stainless_steel_ingot then
+	minetest.register_craft( {
+		output = "basic_materials:stainless_steel_strip 12",
+		recipe = {
+			{"", materials.stainless_steel_ingot, ""},
+			{materials.stainless_steel_ingot, "", ""},
+		},
+	})
+end
+
+if materials.aluminum_ingot then
+	minetest.register_craft( {
+		output = "basic_materials:aluminum_strip 12",
+		recipe = {
+			{"", materials.aluminum_ingot, ""},
+			{materials.aluminum_ingot, "", ""},
 		},
 	})
 end
@@ -341,6 +386,28 @@ if materials.carbon_steel_ingot then
 			{"", "", materials.carbon_steel_ingot},
 			{"", materials.carbon_steel_ingot, ""},
 			{materials.carbon_steel_ingot, "", ""},
+		},
+	})
+end
+
+if materials.stainless_steel_ingot then
+	minetest.register_craft( {
+		output = "basic_materials:stainless_steel_bar 6",
+		recipe = {
+			{"", "", materials.stainless_steel_ingot},
+			{"", materials.stainless_steel_ingot, ""},
+			{materials.stainless_steel_ingot, "", ""},
+		},
+	})
+end
+
+if materials.aluminum_ingot then
+	minetest.register_craft( {
+		output = "basic_materials:aluminum_bar 6",
+		recipe = {
+			{"", "", materials.aluminum_ingot},
+			{"", materials.aluminum_ingot, ""},
+			{materials.aluminum_ingot, "", ""},
 		},
 	})
 end
