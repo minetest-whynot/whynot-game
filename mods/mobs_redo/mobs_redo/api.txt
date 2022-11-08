@@ -6,6 +6,17 @@ Welcome to the world of mobs in minetest and hopefully an easy guide to defining
 your own mobs and having them appear in your worlds.
 
 
+Quick Note
+----------
+
+Since the mobs redo api checks for nodes around the mob to function, it relies on a
+default node incase anything goes wrong, so in the default game this is default:dirt
+but for any custom game please make sure the following line is registered with your
+preferred dirt node of choice:
+
+minetest.register_alias("mapgen_dirt", "mymod:my_dirt_node")
+
+
 Registering Mobs
 ----------------
 
@@ -526,10 +537,12 @@ Explosion Function
 
 mobs:explosion(pos, radius) -- DEPRECATED!!!  use mobs:boom() instead
 
-mobs:boom(self, pos, radius)
+mobs:boom(self, pos, radius, damage_radius, texture)
    'self' mob entity
    'pos' centre position of explosion
    'radius' radius of explosion (typically set to 3)
+   'damage_radius' radius of damage around explosion
+   'texture' particle texture during explosion, defaults to "tnt_smoke.png"
 
 This function generates an explosion which removes nodes in a specific radius
 and damages any entity caught inside the blast radius.  Protection will limit
@@ -720,8 +733,6 @@ External Settings for "minetest.conf"
                             spawn number e.g. mobs_animal:cow = 1000,5
    'mob_difficulty'         sets difficulty level (health and hit damage
                             multiplied by this number), defaults to 1.0.
-   'mob_show_health'        if false then punching mob will not show health status
-                            (true by default)
    'mob_chance_multiplier'  multiplies chance of all mobs spawning and can be set
                             to 0.5 to have mobs spawn more or 2.0 to spawn less.
                             e.g.  1 in 7000 * 0.5 = 1 in 3500 so better odds of
