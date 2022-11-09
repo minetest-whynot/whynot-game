@@ -1,0 +1,5 @@
+# Translation by Xanthin
+
+Blades = Rotor
+Cabin for heli = Hubschrauberkabine
+Helicopter = Hubschrauber
