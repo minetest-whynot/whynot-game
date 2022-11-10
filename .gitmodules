@@ -178,9 +178,6 @@
 [submodule "builder/mods_src/tools/handholds"]
 	path = builder/mods_src/tools/handholds
 	url = https://github.com/Ezhh/handholds
-[submodule "builder/mods_src/tools/helicopter"]
-	path = builder/mods_src/tools/helicopter
-	url = https://github.com/petermaloney/helicopter
 [submodule "builder/mods_src/tools/hopper"]
 	path = builder/mods_src/tools/hopper
 	url = https://github.com/minetest-mods/hopper

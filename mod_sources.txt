@@ -291,10 +291,6 @@ origin https://github.com/Ezhh/handholds (fetch)
 * 4b88f2a08d9d00ff99be465b80922606ecc75127 Fix incorrect sRGB profile 
 Mod: tools/handholds
 
-origin https://github.com/petermaloney/helicopter (fetch)
-* 95c5287d59c70f12ae4a898bc1d2125dda9655d5 Merge pull request #7 from bell07/patch-1
-Mod: tools/helicopter
-
 origin https://github.com/minetest-mods/hopper (fetch)
 * c691f370b4ff6054b76cc7e4c2ea623012e99238 Configurable inventory log level (#17)
 Mod: tools/hopper
