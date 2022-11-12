@@ -1,0 +1,16 @@
+Refinery
+--------
+
+In order to utilize items for the refinery, they must be added to one of the following groups:
+flora, leaves, flower, sapling, tree, wood, stick, plant, seed
+
+Example:
+groups = {plant = 1, snappy = 3, flammable = 2, attached_node = 1, not_in_creative_inventory=1},
+
+Biofuel:
+--------
+
+To fill an item in the canister, it must be added to the biofuel group.
+
+Example:
+groups = {biofuel = 1, dig_immediate = 3, attached_node = 1, vessel = 1},
