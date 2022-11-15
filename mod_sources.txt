@@ -263,6 +263,10 @@ origin https://github.com/taikedz/everamzah-backpacks (fetch)
 * 7f617df442bfd75209ce64ffa46402c96a30ff4f removing rabbit_hide as it does not seem to be standard mobs_redo content
 Mod: tools/backpacks
 
+origin https://github.com/Lokrates/Biofuel.git (fetch)
+* 1da3f16b7ec54d26a4a4d5f1438f6a5c39bacb07 Update changelog.md
+Mod: tools/biofuel
+
 origin https://github.com/minetest-mirrors/bonemeal.git (fetch)
 * b9cf957dccb06b58b80e908cba9db28981f37d4b tidy helper function
 Mod: tools/bonemeal
