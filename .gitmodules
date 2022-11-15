@@ -247,3 +247,6 @@
 [submodule "builder/mods_src/mapgen/yellow_crystal"]
 	path = builder/mods_src/flora_ores/yellow_crystal
 	url = https://codeberg.org/Dacmot/YellowCrystals.git
+[submodule "builder/mods_src/libs/airutils"]
+	path = builder/mods_src/libs/airutils
+	url = https://github.com/APercy/airutils.git
