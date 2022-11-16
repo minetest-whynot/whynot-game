@@ -33,5 +33,7 @@ https://www.example.com
    * 
 9. Upon testing this mod, what errors, odd behavior, or other incompatibilities were noticed?
    * 
+10. Is the licence one that we can include in WhyNot? (Whynot is under the GPLv3 only. Be sure you know what you are talking about or cite your source)
+   * 
 
 ## Other comments

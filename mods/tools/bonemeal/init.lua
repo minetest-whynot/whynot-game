@@ -5,9 +5,13 @@ local path = minetest.get_modpath("bonemeal")
 local min, max, random = math.min, math.max, math.random
 
 
--- Load support for intllib.
-local S = minetest.get_translator and minetest.get_translator("bonemeal") or
-		dofile(path .. "/intllib.lua")
+-- translation support
+local S
+if minetest.get_translator ~= nil then
+	S = minetest.get_translator("bonemeal") -- 5.x translation function
+else -- boilerplate function
+	S = function(s) return s end
+end
 
 
 -- creative check
@@ -129,7 +133,8 @@ local function particle_effect(pos)
 		maxexptime = 1,
 		minsize = 1,
 		maxsize = 3,
-		texture = "bonemeal_particle.png"
+		texture = "bonemeal_particle.png",
+		glow = 5
 	})
 end
 
@@ -138,15 +143,18 @@ end
 local function grow_tree(pos, object)
 
 	if type(object) == "table" and object.axiom then
+
 		-- grow L-system tree
 		minetest.remove_node(pos)
 		minetest.spawn_tree(pos, object)
 
 	elseif type(object) == "string" and minetest.registered_nodes[object] then
+
 		-- place node
 		minetest.set_node(pos, {name = object})
 
 	elseif type(object) == "function" then
+
 		-- function
 		object(pos)
 	end
@@ -288,15 +296,20 @@ local function check_soil(pos, nodename, strength)
 	for _, n in pairs(dirt) do
 
 		if random(5) == 5 then
+
 			if decor and #decor > 0 then
+
 				-- place random decoration (rare)
 				local dnum = #decor or 1
+
 				nod = decor[random(dnum)] or ""
 			end
 		else
 			if grass and #grass > 0 then
+
 				-- place random grass (common)
 				local dgra = #grass or 1
+
 				nod = #grass > 0 and grass[random(dgra)] or ""
 			end
 		end
@@ -313,7 +326,9 @@ local function check_soil(pos, nodename, strength)
 
 			-- if param2 not preset then get from existing node
 			if not def then
+
 				local node = minetest.get_node_or_nil(pos2)
+
 				def = node and node.param2 or 0
 			end
 
@@ -322,6 +337,39 @@ local function check_soil(pos, nodename, strength)
 
 		particle_effect(pos2)
 	end
+end
+
+
+-- helper function
+local function use_checks(user, pointed_thing)
+
+	-- make sure we use on node
+	if pointed_thing.type ~= "node" then
+		return false
+	end
+
+	-- get position and node info
+	local pos = pointed_thing.under
+	local node = minetest.get_node(pos)
+	local def = minetest.registered_items[node.name]
+	local dirt = def and def.groups
+
+	-- does node exist
+	if not dirt then
+		return false
+	end
+
+	-- if we're using on ground, move position up
+	if dirt.soil or dirt.sand or dirt.can_bonemeal then
+		pos = pointed_thing.above
+	end
+
+	-- check if protected
+	if minetest.is_protected(pos, user:get_player_name()) then
+		return false
+	end
+
+	return node
 end
 
 
@@ -425,9 +473,12 @@ function bonemeal:set_deco(list)
 
 			-- replace existing entry
 			if list[l][1] == deco[n][1] then
+
 				deco[n][2] = list[l][2]
 				deco[n][3] = list[l][3]
+
 				list[l] = false
+
 				break
 			end
 		end
@@ -459,13 +510,17 @@ function bonemeal:on_use(pos, strength, node)
 	if node.name == "default:papyrus" then
 
 		default.grow_papyrus(pos, node)
+
 		particle_effect(pos)
+
 		return true
 
 	elseif node.name == "default:cactus" then
 
 		default.grow_cactus(pos, node)
+
 		particle_effect(pos)
+
 		return true
 	end
 
@@ -473,7 +528,9 @@ function bonemeal:on_use(pos, strength, node)
 	if minetest.get_item_group(node.name, "soil") > 0
 	or minetest.get_item_group(node.name, "sand") > 0
 	or minetest.get_item_group(node.name, "can_bonemeal") > 0 then
+
 		check_soil(pos, node.name, strength)
+
 		return true
 	end
 
@@ -509,18 +566,11 @@ minetest.register_craftitem("bonemeal:mulch", {
 
 	on_use = function(itemstack, user, pointed_thing)
 
-		-- did we point at a node?
-		if pointed_thing.type ~= "node" then
-			return
-		end
-
-		-- is area protected?
-		if minetest.is_protected(pointed_thing.under, user:get_player_name()) then
-			return
-		end
+		-- use helper function to do checks and return position and node
+		local node = use_checks(user, pointed_thing)
 
 		-- call global on_use function with strength of 1
-		if bonemeal:on_use(pointed_thing.under, 1) then
+		if node and bonemeal:on_use(pointed_thing.under, 1, node) then
 
 			-- take item if not in creative
 			if not bonemeal.is_creative(user:get_player_name()) then
@@ -540,18 +590,11 @@ minetest.register_craftitem("bonemeal:bonemeal", {
 
 	on_use = function(itemstack, user, pointed_thing)
 
-		-- did we point at a node?
-		if pointed_thing.type ~= "node" then
-			return
-		end
-
-		-- is area protected?
-		if minetest.is_protected(pointed_thing.under, user:get_player_name()) then
-			return
-		end
+		-- use helper function to do checks and return position and node
+		local node = use_checks(user, pointed_thing)
 
 		-- call global on_use function with strength of 2
-		if bonemeal:on_use(pointed_thing.under, 2) then
+		if node and bonemeal:on_use(pointed_thing.under, 2, node) then
 
 			-- take item if not in creative
 			if not bonemeal.is_creative(user:get_player_name()) then
@@ -571,18 +614,11 @@ minetest.register_craftitem("bonemeal:fertiliser", {
 
 	on_use = function(itemstack, user, pointed_thing)
 
-		-- did we point at a node?
-		if pointed_thing.type ~= "node" then
-			return
-		end
-
-		-- is area protected?
-		if minetest.is_protected(pointed_thing.under, user:get_player_name()) then
-			return
-		end
+		-- use helper function to do checks and return position and node
+		local node = use_checks(user, pointed_thing)
 
 		-- call global on_use function with strength of 3
-		if bonemeal:on_use(pointed_thing.under, 3) then
+		if node and bonemeal:on_use(pointed_thing.under, 3, node) then
 
 			-- take item if not in creative
 			if not bonemeal.is_creative(user:get_player_name()) then
@@ -691,7 +727,11 @@ minetest.override_item("default:dirt", {
 
 -- add support for other mods
 dofile(path .. "/mods.lua")
-dofile(path .. "/lucky_block.lua")
+
+-- lucky block support
+if minetest.get_modpath("lucky_block") then
+	dofile(path .. "/lucky_block.lua")
+end
 
 
 print ("[MOD] bonemeal loaded")

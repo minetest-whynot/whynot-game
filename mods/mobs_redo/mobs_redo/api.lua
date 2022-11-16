@@ -1,5 +1,3 @@
-local MP = minetest.get_modpath(minetest.get_current_modname())
-
 -- Check for translation method
 local S
 if minetest.get_translator ~= nil then
@@ -8,11 +6,10 @@ else
 	if minetest.get_modpath("intllib") then
 		dofile(minetest.get_modpath("intllib") .. "/init.lua")
 		if intllib.make_gettext_pair then
-			gettext, ngettext = intllib.make_gettext_pair() -- new gettext method
+			S = intllib.make_gettext_pair() -- new gettext method
 		else
-			gettext = intllib.Getter() -- old text file method
+			S = intllib.Getter() -- old text file method
 		end
-		S = gettext
 	else -- boilerplate function
 		S = function(str, ...)
 			local args = {...}
@@ -28,7 +25,7 @@ local use_cmi = minetest.global_exists("cmi")
 
 mobs = {
 	mod = "redo",
-	version = "20220918",
+	version = "20221031",
 	intllib = S,
 	invis = minetest.global_exists("invisibility") and invisibility or {}
 }
@@ -45,6 +42,7 @@ local random = math.random
 local floor = math.floor
 local ceil = math.ceil
 local rad = math.rad
+local deg = math.deg
 local atann = math.atan
 local atan = function(x)
 	if not x or x ~= x then
@@ -55,7 +53,6 @@ local atan = function(x)
 end
 local table_copy = table.copy
 local table_remove = table.remove
-local vadd = vector.add
 local vdirection = vector.direction
 local vmultiply = vector.multiply
 local vsubtract = vector.subtract
@@ -80,7 +77,6 @@ local spawn_monster_protected = settings:get_bool("mobs_spawn_monster_protected"
 local remove_far = settings:get_bool("remove_far_mobs") ~= false
 local mob_area_spawn = settings:get_bool("mob_area_spawn")
 local difficulty = tonumber(settings:get("mob_difficulty")) or 1.0
-local show_health = settings:get_bool("mob_show_health") ~= false
 local max_per_block = tonumber(settings:get("max_objects_per_block") or 99)
 local mob_nospawn_range = tonumber(settings:get("mob_nospawn_range") or 12)
 local active_limit = tonumber(settings:get("mob_active_limit") or 0)
@@ -111,9 +107,10 @@ local stuck_path_timeout = 5 -- how long will mob follow path before giving up
 local node_ice = "default:ice"
 local node_snowblock = "default:snowblock"
 local node_snow = "default:snow"
+
 mobs.fallback_node = minetest.registered_aliases["mapgen_dirt"] or "default:dirt"
 
-local mob_class = {
+mobs.mob_class = {
 	stepheight = 1.1,
 	fly_in = "air",
 	owner = "",
@@ -184,21 +181,21 @@ local mob_class = {
 	_cmi_is_mob = true
 }
 
+local mob_class = mobs.mob_class -- Compatibility
 local mob_class_meta = {__index = mob_class}
 
 
 -- play sound
 function mob_class:mob_sound(sound)
 
-	local pitch = 1.0
-
-	-- higher pitch for a child
-	if self.child then pitch = pitch * 1.5 end
-
-	-- a little random pitch to be different
-	pitch = pitch + random(-10, 10) * 0.005
-
 	if sound then
+
+		-- higher pitch for a child
+		local pitch = self.child and 1.5 or 1.0
+
+		-- a little random pitch to be different
+		pitch = pitch + random(-10, 10) * 0.005
+
 		minetest.sound_play(sound, {
 			object = self.object,
 			gain = 1.0,
@@ -219,7 +216,7 @@ function mob_class:do_attack(player)
 	self.attack = player
 	self.state = "attack"
 
-	if random(0, 100) < 90 then
+	if random(100) < 90 then
 		self:mob_sound(self.sounds.war_cry)
 	end
 end
@@ -359,6 +356,16 @@ function mob_class:set_yaw(yaw, delay)
 		yaw = 0
 	end
 
+	-- clamp our yaw to a 360 range
+	if deg(self.object:get_yaw()) > 360 then
+
+		yaw = rad(10) ; delay = 0
+
+	elseif deg(self.object:get_yaw()) < 0 then
+
+		yaw = rad(350) ; delay = 0
+	end
+
 	delay = mob_smooth_rotate and (delay or 0) or 0
 
 	if delay == 0 then
@@ -435,7 +442,7 @@ local line_of_sight = function(self, pos1, pos2, stepsize)
 
 	stepsize = stepsize or 1
 
-	local s, pos = minetest.line_of_sight(pos1, pos2, stepsize)
+	local s = minetest.line_of_sight(pos1, pos2, stepsize)
 
 	-- normal walking and flying mobs can see you through air
 	if s == true then
@@ -462,7 +469,7 @@ local line_of_sight = function(self, pos1, pos2, stepsize)
 	-- It continues to advance in the line of sight in search of a real
 	-- obstruction which counts as 'walkable' nodebox.
 	while minetest.registered_nodes[nn]
-	and (minetest.registered_nodes[nn].walkable == false) do
+	and minetest.registered_nodes[nn].walkable == false do
 
 		-- Check if you can still move forward
 		if td < ad + stepsize then
@@ -485,53 +492,6 @@ local line_of_sight = function(self, pos1, pos2, stepsize)
 		end
 
 		ad = ad + stepsize
-
-		-- scan again
-		r, pos = minetest.line_of_sight(npos1, pos2, stepsize)
-
-		if r == true then return true end
-
-		-- New Nodename found
-		nn = minetest.get_node(pos).name
-	end
-
-	return false
-end
-
-
--- check line of sight (by BrunoMine, tweaked by Astrobe)
-local new_line_of_sight = function(self, pos1, pos2, stepsize)
-
-	if not pos1 or not pos2 then return end
-
-	stepsize = stepsize or 1
-
-	local stepv = vmultiply(vdirection(pos1, pos2), stepsize)
-
-	local s, pos = minetest.line_of_sight(pos1, pos2, stepsize)
-
-	-- normal walking and flying mobs can see you through air
-	if s == true then return true end
-
-	-- New pos1 to be analyzed
-	local npos1 = {x = pos1.x, y = pos1.y, z = pos1.z}
-
-	local r, pos = minetest.line_of_sight(npos1, pos2, stepsize)
-
-	-- Checks the return
-	if r == true then return true end
-
-	-- Nodename found
-	local nn = minetest.get_node(pos).name
-
-	-- It continues to advance in the line of sight in search of a real
-	-- obstruction which counts as 'walkable' nodebox.
-	while minetest.registered_nodes[nn]
-	and (minetest.registered_nodes[nn].walkable == false) do
-
-		npos1 = vadd(npos1, stepv)
-
-		if get_distance(npos1, pos2) < stepsize then return true end
 
 		-- scan again
 		r, pos = minetest.line_of_sight(npos1, pos2, stepsize)
@@ -611,8 +571,7 @@ function mob_class:attempt_flight_correction(override)
 	local escape_target = flyable_nodes[random(#flyable_nodes)]
 	local escape_direction = vdirection(pos, escape_target)
 
-	self.object:set_velocity(
-		vmultiply(escape_direction, 1))
+	self.object:set_velocity(vmultiply(escape_direction, 1))
 
 	return true
 end
@@ -1088,11 +1047,6 @@ end
 -- environmental damage (water, lava, fire, light etc.)
 function mob_class:do_env_damage()
 
-	-- feed/tame text timer (so mob 'full' messages dont spam chat)
-	if self.htimer > 0 then
-		self.htimer = self.htimer - 1
-	end
-
 	self:update_tag()
 
 	local pos = self.object:get_pos() ; if not pos then return end
@@ -1265,7 +1219,6 @@ function mob_class:do_jump()
 	-- what is in front of mob and above?
 	local nod = node_ok({x = pos.x + dir_x, y = pos.y + 0.5, z = pos.z + dir_z})
 	local nodt = node_ok({x = pos.x + dir_x, y = pos.y + 1.5, z = pos.z + dir_z})
-
 	local blocked = minetest.registered_nodes[nodt.name].walkable
 
 	-- are we facing a fence or wall
@@ -1332,7 +1285,7 @@ print("on: " .. self.standing_on
 			local yaw = self.object:get_yaw() or 0
 			local turn = random(0, 2) + 1.35
 
-			yaw = self:set_yaw(yaw + turn, 12)
+			self:set_yaw(yaw + turn, 12)
 
 			self.jump_count = 0
 		end
@@ -1359,7 +1312,6 @@ local entity_physics = function(pos, radius)
 		if dist < 1 then dist = 1 end
 
 		local damage = floor((4 / dist) * radius)
-		local ent = objs[n]:get_luaentity()
 
 		-- punches work on entities AND players
 		objs[n]:punch(objs[n], 1.0, {
@@ -1739,7 +1691,7 @@ function mob_class:smart_mobs(s, p, dist, dtime)
 		end -- can see target!
 	end
 
-	if (self.path.stuck_timer > stuck_timeout and not self.path.following) then
+	if self.path.stuck_timer > stuck_timeout and not self.path.following then
 
 		use_pathfind = true
 		self.path.stuck_timer = 0
@@ -1755,7 +1707,7 @@ function mob_class:smart_mobs(s, p, dist, dtime)
 		end, self)
 	end
 
-	if (self.path.stuck_timer > stuck_path_timeout and self.path.following) then
+	if self.path.stuck_timer > stuck_path_timeout and self.path.following then
 
 		use_pathfind = true
 		self.path.stuck_timer = 0
@@ -1771,7 +1723,7 @@ function mob_class:smart_mobs(s, p, dist, dtime)
 		end, self)
 	end
 
-	if abs(vsubtract(s,target_pos).y) > self.stepheight then
+	if abs(vsubtract(s, target_pos).y) > self.stepheight then
 
 		if height_switcher then
 			use_pathfind = true
@@ -1833,15 +1785,16 @@ function mob_class:smart_mobs(s, p, dist, dtime)
 			print("-- path length:" .. tonumber(#self.path.way))
 
 			for _,pos in pairs(self.path.way) do
+
 				minetest.add_particle({
-				pos = pos,
-				velocity = {x=0, y=0, z=0},
-				acceleration = {x=0, y=0, z=0},
-				expirationtime = 1,
-				size = 4,
-				collisiondetection = false,
-				vertical = false,
-				texture = "heart.png",
+					pos = pos,
+					velocity = {x=0, y=0, z=0},
+					acceleration = {x=0, y=0, z=0},
+					expirationtime = 1,
+					size = 4,
+					collisiondetection = false,
+					vertical = false,
+					texture = "heart.png",
 				})
 			end
 		end
@@ -1937,14 +1890,17 @@ end
 -- peaceful player privilege support
 local function is_peaceful_player(player)
 
+	-- main setting enabled
 	if peaceful_player_enabled then
+		return true
+	end
 
-		local player_name = player:get_player_name()
+	local player_name = player:get_player_name()
 
-		if player_name
-		and minetest.check_player_privs(player_name, "peaceful_player") then
-			return true
-		end
+	-- player priv enabled
+	if player_name
+	and minetest.check_player_privs(player_name, "peaceful_player") then
+		return true
 	end
 
 	return false
@@ -2284,7 +2240,7 @@ function mob_class:do_states(dtime)
 				yaw = yaw + random(-0.5, 0.5)
 			end
 
-			yaw = self:set_yaw(yaw, 8)
+			self:set_yaw(yaw, 8)
 		end
 
 		self:set_velocity(0)
@@ -2348,14 +2304,14 @@ function mob_class:do_states(dtime)
 				end
 			end
 
-			yaw = self:set_yaw(yaw, 8)
+			self:set_yaw(yaw, 8)
 
 		-- otherwise randomly turn
 		elseif self.randomly_turn and random(100) <= 30 then
 
 			yaw = yaw + random(-0.5, 0.5)
 
-			yaw = self:set_yaw(yaw, 8)
+			self:set_yaw(yaw, 8)
 
 			-- for flying/swimming mobs randomly move up and down also
 			if self.fly_in
@@ -2451,7 +2407,7 @@ function mob_class:do_states(dtime)
 
 		if self.attack_type == "explode" then
 
-			yaw = yaw_to_pos(self, p)
+			yaw_to_pos(self, p)
 
 			local node_break_radius = self.explosion_radius or 1
 			local entity_damage_radius = self.explosion_damage_radius
@@ -2513,8 +2469,7 @@ function mob_class:do_states(dtime)
 						self.object:set_texture_mod(self.texture_mods)
 					else
 
-						self.object:set_texture_mod(self.texture_mods
-								.. "^[brighten")
+						self.object:set_texture_mod(self.texture_mods .. "^[brighten")
 					end
 
 					self.blinkstatus = not self.blinkstatus
@@ -2535,27 +2490,7 @@ function mob_class:do_states(dtime)
 
 					remove_mob(self, true)
 
-					if minetest.get_modpath("tnt") and tnt and tnt.boom
-					and not minetest.is_protected(pos, "") then
-
-						tnt.boom(pos, {
-							radius = node_break_radius,
-							damage_radius = entity_damage_radius,
-							sound = self.sounds.explode
-						})
-					else
-
-						minetest.sound_play(self.sounds.explode, {
-							pos = pos,
-							gain = 1.0,
-							max_hear_distance = self.sounds.distance or 32
-						})
-
-						entity_physics(pos, entity_damage_radius)
-
-						effect(pos, 32, "tnt_smoke.png", nil, nil,
-								node_break_radius, 1, 0)
-					end
+					mobs:boom(self, pos, entity_damage_radius, node_break_radius)
 
 					return true
 				end
@@ -2641,7 +2576,7 @@ function mob_class:do_states(dtime)
 				p = {x = p1.x, y = p1.y, z = p1.z}
 			end
 
-			yaw = yaw_to_pos(self, p)
+			yaw_to_pos(self, p)
 
 			-- move towards enemy if beyond mob reach
 			if dist > (self.reach + (self.reach_ext or 0)) then
@@ -2735,7 +2670,7 @@ function mob_class:do_states(dtime)
 
 			local vec = {x = p.x - s.x, y = p.y - s.y, z = p.z - s.z}
 
-			yaw = yaw_to_pos(self, p)
+			yaw_to_pos(self, p)
 
 			self:set_velocity(0)
 
@@ -2895,7 +2830,6 @@ function mob_class:on_punch(hitter, tflp, tool_capabilities, dir, damage)
 
 	local weapon = hitter:get_wielded_item()
 	local weapon_def = weapon:get_definition() or {}
-	local punch_interval = 1.4
 
 	-- calculate mob damage
 	local damage = 0
@@ -2957,7 +2891,7 @@ function mob_class:on_punch(hitter, tflp, tool_capabilities, dir, damage)
 	end
 
 	-- add weapon wear
-	punch_interval = tool_capabilities.full_punch_interval or 1.4
+	local punch_interval = tool_capabilities.full_punch_interval or 1.4
 
 	-- toolrank support
 	local wear = floor((punch_interval / 75) * 9000)
@@ -3055,7 +2989,7 @@ function mob_class:on_punch(hitter, tflp, tool_capabilities, dir, damage)
 	and self.order ~= "stand" then
 
 		local lp = hitter:get_pos()
-		local yaw = yaw_to_pos(self, lp, 3)
+		yaw = yaw_to_pos(self, lp, 3)
 
 		self.state = "runaway"
 		self.runaway_timer = 0
@@ -3339,8 +3273,7 @@ function mob_class:mob_activate(staticdata, def, dtime)
 	end
 
 	if use_cmi then
-		self._cmi_components = cmi.activate_components(
-				self.serialized_cmi_components)
+		self._cmi_components = cmi.activate_components(self.serialized_cmi_components)
 		cmi.notify_activate(self.object, dtime)
 	end
 end
@@ -3426,11 +3359,11 @@ function mob_class:on_step(dtime, moveresult)
 		if minetest.registered_nodes[self.standing_in].walkable
 		and minetest.registered_nodes[self.standing_in].drawtype == "normal" then
 
-				self.object:set_velocity({
-					x = 0,
-					y = self.jump_height,
-					z = 0
-				})
+			self.object:set_velocity({
+				x = 0,
+				y = self.jump_height,
+				z = 0
+			})
 		end
 
 		-- check and stop if standing at cliff and fear of heights
@@ -3460,8 +3393,8 @@ function mob_class:on_step(dtime, moveresult)
 			if yaw > self.target_yaw then
 
 				if dif > pi then
-					dif = 2 * pi - dif -- need to add
-					yaw = yaw + dif / self.delay
+					dif = 2 * pi - dif
+					yaw = yaw + dif / self.delay -- need to add
 				else
 					yaw = yaw - dif / self.delay -- need to subtract
 				end
@@ -4292,14 +4225,14 @@ function mobs:register_arrow(name, def)
 end
 
 
--- compatibility function
+-- compatibility function (deprecated)
 function mobs:explosion(pos, radius)
-	mobs:boom({sounds = {explode = "tnt_explode"}}, pos, radius)
+	mobs:boom({sounds = {explode = "tnt_explode"}}, pos, radius, radius, "tnt_smoke.png")
 end
 
 
 -- no damage to nodes explosion
-function mobs:safe_boom(self, pos, radius)
+function mobs:safe_boom(self, pos, radius, texture)
 
 	minetest.sound_play(self.sounds and self.sounds.explode or "tnt_explode", {
 		pos = pos,
@@ -4309,12 +4242,12 @@ function mobs:safe_boom(self, pos, radius)
 
 	entity_physics(pos, radius)
 
-	effect(pos, 32, "tnt_smoke.png", radius * 3, radius * 5, radius, 1, 0)
+	effect(pos, 32, texture, radius * 3, radius * 5, radius, 1, 0)
 end
 
 
 -- make explosion with protection and tnt mod check
-function mobs:boom(self, pos, radius)
+function mobs:boom(self, pos, radius, damage_radius, texture)
 
 	if mobs_griefing
 	and minetest.get_modpath("tnt") and tnt and tnt.boom
@@ -4322,12 +4255,13 @@ function mobs:boom(self, pos, radius)
 
 		tnt.boom(pos, {
 			radius = radius,
-			damage_radius = radius,
+			damage_radius = damage_radius,
 			sound = self.sounds and self.sounds.explode,
-			explode_center = true
+			explode_center = true,
+			tiles = {(texture or "tnt_smoke.png")}
 		})
 	else
-		mobs:safe_boom(self, pos, radius)
+		mobs:safe_boom(self, pos, radius, texture)
 	end
 end
 
@@ -4401,7 +4335,7 @@ function mobs:register_egg(mob, desc, background, addegg, no_creative)
 			end
 
 			return itemstack
-		end,
+		end
 	})
 
 
@@ -4463,7 +4397,7 @@ function mobs:register_egg(mob, desc, background, addegg, no_creative)
 			end
 
 			return itemstack
-		end,
+		end
 	})
 end
 

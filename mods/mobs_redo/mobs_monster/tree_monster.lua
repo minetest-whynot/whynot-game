@@ -9,7 +9,7 @@ local tree_types = {
 			{name = "default:stick", chance = 1, min = 1, max = 3},
 			{name = "ethereal:sakura_leaves", chance = 1, min = 1, max = 2},
 			{name = "ethereal:sakura_trunk", chance = 2, min = 1, max = 2},
-			{name = "ethereal:sakura_tree_sapling", chance = 2, min = 0, max = 2},
+			{name = "ethereal:sakura_tree_sapling", chance = 2, min = 0, max = 2}
 		}
 	},
 
@@ -19,7 +19,7 @@ local tree_types = {
 			{name = "default:stick", chance = 1, min = 1, max = 3},
 			{name = "ethereal:frost_leaves", chance = 1, min = 1, max = 2},
 			{name = "ethereal:frost_tree", chance = 2, min = 1, max = 2},
-			{name = "ethereal:crystal_spike", chance = 4, min = 0, max = 2},
+			{name = "ethereal:crystal_spike", chance = 4, min = 0, max = 2}
 		}
 	},
 
@@ -29,7 +29,7 @@ local tree_types = {
 			{name = "default:stick", chance = 1, min = 1, max = 3},
 			{name = "ethereal:yellowleaves", chance = 1, min = 1, max = 2},
 			{name = "ethereal:yellow_tree_sapling", chance = 2, min = 0, max = 2},
-			{name = "ethereal:golden_apple", chance = 3, min = 0, max = 2},
+			{name = "ethereal:golden_apple", chance = 3, min = 0, max = 2}
 		}
 	},
 
@@ -41,7 +41,7 @@ local tree_types = {
 			{name = "default:coal_lump", chance = 3, min = 0, max = 3}
 		},
 		explode = true
-	},
+	}
 }
 
 
@@ -63,12 +63,12 @@ mobs:register_mob("mobs_monster:tree_monster", {
 	mesh = "mobs_tree_monster.b3d",
 	textures = {
 		{"mobs_tree_monster.png"},
-		{"mobs_tree_monster2.png"},
+		{"mobs_tree_monster2.png"}
 	},
 	blood_texture = "default_wood.png",
 	makes_footstep_sound = true,
 	sounds = {
-		random = "mobs_treemonster",
+		random = "mobs_treemonster"
 	},
 	walk_velocity = 1,
 	run_velocity = 3,
@@ -78,7 +78,7 @@ mobs:register_mob("mobs_monster:tree_monster", {
 		{name = "default:stick", chance = 1, min = 0, max = 2},
 		{name = "default:sapling", chance = 2, min = 0, max = 2},
 		{name = "default:junglesapling", chance = 3, min = 0, max = 2},
-		{name = "default:apple", chance = 4, min = 1, max = 2},
+		{name = "default:apple", chance = 4, min = 1, max = 2}
 	},
 	water_damage = 0,
 	lava_damage = 0,
@@ -105,7 +105,7 @@ mobs:register_mob("mobs_monster:tree_monster", {
 		run_start = 48,
 		run_end = 62,
 		punch_start = 48,
-		punch_end = 62,
+		punch_end = 62
 	},
 
 	-- check surrounding nodes and spawn a specific tree monster
@@ -158,14 +158,15 @@ mobs:register_mob("mobs_monster:tree_monster", {
 
 
 if not mobs.custom_spawn_monster then
-mobs:spawn({
-	name = "mobs_monster:tree_monster",
-	nodes = {"group:leaves"}, --{"default:leaves", "default:jungleleaves"},
-	max_light = 7,
-	chance = 7000,
-	min_height = 0,
-	day_toggle = false,
-})
+
+	mobs:spawn({
+		name = "mobs_monster:tree_monster",
+		nodes = {"group:leaves"},
+		max_light = 7,
+		chance = 7000,
+		min_height = 0,
+		day_toggle = false
+	})
 end
 
 

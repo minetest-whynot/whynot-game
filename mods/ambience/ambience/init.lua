@@ -11,6 +11,7 @@ local playing = {}
 local sound_sets = {} -- all the sounds and their settings
 local sound_set_order = {} -- needed because pairs loops randomly through tables
 local set_nodes = {} -- all the nodes needed for sets
+local is_50 = minetest.has_feature("object_use_texture_alpha")
 
 
 -- add set to list
@@ -91,13 +92,37 @@ end
 
 -- setup table when player joins
 minetest.register_on_joinplayer(function(player)
+
 	if player then
-		playing[player:get_player_name()] = {music = -1}
+
+		local name = player:get_player_name()
+
+		playing[name] = {music = -1}
+
+		local mvol, svol
+
+		if is_50 then
+
+			local meta = player:get_meta()
+
+			mvol = meta:get_string("ambience.mvol")
+			svol = meta:get_string("ambience.svol")
+		else
+			mvol = player:get_attribute("ambience.mvol")
+			svol = player:get_attribute("ambience.svol")
+		end
+
+		mvol = tonumber(mvol) or MUSICVOLUME
+		svol = tonumber(svol) or SOUNDVOLUME
+
+		playing[name].mvol = mvol
+		playing[name].svol = svol
 	end
 end)
 
 -- remove table when player leaves
 minetest.register_on_leaveplayer(function(player)
+
 	if player then
 		playing[player:get_player_name()] = nil
 	end
@@ -108,8 +133,9 @@ end)
 local get_ambience = function(player, tod, name)
 
 	-- play server or local music if music enabled and music not already playing
-	if play_music and MUSICVOLUME > 0
-	and playing[name] and playing[name].music < 0 then
+	if play_music
+	and playing[name] and playing[name].music < 0
+	and playing[name].mvol > 0 then
 
 		-- count backwards
 		playing[name].music = playing[name].music -1
@@ -119,7 +145,7 @@ local get_ambience = function(player, tod, name)
 
 			playing[name].music = minetest.sound_play("ambience_music", {
 				to_player = name,
-				gain = MUSICVOLUME
+				gain = playing[name].mvol
 			})
 
 			-- reset music timer after 10 minutes
@@ -233,7 +259,7 @@ minetest.register_globalstep(function(dtime)
 		end
 
 		-- set random chance
-		chance = random(1, 1000)
+		chance = random(1000)
 
 		-- if chance is lower than set frequency then select set
 		if ok and set_name and chance < sound_sets[set_name].frequency then
@@ -245,7 +271,7 @@ minetest.register_globalstep(function(dtime)
 			-- play sound
 			handler = minetest.sound_play(ambience.name, {
 				to_player = player_name,
-				gain = ((ambience.gain or 0.3) + (MORE_GAIN or 0)) * SOUNDVOLUME,
+				gain = ((ambience.gain or 0.3) + (MORE_GAIN or 0)) * playing[player_name].svol,
 				pitch = ambience.pitch or 1.0
 			}, ambience.ephemeral)
 
@@ -291,16 +317,28 @@ end)
 minetest.register_chatcommand("svol", {
 	params = "<svol>",
 	description = "set sound volume (0.1 to 1.0)",
-	privs = {server = true},
+	privs = {},
 
 	func = function(name, param)
 
-		SOUNDVOLUME = tonumber(param) or SOUNDVOLUME
+		local svol = tonumber(param) or playing[name].svol
 
-		if SOUNDVOLUME < 0.1 then SOUNDVOLUME = 0.1 end
-		if SOUNDVOLUME > 1.0 then SOUNDVOLUME = 1.0 end
+		if svol < 0.1 then svol = 0.1 end
+		if svol > 1.0 then svol = 1.0 end
 
-		return true, "Sound volume set to " .. SOUNDVOLUME
+		if is_50 then
+
+			local player = minetest.get_player_by_name(name)
+			local meta = player:get_meta()
+
+			meta:set_string("ambience.svol", svol)
+		else
+			player:set_attribute("ambience.svol", svol)
+		end
+
+		playing[name].svol = svol
+
+		return true, "Sound volume set to " .. svol
 	end
 })
 
@@ -309,14 +347,14 @@ minetest.register_chatcommand("svol", {
 minetest.register_chatcommand("mvol", {
 	params = "<mvol>",
 	description = "set music volume (0.1 to 1.0, 0 to stop music)",
-	privs = {server = true},
+	privs = {},
 
 	func = function(name, param)
 
-		MUSICVOLUME = tonumber(param) or MUSICVOLUME
+		local mvol = tonumber(param) or playing[name].mvol
 
 		-- ability to stop music by setting volume to 0
-		if MUSICVOLUME == 0 and playing[name].music
+		if mvol == 0 and playing[name].music
 		and playing[name].music >= 0 then
 
 			minetest.sound_stop(playing[name].music)
@@ -324,10 +362,22 @@ minetest.register_chatcommand("mvol", {
 			playing[name].music = -1
 		end
 
-		if MUSICVOLUME < 0 then MUSICVOLUME = 0 end
-		if MUSICVOLUME > 1.0 then MUSICVOLUME = 1.0 end
+		if mvol < 0 then mvol = 0 end
+		if mvol > 1.0 then mvol = 1.0 end
 
-		return true, "Music volume set to " .. MUSICVOLUME
+		if is_50 then
+
+			local player = minetest.get_player_by_name(name)
+			local meta = player:get_meta()
+
+			meta:set_string("ambience.mvol", mvol)
+		else
+			player:set_attribute("ambience.mvol", mvol)
+		end
+
+		playing[name].mvol = mvol
+
+		return true, "Music volume set to " .. mvol
 	end
 })
 

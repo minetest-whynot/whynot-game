@@ -25,7 +25,8 @@ elseif minetest.get_modpath("hunger") then
 	ediblestuff.alter_hunger = function (player,amount)
 		hunger.update_hunger(player,ediblestuff.get_hunger(player)+amount)
 	end
-elseif minetest.get_modpath("hbhunger") then
+elseif minetest.get_modpath("hbhunger") and minetest.settings:get_bool("enable_damage") then
+	-- The `hbhunger` mod doesn't define these globals if `enable_damage` is falsy
 	ediblestuff.get_max_hunger = function ()
 		return hbhunger.SAT_MAX
 	end

@@ -50,6 +50,7 @@ if farming and farming.mod and farming.mod == "redo" then
 		{"farming:asparagus_", 5},
 		{"farming:eggplant_", 4},
 		{"farming:spinach_", 4},
+		{"farming:ginger_", 4},
 		{"ethereal:strawberry_", 8}
 	})
 end

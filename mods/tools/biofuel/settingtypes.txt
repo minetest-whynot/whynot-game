@@ -1,0 +1,13 @@
+#The time that the refinery needs to produce fuel
+fuel_production_time (fuel production time) int 10 5 360
+
+#The number of biomass required for fuel production
+biomass_input (required input) int 4 1 99
+
+#Change of refinery output between vial or bottle
+#Default is vial
+refinery_output (bottle output) bool false
+
+#Enables the conversion of food into fuel
+#Default is disabled
+food_fuel (food waste) bool false
