@@ -123,6 +123,10 @@ origin https://github.com/GreenXenith/waffles (fetch)
 * 9486f8d67ac4f8510319789928b226167c7e7da9 Confirm that batter is removed when removing the maker
 Mod: food/waffles
 
+origin https://github.com/APercy/airutils.git (fetch)
+* ba9ea7f8eb578e405e70cee4dc28d8a2016f91d4 added protection check for PAPI
+Mod: libs/airutils
+
 origin https://repo.or.cz/minetest_doc.git (fetch)
 * 1e3d464620e042de2812ec691145252d3f21b417 Version 1.3.0
 Mod: libs/doc

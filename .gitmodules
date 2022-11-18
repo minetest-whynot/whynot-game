@@ -247,3 +247,6 @@
 [submodule "builder/mods_src/tools/biofuel"]
 	path = builder/mods_src/tools/biofuel
 	url = https://github.com/Lokrates/Biofuel.git
+[submodule "builder/mods_src/libs/airutils"]
+	path = builder/mods_src/libs/airutils
+	url = https://github.com/APercy/airutils.git
