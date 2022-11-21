@@ -250,3 +250,6 @@
 [submodule "builder/mods_src/libs/airutils"]
 	path = builder/mods_src/libs/airutils
 	url = https://github.com/APercy/airutils.git
+[submodule "builder/mods_src/tools/hidroplane"]
+	path = builder/mods_src/tools/hidroplane
+	url = https://github.com/APercy/hidroplane.git

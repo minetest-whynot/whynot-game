@@ -299,6 +299,10 @@ origin https://github.com/Ezhh/handholds (fetch)
 * 4b88f2a08d9d00ff99be465b80922606ecc75127 Fix incorrect sRGB profile 
 Mod: tools/handholds
 
+origin https://github.com/APercy/hidroplane.git (fetch)
+* c265a383ead76b96f28898d8c0d6f2c477be848a fix
+Mod: tools/hidroplane
+
 origin https://github.com/minetest-mods/hopper (fetch)
 * c691f370b4ff6054b76cc7e4c2ea623012e99238 Configurable inventory log level (#17)
 Mod: tools/hopper
