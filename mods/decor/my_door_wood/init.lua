@@ -41,7 +41,7 @@ local function add_door(color, desc, img)
 		paramtype = "light",
 		tiles = {"mydoors_"..img.."_wood.png"},
 		paramtype = "light",
-		groups = {cracky = 2, choppy = 2},
+		groups = {cracky = 2, choppy = 2, wood = 1},
 		sounds = default.node_sound_wood_defaults(),
 	})
 
@@ -58,4 +58,28 @@ end
 
 for _,door in ipairs(door_wood) do
 	add_door(unpack(door))
+end
+
+mydoors = {}
+
+local mesecons = {effector = {
+	action_on = function(pos)
+		local door = doors.get(pos)
+		if door then
+			door:open()
+		end
+	end,
+	action_off = function(pos)
+		local door = doors.get(pos)
+		if door then
+			door:close()
+		end
+	end,
+	rules = minetest.global_exists("mesecon") and mesecon.rules.pplate or nil
+}}
+
+-- Helper function for mesecons support
+function mydoors.register_door(name, def)
+	def.mesecons = mesecons
+	doors.register(name, def)
 end
