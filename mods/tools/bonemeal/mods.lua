@@ -26,7 +26,7 @@ if farming and farming.mod and farming.mod == "redo" then
 		{"farming:potato_", 4},
 		{"farming:grapes_", 8},
 		{"farming:rhubarb_", 4},
-		{"farming:barley_", 7},
+		{"farming:barley_", 8},
 		{"farming:hemp_", 8},
 		{"farming:chili_", 8},
 		{"farming:garlic_", 5},
@@ -127,6 +127,7 @@ if minetest.get_modpath("moretrees") then
 		{"moretrees:spruce_sapling", moretrees.grow_spruce, "soil"},
 		{"moretrees:cedar_sapling", moretrees.spawn_cedar_object, "soil"},
 		{"moretrees:poplar_sapling", moretrees.spawn_poplar_object, "soil"},
+		{"moretrees:poplar_small_sapling", moretrees.spawn_poplar_small_object, "soil"},
 		{"moretrees:willow_sapling", moretrees.spawn_willow_object, "soil"},
 		{"moretrees:rubber_tree_sapling", moretrees.spawn_rubber_tree_object, "soil"},
 		{"moretrees:fir_sapling", fir_grow, "soil"}

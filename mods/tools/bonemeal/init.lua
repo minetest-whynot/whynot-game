@@ -569,8 +569,10 @@ minetest.register_craftitem("bonemeal:mulch", {
 		-- use helper function to do checks and return position and node
 		local node = use_checks(user, pointed_thing)
 
-		-- call global on_use function with strength of 1
-		if node and bonemeal:on_use(pointed_thing.under, 1, node) then
+		if node then
+
+			-- call global on_use function with strength of 1
+			bonemeal:on_use(pointed_thing.under, 1, node)
 
 			-- take item if not in creative
 			if not bonemeal.is_creative(user:get_player_name()) then
@@ -593,8 +595,10 @@ minetest.register_craftitem("bonemeal:bonemeal", {
 		-- use helper function to do checks and return position and node
 		local node = use_checks(user, pointed_thing)
 
-		-- call global on_use function with strength of 2
-		if node and bonemeal:on_use(pointed_thing.under, 2, node) then
+		if node then
+
+			-- call global on_use function with strength of 2
+			bonemeal:on_use(pointed_thing.under, 2, node)
 
 			-- take item if not in creative
 			if not bonemeal.is_creative(user:get_player_name()) then
@@ -617,8 +621,10 @@ minetest.register_craftitem("bonemeal:fertiliser", {
 		-- use helper function to do checks and return position and node
 		local node = use_checks(user, pointed_thing)
 
-		-- call global on_use function with strength of 3
-		if node and bonemeal:on_use(pointed_thing.under, 3, node) then
+		if node then
+
+			-- call global on_use function with strength of 3
+			bonemeal:on_use(pointed_thing.under, 3, node)
 
 			-- take item if not in creative
 			if not bonemeal.is_creative(user:get_player_name()) then
@@ -671,10 +677,13 @@ minetest.register_craft({
 })
 
 -- bonemeal (from player bones)
-minetest.register_craft({
-	output = "bonemeal:bonemeal 4",
-	recipe = {{"bones:bones"}}
-})
+if minetest.settings:get_bool("bonemeal.disable_deathbones_recipe") ~= true then
+
+	minetest.register_craft({
+		output = "bonemeal:bonemeal 4",
+		recipe = {{"bones:bones"}}
+	})
+end
 
 -- bonemeal (from coral skeleton)
 minetest.register_craft({
@@ -734,4 +743,4 @@ if minetest.get_modpath("lucky_block") then
 end
 
 
-print ("[MOD] bonemeal loaded")
+print ("[MOD] Bonemeal loaded")
