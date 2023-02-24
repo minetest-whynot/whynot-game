@@ -1,6 +1,6 @@
 
 origin https://github.com/minetest-mirrors/ambience.git (fetch)
-* 65f8a02c16314d8c2e8d04195816ab092a74b013 player can set sound and music volumes which are saved
+* cbc25eacdbd960c241f2f41e8dcc6b7720b9abd5 amend load msg's
 Mod: ambience/ambience
 
 origin https://github.com/minetest-mods/lightning (fetch)
@@ -20,7 +20,7 @@ origin https://github.com/Ezhh/abriglass/ (fetch)
 Mod: decor/abriglass
 
 origin https://github.com/mt-mods/basic_materials (fetch)
-* d52bb607a08e94d7af622de789351944a0a6b3dc Add aluminum bar, strip and wire, gold strip and stainless steel bar and strip. (#16)
+* a9002d6dad72a28af49fadb88683874e39aaf03c add first class support for repixture (#19)
 Mod: decor/basic_materials
 
 origin https://github.com/Napiophelios/campfire (fetch)
@@ -48,7 +48,7 @@ origin https://github.com/mt-mods/home_workshop_modpack (fetch)
 Mod: decor/home_workshop_modpack
 
 origin https://github.com/mt-mods/homedecor_modpack (fetch)
-* 8893d66dc64e4d8d1b51cb9da1ccf9fe43e802d7 fix https://github.com/mt-mods/dreambuilder_game/issues/20 - quote on quote improper dor rotation which turned out to be badly applied model work around
+* 77f2b0e05b554b2f6563ccb84a7cbf1c48bdb703 Fix ugly looking fakegrass (#51)
 Mod: decor/homedecor_modpack
 
 origin https://github.com/Gerold55/laptop.git (fetch)
@@ -60,7 +60,7 @@ origin https://repo.or.cz/minetest_mtg_plus.git (fetch)
 Mod: decor/mtg_plus
 
 origin https://github.com/minetest-mods/mydoors (fetch)
-* b2f8fa3e4aec7d680ea2c892b5c413f3197bf1f0 Fix conflicting door craft recipes (#23)
+* f22b0c8580902ea77bd6e5e3c72e194295870cf7 Add group wood to wood nodes so that fences connect (#25)
 Mod: decor/mydoors
 
 origin https://github.com/minetest-mods/myroofs (fetch)
@@ -84,7 +84,7 @@ origin https://github.com/v-rob/slats (fetch)
 Mod: decor/slats
 
 origin https://github.com/minetest-mods/ts_furniture (fetch)
-* 6cdb584c8513b862b812ba855fd780483770abce Dynamically use textures from base nodes
+* 3888a1db42f0fbef4f6b150c89a7beb358658564 Merge pull request #16 from Niklp09/ignore
 Mod: decor/ts_furniture
 
 origin https://github.com/mt-mods/unifieddyes (fetch)
@@ -116,7 +116,7 @@ origin https://github.com/minetest-mods/mtfoods (fetch)
 Mod: food/mtfoods
 
 origin https://github.com/minetest-mirrors/pie.git (fetch)
-* 6e1d745cd6bf8b3c9caa265f8c0c9c4b6ad2535c add mineclone2 recipes
+* 7992cc152892c36cabf26a8790e0f242f1c9d32e improve mineclone support for recipes
 Mod: food/pie
 
 origin https://github.com/GreenXenith/waffles (fetch)
@@ -124,7 +124,7 @@ origin https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin https://github.com/APercy/airutils.git (fetch)
-* ba9ea7f8eb578e405e70cee4dc28d8a2016f91d4 added protection check for PAPI
+* bc70213972e2f9492674c021d68abe8b0205feab improved model detection method
 Mod: libs/airutils
 
 origin https://repo.or.cz/minetest_doc.git (fetch)
@@ -180,7 +180,7 @@ origin https://github.com/GreenXenith/tac_nayn (fetch)
 Mod: mapgen/tac_nayn
 
 origin https://github.com/minetest-mods/mesecons (fetch)
-* bd07fb0c79fe332d900fdd089014c20cb21fa0d8 Fix typo in hydroturbine recipe (#624)
+* 6890624f3db04b95be1ba10e83cf433d62a8df75 Add option to disable printing inside a luacontroller (#633)
 Mod: mesecons/mesecons
 
 origin https://github.com/minetest/minetest_game (fetch)
@@ -196,11 +196,11 @@ origin https://codeberg.org/Hamlet/mobs_ghost_redo (fetch)
 Mod: mobs_redo/mobs_ghost_redo
 
 origin https://github.com/minetest-mirrors/mobs_monster.git (fetch)
-* 78354ea87ff266a1983d4430bebe2ecbf96ee139 fix lava_pick outputs (thanks fluxionary)
+* 0d17a087620e08f7da4672f4371813c99aed5691 remove any older model mese monsters that haven't already despawned.
 Mod: mobs_redo/mobs_monster
 
 origin https://github.com/minetest-mirrors/mobs_redo.git (fetch)
-* b0df8145bdbe916ed42b5c35f8eac0f9a2afb58d update settingtypes.txt
+* 92b1a253f0b070cfc198fcacdeca97e4d34aed41 update api.txt
 Mod: mobs_redo/mobs_redo
 
 origin https://github.com/minetest-mods/3d_armor (fetch)
@@ -232,7 +232,7 @@ origin https://codeberg.org/Wuzzy/minetest_hbhunger.git (fetch)
 Mod: player/hbhunger
 
 origin https://github.com/minetest-mods/hbsprint (fetch)
-* f566d0ff26a2fb6371c617513a7f0c08cffbff0f Use inventory_image for nodes without tiles for particles
+* 92a1e0cddb0f4f3278e629402cbfc0efe6bceecf Add LuaCheck and GitHub workflow (#32)
 Mod: player/hbsprint
 
 origin https://codeberg.org/Wuzzy/minetest_hudbars.git (fetch)
@@ -252,7 +252,7 @@ origin https://repo.or.cz/minetest_show_wielded_item.git (fetch)
 Mod: player/show_wielded_item
 
 origin https://github.com/minetest-mods/skinsdb (fetch)
-* e275159dd07adb6a7e4e41642ff54591ec2de954 Add uv wrapped 1.8 hand model (#74)
+* 1d1053dbc296abaf38c31dcec47c4169e9492365 Remove mesh hand node when player exits (#84)
 Mod: player/skinsdb
 
 origin https://github.com/bell07/minetest-smart_sfinv (fetch)
@@ -268,11 +268,11 @@ origin https://github.com/taikedz/everamzah-backpacks (fetch)
 Mod: tools/backpacks
 
 origin https://github.com/Lokrates/Biofuel.git (fetch)
-* 1da3f16b7ec54d26a4a4d5f1438f6a5c39bacb07 Update changelog.md
+* 2e7bbe734728a3e87dd23c212bc7f007cc35584b Update changelog.md
 Mod: tools/biofuel
 
 origin https://github.com/minetest-mirrors/bonemeal.git (fetch)
-* b9cf957dccb06b58b80e908cba9db28981f37d4b tidy helper function
+* 1935d348c1fcadb6890e9a2b46595cfd847bc36d add 'bonemeal.disable_deathbones_recipe' setting
 Mod: tools/bonemeal
 
 origin https://github.com/SmallJoker/boost_cart (fetch)
