@@ -1,8 +1,9 @@
+pie = {}
 
 -- check for available hunger mods
 local hmod = minetest.get_modpath("hunger")
 local hbmod = minetest.get_modpath("hbhunger")
-local stmod = minetest.get_modpath("stamina")
+local stmod = minetest.global_exists("stamina")
 local defmod = minetest.get_modpath("default")
 local mclhunger = minetest.get_modpath("mcl_hunger")
 local screwdriver_exists = minetest.get_modpath("screwdriver")
@@ -24,8 +25,8 @@ local function replace_pie(node, puncher, pos)
 	end
 
 	-- which size of pie did we hit?
-	local pie = node.name:split("_")[1]
-	local num = tonumber(node.name:split("_")[2])
+	local pie = node.name:sub(1,-3)
+	local num = tonumber(node.name:sub(-1))
 
 	-- are we using crystal shovel to pick up full pie using soft touch?
 	local tool = puncher:get_wielded_item():get_name()
@@ -116,10 +117,10 @@ end
 
 
 -- register pie bits
-local function register_pie(pie, desc)
+pie.register_pie = function(pie, desc)
 
 	-- full pie
-	minetest.register_node("pie:" .. pie .. "_0", {
+	minetest.register_node(":pie:" .. pie .. "_0", {
 		description = desc,
 		paramtype = "light",
 		paramtype2 = "facedir",
@@ -146,7 +147,7 @@ local function register_pie(pie, desc)
 	})
 
 	-- 3/4 pie
-	minetest.register_node("pie:" .. pie .. "_1", {
+	minetest.register_node(":pie:" .. pie .. "_1", {
 		description = "3/4 " .. desc,
 		paramtype = "light",
 		paramtype2 = "facedir",
@@ -173,7 +174,7 @@ local function register_pie(pie, desc)
 	})
 
 	-- 1/2 pie
-	minetest.register_node("pie:" .. pie .. "_2", {
+	minetest.register_node(":pie:" .. pie .. "_2", {
 		description = "Half " .. desc,
 		paramtype = "light",
 		paramtype2 = "facedir",
@@ -200,7 +201,7 @@ local function register_pie(pie, desc)
 	})
 
 	-- 1/4 pie
-	minetest.register_node("pie:" .. pie .. "_3", {
+	minetest.register_node(":pie:" .. pie .. "_3", {
 		description = "Piece of " .. desc,
 		paramtype = "light",
 		paramtype2 = "facedir",
@@ -229,23 +230,16 @@ end
 
 
 -- register cakes
-register_pie("pie", "Cake")
-register_pie("choc", "Chocolate Cake")
-register_pie("scsk", "Strawberry Cheesecake")
-register_pie("coff", "Coffee Cake")
-register_pie("rvel", "Red Velvet Cake")
-register_pie("meat", "Meat Cake")
-register_pie("bana", "Banana Cake")
-register_pie("brpd", "Bread Pudding")
-register_pie("orange", "Orange Pie")
+pie.register_pie("pie", "Cake")
+pie.register_pie("choc", "Chocolate Cake")
+pie.register_pie("scsk", "Strawberry Cheesecake")
+pie.register_pie("coff", "Coffee Cake")
+pie.register_pie("rvel", "Red Velvet Cake")
+pie.register_pie("meat", "Meat Cake")
+pie.register_pie("bana", "Banana Cake")
+pie.register_pie("brpd", "Bread Pudding")
+pie.register_pie("orange", "Orange Pie")
 
-
--- replacement items
-local replace_these = {
-	{"mobs:bucket_milk", "bucket:bucket_empty"},
-	{"mobs:wooden_bucket_milk", "wooden_bucket:bucket_wood_empty"},
-	{"mcl_mobitems:milk_bucket", "mcl_buckets:bucket_empty"}
-}
 
 -- ingredient variables
 local mcl = minetest.get_modpath("mcl_dye")
@@ -263,6 +257,17 @@ local i_meat = mcl and "mcl_mobitems:beef" or "group:food_meat_raw"
 local i_banana = mcl and "mcl_dye:yellow" or "group:food_banana"
 local i_bread = mcl and "mcl_farming:bread" or "group:food_bread"
 local i_orange = mcl and "mcl_dye:orange" or "group:food_orange"
+local i_bucket = mcl and "mcl_buckets:bucket_empty" or "bucket:bucket_empty"
+local i_bottle = mcl and "mcl_potions:glass_bottle" or "vessels:glass_bottle"
+
+-- replacement items
+local replace_these = {
+	{"mobs:bucket_milk", i_bucket},
+	{"mobs:wooden_bucket_milk", "wooden_bucket:bucket_wood_empty"},
+	{"mcl_mobitems:milk_bucket", i_bucket},
+	{"petz:bucket_milk", i_bucket},
+	{"cucina_vegana:soy_milk", i_bottle}
+}
 
 -- normal cake recipe
 minetest.register_craft({
