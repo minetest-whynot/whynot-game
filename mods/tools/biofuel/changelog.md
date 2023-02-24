@@ -73,3 +73,5 @@ Additional trunks support (nixnoxus)
 Version 0.8
 -----------
 zh_TW Translation added (Emojigit)
+
+es Translation added (Jolesh)
