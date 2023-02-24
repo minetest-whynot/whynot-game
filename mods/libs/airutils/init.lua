@@ -115,18 +115,22 @@ end
 --returns 0 for old, 1 for new
 function airutils.detect_player_api(player)
     local player_proterties = player:get_properties()
-    local mesh = "character.b3d"
-    if player_proterties.mesh == mesh or player_proterties.mesh == "max.b3d" then
+    --local mesh = "character.b3d"
+    --if player_proterties.mesh == mesh then
         local models = player_api.registered_models
-        local character = models[mesh]
+        local character = models[player_proterties.mesh]
         if character then
             if character.animations.sit.eye_height then
-                return 1
+                if character.animations.sit.eye_height == 0.8 then
+                    --minetest.chat_send_all("new model");
+                    return 1
+                end
             else
+                --minetest.chat_send_all("old model");
                 return 0
             end
         end
-    end
+    --end
 
     return 0
 end
@@ -382,4 +386,5 @@ end
 function airutils.sit(player)
     --set_animation(frame_range, frame_speed, frame_blend, frame_loop)
     player:set_animation({x =  81, y = 160},30, 0, true)
+    if emote then emote.start(player:get_player_name(), "sit") end
 end
