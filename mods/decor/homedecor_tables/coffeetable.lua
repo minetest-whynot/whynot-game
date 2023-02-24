@@ -58,7 +58,8 @@ minetest.register_node(":lrfurn:coffeetable", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	use_texture_alpha = "blend",
-	groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3},
+	groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3, axey=5},
+	_mcl_hardness=1.6,
 	_sound_def = {
 		key = "node_sound_wood_defaults",
 	},

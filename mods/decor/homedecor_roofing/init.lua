@@ -8,7 +8,8 @@ minetest.register_node(":homedecor:skylight", {
 	tiles = { homedecor.textures.glass },
 	wield_image = homedecor.textures.glass,
 	inventory_image = "homedecor_skylight_inv.png",
-	groups = { snappy = 3, dig_tree = 2 },
+	groups = { snappy = 3, dig_tree = 2 , axey=5},
+	_mcl_hardness=1.6,
 	paramtype = "light",
 	_sound_def = {
 		key = "node_sound_glass_defaults",
@@ -24,7 +25,8 @@ minetest.register_node(":homedecor:skylight_frosted", {
 	wield_image = "homedecor_skylight_frosted.png",
 	inventory_image = "homedecor_skylight_frosted_inv.png",
 	use_texture_alpha = "blend",
-	groups = { snappy = 3, dig_tree = 2 },
+	groups = { snappy = 3, dig_tree = 2, axey=5},
+	_mcl_hardness=1.6,
 	paramtype = "light",
 	_sound_def = {
 		key = "node_sound_glass_defaults",
@@ -42,7 +44,8 @@ for s, s_loc in pairs({ ["asphalt"] = S("asphalt"), ["terracotta"] = S("terracot
 		inventory_image = "homedecor_shingles_"..s.."_inv.png",
 		paramtype = "light",
 		walkable = false,
-		groups = { snappy = 3, dig_tree = 2 },
+		groups = { snappy = 3, dig_tree = 2, axey=5},
+		_mcl_hardness=1.6,
 		_sound_def = {
 			key = "node_sound_wood_defaults",
 		},
@@ -89,6 +92,7 @@ homedecor_roofing.register_outer_corner = function(modname, subname, groups, slo
 	if type(slope_image) ~= "table" then
 		tiles = { "homedecor_slope_outer_corner_"..slope_image..".png" }
 	end
+	groups.axey=5
 
 	minetest.register_node(":"..modname..":shingle_outer_corner_" .. subname, {
 		description = S("@1 (outer corner)", description),
@@ -100,6 +104,7 @@ homedecor_roofing.register_outer_corner = function(modname, subname, groups, slo
 		selection_box = ocorner_cbox,
 		collision_box = ocorner_cbox,
 		groups = groups,
+		_mcl_hardness=1.6,
 		on_place = minetest.rotate_node,
 		_sound_def = {
 			key = "node_sound_wood_defaults",
@@ -113,6 +118,7 @@ homedecor_roofing.register_inner_corner = function(modname, subname, groups, slo
 	if type(slope_image) ~= "table" then
 		tiles = { "homedecor_slope_outer_corner_"..slope_image..".png" }
 	end
+	groups.axey=5
 
 	minetest.register_node(":"..modname..":shingle_inner_corner_" .. subname, {
 		description = S("@1 (inner corner)", description),
@@ -123,6 +129,7 @@ homedecor_roofing.register_inner_corner = function(modname, subname, groups, slo
 		paramtype2 = "facedir",
 		collision_box = icorner_cbox,
 		groups = groups,
+		_mcl_hardness=1.6,
 		on_place = minetest.rotate_node,
 		_sound_def = {
 			key = "node_sound_wood_defaults",
@@ -136,6 +143,7 @@ homedecor_roofing.register_slope = function(modname, subname, recipeitem, groups
 	if type(slope_image) ~= "table" then
 		tiles = { "homedecor_slope_outer_corner_"..slope_image..".png" }
 	end
+	groups.axey=5
 
 	minetest.register_node(":"..modname..":shingle_side_" .. subname, {
 		description = description,
@@ -148,6 +156,7 @@ homedecor_roofing.register_slope = function(modname, subname, recipeitem, groups
 		collision_box = slope_cbox,
 		use_texture_alpha = "blend",
 		groups = groups,
+		_mcl_hardness=1.6,
 		on_place = minetest.rotate_node,
 		_sound_def = {
 			key = "node_sound_wood_defaults",

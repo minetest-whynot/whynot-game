@@ -1,5 +1,7 @@
 local S = minetest.get_translator("fake_fire")
 
+local fake_fire_reload_particles_nodes = {}
+
 local function fire_particles_on(pos) -- 3 layers of fire
 	local meta = minetest.get_meta(pos)
 	local id1 = minetest.add_particlespawner({ -- 1 layer big particles fire
@@ -142,7 +144,8 @@ minetest.register_node("fake_fire:ice_fire", {
 	drawtype = "plantlike",
 	paramtype = "light",
 	paramtype2 = "facedir",
-	groups = {dig_immediate=3, not_in_creative_inventory=1, dig_generic=3},
+	groups = {dig_immediate=3, not_in_creative_inventory=1, dig_generic=3, handy=1},
+	_mcl_hardness=0.6,
 	sunlight_propagates = true,
 	buildable_to = true,
 	walkable = false,
@@ -182,7 +185,8 @@ minetest.register_node("fake_fire:fancy_fire", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	use_texture_alpha = "clip",
-	groups = {oddly_breakable_by_hand=3, flammable=0},
+	groups = {oddly_breakable_by_hand=3, flammable=0, handy=1},
+	_mcl_hardness=0.6,
 	sunlight_propagates = true,
 	light_source = 13,
 	walkable = false,
@@ -226,7 +230,8 @@ minetest.register_node("fake_fire:embers", {
 		aspect_w=16, aspect_h=16, length=2}},
 	},
 	light_source = 9,
-	groups = {crumbly=3, dig_stone=2},
+	groups = {crumbly=3, dig_stone=2, handy=1},
+	_mcl_hardness=0.6,
 	paramtype = "light",
 	_sound_def = {
 		key = "node_sound_dirt_defaults",
@@ -253,10 +258,12 @@ local materials = {
 
 for _, mat in ipairs(materials) do
 	local name, desc, tex = unpack(mat)
+	table.insert(fake_fire_reload_particles_nodes, "fake_fire:chimney_top_"..name)
 	minetest.register_node("fake_fire:chimney_top_"..name, {
 		description = desc,
 		tiles = {tex.."^chimney_top.png", tex},
-		groups = {snappy=3, dig_stone=2},
+		groups = {snappy=3, dig_stone=2, handy=1},
+		_mcl_hardness=0.6,
 		paramtype = "light",
 		_sound_def = {
 			key = "node_sound_stone_defaults",
@@ -326,10 +333,24 @@ minetest.register_alias("fake_fire:flint", "fake_fire:flint_and_steel")
 minetest.register_lbm({
 	name = "fake_fire:reload_particles",
 	label = "restart fire particles on reload",
-	nodenames = {"fake_fire:fancy_fire"},
+	nodenames = { "fake_fire:fancy_fire" },
 	run_at_every_load = true,
 	action = function(pos, node)
 		fire_particles_off(pos)
 		fire_particles_on(pos)
 	end
 })
+
+minetest.register_lbm({
+	name = "fake_fire:reload_particles_chimney",
+	label = "restart chimney smoke on reload",
+	nodenames = fake_fire_reload_particles_nodes,
+	run_at_every_load = true,
+	action = function(pos, node)
+		if minetest.get_meta(pos):get_int("smoky") ~= 0 then
+			stop_smoke(pos)
+			start_fire_effects(pos, node, nil, 1)
+		end
+	end
+})
+

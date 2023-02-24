@@ -629,7 +629,8 @@ minetest.register_node(":homedecor:tatami_mat", {
 	description = S("Japanese tatami"),
 	drawtype = "nodebox",
 	paramtype = "light",
-	groups = {snappy=3},
+	groups = {snappy=3, axey=5},
+	_mcl_hardness=1.6,
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -1028,7 +1029,8 @@ minetest.register_node(":homedecor:japanese_wall_top", {
 	},
 	paramtype = "light",
 	paramtype2 = "facedir",
-	groups = {snappy=3},
+	groups = {snappy=3, axey=5},
+	_mcl_hardness=1.6,
 	selection_box = jp_cbox,
 	collision_box = jp_cbox,
 	_sound_def = {
@@ -1046,7 +1048,8 @@ minetest.register_node(":homedecor:japanese_wall_middle", {
 	},
 	paramtype = "light",
 	paramtype2 = "facedir",
-	groups = {snappy=3},
+	groups = {snappy=3, axey=5},
+	_mcl_hardness=1.6,
 	selection_box = jp_cbox,
 	collision_box = jp_cbox,
 	_sound_def = {
@@ -1064,7 +1067,8 @@ minetest.register_node(":homedecor:japanese_wall_bottom", {
 	},
 	paramtype = "light",
 	paramtype2 = "facedir",
-	groups = {snappy=3},
+	groups = {snappy=3, axey=5},
+	_mcl_hardness=1.6,
 	selection_box = jp_cbox,
 	collision_box = jp_cbox,
 	_sound_def = {

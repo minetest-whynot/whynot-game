@@ -246,7 +246,8 @@ for i, g in ipairs(gate_list) do
 		tiles = tiles,
 		paramtype = "light",
 		use_texture_alpha = "clip",
-		groups = {snappy=3},
+		groups = {snappy=3, axey=5},
+		_mcl_hardness=1.6,
 		sounds = default.node_sound_wood_defaults(),
 		paramtype2 = "facedir",
 		selection_box = {
