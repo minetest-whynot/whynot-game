@@ -279,7 +279,7 @@ minetest.register_node(":mobs:cobweb", {
 	walkable = false,
 	groups = {snappy = 1, disable_jump = 1},
 	drop = "farming:string",
-	sounds = default.node_sound_leaves_defaults()
+	sounds = default and default.node_sound_leaves_defaults()
 })
 
 minetest.register_craft({

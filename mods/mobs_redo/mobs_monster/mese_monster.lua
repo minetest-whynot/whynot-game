@@ -209,6 +209,15 @@ mobs:register_mob("mobs_monster:mese_monster", {
 		punch_end    = 189
 	},
 
+	after_activate = function(self, staticdata, def, dtime)
+
+		local tex = self and self.textures and self.textures[1]
+
+		if tex == "zmobs_mese_monster.png" then
+			self.object:remove()
+		end
+	end,
+
 	on_spawn = function(self)
 
 		local pos = self.object:get_pos()
