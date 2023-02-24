@@ -358,7 +358,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 end)
 
 
--- Meat Block (thanks to painterlypack.net for allowing me to use these textures)
+-- Meat Block
 minetest.register_node("mobs:meatblock", {
 	description = S("Meat Block"),
 	tiles = {"mobs_meat_top.png", "mobs_meat_bottom.png", "mobs_meat_side.png"},
@@ -376,4 +376,31 @@ minetest.register_craft({
 		{"group:food_meat", "group:food_meat", "group:food_meat"},
 		{"group:food_meat", "group:food_meat", "group:food_meat"}
 	}
+})
+
+-- Meat Block (raw)
+minetest.register_node("mobs:meatblock_raw", {
+	description = S("Raw Meat Block"),
+	tiles = {"mobs_meat_raw_top.png", "mobs_meat_raw_bottom.png", "mobs_meat_raw_side.png"},
+	paramtype2 = "facedir",
+	groups = {choppy = 1, oddly_breakable_by_hand = 1, flammable = 2},
+	sounds = mod_def and default.node_sound_leaves_defaults(),
+	on_place = minetest.rotate_node,
+	on_use = minetest.item_eat(20)
+})
+
+minetest.register_craft({
+	output = "mobs:meatblock_raw",
+	recipe = {
+		{"group:food_meat_raw", "group:food_meat_raw", "group:food_meat_raw"},
+		{"group:food_meat_raw", "group:food_meat_raw", "group:food_meat_raw"},
+		{"group:food_meat_raw", "group:food_meat_raw", "group:food_meat_raw"}
+	}
+})
+
+minetest.register_craft({
+	type = "cooking",
+	output = "mobs:meatblock",
+	recipe = "mobs:meatblock_raw",
+	cooktime = 30
 })

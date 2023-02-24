@@ -25,7 +25,7 @@ local use_cmi = minetest.global_exists("cmi")
 
 mobs = {
 	mod = "redo",
-	version = "20221031",
+	version = "20230208",
 	intllib = S,
 	invis = minetest.global_exists("invisibility") and invisibility or {}
 }
@@ -354,16 +354,6 @@ function mob_class:set_yaw(yaw, delay)
 
 	if not yaw or yaw ~= yaw then
 		yaw = 0
-	end
-
-	-- clamp our yaw to a 360 range
-	if deg(self.object:get_yaw()) > 360 then
-
-		yaw = rad(10) ; delay = 0
-
-	elseif deg(self.object:get_yaw()) < 0 then
-
-		yaw = rad(350) ; delay = 0
 	end
 
 	delay = mob_smooth_rotate and (delay or 0) or 0
@@ -773,8 +763,7 @@ function mob_class:item_drop()
 	local pos = self.object:get_pos()
 
 	-- check for drops function
-	self.drops = type(self.drops) == "function"
-		and self.drops(pos) or self.drops
+	self.drops = type(self.drops) == "function" and self.drops(pos) or self.drops
 
 	-- check for nil or no drops
 	if not self.drops or #self.drops == 0 then
@@ -785,6 +774,25 @@ function mob_class:item_drop()
 	local death_by_player = self.cause_of_death
 		and self.cause_of_death.puncher
 		and self.cause_of_death.puncher:is_player()
+
+	-- check for tool 'looting_level' under tool_capabilities as default, or use
+	-- meta string 'looting_level' if found (max looting level is 3).
+	local looting = 0
+
+	if death_by_player then
+
+		local wield_stack = self.cause_of_death.puncher:get_wielded_item()
+		local wield_name = wield_stack:get_name()
+		local wield_stack_meta = wield_stack:get_meta()
+		local item_def = minetest.registered_items[wield_name]
+		local item_looting = item_def and item_def.tool_capabilities and
+				item_def.tool_capabilities.looting_level or 0
+
+		looting = tonumber(wield_stack_meta:get_string("looting_level")) or item_looting
+		looting = min(looting, 3)
+	end
+
+--print("--- looting level", looting)
 
 	local obj, item, num
 
@@ -808,7 +816,7 @@ function mob_class:item_drop()
 
 			-- only drop rare items (drops.min = 0) if killed by player
 			if death_by_player or self.drops[n].min ~= 0 then
-				obj = minetest.add_item(pos, ItemStack(item .. " " .. num))
+				obj = minetest.add_item(pos, ItemStack(item .. " " .. (num + looting)))
 			end
 
 			if obj and obj:get_luaentity() then
@@ -2217,6 +2225,56 @@ function mob_class:do_states(dtime)
 
 	local yaw = self.object:get_yaw() ; if not yaw then return end
 
+	-- are we standing in something that hurts ?  Try to get out
+	if is_node_dangerous(self, self.standing_in) then
+
+		local s = self.object:get_pos()
+		local lp
+
+		-- is there something I need to avoid?
+		if self.water_damage > 0
+		and self.lava_damage > 0 then
+
+			lp = minetest.find_node_near(s, 1, {"group:water", "group:igniter"})
+
+		elseif self.water_damage > 0 then
+
+			lp = minetest.find_node_near(s, 1, {"group:water"})
+
+		elseif self.lava_damage > 0 then
+
+			lp = minetest.find_node_near(s, 1, {"group:igniter"})
+		end
+
+		if lp then
+
+			if self.pause_timer <= 0 then
+
+				lp = minetest.find_nodes_in_area_under_air(
+					{x = s.x - 5, y = s.y , z = s.z - 5},
+					{x = s.x + 5, y = s.y + 2, z = s.z + 5},
+					{"group:soil", "group:stone", "group:sand", node_ice, node_snowblock})
+
+				-- did we find land?
+				if lp and #lp > 0 then
+
+					-- select position of random block to climb onto
+					lp = lp[random(#lp)]
+
+					yaw = yaw_to_pos(self, lp)
+				end
+
+				self.pause_timer = 3
+				self.following = nil
+
+				self:set_velocity(self.run_velocity)
+				self:set_animation("walk")
+
+				return
+			end
+		end
+	end
+
 	if self.state == "stand" and not self.follow_stop then
 
 		if self.randomly_turn and random(4) == 1 then
@@ -2260,54 +2318,7 @@ function mob_class:do_states(dtime)
 
 	elseif self.state == "walk" then
 
-		local s = self.object:get_pos()
-		local lp
-
-		-- is there something I need to avoid?
-		if self.water_damage > 0
-		and self.lava_damage > 0 then
-
-			lp = minetest.find_node_near(s, 1, {"group:water", "group:igniter"})
-
-		elseif self.water_damage > 0 then
-
-			lp = minetest.find_node_near(s, 1, {"group:water"})
-
-		elseif self.lava_damage > 0 then
-
-			lp = minetest.find_node_near(s, 1, {"group:igniter"})
-		end
-
-		if lp then
-
-			-- if mob in dangerous node then look for land
-			if not is_node_dangerous(self, self.standing_in) then
-
-				lp = minetest.find_nodes_in_area_under_air(
-					{s.x - 5, s.y - 1, s.z - 5},
-					{s.x + 5, s.y + 2, s.z + 5},
-					{"group:soil", "group:stone", "group:sand",
-							node_ice, node_snowblock})
-
-				-- select position of random block to climb onto
-				lp = #lp > 0 and lp[random(#lp)]
-
-				-- did we find land?
-				if lp then
-
-					yaw = yaw_to_pos(self, lp)
-
-					self:do_jump()
-					self:set_velocity(self.walk_velocity)
-				else
-					yaw = yaw + random(-0.5, 0.5)
-				end
-			end
-
-			self:set_yaw(yaw, 8)
-
-		-- otherwise randomly turn
-		elseif self.randomly_turn and random(100) <= 30 then
+		if self.randomly_turn and random(100) <= 30 then
 
 			yaw = yaw + random(-0.5, 0.5)
 
@@ -2918,7 +2929,7 @@ function mob_class:on_punch(hitter, tflp, tool_capabilities, dir, damage)
 
 		-- select tool use sound if found, or fallback to default
 		local snd = weapon_def.sound and weapon_def.sound.use
-				or "default_punch"
+				or "mobs_punch"
 
 		minetest.sound_play(snd, {object = self.object, max_hear_distance = 8}, true)
 
@@ -2989,7 +3000,8 @@ function mob_class:on_punch(hitter, tflp, tool_capabilities, dir, damage)
 	and self.order ~= "stand" then
 
 		local lp = hitter:get_pos()
-		yaw = yaw_to_pos(self, lp, 3)
+
+		yaw_to_pos(self, lp, 3)
 
 		self.state = "runaway"
 		self.runaway_timer = 0
@@ -3369,7 +3381,7 @@ function mob_class:on_step(dtime, moveresult)
 		-- check and stop if standing at cliff and fear of heights
 		self.at_cliff = self:is_at_cliff()
 
-		if self.at_cliff then
+		if self.pause_timer <= 0 and self.at_cliff then
 			self:set_velocity(0)
 		end
 
@@ -4416,7 +4428,9 @@ function mobs:force_capture(self, clicker)
 
 		if  t ~= "function"
 		and t ~= "nil"
-		and t ~= "userdata" then
+		and t ~= "userdata"
+		and _ ~= "object"
+		and _ ~= "_cmi_components" then
 			tmp[_] = self[_]
 		end
 	end
@@ -4530,7 +4544,9 @@ function mobs:capture_mob(self, clicker, chance_hand, chance_net,
 
 					if  t ~= "function"
 					and t ~= "nil"
-					and t ~= "userdata" then
+					and t ~= "userdata"
+					and _ ~= "object"
+					and _ ~= "_cmi_components" then
 						tmp[_] = self[_]
 					end
 				end
@@ -4818,7 +4834,23 @@ function mobs:alias_mob(old_name, new_name)
 		end,
 
 		get_staticdata = function(self)
-			return self
+
+			local tmp, t = {}
+
+			for _,stat in pairs(self) do
+
+				t = type(stat)
+
+				if  t ~= "function"
+				and t ~= "nil"
+				and t ~= "userdata"
+				and _ ~= "object"
+				and _ ~= "_cmi_components" then
+					tmp[_] = self[_]
+				end
+			end
+
+			return minetest.serialize(tmp)
 		end
 	})
 end

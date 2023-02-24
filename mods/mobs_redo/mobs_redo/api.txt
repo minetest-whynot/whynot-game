@@ -301,11 +301,9 @@ Custom Definition Functions
 Along with the above mob registry settings we can also use custom functions to
 enhance mob functionality and have them do many interesting things:
 
-   'on_die'         a function that is called when the mob is killed the
-                    parameters are (self, pos)
    'on_rightclick'  its same as in minetest.register_entity()
    'on_blast'       is called when an explosion happens near mob when using TNT
-                    functions, parameters are (object, damage) and returns
+                    functions, parameters are (damage) and returns
                     (do_damage, do_knockback, drops)
    'on_spawn'       is a custom function that runs on mob spawn with 'self' as
                     variable, return true at end of function to run only once.
@@ -713,6 +711,14 @@ mobs:is_node_dangerous(mob_object, nodename)
 
 This function returns true if the node name given is harmful to the mob (mob_object),
 it is mainly used when a mob is near a node it has to avoid.
+
+
+Looting Level
+-------------
+
+If a tool is used with 'looting_level' defined under tool_capabilities then mobs can drop
+extra items per level up to a maximum of 3 levels.  'looting_level' can also be read from
+the tools own meta to override the default.
 
 
 External Settings for "minetest.conf"
