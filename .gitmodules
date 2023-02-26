@@ -253,3 +253,6 @@
 [submodule "builder/mods_src/tools/hidroplane"]
 	path = builder/mods_src/tools/hidroplane
 	url = https://github.com/APercy/hidroplane.git
+[submodule "builder/mods_src/mapgen/builder/mods_src/mapgen/minetest_mapgen_config"]
+	path = builder/mods_src/mapgen/builder/mods_src/mapgen/minetest_mapgen_config
+	url = https://codeberg.org/Dacmot/minetest_mapgen_config.git
