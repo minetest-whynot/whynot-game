@@ -1,0 +1,51 @@
+[Advanced]
+
+[*Mapgen Config]
+
+[**Ores]
+mapgen_conf.tin_ground_layer1_scarcity (Tin ore underground, 1st layer, scarcity factor) int 1000 100 1000000
+mapgen_conf.tin_ground_layer1_ymax (Tin ore underground, 1st layer, upper limit) int -64 -31000 31000
+mapgen_conf.tin_ground_layer1_ymin (Tin ore underground, 1st layer, lower limit) int -128 -31000 31000
+mapgen_conf.tin_ground_layer2_scarcity (Tin ore underground, 2nd layer, scarcity factor) int 2197 100 1000000
+mapgen_conf.tin_ground_layer2_ymax (Tin ore underground, 2nd layer, upper limit) int -129 -31000 31000
+mapgen_conf.tin_ground_layer2_ymin (Tin ore underground, 2nd layer, lower limit) int -31000 -31000 31000
+mapgen_conf.copper_ground_layer1_scarcity (Copper ore underground, 1st layer, scarcity factor) int 729 100 1000000
+mapgen_conf.copper_ground_layer1_ymax (Copper ore underground, 1st layer, upper limit) int -64 -31000 31000
+mapgen_conf.copper_ground_layer1_ymin (Copper ore underground, 1st layer, lower limit) int -128 -31000 31000
+mapgen_conf.copper_ground_layer2_scarcity (Copper ore underground, 2nd layer, scarcity factor) int 1728 100 1000000
+mapgen_conf.copper_ground_layer2_ymax (Copper ore underground, 2nd layer, upper limit) int -129 -31000 31000
+mapgen_conf.copper_ground_layer2_ymin (Copper ore underground, 2nd layer, lower limit) int -31000 -31000 31000
+mapgen_conf.iron_ground_layer1_scarcity (Iron ore underground, 1st layer, scarcity factor) int 1000 100 1000000
+mapgen_conf.iron_ground_layer1_ymax (Iron ore underground, 1st layer, upper limit) int -300 -31000 31000
+mapgen_conf.iron_ground_layer1_ymin (Iron ore underground, 1st layer, lower limit) int -600 -31000 31000
+mapgen_conf.iron_ground_layer2_scarcity (Iron ore underground, 2nd layer, scarcity factor) int 2744 100 1000000
+mapgen_conf.iron_ground_layer2_ymax (Iron ore underground, 2nd layer, upper limit) int -601 -31000 31000
+mapgen_conf.iron_ground_layer2_ymin (Iron ore underground, 2nd layer, lower limit) int -31000 -31000 31000
+mapgen_conf.mese_ground_layer1_scarcity (Mese ore underground, 1st layer, scarcity factor) int 4096 100 1000000
+mapgen_conf.mese_ground_layer1_ymax (Mese ore underground, 1st layer, upper limit) int -500 -31000 31000
+mapgen_conf.mese_ground_layer1_ymin (Mese ore underground, 1st layer, lower limit) int -1200 -31000 31000
+mapgen_conf.mese_ground_layer2_scarcity (Mese ore underground, 2nd layer, scarcity factor) int 2744 100 1000000
+mapgen_conf.mese_ground_layer2_ymax (Mese ore underground, 2nd layer, upper limit) int -1201 -31000 31000
+mapgen_conf.mese_ground_layer2_ymin (Mese ore underground, 2nd layer, lower limit) int -31000 -31000 31000
+mapgen_conf.diamond_ground_layer1_scarcity (Diamond ore underground, 1st layer, scarcity factor) int 4913 100 1000000
+mapgen_conf.diamond_ground_layer1_ymax (Diamond ore underground, 1st layer, upper limit) int -1200 -31000 31000
+mapgen_conf.diamond_ground_layer1_ymin (Diamond ore underground, 1st layer, lower limit) int -2000 -31000 31000
+mapgen_conf.diamond_ground_layer2_scarcity (Diamond ore underground, 2nd layer, scarcity factor) int 3375 100 1000000
+mapgen_conf.diamond_ground_layer2_ymax (Diamond ore underground, 2nd layer, upper limit) int -2001 -31000 31000
+mapgen_conf.diamond_ground_layer2_ymin (Diamond ore underground, 2nd layer, lower limit) int -31000 -31000 31000
+
+[**Biomes]
+# Breaks the top layer biome into two: hills, and mountains/sky
+mapgen_conf.mountaintops_altitude (Altitude at which mountain tops appear) int 80 -10000 100
+mapgen_conf.hills_to_mountain_vertical_blend (Number of blocks for which the hills and mountain tops biomes will blend) int 30 0 50
+mapgen_conf.top_layer_thickness (Thickness for the top layer, e.g. grass) int 1 1 1000
+mapgen_conf.filler_layer_thickness (Thickness of the filler layer, e.g. dirt or sand) int 20 1 1000
+mapgen_conf.ocean_floor_thickness (Thickness of the ocean floor layer) int 5 1 1000
+mapgen_conf.riverbed_thickness (Thickness of the riverbed layer) int 5 1 1000
+mapgen_conf.lower_atmosphere_biome_ymax (Upper limit of the lower atmosphere biome) int 1000 200 31000
+mapgen_conf.floatlands_biomes_ymax (Upper limit of the floatlands biomes) int 5000 1000 31000
+
+[*Bugs Workaround]
+#    If enabled, use the engine's spawn search which does not check for a
+#    suitable starting biome.
+engine_spawn (Use engine spawn search) bool true
