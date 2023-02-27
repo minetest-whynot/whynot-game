@@ -159,10 +159,6 @@ origin https://github.com/mt-mods/sound_api.git (fetch)
 * d13501cc10059149cde3c266df7e623556e9a5ef Avoid crash when sound_api function for a key is undefined (#4)
 Mod: libs/sound_api
 
-origin https://codeberg.org/Dacmot/minetest_mapgen_config.git (fetch)
-* 119eb66460f82430edfc50e3c77626020a13fd59 Clarify dungeon materials
-Mod: mapgen/builder/mods_src/mapgen/minetest_mapgen_config
-
 origin https://github.com/Treer/cloudlands/ (fetch)
 * 0009137327942697a5df048d1a4f6706970509aa Update README.md
 Mod: mapgen/cloudlands
@@ -174,6 +170,10 @@ Mod: mapgen/maple
 origin https://github.com/minetest-mods/meseor (fetch)
 * b0a99d3acb25007b840741db6216c00337eba247 Update
 Mod: mapgen/meseor
+
+origin https://codeberg.org/Dacmot/minetest_mapgen_config.git (fetch)
+* 119eb66460f82430edfc50e3c77626020a13fd59 Clarify dungeon materials
+Mod: mapgen/minetest_mapgen_config
 
 origin https://github.com/minetest-mirrors/pbj_pup.git (fetch)
 * 5a0d59e5a8c7c793dce046437c7527a98f31336d tweak code
