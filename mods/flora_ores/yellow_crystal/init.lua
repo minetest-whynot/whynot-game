@@ -2,7 +2,7 @@
 --
 --  Minetest -- Yellow Crystals -- Adds crystal formations
 --  Copyright (C) 2022  Olivier Dragon
---  Copyright (C) 2015 Maciej Kasatkin aka RealBadAngel
+--  Copyright (C) 2015  Maciej Kasatkin aka RealBadAngel
 --
 --  This program is free software: you can redistribute it and/or modify
 --  it under the terms of the GNU General Public License as published by
@@ -164,44 +164,44 @@ minetest.register_ore({
 	ore_type       = "scatter",
 	ore            = "yellow_crystals:mese_crystal_ore1",
 	wherein        = "default:stone",
-	clust_scarcity = 18 * 18 * 18,
+	clust_scarcity = tonumber(minetest.settings:get("yellow_crystals.ore1_scarcity")) or (18 * 18 * 18),
 	clust_num_ores = 1,
 	clust_size     = 1,
-	y_min          = -255,
-	y_max          = -64,
+	y_max          = tonumber(minetest.settings:get("yellow_crystals.ore1_ymax")) or -150,
+	y_min          = tonumber(minetest.settings:get("yellow_crystals.ore1_ymin")) or -500,
 })
 
 minetest.register_ore({
 	ore_type       = "scatter",
 	ore            = "yellow_crystals:mese_crystal_ore2",
 	wherein        = "default:stone",
-	clust_scarcity = 20 * 20 * 20,
+	clust_scarcity = tonumber(minetest.settings:get("yellow_crystals.ore2_scarcity")) or (20 * 20 * 20),
 	clust_num_ores = 1,
 	clust_size     = 1,
-	y_min          = -31000,
-	y_max          = -256,
+	y_max          = tonumber(minetest.settings:get("yellow_crystals.ore2_ymax")) or -250,
+	y_min          = tonumber(minetest.settings:get("yellow_crystals.ore2_ymin")) or -31000,
 })
 	
 minetest.register_ore({
 	ore_type       = "scatter",
 	ore            = "yellow_crystals:mese_crystal_ore3",
 	wherein        = "default:stone",
-	clust_scarcity = 20 * 20 * 20,
+	clust_scarcity = tonumber(minetest.settings:get("yellow_crystals.ore3_scarcity")) or (20 * 20 * 20),
 	clust_num_ores = 1,
 	clust_size     = 1,
-	y_min          = -31000,
-	y_max          = -256,
+	y_max          = tonumber(minetest.settings:get("yellow_crystals.ore3_ymax")) or -350,
+	y_min          = tonumber(minetest.settings:get("yellow_crystals.ore3_ymin")) or -31000,
 })
 	
 minetest.register_ore({
 	ore_type       = "scatter",
 	ore            = "yellow_crystals:mese_crystal_ore4",
 	wherein        = "default:stone",
-	clust_scarcity = 20 * 20 * 20,
+	clust_scarcity = tonumber(minetest.settings:get("yellow_crystals.ore4_scarcity")) or (20 * 20 * 20),
 	clust_num_ores = 1,
 	clust_size     = 1,
-	y_min          = -31000,
-	y_max          = -256,
+	y_max          = tonumber(minetest.settings:get("yellow_crystals.ore4_ymax")) or -450,
+	y_min          = tonumber(minetest.settings:get("yellow_crystals.ore4_ymin")) or -31000,
 })
 
 function check_lava (pos)
