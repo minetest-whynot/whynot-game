@@ -1,0 +1,13 @@
+[Yellow Crystals]
+yellow_crystals.ore1_scarcity (Mese crystals level 1, scarcity) int 5832 100 1000000
+yellow_crystals.ore1_ymax (Mese crystals level 1, underground upper limit) int -150 -31000 31000
+yellow_crystals.ore1_ymin (Mese crystals level 1, underground lower limit) int -500 -31000 31000
+yellow_crystals.ore2_scarcity (Mese crystals level 2, scarcity) int 8000 100 1000000
+yellow_crystals.ore2_ymax (Mese crystals level 2, underground upper limit) int -250 -31000 31000
+yellow_crystals.ore2_ymin (Mese crystals level 2, underground lower limit) int -31000 -31000 31000
+yellow_crystals.ore3_scarcity (Mese crystals level 3, scarcity) int 8000 100 1000000
+yellow_crystals.ore3_ymax (Mese crystals level 3, underground upper limit) int -350 -31000 31000
+yellow_crystals.ore3_ymin (Mese crystals level 3, underground lower limit) int -31000 -31000 31000
+yellow_crystals.ore4_scarcity (Mese crystals level 4, scarcity) int 8000 100 1000000
+yellow_crystals.ore4_ymax (Mese crystals level 4, underground upper limit) int -450 -31000 31000
+yellow_crystals.ore4_ymin (Mese crystals level 4, underground lower limit) int -31000 -31000 31000
