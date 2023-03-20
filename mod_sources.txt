@@ -96,7 +96,7 @@ origin https://github.com/minetest-mirrors/farming.git (fetch)
 Mod: flora_ores/farming
 
 origin https://codeberg.org/Dacmot/YellowCrystals.git (fetch)
-* 01f7faa3dd2424c2f6959d022ebb07111077d652 Adding link to WTFPL
+* ef964908ac72af0dfcadd2ca827697e8cecbf2c6 Adding configurable settings for depth and scarcity
 Mod: flora_ores/yellow_crystal
 
 origin https://github.com/h-v-smacker/canned_food (fetch)
