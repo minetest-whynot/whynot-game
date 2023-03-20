@@ -26,13 +26,11 @@ local function copy_biome(def, variant_suffix)
     local def = table.copy(def or minetest.registered_biomes[old_name])
     def.name = old_name.."_"..variant_suffix
 
-    for _, decor in pairs(minetest.registered_decorations) do
-        if decor.biomes then
-            for _, biome in pairs(decor.biomes) do
-                if (biome == old_name) then
-                    table.insert(decor.biomes, def.name)
-                    break
-                end
+    for name, decor in pairs(minetest.registered_decorations) do
+        for _, biome in pairs(decor.biomes) do
+            if (biome == old_name) then
+                table.insert(decor.biomes, def.name)
+                break
             end
         end
     end
