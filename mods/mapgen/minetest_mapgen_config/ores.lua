@@ -18,40 +18,51 @@
 --------------------------------------------------------------------------------
 
 --
--- This file contains modifications to the ores for the whynot map/world generation
+-- This file contains modifications to the ores for the map/world generation
 --
 
-local function change_ore_def(ore, def)
-    if (def.ore == "default:stone_with_"..ore) then
-        if (0 > def.y_min and def.y_min > -31000) then
-            local prev_ymax = def.y_max
-            def.clust_scarcity = tonumber(Mapgen_conf.get_setting("mapgen_conf."..ore.."_ground_layer1_scarcity", def.clust_scarcity))
-            def.y_max = tonumber(Mapgen_conf.get_setting("mapgen_conf."..ore.."_ground_layer1_ymax", def.y_max))
-            def.y_min = tonumber(Mapgen_conf.get_setting("mapgen_conf."..ore.."_ground_layer1_ymin", def.y_min))
+local ores_registered = {}
+
+
+local function change_ore_layer(ore_config_name, layer, def)
+    local config_str_base = "mapgen_conf."..ore_config_name.."_ground_layer"..layer.."_"
+    def.clust_scarcity = tonumber(Mapgen_conf.get_setting(config_str_base.."scarcity", def.clust_scarcity))
+    def.clust_num_ores = tonumber(Mapgen_conf.get_setting(config_str_base.."num_ores", def.clust_num_ores))
+    def.clust_size     = tonumber(Mapgen_conf.get_setting(config_str_base.."clust_size", def.clust_size))
+    def.y_max          = tonumber(Mapgen_conf.get_setting(config_str_base.."ymax", def.y_max))
+    def.y_min          = tonumber(Mapgen_conf.get_setting(config_str_base.."ymin", def.y_min))
+end
+
+
+local function change_ore_def(base_material, ore_config_name, def)
+    if (def.ore == base_material) then
+        if ((0 > def.y_min and def.y_min > -31000) or ores_registered[ore_config_name] == nil) then
+            change_ore_layer(ore_config_name, 1, def)
+        elseif (def.y_min <= -31000) then
+            change_ore_layer(ore_config_name, 2, def)
         end
-        if (def.y_min <= -31000) then
-            local prev_ymax = def.y_max
-            def.clust_scarcity = tonumber(Mapgen_conf.get_setting("mapgen_conf."..ore.."_ground_layer2_scarcity", def.clust_scarcity))
-            def.y_max = tonumber(Mapgen_conf.get_setting("mapgen_conf."..ore.."_ground_layer2_ymax", def.y_max))
-            def.y_min = tonumber(Mapgen_conf.get_setting("mapgen_conf."..ore.."_ground_layer2_ymin", def.y_min))
-        end
+        ores_registered[ore_config_name] = 1
     end
 end
 
 
-local rores = table.copy(minetest.registered_ores)
+local reg_ores = table.copy(minetest.registered_ores)
 minetest.clear_registered_ores()
 
-for _, def in pairs(rores) do
+for _, def in pairs(reg_ores) do
     if (def and def.ore) then
 
-        change_ore_def("tin", def)
-        change_ore_def("copper", def)
-        change_ore_def("iron", def)
-        change_ore_def("mese", def)
-        change_ore_def("diamond", def)
+        change_ore_def("default:stone_with_tin", "tin", def)
+        change_ore_def("default:stone_with_copper", "copper", def)
+        change_ore_def("default:stone_with_gold", "gold", def)
+        change_ore_def("default:stone_with_iron", "iron", def)
+        change_ore_def("default:stone_with_mese", "mese", def)
+        change_ore_def("default:mese", "mese_block", def)
+        change_ore_def("default:stone_with_diamond", "diamond", def)
 
-        minetest.register_ore(def)
+        if (def.ore ~= "default:mese" or not minetest.get_modpath("yellow_crystal")) then
+            minetest.register_ore(def)
+        end
 
     end
 end

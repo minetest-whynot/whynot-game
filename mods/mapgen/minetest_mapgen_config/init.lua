@@ -45,3 +45,22 @@ dofile(modpath.."/biomes.lua")
 dofile(modpath.."/ores.lua")
 dofile(modpath.."/decorations.lua")
 
+local function rnd10(num)
+    return math.round(num * 10) / 10
+end
+
+if (Mapgen_conf.get_setting("mapgen_conf.debug_biomes", false)) then
+    Mapgen_conf.globalstep = 0
+    minetest.register_globalstep(function(dtime)
+        Mapgen_conf.globalstep = Mapgen_conf.globalstep + dtime
+        if (Mapgen_conf.globalstep >= 5) then
+            local player = minetest.get_player_by_name("singleplayer")
+            if (player) then
+                local pos = player:get_pos()
+                local biome_data = minetest.get_biome_data(pos)
+                minetest.log("verbose", math.floor(pos.x)..","..math.floor(pos.y)..","..math.floor(pos.z).." in "..minetest.get_biome_name(biome_data.biome)..", heat "..rnd10(biome_data.heat)..", humidity "..rnd10(biome_data.humidity))
+            end
+            Mapgen_conf.globalstep = 0
+        end
+    end)
+end

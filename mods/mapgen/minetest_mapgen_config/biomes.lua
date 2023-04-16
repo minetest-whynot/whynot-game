@@ -18,7 +18,7 @@
 --------------------------------------------------------------------------------
 
 --
--- This file contains modifications to the biomes for map/world generation
+-- This file contains modifications to the biomes for the map/world generation
 --
 
 local function copy_biome(def, variant_suffix)
@@ -26,14 +26,16 @@ local function copy_biome(def, variant_suffix)
     local def = table.copy(def or minetest.registered_biomes[old_name])
     def.name = old_name.."_"..variant_suffix
 
-    for name, decor in pairs(minetest.registered_decorations) do
-        for _, biome in pairs(decor.biomes) do
-            if (biome == old_name) then
-                table.insert(decor.biomes, def.name)
-                break
-            end
-        end
-    end
+    -- for _, decor in pairs(minetest.registered_decorations) do
+    --     if decor.biomes then
+    --         for _, biome in pairs(decor.biomes) do
+    --             if (biome == old_name) then
+    --                 table.insert(decor.biomes, def.name)
+    --                 break
+    --             end
+    --         end
+    --     end
+    -- end
 
     return def
 end
@@ -47,6 +49,7 @@ local ocean_floor_thickness = tonumber(Mapgen_conf.get_setting("mapgen_conf.ocea
 local riverbed_thickness = tonumber(Mapgen_conf.get_setting("mapgen_conf.riverbed_thickness", 5))
 local lower_atmosphere_biome_ymax = tonumber(Mapgen_conf.get_setting("mapgen_conf.lower_atmosphere_biome_ymax", 1000))
 local floatlands_biomes_ymax = tonumber(Mapgen_conf.get_setting("mapgen_conf.floatlands_biomes_ymax", 5000))
+local floatlands_biomes_exclusions = Mapgen_conf.get_setting("mapgen_conf.floatlands_biomes_exclusions", "tundra icesheet cold_desert grassland_dunes snowy_grassland")
 
 minetest.log("info", "Mapgen config: modifying biomes...")
 for name, def in pairs(minetest.registered_biomes) do
@@ -156,7 +159,7 @@ for name, def in pairs(minetest.registered_biomes) do
         def.node_dungeon = "default:desert_sandstone_brick"
         def.node_dungeon_alt = "default:desert_sandstone"
         def.node_dungeon_stair = "stairs:stair_desert_standstone"
-    
+
     elseif (string.find(name, "rainforest")) then
 
         if (minetest.get_modpath("mtg_plus")) then
@@ -167,7 +170,7 @@ for name, def in pairs(minetest.registered_biomes) do
         end
 
     elseif (string.find(name, "tundra")) then
-        
+
         minetest.log("verbose", "mapgen_conf dungeon: "..name)
         def.node_dungeon = "default:obsidianbrick"
         def.node_dungeon_alt = "default:obsidian"
@@ -187,13 +190,21 @@ for name, def in pairs(minetest.registered_biomes) do
     minetest.register_biome(def)
 
 
-    -- Keep only the "interesting" biomes in floatlands
-    if (string.find("coniferous_forest deciduous_forest savanna rainforest taiga desert grassland", name)) then
-        local floatlands_biome = copy_biome(def, "floatlands")
-        floatlands_biome.y_max = floatlands_biomes_ymax - 1
-        floatlands_biome.y_min = lower_atmosphere_biome_ymax
+    -- Don't duplicate the biomes depth variants
+    if (not (string.find(name, "_ocean") or string.find(name, "_beach") or string.find(name, "_under") or string.find(name, "_highland"))) then
+        -- Remove boring biomes in floatlands
+        local stripped_name = name
+        local stripped_name = stripped_name:gsub("_ocean", "")
+        local stripped_name = stripped_name:gsub("_beach", "")
+        local stripped_name = stripped_name:gsub("_under", "")
+        local stripped_name = stripped_name:gsub("_highland", "")
+        if (not string.find(floatlands_biomes_exclusions, stripped_name)) then
+            local floatlands_biome = copy_biome(def, "floatlands")
+            floatlands_biome.y_max = floatlands_biomes_ymax - 1
+            floatlands_biome.y_min = lower_atmosphere_biome_ymax
 
-        minetest.register_biome(floatlands_biome)
+            minetest.register_biome(floatlands_biome)
+        end
     end
 
 end

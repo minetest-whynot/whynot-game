@@ -18,7 +18,7 @@
 --------------------------------------------------------------------------------
 
 --
--- This file contains modifications to the decorations for map/world generation
+-- This file contains modifications to the decorations for the map/world generation
 --
 
 local rdecor = table.copy(minetest.registered_decorations)
