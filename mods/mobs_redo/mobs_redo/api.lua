@@ -25,7 +25,7 @@ local use_cmi = minetest.global_exists("cmi")
 
 mobs = {
 	mod = "redo",
-	version = "20230208",
+	version = "20230227",
 	intllib = S,
 	invis = minetest.global_exists("invisibility") and invisibility or {}
 }
@@ -85,6 +85,31 @@ local peaceful_player_enabled = settings:get_bool("enable_peaceful_player")
 local mob_smooth_rotate = settings:get_bool("mob_smooth_rotate") ~= false
 local active_mobs = 0
 
+-- pathfinding settings
+local pathfinding_enable = settings:get_bool("mob_pathfinding_enable") or true
+-- Use pathfinder mod if available
+local pathfinder_enable = settings:get_bool("mob_pathfinder_enable") or true
+-- how long before stuck mobs start searching
+local pathfinding_stuck_timeout = tonumber(settings:get("mob_pathfinding_stuck_timeout")) or 3.0
+-- how long will mob follow path before giving up
+local pathfinding_stuck_path_timeout = tonumber(settings:get("mob_pathfinding_stuck_path_timeout")) or 5.0
+-- which algorithm to use, Dijkstra(default) or A*_noprefetch or A*
+-- fix settings not allowing "*"
+local pathfinding_algorithm = settings:get("mob_pathfinding_algorithm") or "Dijkstra"
+
+if pathfinding_algorithm == "AStar_noprefetch" then
+	pathfinding_algorithm = "A*_noprefetch"
+elseif pathfinding_algorithm == "AStar" then
+	pathfinding_algorithm = "A*"
+end
+
+-- max search distance from search positions (default 16)
+local pathfinding_searchdistance = tonumber(settings:get("mob_pathfinding_searchdistance") or 16)
+-- max jump height (default 4)
+local pathfinding_max_jump = tonumber(settings:get("mob_pathfinding_max_jump") or 4)
+-- max drop height (default 6)
+local pathfinding_max_drop = tonumber(settings:get("mob_pathfinding_max_drop") or 6)
+
 -- Peaceful mode message so players will know there are no monsters
 if peaceful_only then
 	minetest.register_on_joinplayer(function(player)
@@ -95,11 +120,6 @@ end
 
 -- calculate aoc range for mob count
 local aoc_range = tonumber(settings:get("active_block_range")) * 16
-
--- pathfinding settings
-local enable_pathfinding = true
-local stuck_timeout = 3 -- how long before stuck mod starts searching
-local stuck_path_timeout = 5 -- how long will mob follow path before giving up
 
 -- default nodes
 --local node_fire = "fire:basic_flame"
@@ -1699,7 +1719,7 @@ function mob_class:smart_mobs(s, p, dist, dtime)
 		end -- can see target!
 	end
 
-	if self.path.stuck_timer > stuck_timeout and not self.path.following then
+	if self.path.stuck_timer > pathfinding_stuck_timeout and not self.path.following then
 
 		use_pathfind = true
 		self.path.stuck_timer = 0
@@ -1715,7 +1735,7 @@ function mob_class:smart_mobs(s, p, dist, dtime)
 		end, self)
 	end
 
-	if self.path.stuck_timer > stuck_path_timeout and self.path.following then
+	if self.path.stuck_timer > pathfinding_stuck_path_timeout and self.path.following then
 
 		use_pathfind = true
 		self.path.stuck_timer = 0
@@ -1767,24 +1787,24 @@ function mob_class:smart_mobs(s, p, dist, dtime)
 		p1.y = floor(p1.y + 0.5)
 		p1.z = floor(p1.z + 0.5)
 
-		local dropheight = 6
+		local dropheight = pathfinding_max_drop
 
 		if self.fear_height ~= 0 then dropheight = self.fear_height end
 
 		local jumpheight = 0
 
-		if self.jump and self.jump_height >= 4 then
-			jumpheight = min(ceil(self.jump_height / 4), 4)
+		if self.jump and self.jump_height >= pathfinding_max_jump then
+			jumpheight = min(ceil(self.jump_height / pathfinding_max_jump), pathfinding_max_jump)
 
 		elseif self.stepheight > 0.5 then
 			jumpheight = 1
 		end
 
-		if pathfinder_mod then
+		if pathfinder_mod and pathfinder_enable then
 			self.path.way = pathfinder.find_path(s, p1, self, dtime)
 		else
-			self.path.way = minetest.find_path(s, p1, 16, jumpheight,
-					dropheight, "Dijkstra")
+			self.path.way = minetest.find_path(s, p1, pathfinding_searchdistance, jumpheight,
+					dropheight, pathfinding_algorithm)
 		end
 --[[
 		-- show path using particles
@@ -1873,7 +1893,7 @@ function mob_class:smart_mobs(s, p, dist, dtime)
 			end
 
 			-- will try again in 2 second
-			self.path.stuck_timer = stuck_timeout - 2
+			self.path.stuck_timer = pathfinding_stuck_timeout - 2
 
 		elseif s.y < p1.y and (not self.fly) then
 			self:do_jump() --add jump to pathfinding
@@ -2492,7 +2512,7 @@ function mob_class:do_states(dtime)
 
 					local pos = self.object:get_pos()
 
-					-- dont damage anything if area protected or next to water
+					-- dont damage anything if area protected or next to waterpathfinding_max_jump
 					if minetest.find_node_near(pos, 1, {"group:water"})
 					or minetest.is_protected(pos, "") then
 
@@ -2594,7 +2614,7 @@ function mob_class:do_states(dtime)
 
 				-- path finding by rnd
 				if self.pathfinding -- only if mob has pathfinding enabled
-				and enable_pathfinding then
+				and pathfinding_enable then
 
 					self:smart_mobs(s, p, dist, dtime)
 				end

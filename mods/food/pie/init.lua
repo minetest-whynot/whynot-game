@@ -2,7 +2,7 @@ pie = {}
 
 -- check for available hunger mods
 local hmod = minetest.get_modpath("hunger")
-local hbmod = minetest.get_modpath("hbhunger")
+local hbmod = minetest.global_exists("hbhunger")
 local stmod = minetest.global_exists("stamina")
 local defmod = minetest.get_modpath("default")
 local mclhunger = minetest.get_modpath("mcl_hunger")

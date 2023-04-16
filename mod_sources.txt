@@ -116,7 +116,7 @@ origin https://github.com/minetest-mods/mtfoods (fetch)
 Mod: food/mtfoods
 
 origin https://github.com/minetest-mirrors/pie.git (fetch)
-* 7992cc152892c36cabf26a8790e0f242f1c9d32e improve mineclone support for recipes
+* ee728d3f95d8868ed9b8965dfbc07626f9fce704 tweak hbhunger detection
 Mod: food/pie
 
 origin https://github.com/GreenXenith/waffles (fetch)
@@ -124,7 +124,7 @@ origin https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin https://github.com/APercy/airutils.git (fetch)
-* bc70213972e2f9492674c021d68abe8b0205feab improved model detection method
+* e93f33037cfc14bc14d3226fcb9d780244caab74 fix non declared variable
 Mod: libs/airutils
 
 origin https://repo.or.cz/minetest_doc.git (fetch)
@@ -204,7 +204,7 @@ origin https://github.com/minetest-mirrors/mobs_monster.git (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin https://github.com/minetest-mirrors/mobs_redo.git (fetch)
-* 92b1a253f0b070cfc198fcacdeca97e4d34aed41 update api.txt
+* 924a54578859127417475f13924f9f467cf7bc8b update pathfinding defaults to add settings (thx Bla)
 Mod: mobs_redo/mobs_redo
 
 origin https://github.com/minetest-mods/3d_armor (fetch)
@@ -304,7 +304,7 @@ origin https://github.com/Ezhh/handholds (fetch)
 Mod: tools/handholds
 
 origin https://github.com/APercy/hidroplane.git (fetch)
-* c265a383ead76b96f28898d8c0d6f2c477be848a fix
+* 39bd23407f95669d587a611150de8aeeb5610628 added check for the new function
 Mod: tools/hidroplane
 
 origin https://github.com/minetest-mods/hopper (fetch)

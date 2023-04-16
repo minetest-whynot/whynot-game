@@ -32,6 +32,8 @@ end
 if not minetest.settings:get_bool('airutils.disable_repair') then
     dofile(minetest.get_modpath("airutils") .. DIR_DELIM .. "airutils_repair.lua")
 end
+airutils.get_wind = dofile(minetest.get_modpath("airutils") .. DIR_DELIM ..'/wind.lua')
+dofile(minetest.get_modpath("airutils") .. DIR_DELIM .. "airutils_wind.lua")
 dofile(minetest.get_modpath("airutils") .. DIR_DELIM .. "inventory_management.lua")
 dofile(minetest.get_modpath("airutils") .. DIR_DELIM .. "light.lua")
 dofile(minetest.get_modpath("airutils") .. DIR_DELIM .. "physics_lib.lua")
@@ -234,6 +236,26 @@ end
 -- max_height: the max ceilling for the airplane
 -- wingspan: for ground effect calculation
 function airutils.getLiftAccel(self, velocity, accel, longit_speed, roll, curr_pos, lift, max_height, wingspan)
+    --add wind to the lift calcs
+    local wind = airutils.get_wind(curr_pos, 5)
+    local accel_wind = vector.subtract(accel, wind)  --why? because I need to fake more speed when against the wind to gain lift
+    local vel_wind = vector.multiply(accel_wind, self.dtime)
+    local new_velocity = vector.add(velocity, vel_wind)
+    
+    --[[local hull_direction = airutils.rot_to_dir(self.object:get_rotation())
+    local wind_yaw = minetest.dir_to_yaw(wind)
+    local orig_vel = vector.dot(velocity,hull_direction)
+    local new_vel = vector.dot(vel_wind,hull_direction)
+    if orig_vel > new_vel then
+        orig_vel = core.colorize('#00ff00', orig_vel)
+        new_vel = core.colorize('#ff0000', new_vel)
+    else
+        orig_vel = core.colorize('#ff0000', orig_vel)
+        new_vel = core.colorize('#00ff00', new_vel)
+    end
+    minetest.chat_send_all("velocity: "..orig_vel.." - new: "..new_vel.." - dir: "..math.deg(wind_yaw) )]]--
+
+    velocity = new_velocity    
     if longit_speed == nil then longit_speed = 0 end
     wingspan = wingspan or 10
     local ground_effect_extra_lift = airutils.get_ground_effect_lift(self, curr_pos, lift, wingspan)

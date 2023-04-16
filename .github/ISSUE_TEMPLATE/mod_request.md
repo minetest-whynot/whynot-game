@@ -25,7 +25,7 @@ https://www.example.com
    * 
 5. In what way might this mod be reduced to be more simple (as in "Keep it Simple Stupid") (ex: "the foobar mod could be made more simple by splitting into two mods, foo and bar")
    * 
-6. Is this mod survival freindly? What items that it provides that _should_ be craftable/obtainable, but arent?
+6. Is this mod survival friendly? What items that it provides that _should_ be craftable/obtainable, but arent?
    * 
 7. When does this mod feel like cheating?
    * 
