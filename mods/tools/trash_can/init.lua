@@ -263,10 +263,11 @@ minetest.register_craft({
 if trash_can_throw_in then
 	-- Remove any items thrown in trash can.
 	local old_on_step = minetest.registered_entities["__builtin:item"].on_step
-	minetest.registered_entities["__builtin:item"].on_step = function(self, dtime)
-		local item_pos = self.object:getpos()
+	minetest.registered_entities["__builtin:item"].on_step = function(self, dtime, ...)
+		local item_pos = self.object:get_pos()
+		item_pos.y = item_pos.y - 0.325
+		item_pos = vector.round(item_pos)
 		-- Round the values.  Not essential, but makes logging look nicer.
-		for key, value in pairs(item_pos) do item_pos[key] = math.floor(value + 0.5) end
 		if minetest.get_node(item_pos).name == "trash_can:trash_can_wooden" then
 			local item_stack = ItemStack(self.itemstring)
 			local inv = minetest.get_inventory({type="node", pos=item_pos})
@@ -284,6 +285,6 @@ if trash_can_throw_in then
 			end
 			return
 		end
-		old_on_step(self, dtime)
+		old_on_step(self, dtime, ...)
 	end
 end
