@@ -1,8 +1,8 @@
 local cdoor_list = {   --Number , Description , Inven Image , Image
---	{ "1", "Old Door 1" , "old1"},
---	{ "2", "Old Door 2" , "old2"},
---	{ "3", "Old Door 3" , "old3"},
---	{ "4", "Old Door 4" , "old4"},
+	{ "1", "Old Door 1" , "old1"},
+	{ "2", "Old Door 2" , "old2"},
+	{ "3", "Old Door 3" , "old3"},
+	{ "4", "Old Door 4" , "old4"},
 }
 
 local function add_door(num, desc, img)

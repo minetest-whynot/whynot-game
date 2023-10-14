@@ -1,12 +1,12 @@
 local fdoor_list = {   --Number , Description , Inven Image , Image
---	{"Fancy Door 1" , "door1"},
+	{"Fancy Door 1" , "door1"},
 	{"Fancy Door 2" , "door2"},
 	{"Fancy Door 3" , "door3"},
---	{"Fancy Door 4" , "door4"},
---	{"Fancy Door 5" , "door5"},
---	{"Fancy Door 6" , "door6"},
---	{"Fancy Door 7" , "door7"},
---	{"Fancy Door 8" , "door8"},
+	{"Fancy Door 4" , "door4"},
+	{"Fancy Door 5" , "door5"},
+	{"Fancy Door 6" , "door6"},
+	{"Fancy Door 7" , "door7"},
+	{"Fancy Door 8" , "door8"},
 }
 
 local function add_door(desc, img)
@@ -57,5 +57,37 @@ minetest.register_craft({
 		{"my_door_wood:wood_red", "my_door_wood:wood_dark_grey", ""},
 		{"my_door_wood:wood_red", "my_door_wood:wood_red", ""},
 		{"my_door_wood:wood_red", "my_door_wood:wood_dark_grey", ""}
+	}
+})
+minetest.register_craft({
+	output = "my_fancy_doors:door5 1",
+	recipe = {
+		{"default:glass", "my_door_wood:wood_yellow", ""},
+		{"my_door_wood:wood_yellow", "default:glass", ""},
+		{"my_door_wood:wood_yellow", "my_door_wood:wood_yellow", ""}
+	}
+})
+minetest.register_craft({
+	output = "my_fancy_doors:door6 1",
+	recipe = {
+		{"default:glass", "my_door_wood:wood_red", ""},
+		{"my_door_wood:wood_red", "default:glass", ""},
+		{"my_door_wood:wood_red", "my_door_wood:wood_red", ""}
+	}
+})
+minetest.register_craft({
+	output = "my_fancy_doors:door7 1",
+	recipe = {
+		{"my_door_wood:wood_red", "default:glass", ""},
+		{"my_door_wood:wood_red", "default:glass", ""},
+		{"my_door_wood:wood_red", "my_door_wood:wood_red", ""}
+	}
+})
+minetest.register_craft({
+	output = "my_fancy_doors:door8 1",
+	recipe = {
+		{"my_door_wood:wood_red", "my_door_wood:wood_red", ""},
+		{"default:glass", "my_door_wood:wood_red", ""},
+		{"my_door_wood:wood_red", "my_door_wood:wood_red", ""}
 	}
 })

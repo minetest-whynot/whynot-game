@@ -1,5 +1,5 @@
 local cdoor_list = {   --Number , Description , Inven Image , Image
---	{"Cottage Door 1" , "door1"},
+	{"Cottage Door 1" , "door1"},
 	{"Cottage Door 2" , "door2"},
 }
 
