@@ -1,4 +1,5 @@
 local has_monoids = minetest.global_exists("player_monoids")
+local has_pova = minetest.global_exists("pova")
 
 local function freeze(player)
         local player_name = player:get_player_name()
@@ -6,6 +7,9 @@ local function freeze(player)
                 player_monoids.speed:add_change(player, 0, "cozy:speed")
                 player_monoids.jump:add_change(player, 0, "cozy:jump")
                 player_monoids.gravity:add_change(player, 0, "cozy:gravity")
+        elseif has_pova then
+                pova.add_override(player_name, "force", {speed = 0, jump = 0, gravity = 0})
+                pova.do_override(player)
         else
                 player:set_physics_override({speed = 0, jump = 0, gravity = 0})
         end
@@ -18,6 +22,9 @@ local function unfreeze(player)
                 player_monoids.speed:del_change(player, "cozy:speed")
                 player_monoids.jump:del_change(player, "cozy:jump")
                 player_monoids.gravity:del_change(player, "cozy:gravity")
+        elseif has_pova then
+                pova.del_override(player_name, "force")
+                pova.do_override(player)
         else
                 player:set_physics_override({speed = 1, jump = 1, gravity = 1})
         end
