@@ -605,44 +605,56 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-        output = "homedecor:kitchen_cabinet_colorable_steel",
-        recipe = {
+	output = "homedecor:kitchen_cabinet_colorable_with_drawers",
+	recipe = {
+		{"homedecor:kitchen_cabinet_colorable", },
+	}
+})
+
+
+local cabinet_types = { "homedecor:kitchen_cabinet_colorable", "homedecor:kitchen_cabinet_colorable_with_drawers" }
+
+for _, cabinet in ipairs(cabinet_types) do
+	minetest.register_craft({
+		output = cabinet.."_steel",
+		recipe = {
 			{homedecor.materials.steel_ingot, homedecor.materials.steel_ingot, homedecor.materials.steel_ingot},
-			{"", "homedecor:kitchen_cabinet_colorable", ""},
-	}
-})
+			{"", cabinet, ""},
+		}
+	})
 
-minetest.register_craft({
-        output = "homedecor:kitchen_cabinet_colorable_steel",
-        recipe = {
+	minetest.register_craft({
+		output = cabinet.."_steel",
+		recipe = {
 			{"moreblocks:slab_steelblock_1"},
-			{ "homedecor:kitchen_cabinet_colorable" },
-	}
-})
+			{cabinet},
+		}
+	})
 
-minetest.register_craft({
-        output = "homedecor:kitchen_cabinet_colorable_marble",
-        recipe = {
+	minetest.register_craft({
+		output = cabinet.."_marble",
+		recipe = {
 			{"building_blocks:slab_marble"},
-			{"homedecor:kitchen_cabinet_colorable"},
-	}
-})
+			{cabinet},
+		}
+	})
 
-minetest.register_craft({
-        output = "homedecor:kitchen_cabinet_colorable_marble",
-        recipe = {
+	minetest.register_craft({
+		output = cabinet.."_marble",
+		recipe = {
 			{"technic:slab_marble_1"},
-			{"homedecor:kitchen_cabinet_colorable"},
-	}
-})
+			{cabinet},
+		}
+	})
 
-minetest.register_craft({
-        output = "homedecor:kitchen_cabinet_colorable_granite",
-        recipe = {
+	minetest.register_craft({
+		output = cabinet.."_granite",
+		recipe = {
 			{"technic:slab_granite_1"},
-			{"homedecor:kitchen_cabinet_colorable"},
-	}
-})
+			{cabinet},
+		}
+	})
+end
 
 minetest.register_craft({
 	type = "shapeless",

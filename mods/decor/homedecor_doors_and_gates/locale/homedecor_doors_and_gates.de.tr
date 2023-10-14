@@ -1,23 +1,19 @@
 # textdomain: homedecor_doors_and_gates
-
-
-### init.lua ###
-
-"Half" Door=„Halbe“ Tür
-"Half" Door (white)=„Halbe“ Tür (weiß)
-Barbed Wire Fence Gate=Stacheldrahtzauntor
-Basic white panel Door=weiße Zimmertür
-Chainlink Fence Gate=Maschendrahtzauntor
-Fancy Wood/Glass Door=moderne Tür mit Lichtausschnitt
-French door, Mahogany-colored=französische Flügeltür (Mahagonidesign)
-French door, Oak-colored=französische Flügeltür (Eichendesign)
-French door, White=französische Flügeltür (weiß)
-Japanese-style door=Tür im japanischen Stil
-Mahogany Closet Door=Mahagonilamellentür
-Oak Closet Door=Eichenlamellentür
 Plain Wooden Door=Echtholz-Zimmertür
-Unpainted Picket Fence Gate=Unlackiertes Lattenzauntor
-White Picket Fence Gate=Weißes Lattenzauntor
+Fancy Wood/Glass Door=Moderne Tür mit Lichtausschnitt
+French door, Oak-colored=Französische Flügeltür (Eichendesign)
+French door, Mahogany-colored=Französische Flügeltür (Mahagonidesign)
+French door, White=Französische Flügeltür (weiß)
+Basic white panel Door=Weiße Zimmertür
+Wrought Iron Gate/Door=Schmiedeeisernes Tor
 Wooden Carolina door=Holztür, Carolina-Stil
 Wooden door with glass insert, type 3=Tür mit Lichtausschnitt
-Wrought Iron Gate/Door=schmiedeeisernes Tor
+Mahogany Closet Door=Mahagonilamellentür
+Oak Closet Door=Eichenlamellentür
+Unpainted Picket Fence Gate=Unlackiertes Lattenzauntor
+White Picket Fence Gate=Weißes Lattenzauntor
+Barbed Wire Fence Gate=Stacheldrahtzauntor
+Chainlink Fence Gate=Maschendrahtzauntor
+"Half" Door=„Halbe“ Tür
+"Half" Door (white)=„Halbe“ Tür (weiß)
+Japanese-style door=Tür im japanischen Stil

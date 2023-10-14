@@ -1,20 +1,16 @@
 # textdomain: homedecor_bathroom
-
-
-### init.lua ###
-
-Bathroom Sink=
-Bathroom sundries set=
-Bathroom taps/faucet=
-Bathroom taps/faucet (brass)=
 Bathroom/kitchen tiles (dark)=
-Bathroom/kitchen tiles (light)=
 Bathroom/kitchen tiles (medium)=
-Bathtub, clawfoot, with brass taps=
-Bathtub, clawfoot, with chrome taps=
+Bathroom/kitchen tiles (light)=
+Towel rod with towel=
 Medicine cabinet=
-Shower Head=
-Shower Tray=
 Toilet=
 Toilet paper=
-Towel rod with towel=
+Bathroom Sink=
+Bathroom taps/faucet=
+Bathroom taps/faucet (brass)=
+Shower Tray=
+Shower Head=
+Bathtub, clawfoot, with brass taps=
+Bathtub, clawfoot, with chrome taps=
+Bathroom sundries set=

@@ -1,18 +1,14 @@
 # textdomain: homedecor_windows_and_treatments
-
-
-### init.lua ###
-
-Curtain Rod (@1)=
-Curtains=
-Curtains (open)=
-Stained Glass=
-Window (plain)=
 Window (quartered)=
+Window (plain)=
 Window Blinds (thick)=
 Window Blinds (thin)=
-Window flowerbox=
-Wooden Shutter=
+Curtains=
+Curtains (open)=
 brass=
-wood=
 wrought iron=
+wood=
+Curtain Rod (@1)=
+Window flowerbox=
+Stained Glass=
+Wooden Shutter=

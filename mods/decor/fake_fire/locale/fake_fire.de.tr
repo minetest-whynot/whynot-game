@@ -1,10 +1,6 @@
 # textdomain: fake_fire
-
-
-### init.lua ###
-
+Ice fire=Eisfeuer
 Fancy Fire=Schönes Feuer
 Glowing Embers=Glühende Asche
-Ice fire=Eisfeuer
-Sandstone chimney top=Sandsteinschornsteinaufsatz
 Stone chimney top=Steinschornsteinaufsatz
+Sandstone chimney top=Sandsteinschornsteinaufsatz

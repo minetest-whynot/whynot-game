@@ -1,16 +1,12 @@
 # textdomain: homedecor_electronics
-
-
-### init.lua ###
-
-DVD Player=DVD-проигрыватель
-DVD and VCR=DVD и Видеомагнитофон
 Large Stereo Speaker=Большой стерео громкоговоритель
 Large Stereo Speaker, open front=Большой стерео громкоговоритель (открытый)
+Small Surround Speaker=Малый круговой громкоговоритель
+Stereo Receiver=Стерео приёмник
 Projection Screen Material=Материал проекционного экрана
 Small CRT Television=Малый кинескопный телевизор
-Small Surround Speaker=Малый круговой громкоговоритель
-Speaker driver=Динамик
-Stereo Receiver=Стерео приёмник
+DVD and VCR=DVD и Видеомагнитофон
 Telephone=Телефон
 VCR=Видеомагнитофон
+DVD Player=DVD-проигрыватель
+Speaker driver=Динамик

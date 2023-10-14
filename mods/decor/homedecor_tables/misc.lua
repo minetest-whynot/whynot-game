@@ -126,7 +126,7 @@ for i, mat in ipairs(tabletop_materials) do
 		end
 	end
 
-	minetest.register_alias('homedecor:'..m..'_table_large_b', 'homedecor:'..m..'_table_large')
+	minetest.register_alias('homedecor:'..m..'_table_large_square_b', 'homedecor:'..m..'_table_large_square')
 	minetest.register_alias('homedecor:'..m..'_table_small_square_b', 'homedecor:'..m..'_table_small_square')
 	minetest.register_alias('homedecor:'..m..'_table_small_round_b', 'homedecor:'..m..'_table_small_round')
 	minetest.register_alias('homedecor:'..m..'_table_large', 'homedecor:'..m..'_table_large_square')
@@ -187,7 +187,7 @@ minetest.register_craft( {
 })
 
 minetest.register_craft( {
-        output = "homedecor:glass_table_large_b 2",
+        output = "homedecor:glass_table_large_square_b 2",
         recipe = {
 		{ "homedecor:glass_table_small_square", "homedecor:glass_table_small_square" },
 	}
@@ -210,7 +210,7 @@ minetest.register_craft( {
 })
 
 minetest.register_craft( {
-        output = "homedecor:wood_table_large_b 2",
+        output = "homedecor:wood_table_large_square_b 2",
         recipe = {
 		{ "homedecor:wood_table_small_square", "homedecor:wood_table_small_square" },
 	}
@@ -232,7 +232,7 @@ minetest.register_craft({
 
 minetest.register_craft({
         type = "fuel",
-        recipe = "homedecor:wood_table_large_b",
+        recipe = "homedecor:wood_table_large_square_b",
         burntime = 30,
 })
 

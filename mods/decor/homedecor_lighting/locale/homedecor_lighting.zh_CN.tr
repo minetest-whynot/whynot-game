@@ -1,32 +1,30 @@
 # textdomain: homedecor_lighting
-
-
-### init.lua ###
-
-Candlestick (brass)=烛台（黄铜）
-Candlestick (wrought iron)=烛台（锻铁）
-Ceiling Lamp/Light=
-Ceiling Lantern/Light=
-Chandelier (brass)=黄铜吊灯
-Chandelier (steel)=
-Desk Lamp/Light=
+Thick Glowlight=厚辉光
+Thin Glowlight=薄辉光
+Small Glowlight Cube=小发光体
+Plasma Lamp/Light=
 Ground Lantern/Light=
 Hanging Lantern/Light=
-Hanging chain (ceiling mount, brass)=黄铜吊链
-Hanging chain (ceiling mount, steel)=
+Ceiling Lantern/Light=
 Lattice lantern/Light (large)=
 Lattice lantern/light (small)=
-Oil Lamp/Light (tabletop)=
-Oil lamp/Light (hurricane)=
-Plasma Ball/light=
-Plasma Lamp/Light=
-Small Glowlight Cube=小发光体
-Standing Lamp/Light=
+Desk Lamp/Light=
+Ceiling Lamp/Light=
 Table Lamp/Light=
-Thick Candle=粗蜡烛
-Thick Glowlight=厚辉光
-Thin Candle=薄蜡烛
-Thin Glowlight=薄辉光
+Standing Lamp/Light=
+Plasma Ball/light=
+Rope lighting (on floor)=
+Rope lighting (on ceiling)=
 Wall Lamp/light=
-Wall Torch=壁灯
+Thick Candle=粗蜡烛
+Thin Candle=薄蜡烛
+Candlestick (wrought iron)=烛台（锻铁）
+Candlestick (brass)=烛台（黄铜）
 Wall sconce=壁灯
+Oil lamp/Light (hurricane)=
+Oil Lamp/Light (tabletop)=
+Hanging chain (ceiling mount, steel)=
+Hanging chain (ceiling mount, brass)=黄铜吊链
+Chandelier (steel)=
+Chandelier (brass)=黄铜吊灯
+Wall Torch=壁灯

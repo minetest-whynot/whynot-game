@@ -1,25 +1,19 @@
 # textdomain: homedecor_exterior
-
-
-### init.lua ###
-
 Barbecue=Churrasqueira
 Doghouse=Casa de Cachorro
-Garden Lattice (@1)=Treliça de Jardim (@1)
 Garden stone path=Caminho de pedra de jardim
-No room in your inventory to add a filled bucket!=
-No room under there to hang a swing.=
-Shrubbery (@1)=Matagal (@1)
-Shrubbery (large, @1)=Matagal (@1)
+wood=madeira
+white wood=madeira branca
+wood, with vegetation=madeira, com vegetação
+white wood, with vegetation=madeira branca, com vegetação
+Garden Lattice (@1)=Treliça de Jardim (@1)
 Tree's swing=Balancinho de árvore
-Water well=Poço de agua
-
+No room under there to hang a swing.=
 You have to point at the bottom side of an overhanging object to place a swing.=
-
+Water well=Poço de agua
+No room in your inventory to add a filled bucket!=
 green=verde
 red=vermelho
-white wood=madeira branca
-white wood, with vegetation=madeira branca, com vegetação
-wood=madeira
-wood, with vegetation=madeira, com vegetação
 yellow=amarelo
+Shrubbery (large, @1)=Matagal (@1)
+Shrubbery (@1)=Matagal (@1)

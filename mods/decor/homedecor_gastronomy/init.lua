@@ -8,6 +8,39 @@ local cutlery_cbox = {
 	}
 }
 
+local fdir_to_steampos = {
+	x = { 0.15,   0.275, -0.15,  -0.275 },
+	z = { 0.275, -0.15,  -0.275,  0.15  }
+}
+
+local function sfx(pos)
+	local node = minetest.get_node(pos)
+	local fdir = node.param2
+	if fdir and fdir < 4 then
+
+		local steamx = fdir_to_steampos.x[fdir + 1]
+		local steamz = fdir_to_steampos.z[fdir + 1]
+
+		minetest.add_particlespawner({
+			amount = 1,
+			time = 1,
+			minpos = {x=pos.x - steamx, y=pos.y - 0.35, z=pos.z - steamz},
+			maxpos = {x=pos.x - steamx, y=pos.y - 0.35, z=pos.z - steamz},
+			minvel = {x=-0.003, y=0.01, z=-0.003},
+			maxvel = {x=0.003, y=0.01, z=-0.003},
+			minacc = {x=0.0,y=-0.0,z=-0.0},
+			maxacc = {x=0.0,y=0.003,z=-0.0},
+			minexptime = 2,
+			maxexptime = 5,
+			minsize = 1,
+			maxsize = 1.2,
+			collisiondetection = false,
+			texture = "homedecor_steam.png",
+		})
+	end
+	return true
+end
+
 homedecor.register("cutlery_set", {
 	drawtype = "mesh",
 	mesh = "homedecor_cutlery_set.obj",
@@ -147,7 +180,11 @@ homedecor.register("coffee_maker", {
 				{"basic_materials:plastic_sheet", "basic_materials:heating_element", "basic_materials:plastic_sheet"}
 			},
 		}
-	}
+	},
+	on_timer = sfx,
+	on_construct = function(pos)
+		minetest.get_node_timer(pos):start(2)
+	end
 })
 
 homedecor.register("toaster", {
@@ -211,43 +248,6 @@ homedecor.register("toaster_loaf", {
 	drop = "homedecor:toaster"
 })
 
-local fdir_to_steampos = {
-	x = { 0.15,   0.275, -0.15,  -0.275 },
-	z = { 0.275, -0.15,  -0.275,  0.15  }
-}
-
-minetest.register_abm({
-	nodenames = "homedecor:coffee_maker",
-	label = "sfx",
-	interval = 2,
-	chance = 1,
-	action = function(pos, node)
-		local fdir = node.param2
-		if fdir and fdir < 4 then
-
-			local steamx = fdir_to_steampos.x[fdir + 1]
-			local steamz = fdir_to_steampos.z[fdir + 1]
-
-			minetest.add_particlespawner({
-				amount = 1,
-				time = 1,
-				minpos = {x=pos.x - steamx, y=pos.y - 0.35, z=pos.z - steamz},
-				maxpos = {x=pos.x - steamx, y=pos.y - 0.35, z=pos.z - steamz},
-				minvel = {x=-0.003, y=0.01, z=-0.003},
-				maxvel = {x=0.003, y=0.01, z=-0.003},
-				minacc = {x=0.0,y=-0.0,z=-0.0},
-				maxacc = {x=0.0,y=0.003,z=-0.0},
-				minexptime = 2,
-				maxexptime = 5,
-				minsize = 1,
-				maxsize = 1.2,
-				collisiondetection = false,
-				texture = "homedecor_steam.png",
-			})
-		end
-	end
-})
-
 -- crafting
 
 minetest.register_craft( {
@@ -306,3 +306,11 @@ minetest.register_craft({
 	},
 })
 
+minetest.register_lbm({
+	name = "homedecor_gastronomy:sfx_init",
+	nodenames = {"homedecor:coffee_maker"},
+	run_at_every_load = false,
+	action = function(pos)
+		minetest.get_node_timer(pos):start(2)
+	end
+})

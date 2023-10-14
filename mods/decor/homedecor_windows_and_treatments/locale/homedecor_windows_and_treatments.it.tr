@@ -1,18 +1,14 @@
 # textdomain: homedecor_windows_and_treatments
-
-
-### init.lua ###
-
-Curtain Rod (@1)=Tende (%s)
-Curtains=Tende (%s)
-Curtains (open)=Tende (%s)
-Stained Glass=
-Window (plain)=
 Window (quartered)=
+Window (plain)=
 Window Blinds (thick)=Luce fosforescente bianca (spessa)
 Window Blinds (thin)=Luce fosforescente bianca (sottile)
-Window flowerbox=
-Wooden Shutter=Persiana in legno (rossa)
+Curtains=Tende
+Curtains (open)=Tende (aprire)
 brass=
-wood=
 wrought iron=Palo di ferro battuto
+wood=
+Curtain Rod (@1)=Tende (@1)
+Window flowerbox=
+Stained Glass=
+Wooden Shutter=Persiana in legno (rossa)

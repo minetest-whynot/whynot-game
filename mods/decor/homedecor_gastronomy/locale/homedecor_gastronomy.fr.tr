@@ -1,13 +1,10 @@
 # textdomain: homedecor_gastronomy
-
-### init.lua ###
-
-Brown bottle=Bouteille marron
-Coffee Maker=Cafetière
 Cutlery set=Couverts
+Brown bottle=Bouteille marron
 Four brown bottles=Quatre bouteilles marrons
+Green bottle=Bouteille verte
 Four green bottles=Quatre bouteilles vertes
 Four misc brown/green bottles=Quatre bouteilles marrons et vertes
-Green bottle=Bouteille verte
-Toaster=Grille-pain
 Wine rack=Casier à bouteilles
+Coffee Maker=Cafetière
+Toaster=Grille-pain

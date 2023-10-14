@@ -1,4 +1,4 @@
-local S = minetest.get_translator("plasmascreen")
+local S = minetest.get_translator("homedecor_plasmascreen")
 
 local sc_disallow = minetest.get_modpath("screwdriver") and screwdriver.disallow or nil
 

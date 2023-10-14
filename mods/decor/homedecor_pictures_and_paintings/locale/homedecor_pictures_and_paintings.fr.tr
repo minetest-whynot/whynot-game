@@ -1,8 +1,4 @@
 # textdomain: homedecor_pictures_and_paintings
-
-
-### init.lua ###
-
-Blank Canvas=Toile vierge
-Decorative painting #@1=Painture décorative #@1
 Picture Frame @1=Cadre photo @1
+Decorative painting #@1=Painture décorative #@1
+Blank Canvas=Toile vierge
