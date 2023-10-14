@@ -1,6 +1,6 @@
 
 origin https://github.com/minetest-mirrors/ambience.git (fetch)
-* cbc25eacdbd960c241f2f41e8dcc6b7720b9abd5 amend load msg's
+* 66e73ddf31a4d1b3acccd7b162404c56348f9ead tweak for 5.0
 Mod: ambience/ambience
 
 origin https://github.com/minetest-mods/lightning (fetch)
@@ -20,7 +20,7 @@ origin https://github.com/Ezhh/abriglass/ (fetch)
 Mod: decor/abriglass
 
 origin https://github.com/mt-mods/basic_materials (fetch)
-* a9002d6dad72a28af49fadb88683874e39aaf03c add first class support for repixture (#19)
+* e4a122dfdd991f5a3af27c9a84418fddf22fad49 add techage support (#20)
 Mod: decor/basic_materials
 
 origin https://github.com/Napiophelios/campfire (fetch)
@@ -44,11 +44,11 @@ origin https://github.com/HybridDog/heads (fetch)
 Mod: decor/heads
 
 origin https://github.com/mt-mods/home_workshop_modpack (fetch)
-* 40b911e18426a78ba9c4d07363a31b6cfebaec86 Prevent warning for accessing missing global (#11)
+* 1fd279435c391736ece2893fefd47c1497727770 fix crash due nil itemstack (#13)
 Mod: decor/home_workshop_modpack
 
 origin https://github.com/mt-mods/homedecor_modpack (fetch)
-* 77f2b0e05b554b2f6563ccb84a7cbf1c48bdb703 Fix ugly looking fakegrass (#51)
+* 951f77491c4b1550420c1dfca51508eaf969159c Fix use of deprecated get_look_yaw() (#62)
 Mod: decor/homedecor_modpack
 
 origin https://github.com/Gerold55/laptop.git (fetch)
@@ -60,7 +60,7 @@ origin https://repo.or.cz/minetest_mtg_plus.git (fetch)
 Mod: decor/mtg_plus
 
 origin https://github.com/minetest-mods/mydoors (fetch)
-* f22b0c8580902ea77bd6e5e3c72e194295870cf7 Add group wood to wood nodes so that fences connect (#25)
+* 5264626c7957574b02c46167eb58c0271956c994 Add sliding door and garage door crafts (#31)
 Mod: decor/mydoors
 
 origin https://github.com/minetest-mods/myroofs (fetch)
@@ -88,7 +88,7 @@ origin https://github.com/minetest-mods/ts_furniture (fetch)
 Mod: decor/ts_furniture
 
 origin https://github.com/mt-mods/unifieddyes (fetch)
-* 96a939c06944c2643cf18b25d3cf43800aca22cb Airbrush: Fix dye selection by not relying on internal behaviour of minetest.serialize (#10)
+* 36c8bb5f5b8a0485225d2547c8978291ff710291 fix https://github.com/mt-mods/unifieddyes/issues/11#issuecomment-1469934442 - syntac formating for translation files(remove whitespace) - make wuzzy happy
 Mod: decor/unifieddyes
 
 origin https://github.com/minetest-mirrors/farming.git (fetch)
@@ -116,7 +116,7 @@ origin https://github.com/minetest-mods/mtfoods (fetch)
 Mod: food/mtfoods
 
 origin https://github.com/minetest-mirrors/pie.git (fetch)
-* ee728d3f95d8868ed9b8965dfbc07626f9fce704 tweak hbhunger detection
+* 72fd43b80561bd25c66254ba8479991b520c42cc 5.x
 Mod: food/pie
 
 origin https://github.com/GreenXenith/waffles (fetch)
@@ -152,7 +152,7 @@ origin https://github.com/minetest-mods/intllib (fetch)
 Mod: libs/intllib
 
 origin https://github.com/dacmot/sfcraftguide.git (fetch)
-* 3df7b1eb7474fd2b209f025e18656f907b1b94cb Update README
+* ed75268b9e4a7b04df2c942c1bc389b31ecbde4a Add supported games
 Mod: libs/sfcraftguide
 
 origin https://github.com/mt-mods/sound_api.git (fetch)
@@ -160,7 +160,7 @@ origin https://github.com/mt-mods/sound_api.git (fetch)
 Mod: libs/sound_api
 
 origin https://github.com/Treer/cloudlands/ (fetch)
-* 0009137327942697a5df048d1a4f6706970509aa Update README.md
+* aed3ab8306ef92a47f228c7ea4577eae7bb00e67 fix ancient portalstone upgrade
 Mod: mapgen/cloudlands
 
 origin https://codeberg.org/Dacmot/maple.git (fetch)
@@ -176,7 +176,7 @@ origin https://codeberg.org/Dacmot/minetest_mapgen_config.git (fetch)
 Mod: mapgen/minetest_mapgen_config
 
 origin https://github.com/minetest-mirrors/pbj_pup.git (fetch)
-* 5a0d59e5a8c7c793dce046437c7527a98f31336d tweak code
+* 54caa91c49db9ae770cd5d5cb3e818ac18a3f17d 5.x
 Mod: mapgen/pbj_pup
 
 origin https://github.com/GreenXenith/tac_nayn (fetch)
@@ -184,7 +184,7 @@ origin https://github.com/GreenXenith/tac_nayn (fetch)
 Mod: mapgen/tac_nayn
 
 origin https://github.com/minetest-mods/mesecons (fetch)
-* 6890624f3db04b95be1ba10e83cf433d62a8df75 Add option to disable printing inside a luacontroller (#633)
+* 8e30ee411347e6552cb5a9f28ea3069805853ea3 Update mesecons_delayer.de.tr (#649)
 Mod: mesecons/mesecons
 
 origin https://github.com/minetest/minetest_game (fetch)
@@ -224,15 +224,15 @@ origin https://github.com/stujones11/clothing (fetch)
 Mod: player/clothing
 
 origin https://github.com/minetest-mods/cozy (fetch)
-* b51cd0326ca30c9f8aaa9f66603e225c1aa50a02 Use mod.conf for dependencies, and description (#3)
+* ad3a575257ff5deebeb5127d98e08c428d879110 Add support for Pova mod (#5)
 Mod: player/cozy
 
 origin https://codeberg.org/Wuzzy/minetest_hbarmor.git (fetch)
-* be459fa222eef0fe0e7d44360bbc34750ec90a62 Version 1.0.1
+* 35bbeb69f7b4d5ae34cc96ad661923693d144d34 Add mod title to mod.conf
 Mod: player/hbarmor
 
 origin https://codeberg.org/Wuzzy/minetest_hbhunger.git (fetch)
-* 0777594e783b3faa749f2c72dff39aff229e60c8 Add Wuzzy to mailmap
+* 8c0941a0e4910cf55c186047ef4ab07968000a85 Version 1.1.3
 Mod: player/hbhunger
 
 origin https://github.com/minetest-mods/hbsprint (fetch)
@@ -240,7 +240,7 @@ origin https://github.com/minetest-mods/hbsprint (fetch)
 Mod: player/hbsprint
 
 origin https://codeberg.org/Wuzzy/minetest_hudbars.git (fetch)
-* dd2a9a008d63ae0be705903f1c56899f61029e7a Add mailmap for Wuzzy
+* 495ba23a7ab575065556dbf1a04176422f1ae6a7 Change N() to NS()
 Mod: player/hudbars
 
 origin https://github.com/dacmot/moarmour (fetch)
@@ -272,11 +272,11 @@ origin https://github.com/taikedz/everamzah-backpacks (fetch)
 Mod: tools/backpacks
 
 origin https://github.com/Lokrates/Biofuel.git (fetch)
-* 2e7bbe734728a3e87dd23c212bc7f007cc35584b Update changelog.md
+* f1f106748a8490d3c0ffc68ad6fdaa426da1b020 Update 20230331
 Mod: tools/biofuel
 
 origin https://github.com/minetest-mirrors/bonemeal.git (fetch)
-* 1935d348c1fcadb6890e9a2b46595cfd847bc36d add 'bonemeal.disable_deathbones_recipe' setting
+* 8e929e5a1cca502bd1c6a1926c8aadd17ad58acc remove default dependency, add mineclone support
 Mod: tools/bonemeal
 
 origin https://github.com/SmallJoker/boost_cart (fetch)
@@ -336,7 +336,7 @@ origin https://github.com/lisacvuk/minetest-toolranks (fetch)
 Mod: tools/toolranks
 
 origin https://github.com/minetest-mods/trash_can (fetch)
-* 0c773c4684f225c8fa6549fa34d33516ff81b188 Add Esperanto translation (#15)
+* 287d7798e2452f819702084c0f2bf5cd484a9a12 Add LuaCheck (#17)
 Mod: tools/trash_can
 
 origin https://github.com/minetest-mods/woodcutting (fetch)
