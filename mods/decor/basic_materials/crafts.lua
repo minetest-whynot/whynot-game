@@ -27,7 +27,11 @@ if minetest.get_modpath("technic") then
 end
 
 if minetest.get_modpath("aloz") then
-	materials["aluminum_ingot"] = "aloz:aluminum_ingot"
+	materials.aluminum_ingot = "aloz:aluminum_ingot"
+end
+
+if minetest.get_modpath("techage") then
+	materials.aluminum_ingot = "techage:aluminum"
 end
 
 if minetest.get_modpath("mcl_core") then
