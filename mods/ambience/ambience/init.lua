@@ -11,7 +11,6 @@ local playing = {}
 local sound_sets = {} -- all the sounds and their settings
 local sound_set_order = {} -- needed because pairs loops randomly through tables
 local set_nodes = {} -- all the nodes needed for sets
-local is_50 = minetest.has_feature("object_use_texture_alpha")
 
 
 -- add set to list
@@ -100,17 +99,10 @@ minetest.register_on_joinplayer(function(player)
 		playing[name] = {music = -1}
 
 		local mvol, svol
+		local meta = player:get_meta()
 
-		if is_50 then
-
-			local meta = player:get_meta()
-
-			mvol = meta:get_string("ambience.mvol")
-			svol = meta:get_string("ambience.svol")
-		else
-			mvol = player:get_attribute("ambience.mvol")
-			svol = player:get_attribute("ambience.svol")
-		end
+		mvol = meta:get_string("ambience.mvol")
+		svol = meta:get_string("ambience.svol")
 
 		mvol = tonumber(mvol) or MUSICVOLUME
 		svol = tonumber(svol) or SOUNDVOLUME
@@ -326,15 +318,10 @@ minetest.register_chatcommand("svol", {
 		if svol < 0.1 then svol = 0.1 end
 		if svol > 1.0 then svol = 1.0 end
 
-		if is_50 then
+		local player = minetest.get_player_by_name(name)
+		local meta = player:get_meta()
 
-			local player = minetest.get_player_by_name(name)
-			local meta = player:get_meta()
-
-			meta:set_string("ambience.svol", svol)
-		else
-			player:set_attribute("ambience.svol", svol)
-		end
+		meta:set_string("ambience.svol", svol)
 
 		playing[name].svol = svol
 
@@ -365,15 +352,10 @@ minetest.register_chatcommand("mvol", {
 		if mvol < 0 then mvol = 0 end
 		if mvol > 1.0 then mvol = 1.0 end
 
-		if is_50 then
+		local player = minetest.get_player_by_name(name)
+		local meta = player:get_meta()
 
-			local player = minetest.get_player_by_name(name)
-			local meta = player:get_meta()
-
-			meta:set_string("ambience.mvol", mvol)
-		else
-			player:set_attribute("ambience.mvol", mvol)
-		end
+		meta:set_string("ambience.mvol", mvol)
 
 		playing[name].mvol = mvol
 
