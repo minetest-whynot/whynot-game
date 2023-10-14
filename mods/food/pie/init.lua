@@ -7,6 +7,7 @@ local stmod = minetest.global_exists("stamina")
 local defmod = minetest.get_modpath("default")
 local mclhunger = minetest.get_modpath("mcl_hunger")
 local screwdriver_exists = minetest.get_modpath("screwdriver")
+local quarters = minetest.settings:get_bool("pie.quarters")
 
 -- sound support
 local cake_sound = defmod and default.node_sound_dirt_defaults()
@@ -120,23 +121,27 @@ end
 pie.register_pie = function(pie, desc)
 
 	-- full pie
+
+	local nodebox = {
+		type = "fixed",
+		fixed = {-0.45, -0.5, -0.45, 0.45, 0, 0.45}
+	}
+	local tiles = {
+		pie .. "_top.png", pie .. "_bottom.png", pie .. "_side.png",
+		pie .. "_side.png", pie .. "_side.png", pie .. "_side.png"
+	}
+
 	minetest.register_node(":pie:" .. pie .. "_0", {
 		description = desc,
 		paramtype = "light",
 		paramtype2 = "facedir",
 		use_texture_alpha = "clip",
 		sunlight_propagates = false,
-		tiles = {
-			pie .. "_top.png", pie .. "_bottom.png", pie .. "_side.png",
-			pie .. "_side.png", pie .. "_side.png", pie .. "_side.png"
-		},
+		tiles = tiles,
 		inventory_image = pie .. "_inv.png",
 		wield_image = pie .. "_inv.png",
 		drawtype = "nodebox",
-		node_box = {
-			type = "fixed",
-			fixed = {-0.45, -0.5, -0.45, 0.45, 0, 0.45}
-		},
+		node_box = nodebox,
 		sounds = cake_sound,
 
 		on_rotate = screwdriver_exists and screwdriver.rotate_simple,
@@ -147,23 +152,38 @@ pie.register_pie = function(pie, desc)
 	})
 
 	-- 3/4 pie
+
+	nodebox = {
+		type = "fixed",
+		fixed = {-0.45, -0.5, -0.25, 0.45, 0, 0.45}
+	}
+	tiles = {
+		pie .. "_top.png", pie .. "_bottom.png", pie .. "_side.png",
+		pie .. "_side.png", pie .. "_side.png", pie .. "_inside.png"
+	}
+
+	if quarters then
+		nodebox.fixed = {
+			{-0.45, -0.5, -0.45, 0, 0, 0.45},
+			{-0.45, -0.5, 0, 0.45, 0, 0.45}
+		}
+		tiles = {
+			pie .. "_top.png", pie .. "_bottom.png", pie .. "_side_inside.png^[transformFX",
+			pie .. "_side.png", pie .. "_side.png", pie .. "_side_inside.png"
+		}
+	end
+
 	minetest.register_node(":pie:" .. pie .. "_1", {
 		description = "3/4 " .. desc,
 		paramtype = "light",
 		paramtype2 = "facedir",
 		use_texture_alpha = "clip",
 		sunlight_propagates = true,
-		tiles = {
-			pie .. "_top.png", pie .. "_bottom.png", pie .. "_side.png",
-			pie .. "_side.png", pie .. "_side.png", pie .. "_inside.png"
-		},
+		tiles = tiles,
 		groups = {not_in_creative_inventory = 1},
 		drop = {},
 		drawtype = "nodebox",
-		node_box = {
-			type = "fixed",
-			fixed = {-0.45, -0.5, -0.25, 0.45, 0, 0.45}
-		},
+		node_box = nodebox,
 		sounds = cake_sound,
 
 		on_rotate = screwdriver_exists and screwdriver.rotate_simple,
@@ -174,23 +194,35 @@ pie.register_pie = function(pie, desc)
 	})
 
 	-- 1/2 pie
+
+	nodebox = {
+		type = "fixed",
+		fixed = {-0.45, -0.5, 0.0, 0.45, 0, 0.45}
+	}
+	tiles = {
+		pie .. "_top.png", pie .. "_bottom.png", pie .. "_side.png",
+		pie .. "_side.png", pie .. "_side.png", pie .. "_inside.png"
+	}
+
+	if quarters then
+		nodebox.fixed = {-0.45, -0.5, -.45, 0, 0, 0.45}
+		tiles = {
+			pie .. "_top.png", pie .. "_bottom.png", pie .. "_inside.png",
+			pie .. "_side.png", pie .. "_side.png", pie .. "_side.png"
+		}
+	end
+
 	minetest.register_node(":pie:" .. pie .. "_2", {
 		description = "Half " .. desc,
 		paramtype = "light",
 		paramtype2 = "facedir",
 		use_texture_alpha = "clip",
 		sunlight_propagates = true,
-		tiles = {
-			pie .. "_top.png", pie .. "_bottom.png", pie .. "_side.png",
-			pie .. "_side.png", pie .. "_side.png", pie .. "_inside.png"
-		},
+		tiles = tiles,
 		groups = {not_in_creative_inventory = 1},
 		drop = {},
 		drawtype = "nodebox",
-		node_box = {
-			type = "fixed",
-			fixed = {-0.45, -0.5, 0.0, 0.45, 0, 0.45}
-		},
+		node_box = nodebox,
 		sounds = cake_sound,
 
 		on_rotate = screwdriver_exists and screwdriver.rotate_simple,
@@ -201,23 +233,35 @@ pie.register_pie = function(pie, desc)
 	})
 
 	-- 1/4 pie
+
+	tiles = {
+		pie .. "_top.png", pie .. "_bottom.png", pie .. "_side.png",
+		pie .. "_side.png", pie .. "_side.png", pie .. "_inside.png"
+	}
+	nodebox = {
+		type = "fixed",
+		fixed = {-0.45, -0.5, 0.25, 0.45, 0, 0.45}
+	}
+
+	if quarters then
+		nodebox.fixed = {-0.45, -0.5, 0.0, 0.0, 0, 0.45}
+		tiles = {
+			pie .. "_top.png", pie .. "_bottom.png", pie .. "_inside.png",
+			pie .. "_side.png", pie .. "_side.png", pie .. "_inside.png"
+		}
+	end
+
 	minetest.register_node(":pie:" .. pie .. "_3", {
 		description = "Piece of " .. desc,
 		paramtype = "light",
 		paramtype2 = "facedir",
 		use_texture_alpha = "clip",
 		sunlight_propagates = true,
-		tiles = {
-			pie .. "_top.png", pie .. "_bottom.png", pie .. "_side.png",
-			pie .. "_side.png", pie .. "_side.png", pie .. "_inside.png"
-		},
+		tiles = tiles,
 		groups = {not_in_creative_inventory = 1},
 		drop = {},
 		drawtype = "nodebox",
-		node_box = {
-			type = "fixed",
-			fixed = {-0.45, -0.5, 0.25, 0.45, 0, 0.45}
-		},
+		node_box = nodebox,
 		sounds = cake_sound,
 
 		on_rotate = screwdriver_exists and screwdriver.rotate_simple,

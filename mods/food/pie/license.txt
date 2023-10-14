@@ -39,3 +39,6 @@ TenPlus1
 CalebDavis
   brpd_*.png
   orange_*.png
+
+Edited by Slightly
+  *_side_inside.png
