@@ -1,18 +1,31 @@
 
-bonemeal = {}
+bonemeal = {
+	item_list = {
+		bucket_water = "buckets:bucket_water",
+		bucket_empty = "buckets:bucket_empty",
+		dirt = "default:dirt",
+		torch = "default:torch",
+		coral = "default:coral_skeleton"
+	}
+}
+
+local a = bonemeal.item_list
+
+if minetest.get_modpath("mcl_core") then
+
+	a.bucket_water = "mcl_buckets:bucket_water"
+	a.bucket_empty = "mcl_buckets:bucker_empty"
+	a.dirt = "mcl_core:dirt"
+	a.torch = "mcl_torches:torch"
+	a.coral = "mcl_ocean:dead_horn_coral_block"
+end
+
 
 local path = minetest.get_modpath("bonemeal")
 local min, max, random = math.min, math.max, math.random
 
-
 -- translation support
-local S
-if minetest.get_translator ~= nil then
-	S = minetest.get_translator("bonemeal") -- 5.x translation function
-else -- boilerplate function
-	S = function(s) return s end
-end
-
+local S = minetest.get_translator("bonemeal")
 
 -- creative check
 local creative_mode_cache = minetest.settings:get_bool("creative_mode")
@@ -20,102 +33,13 @@ function bonemeal.is_creative(name)
 	return creative_mode_cache or minetest.check_player_privs(name, {creative = true})
 end
 
-
--- default crops
-local crops = {
-	{"farming:cotton_", 8, "farming:seed_cotton"},
-	{"farming:wheat_", 8, "farming:seed_wheat"}
-}
-
-
--- special pine check for nearby snow
-local function pine_grow(pos)
-
-	if minetest.find_node_near(pos, 1,
-		{"default:snow", "default:snowblock", "default:dirt_with_snow"}) then
-
-		default.grow_new_snowy_pine_tree(pos)
-	else
-		default.grow_new_pine_tree(pos)
-	end
-end
-
-
--- special function for cactus growth
-local function cactus_grow(pos)
-	default.grow_cactus(pos, minetest.get_node(pos))
-end
-
--- special function for papyrus growth
-local function papyrus_grow(pos)
-	default.grow_papyrus(pos, minetest.get_node(pos))
-end
-
-
--- default saplings
-local saplings = {
-	{"default:sapling", default.grow_new_apple_tree, "soil"},
-	{"default:junglesapling", default.grow_new_jungle_tree, "soil"},
-	{"default:emergent_jungle_sapling", default.grow_new_emergent_jungle_tree, "soil"},
-	{"default:acacia_sapling", default.grow_new_acacia_tree, "soil"},
-	{"default:aspen_sapling", default.grow_new_aspen_tree, "soil"},
-	{"default:pine_sapling", pine_grow, "soil"},
-	{"default:bush_sapling", default.grow_bush, "soil"},
-	{"default:acacia_bush_sapling", default.grow_acacia_bush, "soil"},
-	{"default:large_cactus_seedling", default.grow_large_cactus, "sand"},
-	{"default:blueberry_bush_sapling", default.grow_blueberry_bush, "soil"},
-	{"default:pine_bush_sapling", default.grow_pine_bush, "soil"},
-	{"default:cactus", cactus_grow, "sand"},
-	{"default:papyrus", papyrus_grow, "soil"}
-}
-
--- helper tables ( "" denotes a blank item )
-local green_grass = {
-	"default:grass_2", "default:grass_3", "default:grass_4",
-	"default:grass_5", "", ""
-}
-
-local dry_grass = {
-	"default:dry_grass_2", "default:dry_grass_3", "default:dry_grass_4",
-	"default:dry_grass_5", "", ""
-}
-
--- loads mods then add all in-game flowers except waterlily
-local flowers = {}
-
-minetest.after(0.1, function()
-
-	for node, def in pairs(minetest.registered_nodes) do
-
-		if def.groups
-		and def.groups.flower
-		and not node:find("waterlily")
-		and not node:find("xdecor:potted_")
-		and not node:find("df_farming:") then
-			flowers[#flowers + 1] = node
-		end
-	end
-end)
-
-
--- default biomes deco
-local deco = {
-	{"default:dirt", green_grass, flowers},
-	{"default:dirt_with_grass", green_grass, flowers},
-	{"default:dry_dirt", dry_grass, {}},
-	{"default:dry_dirt_with_dry_grass", dry_grass, {}},
-	{"default:dirt_with_dry_grass", dry_grass, flowers},
-	{"default:sand", {}, {"default:dry_shrub", "", "", ""} },
-	{"default:desert_sand", {}, {"default:dry_shrub", "", "", ""} },
-	{"default:silver_sand", {}, {"default:dry_shrub", "", "", ""} },
-	{"default:dirt_with_rainforest_litter", {}, {"default:junglegrass", "", "", ""}}
-}
-
+local crops = {}
+local saplings = {}
+local deco = {}
 
 --
 -- local functions
 --
-
 
 -- particles
 local function particle_effect(pos)
@@ -354,7 +278,7 @@ local function use_checks(user, pointed_thing)
 	local def = minetest.registered_items[node.name]
 	local dirt = def and def.groups
 
-	-- does node exist
+	-- does node have groups set
 	if not dirt then
 		return false
 	end
@@ -522,6 +446,14 @@ function bonemeal:on_use(pos, strength, node)
 		particle_effect(pos)
 
 		return true
+
+	elseif node.name == "default:dry_dirt" and strength == 1 then
+
+		minetest.set_node(pos, {name = "default:dry_dirt_with_dry_grass"})
+
+		particle_effect(pos)
+
+		return true
 	end
 
 	-- grow grass and flowers
@@ -572,10 +504,10 @@ minetest.register_craftitem("bonemeal:mulch", {
 		if node then
 
 			-- call global on_use function with strength of 1
-			bonemeal:on_use(pointed_thing.under, 1, node)
+			local used = bonemeal:on_use(pointed_thing.under, 1, node)
 
 			-- take item if not in creative
-			if not bonemeal.is_creative(user:get_player_name()) then
+			if used and not bonemeal.is_creative(user:get_player_name()) then
 				itemstack:take_item()
 			end
 		end
@@ -598,10 +530,10 @@ minetest.register_craftitem("bonemeal:bonemeal", {
 		if node then
 
 			-- call global on_use function with strength of 2
-			bonemeal:on_use(pointed_thing.under, 2, node)
+			local used = bonemeal:on_use(pointed_thing.under, 2, node)
 
 			-- take item if not in creative
-			if not bonemeal.is_creative(user:get_player_name()) then
+			if used and not bonemeal.is_creative(user:get_player_name()) then
 				itemstack:take_item()
 			end
 		end
@@ -624,10 +556,10 @@ minetest.register_craftitem("bonemeal:fertiliser", {
 		if node then
 
 			-- call global on_use function with strength of 3
-			bonemeal:on_use(pointed_thing.under, 3, node)
+			local used = bonemeal:on_use(pointed_thing.under, 3, node)
 
 			-- take item if not in creative
-			if not bonemeal.is_creative(user:get_player_name()) then
+			if used and not bonemeal.is_creative(user:get_player_name()) then
 				itemstack:take_item()
 			end
 		end
@@ -662,25 +594,27 @@ minetest.register_craft({
 	output = "bonemeal:gelatin_powder 4",
 	recipe = {
 		{"group:bone", "group:bone", "group:bone"},
-		{"bucket:bucket_water", "bucket:bucket_water", "bucket:bucket_water"},
-		{"bucket:bucket_water", "default:torch", "bucket:bucket_water"}
+		{a.bucket_water, a.bucket_water, a.bucket_water},
+		{a.bucket_water, a.torch, a.bucket_water}
 	},
 	replacements = {
-		{"bucket:bucket_water", "bucket:bucket_empty 5"}
+		{a.bucket_water, a.bucket_empty .. " 5"}
 	}
 })
 
 -- bonemeal (from bone)
 minetest.register_craft({
+	type = "cooking",
 	output = "bonemeal:bonemeal 2",
-	recipe = {{"group:bone"}}
+	recipe = "group:bone",
+	cooktime = 4
 })
 
 -- bonemeal (from player bones)
 if minetest.settings:get_bool("bonemeal.disable_deathbones_recipe") ~= true then
 
 	minetest.register_craft({
-		output = "bonemeal:bonemeal 4",
+		output = "bonemeal:bone 2",
 		recipe = {{"bones:bones"}}
 	})
 end
@@ -688,7 +622,7 @@ end
 -- bonemeal (from coral skeleton)
 minetest.register_craft({
 	output = "bonemeal:bonemeal 2",
-	recipe = {{"default:coral_skeleton"}}
+	recipe = {{a.coral}}
 })
 
 -- mulch
@@ -716,25 +650,26 @@ minetest.register_craft({
 	recipe = {{"bonemeal:bonemeal", "bonemeal:mulch"}}
 })
 
-
 -- add bones to dirt
-minetest.override_item("default:dirt", {
-	drop = {
-		max_items = 1,
-		items = {
-			{
-				items = {"bonemeal:bone"},
-				rarity = 40
-			},
-			{
-				items = {"default:dirt"}
+if minetest.registered_items[a.dirt] then
+
+	minetest.override_item(a.dirt, {
+		drop = {
+			max_items = 1,
+			items = {
+				{
+					items = {"bonemeal:bone"},
+					rarity = 40
+				},
+				{
+					items = {a.dirt}
+				}
 			}
 		}
-	}
-})
+	})
+end
 
-
--- add support for other mods
+-- add support for mods
 dofile(path .. "/mods.lua")
 
 -- lucky block support
