@@ -3,7 +3,7 @@
 --License: General Public License, version 3 or later
 --Original Work Copyright (C) 2016 cd2 (cdqwertz) <cdqwertz@gmail.com>
 --Modified Work Copyright (C) 2017 Vitalie Ciubotaru <vitalie at ciubotaru dot tk>
---Modified Work Copyright (C) 2018 - 2021 Lokrates
+--Modified Work Copyright (C) 2018 - 2023 Lokrates
 --Modified Work Copyright (C) 2018 naturefreshmilk
 --Modified Work Copyright (C) 2019 OgelGames
 --Modified Work Copyright (C) 2020 6r1d
@@ -36,7 +36,7 @@ end
 
 
 minetest.log('action', 'MOD: Biofuel ' .. "loading...")
-biofuel_version = '0.7'
+biofuel_version = '0.8'
 
 food_fuel = minetest.settings:get_bool("food_fuel")				-- Enables the conversion of food into fuel (settingtypes.txt)
 if food_fuel == nil then food_fuel = false end 					-- default false

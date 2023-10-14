@@ -18,6 +18,11 @@ minetest.register_craft({
 	burntime = 10,
 })
 
+minetest.register_craft({
+    output = "biofuel:phial_fuel 4",
+    recipe = {{"biofuel:bottle_fuel"}}
+})
+
 
 --Bottle of Biofuel
 
@@ -38,6 +43,12 @@ minetest.register_craft({
 	type = "fuel",
 	recipe = "biofuel:bottle_fuel",
 	burntime = 40,
+})
+
+minetest.register_craft({
+	type = "shapeless",
+    output = "biofuel:bottle_fuel 9",
+    recipe = {"biofuel:fuel_can"}
 })
 
 
@@ -91,10 +102,6 @@ register_biofuel("wine:bottle_bourbon", 40)
 register_biofuel("wine:bottle_sake", 40)
 register_biofuel("wine:bottle_vodka", 40)
 
---Basic Materials
-register_biofuel("basic_materials:oil_extract")
-
-
 --Cucina_Vegana
 register_biofuel("cucina_vegana:sunflower_seeds_oil")
 register_biofuel("cucina_vegana:flax_seed_oil")
@@ -104,3 +111,17 @@ register_biofuel("cucina_vegana:peanut_oil")
 --Farming_Redo
 register_biofuel("farming:bottle_ethanol")
 register_biofuel("farming:hemp_oil")
+
+
+--Basic Materials
+register_biofuel("basic_materials:oil_extract")
+
+if minetest.get_modpath("basic_materials") then
+
+minetest.register_craft({
+	type = "shapeless",
+	output = "basic_materials:oil_extract 2",
+	recipe = {"biofuel:bottle_fuel", "biofuel:bottle_fuel"}
+})
+
+end
