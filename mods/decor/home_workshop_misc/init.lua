@@ -44,6 +44,7 @@ minetest.register_node("home_workshop_misc:beer_tap", {
 	},
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		local inv = clicker:get_inventory()
+		if not itemstack then return end
 
 		local wieldname = itemstack:get_name()
 		if wieldname == "vessels:drinking_glass" then
