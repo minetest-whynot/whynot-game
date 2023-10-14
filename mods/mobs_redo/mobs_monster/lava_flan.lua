@@ -1,5 +1,5 @@
-
-local S = mobs.intllib_monster
+-- Translation support
+local S = minetest.get_translator("mobs_monster")
 
 -- Lava Flan by Zeg9 (additional textures by JurajVajda)
 

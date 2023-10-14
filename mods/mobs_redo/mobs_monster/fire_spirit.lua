@@ -1,5 +1,5 @@
-
-local S = mobs.intllib_monster
+-- Translation support
+local S = minetest.get_translator("mobs_monster")
 
 local mob_drops = {
 	{name = "fireflies:firefly", chance = 1, min = 1, max = 1}

@@ -171,3 +171,17 @@ mobs:spawn({
 	min_height = 0,
 	day_toggle = false,
 })
+
+-- Land Guard
+
+mobs:spawn({
+	name = "mobs_monster:land_guard",
+	nodes = {
+		"default:snow", "default:ice", "default:stone",
+		"default:dry_dirt_with_dry_grass", "ethereal:dry_dirt"
+	},
+	max_light = 7,
+	chance = 25000,
+	min_height = 0,
+	active_object_count = 1,
+})
