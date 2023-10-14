@@ -200,11 +200,11 @@ origin https://codeberg.org/Hamlet/mobs_ghost_redo (fetch)
 Mod: mobs_redo/mobs_ghost_redo
 
 origin https://github.com/minetest-mirrors/mobs_monster.git (fetch)
-* 0d17a087620e08f7da4672f4371813c99aed5691 remove any older model mese monsters that haven't already despawned.
+* a1030bf7d5ae0db827f7f0f6a8a205157bfb5266 use api functions for spider
 Mod: mobs_redo/mobs_monster
 
 origin https://github.com/minetest-mirrors/mobs_redo.git (fetch)
-* 924a54578859127417475f13924f9f467cf7bc8b update pathfinding defaults to add settings (thx Bla)
+* 768ef84bd88736d965c659b8b33620e4f90e350e use api functions for riding mob
 Mod: mobs_redo/mobs_redo
 
 origin https://github.com/minetest-mods/3d_armor (fetch)
