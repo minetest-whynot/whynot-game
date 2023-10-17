@@ -191,10 +191,6 @@ origin https://github.com/minetest/minetest_game (fetch)
 * 08057e8e0f01b443515ff81423215e4367f84872 Merge remote-tracking branch 'origin/stable-5' into HEAD
 Mod: minetest_game/minetest_game
 
-origin https://github.com/raymoo/cmi.git (fetch)
-* 3f505acb035c3af307e722754fb55b3e587ed674 Add doc to main repo
-Mod: mobs_redo/cmi
-
 origin https://codeberg.org/Hamlet/mobs_ghost_redo (fetch)
 * ac9c013e47939c05df4671cab5de841e61e3837c v0.7.0
 Mod: mobs_redo/mobs_ghost_redo
