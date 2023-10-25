@@ -208,7 +208,7 @@ origin https://github.com/minetest-mirrors/mobs_redo.git (fetch)
 Mod: mobs_redo/mobs_redo
 
 origin https://github.com/minetest-mods/3d_armor (fetch)
-* e1a262ba20e4bf0a1046ca06d83953ae0983f621 add feather falling (#73)
+* aef125a0ca98cca378367881f2b9be446d884f33 fix small typo (#111)
 Mod: player/3d_armor
 
 origin https://gitlab.com/dacmot/awards.git (fetch)
