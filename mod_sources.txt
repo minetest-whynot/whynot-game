@@ -208,7 +208,7 @@ origin https://github.com/minetest-mirrors/mobs_redo.git (fetch)
 Mod: mobs_redo/mobs_redo
 
 origin https://github.com/minetest-mods/3d_armor (fetch)
-* aef125a0ca98cca378367881f2b9be446d884f33 fix small typo (#111)
+* 9a687fbb5145f564a462deb4da226ae72f28151c Remove individual mod LICENSE.txt (#122)
 Mod: player/3d_armor
 
 origin https://gitlab.com/dacmot/awards.git (fetch)
