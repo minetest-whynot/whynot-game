@@ -11,7 +11,7 @@ local function add_door(num, desc, img)
 		inventory_image = "mydoors_"..img.."_inv.png",
 		groups = {choppy=2,cracky=2,door=1},
 		tiles = {{ name = "mydoors_"..img..".png", backface_culling = true }},
-		protected = true,
+		protected = false,
 	})
 end
 
