@@ -104,8 +104,8 @@ local function start_fire_effects(pos, node, clicker, chimney)
 			minsize = 4, maxsize = 8,
 			texture = "smoke_particle.png",
 		})
+		this_spawner_meta:set_int("smoky", id)
 		if chimney == 1 then
-			this_spawner_meta:set_int("smoky", id)
 			this_spawner_meta:set_int("sound", 0)
 		else
 			s_handle = minetest.sound_play("fire_small", {
@@ -113,6 +113,7 @@ local function start_fire_effects(pos, node, clicker, chimney)
 				max_hear_distance = 5,
 				loop = true
 			})
+			fire_particles_off(pos)
 			fire_particles_on(pos)
 			this_spawner_meta:set_int("sound", s_handle)
 		end
@@ -161,6 +162,7 @@ minetest.register_node("fake_fire:ice_fire", {
 	end,
 	on_destruct = function (pos)
 		stop_smoke(pos)
+		fire_particles_off(pos)
 		minetest.sound_play("fire_extinguish", {
 			pos = pos, max_hear_distance = 5
 		})
@@ -199,6 +201,7 @@ minetest.register_node("fake_fire:fancy_fire", {
 		"fake_fire_empty_tile.png"
 	},
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
+		fire_particles_off(pos)
 		fire_particles_on(pos)
 		return itemstack
 	end,
@@ -353,4 +356,3 @@ minetest.register_lbm({
 		end
 	end
 })
-
