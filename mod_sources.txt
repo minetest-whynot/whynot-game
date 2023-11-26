@@ -1,6 +1,6 @@
 
 origin https://github.com/minetest-mirrors/ambience.git (fetch)
-* 66e73ddf31a4d1b3acccd7b162404c56348f9ead tweak for 5.0
+* 0e444c726cf6f131cae312480ee2fd32e181536a esperanto translation added (thx JadedCtrl)
 Mod: ambience/ambience
 
 origin https://github.com/minetest-mods/lightning (fetch)
@@ -48,7 +48,7 @@ origin https://github.com/mt-mods/home_workshop_modpack (fetch)
 Mod: decor/home_workshop_modpack
 
 origin https://github.com/mt-mods/homedecor_modpack (fetch)
-* 951f77491c4b1550420c1dfca51508eaf969159c Fix use of deprecated get_look_yaw() (#62)
+* 52f7c54702c58bccec2877cb67dbcfa87cd83ace Fix particlespawner removal when digging fancy fire
 Mod: decor/homedecor_modpack
 
 origin https://github.com/Gerold55/laptop.git (fetch)
@@ -60,7 +60,7 @@ origin https://repo.or.cz/minetest_mtg_plus.git (fetch)
 Mod: decor/mtg_plus
 
 origin https://github.com/minetest-mods/mydoors (fetch)
-* 5264626c7957574b02c46167eb58c0271956c994 Add sliding door and garage door crafts (#31)
+* 1f9875fced0bfc5c1232cec995bdeb7aa3ac87d1 Fix protection of unlocked old doors (#32)
 Mod: decor/mydoors
 
 origin https://github.com/minetest-mods/myroofs (fetch)
@@ -88,7 +88,7 @@ origin https://github.com/minetest-mods/ts_furniture (fetch)
 Mod: decor/ts_furniture
 
 origin https://github.com/mt-mods/unifieddyes (fetch)
-* 36c8bb5f5b8a0485225d2547c8978291ff710291 fix https://github.com/mt-mods/unifieddyes/issues/11#issuecomment-1469934442 - syntac formating for translation files(remove whitespace) - make wuzzy happy
+* 5af9254c3a98f086be7fcfd0ba479aea133ea41e fix logic of unifieddyes.on_dig to conform w/ documentation (#15)
 Mod: decor/unifieddyes
 
 origin https://github.com/minetest-mirrors/farming.git (fetch)
@@ -204,7 +204,7 @@ origin https://github.com/minetest-mirrors/mobs_redo.git (fetch)
 Mod: mobs_redo/mobs_redo
 
 origin https://github.com/minetest-mods/3d_armor (fetch)
-* 9a687fbb5145f564a462deb4da226ae72f28151c Remove individual mod LICENSE.txt (#122)
+* 7a0c456638522c703711e32f0a46900d7e4c4685 Fix broken translations (#124)
 Mod: player/3d_armor
 
 origin https://gitlab.com/dacmot/awards.git (fetch)
@@ -252,7 +252,7 @@ origin https://repo.or.cz/minetest_show_wielded_item.git (fetch)
 Mod: player/show_wielded_item
 
 origin https://github.com/minetest-mods/skinsdb (fetch)
-* 1d1053dbc296abaf38c31dcec47c4169e9492365 Remove mesh hand node when player exits (#84)
+* 271c10907396ae17853e2d55001f719a5db1f1ba Replace skinsdb API source (#91)
 Mod: player/skinsdb
 
 origin https://github.com/bell07/minetest-smart_sfinv (fetch)
@@ -260,7 +260,7 @@ origin https://github.com/bell07/minetest-smart_sfinv (fetch)
 Mod: player/smart_sfinv_modpack
 
 origin https://github.com/minetest-mods/wielded_light (fetch)
-* b5236562af9772dff8522fe2bda5b5f738e81b88 Bugfixes. Preserve timers and param2 (#20)
+* 3dfc2623598e095954b0a97f6bac6da7096cdf10 Fix error when 'default' is disabled (#28)
 Mod: player/wielded_light
 
 origin https://github.com/taikedz/everamzah-backpacks (fetch)
@@ -272,7 +272,7 @@ origin https://github.com/Lokrates/Biofuel.git (fetch)
 Mod: tools/biofuel
 
 origin https://github.com/minetest-mirrors/bonemeal.git (fetch)
-* 8e929e5a1cca502bd1c6a1926c8aadd17ad58acc remove default dependency, add mineclone support
+* 4f8ca6a0a57259690bbc876cdffc6460998dc113 add spore grass to mushroom dirt decorations
 Mod: tools/bonemeal
 
 origin https://github.com/SmallJoker/boost_cart (fetch)
