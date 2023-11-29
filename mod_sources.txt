@@ -188,7 +188,7 @@ origin https://github.com/minetest-mods/mesecons (fetch)
 Mod: mesecons/mesecons
 
 origin https://github.com/minetest/minetest_game (fetch)
-* 08057e8e0f01b443515ff81423215e4367f84872 Merge remote-tracking branch 'origin/stable-5' into HEAD
+* 90501504646a3df861d6703a712f9772ddf7fb35 Merge remote-tracking branch 'origin/stable-5' into HEAD
 Mod: minetest_game/minetest_game
 
 origin https://codeberg.org/Hamlet/mobs_ghost_redo (fetch)
