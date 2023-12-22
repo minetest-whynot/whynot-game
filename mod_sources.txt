@@ -44,7 +44,7 @@ origin https://github.com/HybridDog/heads (fetch)
 Mod: decor/heads
 
 origin https://github.com/mt-mods/home_workshop_modpack (fetch)
-* 1fd279435c391736ece2893fefd47c1497727770 fix crash due nil itemstack (#13)
+* 8102117572374806748f7585b9bc9ecf2f064575 Cleanup translation files (#15)
 Mod: decor/home_workshop_modpack
 
 origin https://github.com/mt-mods/homedecor_modpack (fetch)
@@ -88,7 +88,7 @@ origin https://github.com/minetest-mods/ts_furniture (fetch)
 Mod: decor/ts_furniture
 
 origin https://github.com/mt-mods/unifieddyes (fetch)
-* 5af9254c3a98f086be7fcfd0ba479aea133ea41e fix logic of unifieddyes.on_dig to conform w/ documentation (#15)
+* ecd05bfd908d2ec30e6ee29c8787aacff134885f Bump `min_minetest_version` to "5.5.0" (#17)
 Mod: decor/unifieddyes
 
 origin https://github.com/minetest-mirrors/farming.git (fetch)
@@ -184,11 +184,11 @@ origin https://github.com/GreenXenith/tac_nayn (fetch)
 Mod: mapgen/tac_nayn
 
 origin https://github.com/minetest-mods/mesecons (fetch)
-* 8e30ee411347e6552cb5a9f28ea3069805853ea3 Update mesecons_delayer.de.tr (#649)
+* 6b42419828b9d37b81a820e79743a992af7a9749 Pistons can no longer push beds
 Mod: mesecons/mesecons
 
 origin https://github.com/minetest/minetest_game (fetch)
-* 90501504646a3df861d6703a712f9772ddf7fb35 Merge remote-tracking branch 'origin/stable-5' into HEAD
+* 9875ef62403b3f0113633fc5c88186c983030b34 Merge remote-tracking branch 'origin/stable-5' into HEAD
 Mod: minetest_game/minetest_game
 
 origin https://codeberg.org/Hamlet/mobs_ghost_redo (fetch)
@@ -204,7 +204,7 @@ origin https://github.com/minetest-mirrors/mobs_redo.git (fetch)
 Mod: mobs_redo/mobs_redo
 
 origin https://github.com/minetest-mods/3d_armor (fetch)
-* 7a0c456638522c703711e32f0a46900d7e4c4685 Fix broken translations (#124)
+* e0b61123204494d757dd3098ac56cfcc99a1f596 Tweak Esperanto translation (#128)
 Mod: player/3d_armor
 
 origin https://gitlab.com/dacmot/awards.git (fetch)
@@ -252,7 +252,7 @@ origin https://repo.or.cz/minetest_show_wielded_item.git (fetch)
 Mod: player/show_wielded_item
 
 origin https://github.com/minetest-mods/skinsdb (fetch)
-* 271c10907396ae17853e2d55001f719a5db1f1ba Replace skinsdb API source (#91)
+* e1cd93747080c607526502dea88d4d106ce076e0 Fix typo privat -> private (#94)
 Mod: player/skinsdb
 
 origin https://github.com/bell07/minetest-smart_sfinv (fetch)
@@ -268,7 +268,7 @@ origin https://github.com/taikedz/everamzah-backpacks (fetch)
 Mod: tools/backpacks
 
 origin https://github.com/Lokrates/Biofuel.git (fetch)
-* f1f106748a8490d3c0ffc68ad6fdaa426da1b020 Update 20230331
+* b40d43dea7d8d2c64817ad8832993a87d369d12f Merge pull request #25 from Niklp09/master
 Mod: tools/biofuel
 
 origin https://github.com/minetest-mirrors/bonemeal.git (fetch)
