@@ -2024,7 +2024,7 @@ minetest.register_node("default:sand_with_kelp", {
 		return itemstack
 	end,
 
-	after_destruct  = function(pos, oldnode)
+	after_dig_node = function(pos, oldnode, oldmetadata, digger)
 		minetest.set_node(pos, {name = "default:sand"})
 	end
 })
@@ -2099,7 +2099,7 @@ minetest.register_node("default:coral_green", {
 
 	on_place = coral_on_place,
 
-	after_destruct  = function(pos, oldnode)
+	after_dig_node = function(pos, oldnode, oldmetadata, digger)
 		minetest.set_node(pos, {name = "default:coral_skeleton"})
 	end,
 })
@@ -2130,7 +2130,7 @@ minetest.register_node("default:coral_pink", {
 
 	on_place = coral_on_place,
 
-	after_destruct  = function(pos, oldnode)
+	after_dig_node = function(pos, oldnode, oldmetadata, digger)
 		minetest.set_node(pos, {name = "default:coral_skeleton"})
 	end,
 })
@@ -2161,7 +2161,7 @@ minetest.register_node("default:coral_cyan", {
 
 	on_place = coral_on_place,
 
-	after_destruct  = function(pos, oldnode)
+	after_dig_node = function(pos, oldnode, oldmetadata, digger)
 		minetest.set_node(pos, {name = "default:coral_skeleton"})
 	end,
 })
@@ -2548,6 +2548,15 @@ local default_bookshelf_def = {
 			return stack:get_count()
 		end
 		return 0
+	end,
+	on_metadata_inventory_put = function(pos)
+		update_bookshelf(pos)
+	end,
+	on_metadata_inventory_take = function(pos)
+		update_bookshelf(pos)
+	end,
+	on_metadata_inventory_move = function(pos)
+		update_bookshelf(pos)
 	end,
 	on_blast = function(pos)
 		local drops = {}
