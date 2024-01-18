@@ -35,7 +35,7 @@ origin https://repo.or.cz/minetest_dice2.git (fetch)
 * 1feb5bbf1ef2d579f8df05e937bd0a9edc031a06 Add TRUE ephemeral sounds
 Mod: decor/dice2
 
-origin https://github.com/cdqwertz/flower_pot (fetch)
+origin https://codeberg.org/Dacmot/flower_pot.git (fetch)
 * 8a62a78a6aba3de52ec6b04913c5c3dbdae06c90 uploaded
 Mod: decor/flower_pot
 
