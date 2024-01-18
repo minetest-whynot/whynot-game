@@ -25,9 +25,6 @@
 [submodule "builder/mods_src/decor/dice2"]
 	path = builder/mods_src/decor/dice2
 	url = https://repo.or.cz/minetest_dice2.git
-[submodule "builder/mods_src/decor/flower_pot"]
-	path = builder/mods_src/decor/flower_pot
-	url = https://github.com/cdqwertz/flower_pot
 [submodule "builder/mods_src/decor/heads"]
 	path = builder/mods_src/decor/heads
 	url = https://github.com/HybridDog/heads
