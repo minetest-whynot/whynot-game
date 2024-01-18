@@ -250,3 +250,6 @@
 [submodule "builder/mods_src/mapgen/builder/mods_src/mapgen/minetest_mapgen_config"]
 	path = builder/mods_src/mapgen/minetest_mapgen_config
 	url = https://codeberg.org/Dacmot/minetest_mapgen_config.git
+[submodule "builder/mods_src/decor/flower_pot"]
+	path = builder/mods_src/decor/flower_pot
+	url = https://codeberg.org/Dacmot/flower_pot.git
