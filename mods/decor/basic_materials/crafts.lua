@@ -54,6 +54,9 @@ if minetest.get_modpath("mcl_core") then
 		silver_ingot = "mcl_core:iron_ingot",
 		silicon = "mesecons_materials:silicon",
 	}
+	if minetest.get_modpath("mcl_copper") then
+		materials.copper_ingot = "mcl_copper:copper_ingot"
+	end
 elseif minetest.get_modpath("fl_ores") and minetest.get_modpath("fl_stone") then
 	materials = {
 		dirt = "fl_topsoil:dirt",
