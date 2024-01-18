@@ -7,7 +7,7 @@ local door_wood = { -- color, desc, image
 	{"yellow", "Clear Stained", "yellow"},
 	{"black", "Black", "black"},
 }
-local function my_door_wood_block_stairs(nodename, def)	
+local function my_door_wood_block_stairs(nodename, def)
 	local mod = string.match(nodename, "(.+):")
 	local name = string.match(nodename, ":(.+)")
 	minetest.register_node(nodename, def)
@@ -23,22 +23,21 @@ local function my_door_wood_block_stairs(nodename, def)
 				sounds = def.sounds,
 			}
 		)
-	elseif minetest.get_modpath("stairs") then	
+	elseif minetest.get_modpath("stairs") then
 		stairs.register_stair_and_slab(name,nodename,
 			def.groups,
 			def.tiles,
 			("%s Stair"):format(def.description),
 			("%s Slab"):format(def.description),
 			def.sounds
-		)	
-	end	
+		)
+	end
 end
 
 local function add_door(color, desc, img)
 	my_door_wood_block_stairs("my_door_wood:wood_"..color, {
 		description = desc.." Wood",
 		drawtype = "normal",
-		paramtype = "light",
 		tiles = {"mydoors_"..img.."_wood.png"},
 		paramtype = "light",
 		groups = {cracky = 2, choppy = 2, wood = 1},
