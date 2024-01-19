@@ -309,12 +309,11 @@ mobs:register_arrow("mobs_monster:obsidian_arrow", {
 		end
 
 		local texture = "default_dirt.png" --fallback texture
-
 		local radius = 1
-		local def = minetest.registered_nodes[node]
+		local def = node and minetest.registered_nodes[node.name]
 
-		if def then
-			node = {name = node}
+		if not def then
+			return
 		end
 
 		if def and def.tiles and def.tiles[1] then
@@ -350,6 +349,6 @@ mobs:register_arrow("mobs_monster:obsidian_arrow", {
 
 		local snd = def.sounds and def.sounds.dug or "default_dig_crumbly"
 
-		minetest.sound_play(snd, {pos = pos, max_hear_distance = 12, gain = 1.0}, true)
+		minetest.sound_play(snd, {pos = pos, max_hear_distance = 8, gain = 1.0}, true)
 	end
 })
