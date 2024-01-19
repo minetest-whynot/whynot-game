@@ -1,0 +1,25 @@
+{
+  "type": "GAME",
+  "title": "WhyNot?",
+  "name": "whynot_game",
+  "short_description": "Aims to get many high-quality mods from the community working together",
+  "tags": [
+    "environment",
+    "food",
+    "mtg",
+    "plants_and_farming",
+    "survival",
+    "technology",
+    "tools",
+    "building",
+    "hud",
+    "skins",
+    "sound_music",
+    "inventory"
+  ],
+  "dev_state": "ACTIVELY_DEVELOPED",
+  "license": "GPL-3.0-only",
+  "media_license": "GPL-3.0-only",
+  "repo": "https://github.com/minetest-whynot/whynot-game",
+  "forums": "19355"
+}

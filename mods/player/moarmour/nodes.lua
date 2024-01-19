@@ -34,12 +34,14 @@ minetest.register_node("moarmour:ibrogblock", {
   groups = {cracky = 3},
 })
 
-minetest.register_alias("armor_addon:waffleblock", "moarmour:waffleblock")
-minetest.register_node("moarmour:waffleblock", {
-  description = S("Waffle Block"),
-  tiles = {"moarmour_waffleblock.png"},
-  is_ground_content = true,
-  groups = {choppy = 3, oddly_breakable_by_hand = 2, flammable = 3, wood = 1},
-  drop = 'moarmour:waffleblock',
-  sounds = default.node_sound_wood_defaults(),
-})
+if minetest.get_modpath("waffles") then
+  minetest.register_alias("armor_addon:waffleblock", "moarmour:waffleblock")
+  minetest.register_node("moarmour:waffleblock", {
+    description = S("Waffle Block"),
+    tiles = {"moarmour_waffleblock.png"},
+    is_ground_content = true,
+    groups = {choppy = 3, oddly_breakable_by_hand = 2, flammable = 3, wood = 1},
+    drop = 'moarmour:waffleblock',
+    sounds = default.node_sound_wood_defaults(),
+  })
+end

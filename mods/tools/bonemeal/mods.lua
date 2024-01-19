@@ -184,7 +184,8 @@ if minetest.get_modpath("ethereal") then
 			"flowers:tulip", "flowers:viola", "ethereal:strawberry_7"}},
 		{"ethereal:gray_dirt", {}, {"ethereal:snowygrass", "", ""}},
 		{"ethereal:cold_dirt", {}, {"ethereal:snowygrass", "", ""}},
-		{"ethereal:mushroom_dirt", {}, {"flowers:mushroom_red", "flowers:mushroom_brown", "", "", ""}},
+		{"ethereal:mushroom_dirt", {}, {"flowers:mushroom_red", "flowers:mushroom_brown",
+				"ethereal:spore_grass", "ethereal:spore_grass", "", "", ""}},
 		{"ethereal:jungle_dirt", grass, {"default:junglegrass", "", "", ""}},
 		{"ethereal:grove_dirt", grass, {"ethereal:fern", "", "", ""}},
 		{"ethereal:bamboo_dirt", grass, {}}

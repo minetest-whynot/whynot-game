@@ -6,7 +6,6 @@
   declare -Ag BRANCHES=(
     [minetest_game/minetest_game]=origin/stable-5 # Stay on stable version
     [flora_ores/farming]=0b06c7cd450c5ec9a76b3c22a9c57f06e4f8a7c2 # freeze due to incompatibility with milk buckets
-    [player/3d_armor]=e1a262ba20e4bf0a1046ca06d83953ae0983f621 # freeze due to 3d_armor mod split for each armor type
   )
 
   #

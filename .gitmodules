@@ -25,9 +25,6 @@
 [submodule "builder/mods_src/decor/dice2"]
 	path = builder/mods_src/decor/dice2
 	url = https://repo.or.cz/minetest_dice2.git
-[submodule "builder/mods_src/decor/flower_pot"]
-	path = builder/mods_src/decor/flower_pot
-	url = https://github.com/cdqwertz/flower_pot
 [submodule "builder/mods_src/decor/heads"]
 	path = builder/mods_src/decor/heads
 	url = https://github.com/HybridDog/heads
@@ -232,9 +229,6 @@
 [submodule "builder/mods_src/libs/sfcraftguide"]
 	path = builder/mods_src/libs/sfcraftguide
 	url = https://github.com/dacmot/sfcraftguide.git
-[submodule "builder/mods_src/mobs_redo/cmi"]
-	path = builder/mods_src/mobs_redo/cmi
-	url = https://github.com/raymoo/cmi.git
 [submodule "builder/mods_src/libs/sound_api"]
 	path = builder/mods_src/libs/sound_api
 	url = https://github.com/mt-mods/sound_api.git
@@ -256,3 +250,6 @@
 [submodule "builder/mods_src/mapgen/builder/mods_src/mapgen/minetest_mapgen_config"]
 	path = builder/mods_src/mapgen/minetest_mapgen_config
 	url = https://codeberg.org/Dacmot/minetest_mapgen_config.git
+[submodule "builder/mods_src/decor/flower_pot"]
+	path = builder/mods_src/decor/flower_pot
+	url = https://codeberg.org/Dacmot/flower_pot.git

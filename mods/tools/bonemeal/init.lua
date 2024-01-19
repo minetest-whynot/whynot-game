@@ -86,7 +86,7 @@ end
 
 
 -- sapling check
-local function check_sapling(pos, sapling_node, light_ok)
+local function check_sapling(pos, sapling_node, strength, light_ok)
 
 	-- what is sapling placed on?
 	local under =  minetest.get_node({
@@ -128,7 +128,9 @@ local function check_sapling(pos, sapling_node, light_ok)
 
 				particle_effect(pos)
 
-				grow_tree(pos, saplings[n][2])
+				if math.random(5 - strength) == 1 then
+					grow_tree(pos, saplings[n][2])
+				end
 
 				return true
 			end
@@ -474,8 +476,7 @@ function bonemeal:on_use(pos, strength, node)
 	end
 
 	-- check for sapling growth
-	if random(5 - strength) == 1
-	and check_sapling(pos, node.name, light_ok) then
+	if check_sapling(pos, node.name, strength, light_ok) then
 		return true
 	end
 

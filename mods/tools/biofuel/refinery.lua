@@ -125,7 +125,7 @@ local function is_convertible(input)
 		if biomass.food_waste[input] then
 			return true
 		end
-	else end
+	end
 	for _, v in pairs(biomass.convertible_groups) do
 		if minetest.get_item_group(input, v) > 0 then
 			return true
@@ -136,7 +136,7 @@ end
 
 plants_input = tonumber(minetest.settings:get("biomass_input")) or 4		-- The number of biomass required for fuel production (settingtypes.txt)
 
-bottle_output = minetest.settings:get_bool("refinery_output")				-- Change of refinery output between vial or bottle (settingtypes.txt)
+local bottle_output = minetest.settings:get_bool("refinery_output")				-- Change of refinery output between vial or bottle (settingtypes.txt)
 if bottle_output == nil then bottle_output = false end 					-- default false
 
 
@@ -246,7 +246,6 @@ local function update_timer(pos)
 end
 
 local function create_biofuel(pos)
-	local dirt_count = count_output(pos)
 	local q = plants_input															-- Input
 	local meta = minetest.get_meta(pos)
 	local inv = meta:get_inventory()
@@ -260,7 +259,6 @@ local function create_biofuel(pos)
 				q = q - count
 			else
 				inv:set_stack('src', k, stack:get_name() .. ' ' .. (count - q))
-				q = 0
 				break
 			end
 		end

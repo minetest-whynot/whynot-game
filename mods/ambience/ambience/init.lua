@@ -12,6 +12,8 @@ local sound_sets = {} -- all the sounds and their settings
 local sound_set_order = {} -- needed because pairs loops randomly through tables
 local set_nodes = {} -- all the nodes needed for sets
 
+-- translation
+local S = minetest.get_translator("ambience")
 
 -- add set to list
 ambience.add_set = function(set_name, def)
@@ -307,8 +309,8 @@ end)
 
 -- sound volume command
 minetest.register_chatcommand("svol", {
-	params = "<svol>",
-	description = "set sound volume (0.1 to 1.0)",
+	params = S("<svol>"),
+	description = S("set sound volume (0.1 to 1.0)"),
 	privs = {},
 
 	func = function(name, param)
@@ -325,15 +327,15 @@ minetest.register_chatcommand("svol", {
 
 		playing[name].svol = svol
 
-		return true, "Sound volume set to " .. svol
+		return true, S("Sound volume set to @1", svol)
 	end
 })
 
 
 -- music volume command (0 stops music)
 minetest.register_chatcommand("mvol", {
-	params = "<mvol>",
-	description = "set music volume (0.1 to 1.0, 0 to stop music)",
+	params = S("<mvol>"),
+	description = S("set music volume (0.1 to 1.0, 0 to stop music)"),
 	privs = {},
 
 	func = function(name, param)
@@ -359,7 +361,7 @@ minetest.register_chatcommand("mvol", {
 
 		playing[name].mvol = mvol
 
-		return true, "Music volume set to " .. mvol
+		return true, S("Music volume set to @1", mvol)
 	end
 })
 
