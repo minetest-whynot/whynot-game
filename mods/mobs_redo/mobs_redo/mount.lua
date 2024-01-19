@@ -35,23 +35,23 @@ local node_ok = function(pos, fallback)
 end
 
 
-local function node_is(pos)
+local function node_is(entity)
 
-	local node = node_ok(pos)
+	if not entity.standing_on then return "other" end
 
-	if node.name == "air" then
+	if entity.standing_on == "air" then
 		return "air"
 	end
 
-	if minetest.get_item_group(node.name, "lava") ~= 0 then
+	if minetest.get_item_group(entity.standing_on, "lava") ~= 0 then
 		return "lava"
 	end
 
-	if minetest.get_item_group(node.name, "liquid") ~= 0 then
+	if minetest.get_item_group(entity.standing_on, "liquid") ~= 0 then
 		return "liquid"
 	end
 
-	if minetest.registered_nodes[node.name].walkable == true then
+	if minetest.registered_nodes[entity.standing_on].walkable == true then
 		return "walkable"
 	end
 
@@ -330,9 +330,12 @@ function mobs.drive(entity, moving_anim, stand_anim, can_fly, dtime)
 				if velo.y > 0 then velo.y = 0 end
 			end
 		else
-			if ctrl.jump then -- jump
+			if ctrl.jump then -- jump (only when standing on solid surface)
 
-				if velo.y == 0 then
+				if velo.y == 0
+				and entity.standing_on ~= "air"
+				and entity.standing_on ~= "ignore"
+				and minetest.get_item_group(entity.standing_on, "liquid") == 0 then
 					velo.y = velo.y + entity.jump_height
 					acce_y = acce_y + (acce_y * 3) + 1
 				end
@@ -384,7 +387,7 @@ function mobs.drive(entity, moving_anim, stand_anim, can_fly, dtime)
 
 	p.y = p.y - 0.5
 
-	local ni = node_is(p)
+	local ni = node_is(entity)
 	local v = entity.v
 
 	if ni == "air" then
@@ -395,26 +398,6 @@ function mobs.drive(entity, moving_anim, stand_anim, can_fly, dtime)
 
 	elseif ni == "liquid" or ni == "lava" then
 
-		if ni == "lava" and entity.lava_damage ~= 0 then
-
-			entity.lava_counter = (entity.lava_counter or 0) + dtime
-
-			if entity.lava_counter > 1 then
-
-				minetest.sound_play("default_punch", {
-					object = entity.object,
-					max_hear_distance = 5
-				}, true)
-
-				entity.object:punch(entity.object, 1.0, {
-					full_punch_interval = 1.0,
-					damage_groups = {fleshy = entity.lava_damage}
-				}, nil)
-
-				entity.lava_counter = 0
-			end
-		end
-
 		local terrain_type = entity.terrain_type
 
 		if terrain_type == 2 or terrain_type == 3 then
@@ -422,7 +405,7 @@ function mobs.drive(entity, moving_anim, stand_anim, can_fly, dtime)
 			new_acce.y = 0
 			p.y = p.y + 1
 
-			if node_is(p) == "liquid" then
+			if minetest.get_item_group(entity.standing_in, "liquid") ~= 0 then
 
 				if velo.y >= 5 then
 					velo.y = 5

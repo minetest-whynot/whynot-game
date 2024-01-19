@@ -24,6 +24,14 @@ https://forum.minetest.net/viewtopic.php?f=11&t=9917
 
 ## Changelog
 
+### Version 1.61
+
+* Fixed mob damage when riding mobs
+* Added entity:is_inside(itemtable) function (thx cora)
+* Added self.attack_patience value so mobs stop attacking unseen players
+* Added self.homing so that arrows follow player when visible
+* Added support for Visual Harm 1ndicators mod to show health bars
+
 ### Version 1.60
 
 * Move mob and arrow entities to use initial_properties

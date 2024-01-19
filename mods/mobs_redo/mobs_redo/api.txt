@@ -103,6 +103,8 @@ functions needed for the mob to work properly which contains the following:
                          hours and only attacking player at night or when
                          provoked.
    'attack_chance'       0 to 100 chance the mob will attack (default is 5).
+   'attack_patience'     Time in seconds before mob gives up attacking if
+                         player isn't seen (Defaults to 11).
    'attack_monsters'     when true mob will attack monsters.
    'attack_animals'      when true mob will attack animals.
    'attack_npcs'         when true mob will attack npcs within range.
@@ -146,8 +148,9 @@ functions needed for the mob to work properly which contains the following:
    'dogshoot_count2_max' contains how many seconds before switching from shoot
                          to dogfight.
    'shoot_interval'      has the number of seconds between shots.
-   'shoot_offset'        holds the y position added as to where the
+   'shoot_offset'         holds the y position added as to where the
                          arrow/fireball appears on mob.
+   'homing'              When True arrows will follow player when visible.
    'specific_attack'     has a table of entity names that mob can also attack
                          e.g. {"player", "mobs_animal:chicken"}.
    'friendly_fire`       when set to false, mobs will not be able to harm other
@@ -395,13 +398,14 @@ another mod entirely, replace mob_class with the mob entity variable:
 
 mob_class:mob_sound(sound) -- play sound at mob position
 mob_class:do_attack(player) -- if not already attacking, attack object given
+mob_class:stop_attack() -- stops mob attacking
 mob_class:collision() -- checks for player collision with mob and returns {x, z} vector
 mob_class:set_velocity(velocity) -- move at velocity in the facing direction
 mob_class:get_velocity() -- returns mob speed value
 mob_class:set_yaw(yaw, delay) -- change mob yaw, delay is for smooth rotation (default:0)
 mob_class:yaw_to_pos(pos, delay) -- rotates mod to look at position and returns new yaw
 mob_class:set_animation(animation, force) -- set mob animation
-mob_class:line_of_sight(pos1, pos2, stepsize) -- internal line of sight function
+mob_class:line_of_sight(pos1, pos2) -- internal line of sight function
 mob_class:attempt_flight_correction(override) -- check for stuck flying mobs and fix
 mob_class:update_tag(newname) -- update nametag or give new name
 mob_class:do_jump() -- check if mob can jump then jump
@@ -410,6 +414,7 @@ mob_class:day_docile() -- return True if mob docile during current daytime
 mob_class:mob_expire(pos, dtime) -- check if mob is to despawn
 mob_class:get_nodes() -- get specific nodes around mob
 mob_class:on_blast(damage) -- function called when mob in blast area
+mob_class:is_inside(itemtable) -- returns True is mob collisionbox inside any node/group in table
 
 
 Adding Mobs in World
@@ -534,7 +539,6 @@ This function registers a arrow for mobs with the attack type shoot.
        'visual'       same is in minetest.register_entity()
        'visual_size'  same is in minetest.register_entity()
        'textures'     same is in minetest.register_entity()
-       'physical'     same is in minetest.register_entity() [default: false]
        'collide_with_objects'       same as above
        'velocity'     the velocity of the arrow
        'drop'         if set to true any arrows hitting a node will drop as item
@@ -557,7 +561,7 @@ This function registers a arrow for mobs with the attack type shoot.
                       0 for no glow)
        'rotate'       integer value in degrees to rotate arrow
        'on_step'      is a custom function when arrow is active, nil for
-                      default.
+                      default. (self, dtime, moveresult)
        'on_punch'     is a custom function when arrow is punched, nil by default
        'collisionbox' is hitbox table for arrow, {-.1,-.1,-.1,.1,.1,.1} by default.
        'lifetime'     contains float value for how many seconds arrow exists in
