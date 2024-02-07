@@ -1,3 +1,4 @@
+local S = airutils.S
 
 airutils.pilot_textures = {"pilot_clothes1.png","pilot_clothes2.png","pilot_clothes3.png","pilot_clothes4.png",
         "pilot_novaskin_girl.png","pilot_novaskin_girl_steampunk.png","pilot_novaskin_girl_2.png","pilot_novaskin_girl_steampunk_2.png"}
@@ -8,14 +9,14 @@ local curr_skin = "airutils:skin"
 minetest.register_chatcommand("au_uniform", {
     func = function(name, param)
         if skinsdb_mod_path and minetest.global_exists("armor") then
-            minetest.chat_send_player(name, "Sorry, but this module doesn't work when SkinsDb and Armor are instaled together.")
+            minetest.chat_send_player(name, S("Sorry, but this module doesn't work when SkinsDb and Armor are instaled together."))
         else
             local player = minetest.get_player_by_name(name)
 
             if player then
                 airutils.uniform_formspec(name)
             else
-                minetest.chat_send_player(name, "Something isn't working...")
+                minetest.chat_send_player(name, S("Something isn't working..."))
             end
         end
     end,
@@ -26,7 +27,11 @@ local set_player_textures =
 	or default.player_set_textures
 
 function airutils.set_player_skin(player, skin)
+    if not player then return end
+
     local player_properties = player:get_properties()
+    if not player_properties then return end
+
     local texture = player_properties.textures
     local name = player:get_player_name()
     if texture then
@@ -124,11 +129,11 @@ function airutils.uniform_formspec(name)
         end
 
 	    basic_form = basic_form.."dropdown[0.5,0.5;4,0.8;textures;".. textures ..";0;false]"
-        basic_form = basic_form.."button[0.5,1.6;4,0.8;set_texture;Set Player Texture]"
+        basic_form = basic_form.."button[0.5,1.6;4,0.8;set_texture;" .. S("Set Player Texture") .. "]"
 
         minetest.show_formspec(name, "airutils:change", basic_form)
     else
-        minetest.chat_send_player(name, "The isn't activated as secure. Aborting")
+        minetest.chat_send_player(name, S("The isn't activated as secure. Aborting"))
     end
 end
 

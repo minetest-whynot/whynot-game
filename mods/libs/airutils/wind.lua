@@ -33,8 +33,9 @@ if minetest.get_modpath("climate_api") then
 
 else
 	local yaw = math.random()*math.pi*2-math.pi
+    local speed = math.random()*4.0
 	airutils.wind={}
-	airutils.wind.wind = vector.multiply(minetest.yaw_to_dir(yaw),4)
+	airutils.wind.wind = vector.multiply(minetest.yaw_to_dir(yaw),speed)
 	airutils.wind.timer = 0
 	airutils.wind.ttime = math.random()*5*60+1*60
 
@@ -48,8 +49,9 @@ else
 		airutils.wind.timer=airutils.wind.timer+dtime
 		if airutils.wind.timer >= airutils.wind.ttime then
 			local yaw = minetest.dir_to_yaw(airutils.wind.wind)
-			local yaw = yaw+math.random()-0.5
-			airutils.wind.wind = vector.multiply(minetest.yaw_to_dir(yaw),4)
+			yaw = yaw+math.random()-0.5
+            local speed = math.random()*4.0
+			airutils.wind.wind = vector.multiply(minetest.yaw_to_dir(yaw),speed)
 			airutils.wind.ttime = airutils.wind.timer+math.random()*5*60+1*60
 		end
 	end)
