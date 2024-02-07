@@ -15,7 +15,7 @@ if mineclone_path then -- means MineClone 2 is loaded
 	moditems.boxart = "bgcolor[#d0d0d0;false]listcolors[#9d9d9d;#9d9d9d;#5c5c5c;#000000;#ffffff]"
 	moditems.trashbin_groups = {pickaxey=1,axey=1,handy=1,swordy=1,flammable=1,destroy_by_lava_flow=1,craftitem=1}
 	moditems.dumpster_groups = {pickaxey=1,axey=1,handy=1,swordy=1,flammable=0,destroy_by_lava_flow=0,craftitem=1}
-
+	moditems.slot_per_row = 9
 else -- fallback, assume default (Minetest Game) is loaded
 	moditems.iron_item = "default:steel_ingot" -- MTG iron ingot
 	moditems.coal_item = "default:coalblock"   -- MTG coal block
@@ -26,6 +26,7 @@ else -- fallback, assume default (Minetest Game) is loaded
 	moditems.boxart = ""
 	moditems.trashbin_groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3}
 	moditems.dumpster_groups = {cracky=3,oddly_breakable_by_hand=1}
+	moditems.slot_per_row = 8
 end
 
 
@@ -116,11 +117,12 @@ minetest.register_node("trash_can:trash_can_wooden",{
 	_mcl_hardness = 1,
 	on_construct = function(pos)
 		local meta = minetest.get_meta(pos)
+		local offset = moditems.slot_per_row / 2 - 1
 		meta:set_string("formspec",
-			"size[8,9]" ..
+			"size["..moditems.slot_per_row..",9]" ..
 			"button[0,0;2,1;empty;" .. S("Empty Trash") .. "]" ..
-			"list[context;trashlist;3,1;2,3;]" ..
-			"list[current_player;main;0,5;8,4;]" ..
+			"list[context;trashlist;"..offset..",1;2,3;]" ..
+			"list[current_player;main;0,5;"..moditems.slot_per_row..",4;]" ..
 			"listring[]" ..
 			moditems.boxart
 		)
@@ -187,11 +189,12 @@ minetest.register_node("trash_can:dumpster", {
 	sounds = get_dumpster_sound(),
 	on_construct = function(pos)
 		local meta = minetest.get_meta(pos)
+		local offset = moditems.slot_per_row / 2 - 3
 		meta:set_string("formspec",
-			"size[8,9]" ..
+			"size["..moditems.slot_per_row..",9]" ..
 			"button[0,0;2,1;empty;" .. S("Empty Trash") .. "]" ..
-			"list[context;main;1,1;6,3;]" ..
-			"list[current_player;main;0,5;8,4;]"..
+			"list[context;main;"..offset..",1;6,3;]" ..
+			"list[current_player;main;0,5;"..moditems.slot_per_row..",4;]"..
 			"listring[]" ..
 			moditems.boxart
 		)
