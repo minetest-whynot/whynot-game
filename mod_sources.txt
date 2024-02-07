@@ -184,7 +184,7 @@ origin https://github.com/GreenXenith/tac_nayn (fetch)
 Mod: mapgen/tac_nayn
 
 origin https://github.com/minetest-mods/mesecons (fetch)
-* 50a4bd6170579eba0faa1a1d6125cab872ce2084 node_detector now accepts a comma-seperated list of nodes like object_detector
+* 59780437f2f47954b84122a4f1286e0c5b3bd168 Fix 1-tick pulses causing delayers to get stuck in the on state (#663)
 Mod: mesecons/mesecons
 
 origin https://github.com/minetest/minetest_game (fetch)
@@ -332,7 +332,7 @@ origin https://github.com/lisacvuk/minetest-toolranks (fetch)
 Mod: tools/toolranks
 
 origin https://github.com/minetest-mods/trash_can (fetch)
-* 287d7798e2452f819702084c0f2bf5cd484a9a12 Add LuaCheck (#17)
+* be1cda9464880d26f72b97774ae26b373154613f Adapt inventory to MineClone2/ia (#18)
 Mod: tools/trash_can
 
 origin https://github.com/minetest-mods/woodcutting (fetch)
