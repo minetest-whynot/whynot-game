@@ -1,5 +1,5 @@
-
-local S = mobs.intllib_monster
+-- Translation support
+local S = minetest.get_translator("mobs_monster")
 
 local stone_types = {
 
@@ -9,6 +9,15 @@ local stone_types = {
 			{name = "default:desert_cobble", chance = 1, min = 0, max = 2},
 			{name = "default:iron_lump", chance = 5, min = 0, max = 2},
 			{name = "default:gold_lump", chance = 5, min = 0, max = 2}
+		}
+	},
+
+	{	nodes = {"default:sandstone"},
+		skins = {"mobs_stone_monster4.png"},
+		drops = {
+			{name = "default:sandstone", chance = 1, min = 0, max = 2},
+			{name = "default:tin_lump", chance = 5, min = 0, max = 2},
+			{name = "default:copper_lump", chance = 5, min = 0, max = 2}
 		}
 	}
 }

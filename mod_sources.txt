@@ -196,11 +196,11 @@ origin https://codeberg.org/Hamlet/mobs_ghost_redo (fetch)
 Mod: mobs_redo/mobs_ghost_redo
 
 origin https://github.com/minetest-mirrors/mobs_monster.git (fetch)
-* 0d17a087620e08f7da4672f4371813c99aed5691 remove any older model mese monsters that haven't already despawned.
+* 130f46c81f3b6b9d24183c081ffd078a9e7f3f83 fix obsidian flan arrow
 Mod: mobs_redo/mobs_monster
 
 origin https://github.com/minetest-mirrors/mobs_redo.git (fetch)
-* 924a54578859127417475f13924f9f467cf7bc8b update pathfinding defaults to add settings (thx Bla)
+* 47e91b9b6b95233f0f6ec7bafad662e71445a48f add pint sized rune to shrink tamed animals
 Mod: mobs_redo/mobs_redo
 
 origin https://github.com/minetest-mods/3d_armor (fetch)

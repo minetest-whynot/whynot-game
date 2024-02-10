@@ -1,5 +1,5 @@
-
-local S = mobs.intllib_monster
+-- Translation support
+local S = minetest.get_translator("mobs_monster")
 
 local master_types = {
 
@@ -25,6 +25,7 @@ mobs:register_mob("mobs_monster:dungeon_master", {
 	reach = 3,
 	shoot_interval = 2.2,
 	arrow = "mobs_monster:fireball",
+	friendly_fire = false,
 	shoot_offset = 1,
 	hp_min = 42,
 	hp_max = 75,

@@ -1,5 +1,5 @@
-
-local S = mobs.intllib_monster
+-- Translation support
+local S = minetest.get_translator("mobs_monster")
 
 -- custom particle effects
 local effect = function(pos, amount, texture, min_size, max_size, radius, gravity, glow)
