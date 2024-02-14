@@ -31,6 +31,11 @@ local function prev_item_count(prev_inventory, item_name)
     return prev_inventory[item_name]
 end
 
+local function get_progress(awname, playerdata)
+    local awdef = awards.registered_awards[awname]
+    return awdef.get_progress and awdef:get_progress(playerdata)
+end
+
 
 function awards.register_collect_award(awname, def)
     awards.register_award(awname, def)
@@ -50,7 +55,8 @@ function awards.register_collect_award(awname, def)
                 local prev_count = prev_item_count(previnv, itemname)
                 prev_count = prev_count + itemstack:get_count()
                 previnv[itemname] = prev_count
-                for i=1,prev_count,1 do
+                local notify_count = get_progress(awname, picker) - prev_count
+                for i=1,notify_count,1 do
                     awards.notify_collect(picker, itemname)
                 end
             end
