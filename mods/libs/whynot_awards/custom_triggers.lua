@@ -10,139 +10,44 @@ local S = function (str)
 end
 
 
-local function get_prev_inventory(player)
-    local awards_data = awards.player(player:get_player_name())
-    if (awards_data) then
-        -- persistent data
-        awards_data.whynot_awards_data = awards_data.whynot_awards_data or {}
-        local wna_data = awards_data.whynot_awards_data
-        wna_data.prev_inventory = wna_data.prev_inventory or {}
-        local prev_inventory = wna_data.prev_inventory
-
-        return prev_inventory
-    end
-    return {}
-end
-
-local function prev_item_count(prev_inventory, item_name)
-    if (prev_inventory[item_name] == nil) then
-        prev_inventory[item_name] = 0
-    end
-    return prev_inventory[item_name]
-end
-
-local function get_progress(awname, playerdata)
-    local awdef = awards.registered_awards[awname]
-    return awdef.get_progress and awdef:get_progress(playerdata)
-end
-
-
-function awards.register_collect_award(awname, def)
-    awards.register_award(awname, def)
-
-    if (not def or not def.trigger or not awname) then
-        return
-    end
-
-    local trigger = def.trigger
-    local itemname = trigger.item
-
-    -- To prevent players from dropping and picking up items over and over to achieve the awards
-    minetest.override_item(itemname, {
-        on_pickup = function(itemstack, picker, pointed_thing, time_from_last_punch, ...)
-            if (player_ok(picker) and itemstack) then
-                local previnv = get_prev_inventory(picker)
-                local prev_count = prev_item_count(previnv, itemname)
-                prev_count = prev_count + itemstack:get_count()
-                previnv[itemname] = prev_count
-                local notify_count = get_progress(awname, picker) - prev_count
-                for i=1,notify_count,1 do
-                    awards.notify_collect(picker, itemname)
-                end
-            end
-            return minetest.item_pickup(itemstack, picker, pointed_thing, time_from_last_punch, ...)
-        end,
-        on_drop = function(itemstack, dropper, pos)
-            if (player_ok(dropper) and itemstack) then
-                local previnv = get_prev_inventory(dropper)
-                local prev_count = prev_item_count(previnv, itemname)
-                prev_count = prev_count - itemstack:get_count()
-                previnv[itemname] = prev_count
-            end
-            return minetest.item_drop(itemstack, dropper, pos)
-        end,
-    })
-
-
-    if (trigger.parent_item) then
-        local parent_item = trigger.parent_item
-        parent_item = minetest.registered_aliases[parent_item] or parent_item
-
-        minetest.override_item(parent_item, {
-            preserve_metadata = function(pos, oldnode, oldmeta, drops)
-                for _, dropstack in pairs(drops) do
-                    if (dropstack and dropstack:get_name() == itemname) then
-
-                    end
-                end
-            end,
-        })
-    end
-end
-
-
-minetest.register_on_player_inventory_action(function(player, action, _, inventory_info)
-    if (not player_ok(player) or action == nil or inventory_info == nil or inventory_info.stack == nil) then
-        return
-    end
-
-    minetest.log("warning", "player_inventory_action '"..action.."' by "..player:get_player_name())
-
-    local itemstack = inventory_info.stack
-    if (not itemstack:is_empty()) then
-        local itemname = itemstack:get_name()
-        itemname = minetest.registered_aliases[itemname] or itemname
-
-        local previnv = get_prev_inventory(player, itemname)
-        if (previnv == nil) then
-            return
-        end
-        local prev_item_count = previnv[itemname]
-
-        awards.notify_collect(player, itemname)
-
-        previnv[itemname] = prev_item_count
-    end
-end)
-
-minetest.override_item("default:dirt", {
-    after_dig_node = function(pos, oldnode, oldmetadata, digger)
-        --local inv = minetest.get_inventory({type="node", pos=pos})
-        minetest.log("warning", "after_dig_node("..oldnode.name..") at ("..pos.x..","..pos.y..","..pos.z..") by "..digger:get_player_name())
-        if oldmetadata and oldmetadata.inventory then
-            minetest.log("warning", "after_dig_node metadata inventory")
-            for listname, list in pairs(oldmetadata.inventory) do
-                minetest.log("warning", "after_dig_node "..listname)
-                for index, stack in ipairs(list) do
-                    minetest.log("warning", "after_dig_node "..listname.."["..index.."] = "..stack:get_name())
-                    if stack and not stack:is_empty() then
-                        local itemname = stack:get_name()
-                        itemname = minetest.registered_aliases[itemname] or itemname
-                        awards.notify_collect(digger, itemname)
-                    end
-                end
-            end
-        end
-    end
+awards.register_trigger("collect", {
+    type = "counted_key",
+    progress = S("@1/@2 collected"),
+    auto_description = { S("Collect: @2"), S("Collect: @1×@2") },
+    auto_description_total = { S("Collect @1 items."), S("Collect @1 items.") },
+    get_key = function(self, def)
+        return minetest.registered_aliases[def.trigger.item] or def.trigger.item
+    end,
+    key_is_item = true,
 })
 
 
-Whynot_awards.myawardsdata = {}
-Whynot_awards.foodstuff_to_gather = {}
-Whynot_awards.foodstuff_to_gather["default:apple"] = 1
-Whynot_awards.foodstuff_to_gather["flowers:mushroom_brown"] = 1
-Whynot_awards.foodstuff_to_gather["default:blueberries"] = 1
 
+local base_minetest_handle_node_drops = minetest.handle_node_drops
+function minetest.handle_node_drops(pos, drops, digger)
+    if (not player_ok(digger)) then
+        return
+    end
+
+    -- Uncomment to debug with qa_block
+    local awards_data = awards.player(digger:get_player_name())
+    Whynot_awards.playerawardsdata = awards_data
+
+    for _, itemstr in ipairs(drops) do
+        local itemstack = ItemStack(itemstr)
+        for i = 1, itemstack:get_count(), 1 do
+            awards.notify_collect(digger, itemstack:get_name())
+        end
+    end
+
+    return base_minetest_handle_node_drops(pos, drops, digger)
+end
+
+
+local foodstuff_to_gather = {}
+foodstuff_to_gather["default:apple"] = 1
+foodstuff_to_gather["flowers:mushroom_brown"] = 1
+foodstuff_to_gather["default:blueberries"] = 1
 
 awards.register_trigger("eatwildfood", {
 	type = "counted",
@@ -151,26 +56,78 @@ awards.register_trigger("eatwildfood", {
 })
 
 minetest.register_on_item_eat(function(_, _, itemstack, player, _)
-	if not player_ok(player) or itemstack:is_empty() then
+	if not player_ok(player) then
 		return
 	end
 
     local awards_data = awards.player(player:get_player_name())
-    --Whynot_awards.myawardsdata = awards_data
-
     if (awards_data) then
-        awards_data.whynot_awards_data = awards_data.whynot_awards_data or {}
-        local wna_data = awards_data.whynot_awards_data
-        wna_data.gathered_foodstuff = wna_data.gathered_foodstuff or {}
-        local gathered = wna_data.gathered_foodstuff
-
-        local to_gather = Whynot_awards.foodstuff_to_gather
         local itemname = itemstack:get_name()
         itemname = minetest.registered_aliases[itemname] or itemname
 
-        if (to_gather[itemname] ~= nil and gathered[itemname] == nil) then
-            gathered[itemname] = 1
+        -- Uncomment to debug with qa_block
+        Whynot_awards.playerawardsdata = awards_data
+
+        awards_data["eat"] = awards_data["eat"] or {}
+        if (foodstuff_to_gather[itemname] ~= nil and awards_data["eat"][itemname] ~= nil and awards_data["eat"][itemname] <= 1) then
             awards.notify_eatwildfood(player)
         end
     end
 end)
+
+
+local grains_to_gather = {"farming:seed_wheat", "farming:seed_oat", "farming:seed_barley", "farming:seed_rye", "farming:seed_cotton", "farming:rice", "farming:seed_hemp"}
+
+awards.register_trigger("gatherwildseeds",{
+    type = "counted",
+    progress = S("@1/@2 grains found"),
+    auto_description = { S("Find @2 different wild seeds"), S("Find @1×@2 different wild seeds") },
+})
+
+local function check_wildseeds(_, _, _, digger)
+    -- minetest.log("warning", "derp check_wildseeds")
+    if (not player_ok(digger)) then
+        return
+    end
+
+    -- minetest.log("warning", "derp player_ok")
+
+    local awards_data = awards.player(digger:get_player_name())
+    if (awards_data) then
+        -- Uncomment to debug with qa_block
+        Whynot_awards.playerawardsdata = awards_data
+
+        -- minetest.log("warning", "derp awards_data")
+
+        awards_data["collect"] = awards_data["collect"] or {}
+        awards_data["prev_collect"] = awards_data["prev_collect"] or {}
+        local collected = awards_data["collect"]
+        local prev_collected = awards_data["prev_collect"]
+
+        for _, itemname in pairs(grains_to_gather) do
+            local items_collected = collected[itemname]
+            if (prev_collected[itemname] ~= items_collected and (items_collected == nil or items_collected <= 1)) then
+                -- minetest.log("warning", "derp "..itemname.." "..awards_data["collect"][itemname])
+                awards.notify_gatherwildseeds(digger)
+                prev_collected[itemname] = items_collected
+            end
+        end
+    end
+end
+
+for i = 4, 5 do
+	minetest.override_item("default:grass_" .. i, {
+        after_dig_node = check_wildseeds
+	})
+
+	if minetest.registered_nodes["default:dry_grass_1"] then
+		minetest.override_item("default:dry_grass_" .. i, {
+			after_dig_node = check_wildseeds
+		})
+	end
+
+end
+
+minetest.override_item("default:junglegrass", {
+    after_dig_node = check_wildseeds
+})

@@ -10,22 +10,21 @@ dofile(awards_modpath.."/custom_triggers.lua")
 
 
 -- Set builtin awards to hidden
--- 4 awards are registered with minetest.after() so these cannot be hidden
-
 for name, award in pairs(awards.registered_awards) do
 	award.secret = true
 end
 
-awards.register_trigger("collect", {
-    type = "counted_key",
-    progress = S("@1/@2 collected"),
-    auto_description = { S("Collect: @2"), S("Collect: @1×@2") },
-    auto_description_total = { S("Collect @1 items."), S("Collect @1 items.") },
-    get_key = function(self, def)
-        return minetest.registered_aliases[def.trigger.item] or def.trigger.item
-    end,
-    key_is_item = true,
-})
+-- 4 awards are registered with minetest.after(0) so hide them later
+minetest.after(3, function()
+	if (awards.registered_awards["awards_builder1"]) then
+		awards.registered_awards["awards_builder1"].secret = true
+		awards.registered_awards["awards_builder2"].secret = true
+		awards.registered_awards["awards_builder3"].secret = true
+		awards.registered_awards["awards_builder4"].secret = true
+	end
+end)
+
+
 
 awards.register_award("whynot_welcome", {
 	title = S("Welcome to the WhyNot? game"),
@@ -50,6 +49,19 @@ awards.register_award("whynot_gatherfood",{
 	},
 })
 
+
+awards.register_award("whynot_gatherwildseeds",{
+	title = S("Gather wild seeds"),
+	description = S("Harvesting various types of grass can sometimes give you seeds. These seeds can the be planted and farmed for food and materials."),
+	icon = "whynot_awards_wildseeds.png",
+	requires = {},
+	trigger = {
+		type = "gatherwildseeds",
+		target = 4,
+	},
+})
+
+
 awards.register_award("whynot_tree",{
 	title = S("Cut a tree"),
 	description = S("Cut down a tree, karate-style,"),
@@ -61,6 +73,7 @@ awards.register_award("whynot_tree",{
 		target = 1,
 	},
 })
+
 
 awards.register_award("whynot_planks",{
 	title = S("Craft planks"),
@@ -86,6 +99,7 @@ awards.register_award("whynot_simple_boat",{
 	},
 })
 
+
 awards.register_award("whynot_chest",{
 	title = S("Craft a chest"),
 	description = S("Chests are the most basic form of storage. They are very useful to gather more items than can fit in your character's inventory."),
@@ -97,6 +111,7 @@ awards.register_award("whynot_chest",{
 		target = 1,
 	},
 })
+
 
 awards.register_award("whynot_sticks",{
 	title = S("Craft sticks"),
@@ -110,6 +125,7 @@ awards.register_award("whynot_sticks",{
 	},
 })
 
+
 awards.register_award("whynot_tools",{
 	title = S("Craft wood tools"),
 	description = S("The first tools you can craft are made of wood. They are not very strong or durable, but will enable you to start mining rock and minerals to move up to better ones."),
@@ -122,7 +138,8 @@ awards.register_award("whynot_tools",{
 	},
 })
 
-awards.register_collect_award("whynot_bones",{
+
+awards.register_award("whynot_bones",{
 	title = S("Grave digger"),
 	description = S("Dig dirt to find bones."),
 	icon = "whynot_awards_bone.png",
@@ -133,6 +150,7 @@ awards.register_collect_award("whynot_bones",{
 		target = 1,
 	},
 })
+
 
 awards.register_award("whynot_cotton", {
 	title = S("Collect cotton"),
@@ -145,6 +163,7 @@ awards.register_award("whynot_cotton", {
 	}
 })
 
+
 awards.register_award("whynot_wool", {
 	title = S("Craft wool"),
 	description = S("Wool is a very useful material for crafting garments, beds, and many other items."),
@@ -155,6 +174,7 @@ awards.register_award("whynot_wool", {
 		target = 1
 	}
 })
+
 
 awards.register_award("whynot_spawnpoint", {
 	title = S("Find your new home"),
