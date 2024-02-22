@@ -10,6 +10,54 @@ local S = function (str)
 end
 
 
+local function check_action_with_item_in_collection(trigger_name, award_action, itemname, collection, player)
+    if (not player_ok(player)) then
+		return
+	end
+
+    local awards_data = awards.player(player:get_player_name())
+    if (awards_data) then
+        itemname = minetest.registered_aliases[itemname] or itemname
+
+        -- Uncomment to debug with qa_block
+        Whynot_awards.playerawardsdata = awards_data
+
+        awards_data[award_action] = awards_data[award_action] or {}
+        if (collection[itemname] ~= nil and awards_data[award_action][itemname] ~= nil and awards_data[award_action][itemname] <= 1) then
+            awards["notify_"..trigger_name](player)
+        end
+    end
+end
+
+
+local function check_action_with_collection(trigger_name, award_action, collection, player)
+    if (not player_ok(player)) then
+        return
+    end
+
+    local awards_data = awards.player(player:get_player_name())
+    if (awards_data) then
+        -- Uncomment to debug with qa_block
+        Whynot_awards.playerawardsdata = awards_data
+
+        local prev_action = "prev_"..award_action
+        awards_data[award_action] = awards_data[award_action] or {}
+        awards_data[prev_action] = awards_data[prev_action] or {}
+        local collected = awards_data[award_action]
+        local prev_collected = awards_data[prev_action]
+        local notify_award_trigger = awards["notify_"..trigger_name]
+
+        for _, itemname in pairs(collection) do
+            local items_collected = collected[itemname]
+            if (prev_collected[itemname] ~= items_collected and (items_collected == nil or items_collected <= 1 or prev_collected[itemname] == nil)) then
+                notify_award_trigger(player)
+                prev_collected[itemname] = items_collected
+            end
+        end
+    end
+end
+
+
 awards.register_trigger("collect", {
     type = "counted_key",
     progress = S("@1/@2 collected"),
@@ -35,8 +83,8 @@ function minetest.handle_node_drops(pos, drops, digger)
 
     for _, itemstr in ipairs(drops) do
         local itemstack = ItemStack(itemstr)
-        for i = 1, itemstack:get_count(), 1 do
-            awards.notify_collect(digger, itemstack:get_name())
+        if (not itemstack:is_empty()) then
+            awards.notify_collect(digger, itemstack:get_name(), itemstack:get_count())
         end
     end
 
@@ -44,39 +92,20 @@ function minetest.handle_node_drops(pos, drops, digger)
 end
 
 
-local foodstuff_to_gather = {}
-foodstuff_to_gather["default:apple"] = 1
-foodstuff_to_gather["flowers:mushroom_brown"] = 1
-foodstuff_to_gather["default:blueberries"] = 1
-
 awards.register_trigger("eatwildfood", {
 	type = "counted",
 	progress = S("@1/@2 eaten"),
 	auto_description = { S("Eat @2 different wild foods"), S("Eat @1×@2 different wild foods") },
 })
 
+local foodstuff_to_gather = {}
+foodstuff_to_gather["default:apple"] = 1
+foodstuff_to_gather["flowers:mushroom_brown"] = 1
+foodstuff_to_gather["default:blueberries"] = 1
 minetest.register_on_item_eat(function(_, _, itemstack, player, _)
-	if not player_ok(player) then
-		return
-	end
-
-    local awards_data = awards.player(player:get_player_name())
-    if (awards_data) then
-        local itemname = itemstack:get_name()
-        itemname = minetest.registered_aliases[itemname] or itemname
-
-        -- Uncomment to debug with qa_block
-        Whynot_awards.playerawardsdata = awards_data
-
-        awards_data["eat"] = awards_data["eat"] or {}
-        if (foodstuff_to_gather[itemname] ~= nil and awards_data["eat"][itemname] ~= nil and awards_data["eat"][itemname] <= 1) then
-            awards.notify_eatwildfood(player)
-        end
-    end
+    check_action_with_item_in_collection("eatwildfood", "eat", itemstack:get_name(), foodstuff_to_gather, player)
 end)
 
-
-local grains_to_gather = {"farming:seed_wheat", "farming:seed_oat", "farming:seed_barley", "farming:seed_rye", "farming:seed_cotton", "farming:rice", "farming:seed_hemp"}
 
 awards.register_trigger("gatherwildseeds",{
     type = "counted",
@@ -84,35 +113,9 @@ awards.register_trigger("gatherwildseeds",{
     auto_description = { S("Find @2 different wild seeds"), S("Find @1×@2 different wild seeds") },
 })
 
+local grains_to_gather = {"farming:seed_wheat", "farming:seed_oat", "farming:seed_barley", "farming:seed_rye", "farming:seed_cotton", "farming:rice", "farming:seed_hemp"}
 local function check_wildseeds(_, _, _, digger)
-    -- minetest.log("warning", "derp check_wildseeds")
-    if (not player_ok(digger)) then
-        return
-    end
-
-    -- minetest.log("warning", "derp player_ok")
-
-    local awards_data = awards.player(digger:get_player_name())
-    if (awards_data) then
-        -- Uncomment to debug with qa_block
-        Whynot_awards.playerawardsdata = awards_data
-
-        -- minetest.log("warning", "derp awards_data")
-
-        awards_data["collect"] = awards_data["collect"] or {}
-        awards_data["prev_collect"] = awards_data["prev_collect"] or {}
-        local collected = awards_data["collect"]
-        local prev_collected = awards_data["prev_collect"]
-
-        for _, itemname in pairs(grains_to_gather) do
-            local items_collected = collected[itemname]
-            if (prev_collected[itemname] ~= items_collected and (items_collected == nil or items_collected <= 1)) then
-                -- minetest.log("warning", "derp "..itemname.." "..awards_data["collect"][itemname])
-                awards.notify_gatherwildseeds(digger)
-                prev_collected[itemname] = items_collected
-            end
-        end
-    end
+    check_action_with_collection("gatherwildseeds", "collect", grains_to_gather, digger)
 end
 
 for i = 4, 5 do
