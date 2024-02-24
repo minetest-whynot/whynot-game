@@ -186,9 +186,6 @@ if (minetest.get_modpath("farming") and minetest.global_exists("farming") and fa
             local base_on_use = itemdef.on_use
             minetest.override_item(name, {
                 on_use = function(itemstack, user, pointed_thing)
-                    local awards_data = awards.player(user:get_player_name())
-                    Whynot_awards.playerawardsdata = awards_data
-                    minetest.log("warning", "use hoe")
                     awards.notify_plow_soil(user)
                     return base_on_use(itemstack, user, pointed_thing)
                 end
