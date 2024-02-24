@@ -263,8 +263,8 @@ origin https://github.com/minetest-mods/wielded_light (fetch)
 * 3dfc2623598e095954b0a97f6bac6da7096cdf10 Fix error when 'default' is disabled (#28)
 Mod: player/wielded_light
 
-origin https://github.com/taikedz/everamzah-backpacks (fetch)
-* 7f617df442bfd75209ce64ffa46402c96a30ff4f removing rabbit_hide as it does not seem to be standard mobs_redo content
+origin https://codeberg.org/minenux/minetest-mod-backpacks.git (fetch)
+* 22963bf0740448eeac418eb3d21002a68a8b5861 update information and url.. licence
 Mod: tools/backpacks
 
 origin https://github.com/Lokrates/Biofuel.git (fetch)
