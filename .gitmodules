@@ -156,7 +156,7 @@
 	url = https://github.com/minetest-mods/wielded_light
 [submodule "builder/mods_src/tools/backpacks"]
 	path = builder/mods_src/tools/backpacks
-	url = https://github.com/taikedz/everamzah-backpacks
+	url = https://codeberg.org/minenux/minetest-mod-backpacks.git
 [submodule "builder/mods_src/tools/bonemeal"]
 	path = builder/mods_src/tools/bonemeal
 	url = https://github.com/minetest-mirrors/bonemeal.git
