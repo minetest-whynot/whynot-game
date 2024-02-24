@@ -57,7 +57,19 @@ awards.register_award("whynot_gatherwildseeds",{
 	requires = {},
 	trigger = {
 		type = "gatherwildseeds",
-		target = 4,
+		target = 3,
+	},
+})
+
+
+awards.register_award("whynot_gatherfruitvegetable",{
+	title = S("Gather wild fruits and vegetables"),
+	description = S("More common in temperate regions, but also found in various climates, wild fruits and vegetables can be harvested. Use them for food, or re-plant them as crops for agriculture."),
+	icon = "whynot_awards_carrot.png",
+	requires = {},
+	trigger = {
+		type = "gatherfruitvegetable",
+		target = 3,
 	},
 })
 
@@ -130,10 +142,22 @@ awards.register_award("whynot_tools",{
 	title = S("Craft wood tools"),
 	description = S("The first tools you can craft are made of wood. They are not very strong or durable, but will enable you to start mining rock and minerals to move up to better ones."),
 	icon = "whynot_awards_pick_wood.png",
-	requires = {"whynot_planks"},
+	requires = {"whynot_sticks"},
 	trigger = {
 		type = "craft",
 		item = "default:pick_wood",
+		target = 1,
+	},
+})
+
+
+awards.register_award("whynot_plow_soil",{
+	title = S("Plow soil"),
+	description = S("To grow your own food, you must first plow soil. Make sure to be close to water so that the crops can grow."),
+	icon = "whynot_awards_hoe.png",
+	requires = {"whynot_sticks", "whynot_gatherfruitvegetable"},
+	trigger = {
+		type = "plow_soil",
 		target = 1,
 	},
 })
@@ -167,10 +191,22 @@ awards.register_award("whynot_cotton", {
 awards.register_award("whynot_wool", {
 	title = S("Craft wool"),
 	description = S("Wool is a very useful material for crafting garments, beds, and many other items."),
-	icon = "awards_wool_over_your_eyes.png",
+	icon = "whynot_awards_wool.png",
 	trigger = {
 		type = "craft",
 		item = "group:wool",
+		target = 1
+	}
+})
+
+
+awards.register_award("whynot_backpack", {
+	title = S("Craft a backpack"),
+	description = S("Backpacks are very useful to help carry more stuff than the basic inventory lets you. It allows you keep mining longer and carry extra tools and food everywhere you go. Use dyed wools to create different coloured ones."),
+	icon = "whynot_awards_wool.png",
+	trigger = {
+		type = "craft",
+		item = "group:backpack",
 		target = 1
 	}
 })
