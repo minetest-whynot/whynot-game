@@ -114,7 +114,7 @@
 	url = https://github.com/minetest/minetest_game
 [submodule "builder/mods_src/mobs_redo/mobs_ghost_redo"]
 	path = builder/mods_src/mobs_redo/mobs_ghost_redo
-	url = https://codeberg.org/Hamlet/mobs_ghost_redo
+	url = https://codeberg.org/tenplus1/mobs_ghost_redo
 [submodule "builder/mods_src/mobs_redo/mobs_monster"]
 	path = builder/mods_src/mobs_redo/mobs_monster
 	url = https://github.com/minetest-mirrors/mobs_monster.git
