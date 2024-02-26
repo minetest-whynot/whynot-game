@@ -27,11 +27,11 @@ local function check_action_with_item_in_collection(trigger_name, award_action, 
         awards_data[prev_action] = awards_data[prev_action] or {}
         local collected = awards_data[award_action]
         local prev_collected = awards_data[prev_action]
-        local items_collected = collected[itemname]
 
-        awards_data[award_action] = awards_data[award_action] or {}
+        local items_collected = collected[itemname]
         if (prev_collected[itemname] ~= items_collected and (items_collected == nil or items_collected <= 1 or prev_collected[itemname] == nil)) then
             awards["notify_"..trigger_name](player)
+            prev_collected[itemname] = items_collected
         end
     end
 end
