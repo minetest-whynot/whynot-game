@@ -28,7 +28,7 @@
           <dia:boolean val="false"/>
         </dia:attribute>
         <dia:attribute name="scaling">
-          <dia:real val="0.40825182199478149"/>
+          <dia:real val="0.42458006739616394"/>
         </dia:attribute>
         <dia:attribute name="fitto">
           <dia:boolean val="true"/>

@@ -155,10 +155,22 @@ awards.register_award("whynot_plow_soil",{
 	title = S("Plow soil"),
 	description = S("To grow your own food, you must first plow soil. Make sure to be close to water so that the crops can grow."),
 	icon = "whynot_awards_hoe.png",
-	requires = {"whynot_sticks", "whynot_gatherfruitvegetable"},
+	requires = {"whynot_tools", "whynot_gatherfruitvegetable"},
 	trigger = {
 		type = "plow_soil",
 		target = 1,
+	},
+})
+
+
+awards.register_award("whynot_plant_crops",{
+	title = S("Plant crops"),
+	description = S("After your garden is prepared and plowed, it is time to plant. Find different crops and seeds and plant them in your garden to become self sufficient."),
+	icon = "whynot_awards_hoe.png",
+	requires = {"whynot_plow_soil"},
+	trigger = {
+		type = "plant_crops",
+		target = 3,
 	},
 })
 
@@ -219,7 +231,6 @@ awards.register_award("whynot_spawnpoint", {
 	requires = {"whynot_planks",  "whynot_cotton"},
 --	prices = { }, -- Price is a new home ;-)
 --	on_unlock = function(name, def) end
-
 })
 
 local orig_beds_on_rightclick = beds.on_rightclick

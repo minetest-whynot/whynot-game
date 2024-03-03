@@ -194,5 +194,30 @@ if (minetest.get_modpath("farming") and minetest.global_exists("farming") and fa
     end
 
 
+    ---------------------------------------
+    awards.register_trigger("plant_crops",{
+        type = "counted",
+        progress = S("@1/@2 different crop types planted"),
+        auto_description = { S("Planted @2 crop"), S("Planted @1×@2 different types of crops") },
+    })
+
+    local registered_seeds = {}
+    for _, plantdef in pairs(farming.registered_plants) do
+        local seed_name = plantdef.seed
+        local reg_item = minetest.registered_items[seed_name]
+        if (reg_item) then
+            registered_seeds[seed_name] = 1
+            local base_on_place = reg_item.on_place
+            minetest.override_item(seed_name, {
+                on_place = function(itemstack, placer, pointed_thing)
+                    awards.notify_place(placer, itemstack:get_name())
+                    check_action_with_item_in_collection("plant_crops", "place", itemstack:get_name(), registered_seeds, placer)
+                    base_on_place(itemstack, placer, pointed_thing)
+                end
+            })
+        end
+    end
+
+
 end -- if farming
 
