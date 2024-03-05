@@ -242,3 +242,81 @@ function beds.on_rightclick(pos, player)
 		awards.unlock(player_name, "whynot_spawnpoint")
 	end
 end
+
+
+awards.register_award("whynot_stone",{
+	title = S("Dig stone"),
+	description = S("Using a wood pick axe, start digging through stone. The cobblestone obtained from digging stone can then be used to craft sturdier tools."),
+	icon = "whynot_awards_cobblestone.png",
+	requires = {"whynot_tools"},
+	trigger = {
+		type = "dig",
+		node = "default:stone",
+		target = 1,
+	},
+})
+
+
+awards.register_award("whynot_coal",{
+	title = S("Dig coal"),
+	description = S("Coal is a common mineral found underground. Among other things, it can be used to craft torches for lighting your way, or as combustible in furnaces."),
+	icon = "whynot_awards_coal.png",
+	requires = {"whynot_tools"},
+	trigger = {
+		type = "dig",
+		node = "default:stone_with_coal",
+		target = 1,
+	},
+})
+
+
+awards.register_award("whynot_campfire", {
+	title = S("Craft a campfire"),
+	description = S("If night falls and you have not found coal, build a campfire to make some light."),
+	icon = "whynot_awards_campfire.png",
+	requires = {"whynot_stone"},
+	trigger = {
+		type = "craft",
+		item = "campfire:campfire",
+		target = 1
+	}
+})
+
+
+awards.register_award("whynot_max_depth", {
+	title = S("Dig deeper"),
+	description = S("Keep digging until you reach these depths."),
+	--icon = "whynot_awards_hoe.png",
+	requires = {"whynot_stone"},
+	trigger = {
+		type = "max",
+		max_param = "depth",
+		target = 100,
+	},
+})
+
+
+awards.register_award("whynot_max_altitude", {
+	title = S("Fly higher"),
+	description = S("Fly higher and soar to new heights"),
+	--icon = "whynot_awards_hoe.png",
+	requires = {},
+	trigger = {
+		type = "max",
+		max_param = "altitude",
+		target = 100,
+	},
+})
+
+
+awards.register_award("whynot_max_distance", {
+	title = S("Travel further"),
+	description = S("Sail the high seas and and explore lands far far away."),
+	--icon = "whynot_awards_hoe.png",
+	requires = {"whynot_simple_boat"},
+	trigger = {
+		type = "max",
+		max_param = "distance",
+		target = 500,
+	},
+})
