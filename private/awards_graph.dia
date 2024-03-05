@@ -125,7 +125,7 @@
             <dia:real val="0.80000000000000004"/>
           </dia:attribute>
           <dia:attribute name="pos">
-            <dia:point val="21.3,13.3294"/>
+            <dia:point val="21.3,13.4342"/>
           </dia:attribute>
           <dia:attribute name="color">
             <dia:color val="#000000ff"/>
@@ -171,7 +171,7 @@ rainforest/jungle, hemp)#</dia:string>
             <dia:real val="0.80000000000000004"/>
           </dia:attribute>
           <dia:attribute name="pos">
-            <dia:point val="21.55,17.0294"/>
+            <dia:point val="21.55,17.1342"/>
           </dia:attribute>
           <dia:attribute name="color">
             <dia:color val="#000000ff"/>
@@ -217,7 +217,7 @@ rainforest/jungle, hemp)#</dia:string>
             <dia:real val="0.80000000000000004"/>
           </dia:attribute>
           <dia:attribute name="pos">
-            <dia:point val="21.2518,27.4354"/>
+            <dia:point val="21.2518,27.5401"/>
           </dia:attribute>
           <dia:attribute name="color">
             <dia:color val="#000000ff"/>
@@ -262,7 +262,7 @@ rainforest/jungle, hemp)#</dia:string>
             <dia:real val="0.80000000000000004"/>
           </dia:attribute>
           <dia:attribute name="pos">
-            <dia:point val="30.2,13.4293"/>
+            <dia:point val="30.2,13.5341"/>
           </dia:attribute>
           <dia:attribute name="color">
             <dia:color val="#000000ff"/>
@@ -307,7 +307,7 @@ rainforest/jungle, hemp)#</dia:string>
             <dia:real val="0.80000000000000004"/>
           </dia:attribute>
           <dia:attribute name="pos">
-            <dia:point val="38.4662,13.1465"/>
+            <dia:point val="38.4662,13.2512"/>
           </dia:attribute>
           <dia:attribute name="color">
             <dia:color val="#000000ff"/>
@@ -352,7 +352,7 @@ rainforest/jungle, hemp)#</dia:string>
             <dia:real val="0.80000000000000004"/>
           </dia:attribute>
           <dia:attribute name="pos">
-            <dia:point val="38.5001,16.0293"/>
+            <dia:point val="38.5001,16.1341"/>
           </dia:attribute>
           <dia:attribute name="color">
             <dia:color val="#000000ff"/>
@@ -397,7 +397,7 @@ rainforest/jungle, hemp)#</dia:string>
             <dia:real val="0.80000000000000004"/>
           </dia:attribute>
           <dia:attribute name="pos">
-            <dia:point val="31.1499,23.2793"/>
+            <dia:point val="31.1499,23.3841"/>
           </dia:attribute>
           <dia:attribute name="color">
             <dia:color val="#000000ff"/>
@@ -443,7 +443,7 @@ and vegetables#</dia:string>
             <dia:real val="0.80000000000000004"/>
           </dia:attribute>
           <dia:attribute name="pos">
-            <dia:point val="39.6,22.9294"/>
+            <dia:point val="39.6,23.0342"/>
           </dia:attribute>
           <dia:attribute name="color">
             <dia:color val="#000000ff"/>
@@ -489,7 +489,7 @@ and vegetables#</dia:string>
             <dia:real val="0.80000000000000004"/>
           </dia:attribute>
           <dia:attribute name="pos">
-            <dia:point val="21.5001,22.1793"/>
+            <dia:point val="21.5001,22.2841"/>
           </dia:attribute>
           <dia:attribute name="color">
             <dia:color val="#000000ff"/>
@@ -626,13 +626,13 @@ and vegetables#</dia:string>
     </dia:object>
     <dia:object type="Flowchart - Ellipse" version="0" id="O13">
       <dia:attribute name="obj_pos">
-        <dia:point val="44.8493,11.7538"/>
+        <dia:point val="44.5493,11.5538"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="44.7993,11.7038;52.0006,14.5927"/>
+        <dia:rectangle val="44.4993,11.5038;51.7006,14.3927"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
-        <dia:point val="44.8493,11.7538"/>
+        <dia:point val="44.5493,11.5538"/>
       </dia:attribute>
       <dia:attribute name="elem_width">
         <dia:real val="7.1012640595623573"/>
@@ -658,7 +658,7 @@ and vegetables#</dia:string>
             <dia:real val="0.80000000000000004"/>
           </dia:attribute>
           <dia:attribute name="pos">
-            <dia:point val="48.3999,13.3276"/>
+            <dia:point val="48.0999,13.2324"/>
           </dia:attribute>
           <dia:attribute name="color">
             <dia:color val="#000000ff"/>
@@ -674,13 +674,13 @@ and vegetables#</dia:string>
         <dia:point val="41.4316,12.967"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="41.3816,12.7864;44.967,13.51"/>
+        <dia:rectangle val="41.3816,12.5864;44.5493,13.3101"/>
       </dia:attribute>
       <dia:attribute name="bez_points">
         <dia:point val="41.4316,12.967"/>
         <dia:point val="42.6851,12.967"/>
-        <dia:point val="43.7136,13.1482"/>
-        <dia:point val="44.967,13.1482"/>
+        <dia:point val="43.2959,12.9482"/>
+        <dia:point val="44.5493,12.9482"/>
       </dia:attribute>
       <dia:attribute name="corner_types">
         <dia:enum val="0"/>
@@ -796,7 +796,7 @@ and vegetables#</dia:string>
             <dia:real val="0.80000000000000004"/>
           </dia:attribute>
           <dia:attribute name="pos">
-            <dia:point val="58.8,8.17938"/>
+            <dia:point val="58.8,8.28416"/>
           </dia:attribute>
           <dia:attribute name="color">
             <dia:color val="#000000ff"/>
@@ -809,14 +809,14 @@ and vegetables#</dia:string>
     </dia:object>
     <dia:object type="Standard - BezierLine" version="0" id="O18">
       <dia:attribute name="obj_pos">
-        <dia:point val="51.8329,13.1482"/>
+        <dia:point val="51.6506,12.9482"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="51.7829,7.6382;56.2997,13.1982"/>
+        <dia:rectangle val="51.6006,7.6382;56.2997,12.9982"/>
       </dia:attribute>
       <dia:attribute name="bez_points">
-        <dia:point val="51.8329,13.1482"/>
-        <dia:point val="53.8388,13.1482"/>
+        <dia:point val="51.6506,12.9482"/>
+        <dia:point val="53.6565,12.9482"/>
         <dia:point val="54.2937,8"/>
         <dia:point val="56.2997,8"/>
       </dia:attribute>
@@ -872,7 +872,7 @@ and vegetables#</dia:string>
             <dia:real val="0.80000000000000004"/>
           </dia:attribute>
           <dia:attribute name="pos">
-            <dia:point val="48.1013,7.86023"/>
+            <dia:point val="48.1013,7.96501"/>
           </dia:attribute>
           <dia:attribute name="color">
             <dia:color val="#000000ff"/>
@@ -917,7 +917,7 @@ and vegetables#</dia:string>
             <dia:real val="0.80000000000000004"/>
           </dia:attribute>
           <dia:attribute name="pos">
-            <dia:point val="47.9,2.90438"/>
+            <dia:point val="47.9,3.00916"/>
           </dia:attribute>
           <dia:attribute name="color">
             <dia:color val="#000000ff"/>
@@ -928,38 +928,7 @@ and vegetables#</dia:string>
         </dia:composite>
       </dia:attribute>
     </dia:object>
-    <dia:object type="Standard - BezierLine" version="0" id="O21">
-      <dia:attribute name="obj_pos">
-        <dia:point val="38.4663,11.8755"/>
-      </dia:attribute>
-      <dia:attribute name="obj_bb">
-        <dia:rectangle val="38.3957,2.34427;45.2451,11.9461"/>
-      </dia:attribute>
-      <dia:attribute name="bez_points">
-        <dia:point val="38.4663,11.8755"/>
-        <dia:point val="42.9,7"/>
-        <dia:point val="40.5,2.6"/>
-        <dia:point val="45.2451,2.725"/>
-      </dia:attribute>
-      <dia:attribute name="corner_types">
-        <dia:enum val="0"/>
-        <dia:enum val="0"/>
-      </dia:attribute>
-      <dia:attribute name="end_arrow">
-        <dia:enum val="22"/>
-      </dia:attribute>
-      <dia:attribute name="end_arrow_length">
-        <dia:real val="0.5"/>
-      </dia:attribute>
-      <dia:attribute name="end_arrow_width">
-        <dia:real val="0.5"/>
-      </dia:attribute>
-      <dia:connections>
-        <dia:connection handle="0" to="O4" connection="4"/>
-        <dia:connection handle="3" to="O20" connection="8"/>
-      </dia:connections>
-    </dia:object>
-    <dia:object type="Flowchart - Ellipse" version="0" id="O22">
+    <dia:object type="Flowchart - Ellipse" version="0" id="O21">
       <dia:attribute name="obj_pos">
         <dia:point val="46.2673,21.7586"/>
       </dia:attribute>
@@ -993,7 +962,7 @@ and vegetables#</dia:string>
             <dia:real val="0.80000000000000004"/>
           </dia:attribute>
           <dia:attribute name="pos">
-            <dia:point val="49.0001,23.3044"/>
+            <dia:point val="49.0001,23.4092"/>
           </dia:attribute>
           <dia:attribute name="color">
             <dia:color val="#000000ff"/>
@@ -1004,7 +973,7 @@ and vegetables#</dia:string>
         </dia:composite>
       </dia:attribute>
     </dia:object>
-    <dia:object type="Standard - BezierLine" version="0" id="O23">
+    <dia:object type="Standard - BezierLine" version="0" id="O22">
       <dia:attribute name="obj_pos">
         <dia:point val="43.3748,23.15"/>
       </dia:attribute>
@@ -1032,24 +1001,24 @@ and vegetables#</dia:string>
       </dia:attribute>
       <dia:connections>
         <dia:connection handle="0" to="O7" connection="0"/>
-        <dia:connection handle="3" to="O22" connection="8"/>
+        <dia:connection handle="3" to="O21" connection="8"/>
       </dia:connections>
     </dia:object>
-    <dia:object type="Flowchart - Ellipse" version="0" id="O24">
+    <dia:object type="Flowchart - Ellipse" version="0" id="O23">
       <dia:attribute name="obj_pos">
-        <dia:point val="55.6669,12.8747"/>
+        <dia:point val="55.5719,12.8369"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="55.6169,12.8247;61.783,15.3373"/>
+        <dia:rectangle val="55.5219,12.7869;61.878,15.3751"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
-        <dia:point val="55.6669,12.8747"/>
+        <dia:point val="55.5719,12.8369"/>
       </dia:attribute>
       <dia:attribute name="elem_width">
-        <dia:real val="6.0660728379793563"/>
+        <dia:real val="6.2560856413614827"/>
       </dia:attribute>
       <dia:attribute name="elem_height">
-        <dia:real val="2.4126237399082777"/>
+        <dia:real val="2.4881964230214839"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -1069,7 +1038,7 @@ and vegetables#</dia:string>
             <dia:real val="0.80000000000000004"/>
           </dia:attribute>
           <dia:attribute name="pos">
-            <dia:point val="58.6999,14.2604"/>
+            <dia:point val="58.6999,14.3652"/>
           </dia:attribute>
           <dia:attribute name="color">
             <dia:color val="#000000ff"/>
@@ -1080,16 +1049,16 @@ and vegetables#</dia:string>
         </dia:composite>
       </dia:attribute>
     </dia:object>
-    <dia:object type="Standard - BezierLine" version="0" id="O25">
+    <dia:object type="Standard - BezierLine" version="0" id="O24">
       <dia:attribute name="obj_pos">
-        <dia:point val="48.4,14.4964"/>
+        <dia:point val="48.0999,14.3427"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="32.8704,14.4372;48.4592,22.2385"/>
+        <dia:rectangle val="32.8704,14.2835;48.1591,22.2385"/>
       </dia:attribute>
       <dia:attribute name="bez_points">
-        <dia:point val="48.4,14.4964"/>
-        <dia:point val="46.15,25.2"/>
+        <dia:point val="48.0999,14.3427"/>
+        <dia:point val="45.8499,25.0463"/>
         <dia:point val="35.4,18.7"/>
         <dia:point val="32.873,22.2385"/>
       </dia:attribute>
@@ -1111,7 +1080,7 @@ and vegetables#</dia:string>
         <dia:connection handle="3" to="O6" connection="2"/>
       </dia:connections>
     </dia:object>
-    <dia:object type="Flowchart - Ellipse" version="0" id="O26">
+    <dia:object type="Flowchart - Ellipse" version="0" id="O25">
       <dia:attribute name="obj_pos">
         <dia:point val="23.8222,4.68611"/>
       </dia:attribute>
@@ -1145,7 +1114,7 @@ and vegetables#</dia:string>
             <dia:real val="0.80000000000000004"/>
           </dia:attribute>
           <dia:attribute name="pos">
-            <dia:point val="26.3,6.10438"/>
+            <dia:point val="26.3,6.20916"/>
           </dia:attribute>
           <dia:attribute name="color">
             <dia:color val="#000000ff"/>
@@ -1156,7 +1125,7 @@ and vegetables#</dia:string>
         </dia:composite>
       </dia:attribute>
     </dia:object>
-    <dia:object type="Flowchart - Ellipse" version="0" id="O27">
+    <dia:object type="Flowchart - Ellipse" version="0" id="O26">
       <dia:attribute name="obj_pos">
         <dia:point val="31.8827,4.54137"/>
       </dia:attribute>
@@ -1190,7 +1159,7 @@ and vegetables#</dia:string>
             <dia:real val="0.80000000000000004"/>
           </dia:attribute>
           <dia:attribute name="pos">
-            <dia:point val="34.45,6.00437"/>
+            <dia:point val="34.45,6.10916"/>
           </dia:attribute>
           <dia:attribute name="color">
             <dia:color val="#000000ff"/>
@@ -1201,7 +1170,7 @@ and vegetables#</dia:string>
         </dia:composite>
       </dia:attribute>
     </dia:object>
-    <dia:object type="Standard - BezierLine" version="0" id="O28">
+    <dia:object type="Standard - BezierLine" version="0" id="O27">
       <dia:attribute name="obj_pos">
         <dia:point val="29.1729,12.0102"/>
       </dia:attribute>
@@ -1229,10 +1198,10 @@ and vegetables#</dia:string>
       </dia:attribute>
       <dia:connections>
         <dia:connection handle="0" to="O3" connection="5"/>
-        <dia:connection handle="3" to="O26" connection="12"/>
+        <dia:connection handle="3" to="O25" connection="12"/>
       </dia:connections>
     </dia:object>
-    <dia:object type="Standard - BezierLine" version="0" id="O29">
+    <dia:object type="Standard - BezierLine" version="0" id="O28">
       <dia:attribute name="obj_pos">
         <dia:point val="31.2271,12.0102"/>
       </dia:attribute>
@@ -1260,10 +1229,10 @@ and vegetables#</dia:string>
       </dia:attribute>
       <dia:connections>
         <dia:connection handle="0" to="O3" connection="3"/>
-        <dia:connection handle="3" to="O27" connection="12"/>
+        <dia:connection handle="3" to="O26" connection="12"/>
       </dia:connections>
     </dia:object>
-    <dia:object type="Flowchart - Ellipse" version="0" id="O30">
+    <dia:object type="Flowchart - Ellipse" version="0" id="O29">
       <dia:attribute name="obj_pos">
         <dia:point val="72.2638,7.45688"/>
       </dia:attribute>
@@ -1297,7 +1266,7 @@ and vegetables#</dia:string>
             <dia:real val="0.80000000000000004"/>
           </dia:attribute>
           <dia:attribute name="pos">
-            <dia:point val="75.1,9.05438"/>
+            <dia:point val="75.1,9.15916"/>
           </dia:attribute>
           <dia:attribute name="color">
             <dia:color val="#000000ff"/>
@@ -1308,12 +1277,12 @@ and vegetables#</dia:string>
         </dia:composite>
       </dia:attribute>
     </dia:object>
-    <dia:object type="Standard - BezierLine" version="0" id="O31">
+    <dia:object type="Standard - BezierLine" version="0" id="O30">
       <dia:attribute name="obj_pos">
         <dia:point val="58.7,14.0907"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="61.3894,9.80746;73.1648,13.581"/>
+        <dia:rectangle val="61.4745,9.80746;73.1648,13.5634"/>
       </dia:attribute>
       <dia:attribute name="bez_points">
         <dia:point val="58.7,14.0907"/>
@@ -1335,11 +1304,11 @@ and vegetables#</dia:string>
         <dia:real val="0.5"/>
       </dia:attribute>
       <dia:connections>
-        <dia:connection handle="0" to="O24" connection="16"/>
-        <dia:connection handle="3" to="O30" connection="10"/>
+        <dia:connection handle="0" to="O23" connection="16"/>
+        <dia:connection handle="3" to="O29" connection="10"/>
       </dia:connections>
     </dia:object>
-    <dia:object type="Flowchart - Ellipse" version="0" id="O32">
+    <dia:object type="Flowchart - Ellipse" version="0" id="O31">
       <dia:attribute name="obj_pos">
         <dia:point val="64.7003,4.65016"/>
       </dia:attribute>
@@ -1373,7 +1342,7 @@ and vegetables#</dia:string>
             <dia:real val="0.80000000000000004"/>
           </dia:attribute>
           <dia:attribute name="pos">
-            <dia:point val="66.95,5.95438"/>
+            <dia:point val="66.95,6.05917"/>
           </dia:attribute>
           <dia:attribute name="color">
             <dia:color val="#000000ff"/>
@@ -1384,7 +1353,7 @@ and vegetables#</dia:string>
         </dia:composite>
       </dia:attribute>
     </dia:object>
-    <dia:object type="Flowchart - Ellipse" version="0" id="O33">
+    <dia:object type="Flowchart - Ellipse" version="0" id="O32">
       <dia:attribute name="obj_pos">
         <dia:point val="64.3909,8.04548"/>
       </dia:attribute>
@@ -1418,7 +1387,7 @@ and vegetables#</dia:string>
             <dia:real val="0.80000000000000004"/>
           </dia:attribute>
           <dia:attribute name="pos">
-            <dia:point val="67.1499,9.60437"/>
+            <dia:point val="67.1499,9.70916"/>
           </dia:attribute>
           <dia:attribute name="color">
             <dia:color val="#000000ff"/>
@@ -1429,7 +1398,7 @@ and vegetables#</dia:string>
         </dia:composite>
       </dia:attribute>
     </dia:object>
-    <dia:object type="Standard - BezierLine" version="0" id="O34">
+    <dia:object type="Standard - BezierLine" version="0" id="O33">
       <dia:attribute name="obj_pos">
         <dia:point val="61.3004,8"/>
       </dia:attribute>
@@ -1457,10 +1426,10 @@ and vegetables#</dia:string>
       </dia:attribute>
       <dia:connections>
         <dia:connection handle="0" to="O17" connection="0"/>
-        <dia:connection handle="3" to="O32" connection="8"/>
+        <dia:connection handle="3" to="O31" connection="8"/>
       </dia:connections>
     </dia:object>
-    <dia:object type="Standard - BezierLine" version="0" id="O35">
+    <dia:object type="Standard - BezierLine" version="0" id="O34">
       <dia:attribute name="obj_pos">
         <dia:point val="61.3004,8"/>
       </dia:attribute>
@@ -1488,10 +1457,10 @@ and vegetables#</dia:string>
       </dia:attribute>
       <dia:connections>
         <dia:connection handle="0" to="O17" connection="0"/>
-        <dia:connection handle="3" to="O33" connection="8"/>
+        <dia:connection handle="3" to="O32" connection="8"/>
       </dia:connections>
     </dia:object>
-    <dia:object type="Standard - BezierLine" version="0" id="O36">
+    <dia:object type="Standard - BezierLine" version="0" id="O35">
       <dia:attribute name="obj_pos">
         <dia:point val="69.8036,9.425"/>
       </dia:attribute>
@@ -1518,11 +1487,11 @@ and vegetables#</dia:string>
         <dia:real val="0.5"/>
       </dia:attribute>
       <dia:connections>
-        <dia:connection handle="0" to="O33" connection="0"/>
-        <dia:connection handle="3" to="O30" connection="8"/>
+        <dia:connection handle="0" to="O32" connection="0"/>
+        <dia:connection handle="3" to="O29" connection="8"/>
       </dia:connections>
     </dia:object>
-    <dia:object type="Standard - BezierLine" version="0" id="O37">
+    <dia:object type="Standard - BezierLine" version="0" id="O36">
       <dia:attribute name="obj_pos">
         <dia:point val="68.9588,6.19104"/>
       </dia:attribute>
@@ -1549,11 +1518,11 @@ and vegetables#</dia:string>
         <dia:real val="0.5"/>
       </dia:attribute>
       <dia:connections>
-        <dia:connection handle="0" to="O32" connection="15"/>
-        <dia:connection handle="3" to="O30" connection="7"/>
+        <dia:connection handle="0" to="O31" connection="15"/>
+        <dia:connection handle="3" to="O29" connection="7"/>
       </dia:connections>
     </dia:object>
-    <dia:object type="Flowchart - Ellipse" version="0" id="O38">
+    <dia:object type="Flowchart - Ellipse" version="0" id="O37">
       <dia:attribute name="obj_pos">
         <dia:point val="72.672,11.4859"/>
       </dia:attribute>
@@ -1587,7 +1556,7 @@ and vegetables#</dia:string>
             <dia:real val="0.80000000000000004"/>
           </dia:attribute>
           <dia:attribute name="pos">
-            <dia:point val="75.15,12.9043"/>
+            <dia:point val="75.15,13.0091"/>
           </dia:attribute>
           <dia:attribute name="color">
             <dia:color val="#000000ff"/>
@@ -1598,7 +1567,7 @@ and vegetables#</dia:string>
         </dia:composite>
       </dia:attribute>
     </dia:object>
-    <dia:object type="Standard - Line" version="0" id="O39">
+    <dia:object type="Standard - Line" version="0" id="O38">
       <dia:attribute name="obj_pos">
         <dia:point val="61.733,14.081"/>
       </dia:attribute>
@@ -1622,11 +1591,11 @@ and vegetables#</dia:string>
         <dia:real val="0.5"/>
       </dia:attribute>
       <dia:connections>
-        <dia:connection handle="0" to="O24" connection="0"/>
-        <dia:connection handle="1" to="O38" connection="8"/>
+        <dia:connection handle="0" to="O23" connection="0"/>
+        <dia:connection handle="1" to="O37" connection="8"/>
       </dia:connections>
     </dia:object>
-    <dia:object type="Flowchart - Ellipse" version="0" id="O40">
+    <dia:object type="Flowchart - Ellipse" version="0" id="O39">
       <dia:attribute name="obj_pos">
         <dia:point val="72.6695,14.5597"/>
       </dia:attribute>
@@ -1660,7 +1629,7 @@ and vegetables#</dia:string>
             <dia:real val="0.80000000000000004"/>
           </dia:attribute>
           <dia:attribute name="pos">
-            <dia:point val="75.2,16.0043"/>
+            <dia:point val="75.2,16.1091"/>
           </dia:attribute>
           <dia:attribute name="color">
             <dia:color val="#000000ff"/>
@@ -1671,7 +1640,7 @@ and vegetables#</dia:string>
         </dia:composite>
       </dia:attribute>
     </dia:object>
-    <dia:object type="Standard - Line" version="0" id="O41">
+    <dia:object type="Standard - Line" version="0" id="O40">
       <dia:attribute name="obj_pos">
         <dia:point val="61.5021,14.5426"/>
       </dia:attribute>
@@ -1695,11 +1664,11 @@ and vegetables#</dia:string>
         <dia:real val="0.5"/>
       </dia:attribute>
       <dia:connections>
-        <dia:connection handle="0" to="O24" connection="15"/>
-        <dia:connection handle="1" to="O40" connection="8"/>
+        <dia:connection handle="0" to="O23" connection="15"/>
+        <dia:connection handle="1" to="O39" connection="8"/>
       </dia:connections>
     </dia:object>
-    <dia:object type="Flowchart - Ellipse" version="0" id="O42">
+    <dia:object type="Flowchart - Ellipse" version="0" id="O41">
       <dia:attribute name="obj_pos">
         <dia:point val="28.0195,16.0098"/>
       </dia:attribute>
@@ -1733,7 +1702,7 @@ and vegetables#</dia:string>
             <dia:real val="0.80000000000000004"/>
           </dia:attribute>
           <dia:attribute name="pos">
-            <dia:point val="30.4999,17.4294"/>
+            <dia:point val="30.4999,17.5342"/>
           </dia:attribute>
           <dia:attribute name="color">
             <dia:color val="#000000ff"/>
@@ -1744,7 +1713,7 @@ and vegetables#</dia:string>
         </dia:composite>
       </dia:attribute>
     </dia:object>
-    <dia:object type="Standard - Line" version="0" id="O43">
+    <dia:object type="Standard - Line" version="0" id="O42">
       <dia:attribute name="obj_pos">
         <dia:point val="26.2362,17.25"/>
       </dia:attribute>
@@ -1769,10 +1738,10 @@ and vegetables#</dia:string>
       </dia:attribute>
       <dia:connections>
         <dia:connection handle="0" to="O1" connection="0"/>
-        <dia:connection handle="1" to="O42" connection="8"/>
+        <dia:connection handle="1" to="O41" connection="8"/>
       </dia:connections>
     </dia:object>
-    <dia:object type="Flowchart - Ellipse" version="0" id="O44">
+    <dia:object type="Flowchart - Ellipse" version="0" id="O43">
       <dia:attribute name="obj_pos">
         <dia:point val="35.4106,17.4303"/>
       </dia:attribute>
@@ -1806,7 +1775,7 @@ and vegetables#</dia:string>
             <dia:real val="0.80000000000000004"/>
           </dia:attribute>
           <dia:attribute name="pos">
-            <dia:point val="38.45,19.1294"/>
+            <dia:point val="38.45,19.2341"/>
           </dia:attribute>
           <dia:attribute name="color">
             <dia:color val="#000000ff"/>
@@ -1817,7 +1786,7 @@ and vegetables#</dia:string>
         </dia:composite>
       </dia:attribute>
     </dia:object>
-    <dia:object type="Standard - Line" version="0" id="O45">
+    <dia:object type="Standard - Line" version="0" id="O44">
       <dia:attribute name="obj_pos">
         <dia:point val="32.9804,17.25"/>
       </dia:attribute>
@@ -1841,11 +1810,11 @@ and vegetables#</dia:string>
         <dia:real val="0.5"/>
       </dia:attribute>
       <dia:connections>
-        <dia:connection handle="0" to="O42" connection="0"/>
+        <dia:connection handle="0" to="O41" connection="0"/>
         <dia:connection handle="1" to="O5" connection="8"/>
       </dia:connections>
     </dia:object>
-    <dia:object type="Standard - Line" version="0" id="O46">
+    <dia:object type="Standard - Line" version="0" id="O45">
       <dia:attribute name="obj_pos">
         <dia:point val="32.9804,17.25"/>
       </dia:attribute>
@@ -1869,11 +1838,11 @@ and vegetables#</dia:string>
         <dia:real val="0.5"/>
       </dia:attribute>
       <dia:connections>
-        <dia:connection handle="0" to="O42" connection="0"/>
-        <dia:connection handle="1" to="O44" connection="8"/>
+        <dia:connection handle="0" to="O41" connection="0"/>
+        <dia:connection handle="1" to="O43" connection="8"/>
       </dia:connections>
     </dia:object>
-    <dia:object type="Standard - Line" version="0" id="O47">
+    <dia:object type="Standard - Line" version="0" id="O46">
       <dia:attribute name="obj_pos">
         <dia:point val="48.1013,6.542"/>
       </dia:attribute>
@@ -1901,15 +1870,15 @@ and vegetables#</dia:string>
         <dia:connection handle="1" to="O20" connection="12"/>
       </dia:connections>
     </dia:object>
-    <dia:object type="Standard - Line" version="0" id="O48">
+    <dia:object type="Standard - Line" version="0" id="O47">
       <dia:attribute name="obj_pos">
-        <dia:point val="48.4,11.8"/>
+        <dia:point val="48.0999,11.5538"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="47.8135,8.76496;48.5335,11.8547"/>
+        <dia:rectangle val="47.7391,8.76967;48.4627,11.6038"/>
       </dia:attribute>
       <dia:attribute name="conn_endpoints">
-        <dia:point val="48.4,11.8"/>
+        <dia:point val="48.0999,11.5538"/>
         <dia:point val="48.1013,8.8197"/>
       </dia:attribute>
       <dia:attribute name="numcp">
@@ -1929,15 +1898,15 @@ and vegetables#</dia:string>
         <dia:connection handle="1" to="O19" connection="12"/>
       </dia:connections>
     </dia:object>
-    <dia:object type="Flowchart - Ellipse" version="0" id="O49">
+    <dia:object type="Flowchart - Ellipse" version="0" id="O48">
       <dia:attribute name="obj_pos">
-        <dia:point val="55.2534,0.303606"/>
+        <dia:point val="60.0034,-0.096394"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="55.2034,0.253606;62.7416,3.11463"/>
+        <dia:rectangle val="59.9534,-0.146394;67.4916,2.71463"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
-        <dia:point val="55.2534,0.303606"/>
+        <dia:point val="60.0034,-0.096394"/>
       </dia:attribute>
       <dia:attribute name="elem_width">
         <dia:real val="7.4382380534817401"/>
@@ -1963,7 +1932,7 @@ and vegetables#</dia:string>
             <dia:real val="0.80000000000000004"/>
           </dia:attribute>
           <dia:attribute name="pos">
-            <dia:point val="58.9725,1.86349"/>
+            <dia:point val="63.7225,1.56828"/>
           </dia:attribute>
           <dia:attribute name="color">
             <dia:color val="#000000ff"/>
@@ -1974,7 +1943,7 @@ and vegetables#</dia:string>
         </dia:composite>
       </dia:attribute>
     </dia:object>
-    <dia:object type="Flowchart - Ellipse" version="0" id="O50">
+    <dia:object type="Flowchart - Ellipse" version="0" id="O49">
       <dia:attribute name="obj_pos">
         <dia:point val="65.5317,30.4962"/>
       </dia:attribute>
@@ -2009,7 +1978,7 @@ and vegetables#</dia:string>
             <dia:real val="0.80000000000000004"/>
           </dia:attribute>
           <dia:attribute name="pos">
-            <dia:point val="70.7103,31.9382"/>
+            <dia:point val="70.7103,32.043"/>
           </dia:attribute>
           <dia:attribute name="color">
             <dia:color val="#000000ff"/>
@@ -2020,7 +1989,7 @@ and vegetables#</dia:string>
         </dia:composite>
       </dia:attribute>
     </dia:object>
-    <dia:object type="Flowchart - Ellipse" version="0" id="O51">
+    <dia:object type="Flowchart - Ellipse" version="0" id="O50">
       <dia:attribute name="obj_pos">
         <dia:point val="25.1739,0.0358087"/>
       </dia:attribute>
@@ -2055,7 +2024,7 @@ and vegetables#</dia:string>
             <dia:real val="0.80000000000000004"/>
           </dia:attribute>
           <dia:attribute name="pos">
-            <dia:point val="29.5819,1.51736"/>
+            <dia:point val="29.5819,1.62215"/>
           </dia:attribute>
           <dia:attribute name="color">
             <dia:color val="#000000ff"/>
@@ -2066,16 +2035,16 @@ and vegetables#</dia:string>
         </dia:composite>
       </dia:attribute>
     </dia:object>
-    <dia:object type="Standard - Line" version="0" id="O52">
+    <dia:object type="Standard - Line" version="0" id="O51">
       <dia:attribute name="obj_pos">
         <dia:point val="58.8,6.74983"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="58.5773,3.00685;59.3001,6.80211"/>
+        <dia:rectangle val="58.7296,2.48912;62.3697,6.82026"/>
       </dia:attribute>
       <dia:attribute name="conn_endpoints">
         <dia:point val="58.8,6.74983"/>
-        <dia:point val="58.9725,3.05913"/>
+        <dia:point val="62.2993,2.55955"/>
       </dia:attribute>
       <dia:attribute name="numcp">
         <dia:int val="1"/>
@@ -2091,10 +2060,10 @@ and vegetables#</dia:string>
       </dia:attribute>
       <dia:connections>
         <dia:connection handle="0" to="O17" connection="4"/>
-        <dia:connection handle="1" to="O49" connection="12"/>
+        <dia:connection handle="1" to="O48" connection="11"/>
       </dia:connections>
     </dia:object>
-    <dia:object type="Flowchart - Ellipse" version="0" id="O53">
+    <dia:object type="Flowchart - Ellipse" version="0" id="O52">
       <dia:attribute name="obj_pos">
         <dia:point val="54.001,30.5614"/>
       </dia:attribute>
@@ -2129,7 +2098,7 @@ or flying carpet?#</dia:string>
             <dia:real val="0.80000000000000004"/>
           </dia:attribute>
           <dia:attribute name="pos">
-            <dia:point val="58.1782,31.9326"/>
+            <dia:point val="58.1782,32.0373"/>
           </dia:attribute>
           <dia:attribute name="color">
             <dia:color val="#000000ff"/>
@@ -2140,7 +2109,7 @@ or flying carpet?#</dia:string>
         </dia:composite>
       </dia:attribute>
     </dia:object>
-    <dia:object type="Standard - Line" version="0" id="O54">
+    <dia:object type="Standard - Line" version="0" id="O53">
       <dia:attribute name="obj_pos">
         <dia:point val="62.3554,32.1532"/>
       </dia:attribute>
@@ -2164,11 +2133,11 @@ or flying carpet?#</dia:string>
         <dia:real val="0.5"/>
       </dia:attribute>
       <dia:connections>
-        <dia:connection handle="0" to="O53" connection="0"/>
-        <dia:connection handle="1" to="O50" connection="8"/>
+        <dia:connection handle="0" to="O52" connection="0"/>
+        <dia:connection handle="1" to="O49" connection="8"/>
       </dia:connections>
     </dia:object>
-    <dia:object type="Standard - BezierLine" version="0" id="O55">
+    <dia:object type="Standard - BezierLine" version="0" id="O54">
       <dia:attribute name="obj_pos">
         <dia:point val="27.9903,5.07987"/>
       </dia:attribute>
@@ -2195,11 +2164,11 @@ or flying carpet?#</dia:string>
         <dia:real val="0.5"/>
       </dia:attribute>
       <dia:connections>
-        <dia:connection handle="0" to="O26" connection="2"/>
-        <dia:connection handle="3" to="O51" connection="12"/>
+        <dia:connection handle="0" to="O25" connection="2"/>
+        <dia:connection handle="3" to="O50" connection="12"/>
       </dia:connections>
     </dia:object>
-    <dia:object type="Standard - Line" version="0" id="O56">
+    <dia:object type="Standard - Line" version="0" id="O55">
       <dia:attribute name="obj_pos">
         <dia:point val="58.8,9.25017"/>
       </dia:attribute>
@@ -2224,10 +2193,10 @@ or flying carpet?#</dia:string>
       </dia:attribute>
       <dia:connections>
         <dia:connection handle="0" to="O17" connection="12"/>
-        <dia:connection handle="1" to="O24" connection="4"/>
+        <dia:connection handle="1" to="O23" connection="4"/>
       </dia:connections>
     </dia:object>
-    <dia:object type="Standard - Line" version="0" id="O57">
+    <dia:object type="Standard - Line" version="0" id="O56">
       <dia:attribute name="obj_pos">
         <dia:point val="58.7,15.2873"/>
       </dia:attribute>
@@ -2251,25 +2220,25 @@ or flying carpet?#</dia:string>
         <dia:real val="0.5"/>
       </dia:attribute>
       <dia:connections>
-        <dia:connection handle="0" to="O24" connection="12"/>
-        <dia:connection handle="1" to="O58" connection="4"/>
+        <dia:connection handle="0" to="O23" connection="12"/>
+        <dia:connection handle="1" to="O57" connection="4"/>
       </dia:connections>
     </dia:object>
-    <dia:object type="Flowchart - Ellipse" version="0" id="O58">
+    <dia:object type="Flowchart - Ellipse" version="0" id="O57">
       <dia:attribute name="obj_pos">
-        <dia:point val="55.344,17.897"/>
+        <dia:point val="55.2646,17.8664"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="55.294,17.847;62.0352,20.5095"/>
+        <dia:rectangle val="55.2146,17.8164;62.1147,20.5401"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
-        <dia:point val="55.344,17.897"/>
+        <dia:point val="55.2646,17.8664"/>
       </dia:attribute>
       <dia:attribute name="elem_width">
-        <dia:real val="6.6412413006751345"/>
+        <dia:real val="6.8000804121915568"/>
       </dia:attribute>
       <dia:attribute name="elem_height">
-        <dia:real val="2.5624811474192208"/>
+        <dia:real val="2.6237682186618025"/>
       </dia:attribute>
       <dia:attribute name="show_background">
         <dia:boolean val="true"/>
@@ -2289,7 +2258,7 @@ or flying carpet?#</dia:string>
             <dia:real val="0.80000000000000004"/>
           </dia:attribute>
           <dia:attribute name="pos">
-            <dia:point val="58.6646,19.3576"/>
+            <dia:point val="58.6646,19.4624"/>
           </dia:attribute>
           <dia:attribute name="color">
             <dia:color val="#000000ff"/>
@@ -2299,6 +2268,79 @@ or flying carpet?#</dia:string>
           </dia:attribute>
         </dia:composite>
       </dia:attribute>
+    </dia:object>
+    <dia:object type="Flowchart - Ellipse" version="0" id="O58">
+      <dia:attribute name="obj_pos">
+        <dia:point val="51.6672,0.0460934"/>
+      </dia:attribute>
+      <dia:attribute name="obj_bb">
+        <dia:rectangle val="51.6172,-0.00390657;59.2593,2.46124"/>
+      </dia:attribute>
+      <dia:attribute name="elem_corner">
+        <dia:point val="51.6672,0.0460934"/>
+      </dia:attribute>
+      <dia:attribute name="elem_width">
+        <dia:real val="7.5421159668012292"/>
+      </dia:attribute>
+      <dia:attribute name="elem_height">
+        <dia:real val="2.3651491497863026"/>
+      </dia:attribute>
+      <dia:attribute name="show_background">
+        <dia:boolean val="true"/>
+      </dia:attribute>
+      <dia:attribute name="padding">
+        <dia:real val="0.35355339059327379"/>
+      </dia:attribute>
+      <dia:attribute name="text">
+        <dia:composite type="text">
+          <dia:attribute name="string">
+            <dia:string>#Build a campfire#</dia:string>
+          </dia:attribute>
+          <dia:attribute name="font">
+            <dia:font family="sans" style="0" name="Helvetica"/>
+          </dia:attribute>
+          <dia:attribute name="height">
+            <dia:real val="0.80000000000000004"/>
+          </dia:attribute>
+          <dia:attribute name="pos">
+            <dia:point val="55.4382,1.51282"/>
+          </dia:attribute>
+          <dia:attribute name="color">
+            <dia:color val="#000000ff"/>
+          </dia:attribute>
+          <dia:attribute name="alignment">
+            <dia:enum val="1"/>
+          </dia:attribute>
+        </dia:composite>
+      </dia:attribute>
+    </dia:object>
+    <dia:object type="Standard - Line" version="0" id="O59">
+      <dia:attribute name="obj_pos">
+        <dia:point val="58.8,6.70673"/>
+      </dia:attribute>
+      <dia:attribute name="obj_bb">
+        <dia:rectangle val="56.8155,2.25538;58.8659,6.77258"/>
+      </dia:attribute>
+      <dia:attribute name="conn_endpoints">
+        <dia:point val="58.8,6.70673"/>
+        <dia:point val="56.8814,2.32122"/>
+      </dia:attribute>
+      <dia:attribute name="numcp">
+        <dia:int val="1"/>
+      </dia:attribute>
+      <dia:attribute name="end_arrow">
+        <dia:enum val="22"/>
+      </dia:attribute>
+      <dia:attribute name="end_arrow_length">
+        <dia:real val="0.5"/>
+      </dia:attribute>
+      <dia:attribute name="end_arrow_width">
+        <dia:real val="0.5"/>
+      </dia:attribute>
+      <dia:connections>
+        <dia:connection handle="0" to="O17" connection="4"/>
+        <dia:connection handle="1" to="O58" connection="13"/>
+      </dia:connections>
     </dia:object>
   </dia:layer>
 </dia:diagram>
