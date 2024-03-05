@@ -115,6 +115,58 @@ minetest.register_on_item_eat(function(_, _, itemstack, player, _)
 end)
 
 
+--------------------------------
+awards.register_trigger("max", {
+	type = "counted_key",
+	progress = S("@1/@2 reached"),
+	auto_description = { S("Reach @2"), S("Reach @1 @2") },
+    get_key = function (self, def)
+        return def.trigger.max_param
+    end,
+})
+
+minetest.register_on_joinplayer(function(player, _)
+    if (player_ok(player)) then
+        local awards_data = awards.player(player:get_player_name())
+        if (awards_data) then
+            awards_data["max"] = awards_data["max"] or {}
+            awards_data["max"]["depth"] = awards_data["max"]["depth"] or 0
+            awards_data["max"]["altitude"] = awards_data["max"]["altitude"] or 0
+            awards_data["max"]["distance"] = awards_data["max"]["distance"] or 0
+        end
+    end
+end)
+
+local function check_positions()
+    for _, player in ipairs(minetest.get_connected_players()) do
+        if (player_ok(player)) then
+            local awards_data = awards.player(player:get_player_name())
+            if (awards_data) then
+                local position = player:get_pos()
+                local max_data = awards_data["max"]
+
+                local depth_delta = math.floor(math.min(position.y + max_data["depth"], 0))
+                if (depth_delta < 0) then
+                    awards.notify_max(player, "depth", math.abs(depth_delta))
+                end
+
+                local altitude_delta = math.floor(math.max(position.y - max_data["altitude"], 0))
+                if (altitude_delta > 0) then
+                    awards.notify_max(player, "altitude", altitude_delta)
+                end
+
+                local distance = math.floor(math.sqrt(position.x * position.x + position.z * position.z))
+                local distance_delta = math.max(distance - max_data["distance"], 0)
+                if (distance_delta > 0) then
+                    awards.notify_max(player, "distance", distance_delta)
+                end
+            end
+        end
+    end
+    minetest.after(5, check_positions)
+end
+check_positions()
+
 
 if (minetest.get_modpath("farming") and minetest.global_exists("farming") and farming.mod and farming.mod == "redo") then
 
