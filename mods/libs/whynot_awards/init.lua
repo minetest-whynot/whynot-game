@@ -15,7 +15,7 @@ for name, award in pairs(awards.registered_awards) do
 end
 
 -- 4 awards are registered with minetest.after(0) so hide them later
-minetest.after(3, function()
+minetest.after(2, function()
 	if (awards.registered_awards["awards_builder1"]) then
 		awards.registered_awards["awards_builder1"].secret = true
 		awards.registered_awards["awards_builder2"].secret = true
@@ -182,7 +182,6 @@ awards.register_award("whynot_bones",{
 	trigger = {
 		type = "collect",
 		item = "bonemeal:bone",
-		parent_item = "default:dirt",
 		target = 1,
 	},
 })
@@ -204,6 +203,7 @@ awards.register_award("whynot_wool", {
 	title = S("Craft wool"),
 	description = S("Wool is a very useful material for crafting garments, beds, and many other items."),
 	icon = "whynot_awards_wool.png",
+	requires = {"whynot_cotton"},
 	trigger = {
 		type = "craft",
 		item = "group:wool",
@@ -216,6 +216,7 @@ awards.register_award("whynot_backpack", {
 	title = S("Craft a backpack"),
 	description = S("Backpacks are very useful to help carry more stuff than the basic inventory lets you. It allows you keep mining longer and carry extra tools and food everywhere you go. Use dyed wools to create different coloured ones."),
 	icon = "whynot_awards_wool.png",
+	requires = {"whynot_wool"},
 	trigger = {
 		type = "craft",
 		item = "group:backpack",
@@ -228,7 +229,7 @@ awards.register_award("whynot_spawnpoint", {
 	title = S("Find your new home"),
 	description = S("Your home is the place with your bed. If you sleep once in bed, you always respawn at this position in case of death."),
 	icon = "beds_bed.png",
-	requires = {"whynot_planks",  "whynot_cotton"},
+	requires = {"whynot_planks",  "whynot_wool"},
 --	prices = { }, -- Price is a new home ;-)
 --	on_unlock = function(name, def) end
 })

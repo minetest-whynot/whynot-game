@@ -1,6 +1,6 @@
 -- Check if a player object is valid for awards.
 local function player_ok(player)
-	return player and player.is_player and player:is_player() and not player.is_fake_player
+	return minetest.is_player(player) and minetest.player_exists(player:get_player_name())
 end
 
 -- Don't actually use translator here. We define empty S() to fool the update_translations script
@@ -11,7 +11,7 @@ end
 
 
 local function check_action_with_item_in_collection(trigger_name, award_action, itemname, collection, player)
-    if (not player_ok(player)) then
+    if (not (player_ok(player) and collection[itemname])) then
 		return
 	end
 
@@ -210,9 +210,9 @@ if (minetest.get_modpath("farming") and minetest.global_exists("farming") and fa
             local base_on_place = reg_item.on_place
             minetest.override_item(seed_name, {
                 on_place = function(itemstack, placer, pointed_thing)
+                    base_on_place(itemstack, placer, pointed_thing)
                     awards.notify_place(placer, itemstack:get_name())
                     check_action_with_item_in_collection("plant_crops", "place", itemstack:get_name(), registered_seeds, placer)
-                    base_on_place(itemstack, placer, pointed_thing)
                 end
             })
         end
