@@ -1,8 +1,4 @@
 # textdomain: homedecor_electrical
-
-
-### init.lua ###
-
-Doorbell=Дверной звонок
-Light switch=Выключатель света
 Power Outlet=Розетка
+Light switch=Выключатель света
+Doorbell=Дверной звонок

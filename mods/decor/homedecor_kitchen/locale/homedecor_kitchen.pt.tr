@@ -1,24 +1,22 @@
 # textdomain: homedecor_kitchen
-
-
-### init.lua ###
-
-Copper pans=Panelas de cobre
-Dishwasher=Lava Louças
-Dishwasher (@1)=Lava Louças (@1)
-Half-height Kitchen Cabinet (on ceiling)=Armário Superior de Cozinha (no teto)
-Kitchen Cabinet=Armário de Cozinha
-Kitchen Cabinet (@1 top)=Armário de Cozinha (tampo de @1)
-Kitchen Cabinet with sink=Armário de Cozinha com Pia
-Kitchen Faucet=Armário de Cozinha
-Microwave Oven=Forno Microondas
+Refrigerator (stainless steel)=Refrigerador (aço inoxidável)
+Refrigerator=Refrigerador
 Oven=Forno
 Oven (stainless steel)=Forno (aço inoxidável)
-Paper towels=Papel toalha
-Refrigerator=Refrigerador
-Refrigerator (stainless steel)=Refrigerador (aço inoxidável)
-Under-sink cabinet=Armário sob a Pia
+Microwave Oven=Forno Microondas
+Dishwasher=Lava Louças
 granite=granito
 marble=mármore
 steel=aço
 wood=madeira
+Dishwasher (@1)=Lava Louças (@1)
+Kitchen Cabinet=Armário de Cozinha
+Kitchen Cabinet with drawers=
+Kitchen Cabinet (@1 top)=Armário de Cozinha (tampo de @1)
+Kitchen Cabinet with drawers (@1 top)=
+Half-height Kitchen Cabinet (on ceiling)=Armário Superior de Cozinha (no teto)
+Kitchen Cabinet with sink=Armário de Cozinha com Pia
+Under-sink cabinet=Armário sob a Pia
+Copper pans=Panelas de cobre
+Kitchen Faucet=Armário de Cozinha
+Paper towels=Papel toalha

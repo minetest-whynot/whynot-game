@@ -2,7 +2,7 @@ local skins_dir_list = minetest.get_dir_list(skins.modpath.."/textures")
 
 for _, fn in pairs(skins_dir_list) do
 	local name, sort_id, is_preview, playername
-	local nameparts = string.gsub(fn, "[.]", "_"):split("_")
+	local nameparts = string.gsub(fn, "[.]", skins.fsep):split(skins.fsep)
 
 	-- check allowed prefix and file extension
 	if (nameparts[1] == 'player' or nameparts[1] == 'character') and
@@ -51,9 +51,7 @@ for _, fn in pairs(skins_dir_list) do
 			local skin_format = skins.get_skin_format(file)
 			skin_obj:set_meta("format", skin_format)
 			file:close()
-			if skin_format == "1.0" then
-				skin_obj:set_hand_from_texture()
-			end
+			skin_obj:set_hand_from_texture()
 			file = io.open(skins.modpath.."/meta/"..name..".txt", "r")
 			if file then
 				local data = string.split(file:read("*all"), "\n", 3)

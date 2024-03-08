@@ -1,9 +1,8 @@
-
-local S = mobs.intllib_monster
+-- Translation support
+local S = minetest.get_translator("mobs_monster")
 
 -- custom particle effects
-local effect = function(
-		pos, amount, texture, min_size, max_size, radius, gravity, glow)
+local effect = function(pos, amount, texture, min_size, max_size, radius, gravity, glow)
 
 	radius = radius or 2
 	min_size = min_size or 0.5
@@ -25,7 +24,7 @@ local effect = function(
 		minsize = min_size,
 		maxsize = max_size,
 		texture = texture,
-		glow = glow,
+		glow = glow
 	})
 end
 
@@ -49,20 +48,20 @@ mobs:register_mob("mobs_monster:sand_monster", {
 	mesh = "mobs_sand_monster.b3d",
 	textures = {
 		{"mobs_sand_monster.png"},
-		{"mobs_sand_monster2.png"},
+		{"mobs_sand_monster2.png"}
 	},
 	blood_texture = "default_desert_sand.png",
 	makes_footstep_sound = true,
 	sounds = {
-		random = "mobs_sandmonster",
+		random = "mobs_sandmonster"
 	},
 	walk_velocity = 1.5,
 	run_velocity = 4,
-	view_range = 8, --15
+	view_range = 8,
 	jump = true,
 	floats = 0,
 	drops = {
-		{name = "default:desert_sand", chance = 1, min = 3, max = 5},
+		{name = "default:desert_sand", chance = 1, min = 3, max = 5}
 	},
 	water_damage = 3,
 	lava_damage = 4,
@@ -78,7 +77,7 @@ mobs:register_mob("mobs_monster:sand_monster", {
 		run_start = 74,
 		run_end = 105,
 		punch_start = 74,
-		punch_end = 105,
+		punch_end = 105
 	},
 	immune_to = {
 		{"default:shovel_wood", 3}, -- shovels deal more damage to sand monster
@@ -86,7 +85,7 @@ mobs:register_mob("mobs_monster:sand_monster", {
 		{"default:shovel_bronze", 4},
 		{"default:shovel_steel", 4},
 		{"default:shovel_mese", 5},
-		{"default:shovel_diamond", 7},
+		{"default:shovel_diamond", 7}
 	},
 --[[
 	custom_attack = function(self, p)
@@ -118,17 +117,19 @@ mobs:register_mob("mobs_monster:sand_monster", {
 })
 
 if not mobs.custom_spawn_monster then
-mobs:spawn({
-	name = "mobs_monster:sand_monster",
-	nodes = {"default:desert_sand"},
-	chance = 7000,
-	active_object_count = 2,
-	min_height = 0,
-})
+
+	mobs:spawn({
+		name = "mobs_monster:sand_monster",
+		nodes = {"default:desert_sand"},
+		chance = 7000,
+		active_object_count = 2,
+		min_height = 0
+	})
 end
 
 
-mobs:register_egg("mobs_monster:sand_monster", S("Sand Monster"), "default_desert_sand.png", 1)
+mobs:register_egg("mobs_monster:sand_monster", S("Sand Monster"),
+		"default_desert_sand.png", 1)
 
 
 mobs:alias_mob("mobs:sand_monster", "mobs_monster:sand_monster") -- compatibility

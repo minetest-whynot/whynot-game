@@ -185,7 +185,8 @@ end
 
 local ignore_groups = {
 	["wood"] = true,
-	["stone"] = true
+	["stone"] = true,
+	["tree"] = true
 }
 
 function ts_furniture.register_furniture(recipe, description, tiles)

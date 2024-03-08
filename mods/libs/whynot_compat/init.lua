@@ -74,7 +74,8 @@ minetest.clear_craft({output = "mtfoods:sugar"})
 minetest.register_alias("mtfoods:sugar", "farming:sugar")
 
 -- If previously the endless_apples was used, now merged to minetest game default mod
-minetest.register_alias("endless_apples:apple_mark", "default:apple_mark")
+-- Expired. See https://github.com/minetest-whynot/whynot-game/issues/95
+-- minetest.register_alias("endless_apples:apple_mark", "default:apple_mark")
 
 -- Remove bonemeal recipe in favor of the heads
 minetest.clear_craft({

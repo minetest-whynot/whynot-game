@@ -1,6 +1,5 @@
-
-local S = mobs.intllib_monster
-
+-- Translation support
+local S = minetest.get_translator("mobs_monster")
 
 local guard_types = {
 

@@ -1,6 +1,6 @@
 
 origin https://github.com/minetest-mirrors/ambience.git (fetch)
-* f7d54237f60ad3d5649985c73dfa618bc605c5cb add join/leave nil checks, use pairs for player loop
+* fd51c658047198d9d3ef780363f57452bc8dae9a add spanish locale (thanks Panquesito7)
 Mod: ambience/ambience
 
 origin https://github.com/minetest-mods/lightning (fetch)
@@ -20,7 +20,7 @@ origin https://github.com/Ezhh/abriglass/ (fetch)
 Mod: decor/abriglass
 
 origin https://github.com/mt-mods/basic_materials (fetch)
-* b9ac85790df6416085870d8acbb7eb4a3f5d4040 Add lead strip, carbon steel bar and stainless steel wire if technic is enabled. (#15)
+* 1009295ee68c490e388302d0600f293685226b67 Add mcl_copper support (#22)
 Mod: decor/basic_materials
 
 origin https://github.com/Napiophelios/campfire (fetch)
@@ -35,7 +35,7 @@ origin https://repo.or.cz/minetest_dice2.git (fetch)
 * 1feb5bbf1ef2d579f8df05e937bd0a9edc031a06 Add TRUE ephemeral sounds
 Mod: decor/dice2
 
-origin https://github.com/cdqwertz/flower_pot (fetch)
+origin https://codeberg.org/Dacmot/flower_pot.git (fetch)
 * 8a62a78a6aba3de52ec6b04913c5c3dbdae06c90 uploaded
 Mod: decor/flower_pot
 
@@ -44,11 +44,11 @@ origin https://github.com/HybridDog/heads (fetch)
 Mod: decor/heads
 
 origin https://github.com/mt-mods/home_workshop_modpack (fetch)
-* 40b911e18426a78ba9c4d07363a31b6cfebaec86 Prevent warning for accessing missing global (#11)
+* 8102117572374806748f7585b9bc9ecf2f064575 Cleanup translation files (#15)
 Mod: decor/home_workshop_modpack
 
 origin https://github.com/mt-mods/homedecor_modpack (fetch)
-* a598fa3067e81babeb09f39e42d14a6d720383f4 add not in creative inventory group to bed extended since it is made by placing a bed over top of another
+* 52f7c54702c58bccec2877cb67dbcfa87cd83ace Fix particlespawner removal when digging fancy fire
 Mod: decor/homedecor_modpack
 
 origin https://github.com/Gerold55/laptop.git (fetch)
@@ -60,7 +60,7 @@ origin https://repo.or.cz/minetest_mtg_plus.git (fetch)
 Mod: decor/mtg_plus
 
 origin https://github.com/minetest-mods/mydoors (fetch)
-* b2f8fa3e4aec7d680ea2c892b5c413f3197bf1f0 Fix conflicting door craft recipes (#23)
+* 55cc1b04b1ecbe78c23b1d683ac08c6759c3b148 Add choppy group to sliding doors
 Mod: decor/mydoors
 
 origin https://github.com/minetest-mods/myroofs (fetch)
@@ -84,20 +84,20 @@ origin https://github.com/v-rob/slats (fetch)
 Mod: decor/slats
 
 origin https://github.com/minetest-mods/ts_furniture (fetch)
-* 6cdb584c8513b862b812ba855fd780483770abce Dynamically use textures from base nodes
+* 3888a1db42f0fbef4f6b150c89a7beb358658564 Merge pull request #16 from Niklp09/ignore
 Mod: decor/ts_furniture
 
 origin https://github.com/mt-mods/unifieddyes (fetch)
-* 96a939c06944c2643cf18b25d3cf43800aca22cb Airbrush: Fix dye selection by not relying on internal behaviour of minetest.serialize (#10)
+* ecd05bfd908d2ec30e6ee29c8787aacff134885f Bump `min_minetest_version` to "5.5.0" (#17)
 Mod: decor/unifieddyes
 
 origin https://github.com/minetest-mirrors/farming.git (fetch)
 * 0b06c7cd450c5ec9a76b3c22a9c57f06e4f8a7c2 add sound to hemp block
 Mod: flora_ores/farming
 
-origin https://github.com/bell07/minetest-mese_crystals (fetch)
-* 33b477e3d95526e49156354e9e61100bf6052e1c Merge pull request #1 from bell07/patch-1
-Mod: flora_ores/mese_crystals
+origin https://codeberg.org/Dacmot/YellowCrystals.git (fetch)
+* 49064255fddd1aaf61efcff2e32eed9319f04367 Adjusting crystal generation depth
+Mod: flora_ores/yellow_crystal
 
 origin https://github.com/h-v-smacker/canned_food (fetch)
 * 4d061e9ded8632a6fd232bf497350c138c718321 Merge pull request #4 from Bastrabun/master
@@ -116,12 +116,16 @@ origin https://github.com/minetest-mods/mtfoods (fetch)
 Mod: food/mtfoods
 
 origin https://github.com/minetest-mirrors/pie.git (fetch)
-* b47a4a25407e36aa7a31997031903254a142dca7 add pie rotation (thanks MoNTE48)
+* 72fd43b80561bd25c66254ba8479991b520c42cc 5.x
 Mod: food/pie
 
 origin https://github.com/GreenXenith/waffles (fetch)
-* 9486f8d67ac4f8510319789928b226167c7e7da9 Confirm that batter is removed when removing the maker
+* f9ee9962795a44585a7584af34226acaa8bf9d77 Add Spanish translation (#14)
 Mod: food/waffles
+
+origin https://github.com/APercy/airutils.git (fetch)
+* 8dcac841553b20d84196e990c82cad12ff7945ac fix attach
+Mod: libs/airutils
 
 origin https://repo.or.cz/minetest_doc.git (fetch)
 * 1e3d464620e042de2812ec691145252d3f21b417 Version 1.3.0
@@ -140,7 +144,7 @@ origin https://github.com/minetest-mods/doc_reveal_chest (fetch)
 Mod: libs/doc_reveal_chest
 
 origin https://github.com/Lazerbeak12345/ediblestuff_api.git (fetch)
-* 0e79e0a056ffd8a0b91a6db727d780a6c1f3c593 Modularize codebase
+* 63791798d1b5b8bae1e885a95f5d962ce679cf28 Don't use `hbhunger` if damage is disabled
 Mod: libs/ediblestuff_api
 
 origin https://github.com/minetest-mods/intllib (fetch)
@@ -148,7 +152,7 @@ origin https://github.com/minetest-mods/intllib (fetch)
 Mod: libs/intllib
 
 origin https://github.com/dacmot/sfcraftguide.git (fetch)
-* 3df7b1eb7474fd2b209f025e18656f907b1b94cb Update README
+* ed75268b9e4a7b04df2c942c1bc389b31ecbde4a Add supported games
 Mod: libs/sfcraftguide
 
 origin https://github.com/mt-mods/sound_api.git (fetch)
@@ -156,7 +160,7 @@ origin https://github.com/mt-mods/sound_api.git (fetch)
 Mod: libs/sound_api
 
 origin https://github.com/Treer/cloudlands/ (fetch)
-* 0009137327942697a5df048d1a4f6706970509aa Update README.md
+* aed3ab8306ef92a47f228c7ea4577eae7bb00e67 fix ancient portalstone upgrade
 Mod: mapgen/cloudlands
 
 origin https://codeberg.org/Dacmot/maple.git (fetch)
@@ -167,8 +171,12 @@ origin https://github.com/minetest-mods/meseor (fetch)
 * b0a99d3acb25007b840741db6216c00337eba247 Update
 Mod: mapgen/meseor
 
+origin https://codeberg.org/Dacmot/minetest_mapgen_config.git (fetch)
+* c183a55212346ea9bab3ad3e00a0186a550211e1 Many corrections and adjustments of ore depth
+Mod: mapgen/minetest_mapgen_config
+
 origin https://github.com/minetest-mirrors/pbj_pup.git (fetch)
-* 5a0d59e5a8c7c793dce046437c7527a98f31336d tweak code
+* 54caa91c49db9ae770cd5d5cb3e818ac18a3f17d 5.x
 Mod: mapgen/pbj_pup
 
 origin https://github.com/GreenXenith/tac_nayn (fetch)
@@ -176,31 +184,27 @@ origin https://github.com/GreenXenith/tac_nayn (fetch)
 Mod: mapgen/tac_nayn
 
 origin https://github.com/minetest-mods/mesecons (fetch)
-* 121082859fd8d68f66bd5723c9c23fe8b1e3b0d6 Handle invalid param2 in presets.lua (#623)
+* 59780437f2f47954b84122a4f1286e0c5b3bd168 Fix 1-tick pulses causing delayers to get stuck in the on state (#663)
 Mod: mesecons/mesecons
 
 origin https://github.com/minetest/minetest_game (fetch)
-* 08057e8e0f01b443515ff81423215e4367f84872 Merge remote-tracking branch 'origin/stable-5' into HEAD
+* 9875ef62403b3f0113633fc5c88186c983030b34 Merge remote-tracking branch 'origin/stable-5' into HEAD
 Mod: minetest_game/minetest_game
-
-origin https://github.com/raymoo/cmi.git (fetch)
-* 3f505acb035c3af307e722754fb55b3e587ed674 Add doc to main repo
-Mod: mobs_redo/cmi
 
 origin https://codeberg.org/Hamlet/mobs_ghost_redo (fetch)
 * ac9c013e47939c05df4671cab5de841e61e3837c v0.7.0
 Mod: mobs_redo/mobs_ghost_redo
 
 origin https://github.com/minetest-mirrors/mobs_monster.git (fetch)
-* 1ee293dae0c3d54b4e3b88969a15801d1bb3d9f1 add screenshot.jpg
+* 130f46c81f3b6b9d24183c081ffd078a9e7f3f83 fix obsidian flan arrow
 Mod: mobs_redo/mobs_monster
 
 origin https://github.com/minetest-mirrors/mobs_redo.git (fetch)
-* 2935d1ee5dbfaaaf8261e435b7a12392be2fdc68 have mobs jump slightly when grown to avoid being caught in floor
+* 47e91b9b6b95233f0f6ec7bafad662e71445a48f add pint sized rune to shrink tamed animals
 Mod: mobs_redo/mobs_redo
 
 origin https://github.com/minetest-mods/3d_armor (fetch)
-* e1a262ba20e4bf0a1046ca06d83953ae0983f621 add feather falling (#73)
+* 4bac73fc9e68ce22eeabb44887fe19bcb50052e7 Make all admin armor to protect from drowning (#131)
 Mod: player/3d_armor
 
 origin https://gitlab.com/dacmot/awards.git (fetch)
@@ -216,27 +220,27 @@ origin https://github.com/stujones11/clothing (fetch)
 Mod: player/clothing
 
 origin https://github.com/minetest-mods/cozy (fetch)
-* b51cd0326ca30c9f8aaa9f66603e225c1aa50a02 Use mod.conf for dependencies, and description (#3)
+* ad3a575257ff5deebeb5127d98e08c428d879110 Add support for Pova mod (#5)
 Mod: player/cozy
 
 origin https://codeberg.org/Wuzzy/minetest_hbarmor.git (fetch)
-* be459fa222eef0fe0e7d44360bbc34750ec90a62 Version 1.0.1
+* 35bbeb69f7b4d5ae34cc96ad661923693d144d34 Add mod title to mod.conf
 Mod: player/hbarmor
 
 origin https://codeberg.org/Wuzzy/minetest_hbhunger.git (fetch)
-* 0777594e783b3faa749f2c72dff39aff229e60c8 Add Wuzzy to mailmap
+* 8c0941a0e4910cf55c186047ef4ab07968000a85 Version 1.1.3
 Mod: player/hbhunger
 
 origin https://github.com/minetest-mods/hbsprint (fetch)
-* f566d0ff26a2fb6371c617513a7f0c08cffbff0f Use inventory_image for nodes without tiles for particles
+* 92a1e0cddb0f4f3278e629402cbfc0efe6bceecf Add LuaCheck and GitHub workflow (#32)
 Mod: player/hbsprint
 
 origin https://codeberg.org/Wuzzy/minetest_hudbars.git (fetch)
-* dd2a9a008d63ae0be705903f1c56899f61029e7a Add mailmap for Wuzzy
+* 495ba23a7ab575065556dbf1a04176422f1ae6a7 Change N() to NS()
 Mod: player/hudbars
 
 origin https://github.com/dacmot/moarmour (fetch)
-* 252369262d95edfa9be0f4b0291baacd158733c5 Update README.md
+* b62930ec41e3de2aba96125bac9c5f2e2350b004 Remove max line length
 Mod: player/moarmour
 
 origin https://github.com/minetest-mods/playeranim (fetch)
@@ -248,7 +252,7 @@ origin https://repo.or.cz/minetest_show_wielded_item.git (fetch)
 Mod: player/show_wielded_item
 
 origin https://github.com/minetest-mods/skinsdb (fetch)
-* b769824d249b432a4f4f6a659aa6dae1a09071a8 Add Continuous Integration and LuaCheck (#71)
+* cd27e24b6f0275c015487b4998dcfc8932baf8c0 Added Esperanto (eo) translation
 Mod: player/skinsdb
 
 origin https://github.com/bell07/minetest-smart_sfinv (fetch)
@@ -256,15 +260,19 @@ origin https://github.com/bell07/minetest-smart_sfinv (fetch)
 Mod: player/smart_sfinv_modpack
 
 origin https://github.com/minetest-mods/wielded_light (fetch)
-* b5236562af9772dff8522fe2bda5b5f738e81b88 Bugfixes. Preserve timers and param2 (#20)
+* 3dfc2623598e095954b0a97f6bac6da7096cdf10 Fix error when 'default' is disabled (#28)
 Mod: player/wielded_light
 
-origin https://github.com/taikedz/everamzah-backpacks (fetch)
-* 7f617df442bfd75209ce64ffa46402c96a30ff4f removing rabbit_hide as it does not seem to be standard mobs_redo content
+origin https://codeberg.org/minenux/minetest-mod-backpacks.git (fetch)
+* 22963bf0740448eeac418eb3d21002a68a8b5861 update information and url.. licence
 Mod: tools/backpacks
 
+origin https://github.com/Lokrates/Biofuel.git (fetch)
+* b40d43dea7d8d2c64817ad8832993a87d369d12f Merge pull request #25 from Niklp09/master
+Mod: tools/biofuel
+
 origin https://github.com/minetest-mirrors/bonemeal.git (fetch)
-* 70c51d18bb7e9a5df6132cb4c242878f688b7e15 update rhubarb and strawberry growth
+* 4f8ca6a0a57259690bbc876cdffc6460998dc113 add spore grass to mushroom dirt decorations
 Mod: tools/bonemeal
 
 origin https://github.com/SmallJoker/boost_cart (fetch)
@@ -276,7 +284,7 @@ origin https://github.com/minetest-mods/ccompass (fetch)
 Mod: tools/ccompass
 
 origin https://github.com/minetest-mods/compost (fetch)
-* a11176b8de8d69d9e6814c0cff9713b79a604792 move depends to mod.conf, clanup description.txt and update README.md to markdown
+* ba65c29cb93a2239db1ee8ead3b7f5f9dfbea98f Luacheck: loop is executed at most once
 Mod: tools/compost
 
 origin https://github.com/orwell96/engrave/ (fetch)
@@ -291,9 +299,9 @@ origin https://github.com/Ezhh/handholds (fetch)
 * 4b88f2a08d9d00ff99be465b80922606ecc75127 Fix incorrect sRGB profile 
 Mod: tools/handholds
 
-origin https://github.com/petermaloney/helicopter (fetch)
-* 95c5287d59c70f12ae4a898bc1d2125dda9655d5 Merge pull request #7 from bell07/patch-1
-Mod: tools/helicopter
+origin https://github.com/APercy/hidroplane.git (fetch)
+* 39bd23407f95669d587a611150de8aeeb5610628 added check for the new function
+Mod: tools/hidroplane
 
 origin https://github.com/minetest-mods/hopper (fetch)
 * c691f370b4ff6054b76cc7e4c2ea623012e99238 Configurable inventory log level (#17)
@@ -320,11 +328,11 @@ origin https://github.com/minetest-mods/subspacewalker (fetch)
 Mod: tools/subspacewalker
 
 origin https://github.com/lisacvuk/minetest-toolranks (fetch)
-* 8010feb5bfecd369c7a9353ac786bc6c83384174 Add nil check afteruse
+* 05eea5177e4c804eea6fdf77eccd141405b38613 Update README.md
 Mod: tools/toolranks
 
 origin https://github.com/minetest-mods/trash_can (fetch)
-* 78611b3ccd06956ed753c6f97c63e76edc9af177 zh_TW Translations (#13)
+* be1cda9464880d26f72b97774ae26b373154613f Adapt inventory to MineClone2/ia (#18)
 Mod: tools/trash_can
 
 origin https://github.com/minetest-mods/woodcutting (fetch)

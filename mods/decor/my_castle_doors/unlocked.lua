@@ -1,12 +1,12 @@
 local cdoor_list = {   --Number , Description , Inven Image , Image
---	{"Castle Door 1" , "door1"},
---	{"Castle Door 2" , "door2"},
+	{"Castle Door 1" , "door1"},
+	{"Castle Door 2" , "door2"},
 	{"Castle Door 3" , "door3"},
 	{"Castle Door 4" , "door4"},
 	{"Castle Door 5" , "door5"},
---	{"Castle Door 6" , "door6"},
---	{"Castle Door 7" , "door7"},
---	{"Castle Door 8" , "door8"},
+	{"Castle Door 6" , "door6"},
+	{"Castle Door 7" , "door7"},
+	{"Castle Door 8" , "door8"},
 	{"Castle Door 9" , "door9"},
 	{"Castle Door 10" , "door10"},
 	{"Castle Door 11" , "door11"},
@@ -15,7 +15,7 @@ local cdoor_list = {   --Number , Description , Inven Image , Image
 }
 
 local function add_door(desc, img)
-	doors.register_door("my_castle_doors:"..img, {
+	mydoors.register_door("my_castle_doors:"..img, {
 		description = desc,
 		inventory_image = "mydoors_"..img.."_inv.png",
 		groups = {choppy=2,cracky=2,door=1},

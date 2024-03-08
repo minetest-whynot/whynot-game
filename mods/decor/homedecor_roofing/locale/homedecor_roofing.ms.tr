@@ -1,18 +1,14 @@
 # textdomain: homedecor_roofing
-
-
-### init.lua ###
-
-@1 (inner corner)=@1 (bucu dalam)
-@1 (outer corner)=@1 (bucu luar)
-Asphalt Shingles=Genting Asfalt
-Chimney=Serombong
-Glass Shingles=Genting Kaca
 Glass Skylight=Bumbung Kaca
 Glass Skylight Frosted=Bumbung Kaca Berkabut
-Shingles (@1)=Genting (@1)
-Terracotta Shingles=Genting Terracotta
-Wood Shingles=Genting Kayu
 asphalt=Asfalt
 terracotta=Terracotta
 wood=Kayu
+Shingles (@1)=Genting (@1)
+@1 (outer corner)=@1 (bucu luar)
+@1 (inner corner)=@1 (bucu dalam)
+Wood Shingles=Genting Kayu
+Asphalt Shingles=Genting Asfalt
+Terracotta Shingles=Genting Terracotta
+Glass Shingles=Genting Kaca
+Chimney=Serombong

@@ -40,7 +40,7 @@ ambience.add_set("splash", {
 	frequency = 1000,
 
 	sounds = {
-		{name = "swim_splashing", length = 3}
+		{name = "default_water_footstep", length = 2}
 	},
 
 	sound_check = function(def)
@@ -139,7 +139,7 @@ ambience.add_set("lava", {
 })
 
 else
-	print ("[Ambience] found env_sounds, flowing water and lava sounds disabled.")
+	print ("[MOD] Ambience - found env_sounds, flowing water and lava sounds disabled.")
 end
 
 -- Only add fire sounds set if flame_sound is disabled or fire redo active
@@ -149,7 +149,7 @@ local fire_redo = minetest.get_modpath("fire") and fire.mod and fire.mod == "red
 
 if flame_sound and not fire_redo then
 
-	print ("[Ambience] fire sounds not enabled, already active in fire mod.")
+	print ("[MOD] Ambience - fire sounds not enabled, already active in fire mod.")
 
 else
 
@@ -238,7 +238,7 @@ ambience.add_set("ice", {
 	frequency = 250,
 
 	sounds = {
-		{name = "icecrack", length = 23, gain = 0.7},
+		{name = "icecrack", length = 5, gain = 0.7},
 		{name = "desertwind", length = 8},
 		{name = "wind", length = 9}
 	},
@@ -288,7 +288,8 @@ ambience.add_set("cave", {
 
 	sounds = {
 		{name = "drippingwater1", length = 1.5, ephemeral = true},
-		{name = "drippingwater2", length = 1.5, ephemeral = true}
+		{name = "drippingwater2", length = 1.5, ephemeral = true},
+		{name = "bats", length = 5, ephemeral = true}
 	},
 
 	sound_check = function(def)

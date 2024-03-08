@@ -1,5 +1,7 @@
 skins.meta = {}
 
+local has_hand_monoid = minetest.get_modpath("hand_monoid")
+
 local skin_class = {}
 skin_class.__index = skin_class
 skins.skin_class = skin_class
@@ -69,7 +71,11 @@ function skin_class:set_hand_from_texture()
 	hand_def.wield_scale = {x=1,y=1,z=1}
 	hand_def.paramtype = "light"
 	hand_def.drawtype = "mesh"
-	hand_def.mesh = "skinsdb_hand.b3d"
+	if(self:get_meta("format") == "1.0") then
+		hand_def.mesh = "skinsdb_hand.b3d"
+	else
+		hand_def.mesh = "skinsdb_hand_18.b3d"
+	end
 	hand_def.use_texture_alpha = ALPHA_CLIP
 	minetest.register_node(hand, hand_def)
 	self:set_hand(hand)
@@ -204,11 +210,19 @@ function skin_class:apply_skin_to_player(player)
 	})
 
 	local hand = self:get_hand()
-	if hand then
-		player:get_inventory():set_size("hand", 1)
-		player:get_inventory():set_stack("hand", 1, hand)
+	if has_hand_monoid then
+		if hand then
+			hand_monoid.monoid:add_change(player, {name = hand}, "skinsdb:hand")
+		else
+			hand_monoid.monoid:del_change(player, "skinsdb:hand")
+		end
 	else
-		player:get_inventory():set_stack("hand", 1, "")
+		if hand then
+			player:get_inventory():set_size("hand", 1)
+			player:get_inventory():set_stack("hand", 1, hand)
+		else
+			player:get_inventory():set_stack("hand", 1, "")
+		end
 	end
 end
 

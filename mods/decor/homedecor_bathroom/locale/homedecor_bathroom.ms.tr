@@ -1,20 +1,16 @@
 # textdomain: homedecor_bathroom
-
-
-### init.lua ###
-
-Bathroom Sink=Sinki Bilik Mandi
-Bathroom sundries set=Set Barangan Bilik Mandi
-Bathroom taps/faucet=Kepala Paip Bilik Mandi
-Bathroom taps/faucet (brass)=Kepala Paip Bilik Mandi (Loyang)
 Bathroom/kitchen tiles (dark)=Jubin Dapur/Bilik Mandi (Gelap)
-Bathroom/kitchen tiles (light)=Jubin Dapur/Bilik Mandi (Cerah)
 Bathroom/kitchen tiles (medium)=Jubin Dapur/Bilik Mandi (Biasa)
-Bathtub, clawfoot, with brass taps=Tab Mandi Berkaki Cakar, dengan Kepala Paip Loyang
-Bathtub, clawfoot, with chrome taps=Tab Mandi Berkaki Cakar, dengan Kepala Paip Krom
+Bathroom/kitchen tiles (light)=Jubin Dapur/Bilik Mandi (Cerah)
+Towel rod with towel=Ampaian Beserta Tuala
 Medicine cabinet=Kabinet Ubat
-Shower Head=Kepala Pancuran
-Shower Tray=Lubang Air Mandi
 Toilet=Tandas
 Toilet paper=Tisu Tandas
-Towel rod with towel=Ampaian Beserta Tuala
+Bathroom Sink=Sinki Bilik Mandi
+Bathroom taps/faucet=Kepala Paip Bilik Mandi
+Bathroom taps/faucet (brass)=Kepala Paip Bilik Mandi (Loyang)
+Shower Tray=Lubang Air Mandi
+Shower Head=Kepala Pancuran
+Bathtub, clawfoot, with brass taps=Tab Mandi Berkaki Cakar, dengan Kepala Paip Loyang
+Bathtub, clawfoot, with chrome taps=Tab Mandi Berkaki Cakar, dengan Kepala Paip Krom
+Bathroom sundries set=Set Barangan Bilik Mandi

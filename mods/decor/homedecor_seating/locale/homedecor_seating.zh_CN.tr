@@ -1,24 +1,15 @@
 # textdomain: homedecor_seating
-
-
-### armchairs.lua ###
-
 Armchair=扶手椅
-
-### init.lua ###
-
-Someone else owns the spot where the middle or far end goes!=中间或远端去的地方是别人的！
 Someone else owns the spot where the other end goes!=另一端去的地方是别人的！
-
-### longsofas.lua ###
-
+Someone else owns the spot where the middle or far end goes!=中间或远端去的地方是别人的！
 Long Sofa=长沙发
-
-### longsofas.lua ###
-### sofas.lua ###
-
 No room to place the sofa!=没有地方放沙发！
-
-### sofas.lua ###
-
+Deck Chair=
+Deck Chair (blue striped)=
+Simple Bench=
+Garden Bench (style 1)=
+Garden Bench (style 2)=
+Kitchen chair=
+Basic office chair=
+Upscale office chair=
 Sofa=沙发

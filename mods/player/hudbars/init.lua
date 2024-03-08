@@ -1,5 +1,5 @@
 local S = minetest.get_translator("hudbars")
-local N = function(s) return s end
+local NS = function(s) return s end
 
 hb = {}
 
@@ -72,7 +72,7 @@ local function make_label(format_string, format_string_config, label, start_valu
 		end
 	end
 	local ret
-	if format_string_config.textdomain then
+	if format_string_config.textdomain and minetest.translate then
 		ret = minetest.translate(format_string_config.textdomain, format_string, unpack(params))
 	else
 		ret = S(format_string, unpack(params))
@@ -153,7 +153,7 @@ function hb.register_hudbar(identifier, text_color, label, textures, default_sta
 		end
 	end
 	if format_string == nil then
-		format_string = N("@1: @2/@3")
+		format_string = NS("@1: @2/@3")
 	end
 	if format_string_config == nil then
 		format_string_config = {}
@@ -446,6 +446,7 @@ end
 function hb.get_hudbar_state(player, identifier)
 	if not player_exists(player) then return nil end
 	local ref = hb.get_hudtable(identifier).hudstate[player:get_player_name()]
+	if not ref then return nil end
 	-- Do not forget to update this chunk of code in case the state changes
 	local copy = {
 		hidden = ref.hidden,
@@ -500,7 +501,8 @@ end
 
 local function update_health(player)
 	local hp_max = player:get_properties().hp_max
-	hb.change_hudbar(player, "health", player:get_hp(), hp_max)
+	local hp = math.min(player:get_hp(), hp_max)
+	hb.change_hudbar(player, "health", hp, hp_max)
 end
 
 -- update built-in HUD bars

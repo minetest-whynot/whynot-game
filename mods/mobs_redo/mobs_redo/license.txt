@@ -19,3 +19,19 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+
+
+Textures under CC0 license by TenPlus1
+
+
+ShadowNinja (CC BY-SA 3.0):
+  tnt_smoke.png
+
+mobs_swing.ogg by qubodup (CC0)
+ - http://freesound.org/people/qubodup/sounds/60012/
+
+mobs_spell.ogg by littlerobotsoundfactory (CC0)
+ - http://freesound.org/people/LittleRobotSoundFactory/sounds/270396/
+
+mobs_punch.ogg by Merrick079 (CC0)
+ - https://freesound.org/people/Merrick079/sounds/566436/

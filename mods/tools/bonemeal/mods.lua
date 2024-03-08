@@ -9,6 +9,97 @@ if minetest.get_modpath("animalmaterials") then
 end
 
 
+if minetest.get_modpath("default") then
+
+	-- saplings
+
+	local function pine_grow(pos)
+
+		if minetest.find_node_near(pos, 1,
+			{"default:snow", "default:snowblock", "default:dirt_with_snow"}) then
+
+			default.grow_new_snowy_pine_tree(pos)
+		else
+			default.grow_new_pine_tree(pos)
+		end
+	end
+
+	local function cactus_grow(pos)
+		default.grow_cactus(pos, minetest.get_node(pos))
+	end
+
+	local function papyrus_grow(pos)
+		default.grow_papyrus(pos, minetest.get_node(pos))
+	end
+
+	bonemeal:add_sapling({
+		{"default:sapling", default.grow_new_apple_tree, "soil"},
+		{"default:junglesapling", default.grow_new_jungle_tree, "soil"},
+		{"default:emergent_jungle_sapling", default.grow_new_emergent_jungle_tree, "soil"},
+		{"default:acacia_sapling", default.grow_new_acacia_tree, "soil"},
+		{"default:aspen_sapling", default.grow_new_aspen_tree, "soil"},
+		{"default:pine_sapling", pine_grow, "soil"},
+		{"default:bush_sapling", default.grow_bush, "soil"},
+		{"default:acacia_bush_sapling", default.grow_acacia_bush, "soil"},
+		{"default:large_cactus_seedling", default.grow_large_cactus, "sand"},
+		{"default:blueberry_bush_sapling", default.grow_blueberry_bush, "soil"},
+		{"default:pine_bush_sapling", default.grow_pine_bush, "soil"},
+		{"default:cactus", cactus_grow, "sand"},
+		{"default:papyrus", papyrus_grow, "soil"}
+	})
+
+	-- decoration
+
+	local green_grass = {
+		"default:grass_2", "default:grass_3", "default:grass_4",
+		"default:grass_5", "", ""
+	}
+
+	local dry_grass = {
+		"default:dry_grass_2", "default:dry_grass_3", "default:dry_grass_4",
+		"default:dry_grass_5", "", ""
+	}
+
+	local flowers = {}
+
+	minetest.after(0.1, function()
+
+		for node, def in pairs(minetest.registered_nodes) do
+
+			if def.groups
+			and def.groups.flower
+			and not node:find("waterlily")
+			and not node:find("seaweed")
+			and not node:find("xdecor:potted_")
+			and not node:find("df_farming:") then
+				flowers[#flowers + 1] = node
+			end
+		end
+	end)
+
+	bonemeal:add_deco({
+		{"default:dirt", bonemeal.green_grass, flowers},
+		{"default:dirt_with_grass", green_grass, flowers},
+		{"default:dry_dirt", dry_grass, {}},
+		{"default:dry_dirt_with_dry_grass", dry_grass, {}},
+		{"default:dirt_with_dry_grass", dry_grass, flowers},
+		{"default:sand", {}, {"default:dry_shrub", "", "", ""} },
+		{"default:desert_sand", {}, {"default:dry_shrub", "", "", ""} },
+		{"default:silver_sand", {}, {"default:dry_shrub", "", "", ""} },
+		{"default:dirt_with_rainforest_litter", {}, {"default:junglegrass", "", "", ""}}
+	})
+end
+
+
+if farming then
+
+	bonemeal:add_crop({
+		{"farming:cotton_", 8, "farming:seed_cotton"},
+		{"farming:wheat_", 8, "farming:seed_wheat"}
+	})
+end
+
+
 if farming and farming.mod and farming.mod == "redo" then
 
 	bonemeal:add_crop({
@@ -26,8 +117,8 @@ if farming and farming.mod and farming.mod == "redo" then
 		{"farming:potato_", 4},
 		{"farming:grapes_", 8},
 		{"farming:rhubarb_", 4},
-		{"farming:barley_", 7},
-		{"farming:hemp_", 8},
+		{"farming:barley_", 8, "farming:seed_barley"},
+		{"farming:hemp_", 8, "farming:seed_hemp"},
 		{"farming:chili_", 8},
 		{"farming:garlic_", 5},
 		{"farming:onion_", 5},
@@ -35,10 +126,10 @@ if farming and farming.mod and farming.mod == "redo" then
 		{"farming:pineapple_", 8},
 		{"farming:pea_", 5},
 		{"farming:beetroot_", 5},
-		{"farming:rye_", 8},
-		{"farming:oat_", 8},
-		{"farming:rice_", 8},
-		{"farming:mint_", 4},
+		{"farming:rye_", 8, "farming:seed_rye"},
+		{"farming:oat_", 8, "farming:seed_oat"},
+		{"farming:rice_", 8, "farming:seed_rice"},
+		{"farming:mint_", 4, "farming:seed_mint"},
 		{"farming:cabbage_", 6},
 		{"farming:lettuce_", 5},
 		{"farming:blackberry_", 4},
@@ -46,10 +137,11 @@ if farming and farming.mod and farming.mod == "redo" then
 		{"farming:soy_", 7},
 		{"farming:artichoke_", 5},
 		{"farming:parsley_", 3},
-		{"farming:sunflower_", 8},
+		{"farming:sunflower_", 8, "farming:seed_sunflower"},
 		{"farming:asparagus_", 5},
 		{"farming:eggplant_", 4},
 		{"farming:spinach_", 4},
+		{"farming:ginger_", 4},
 		{"ethereal:strawberry_", 8}
 	})
 end
@@ -78,7 +170,8 @@ if minetest.get_modpath("ethereal") then
 		{"ethereal:birch_sapling", ethereal.grow_birch_tree, "soil"},
 		{"ethereal:sakura_sapling", ethereal.grow_sakura_tree, "soil"},
 		{"ethereal:lemon_tree_sapling", ethereal.grow_lemon_tree, "soil"},
-		{"ethereal:olive_tree_sapling", ethereal.grow_olive_tree, "soil"}
+		{"ethereal:olive_tree_sapling", ethereal.grow_olive_tree, "soil"},
+		{"ethereal:basandra_bush_sapling", ethereal.grow_basandra_bush, "soil"}
 	})
 
 	local grass = {"default:grass_3", "default:grass_4", "default:grass_5", ""}
@@ -91,7 +184,8 @@ if minetest.get_modpath("ethereal") then
 			"flowers:tulip", "flowers:viola", "ethereal:strawberry_7"}},
 		{"ethereal:gray_dirt", {}, {"ethereal:snowygrass", "", ""}},
 		{"ethereal:cold_dirt", {}, {"ethereal:snowygrass", "", ""}},
-		{"ethereal:mushroom_dirt", {}, {"flowers:mushroom_red", "flowers:mushroom_brown", "", "", ""}},
+		{"ethereal:mushroom_dirt", {}, {"flowers:mushroom_red", "flowers:mushroom_brown",
+				"ethereal:spore_grass", "ethereal:spore_grass", "", "", ""}},
 		{"ethereal:jungle_dirt", grass, {"default:junglegrass", "", "", ""}},
 		{"ethereal:grove_dirt", grass, {"ethereal:fern", "", "", ""}},
 		{"ethereal:bamboo_dirt", grass, {}}
@@ -126,6 +220,7 @@ if minetest.get_modpath("moretrees") then
 		{"moretrees:spruce_sapling", moretrees.grow_spruce, "soil"},
 		{"moretrees:cedar_sapling", moretrees.spawn_cedar_object, "soil"},
 		{"moretrees:poplar_sapling", moretrees.spawn_poplar_object, "soil"},
+		{"moretrees:poplar_small_sapling", moretrees.spawn_poplar_small_object, "soil"},
 		{"moretrees:willow_sapling", moretrees.spawn_willow_object, "soil"},
 		{"moretrees:rubber_tree_sapling", moretrees.spawn_rubber_tree_object, "soil"},
 		{"moretrees:fir_sapling", fir_grow, "soil"}
@@ -181,8 +276,7 @@ end
 
 if minetest.get_modpath("dye") then
 
-	local bonemeal_dyes = {
-			bonemeal = "white", fertiliser = "green", mulch = "brown"}
+	local bonemeal_dyes = {bonemeal = "white", fertiliser = "green", mulch = "brown"}
 
 	for mat, dye in pairs(bonemeal_dyes) do
 
@@ -244,14 +338,14 @@ if minetest.get_modpath("df_primordial_items") then
 	local function mush_fix(pos)
 		minetest.set_node(pos, {name = "air"})
 		mapgen_helper.place_schematic(pos,
-			df_primordial_items.get_primordial_mushroom(), (math.random(1,4)-1)*90)
+			df_primordial_items.get_primordial_mushroom(), (math.random(4) - 1) * 90)
 	end
 
 	local function fern_fix(pos)
 		minetest.set_node(pos, {name = "air"})
 		local rotations = {0, 90, 180, 270}
 		mapgen_helper.place_schematic(pos,
-			df_primordial_items.get_fern_schematic(), rotations[math.random(1,#rotations)])
+			df_primordial_items.get_fern_schematic(), rotations[math.random(#rotations)])
 	end
 
 	local function blood_fix(pos)
@@ -260,9 +354,9 @@ if minetest.get_modpath("df_primordial_items") then
 
 	bonemeal:add_sapling({
 		{"df_primordial_items:jungle_mushroom_sapling",
-			df_primordial_items.spawn_jungle_mushroom, "soil", true},
+				df_primordial_items.spawn_jungle_mushroom, "soil", true},
 		{"df_primordial_items:jungletree_sapling",
-			df_primordial_items.spawn_jungle_tree, "soil", true},
+				df_primordial_items.spawn_jungle_tree, "soil", true},
 		{"df_primordial_items:mush_sapling", mush_fix, "soil", true},
 		{"df_primordial_items:fern_sapling", fern_fix, "soil", true},
 		{"df_trees:blood_thorn", blood_fix, "sand", true}
@@ -304,5 +398,43 @@ if minetest.get_modpath("df_primordial_items") then
 
 	bonemeal:add_deco({
 		{"df_primordial_items:dirt_with_mycelium", fgrass, fdeco}
+	})
+end
+
+
+if minetest.get_modpath("everness") then
+
+	bonemeal:add_sapling({
+		{"everness:baobab_sapling", Everness.grow_baobab_tree, "soil"},
+		{"everness:coral_tree_bioluminescent_sapling",
+				Everness.coral_tree_bioluminescent, "soil"},
+		{"everness:coral_tree_sapling", Everness.grow_coral_tree, "soil"},
+		{"everness:crystal_bush_sapling", Everness.grow_crystal_bush, "soil"},
+		{"everness:crystal_tree_large_sapling", Everness.grow_crystal_large_tree, "soil"},
+		{"everness:crystal_tree_sapling", Everness.grow_crystal_tree, "soil"},
+		{"everness:cursed_bush_sapling", Everness.grow_cursed_bush, "soil"},
+		{"everness:cursed_dream_tree_sapling", Everness.grow_cursed_dream_tree, "soil"},
+		{"everness:dry_tree_sapling", Everness.grow_dry_tree, "soil"},
+		{"everness:sequoia_tree_sapling", Everness.grow_sequoia_tree, "soil"},
+		{"everness:willow_tree_sapling", Everness.grow_willow_tree, "soil"}
+	})
+end
+
+
+if minetest.get_modpath("bushes_classic") then
+
+	local function grow_bush(pos)
+
+		local meta = minetest.get_meta(pos)
+		local bush_name = meta:get_string("bush_type")
+
+		-- only change if meta found
+		if meta and bush_name then
+			minetest.swap_node(pos, {name = "bushes:" .. bush_name .. "_bush"})
+		end
+	end
+
+	bonemeal:add_sapling({
+		{"bushes:fruitless_bush", grow_bush, "soil"},
 	})
 end

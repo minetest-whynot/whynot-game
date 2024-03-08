@@ -13,7 +13,7 @@ Generated file: [mod_sources.txt](https://github.com/minetest-whynot/whynot-game
 ### License statement
 
 Each of the mods do have their own free license.
-The whynot related work (such as the buiding scripts) are GPL-V3
+The whynot related work (such as the buiding scripts) are GPLv3-only
 
 ### Contribution
 
@@ -66,3 +66,7 @@ This game is not a new home for mods. Each mod remains within and have their own
 ### 9 Mod must not be incompatible with other mods
 
 Mods should not require compatibility code to be added to the Whynot game, and thus requiring extra maintenance work on our part. If we find incompatibilities (ex. recipes conflicts, redundant items, keypress overlap) we expect any required changes to happen upstream before the mod is added to whynot. Some exceptions may be considered on a case-by-case basis.
+
+### 10 The code and artwork for the mod must be under a compatible licence
+
+We can't legally include a mod if the licence doesn't allow us to.

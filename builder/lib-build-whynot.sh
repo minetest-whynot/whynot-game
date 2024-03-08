@@ -21,7 +21,16 @@ function sync_mods_folder {
     for childmod in `find $SRC/$subm -mindepth 1 -maxdepth 1 -type d`; do
       local childname=$(basename $childmod)
       if [[ ${childname:0:1} != "." && !( $exclusionlist =~ $childname$ || $exclusionlist =~ $childname[^[:alnum:]_] ) ]]; then
+
         $RSYNC $exclusionlist $childmod/ $DSTPATH/$childname/
+        if ls $SRC/$subm/[Ll][Ii][Cc][Ee][Nn][SsCc][Ee]* &> /dev/null; then
+          cp --no-clobber $VERBOSEONLY $SRC/$subm/[Ll][Ii][Cc][Ee][Nn][SsCc][Ee]* $DSTPATH/$childname/
+        elif ls $SRC/$subm/[Cc][Oo][Pp][Yy][Ii][Nn][Gg]* &> /dev/null; then
+          cp --no-clobber $VERBOSEONLY $SRC/$subm/[Cc][Oo][Pp][Yy][Ii][Nn][Gg]* $DSTPATH/$childname/
+        elif ls $SRC/$subm/[Rr][Ee][Aa][Dd][Mm][Ee]* &> /dev/null; then
+          cp --no-clobber $VERBOSEONLY $SRC/$subm/[Rr][Ee][Aa][Dd][Mm][Ee]* $DSTPATH/$childname/
+        fi
+
       else
         rm -rf $VERBOSEONLY $DSTPATH/$childname
       fi
@@ -29,6 +38,7 @@ function sync_mods_folder {
 
   elif [[ "$modname" = "minetest_game" ]]; then
     $RSYNC $exclusionlist $SRC/$subm/mods/ $DSTPATH/
+    cp [Ll][Ii][Cc][Ee][Nn][Ss][Ee]* $DSTPATH/
   else
     $RSYNC $exclusionlist $SRC/$subm/ $DSTPATH/$modname/
   fi

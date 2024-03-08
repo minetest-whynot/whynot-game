@@ -46,45 +46,127 @@ minetest.register_on_placenode(
 )
 
 -- The complementary function:  strip-off the color if the node being dug is still white/neutral
+-- adapted from
+-- https://github.com/minetest/minetest/blob/fe8d04d0b3c2e3af7c406fb6527f1b5230a30137/builtin/game/item.lua#L460-L562
+local function node_dig_without_color(pos, node, digger)
+	local diggername = digger:get_player_name()
 
-local function move_item(item, pos, inv, digger)
-  if not (digger and digger:is_player()) then return end
-	local creative = minetest.is_creative_enabled(digger:get_player_name())
-	if inv:room_for_item("main", item)
-	  and (not creative or not inv:contains_item("main", item, true)) then
-		inv:add_item("main", item)
-	elseif not creative then
-		minetest.item_drop(ItemStack(item), digger, pos)
+	local def = ItemStack(node.name):get_definition()
+	-- Copy pos because the callback could modify it
+	if not def.diggable or (def.can_dig and not def.can_dig(vector.copy(pos), digger)) then
+		minetest.log("info", diggername .. " tried to dig "
+			.. node.name .. " which is not diggable "
+			.. minetest.pos_to_string(pos))
+		return false
 	end
+
+	if minetest.is_protected(pos, diggername) then
+		minetest.log("action", diggername
+			.. " tried to dig " .. node.name
+			.. " at protected position "
+			.. minetest.pos_to_string(pos))
+		minetest.record_protection_violation(pos, diggername)
+		return false
+	end
+
+	minetest.log('action', diggername .. " digs "
+		.. node.name .. " at " .. minetest.pos_to_string(pos))
+
+	local wielded = digger and digger:get_wielded_item()
+	local drops = {node.name}  -- this is instead of asking minetest to generate the node drops
+
+	if wielded then
+		local wdef = wielded:get_definition()
+		local tp = wielded:get_tool_capabilities()
+		local dp = minetest.get_dig_params(def and def.groups, tp, wielded:get_wear())
+		if wdef and wdef.after_use then
+			wielded = wdef.after_use(wielded, digger, node, dp) or wielded
+		else
+			-- Wear out tool
+			if not minetest.is_creative_enabled(diggername) then
+				wielded:add_wear(dp.wear)
+				if wielded:get_count() == 0 and wdef.sound and wdef.sound.breaks then
+					minetest.sound_play(wdef.sound.breaks, {
+						pos = pos,
+						gain = 0.5
+					}, true)
+				end
+			end
+		end
+		digger:set_wielded_item(wielded)
+	end
+
+	-- Check to see if metadata should be preserved.
+	if def and def.preserve_metadata then
+		local oldmeta = minetest.get_meta(pos):to_table().fields
+		-- Copy pos and node because the callback can modify them.
+		local pos_copy = vector.copy(pos)
+		local node_copy = { name = node.name, param1 = node.param1, param2 = node.param2 }
+		local drop_stacks = {}
+		for k, v in pairs(drops) do
+			drop_stacks[k] = ItemStack(v)
+		end
+		drops = drop_stacks
+		def.preserve_metadata(pos_copy, node_copy, oldmeta, drops)
+	end
+
+	-- Handle drops
+	minetest.handle_node_drops(pos, drops, digger)
+
+	local oldmetadata
+	if def and def.after_dig_node then
+		oldmetadata = minetest.get_meta(pos):to_table()
+	end
+
+	-- Remove node and update
 	minetest.remove_node(pos)
+
+	-- Play sound if it was done by a player
+	if diggername ~= "" and def and def.sounds and def.sounds.dug then
+		minetest.sound_play(def.sounds.dug, {
+			pos = pos,
+			exclude_player = diggername,
+		}, true)
+	end
+
+	-- Run callback
+	if def and def.after_dig_node then
+		-- Copy pos and node because callback can modify them
+		local pos_copy = vector.copy(pos)
+		local node_copy = { name = node.name, param1 = node.param1, param2 = node.param2 }
+		def.after_dig_node(pos_copy, node_copy, oldmetadata, digger)
+	end
+
+	-- Run script hook
+	for _, callback in ipairs(minetest.registered_on_dignodes) do
+		local origin = minetest.callback_origins[callback]
+		minetest.set_last_run_mod(origin.mod)
+
+		-- Copy pos and node because callback can modify them
+		local pos_copy = vector.copy(pos)
+		local node_copy = { name = node.name, param1 = node.param1, param2 = node.param2 }
+		callback(pos_copy, node_copy, digger)
+	end
+
+	return true
 end
 
 function unifieddyes.on_dig(pos, node, digger)
-	if not digger then return end
-	local playername = digger:get_player_name()
-	if minetest.is_protected(pos, playername) then
-		minetest.record_protection_violation(pos, playername)
-		return
-	end
-
-	local oldparam2 = minetest.get_node(pos).param2
+	local param2 = minetest.get_node(pos).param2
 	local def = minetest.registered_items[node.name]
 	local del_color
 
-	if def.paramtype2 == "color" and oldparam2 == 240 and def.palette == "unifieddyes_palette_extended.png" then
+	if def.paramtype2 == "color" and param2 == 240 and def.palette == "unifieddyes_palette_extended.png" then
 		del_color = true
-	elseif def.paramtype2 == "colorwallmounted" and math.floor(oldparam2 / 8) == 0
-			and def.palette == "unifieddyes_palette_colorwallmounted.png" then
-		del_color = true
-	elseif def.paramtype2 == "colorfacedir" and math.floor(oldparam2 / 32) == 0
-			and string.find(def.palette, "unifieddyes_palette_") then
+	elseif (def.paramtype2 == "colorwallmounted" or def.paramtype2 == "colorfacedir")
+		and minetest.strip_param2_color(param2, def.paramtype2) == 0
+		and string.find(def.palette, "unifieddyes_palette_")
+	then
 		del_color = true
 	end
 
-	local inv = digger:get_inventory()
-
 	if del_color then
-		move_item(node.name, pos, inv, digger)
+		return node_dig_without_color(pos, node, digger)
 	else
 		return minetest.node_dig(pos, node, digger)
 	end

@@ -1,27 +1,19 @@
 # textdomain: homedecor_tables
-
-
-### coffeetable.lua ###
-
+Someone else owns the spot where the other end goes!=
+Someone else owns the spot where the middle or far end goes!=
 Coffee Table=
 No room to place the coffee table!=
-Someone else owns the spot where the middle or far end goes!=
-Someone else owns the spot where the other end goes!=
-
-### endtable.lua ###
-
 End Table=
-
-### misc.lua ###
-
-Large glass table piece=
-Large wooden table piece=
-Legs for Utility Table=
-Small round glass table=
-Small round wooden table=
-Small square glass table=
-Small square wooden table=
-Table Legs (@1)=
-Utility Table=
+Small square glass tabletop=
+Small round glass tabletop=
+Large glass tabletop piece=
+Small square wooden tabletop=
+Small round wooden tabletop=
+Large wooden tabletop piece=
 brass=
 wrought iron=
+wood=
+Table Legs (@1)=
+Table=
+Mahogany Table=
+White Table=

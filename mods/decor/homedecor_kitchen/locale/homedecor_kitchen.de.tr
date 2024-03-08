@@ -1,24 +1,22 @@
 # textdomain: homedecor_kitchen
-
-
-### init.lua ###
-
-Copper pans=Kupferpfannen
-Dishwasher=Spülmachine
-Dishwasher (@1)=Spülmaschine (@1)
-Half-height Kitchen Cabinet (on ceiling)=Halbhoher Küchenschrank (oben)
-Kitchen Cabinet=Küchenschrank
-Kitchen Cabinet (@1 top)=Küchenschrank (@1platte)
-Kitchen Cabinet with sink=Küchenschrank mit Spüle
-Kitchen Faucet=Küchenwasserhahn
-Microwave Oven=Mikrowelle
+Refrigerator (stainless steel)=Kühlschrank (Edelstahl)
+Refrigerator=Kühlschrank
 Oven=Backofen
 Oven (stainless steel)=Backofen (Edelstahl)
-Paper towels=Küchenpapier
-Refrigerator=Kühlschrank
-Refrigerator (stainless steel)=Kühlschrank (Edelstahl)
-Under-sink cabinet=Waschbeckenunterschrank
+Microwave Oven=Mikrowelle
+Dishwasher=Spülmachine
 granite=Granit
 marble=Marmor
 steel=Stahl
 wood=Holz
+Dishwasher (@1)=Spülmaschine (@1)
+Kitchen Cabinet=Küchenschrank
+Kitchen Cabinet with drawers=
+Kitchen Cabinet (@1 top)=Küchenschrank (@1platte)
+Kitchen Cabinet with drawers (@1 top)=
+Half-height Kitchen Cabinet (on ceiling)=Halbhoher Küchenschrank (oben)
+Kitchen Cabinet with sink=Küchenschrank mit Spüle
+Under-sink cabinet=Waschbeckenunterschrank
+Copper pans=Kupferpfannen
+Kitchen Faucet=Küchenwasserhahn
+Paper towels=Küchenpapier

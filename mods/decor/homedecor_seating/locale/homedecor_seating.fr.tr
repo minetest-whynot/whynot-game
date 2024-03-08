@@ -1,24 +1,15 @@
 # textdomain: homedecor_seating
-
-
-### armchairs.lua ###
-
 Armchair=Fauteuil
-
-### init.lua ###
-
-Someone else owns the spot where the middle or far end goes!=Quelqu'un d'autre est propriétaire de l'endroit où va le milieu ou l'autre bout !
 Someone else owns the spot where the other end goes!=Quelqu'un d'autre est propriétaire de l'endroit où va l'autre bout !
-
-### longsofas.lua ###
-
+Someone else owns the spot where the middle or far end goes!=Quelqu'un d'autre est propriétaire de l'endroit où va le milieu ou l'autre bout !
 Long Sofa=Canapé long
-
-### longsofas.lua ###
-### sofas.lua ###
-
 No room to place the sofa!=Pas assez de place pour poser le canapé !
-
-### sofas.lua ###
-
+Deck Chair=
+Deck Chair (blue striped)=
+Simple Bench=
+Garden Bench (style 1)=
+Garden Bench (style 2)=
+Kitchen chair=
+Basic office chair=
+Upscale office chair=
 Sofa=Canapé

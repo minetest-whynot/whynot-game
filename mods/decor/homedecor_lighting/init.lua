@@ -275,7 +275,8 @@ for brightness_level = 0, 14 do
 			wall_side =   { -0.5, -0.5, -0.5,   0, 0.5, 0.5 }
 		},
 		node_box = glowlight_nodebox.half,
-		groups = { snappy = 3, ud_param2_colorable = 1, not_in_creative_inventory = nici, dig_glass=1 },
+		groups = { snappy = 3, ud_param2_colorable = 1, not_in_creative_inventory = nici, dig_glass=1, axey=5 },
+		_mcl_hardness=1.6,
 		light_source = brightness_level,
 		_sound_def = {
 			key = "node_sound_glass_defaults",
@@ -343,7 +344,8 @@ for brightness_level = 0, 14 do
 			wall_side =   { -0.5, -0.5, -0.5, -0.25,   0.5, 0.5 }
 		},
 		node_box = glowlight_nodebox.quarter,
-		groups = { snappy = 3, ud_param2_colorable = 1, not_in_creative_inventory = nici, dig_glass=1 },
+		groups = { snappy = 3, ud_param2_colorable = 1, not_in_creative_inventory = nici, dig_glass=1, axey=5 },
+		_mcl_hardness=1.6,
 		light_source = brightness_level,
 		_sound_def = {
 			key = "node_sound_glass_defaults",
@@ -412,7 +414,8 @@ for brightness_level = 0, 14 do
 			wall_side =   {  -0.5, -0.25, -0.25,    0, 0.25, 0.25 }
 		},
 		node_box = glowlight_nodebox.small_cube,
-		groups = { snappy = 3, ud_param2_colorable = 1, not_in_creative_inventory = nici, dig_glass=1 },
+		groups = { snappy = 3, ud_param2_colorable = 1, not_in_creative_inventory = nici, dig_glass=1, axey=5 },
+		_mcl_hardness=1.6,
 		light_source = brightness_level,
 		_sound_def = {
 			key = "node_sound_glass_defaults",
@@ -865,7 +868,8 @@ for _, light_brightn_name in ipairs({"off", "on"}) do
 			"homedecor:rope_light_on_floor_off",
 			"group:mesecon_conductor_craftable"
 		},
-		groups = {cracky=3, oddly_breakable_by_hand=3, not_in_creative_inventory = nici_m},
+		groups = {cracky=3, oddly_breakable_by_hand=3, not_in_creative_inventory = nici_m, axey=5},
+		_mcl_hardness=1.6,
 		_sound_def = {
 			key = "node_sound_stone_defaults",
 		},
@@ -913,7 +917,8 @@ for _, light_brightn_name in ipairs({"off", "on"}) do
 			"homedecor:rope_light_on_ceiling_off",
 			"group:mesecon_conductor_craftable"
 		},
-		groups = {cracky=3, oddly_breakable_by_hand=3, not_in_creative_inventory = nici_m},
+		groups = {cracky=3, oddly_breakable_by_hand=3, not_in_creative_inventory = nici_m, axey=5},
+		_mcl_hardness=1.6,
 		_sound_def = {
 			key = "node_sound_stone_defaults",
 		},
@@ -1127,7 +1132,8 @@ minetest.register_node(":homedecor:chain_steel_top", {
 	sunlight_propagates = true,
 	paramtype = "light",
 	inventory_image = "basic_materials_chain_steel_inv.png",
-	groups = {cracky=3, dig_glass=1},
+	groups = {cracky=3, dig_glass=1, pickaxey=5},
+	_mcl_hardness=1.6,
 	selection_box = topchains_sbox,
 })
 
@@ -1141,7 +1147,8 @@ minetest.register_node(":homedecor:chain_brass_top", {
 	sunlight_propagates = true,
 	paramtype = "light",
 	inventory_image = "basic_materials_chain_brass_inv.png",
-	groups = {cracky=3, dig_glass=1},
+	groups = {cracky=3, dig_glass=1, pickaxey=5},
+	_mcl_hardness=1.6,
 	selection_box = topchains_sbox,
 })
 
@@ -1168,7 +1175,8 @@ minetest.register_node(":homedecor:chandelier_steel", {
 	drawtype = "mesh",
 	mesh = "homedecor_chandelier.obj",
 	use_texture_alpha = "clip",
-	groups = {cracky=3, dig_glass=1},
+	groups = {cracky=3, dig_glass=1, pickaxey=5},
+	_mcl_hardness=1.6,
 	_sound_def = {
 		key = "node_sound_stone_defaults",
 	},
@@ -1197,7 +1205,8 @@ minetest.register_node(":homedecor:chandelier_brass", {
 	drawtype = "mesh",
 	mesh = "homedecor_chandelier.obj",
 	use_texture_alpha = "clip",
-	groups = {cracky=3, dig_glass=1},
+	groups = {cracky=3, dig_glass=1, pickaxey=5},
+	_mcl_hardness=1.6,
 	_sound_def = {
 		key = "node_sound_stone_defaults",
 	},

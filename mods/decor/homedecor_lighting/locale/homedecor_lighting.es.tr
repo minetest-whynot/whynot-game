@@ -1,32 +1,30 @@
 # textdomain: homedecor_lighting
-
-
-### init.lua ###
-
-Candlestick (brass)=Candelero (latón)
-Candlestick (wrought iron)=Candelero (hierro forjado)
-Ceiling Lamp/Light=
-Ceiling Lantern/Light=
-Chandelier (brass)=Candelabro (latón)
-Chandelier (steel)=
-Desk Lamp/Light=
+Thick Glowlight=Luz brillante gruesa
+Thin Glowlight=Luz brillante fina
+Small Glowlight Cube=Cubo pequeño de luz brillante
+Plasma Lamp/Light=
 Ground Lantern/Light=
 Hanging Lantern/Light=
-Hanging chain (ceiling mount, brass)=Cadena colgante (montada en techo, latón)
-Hanging chain (ceiling mount, steel)=
+Ceiling Lantern/Light=
 Lattice lantern/Light (large)=
 Lattice lantern/light (small)=
-Oil Lamp/Light (tabletop)=
-Oil lamp/Light (hurricane)=
-Plasma Ball/light=
-Plasma Lamp/Light=
-Small Glowlight Cube=Cubo pequeño de luz brillante
-Standing Lamp/Light=
+Desk Lamp/Light=
+Ceiling Lamp/Light=
 Table Lamp/Light=
-Thick Candle=Vela gruesa
-Thick Glowlight=Luz brillante gruesa
-Thin Candle=Vela fina
-Thin Glowlight=Luz brillante fina
+Standing Lamp/Light=
+Plasma Ball/light=
+Rope lighting (on floor)=
+Rope lighting (on ceiling)=
 Wall Lamp/light=
-Wall Torch=Antorcha de pared
+Thick Candle=Vela gruesa
+Thin Candle=Vela fina
+Candlestick (wrought iron)=Candelero (hierro forjado)
+Candlestick (brass)=Candelero (latón)
 Wall sconce=Candelabro de pared
+Oil lamp/Light (hurricane)=
+Oil Lamp/Light (tabletop)=
+Hanging chain (ceiling mount, steel)=
+Hanging chain (ceiling mount, brass)=Cadena colgante (montada en techo, latón)
+Chandelier (steel)=
+Chandelier (brass)=Candelabro (latón)
+Wall Torch=Antorcha de pared

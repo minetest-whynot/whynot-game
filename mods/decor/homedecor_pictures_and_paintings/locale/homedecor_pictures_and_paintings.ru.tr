@@ -1,8 +1,4 @@
 # textdomain: homedecor_pictures_and_paintings
-
-
-### init.lua ###
-
-Blank Canvas=Пустой холст
-Decorative painting #@1=
 Picture Frame @1=Рамка для картины @1
+Decorative painting #@1=
+Blank Canvas=Пустой холст

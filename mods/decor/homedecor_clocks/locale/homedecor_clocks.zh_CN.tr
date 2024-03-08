@@ -1,10 +1,6 @@
 # textdomain: homedecor_clocks
-
-
-### init.lua ###
-
-Alarm clock=闹钟
-Digital clock=数字时钟
-Grandfather Clock=祖父钟
 Plastic analog clock=塑料时钟
 Wooden analog clock=木钟
+Digital clock=数字时钟
+Alarm clock=闹钟
+Grandfather Clock=祖父钟

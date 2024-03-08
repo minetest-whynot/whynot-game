@@ -1,10 +1,6 @@
 # textdomain: homedecor_office
-
-
-### init.lua ###
-
-Calendar=Kalender
-Date (right-click to update):@n@1=Datum (Rechsklick zum Aktualisieren):@n@1
+Filing cabinet=Ablageschrank
 Desk=Schreibtisch
 Desk globe=Schreibtischglobus
-Filing cabinet=Ablageschrank
+Calendar=Kalender
+Date (right-click to update):@n@1=Datum (Rechsklick zum Aktualisieren):@n@1

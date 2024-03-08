@@ -1,17 +1,17 @@
 local cdoor_list = {   --Number , Description , Inven Image , Image
 	{"Castle Door 1" , "door1"},
 	{"Castle Door 2" , "door2"},
---	{"Castle Door 3" , "door3"},
---	{"Castle Door 4" , "door4"},
---	{"Castle Door 5" , "door5"},
+	{"Castle Door 3" , "door3"},
+	{"Castle Door 4" , "door4"},
+	{"Castle Door 5" , "door5"},
 	{"Castle Door 6" , "door6"},
 	{"Castle Door 7" , "door7"},
 	{"Castle Door 8" , "door8"},
---	{"Castle Door 9" , "door9"},
---	{"Castle Door 10" , "door10"},
---	{"Castle Door 11" , "door11"},
---	{"Castle Door 12" , "door12"},
---	{"Castle Door 13" , "door13"},
+	{"Castle Door 9" , "door9"},
+	{"Castle Door 10" , "door10"},
+	{"Castle Door 11" , "door11"},
+	{"Castle Door 12" , "door12"},
+	{"Castle Door 13" , "door13"},
 }
 
 local function add_door(desc, img)
@@ -59,8 +59,8 @@ minetest.register_craft({
 minetest.register_craft({
 	output = "my_castle_doors:door4_locked 1",
 	recipe = {
-		{"my_door_wood:wood_brown", "default:steel_ingot", ""},
-		{"my_door_wood:wood_brown", "my_door_wood:wood_brown", "default:steel_ingot"},
+		{"my_door_wood:wood_brown", "my_door_wood:wood_brown", ""},
+		{"my_door_wood:wood_brown", "default:steel_ingot", "default:steel_ingot"},
 		{"my_door_wood:wood_brown", "my_door_wood:wood_brown", ""}
 	}
 })

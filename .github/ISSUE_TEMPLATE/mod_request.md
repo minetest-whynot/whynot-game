@@ -25,13 +25,15 @@ https://www.example.com
    * 
 5. In what way might this mod be reduced to be more simple (as in "Keep it Simple Stupid") (ex: "the foobar mod could be made more simple by splitting into two mods, foo and bar")
    * 
-6. Is this mod survival freindly? What items that it provides that _should_ be craftable/obtainable, but arent?
+6. Is this mod survival friendly? What items that it provides that _should_ be craftable/obtainable, but arent?
    * 
 7. When does this mod feel like cheating?
    * 
 8. Does this mod use the software "git" for version control? (note: we are asking about git. Github, Gitlab, notabug and hundreds of other git _providers_ exist but are not specificly needed, although these do qualify).
    * 
 9. Upon testing this mod, what errors, odd behavior, or other incompatibilities were noticed?
+   * 
+10. Is the licence one that we can include in WhyNot? (Whynot is under the GPLv3 only. Be sure you know what you are talking about or cite your source)
    * 
 
 ## Other comments

@@ -1,10 +1,21 @@
+pie = {}
 
 -- check for available hunger mods
-local hmod = minetest.global_exists("hunger")
+local hmod = minetest.get_modpath("hunger")
 local hbmod = minetest.global_exists("hbhunger")
 local stmod = minetest.global_exists("stamina")
+local defmod = minetest.get_modpath("default")
+local mclhunger = minetest.get_modpath("mcl_hunger")
+local screwdriver_exists = minetest.get_modpath("screwdriver")
+local quarters = minetest.settings:get_bool("pie.quarters")
 
-local screwdriver_exists = minetest.global_exists("screwdriver")
+-- sound support
+local cake_sound = defmod and default.node_sound_dirt_defaults()
+
+if minetest.get_modpath("mcl_sounds") then
+	cake_sound = mcl_sounds.node_sound_dirt_defaults()
+end
+
 
 -- eat pie slice function
 local function replace_pie(node, puncher, pos)
@@ -15,8 +26,8 @@ local function replace_pie(node, puncher, pos)
 	end
 
 	-- which size of pie did we hit?
-	local pie = node.name:split("_")[1]
-	local num = tonumber(node.name:split("_")[2])
+	local pie = node.name:sub(1,-3)
+	local num = tonumber(node.name:sub(-1))
 
 	-- are we using crystal shovel to pick up full pie using soft touch?
 	local tool = puncher:get_wielded_item():get_name()
@@ -49,74 +60,89 @@ local function replace_pie(node, puncher, pos)
 		minetest.check_for_falling(pos)
 	end
 
+	-- default eat sound
+	local sound = "default_dig_crumbly"
+
 	-- Blockmen's hud_hunger mod
 	if hmod then
 
 		local h = hunger.read(puncher)
---		print ("hunger is "..h)
 
 		h = math.min(h + 4, 30)
 
 		local ok = hunger.update_hunger(puncher, h)
 
-		minetest.sound_play("hunger_eat", {
-			pos = pos, gain = 0.7, max_hear_distance = 5})
+		sound = "hunger_eat"
 
 	-- Wuzzy's hbhunger mod
 	elseif hbmod then
 
 		local h = tonumber(hbhunger.hunger[puncher:get_player_name()])
---		print ("hbhunger is "..h)
 
 		h = math.min(h + 4, 30)
 
 		hbhunger.hunger[puncher:get_player_name()] = h
 
-		minetest.sound_play("hbhunger_eat_generic", {
-			pos = pos, gain = 0.7, max_hear_distance = 5})
+		sound = "hbhunger_eat_generic"
 
 	-- Sofar's stamina mod
 	elseif stmod then
 
 		stamina.change(puncher, 4)
 
-		minetest.sound_play("stamina_eat", {
-			pos = pos, gain = 0.7, max_hear_distance = 5})
+		sound = "stamina_eat"
+
+	-- mineclone2 mcl_hunger mod
+	elseif mclhunger then
+
+		local h = mcl_hunger.get_hunger(puncher)
+
+		h = math.min(h + 4, 20)
+
+		mcl_hunger.set_hunger(puncher, h)
+
+		sound = "mcl_hunger_bite"
 
 	-- none of the above found? add to health instead
 	else
 
 		local h = puncher:get_hp()
---		print ("health is "..h)
 
 		h = math.min(h + 4, 20)
 
 		puncher:set_hp(h)
 	end
+
+	minetest.sound_play(sound, {pos = pos, gain = 0.7, max_hear_distance = 5}, true)
 end
 
 
 -- register pie bits
-local function register_pie(pie, desc)
+pie.register_pie = function(pie, desc)
 
 	-- full pie
-	minetest.register_node("pie:" .. pie .. "_0", {
+
+	local nodebox = {
+		type = "fixed",
+		fixed = {-0.45, -0.5, -0.45, 0.45, 0, 0.45}
+	}
+	local tiles = {
+		pie .. "_top.png", pie .. "_bottom.png", pie .. "_side.png",
+		pie .. "_side.png", pie .. "_side.png", pie .. "_side.png"
+	}
+
+	minetest.register_node(":pie:" .. pie .. "_0", {
 		description = desc,
 		paramtype = "light",
 		paramtype2 = "facedir",
 		use_texture_alpha = "clip",
 		sunlight_propagates = false,
-		tiles = {
-			pie .. "_top.png", pie .. "_bottom.png", pie .. "_side.png",
-			pie .. "_side.png", pie .. "_side.png", pie .. "_side.png"
-		},
+		tiles = tiles,
 		inventory_image = pie .. "_inv.png",
 		wield_image = pie .. "_inv.png",
 		drawtype = "nodebox",
-		node_box = {
-			type = "fixed",
-			fixed = {-0.45, -0.5, -0.45, 0.45, 0, 0.45}
-		},
+		node_box = nodebox,
+		sounds = cake_sound,
 
 		on_rotate = screwdriver_exists and screwdriver.rotate_simple,
 
@@ -126,23 +152,39 @@ local function register_pie(pie, desc)
 	})
 
 	-- 3/4 pie
-	minetest.register_node("pie:" .. pie .. "_1", {
+
+	nodebox = {
+		type = "fixed",
+		fixed = {-0.45, -0.5, -0.25, 0.45, 0, 0.45}
+	}
+	tiles = {
+		pie .. "_top.png", pie .. "_bottom.png", pie .. "_side.png",
+		pie .. "_side.png", pie .. "_side.png", pie .. "_inside.png"
+	}
+
+	if quarters then
+		nodebox.fixed = {
+			{-0.45, -0.5, -0.45, 0, 0, 0.45},
+			{-0.45, -0.5, 0, 0.45, 0, 0.45}
+		}
+		tiles = {
+			pie .. "_top.png", pie .. "_bottom.png", pie .. "_side_inside.png^[transformFX",
+			pie .. "_side.png", pie .. "_side.png", pie .. "_side_inside.png"
+		}
+	end
+
+	minetest.register_node(":pie:" .. pie .. "_1", {
 		description = "3/4 " .. desc,
 		paramtype = "light",
 		paramtype2 = "facedir",
 		use_texture_alpha = "clip",
 		sunlight_propagates = true,
-		tiles = {
-			pie .. "_top.png", pie .. "_bottom.png", pie .. "_side.png",
-			pie .. "_side.png", pie .. "_side.png", pie .. "_inside.png"
-		},
+		tiles = tiles,
 		groups = {not_in_creative_inventory = 1},
 		drop = {},
 		drawtype = "nodebox",
-		node_box = {
-			type = "fixed",
-			fixed = {-0.45, -0.5, -0.25, 0.45, 0, 0.45}
-		},
+		node_box = nodebox,
+		sounds = cake_sound,
 
 		on_rotate = screwdriver_exists and screwdriver.rotate_simple,
 
@@ -152,23 +194,36 @@ local function register_pie(pie, desc)
 	})
 
 	-- 1/2 pie
-	minetest.register_node("pie:" .. pie .. "_2", {
+
+	nodebox = {
+		type = "fixed",
+		fixed = {-0.45, -0.5, 0.0, 0.45, 0, 0.45}
+	}
+	tiles = {
+		pie .. "_top.png", pie .. "_bottom.png", pie .. "_side.png",
+		pie .. "_side.png", pie .. "_side.png", pie .. "_inside.png"
+	}
+
+	if quarters then
+		nodebox.fixed = {-0.45, -0.5, -.45, 0, 0, 0.45}
+		tiles = {
+			pie .. "_top.png", pie .. "_bottom.png", pie .. "_inside.png",
+			pie .. "_side.png", pie .. "_side.png", pie .. "_side.png"
+		}
+	end
+
+	minetest.register_node(":pie:" .. pie .. "_2", {
 		description = "Half " .. desc,
 		paramtype = "light",
 		paramtype2 = "facedir",
 		use_texture_alpha = "clip",
 		sunlight_propagates = true,
-		tiles = {
-			pie .. "_top.png", pie .. "_bottom.png", pie .. "_side.png",
-			pie .. "_side.png", pie .. "_side.png", pie .. "_inside.png"
-		},
+		tiles = tiles,
 		groups = {not_in_creative_inventory = 1},
 		drop = {},
 		drawtype = "nodebox",
-		node_box = {
-			type = "fixed",
-			fixed = {-0.45, -0.5, 0.0, 0.45, 0, 0.45}
-		},
+		node_box = nodebox,
+		sounds = cake_sound,
 
 		on_rotate = screwdriver_exists and screwdriver.rotate_simple,
 
@@ -178,23 +233,36 @@ local function register_pie(pie, desc)
 	})
 
 	-- 1/4 pie
-	minetest.register_node("pie:" .. pie .. "_3", {
+
+	tiles = {
+		pie .. "_top.png", pie .. "_bottom.png", pie .. "_side.png",
+		pie .. "_side.png", pie .. "_side.png", pie .. "_inside.png"
+	}
+	nodebox = {
+		type = "fixed",
+		fixed = {-0.45, -0.5, 0.25, 0.45, 0, 0.45}
+	}
+
+	if quarters then
+		nodebox.fixed = {-0.45, -0.5, 0.0, 0.0, 0, 0.45}
+		tiles = {
+			pie .. "_top.png", pie .. "_bottom.png", pie .. "_inside.png",
+			pie .. "_side.png", pie .. "_side.png", pie .. "_inside.png"
+		}
+	end
+
+	minetest.register_node(":pie:" .. pie .. "_3", {
 		description = "Piece of " .. desc,
 		paramtype = "light",
 		paramtype2 = "facedir",
 		use_texture_alpha = "clip",
 		sunlight_propagates = true,
-		tiles = {
-			pie .. "_top.png", pie .. "_bottom.png", pie .. "_side.png",
-			pie .. "_side.png", pie .. "_side.png", pie .. "_inside.png"
-		},
+		tiles = tiles,
 		groups = {not_in_creative_inventory = 1},
 		drop = {},
 		drawtype = "nodebox",
-		node_box = {
-			type = "fixed",
-			fixed = {-0.45, -0.5, 0.25, 0.45, 0, 0.45}
-		},
+		node_box = nodebox,
+		sounds = cake_sound,
 
 		on_rotate = screwdriver_exists and screwdriver.rotate_simple,
 
@@ -205,146 +273,161 @@ local function register_pie(pie, desc)
 end
 
 
--- normal cake
-register_pie("pie", "Cake")
+-- register cakes
+pie.register_pie("pie", "Cake")
+pie.register_pie("choc", "Chocolate Cake")
+pie.register_pie("scsk", "Strawberry Cheesecake")
+pie.register_pie("coff", "Coffee Cake")
+pie.register_pie("rvel", "Red Velvet Cake")
+pie.register_pie("meat", "Meat Cake")
+pie.register_pie("bana", "Banana Cake")
+pie.register_pie("brpd", "Bread Pudding")
+pie.register_pie("orange", "Orange Pie")
 
+
+-- ingredient variables
+local mcl = minetest.get_modpath("mcl_dye")
+local i_sugar = mcl and "mcl_core:sugar" or "group:food_sugar"
+local i_wheat = mcl and "mcl_farming:wheat_item" or "group:food_wheat"
+local i_flour = mcl and "mcl_farming:bread" or "group:food_flour"
+local i_egg = mcl and "mcl_throwing:egg" or "group:food_egg"
+local i_milk = mcl and "mcl_mobitems:milk_bucket" or "group:food_milk"
+local i_cocoa = mcl and "mcl_dye:brown" or "group:food_cocoa"
+local i_strawberry = mcl and "mcl_dye:red" or "group:food_strawberry"
+local i_coffee = mcl and "mcl_dye:black" or "group:food_coffee"
+local i_cheese = mcl and "mcl_dye:yellow" or "group:food_cheese"
+local i_red = mcl and "mcl_dye:red" or "dye:red"
+local i_meat = mcl and "mcl_mobitems:beef" or "group:food_meat_raw"
+local i_banana = mcl and "mcl_dye:yellow" or "group:food_banana"
+local i_bread = mcl and "mcl_farming:bread" or "group:food_bread"
+local i_orange = mcl and "mcl_dye:orange" or "group:food_orange"
+local i_bucket = mcl and "mcl_buckets:bucket_empty" or "bucket:bucket_empty"
+local i_bottle = mcl and "mcl_potions:glass_bottle" or "vessels:glass_bottle"
+
+-- replacement items
+local replace_these = {
+	{"mobs:bucket_milk", i_bucket},
+	{"mobs:wooden_bucket_milk", "wooden_bucket:bucket_wood_empty"},
+	{"mcl_mobitems:milk_bucket", i_bucket},
+	{"petz:bucket_milk", i_bucket},
+	{"cucina_vegana:soy_milk", i_bottle}
+}
+
+-- normal cake recipe
 minetest.register_craft({
 	output = "pie:pie_0",
 	recipe = {
-		{"group:food_sugar", "group:food_milk", "group:food_sugar"},
-		{"group:food_sugar", "group:food_egg", "group:food_sugar"},
-		{"group:food_wheat", "group:food_flour", "group:food_wheat"}
+		{i_sugar, i_milk, i_sugar},
+		{i_sugar, i_egg, i_sugar},
+		{i_wheat, i_flour, i_wheat}
 	},
-	replacements = {{"mobs:bucket_milk", "bucket:bucket_empty"}}
+	replacements = replace_these
 })
 
-
--- chocolate cake
-register_pie("choc", "Chocolate Cake")
-
+-- chocolate cake recipe
 minetest.register_craft({
 	output = "pie:choc_0",
 	recipe = {
-		{"group:food_cocoa", "group:food_milk", "group:food_cocoa"},
-		{"group:food_sugar", "group:food_egg", "group:food_sugar"},
-		{"group:food_wheat", "group:food_flour", "group:food_wheat"}
+		{i_cocoa, i_milk, i_cocoa},
+		{i_sugar, i_egg, i_sugar},
+		{i_wheat, i_flour, i_wheat}
 	},
-	replacements = {{"mobs:bucket_milk", "bucket:bucket_empty"}}
+	replacements = replace_these
 })
 
-
--- strawberry cheesecake
-register_pie("scsk", "Strawberry Cheesecake")
-
+-- strawberry cheesecake recipe
 minetest.register_craft({
 	output = "pie:scsk_0",
 	recipe = {
-		{"group:food_strawberry", "group:food_milk", "group:food_strawberry"},
-		{"group:food_sugar", "group:food_egg", "group:food_sugar"},
-		{"group:food_wheat", "group:food_flour", "group:food_wheat"}
+		{i_strawberry, i_milk, i_strawberry},
+		{i_sugar, i_egg, i_sugar},
+		{i_wheat, i_flour, i_wheat}
 	},
-	replacements = {{"mobs:bucket_milk", "bucket:bucket_empty"}}
+	replacements = replace_these
 })
 
-
--- coffee cake
-register_pie("coff", "Coffee Cake")
-
+-- coffee cake recipe
 minetest.register_craft({
 	output = "pie:coff_0",
 	recipe = {
-		{"group:food_coffee", "group:food_milk", "group:food_coffee"},
-		{"group:food_sugar", "group:food_egg", "group:food_sugar"},
-		{"group:food_wheat", "group:food_flour", "group:food_wheat"}
+		{i_coffee, i_milk, i_coffee},
+		{i_sugar, i_egg, i_sugar},
+		{i_wheat, i_flour, i_wheat}
 	},
-	replacements = {{"mobs:bucket_milk", "bucket:bucket_empty"}}
+	replacements = replace_these
 })
 
-
--- red velvet cake
-register_pie("rvel", "Red Velvet Cake")
-
+-- red velvet cake recipe
 minetest.register_craft({
 	output = "pie:rvel_0",
 	recipe = {
-		{"group:food_cocoa", "group:food_milk", "dye:red"},
-		{"group:food_sugar", "group:food_egg", "group:food_sugar"},
-		{"group:food_flour", "group:food_cheese", "group:food_flour"}
+		{i_cocoa, i_milk, i_red},
+		{i_sugar, i_egg, i_sugar},
+		{i_flour, i_cheese, i_flour}
 	},
-	replacements = {{"mobs:bucket_milk", "bucket:bucket_empty"}}
+	replacements = replace_these
 })
 
-
--- meat cake
-register_pie("meat", "Meat Cake")
-
+-- meat cake recipe
 minetest.register_craft({
 	output = "pie:meat_0",
 	recipe = {
-		{"group:food_meat_raw", "group:food_egg", "group:food_meat_raw"},
-		{"group:food_wheat", "group:food_wheat", "group:food_wheat"}
+		{i_meat, i_egg, i_meat},
+		{i_wheat, i_wheat, i_wheat}
 	}
 })
 
-
--- banana cake
-register_pie("bana", "Banana Cake")
-
+-- banana cake recipe
 minetest.register_craft({
 	output = "pie:bana_0",
 	recipe = {
-		{"group:food_banana", "group:food_milk", "group:food_banana"},
-		{"group:food_sugar", "group:food_egg", "group:food_sugar"},
-		{"group:food_wheat", "group:food_flour", "group:food_wheat"}
+		{i_banana, i_milk, i_banana},
+		{i_sugar, i_egg, i_sugar},
+		{i_wheat, i_flour, i_wheat}
 	},
-	replacements = {{"mobs:bucket_milk", "bucket:bucket_empty"}}
+	replacements = replace_these
 })
 
-
--- bread pudding
-register_pie("brpd", "Bread Pudding")
-
+-- bread pudding recipe
 minetest.register_craft({
 	output = "pie:brpd_0",
 	recipe = {
-		{"group:food_bread", "group:food_milk", "group:food_bread"},
-		{"group:food_sugar", "group:food_egg", "group:food_sugar"},
-		{"group:food_wheat", "group:food_flour", "group:food_wheat"}
+		{i_bread, i_milk, i_bread},
+		{i_sugar, i_egg, i_sugar},
+		{i_wheat, i_flour, i_wheat}
 	},
-	replacements = {{"mobs:bucket_milk", "bucket:bucket_empty"}}
+	replacements = replace_these
 })
 
-
 -- orange pie
-register_pie("orange", "Orange Pie")
-
 minetest.register_craft({
 	output = "pie:orange_0",
 	recipe = {
-		{"group:food_orange", "group:food_milk", "group:food_orange"},
-		{"group:food_sugar", "group:food_egg", "group:food_sugar"},
-		{"group:food_wheat", "group:food_flour", "group:food_wheat"}
+		{i_orange, i_milk, i_orange},
+		{i_sugar, i_egg, i_sugar},
+		{i_wheat, i_flour, i_wheat}
 	},
-	replacements = {{"mobs:bucket_milk", "bucket:bucket_empty"}}
+	replacements = replace_these
 })
 
 
 -- add lucky blocks
 if minetest.get_modpath("lucky_block") then
-lucky_block:add_blocks({
-	{"nod", "pie:pie_0", 0},
-	{"nod", "pie:choc_0", 0},
-	{"nod", "pie:coff_0", 0},
-	{"tro", "pie:pie_0"},
-	{"nod", "pie:rvel_0", 0},
-	{"nod", "pie:scsk_0", 0},
-	{"nod", "pie:bana_0", 0},
-	{"nod", "pie:orange_0", 0},
-	{"tro", "pie:orange_0", "default_place_node_hard", true},
-	{"nod", "pie:brpd_0", 0},
-	{"nod", "pie:meat_0", 0},
-	{"lig"}
-})
+
+	lucky_block:add_blocks({
+		{"nod", "pie:pie_0", 0},
+		{"nod", "pie:choc_0", 0},
+		{"nod", "pie:coff_0", 0},
+		{"tro", "pie:pie_0"},
+		{"nod", "pie:rvel_0", 0},
+		{"nod", "pie:scsk_0", 0},
+		{"nod", "pie:bana_0", 0},
+		{"nod", "pie:orange_0", 0},
+		{"tro", "pie:orange_0", "default_place_node_hard", true},
+		{"nod", "pie:brpd_0", 0},
+		{"nod", "pie:meat_0", 0},
+		{"lig"}
+	})
 end
 
 

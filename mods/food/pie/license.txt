@@ -24,7 +24,7 @@ THE SOFTWARE.
 Textures licensed under CC-BY-SA 3.0
 http://creativecommons.org/licenses/by-sa/3.0/
 
-lux_pp, Poikilos
+Poikilos
   pie_inv.png
 
 TenPlus1
@@ -39,3 +39,6 @@ TenPlus1
 CalebDavis
   brpd_*.png
   orange_*.png
+
+Edited by Slightly
+  *_side_inside.png

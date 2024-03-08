@@ -1,5 +1,0 @@
-# Template
-
-Blades = 
-Cabin for heli = 
-Helicopter = 

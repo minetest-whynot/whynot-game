@@ -1,5 +1,5 @@
-
-local S = mobs.intllib_monster
+-- Translation support
+local S = minetest.get_translator("mobs_monster")
 
 local dirt_types = {
 
@@ -29,19 +29,19 @@ mobs:register_mob("mobs_monster:dirt_monster", {
 	mesh = "mobs_stone_monster.b3d",
 	textures = {
 		{"mobs_dirt_monster.png"},
-		{"mobs_dirt_monster2.png"},
+		{"mobs_dirt_monster2.png"}
 	},
 	blood_texture = "default_dirt.png",
 	makes_footstep_sound = true,
 	sounds = {
-		random = "mobs_dirtmonster",
+		random = "mobs_dirtmonster"
 	},
 	view_range = 15,
 	walk_velocity = 1,
 	run_velocity = 3,
 	jump = true,
 	drops = {
-		{name = "default:dirt", chance = 1, min = 0, max = 2},
+		{name = "default:dirt", chance = 1, min = 0, max = 2}
 	},
 	water_damage = 1,
 	lava_damage = 5,
@@ -57,7 +57,7 @@ mobs:register_mob("mobs_monster:dirt_monster", {
 		run_start = 40,
 		run_end = 63,
 		punch_start = 40,
-		punch_end = 63,
+		punch_end = 63
 	},
 
 	-- check surrounding nodes and spawn a specific monster
@@ -89,16 +89,17 @@ mobs:register_mob("mobs_monster:dirt_monster", {
 
 
 if not mobs.custom_spawn_monster then
-mobs:spawn({
-	name = "mobs_monster:dirt_monster",
-	nodes = {"default:dirt_with_grass", "ethereal:gray_dirt", "ethereal:dry_dirt"},
-	min_light = 0,
-	max_light = 7,
-	chance = 6000,
-	active_object_count = 2,
-	min_height = 0,
-	day_toggle = false,
-})
+
+	mobs:spawn({
+		name = "mobs_monster:dirt_monster",
+		nodes = {"default:dirt_with_grass", "ethereal:gray_dirt", "ethereal:dry_dirt"},
+		min_light = 0,
+		max_light = 7,
+		chance = 6000,
+		active_object_count = 2,
+		min_height = 0,
+		day_toggle = false
+	})
 end
 
 

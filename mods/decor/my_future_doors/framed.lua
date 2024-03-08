@@ -40,7 +40,7 @@ local function add_door(col)
 		on_place = function(itemstack, placer, pointed_thing)
 			local pos1 = pointed_thing.above
 			local pos2 = vector.add(pos1, {x=0,y=1,z=0})
-	
+
 			if not placer or not placer:is_player() then
 				return
 			end

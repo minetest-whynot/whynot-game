@@ -1,18 +1,14 @@
 # textdomain: homedecor_windows_and_treatments
-
-
-### init.lua ###
-
-Curtain Rod (@1)=Palo de cortinas (@1)
-Curtains=Cortinas
-Curtains (open)=Cortinas
-Stained Glass=Vídrio coloreado
-Window (plain)=Ventana (lisa)
 Window (quartered)=Ventana (cuarteada)
+Window (plain)=Ventana (lisa)
 Window Blinds (thick)=Persianas (gruesas)
 Window Blinds (thin)=Persianas (finas)
-Window flowerbox=Caja de flores de ventana
-Wooden Shutter=Postigo de madera
+Curtains=Cortinas
+Curtains (open)=Cortinas
 brass=latón
-wood=madera
 wrought iron=hierro forjado
+wood=madera
+Curtain Rod (@1)=Palo de cortinas (@1)
+Window flowerbox=Caja de flores de ventana
+Stained Glass=Vídrio coloreado
+Wooden Shutter=Postigo de madera

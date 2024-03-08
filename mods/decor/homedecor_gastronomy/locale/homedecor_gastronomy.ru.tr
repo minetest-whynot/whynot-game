@@ -1,13 +1,10 @@
 # textdomain: homedecor_gastronomy
-
-### init.lua ###
-
-Brown bottle=Коричневая бутылка
-Coffee Maker=Кофеварка
 Cutlery set=Набор столовых приборов
+Brown bottle=Коричневая бутылка
 Four brown bottles=Четыре коричневых бутылки
+Green bottle=Зелёная бутылка
 Four green bottles=Четыре зелёных бутылки
 Four misc brown/green bottles=Четыре разные коричневые/зелёные 
-Green bottle=Зелёная бутылка
-Toaster=Тостер
 Wine rack=Винный шкаф
+Coffee Maker=Кофеварка
+Toaster=Тостер

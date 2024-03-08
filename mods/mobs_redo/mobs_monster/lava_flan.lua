@@ -1,5 +1,5 @@
-
-local S = mobs.intllib_monster
+-- Translation support
+local S = minetest.get_translator("mobs_monster")
 
 -- Lava Flan by Zeg9 (additional textures by JurajVajda)
 
@@ -150,29 +150,32 @@ function minetest.handle_node_drops(pos, drops, digger)
 	local hot_drops = {}
 
 	-- loop through current node drops
-	for _, drop in pairs(drops) do
+	for _, drop in ipairs(drops) do
 
 		-- get cooked output of current drops
 		local stack = ItemStack(drop)
-		local output = minetest.get_craft_result({
-			method = "cooking",
-			width = 1,
-			items = {drop}
-		})
 
-		-- if we have cooked result then add to new list
-		if output
-		and output.item
-		and not output.item:is_empty() then
+		while not stack:is_empty() do
 
-			table.insert(hot_drops,
-				ItemStack({
-					name = output.item:get_name(),
-					count = output.item:to_table().count,
-				})
-			)
-		else -- if not then return normal drops
-			table.insert(hot_drops, stack)
+			local output, decremented_input = minetest.get_craft_result({
+				method = "cooking",
+				width = 1,
+				items = {stack}
+			})
+
+			if output.item:is_empty() then
+
+				table.insert_all(hot_drops, decremented_input.items)
+				break
+			else
+				if not output.item:is_empty() then
+					table.insert(hot_drops, output.item)
+				end
+
+				table.insert_all(hot_drops, output.replacements)
+
+				stack = decremented_input.items[1] or ItemStack()
+			end
 		end
 	end
 
@@ -306,12 +309,11 @@ mobs:register_arrow("mobs_monster:obsidian_arrow", {
 		end
 
 		local texture = "default_dirt.png" --fallback texture
-
 		local radius = 1
-		local def = minetest.registered_nodes[node]
+		local def = node and minetest.registered_nodes[node.name]
 
-		if def then
-			node = {name = node}
+		if not def then
+			return
 		end
 
 		if def and def.tiles and def.tiles[1] then
@@ -347,6 +349,6 @@ mobs:register_arrow("mobs_monster:obsidian_arrow", {
 
 		local snd = def.sounds and def.sounds.dug or "default_dig_crumbly"
 
-		minetest.sound_play(snd, {pos = pos, max_hear_distance = 12, gain = 1.0}, true)
+		minetest.sound_play(snd, {pos = pos, max_hear_distance = 8, gain = 1.0}, true)
 	end
 })

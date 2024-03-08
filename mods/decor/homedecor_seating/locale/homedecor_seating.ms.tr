@@ -1,24 +1,15 @@
 # textdomain: homedecor_seating
-
-
-### armchairs.lua ###
-
 Armchair=Kerusi Berlengan
-
-### init.lua ###
-
-Someone else owns the spot where the middle or far end goes!=Tempat untuk letak pertengahan atau hujung objek itu kawasan kepunyaan orang lain!
 Someone else owns the spot where the other end goes!=Tempat untuk letak hujung objek itu kawasan kepunyaan orang lain!
-
-### longsofas.lua ###
-
+Someone else owns the spot where the middle or far end goes!=Tempat untuk letak pertengahan atau hujung objek itu kawasan kepunyaan orang lain!
 Long Sofa=Sofa Panjang
-
-### longsofas.lua ###
-### sofas.lua ###
-
 No room to place the sofa!=Tiada ruang untuk letak sofa!
-
-### sofas.lua ###
-
+Deck Chair=
+Deck Chair (blue striped)=
+Simple Bench=
+Garden Bench (style 1)=
+Garden Bench (style 2)=
+Kitchen chair=
+Basic office chair=
+Upscale office chair=
 Sofa=Sofa

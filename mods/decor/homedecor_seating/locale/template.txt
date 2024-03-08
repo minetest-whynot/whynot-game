@@ -1,24 +1,15 @@
 # textdomain: homedecor_seating
-
-
-### armchairs.lua ###
-
 Armchair=
-
-### init.lua ###
-
-Someone else owns the spot where the middle or far end goes!=
 Someone else owns the spot where the other end goes!=
-
-### longsofas.lua ###
-
+Someone else owns the spot where the middle or far end goes!=
 Long Sofa=
-
-### longsofas.lua ###
-### sofas.lua ###
-
 No room to place the sofa!=
-
-### sofas.lua ###
-
+Deck Chair=
+Deck Chair (blue striped)=
+Simple Bench=
+Garden Bench (style 1)=
+Garden Bench (style 2)=
+Kitchen chair=
+Basic office chair=
+Upscale office chair=
 Sofa=

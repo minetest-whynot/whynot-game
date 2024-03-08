@@ -34,7 +34,8 @@ minetest.register_node("lavalamp:lavalamp", {
 		type = "fixed",
 		fixed = { -0.25, -0.5, -0.25, 0.25,0.5, 0.25 },
 	},
-	groups = {snappy=2,cracky=3,oddly_breakable_by_hand=3, ud_param2_colorable = 1},
+	groups = {snappy=2,cracky=3,oddly_breakable_by_hand=3, ud_param2_colorable = 1, axey=5},
+	_mcl_hardness=1.6,
 	_sound_def = {
 		key = "node_sound_glass_defaults",
 	},
@@ -64,7 +65,8 @@ minetest.register_node("lavalamp:lavalamp_off", {
 		type = "fixed",
 		fixed = { -0.25, -0.5, -0.25, 0.25,0.5, 0.25 },
 	},
-	groups = {snappy=2,cracky=3,oddly_breakable_by_hand=3, not_in_creative_inventory=1},
+	groups = {snappy=2,cracky=3,oddly_breakable_by_hand=3, not_in_creative_inventory=1, axey=5},
+	_mcl_hardness=1.6,
 	_sound_def = {
 		key = "node_sound_glass_defaults",
 	},
