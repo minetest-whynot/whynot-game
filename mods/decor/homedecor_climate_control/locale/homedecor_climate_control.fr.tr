@@ -1,11 +1,7 @@
 # textdomain: homedecor_climate_control
-
-
-### init.lua ###
-
 Air Conditioner=Climatiseur
-Ceiling Fan=Ventilateur (plafonnier)
 Desk Fan=Ventilateur de bureau
-Fan blades=Pales de ventilateur
-Radiator heater=Radiateur
+Ceiling Fan=Ventilateur (plafonnier)
 Space heater=Chaufferette
+Radiator heater=Radiateur
+Fan blades=Pales de ventilateur

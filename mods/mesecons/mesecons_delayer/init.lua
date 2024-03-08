@@ -1,3 +1,5 @@
+local S = minetest.get_translator(minetest.get_current_modname())
+
 -- Function that get the input/output rules of the delayer
 local delayer_get_output_rules = mesecon.horiz_rules_getter({{x = 1, y = 0, z = 0}})
 
@@ -60,6 +62,8 @@ local def = {
 	sounds = mesecon.node_sound.stone,
 	on_blast = mesecon.on_blastnode,
 	drop = "mesecons_delayer:delayer_off_1",
+	delayer_onstate = "mesecons_delayer:delayer_on_"..tostring(i),
+	delayer_offstate = "mesecons_delayer:delayer_off_"..tostring(i),
 }
 
 -- Deactivated delayer definition defaults
@@ -69,7 +73,7 @@ if i > 1 then
 end
 
 local off_state = {
-	description = "Delayer",
+	description = S("Delayer"),
 	tiles = {
 		"mesecons_delayer_off_"..tostring(i)..".png",
 		"mesecons_delayer_bottom.png",
@@ -91,7 +95,6 @@ local off_state = {
 			param2 = node.param2
 		})
 	end,
-	delayer_onstate = "mesecons_delayer:delayer_on_"..tostring(i),
 	mesecons = {
 		receptor =
 		{
@@ -101,6 +104,7 @@ local off_state = {
 		effector =
 		{
 			rules = delayer_get_input_rules,
+			action_off = delayer_deactivate,
 			action_on = delayer_activate
 		}
 	},
@@ -112,7 +116,7 @@ minetest.register_node("mesecons_delayer:delayer_off_"..tostring(i), off_state)
 
 -- Activated delayer definition defaults
 local on_state = {
-	description = "You hacker you",
+	description = S("You hacker you"),
 	tiles = {
 		"mesecons_delayer_on_"..tostring(i)..".png",
 		"mesecons_delayer_bottom.png",
@@ -132,7 +136,6 @@ local on_state = {
 			param2 = node.param2
 		})
 	end,
-	delayer_offstate = "mesecons_delayer:delayer_off_"..tostring(i),
 	mesecons = {
 		receptor =
 		{
@@ -142,7 +145,8 @@ local on_state = {
 		effector =
 		{
 			rules = delayer_get_input_rules,
-			action_off = delayer_deactivate
+			action_off = delayer_deactivate,
+			action_on = delayer_activate
 		}
 	},
 }

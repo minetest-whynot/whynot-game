@@ -1,9 +1,9 @@
 local mdoor_list = {   --Number , Description , Inven Image , Image
---	{"Misc Door 1" , "door1"},
---	{"Misc Door 2" , "door2"},
+	{"Misc Door 1" , "door1"},
+	{"Misc Door 2" , "door2"},
 	{"Misc Door 3" , "door3"},
 	{"Misc Door 4" , "door4"},
---	{"Misc Door 5" , "door5"},
+	{"Misc Door 5" , "door5"},
 }
 
 local function add_door(desc, img)

@@ -1,10 +1,6 @@
 # textdomain: homedecor_clocks
-
-
-### init.lua ###
-
-Alarm clock=
-Digital clock=
-Grandfather Clock=
 Plastic analog clock=
 Wooden analog clock=
+Digital clock=
+Alarm clock=
+Grandfather Clock=

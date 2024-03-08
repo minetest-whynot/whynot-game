@@ -1,11 +1,7 @@
 # textdomain: homedecor_climate_control
-
-
-### init.lua ###
-
 Air Conditioner=Klimaanlage
-Ceiling Fan=Deckenventilator
 Desk Fan=Schreibtischventilator
-Fan blades=Ventilatorblätter
-Radiator heater=Heizkörper
+Ceiling Fan=Deckenventilator
 Space heater=Heizgerät
+Radiator heater=Heizkörper
+Fan blades=Ventilatorblätter

@@ -26,6 +26,14 @@ if minetest.get_modpath("technic") then
 	materials.stainless_steel_ingot = "technic:stainless_steel_ingot"
 end
 
+if minetest.get_modpath("aloz") then
+	materials.aluminum_ingot = "aloz:aluminum_ingot"
+end
+
+if minetest.get_modpath("techage") then
+	materials.aluminum_ingot = "techage:aluminum"
+end
+
 if minetest.get_modpath("mcl_core") then
 	materials = {
 		dirt = "mcl_core:dirt",
@@ -46,6 +54,9 @@ if minetest.get_modpath("mcl_core") then
 		silver_ingot = "mcl_core:iron_ingot",
 		silicon = "mesecons_materials:silicon",
 	}
+	if minetest.get_modpath("mcl_copper") then
+		materials.copper_ingot = "mcl_copper:copper_ingot"
+	end
 elseif minetest.get_modpath("fl_ores") and minetest.get_modpath("fl_stone") then
 	materials = {
 		dirt = "fl_topsoil:dirt",
@@ -64,6 +75,25 @@ elseif minetest.get_modpath("fl_ores") and minetest.get_modpath("fl_stone") then
 		tin_ingot = "fl_ores:tin_ingot",
 		silver_ingot = "fl_ores:iron_ingot",
 		silicon = "mesecons_materials:silicon",
+	}
+elseif minetest.get_modpath("rp_default") then
+	materials = {
+		dirt = "rp_default:dirt",
+		sand = "rp_default:sand",
+		gravel = "rp_default:gravel",
+		steel_ingot = "rp_default:ingot_steel",
+		gold_ingot = "rp_default:ingot_gold",
+		mese_crystal_fragment = "rp_default:ingot_steel",
+		torch = "rp_default:torch",
+		diamond = "rp_default:pearl",
+		clay_lump = "rp_default:ingot_steel",
+		water_bucket = "rp_default:swamp_dirt",
+		empty_bucket = "rp_default:dirt",
+		dye_dark_grey = "rp_default:ingot_steel",
+		copper_ingot = "rp_default:ingot_copper",
+		tin_ingot = "rp_default:ingot_tin",
+		silver_ingot = "rp_default:ingot_steel",
+		silicon = "rp_default:ingot_steel",
 	}
 elseif minetest.get_modpath("hades_core") then
 	materials = {
@@ -96,6 +126,7 @@ elseif minetest.get_modpath("hades_core") then
 	end
 	if minetest.get_modpath("hades_extraores") then
 		materials["silver_ingot"] = "hades_extraores:silver_ingot"
+		materials["aluminum_ingot"] = "hades_extraores:aluminum_ingot"
 	end
 	if minetest.get_modpath("hades_technic") then
 		materials.lead_ingot = "hades_technic:lead_ingot"
@@ -106,8 +137,44 @@ end
 
 local have_hades_materials = minetest.get_modpath("hades_materials")
 
+local function compress_craft(input)
+	local buffer = {}
+	for _, item in pairs(input) do
+		if type(item)=="table" then
+			for _, inneritem in pairs(item) do
+				buffer[inneritem] = (buffer[inneritem] or 0) + 1
+			end
+		elseif item ~= "" then
+			buffer[item] = (buffer[item] or 0) + 1
+		end
+	end
+
+	local output = {}
+	for item, count in pairs(buffer) do
+		output[#output + 1] = item .. " " .. count
+	end
+	return output
+end
+
+local function register_craft(input)
+	if minetest.get_modpath("rp_crafting") then
+		local rp_craft = compress_craft(input.recipe)
+		if #rp_craft > crafting.MAX_INPUTS then
+			minetest.log("error", "[basic_materials] unable to register craft for " .. input.output)
+			return
+		end
+
+		crafting.register_craft({
+			output = input.output,
+			items = rp_craft
+		})
+	else
+		minetest.register_craft(input)
+	end
+end
+
 -- Craft recipes
-minetest.register_craft({
+register_craft({
 	output = "basic_materials:chainlink_brass 12",
 	recipe = {
 		{"", "basic_materials:brass_ingot", "basic_materials:brass_ingot"},
@@ -116,7 +183,7 @@ minetest.register_craft({
 	},
 })
 
-minetest.register_craft({
+register_craft({
 	output = "basic_materials:chain_steel 2",
 	recipe = {
 		{"basic_materials:chainlink_steel"},
@@ -125,7 +192,7 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+register_craft({
 	output = "basic_materials:chain_brass 2",
 	recipe = {
 		{"basic_materials:chainlink_brass"},
@@ -134,13 +201,13 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft( {
+register_craft( {
 	type = "shapeless",
 	output = "basic_materials:brass_ingot 9",
 	recipe = {"basic_materials:brass_block"},
 })
 
-minetest.register_craft( {
+register_craft( {
 	output = "basic_materials:brass_block",
 	recipe = {
 		{"basic_materials:brass_ingot", "basic_materials:brass_ingot", "basic_materials:brass_ingot"},
@@ -149,14 +216,14 @@ minetest.register_craft( {
 	},
 })
 
-minetest.register_craft( {
+register_craft( {
 	output = "basic_materials:plastic_strip 9",
 	recipe = {
 		{"basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet"}
 	},
 })
 
-minetest.register_craft( {
+register_craft( {
 	output = "basic_materials:empty_spool 3",
 	recipe = {
 		{"basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet"},
@@ -167,12 +234,12 @@ minetest.register_craft( {
 
 if have_hades_materials then
 	minetest.clear_craft({
-	type = "shapeless",
-	recipe = {"group:leaves", "group:leaves", "group:leaves", "group:leaves", "group:leaves", "group:leaves"}
+		type = "shapeless",
+		recipe = {"group:leaves", "group:leaves", "group:leaves", "group:leaves", "group:leaves", "group:leaves"}
 	})
 end
 
-minetest.register_craft({
+register_craft({
 	type = "shapeless",
 	output = "basic_materials:oil_extract 2",
 	recipe = {"group:leaves", "group:leaves", "group:leaves", "group:leaves", "group:leaves", "group:leaves"}
@@ -181,9 +248,9 @@ minetest.register_craft({
 -- Cooking recipes
 if not have_hades_materials then
 	minetest.register_craft({
-	type = "cooking",
-	output = "basic_materials:plastic_sheet",
-	recipe = "basic_materials:paraffin",
+		type = "cooking",
+		output = "basic_materials:plastic_sheet",
+		recipe = "basic_materials:paraffin",
 	})
 end
 
@@ -219,7 +286,7 @@ minetest.register_craft({
 	burntime = 30,
 })
 
-minetest.register_craft({
+register_craft({
 	output = "basic_materials:concrete_block 6",
 	recipe = {
 		{"group:sand", "basic_materials:wet_cement", materials.gravel},
@@ -228,7 +295,7 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft( {
+register_craft( {
 	output = "basic_materials:motor 2",
 	recipe = {
 		{materials.mese_crystal_fragment, "basic_materials:copper_wire", "basic_materials:plastic_sheet"},
@@ -241,14 +308,14 @@ minetest.register_craft( {
 	}
 })
 
-minetest.register_craft( {
+register_craft( {
 	output = "basic_materials:heating_element 2",
 	recipe = {
 		{materials.copper_ingot, materials.mese_crystal_fragment, materials.copper_ingot}
 	},
 })
 
-minetest.register_craft({
+register_craft({
 	--type = "shapeless",
 	output = "basic_materials:energy_crystal_simple 2",
 	recipe = {
@@ -257,7 +324,7 @@ minetest.register_craft({
 	},
 })
 
-minetest.register_craft( {
+register_craft( {
 	output = "basic_materials:copper_wire 2",
 	type = "shapeless",
 	recipe = {
@@ -267,7 +334,7 @@ minetest.register_craft( {
 	},
 })
 
-minetest.register_craft( {
+register_craft( {
 	output = "basic_materials:gold_wire 2",
 	type = "shapeless",
 	recipe = {
@@ -277,7 +344,7 @@ minetest.register_craft( {
 	},
 })
 
-minetest.register_craft( {
+register_craft( {
 	output = "basic_materials:steel_wire 2",
 	type = "shapeless",
 	recipe = {
@@ -288,7 +355,7 @@ minetest.register_craft( {
 })
 
 if materials.stainless_steel_ingot then
-	minetest.register_craft( {
+	register_craft( {
 		output = "basic_materials:stainless_steel_wire 2",
 		type = "shapeless",
 		recipe = {
@@ -299,7 +366,19 @@ if materials.stainless_steel_ingot then
 	})
 end
 
-minetest.register_craft( {
+if materials.aluminum_ingot then
+	register_craft( {
+		output = "basic_materials:aluminum_wire 2",
+		type = "shapeless",
+		recipe = {
+			materials.aluminum_ingot,
+			"basic_materials:empty_spool",
+			"basic_materials:empty_spool",
+		},
+	})
+end
+
+register_craft( {
 	output = "basic_materials:steel_strip 12",
 	recipe = {
 		{"", materials.steel_ingot, ""},
@@ -307,7 +386,7 @@ minetest.register_craft( {
 	},
 })
 
-minetest.register_craft( {
+register_craft( {
 	output = "basic_materials:copper_strip 12",
 	recipe = {
 		{"", materials.copper_ingot, ""},
@@ -315,8 +394,16 @@ minetest.register_craft( {
 	},
 })
 
+register_craft( {
+	output = "basic_materials:gold_strip 12",
+	recipe = {
+		{"", materials.gold_ingot, ""},
+		{materials.gold_ingot, "", ""},
+	},
+})
+
 if materials.lead_ingot then
-	minetest.register_craft( {
+	register_craft( {
 		output = "basic_materials:lead_strip 12",
 		recipe = {
 			{"", materials.lead_ingot, ""},
@@ -325,7 +412,27 @@ if materials.lead_ingot then
 	})
 end
 
-minetest.register_craft( {
+if materials.stainless_steel_ingot then
+	register_craft( {
+		output = "basic_materials:stainless_steel_strip 12",
+		recipe = {
+			{"", materials.stainless_steel_ingot, ""},
+			{materials.stainless_steel_ingot, "", ""},
+		},
+	})
+end
+
+if materials.aluminum_ingot then
+	register_craft( {
+		output = "basic_materials:aluminum_strip 12",
+		recipe = {
+			{"", materials.aluminum_ingot, ""},
+			{materials.aluminum_ingot, "", ""},
+		},
+	})
+end
+
+register_craft( {
 	output = "basic_materials:steel_bar 6",
 	recipe = {
 		{"", "", materials.steel_ingot},
@@ -335,7 +442,7 @@ minetest.register_craft( {
 })
 
 if materials.carbon_steel_ingot then
-	minetest.register_craft( {
+	register_craft( {
 		output = "basic_materials:carbon_steel_bar 6",
 		recipe = {
 			{"", "", materials.carbon_steel_ingot},
@@ -345,7 +452,29 @@ if materials.carbon_steel_ingot then
 	})
 end
 
-minetest.register_craft( {
+if materials.stainless_steel_ingot then
+	register_craft( {
+		output = "basic_materials:stainless_steel_bar 6",
+		recipe = {
+			{"", "", materials.stainless_steel_ingot},
+			{"", materials.stainless_steel_ingot, ""},
+			{materials.stainless_steel_ingot, "", ""},
+		},
+	})
+end
+
+if materials.aluminum_ingot then
+	register_craft( {
+		output = "basic_materials:aluminum_bar 6",
+		recipe = {
+			{"", "", materials.aluminum_ingot},
+			{"", materials.aluminum_ingot, ""},
+			{materials.aluminum_ingot, "", ""},
+		},
+	})
+end
+
+register_craft( {
 	output = "basic_materials:padlock 2",
 	recipe = {
 		{"basic_materials:steel_bar"},
@@ -354,7 +483,7 @@ minetest.register_craft( {
 	},
 })
 
-minetest.register_craft({
+register_craft({
 	output = "basic_materials:chainlink_steel 12",
 	recipe = {
 		{"", materials.steel_ingot, materials.steel_ingot},
@@ -363,7 +492,7 @@ minetest.register_craft({
 	},
 })
 
-minetest.register_craft( {
+register_craft( {
 	output = "basic_materials:gear_steel 6",
 	recipe = {
 		{"", materials.steel_ingot, ""},
@@ -372,7 +501,7 @@ minetest.register_craft( {
 	},
 })
 
-minetest.register_craft( {
+register_craft( {
 	type = "shapeless",
 	output = "basic_materials:terracotta_base 8",
 	recipe = {
@@ -383,7 +512,7 @@ minetest.register_craft( {
 	replacements = {{materials.water_bucket, materials.empty_bucket}},
 })
 
-minetest.register_craft({
+register_craft({
 	type = "shapeless",
 	output = "basic_materials:wet_cement 3",
 	recipe = {
@@ -397,7 +526,7 @@ minetest.register_craft({
 })
 
 if not have_hades_materials then
-	minetest.register_craft( {
+	register_craft( {
 		output = materials.silicon.." 4",
 		recipe = {
 			{materials.sand, materials.sand},
@@ -406,7 +535,7 @@ if not have_hades_materials then
 	})
 end
 
-minetest.register_craft( {
+register_craft( {
 	output = "basic_materials:ic 4",
 	recipe = {
 		{materials.silicon, materials.silicon},
@@ -415,7 +544,7 @@ minetest.register_craft( {
 })
 
 -- Without moreores, there still should be a way to create brass.
-minetest.register_craft( {
+register_craft( {
 	output = "basic_materials:brass_ingot 9",
 	recipe = {
 		{materials.copper_ingot, materials.tin_ingot, materials.copper_ingot},
@@ -425,7 +554,7 @@ minetest.register_craft( {
 })
 
 if materials.silver_ingot then
-	minetest.register_craft( {
+	register_craft( {
 		output = "basic_materials:silver_wire 2",
 		type = "shapeless",
 		recipe = {
@@ -435,7 +564,7 @@ if materials.silver_ingot then
 		},
 	})
 
-	minetest.register_craft( {
+	register_craft( {
 		type = "shapeless",
 		output = "basic_materials:brass_ingot 3",
 		recipe = {

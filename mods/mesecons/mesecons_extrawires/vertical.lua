@@ -1,3 +1,5 @@
+local S = minetest.get_translator(minetest.get_current_modname())
+
 local vertical_box = {
 	type = "fixed",
 	fixed = {-1/16, -8/16, -1/16, 1/16, 8/16, 1/16}
@@ -38,35 +40,39 @@ local bottom_rules = {
 	{x=0, y=2, z=0} -- receive power from pressure plate / detector / ... 2 nodes above
 }
 
+local function is_vertical_conductor(nodename)
+	local def = minetest.registered_nodes[nodename]
+	return def and def.is_vertical_conductor
+end
+
 local vertical_updatepos = function (pos)
 	local node = minetest.get_node(pos)
-	if minetest.registered_nodes[node.name]
-	and minetest.registered_nodes[node.name].is_vertical_conductor then
-		local node_above = minetest.get_node(vector.add(pos, vertical_rules[1]))
-		local node_below = minetest.get_node(vector.add(pos, vertical_rules[2]))
-
-		local above = minetest.registered_nodes[node_above.name]
-			and minetest.registered_nodes[node_above.name].is_vertical_conductor
-		local below = minetest.registered_nodes[node_below.name]
-			and minetest.registered_nodes[node_below.name].is_vertical_conductor
-
-		mesecon.on_dignode(pos, node)
-
-		-- Always place offstate conductor and let mesecon.on_placenode take care
-		local newname = "mesecons_extrawires:vertical_"
-		if above and below then -- above and below: vertical mesecon
-			newname = newname .. "off"
-		elseif above and not below then -- above only: bottom
-			newname = newname .. "bottom_off"
-		elseif not above and below then -- below only: top
-			newname = newname .. "top_off"
-		else -- no vertical wire above, no vertical wire below: use bottom
-			newname = newname .. "bottom_off"
-		end
-
-		minetest.set_node(pos, {name = newname})
-		mesecon.on_placenode(pos, {name = newname})
+	if not is_vertical_conductor(node.name) then
+		return
 	end
+
+	local node_above = minetest.get_node(vector.add(pos, vertical_rules[1]))
+	local node_below = minetest.get_node(vector.add(pos, vertical_rules[2]))
+
+	local above = is_vertical_conductor(node_above.name)
+	local below = is_vertical_conductor(node_below.name)
+
+	mesecon.on_dignode(pos, node)
+
+	-- Always place offstate conductor and let mesecon.on_placenode take care
+	local newname = "mesecons_extrawires:vertical_"
+	if above and below then -- above and below: vertical mesecon
+		newname = newname .. "off"
+	elseif above and not below then -- above only: bottom
+		newname = newname .. "bottom_off"
+	elseif not above and below then -- below only: top
+		newname = newname .. "top_off"
+	else -- no vertical wire above, no vertical wire below: use bottom
+		newname = newname .. "bottom_off"
+	end
+
+	minetest.set_node(pos, {name = newname})
+	mesecon.on_placenode(pos, {name = newname})
 end
 
 local vertical_update = function (pos)
@@ -77,7 +83,7 @@ end
 
 -- Vertical wire
 mesecon.register_node("mesecons_extrawires:vertical", {
-	description = "Vertical Mesecon",
+	description = S("Vertical Mesecon"),
 	drawtype = "nodebox",
 	walkable = false,
 	paramtype = "light",
@@ -110,7 +116,7 @@ mesecon.register_node("mesecons_extrawires:vertical", {
 
 -- Vertical wire top
 mesecon.register_node("mesecons_extrawires:vertical_top", {
-	description = "Vertical mesecon",
+	description = S("Vertical Mesecon"),
 	drawtype = "nodebox",
 	walkable = false,
 	paramtype = "light",
@@ -142,7 +148,7 @@ mesecon.register_node("mesecons_extrawires:vertical_top", {
 
 -- Vertical wire bottom
 mesecon.register_node("mesecons_extrawires:vertical_bottom", {
-	description = "Vertical mesecon",
+	description = S("Vertical Mesecon"),
 	drawtype = "nodebox",
 	walkable = false,
 	paramtype = "light",

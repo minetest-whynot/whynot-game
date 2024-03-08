@@ -1,24 +1,22 @@
 # textdomain: homedecor_kitchen
-
-
-### init.lua ###
-
-Copper pans=Poêles en cuivre
-Dishwasher=Lave-vaisselle
-Dishwasher (@1)=Lave-vaisselle (@1)
-Half-height Kitchen Cabinet (on ceiling)=Meuble de cuisine réduit en hauteur (sur le plafond)
-Kitchen Cabinet=Meuble de cuisine
-Kitchen Cabinet (@1 top)=Meuble de cuisine (haut @1)
-Kitchen Cabinet with sink=Meuble de cuisine avec lavabo
-Kitchen Faucet=Robinet de cuisine
-Microwave Oven=Four Micro-ondes
+Refrigerator (stainless steel)=Réfrigérateur (acier inox)
+Refrigerator=Réfrigérateur
 Oven=Four
 Oven (stainless steel)=Four (acier inox)
-Paper towels=Essuie-tout
-Refrigerator=Réfrigérateur
-Refrigerator (stainless steel)=Réfrigérateur (acier inox)
-Under-sink cabinet=Meuble sous évier
+Microwave Oven=Four Micro-ondes
+Dishwasher=Lave-vaisselle
 granite=granit
 marble=marbre
 steel=acier
 wood=bois
+Dishwasher (@1)=Lave-vaisselle (@1)
+Kitchen Cabinet=Meuble de cuisine
+Kitchen Cabinet with drawers=
+Kitchen Cabinet (@1 top)=Meuble de cuisine (haut @1)
+Kitchen Cabinet with drawers (@1 top)=
+Half-height Kitchen Cabinet (on ceiling)=Meuble de cuisine réduit en hauteur (sur le plafond)
+Kitchen Cabinet with sink=Meuble de cuisine avec lavabo
+Under-sink cabinet=Meuble sous évier
+Copper pans=Poêles en cuivre
+Kitchen Faucet=Robinet de cuisine
+Paper towels=Essuie-tout

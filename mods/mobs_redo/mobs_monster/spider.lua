@@ -1,5 +1,5 @@
-
-local S = mobs.intllib_monster
+-- Translation support
+local S = minetest.get_translator("mobs_monster")
 
 local get_velocity = function(self)
 
@@ -74,12 +74,12 @@ mobs:register_mob("mobs_monster:spider", {
 		{"mobs_spider_orange.png"},
 		{"mobs_spider_snowy.png"},
 		{"mobs_spider_grey.png"},
-		{"mobs_spider_crystal.png"},
+		{"mobs_spider_crystal.png"}
 	},
 	makes_footstep_sound = false,
 	sounds = {
 		random = "mobs_spider",
-		attack = "mobs_spider",
+		attack = "mobs_spider"
 	},
 	walk_velocity = 1,
 	run_velocity = 3,
@@ -87,7 +87,7 @@ mobs:register_mob("mobs_monster:spider", {
 	view_range = 15,
 	floats = 0,
 	drops = {
-		{name = "farming:string", chance = 1, min = 0, max = 2},
+		{name = "farming:string", chance = 1, min = 0, max = 2}
 	},
 	water_damage = 5,
 	lava_damage = 5,
@@ -102,7 +102,7 @@ mobs:register_mob("mobs_monster:spider", {
 		run_start = 1,
 		run_end = 21,
 		punch_start = 25,
-		punch_end = 45,
+		punch_end = 45
 	},
 
 	-- check surrounding nodes and spawn a specific spider
@@ -171,10 +171,12 @@ mobs:register_mob("mobs_monster:spider", {
 		-- sanity check
 		if not yaw then return end
 
-		pos.y = pos.y + self.collisionbox[2] - 0.2
+		local prop = self.object:get_properties()
 
-		local dir_x = -math.sin(yaw) * (self.collisionbox[4] + 0.5)
-		local dir_z = math.cos(yaw) * (self.collisionbox[4] + 0.5)
+		pos.y = pos.y + prop.collisionbox[2] - 0.2
+
+		local dir_x = -math.sin(yaw) * (prop.collisionbox[4] + 0.5)
+		local dir_z = math.cos(yaw) * (prop.collisionbox[4] + 0.5)
 		local nod = minetest.get_node_or_nil({
 			x = pos.x + dir_x,
 			y = pos.y + 0.5,
@@ -201,7 +203,9 @@ mobs:register_mob("mobs_monster:spider", {
 		-- move up facing
 		v.x = 0 ; v.y = 0
 		v.y = self.jump_height
-		mobs:set_animation(self, "jump")
+
+		self:set_animation("jump")
+
 		self.object:set_velocity(v)
 	end,
 
@@ -224,32 +228,33 @@ mobs:register_mob("mobs_monster:spider", {
 
 
 if not mobs.custom_spawn_monster then
--- above ground spawn
-mobs:spawn({
-	name = "mobs_monster:spider",
-	nodes = {
-		"default:dirt_with_rainforest_litter", "default:snowblock",
-		"default:snow", "ethereal:crystal_dirt", "ethereal:cold_dirt"
-	},
-	min_light = 0,
-	max_light = 8,
-	chance = 7000,
-	active_object_count = 1,
-	min_height = 25,
-	max_height = 31000,
-})
 
--- below ground spawn
-mobs:spawn({
-	name = "mobs_monster:spider",
-	nodes = {"default:stone_with_mese", "default:mese", "default:stone"},
-	min_light = 0,
-	max_light = 7,
-	chance = 7000,
-	active_object_count = 1,
-	min_height = -31000,
-	max_height = -40,
-})
+	-- above ground spawn
+	mobs:spawn({
+		name = "mobs_monster:spider",
+		nodes = {
+			"default:dirt_with_rainforest_litter", "default:snowblock",
+			"default:snow", "ethereal:crystal_dirt", "ethereal:cold_dirt"
+		},
+		min_light = 0,
+		max_light = 8,
+		chance = 7000,
+		active_object_count = 1,
+		min_height = 25,
+		max_height = 31000
+	})
+
+	-- below ground spawn
+	mobs:spawn({
+		name = "mobs_monster:spider",
+		nodes = {"default:stone_with_mese", "default:mese", "default:stone"},
+		min_light = 0,
+		max_light = 7,
+		chance = 7000,
+		active_object_count = 1,
+		min_height = -31000,
+		max_height = -40
+	})
 end
 
 
@@ -278,7 +283,7 @@ minetest.register_node(":mobs:cobweb", {
 	walkable = false,
 	groups = {snappy = 1, disable_jump = 1},
 	drop = "farming:string",
-	sounds = default.node_sound_leaves_defaults()
+	sounds = default and default.node_sound_leaves_defaults()
 })
 
 minetest.register_craft({
@@ -286,12 +291,14 @@ minetest.register_craft({
 	recipe = {
 		{"farming:string", "", "farming:string"},
 		{"", "farming:string", ""},
-		{"farming:string", "", "farming:string"},
+		{"farming:string", "", "farming:string"}
 	}
 })
 
 
 local web_place = function(pos)
+
+	if minetest.find_node_near(pos, 1, {"ignore"}) then return end
 
 	local pos2 = minetest.find_node_near(pos, 1, {"air", "group:leaves"}, true)
 
@@ -316,7 +323,7 @@ mobs:register_arrow("mobs_monster:cobweb", {
 
 		player:punch(self.object, 1.0, {
 			full_punch_interval = 2.0,
-			damage_groups = {fleshy = 3},
+			damage_groups = {fleshy = 3}
 		}, nil)
 
 		web_place(self.object:get_pos())
@@ -330,7 +337,7 @@ mobs:register_arrow("mobs_monster:cobweb", {
 
 		player:punch(self.object, 1.0, {
 			full_punch_interval = 2.0,
-			damage_groups = {fleshy = 3},
+			damage_groups = {fleshy = 3}
 		}, nil)
 	end
 })

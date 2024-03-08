@@ -1,12 +1,6 @@
 # textdomain: homedecor_fences
-
-
-### init.lua ###
-
-Barbed Wire Fence=Stacheldrahtzaun
-Barbed Wire Fence Corner=Stacheldrahtzaunecke
-Chainlink Fence=Maschendrahtzaun
-Chainlink Fence Corner=Maschendrahtzaunecke
+brass=Messing
+wrought iron=Schmiedeeisen
 Fence/railing (@1)=Zaun/Geländer (@1)
 Unpainted Picket Fence=Unlackierter Lattenzaun
 Unpainted Picket Fence Corner=Unlackierte Lattenenzaunecke
@@ -14,7 +8,9 @@ White Picket Fence=Weißer Lattenzaun
 White Picket Fence Corner=Weiße Lattenzaunecke
 Wooden Privacy Fence=Holzsichtschutzzaun
 Wooden Privacy Fence Corner=Holzsichtschutzzaunecke
+Barbed Wire Fence=Stacheldrahtzaun
+Barbed Wire Fence Corner=Stacheldrahtzaunecke
+Chainlink Fence=Maschendrahtzaun
+Chainlink Fence Corner=Maschendrahtzaunecke
 Wrought Iron fence (type 2)=Schmiedeeisenzaun/-geländer (Typ 2)
 Wrought Iron fence (type 2) Corner=Schmiedeeisenzaun/-geländerecke (Typ 2)
-brass=Messing
-wrought iron=Schmiedeeisen

@@ -26,25 +26,25 @@ local door_list = {
 		sounds = default.node_sound_wood_defaults(),
 		sound_open = "homedecor_door_open",
 		sound_close = "homedecor_door_close",
-		mesh = "homedecor_door_fancy.obj"
+		mesh = "homedecor_door_fancy"
 	},
 	{
 		name = "french_oak",
 		description = S("French door, Oak-colored"),
 		sounds = default.node_sound_glass_defaults(),
-		mesh = "homedecor_door_french.obj"
+		mesh = "homedecor_door_french"
 	},
 	{
 		name = "french_mahogany",
 		description = S("French door, Mahogany-colored"),
 		sounds = default.node_sound_glass_defaults(),
-		mesh = "homedecor_door_french.obj"
+		mesh = "homedecor_door_french"
 	},
 	{
 		name = "french_white",
 		description = S("French door, White"),
 		sounds = default.node_sound_glass_defaults(),
-		mesh = "homedecor_door_french.obj"
+		mesh = "homedecor_door_french"
 	},
 	{
 		name = "basic_panel",
@@ -59,7 +59,7 @@ local door_list = {
 		sounds = default.node_sound_metal_defaults(),
 		sound_open = "doors_steel_door_open",
 		sound_close = "doors_steel_door_close",
-		mesh = "homedecor_door_wrought_iron.obj"
+		mesh = "homedecor_door_wrought_iron"
 	},
 	{
 		name = "carolina",
@@ -74,13 +74,13 @@ local door_list = {
 		sounds = default.node_sound_wood_defaults(),
 		sound_open = "homedecor_door_open",
 		sound_close = "homedecor_door_close",
-		mesh = "homedecor_door_wood_glass_3.obj"
+		mesh = "homedecor_door_wood_glass_3"
 	},
 	{
 		name = "closet_mahogany",
 		description = S("Mahogany Closet Door"),
 		sounds = default.node_sound_wood_defaults(),
-		mesh = "homedecor_door_closet.obj"
+		mesh = "homedecor_door_closet"
 	},
 	{
 		name = "closet_oak",
@@ -93,6 +93,7 @@ local door_list = {
 local old_doors = {}
 
 local door_types = {"_a", "_b", "_c", "_d"}
+local door_conversion = {["_c"]="_a", ["_d"]="_b"}
 
 local function generate_door(def)
 	local default_settings = {
@@ -125,14 +126,15 @@ local function generate_door(def)
 end
 
 for _, door in ipairs(door_list) do
-	local name = door.name
+	local name, mesh = door.name, door.mesh
 	doors.register("homedecor_" .. name, generate_door(door))
 
 	--hack to get around doors not allowing custom meshes
-	if door.mesh then
+	if mesh then
 		for _, v in pairs(door_types) do
+			if door_conversion[v] then v=door_conversion[v] end
 			minetest.override_item("doors:homedecor_" .. name .. v, {
-				mesh = door.mesh
+				mesh = mesh .. v .. ".obj"
 			})
 		end
 	end
@@ -244,7 +246,8 @@ for i, g in ipairs(gate_list) do
 		tiles = tiles,
 		paramtype = "light",
 		use_texture_alpha = "clip",
-		groups = {snappy=3},
+		groups = {snappy=3, axey=5},
+		_mcl_hardness=1.6,
 		sounds = default.node_sound_wood_defaults(),
 		paramtype2 = "facedir",
 		selection_box = {

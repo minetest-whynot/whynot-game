@@ -1,25 +1,19 @@
 # textdomain: homedecor_exterior
-
-
-### init.lua ###
-
 Barbecue=Барбекю
 Doghouse=Собачья будка
-Garden Lattice (@1)=Садовая решётка (@1)
 Garden stone path=Садовая каменная дорожка
-No room in your inventory to add a filled bucket!=
-No room under there to hang a swing.=
-Shrubbery (@1)=Кустарник (@1)
-Shrubbery (large, @1)=Кустарник (@1)
+wood=дерево
+white wood=белое дерево
+wood, with vegetation=дерево с растительностью
+white wood, with vegetation=белое дерево с растительностью
+Garden Lattice (@1)=Садовая решётка (@1)
 Tree's swing=Качели для дерева
-Water well=Колодец с водой
-
+No room under there to hang a swing.=
 You have to point at the bottom side of an overhanging object to place a swing.=
-
+Water well=Колодец с водой
+No room in your inventory to add a filled bucket!=
 green=зелёный
 red=красный
-white wood=белое дерево
-white wood, with vegetation=белое дерево с растительностью
-wood=дерево
-wood, with vegetation=дерево с растительностью
 yellow=жёлтый
+Shrubbery (large, @1)=Кустарник (@1)
+Shrubbery (@1)=Кустарник (@1)

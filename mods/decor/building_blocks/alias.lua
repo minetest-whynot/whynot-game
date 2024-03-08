@@ -33,7 +33,8 @@ if not minetest.get_modpath("technic") then
 		    description = S("Granite"),
 		    tiles = { "technic_granite.png" },
 		    is_ground_content = true,
-		    groups = {cracky=1, dig_stone=2},
+		    groups = {cracky=1, dig_stone=2, pickaxey=5},
+			_mcl_hardness=1.6,
 		    _sound_def = {
 				key = "node_sound_stone_defaults",
 			},

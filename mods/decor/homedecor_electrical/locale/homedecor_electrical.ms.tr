@@ -1,8 +1,4 @@
 # textdomain: homedecor_electrical
-
-
-### init.lua ###
-
-Doorbell=Loceng Pintu
-Light switch=Suis Lampu
 Power Outlet=Palam Elektrik
+Light switch=Suis Lampu
+Doorbell=Loceng Pintu

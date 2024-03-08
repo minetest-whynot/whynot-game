@@ -16,6 +16,7 @@ local BIOLUMINESCENCE        = false or -- Allow giant trees variants which have
                                minetest.get_modpath("nightscape") ~= nil or
                                minetest.get_modpath("moonflower") ~= nil -- a world using any of these mods is OK with bioluminescence
 local ENABLE_PORTALS         = true     -- Whether to allow players to build portals to islands. Portals require the Nether mod.
+local USE_NETHER_BASALT      = true     -- Whether to use "nether:basalt_chiselled" as the portalstone instead of adding "cloudlands:ancient_portalstone" to the Nether.
 local EDDYFIELD_SIZE         = 1        -- size of the "eddy field-lines" that smaller islands follow
 local ISLANDS_SEED           = 1000     -- You only need to change this if you want to try different island layouts without changing the map seed
 
@@ -114,6 +115,7 @@ LOWLAND_BIOMES       = fromSettings(MODNAME .. "_use_lowland_biomes", LOWLAND_BI
 TREE_RARITY          = fromSettings(MODNAME .. "_giant_tree_rarety",  TREE_RARITY * 100) / 100
 BIOLUMINESCENCE      = fromSettings(MODNAME .. "_bioluminescence",    BIOLUMINESCENCE)
 ENABLE_PORTALS       = fromSettings(MODNAME .. "_enable_portals",     ENABLE_PORTALS)
+USE_NETHER_BASALT    = fromSettings(MODNAME .. "_use_nether_basalt",  USE_NETHER_BASALT)
 
 local noiseparams_eddyField = {
 	offset      = -1,
@@ -186,6 +188,7 @@ local nodeId_gravel
 local nodeId_vine
 local nodeName_vine
 local nodeName_ignore = minetest.get_name_from_content_id(nodeId_ignore)
+local nodeName_portalStone -- not set until all mods are loaded
 
 local REQUIRED_DENSITY = 0.4
 
@@ -383,9 +386,20 @@ end
 
 local addDetail_ancientPortal = nil
 
+local bookOfPortalsText_AncientPortalstone =
+  S("Construction requires 14 blocks of ancient portalstone. We have no knowledge of how portalstones were created, the means to craft them are likely lost to time, so our only source has been to scavenge the Nether for the remnants of ancient broken portals. A finished frame is four blocks wide, five blocks high, and stands vertically, like a doorway.") .. "\n\n" ..
+  S("The only portal we managed to scavenge enough portalstone to build took us to a land of floating islands. There were hills and forests and even water up there, but the edges are a perilous drop — a depth of which we cannot even begin to plumb.")
+
+local bookOfPortalsText_NetherChiselledBasalt =
+  S("Construction requires 14 blocks of chiselled Nether basalt, which can be crafted from hewn Nether basalt. The only source we are aware of for Nether basalt are the islands of basalt columns found in the magma ocean deep within the Nether, but to find the magma ocean Mantle requires finding a passageway through the netherrack. A finished frame is four blocks wide, five blocks high, and stands vertically, like a doorway.") .. "\n\n" ..
+  S("The only portal we managed to scavenge enough portalstone to build took us to a land of floating islands. There were hills and forests and even water up there, but the edges are a perilous drop — a depth of which we cannot even begin to plumb.")
+
 if ENABLE_PORTALS and minetest.get_modpath("nether") ~= nil and minetest.global_exists("nether") and nether.register_portal ~= nil then
   -- The Portals API is available
   -- Register a player-buildable portal to Hallelujah Mountains.
+
+
+
 
 
   -- returns a position on the island which is suitable for a portal to be placed, or nil if none can be found
@@ -468,13 +482,15 @@ if ENABLE_PORTALS and minetest.get_modpath("nether") ~= nil and minetest.global_
     return result, island
   end
 
-  -- Ideally the Nether mod will provide a block obtainable by exploring the Nether which is
-  -- earmarked for mods like this one to use for portals, but until this happens I'll create
-  -- our own tempory placeholder "portalstone".
+  -- "Ancient Portalstone" was a tempory placeholder "portalstone" until the Nether mod started
+  -- providing a block obtainable by exploring the Nether and earmarked for mods like this one
+  -- to use for portals.
+  -- The Nether now provides various basalts as portalstones, but "Ancient Portalstone" will
+  -- still be registered for backwards compatibility.
   -- The Portals API is currently provided by nether, which depends on default, so we can assume default textures are available
   local portalstone_end = "default_furnace_top.png^(default_ice.png^[opacity:120)^[multiply:#668"  -- this gonna look bad with non-default texturepacks, hopefully Nether mod will provide a real block
   local portalstone_side = "[combine:16x16:0,0=default_furnace_top.png:4,0=default_furnace_top.png:8,0=default_furnace_top.png:12,0=default_furnace_top.png:^(default_ice.png^[opacity:120)^[multiply:#668"
-  minetest.register_node("cloudlands:ancient_portalstone", {
+  minetest.register_node(MODNAME .. ":ancient_portalstone", {
     description = S("Ancient Portalstone"),
     tiles = {portalstone_end, portalstone_end, portalstone_side, portalstone_side, portalstone_side, portalstone_side},
     paramtype2 = "facedir",
@@ -483,48 +499,13 @@ if ENABLE_PORTALS and minetest.get_modpath("nether") ~= nil and minetest.global_
     on_blast = function() --[[blast proof]] end
   })
 
-  minetest.register_ore({
-    ore_type       = "scatter",
-    ore            = "cloudlands:ancient_portalstone",
-    wherein        = "nether:rack",
-    clust_scarcity = 32 * 32 * 32,
-    clust_num_ores = 6,
-    clust_size     = 3,
-    y_max = nether.DEPTH_CEILING or nether.DEPTH,
-    y_min = nether.DEPTH_FLOOR   or -32000,
-  })
-
   local _  = {name = "air",                                         prob = 0}
   local A  = {name = "air",                                         prob = 255, force_place = true}
-  local PU = {name = "cloudlands:ancient_portalstone", param2 =  0, prob = 255, force_place = true}
-  local PW = {name = "cloudlands:ancient_portalstone", param2 = 12, prob = 255, force_place = true}
-  local PN = {name = "cloudlands:ancient_portalstone", param2 =  4, prob = 255, force_place = true}
-  minetest.register_decoration({
-    name = "Ancient broken portal",
-    deco_type = "schematic",
-    place_on = "nether:rack",
-    sidelen = 80,
-    fill_ratio = 0.00018,
-    biomes = {"nether_caverns"},
-    y_max = nether.DEPTH_CEILING or nether.DEPTH,
-    y_min = nether.DEPTH_FLOOR   or -32000,
-    schematic = {
-      size = {x = 4, y = 4, z = 1},
-      data = {
-          PN, A, PW, PN,
-          PU, A,  A, PU,
-          A,  _,  _, PU,
-          _,  _,  _, PU
-      },
-      yslice_prob = {
-          {ypos = 3, prob = 92},
-          {ypos = 1, prob = 30},
-      }
-    },
-    place_offset_y = 1,
-    flags = "force_placement,all_floors",
-    rotation = "random"
-  })
+  local PU = {name = "portalstone", param2 =  0, prob = 255, force_place = true}
+  local PW = {name = "portalstone", param2 = 12, prob = 255, force_place = true}
+  local PN = {name = "portalstone", param2 =  4, prob = 255, force_place = true}
+
+  local islandsWithPortals = {}
 
   -- this uses place_schematic() without minetest.after(), so should be called after vm:write_to_map()
   addDetail_ancientPortal = function(core)
@@ -539,6 +520,16 @@ if ENABLE_PORTALS and minetest.get_modpath("nether") ~= nil and minetest.global_
     fastHash = (37 * fastHash) + math_floor(core.radius)
     fastHash = (37 * fastHash) + math_floor(core.depth)
     if (PORTAL_RARITY * 10000) < math_floor((math_abs(fastHash)) % 10000) then return false end
+
+    if islandsWithPortals[fastHash] then
+      -- This is a hack to stop multiple portals appearing on the island.
+      -- It will fail if neightboring chunks generate the same core in different server sessions.
+      -- I think what happens is mods like plantlife_modpack prevent nether.volume_is_natural_and_unprotected() from
+      -- returning a deterministic result during chunk generation, thus find_potential_portal_location_on_island()
+      -- doesn't always return the same spot on the island?
+      return
+    end
+    islandsWithPortals[fastHash] = true
 
     local portalPos = find_potential_portal_location_on_island(core, nil)
 
@@ -560,128 +551,204 @@ if ENABLE_PORTALS and minetest.get_modpath("nether") ~= nil and minetest.global_
         },
         orientation,
         { -- node replacements
-          ["default:obsidian"] = "cloudlands:ancient_portalstone",
+          ["portalstone"] = nodeName_portalStone,
         },
         true
       )
     end
   end
 
+  -- A wrapper for nether.register_portal() where only the frameNodeName and corresponding bookOfPortalsText needs to be specified
+  local function register_portal(frameNodeName, bookOfPortalsText)
 
-  nether.register_portal("cloudlands_portal", {
-    shape               = nether.PortalShape_Traditional,
-    frame_node_name     = "cloudlands:ancient_portalstone",
-    wormhole_node_color = 2, -- 2 is blue
-    particle_color      = "#77F",
-    particle_texture    = {
-      name      = "nether_particle_anim1.png",
-      animation = {
-        type = "vertical_frames",
-        aspect_w = 7,
-        aspect_h = 7,
-        length = 1,
+    return nether.register_portal("cloudlands_portal", {
+      shape               = nether.PortalShape_Traditional,
+      frame_node_name     = frameNodeName,
+      wormhole_node_color = 2, -- 2 is blue
+      particle_color      = "#77F",
+      particle_texture    = {
+        name      = "nether_particle_anim1.png",
+        animation = {
+          type = "vertical_frames",
+          aspect_w = 7,
+          aspect_h = 7,
+          length = 1,
+        },
+        scale = 1.5
       },
-      scale = 1.5
-    },
-    title = S("Hallelujah Mountains Portal"),
-    book_of_portals_pagetext =
-      S("Construction requires 14 blocks of ancient portalstone. We have no knowledge of how portalstones were created, the means to craft them are likely lost to time, so our only source has been to scavenge the Nether for the remnants of ancient broken portals. A finished frame is four blocks wide, five blocks high, and stands vertically, like a doorway.") .. "\n\n" ..
-      S("The only portal we managed to scavenge enough portalstone to build took us to a land of floating islands. There were hills and forests and even water up there, but the edges are a perilous drop — a depth of which we cannot even begin to plumb."),
+      title = S("Hallelujah Mountains Portal"),
+      book_of_portals_pagetext = bookOfPortalsText,
 
-    is_within_realm = function(pos)
-      -- return true if pos is in the cloudlands
-      -- I'm doing this based off height for speed, so it sometimes gets it wrong when the
-      -- Hallelujah mountains start reaching the ground.
-      if noise_heightMap == nil then cloudlands.init() end
-      local largestCoreType  = cloudlands.coreTypes[1] -- the first island type is the biggest/thickest
-      local island_bottom = ALTITUDE - (largestCoreType.depthMax * 0.66) + round(noise_heightMap:get2d({x = pos.x, y = pos.z}))
+      is_within_realm = function(pos)
+        -- return true if pos is in the cloudlands
+        -- I'm doing this based off height for speed, so it sometimes gets it wrong when the
+        -- Hallelujah mountains start reaching the ground.
+        if noise_heightMap == nil then cloudlands.init() end
+        local largestCoreType  = cloudlands.coreTypes[1] -- the first island type is the biggest/thickest
+        local island_bottom = ALTITUDE - (largestCoreType.depthMax * 0.66) + round(noise_heightMap:get2d({x = pos.x, y = pos.z}))
 
-      return pos.y > math_max(40, island_bottom)
-    end,
+        return pos.y > math_max(40, island_bottom)
+      end,
 
-    find_realm_anchorPos = function(surface_anchorPos, player_name)
-      -- Find the nearest island and obtain a suitable surface position on it
-      local destination_pos, island = find_nearest_island_location_for_portal(surface_anchorPos.x, surface_anchorPos.z, player_name)
+      find_realm_anchorPos = function(surface_anchorPos, player_name)
+        -- Find the nearest island and obtain a suitable surface position on it
+        local destination_pos, island = find_nearest_island_location_for_portal(surface_anchorPos.x, surface_anchorPos.z, player_name)
 
-      if island ~= nil then
-        -- Allow any existing or player-positioned portal on the island to be linked to
-        -- first before resorting to the island's default portal position
-        local existing_portal_location, existing_portal_orientation = nether.find_nearest_working_portal(
-          "cloudlands_portal",
-          {x = island.x, y = 100000, z = island.z}, -- Using 100000 for y to ensure the position is in the cloudlands realm and so find_nearest_working_portal() will only returns island portals.
-          island.radius * 0.9,                      -- Islands normally don't reach their full radius. Ensure this distance limit encompasses any location find_nearest_island_location_for_portal() can return.
-          0 -- a y_factor of 0 makes the search ignore the altitude of the portals (as long as they are in the Cloudlands realm)
-        )
+        if island ~= nil then
+          -- Allow any existing or player-positioned portal on the island to be linked to
+          -- first before resorting to the island's default portal position
+          local existing_portal_location, existing_portal_orientation = nether.find_nearest_working_portal(
+            "cloudlands_portal",
+            {x = island.x, y = 100000, z = island.z}, -- Using 100000 for y to ensure the position is in the cloudlands realm and so find_nearest_working_portal() will only returns island portals.
+            island.radius * 0.9,                      -- Islands normally don't reach their full radius. Ensure this distance limit encompasses any location find_nearest_island_location_for_portal() can return.
+            0 -- a y_factor of 0 makes the search ignore the altitude of the portals (as long as they are in the Cloudlands realm)
+          )
+          if existing_portal_location ~= nil then
+            return existing_portal_location, existing_portal_orientation
+          end
+        end
+
+        return destination_pos
+      end,
+
+      find_surface_anchorPos = function(realm_anchorPos)
+        -- This function isn't needed since find_surface_target_y() will be used by default,
+        -- but by implementing it I can look for any existing nearby portals before falling
+        -- back to find_surface_target_y.
+
+        -- Using -100000 for y to ensure the position is outside the cloudlands realm and so
+        -- find_nearest_working_portal() will only returns ground portals.
+        -- a y_factor of 0 makes the search ignore the -100000 altitude of the portals (as
+        -- long as they are outside the cloudlands realm)
+        local existing_portal_location, existing_portal_orientation =
+          nether.find_nearest_working_portal("cloudlands_portal", {x = realm_anchorPos.x, y = -100000, z = realm_anchorPos.z}, 150, 0)
+
         if existing_portal_location ~= nil then
           return existing_portal_location, existing_portal_orientation
+        else
+          local y = nether.find_surface_target_y(realm_anchorPos.x, realm_anchorPos.z, "cloudlands_portal")
+          return {x = realm_anchorPos.x, y = y, z = realm_anchorPos.z}
         end
+      end,
+
+      on_ignite = function(portalDef, anchorPos, orientation)
+        -- make some sparks fly on ignition
+        local p1, p2 = portalDef.shape:get_p1_and_p2_from_anchorPos(anchorPos, orientation)
+        local pos = vector.divide(vector.add(p1, p2), 2)
+
+        local textureName = portalDef.particle_texture
+        if type(textureName) == "table" then textureName = textureName.name end
+
+        local velocity
+        if orientation == 0 then
+          velocity = {x = 0, y = 0, z = 7}
+        else
+          velocity = {x = 7, y = 0, z = 0}
+        end
+
+        local particleSpawnerDef = {
+          amount = 180,
+          time   = 0.15,
+          minpos = {x = pos.x - 1, y = pos.y - 1.5, z = pos.z - 1},
+          maxpos = {x = pos.x + 1, y = pos.y + 1.5, z = pos.z + 1},
+          minvel = velocity,
+          maxvel = velocity,
+          minacc = {x =  0, y =  0, z =  0},
+          maxacc = {x =  0, y =  0, z =  0},
+          minexptime = 0.1,
+          maxexptime = 0.5,
+          minsize = 0.3 * portalDef.particle_texture_scale,
+          maxsize = 0.8 * portalDef.particle_texture_scale,
+          collisiondetection = false,
+          texture = textureName .. "^[colorize:#99F:alpha",
+          animation = portalDef.particle_texture_animation,
+          glow = 8
+        }
+
+        minetest.add_particlespawner(particleSpawnerDef)
+
+        velocity = vector.multiply(velocity, -1)
+        particleSpawnerDef.minvel, particleSpawnerDef.maxvel = velocity, velocity
+        minetest.add_particlespawner(particleSpawnerDef)
       end
 
-      return destination_pos
-    end,
+    })  -- end of nether.register_portal() invocation
+  end -- end of local function register_portal()
 
-    find_surface_anchorPos = function(realm_anchorPos)
-      -- This function isn't needed since find_surface_target_y() will be used by default,
-      -- but by implementing it I can look for any existing nearby portals before falling
-      -- back to find_surface_target_y.
 
-      -- Using -100000 for y to ensure the position is outside the cloudlands realm and so
-      -- find_nearest_working_portal() will only returns ground portals.
-      -- a y_factor of 0 makes the search ignore the -100000 altitude of the portals (as
-      -- long as they are outside the cloudlands realm)
-      local existing_portal_location, existing_portal_orientation =
-        nether.find_nearest_working_portal("cloudlands_portal", {x = realm_anchorPos.x, y = -100000, z = realm_anchorPos.z}, 150, 0)
+  minetest.register_on_mods_loaded(function()
+    -- wait until all the other mods are loaded to see if "nether:basalt_chiselled" is still available to use as a portalstone
+    -- (another mod might be using it for portals)
 
-      if existing_portal_location ~= nil then
-        return existing_portal_location, existing_portal_orientation
-      else
-        local y = nether.find_surface_target_y(realm_anchorPos.x, realm_anchorPos.z, "cloudlands_portal")
-        return {x = realm_anchorPos.x, y = y, z = realm_anchorPos.z}
-      end
-    end,
-
-    on_ignite = function(portalDef, anchorPos, orientation)
-      -- make some sparks fly on ignition
-      local p1, p2 = portalDef.shape:get_p1_and_p2_from_anchorPos(anchorPos, orientation)
-      local pos = vector.divide(vector.add(p1, p2), 2)
-
-      local textureName = portalDef.particle_texture
-      if type(textureName) == "table" then textureName = textureName.name end
-
-      local velocity
-      if orientation == 0 then
-        velocity = {x = 0, y = 0, z = 7}
-      else
-        velocity = {x = 7, y = 0, z = 0}
-      end
-
-      local particleSpawnerDef = {
-        amount = 180,
-        time   = 0.15,
-        minpos = {x = pos.x - 1, y = pos.y - 1.5, z = pos.z - 1},
-        maxpos = {x = pos.x + 1, y = pos.y + 1.5, z = pos.z + 1},
-        minvel = velocity,
-        maxvel = velocity,
-        minacc = {x =  0, y =  0, z =  0},
-        maxacc = {x =  0, y =  0, z =  0},
-        minexptime = 0.1,
-        maxexptime = 0.5,
-        minsize = 0.3 * portalDef.particle_texture_scale,
-        maxsize = 0.8 * portalDef.particle_texture_scale,
-        collisiondetection = false,
-        texture = textureName .. "^[colorize:#99F:alpha",
-        animation = portalDef.particle_texture_animation,
-        glow = 8
-      }
-
-      minetest.add_particlespawner(particleSpawnerDef)
-
-      velocity = vector.multiply(velocity, -1)
-      particleSpawnerDef.minvel, particleSpawnerDef.maxvel = velocity, velocity
-      minetest.add_particlespawner(particleSpawnerDef)
+    local useBasalt = false
+    if USE_NETHER_BASALT and
+       minetest.registered_nodes["nether:basalt_chiselled"] ~= nil and
+       register_portal("nether:basalt_chiselled", bookOfPortalsText_NetherChiselledBasalt) then
+      -- Chiselled basalt is available for cloudlands to use as portal stone,
+      -- so there's no need to add any ancient portalstone to the Nether.
+      useBasalt = true
     end
 
-  })
+    if useBasalt then
+      nodeName_portalStone = "nether:basalt_chiselled"
+
+      -- We want to alias any legacy ancient_portalstone to be nether:basalt_chiselled.
+      -- Players may have already built portals out of "cloudlands:ancient_portalstone" and we
+      -- want those portals to continue to work.
+
+      -- use _force() to Unregister ancient_portalstone and make it an alias of nether:basalt_chiselled
+      minetest.register_alias_force(MODNAME .. ":ancient_portalstone", nodeName_portalStone)
+
+    else
+      nodeName_portalStone = MODNAME .. ":ancient_portalstone"
+      register_portal(nodeName_portalStone, bookOfPortalsText_AncientPortalstone)
+
+      -- Ensure Ancient Portalstone can be obtained from the Nether
+      minetest.register_ore({
+        ore_type       = "scatter",
+        ore            = MODNAME .. ":ancient_portalstone",
+        wherein        = "nether:rack",
+        clust_scarcity = 32 * 32 * 32,
+        clust_num_ores = 6,
+        clust_size     = 3,
+        y_max = nether.DEPTH_CEILING or nether.DEPTH,
+        y_min = nether.DEPTH_FLOOR   or -32000,
+      })
+
+      minetest.register_decoration({
+        name = "Ancient broken portal",
+        deco_type = "schematic",
+        place_on = "nether:rack",
+        sidelen = 80,
+        fill_ratio = 0.00018,
+        biomes = {"nether_caverns"},
+        y_max = nether.DEPTH_CEILING or nether.DEPTH,
+        y_min = nether.DEPTH_FLOOR   or -32000,
+        schematic = {
+          size = {x = 4, y = 4, z = 1},
+          data = {
+              PN, A, PW, PN,
+              PU, A,  A, PU,
+              A,  _,  _, PU,
+              _,  _,  _, PU
+          },
+          yslice_prob = {
+              {ypos = 3, prob = 92},
+              {ypos = 1, prob = 30},
+          }
+        },
+        place_offset_y = 1,
+        { -- node replacements
+          ["portalstone"] = nodeName_portalStone,
+        },
+        flags = "force_placement,all_floors",
+        rotation = "random"
+      })
+
+    end
+
+  end)
+
 end
 
 --[[==============================
@@ -2017,7 +2084,7 @@ minetest.register_node(
 
 
 local nodeName_egg = "secret:fossilized_egg"
-local eggTextureBaseName = interop.find_node_texture({"default:jungleleaves", "mcl_core:jungleleaves", "ethereal:frost_leaves", "main:leaves"})
+local eggTextureBaseName = interop.find_node_texture({"default:jungleleaves", "mcl_core:jungleleaves", "ethereal:frost_leaves", "main:leaves", "nc_tree:leaves"})
 
 -- [Ab]Use a leaf texture. Originally this was to avoid needing to include an egg texture (extra files) and
 -- exposing that the mod contains secrets, however both those reasons are obsolete and the mod could have textures
@@ -2142,7 +2209,8 @@ if frameTexture ~= nil and nodeName_frameGlass ~= nodeName_ignore and minetest.r
   end
 end
 
-local nodeId_egg        = minetest.get_content_id(nodeName_egg)
+local nodeId_egg        = interop.find_node_id({"draconis:egg_fire_green", nodeName_egg})
+local nodeId_eggNest    = interop.find_node_id(table.insert_all({"draconis:bone_pile_scorched"}, NODENAMES_GRAVEL))
 local nodeId_airStandIn = minetest.get_content_id(interop.register_clone("air"))
 
 -- defer assigning the following until all mods are loaded
@@ -2392,7 +2460,7 @@ local function addDetail_secrets(decoration_list, core, data, area, minp, maxp)
         local eggX = core.x
         local eggZ = core.z - directionOffsetZ * 0.75 -- move the egg away from where the burrow entrance is carved
         placeNode(eggX, burrowFloor, eggZ, nodeId_egg)
-        if nodeId_gravel ~= nodeId_ignore then placeNode(eggX, burrowFloor - 1, eggZ, nodeId_gravel) end
+        if nodeId_eggNest ~= nodeId_ignore then placeNode(eggX, burrowFloor - 1, eggZ, nodeId_eggNest) end
         if nodeId_cobweb ~= nodeId_ignore then
           placeNode(core.x - 6, burrowFloor + 3, core.z - 1, nodeId_cobweb)
           placeNode(core.x + 4, burrowFloor + 4, core.z + 3, nodeId_cobweb)
@@ -2511,6 +2579,9 @@ look for us here. McNish is attempting to strengthen the gliders.
                 invBookshelf:add_item("books", book_itemstack)
                 local dummyPlayer = {}
                 dummyPlayer.get_player_name = function() return "server" end
+                dummyPlayer.is_fake_player = true
+                dummyPlayer.is_player = function() return false end -- it's unclear whether this should return false for fake players
+
                 minetest.registered_nodes[nodeName_bookshelf].on_metadata_inventory_put(bookshelf_pos, "books", 1, book_itemstack, dummyPlayer)
               end
             end
@@ -2532,6 +2603,7 @@ look for us here. McNish is attempting to strengthen the gliders.
             addIfFound({"binoculars:binoculars"}, 1)
             addIfFound(NODENAMES_WOOD, 10)
             addIfFound({"mcl_torches:torch", "default:torch", "torch:torch"}, 3)
+            addIfFound({"hangglider:hangglider"}, 1)
           end
 
         end

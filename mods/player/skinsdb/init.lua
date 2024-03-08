@@ -8,6 +8,12 @@ skins = {}
 skins.modpath = minetest.get_modpath(minetest.get_current_modname())
 skins.default = "character"
 
+-- see skindsdb/textures/readme.txt to avoid playername with underscore problem
+skins.fsep = minetest.settings:get("skinsdb_fsep") or "_"
+if skins.fsep == "_" then
+	minetest.log("warning", "skinsdb filename seperator is set to " .. skins.fsep .. ", see skindsdb/textures/readme.txt to avoid problems with playernames containing underscore")
+end
+
 dofile(skins.modpath.."/skin_meta_api.lua")
 dofile(skins.modpath.."/api.lua")
 dofile(skins.modpath.."/skinlist.lua")
@@ -63,6 +69,13 @@ end)
 
 minetest.register_on_leaveplayer(function(player)
 	skins.ui_context[player:get_player_name()] = nil
+	player:get_inventory():set_size("hand", 0)
+end)
+
+minetest.register_on_shutdown(function()
+	for _, player in pairs(minetest.get_connected_players()) do
+		player:get_inventory():set_size("hand", 0)
+	end
 end)
 
 player_api.register_model("skinsdb_3d_armor_character_5.b3d", {
@@ -80,6 +93,10 @@ player_api.register_model("skinsdb_3d_armor_character_5.b3d", {
 		mine = {x=189, y=198},
 		walk_mine = {x=200, y=219},
 		sit = {x=81, y=160},
+		-- compatibility w/ the emote mod
+		wave = {x = 192, y = 196, override_local = true},
+		point = {x = 196, y = 196, override_local = true},
+		freeze = {x = 205, y = 205, override_local = true},
 	},
 })
 

@@ -1,18 +1,14 @@
 # textdomain: homedecor_windows_and_treatments
-
-
-### init.lua ###
-
-Curtain Rod (@1)=Карниз для штор (@1)
-Curtains=Шторы
-Curtains (open)=Шторы
-Stained Glass=Витражное стекло
-Window (plain)=Окно (простое)
 Window (quartered)=Окно (разделённое)
+Window (plain)=Окно (простое)
 Window Blinds (thick)=Жалюзи (широкие)
 Window Blinds (thin)=Жалюзи (узкие)
-Window flowerbox=Оконный цветочный ящик
-Wooden Shutter=Деревянные ставни
+Curtains=Шторы
+Curtains (open)=Шторы
 brass=латунь
-wood=дерево
 wrought iron=кованное железо
+wood=дерево
+Curtain Rod (@1)=Карниз для штор (@1)
+Window flowerbox=Оконный цветочный ящик
+Stained Glass=Витражное стекло
+Wooden Shutter=Деревянные ставни

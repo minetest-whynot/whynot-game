@@ -8,6 +8,17 @@ function homedecor.register(name, original_def)
 
 	def.is_furnace = nil
 
+	if def.groups and (def.groups.crumbly or def.groups.oddly_breakable_by_hand) then
+		def.groups["handy"]=1
+		def._mcl_hardness=0.6
+	elseif def.groups and (def.groups.snappy or def.groups.choppy) then
+		def.groups["axey"]=5
+		def._mcl_hardness=1.6
+	elseif def.groups and (def.groups.cracky or def.groups.crumbly) then
+		def.groups["pickaxey"]=5
+		def._mcl_hardness=1.6
+	end
+
 	def.drawtype = def.drawtype
 		or (def.mesh and "mesh")
 		or (def.node_box and "nodebox")

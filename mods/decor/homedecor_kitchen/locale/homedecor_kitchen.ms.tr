@@ -1,24 +1,22 @@
 # textdomain: homedecor_kitchen
-
-
-### init.lua ###
-
-Copper pans=Kuali Leper Tembaga
-Dishwasher=Mesin Basuh Pinggan Mangkuk
-Dishwasher (@1)=Mesin Basuh Pinggan Mangkuk (@1)
-Half-height Kitchen Cabinet (on ceiling)=Kabinet Dapur Separuh (dekat siling)
-Kitchen Cabinet=Kabinet Dapur
-Kitchen Cabinet (@1 top)=Kabinet Dapur (Beralaskan @1)
-Kitchen Cabinet with sink=Kabinet Dapur dengan Sinki
-Kitchen Faucet=Kepala Paip Dapur
-Microwave Oven=Ketuhar Gelombang Mikro
+Refrigerator (stainless steel)=Peti Sejuk (Keluli Tahan Karat)
+Refrigerator=Peti Sejuk
 Oven=Ketuhar
 Oven (stainless steel)=Ketuhar (Keluli Tahan Karat)
-Paper towels=Tuala Dapur Pakai Buang
-Refrigerator=Peti Sejuk
-Refrigerator (stainless steel)=Peti Sejuk (Keluli Tahan Karat)
-Under-sink cabinet=Kabinet Bawah Sinki
+Microwave Oven=Ketuhar Gelombang Mikro
+Dishwasher=Mesin Basuh Pinggan Mangkuk
 granite=Granit
 marble=Marmar
 steel=Keluli
 wood=Kayu
+Dishwasher (@1)=Mesin Basuh Pinggan Mangkuk (@1)
+Kitchen Cabinet=Kabinet Dapur
+Kitchen Cabinet with drawers=
+Kitchen Cabinet (@1 top)=Kabinet Dapur (Beralaskan @1)
+Kitchen Cabinet with drawers (@1 top)=
+Half-height Kitchen Cabinet (on ceiling)=Kabinet Dapur Separuh (dekat siling)
+Kitchen Cabinet with sink=Kabinet Dapur dengan Sinki
+Under-sink cabinet=Kabinet Bawah Sinki
+Copper pans=Kuali Leper Tembaga
+Kitchen Faucet=Kepala Paip Dapur
+Paper towels=Tuala Dapur Pakai Buang

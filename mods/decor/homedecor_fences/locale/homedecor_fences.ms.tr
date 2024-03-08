@@ -1,12 +1,6 @@
 # textdomain: homedecor_fences
-
-
-### init.lua ###
-
-Barbed Wire Fence=Pagar Dawai Berduri
-Barbed Wire Fence Corner=Bucu Pagar Dawai Berduri
-Chainlink Fence=Pagar Dawai Berangkai
-Chainlink Fence Corner=Bucu Pagar Dawai Berangkai
+brass=Loyang
+wrought iron=Besi Tempaan
 Fence/railing (@1)=Pagar/Kisi-Kisi (@1)
 Unpainted Picket Fence=Pagar Pancang Tidak Bercat
 Unpainted Picket Fence Corner=Bucu Pagar Pancang Tidak Bercat
@@ -14,7 +8,9 @@ White Picket Fence=Pagar Pancang Putih
 White Picket Fence Corner=Bucu Pagar Pancang Putih
 Wooden Privacy Fence=Pagar Privasi Kayu
 Wooden Privacy Fence Corner=Bucu Pagar Privasi Kayu
+Barbed Wire Fence=Pagar Dawai Berduri
+Barbed Wire Fence Corner=Bucu Pagar Dawai Berduri
+Chainlink Fence=Pagar Dawai Berangkai
+Chainlink Fence Corner=Bucu Pagar Dawai Berangkai
 Wrought Iron fence (type 2)=Pagar Besi Tempaan (jenis ke-2)
 Wrought Iron fence (type 2) Corner=Bucu Pagar Besi Tempaan (jenis ke-2)
-brass=Loyang
-wrought iron=Besi Tempaan

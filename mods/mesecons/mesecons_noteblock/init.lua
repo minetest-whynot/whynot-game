@@ -1,5 +1,7 @@
+local S = minetest.get_translator(minetest.get_current_modname())
+
 minetest.register_node("mesecons_noteblock:noteblock", {
-	description = "Noteblock",
+	description = S("Noteblock"),
 	tiles = {"mesecons_noteblock.png"},
 	is_ground_content = false,
 	groups = {snappy=2, choppy=2, oddly_breakable_by_hand=2},
@@ -18,6 +20,7 @@ minetest.register_node("mesecons_noteblock:noteblock", {
 			mesecon.noteblock_play(pos, node.param2)
 		end
 	}},
+	place_param2 = 11, -- initialize at C note
 	on_blast = mesecon.on_blastnode,
 })
 
@@ -43,7 +46,7 @@ local soundnames = {
 	"mesecons_noteblock_a",
 	"mesecons_noteblock_asharp",
 	"mesecons_noteblock_b",
-	"mesecons_noteblock_c"
+	"mesecons_noteblock_c" -- << noteblock is initialized here
 }
 
 local node_sounds = {}
@@ -72,6 +75,9 @@ mesecon.noteblock_play = function(pos, param2)
 	pos.y = pos.y-1
 	local nodeunder = minetest.get_node(pos).name
 	local soundname = node_sounds[nodeunder]
+	local use_pitch = true
+	local pitch
+	-- Special sounds
 	if not soundname then
 		for k,v in pairs(node_sounds_group) do
 			local g = minetest.get_item_group(nodeunder, k)
@@ -81,6 +87,7 @@ mesecon.noteblock_play = function(pos, param2)
 			end
 		end
 	end
+	-- Piano
 	if not soundname then
 		soundname = soundnames[param2]
 		if not soundname then
@@ -90,6 +97,17 @@ mesecon.noteblock_play = function(pos, param2)
 		if nodeunder == steelblock_nodename then
 			soundname = soundname.. 2
 		end
+		use_pitch = false
+	end
+	-- Disable pitch for fire and explode because they'd sound too odd
+	if soundname == "fire_fire" or soundname == "tnt_explode" then
+		use_pitch = false
+	end
+	if use_pitch then
+		-- Calculate pitch
+		-- Adding 1 to param2 because param2=11 is *lowest* pitch sound
+		local val = (param2+1)%12
+		pitch = 2^((val-6)/12)
 	end
 	pos.y = pos.y+1
 	if soundname == "fire_fire" then
@@ -97,6 +115,6 @@ mesecon.noteblock_play = function(pos, param2)
 		local handle = minetest.sound_play(soundname, {pos = pos, loop = true})
 		minetest.after(3.0, minetest.sound_fade, handle, -1.5, 0.0)
 	else
-		minetest.sound_play(soundname, {pos = pos}, true)
+		minetest.sound_play(soundname, {pos = pos, pitch = pitch}, true)
 	end
 end

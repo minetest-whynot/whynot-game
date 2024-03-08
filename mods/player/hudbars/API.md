@@ -68,7 +68,7 @@ for more information.
 * `default_start_hidden`: The HUD bar will be initially start hidden by default when added to a player. Use `hb.unhide_hudbar` to unhide it.
 * `format_string`: Optional; You can specify an alternative format string to use for the final text on the HUD bar. The default format string is “`@1: @2/@3`” (The “@” numbers are placeholders that have a meaning in this order: @1 = Label, @2 = current value, @3 = maximum value). Do *not* use minetest.translator on this string, the string will be translated by `hudbars`, but you still must put this string into the translation catalogue file.
 * `format_string_config`: Required if `format_string` is set. This allows to change which parameters to use in the format string. It's a table with these fields:
- * `textdomain`: Text domain of the format string, used by `minetest.translate`
+* `textdomain`: Text domain of the format string, used by `minetest.translate` if missing or set to `nil` will use `minetest.get_translator`
  * `order`: Table that contains the order of the placeholders. It's also possible to remove placeholders. Default order: `{ "label", "value", "max_value" }`
  * `format_value`: Format string to apply when displaying `value`. Syntax is same as in `string.format`. Default: `"%d"`
  * `format_max_value`: Same as `format_value` but is applied to `max_value`
@@ -187,7 +187,7 @@ Makes a previously hidden HUD bar visible again to a player.
 It is also possible to read information about existing HUD bars.
 
 ### `hb.get_hudbar_state(player, identifier)`
-Returns the current state of the active player's HUD bar.
+Returns the current state of the active player's HUD bar. Will return `nil` if the hudbar is not initialized.
 
 #### Parameters
 * `player`: `ObjectRef` of the player to which the HUD bar belongs to

@@ -210,7 +210,7 @@ function homedecor.handle_inventory(name, def, original_def)
 	if lockable then
 		local locked_def = table.copy(original_def)
 		locked_def.description = S("@1 (Locked)", def.description or name)
-
+		locked_def.crafts = nil
 		local locked_inventory = locked_def.inventory
 		locked_inventory.locked = true
 		locked_inventory.lockable = nil -- avoid loops of locked locked stuff

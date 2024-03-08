@@ -1,8 +1,17 @@
 
-local S = mobs.intllib
+local S = mobs.translate
+
+
+-- are we a real player ?
+local function is_player(player)
+
+	if player and type(player) == "userdata" and minetest.is_player(player) then
+		return true
+	end
+end
+
 
 -- mob spawner
-
 local spawner_default = "mobs_animal:pumba 10 15 0 0 0"
 
 minetest.register_node("mobs:spawner", {
@@ -22,8 +31,7 @@ minetest.register_node("mobs:spawner", {
 				.. " (player distance) (Y offset)")
 
 		-- text entry formspec
-		meta:set_string("formspec",
-			"size[10,3.5]"
+		meta:set_string("formspec", "size[10,3.5]"
 			.. "label[0.15,0.5;" .. minetest.formspec_escape(head) .. "]"
 			.. "field[1,2.5;8.5,0.8;text;" .. S("Command:")
 			.. ";${command}]")
@@ -148,7 +156,7 @@ minetest.register_abm({
 
 			for _, oir in pairs(objsp) do
 
-				if oir:is_player() then
+				if is_player(oir) then
 
 					in_range = 1
 

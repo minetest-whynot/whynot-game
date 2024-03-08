@@ -1,32 +1,30 @@
 # textdomain: homedecor_lighting
-
-
-### init.lua ###
-
-Candlestick (brass)=Подсвечник (латунь)
-Candlestick (wrought iron)=Подсвечник (кованное железо)
-Ceiling Lamp/Light=
-Ceiling Lantern/Light=
-Chandelier (brass)=Люстра (латунь)
-Chandelier (steel)=
-Desk Lamp/Light=
+Thick Glowlight=Толстый светильник
+Thin Glowlight=Тонкий светильник
+Small Glowlight Cube=Малый светящийся куб
+Plasma Lamp/Light=
 Ground Lantern/Light=
 Hanging Lantern/Light=
-Hanging chain (ceiling mount, brass)=Висящая цепь (потолочное крепление, латунь)
-Hanging chain (ceiling mount, steel)=
+Ceiling Lantern/Light=
 Lattice lantern/Light (large)=
 Lattice lantern/light (small)=
-Oil Lamp/Light (tabletop)=
-Oil lamp/Light (hurricane)=
-Plasma Ball/light=
-Plasma Lamp/Light=
-Small Glowlight Cube=Малый светящийся куб
-Standing Lamp/Light=
+Desk Lamp/Light=
+Ceiling Lamp/Light=
 Table Lamp/Light=
-Thick Candle=Толстая свеча
-Thick Glowlight=Толстый светильник
-Thin Candle=Тонкая свеча
-Thin Glowlight=Тонкий светильник
+Standing Lamp/Light=
+Plasma Ball/light=
+Rope lighting (on floor)=
+Rope lighting (on ceiling)=
 Wall Lamp/light=
-Wall Torch=Настенный факел
+Thick Candle=Толстая свеча
+Thin Candle=Тонкая свеча
+Candlestick (wrought iron)=Подсвечник (кованное железо)
+Candlestick (brass)=Подсвечник (латунь)
 Wall sconce=Настенный светильник
+Oil lamp/Light (hurricane)=
+Oil Lamp/Light (tabletop)=
+Hanging chain (ceiling mount, steel)=
+Hanging chain (ceiling mount, brass)=Висящая цепь (потолочное крепление, латунь)
+Chandelier (steel)=
+Chandelier (brass)=Люстра (латунь)
+Wall Torch=Настенный факел

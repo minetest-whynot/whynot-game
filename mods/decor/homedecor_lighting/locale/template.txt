@@ -1,34 +1,30 @@
 # textdomain: homedecor_lighting
-
-
-### init.lua ###
-
-Candlestick (brass)=
-Candlestick (wrought iron)=
-Ceiling Lamp/Light=
-Ceiling Lantern/Light=
-Chandelier (brass)=
-Chandelier (steel)=
-Desk Lamp/Light=
+Thick Glowlight=
+Thin Glowlight=
+Small Glowlight Cube=
+Plasma Lamp/Light=
 Ground Lantern/Light=
 Hanging Lantern/Light=
-Hanging chain (ceiling mount, brass)=
-Hanging chain (ceiling mount, steel)=
+Ceiling Lantern/Light=
 Lattice lantern/Light (large)=
 Lattice lantern/light (small)=
-Oil Lamp/Light (tabletop)=
-Oil lamp/Light (hurricane)=
-Plasma Ball/light=
-Plasma Lamp/Light=
-Rope lighting (on ceiling)=
-Rope lighting (on floor)=
-Small Glowlight Cube=
-Standing Lamp/Light=
+Desk Lamp/Light=
+Ceiling Lamp/Light=
 Table Lamp/Light=
-Thick Candle=
-Thick Glowlight=
-Thin Candle=
-Thin Glowlight=
+Standing Lamp/Light=
+Plasma Ball/light=
+Rope lighting (on floor)=
+Rope lighting (on ceiling)=
 Wall Lamp/light=
-Wall Torch=
+Thick Candle=
+Thin Candle=
+Candlestick (wrought iron)=
+Candlestick (brass)=
 Wall sconce=
+Oil lamp/Light (hurricane)=
+Oil Lamp/Light (tabletop)=
+Hanging chain (ceiling mount, steel)=
+Hanging chain (ceiling mount, brass)=
+Chandelier (steel)=
+Chandelier (brass)=
+Wall Torch=

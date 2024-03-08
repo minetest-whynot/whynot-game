@@ -1,48 +1,20 @@
 # textdomain: building_blocks
-
-
-### alias.lua ###
-
 Granite=Granit
-
-### node_stairs.lua ###
-
-Adobe=Adobe
-Adobe Slab=Adobestufe
-Adobe Stair=Adobetreppe
-Brobble Spread=Ziesterboden
-Chess board tiling=Schachbrettkacheln
-Fake Grass=Falsches Gras
-Fake Grass Slab=Falsches-Gras-Stufe
-Fake Grass Stair=Falsches-Gras-Treppe
-Fireplace=Kamin
 Grate=Rost
-Grate Slab=Roststufe
-Grate Stair=Rosttreppe
-Gravel Spread=Kiesboden
-Hardwood=Hartholz
-Hardwood Slab=Hartholzstufe
-Hardwood Stair=Hartholztreppe
-Marble=Marmor
-Marble Slab=Marmorstufe
-Marble Stair=Marmortreppe
-Roof block=Dachblock
-Roof block Slab=Dachblockstufe
-Roof block Stair=Dachblocktreppe
 Streak Free Glass=Schlierenfreies Glas
-Streak Free Glass Slab=Schlierenfreies-Glas-Stufe
-Streak Free Glass Stair=Schlierenfreies-Glas-Treppe
+Wood Framed Glass=Holzrahmenglas
+Adobe=Adobe
+Fake Grass=Falsches Gras
+Hardwood=Hartholz
+Roof block=Dachblock
 Tar=Teer
-Tar Slab=Teerstufe
-Tar Stair=Teertreppe
+Marble=Marmor
+Brobble Spread=Ziesterboden
+Gravel Spread=Kiesboden
 Tarmac Spread=Asphaltboden
 Terrycloth towel=Frottiertuch
-Wood Framed Glass=Holzrahmenglas
-Wood Framed Glass Slab=Holzrahmenglasstufe
-Wood Framed Glass Stair=Holzrahmenglastreppe
-
-### others.lua ###
-
+Chess board tiling=Schachbrettkacheln
+Fireplace=Kamin
 Small bundle of sticks=Kleines Bündel Stöcke
-Tar Knife=Teermesser
 Tar base=Teerbase
+Tar Knife=Teermesser

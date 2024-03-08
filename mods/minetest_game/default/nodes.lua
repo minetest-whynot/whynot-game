@@ -2024,7 +2024,7 @@ minetest.register_node("default:sand_with_kelp", {
 		return itemstack
 	end,
 
-	after_destruct  = function(pos, oldnode)
+	after_dig_node = function(pos, oldnode, oldmetadata, digger)
 		minetest.set_node(pos, {name = "default:sand"})
 	end
 })
@@ -2099,7 +2099,7 @@ minetest.register_node("default:coral_green", {
 
 	on_place = coral_on_place,
 
-	after_destruct  = function(pos, oldnode)
+	after_dig_node = function(pos, oldnode, oldmetadata, digger)
 		minetest.set_node(pos, {name = "default:coral_skeleton"})
 	end,
 })
@@ -2130,7 +2130,7 @@ minetest.register_node("default:coral_pink", {
 
 	on_place = coral_on_place,
 
-	after_destruct  = function(pos, oldnode)
+	after_dig_node = function(pos, oldnode, oldmetadata, digger)
 		minetest.set_node(pos, {name = "default:coral_skeleton"})
 	end,
 })
@@ -2161,7 +2161,7 @@ minetest.register_node("default:coral_cyan", {
 
 	on_place = coral_on_place,
 
-	after_destruct  = function(pos, oldnode)
+	after_dig_node = function(pos, oldnode, oldmetadata, digger)
 		minetest.set_node(pos, {name = "default:coral_skeleton"})
 	end,
 })
@@ -2549,6 +2549,15 @@ local default_bookshelf_def = {
 		end
 		return 0
 	end,
+	on_metadata_inventory_put = function(pos)
+		update_bookshelf(pos)
+	end,
+	on_metadata_inventory_take = function(pos)
+		update_bookshelf(pos)
+	end,
+	on_metadata_inventory_move = function(pos)
+		update_bookshelf(pos)
+	end,
 	on_blast = function(pos)
 		local drops = {}
 		default.get_inventory_drops(pos, "books", drops)
@@ -2597,12 +2606,12 @@ local function register_sign(material, desc, def)
 			if not text then
 				return
 			end
-			if string.len(text) > 512 then
+			if #text > 512 then
 				minetest.chat_send_player(player_name, S("Text too long"))
 				return
 			end
-			default.log_player_action(sender, "wrote \"" .. text ..
-				"\" to the sign at", pos)
+			text = text:gsub("[%z-\8\11-\31\127]", "") -- strip naughty control characters (keeps \t and \n)
+			default.log_player_action(sender, ("wrote %q to the sign at"):format(text), pos)
 			local meta = minetest.get_meta(pos)
 			meta:set_string("text", text)
 

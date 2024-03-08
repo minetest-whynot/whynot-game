@@ -25,9 +25,6 @@
 [submodule "builder/mods_src/decor/dice2"]
 	path = builder/mods_src/decor/dice2
 	url = https://repo.or.cz/minetest_dice2.git
-[submodule "builder/mods_src/decor/flower_pot"]
-	path = builder/mods_src/decor/flower_pot
-	url = https://github.com/cdqwertz/flower_pot
 [submodule "builder/mods_src/decor/heads"]
 	path = builder/mods_src/decor/heads
 	url = https://github.com/HybridDog/heads
@@ -64,9 +61,6 @@
 [submodule "builder/mods_src/flora_ores/farming"]
 	path = builder/mods_src/flora_ores/farming
 	url = https://github.com/minetest-mirrors/farming.git
-[submodule "builder/mods_src/flora_ores/mese_crystals"]
-	path = builder/mods_src/flora_ores/mese_crystals
-	url = https://github.com/bell07/minetest-mese_crystals
 [submodule "builder/mods_src/food/canned_food"]
 	path = builder/mods_src/food/canned_food
 	url = https://github.com/h-v-smacker/canned_food
@@ -162,7 +156,7 @@
 	url = https://github.com/minetest-mods/wielded_light
 [submodule "builder/mods_src/tools/backpacks"]
 	path = builder/mods_src/tools/backpacks
-	url = https://github.com/taikedz/everamzah-backpacks
+	url = https://codeberg.org/minenux/minetest-mod-backpacks.git
 [submodule "builder/mods_src/tools/bonemeal"]
 	path = builder/mods_src/tools/bonemeal
 	url = https://github.com/minetest-mirrors/bonemeal.git
@@ -181,9 +175,6 @@
 [submodule "builder/mods_src/tools/handholds"]
 	path = builder/mods_src/tools/handholds
 	url = https://github.com/Ezhh/handholds
-[submodule "builder/mods_src/tools/helicopter"]
-	path = builder/mods_src/tools/helicopter
-	url = https://github.com/petermaloney/helicopter
 [submodule "builder/mods_src/tools/hopper"]
 	path = builder/mods_src/tools/hopper
 	url = https://github.com/minetest-mods/hopper
@@ -238,12 +229,27 @@
 [submodule "builder/mods_src/libs/sfcraftguide"]
 	path = builder/mods_src/libs/sfcraftguide
 	url = https://github.com/dacmot/sfcraftguide.git
-[submodule "builder/mods_src/mobs_redo/cmi"]
-	path = builder/mods_src/mobs_redo/cmi
-	url = https://github.com/raymoo/cmi.git
 [submodule "builder/mods_src/libs/sound_api"]
 	path = builder/mods_src/libs/sound_api
 	url = https://github.com/mt-mods/sound_api.git
 [submodule "builder/mods_src/libs/ediblestuff_api"]
 	path = builder/mods_src/libs/ediblestuff_api
 	url = https://github.com/Lazerbeak12345/ediblestuff_api.git
+[submodule "builder/mods_src/mapgen/yellow_crystal"]
+	path = builder/mods_src/flora_ores/yellow_crystal
+	url = https://codeberg.org/Dacmot/YellowCrystals.git
+[submodule "builder/mods_src/tools/biofuel"]
+	path = builder/mods_src/tools/biofuel
+	url = https://github.com/Lokrates/Biofuel.git
+[submodule "builder/mods_src/libs/airutils"]
+	path = builder/mods_src/libs/airutils
+	url = https://github.com/APercy/airutils.git
+[submodule "builder/mods_src/tools/hidroplane"]
+	path = builder/mods_src/tools/hidroplane
+	url = https://github.com/APercy/hidroplane.git
+[submodule "builder/mods_src/mapgen/builder/mods_src/mapgen/minetest_mapgen_config"]
+	path = builder/mods_src/mapgen/minetest_mapgen_config
+	url = https://codeberg.org/Dacmot/minetest_mapgen_config.git
+[submodule "builder/mods_src/decor/flower_pot"]
+	path = builder/mods_src/decor/flower_pot
+	url = https://codeberg.org/Dacmot/flower_pot.git

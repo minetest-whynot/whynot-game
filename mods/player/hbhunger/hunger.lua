@@ -106,9 +106,10 @@ function hbhunger.item_eat(hunger_change, replace_with_item, poisen, heal, sound
 				hbhunger.set_hunger_raw(user)
 			end
 			-- Healing
-			if hp < 20 and heal then
+			local hp_max = user:get_properties().hp_max or minetest.PLAYER_MAX_HP_DEFAULT or 20
+			if hp < hp_max and heal then
 				hp = hp + heal
-				if hp > 20 then hp = 20 end
+				if hp > hp_max then hp = hp_max end
 				user:set_hp(hp)
 			end
 			-- Poison

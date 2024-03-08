@@ -36,9 +36,8 @@ local function clear_item_name(itemname)
 		for z in out_itemname:gmatch("[^%s]+") do
 			local item = minetest.registered_aliases[z] or z
 			if minetest.registered_items[item] then
-				out_itemname = item
+				return item
 			end
-			break
 		end
 	end
 	return out_itemname

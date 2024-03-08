@@ -1,16 +1,12 @@
 # textdomain: homedecor_electronics
-
-
-### init.lua ###
-
-DVD Player=Lecteur DVD
-DVD and VCR=DVD et magnétoscope
 Large Stereo Speaker=Enceinte
 Large Stereo Speaker, open front=Enceinte, sans grille
+Small Surround Speaker=Enceinte satellite surround
+Stereo Receiver=Récepteur radio
 Projection Screen Material=Toile d'écran de projection
 Small CRT Television=Petite télévision à tube cathodique
-Small Surround Speaker=Enceinte satellite surround
-Speaker driver=Haut-parleur
-Stereo Receiver=Récepteur radio
+DVD and VCR=DVD et magnétoscope
 Telephone=Téléphone
 VCR=Magnétoscope
+DVD Player=Lecteur DVD
+Speaker driver=Haut-parleur

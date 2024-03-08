@@ -193,8 +193,8 @@ minetest.register_on_player_receive_fields(function(player, form_name, fields)
 	if (fields.title or "") ~= "" then
 		meta:set_string("infotext", fields.title)
 	end
-	minetest.log("action", S("@1 has written in a book (title: \"@2\"): \"@3\" at location @4",
-			player:get_player_name(), fields.title, fields.text, minetest.pos_to_string(player:get_pos())))
+	minetest.log("action", ("%s has written in a book (title: \"%s\"): \"%s\" at location %s"):format(
+			player:get_player_name(), fields.title, fields.text, minetest.pos_to_string(pos)))
 
 	player_current_book[player_name] = nil
 	return true

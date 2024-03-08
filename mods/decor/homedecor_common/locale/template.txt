@@ -1,28 +1,15 @@
 # textdomain: homedecor_common
-
-
-### crafts.lua ###
-
-Small Wooden Drawer=
 Terracotta Roof Tile=
-
-### expansion.lua ###
-
+Small Wooden Drawer=
 Not enough room - the space for the headboard is occupied!=
+Someone already owns the spot where the headboard goes.=
 Not enough room - the upper space is occupied!=
 Someone already owns that spot.=
-Someone already owns the spot where the headboard goes.=
-
-### furnaces.lua ###
-
-@1 (active)=
-@1 (active: @2%)=
+Furnace=
 @1 (empty)=
 @1 (out of fuel)=
 @1 (output bins are full)=
-Furnace=
-
-### inventory.lua ###
-
-@1 (Locked)=
+@1 (active: @2%)=
+@1 (active)=
 @1 (owned by @2)=
+@1 (Locked)=

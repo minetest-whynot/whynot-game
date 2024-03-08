@@ -28,6 +28,7 @@ local function reg_simple(name, def)
             end
         end,
         on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
+            if not itemstack then return end
             local pname = clicker:get_player_name()
             local iname = itemstack:get_name()
             local dpos = vector.add((vector.multiply(minetest.facedir_to_dir(node.param2), -1)), pos)

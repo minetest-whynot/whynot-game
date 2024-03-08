@@ -1,18 +1,14 @@
 # textdomain: homedecor_windows_and_treatments
-
-
-### init.lua ###
-
-Curtain Rod (@1)=Gardinenstange (@1)
-Curtains=Gardinen
-Curtains (open)=Gardinen
-Stained Glass=Buntglas
-Window (plain)=Fenster (schlicht)
 Window (quartered)=Fenster (geviertelt)
+Window (plain)=Fenster (schlicht)
 Window Blinds (thick)=Jalousie (dick)
 Window Blinds (thin)=Jalousie (dünn)
-Window flowerbox=Fensterblumenkasten
-Wooden Shutter=Holzrolladen
+Curtains=Gardinen
+Curtains (open)=Gardinen
 brass=Messing
-wood=Holz
 wrought iron=Schmiedeeisen
+wood=Holz
+Curtain Rod (@1)=Gardinenstange (@1)
+Window flowerbox=Fensterblumenkasten
+Stained Glass=Buntglas
+Wooden Shutter=Holzrolladen

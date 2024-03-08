@@ -93,7 +93,8 @@ local def = {
 	paramtype = "light",
 	paramtype2 = "facedir",
 
-	groups = {snappy = 3},
+	groups = {snappy = 3, axey=5},
+	_mcl_hardness=1.6,
 	selection_box = wd_cbox,
 	collision_box = wd_cbox,
 	sounds = default.node_sound_wood_defaults(),

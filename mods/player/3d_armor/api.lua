@@ -162,7 +162,6 @@ armor = {
 
 armor.config = {
 	init_delay = 2,
-	init_times = 10,
 	bones_delay = 1,
 	update_time = 1,
 	drop = minetest.get_modpath("bones") ~= nil,
@@ -353,7 +352,7 @@ armor.update_player_visuals = function(self, player)
 	end
 	local name = player:get_player_name()
 	if self.textures[name] then
-		default.player_set_textures(player, {
+		player_api.set_textures(player, {
 			self.textures[name].skin,
 			self.textures[name].armor,
 			self.textures[name].wielditem,
@@ -491,10 +490,13 @@ armor.set_player_armor = function(self, player)
 		armor_monoid.monoid:add_change(player, change, "3d_armor:armor")
 	else
 		-- Preserve immortal group (damage disabled for player)
-		local immortal = player:get_armor_groups().immortal
+		local player_groups = player:get_armor_groups()
+		local immortal = player_groups.immortal
 		if immortal and immortal ~= 0 then
 			groups.immortal = 1
 		end
+		-- Preserve fall_damage_add_percent group (fall damage modifier)
+		groups.fall_damage_add_percent = player_groups.fall_damage_add_percent
 		player:set_armor_groups(groups)
 	end
 	if use_player_monoids then
@@ -628,6 +630,9 @@ end
 armor.damage = function(self, player, index, stack, use)
 	local old_stack = ItemStack(stack)
 	local worn_armor = armor:get_weared_armor_elements(player)
+	if not worn_armor then
+		return
+	end
 	local armor_worn_cnt = 0
 	for k,v in pairs(worn_armor) do
 		armor_worn_cnt = armor_worn_cnt + 1
@@ -678,6 +683,10 @@ armor.equip = function(self, player, itemstack)
 		for i=1, armor_inv:get_size("armor") do
 			local stack = armor_inv:get_stack("armor", i)
 			if self:get_element(stack:get_name()) == armor_element then
+				--prevents equiping an armor that would unequip a cursed armor.
+				if minetest.get_item_group(stack:get_name(), "cursed") ~= 0 then
+					return itemstack
+				end
 				index = i
 				self:unequip(player, armor_element)
 				break
@@ -710,6 +719,8 @@ armor.unequip = function(self, player, armor_element)
 		if self:get_element(stack:get_name()) == armor_element then
 			armor_inv:set_stack("armor", i, "")
 			minetest.after(0, function()
+				-- resolve player object again in async function
+				player = minetest.get_player_by_name(name)
 				local inv = player:get_inventory()
 				if inv:room_for_item("main", stack) then
 					inv:add_item("main", stack)
@@ -799,9 +810,6 @@ end
 --  @tparam[opt] bool listring Use `listring` formspec element (default: `false`).
 --  @treturn string Formspec formatted string.
 armor.get_armor_formspec = function(self, name, listring)
-	if armor.def[name].init_time == 0 then
-		return "label[0,0;Armor not initialized!]"
-	end
 	local formspec = armor.formspec..
 		"list[detached:"..name.."_armor;armor;0,0.5;2,3;]"
 	if listring == true then
@@ -928,6 +936,10 @@ armor.get_valid_player = function(self, player, msg)
 	msg = msg or ""
 	if not player then
 		minetest.log("warning", ("3d_armor%s: Player reference is nil"):format(msg))
+		return
+	end
+	if type(player) ~= "userdata" then
+		-- Fake player, fail silently
 		return
 	end
 	local name = player:get_player_name()

@@ -1,5 +1,25 @@
 
-local S = mobs.intllib
+local S = mobs.translate
+local FS = function(...) return minetest.formspec_escape(S(...)) end
+local mc2 = minetest.get_modpath("mcl_core")
+
+-- recipe items
+local items = {
+	paper = mc2 and "mcl_core:paper" or "default:paper",
+	dye_black = mc2 and "mcl_dye:black" or "dye:black",
+	string = mc2 and "mcl_mobitems:string" or "farming:string",
+	stick = mc2 and "mcl_core:stick" or "default:stick",
+	diamond = mc2 and "mcl_core:diamond" or "default:diamond",
+	steel_ingot = mc2 and "mcl_core:iron_ingot" or "default:steel_ingot",
+	gold_block = mc2 and "mcl_core:goldblock" or "default:goldblock",
+	diamond_block = mc2 and "mcl_core:diamondblock" or "default:diamondblock",
+	stone = mc2 and "mcl_core:stone" or "default:stone",
+	mese_crystal = mc2 and "mcl_core:gold_ingot" or "default:mese_crystal",
+	wood = mc2 and "mcl_core:wood" or "default:wood",
+	fence_wood = mc2 and "group:fence_wood" or "default:fence_wood",
+	meat_raw = mc2 and "mcl_mobitems:beef" or "group:food_meat_raw",
+	meat_cooked = mc2 and "mcl_mobitems:cooked_beef" or "group:food_meat",
+}
 
 -- name tag
 minetest.register_craftitem("mobs:nametag", {
@@ -8,12 +28,12 @@ minetest.register_craftitem("mobs:nametag", {
 	groups = {flammable = 2, nametag = 1}
 })
 
-if minetest.get_modpath("dye") and minetest.get_modpath("farming") then
-	minetest.register_craft({
-		output = "mobs:nametag",
-		recipe = {{"default:paper", "dye:black", "farming:string"}}
-	})
-end
+minetest.register_craft({
+	output = "mobs:nametag",
+	recipe = {
+		{ items.paper, items.dye_black, items.string }
+	}
+})
 
 -- leather
 minetest.register_craftitem("mobs:leather", {
@@ -52,16 +72,14 @@ minetest.register_tool("mobs:lasso", {
 	groups = {flammable = 2}
 })
 
-if minetest.get_modpath("farming") then
-	minetest.register_craft({
-		output = "mobs:lasso",
-		recipe = {
-			{"farming:string", "", "farming:string"},
-			{"", "default:diamond", ""},
-			{"farming:string", "", "farming:string"}
-		}
-	})
-end
+minetest.register_craft({
+	output = "mobs:lasso",
+	recipe = {
+		{ items.string, "", items.string},
+		{ "", items.diamond, "" },
+		{ items.string, "", items.string }
+	}
+})
 
 minetest.register_alias("mobs:magic_lasso", "mobs:lasso")
 
@@ -72,16 +90,14 @@ minetest.register_tool("mobs:net", {
 	groups = {flammable = 2}
 })
 
-if minetest.get_modpath("farming") then
-	minetest.register_craft({
-		output = "mobs:net",
-		recipe = {
-			{"group:stick", "", "group:stick"},
-			{"group:stick", "", "group:stick"},
-			{"farming:string", "group:stick", "farming:string"}
-		}
-	})
-end
+minetest.register_craft({
+	output = "mobs:net",
+	recipe = {
+		{ items.stick, "", items.stick },
+		{ items.stick, "", items.stick },
+		{ items.string, items.stick, items.string }
+	}
+})
 
 -- shears (right click to shear animal)
 minetest.register_tool("mobs:shears", {
@@ -93,8 +109,8 @@ minetest.register_tool("mobs:shears", {
 minetest.register_craft({
 	output = "mobs:shears",
 	recipe = {
-		{"", "default:steel_ingot", ""},
-		{"", "group:stick", "default:steel_ingot"}
+		{ "", items.steel_ingot, "" },
+		{ "", items.stick, items.steel_ingot }
 	}
 })
 
@@ -108,9 +124,9 @@ minetest.register_craftitem("mobs:protector", {
 minetest.register_craft({
 	output = "mobs:protector",
 	recipe = {
-		{"default:stone", "default:stone", "default:stone"},
-		{"default:stone", "default:goldblock", "default:stone"},
-		{"default:stone", "default:stone", "default:stone"}
+		{ items.stone, items.stone, items.stone },
+		{ items.stone, items.gold_block, items.stone },
+		{ items.stone, items.stone, items.stone }
 	}
 })
 
@@ -124,9 +140,9 @@ minetest.register_craftitem("mobs:protector2", {
 minetest.register_craft({
 	output = "mobs:protector2",
 	recipe = {
-		{"mobs:protector", "default:mese_crystal", "mobs:protector"},
-		{"default:mese_crystal", "default:diamondblock", "default:mese_crystal"},
-		{"mobs:protector", "default:mese_crystal", "mobs:protector"}
+		{ "mobs:protector", items.mese_crystal, "mobs:protector" },
+		{ items.mese_crystal, items.diamond_block, items.mese_crystal },
+		{ "mobs:protector", items.mese_crystal, "mobs:protector" }
 	}
 })
 
@@ -141,14 +157,16 @@ minetest.register_craft({
 	output = "mobs:saddle",
 	recipe = {
 		{"mobs:leather", "mobs:leather", "mobs:leather"},
-		{"mobs:leather", "default:steel_ingot", "mobs:leather"},
-		{"mobs:leather", "default:steel_ingot", "mobs:leather"}
+		{"mobs:leather", items.steel_ingot, "mobs:leather"},
+		{"mobs:leather", items.steel_ingot, "mobs:leather"}
 	}
 })
 
 
 -- make sure we can register fences
-if minetest.get_modpath("default") and default.register_fence then
+local mod_def = minetest.get_modpath("default")
+
+if mod_def and default.register_fence then
 
 -- mob fence (looks like normal fence but collision is 2 high)
 default.register_fence("mobs:fence_wood", {
@@ -156,7 +174,7 @@ default.register_fence("mobs:fence_wood", {
 	texture = "default_wood.png",
 	material = "default:fence_wood",
 	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
-	sounds = default.node_sound_wood_defaults(),
+	sounds = mod_def and default.node_sound_wood_defaults(),
 	collision_box = {
 		type = "fixed",
 		fixed = {
@@ -174,7 +192,7 @@ minetest.register_node("mobs:fence_top", {
 	paramtype = "light",
 	is_ground_content = false,
 	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
-	sounds = default.node_sound_wood_defaults(),
+	sounds = mod_def and default.node_sound_wood_defaults(),
 	node_box = {
 		type = "fixed",
 		fixed = {-0.2, -0.5, -0.2, 0.2, 0, 0.2}
@@ -193,7 +211,7 @@ minetest.register_craft({
 	output = "mobs:fence_top 12",
 	recipe = {
 		{"group:wood", "group:wood", "group:wood"},
-		{"", "default:fence_wood", ""}
+		{"", items.fence_wood, ""}
 	}
 })
 
@@ -244,6 +262,7 @@ minetest.register_craft({
 
 -- this tool spawns same mob and adds owner, protected, nametag info
 -- then removes original entity, this is used for fixing any issues.
+-- also holding sneak while punching mob lets you change texture name.
 
 local tex_obj
 
@@ -308,9 +327,9 @@ minetest.register_tool(":mobs:mob_reset_stick", {
 
 			minetest.show_formspec(name, "mobs_texture", "size[8,4]"
 			.. "field[0.5,1;7.5,0;name;"
-			.. minetest.formspec_escape(S("Enter texture:")) .. ";" .. bt .. "]"
+			.. FS("Enter texture:") .. ";" .. bt .. "]"
 			.. "button_exit[2.5,3.5;3,1;mob_texture_change;"
-			.. minetest.formspec_escape(S("Change")) .. "]")
+			.. FS("Change") .. "]")
 		end
 	end
 })
@@ -353,23 +372,49 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 end)
 
 
--- Meat Block (thanks to painterlypack.net for allowing me to use these textures)
+-- Meat Block
 minetest.register_node("mobs:meatblock", {
 	description = S("Meat Block"),
 	tiles = {"mobs_meat_top.png", "mobs_meat_bottom.png", "mobs_meat_side.png"},
 	paramtype2 = "facedir",
 	groups = {choppy = 1, oddly_breakable_by_hand = 1, flammable = 2},
-	sounds = default and default.node_sound_leaves_defaults(),
+	sounds = mod_def and default.node_sound_leaves_defaults(),
 	on_place = minetest.rotate_node,
 	on_use = minetest.item_eat(20)
 })
 
 minetest.register_craft({
 	output = "mobs:meatblock",
---	type = "shapeless",
 	recipe = {
-		{"group:food_meat", "group:food_meat", "group:food_meat"},
-		{"group:food_meat", "group:food_meat", "group:food_meat"},
-		{"group:food_meat", "group:food_meat", "group:food_meat"}
+		{ items.meat_cooked, items.meat_cooked, items.meat_cooked },
+		{ items.meat_cooked, items.meat_cooked, items.meat_cooked },
+		{ items.meat_cooked, items.meat_cooked, items.meat_cooked }
 	}
+})
+
+-- Meat Block (raw)
+minetest.register_node("mobs:meatblock_raw", {
+	description = S("Raw Meat Block"),
+	tiles = {"mobs_meat_raw_top.png", "mobs_meat_raw_bottom.png", "mobs_meat_raw_side.png"},
+	paramtype2 = "facedir",
+	groups = {choppy = 1, oddly_breakable_by_hand = 1, flammable = 2},
+	sounds = mod_def and default.node_sound_leaves_defaults(),
+	on_place = minetest.rotate_node,
+	on_use = minetest.item_eat(20)
+})
+
+minetest.register_craft({
+	output = "mobs:meatblock_raw",
+	recipe = {
+		{ items.meat_raw, items.meat_raw, items.meat_raw },
+		{ items.meat_raw, items.meat_raw, items.meat_raw },
+		{ items.meat_raw, items.meat_raw, items.meat_raw }
+	}
+})
+
+minetest.register_craft({
+	type = "cooking",
+	output = "mobs:meatblock",
+	recipe = "mobs:meatblock_raw",
+	cooktime = 30
 })

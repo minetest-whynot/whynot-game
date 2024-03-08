@@ -1,16 +1,12 @@
 # textdomain: homedecor_electronics
-
-
-### init.lua ###
-
-DVD Player=DVD Player
-DVD and VCR=DVD e VCR
 Large Stereo Speaker=Alto-falante Estéreo Grande
 Large Stereo Speaker, open front=Alto-falante Estéreo Grande, frente aberta
+Small Surround Speaker=Alto-falante Surround Pequeno
+Stereo Receiver=Aparelho de Som Estéreo
 Projection Screen Material=Material de Tela de Projeção
 Small CRT Television=TV de tubo pequena
-Small Surround Speaker=Alto-falante Surround Pequeno
-Speaker driver=Alto-falante
-Stereo Receiver=Aparelho de Som Estéreo
+DVD and VCR=DVD e VCR
 Telephone=Telefone
 VCR=VCR
+DVD Player=DVD Player
+Speaker driver=Alto-falante

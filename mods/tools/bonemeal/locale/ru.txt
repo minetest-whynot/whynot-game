@@ -1,7 +1,0 @@
-# init.lua
-
-Mulch = Мульча
-Bone Meal = Костная Мука
-Fertiliser = Удобрение
-Bone = Кость
-[MOD] bonemeal loaded = [MOD] костная мука загружена

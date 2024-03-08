@@ -1,0 +1,6 @@
+# textdomain: yellow_crystals
+
+### init.lua ###
+Crystaline Bell=
+Mese Crystal Ore=
+Mese Crystal Seed=

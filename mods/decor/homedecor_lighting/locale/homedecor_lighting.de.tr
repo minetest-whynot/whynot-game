@@ -1,34 +1,30 @@
 # textdomain: homedecor_lighting
-
-
-### init.lua ###
-
-Candlestick (brass)=Kerzenhalter (Messing)
-Candlestick (wrought iron)=Kerzenhalter (Schmiedeeisen)
-Ceiling Lamp/Light=Deckenlampe
-Ceiling Lantern/Light=Deckenlaterne
-Chandelier (brass)=Kronleuchter (Messing)
-Chandelier (steel)=Kronleuchter (Stahl)
-Desk Lamp/Light=Schreibtischlampe
+Thick Glowlight=Dickes Glimmlicht
+Thin Glowlight=Dünnes Glimmlicht
+Small Glowlight Cube=Kleiner Glimmlichtwürfel
+Plasma Lamp/Light=Plasmalampe
 Ground Lantern/Light=Standlaterne
 Hanging Lantern/Light=hängende Laterne
-Hanging chain (ceiling mount, brass)=Hängende Kette (Decke, Messing)
-Hanging chain (ceiling mount, steel)=Hängende Kette (Decke, Eisen)
+Ceiling Lantern/Light=Deckenlaterne
 Lattice lantern/Light (large)=Gitterlaterne (groß)
 Lattice lantern/light (small)=Gitterlaterne (klein)
-Oil Lamp/Light (tabletop)=Tisch-Öllampe
-Oil lamp/Light (hurricane)=Öl-Sturmlaterne
-Plasma Ball/light=Plasmakugel
-Plasma Lamp/Light=Plasmalampe
-Rope lighting (on ceiling)=Lichtband an der Decke
-Rope lighting (on floor)=Lichtband am Boden
-Small Glowlight Cube=Kleiner Glimmlichtwürfel
-Standing Lamp/Light=Stehlampe
+Desk Lamp/Light=Schreibtischlampe
+Ceiling Lamp/Light=Deckenlampe
 Table Lamp/Light=Tischlampe
-Thick Candle=Dicke Kerze
-Thick Glowlight=Dickes Glimmlicht
-Thin Candle=Dünne Kerze
-Thin Glowlight=Dünnes Glimmlicht
+Standing Lamp/Light=Stehlampe
+Plasma Ball/light=Plasmakugel
+Rope lighting (on floor)=Lichtband am Boden
+Rope lighting (on ceiling)=Lichtband an der Decke
 Wall Lamp/light=Wandlaterne
-Wall Torch=Wandfackel
+Thick Candle=Dicke Kerze
+Thin Candle=Dünne Kerze
+Candlestick (wrought iron)=Kerzenhalter (Schmiedeeisen)
+Candlestick (brass)=Kerzenhalter (Messing)
 Wall sconce=Wandkerze
+Oil lamp/Light (hurricane)=Öl-Sturmlaterne
+Oil Lamp/Light (tabletop)=Tisch-Öllampe
+Hanging chain (ceiling mount, steel)=Hängende Kette (Decke, Eisen)
+Hanging chain (ceiling mount, brass)=Hängende Kette (Decke, Messing)
+Chandelier (steel)=Kronleuchter (Stahl)
+Chandelier (brass)=Kronleuchter (Messing)
+Wall Torch=Wandfackel

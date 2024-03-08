@@ -1,25 +1,19 @@
 # textdomain: homedecor_exterior
-
-
-### init.lua ###
-
 Barbecue=Barbacoa
 Doghouse=Casa de perros
-Garden Lattice (@1)=Enrejado de jardín (@1)
 Garden stone path=Camino de piedra de jardín
-No room in your inventory to add a filled bucket!=No hay espacio en tu inv para el cubo
-No room under there to hang a swing.=No hay espacio para colgar el columpio
-Shrubbery (@1)=Arbustos (@1)
-Shrubbery (large, @1)=Arbustos (@1)
+wood=madera
+white wood=madera blanca
+wood, with vegetation=madera, con vegetación
+white wood, with vegetation=madera blanca, con vegetación
+Garden Lattice (@1)=Enrejado de jardín (@1)
 Tree's swing=Columpio
-Water well=Pozo de agua
-
+No room under there to hang a swing.=No hay espacio para colgar el columpio
 You have to point at the bottom side of an overhanging object to place a swing.=Debe ser la parte inferior de un objeto para colocar el columpio.
-
+Water well=Pozo de agua
+No room in your inventory to add a filled bucket!=No hay espacio en tu inv para el cubo
 green=verde
 red=roja
-white wood=madera blanca
-white wood, with vegetation=madera blanca, con vegetación
-wood=madera
-wood, with vegetation=madera, con vegetación
 yellow=amarilla
+Shrubbery (large, @1)=Arbustos (@1)
+Shrubbery (@1)=Arbustos (@1)
