@@ -283,6 +283,19 @@ awards.register_award("whynot_campfire", {
 })
 
 
+awards.register_award("whynot_furnace", {
+	title = S("Craft a furnace"),
+	description = S("Furnaces are central to advancing in this game. Use them to smelt ores, cook food, or both!"),
+	icon = "whynot_awards_oven.png",
+	requires = {"whynot_stone"},
+	trigger = {
+		type = "craft",
+		item = "default:furnace",
+		target = 1
+	}
+})
+
+
 awards.register_award("whynot_max_depth", {
 	title = S("Dig deeper"),
 	description = S("Keep digging until you reach these depths."),
@@ -291,7 +304,7 @@ awards.register_award("whynot_max_depth", {
 	trigger = {
 		type = "max",
 		max_param = "depth",
-		target = 100,
+		target = 2000,
 	},
 })
 
@@ -304,7 +317,7 @@ awards.register_award("whynot_max_altitude", {
 	trigger = {
 		type = "max",
 		max_param = "altitude",
-		target = 100,
+		target = 2000,
 	},
 })
 
@@ -317,7 +330,7 @@ awards.register_award("whynot_max_distance", {
 	trigger = {
 		type = "max",
 		max_param = "distance",
-		target = 500,
+		target = 2000,
 	},
 })
 
