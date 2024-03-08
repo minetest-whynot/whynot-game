@@ -320,3 +320,29 @@ awards.register_award("whynot_max_distance", {
 		target = 500,
 	},
 })
+
+
+awards.register_award("whynot_chocolate", {
+	title = S("Craft chocolate"),
+	description = S("Make some delicious chocolate. It can be eaten or incorporated in various recipes to make succulent treats. You can even build an edible armour from it!"),
+	icon = "whynot_awards_chocolate.png",
+	requires = {"whynot_furnace"},
+	trigger = {
+		type = "craft",
+		item = "farming:chocolate_dark",
+		target = 1
+	}
+})
+
+
+awards.register_award("whynot_well", {
+	title = S("Craft a well"),
+	description = S("Wells are not just pretty! They are very useful as an infinite source of water."),
+	icon = "whynot_awards_well.png",
+	requires = {"whynot_stone"},
+	trigger = {
+		type = "craft",
+		item = "homedecor:well",
+		target = 1
+	}
+})
