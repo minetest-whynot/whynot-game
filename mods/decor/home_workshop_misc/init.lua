@@ -19,6 +19,7 @@ minetest.register_node("home_workshop_misc:tool_cabinet", {
 	inventory_image = "home_workshop_misc_tool_cabinet_inv.png",
 	on_rotate = minetest.get_modpath("screwdriver") and screwdriver.rotate_simple or nil,
 	groups = { snappy=3 },
+	is_ground_content = false,
 	expand = { top="placeholder" },
 	inventory = {
 		size=24,
@@ -37,6 +38,7 @@ minetest.register_node("home_workshop_misc:beer_tap", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = { snappy=3 },
+	is_ground_content = false,
 	walkable = false,
 	selection_box = {
 		type = "fixed",
@@ -76,6 +78,7 @@ minetest.register_node("home_workshop_misc:beer_mug", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = { snappy=3, oddly_breakable_by_hand=3 },
+	is_ground_content = false,
 	walkable = false,
 	sounds = default and default.node_sound_glass_defaults() or nil,
 	selection_box = beer_cbox,
