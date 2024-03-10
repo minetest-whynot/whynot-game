@@ -124,7 +124,7 @@ origin https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin https://github.com/APercy/airutils.git (fetch)
-* e93f33037cfc14bc14d3226fcb9d780244caab74 fix non declared variable
+* ad6899661c0c2f62d6e957ae86108e04e62f2a6e remotion now stored on static data
 Mod: libs/airutils
 
 origin https://repo.or.cz/minetest_doc.git (fetch)
@@ -300,7 +300,7 @@ origin https://github.com/Ezhh/handholds (fetch)
 Mod: tools/handholds
 
 origin https://github.com/APercy/hidroplane.git (fetch)
-* 39bd23407f95669d587a611150de8aeeb5610628 added check for the new function
+* f24640da25b9119740f591b264883ca3bb7cbff5 adjusted to work with mineclone
 Mod: tools/hidroplane
 
 origin https://github.com/minetest-mods/hopper (fetch)
