@@ -1,6 +1,6 @@
 -- Copyright (c) 2013-18 rubenwardy. MIT.
 
-local S = awards.get_translator
+local S = awards.translator
 
 function awards.get_formspec(name, to, sid)
 	local formspec = ""
@@ -127,7 +127,7 @@ function awards.show_to(name, to, sid, text)
 			if def then
 				if def.title then
 					if def.description then
-						minetest.chat_send_player(to, string.format("%s: %s", S(def.title), S(def.description)))
+						minetest.chat_send_player(to, string.format("%s: %s", def.title, def.description))
 					else
 						minetest.chat_send_player(to, def.title)
 					end

@@ -9,7 +9,7 @@ awards = {
 	registered_awards = {},
 	registered_triggers = {},
 	on_unlock = {},
-	get_translator = S,
+	translator = S,
 }
 
 -- Load files
@@ -28,6 +28,12 @@ end
 
 awards.load()
 minetest.register_on_shutdown(awards.save)
+
+local function check_save()
+	awards.save()
+	minetest.after(18, check_save)
+end
+minetest.after(8 * math.random() + 10, check_save)
 
 
 -- Backwards compatibility
