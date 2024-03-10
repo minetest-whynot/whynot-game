@@ -1,5 +1,3 @@
-local S = airutils.S
-
 local function check_protection(pos, name)
 	if minetest.is_protected(pos, name) then
 		minetest.log("action", name
@@ -28,7 +26,7 @@ function airutils.WindDplace(player,pos)
 
 	core.set_node(pos1, {name="airutils:wind", param2=dir})
 	local meta = core.get_meta(pos)
-	meta:set_string("infotext", S("Wind Indicator") .. "\r" .. S("Owned by: @1",player_name))
+	meta:set_string("infotext", "Wind Indicator\rOwned by: "..player_name)
 	meta:set_string("owner", player_name)
 	meta:set_string("dont_destroy", "false")
 	return true
@@ -117,7 +115,7 @@ minetest.register_entity("airutils:wind_indicator",{
     on_rightclick = function(self, clicker)
         local wind = airutils.get_wind(pos, 2.0)
         local wind_yaw = minetest.dir_to_yaw(wind)
-        minetest.chat_send_player(clicker:get_player_name(),core.colorize('#00ff00', S(" >>> The wind direction now is @1", math.deg(wind_yaw))))
+        minetest.chat_send_player(clicker:get_player_name(),core.colorize('#00ff00', " >>> The wind direction now is "..math.deg(wind_yaw)))
 		return
     end,
                                             
@@ -127,9 +125,9 @@ minetest.register_entity("airutils:wind_indicator",{
 
 -- Wind Indicator node (default left)
 minetest.register_node("airutils:wind",{
-	description = S("Wind Direction Indicator"),
+	description = "Wind Direction Indicator",
 	waving = 1,
-	tiles = {"default_steel_block.png","default_steel_block.png","default_steel_block.png","default_steel_block.png","default_steel_block.png","default_steel_block.png"},
+	tiles = {"default_tin_block.png","default_tin_block.png","default_tin_block.png","default_tin_block.png","default_tin_block.png","default_tin_block.png"},
 	paramtype = "light",
 	paramtype2 = "leveled",
 	is_ground_content = false,
@@ -161,7 +159,7 @@ minetest.register_node("airutils:wind",{
 					itemstack:take_item()
 				end
 			else
-				minetest.chat_send_player(player_name, S("Node is protected"))
+				minetest.chat_send_player(player_name, "Node is protected")
 				minetest.record_protection_violation(pos, player_name)
 			end
 

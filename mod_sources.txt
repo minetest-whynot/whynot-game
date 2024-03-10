@@ -124,7 +124,7 @@ origin https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin https://github.com/APercy/airutils.git (fetch)
-* 8dcac841553b20d84196e990c82cad12ff7945ac fix attach
+* e93f33037cfc14bc14d3226fcb9d780244caab74 fix non declared variable
 Mod: libs/airutils
 
 origin https://repo.or.cz/minetest_doc.git (fetch)
