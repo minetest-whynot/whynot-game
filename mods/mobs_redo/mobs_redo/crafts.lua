@@ -21,9 +21,10 @@ local items = {
 	meat_cooked = mc2 and "mcl_mobitems:cooked_beef" or "group:food_meat",
 }
 
+
 -- name tag
 minetest.register_craftitem("mobs:nametag", {
-	description = S("Name Tag"),
+	description = S("Name Tag") .. " " .. S("\nRight-click Mobs Redo mob to apply"),
 	inventory_image = "mobs_nametag.png",
 	groups = {flammable = 2, nametag = 1}
 })
@@ -156,9 +157,9 @@ minetest.register_craftitem("mobs:saddle", {
 minetest.register_craft({
 	output = "mobs:saddle",
 	recipe = {
-		{"mobs:leather", "mobs:leather", "mobs:leather"},
-		{"mobs:leather", items.steel_ingot, "mobs:leather"},
-		{"mobs:leather", items.steel_ingot, "mobs:leather"}
+		{"group:leather", "group:leather", "group:leather"},
+		{"group:leather", items.steel_ingot, "group:leather"},
+		{"group:leather", items.steel_ingot, "group:leather"}
 	}
 })
 
@@ -191,7 +192,7 @@ minetest.register_node("mobs:fence_top", {
 	tiles = {"default_wood.png"},
 	paramtype = "light",
 	is_ground_content = false,
-	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
+	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2, axey = 1},
 	sounds = mod_def and default.node_sound_wood_defaults(),
 	node_box = {
 		type = "fixed",
@@ -377,10 +378,13 @@ minetest.register_node("mobs:meatblock", {
 	description = S("Meat Block"),
 	tiles = {"mobs_meat_top.png", "mobs_meat_bottom.png", "mobs_meat_side.png"},
 	paramtype2 = "facedir",
-	groups = {choppy = 1, oddly_breakable_by_hand = 1, flammable = 2},
+	groups = {choppy = 1, oddly_breakable_by_hand = 1, flammable = 2, axey = 1, handy = 1},
+	is_ground_content = false,
 	sounds = mod_def and default.node_sound_leaves_defaults(),
 	on_place = minetest.rotate_node,
-	on_use = minetest.item_eat(20)
+	on_use = minetest.item_eat(20),
+	_mcl_hardness = 0.8,
+	_mcl_blast_resistance = 1
 })
 
 minetest.register_craft({
@@ -397,10 +401,13 @@ minetest.register_node("mobs:meatblock_raw", {
 	description = S("Raw Meat Block"),
 	tiles = {"mobs_meat_raw_top.png", "mobs_meat_raw_bottom.png", "mobs_meat_raw_side.png"},
 	paramtype2 = "facedir",
-	groups = {choppy = 1, oddly_breakable_by_hand = 1, flammable = 2},
+	groups = {choppy = 1, oddly_breakable_by_hand = 1, flammable = 2, axey = 1, handy = 1},
+	is_ground_content = false,
 	sounds = mod_def and default.node_sound_leaves_defaults(),
 	on_place = minetest.rotate_node,
-	on_use = minetest.item_eat(20)
+	on_use = minetest.item_eat(20),
+	_mcl_hardness = 0.8,
+	_mcl_blast_resistance = 1
 })
 
 minetest.register_craft({
