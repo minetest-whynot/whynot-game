@@ -5,9 +5,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
 
-## [Unreleased]
+## [0.7.1] - 2023-07-07
 
-	- no other features planned
+	- Forked by TenPlus1 for addition to ContentDB
+	- Pig Iron Sword added to 'immune_to'
+	- General code tidy and tweak
 
 
 ## [0.7.0] - 2019-10-31
