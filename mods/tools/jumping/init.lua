@@ -7,14 +7,14 @@ local trampolinebox = {
 		{ 0.4, -0.5, -0.5,  0.5, -0.2, -0.4},
 		{ 0.4, -0.5,  0.4,  0.5, -0.2,  0.5},
 		{-0.5, -0.5,  0.4, -0.4, -0.2,  0.5},
-		}
+	}
 }
 
 local cushionbox = {
 	type = "fixed",
 	fixed = {
 		{-0.5, -0.5, -0.5,  0.5, -0.3,  0.5},
-		}
+	}
 }
 
 local trampoline_punch = function(pos, node)
@@ -55,12 +55,13 @@ for i = 1, 6 do
 			"jumping_trampoline_bottom.png",
 			"jumping_trampoline_sides.png^jumping_trampoline_sides_overlay"..i..".png"
 		},
+		is_ground_content = false,
 		groups = {
-				dig_immediate = 2,
-				bouncy = 20 + i * 20,
-				fall_damage_add_percent = -70,
-				not_in_creative_inventory = ( i > 1 and 1 or nil),
-			},
+			dig_immediate = 2,
+			bouncy = 20 + i * 20,
+			fall_damage_add_percent = -70,
+			not_in_creative_inventory = ( i > 1 and 1 or nil),
+		},
 	})
 end
 
@@ -76,6 +77,7 @@ minetest.register_node("jumping:cushion", {
 		"jumping_cushion_tb.png",
 		"jumping_cushion_sides.png"
 	},
+	is_ground_content = false,
 	groups = {dig_immediate=2, disable_jump=1, fall_damage_add_percent=-100},
 })
 
