@@ -7,6 +7,7 @@
     [minetest_game/minetest_game]=origin/stable-5 # Stay on stable version
     [flora_ores/farming]=0b06c7cd450c5ec9a76b3c22a9c57f06e4f8a7c2 # freeze due to incompatibility with milk buckets
     [libs/airutils]=e93f33037cfc14bc14d3226fcb9d780244caab74 # breaking change to be reviewed
+    [tools/hidroplane]=39bd23407f95669d587a611150de8aeeb5610628 # breaking change to be reviewed
   )
 
   #
