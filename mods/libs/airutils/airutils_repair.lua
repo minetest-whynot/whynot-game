@@ -1,8 +1,8 @@
-local S = airutils.S
+local S = minetest.get_translator("airutils")
 
 -- trike repair
 minetest.register_craftitem("airutils:repair_tool",{
-	description = S("Repair Tool"),
+	description = "Repair Tool",
 	inventory_image = "airutils_repair_tool.png",
 })
 

@@ -42,11 +42,9 @@ function airutils.get_stand_pos(thing)	-- thing can be luaentity or objectref.
 	local colbox = {}
 	if type(thing) == 'table' then
 		pos = thing.object:get_pos()
-        if not thing.object:get_properties() then return false end
 		colbox = thing.object:get_properties().collisionbox
 	elseif type(thing) == 'userdata' then
 		pos = thing:get_pos()
-        if not thing:get_properties() then return false end
 		colbox = thing:get_properties().collisionbox
 	else 
 		return false
@@ -63,7 +61,6 @@ function airutils.get_node_pos(pos)
 end
 
 function airutils.nodeatpos(pos)
-    if pos == nil then return end
 	local node = minetest.get_node_or_nil(pos)
 	if node then return minetest.registered_nodes[node.name] end
 end
