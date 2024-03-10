@@ -191,8 +191,8 @@ origin https://github.com/minetest/minetest_game (fetch)
 * 9875ef62403b3f0113633fc5c88186c983030b34 Merge remote-tracking branch 'origin/stable-5' into HEAD
 Mod: minetest_game/minetest_game
 
-origin https://codeberg.org/Hamlet/mobs_ghost_redo (fetch)
-* ac9c013e47939c05df4671cab5de841e61e3837c v0.7.0
+origin https://codeberg.org/tenplus1/mobs_ghost_redo (fetch)
+* 5889daa5410ad8f68fcde1dd45f0e870dc46f04e add pigiron sword to immune_to, tweak/tidy code
 Mod: mobs_redo/mobs_ghost_redo
 
 origin https://github.com/minetest-mirrors/mobs_monster.git (fetch)
