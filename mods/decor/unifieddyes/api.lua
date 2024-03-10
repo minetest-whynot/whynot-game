@@ -197,6 +197,7 @@ function unifieddyes.generate_split_palette_nodes(name, def, drop)
 		def2.palette = "unifieddyes_palette_"..color.."s.png"
 		def2.paramtype2 = "colorfacedir"
 		def2.groups.ud_param2_colorable = 1
+		def2.is_ground_content = false
 
 		if drop then
 			def2.drop = {
