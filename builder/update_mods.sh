@@ -3,7 +3,7 @@
 #######################
 ### Debugging options
 #######################
-export VERBOSITY="--quiet" # "--quiet" or "--verbose"
+export VERBOSITY="--verbose" # "--quiet" or "--verbose"
 #export PS4='+(${BASH_SOURCE}:${LINENO}): ${FUNCNAME[0]:+${FUNCNAME[0]}(): }' # for debugging, uncomment this line and use `bash -cx` below
 
 ######################
