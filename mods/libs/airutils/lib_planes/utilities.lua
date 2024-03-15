@@ -300,8 +300,9 @@ local function spawn_drops(self, pos)
     end
 end
 
-function airutils.destroy(self, by_name)
+function airutils.destroy(self, by_name, by_automation)
     by_name = by_name or ""
+    by_automation = by_automation or false
     local with_fire = self._enable_fire_explosion
     local owner = self.owner
     if by_name == owner then with_fire = false end
@@ -338,32 +339,38 @@ function airutils.destroy(self, by_name)
         airutils.dettachPlayer(self, player)
     end
 
-    airutils.add_destruction_effects(pos, 5, with_fire)
+    if by_automation == false then
+        airutils.add_destruction_effects(pos, 5, with_fire)
+    end
 
     airutils.seats_destroy(self)
     if self._destroy_parts_method then
         self._destroy_parts_method(self)
     end
 
-    local destroyed_ent = nil
-    if self._destroyed_ent then
-        destroyed_ent = self._destroyed_ent
-    end
+    if by_automation == false then
+        local destroyed_ent = nil
+        if self._destroyed_ent then
+            destroyed_ent = self._destroyed_ent
+        end
 
-    --if dont have a destroyed version, destroy the inventory
-    if not destroyed_ent then
-        airutils.destroy_inventory(self)
-        spawn_drops(self, pos)
-    else
-        if not with_fire then --or by the owner itself
+        --if dont have a destroyed version, destroy the inventory
+        if not destroyed_ent then
             airutils.destroy_inventory(self)
             spawn_drops(self, pos)
+        else
+            if not with_fire then --or by the owner itself
+                airutils.destroy_inventory(self)
+                spawn_drops(self, pos)
+            end
         end
+    else
+        airutils.destroy_inventory(self)
     end
 
     self.object:remove()
 
-    if airutils.blast_damage == true and with_fire == true then
+    if airutils.blast_damage == true and with_fire == true and by_automation == false then
         airutils.add_blast_damage(pos, 7, 10)
         if destroyed_ent then
 
@@ -1063,6 +1070,22 @@ function airutils.seats_create(self)
             self.pilot_seat_base = self._passengers_base[1] --sets pilot seat reference
             if self._have_copilot and self._passengers_base[2] then
                 self.co_pilot_seat_base = self._passengers_base[2] --sets copilot seat reference
+            end
+        end
+    end
+end
+
+function airutils.seats_update(self)
+    if self.object then
+        local pos = self.object:get_pos()
+        if self._passengers_base then 
+            local max_seats = table.getn(self._passengers_base)
+            for i=1, max_seats do
+                if not self._seats_rot then
+                    self._passengers_base[i]:set_attach(self.object,'',self._seats[i],{x=0,y=0,z=0})
+                else
+                    self._passengers_base[i]:set_attach(self.object,'',self._seats[i],{x=0,y=self._seats_rot[i],z=0})
+                end
             end
         end
     end

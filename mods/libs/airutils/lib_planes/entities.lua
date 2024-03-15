@@ -227,6 +227,8 @@ function airutils.logic(self)
     --test collision
     airutils.testImpact(self, velocity, curr_pos)
 
+    --if self._autoflymode == true then airutils.seats_update(self) end
+
     if player then
         local ctrl = player:get_player_control()
         ---------------------
@@ -856,7 +858,12 @@ function airutils.on_rightclick(self, clicker)
     --=========================
     elseif name == copilot_name then
         if self._command_is_given then
-            self._custom_pilot_formspec(name)  --open the plane menu for the copilot
+            --formspec of the plane
+            if not self._custom_pilot_formspec then
+                airutils.pilot_formspec(name)
+            else
+                self._custom_pilot_formspec(name)
+            end
         else
             airutils.pax_formspec(name)
         end
