@@ -14,7 +14,7 @@ local use_vh1 = minetest.get_modpath("visual_harm_1ndicators")
 -- Global
 mobs = {
 	mod = "redo",
-	version = "20231229",
+	version = "20240303",
 	translate = S,
 	invis = minetest.global_exists("invisibility") and invisibility or {},
 	node_snow = minetest.registered_aliases["mapgen_snow"]
@@ -130,6 +130,7 @@ local creatura = minetest.get_modpath("creatura") and
 
 
 mobs.mob_class = {
+	state = "stand",
 	fly_in = "air",
 	owner = "",
 	order = "",
@@ -146,6 +147,7 @@ mobs.mob_class = {
 	lava_damage = 4,
 	fire_damage = 4,
 	air_damage = 0,
+	node_damage = true,
 	suffocation = 2,
 	fall_damage = 1,
 	fall_speed = -10, -- must be lower than -2 (default: -10)
@@ -190,6 +192,7 @@ mobs.mob_class = {
 	attack_animals = false,
 	attack_players = true,
 	attack_npcs = true,
+	attack_ignore = nil,
 	friendly_fire = true,
 	facing_fence = false,
 	_breed_countdown = nil,
@@ -264,14 +267,16 @@ function mob_class:collision()
 	local x, z = 0, 0
 	local prop = self.object:get_properties()
 	local width = -prop.collisionbox[1] + prop.collisionbox[4] + 0.5
+	local pos2, vec, force
 
-	for _,object in pairs(minetest.get_objects_inside_radius(pos, width)) do
+	for _,player in pairs(minetest.get_connected_players()) do
 
-		if is_player(object) then
+		pos2 = player:get_pos()
 
-			local pos2 = object:get_pos()
-			local vec  = {x = pos.x - pos2.x, z = pos.z - pos2.z}
-			local force = (width + 0.5) - vector.distance(
+		if get_distance(pos2, pos) < width then
+
+			vec  = {x = pos.x - pos2.x, z = pos.z - pos2.z}
+			force = (width + 0.5) - vector.distance(
 				{x = pos.x, y = 0, z = pos.z},
 				{x = pos2.x, y = 0, z = pos2.z})
 
@@ -279,6 +284,7 @@ function mob_class:collision()
 			z = z + (vec.z * force)
 		end
 	end
+
 
 	return({x, z})
 end
@@ -654,6 +660,9 @@ function mob_class:update_tag(newname)
 	local prop = self.object:get_properties()
 	local qua = prop.hp_max / 6
 
+	local old_nametag = prop.nametag
+	local old_nametag_color = self.nametag_col
+
 	-- backwards compatibility
 	if self.nametag and self.nametag ~= "" then
 		newname = self.nametag
@@ -666,20 +675,23 @@ function mob_class:update_tag(newname)
 
 		-- choose tag colour depending on mob health
 		if self.health <= qua then
-			col = "#FF0000"
+			self.nametag_col = "#FF0000"
 		elseif self.health <= (qua * 2) then
-			col = "#FF7A00"
+			self.nametag_col = "#FF7A00"
 		elseif self.health <= (qua * 3) then
-			col = "#FFB500"
+			self.nametag_col = "#FFB500"
 		elseif self.health <= (qua * 4) then
-			col = "#FFFF00"
+			self.nametag_col = "#FFFF00"
 		elseif self.health <= (qua * 5) then
-			col = "#B4FF00"
+			self.nametag_col = "#B4FF00"
 		elseif self.health > (qua * 5) then
-			col = "#00FF00"
+			self.nametag_col = "#00FF00"
 		end
 
-		self.object:set_properties({nametag = self._nametag, nametag_color = col})
+		if self._nametag ~= old_nametag or self.nametag_col ~= old_nametag_color then
+			self.object:set_properties({
+					nametag = self._nametag, nametag_color = self.nametag_col})
+		end
 	end
 
 	local text = ""
@@ -708,7 +720,9 @@ function mob_class:update_tag(newname)
 		.. text
 
 	-- set infotext changes
-	self.object:set_properties({infotext = self.infotext})
+	if self.infotext ~= prop.infotext then
+		self.object:set_properties({infotext = self.infotext})
+	end
 end
 
 
@@ -1088,7 +1102,7 @@ function mob_class:do_env_damage()
 		end
 
 	-- damage_per_second node check (not fire and lava)
-	elseif nodef.damage_per_second and nodef.damage_per_second ~= 0
+	elseif self.node_damage and nodef.damage_per_second and nodef.damage_per_second ~= 0
 	and nodef.groups.lava == nil and nodef.groups.fire == nil then
 
 		self.health = self.health - nodef.damage_per_second
@@ -1896,8 +1910,9 @@ function mob_class:general_attack()
 		-- or are we a mob?
 		elseif ent and ent._cmi_is_mob then
 
-			-- remove mobs not to attack
+			-- remove mobs to not attack
 			if self.name == ent.name
+			or check_for(ent.name, self.attack_ignore)
 			or (not self.attack_animals and ent.type == "animal")
 			or (not self.attack_monsters and ent.type == "monster")
 			or (not self.attack_npcs and ent.type == "npc")
@@ -2234,12 +2249,13 @@ function mob_class:do_states(dtime)
 
 			local lp
 			local s = self.object:get_pos()
-			local objs = minetest.get_objects_inside_radius(s, 3)
 
-			for n = 1, #objs do
+			for _,player in pairs(minetest.get_connected_players()) do
 
-				if is_player(objs[n]) then
-					lp = objs[n]:get_pos()
+				local player_pos = player:get_pos()
+
+				if get_distance(player_pos, s) <= 3 then
+					lp = player_pos
 					break
 				end
 			end
@@ -2861,6 +2877,11 @@ function mob_class:on_punch(hitter, tflp, tool_capabilities, dir, damage)
 	-- toolrank support
 	local wear = floor((punch_interval / 75) * 9000)
 
+	-- check for punch_attack_uses being 0 to negate wear
+	if tool_capabilities.punch_attack_uses == 0 then
+		wear = 0
+	end
+
 	if mobs.is_creative(hitter:get_player_name()) then
 		wear = tr and 1 or 0
 	end
@@ -3320,14 +3341,10 @@ function mob_class:mob_expire(pos, dtime)
 		if self.lifetimer <= 0 then
 
 			-- only despawn away from player
-			local objs = minetest.get_objects_inside_radius(pos, 15)
+			for _,player in pairs(minetest.get_connected_players()) do
 
-			for n = 1, #objs do
-
-				if is_player(objs[n]) then
-
+				if get_distance(player:get_pos(), pos) <= 15 then
 					self.lifetimer = 20
-
 					return
 				end
 			end
@@ -3622,6 +3639,7 @@ minetest.register_entity(":" .. name, setmetatable({
 	lava_damage = def.lava_damage,
 	fire_damage = def.fire_damage,
 	air_damage = def.air_damage,
+	node_damage = def.node_damage,
 	suffocation = def.suffocation,
 	fall_damage = def.fall_damage,
 	fall_speed = def.fall_speed,
@@ -3673,6 +3691,7 @@ minetest.register_entity(":" .. name, setmetatable({
 	attack_animals = def.attack_animals,
 	attack_players = def.attack_players,
 	attack_npcs = def.attack_npcs,
+	attack_ignore = def.attack_ignore,
 	specific_attack = def.specific_attack,
 	friendly_fire = def.friendly_fire,
 	runaway_from = def.runaway_from,
@@ -4049,11 +4068,9 @@ function mobs:spawn_specific(name, nodes, neighbors, min_light, max_light, inter
 		end
 
 		-- only spawn a set distance away from player
-		local objs = minetest.get_objects_inside_radius(pos, mob_nospawn_range)
+		for _,player in pairs(minetest.get_connected_players()) do
 
-		for n = 1, #objs do
-
-			if is_player(objs[n]) then
+			if get_distance(player:get_pos(), pos) <= mob_nospawn_range then
 --print("--- player too close", name)
 				return
 			end
@@ -4814,7 +4831,7 @@ function mobs:feed_tame(self, clicker, feed_count, breed, tame)
 		local esc = minetest.formspec_escape
 
 		minetest.show_formspec(name, "mobs_nametag", "size[8,4]"
-			.. "field[0.5,1;7.5,0;name;" .. esc(FS("Enter name:")) .. ";" .. tag .. "]"
+			.. "field[0.5,1;7.5,0;name;" .. esc(FS("Enter name:")) .. ";" .. esc(tag) .. "]"
 			.. "button_exit[2.5,3.5;3,1;mob_rename;" .. esc(FS("Rename")) .. "]")
 
 		return true

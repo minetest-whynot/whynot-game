@@ -261,7 +261,14 @@ local function rotate_body_and_head(player)
 		if #yaw_history > BODY_ROTATION_DELAY then
 			local body_yaw = table_remove(yaw_history, 1)
 			local player_yaw = player:get_look_horizontal()
-			return math_deg(player_yaw - body_yaw)
+			-- Get the difference and normalize it to [-180,180) range.
+			-- This will give the shortest rotation between head and body angles.
+			local angle = ((player_yaw - body_yaw + 3.0*math_pi) % (2.0*math_pi)) - math_pi
+			-- Arbitrary limit of the head turn angle
+			local limit = math_pi*0.3 -- value from 0 to pi, less than 0.45*pi looks good
+			-- Clamp the value to the limit
+			angle = math.max(math.min(angle, limit), -limit)
+			return math_deg(angle)
 		end
 		return 0
 	end)()

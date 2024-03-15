@@ -121,7 +121,10 @@ function airutils.logic_heli(self)
     local node_bellow = airutils.nodeatpos(airutils.pos_shift(curr_pos,{y=-1.3}))
     local is_flying = true
     if self.colinfo then
-        is_flying = (not self.colinfo.touching_ground) and (self.isinliquid == false)
+        is_flying = (not self.colinfo.touching_ground)
+    end
+    if self.isinliquid == true then
+        is_flying = false
     end
     --if self.isonground then is_flying = false end
     --if is_flying then minetest.chat_send_all('is flying') end
@@ -320,7 +323,12 @@ function airutils.logic_heli(self)
     ------------------------------------------------------
     -- sound and animation
     ------------------------------------------------------
-    engine_set_sound_and_animation(self, is_flying, newpitch, newroll)
+    local is_ship_attached = self.object:get_attach()
+    if is_ship_attached then
+        engine_set_sound_and_animation(self, false, newpitch, newroll) --is attached to a mother ship, so stop all
+    else
+        engine_set_sound_and_animation(self, is_flying, newpitch, newroll)
+    end
 
     ------------------------------------------------------
 

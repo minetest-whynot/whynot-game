@@ -100,6 +100,13 @@ function airutils.dettachPlayer(self, player)
 
     --self._engine_running = false
 
+    --check for external attachment of the vehicle
+    local extern_attach = self.object:get_attach()
+    local extern_ent = nil
+    if extern_attach then
+        extern_ent = extern_attach:get_luaentity()
+    end
+
     -- driver clicked the object => driver gets off the vehicle
     self.driver_name = nil
 
@@ -118,6 +125,13 @@ function airutils.dettachPlayer(self, player)
     end
     self.driver = nil
     --remove_physics_override(player, {speed=1,gravity=1,jump=1})
+
+    --move the player to the parent ship if any
+    if extern_ent then
+        if extern_ent.on_rightclick then
+            extern_ent.on_rightclick(extern_ent, player)
+        end
+    end
 end
 
 function airutils.check_passenger_is_attached(self, name)
@@ -173,7 +187,7 @@ function airutils.attach_pax(self, player, is_copilot)
             return
         end
 
-        t = {}    -- new array
+        local t = {}    -- new array
         for i=1, max_seats - crew do --(the first are for the crew
             t[i] = i
         end
@@ -185,6 +199,7 @@ function airutils.attach_pax(self, player, is_copilot)
         end
 
         --for i = 1,10,1 do
+        local i = 0
         for k,v in ipairs(t) do
             i = t[k] + crew --jump the crew seats
             if self._passengers[i] == nil then
@@ -205,6 +220,14 @@ function airutils.dettach_pax(self, player, is_flying)
     if not player then return end
     is_flying = is_flying or false
     local name = player:get_player_name() --self._passenger
+    airutils.remove_hud(player)
+
+    --check for external attachment of the vehicle
+    local extern_attach = self.object:get_attach()
+    local extern_ent = nil
+    if extern_attach then
+        extern_ent = extern_attach:get_luaentity()
+    end
 
     -- passenger clicked the object => driver gets off the vehicle
     if self.co_pilot == name then
@@ -240,6 +263,13 @@ function airutils.dettach_pax(self, player, is_flying)
 
         player:set_eye_offset({x=0,y=0,z=0},{x=0,y=0,z=0})
         --remove_physics_override(player, {speed=1,gravity=1,jump=1})
+
+        --move the player to the parent ship if any
+        if extern_ent then
+            if extern_ent.on_rightclick then
+                extern_ent.on_rightclick(extern_ent, player)
+            end
+        end
     end
 end
 
@@ -270,8 +300,9 @@ local function spawn_drops(self, pos)
     end
 end
 
-function airutils.destroy(self, by_name)
+function airutils.destroy(self, by_name, by_automation)
     by_name = by_name or ""
+    by_automation = by_automation or false
     local with_fire = self._enable_fire_explosion
     local owner = self.owner
     if by_name == owner then with_fire = false end
@@ -308,32 +339,38 @@ function airutils.destroy(self, by_name)
         airutils.dettachPlayer(self, player)
     end
 
-    airutils.add_destruction_effects(pos, 5, with_fire)
+    if by_automation == false then
+        airutils.add_destruction_effects(pos, 5, with_fire)
+    end
 
     airutils.seats_destroy(self)
     if self._destroy_parts_method then
         self._destroy_parts_method(self)
     end
 
-    local destroyed_ent = nil
-    if self._destroyed_ent then
-        destroyed_ent = self._destroyed_ent
-    end
+    if by_automation == false then
+        local destroyed_ent = nil
+        if self._destroyed_ent then
+            destroyed_ent = self._destroyed_ent
+        end
 
-    --if dont have a destroyed version, destroy the inventory
-    if not destroyed_ent then
-        airutils.destroy_inventory(self)
-        spawn_drops(self, pos)
-    else
-        if not with_fire then --or by the owner itself
+        --if dont have a destroyed version, destroy the inventory
+        if not destroyed_ent then
             airutils.destroy_inventory(self)
             spawn_drops(self, pos)
+        else
+            if not with_fire then --or by the owner itself
+                airutils.destroy_inventory(self)
+                spawn_drops(self, pos)
+            end
         end
+    else
+        airutils.destroy_inventory(self)
     end
 
     self.object:remove()
 
-    if airutils.blast_damage == true and with_fire == true then
+    if airutils.blast_damage == true and with_fire == true and by_automation == false then
         airutils.add_blast_damage(pos, 7, 10)
         if destroyed_ent then
 
@@ -371,7 +408,7 @@ function airutils.testImpact(self, velocity, position)
 	    else
             self.object:set_velocity(self._last_vel)
             --self.object:set_acceleration(self._last_accell)
-            self.object:set_velocity(vector.add(velocity, vector.multiply(self._last_accell, self.dtime/8)))
+            --self.object:set_velocity(vector.add(velocity, vector.multiply(self._last_accell, self.dtime/8)))
         end
     end
     local impact = math.abs(airutils.get_hipotenuse_value(velocity, self._last_vel))
@@ -466,13 +503,20 @@ function airutils.testImpact(self, velocity, position)
         if self._hard_damage then
             damage = impact*3
             --check if the impact was on landing gear area
-            if math.abs(impact - vertical_impact) < (impact*0.1) and --vert speed difference less than 10% of total
+            --[[if math.abs(impact - vertical_impact) < (impact*0.1) and --vert speed difference less than 10% of total
                  math.abs(math.deg(self.object:get_rotation().x)) < 20 and --nose angle between +20 and -20 degrees
-                self._longit_speed < (self._min_speed*2) and  --longit speed less than the double of min speed
+                self._longit_speed < (self._min_speed*2) then  --longit speed less than the double of min speed
                 self._longit_speed > (self._min_speed/2) then --longit speed bigger than the half of min speed
                 damage = impact / 2 --if the plane was landing, the damage is mainly on landing gear, so lets reduce the damage
-            end
+            end]]--
             --end check
+            if math.abs(math.deg(self.object:get_rotation().x)) < 20 and --nose angle between +20 and -20 degrees
+                self._longit_speed < (self._min_speed*2) then  --longit speed less than the double of min speed
+                damage = impact / 2 --if the plane was landing, the damage is mainly on landing gear, so lets reduce the damage
+                local new_vel = self.object:get_velocity()
+                new_vel.y = 0
+                self.object:set_velocity(new_vel) --TODO something is causing the plane to explode after a shaking, so I'm reseting the speed until I discover the bug
+            end
         end
 
         self.hp_max = self.hp_max - damage --subtract the impact value directly to hp meter
@@ -701,6 +745,19 @@ local function _set_skin(self, l_textures, paint_list, target_texture, skin)
     return l_textures
 end
 
+local function set_prefix(self, l_textures)
+    --to reduce cpu processing, put the prefix here
+    if airutils._use_signs_api then
+        for _, texture in ipairs(l_textures) do
+            local indx = texture:find('airutils_name_canvas.png')
+            if indx then
+                l_textures[_] = "airutils_name_canvas.png^"..airutils.convert_text_to_texture(self._ship_name, self._name_color or 0, self._name_hor_aligment or 3.0)
+            end
+        end
+    end
+    return l_textures
+end
+
 --painting
 function airutils.param_paint(self, colstr, colstr_2)
     colstr_2 = colstr_2 or colstr
@@ -708,6 +765,10 @@ function airutils.param_paint(self, colstr, colstr_2)
     if self._skin ~= nil and self._skin ~= "" then
         local l_textures = self.initial_properties.textures
         l_textures = _set_skin(self, l_textures, self._painting_texture, self._skin_target_texture, self._skin)
+
+        --to reduce cpu processing, put the prefix here
+        l_textures = set_prefix(self, l_textures)
+
         self.object:set_properties({textures=l_textures})
 
         if self._paintable_parts then --paint individual parts
@@ -724,6 +785,10 @@ function airutils.param_paint(self, colstr, colstr_2)
         self._color = colstr
         self._color_2 = colstr_2
         local l_textures = self.initial_properties.textures
+
+        --to reduce cpu processing, put the prefix here
+        l_textures = set_prefix(self, l_textures)
+
         l_textures = _paint(self, l_textures, colstr) --paint the main plane
         l_textures = _paint(self, l_textures, colstr_2, self._painting_texture_2) --paint the main plane
         self.object:set_properties({textures=l_textures})
@@ -1005,6 +1070,22 @@ function airutils.seats_create(self)
             self.pilot_seat_base = self._passengers_base[1] --sets pilot seat reference
             if self._have_copilot and self._passengers_base[2] then
                 self.co_pilot_seat_base = self._passengers_base[2] --sets copilot seat reference
+            end
+        end
+    end
+end
+
+function airutils.seats_update(self)
+    if self.object then
+        local pos = self.object:get_pos()
+        if self._passengers_base then 
+            local max_seats = table.getn(self._passengers_base)
+            for i=1, max_seats do
+                if not self._seats_rot then
+                    self._passengers_base[i]:set_attach(self.object,'',self._seats[i],{x=0,y=0,z=0})
+                else
+                    self._passengers_base[i]:set_attach(self.object,'',self._seats[i],{x=0,y=self._seats_rot[i],z=0})
+                end
             end
         end
     end

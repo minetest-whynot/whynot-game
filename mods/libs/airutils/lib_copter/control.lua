@@ -116,7 +116,7 @@ function airutils.heli_control(self, dtime, hull_direction, longit_speed, longit
                     self._acceleration = 0
                 end
             elseif ctrl.down then
-                if longit_speed > -1.0 then
+                if longit_speed > -self._max_speed then
                     self._acceleration = self._acceleration + (-acc_fraction)
                 else
                     self._acceleration = 0
@@ -125,6 +125,7 @@ function airutils.heli_control(self, dtime, hull_direction, longit_speed, longit
                 self._acceleration = 0
             end
             self._acceleration = math.min(self._acceleration,self._max_engine_acc)
+            self._acceleration = math.max(self._acceleration,-self._max_engine_acc)
 
             if is_flying then --why double check? because I dont want lateral movement when landed
                 if ctrl.right then
@@ -152,6 +153,7 @@ function airutils.heli_control(self, dtime, hull_direction, longit_speed, longit
         end
 
         self._vehicle_acc = math.min(self._acceleration, self._max_engine_acc)
+        self._vehicle_acc = math.max(self._acceleration,-self._max_engine_acc)
         self._lat_acc = math.min(self._lat_acceleration, self._max_engine_acc)
 
         local hull_acc = vector.multiply(hull_direction,self._vehicle_acc)

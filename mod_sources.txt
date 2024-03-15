@@ -44,7 +44,7 @@ origin https://github.com/HybridDog/heads (fetch)
 Mod: decor/heads
 
 origin https://github.com/mt-mods/home_workshop_modpack (fetch)
-* 8102117572374806748f7585b9bc9ecf2f064575 Cleanup translation files (#15)
+* 4b5e58331c8ecf6d6f1f23b5e8b8b167dc772069 nodes that aren't ground content (#16)
 Mod: decor/home_workshop_modpack
 
 origin https://github.com/mt-mods/homedecor_modpack (fetch)
@@ -84,11 +84,11 @@ origin https://github.com/v-rob/slats (fetch)
 Mod: decor/slats
 
 origin https://github.com/minetest-mods/ts_furniture (fetch)
-* 3888a1db42f0fbef4f6b150c89a7beb358658564 Merge pull request #16 from Niklp09/ignore
+* 5ad00b3f16afe811c431cef768b09ce8c0653b0e add fr.tr (#19)
 Mod: decor/ts_furniture
 
 origin https://github.com/mt-mods/unifieddyes (fetch)
-* ecd05bfd908d2ec30e6ee29c8787aacff134885f Bump `min_minetest_version` to "5.5.0" (#17)
+* 3e45f316a3f9274ec3aba373b3a756c268c08a2f coloured nodes aren't ground content (#19)
 Mod: decor/unifieddyes
 
 origin https://github.com/minetest-mirrors/farming.git (fetch)
@@ -124,7 +124,7 @@ origin https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin https://github.com/APercy/airutils.git (fetch)
-* 8dcac841553b20d84196e990c82cad12ff7945ac fix attach
+* 836c6d10f6d7c6ee7c517076e0ab5a1e21e251c4 added parameter to simply remove the plane
 Mod: libs/airutils
 
 origin https://repo.or.cz/minetest_doc.git (fetch)
@@ -191,24 +191,24 @@ origin https://github.com/minetest/minetest_game (fetch)
 * 9875ef62403b3f0113633fc5c88186c983030b34 Merge remote-tracking branch 'origin/stable-5' into HEAD
 Mod: minetest_game/minetest_game
 
-origin https://codeberg.org/Hamlet/mobs_ghost_redo (fetch)
-* ac9c013e47939c05df4671cab5de841e61e3837c v0.7.0
+origin https://codeberg.org/tenplus1/mobs_ghost_redo (fetch)
+* 5889daa5410ad8f68fcde1dd45f0e870dc46f04e add pigiron sword to immune_to, tweak/tidy code
 Mod: mobs_redo/mobs_ghost_redo
 
 origin https://github.com/minetest-mirrors/mobs_monster.git (fetch)
-* 130f46c81f3b6b9d24183c081ffd078a9e7f3f83 fix obsidian flan arrow
+* 83a9a1dc27f8017e685bed6da009bf3e183a6bec set is_ground_content for cobweb (thx SwissAlpS)
 Mod: mobs_redo/mobs_monster
 
 origin https://github.com/minetest-mirrors/mobs_redo.git (fetch)
-* 47e91b9b6b95233f0f6ec7bafad662e71445a48f add pint sized rune to shrink tamed animals
+* 35cc60c3552c2f487cd0c49d2aac18e873558708 tweak saddle recipe, fix spawner error
 Mod: mobs_redo/mobs_redo
 
 origin https://github.com/minetest-mods/3d_armor (fetch)
-* 4bac73fc9e68ce22eeabb44887fe19bcb50052e7 Make all admin armor to protect from drowning (#131)
+* 7fc313f911a71716aae90a60d0c862430bd4fa1e armorstand nodes are not ground content (#134)
 Mod: player/3d_armor
 
 origin https://gitlab.com/dacmot/awards.git (fetch)
-* 16ca5081a1360350e672b7b311f1b7560d0b8c30 Merge remote-tracking branch 'remotes/dacmot/punch_kill_entities'
+* de90a65731c748646afdb2959a01dabe9031a78f Merge remote-tracking branch 'upstream/master'
 Mod: player/awards
 
 origin https://github.com/minetest-mods/character_creator.git (fetch)
@@ -244,7 +244,7 @@ origin https://github.com/dacmot/moarmour (fetch)
 Mod: player/moarmour
 
 origin https://github.com/minetest-mods/playeranim (fetch)
-* e0acae8ed85b87f4802c1297de5e967233715ce0 Workaround for Minetest #12189
+* f763ce648e81bb59e613ac46c1ec4c33f267d1fc Limit angle between head and body (#5)
 Mod: player/playeranim
 
 origin https://repo.or.cz/minetest_show_wielded_item.git (fetch)
@@ -300,7 +300,7 @@ origin https://github.com/Ezhh/handholds (fetch)
 Mod: tools/handholds
 
 origin https://github.com/APercy/hidroplane.git (fetch)
-* 39bd23407f95669d587a611150de8aeeb5610628 added check for the new function
+* f24640da25b9119740f591b264883ca3bb7cbff5 adjusted to work with mineclone
 Mod: tools/hidroplane
 
 origin https://github.com/minetest-mods/hopper (fetch)
@@ -308,7 +308,7 @@ origin https://github.com/minetest-mods/hopper (fetch)
 Mod: tools/hopper
 
 origin https://github.com/minetest-mods/jumping (fetch)
-* 43454623845932edf61d6359f489ca34fe72bf93 General mod maintenance (#11)
+* 02eeafdc031441ca2f08718326f92854fe17cb21 Protect nodes from being overwritten by mapgen (#12)
 Mod: tools/jumping
 
 origin https://github.com/thePlasm/maidroid (fetch)
@@ -327,12 +327,16 @@ origin https://github.com/minetest-mods/subspacewalker (fetch)
 * 245cca91d172f3ab00ad7f056bea9462fd938620 Update README.md
 Mod: tools/subspacewalker
 
+origin https://github.com/APercy/supercub.git (fetch)
+* d5884cb50f72b8f3a713b95d8e741c8579d3a865 improved model
+Mod: tools/supercub
+
 origin https://github.com/lisacvuk/minetest-toolranks (fetch)
 * 05eea5177e4c804eea6fdf77eccd141405b38613 Update README.md
 Mod: tools/toolranks
 
 origin https://github.com/minetest-mods/trash_can (fetch)
-* be1cda9464880d26f72b97774ae26b373154613f Adapt inventory to MineClone2/ia (#18)
+* 1b94dac7775b9944984c5457f9bac1c56fd9e156 Add Simplified Chinese translation (#20)
 Mod: tools/trash_can
 
 origin https://github.com/minetest-mods/woodcutting (fetch)

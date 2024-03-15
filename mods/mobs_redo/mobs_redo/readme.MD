@@ -31,6 +31,7 @@ https://forum.minetest.net/viewtopic.php?f=11&t=9917
 * Added self.attack_patience value so mobs stop attacking unseen players
 * Added self.homing so that arrows follow player when visible
 * Added support for Visual Harm 1ndicators mod to show health bars
+* Added self.node_damage flag which is true by default to enable damage_per_second node damage
 
 ### Version 1.60
 

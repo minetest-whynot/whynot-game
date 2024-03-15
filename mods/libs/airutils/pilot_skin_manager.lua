@@ -8,17 +8,20 @@ local curr_skin = "airutils:skin"
 
 minetest.register_chatcommand("au_uniform", {
     func = function(name, param)
-        if skinsdb_mod_path and minetest.global_exists("armor") then
-            minetest.chat_send_player(name, S("Sorry, but this module doesn't work when SkinsDb and Armor are instaled together."))
-        else
-            local player = minetest.get_player_by_name(name)
+		local player = minetest.get_player_by_name(name)
 
-            if player then
-                airutils.uniform_formspec(name)
-            else
-                minetest.chat_send_player(name, S("Something isn't working..."))
-            end
-        end
+		if player then
+			if skinsdb_mod_path then
+				local skdb_skin = skins.get_player_skin(player)
+				if skdb_skin:get_meta("format") == "1.8" then
+					minetest.chat_send_player(name, S("Sorry, but uniform cannot be applied to format 1.8 skins."))
+					return
+				end
+			end
+			airutils.uniform_formspec(name)
+		else
+			minetest.chat_send_player(name, S("Something isn't working..."))
+		end
     end,
 })
 
@@ -26,9 +29,44 @@ local set_player_textures =
 	minetest.get_modpath("player_api") and player_api.set_textures
 	or default.player_set_textures
 
+if skinsdb_mod_path then
+	-- Enhance apply_skin_to_player for all skins
+	local orig_apply_skin_to_player = skins.skin_class.apply_skin_to_player
+	function skins.skin_class:apply_skin_to_player(player)
+		local orig_texture = self:get_texture()
+		local player_meta = player:get_meta()
+		local pilot_skin = player_meta:get_string("pilot_skin")
+		if pilot_skin ~= "" then
+			if self:get_meta("format") == "1.8" then
+				-- format 1.8 is not suported
+				orig_apply_skin_to_player(self, player)
+			else
+				local orig_get_texture = self.get_texture
+				function self:get_texture()
+					return "[combine:64x32:0,0="..orig_texture.."^"..pilot_skin
+				end
+				orig_apply_skin_to_player(self, player)
+				self.get_texture = orig_get_texture
+			end
+		else
+			orig_apply_skin_to_player(self, player)
+		end
+	end
+end
+
 function airutils.set_player_skin(player, skin)
     if not player then return end
 
+	-- use skinsdb enhancement
+	if skinsdb_mod_path then
+		local player_meta = player:get_meta()
+		player_meta:set_string("pilot_skin", skin)
+		local skdb_skin = skins.get_player_skin(player)
+		skdb_skin:apply_skin_to_player(player)
+		return
+	end
+
+	-- manage byself
     local player_properties = player:get_properties()
     if not player_properties then return end
 
@@ -39,10 +77,6 @@ function airutils.set_player_skin(player, skin)
         if skin then
             --get current texture
             texture = texture[1]
-            if skinsdb_mod_path then
-                local skdb_skin = skins.get_player_skin(player)
-                texture = "[combine:64x32:0,0="..skdb_skin._texture --..":0,0="..skin
-            end
 
             --backup current texture
             local backup = player_meta:get_string("backup")
@@ -58,19 +92,7 @@ function airutils.set_player_skin(player, skin)
 
             --sets the combined texture
             if texture ~= nil and texture ~= "" then
-                if skinsdb_mod_path then
-		            player:set_properties({
-			            visual = "mesh",
-			            visual_size = {x=0.95, y=1},
-			            mesh = "character.b3d",
-			            textures = {texture},
-		            })
-                    if armor then
-                        armor:update_player_visuals(player)
-                    end
-                else
-                    set_player_textures(player, {texture})
-                end
+                set_player_textures(player, {texture})
                 player_meta:set_string("curr_skin",texture)
                 --player:set_attribute(curr_skin, texture)
             end
@@ -89,21 +111,8 @@ function airutils.set_player_skin(player, skin)
                 end
             end
             --minetest.chat_send_all(dump(old_texture))
-            if skinsdb_mod_path then
-	            player:set_properties({
-		            visual = "mesh",
-		            visual_size = {x=1, y=1},
-		            mesh = "skinsdb_3d_armor_character_5.b3d",
-		            textures = {texture},
-	            })
-                skins.set_player_skin(player, skins.get_player_skin(player))
-                if armor then
-                    armor:set_player_armor(player)
-                end
-            else
-                if old_texture ~= nil and old_texture ~= "" then
-                    set_player_textures(player, { old_texture })
-                end
+            if old_texture ~= nil and old_texture ~= "" then
+                set_player_textures(player, { old_texture })
             end
             player_meta:set_string("backup","")
             player_meta:set_string("curr_skin","")

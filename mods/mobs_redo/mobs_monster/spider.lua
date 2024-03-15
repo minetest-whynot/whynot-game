@@ -92,6 +92,7 @@ mobs:register_mob("mobs_monster:spider", {
 	water_damage = 5,
 	lava_damage = 5,
 	light_damage = 0,
+	node_damage = false, -- disable damage_per_second node damage
 	animation = {
 		speed_normal = 15,
 		speed_run = 20,
@@ -282,6 +283,7 @@ minetest.register_node(":mobs:cobweb", {
 	liquid_range = 0,
 	walkable = false,
 	groups = {snappy = 1, disable_jump = 1},
+	is_ground_content = false,
 	drop = "farming:string",
 	sounds = default and default.node_sound_leaves_defaults()
 })

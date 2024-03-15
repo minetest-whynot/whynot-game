@@ -1,10 +1,10 @@
 -- Copyright (c) 2013-18 rubenwardy. MIT.
 
 local function ngettext(msgid, msgid_plural, n, ...)
-	return awards.get_translator(n==1 and msgid or msgid_plural, ...)
+	return awards.translator(n==1 and msgid or msgid_plural, ...)
 end
 
-local S, NS = awards.get_translator, ngettext
+local S, NS = awards.translator, ngettext
 
 awards.on = {}
 

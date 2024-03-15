@@ -13,6 +13,7 @@ local function reg_simple(name, def)
         paramtype = "light",
         paramtype2 = "facedir",
         groups = def.groups or {snappy=3},
+        is_ground_content = false,
         selection_box = {
             type = "fixed",
             fixed = {-0.5, -0.5, -0.5, 0.5, 1.5, 0.5}
