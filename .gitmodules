@@ -253,3 +253,6 @@
 [submodule "builder/mods_src/decor/flower_pot"]
 	path = builder/mods_src/decor/flower_pot
 	url = https://codeberg.org/Dacmot/flower_pot.git
+[submodule "builder/mods_src/tools/supercub"]
+	path = builder/mods_src/tools/supercub
+	url = https://github.com/APercy/supercub.git

@@ -1,3 +1,5 @@
+local S = airutils.S
+
 local function check_protection(pos, name)
 	if minetest.is_protected(pos, name) then
 		minetest.log("action", name
@@ -26,7 +28,7 @@ function airutils.PAPIplace(player,pos)
 
 	core.set_node(pos, {name="airutils:papi", param2=dir})
 	local meta = core.get_meta(pos)
-	meta:set_string("infotext", "PAPI\rOwned by: "..player_name)
+	meta:set_string("infotext", S("PAPI") .. "\r" .. S("Owned by: @1", player_name))
 	meta:set_string("owner", player_name)
 	meta:set_string("dont_destroy", "false")
 	return true
@@ -43,10 +45,10 @@ function airutils.togglePapiSide(pos, node, clicker, itemstack)
     local dir=node.param2
     if node.name == "airutils:papi_right" then
         core.set_node(pos, {name="airutils:papi", param2=dir})
-    	meta:set_string("infotext", "PAPI - left side\rOwned by: "..player_name)
+    	meta:set_string("infotext", S("PAPI") .. " - " .. S("left side") .. "\r" .. S("Owned by: @1",player_name))
     elseif node.name == "airutils:papi" then
         core.set_node(pos, {name="airutils:papi_right", param2=dir})
-        meta:set_string("infotext", "PAPI - right side\rOwned by: "..player_name)
+        meta:set_string("infotext", S("PAPI") .. " - " .. S("right side") .. "\r" .. S("Owned by: @1",player_name))
     end
 
 	meta:set_string("owner", player_name)
@@ -68,7 +70,7 @@ airutils.groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2}
 
 -- PAPI node (default left)
 minetest.register_node("airutils:papi",{
-	description = "PAPI",
+	description = S("PAPI"),
 	--inventory_image = "papi.png",
 	--wield_image = "papi.png",
 	tiles = {"airutils_black.png", "airutils_u_black.png", "airutils_white.png",
@@ -136,7 +138,7 @@ end
 
 -- PAPI right node
 minetest.register_node("airutils:papi_right",{
-    description = "PAPI_right_side",
+    description = S("PAPI") .. "_" .. S("right_side"),
 	tiles = {"airutils_black.png", "airutils_u_black.png", "airutils_white.png",
 	"airutils_metal.png", {name = "airutils_red.png", backface_culling = true},},
 	groups = airutils.groups_right,

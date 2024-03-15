@@ -37,7 +37,7 @@ NEWSTASHSIZE=$(git stash list | wc -l)
 
 echo -n "Updating local repository..."
 git submodule sync $VERBOSITY
-git fetch --all --prune --prune-tags --tags --recurse-submodules=yes $VERBOSITY --job 4
+git fetch --all --prune --prune-tags --tags --recurse-submodules=yes $VERBOSITY
 echo " done."
 echo -n "Updating submodules..."
 git submodule update --init --recursive $VERBOSITY --jobs 4
