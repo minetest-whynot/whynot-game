@@ -124,7 +124,7 @@ origin https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin https://github.com/APercy/airutils.git (fetch)
-* ad6899661c0c2f62d6e957ae86108e04e62f2a6e remotion now stored on static data
+* 836c6d10f6d7c6ee7c517076e0ab5a1e21e251c4 added parameter to simply remove the plane
 Mod: libs/airutils
 
 origin https://repo.or.cz/minetest_doc.git (fetch)
