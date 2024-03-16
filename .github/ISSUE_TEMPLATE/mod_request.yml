@@ -2,6 +2,7 @@ name: Mod Request
 description: Request a new mod to be added to Whynot-Game
 title: '[Mod Request]: `mod name here`'
 labels: [new-mod-proposal]
+projects: "minetest-whynot/1"
 body:
 
   - type: input
