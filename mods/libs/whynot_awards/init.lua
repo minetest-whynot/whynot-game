@@ -245,20 +245,20 @@ end
 
 
 awards.register_award("whynot_stone",{
-	title = S("Dig stone"),
+	title = S("Mine stone"),
 	description = S("Using a wood pick axe, start digging through stone. The cobblestone obtained from digging stone can then be used to craft sturdier tools."),
 	icon = "whynot_awards_cobblestone.png",
 	requires = {"whynot_tools"},
 	trigger = {
 		type = "dig",
-		node = "default:stone",
+		node = "group:stone",
 		target = 1,
 	},
 })
 
 
 awards.register_award("whynot_coal",{
-	title = S("Dig coal"),
+	title = S("Mine coal"),
 	description = S("Coal is a common mineral found underground. Among other things, it can be used to craft torches for lighting your way, or as combustible in furnaces."),
 	icon = "whynot_awards_coal.png",
 	requires = {"whynot_tools"},
@@ -356,6 +356,71 @@ awards.register_award("whynot_well", {
 	trigger = {
 		type = "craft",
 		item = "homedecor:well",
+		target = 1
+	}
+})
+
+
+awards.register_award("whynot_mine_tin", {
+	title = S("Mine tin"),
+	description = S("Tin is one of the first metal you'll encounter when digging down. Smelt it in a furnace to form ingots. Then combine it with copper to make bronze."),
+	icon = "whynot_awards_tin.png",
+	requires = {"whynot_stone"},
+	trigger = {
+		type = "dig",
+		item = "default:stone_with_tin",
+		target = 1
+	}
+})
+
+
+awards.register_award("whynot_mine_copper", {
+	title = S("Mine copper"),
+	description = S("Copper is one of the first metal you'll encounter when digging down. Smelt it in a furnace to form ingots. Then combine it with tin to make bronze."),
+	icon = "whynot_awards_copper.png",
+	requires = {"whynot_stone"},
+	trigger = {
+		type = "dig",
+		item = "default:stone_with_copper",
+		target = 1
+	}
+})
+
+
+awards.register_award("whynot_bronze", {
+	title = S("Craft bronze"),
+	description = S("Bronze is the first versatile metal you'll be able to use to craft better tools, armor and other items."),
+	icon = "whynot_awards_bronze.png",
+	requires = {"whynot_mine_copper", "whynot_mine_tin", "whynot_furnace"},
+	trigger = {
+		type = "craft",
+		item = "default:bronze_ingot",
+		target = 1
+	}
+})
+
+
+awards.register_award("whynot_steel", {
+	title = S("Craft steel"),
+	description = S("Steel is stronger than bronze. Use it to upgrade your tools and armor."),
+	icon = "whynot_awards_steel.png",
+	requires = {"whynot_furnace"},
+	trigger = {
+		type = "craft",
+		item = "default:steel_ingot",
+		target = 1
+	}
+})
+
+
+awards.register_award("whynot_steel", {
+	title = S("Craft steel"),
+	description = S("Steel is stronger than bronze. Use it to upgrade your tools and armor."),
+	icon = "whynot_awards_steel.png",
+	requires = {"whynot_bronze", "whynot_steel", "awards_diamond_ore"},
+	trigger = {
+		type = "craft",
+		item = "supercub:supercub",
 		target = 1
 	}
 })
