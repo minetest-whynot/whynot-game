@@ -5,14 +5,12 @@ labels: [major-update]
 body:
 
   - type: input
-    id: modname
     attributes:
       label: Name(s) of affected mod(s)
       placeholder: my_deprecated_mod
     validations:
       required: true
   - type: textarea
-    id: reason-for-change
     attributes:
       label: Reasons for changes
       placeholder: This mod is broken and should be removed

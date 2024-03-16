@@ -1,39 +1,78 @@
----
 name: Mod Request
-about: Request a new mod to be added to Whynot-Game
+description: Request a new mod to be added to Whynot-Game
 title: '[Mod Request]: `mod name here`'
-labels: new-mod-proposal
+labels: [new-mod-proposal]
+body:
 
----
-## Request
-
-This is the URL for the mod I would like to be added:
-
-https://www.example.com
-
-## My opinion on how it fits with the whynot rules:
-
-> Refer to the [Whynot Readme](https://github.com/minetest-whynot/whynot-game#readme) for full rule descriptions/reasons.
-
-1. In what ways might this mod take over the game?
-   * 
-2. When could this mod be a strain on the server when no players are using the mod?
-   * 
-3. When does this mod destroy player's work?
-   * 
-4. Have you looked at the code? If so, what stood out as things that might need fixing?
-   * 
-5. In what way might this mod be reduced to be more simple (as in "Keep it Simple Stupid") (ex: "the foobar mod could be made more simple by splitting into two mods, foo and bar")
-   * 
-6. Is this mod survival friendly? What items that it provides that _should_ be craftable/obtainable, but arent?
-   * 
-7. When does this mod feel like cheating?
-   * 
-8. Does this mod use the software "git" for version control? (note: we are asking about git. Github, Gitlab, notabug and hundreds of other git _providers_ exist but are not specificly needed, although these do qualify).
-   * 
-9. Upon testing this mod, what errors, odd behavior, or other incompatibilities were noticed?
-   * 
-10. Is the licence one that we can include in WhyNot? (Whynot is under the GPLv3 only. Be sure you know what you are talking about or cite your source)
-   * 
-
-## Other comments
+  - type: input
+    attributes:
+      label: URL for mod to be added
+      description: |
+         - Git repository (github, gitlab, codeberg, notabug, etc.)
+         - ContentDB page
+         - Minetest forums thread
+      placeholder: https://codeberg.org/user/myawesomeminetestmod
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Reasons why I think this game would be a good addition to the WhyNot? game
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: |
+        ## Why rules
+        Refer to the [Whynot Readme](https://github.com/minetest-whynot/whynot-game#readme) for full rule descriptions/reasons.
+  - type: textarea
+    attributes:
+      label: 1. In what ways might this mod take over the game?
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: 2. When could this mod be a strain on the server when no players are using the mod?
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: 3. When does this mod destroy player's work?
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: 4. Have you looked at the code? If so, what stood out as things that might need fixing?
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: |
+         5. In what way might this mod be reduced to be more simple (as in "Keep it Simple Stupid") (ex: "the foobar mod could be made more simple by splitting into two mods, foo and bar")
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: 6. Is this mod survival friendly? What items that it provides that _should_ be craftable/obtainable, but arent?
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: 7. When does this mod feel like cheating?
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: |
+         8. Does this mod use the software "git" for version control? (note: we are asking about git. Github, Gitlab, notabug and hundreds of other git _providers_ exist but are not specificly needed, although these do qualify).
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: 9. Upon testing this mod, what errors, odd behavior, or other incompatibilities were noticed?
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: 10. Is the licence one that we can include in WhyNot? (Whynot is under the GPLv3 only. Be sure you know what you are talking about or cite your source)
+    validations:
+      required: true
