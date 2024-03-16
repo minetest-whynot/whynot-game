@@ -15,7 +15,8 @@ body:
   - type: textarea
     attributes:
       label: "Problem"
-      description: "Describe the current behavior. May include logs, images, or videos." |
+      description: |
+        - Describe the current behavior. May include logs, images, or videos.
         - If the bug pertains to crashing please include the section of the debug.txt log file with the stacktrace and a few lines before that describe actions or warnings that may have led to the problem.
         - Provide the relevant [setup details](https://wiki.minetest.net/Reporting_bugs#Gathering_information) in the boxes below, or in this text box.
     validations:
