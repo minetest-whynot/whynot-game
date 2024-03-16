@@ -1,18 +1,20 @@
----
 name: Major update
-about: Mod addition, deletion or major mod update requiring additional scrutiny
+description: Mod removal or major mod update requiring additional scrutiny
 title: '[Major Update]: `mod name(s) here`'
-labels: major-update
+labels: [major-update]
+body:
 
----
-## Mods affected
-
-Examples
-
-* mod 1
-  * added new mod!
-* mod 2
-  * removed unmaintained mod
-* mod 3
-  * large number of commits since last update
-* ...
+  - type: input
+    id: modname
+    attributes:
+      label: Name(s) of affected mod(s)
+      placeholder: my_deprecated_mod
+    validations:
+      required: true
+  - type: textarea
+    id: reason-for-change
+    attributes:
+      label: Reasons for changes
+      placeholder: This mod is broken and should be removed
+    validations:
+      required: true
