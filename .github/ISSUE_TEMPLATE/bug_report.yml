@@ -1,0 +1,67 @@
+name: Bug Report
+description: Report a problem in the WhyNot? game
+labels: [bug]
+body:
+
+  - type: markdown
+    attributes:
+      value: |
+        *Before reporting:*
+        - Confirm the problem is reproducible on [**main**](https://github.com/minetest-whynot/whynot-game/tree/main) or [**latest release**](https://github.com/minetest-whynot/whynot-game/releases/latest).
+        - If it's something that used to work but doesn't work anymore, please find the last working release or commit.
+        - Search [existing issues](https://github.com/minetest-whynot/whynot-game/issues?q=is%3Aopen+is%3Aissue+label%3Abug%2Cquestion+) (including [closed](https://github.com/minetest-whynot/whynot-game/issues?q=is%3Aclosed+is%3Aissue+label%3Abug%2Cquestion+))
+        - Read the [game wiki](https://github.com/minetest-whynot/whynot-game/wiki) and [Minetest wiki](https://wiki.minetest.net/Troubleshooting)
+
+  - type: textarea
+    attributes:
+      label: "Problem"
+      description: |
+        - Describe the current behavior. May include logs, images, or videos.
+        - If the bug pertains to crashing please include the section of the debug.txt log file with the stacktrace and a few lines before that describe actions or warnings that may have led to the problem.
+        - Provide the relevant [setup details](https://wiki.minetest.net/Reporting_bugs#Gathering_information) in the boxes below, or in this text box.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: "Steps to reproduce"
+      description: Describe in point form the steps to reproduce the bug, ideally everytime.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: "Expected behavior"
+      description: "Describe the behavior you expect."
+    validations:
+      required: true
+
+  - type: input
+    attributes:
+      label: "Minetest client version"
+      placeholder: "5.6.8"
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: "WhyNot? Game version"
+      placeholder: "2024-03-14"
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: "Operating system/version"
+      placeholder: "Windows 11"
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: "Installation"
+      description: "How did you install the WhyNot? Game: In-game content download / ContentDB or Github download with manual install / other (describe)?"
+      placeholder: "In-game content download"
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: "Additional mods enabled in your world (ex. technics, mobs_animals, etc.)"
+      placeholder: "none"
+    validations:
+      required: true
