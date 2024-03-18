@@ -137,25 +137,37 @@ minetest.register_on_joinplayer(function(player, _)
     end
 end)
 
+local player_index = 1
+local subbanding = 5
 local function check_positions()
-    for _, player in ipairs(minetest.get_connected_players()) do
+    local connected_players = minetest.get_connected_players()
+    if player_index > #connected_players then
+        player_index = 1
+    end
+
+    local end_index = math.min(player_index + subbanding, #connected_players)
+    for i = player_index, end_index do
+        local player = connected_players[i]
         if (player_ok(player)) then
             local awards_data = awards.player(player:get_player_name())
             if (awards_data) then
                 local position = player:get_pos()
+                local py = position.y
                 local max_data = awards_data["max"]
 
-                local depth_delta = math.floor(math.min(position.y + max_data["depth"], 0))
+                local depth_delta = math.floor(math.min(py + max_data["depth"], 0))
                 if (depth_delta < 0) then
                     awards.notify_max(player, "depth", math.abs(depth_delta))
                 end
 
-                local altitude_delta = math.floor(math.max(position.y - max_data["altitude"], 0))
+                local altitude_delta = math.floor(math.max(py - max_data["altitude"], 0))
                 if (altitude_delta > 0) then
                     awards.notify_max(player, "altitude", altitude_delta)
                 end
 
-                local distance = math.floor(math.sqrt(position.x * position.x + position.z * position.z))
+                local px = position.x
+                local pz = position.z
+                local distance = math.floor(math.sqrt(px * px + pz * pz))
                 local distance_delta = math.max(distance - max_data["distance"], 0)
                 if (distance_delta > 0) then
                     awards.notify_max(player, "distance", distance_delta)
@@ -163,7 +175,9 @@ local function check_positions()
             end
         end
     end
-    minetest.after(5, check_positions)
+    
+    player_index = player_index + player_index - end_index
+    minetest.after(1, check_positions)
 end
 check_positions()
 
