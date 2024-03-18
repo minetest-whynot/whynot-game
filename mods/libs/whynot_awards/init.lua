@@ -413,9 +413,9 @@ awards.register_award("whynot_steel", {
 })
 
 
-awards.register_award("whynot_steel", {
-	title = S("Craft steel"),
-	description = S("Steel is stronger than bronze. Use it to upgrade your tools and armor."),
+awards.register_award("whynot_supercub", {
+	title = S("Craft an airplane"),
+	description = S("Why not have airplanes? Build a Supercub and travel at high speeds and soar to new heights!"),
 	icon = "whynot_awards_steel.png",
 	requires = {"whynot_bronze", "whynot_steel", "awards_diamond_ore"},
 	trigger = {
