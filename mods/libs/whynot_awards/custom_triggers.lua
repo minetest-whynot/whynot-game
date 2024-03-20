@@ -182,7 +182,7 @@ end
 check_positions()
 
 
-if (minetest.get_modpath("farming") and minetest.global_exists("farming") and farming.mod and farming.mod == "redo") then
+if (minetest.get_modpath("farming") and minetest.global_exists("farming") and farming.mod == "redo") then
 
     -------------------------------------------
     awards.register_trigger("gatherwildseeds",{
