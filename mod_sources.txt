@@ -51,7 +51,7 @@ origin https://github.com/mt-mods/homedecor_modpack (fetch)
 * 52f7c54702c58bccec2877cb67dbcfa87cd83ace Fix particlespawner removal when digging fancy fire
 Mod: decor/homedecor_modpack
 
-origin https://github.com/Gerold55/laptop.git (fetch)
+origin https://codeberg.org/Dacmot/minetest-laptop.git (fetch)
 * 03b33937def3f2537ee87a733ca35526efe599e4 Merge pull request #144 from sfence/sfence_painting
 Mod: decor/laptop
 
