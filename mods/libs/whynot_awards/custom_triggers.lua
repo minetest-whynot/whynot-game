@@ -192,28 +192,31 @@ if (minetest.get_modpath("farming") and minetest.global_exists("farming") and fa
     })
 
     local grains_to_gather = {"farming:seed_wheat", "farming:seed_oat", "farming:seed_barley", "farming:seed_rye", "farming:seed_cotton", "farming:rice", "farming:seed_hemp"}
-    local function check_wildseeds(_, _, _, digger)
-        check_action_with_collection("gatherwildseeds", "collect", grains_to_gather, digger)
+    local function check_wildseeds(grassname)
+        local grassitem = minetest.registered_nodes[grassname]
+        if (grassitem) then
+            local old_after_dig_node = grassitem.after_dig_node
+            minetest.override_item(grassname, {
+                after_dig_node = function(pos, oldnode, oldmetadata, digger)
+                    if (old_after_dig_node) then
+                        old_after_dig_node(pos, oldnode, oldmetadata, digger)
+                    end
+                    check_action_with_collection("gatherwildseeds", "collect", grains_to_gather, digger)
+                end
+            })
+        end
     end
 
     -- Grass drops overrides from farming/grass.lua
     for i = 4, 5 do
-        minetest.override_item("default:grass_" .. i, {
-            after_dig_node = check_wildseeds
-        })
+        check_wildseeds("default:grass_" .. i)
 
         if minetest.registered_nodes["default:dry_grass_1"] then
-            minetest.override_item("default:dry_grass_" .. i, {
-                after_dig_node = check_wildseeds
-            })
+            check_wildseeds("default:dry_grass_" .. i)
         end
-
     end
 
-    minetest.override_item("default:junglegrass", {
-        after_dig_node = check_wildseeds
-    })
-
+    check_wildseeds("default:junglegrass")
 
     ------------------------------------------------
     awards.register_trigger("gatherfruitvegetable",{
@@ -222,20 +225,26 @@ if (minetest.get_modpath("farming") and minetest.global_exists("farming") and fa
         auto_description = { S("Find @2 fruit or vegetable"), S("Find @1×@2 different fruits and vegetables") },
     })
 
-    local function check_fruits_and_vegetables(_, oldnode, _, digger)
-        local crop_name = string.gsub(oldnode.name, "_%d$", "")
-        check_action_with_item_in_collection("gatherfruitvegetable", "collect", crop_name, farming.registered_plants, digger)
+    local function check_fruits_and_vegetables(cropname, index)
+        local fullcropname = cropname .. "_" .. index
+        local node = minetest.registered_nodes[fullcropname]
+        if (node) then
+            local old_after_dig_node = node.after_dig_node
+            minetest.override_item(fullcropname, {
+                after_dig_node = function(pos, oldnode, oldmetadata, digger)
+                    if (old_after_dig_node) then
+                        old_after_dig_node(pos, oldnode, oldmetadata, digger)
+                    end
+                    check_action_with_item_in_collection("gatherfruitvegetable", "collect", cropname, farming.registered_plants, digger)
+                end
+            })
+        end
     end
 
     -- This doesn't work for all plants. Some, like beans, don't use the usual crop/seed naming conventions
     for _, plantdef in pairs(farming.registered_plants) do
         for i = 1, plantdef.steps do
-            local crop_name = plantdef.crop .. "_" .. i
-            if (minetest.registered_nodes[crop_name]) then
-                minetest.override_item(crop_name, {
-                    after_dig_node = check_fruits_and_vegetables
-                })
-            end
+            check_fruits_and_vegetables(plantdef.crop, i)
         end
     end
 
