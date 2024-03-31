@@ -10,6 +10,24 @@ local S = function (str)
 end
 
 
+minetest.register_on_joinplayer(function(player, _)
+    if (player_ok(player)) then
+        local awards_data = awards.player(player:get_player_name())
+        if (awards_data) then
+            awards_data["max"] = awards_data["max"] or {}
+            awards_data["max"]["depth"] = awards_data["max"]["depth"] or 0
+            awards_data["max"]["altitude"] = awards_data["max"]["altitude"] or 0
+            awards_data["max"]["distance"] = awards_data["max"]["distance"] or 0
+
+            awards_data["prev_eatwildfood_eat"] = awards_data["prev_eatwildfood_eat"] or {}
+            awards_data["prev_gatherfruitvegetable_collect"] = awards_data["prev_gatherfruitvegetable_collect"] or {}
+            awards_data["prev_plant_crops_place"] = awards_data["prev_plant_crops_place"] or {}
+            awards_data["prev_gatherwildseeds_collect"] = awards_data["prev_gatherwildseeds_collect"] or {}
+        end
+    end
+end)
+
+
 local function check_action_with_item_in_collection(trigger_name, award_action, itemname, collection, player)
     if (not (player_ok(player) and collection[itemname])) then
 		return
@@ -20,18 +38,16 @@ local function check_action_with_item_in_collection(trigger_name, award_action, 
         itemname = minetest.registered_aliases[itemname] or itemname
 
         -- Uncomment to debug with qa_block
-        Whynot_awards.playerawardsdata = awards_data
+        -- Whynot_awards.playerawardsdata = awards_data
 
         local prev_action = "prev_"..trigger_name.."_"..award_action
-        awards_data[award_action] = awards_data[award_action] or {}
-        awards_data[prev_action] = awards_data[prev_action] or {}
-        local collected = awards_data[award_action]
-        local prev_collected = awards_data[prev_action]
+        local award_action_counts = awards_data[award_action]
+        local prev_action_counts = awards_data[prev_action]
 
-        local items_collected = collected[itemname]
-        if (prev_collected[itemname] ~= items_collected and (items_collected == nil or items_collected <= 1 or prev_collected[itemname] == nil)) then
+        local items_collected = award_action_counts[itemname]
+        if (prev_action_counts[itemname] ~= items_collected and (items_collected <= 1 or prev_action_counts[itemname] == nil)) then
             awards["notify_"..trigger_name](player)
-            prev_collected[itemname] = items_collected
+            prev_action_counts[itemname] = items_collected
         end
     end
 end
@@ -45,21 +61,19 @@ local function check_action_with_collection(trigger_name, award_action, collecti
     local awards_data = awards.player(player:get_player_name())
     if (awards_data) then
         -- Uncomment to debug with qa_block
-        Whynot_awards.playerawardsdata = awards_data
+        -- Whynot_awards.playerawardsdata = awards_data
 
         local prev_action = "prev_"..trigger_name.."_"..award_action
-        awards_data[award_action] = awards_data[award_action] or {}
-        awards_data[prev_action] = awards_data[prev_action] or {}
-        local collected = awards_data[award_action]
-        local prev_collected = awards_data[prev_action]
+        local award_action_counts = awards_data[award_action]
+        local prev_action_counts = awards_data[prev_action]
 
         local notify_award_trigger = awards["notify_"..trigger_name]
 
         for _, itemname in pairs(collection) do
-            local items_collected = collected[itemname]
-            if (prev_collected[itemname] ~= items_collected and (items_collected == nil or items_collected <= 1 or prev_collected[itemname] == nil)) then
+            local items_collected = award_action_counts[itemname]
+            if (prev_action_counts[itemname] ~= items_collected and (items_collected <= 1 or prev_action_counts[itemname] == nil)) then
                 notify_award_trigger(player)
-                prev_collected[itemname] = items_collected
+                prev_action_counts[itemname] = items_collected
             end
         end
     end
@@ -86,7 +100,7 @@ function minetest.handle_node_drops(pos, drops, digger)
 
     -- Uncomment to debug with qa_block
     local awards_data = awards.player(digger:get_player_name())
-    Whynot_awards.playerawardsdata = awards_data
+    -- Whynot_awards.playerawardsdata = awards_data
 
     for _, itemstr in ipairs(drops) do
         local itemstack = ItemStack(itemstr)
@@ -124,18 +138,6 @@ awards.register_trigger("max", {
         return def.trigger.max_param
     end,
 })
-
-minetest.register_on_joinplayer(function(player, _)
-    if (player_ok(player)) then
-        local awards_data = awards.player(player:get_player_name())
-        if (awards_data) then
-            awards_data["max"] = awards_data["max"] or {}
-            awards_data["max"]["depth"] = awards_data["max"]["depth"] or 0
-            awards_data["max"]["altitude"] = awards_data["max"]["altitude"] or 0
-            awards_data["max"]["distance"] = awards_data["max"]["distance"] or 0
-        end
-    end
-end)
 
 local player_index = 1
 local subbanding = 5
