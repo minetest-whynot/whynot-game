@@ -76,7 +76,7 @@ awards.register_award("whynot_gatherfruitvegetable",{
 
 awards.register_award("whynot_tree",{
 	title = S("Cut a tree"),
-	description = S("Cut down a tree, karate-style,"),
+	description = S("Cut down a tree, karate-style."),
 	icon = "whynot_awards_tree.png",
 	requires = {},
 	trigger = {
@@ -189,7 +189,7 @@ awards.register_award("whynot_bones",{
 
 awards.register_award("whynot_cotton", {
 	title = S("Collect cotton"),
-	description = S("Wild cotton can be found the savanna. Alternatively you can plant, grow and harvest seeds found in the jungle.)"),
+	description = S("Wild cotton can be found the savanna. Alternatively you can plant, grow and harvest seeds found in the jungle."),
 	icon = "whynot_awards_cotton_flower.png",
 	trigger = {
 		type = "collect",
