@@ -45,7 +45,7 @@ function awards.get_formspec(name, to, sid)
 			";]"
 
 		if sdef and sdef.icon then
-			formspec = formspec .. "image[0.45,0;3.5,3.5;" .. sdef.icon .. "]"  -- adjusted values from 0.6,0;3,3
+			formspec = formspec .. "image[0.45,0;3.5,3.5;" .. minetest.formspec_escape(sdef.icon) .. "]"  -- adjusted values from 0.6,0;3,3
 		end
 
 		if sitem.progress then

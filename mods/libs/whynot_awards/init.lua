@@ -25,6 +25,24 @@ minetest.after(2, function()
 end)
 
 
+local function escape_argument(texture_modifier)
+	return texture_modifier:gsub(".", {["\\"] = "\\\\", ["^"] = "\\^", [":"] = "\\:"})
+end
+
+local function awards_combine_with_frame(...)
+	local arg={...}
+	if #arg == 1 then
+		return "([combine:88x88:0,0=whynot_awards_frame.png:3,3="..escape_argument(arg[1].."^[resize:82x82")..")"
+	else
+		local composition = "([combine:88x88:0,0=whynot_awards_frame.png"
+		for i=1, #arg do
+			composition = composition..":"..escape_argument(arg[i])
+		end
+		return composition..")"
+	end
+end
+
+
 
 awards.register_award("whynot_welcome", {
 	title = S("Welcome to the WhyNot? game"),
@@ -65,7 +83,7 @@ awards.register_award("whynot_gatherwildseeds",{
 awards.register_award("whynot_gatherfruitvegetable",{
 	title = S("Gather wild fruits and vegetables"),
 	description = S("More common in temperate regions, but also found in various climates, wild fruits and vegetables can be harvested. Use them for food, or re-plant them as crops for agriculture."),
-	icon = "whynot_awards_carrot.png",
+	icon = awards_combine_with_frame("farming_carrot.png"),
 	requires = {},
 	trigger = {
 		type = "gatherfruitvegetable",
@@ -77,7 +95,7 @@ awards.register_award("whynot_gatherfruitvegetable",{
 awards.register_award("whynot_tree",{
 	title = S("Cut a tree"),
 	description = S("Cut down a tree, karate-style."),
-	icon = "whynot_awards_tree.png",
+	icon = awards_combine_with_frame(minetest.inventorycube("default_tree_top.png", "default_tree.png", "default_tree.png")),
 	requires = {},
 	trigger = {
 		type = "dig",
@@ -90,7 +108,7 @@ awards.register_award("whynot_tree",{
 awards.register_award("whynot_planks",{
 	title = S("Craft planks"),
 	description = S("Chop some wood to make planks."),
-	icon = "whynot_awards_wood.png",
+	icon = awards_combine_with_frame(minetest.inventorycube("default_wood.png")),
 	requires = {"whynot_tree"},
 	trigger = {
 		type = "craft",
@@ -99,10 +117,11 @@ awards.register_award("whynot_planks",{
 	},
 })
 
+
 awards.register_award("whynot_simple_boat",{
 	title = S("Craft a raft"),
 	description = S("A simple boat will let you travel on water faster than walking on ground."),
-	icon = "whynot_awards_boat.png",
+	icon = awards_combine_with_frame("boats_inventory.png"),
 	requires = {"whynot_planks"},
 	trigger = {
 		type = "craft",
@@ -115,7 +134,7 @@ awards.register_award("whynot_simple_boat",{
 awards.register_award("whynot_chest",{
 	title = S("Craft a chest"),
 	description = S("Chests are the most basic form of storage. They are very useful to gather more items than can fit in your character's inventory."),
-	icon = "whynot_awards_chest.png",
+	icon = awards_combine_with_frame(minetest.inventorycube("default_chest_top.png", "default_chest_front.png", "default_chest_side.png")),
 	requires = {"whynot_planks"},
 	trigger = {
 		type = "craft",
@@ -128,7 +147,7 @@ awards.register_award("whynot_chest",{
 awards.register_award("whynot_sticks",{
 	title = S("Craft sticks"),
 	description = S("Split planks to make sticks."),
-	icon = "whynot_awards_stick.png",
+	icon = awards_combine_with_frame("default_stick.png"),
 	requires = {"whynot_planks"},
 	trigger = {
 		type = "craft",
@@ -141,7 +160,7 @@ awards.register_award("whynot_sticks",{
 awards.register_award("whynot_tools",{
 	title = S("Craft wood tools"),
 	description = S("The first tools you can craft are made of wood. They are not very strong or durable, but will enable you to start mining rock and minerals to move up to better ones."),
-	icon = "whynot_awards_pick_wood.png",
+	icon = awards_combine_with_frame("default_tool_woodpick.png"),
 	requires = {"whynot_sticks"},
 	trigger = {
 		type = "craft",
@@ -154,7 +173,7 @@ awards.register_award("whynot_tools",{
 awards.register_award("whynot_plow_soil",{
 	title = S("Plow soil"),
 	description = S("To grow your own food, you must first plow soil. Make sure to be close to water so that the crops can grow."),
-	icon = "whynot_awards_hoe.png",
+	icon = awards_combine_with_frame("farming_tool_stonehoe.png"),
 	requires = {"whynot_tools", "whynot_gatherfruitvegetable"},
 	trigger = {
 		type = "plow_soil",
@@ -166,7 +185,7 @@ awards.register_award("whynot_plow_soil",{
 awards.register_award("whynot_plant_crops",{
 	title = S("Plant crops"),
 	description = S("After your garden is prepared and plowed, it is time to plant. Find different crops and seeds and plant them in your garden to become self sufficient."),
-	icon = "whynot_awards_hoe.png",
+	icon = awards_combine_with_frame("farming_tool_stonehoe.png"),
 	requires = {"whynot_plow_soil"},
 	trigger = {
 		type = "plant_crops",
@@ -178,7 +197,7 @@ awards.register_award("whynot_plant_crops",{
 awards.register_award("whynot_bones",{
 	title = S("Grave digger"),
 	description = S("Dig dirt to find bones."),
-	icon = "whynot_awards_bone.png",
+	icon = awards_combine_with_frame("bonemeal_bone.png"),
 	trigger = {
 		type = "collect",
 		item = "bonemeal:bone",
@@ -190,7 +209,7 @@ awards.register_award("whynot_bones",{
 awards.register_award("whynot_cotton", {
 	title = S("Collect cotton"),
 	description = S("Wild cotton can be found the savanna. Alternatively you can plant, grow and harvest seeds found in the jungle."),
-	icon = "whynot_awards_cotton_flower.png",
+	icon = awards_combine_with_frame("farming_cotton.png"),
 	trigger = {
 		type = "collect",
 		item = "farming:cotton",
@@ -202,7 +221,7 @@ awards.register_award("whynot_cotton", {
 awards.register_award("whynot_wool", {
 	title = S("Craft wool"),
 	description = S("Wool is a very useful material for crafting garments, beds, and many other items."),
-	icon = "whynot_awards_wool.png",
+	icon = awards_combine_with_frame(minetest.inventorycube("wool_white.png")),
 	requires = {"whynot_cotton"},
 	trigger = {
 		type = "craft",
@@ -215,7 +234,7 @@ awards.register_award("whynot_wool", {
 awards.register_award("whynot_backpack", {
 	title = S("Craft a backpack"),
 	description = S("Backpacks are very useful to help carry more stuff than the basic inventory lets you. It allows you keep mining longer and carry extra tools and food everywhere you go. Use dyed wools to create different coloured ones."),
-	icon = "whynot_awards_wool.png",
+	icon = awards_combine_with_frame(minetest.inventorycube("wool_white.png", "wool_white.png^backpacks_backpack_front.png", "wool_white.png")),
 	requires = {"whynot_wool"},
 	trigger = {
 		type = "craft",
@@ -228,7 +247,7 @@ awards.register_award("whynot_backpack", {
 awards.register_award("whynot_spawnpoint", {
 	title = S("Find your new home"),
 	description = S("Your home is the place with your bed. If you sleep once in bed, you always respawn at this position in case of death."),
-	icon = "beds_bed.png",
+	icon = awards_combine_with_frame("beds_bed.png"),
 	requires = {"whynot_planks",  "whynot_wool"},
 --	prices = { }, -- Price is a new home ;-)
 --	on_unlock = function(name, def) end
@@ -249,7 +268,7 @@ end
 awards.register_award("whynot_stone",{
 	title = S("Mine stone"),
 	description = S("Using a wood pick axe, start digging through stone. The cobblestone obtained from digging stone can then be used to craft sturdier tools."),
-	icon = "whynot_awards_cobblestone.png",
+	icon = awards_combine_with_frame(minetest.inventorycube("default_cobble.png")),
 	requires = {"whynot_tools"},
 	trigger = {
 		type = "dig",
@@ -262,7 +281,7 @@ awards.register_award("whynot_stone",{
 awards.register_award("whynot_coal",{
 	title = S("Mine coal"),
 	description = S("Coal is a common mineral found underground. Among other things, it can be used to craft torches for lighting your way, or as combustible in furnaces."),
-	icon = "whynot_awards_coal.png",
+	icon = awards_combine_with_frame(minetest.inventorycube("default_stone.png^default_mineral_coal.png")),
 	requires = {"whynot_tools"},
 	trigger = {
 		type = "dig",
@@ -275,7 +294,7 @@ awards.register_award("whynot_coal",{
 awards.register_award("whynot_campfire", {
 	title = S("Craft a campfire"),
 	description = S("If night falls and you have not found coal, build a campfire to make some light."),
-	icon = "whynot_awards_campfire.png",
+	icon = awards_combine_with_frame("campfire:campfire"),
 	requires = {"whynot_stone"},
 	trigger = {
 		type = "craft",
