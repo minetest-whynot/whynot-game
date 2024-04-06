@@ -294,7 +294,7 @@ awards.register_award("whynot_coal",{
 awards.register_award("whynot_campfire", {
 	title = S("Craft a campfire"),
 	description = S("If night falls and you have not found coal, build a campfire to make some light."),
-	icon = awards_combine_with_frame("campfire:campfire"),
+	icon = awards_combine_with_frame("fire_basic_flame.png^[resize:82x82", "3,62=default_gravel.png^[resize:82x20"),
 	requires = {"whynot_stone"},
 	trigger = {
 		type = "craft",
@@ -307,7 +307,7 @@ awards.register_award("whynot_campfire", {
 awards.register_award("whynot_furnace", {
 	title = S("Craft a furnace"),
 	description = S("Furnaces are central to advancing in this game. Use them to smelt ores, cook food, or both!"),
-	icon = "whynot_awards_oven.png",
+	icon = awards_combine_with_frame(minetest.inventorycube("default_furnace_top.png", "default_furnace_front.png","default_furnace_side.png")),
 	requires = {"whynot_stone"},
 	trigger = {
 		type = "craft",
@@ -359,7 +359,7 @@ awards.register_award("whynot_max_distance", {
 awards.register_award("whynot_chocolate", {
 	title = S("Craft chocolate"),
 	description = S("Make some delicious chocolate. It can be eaten or incorporated in various recipes to make succulent treats. You can even build an edible armour from it!"),
-	icon = "whynot_awards_chocolate.png",
+	icon = awards_combine_with_frame("farming_chocolate_dark.png"),
 	requires = {"whynot_furnace"},
 	trigger = {
 		type = "craft",
@@ -372,7 +372,7 @@ awards.register_award("whynot_chocolate", {
 awards.register_award("whynot_well", {
 	title = S("Craft a well"),
 	description = S("Wells are not just pretty! They are very useful as an infinite source of water."),
-	icon = "whynot_awards_well.png",
+	icon = awards_combine_with_frame("homedecor_well_inv.png"),
 	requires = {"whynot_stone"},
 	trigger = {
 		type = "craft",
@@ -385,7 +385,7 @@ awards.register_award("whynot_well", {
 awards.register_award("whynot_mine_tin", {
 	title = S("Mine tin"),
 	description = S("Tin is one of the first metal you'll encounter when digging down. Smelt it in a furnace to form ingots. Then combine it with copper to make bronze."),
-	icon = "whynot_awards_tin.png",
+	icon = awards_combine_with_frame("default_stone.png^default_mineral_tin.png"),
 	requires = {"whynot_stone"},
 	trigger = {
 		type = "dig",
@@ -398,7 +398,7 @@ awards.register_award("whynot_mine_tin", {
 awards.register_award("whynot_mine_copper", {
 	title = S("Mine copper"),
 	description = S("Copper is one of the first metal you'll encounter when digging down. Smelt it in a furnace to form ingots. Then combine it with tin to make bronze."),
-	icon = "whynot_awards_copper.png",
+	icon = awards_combine_with_frame("default_stone.png^default_mineral_copper.png"),
 	requires = {"whynot_stone"},
 	trigger = {
 		type = "dig",
@@ -411,7 +411,7 @@ awards.register_award("whynot_mine_copper", {
 awards.register_award("whynot_bronze", {
 	title = S("Craft bronze"),
 	description = S("Bronze is the first versatile metal you'll be able to use to craft better tools, armor and other items."),
-	icon = "whynot_awards_bronze.png",
+	icon = awards_combine_with_frame("default_bronze_ingot.png"),
 	requires = {"whynot_mine_copper", "whynot_mine_tin", "whynot_furnace"},
 	trigger = {
 		type = "craft",
@@ -424,7 +424,7 @@ awards.register_award("whynot_bronze", {
 awards.register_award("whynot_steel", {
 	title = S("Craft steel"),
 	description = S("Steel is stronger than bronze. Use it to upgrade your tools and armor."),
-	icon = "whynot_awards_steel.png",
+	icon = awards_combine_with_frame("default_steel_ingot.png"),
 	requires = {"whynot_furnace"},
 	trigger = {
 		type = "craft",
@@ -437,7 +437,7 @@ awards.register_award("whynot_steel", {
 awards.register_award("whynot_supercub", {
 	title = S("Craft an airplane"),
 	description = S("Why not have airplanes? Build a Supercub and travel at high speeds and soar to new heights!"),
-	icon = "whynot_awards_steel.png",
+	icon = awards_combine_with_frame("supercub.png.png"),
 	requires = {"whynot_bronze", "whynot_steel", "awards_diamond_ore"},
 	trigger = {
 		type = "craft",
