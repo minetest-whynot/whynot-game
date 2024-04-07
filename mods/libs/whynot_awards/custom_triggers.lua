@@ -38,7 +38,7 @@ local function check_action_with_item_in_collection(trigger_name, award_action, 
         itemname = minetest.registered_aliases[itemname] or itemname
 
         -- Uncomment to debug with qa_block
-        -- Whynot_awards.playerawardsdata = awards_data
+        Whynot_awards.playerawardsdata = awards_data
 
         local prev_action = "prev_"..trigger_name.."_"..award_action
         local award_action_counts = awards_data[award_action]
@@ -61,7 +61,7 @@ local function check_action_with_collection(trigger_name, award_action, collecti
     local awards_data = awards.player(player:get_player_name())
     if (awards_data) then
         -- Uncomment to debug with qa_block
-        -- Whynot_awards.playerawardsdata = awards_data
+        Whynot_awards.playerawardsdata = awards_data
 
         local prev_action = "prev_"..trigger_name.."_"..award_action
         local award_action_counts = awards_data[award_action]
@@ -100,7 +100,7 @@ function minetest.handle_node_drops(pos, drops, digger)
 
     -- Uncomment to debug with qa_block
     local awards_data = awards.player(digger:get_player_name())
-    -- Whynot_awards.playerawardsdata = awards_data
+    Whynot_awards.playerawardsdata = awards_data
 
     for _, itemstr in ipairs(drops) do
         local itemstack = ItemStack(itemstr)

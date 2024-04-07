@@ -30,13 +30,13 @@ local function escape_argument(texture_modifier)
 end
 
 local function awards_combine_with_frame(...)
-	local arg={...}
-	if #arg == 1 then
-		return "([combine:88x88:0,0=whynot_awards_frame.png:3,3="..escape_argument(arg[1].."^[resize:82x82")..")"
+	local args={...}
+	local composition = "([combine:88x88:0,0=whynot_awards_frame.png"
+	if #args == 1 then
+		return composition..":3,3="..escape_argument(args[1].."^[resize:82x82")..")"
 	else
-		local composition = "([combine:88x88:0,0=whynot_awards_frame.png"
-		for i=1, #arg do
-			composition = composition..":"..escape_argument(arg[i])
+		for i=1, #args do
+			composition = composition..":"..escape_argument(args[i])
 		end
 		return composition..")"
 	end
@@ -59,7 +59,7 @@ awards.register_award("whynot_welcome", {
 awards.register_award("whynot_gatherfood",{
 	title = S("Gather and eat wild foodstuff"),
 	description = S("You need to eat to survive. The easiest food to find are wild mushrooms, blueberries and apples. Find and eat one of each to help secure your survival."),
-	icon = "whynot_awards_gatherer.png",
+	icon = awards_combine_with_frame("3,3=default_apple.png^[resize:32x32", "54,0=flowers_mushroom_brown.png^[resize:32x32", "30,50=default_blueberries.png^[resize:32x32"),
 	requires = {},
 	trigger = {
 		type = "eatwildfood",
@@ -71,7 +71,9 @@ awards.register_award("whynot_gatherfood",{
 awards.register_award("whynot_gatherwildseeds",{
 	title = S("Gather wild seeds"),
 	description = S("Harvesting various types of grass can sometimes give you seeds. These seeds can the be planted and farmed for food and materials."),
-	icon = "whynot_awards_wildseeds.png",
+	icon = awards_combine_with_frame("38,5=farming_wheat_seed.png", "38,32=farming_rice.png", "38,68=farming_barley_seed.png",
+									 "16,18=farming_rye_seed.png",  "16,50=farming_cotton_seed.png",
+									 "58,18=farming_hemp_seed.png",  "58,50=farming_oat_seed.png"),
 	requires = {},
 	trigger = {
 		type = "gatherwildseeds",
@@ -294,7 +296,7 @@ awards.register_award("whynot_coal",{
 awards.register_award("whynot_campfire", {
 	title = S("Craft a campfire"),
 	description = S("If night falls and you have not found coal, build a campfire to make some light."),
-	icon = awards_combine_with_frame("fire_basic_flame.png^[resize:82x82", "3,62=default_gravel.png^[resize:82x20"),
+	icon = awards_combine_with_frame("3,3=fire_basic_flame.png^[resize:82x82", "3,66=default_gravel.png^[resize:82x82"),
 	requires = {"whynot_stone"},
 	trigger = {
 		type = "craft",
@@ -385,7 +387,7 @@ awards.register_award("whynot_well", {
 awards.register_award("whynot_mine_tin", {
 	title = S("Mine tin"),
 	description = S("Tin is one of the first metal you'll encounter when digging down. Smelt it in a furnace to form ingots. Then combine it with copper to make bronze."),
-	icon = awards_combine_with_frame("default_stone.png^default_mineral_tin.png"),
+	icon = awards_combine_with_frame(minetest.inventorycube("default_stone.png^default_mineral_tin.png")),
 	requires = {"whynot_stone"},
 	trigger = {
 		type = "dig",
@@ -398,7 +400,7 @@ awards.register_award("whynot_mine_tin", {
 awards.register_award("whynot_mine_copper", {
 	title = S("Mine copper"),
 	description = S("Copper is one of the first metal you'll encounter when digging down. Smelt it in a furnace to form ingots. Then combine it with tin to make bronze."),
-	icon = awards_combine_with_frame("default_stone.png^default_mineral_copper.png"),
+	icon = awards_combine_with_frame(minetest.inventorycube("default_stone.png^default_mineral_copper.png")),
 	requires = {"whynot_stone"},
 	trigger = {
 		type = "dig",
