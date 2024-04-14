@@ -7,17 +7,19 @@ function hbhunger.load_hunger(player)
 end
 
 -- wrapper for minetest.item_eat (this way we make sure other mods can't break this one)
-local org_eat = minetest.do_item_eat
+local orig_eat = minetest.do_item_eat
 minetest.do_item_eat = function(hp_change, replace_with_item, itemstack, user, pointed_thing)
-	local old_itemstack = itemstack
-	itemstack = hbhunger.eat(hp_change, replace_with_item, itemstack, user, pointed_thing)
-	for _, callback in pairs(minetest.registered_on_item_eats) do
-		local result = callback(hp_change, replace_with_item, itemstack, user, pointed_thing, old_itemstack)
-		if result then
-			return result
-		end
+	local itemstack_init = ItemStack(itemstack)
+	local itemstack_work = ItemStack(itemstack)
+	-- Force other callbacks from other mods to run first
+	local result = orig_eat(hp_change, replace_with_item, itemstack_init, user, pointed_thing)
+	if result ~= nil then
+		itemstack_work = result
+	else
+		itemstack_work = itemstack_init
 	end
-	return itemstack
+	-- Our own item eat handler
+	return hbhunger.eat(hp_change, replace_with_item, itemstack_work, user, pointed_thing)
 end
 
 -- food functions
