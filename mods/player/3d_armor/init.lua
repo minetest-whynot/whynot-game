@@ -268,8 +268,8 @@ local function init_player_armor(initplayer)
 	local skin = armor:get_player_skin(name)
 	armor.textures[name] = {
 		skin = skin,
-		armor = "3d_armor_trans.png",
-		wielditem = "3d_armor_trans.png",
+		armor = "blank.png",
+		wielditem = "blank.png",
 		preview = armor.default_skin.."_preview.png",
 	}
 	local texture_path = minetest.get_modpath("player_textures")
@@ -291,8 +291,8 @@ player_api.register_model("3d_armor_character.b3d", {
 	animation_speed = 30,
 	textures = {
 		armor.default_skin..".png",
-		"3d_armor_trans.png",
-		"3d_armor_trans.png",
+		"blank.png",
+		"blank.png",
 	},
 	animations = {
 		stand = {x=0, y=79},
@@ -395,10 +395,14 @@ if armor.config.punch_damage == true then
 	minetest.register_on_punchplayer(function(player, hitter,
 			time_from_last_punch, tool_capabilities)
 		local name = player:get_player_name()
-		local hit_ip = hitter:is_player()
-		if name and hit_ip and minetest.is_protected(player:get_pos(), "") then
-			return
-		elseif name then
+		if hitter then
+			local hit_ip = hitter:is_player()
+			if name and hit_ip and minetest.is_protected(player:get_pos(), "") then
+				return
+			end
+		end
+
+		if name then
 			armor:punch(player, hitter, time_from_last_punch, tool_capabilities)
 			last_punch_time[name] = minetest.get_gametime()
 		end

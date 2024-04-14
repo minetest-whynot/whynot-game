@@ -373,7 +373,7 @@ armor.set_player_armor = function(self, player)
 	local state = 0
 	local count = 0
 	local preview = armor:get_preview(name)
-	local texture = "3d_armor_trans.png"
+	local texture = "blank.png"
 	local physics = {}
 	local attributes = {}
 	local levels = {}
@@ -415,7 +415,7 @@ armor.set_player_armor = function(self, player)
 				end
 				-- DEPRECATED, use armor_groups instead
 				if def.groups["armor_radiation"] and levels["radiation"] then
-					levels["radiation"] = def.groups["armor_radiation"]
+					levels["radiation"] = levels["radiation"] + def.groups["armor_radiation"]
 				end
 			end
 			local item = stack:get_name()
