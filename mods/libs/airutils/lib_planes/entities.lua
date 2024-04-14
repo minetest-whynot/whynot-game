@@ -117,7 +117,7 @@ function airutils.on_activate(self, staticdata, dtime_s)
 	    self._inv = inv
     end
 
-    airutils.seats_create(self)
+    --airutils.seats_create(self)
     self._passengers = {}
     if not self._vehicle_custom_data then self._vehicle_custom_data = {} end --initialize when it does not exists
 
@@ -323,10 +323,9 @@ function airutils.logic(self)
     local is_attached = airutils.checkAttach(self, player)
     if self._indicated_speed == nil then self._indicated_speed = 0 end
 
-	if not is_attached then
-        -- for some engine error the player can be detached from the machine, so lets set him attached again
-        airutils.checkattachBug(self)
-    end
+    -- for some engine error the player can be detached from the machine, so lets set him attached again
+    airutils.checkattachBug(self)
+
 
     if self._custom_step_additional_function then
         self._custom_step_additional_function(self)
@@ -512,7 +511,9 @@ function airutils.logic(self)
     --end accell
 
     --get disconnected players
-    airutils.rescueConnectionFailedPassengers(self)
+    if not self._autoflymode == true then
+        airutils.rescueConnectionFailedPassengers(self)
+    end
 
     if accel == nil then accel = {x=0,y=0,z=0} end
 
@@ -816,6 +817,8 @@ function airutils.on_rightclick(self, clicker)
         copilot_name = self.co_pilot
     end
 
+    --minetest.chat_send_all(dump(self.driver_name))
+
     local touching_ground, liquid_below = airutils.check_node_below(self.object, 2.5)
     local is_on_ground = self.isinliquid or touching_ground or liquid_below
     local is_under_water = airutils.check_is_under_water(self.object)
@@ -830,6 +833,7 @@ function airutils.on_rightclick(self, clicker)
         local plane = seat:get_attach()
         if plane == self.object then is_attached = true end
     end
+    
     if name == self.driver_name then
         if is_attached then
             local itmstck=clicker:get_wielded_item()
@@ -910,19 +914,20 @@ function airutils.on_rightclick(self, clicker)
                 end
 
                 --attach player
+                airutils.seat_create(self, 1)
+                airutils.seat_create(self, 2)
                 if clicker:get_player_control().sneak == true and max_seats > 1 then
                     -- flight instructor mode
                     self._instruction_mode = true
                     self.co_pilot_seat_base = self._passengers_base[1]
                     self.pilot_seat_base = self._passengers_base[2]
-                    airutils.attach(self, clicker)
                 else
                     -- no driver => clicker is new driver
                     self._instruction_mode = false
                     self.co_pilot_seat_base = self._passengers_base[2]
                     self.pilot_seat_base = self._passengers_base[1]
-                    airutils.attach(self, clicker)
                 end
+                airutils.attach(self, clicker)
                 self._command_is_given = false
             end
         else
