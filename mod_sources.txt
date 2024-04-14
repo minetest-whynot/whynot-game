@@ -84,7 +84,7 @@ origin https://github.com/v-rob/slats (fetch)
 Mod: decor/slats
 
 origin https://github.com/minetest-mods/ts_furniture (fetch)
-* 5ad00b3f16afe811c431cef768b09ce8c0653b0e add fr.tr (#19)
+* 71bff8a8845532bfd17a00caa6b481cfd4d028de Move ts_furniture.fr.tr to locale directory
 Mod: decor/ts_furniture
 
 origin https://github.com/mt-mods/unifieddyes (fetch)
@@ -124,7 +124,7 @@ origin https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin https://github.com/APercy/airutils.git (fetch)
-* 836c6d10f6d7c6ee7c517076e0ab5a1e21e251c4 added parameter to simply remove the plane
+* ad7a6443553bf33ecdbc72d1b3a6215e256d01fb fix crash on destruction
 Mod: libs/airutils
 
 origin https://repo.or.cz/minetest_doc.git (fetch)
@@ -184,7 +184,7 @@ origin https://github.com/GreenXenith/tac_nayn (fetch)
 Mod: mapgen/tac_nayn
 
 origin https://github.com/minetest-mods/mesecons (fetch)
-* 59780437f2f47954b84122a4f1286e0c5b3bd168 Fix 1-tick pulses causing delayers to get stuck in the on state (#663)
+* cffbc33e6dfcf01f62d890b7e71b4fb46cfc8063 Remove NaN values (#667)
 Mod: mesecons/mesecons
 
 origin https://github.com/minetest/minetest_game (fetch)
@@ -192,23 +192,23 @@ origin https://github.com/minetest/minetest_game (fetch)
 Mod: minetest_game/minetest_game
 
 origin https://codeberg.org/tenplus1/mobs_ghost_redo (fetch)
-* 5889daa5410ad8f68fcde1dd45f0e870dc46f04e add pigiron sword to immune_to, tweak/tidy code
+* 011f2c2b239b0daa22603c8a2cb44888c8e745a2 update mod.conf
 Mod: mobs_redo/mobs_ghost_redo
 
 origin https://github.com/minetest-mirrors/mobs_monster.git (fetch)
-* 83a9a1dc27f8017e685bed6da009bf3e183a6bec set is_ground_content for cobweb (thx SwissAlpS)
+* 1e224174ae66cda45756afc3929bc84b313333cb oerkki model fixed (thx blaboing)
 Mod: mobs_redo/mobs_monster
 
 origin https://github.com/minetest-mirrors/mobs_redo.git (fetch)
-* 35cc60c3552c2f487cd0c49d2aac18e873558708 tweak saddle recipe, fix spawner error
+* 998637fc3d4a7e89f45b1d24f1e56ae36c8e7bae added infotext and mob follows improvements (thx Kazooo)
 Mod: mobs_redo/mobs_redo
 
 origin https://github.com/minetest-mods/3d_armor (fetch)
-* 7fc313f911a71716aae90a60d0c862430bd4fa1e armorstand nodes are not ground content (#134)
+* 1fcbf64d5342cac1d52b93da36bc860b90687398 Replace `3d_armor_trans.png` w/ engine provided `blank.png` (#143)
 Mod: player/3d_armor
 
 origin https://gitlab.com/dacmot/awards.git (fetch)
-* de90a65731c748646afdb2959a01dabe9031a78f Merge remote-tracking branch 'upstream/master'
+* 9dbc5293745261d8c10be3cd86daf5b9929f4f28 Add formspec_escape for the icon string
 Mod: player/awards
 
 origin https://github.com/minetest-mods/character_creator.git (fetch)
@@ -228,7 +228,7 @@ origin https://codeberg.org/Wuzzy/minetest_hbarmor.git (fetch)
 Mod: player/hbarmor
 
 origin https://codeberg.org/Wuzzy/minetest_hbhunger.git (fetch)
-* 8c0941a0e4910cf55c186047ef4ab07968000a85 Version 1.1.3
+* 1e70b8178adebe03cc0d4082dac3edad979f3b6a Force-run item_eat callbacks from other mods first
 Mod: player/hbhunger
 
 origin https://github.com/minetest-mods/hbsprint (fetch)
