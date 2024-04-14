@@ -177,7 +177,7 @@ local function check_positions()
             end
         end
     end
-    
+
     player_index = player_index + player_index - end_index
     minetest.after(1, check_positions)
 end
