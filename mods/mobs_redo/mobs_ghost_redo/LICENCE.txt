@@ -1,9 +1,3 @@
-
---- Quick Licence Info:
-Code: EUPL V1.2 or later
-Media (Textures, Models, Sounds) by Blockmen: CC-BY-SA 4.0 International
-
-
 EUROPEAN UNION PUBLIC LICENCE v. 1.2
 EUPL © the European Union 2007, 2016
 
