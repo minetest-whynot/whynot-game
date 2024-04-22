@@ -80,8 +80,7 @@ local ib_cbox = {
 	fixed = { -6/16, -8/16, -4/16, 17/16, 4/16, 4/16 }
 }
 
-local wool_tex = "wool_grey.png"
-if not minetest.get_modpath("wool") then wool_tex = "[combine:16x16^[noalpha^[colorize:#3A3B3C" end
+local wool_tex = homedecor.textures.wool.grey
 
 homedecor.register("ironing_board", {
 	description = S("Ironing board"),

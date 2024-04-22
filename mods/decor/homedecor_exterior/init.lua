@@ -43,7 +43,7 @@ homedecor.register("barbecue", {
 
 minetest.register_alias("homedecor:barbecue_meat", "air")
 
-local wood_tex = homedecor.textures.default_wood
+local wood_tex = homedecor.textures.wood.apple.planks
 
 homedecor.register("doghouse", {
 	mesh = "homedecor_doghouse.obj",
@@ -288,8 +288,7 @@ homedecor.register("swing_rope", {
 	selection_box = homedecor.nodebox.null
 })
 
-local water_tex = "default_water.png"
-if not minetest.get_modpath("default") then water_tex = "[combine:16x16^[noalpha^[colorize:#00008b" end
+local water_tex = homedecor.textures.water.tile
 local cobble_tex = minetest.registered_nodes["mapgen_stone"].tiles[1]
 local stone_drop = minetest.registered_nodes["mapgen_stone"].drop
 if stone_drop and type(stone_drop) == "string" then

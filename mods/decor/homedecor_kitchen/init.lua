@@ -145,7 +145,7 @@ homedecor.register("dishwasher_"..m, {
 })
 end
 
-local wood_tex = homedecor.textures.default_wood
+local wood_tex = homedecor.textures.wood.apple.planks
 local cabinet_sides = "("..wood_tex.."^[transformR90)^homedecor_kitchen_cabinet_bevel.png"
 local cabinet_sides_colored = "(homedecor_generic_wood_plain.png^[transformR90)^homedecor_kitchen_cabinet_bevel.png"
 

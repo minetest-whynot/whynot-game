@@ -13,6 +13,8 @@ local function building_blocks_stairs(nodename, def)
 		def._mcl_hardness=1.6
 	end
 
+	def.is_ground_content = def.is_ground_content == true
+
 	minetest.register_node(nodename, def)
 	if minetest.get_modpath("moreblocks") then
 		local mod, name = nodename:match("(.*):(.*)")
@@ -31,7 +33,7 @@ building_blocks_stairs("building_blocks:grate", {
 	tiles = {"building_blocks_grate.png"},
 	paramtype = "light",
 	sunlight_propagates = true,
-	is_ground_content = true,
+	is_ground_content = false,
 	use_texture_alpha = "clip",
 	groups = {cracky=1, dig_generic=3},
 	_sound_def = {
@@ -44,7 +46,7 @@ building_blocks_stairs("building_blocks:smoothglass", {
 	tiles = {"building_blocks_sglass.png"},
 	paramtype = "light",
 	sunlight_propagates = true,
-	is_ground_content = true,
+	is_ground_content = false,
 	use_texture_alpha = "clip",
 	groups = {snappy=3,cracky=3,oddly_breakable_by_hand=3},
 	_sound_def = {
@@ -57,7 +59,7 @@ building_blocks_stairs("building_blocks:woodglass", {
 	tiles = {"building_blocks_wglass.png"},
 	paramtype = "light",
 	sunlight_propagates = true,
-	is_ground_content = true,
+	is_ground_content = false,
 	use_texture_alpha = "clip",
 	groups = {snappy=3,cracky=3,oddly_breakable_by_hand=3},
 	_sound_def = {
@@ -68,20 +70,21 @@ building_blocks_stairs("building_blocks:woodglass", {
 building_blocks_stairs("building_blocks:Adobe", {
 	tiles = {"building_blocks_Adobe.png"},
 	description = S("Adobe"),
-	is_ground_content = true,
+	is_ground_content = false,
 	groups = {crumbly=3, dig_stone=2},
 	_sound_def = {
 		key = "node_sound_stone_defaults",
 	},
 })
-local grasstex = {"[combine:16x16^[noalpha^[colorize:#006400"}
-if minetest.get_modpath("default") then
-	grasstex = {"default_grass.png", "default_dirt.png", "default_dirt.png^default_grass_side.png"}
-end
+local grasstex = {
+	homedecor.textures.grass.top,
+	homedecor.textures.grass.dirt,
+	homedecor.textures.grass.side
+}
 building_blocks_stairs("building_blocks:fakegrass", {
 	tiles = grasstex,
 	description = S("Fake Grass"),
-	is_ground_content = true,
+	is_ground_content = false,
 	groups = {crumbly=3, dig_sand=3},
 	_sound_def = {
 		key = "node_sound_dirt_defaults",
@@ -89,7 +92,7 @@ building_blocks_stairs("building_blocks:fakegrass", {
 })
 building_blocks_stairs("building_blocks:hardwood", {
 	tiles = {"building_blocks_hardwood.png"},
-	is_ground_content = true,
+	is_ground_content = false,
 	description = S("Hardwood"),
 	groups = {choppy=1,flammable=1, dig_tree=1},
 	_sound_def = {
@@ -98,7 +101,7 @@ building_blocks_stairs("building_blocks:hardwood", {
 })
 building_blocks_stairs("building_blocks:Roofing", {
 	tiles = {"building_blocks_Roofing.png"},
-	is_ground_content = true,
+	is_ground_content = false,
 	description = S("Roof block"),
 	groups = {snappy=3, dig_generic=4},
 	_sound_def = {
@@ -108,7 +111,7 @@ building_blocks_stairs("building_blocks:Roofing", {
 building_blocks_stairs("building_blocks:Tar", {
 	description = S("Tar"),
 	tiles = {"building_blocks_tar.png"},
-	is_ground_content = true,
+	is_ground_content = false,
 	groups = {crumbly=1, tar_block = 1, dig_generic=4},
 	_sound_def = {
 		key = "node_sound_stone_defaults",
@@ -117,7 +120,7 @@ building_blocks_stairs("building_blocks:Tar", {
 building_blocks_stairs("building_blocks:Marble", {
 	description = S("Marble"),
 	tiles = {"building_blocks_marble.png"},
-	is_ground_content = true,
+	is_ground_content = false,
 	groups = {cracky=3, marble = 1, dig_stone=2},
 	_sound_def = {
 		key = "node_sound_stone_defaults",
@@ -139,16 +142,13 @@ minetest.register_node("building_blocks:brobble_spread", {
         fixed = {-1/2, -1/2, -1/2, 1/2, -1/2+1/16, 1/2},
 	},
 	sunlight_propagates = true,
-	is_ground_content = true,
+	is_ground_content = false,
 	groups = {crumbly=3, dig_generic=4, handy=1},
 	_mcl_hardness=0.6
 })
 
 if not minetest.get_modpath("moreblocks") or not minetest.get_modpath("gloopblocks") then
-	local graveltex = "[combine:16x16^[noalpha^[colorize:#3a3b3c"
-	if minetest.get_modpath("default") then
-		graveltex = "default_gravel.png"
-	end
+	local graveltex = homedecor.textures.gravel
 	minetest.register_node("building_blocks:gravel_spread", {
 		drawtype = "raillike",
 		description = S("Gravel Spread"),
@@ -162,7 +162,7 @@ if not minetest.get_modpath("moreblocks") or not minetest.get_modpath("gloopbloc
 			fixed = {-1/2, -1/2, -1/2, 1/2, -1/2+1/16, 1/2},
 		},
 		sunlight_propagates = true,
-		is_ground_content = true,
+		is_ground_content = false,
 		groups = {crumbly=2, dig_generic=4, handy=1},
 		_mcl_hardness=0.6,
 		_sound_def = {
@@ -184,7 +184,7 @@ minetest.register_node("building_blocks:Tarmac_spread", {
         fixed = {-1/2, -1/2, -1/2, 1/2, -1/2+1/16, 1/2},
 	},
 	sunlight_propagates = true,
-	is_ground_content = true,
+	is_ground_content = false,
 	groups = {cracky=3, dig_generic=4, pickaxey=5},
 	_mcl_hardness=1.6,
 	_sound_def = {
@@ -204,7 +204,7 @@ minetest.register_node("building_blocks:terrycloth_towel", {
         fixed = {-1/2, -1/2, -1/2, 1/2, -1/2+1/16, 1/2},
 	},
 	sunlight_propagates = true,
-	is_ground_content = true,
+	is_ground_content = false,
 	groups = {crumbly=3, dig_generic=4, handy=1},
 	_mcl_hardness=0.6
 })
@@ -228,7 +228,7 @@ minetest.register_node("building_blocks:BWtile", {
 		fixed = {-1/2, -1/2, -1/2, 1/2, -1/2+1/16, 1/2},
 	},
 	sunlight_propagates = true,
-	is_ground_content = true,
+	is_ground_content = false,
 	groups = {crumbly=3, dig_generic=4, handy=1},
 	_mcl_hardness=0.6
 })
@@ -245,7 +245,7 @@ minetest.register_node("building_blocks:Fireplace", {
 	paramtype2 = "facedir",
 	light_source = minetest.LIGHT_MAX,
 	sunlight_propagates = true,
-	is_ground_content = true,
+	is_ground_content = false,
 	groups = {cracky=2, dig_generic=4, pickaxey=5},
 	_mcl_hardness=1.6,
 	_sound_def = {

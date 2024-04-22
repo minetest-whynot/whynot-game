@@ -49,8 +49,8 @@ end
 homedecor.register("fence_picket", {
 	description = S("Unpainted Picket Fence"),
 	tiles = {
-		"homedecor_blanktile.png",
-		"homedecor_blanktile.png",
+		"blank.png",
+		"blank.png",
 		"homedecor_fence_picket.png",
 		"homedecor_fence_picket.png",
 		"homedecor_fence_picket_backside.png",
@@ -85,8 +85,8 @@ homedecor.register("fence_picket", {
 homedecor.register("fence_picket_corner", {
 	description = S("Unpainted Picket Fence Corner"),
 	tiles = {
-		"homedecor_blanktile.png",
-		"homedecor_blanktile.png",
+		"blank.png",
+		"blank.png",
 		"homedecor_fence_picket.png",
 		"homedecor_fence_picket_backside.png",
 		"homedecor_fence_picket_backside.png",
@@ -113,8 +113,8 @@ homedecor.register("fence_picket_corner", {
 homedecor.register("fence_picket_white", {
 	description = S("White Picket Fence"),
 	tiles = {
-		"homedecor_blanktile.png",
-		"homedecor_blanktile.png",
+		"blank.png",
+		"blank.png",
 		"homedecor_fence_picket_white.png",
 		"homedecor_fence_picket_white.png",
 		"homedecor_fence_picket_white_backside.png",
@@ -149,8 +149,8 @@ homedecor.register("fence_picket_white", {
 homedecor.register("fence_picket_corner_white", {
 	description = S("White Picket Fence Corner"),
 	tiles = {
-		"homedecor_blanktile.png",
-		"homedecor_blanktile.png",
+		"blank.png",
+		"blank.png",
 		"homedecor_fence_picket_white.png",
 		"homedecor_fence_picket_white_backside.png",
 		"homedecor_fence_picket_white_backside.png",

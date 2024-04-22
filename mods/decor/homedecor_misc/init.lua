@@ -11,8 +11,8 @@ local S = minetest.get_translator("homedecor_misc")
 
 homedecor_misc = {}
 
-local wool_black, wool_grey = homedecor.textures.wool_black, homedecor.textures.wool_grey
-local wood_tex = homedecor.textures.default_wood
+local wool_black, wool_grey = homedecor.textures.wool.black, homedecor.textures.wool.grey
+local wood_tex = homedecor.textures.wood.apple.planks
 
 homedecor.register("ceiling_paint", {
 	description = S("Textured Ceiling Paint"),
@@ -637,6 +637,7 @@ minetest.register_node(":homedecor:tatami_mat", {
 	drawtype = "nodebox",
 	paramtype = "light",
 	groups = {snappy=3, axey=5},
+	is_ground_content = false,
 	_mcl_hardness=1.6,
 	node_box = {
 		type = "fixed",
@@ -1037,6 +1038,7 @@ minetest.register_node(":homedecor:japanese_wall_top", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {snappy=3, axey=5},
+	is_ground_content = false,
 	_mcl_hardness=1.6,
 	selection_box = jp_cbox,
 	collision_box = jp_cbox,
@@ -1056,6 +1058,7 @@ minetest.register_node(":homedecor:japanese_wall_middle", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {snappy=3, axey=5},
+	is_ground_content = false,
 	_mcl_hardness=1.6,
 	selection_box = jp_cbox,
 	collision_box = jp_cbox,
@@ -1075,6 +1078,7 @@ minetest.register_node(":homedecor:japanese_wall_bottom", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {snappy=3, axey=5},
+	is_ground_content = false,
 	_mcl_hardness=1.6,
 	selection_box = jp_cbox,
 	collision_box = jp_cbox,

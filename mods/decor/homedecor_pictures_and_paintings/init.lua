@@ -1,6 +1,6 @@
 local S = minetest.get_translator("homedecor_pictures_and_paintings")
 
-local wood_tex = homedecor.textures.default_wood
+local wood_tex = homedecor.textures.wood.apple.planks
 
 local pframe_cbox = {
 	type = "fixed",

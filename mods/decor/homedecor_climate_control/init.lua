@@ -7,7 +7,7 @@ homedecor.register("air_conditioner", {
 	mesh = "homedecor_ac.obj",
 	tiles = {
 		"homedecor_ac.png",
-		homedecor.textures.glass
+		homedecor.textures.glass.pane
 	},
 	groups = { snappy = 3, dig_stone = 3 },
 	use_texture_alpha = "clip",

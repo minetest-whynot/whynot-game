@@ -5,7 +5,7 @@ local ob_cbox = {
 	fixed = { -0.5, -0.5, 0, 0.5, 0.5, 0.5 }
 }
 
-local wood_tex = homedecor.textures.default_wood
+local wood_tex = homedecor.textures.wood.apple.planks
 
 homedecor.register("openframe_bookshelf", {
 	description = S("Bookshelf (open-frame)"),

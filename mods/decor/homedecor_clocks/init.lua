@@ -1,12 +1,6 @@
 local S = minetest.get_translator("homedecor_clocks")
 
-local wood
-if minetest.get_modpath("default") then
-	wood = "default_wood.png"
-else
-
-	wood = "[combine:16x16^[noalpha^[colorize:#563d2d"
-end
+local wood = homedecor.textures.wood.apple.planks
 
 local plastic_craft = {
     output = "homedecor:analog_clock_plastic 2",
@@ -135,7 +129,7 @@ homedecor.register("grandfather_clock", {
 	description = S("Grandfather Clock"),
 	mesh = "homedecor_grandfather_clock.obj",
 	tiles = {
-		homedecor.textures.glass,
+		homedecor.textures.glass.pane,
 		"homedecor_grandfather_clock_face.png",
 		homedecor.lux_wood,
 		"homedecor_grandfather_clock_face_edge.png",
