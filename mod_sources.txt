@@ -20,7 +20,7 @@ origin https://github.com/Ezhh/abriglass/ (fetch)
 Mod: decor/abriglass
 
 origin https://github.com/mt-mods/basic_materials (fetch)
-* 1009295ee68c490e388302d0600f293685226b67 Add mcl_copper support (#22)
+* 800310c0fa2522d04409d95676d1d0e9ed3964db nodes aren't ground content (#26)
 Mod: decor/basic_materials
 
 origin https://github.com/Napiophelios/campfire (fetch)
@@ -44,11 +44,11 @@ origin https://github.com/HybridDog/heads (fetch)
 Mod: decor/heads
 
 origin https://github.com/mt-mods/home_workshop_modpack (fetch)
-* 4b5e58331c8ecf6d6f1f23b5e8b8b167dc772069 nodes that aren't ground content (#16)
+* c3f11977c710f6ef626f1f11d2920fbdb773a187 remove default checks from before loading craft files (#19)
 Mod: decor/home_workshop_modpack
 
 origin https://github.com/mt-mods/homedecor_modpack (fetch)
-* 52f7c54702c58bccec2877cb67dbcfa87cd83ace Fix particlespawner removal when digging fancy fire
+* d400e421cefef866cdec217e4c6c81b1328c8eab Replace `homedecor_blanktile.png` w/ engine provided `blank.png` (#69)
 Mod: decor/homedecor_modpack
 
 origin https://codeberg.org/Dacmot/minetest-laptop.git (fetch)
@@ -155,9 +155,9 @@ origin https://github.com/dacmot/sfcraftguide.git (fetch)
 * ed75268b9e4a7b04df2c942c1bc389b31ecbde4a Add supported games
 Mod: libs/sfcraftguide
 
-origin https://github.com/mt-mods/sound_api.git (fetch)
-* d13501cc10059149cde3c266df7e623556e9a5ef Avoid crash when sound_api function for a key is undefined (#4)
-Mod: libs/sound_api
+origin https://github.com/mt-mods/xcompat.git (fetch)
+* 3da43ebf4e2338137379c8c2d705da2a536115fa adds stuff for home workshop game agnostic pr (#16)
+Mod: libs/xcompat
 
 origin https://github.com/Treer/cloudlands/ (fetch)
 * aed3ab8306ef92a47f228c7ea4577eae7bb00e67 fix ancient portalstone upgrade
