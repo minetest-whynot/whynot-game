@@ -229,9 +229,6 @@
 [submodule "builder/mods_src/libs/sfcraftguide"]
 	path = builder/mods_src/libs/sfcraftguide
 	url = https://github.com/dacmot/sfcraftguide.git
-[submodule "builder/mods_src/libs/sound_api"]
-	path = builder/mods_src/libs/sound_api
-	url = https://github.com/mt-mods/sound_api.git
 [submodule "builder/mods_src/libs/ediblestuff_api"]
 	path = builder/mods_src/libs/ediblestuff_api
 	url = https://github.com/Lazerbeak12345/ediblestuff_api.git
