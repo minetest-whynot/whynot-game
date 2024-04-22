@@ -12,7 +12,7 @@ local function reg_simple(name, def)
         tiles = def.tiles,
         paramtype = "light",
         paramtype2 = "facedir",
-        groups = def.groups or {snappy=3},
+        groups = def.groups or {snappy=3, dig_tree=2},
         is_ground_content = false,
         selection_box = {
             type = "fixed",
