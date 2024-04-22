@@ -253,3 +253,6 @@
 [submodule "builder/mods_src/tools/supercub"]
 	path = builder/mods_src/tools/supercub
 	url = https://github.com/APercy/supercub.git
+[submodule "builder/mods_src/libs/xcompat"]
+	path = builder/mods_src/libs/xcompat
+	url = https://github.com/mt-mods/xcompat.git
