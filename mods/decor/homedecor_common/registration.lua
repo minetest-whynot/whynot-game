@@ -19,6 +19,8 @@ function homedecor.register(name, original_def)
 		def._mcl_hardness=1.6
 	end
 
+	def.is_ground_content = def.is_ground_content == true
+
 	def.drawtype = def.drawtype
 		or (def.mesh and "mesh")
 		or (def.node_box and "nodebox")

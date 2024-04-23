@@ -6,10 +6,6 @@
   declare -Ag BRANCHES=(
     [minetest_game/minetest_game]=origin/stable-5 # Stay on stable version
     [flora_ores/farming]=0b06c7cd450c5ec9a76b3c22a9c57f06e4f8a7c2 # freeze due to incompatibility with milk buckets
-    [decor/basic_materials]=1009295ee68c490e388302d0600f293685226b67 # freeze until addition of xcompat
-    [decor/home_workshop_modpack]=4b5e58331c8ecf6d6f1f23b5e8b8b167dc772069 # freeze until addition of xcompat
-    [decor/homedecor_modpack]=52f7c54702c58bccec2877cb67dbcfa87cd83ace # freeze until addition of xcompat
-    [libs/sound_api]=d13501cc10059149cde3c266df7e623556e9a5ef # freeze until addition of xcompat
   )
 
   #

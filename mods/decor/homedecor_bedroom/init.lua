@@ -2,7 +2,7 @@ local S = minetest.get_translator("homedecor_bedroom")
 
 local sc_disallow = minetest.get_modpath("screwdriver") and screwdriver.disallow or nil
 
-local wood_tex, wool_tex = homedecor.textures.default_wood, homedecor.textures.wool_white
+local wood_tex, wool_tex = homedecor.textures.wood.apple.planks, homedecor.textures.wool.white
 
 local bed_sbox = {
 	type = "wallmounted",

@@ -2,8 +2,8 @@ local S = minetest.get_translator("homedecor_bathroom")
 
 local sc_disallow = minetest.get_modpath("screwdriver") and screwdriver.disallow or nil
 
-local wood_tex = homedecor.textures.default_wood
-local water_tex = homedecor.textures.water
+local wood_tex = homedecor.textures.wood.apple.planks
+local water_tex = homedecor.textures.water.tile
 
 homedecor.register("bathroom_tiles_dark", {
 	description = S("Bathroom/kitchen tiles (dark)"),

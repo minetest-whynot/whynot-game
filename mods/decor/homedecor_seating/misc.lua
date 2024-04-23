@@ -162,7 +162,7 @@ homedecor.register("kitchen_chair_padded", {
 	mesh = "homedecor_kitchen_chair.obj",
 	tiles = {
 		homedecor.plain_wood,
-		homedecor.textures.wool_white,
+		homedecor.textures.wool.white,
 	},
 	inventory_image = "homedecor_chair_padded_inv.png",
 	paramtype2 = "colorwallmounted",

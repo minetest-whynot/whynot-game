@@ -94,6 +94,7 @@ local def = {
 	paramtype2 = "facedir",
 
 	groups = {snappy = 3, axey=5},
+	is_ground_content = false,
 	_mcl_hardness=1.6,
 	selection_box = wd_cbox,
 	collision_box = wd_cbox,

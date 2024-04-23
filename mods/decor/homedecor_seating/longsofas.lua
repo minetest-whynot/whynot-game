@@ -19,6 +19,7 @@ minetest.register_node(":lrfurn:longsofa", {
 	inventory_image = "lrfurn_longsofa_inv.png",
 	wield_scale = { x = 0.6, y = 0.6, z = 0.6 },
 	groups = {snappy=3, ud_param2_colorable = 1, dig_tree=2, axey=5},
+	is_ground_content = false,
 	_mcl_hardness=1.6,
 	_sound_def = {
 		key = "node_sound_wood_defaults",

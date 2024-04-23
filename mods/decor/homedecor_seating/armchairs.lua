@@ -20,6 +20,7 @@ minetest.register_node(":lrfurn:armchair", {
 	palette = "unifieddyes_palette_colorwallmounted.png",
 	inventory_image = "lrfurn_armchair_inv.png",
 	groups = {snappy=3, ud_param2_colorable = 1, dig_tree=2, axey=5},
+	is_ground_content = false,
 	_mcl_hardness=1.6,
 	_sound_def = {
 		key = "node_sound_wood_defaults",
@@ -39,9 +40,9 @@ homedecor.register("armchair", {
 	description = S("Armchair"),
 	mesh = "forniture_armchair.obj",
 	tiles = {
-		homedecor.textures.wool_white,
-		{ name = homedecor.textures.wool_dark_grey, color = 0xffffffff },
-		{ name = homedecor.textures.default_wood, color = 0xffffffff }
+		homedecor.textures.wool.white,
+		{ name = homedecor.textures.wool.dark_grey, color = 0xffffffff },
+		{ name = homedecor.textures.wood.apple.planks, color = 0xffffffff }
 	},
 	inventory_image = "homedecor_armchair_inv.png",
 	paramtype2 = "colorwallmounted",

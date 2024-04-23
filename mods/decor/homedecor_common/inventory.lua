@@ -12,6 +12,22 @@ local default_can_dig = function(pos,player)
 	return meta:get_inventory():is_empty("main")
 end
 
+local default_can_interact_with_node = function(player, pos)
+	--if we have default, use it
+	if default then return default.can_interact_with_node(player, pos) end
+
+	local owner = minetest.get_meta(pos):get_string("owner") or ""
+
+	--check that we have a valid player
+	if not player or not player:is_player() then return false end
+	--check there privs for compat with areas
+	if minetest.check_player_privs(player, "protection_bypass") then return true end
+	--if a normal player, check if they are the owner
+	if owner == "" or owner == player:get_player_name() then return true end
+
+	return false
+end
+
 
 local default_inventory_formspecs = {
 	["4"]="size[8,6]"..
@@ -133,7 +149,7 @@ function homedecor.handle_inventory(name, def, original_def)
 
 		local allow_move = def.allow_metadata_inventory_move
 		def.allow_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)
-			if not default.can_interact_with_node(player, pos) then
+			if not default_can_interact_with_node(player, pos) then
 				minetest.log("action", player:get_player_name().." tried to access a "..name.." belonging to "
 					..minetest.get_meta(pos):get_string("owner").." at "..minetest.pos_to_string(pos))
 				return 0
@@ -144,7 +160,7 @@ function homedecor.handle_inventory(name, def, original_def)
 
 		local allow_put = def.allow_metadata_inventory_put
 		def.allow_metadata_inventory_put = function(pos, listname, index, stack, player)
-			if not default.can_interact_with_node(player, pos) then
+			if not default_can_interact_with_node(player, pos) then
 				minetest.log("action", player:get_player_name().." tried to access a "..name.." belonging to"
 					..minetest.get_meta(pos):get_string("owner").." at "..minetest.pos_to_string(pos))
 				return 0
@@ -155,7 +171,7 @@ function homedecor.handle_inventory(name, def, original_def)
 
 		local allow_take = def.allow_metadata_inventory_take
 		def.allow_metadata_inventory_take = function(pos, listname, index, stack, player)
-			if not default.can_interact_with_node(player, pos) then
+			if not default_can_interact_with_node(player, pos) then
 				minetest.log("action", player:get_player_name().." tried to access a "..name.." belonging to"
 					..minetest.get_meta(pos):get_string("owner").." at ".. minetest.pos_to_string(pos))
 				return 0
@@ -166,7 +182,7 @@ function homedecor.handle_inventory(name, def, original_def)
 
 		local can_dig = def.can_dig or default_can_dig
 		def.can_dig = function(pos, player)
-			return default.can_interact_with_node(player, pos) and (can_dig and can_dig(pos, player) == true)
+			return default_can_interact_with_node(player, pos) and (can_dig and can_dig(pos, player) == true)
 		end
 
 		def.on_key_use = function(pos, player)

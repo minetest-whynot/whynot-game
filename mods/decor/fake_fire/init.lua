@@ -146,6 +146,7 @@ minetest.register_node("fake_fire:ice_fire", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {dig_immediate=3, not_in_creative_inventory=1, dig_generic=3, handy=1},
+	is_ground_content = false,
 	_mcl_hardness=0.6,
 	sunlight_propagates = true,
 	buildable_to = true,
@@ -177,7 +178,7 @@ local sbox = {
 	fixed = { -8/16, -8/16, -8/16, 8/16, -6/16, 8/16},
 }
 
-local wtex = homedecor.textures.default_junglewood
+local wtex = homedecor.textures.wood.jungle.planks
 
 minetest.register_node("fake_fire:fancy_fire", {
 	inventory_image = "fancy_fire_inv.png",
@@ -188,6 +189,7 @@ minetest.register_node("fake_fire:fancy_fire", {
 	paramtype2 = "facedir",
 	use_texture_alpha = "clip",
 	groups = {oddly_breakable_by_hand=3, flammable=0, handy=1},
+	is_ground_content = false,
 	_mcl_hardness=0.6,
 	sunlight_propagates = true,
 	light_source = 13,
@@ -234,6 +236,7 @@ minetest.register_node("fake_fire:embers", {
 	},
 	light_source = 9,
 	groups = {crumbly=3, dig_stone=2, handy=1},
+	is_ground_content = false,
 	_mcl_hardness=0.6,
 	paramtype = "light",
 	_sound_def = {
@@ -266,6 +269,7 @@ for _, mat in ipairs(materials) do
 		description = desc,
 		tiles = {tex.."^chimney_top.png", tex},
 		groups = {snappy=3, dig_stone=2, handy=1},
+		is_ground_content = false,
 		_mcl_hardness=0.6,
 		paramtype = "light",
 		_sound_def = {
