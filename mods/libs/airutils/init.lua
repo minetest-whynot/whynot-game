@@ -41,6 +41,7 @@ if load_blast_damage == 2 then airutils.blast_damage = false end
 
 airutils.is_minetest = minetest.get_modpath("player_api")
 airutils.is_mcl = minetest.get_modpath("mcl_player")
+airutils.is_repixture = minetest.get_modpath("rp_player")
 
 airutils.fuel = {['biofuel:biofuel'] = 1,['biofuel:bottle_fuel'] = 1,
                 ['biofuel:phial_fuel'] = 0.25, ['biofuel:fuel_can'] = 10,
