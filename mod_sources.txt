@@ -48,7 +48,7 @@ origin https://github.com/mt-mods/home_workshop_modpack (fetch)
 Mod: decor/home_workshop_modpack
 
 origin https://github.com/mt-mods/homedecor_modpack (fetch)
-* d400e421cefef866cdec217e4c6c81b1328c8eab Replace `homedecor_blanktile.png` w/ engine provided `blank.png` (#69)
+* d0ab9b82cee0c1c9d092e4f2823bf92f104f781b reorder registration of aliases to fix missing recipes, also reorder registration of dye recipes to show item craft first before recipe craft (#72)
 Mod: decor/homedecor_modpack
 
 origin https://codeberg.org/Dacmot/minetest-laptop.git (fetch)
@@ -60,7 +60,7 @@ origin https://repo.or.cz/minetest_mtg_plus.git (fetch)
 Mod: decor/mtg_plus
 
 origin https://github.com/minetest-mods/mydoors (fetch)
-* 55cc1b04b1ecbe78c23b1d683ac08c6759c3b148 Add choppy group to sliding doors
+* aee9b46d4274ccbc824ac999ab6b44bc0ed3c1fb Optimize textures to fix sRGB profile warnings
 Mod: decor/mydoors
 
 origin https://github.com/minetest-mods/myroofs (fetch)
@@ -84,11 +84,11 @@ origin https://github.com/v-rob/slats (fetch)
 Mod: decor/slats
 
 origin https://github.com/minetest-mods/ts_furniture (fetch)
-* 71bff8a8845532bfd17a00caa6b481cfd4d028de Move ts_furniture.fr.tr to locale directory
+* 0e4339bcebcf7c3bfd0de57053b882841edd2c20 Make movement check more liberal
 Mod: decor/ts_furniture
 
 origin https://github.com/mt-mods/unifieddyes (fetch)
-* 3e45f316a3f9274ec3aba373b3a756c268c08a2f coloured nodes aren't ground content (#19)
+* de6e2e0e35f2f14390ef1d7ccdb0d7bc1acce2f8 Fix nil crash when calling `unifieddyes.on_dig()` w/o PlayerRef (#21)
 Mod: decor/unifieddyes
 
 origin https://github.com/minetest-mirrors/farming.git (fetch)
@@ -124,7 +124,7 @@ origin https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin https://github.com/APercy/airutils.git (fetch)
-* ad7a6443553bf33ecdbc72d1b3a6215e256d01fb fix crash on destruction
+* 690d3db901de7d2adec511234f94bcf9e2e05272 added method to recognize repixture
 Mod: libs/airutils
 
 origin https://repo.or.cz/minetest_doc.git (fetch)
@@ -156,7 +156,7 @@ origin https://github.com/dacmot/sfcraftguide.git (fetch)
 Mod: libs/sfcraftguide
 
 origin https://github.com/mt-mods/xcompat.git (fetch)
-* 3da43ebf4e2338137379c8c2d705da2a536115fa adds stuff for home workshop game agnostic pr (#16)
+* 215b0945158a5b4eaebae9cf8a9cf0ccc90e2e01 fix https://github.com/mt-mods/xcompat/issues/20 - correct some nodestrings
 Mod: libs/xcompat
 
 origin https://github.com/Treer/cloudlands/ (fetch)
@@ -184,7 +184,7 @@ origin https://github.com/GreenXenith/tac_nayn (fetch)
 Mod: mapgen/tac_nayn
 
 origin https://github.com/minetest-mods/mesecons (fetch)
-* cffbc33e6dfcf01f62d890b7e71b4fb46cfc8063 Remove NaN values (#667)
+* a82bac7b5bb335e9b595ed3e004adbc18b7b7971 [mesecons_doors] Improve code quality and fix Voxelgarden support (#671)
 Mod: mesecons/mesecons
 
 origin https://github.com/minetest/minetest_game (fetch)
@@ -196,15 +196,15 @@ origin https://codeberg.org/tenplus1/mobs_ghost_redo (fetch)
 Mod: mobs_redo/mobs_ghost_redo
 
 origin https://github.com/minetest-mirrors/mobs_monster.git (fetch)
-* 1e224174ae66cda45756afc3929bc84b313333cb oerkki model fixed (thx blaboing)
+* 59ad0f8da8016a13dfeb2467244110cc667e00c6 use optipng to fix image warnings
 Mod: mobs_redo/mobs_monster
 
 origin https://github.com/minetest-mirrors/mobs_redo.git (fetch)
-* 998637fc3d4a7e89f45b1d24f1e56ae36c8e7bae added infotext and mob follows improvements (thx Kazooo)
+* 1536b9a5fc39b96bdd18eedb91bfbd37f9cd0624 add mob_class:go_to(pos) function
 Mod: mobs_redo/mobs_redo
 
 origin https://github.com/minetest-mods/3d_armor (fetch)
-* 1fcbf64d5342cac1d52b93da36bc860b90687398 Replace `3d_armor_trans.png` w/ engine provided `blank.png` (#143)
+* 22955b413a2f13d4758596bb0a09faab03621299 Fix "player still online" check of `armor.unequip` (#146)
 Mod: player/3d_armor
 
 origin https://gitlab.com/dacmot/awards.git (fetch)
@@ -228,7 +228,7 @@ origin https://codeberg.org/Wuzzy/minetest_hbarmor.git (fetch)
 Mod: player/hbarmor
 
 origin https://codeberg.org/Wuzzy/minetest_hbhunger.git (fetch)
-* 1e70b8178adebe03cc0d4082dac3edad979f3b6a Force-run item_eat callbacks from other mods first
+* f5c6c945a87ae9ec548eb0fa2ead1bbf9398c5dd Version 1.1.4
 Mod: player/hbhunger
 
 origin https://github.com/minetest-mods/hbsprint (fetch)
@@ -272,7 +272,7 @@ origin https://github.com/Lokrates/Biofuel.git (fetch)
 Mod: tools/biofuel
 
 origin https://github.com/minetest-mirrors/bonemeal.git (fetch)
-* 4f8ca6a0a57259690bbc876cdffc6460998dc113 add spore grass to mushroom dirt decorations
+* 2a4ddd96db12397ec293cb9b68d92c9bb84580ed fix recipe type
 Mod: tools/bonemeal
 
 origin https://github.com/SmallJoker/boost_cart (fetch)
