@@ -45,10 +45,11 @@ minetest.register_on_placenode(
 	end
 )
 
--- The complementary function:  strip-off the color if the node being dug is still white/neutral
+-- The complementary function: strip-off the color if the node being dug is still white/neutral
 -- adapted from
 -- https://github.com/minetest/minetest/blob/fe8d04d0b3c2e3af7c406fb6527f1b5230a30137/builtin/game/item.lua#L460-L562
 local function node_dig_without_color(pos, node, digger)
+	if not digger then return false end
 	local diggername = digger:get_player_name()
 
 	local def = ItemStack(node.name):get_definition()
