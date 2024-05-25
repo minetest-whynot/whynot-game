@@ -61,7 +61,6 @@ dofile(modpath.."/furnaces.lua")
 dofile(modpath.."/inventory.lua")
 dofile(modpath.."/registration.lua")
 dofile(modpath.."/water_particles.lua")
-dofile(modpath.."/sit.lua")
 dofile(modpath.."/crafts.lua")
 
 if minetest.settings:get_bool("log_mod") then

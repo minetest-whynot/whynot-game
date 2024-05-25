@@ -1421,7 +1421,71 @@ minetest.register_lbm({
 	end
 })
 
+-- aliases
 
+minetest.register_alias("chains:chain_top",                    "homedecor:chain_steel_top")
+minetest.register_alias("chains:chain_top_brass",              "homedecor:chain_brass_top")
+
+minetest.register_alias("chains:chandelier",                   "homedecor:chandelier_steel")
+minetest.register_alias("chains:chandelier_steel",             "homedecor:chandelier_steel")
+minetest.register_alias("chains:chandelier_brass",             "homedecor:chandelier_brass")
+
+minetest.register_alias("homedecor:glowlight_half",            "homedecor:glowlight_half_14")
+minetest.register_alias("homedecor:glowlight_quarter",         "homedecor:glowlight_quarter_14")
+minetest.register_alias("homedecor:glowlight_small_cube",      "homedecor:glowlight_small_cube_14")
+minetest.register_alias("homedecor:plasma_lamp",               "homedecor:plasma_lamp_14")
+minetest.register_alias("homedecor:ground_lantern",            "homedecor:ground_lantern_14")
+minetest.register_alias("homedecor:hanging_lantern",           "homedecor:hanging_lantern_14")
+minetest.register_alias("homedecor:ceiling_lantern",           "homedecor:ceiling_lantern_14")
+minetest.register_alias("homedecor:lattice_lantern_large",     "homedecor:lattice_lantern_large_14")
+minetest.register_alias("homedecor:lattice_lantern_small",     "homedecor:lattice_lantern_small_14")
+minetest.register_alias("homedecor:desk_lamp",                 "homedecor:desk_lamp_14")
+minetest.register_alias("homedecor:ceiling_lamp",              "homedecor:ceiling_lamp_14")
+minetest.register_alias("homedecor:table_lamp",                "homedecor:table_lamp_14")
+minetest.register_alias("homedecor:standing_lamp",             "homedecor:standing_lamp_14")
+minetest.register_alias("3dforniture:table_lamp",              "homedecor:table_lamp_14")
+
+minetest.register_alias("3dforniture:torch_wall",              "homedecor:torch_wall")
+minetest.register_alias("torch_wall",                          "homedecor:torch_wall")
+
+minetest.register_alias("homedecor:plasma_ball",               "homedecor:plasma_ball_on")
+minetest.register_alias("homedecor:wall_lamp",                 "homedecor:wall_lamp_on")
+
+minetest.register_alias("homedecor:rope_light_on_floor_0",     "homedecor:rope_light_on_floor_off")
+minetest.register_alias("homedecor:rope_light_on_floor_14",    "homedecor:rope_light_on_floor_on")
+
+minetest.register_alias("homedecor:rope_light_on_ceiling_0",   "homedecor:rope_light_on_ceiling_off")
+minetest.register_alias("homedecor:rope_light_on_ceiling_14",  "homedecor:rope_light_on_ceiling_on")
+
+for name, level in pairs(word_to_bright) do
+	minetest.register_alias("homedecor:glowlight_half_"..name,        "homedecor:glowlight_half_"..level)
+	minetest.register_alias("homedecor:glowlight_quarter_"..name,     "homedecor:glowlight_quarter_"..level)
+	minetest.register_alias("homedecor:glowlight_small_cube_"..name,  "homedecor:glowlight_small_cube_"..level)
+	minetest.register_alias("homedecor:rope_light_on_floor_"..name,   "homedecor:rope_light_on_floor_"..level)
+	minetest.register_alias("homedecor:rope_light_on_ceiling_"..name, "homedecor:rope_light_on_ceiling_"..level)
+	minetest.register_alias("homedecor:plasma_lamp_"..name,           "homedecor:plasma_lamp_"..level)
+	minetest.register_alias("homedecor:plasma_ball_"..name,           "homedecor:plasma_ball_"..level)
+	minetest.register_alias("homedecor:ground_lantern_"..name,        "homedecor:ground_lantern_"..level)
+	minetest.register_alias("homedecor:hanging_lantern_"..name,       "homedecor:hanging_lantern_"..level)
+	minetest.register_alias("homedecor:ceiling_lantern_"..name,       "homedecor:ceiling_lantern_"..level)
+	minetest.register_alias("homedecor:lattice_lantern_large_"..name, "homedecor:lattice_lantern_large_"..level)
+	minetest.register_alias("homedecor:lattice_lantern_small_"..name, "homedecor:lattice_lantern_small_"..level)
+	minetest.register_alias("homedecor:desk_lamp_"..name,             "homedecor:desk_lamp_"..level)
+	minetest.register_alias("homedecor:ceiling_lamp_"..name,          "homedecor:ceiling_lamp_"..level)
+	minetest.register_alias("homedecor:table_lamp_"..name,            "homedecor:table_lamp_"..level)
+	minetest.register_alias("homedecor:standing_lamp_"..name,         "homedecor:standing_lamp_"..level)
+	minetest.register_alias("3dforniture:table_lamp_"..name,          "homedecor:table_lamp_"..level)
+end
+
+if minetest.get_modpath("darkage") then
+	minetest.register_alias("homedecor:lattice_lantern_large",        "darkage:lamp")
+	for n = 0, 14 do
+		minetest.register_alias("homedecor:lattice_lantern_large_"..n, "darkage:lamp")
+	end
+	for name, level in pairs(word_to_bright) do
+		minetest.register_alias("homedecor:lattice_lantern_large_"..name, "darkage:lamp")
+	end
+end
 
 -- crafting
 
@@ -1595,6 +1659,17 @@ end
 
 -- glowlights
 
+unifieddyes.register_color_craft({
+	output = "homedecor:glowlight_half",
+	palette = "wallmounted",
+	type = "shapeless",
+	neutral_node = "homedecor:glowlight_half",
+	recipe = {
+		"NEUTRAL_NODE",
+		"MAIN_DYE"
+	}
+})
+
 minetest.register_craft({
 	output = "homedecor:glowlight_half 6",
 	recipe = {
@@ -1627,10 +1702,10 @@ minetest.register_craft({
 })
 
 unifieddyes.register_color_craft({
-	output = "homedecor:glowlight_half",
+	output = "homedecor:glowlight_quarter",
 	palette = "wallmounted",
 	type = "shapeless",
-	neutral_node = "homedecor:glowlight_half",
+	neutral_node = "homedecor:glowlight_quarter",
 	recipe = {
 		"NEUTRAL_NODE",
 		"MAIN_DYE"
@@ -1645,10 +1720,10 @@ minetest.register_craft({
 })
 
 unifieddyes.register_color_craft({
-	output = "homedecor:glowlight_quarter",
+	output = "homedecor:glowlight_small_cube",
 	palette = "wallmounted",
 	type = "shapeless",
-	neutral_node = "homedecor:glowlight_quarter",
+	neutral_node = "homedecor:glowlight_small_cube",
 	recipe = {
 		"NEUTRAL_NODE",
 		"MAIN_DYE"
@@ -1679,17 +1754,6 @@ minetest.register_craft({
 	}
 })
 
-unifieddyes.register_color_craft({
-	output = "homedecor:glowlight_small_cube",
-	palette = "wallmounted",
-	type = "shapeless",
-	neutral_node = "homedecor:glowlight_small_cube",
-	recipe = {
-		"NEUTRAL_NODE",
-		"MAIN_DYE"
-	}
-})
-
 ----
 
 minetest.register_craft({
@@ -1710,16 +1774,6 @@ minetest.register_craft({
 	}
 })
 
-
-minetest.register_craft({
-	output = "homedecor:desk_lamp 2",
-	recipe = {
-		{ "", "default:steel_ingot", "homedecor:glowlight_small_cube" },
-		{ "", "basic_materials:steel_strip", "" },
-		{ "basic_materials:plastic_sheet", "basic_materials:copper_wire", "basic_materials:plastic_sheet" },
-	},
-})
-
 unifieddyes.register_color_craft({
 	output = "homedecor:desk_lamp",
 	palette = "wallmounted",
@@ -1729,6 +1783,15 @@ unifieddyes.register_color_craft({
 		"NEUTRAL_NODE",
 		"MAIN_DYE"
 	}
+})
+
+minetest.register_craft({
+	output = "homedecor:desk_lamp 2",
+	recipe = {
+		{ "", "default:steel_ingot", "homedecor:glowlight_small_cube" },
+		{ "", "basic_materials:steel_strip", "" },
+		{ "basic_materials:plastic_sheet", "basic_materials:copper_wire", "basic_materials:plastic_sheet" },
+	},
 })
 
 minetest.register_craft({
@@ -1791,6 +1854,17 @@ minetest.register_craft({
 	},
 })
 
+unifieddyes.register_color_craft({
+	output = "homedecor:standing_lamp_hi",
+	palette = "extended",
+	type = "shapeless",
+	neutral_node = "homedecor:standing_lamp_hi",
+	recipe = {
+		"NEUTRAL_NODE",
+		"MAIN_DYE"
+	}
+})
+
 minetest.register_craft({
 	output = "homedecor:standing_lamp_hi",
 	recipe = {
@@ -1801,10 +1875,10 @@ minetest.register_craft({
 })
 
 unifieddyes.register_color_craft({
-	output = "homedecor:standing_lamp_hi",
+	output = "homedecor:table_lamp_hi",
 	palette = "extended",
 	type = "shapeless",
-	neutral_node = "homedecor:standing_lamp_hi",
+	neutral_node = "homedecor:table_lamp_hi",
 	recipe = {
 		"NEUTRAL_NODE",
 		"MAIN_DYE"
@@ -1853,18 +1927,6 @@ minetest.register_craft({
 	},
 })
 
-unifieddyes.register_color_craft({
-	output = "homedecor:table_lamp_hi",
-	palette = "extended",
-	type = "shapeless",
-	neutral_node = "homedecor:table_lamp_hi",
-	recipe = {
-		"NEUTRAL_NODE",
-		"MAIN_DYE"
-	}
-})
-
-
 minetest.register_craft({
 	output = "homedecor:torch_wall 10",
 	recipe = {
@@ -1872,69 +1934,3 @@ minetest.register_craft({
 		{ "default:steel_ingot" },
 	},
 })
--- aliases
-
-minetest.register_alias("chains:chain_top",                    "homedecor:chain_steel_top")
-minetest.register_alias("chains:chain_top_brass",              "homedecor:chain_brass_top")
-
-minetest.register_alias("chains:chandelier",                   "homedecor:chandelier_steel")
-minetest.register_alias("chains:chandelier_steel",             "homedecor:chandelier_steel")
-minetest.register_alias("chains:chandelier_brass",             "homedecor:chandelier_brass")
-
-minetest.register_alias("homedecor:glowlight_half",            "homedecor:glowlight_half_14")
-minetest.register_alias("homedecor:glowlight_quarter",         "homedecor:glowlight_quarter_14")
-minetest.register_alias("homedecor:glowlight_small_cube",      "homedecor:glowlight_small_cube_14")
-minetest.register_alias("homedecor:plasma_lamp",               "homedecor:plasma_lamp_14")
-minetest.register_alias("homedecor:ground_lantern",            "homedecor:ground_lantern_14")
-minetest.register_alias("homedecor:hanging_lantern",           "homedecor:hanging_lantern_14")
-minetest.register_alias("homedecor:ceiling_lantern",           "homedecor:ceiling_lantern_14")
-minetest.register_alias("homedecor:lattice_lantern_large",     "homedecor:lattice_lantern_large_14")
-minetest.register_alias("homedecor:lattice_lantern_small",     "homedecor:lattice_lantern_small_14")
-minetest.register_alias("homedecor:desk_lamp",                 "homedecor:desk_lamp_14")
-minetest.register_alias("homedecor:ceiling_lamp",              "homedecor:ceiling_lamp_14")
-minetest.register_alias("homedecor:table_lamp",                "homedecor:table_lamp_14")
-minetest.register_alias("homedecor:standing_lamp",             "homedecor:standing_lamp_14")
-minetest.register_alias("3dforniture:table_lamp",              "homedecor:table_lamp_14")
-
-minetest.register_alias("3dforniture:torch_wall",              "homedecor:torch_wall")
-minetest.register_alias("torch_wall",                          "homedecor:torch_wall")
-
-minetest.register_alias("homedecor:plasma_ball",               "homedecor:plasma_ball_on")
-minetest.register_alias("homedecor:wall_lamp",                 "homedecor:wall_lamp_on")
-
-minetest.register_alias("homedecor:rope_light_on_floor_0",     "homedecor:rope_light_on_floor_off")
-minetest.register_alias("homedecor:rope_light_on_floor_14",    "homedecor:rope_light_on_floor_on")
-
-minetest.register_alias("homedecor:rope_light_on_ceiling_0",   "homedecor:rope_light_on_ceiling_off")
-minetest.register_alias("homedecor:rope_light_on_ceiling_14",  "homedecor:rope_light_on_ceiling_on")
-
-for name, level in pairs(word_to_bright) do
-	minetest.register_alias("homedecor:glowlight_half_"..name,        "homedecor:glowlight_half_"..level)
-	minetest.register_alias("homedecor:glowlight_quarter_"..name,     "homedecor:glowlight_quarter_"..level)
-	minetest.register_alias("homedecor:glowlight_small_cube_"..name,  "homedecor:glowlight_small_cube_"..level)
-	minetest.register_alias("homedecor:rope_light_on_floor_"..name,   "homedecor:rope_light_on_floor_"..level)
-	minetest.register_alias("homedecor:rope_light_on_ceiling_"..name, "homedecor:rope_light_on_ceiling_"..level)
-	minetest.register_alias("homedecor:plasma_lamp_"..name,           "homedecor:plasma_lamp_"..level)
-	minetest.register_alias("homedecor:plasma_ball_"..name,           "homedecor:plasma_ball_"..level)
-	minetest.register_alias("homedecor:ground_lantern_"..name,        "homedecor:ground_lantern_"..level)
-	minetest.register_alias("homedecor:hanging_lantern_"..name,       "homedecor:hanging_lantern_"..level)
-	minetest.register_alias("homedecor:ceiling_lantern_"..name,       "homedecor:ceiling_lantern_"..level)
-	minetest.register_alias("homedecor:lattice_lantern_large_"..name, "homedecor:lattice_lantern_large_"..level)
-	minetest.register_alias("homedecor:lattice_lantern_small_"..name, "homedecor:lattice_lantern_small_"..level)
-	minetest.register_alias("homedecor:desk_lamp_"..name,             "homedecor:desk_lamp_"..level)
-	minetest.register_alias("homedecor:ceiling_lamp_"..name,          "homedecor:ceiling_lamp_"..level)
-	minetest.register_alias("homedecor:table_lamp_"..name,            "homedecor:table_lamp_"..level)
-	minetest.register_alias("homedecor:standing_lamp_"..name,         "homedecor:standing_lamp_"..level)
-	minetest.register_alias("3dforniture:table_lamp_"..name,          "homedecor:table_lamp_"..level)
-end
-
-if minetest.get_modpath("darkage") then
-	minetest.register_alias("homedecor:lattice_lantern_large",        "darkage:lamp")
-	for n = 0, 14 do
-		minetest.register_alias("homedecor:lattice_lantern_large_"..n, "darkage:lamp")
-	end
-	for name, level in pairs(word_to_bright) do
-		minetest.register_alias("homedecor:lattice_lantern_large_"..name, "darkage:lamp")
-	end
-end
-
