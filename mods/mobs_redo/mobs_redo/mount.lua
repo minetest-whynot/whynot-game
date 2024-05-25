@@ -448,7 +448,9 @@ function mobs.fly(entity, _, speed, shoots, arrow, moving_anim, stand_anim)
 	local ctrl = entity.driver:get_player_control() ; if not ctrl then return end
 	local velo = entity.object:get_velocity() ; if not velo then return end
 	local dir = entity.driver:get_look_dir()
-	local yaw = entity.driver:get_look_horizontal() + 1.57
+	local yaw = entity.driver:get_look_horizontal() ; if not yaw then return end
+
+	yaw = yaw  + 1.57 -- fix from get_yaw to get_look_horizontal
 
 	if ctrl.up then
 

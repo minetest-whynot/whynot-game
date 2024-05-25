@@ -336,6 +336,8 @@ enhance mob functionality and have them do many interesting things:
                     is returned normal attack function continued.
    'on_die'         a function that is called when mob is killed (self, pos), also
                     has access to self.cause_of_death table.
+   'on_death'       Official engine version of above when mob killed (self, killer),
+                    'killer' is only returned if player killed the mob.
    'on_flop'        function called when flying or swimmimng mob is no longer in
                     air/water, (self) paramater and return true to skip the built
                     in api flop feature.
@@ -417,7 +419,9 @@ mob_class:day_docile() -- return True if mob docile during current daytime
 mob_class:mob_expire(pos, dtime) -- check if mob is to despawn
 mob_class:get_nodes() -- get specific nodes around mob
 mob_class:on_blast(damage) -- function called when mob in blast area
-mob_class:is_inside(itemtable) -- returns True is mob collisionbox inside any node/group in table
+mob_class:is_inside(itemtable) -- returns True is mob collisionbox inside any node/group
+in table
+mob_class:go_to(pos) -- makes mob go to that position or nearby
 
 
 Adding Mobs in World

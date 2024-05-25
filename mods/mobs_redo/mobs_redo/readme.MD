@@ -32,6 +32,7 @@ https://forum.minetest.net/viewtopic.php?f=11&t=9917
 * Added self.homing so that arrows follow player when visible
 * Added support for Visual Harm 1ndicators mod to show health bars
 * Added self.node_damage flag which is true by default to enable damage_per_second node damage
+* Added check for on_death() function before using mob api's own on_die() one
 
 ### Version 1.60
 
