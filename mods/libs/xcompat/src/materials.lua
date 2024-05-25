@@ -1,5 +1,4 @@
 local materials = {
-    dirt = "default:dirt",
     sand = "default:sand",
     sandstone = "default:sandstone",
     gravel = "default:gravel",
@@ -12,6 +11,10 @@ local materials = {
     gold_block = "default:goldblock",
     tin_block = "default:tinblock",
     axe_steel = "default:axe_steel",
+    axe_diamond = "default:axe_diamond",
+    axe_bronze = "default:axe_bronze",
+    axe_stone = "default:axe_stone",
+    axe_wood = "default:axe_wood",
     pick_steel = "default:pick_steel",
     mese = "default:mese",
     mese_crystal = "default:mese_crystal",
@@ -58,6 +61,12 @@ local materials = {
     cobble = "default:cobble",
     brick = "default:brick",
     obsidian_glass = "default:obsidian_glass",
+    water_source = "default:water_source",
+    water_flowing = "default:water_flowing",
+    dirt = "default:dirt",
+    dirt_with_grass = "default:dirt_with_grass",
+    apple_leaves = "default:leaves",
+    jungle_leaves = "default:jungleleaves",
 }
 
 if minetest.get_modpath("moreores") then
@@ -80,7 +89,6 @@ end
 
 if minetest.get_modpath("mcl_core") then
     materials = {
-        dirt = "mcl_core:dirt",
         sand = "mcl_core:sand",
         sandstone = "mcl_core:sandstone",
         gravel = "mcl_core:gravel",
@@ -93,6 +101,10 @@ if minetest.get_modpath("mcl_core") then
         gold_block = "mcl_core:gold_block",
         tin_block = "mcl_core:iron_block",
         axe_steel = "mcl_core:axe_steel",
+        axe_diamond = "mcl_core:axe_diamond",
+        axe_bronze = "mcl_core:axe_bronze",
+        axe_stone = "mcl_core:axe_stone",
+        axe_wood = "mcl_core:axe_wood",
         pick_steel = "mcl_core:pick_steel",
         mese = "mesecons_torch:redstoneblock",
         mese_crystal = "mesecons:redstone",
@@ -138,10 +150,15 @@ if minetest.get_modpath("mcl_core") then
         chest = "mcl_chests:chest",
         cobble = "mcl_core:cobble",
         brick = "mcl_core:brick",
+        water_source = "mcl_core:water_source",
+        water_flowing = "mcl_core:water_flowing",
+        dirt = "mcl_core:dirt",
+        dirt_with_grass = "mcl_core:dirt_with_grass",
+        apple_leaves = "mcl_trees:leaves_oak",
+        jungle_leaves = "mcl_trees:leaves_jungle",
     }
 elseif minetest.get_modpath("fl_ores") and minetest.get_modpath("fl_stone") then
     materials = {
-        dirt = "fl_topsoil:dirt",
         sand = "fl_stone:sand",
         sandstone = "fl_stone:sandstone",
         gravel = "fl_topsoil:gravel",
@@ -153,8 +170,12 @@ elseif minetest.get_modpath("fl_ores") and minetest.get_modpath("fl_stone") then
         steel_block = "fl_ores:iron_block",
         gold_block = "fl_ores:gold_block",
         tin_block = "fl_ores:tin_block",
-        axe_steel = "fl_tools:steel_pick",
-        pick_steel = "fl_tools:steel_axe",
+        axe_steel = "fl_tools:steel_axe",
+        axe_diamond = "fl_tools:diamond_axe",
+        axe_bronze = "fl_tools:bronze_axe",
+        axe_stone = "fl_tools:stone_axe",
+        axe_wood = "fl_tools:wood_axe",
+        pick_steel = "fl_tools:steel_pick",
         mese = "fl_ores:iron_ingot",
         mese_crystal = "fl_ores:iron_ingot",
         mese_crystal_fragment = "fl_ores:iron_ingot",
@@ -199,6 +220,12 @@ elseif minetest.get_modpath("fl_ores") and minetest.get_modpath("fl_stone") then
         chest = "fl_storage:wood_chest",
         cobble = "fl_stone:stone_rubble",
         brick = "",
+        water_source = "fl_liquids:water_source",
+        water_flowing = "fl_liquids:water_flowing",
+        dirt = "fl_stone:dirt",
+        dirt_with_grass = "fl_topsoil:dirt_with_grass",
+        apple_leaves = "fl_trees:apple_leaves",
+        jungle_leaves = "fl_trees:jungletree_leaves",
     }
 elseif minetest.get_modpath("hades_core") then
     materials = {
@@ -215,6 +242,10 @@ elseif minetest.get_modpath("hades_core") then
         gold_block = "hades_core:goldblock",
         tin_block = "hades_core:tinblock",
         axe_steel = "hades_core:axe_steel",
+        axe_diamond = "hades_core:axe_diamond",
+        axe_bronze = "hades_core:axe_bronze",
+        axe_stone = "hades_core:axe_stone",
+        axe_wood = "hades_core:axe_wood",
         pick_steel = "hades_core:pick_steel",
         mese = "hades_core:mese",
         mese_crystal = "hades_core:mese_crystal",
@@ -266,7 +297,13 @@ elseif minetest.get_modpath("hades_core") then
         desert_sand = "hades_core:volcanic_sand",
         chest = "hades_chests:chest";
         cobble = "hades_core:cobble",
-        brick = "hades_core:brick"
+        brick = "hades_core:brick",
+        water_source = "hades_core:water_source",
+        water_flowing = "hades_core:water_flowing",
+        dirt = "hades_core:dirt",
+        dirt_with_grass = "hades_core:dirt_with_grass",
+        apple_leaves = "hades_trees:leaves",
+        jungle_leaves = "hades_trees:jungle_leaves",
     }
 
     if minetest.get_modpath("hades_bucket") then
