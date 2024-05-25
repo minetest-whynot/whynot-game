@@ -29,13 +29,13 @@ if ts_furniture.enable_sitting then
 	ts_furniture.sit = function(pos, _, player)
 		local name = player:get_player_name()
 		if not player_api.player_attached[name] then
-			if vector.length(player:get_player_velocity()) > 0 then
+			if vector.length(player:get_player_velocity()) > 0.5 then
 				minetest.chat_send_player(player:get_player_name(), 'You can only sit down when you are not moving.')
 				return
 			end
 			player:move_to(pos)
 			player:set_eye_offset({x = 0, y = -7, z = 2}, {x = 0, y = 0, z = 0})
-			player:set_physics_override(0, 0, 0)
+			player:set_physics_override({speed = 0, jump = 0, gravity = 0})
 			player_api.player_attached[name] = true
 			minetest.after(0.1, function()
 				if player then
@@ -56,7 +56,8 @@ if ts_furniture.enable_sitting then
 
 	ts_furniture.stand = function(player, name)
 		player:set_eye_offset({x = 0, y = 0, z = 0}, {x = 0, y = 0, z = 0})
-		player:set_physics_override(1, 1, 1)
+		-- FIXME: should remember old values or use player_monoids
+		player:set_physics_override({speed = 1, jump = 1, gravity = 1})
 		player_api.player_attached[name] = false
 		player_api.set_animation(player, "stand", 30)
 	end
