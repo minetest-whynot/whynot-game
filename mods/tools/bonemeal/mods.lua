@@ -162,6 +162,7 @@ if minetest.get_modpath("ethereal") then
 		{"ethereal:banana_tree_sapling", ethereal.grow_banana_tree, "soil"},
 		{"ethereal:frost_tree_sapling", ethereal.grow_frost_tree, "soil"},
 		{"ethereal:mushroom_sapling", ethereal.grow_mushroom_tree, "soil"},
+		{"ethereal:mushroom_brown_sapling", ethereal.grow_mushroom_brown_tree, "soil"},
 		{"ethereal:willow_sapling", ethereal.grow_willow_tree, "soil"},
 		{"ethereal:redwood_sapling", ethereal.grow_redwood_tree, "soil"},
 		{"ethereal:giant_redwood_sapling", ethereal.grow_giant_redwood_tree, "soil"},

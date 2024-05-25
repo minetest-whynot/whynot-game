@@ -1,8 +1,8 @@
 
 bonemeal = {
 	item_list = {
-		bucket_water = "buckets:bucket_water",
-		bucket_empty = "buckets:bucket_empty",
+		bucket_water = "bucket:bucket_water",
+		bucket_empty = "bucket:bucket_empty",
 		dirt = "default:dirt",
 		torch = "default:torch",
 		coral = "default:coral_skeleton"
@@ -588,7 +588,6 @@ minetest.register_craftitem("bonemeal:gelatin_powder", {
 --
 -- crafting recipes
 --
-
 
 -- gelatin powder
 minetest.register_craft({
