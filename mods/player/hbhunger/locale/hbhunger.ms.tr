@@ -1,4 +1,6 @@
 # textdomain:hbhunger
+Hunger with HUD Bar=
+Adds a simple hunger meachanic with satiation, food poisoning and different healing.=
 Satiation=Kekenyangan
 [<player>] <satiation>=
 Set satiation of player or yourself=

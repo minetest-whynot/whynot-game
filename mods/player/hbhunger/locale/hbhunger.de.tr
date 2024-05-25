@@ -1,4 +1,6 @@
 # textdomain:hbhunger
+Hunger with HUD Bar=Hunger mit HUD-Leiste
+Adds a simple hunger meachanic with satiation, food poisoning and different healing.=Fügt ein einfaches Hungersystem hinzu, mit Sättigung, Lebensmittelvergiftung und anderer Heilung.
 Satiation=Sättigung
 [<player>] <satiation>=[<Spieler>] <Sättigung>
 Set satiation of player or yourself=Sättigung von Spieler oder Ihnen selbst setzen
