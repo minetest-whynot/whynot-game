@@ -23,6 +23,8 @@ THE SOFTWARE.
 
 Textures under CC0 license by TenPlus1
 
+mobs_fallback.png is dirt texture from original Minetest (CC-BY SA 3.0)
+
 
 ShadowNinja (CC BY-SA 3.0):
   tnt_smoke.png

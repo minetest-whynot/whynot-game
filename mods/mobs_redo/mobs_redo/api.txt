@@ -402,7 +402,8 @@ Each mob contains a set of functions that can be called for use internally or fr
 another mod entirely, replace mob_class with the mob entity variable:
 
 mob_class:mob_sound(sound) -- play sound at mob position
-mob_class:do_attack(player) -- if not already attacking, attack object given
+mob_class:do_attack(player [, force]) -- if not already attacking, attack object given,
+forced being true stops attacking current target and focuses on one given
 mob_class:stop_attack() -- stops mob attacking
 mob_class:collision() -- checks for player collision with mob and returns {x, z} vector
 mob_class:set_velocity(velocity) -- move at velocity in the facing direction

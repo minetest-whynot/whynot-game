@@ -7,6 +7,14 @@ minetest.register_privilege("peaceful_player", {
 	give_to_singleplayer = false
 })
 
+-- Fallback node
+minetest.register_node("mobs:fallback_node", {
+	description = "Fallback Node",
+	tiles = {"mobs_fallback.png"},
+	is_ground_content = false,
+	groups = {handy = 1, crumbly = 3, not_in_creative_inventory = 1},
+	drop = ""
+})
 
 -- Mob API
 dofile(path .. "/api.lua")

@@ -33,6 +33,7 @@ https://forum.minetest.net/viewtopic.php?f=11&t=9917
 * Added support for Visual Harm 1ndicators mod to show health bars
 * Added self.node_damage flag which is true by default to enable damage_per_second node damage
 * Added check for on_death() function before using mob api's own on_die() one
+* Added mobs:fallback_node for when current [game] hasn't defined mapgen_dirt node
 
 ### Version 1.60
 
