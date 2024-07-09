@@ -184,7 +184,7 @@ origin https://github.com/GreenXenith/tac_nayn (fetch)
 Mod: mapgen/tac_nayn
 
 origin https://github.com/minetest-mods/mesecons (fetch)
-* 0c7bb316c7df0be7b99b492d2b22b84425c87b09 Check for digiline message field type (#670)
+* a82bac7b5bb335e9b595ed3e004adbc18b7b7971 [mesecons_doors] Improve code quality and fix Voxelgarden support (#671)
 Mod: mesecons/mesecons
 
 origin https://github.com/minetest/minetest_game (fetch)
