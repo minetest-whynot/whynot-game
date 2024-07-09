@@ -363,6 +363,10 @@ function airutils.destroy(self, by_name, by_automation)
     if self._destroy_parts_method then
         self._destroy_parts_method(self)
     end
+    local obj_children = self.object:get_children()
+    for _, child in ipairs(obj_children) do
+        child:remove()
+    end
 
     if by_automation == false then
         local destroyed_ent = nil

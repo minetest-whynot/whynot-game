@@ -65,6 +65,7 @@ if not minetest.get_modpath("signs_lib") then airutils._use_signs_api = false en
 if minetest.settings:get_bool('airutils_disable_signs_api') then airutils._use_signs_api = false end
 
 airutils.get_wind = dofile(minetest.get_modpath("airutils") .. DIR_DELIM ..'/wind.lua')
+dofile(minetest.get_modpath("airutils") .. DIR_DELIM .. "uuid_manager.lua")
 dofile(minetest.get_modpath("airutils") .. DIR_DELIM .. "common_entities.lua")
 dofile(minetest.get_modpath("airutils") .. DIR_DELIM .. "airutils_wind.lua")
 dofile(minetest.get_modpath("airutils") .. DIR_DELIM .. "inventory_management.lua")

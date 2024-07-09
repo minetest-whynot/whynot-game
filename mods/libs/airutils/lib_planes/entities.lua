@@ -2,7 +2,7 @@ dofile(minetest.get_modpath("airutils") .. DIR_DELIM .. "lib_planes" .. DIR_DELI
 
 local S = airutils.S
 
-function lib_change_color(self, colstr)
+local function lib_change_color(self, colstr)
     airutils.param_paint(self, colstr)
 end
 
@@ -124,6 +124,8 @@ function airutils.on_activate(self, staticdata, dtime_s)
     if self._flap then airutils.flap_on(self) end
 
     if self._vehicle_name then airutils.setText(self, self._vehicle_name) end
+
+    self._change_color = lib_change_color
 end
 
 function airutils.on_step(self,dtime,colinfo)
@@ -800,6 +802,55 @@ function airutils.on_punch(self, puncher, ttime, toolcaps, dir, damage)
     end
 end
 
+--returns the vehicle to inventory if it is registered as a tool
+local function get_vehicle(self, player)
+    if not player then return false end
+
+    local itmstck=player:get_wielded_item()
+    local item_name = ""
+    if itmstck then item_name = itmstck:get_name() end
+    --remove
+    if (item_name == "airutils:repair_tool") and self._engine_running == false  then
+
+        local lua_ent = self.object:get_luaentity()
+        local staticdata = lua_ent:get_staticdata(self)
+        local obj_name = lua_ent.name
+
+        local stack = ItemStack(obj_name)
+        local max = stack:get_stack_max()
+        local tool = false
+        if stack:get_stack_max() == 1 then tool = true end
+
+        if tool == false then return false end
+
+        local stack_meta = stack:get_meta()
+        stack_meta:set_string("staticdata", staticdata)
+
+        local inv = player:get_inventory()
+        if inv then
+            if inv:room_for_item("main", stack) then
+                inv:add_item("main", stack)
+            else
+                minetest.add_item({x=pos.x+math.random()-0.5,y=pos.y,z=pos.z+math.random()-0.5}, stack)
+            end
+        else
+            minetest.add_item({x=pos.x+math.random()-0.5,y=pos.y,z=pos.z+math.random()-0.5}, stack)
+        end
+
+        airutils.seats_destroy(self)
+        local obj_children = self.object:get_children()
+        for _, child in ipairs(obj_children) do
+            child:remove()
+        end
+        airutils.destroy_inventory(self)
+        self.object:remove()
+
+        return true
+    end
+    
+    return false
+end
+
 function airutils.on_rightclick(self, clicker)
     local message = ""
 	if not clicker or not clicker:is_player() then
@@ -886,6 +937,9 @@ function airutils.on_rightclick(self, clicker)
 		        if airutils.set_param_paint(self, clicker, itmstck, 2) == true then
                     return
 		        end
+                if get_vehicle(self, clicker) then
+                    return
+                end
             end
 
             if clicker:get_player_control().aux1 == true then --lets see the inventory
