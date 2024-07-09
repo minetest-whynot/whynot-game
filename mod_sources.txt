@@ -48,7 +48,7 @@ origin https://github.com/mt-mods/home_workshop_modpack (fetch)
 Mod: decor/home_workshop_modpack
 
 origin https://github.com/mt-mods/homedecor_modpack (fetch)
-* d0ab9b82cee0c1c9d092e4f2823bf92f104f781b reorder registration of aliases to fix missing recipes, also reorder registration of dye recipes to show item craft first before recipe craft (#72)
+* 1ef4837abed38a7abedf5f8144773454a44e2548 Use `initial_properties` for entities (#74)
 Mod: decor/homedecor_modpack
 
 origin https://codeberg.org/Dacmot/minetest-laptop.git (fetch)
@@ -60,7 +60,7 @@ origin https://repo.or.cz/minetest_mtg_plus.git (fetch)
 Mod: decor/mtg_plus
 
 origin https://github.com/minetest-mods/mydoors (fetch)
-* aee9b46d4274ccbc824ac999ab6b44bc0ed3c1fb Optimize textures to fix sRGB profile warnings
+* e23201a2512787bbf80d3eec1b0206823e93c5b2 Add mesecons support for locked doors (#35)
 Mod: decor/mydoors
 
 origin https://github.com/minetest-mods/myroofs (fetch)
@@ -84,7 +84,7 @@ origin https://github.com/v-rob/slats (fetch)
 Mod: decor/slats
 
 origin https://github.com/minetest-mods/ts_furniture (fetch)
-* 0e4339bcebcf7c3bfd0de57053b882841edd2c20 Make movement check more liberal
+* 21bbb75b5ab7c7bd111ff457d1a0ad7a339c68a7 Add player_monoids support (#22)
 Mod: decor/ts_furniture
 
 origin https://github.com/mt-mods/unifieddyes (fetch)
@@ -124,7 +124,7 @@ origin https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin https://github.com/APercy/airutils.git (fetch)
-* 690d3db901de7d2adec511234f94bcf9e2e05272 added method to recognize repixture
+* 0beb2b1077e2d5a2f93241e33da7e86f736758a0 fixed painting by car painter
 Mod: libs/airutils
 
 origin https://repo.or.cz/minetest_doc.git (fetch)
@@ -156,7 +156,7 @@ origin https://github.com/dacmot/sfcraftguide.git (fetch)
 Mod: libs/sfcraftguide
 
 origin https://github.com/mt-mods/xcompat.git (fetch)
-* 215b0945158a5b4eaebae9cf8a9cf0ccc90e2e01 fix https://github.com/mt-mods/xcompat/issues/20 - correct some nodestrings
+* cc2da8a2a616003ee728aebd32638a007d6b73c4 Add cyan dye into xcompat.materials (#31)
 Mod: libs/xcompat
 
 origin https://github.com/Treer/cloudlands/ (fetch)
@@ -184,7 +184,7 @@ origin https://github.com/GreenXenith/tac_nayn (fetch)
 Mod: mapgen/tac_nayn
 
 origin https://github.com/minetest-mods/mesecons (fetch)
-* a82bac7b5bb335e9b595ed3e004adbc18b7b7971 [mesecons_doors] Improve code quality and fix Voxelgarden support (#671)
+* 0c7bb316c7df0be7b99b492d2b22b84425c87b09 Check for digiline message field type (#670)
 Mod: mesecons/mesecons
 
 origin https://github.com/minetest/minetest_game (fetch)
@@ -196,15 +196,15 @@ origin https://codeberg.org/tenplus1/mobs_ghost_redo (fetch)
 Mod: mobs_redo/mobs_ghost_redo
 
 origin https://github.com/minetest-mirrors/mobs_monster.git (fetch)
-* 59ad0f8da8016a13dfeb2467244110cc667e00c6 use optipng to fix image warnings
+* 68ae991ca6bbc24875d06789d1f271389a169211 add particle effect and sound when lava pick cooks node
 Mod: mobs_redo/mobs_monster
 
 origin https://github.com/minetest-mirrors/mobs_redo.git (fetch)
-* 1536b9a5fc39b96bdd18eedb91bfbd37f9cd0624 add mob_class:go_to(pos) function
+* fc7269cc8c0e50015e16c28569028be45787ebd8 remove fallback node from inventory and update version
 Mod: mobs_redo/mobs_redo
 
 origin https://github.com/minetest-mods/3d_armor (fetch)
-* 22955b413a2f13d4758596bb0a09faab03621299 Fix "player still online" check of `armor.unequip` (#146)
+* ab1bec3be8be8caaef5a9cc4e73a879861af5a59 Added spanish translations to shields and stands, added "Shared Armor Stand" to template. (#147)
 Mod: player/3d_armor
 
 origin https://gitlab.com/dacmot/awards.git (fetch)
@@ -252,7 +252,7 @@ origin https://repo.or.cz/minetest_show_wielded_item.git (fetch)
 Mod: player/show_wielded_item
 
 origin https://github.com/minetest-mods/skinsdb (fetch)
-* cd27e24b6f0275c015487b4998dcfc8932baf8c0 Added Esperanto (eo) translation
+* b7cd514cea0c5592ef110ea2b136b8eb703ad8ff API: make skins.register_skin public (#106)
 Mod: player/skinsdb
 
 origin https://github.com/bell07/minetest-smart_sfinv (fetch)
