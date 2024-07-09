@@ -1,4 +1,3 @@
-
 globals = {
 	"minetest",
 	"xcompat",
@@ -14,4 +13,5 @@ read_globals = {
 	"fl_trees",
 	"hades_sounds",
 	"rp_sounds",
+	"sounds",
 }
