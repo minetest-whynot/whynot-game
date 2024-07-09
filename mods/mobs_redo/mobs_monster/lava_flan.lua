@@ -138,48 +138,53 @@ local old_handle_node_drops = minetest.handle_node_drops
 
 function minetest.handle_node_drops(pos, drops, digger)
 
-	-- does player exist?
-	if not digger then return end
+	-- are we a player using the lava pick?
+	if digger and digger:get_wielded_item():get_name() == ("mobs:pick_lava") then
 
-	-- are we holding Lava Pick?
-	if digger:get_wielded_item():get_name() ~= ("mobs:pick_lava") then
-		return old_handle_node_drops(pos, drops, digger)
-	end
+		local hot_drops = {}
+		local is_cooked
 
-	-- reset new smelted drops
-	local hot_drops = {}
+		for _, drop in ipairs(drops) do
 
-	-- loop through current node drops
-	for _, drop in ipairs(drops) do
+			local stack = ItemStack(drop)
 
-		-- get cooked output of current drops
-		local stack = ItemStack(drop)
+			while not stack:is_empty() do
 
-		while not stack:is_empty() do
+				local output, decremented_input = minetest.get_craft_result({
+					method = "cooking",
+					width = 1,
+					items = {stack}
+				})
 
-			local output, decremented_input = minetest.get_craft_result({
-				method = "cooking",
-				width = 1,
-				items = {stack}
-			})
+				if output.item:is_empty() then
+					table.insert_all(hot_drops, decremented_input.items)
+					break
+				else
+					is_cooked = true
 
-			if output.item:is_empty() then
+					if not output.item:is_empty() then
+						table.insert(hot_drops, output.item)
+					end
 
-				table.insert_all(hot_drops, decremented_input.items)
-				break
-			else
-				if not output.item:is_empty() then
-					table.insert(hot_drops, output.item)
+					table.insert_all(hot_drops, output.replacements)
+
+					stack = decremented_input.items[1] or ItemStack()
 				end
-
-				table.insert_all(hot_drops, output.replacements)
-
-				stack = decremented_input.items[1] or ItemStack()
 			end
+		end
+
+		drops = hot_drops -- replace normal drops with cooked versions
+
+		if is_cooked then
+
+			mobs:effect(pos, 1, "tnt_smoke.png", 3, 5, 2, 0.5, nil, false)
+
+			minetest.sound_play("fire_extinguish_flame",
+					{pos = pos, max_hear_distance = 8, gain = 0.15}, true)
 		end
 	end
 
-	return old_handle_node_drops(pos, hot_drops, digger)
+	return old_handle_node_drops(pos, drops, digger)
 end
 
 minetest.register_tool(":mobs:pick_lava", {
