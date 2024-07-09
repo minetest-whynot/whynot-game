@@ -7,6 +7,7 @@ ts_furniture.kneeling_bench = minetest.settings:get_bool("ts_furniture.kneeling_
 
 -- Used for localization
 local S = minetest.get_translator("ts_furniture")
+local has_player_monoids = minetest.get_modpath("player_monoids")
 
 -- Get texture by node name
 local T = function (node_name)
@@ -29,13 +30,19 @@ if ts_furniture.enable_sitting then
 	ts_furniture.sit = function(pos, _, player)
 		local name = player:get_player_name()
 		if not player_api.player_attached[name] then
-			if vector.length(player:get_player_velocity()) > 0.5 then
+			if vector.length(player:get_velocity()) > 0.5 then
 				minetest.chat_send_player(player:get_player_name(), 'You can only sit down when you are not moving.')
 				return
 			end
 			player:move_to(pos)
 			player:set_eye_offset({x = 0, y = -7, z = 2}, {x = 0, y = 0, z = 0})
-			player:set_physics_override({speed = 0, jump = 0, gravity = 0})
+			if has_player_monoids then
+				player_monoids.speed:add_change(player, 0, "ts_furniture:sit")
+				player_monoids.jump:add_change(player, 0, "ts_furniture:sit")
+				player_monoids.gravity:add_change(player, 0, "ts_furniture:sit")
+			else
+				player:set_physics_override({speed = 0, jump = 0, gravity = 0})
+			end
 			player_api.player_attached[name] = true
 			minetest.after(0.1, function()
 				if player then
@@ -56,8 +63,13 @@ if ts_furniture.enable_sitting then
 
 	ts_furniture.stand = function(player, name)
 		player:set_eye_offset({x = 0, y = 0, z = 0}, {x = 0, y = 0, z = 0})
-		-- FIXME: should remember old values or use player_monoids
-		player:set_physics_override({speed = 1, jump = 1, gravity = 1})
+		if has_player_monoids then
+			player_monoids.speed:del_change(player, "ts_furniture:sit")
+			player_monoids.jump:del_change(player, "ts_furniture:sit")
+			player_monoids.gravity:del_change(player, "ts_furniture:sit")
+		else
+			player:set_physics_override({speed = 1, jump = 1, gravity = 1})
+		end
 		player_api.player_attached[name] = false
 		player_api.set_animation(player, "stand", 30)
 	end
