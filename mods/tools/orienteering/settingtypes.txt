@@ -1,0 +1,14 @@
+# Horizontal main position (x) of the Orienteering text.
+# 0.0 is left, 1.0 is right.
+orienteering_hud_pos_x (Horizontal Orienteering text screen position) float 0.5 0.0 1.0
+# Vertical main position (y) of the Orienteering text.
+# 0.0 is top, 1.0 is bottom.
+orienteering_hud_pos_y (Vertical Orienteering text screen position) float 0.0 0.0 1.0
+
+# Horizontal offset (x) of the Orienteering text from the screen position.
+orienteering_hud_offset_x (Horizontal Orienteering text offset) int 0
+# Vertical offset (y) of the Orienteering text from the screen position.
+orienteering_hud_offset_y (Vertical Orienteering text offset) int 15
+
+# Alignment of the Orienteering text.
+orienteering_hud_alignment (Orienteering text alignment) enum center left,center,right
