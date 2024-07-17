@@ -256,3 +256,6 @@
 [submodule "builder/mods_src/libs/xcompat"]
 	path = builder/mods_src/libs/xcompat
 	url = https://github.com/mt-mods/xcompat.git
+[submodule "builder/mods_src/tools/orienteering"]
+	path = builder/mods_src/tools/orienteering
+	url = https://codeberg.org/Dacmot/minetest_orienteering.git

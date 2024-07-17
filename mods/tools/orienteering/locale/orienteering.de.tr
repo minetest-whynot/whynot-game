@@ -1,0 +1,67 @@
+# textdomain:orienteering
+Orienteering=Orientierung
+A collection of tools to help you orient yourselves in the world, such as compass, altimeter, etc.=Eine Sammlung von Werkzeugen, die bei der Orientierung in der Welt helfen, z. B. Kompass, Höhenmesser, usw.
+
+Altimeter=Höhenmesser
+Triangulator=Triangulator
+Compass=Kompass
+Sextant=Sextant
+Quadcorder=Vierkorder
+Watch=Uhr
+Speedometer=Tacho
+Map=Karte
+Radar Mapper=Radarkartierer
+GPS device=GPS-Gerät
+Binoculars=Fernglas
+
+Yaw: @1°, pitch: @2°=Gier: @1°, Nick: @2°
+Yaw: @1°=Gier: @1°
+Pitch: @1°=Nick: @1°
+
+Time: noon=Uhrzeit: Mittag
+Time: midnight=Uhrzeit: Mitternacht
+Time: @1:@2 a.m.=Uhrzeit: @1:@2 AM
+Time: @1:@2 p.m.=Uhrzeit: @1:@2 PM
+Time: @1:@2=Uhrzeit: @1:@2
+
+Speed: hor.: @1 @2, vert.: @3 @4=Tempo: hor.: @1 @2, vert.: @3 @4
+
+m=m
+m/s=m/s
+
+Coordinates: X@=@1, Y@=@2, Z@=@3=Koordinaten: X@=@1, Y@=@2, Z@=@3
+Height: Y@=@1=Höhe: Y@=@1
+Coordinates: X@=@1, Z@=@2=Koordinaten: X@=@1, Z@=@2
+
+Master of Orienteering=Meister der Orientierung
+Craft a quadcorder.=Fertigen Sie einen Vierkorder.
+
+Shows your horizontal coordinates=Zeigt Ihre horizontalen Koordinaten
+Shows your yaw=Zeigt Ihren Gierwinkel
+Shows your pitch=Zeigt Ihren Nickwinkel
+Shows your coordinates, yaw, pitch, time, speed and enables minimap=Zeigt Koordinaten, Blickwinkel, Zeit, Tempo und aktiviert Übersichtskarte
+Shows the time=Zeigt die Zeit
+Shows your speed=Zeigt Ihre Geschwindigkeit
+Allows using the minimap=Erlaubt Benuzung der Übersichtskarte
+Allows using the minimap and radar=Erlaubt Benutzung der Übersichtskarte und des Radars
+Shows your coordinates, yaw and the time=Zeigt Ihre Koordinaten, Gierwinkel und die Zeit
+Shows your elevation=Zeigt Ihre Höhe
+
+It shows you your yaw (horizontal viewing angle) in degrees.=Er zeigt Ihnen Ihre Gierung (horizontaler Blickwinkel) in Grad.
+It shows you your pitch (vertical viewing angle) in degrees.=Er zeigt Ihnen Ihren Nick (vertikaler Blickwinkel) in Grad.
+It shows you your current elevation (Y).=Er zeigt Ihnen Ihre momentane Höhe (Y).
+It shows you the coordinates of your current position in the horizontal plane (X and Z).=Er zeigt Ihnen die Koordinaten Ihrer aktuellen Position auf der horizontalen Ebene (X und Z).
+The GPS device shows you your coordinates (X, Y and Z), your yaw (horizontal viewing angle) and the time.=Das GPS-Gerät zeigt Ihnen Ihre Koordinaten (X, Y und Z), Ihre Gierung (horizontaler Blickwinkel) und die Zeit.
+It shows you your current horizontal (“hor.”) and vertical (“ver.”) speed in meters per second, where one meter is the side length of a single cube.=Er zeigt Ihnen ihre aktuelle horizontale (»hor.«) und vertikale (»vert.«) Geschwindigkeit in Metern pro Sekunde, wobei hier ein Meter die Kantenlänge eines einzelnen Würfels ist.
+It shows you the current time.=Sie zeigt Ihnen die aktuelle Uhrzeit.
+This is the ultimate orientieering tool. It shows you your coordinates (X, Y and Z), shows your yaw and pitch (horizontal and vertical viewing angles), the current time, your current speed and it enables you to access the minimap.=Dies ist das ultimative Werkzeug für die Orientierung. Es zeigt Ihnen Ihre aktuellen Koordinaten (X, Y, und Z), zeigt Ihren Gier- und Nickwinkel (horizontaler und vertikaler Blickwinkel), die aktuelle Uhrzeit, Ihre aktuelle Geschwindigkeit und es ermöglicht es Ihnen, auf die Übersichtskarte zuzugreifen.
+Binoculars allow you to zoom.=Ein Ferglas ermöglicht es Ihnen, die Ansicht zu vergrößern.
+
+Put this tool in your hotbar to see the data it provides.=Legen Sie dieses Werkzeug in Ihrer Schnellzugriffsleiste ab, um die dazugehörigen Daten zu sehen.
+Put the watch in your hotbar to see the time. Punch to toggle between the 24-hour and 12-hour display.=Legen Sie die Uhr in Ihrer Schnellzugriffsleiste ab, um die Uhrzeit zu sehen. Mit der Schlagtaste können Sie zwischen der 24-Stunden- und der 2-mal-12-Stunden-Anzeige wechseln.
+Put this tool in your hotbar to make use of its functionality. Punch to toggle between 24-hour and 12-hour display for the time feature.=Legen Sie dieses Werkzeug irgendwo in Ihrem Spielerinventar ab, um davon Gebrauch zu machen. Mit der Schlagtaste können Sie zwischen der 24-Stunden- und der 2-mal-12-Stunden-Anzeige der Uhrenfunktion wechseln.
+
+The radar mapper is a device that combines a map with a radar. It unlocks both the surface mode and radar mode of the minimap.=Der Radarkartierer ist ein Gerät, der eine Karte mit einem Radar kombiniert. Es schaltet sowohl den Bodenmodus als auch den Radarmodus der Übersichtskarte frei.
+If you put a radar mapper in your hotbar, you will be able to access the minimap. Press the “minimap” key to view the minimap.=Wenn Sie einen Radarkartierer in Ihre Schnellleiste ablegen, können Sie auf die Übersichtskarte zugreifen. Die Übersichtskarte kann mit der Taste „Karte an/aus“ angezeigt werden.
+The map allows you to view a minimap of the area around you.=Mit der Karte können Sie auf die Übersichtskarte zugreifen, welche das Gebiet um Sie herum anzeigt.
+If you put a map in your hotbar, you will be able to access the minimap (only surface mode). Press the “minimap” key to view the minimap.=Wenn Sie eine Karte in Ihre Schnellleiste ablegen, können Sie auf die Übersichtskarte zugreifen (nur Bodenmodus). Die Übersichtskarte kann mit der Taste „Karte an/aus“ angezeigt werden.

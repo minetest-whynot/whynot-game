@@ -1,0 +1,82 @@
+# textdomain:orienteering
+# Metadata
+Orienteering=Navigation
+A collection of tools to help you orient yourselves in the world, such as compass, altimeter, etc.=Une collection d'outils qui aident à s'orienter dans un monde. Par exemple, une boussole, un altimètre, etc.
+
+# Item names
+Altimeter=Altimètre
+Triangulator=Triangulateur
+Compass=Boussole
+Sextant=Sextant
+Quadcorder=Radionavigateur
+Watch=Montre
+Speedometer=Compteur de vitesse
+Map=Carte
+Radar Mapper=Radar cartographique
+GPS device=Module GPS
+Binoculars=Jumelles
+
+# Coordinates
+Coordinates: X@=@1, Y@=@2, Z@=@3=Coordonnées: X@=@1, Y@=@2, Z@=@3
+Height: Y@=@1=Hauteur: Y@=@1
+Coordinates: X@=@1, Z@=@2=Coordonnées: X@=@1, Z@=@2
+
+# Angles
+Yaw: @1°, pitch: @2°=Lacet: @1°, tangage: @2°
+Yaw: @1°=Lacet: @1°
+Pitch: @1°=Tangage: @1°
+
+# Time
+## For the 12h mode
+Time: noon=Heure: midi
+Time: midnight=Heure: minuit
+# 12h format
+Time: @1:@2 a.m=Heure: @1:@2 a.m
+Time: @1:@2 p.m=Heure: @1:@2 p.m
+# 24h Format: hours:minutes
+Time: @1:@2=Heure: @1:@2
+
+# meters
+m=m
+# meters per second
+m/s=m/s
+
+# @1 and @3 will be replaced by number, @2 and @4 will be replaced by speed units
+# "hor." = "horizontal"; "vert." = "vertical"
+Speed: hor.: @1 @2, vert.: @3 @4=Vitesse: hor.: @1 @2, vert.: @3 @4
+
+# awards
+Master of Orienteering=Maître navigateur
+Craft a quadcorder.=Construit un radionavigateur.
+
+# Tooltips / short helptexts
+Shows your horizontal coordinates=Affiche les coordonnées horizontales
+Shows your yaw=Affiche le lacet
+Shows your pitch=Affiche le tangage
+Shows your coordinates, yaw, pitch, time, speed and enables minimap=Affiche les coordonnées, lacet, tangage, heure, vitesse et l'aperçu de la carte
+Shows the time=Affiche l'heure
+Shows your speed=Affiche la vitesse
+Allows using the minimap=Permet de voir l'aperçu de la carte
+Allows using the minimap and radar=Permet l'aperçu de la carte et le radar
+Shows your coordinates, yaw and the time=Affiche les coordonnées, le lacet et l'heure
+Shows your elevation=Affiche la hauteur
+
+# Help texts
+It shows you your yaw (horizontal viewing angle) in degrees.=Affiche le lacet (angle de vision horizontale).
+It shows you your pitch (vertical viewing angle) in degrees.=Affiche le tangage (angle de vision vertical).
+It shows you your current elevation (Y).=Affiche la hauteur actuelle (Y).
+It shows you the coordinates of your current position in the horizontal plane (X and Z).=Affiche les coordonnées de la position actuelle sur le plan horizontal.
+The GPS device shows you your coordinates (X, Y and Z), your yaw (horizontal viewing angle) and the time.=Le GPS affiche les coordonnées (X, Y, et Z), le lacet (direction horizontale) ainsi que l'heure.
+It shows you your current horizontal (“hor.”) and vertical (“ver.”) speed in meters per second, where one meter is the side length of a single cube.=Affiche les vitesses de déplacement horizontale ("hor.") et verticale ("ver.") en mètre par seconde. Un mètre équivaut à la dimension d'un cube.
+It shows you the current time.=Affiche l'heure du jour actuelle.
+This is the ultimate orientieering tool. It shows you your coordinates (X, Y and Z), shows your yaw and pitch (horizontal and vertical viewing angles), the current time, your current speed and it enables you to access the minimap.=Ceci est l'outil ultime pour la navigation. Il affiche les coordonnées (X, Y, et Z), le lacet et le tangage (angles de vision à l'horizontale et à la verticale), l'heure actuelle, votre vitesse actuelle et permet l'aperçu de la carte.
+Binoculars allow you to zoom.=Les jumelles permettent de voir au loin.
+
+Put this tool in your hotbar to see the data it provides.=Placer cet outil dans la barre d'accès rapide pour afficher les données de navigation qu'il fourni.
+Put the watch in your hotbar to see the time. Punch to toggle between the 24-hour and 12-hour display.=Placer la montre dans la barre d'accès rapide pour afficher l'heure. Frapper (bouton de souris gauche) pour basculer entre l'affichage 12h ou 24h.
+Put this tool in your hotbar to make use of its functionality. Punch to toggle between 24-hour and 12-hour display for the time feature.=Placer cet outil dans la barre d'accès rapide pour permettre l'utilisation de ses fonctionalités. Frapper (bouton de souris gauche) pour basculer entre l'affichage 12h ou 24h.
+
+The radar mapper is a device that combines a map with a radar. It unlocks both the surface mode and radar mode of the minimap.=Le radar cartographique est un outil qui combine une carte avec un radar. Il permet l'aperçu de la surface de la carte, en plus de l'aperçu en mode radar.
+If you put a radar mapper in your hotbar, you will be able to access the minimap. Press the “minimap” key to view the minimap.=Mettre le radar cartographique dans la barre d'accès rapide permettra d'utiliser l'aperçu de la carte. Appuyer sur la touche "minimap" pour voir l'aperçu.
+The map allows you to view a minimap of the area around you.=La carte permet de voir un aperçu des alentours.
+If you put a map in your hotbar, you will be able to access the minimap (only surface mode). Press the “minimap” key to view the minimap.=Mettre la carte dans la barre d'accès rapide permettra d'utiliser l'aperçu de la carte (seulement la vue de surface). Appuyer sur la touche "minimap" pour voir l'aperçu.
