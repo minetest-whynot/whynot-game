@@ -322,7 +322,7 @@ awards.register_award("whynot_furnace", {
 awards.register_award("whynot_max_depth", {
 	title = S("Dig deeper"),
 	description = S("Keep digging until you reach these depths."),
-	--icon = "whynot_awards_hoe.png",
+	icon = awards_combine_with_frame("3,3=whynot_awards_arrow.png^[resize:82x82^[transformR270", "25,25=default_tool_diamondpick.png^[resize:36x36"),
 	requires = {"whynot_stone"},
 	trigger = {
 		type = "max",
@@ -335,7 +335,7 @@ awards.register_award("whynot_max_depth", {
 awards.register_award("whynot_max_altitude", {
 	title = S("Fly higher"),
 	description = S("Fly higher and soar to new heights"),
-	--icon = "whynot_awards_hoe.png",
+	icon = awards_combine_with_frame("3,3=whynot_awards_arrow.png^[resize:82x82^[transformR90", "25,25=supercub.png^[resize:36x36"),
 	requires = {},
 	trigger = {
 		type = "max",
@@ -348,7 +348,7 @@ awards.register_award("whynot_max_altitude", {
 awards.register_award("whynot_max_distance", {
 	title = S("Travel further"),
 	description = S("Sail the high seas and and explore lands far far away."),
-	--icon = "whynot_awards_hoe.png",
+	icon = awards_combine_with_frame("3,3=whynot_awards_arrow.png^[resize:82x82", "22,22=boats_inventory.png^[resize:40x40"),
 	requires = {"whynot_simple_boat"},
 	trigger = {
 		type = "max",
@@ -439,7 +439,7 @@ awards.register_award("whynot_steel", {
 awards.register_award("whynot_supercub", {
 	title = S("Craft an airplane"),
 	description = S("Why not have airplanes? Build a Supercub and travel at high speeds and soar to new heights!"),
-	icon = awards_combine_with_frame("supercub.png.png"),
+	icon = awards_combine_with_frame("supercub.png"),
 	requires = {"whynot_bronze", "whynot_steel", "awards_diamond_ore"},
 	trigger = {
 		type = "craft",
