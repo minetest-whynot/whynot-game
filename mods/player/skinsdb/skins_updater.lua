@@ -50,9 +50,9 @@ end
 local root_url = "http://skinsdb.terraqueststudios.net"
 local page_url = root_url .. "/api/v1/content?client=mod&page=%i" -- [1] = Page#
 
-local download_path = skins.modpath
-local meta_path = download_path .. "/meta/"
-local skins_path = download_path .. "/textures/"
+local mod_path = skins.modpath
+local meta_path = mod_path .. "/meta/"
+local skins_path = mod_path .. "/textures/"
 
 -- Fancy debug wrapper to download an URL
 local function fetch_url(url, callback)
@@ -80,22 +80,14 @@ local function unsafe_file_write(path, contents)
 end
 
 -- Takes a valid skin table from the Skins Database and saves it
-local function save_single_skin(skin)
+local function safe_single_skin(skin)
 	local meta = {
 		skin.name,
 		skin.author,
 		skin.license
 	}
 
-	local name = "character." .. skin.id
-	do
-		local legacy_name = "character_" .. skin.id
-		local fh = ie.io.open(skins_path .. legacy_name .. ".png", "r")
-		-- Use the old name if either the texture ...
-		if fh then
-			name = legacy_name
-		end
-	end
+	local name =  "character" .. skins.fsep .. skin.id
 
 	-- core.safe_file_write does not work here
 	unsafe_file_write(
@@ -136,7 +128,7 @@ internal.fetch_function = function(pages_total, start_page, len)
 				assert(skin.id ~= "")
 
 				if skin.id ~= 1 then -- Skin 1 is bundled with skinsdb
-					save_single_skin(skin)
+					safe_single_skin(skin)
 				end
 			end
 
