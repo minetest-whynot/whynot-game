@@ -274,7 +274,7 @@ awards.register_award("whynot_stone",{
 	requires = {"whynot_tools"},
 	trigger = {
 		type = "dig",
-		node = "group:stone",
+		node = "default:stone",
 		target = 1,
 	},
 })
