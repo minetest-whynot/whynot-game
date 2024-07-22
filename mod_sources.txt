@@ -172,7 +172,7 @@ origin https://github.com/minetest-mods/meseor (fetch)
 Mod: mapgen/meseor
 
 origin https://codeberg.org/Dacmot/minetest_mapgen_config.git (fetch)
-* c183a55212346ea9bab3ad3e00a0186a550211e1 Many corrections and adjustments of ore depth
+* 085d115af45986defe6edc623b82c49ddb3ef054 Tweak the mountain top biome
 Mod: mapgen/minetest_mapgen_config
 
 origin https://github.com/minetest-mirrors/pbj_pup.git (fetch)

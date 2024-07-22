@@ -26,17 +26,6 @@ local function copy_biome(def, variant_suffix)
     local def = table.copy(def or minetest.registered_biomes[old_name])
     def.name = old_name.."_"..variant_suffix
 
-    -- for _, decor in pairs(minetest.registered_decorations) do
-    --     if decor.biomes then
-    --         for _, biome in pairs(decor.biomes) do
-    --             if (biome == old_name) then
-    --                 table.insert(decor.biomes, def.name)
-    --                 break
-    --             end
-    --         end
-    --     end
-    -- end
-
     return def
 end
 
@@ -52,9 +41,11 @@ local floatlands_biomes_ymax = tonumber(Mapgen_conf.get_setting("mapgen_conf.flo
 local floatlands_biomes_exclusions = Mapgen_conf.get_setting("mapgen_conf.floatlands_biomes_exclusions", "tundra icesheet cold_desert grassland_dunes snowy_grassland")
 
 minetest.log("info", "Mapgen config: modifying biomes...")
-for name, def in pairs(minetest.registered_biomes) do
 
-    minetest.unregister_biome(name)
+local rbiomes = table.copy(minetest.registered_biomes)
+minetest.clear_registered_biomes()
+
+for name, def in pairs(rbiomes) do
 
     -- Last layer before mountain tops
     if (def.y_max >= lower_atmosphere_biome_ymax) then
@@ -78,6 +69,10 @@ for name, def in pairs(minetest.registered_biomes) do
 
         else
             -- Create mountain tops by re-purposing tundra_highland
+            def.node_top = "default:ice"
+            def.depth_top = 1
+            def.node_filler = "default:snowblock"
+            def.depth_filler = 3
             def.y_max = lower_atmosphere_biome_ymax - 1
             def.y_min = mountaintops_altitude
         end
