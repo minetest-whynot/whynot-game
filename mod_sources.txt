@@ -228,7 +228,7 @@ origin https://codeberg.org/Wuzzy/minetest_hbarmor.git (fetch)
 Mod: player/hbarmor
 
 origin https://codeberg.org/Wuzzy/minetest_hbhunger.git (fetch)
-* f5c6c945a87ae9ec548eb0fa2ead1bbf9398c5dd Version 1.1.4
+* 3cb245c1499b185ee46ea801afff432d2b3454ad Version 1.1.6
 Mod: player/hbhunger
 
 origin https://github.com/minetest-mods/hbsprint (fetch)
@@ -252,7 +252,7 @@ origin https://repo.or.cz/minetest_show_wielded_item.git (fetch)
 Mod: player/show_wielded_item
 
 origin https://github.com/minetest-mods/skinsdb (fetch)
-* b7cd514cea0c5592ef110ea2b136b8eb703ad8ff API: make skins.register_skin public (#106)
+* df62f2042d061bfb963f35429d8193935d6cb9f4 skinlist: avoid 'Too many open files' errors
 Mod: player/skinsdb
 
 origin https://github.com/bell07/minetest-smart_sfinv (fetch)
