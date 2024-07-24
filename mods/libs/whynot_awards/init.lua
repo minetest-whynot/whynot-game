@@ -274,7 +274,7 @@ awards.register_award("whynot_stone",{
 	requires = {"whynot_tools"},
 	trigger = {
 		type = "dig",
-		node = "default:stone",
+		node = "group:stone",
 		target = 1,
 	},
 })
@@ -388,10 +388,10 @@ awards.register_award("whynot_mine_tin", {
 	title = S("Mine tin"),
 	description = S("Tin is one of the first metal you'll encounter when digging down. Smelt it in a furnace to form ingots. Then combine it with copper to make bronze."),
 	icon = awards_combine_with_frame(minetest.inventorycube("default_stone.png^default_mineral_tin.png")),
-	requires = {"whynot_stone"},
+	requires = {"whynot_tools"},
 	trigger = {
 		type = "dig",
-		item = "default:stone_with_tin",
+		node = "default:stone_with_tin",
 		target = 1
 	}
 })
@@ -401,10 +401,10 @@ awards.register_award("whynot_mine_copper", {
 	title = S("Mine copper"),
 	description = S("Copper is one of the first metal you'll encounter when digging down. Smelt it in a furnace to form ingots. Then combine it with tin to make bronze."),
 	icon = awards_combine_with_frame(minetest.inventorycube("default_stone.png^default_mineral_copper.png")),
-	requires = {"whynot_stone"},
+	requires = {"whynot_tools"},
 	trigger = {
 		type = "dig",
-		item = "default:stone_with_copper",
+		node = "default:stone_with_copper",
 		target = 1
 	}
 })
