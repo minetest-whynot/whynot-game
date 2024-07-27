@@ -264,7 +264,11 @@ if (minetest.get_modpath("farming") and minetest.global_exists("farming") and fa
             minetest.override_item(name, {
                 on_use = function(itemstack, user, pointed_thing)
                     awards.notify_plow_soil(user)
-                    return base_on_use(itemstack, user, pointed_thing)
+                    if base_on_use then
+                        return base_on_use(itemstack, user, pointed_thing)
+                    else
+                        return nil
+                    end
                 end
             })
         end
@@ -287,9 +291,13 @@ if (minetest.get_modpath("farming") and minetest.global_exists("farming") and fa
             local base_on_place = reg_item.on_place
             minetest.override_item(seed_name, {
                 on_place = function(itemstack, placer, pointed_thing)
-                    base_on_place(itemstack, placer, pointed_thing)
                     awards.notify_place(placer, itemstack:get_name())
                     check_action_with_item_in_collection("plant_crops", "place", itemstack:get_name(), registered_seeds, placer)
+                    if base_on_place then
+                        return base_on_place(itemstack, placer, pointed_thing)
+                    else
+                        return itemstack:take_item(1)
+                    end
                 end
             })
         end
