@@ -3,12 +3,12 @@
 --License: General Public License, version 3 or later
 --Original Work Copyright (C) 2016 cd2 (cdqwertz) <cdqwertz@gmail.com>
 --Modified Work Copyright (C) 2017 Vitalie Ciubotaru <vitalie at ciubotaru dot tk>
---Modified Work Copyright (C) 2018 - 2023 Lokrates
+--Modified Work Copyright (C) 2018 - 2024 Lokrates
 --Modified Work Copyright (C) 2018 naturefreshmilk
 --Modified Work Copyright (C) 2019 OgelGames
 --Modified Work Copyright (C) 2020 6r1d
 --Modified Work Copyright (C) 2021 nixnoxus
-
+--Modified Work Copyright (C) 2021 Niklp09
 
 -- Load support for MT game translation.
 local S = minetest.get_translator("biofuel")
@@ -36,7 +36,7 @@ end
 
 
 minetest.log('action', 'MOD: Biofuel ' .. "loading...")
-biofuel_version = '0.8'
+biofuel_version = '0.9'
 
 food_fuel = minetest.settings:get_bool("food_fuel")				-- Enables the conversion of food into fuel (settingtypes.txt)
 if food_fuel == nil then food_fuel = false end 					-- default false
@@ -52,12 +52,16 @@ biomass.convertible_nodes = {
 							'default:bush_stem', 'default:pine_bush_stem', 'default:acacia_bush_stem',						-- default bush stem
 							'farming:cotton', 'farming:string', 'farming:wheat', 'farming:straw',							-- farming
 							'farming:hemp_leaf', 'farming:hemp_block', 'farming:hemp_fibre', 'farming:hemp_rope', 			-- farming_redo hemp
-							'farming:barley', 'farming:jackolantern',
+							'farming:mint_leaf','farming:garlic', 'farming:peas', 'farming:pepper', 						-- farming_redo
+							'farming:barley', 'farming:jackolantern', 'farming:rye', 'farming:oat', 'farming:rice', 
 							'default:papyrus', 'default:dry_shrub', 'default:marram_grass_1', 'default:sand_with_kelp',		-- default
 							'pooper:poop_turd', 'pooper:poop_pile',															-- pooper
 							'cucina_vegana:flax', 'cucina_vegana:flax_roasted', 'cucina_vegana:sunflower',					-- cucina_vegana
-							'cucina_vegana:soy', 'cucina_vegana:chives', 
-							'vines:vines', 'vines:rope', 'vines:rope_block',												-- Vines
+							'cucina_vegana:soy', 'cucina_vegana:chives', 'cucina_vegana:corn', 'cucina_vegana:chili',
+							'cucina_vegana:onion', 'cucina_vegana:banana', 'cucina_vegana:carrot', 'cucina_vegana:garlic',
+							'cucina_vegana:potato', 'cucina_vegana:tomato', 'cucina_vegana:cucumber', 'cucina_vegana:strawberry',
+							'cucina_vegana:vine_grape', 'cucina_vegana:coffee_beans_raw',
+							'vines:vines', 'vines:vine', 'vines:rope', 'vines:rope_block',									-- Vines
 							'trunks:moss_plain_0', 'trunks:moss_with_fungus_0', 'trunks:twig_1', 
 							'bushes:BushLeaves1', 'bushes:BushLeaves2', 
 							'dryplants:grass', 'dryplants:hay', 'dryplants:reed', 'dryplants:reedmace_sapling', 'dryplants:wetreed',
@@ -66,18 +70,22 @@ biomass.convertible_nodes = {
 
 biomass.convertible_food = {
 							'farming:bread', 'farming:flour',																-- default food
-							'farming:mint_leaf','farming:garlic', 'farming:peas',											-- farming_redo crops
-							'farming:pepper', 'farming:pineapple', 'farming:pineapple_ring', 'farming:potato',
-							'farming:rye', 'farming:oat', 'farming:rice', 'farming:rice_flour', 'farming:blueberry_pie',
+							'farming:pineapple', 'farming:pineapple_ring', 'farming:potato',
+							'farming:rice_flour', 'farming:blueberry_pie',
 							'farming:bread_multigrain', 'farming:flour_multigrain', 'farming:baked_potato',					-- farming_redo
 							'farming:beetroot_soup', 'farming:bread_slice', 'farming:chili_bowl', 'farming:chocolate_block',
 							'farming:chocolate_dark', 'farming:cookie', 'farming:corn_cob', 'farming:cornstarch',
 							'farming:muffin_blueberry', 'farming:pea_soup', 'farming:potato_salad', 'farming:pumpkin_bread',
 							'farming:pumpkin_dough', 'farming:rhubarb_pie', 'farming:rice_bread', 'farming:toast',
 							'farming:toast_sandwich', 'farming:garlic_braid', 'farming:onion_soup', 
-							'farming:sugar', 'farming:turkish_delight', 'farming:garlic_bread', 'farming:donut',			-- farming_redo food
+							'farming:sugar', 'farming:turkish_delight', 'farming:garlic_bread', 'farming:donut',
 							'farming:donut_chocolate', 'farming:donut_apple', 'farming:porridge', 'farming:jaffa_cake',
-							'farming:apple_pie', 'farming:pasta', 'farming:spaghetti', 'farming:bibimbap',
+							'farming:apple_pie', 'farming:pasta', 'farming:spaghetti', 'farming:bibimbap', 'farming:flan',
+							'farming:tofu', 'farming:gyoza', 'farming:mochi', 'farming:salad', 'farming:burger', 'farming:paella',
+							'farming:caramel', 'farming:onigiri', 'farming:popcorn', 'farming:sugar_cube', 'farming:carrot_gold',
+							'farming:tofu_cooked', 'farming:tomato_soup', 'farming:cheese_vegan', 'farming:chili_powder',
+							'farming:potato_omelet', 'farming:mac_and_cheese', 'farming:gingerbread_man', 'farming:sunflower_bread',
+							'farming:spanish_potatoes', 'farming:sunflower_seeds_toasted', 
 							'wine:agave_syrup', 																			-- Wine
 							'cucina_vegana:asparagus', 'cucina_vegana:asparagus_hollandaise', 								-- cucina_vegana
 							'cucina_vegana:asparagus_hollandaise_cooked', 'cucina_vegana:asparagus_rice', 'cucina_vegana:asparagus_rice_cooked',

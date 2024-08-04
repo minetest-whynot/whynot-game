@@ -1,4 +1,5 @@
 # textdomain: biofuel
+A Minetest Mod to produce biofuel from unused plants.=Minetest 改造，利用未使用的植物生產生質燃料
 progress: @1%=進度：@1
 To start fuel production add biomass =請加入有機物以開始製作生物燃料
 Biofuel Refinery=生物燃料製造機

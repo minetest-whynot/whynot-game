@@ -80,3 +80,11 @@ New Screenshots (Lokrates)
 
 add reverse Recipes (Lokrates)
 
+Version 0.9
+-----------
+Make "bottle_output" a local variable (Niklp09)
+
+ru Translation added (Cpyte-Engine-Developer)
+
+Updates for Farming_redo and Cucina_vegana	(Lokrates)
+

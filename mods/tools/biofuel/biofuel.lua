@@ -101,16 +101,20 @@ register_biofuel("wine:bottle_tequila", 40)
 register_biofuel("wine:bottle_bourbon", 40)
 register_biofuel("wine:bottle_sake", 40)
 register_biofuel("wine:bottle_vodka", 40)
+register_biofuel("wine:bottle_brandy", 40)
+register_biofuel("wine:bottle_cointreau", 40)
 
 --Cucina_Vegana
 register_biofuel("cucina_vegana:sunflower_seeds_oil")
 register_biofuel("cucina_vegana:flax_seed_oil")
 register_biofuel("cucina_vegana:lettuce_oil")
 register_biofuel("cucina_vegana:peanut_oil")
+register_biofuel("cucina_vegana:corn_oil")
 
 --Farming_Redo
 register_biofuel("farming:bottle_ethanol")
 register_biofuel("farming:hemp_oil")
+register_biofuel("farming:sunflower_oil")
 
 
 --Basic Materials
