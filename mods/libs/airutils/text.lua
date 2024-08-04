@@ -234,33 +234,42 @@ function airutils.convert_text_to_texture(text, default_color, horizontal_aligme
     text = text or ""
     default_color = default_color or 0
     horizontal_aligment = horizontal_aligment or 3
-	local font_size
-	local line_width
-	local line_height
-	local char_width
-	local colorbgw
-    local chars_per_line
-	local widemult
+    if not signs_lib then return "" end
+	local font_size = 16
+	local line_width = 1
+	local line_height = 1
+	local char_width = 1
+	local colorbgw = ""
+    local chars_per_line = 21
+	local widemult = 0.5
     local count = 0
     --text = string.sub(text,1,max_lenght)
     text, count = clamp_characters(text, max_lenght)
 
     if count <= 10 then
-        widemult = 0.75
-	    font_size = 32
-        chars_per_line = 10
-	    line_width = math.floor(signs_lib.avgwidth32 * chars_per_line) * (horizontal_aligment * widemult)
-	    line_height = signs_lib.lineheight32
-	    char_width = signs_lib.charwidth32
-	    colorbgw = signs_lib.colorbgw32
+        if signs_lib.avgwidth32 then
+            widemult = 0.75
+	        font_size = 32
+            chars_per_line = 10
+	        line_width = math.floor(signs_lib.avgwidth32 * chars_per_line) * (horizontal_aligment * widemult)
+	        line_height = signs_lib.lineheight32
+	        char_width = signs_lib.charwidth32
+	        colorbgw = signs_lib.colorbgw32
+        else
+            return ""
+        end
     else
-        widemult = 0.5
-	    font_size = 16
-        chars_per_line = 21
-	    line_width = math.floor(signs_lib.avgwidth16 * chars_per_line) * (horizontal_aligment * widemult)
-	    line_height = signs_lib.lineheight16
-	    char_width = signs_lib.charwidth16
-	    colorbgw = signs_lib.colorbgw16
+        if signs_lib.avgwidth16 then
+            widemult = 0.5
+	        font_size = 16
+            chars_per_line = 21
+	        line_width = math.floor(signs_lib.avgwidth16 * chars_per_line) * (horizontal_aligment * widemult)
+	        line_height = signs_lib.lineheight16
+	        char_width = signs_lib.charwidth16
+	        colorbgw = signs_lib.colorbgw16
+        else
+            return ""
+        end
     end
 
 	local texture = { ("[combine:%dx%d"):format(line_width, line_height) }

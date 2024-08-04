@@ -99,6 +99,23 @@ function airutils.attach(self, player, instructor_mode)
     sit_player(player, name)
 end
 
+local function do_attach(self, player, slot)
+    if slot == 0 then return end
+    if self._passengers[slot] == nil then
+        local name = player:get_player_name()
+        --minetest.chat_send_all(self.driver_name)
+        self._passengers[slot] = name
+        airutils.seat_create(self, slot)
+        player:set_attach(self._passengers_base[slot], "", {x = 0, y = 0, z = 0}, {x = 0, y = 0, z = 0})
+
+        local eye_y = -4
+        if airutils.detect_player_api(player) == 1 then
+            eye_y = 2.5
+        end
+        player:set_eye_offset({x = 0, y = eye_y, z = 2}, {x = 0, y = 3, z = -30})
+        sit_player(player, name)
+    end
+end
 
 function airutils.dettachPlayer(self, player)
     local name = self.driver_name
@@ -1221,24 +1238,6 @@ function airutils.flap_operate(self, player)
             fade = 0.0,
             pitch = 0.7,
         }, true)
-    end
-end
-
-local function do_attach(self, player, slot)
-    if slot == 0 then return end
-    if self._passengers[slot] == nil then
-        local name = player:get_player_name()
-        --minetest.chat_send_all(self.driver_name)
-        self._passengers[slot] = name
-        airutils.seat_create(self, slot)
-        player:set_attach(self._passengers_base[slot], "", {x = 0, y = 0, z = 0}, {x = 0, y = 0, z = 0})
-
-        local eye_y = -4
-        if airutils.detect_player_api(player) == 1 then
-            eye_y = 2.5
-        end
-        player:set_eye_offset({x = 0, y = eye_y, z = 2}, {x = 0, y = 3, z = -30})
-        sit_player(player, name)
     end
 end
 
