@@ -27,6 +27,7 @@ ambience.add_set(set_name, def)
         'positions' position data for every node found
         'head_node' name of node at player head level
         'feet_node' nameof node at player foot level
+        'biome' name of biome at current position
 
 This will let you add a set or sounds with the frequency it's used and check
 function for it to play.  If ephemeral is true then no handler will be used and sound will be played in background alongside other sounds.
@@ -80,7 +81,7 @@ Additional Commands
 Two volume commands have been added to set sound and music volume:
 
 /svol (0.1 to 1.0)
-/mvol (0.1 to 1.0) -- 0 can be used to stop music from playing when it begins
+/mvol (0.1 to 1.0) -- 0 can be used to stop music curently playing
 
 
 Music
@@ -88,4 +89,5 @@ Music
 
 Music can be stored in the sounds folder either on server or locally and so long
 as it is named 'ambience_music.1', 'ambience_music.2' etc. then it will select
-a song randomly at midnight and play player.
+a song randomly to play every 20 minutes.
+

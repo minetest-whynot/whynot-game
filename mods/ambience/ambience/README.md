@@ -21,5 +21,6 @@ Based on Immersive Sounds .36 mod by Neuromancer and optimized to run on servers
 - 1.6 - Finding env_sounds disables water and lava sets, added 'ambience_water_move' flag to override water walking sounds, use eye level for head node.
 - 1.7 - Music will play every 20-30 minutes if found, use '/mvol 0' to stop playing music or disable in-game.
 - 1.8 - Players can set induvidual volume for sound and music which is saved.
+- 1.9 - Tidy code, refactor music playing, add biome name to sound_check.
 
 Code license: MIT

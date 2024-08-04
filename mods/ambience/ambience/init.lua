@@ -4,8 +4,8 @@ ambience = {}
 -- settings
 local SOUNDVOLUME = 1.0
 local MUSICVOLUME = 0.6
+local MUSICINTERVAL = 60 * 20
 local play_music = minetest.settings:get_bool("ambience_music") ~= false
-local pplus = minetest.get_modpath("playerplus")
 local radius = 6
 local playing = {}
 local sound_sets = {} -- all the sounds and their settings
@@ -97,20 +97,14 @@ minetest.register_on_joinplayer(function(player)
 	if player then
 
 		local name = player:get_player_name()
-
-		playing[name] = {music = -1}
-
-		local mvol, svol
 		local meta = player:get_meta()
 
-		mvol = meta:get_string("ambience.mvol")
-		svol = meta:get_string("ambience.svol")
-
-		mvol = tonumber(mvol) or MUSICVOLUME
-		svol = tonumber(svol) or SOUNDVOLUME
-
-		playing[name].mvol = mvol
-		playing[name].svol = svol
+		playing[name] = {
+			mvol = tonumber(meta:get_string("ambience.mvol")) or MUSICVOLUME,
+			svol = tonumber(meta:get_string("ambience.svol")) or SOUNDVOLUME,
+			music = 0,
+			music_handler = nil
+		}
 	end
 end)
 
@@ -126,33 +120,23 @@ end)
 -- plays music and selects sound set
 local get_ambience = function(player, tod, name)
 
-	-- play server or local music if music enabled and music not already playing
-	if play_music
-	and playing[name] and playing[name].music < 0
-	and playing[name].mvol > 0 then
+	-- if enabled and not already playing, play local/server music on interval check
+	if play_music and playing[name] and playing[name].mvol > 0 then
 
-		-- count backwards
-		playing[name].music = playing[name].music -1
+		-- increase music interval
+		playing[name].music = playing[name].music + 1
 
-		-- play music every 20 minutes
-		if playing[name].music < -(60 * 20) then
+		-- play music on interval check
+		if playing[name].music > MUSICINTERVAL and playing[name].music_handler == nil then
 
-			playing[name].music = minetest.sound_play("ambience_music", {
+			playing[name].music_handler = minetest.sound_play("ambience_music", {
 				to_player = name,
 				gain = playing[name].mvol
 			})
 
-			-- reset music timer after 10 minutes
-			minetest.after(60 * 10, function(name)
-
-				if playing[name] then
-					playing[name].music = -1
-				end
-			end, name)
+			playing[name].music = 0 -- reset interval
 		end
-
---print("-- music count", playing[name].music)
-
+--print("-- music timer", playing[name].music .. "/" .. MUSICINTERVAL)
 	end
 
 	-- get foot and head level nodes at player position
@@ -160,15 +144,13 @@ local get_ambience = function(player, tod, name)
 	local prop = player:get_properties()
 	local eyeh = prop.eye_height or 1.47 -- eye level with fallback
 
-	pos.y = pos.y + eyeh
+	pos.y = pos.y + eyeh -- head level
 
-	local nod_head = pplus and name and playerplus[name]
-			and playerplus[name].nod_head or minetest.get_node(pos).name
+	local nod_head = minetest.get_node(pos).name
 
 	pos.y = (pos.y - eyeh) + 0.2 -- foot level
 
-	local nod_feet = pplus and name and playerplus[name]
-			and playerplus[name].nod_feet or minetest.get_node(pos).name
+	local nod_feet = minetest.get_node(pos).name
 
 	pos.y = pos.y - 0.2 -- reset pos
 
@@ -177,12 +159,16 @@ local get_ambience = function(player, tod, name)
 		{x = pos.x - radius, y = pos.y - radius, z = pos.z - radius},
 		{x = pos.x + radius, y = pos.y + radius, z = pos.z + radius}, set_nodes)
 
-	-- loop through sets in order and choose first that meets it's conditions
+	-- loop through sets in order and choose first that meets conditions set
 	for n = 1, #sound_set_order do
 
 		local set = sound_sets[ sound_set_order[n] ]
 
 		if set and set.sound_check then
+
+			-- get biome data
+			local bdata = minetest.get_biome_data(pos)
+			local biome = bdata and minetest.get_biome_name(bdata.biome) or ""
 
 			-- pass settings to function for condition check
 			local set_name, gain = set.sound_check({
@@ -192,7 +178,8 @@ local get_ambience = function(player, tod, name)
 				totals = cn,
 				positions = ps,
 				head_node = nod_head,
-				feet_node = nod_feet
+				feet_node = nod_feet,
+				biome = biome
 			})
 
 			-- if conditions met return set name and gain value
@@ -202,7 +189,7 @@ local get_ambience = function(player, tod, name)
 		end
 	end
 
-	return nil, nil -- ADDED
+	return nil, nil
 end
 
 
@@ -225,11 +212,7 @@ minetest.register_globalstep(function(dtime)
 
 		player_name = player:get_player_name()
 
---local t1 = os.clock()
-
 		local set_name, MORE_GAIN = get_ambience(player, tod, player_name)
-
---print(string.format("elapsed time: %.4f\n", os.clock() - t1))
 
 		ok = playing[player_name] -- everything starts off ok if player found
 
@@ -258,9 +241,8 @@ minetest.register_globalstep(function(dtime)
 		-- if chance is lower than set frequency then select set
 		if ok and set_name and chance < sound_sets[set_name].frequency then
 
-			-- choose random sound from set
-			number = random(#sound_sets[set_name].sounds)
-			ambience = sound_sets[set_name].sounds[number]
+			number = random(#sound_sets[set_name].sounds) -- choose random sound from set
+			ambience = sound_sets[set_name].sounds[number] -- grab sound information
 
 			-- play sound
 			handler = minetest.sound_play(ambience.name, {
@@ -342,13 +324,14 @@ minetest.register_chatcommand("mvol", {
 
 		local mvol = tonumber(param) or playing[name].mvol
 
-		-- ability to stop music by setting volume to 0
-		if mvol == 0 and playing[name].music
-		and playing[name].music >= 0 then
+		-- stop music currently playing by setting volume to 0
+		if mvol == 0 and playing[name].music_handler then
 
-			minetest.sound_stop(playing[name].music)
+			minetest.sound_stop(playing[name].music_handler)
 
-			playing[name].music = -1
+			playing[name].music_handler = nil
+
+			minetest.chat_send_player(name, S("Music stopped!"))
 		end
 
 		if mvol < 0 then mvol = 0 end
@@ -371,3 +354,4 @@ dofile(minetest.get_modpath("ambience") .. "/soundsets.lua")
 
 
 print("[MOD] Ambience Lite loaded")
+

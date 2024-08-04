@@ -139,7 +139,7 @@ ambience.add_set("lava", {
 })
 
 else
-	print ("[MOD] Ambience - found env_sounds, flowing water and lava sounds disabled.")
+	print ("[MOD] Ambience - found env_sounds, using for water and lava sounds.")
 end
 
 -- Only add fire sounds set if flame_sound is disabled or fire redo active
@@ -148,9 +148,7 @@ local flame_sound = minetest.settings:get_bool("flame_sound", true)
 local fire_redo = minetest.get_modpath("fire") and fire.mod and fire.mod == "redo"
 
 if flame_sound and not fire_redo then
-
 	print ("[MOD] Ambience - fire sounds not enabled, already active in fire mod.")
-
 else
 
 -- Small fire sound plays when near lower than 9 flames
@@ -214,6 +212,7 @@ ambience.add_set("beach", {
 
 	sounds = {
 		{name = "seagull", length = 4.5, ephemeral = true},
+		{name = "seagull", length = 4.5, pitch = 1.2, ephemeral = true},
 		{name = "beach", length = 13},
 		{name = "gull", length = 1, ephemeral = true},
 		{name = "beach_2", length = 6}
@@ -289,6 +288,8 @@ ambience.add_set("cave", {
 	sounds = {
 		{name = "drippingwater1", length = 1.5, ephemeral = true},
 		{name = "drippingwater2", length = 1.5, ephemeral = true},
+		{name = "drippingwater2", length = 1.5, pitch = 1.2, ephemeral = true},
+		{name = "drippingwater2", length = 1.5, pitch = 1.4, ephemeral = true},
 		{name = "bats", length = 5, ephemeral = true}
 	},
 
@@ -313,7 +314,8 @@ ambience.add_set("jungle", {
 		{name = "deer", length = 7, ephemeral = true},
 		{name = "canadianloon2", length = 14},
 		{name = "bird1", length = 11},
-		{name = "peacock", length = 2, ephemeral = true}
+		{name = "peacock", length = 2, ephemeral = true},
+		{name = "peacock", length = 2, pitch = 1.2, ephemeral = true}
 	},
 
 	nodes = {"default:jungletree"},
@@ -338,7 +340,8 @@ ambience.add_set("jungle_night", {
 		{name = "jungle_night_1", length = 4, ephemeral = true},
 		{name = "jungle_night_2", length = 4, ephemeral = true},
 		{name = "deer", length = 7, ephemeral = true},
-		{name = "frog", length = 1, ephemeral = true}
+		{name = "frog", length = 1, ephemeral = true},
+		{name = "frog", length = 1, pitch = 1.3, ephemeral = true}
 	},
 
 	sound_check = function(def)
@@ -363,10 +366,13 @@ ambience.add_set("day", {
 		{name = "craw", length = 3, ephemeral = true},
 		{name = "bluejay", length = 6, ephemeral = true},
 		{name = "robin", length = 4, ephemeral = true},
+		{name = "robin", length = 4, pitch = 1.2, ephemeral = true},
 		{name = "bird1", length = 11},
 		{name = "bird2", length = 6, ephemeral = true},
 		{name = "crestedlark", length = 6, ephemeral = true},
+		{name = "crestedlark", length = 6, pitch = 1.1, ephemeral = true},
 		{name = "peacock", length = 2, ephemeral = true},
+		{name = "peacock", length = 2, pitch = 1.2, ephemeral = true},
 		{name = "wind", length = 9}
 	},
 
@@ -396,10 +402,12 @@ ambience.add_set("night", {
 
 	sounds = {
 		{name = "hornedowl", length = 2, ephemeral = true},
+		{name = "hornedowl", length = 2, pitch = 1.1, ephemeral = true},
 		{name = "wolves", length = 4, gain = 0.4, ephemeral = true},
 		{name = "cricket", length = 6, ephemeral = true},
 		{name = "deer", length = 7, ephemeral = true},
-		{name = "frog", length = 1, ephemeral = true}
+		{name = "frog", length = 1, ephemeral = true},
+		{name = "frog", length = 1, pitch = 1.2, ephemeral = true}
 	},
 
 	sound_check = function(def)
@@ -426,7 +434,9 @@ ambience.add_set("high_up", {
 
 	sounds = {
 		{name = "desertwind", length = 8},
-		{name = "wind", length = 9}
+		{name = "desertwind", length = 8, pitch = 1.3},
+		{name = "wind", length = 9},
+		{name = "wind", length = 9, pitch = 1.4}
 	},
 
 	nodes = {"default:snowblock"},
@@ -440,3 +450,4 @@ ambience.add_set("high_up", {
 		end
 	end
 })
+
