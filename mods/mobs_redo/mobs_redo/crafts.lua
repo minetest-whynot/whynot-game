@@ -3,6 +3,21 @@ local S = mobs.translate
 local FS = function(...) return minetest.formspec_escape(S(...)) end
 local mc2 = minetest.get_modpath("mcl_core")
 
+-- helper function to add {eatable} group to food items
+function mobs.add_eatable(item, hp)
+
+	local def = minetest.registered_items[item]
+
+	if def then
+
+		local groups = table.copy(def.groups) or {}
+
+		groups.eatable = hp ; groups.flammable = 2
+
+		minetest.override_item(item, {groups = groups})
+	end
+end
+
 -- recipe items
 local items = {
 	paper = mc2 and "mcl_core:paper" or "default:paper",
@@ -48,16 +63,20 @@ minetest.register_craftitem("mobs:meat_raw", {
 	description = S("Raw Meat"),
 	inventory_image = "mobs_meat_raw.png",
 	on_use = minetest.item_eat(3),
-	groups = {food_meat_raw = 1, flammable = 2}
+	groups = {food_meat_raw = 1}
 })
+
+mobs.add_eatable("mobs:meat_raw", 3)
 
 -- cooked meat
 minetest.register_craftitem("mobs:meat", {
 	description = S("Meat"),
 	inventory_image = "mobs_meat.png",
 	on_use = minetest.item_eat(8),
-	groups = {food_meat = 1, flammable = 2}
+	groups = {food_meat = 1}
 })
+
+mobs.add_eatable("mobs:meat", 8)
 
 minetest.register_craft({
 	type = "cooking",
@@ -378,7 +397,9 @@ minetest.register_node("mobs:meatblock", {
 	description = S("Meat Block"),
 	tiles = {"mobs_meat_top.png", "mobs_meat_bottom.png", "mobs_meat_side.png"},
 	paramtype2 = "facedir",
-	groups = {choppy = 1, oddly_breakable_by_hand = 1, flammable = 2, axey = 1, handy = 1},
+	groups = {
+		choppy = 1, oddly_breakable_by_hand = 1, axey = 1, handy = 1
+	},
 	is_ground_content = false,
 	sounds = mod_def and default.node_sound_leaves_defaults(),
 	on_place = minetest.rotate_node,
@@ -386,6 +407,8 @@ minetest.register_node("mobs:meatblock", {
 	_mcl_hardness = 0.8,
 	_mcl_blast_resistance = 1
 })
+
+mobs.add_eatable("mobs:meatblock", 20)
 
 minetest.register_craft({
 	output = "mobs:meatblock",
@@ -401,7 +424,9 @@ minetest.register_node("mobs:meatblock_raw", {
 	description = S("Raw Meat Block"),
 	tiles = {"mobs_meat_raw_top.png", "mobs_meat_raw_bottom.png", "mobs_meat_raw_side.png"},
 	paramtype2 = "facedir",
-	groups = {choppy = 1, oddly_breakable_by_hand = 1, flammable = 2, axey = 1, handy = 1},
+	groups = {
+		choppy = 1, oddly_breakable_by_hand = 1, axey = 1, handy = 1
+	},
 	is_ground_content = false,
 	sounds = mod_def and default.node_sound_leaves_defaults(),
 	on_place = minetest.rotate_node,
@@ -409,6 +434,8 @@ minetest.register_node("mobs:meatblock_raw", {
 	_mcl_hardness = 0.8,
 	_mcl_blast_resistance = 1
 })
+
+mobs.add_eatable("mobs:meatblock_raw", 20)
 
 minetest.register_craft({
 	output = "mobs:meatblock_raw",

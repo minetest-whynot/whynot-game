@@ -60,6 +60,9 @@ mob_height_fix (Fix Mob Height) bool true
 
 mob_log_spawn (Log Mob Spawning) bool false
 
+#   Mob hearing, when enabled will override minetest.sound_play for mobs to hear
+mobs_can_hear (Enable Mob hearing) bool true
+
 [Pathfinding]
 #    Enable pathfinding (default Enabled)
 mob_pathfinding_enable (Enable pathfinding) bool true

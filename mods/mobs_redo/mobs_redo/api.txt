@@ -345,6 +345,15 @@ enhance mob functionality and have them do many interesting things:
                     active and which has access to all of the self.* variables
                     e.g. (self.health for health or self.standing_in for node
                     status), return with 'false' to skip remainder of mob API.
+   'on_sound'       (self, def) called when mob is inside the hearing distance of
+                    a sound, passes a def table containing:
+      'sound'       the sound being played,
+      'pos'         position sound originated,
+      'gain'        original gain of sound,
+      'distance'    distance of mob from sound source,
+      'loudness'    how loud sound is to mob when calculating gain / distance,
+      'player'      player name sound originated,
+      'object'      object reference sound originated
 
 
 Internal Variables
@@ -819,6 +828,7 @@ External Settings for "minetest.conf"
    'mobs_drop_items'        when false mobs no longer drop items when they die.
    'mobs_griefing'          when false mobs cannot break blocks when using either
                             pathfinding level 2, replace functions or mobs:boom
+   'mobs_can_hear'          True by default, allows mobs to hear sound around them.
                             function.
    'mob_nospawn_range'      Minimum range a mob can spawn near player (def: 12)
    'mob_active_limit'       Number of active mobs in game, 0 for unlimited

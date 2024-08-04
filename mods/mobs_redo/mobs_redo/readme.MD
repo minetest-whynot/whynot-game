@@ -24,6 +24,14 @@ https://forum.minetest.net/viewtopic.php?f=11&t=9917
 
 ## Changelog
 
+### Version 1.62
+
+* Added ability for mobs to hear using self.on_sound() function
+* Added 'mobs_can_hear' setting to turn above feature on/off
+* Added {eatable} group to food items and HP in description
+* Fixed timer bug when attacking
+* Fixed fall damage check when riding mob
+
 ### Version 1.61
 
 * Fixed mob damage when riding mobs
