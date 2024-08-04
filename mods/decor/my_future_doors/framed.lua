@@ -36,7 +36,7 @@ local function add_door(col)
 				{-0.625,     1.4375,-0.5625,  0.625,  1.625,  0.5625}, --top
 			}
 		},
-
+		on_rotate = screwdriver.disallow,
 		on_place = function(itemstack, placer, pointed_thing)
 			local pos1 = pointed_thing.above
 			local pos2 = vector.add(pos1, {x=0,y=1,z=0})
@@ -112,6 +112,7 @@ local function add_door(col)
 				{-0.5, -0.5, -0.5, -0.5, -0.5, -0.5},
 			}
 		},
+		on_rotate = screwdriver.disallow,
 	})
 	minetest.register_node("my_future_doors:door1c_"..col, {
 		tiles = {
@@ -146,6 +147,7 @@ local function add_door(col)
 			}
 		},
 		drop = "my_future_doors:door1a_"..col,
+		on_rotate = screwdriver.disallow,
 		after_place_node = function(pos, placer, itemstack, pointed_thing)
 			local node = minetest.get_node(pos)
 			local timer = minetest.get_node_timer(pos)
@@ -194,6 +196,7 @@ local function add_door(col)
 				{-0.5, -0.5, -0.5, -0.5, -0.5, -0.5},
 			}
 		},
+		on_rotate = screwdriver.disallow,
 	})
 	minetest.register_craft({
 		output = "my_future_doors:door1a_"..col.." 1",

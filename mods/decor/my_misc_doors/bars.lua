@@ -29,6 +29,7 @@ minetest.register_node("my_misc_doors:door2a", {
 			{-0.4375, -0.5, -0.0625, 0.4375, 1.5, 0.0625},
 		}
 	},
+	on_rotate = screwdriver.disallow,
 
 	on_place = function(itemstack, placer, pointed_thing)
 		local pos1 = pointed_thing.above
@@ -117,6 +118,7 @@ minetest.register_node("my_misc_doors:door2b", {
 			{0, 0, 0, 0, 0, 0},
 		}
 	},
+	on_rotate = screwdriver.disallow,
 })
 minetest.register_node("my_misc_doors:door2c", {
 	tiles = {
@@ -148,6 +150,7 @@ minetest.register_node("my_misc_doors:door2c", {
 		}
 	},
 	drop = "my_misc_doors:door2a",
+	on_rotate = screwdriver.disallow,
 	after_place_node = function(pos, placer, itemstack, pointed_thing)
 		local node = minetest.get_node(pos)
 		local timer = minetest.get_node_timer(pos)
@@ -203,6 +206,7 @@ minetest.register_node("my_misc_doors:door2d", {
 			{0, 0, 0, 0, 0, 0},
 		}
 	},
+	on_rotate = screwdriver.disallow,
 })
 minetest.register_craft({
 	output = "my_misc_doors:door2a 1",

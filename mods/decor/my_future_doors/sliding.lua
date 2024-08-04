@@ -147,6 +147,7 @@ local function add_door(doora, doorb, doorc, doord, num, des, recipe)
 				{-0.5, -0.5, -0.0625, 0.5, 1.5, 0.0625}
 			}
 		},
+		on_rotate = screwdriver.disallow,
 
 		on_place = onplace,
 
@@ -179,6 +180,7 @@ local function add_door(doora, doorb, doorc, doord, num, des, recipe)
 				{0, 0, 0, 0, 0, 0},
 			}
 		},
+		on_rotate = screwdriver.disallow,
 	})
 	minetest.register_node(doorc, {
 		tiles = {
@@ -209,6 +211,7 @@ local function add_door(doora, doorb, doorc, doord, num, des, recipe)
 		after_place_node = afterplace,
 		after_destruct = afterdestruct,
 		on_timer = ontimer,
+		on_rotate = screwdriver.disallow,
 	})
 	minetest.register_node(doord, {
 		tiles = {
@@ -235,6 +238,7 @@ local function add_door(doora, doorb, doorc, doord, num, des, recipe)
 				{0, 0, 0, 0, 0, 0},
 			}
 		},
+		on_rotate = screwdriver.disallow,
 	})
 	minetest.register_craft({
 		output = "my_future_doors:door"..num.."a 2",
