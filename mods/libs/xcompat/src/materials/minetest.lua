@@ -75,6 +75,7 @@ local materials = {
     birch_planks = "default:aspen_wood",
     jungle_leaves = "default:jungleleaves",
     bowl = "",
+    stick = "default:stick",
 }
 
 if minetest.registered_items["farming:bowl"] then

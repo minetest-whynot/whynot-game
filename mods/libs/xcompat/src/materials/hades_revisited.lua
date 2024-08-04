@@ -83,6 +83,7 @@ local materials = {
     jungle_leaves = "hades_trees:jungle_leaves",
 --hades has no bowl but you get plate on eat so makes most sense?
     bowl = "hades_food:plate",
+    stick = "hades_core:stick",
 }
 
 if minetest.get_modpath("hades_bucket") then

@@ -66,7 +66,7 @@ minetest.register_chatcommand("xcompat_test_sounds", {
         for gameid, game_sounds in pairs(sounds) do
             for sound, _ in pairs(reference_sounds) do
                 if not game_sounds[sound] then
-                    minetest.chat_send_player(name, "Missing material: "..sound.." in game: "..gameid)
+                    minetest.chat_send_player(name, "Missing sound: "..sound.." in game: "..gameid)
                 end
             end
         end
