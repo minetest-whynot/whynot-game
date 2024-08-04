@@ -1,6 +1,6 @@
 
 origin https://github.com/minetest-mirrors/ambience.git (fetch)
-* fd51c658047198d9d3ef780363f57452bc8dae9a add spanish locale (thanks Panquesito7)
+* c1a076ec8c5e378b64174087b2adc928457712e9 add biome name to sound_check, add additional sounds with pitch change
 Mod: ambience/ambience
 
 origin https://github.com/minetest-mods/lightning (fetch)
@@ -48,7 +48,7 @@ origin https://github.com/mt-mods/home_workshop_modpack (fetch)
 Mod: decor/home_workshop_modpack
 
 origin https://github.com/mt-mods/homedecor_modpack (fetch)
-* 1ef4837abed38a7abedf5f8144773454a44e2548 Use `initial_properties` for entities (#74)
+* 8f796e43af0b2e614395f7a928200f78f5e66f20 Replace deprecated `get_metadata()` call (#75)
 Mod: decor/homedecor_modpack
 
 origin https://codeberg.org/Dacmot/minetest-laptop.git (fetch)
@@ -60,7 +60,7 @@ origin https://repo.or.cz/minetest_mtg_plus.git (fetch)
 Mod: decor/mtg_plus
 
 origin https://github.com/minetest-mods/mydoors (fetch)
-* e23201a2512787bbf80d3eec1b0206823e93c5b2 Add mesecons support for locked doors (#35)
+* 79547ede2608c009dc132bb69c1c636d204e0f2e Disallow rotation of various doors (#36)
 Mod: decor/mydoors
 
 origin https://github.com/minetest-mods/myroofs (fetch)
@@ -124,7 +124,7 @@ origin https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin https://github.com/APercy/airutils.git (fetch)
-* 0beb2b1077e2d5a2f93241e33da7e86f736758a0 fixed painting by car painter
+* f2e9c4881ced5335375f9a8a9e2c0f9bf5e6755a fix issue #19
 Mod: libs/airutils
 
 origin https://repo.or.cz/minetest_doc.git (fetch)
@@ -156,7 +156,7 @@ origin https://github.com/dacmot/sfcraftguide.git (fetch)
 Mod: libs/sfcraftguide
 
 origin https://github.com/mt-mods/xcompat.git (fetch)
-* cc2da8a2a616003ee728aebd32638a007d6b73c4 Add cyan dye into xcompat.materials (#31)
+* 688f12a970183c96b126a96a9a5ae715eb8a371c add material.stick (#36)
 Mod: libs/xcompat
 
 origin https://github.com/Treer/cloudlands/ (fetch)
@@ -184,7 +184,7 @@ origin https://github.com/GreenXenith/tac_nayn (fetch)
 Mod: mapgen/tac_nayn
 
 origin https://github.com/minetest-mods/mesecons (fetch)
-* a82bac7b5bb335e9b595ed3e004adbc18b7b7971 [mesecons_doors] Improve code quality and fix Voxelgarden support (#671)
+* d52eac5a4afec3d68f39224a8da541b3ba52b561 Add documentation for Microcontroller (#603)
 Mod: mesecons/mesecons
 
 origin https://github.com/minetest/minetest_game (fetch)
@@ -200,7 +200,7 @@ origin https://github.com/minetest-mirrors/mobs_monster.git (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin https://github.com/minetest-mirrors/mobs_redo.git (fetch)
-* fc7269cc8c0e50015e16c28569028be45787ebd8 remove fallback node from inventory and update version
+* 1f6867bf25535afa6b89cb953e9a9e0527f9b321 alternative to using on_punch for hearing ability, remove food xp desc
 Mod: mobs_redo/mobs_redo
 
 origin https://github.com/minetest-mods/3d_armor (fetch)
@@ -268,11 +268,11 @@ origin https://codeberg.org/minenux/minetest-mod-backpacks.git (fetch)
 Mod: tools/backpacks
 
 origin https://github.com/Lokrates/Biofuel.git (fetch)
-* b40d43dea7d8d2c64817ad8832993a87d369d12f Merge pull request #25 from Niklp09/master
+* 0385884e58d4a1c4aad650cb70c2fa617e697689 Update 20240801
 Mod: tools/biofuel
 
 origin https://github.com/minetest-mirrors/bonemeal.git (fetch)
-* 2a4ddd96db12397ec293cb9b68d92c9bb84580ed fix recipe type
+* 0d852bff0ab1c870520f51d15d761aefe466e294 add coniferous litter deco, fix df_caverns saplings
 Mod: tools/bonemeal
 
 origin https://github.com/SmallJoker/boost_cart (fetch)
