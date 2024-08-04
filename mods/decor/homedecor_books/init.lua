@@ -81,7 +81,7 @@ for _, c in ipairs(bookcolors) do
 				name = "homedecor:book_"..color,
 				param2 = fdir,
 			})
-			local text = itemstack:get_metadata() or ""
+			local text = itemstack:get_meta():get_string("")
 			local meta = minetest.get_meta(pos)
 			local data = minetest.deserialize(text) or {}
 			if type(data) ~= "table" then
