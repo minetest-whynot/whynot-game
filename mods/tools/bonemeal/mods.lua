@@ -86,7 +86,9 @@ if minetest.get_modpath("default") then
 		{"default:sand", {}, {"default:dry_shrub", "", "", ""} },
 		{"default:desert_sand", {}, {"default:dry_shrub", "", "", ""} },
 		{"default:silver_sand", {}, {"default:dry_shrub", "", "", ""} },
-		{"default:dirt_with_rainforest_litter", {}, {"default:junglegrass", "", "", ""}}
+		{"default:dirt_with_rainforest_litter", {}, {"default:junglegrass", "", "", ""} },
+		{"default:dirt_with_coniferous_litter", {}, {"default:fern_1", "default:fern_2",
+			"default:fern_3", "", "", ""}}
 	})
 end
 
@@ -294,29 +296,42 @@ end
 if minetest.get_modpath("df_trees") then
 
 	local function spore_tree_fix(pos)
-		minetest.set_node(pos, {name = "air"})
-		df_trees.spawn_spore_tree(pos)
+		minetest.remove_node(pos) ; df_trees.spawn_spore_tree(pos)
 	end
 
 	local function fungiwood_fix(pos)
-		minetest.set_node(pos, {name = "air"})
-		df_trees.spawn_fungiwood(pos)
+		minetest.remove_node(pos) ; df_trees.spawn_fungiwood(pos)
 	end
 
 	local function tunnel_fix(pos)
-		minetest.set_node(pos, {name = "air"})
-		df_trees.spawn_tunnel_tube(pos)
+		minetest.remove_node(pos) ; df_trees.spawn_tunnel_tube(pos)
+	end
+
+	local function black_cap_fix(pos)
+		minetest.remove_node(pos) ; df_trees.spawn_black_cap(pos)
+	end
+
+	local function goblin_cap_fix(pos)
+		minetest.remove_node(pos) ; df_trees.spawn_goblin_cap(pos)
+	end
+
+	local function tower_cap_fix(pos)
+		minetest.remove_node(pos) ; df_trees.spawn_tower_cap(pos)
+	end
+
+	local function nether_cap_fix(pos)
+		minetest.remove_node(pos) ; df_trees.spawn_nether_cap(pos)
 	end
 
 	bonemeal:add_sapling({
-		{"df_trees:black_cap_sapling", df_trees.spawn_black_cap, "soil", true},
+		{"df_trees:black_cap_sapling", black_cap_fix, "soil", true},
 		{"df_trees:fungiwood_sapling", fungiwood_fix, "soil", true},
-		{"df_trees:goblin_cap_sapling", df_trees.spawn_goblin_cap, "soil", true},
+		{"df_trees:goblin_cap_sapling", goblin_cap_fix, "soil", true},
 		{"df_trees:spore_tree_sapling", spore_tree_fix, "soil", true},
-		{"df_trees:tower_cap_sapling", df_trees.spawn_tower_cap, "soil", true},
+		{"df_trees:tower_cap_sapling", tower_cap_fix, "soil", true},
 		{"df_trees:tunnel_tube_sapling", tunnel_fix, "soil", true},
-		{"df_trees:nether_cap_sapling", df_trees.spawn_nether_cap, "group:nether_cap", true},
-		{"df_trees:nether_cap_sapling", df_trees.spawn_nether_cap, "group:cools_lava", true}
+		{"df_trees:nether_cap_sapling", nether_cap_fix, "group:nether_cap", true},
+		{"df_trees:nether_cap_sapling", nether_cap_fix, "group:cools_lava", true}
 	})
 end
 
