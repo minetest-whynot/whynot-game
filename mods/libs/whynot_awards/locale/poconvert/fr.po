@@ -3,27 +3,28 @@ msgstr ""
 "Project-Id-Version: Minetest textdomain whynot_awards x.x.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"PO-Revision-Date: 2024-08-06 23:20+0000\n"
+"Last-Translator: Olivier Dragon <odragon@videotron.ca>\n"
+"Language-Team: French <https://hosted.weblate.org/projects/"
+"whynot-game-for-minetest/whynot-awards/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: \n"
-"X-Generator: mtt_convert 0.1.0\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.7-dev\n"
 
 msgid "@1/@2 collected"
-msgstr "@1/@2 collectés"
+msgstr "@1/@2 amassé"
 
 msgid "Collect: @1"
-msgstr "Collecte: @1"
+msgstr "Amasser: @1"
 
 msgid "Collect: @1×@2"
-msgstr "Collecter : @1×@2"
+msgstr "Amasser : @1×@2"
 
 msgid "Collect @1 items."
-msgstr "Recueillir @1 articles."
+msgstr "Amasser @1 articles."
 
 msgid "@1/@2 eaten"
 msgstr "@1/@2 mangé(s)"
@@ -207,7 +208,9 @@ msgid "Craft a furnace"
 msgstr "Construire un fourneau"
 
 msgid "Furnaces are central to advancing in this game. Use them to smelt ores, cook food, or both!"
-msgstr "Les fourneaux sont primordial pour avancer dans ce jeu. Utilisez-les pour faire fondre les minerais, cuisiner ou les deux!"
+msgstr ""
+"Les fourneaux sont primordiaux pour avancer dans ce jeu. Utilisez-les pour "
+"faire fondre les minerais, cuisiner ou les deux!"
 
 msgid "Dig deeper"
 msgstr "Creuser plus creux"
@@ -234,7 +237,7 @@ msgid "Make some delicious chocolate. It can be eaten or incorporated in various
 msgstr "Faites du délicieux chocolat. Il peut être consommé ou incorporé dans diverses recettes pour faire des friandises succulentes. Vous pouvez même en construire une armure comestible !"
 
 msgid "Craft a well"
-msgstr "Fabriquer un puit"
+msgstr "Fabriquer un puits"
 
 msgid "Wells are not just pretty! They are very useful as an infinite source of water."
 msgstr "Les puits ne sont pas juste jolies ! Ils sont très utiles comme une source d'eau infinie."
@@ -258,7 +261,7 @@ msgid "Bronze is the first versatile metal you'll be able to use to craft better
 msgstr "Le bronze est le premier métal polyvalent que vous pourrez utiliser pour fabriquer de meilleurs outils, armure et autres articles."
 
 msgid "Craft steel"
-msgstr "Frabriquer de l'acier"
+msgstr "Fabriquer de l'acier"
 
 msgid "Steel is stronger than bronze. Use it to upgrade your tools and armor."
 msgstr "L'acier est plus fort que le bronze. Utilisez-le pour mettre à niveau vos outils et votre armure."
@@ -268,4 +271,3 @@ msgstr "Fabriquer un avion"
 
 msgid "Why not have airplanes? Build a Supercub and travel at high speeds and soar to new heights!"
 msgstr "Pourquoi pas des avions ? Construisez un Supercub pour voyagez à haute vitesse et atteindre de nouvelles hauteurs!"
-
