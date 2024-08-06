@@ -21,6 +21,8 @@ If you find bugs in mods - please report them directly to the upstream.
 
 Whynot related issues, new mod suggestions or if the bugs cannot be solved by upstream, please open issue in repository https://github.com/minetest-whynot/whynot-game.
 
+Help with translation is most welcome. Visit our weblate site for more info : https://hosted.weblate.org/projects/whynot-game-for-minetest/
+
 ## Whynot Rules for mods
 
 ### 1 don't take over the game
