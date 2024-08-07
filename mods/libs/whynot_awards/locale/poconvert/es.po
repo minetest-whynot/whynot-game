@@ -3,39 +3,40 @@ msgstr ""
 "Project-Id-Version: Minetest textdomain whynot_awards x.x.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2024-08-08 00:09+0000\n"
+"Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
+"Language-Team: Spanish <https://hosted.weblate.org/projects/"
+"whynot-game-for-minetest/whynot-awards/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: mtt_convert 0.1.0\n"
+"X-Generator: Weblate 5.7-dev\n"
 
 msgid "@1/@2 collected"
 msgstr ""
 
 msgid "Collect: @1"
-msgstr ""
+msgstr "Reúne: @1"
 
 msgid "Collect: @1×@2"
-msgstr ""
+msgstr "Reúne: @1×@2"
 
 msgid "Collect @1 items."
-msgstr ""
+msgstr "Reúne @1 objetos."
 
 msgid "@1/@2 eaten"
-msgstr ""
+msgstr "@1/@2 se comen"
 
 msgid "Eat @1 wild food"
-msgstr ""
+msgstr "Comer @1 silvestre"
 
 msgid "Eat @1×@2 different wild foods"
-msgstr ""
+msgstr "Come @1×@2 alimentos silvestres diferentes"
 
 msgid "@1/@2 reached"
-msgstr ""
+msgstr "@1/@2 alcanzado"
 
 msgid "Reach @1"
 msgstr ""
@@ -44,25 +45,25 @@ msgid "Reach @1 @2"
 msgstr ""
 
 msgid "@1/@2 grains found"
-msgstr ""
+msgstr "@1/@2 cereales encontrados"
 
 msgid "Find @1 wild seed"
-msgstr ""
+msgstr "Encontrar @1 semilla silvestre"
 
 msgid "Find @1×@2 different wild seeds"
-msgstr ""
+msgstr "Encontrar @1×@2 semillas silvestres diferentes"
 
 msgid "@1/@2 fruits and vegetables found"
-msgstr ""
+msgstr "@1/@2 frutas y verduras encontradas"
 
 msgid "Find @1 fruit or vegetable"
-msgstr ""
+msgstr "Encontrar @1 fruta o verdura"
 
 msgid "Find @1×@2 different fruits and vegetables"
-msgstr ""
+msgstr "Encuentra @1×@2 frutas y verduras diferentes"
 
 msgid "@1/@2 plowed squares of soil"
-msgstr ""
+msgstr "@1/@2 suelo arado"
 
 msgid "Plow @1 square of soil"
 msgstr ""
@@ -71,7 +72,7 @@ msgid "Plow @1×@2 squares of soil"
 msgstr ""
 
 msgid "@1/@2 different crop types planted"
-msgstr ""
+msgstr "@1/@2 diferentes tipos de cultivos plantados"
 
 msgid "Planted @1 crop"
 msgstr ""
@@ -88,46 +89,52 @@ msgid "You are embarking on a Minetest journey. Whether it's for the thrill of s
 msgstr ""
 
 msgid "Gather and eat wild foodstuff"
-msgstr ""
+msgstr "Recolectar y comer alimentos silvestres"
 
 msgid "You need to eat to survive. The easiest food to find are wild mushrooms, blueberries and apples. Find and eat one of each to help secure your survival."
 msgstr ""
 
 msgid "Gather wild seeds"
-msgstr ""
+msgstr "Recolectar semillas silvestres"
 
 msgid "Harvesting various types of grass can sometimes give you seeds. These seeds can the be planted and farmed for food and materials."
 msgstr ""
+"A veces, cosechar varios tipos de hierba puede darte semillas. Estas "
+"semillas se pueden plantar y cultivar para obtener alimentos y materiales."
 
 msgid "Gather wild fruits and vegetables"
-msgstr ""
+msgstr "Recolectar frutas y verduras silvestres"
 
 msgid "More common in temperate regions, but also found in various climates, wild fruits and vegetables can be harvested. Use them for food, or re-plant them as crops for agriculture."
 msgstr ""
 
 msgid "Cut a tree"
-msgstr ""
+msgstr "Talar un árbol"
 
 msgid "Cut down a tree, karate-style."
-msgstr ""
+msgstr "Tala un árbol, al estilo kárate."
 
 msgid "Craft planks"
-msgstr ""
+msgstr "Planchas artesanales"
 
 msgid "Chop some wood to make planks."
-msgstr ""
+msgstr "Corta madera para hacer tablones."
 
 msgid "Craft a raft"
-msgstr ""
+msgstr "Construye una balsa"
 
 msgid "A simple boat will let you travel on water faster than walking on ground."
 msgstr ""
+"Un simple bote te permitirá viajar por el agua más rápido que caminando por "
+"tierra."
 
 msgid "Craft a chest"
-msgstr ""
+msgstr "Construye un cofre"
 
 msgid "Chests are the most basic form of storage. They are very useful to gather more items than can fit in your character's inventory."
 msgstr ""
+"Los cofres son la forma más básica de almacenamiento. Son muy útiles para "
+"reunir más objetos de los que caben en el inventario de tu personaje."
 
 msgid "Craft sticks"
 msgstr ""
@@ -136,7 +143,7 @@ msgid "Split planks to make sticks."
 msgstr ""
 
 msgid "Craft wood tools"
-msgstr ""
+msgstr "Herramientas artesanales de madera"
 
 msgid "The first tools you can craft are made of wood. They are not very strong or durable, but will enable you to start mining rock and minerals to move up to better ones."
 msgstr ""
@@ -152,15 +159,17 @@ msgstr ""
 
 msgid "After your garden is prepared and plowed, it is time to plant. Find different crops and seeds and plant them in your garden to become self sufficient."
 msgstr ""
+"Una vez preparado y arado el huerto, es hora de plantar. Busca diferentes "
+"cultivos y semillas y plántalos en tu huerto para ser autosuficiente."
 
 msgid "Grave digger"
-msgstr ""
+msgstr "Enterrador"
 
 msgid "Dig dirt to find bones."
-msgstr ""
+msgstr "Cava la tierra para encontrar huesos."
 
 msgid "Collect cotton"
-msgstr ""
+msgstr "Recolectar algodón"
 
 msgid "Wild cotton can be found the savanna. Alternatively you can plant, grow and harvest seeds found in the jungle."
 msgstr ""
@@ -172,13 +181,17 @@ msgid "Wool is a very useful material for crafting garments, beds, and many othe
 msgstr ""
 
 msgid "Craft a backpack"
-msgstr ""
+msgstr "Crea una mochila"
 
 msgid "Backpacks are very useful to help carry more stuff than the basic inventory lets you. It allows you keep mining longer and carry extra tools and food everywhere you go. Use dyed wools to create different coloured ones."
 msgstr ""
+"Las mochilas son muy útiles para llevar más cosas de las que te permite el "
+"inventario básico. Te permiten seguir minando durante más tiempo y llevar "
+"herramientas y comida extra allá donde vayas. Usa lanas teñidas para crear "
+"otras de distintos colores."
 
 msgid "Find your new home"
-msgstr ""
+msgstr "Encuentra tu nuevo hogar"
 
 msgid "Your home is the place with your bed. If you sleep once in bed, you always respawn at this position in case of death."
 msgstr ""
@@ -194,30 +207,37 @@ msgstr ""
 
 msgid "Coal is a common mineral found underground. Among other things, it can be used to craft torches for lighting your way, or as combustible in furnaces."
 msgstr ""
+"El carbón es un mineral común que se encuentra bajo tierra. Entre otras "
+"cosas, se puede utilizar para fabricar antorchas que iluminen el camino o "
+"como combustible en hornos."
 
 msgid "Craft a campfire"
-msgstr ""
+msgstr "Hacer una hoguera"
 
 msgid "If night falls and you have not found coal, build a campfire to make some light."
 msgstr ""
+"Si cae la noche y no has encontrado carbón, enciende una hoguera para tener "
+"algo de luz."
 
 msgid "Craft a furnace"
-msgstr ""
+msgstr "Construye un horno"
 
 msgid "Furnaces are central to advancing in this game. Use them to smelt ores, cook food, or both!"
 msgstr ""
+"Los hornos son fundamentales para avanzar en este juego. Úsalos para fundir "
+"minerales, cocinar alimentos o ambas cosas."
 
 msgid "Dig deeper"
-msgstr ""
+msgstr "Profundizar"
 
 msgid "Keep digging until you reach these depths."
 msgstr ""
 
 msgid "Fly higher"
-msgstr ""
+msgstr "Vuela más alto"
 
 msgid "Fly higher and soar to new heights"
-msgstr ""
+msgstr "Vuela más alto y alcanza nuevas alturas"
 
 msgid "Travel further"
 msgstr ""
@@ -226,13 +246,13 @@ msgid "Sail the high seas and and explore lands far far away."
 msgstr ""
 
 msgid "Craft chocolate"
-msgstr ""
+msgstr "Chocolate artesanal"
 
 msgid "Make some delicious chocolate. It can be eaten or incorporated in various recipes to make succulent treats. You can even build an edible armour from it!"
 msgstr ""
 
 msgid "Craft a well"
-msgstr ""
+msgstr "Construye un pozo"
 
 msgid "Wells are not just pretty! They are very useful as an infinite source of water."
 msgstr ""
@@ -248,21 +268,26 @@ msgstr ""
 
 msgid "Copper is one of the first metal you'll encounter when digging down. Smelt it in a furnace to form ingots. Then combine it with tin to make bronze."
 msgstr ""
+"El cobre es uno de los primeros metales que encontrarás al excavar. Fúndelo "
+"en un horno para formar lingotes. Luego combínalo con estaño para hacer "
+"bronce."
 
 msgid "Craft bronze"
-msgstr ""
+msgstr "Bronce artesanal"
 
 msgid "Bronze is the first versatile metal you'll be able to use to craft better tools, armor and other items."
 msgstr ""
+"El bronce es el primer metal versátil que podrás utilizar para fabricar "
+"mejores herramientas, armaduras y otros objetos."
 
 msgid "Craft steel"
-msgstr ""
+msgstr "Acero artesanal"
 
 msgid "Steel is stronger than bronze. Use it to upgrade your tools and armor."
 msgstr ""
 
 msgid "Craft an airplane"
-msgstr ""
+msgstr "Construye un avión"
 
 msgid "Why not have airplanes? Build a Supercub and travel at high speeds and soar to new heights!"
 msgstr ""
