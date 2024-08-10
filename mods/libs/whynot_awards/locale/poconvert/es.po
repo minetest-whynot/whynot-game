@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Minetest textdomain whynot_awards x.x.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2024-08-08 00:09+0000\n"
-"Last-Translator: Olivier Dragon <odragon@videotron.ca>\n"
+"PO-Revision-Date: 2024-08-11 11:09+0000\n"
+"Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/"
 "whynot-game-for-minetest/whynot-awards/es/>\n"
 "Language: es\n"
@@ -39,10 +39,10 @@ msgid "@1/@2 reached"
 msgstr "@1/@2 alcanzado"
 
 msgid "Reach @1"
-msgstr ""
+msgstr "Alcanzar @1"
 
 msgid "Reach @1 @2"
-msgstr ""
+msgstr "Alcanzar @1 @2"
 
 msgid "@1/@2 grains found"
 msgstr "@1/@2 cereales encontrados"
@@ -66,33 +66,42 @@ msgid "@1/@2 plowed squares of soil"
 msgstr "@1/@2 suelo arado"
 
 msgid "Plow @1 square of soil"
-msgstr ""
+msgstr "Arado @1 cuadrado de tierra"
 
 msgid "Plow @1×@2 squares of soil"
-msgstr ""
+msgstr "Arar @1×@2 cuadros de tierra"
 
 msgid "@1/@2 different crop types planted"
 msgstr "@1/@2 diferentes tipos de cultivos plantados"
 
 msgid "Planted @1 crop"
-msgstr ""
+msgstr "Plantado @1 cultivo"
 
 msgid "Planted @1×@2 different types of crops"
-msgstr ""
+msgstr "Plantado(s) @1×@2 tipos diferentes de cultivos"
 
 msgid "Welcome to the WhyNot? game"
-msgstr ""
+msgstr "Bienvenid@ al juego WhyNot?"
 
 msgid "You are embarking on a Minetest journey. Whether it's for the thrill of survival, the satisfaction of exploration, or the arts of crafting and creative designs, we hope you will find it enjoyable.\n"
 "\n"
 "Make sure to check your recipe book, awards or the help button in your inventory for more information and guidance."
 msgstr ""
+"Te embarcas en un viaje con Minetest. Ya sea por la emoción de la "
+"supervivencia, la satisfacción de la exploración o el arte de la artesanía y "
+"los diseños creativos, esperamos que lo disfrutes.\n"
+"\n"
+"Asegúrate de consultar el recetario, los premios o el botón de ayuda de tu "
+"inventario para obtener más información y orientación."
 
 msgid "Gather and eat wild foodstuff"
 msgstr "Recolectar y comer alimentos silvestres"
 
 msgid "You need to eat to survive. The easiest food to find are wild mushrooms, blueberries and apples. Find and eat one of each to help secure your survival."
 msgstr ""
+"Necesitas comer para sobrevivir. Los alimentos más fáciles de encontrar son "
+"las setas silvestres, los arándanos y las manzanas. Encuentra y come uno de "
+"cada para asegurar tu supervivencia."
 
 msgid "Gather wild seeds"
 msgstr "Recolectar semillas silvestres"
@@ -107,6 +116,9 @@ msgstr "Recolectar frutas y verduras silvestres"
 
 msgid "More common in temperate regions, but also found in various climates, wild fruits and vegetables can be harvested. Use them for food, or re-plant them as crops for agriculture."
 msgstr ""
+"Más comunes en las regiones templadas, pero también presentes en diversos "
+"climas, las frutas y verduras silvestres pueden recolectarse. Utilízalas "
+"como alimento o replántalas como cultivos para la agricultura."
 
 msgid "Cut a tree"
 msgstr "Talar un árbol"
@@ -137,25 +149,30 @@ msgstr ""
 "reunir más objetos de los que caben en el inventario de tu personaje."
 
 msgid "Craft sticks"
-msgstr ""
+msgstr "Palillos de madera"
 
 msgid "Split planks to make sticks."
-msgstr ""
+msgstr "Partir tablones para hacer palos."
 
 msgid "Craft wood tools"
 msgstr "Herramientas artesanales de madera"
 
 msgid "The first tools you can craft are made of wood. They are not very strong or durable, but will enable you to start mining rock and minerals to move up to better ones."
 msgstr ""
+"Las primeras herramientas que puedes fabricar son de madera. No son muy "
+"resistentes ni duraderas, pero te permitirán empezar a extraer rocas y "
+"minerales para ir mejorando."
 
 msgid "Plow soil"
-msgstr ""
+msgstr "Arar la tierra"
 
 msgid "To grow your own food, you must first plow soil. Make sure to be close to water so that the crops can grow."
 msgstr ""
+"Para cultivar tus propios alimentos, primero debes arar la tierra. Asegúrate "
+"de estar cerca del agua para que los cultivos puedan crecer."
 
 msgid "Plant crops"
-msgstr ""
+msgstr "Cultivar"
 
 msgid "After your garden is prepared and plowed, it is time to plant. Find different crops and seeds and plant them in your garden to become self sufficient."
 msgstr ""
@@ -173,12 +190,16 @@ msgstr "Recolectar algodón"
 
 msgid "Wild cotton can be found the savanna. Alternatively you can plant, grow and harvest seeds found in the jungle."
 msgstr ""
+"Puedes encontrar algodón silvestre en la sabana. También puedes plantar, "
+"cultivar y cosechar semillas en la selva."
 
 msgid "Craft wool"
-msgstr ""
+msgstr "Lana artesanal"
 
 msgid "Wool is a very useful material for crafting garments, beds, and many other items."
 msgstr ""
+"La lana es un material muy útil para confeccionar prendas, camas y muchos "
+"otros artículos."
 
 msgid "Craft a backpack"
 msgstr "Crea una mochila"
@@ -195,15 +216,20 @@ msgstr "Encuentra tu nuevo hogar"
 
 msgid "Your home is the place with your bed. If you sleep once in bed, you always respawn at this position in case of death."
 msgstr ""
+"Tu casa es el lugar donde está tu cama. Si duermes una vez en la cama, "
+"siempre reaparecerás en esta posición en caso de  que mueras."
 
 msgid "Mine stone"
-msgstr ""
+msgstr "Piedra de la mina"
 
 msgid "Using a wood pick axe, start digging through stone. The cobblestone obtained from digging stone can then be used to craft sturdier tools."
 msgstr ""
+"Con un pico de madera, empieza a excavar en la piedra. El adoquín obtenido "
+"al excavar la piedra se puede utilizar para fabricar herramientas más "
+"resistentes."
 
 msgid "Mine coal"
-msgstr ""
+msgstr "Mina de carbón"
 
 msgid "Coal is a common mineral found underground. Among other things, it can be used to craft torches for lighting your way, or as combustible in furnaces."
 msgstr ""
@@ -231,7 +257,7 @@ msgid "Dig deeper"
 msgstr "Profundizar"
 
 msgid "Keep digging until you reach these depths."
-msgstr ""
+msgstr "Sigue cavando hasta que llegues a esta profundidad."
 
 msgid "Fly higher"
 msgstr "Vuela más alto"
@@ -240,31 +266,38 @@ msgid "Fly higher and soar to new heights"
 msgstr "Vuela más alto y alcanza nuevas alturas"
 
 msgid "Travel further"
-msgstr ""
+msgstr "Viajar más lejos"
 
 msgid "Sail the high seas and and explore lands far far away."
-msgstr ""
+msgstr "Navega por alta mar y explora tierras muy lejanas."
 
 msgid "Craft chocolate"
 msgstr "Chocolate artesanal"
 
 msgid "Make some delicious chocolate. It can be eaten or incorporated in various recipes to make succulent treats. You can even build an edible armour from it!"
 msgstr ""
+"Prepara un delicioso chocolate. Se puede comer o incorporar a varias recetas "
+"para hacer suculentos manjares. ¡Incluso puedes construir una armadura "
+"comestible con él!"
 
 msgid "Craft a well"
 msgstr "Construye un pozo"
 
 msgid "Wells are not just pretty! They are very useful as an infinite source of water."
 msgstr ""
+"¡Los pozos no son sólo bonitos! Son muy útiles como fuente infinita de agua."
 
 msgid "Mine tin"
-msgstr ""
+msgstr "Mina de estaño"
 
 msgid "Tin is one of the first metal you'll encounter when digging down. Smelt it in a furnace to form ingots. Then combine it with copper to make bronze."
 msgstr ""
+"El estaño es uno de los primeros metales que encontrarás al excavar. Fúndelo "
+"en un horno para formar lingotes. Luego combínalo con cobre para hacer "
+"bronce."
 
 msgid "Mine copper"
-msgstr ""
+msgstr "Mina de cobre"
 
 msgid "Copper is one of the first metal you'll encounter when digging down. Smelt it in a furnace to form ingots. Then combine it with tin to make bronze."
 msgstr ""
@@ -285,9 +318,12 @@ msgstr "Acero artesanal"
 
 msgid "Steel is stronger than bronze. Use it to upgrade your tools and armor."
 msgstr ""
+"El acero es más fuerte que el bronce. Úsalo para mejorar tus herramientas y "
+"armaduras."
 
 msgid "Craft an airplane"
 msgstr "Construye un avión"
 
 msgid "Why not have airplanes? Build a Supercub and travel at high speeds and soar to new heights!"
 msgstr ""
+"¿Por qué no tener aviones? ¡Construye un supercubo y viaja a gran velocidad!"
