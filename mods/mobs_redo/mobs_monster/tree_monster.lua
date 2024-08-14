@@ -1,4 +1,6 @@
--- Translation support
+
+-- translation and custom tree monster types
+
 local S = minetest.get_translator("mobs_monster")
 
 local tree_types = {
@@ -44,7 +46,6 @@ local tree_types = {
 	}
 }
 
-
 -- Tree Monster (or Tree Gollum) by PilzAdam
 
 mobs:register_mob("mobs_monster:tree_monster", {
@@ -67,9 +68,7 @@ mobs:register_mob("mobs_monster:tree_monster", {
 	},
 	blood_texture = "default_wood.png",
 	makes_footstep_sound = true,
-	sounds = {
-		random = "mobs_treemonster"
-	},
+	sounds = {random = "mobs_treemonster"},
 	walk_velocity = 1,
 	run_velocity = 3,
 	jump = true,
@@ -96,16 +95,11 @@ mobs:register_mob("mobs_monster:tree_monster", {
 --		{"all", 0}, -- only weapons on list deal damage
 	},
 	animation = {
-		speed_normal = 15,
-		speed_run = 15,
-		stand_start = 0,
-		stand_end = 24,
-		walk_start = 25,
-		walk_end = 47,
-		run_start = 48,
-		run_end = 62,
-		punch_start = 48,
-		punch_end = 62
+		speed_normal = 15, speed_run = 15,
+		stand_start = 0, stand_end = 24,
+		walk_start = 25, walk_end = 47,
+		run_start = 48, run_end = 62,
+		punch_start = 48, punch_end = 62
 	},
 
 	-- check surrounding nodes and spawn a specific tree monster
@@ -125,11 +119,10 @@ mobs:register_mob("mobs_monster:tree_monster", {
 				self.base_texture = tmp.skins
 				self.object:set_properties({textures = tmp.skins})
 
-				if tmp.drops then
-					self.drops = tmp.drops
-				end
+				if tmp.drops then self.drops = tmp.drops end
 
 				if tmp.explode then
+
 					self.attack_type = "explode"
 					self.explosion_radius = 3
 					self.explosion_timer = 3
@@ -156,6 +149,7 @@ mobs:register_mob("mobs_monster:tree_monster", {
 	end
 })
 
+-- where to spawn
 
 if not mobs.custom_spawn_monster then
 
@@ -169,8 +163,10 @@ if not mobs.custom_spawn_monster then
 	})
 end
 
+-- spawn egg
 
 mobs:register_egg("mobs_monster:tree_monster", S("Tree Monster"), "default_tree_top.png", 1)
 
+-- compatibility with older mobs mod
 
-mobs:alias_mob("mobs:tree_monster", "mobs_monster:tree_monster") -- compatibility
+mobs:alias_mob("mobs:tree_monster", "mobs_monster:tree_monster")

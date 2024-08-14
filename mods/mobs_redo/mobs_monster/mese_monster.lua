@@ -1,140 +1,139 @@
--- Translation support
+
+-- translation and custom mese monster types
+
 local S = minetest.get_translator("mobs_monster")
 
 local mese_monster_types = {
 
--- mese_monster_red
-{
-	y_min = -20,
-	y_max = -1000,
-	damage = 2,
-	reach = 3,
-	hp_min = 15,
-	hp_max = 25,
-	armor = 80,
-	skins = {"mobs_mese_monster_red.png"},
-	immune_to = {
-		{"default:pick_wood", 0},
-		{"default:shovel_wood", 0},
-		{"default:axe_wood", 0},
-		{"default:sword_wood", 0}
+	{ -- red
+		y_min = -20,
+		y_max = -1000,
+		damage = 2,
+		reach = 3,
+		hp_min = 15,
+		hp_max = 25,
+		armor = 80,
+		skins = {"mobs_mese_monster_red.png"},
+		immune_to = {
+			{"default:pick_wood", 0},
+			{"default:shovel_wood", 0},
+			{"default:axe_wood", 0},
+			{"default:sword_wood", 0}
+		},
+		drops = {
+			{name = "default:mese_crystal", chance = 15, min = 0, max = 1},
+			{name = "default:mese_crystal_fragment", chance = 2, min = 0, max = 1}
+		},
+		arrow_override = function(self)
+			self.velocity = 6
+			self.damage = 2
+		end
 	},
-	drops = {
-		{name = "default:mese_crystal", chance = 15, min = 0, max = 1},
-		{name = "default:mese_crystal_fragment", chance = 2, min = 0, max = 1}
-	},
-	arrow_override = function(self)
-		self.velocity = 6
-		self.damage = 2
-	end
-},
 
--- mese_monster_green
-{
-	y_min = -1001,
-	y_max = -2000,
-	damage = 3,
-	reach = 3,
-	hp_min = 20,
-	hp_max = 30,
-	armor = 75,
-	skins = {"mobs_mese_monster_green.png"},
-	immune_to = {
-		{"default:pick_wood", 0},
-		{"default:shovel_wood", 0},
-		{"default:axe_wood", 0},
-		{"default:sword_wood", 0},
-		{"default:pick_stone", 0},
-		{"default:shovel_stone", 0},
-		{"default:axe_stone", 0},
-		{"default:sword_stone", 0}
+	{ -- green
+		y_min = -1001,
+		y_max = -2000,
+		damage = 3,
+		reach = 3,
+		hp_min = 20,
+		hp_max = 30,
+		armor = 75,
+		skins = {"mobs_mese_monster_green.png"},
+		immune_to = {
+			{"default:pick_wood", 0},
+			{"default:shovel_wood", 0},
+			{"default:axe_wood", 0},
+			{"default:sword_wood", 0},
+			{"default:pick_stone", 0},
+			{"default:shovel_stone", 0},
+			{"default:axe_stone", 0},
+			{"default:sword_stone", 0}
+		},
+		drops = {
+			{name = "default:mese_crystal", chance = 12, min = 0, max = 1},
+			{name = "default:mese_crystal_fragment", chance = 1, min = 0, max = 1}
+		},
+		arrow_override = function(self)
+			self.velocity = 6
+			self.damage = 2
+		end
 	},
-	drops = {
-		{name = "default:mese_crystal", chance = 12, min = 0, max = 1},
-		{name = "default:mese_crystal_fragment", chance = 1, min = 0, max = 1}
-	},
-	arrow_override = function(self)
-		self.velocity = 6
-		self.damage = 2
-	end
-},
 
--- mese_monster_blue
-{
-	y_min = -2001,
-	y_max = -3000,
-	damage = 3,
-	reach = 4,
-	hp_min = 25,
-	hp_max = 35,
-	armor = 70,
-	skins = {"mobs_mese_monster_blue.png"},
-	immune_to = {
-		{"default:pick_wood", 0},
-		{"default:shovel_wood", 0},
-		{"default:axe_wood", 0},
-		{"default:sword_wood", 0},
-		{"default:pick_stone", 0},
-		{"default:shovel_stone", 0},
-		{"default:axe_stone", 0},
-		{"default:sword_stone", 0},
-		{"default:pick_bronze", 0},
-		{"default:shovel_bronze", 0},
-		{"default:axe_bronze", 0},
-		{"default:sword_bronze", 0}
+	{ -- blue
+		y_min = -2001,
+		y_max = -3000,
+		damage = 3,
+		reach = 4,
+		hp_min = 25,
+		hp_max = 35,
+		armor = 70,
+		skins = {"mobs_mese_monster_blue.png"},
+		immune_to = {
+			{"default:pick_wood", 0},
+			{"default:shovel_wood", 0},
+			{"default:axe_wood", 0},
+			{"default:sword_wood", 0},
+			{"default:pick_stone", 0},
+			{"default:shovel_stone", 0},
+			{"default:axe_stone", 0},
+			{"default:sword_stone", 0},
+			{"default:pick_bronze", 0},
+			{"default:shovel_bronze", 0},
+			{"default:axe_bronze", 0},
+			{"default:sword_bronze", 0}
+		},
+		drops = {
+			{name = "default:mese", chance = 15, min = 0, max = 1},
+			{name = "default:mese_crystal", chance = 9, min = 0, max = 2},
+			{name = "default:mese_crystal_fragment", chance = 1, min = 0, max = 2}
+		},
+		arrow_override = function(self)
+			self.velocity = 7
+			self.damage = 3
+		end
 	},
-	drops = {
-		{name = "default:mese", chance = 15, min = 0, max = 1},
-		{name = "default:mese_crystal", chance = 9, min = 0, max = 2},
-		{name = "default:mese_crystal_fragment", chance = 1, min = 0, max = 2}
-	},
-	arrow_override = function(self)
-		self.velocity = 7
-		self.damage = 3
-	end
-},
 
--- mese_monster_purple
-{
-	y_min = -3000,
-	y_max = -31000,
-	damage = 4,
-	reach = 5,
-	hp_min = 30,
-	hp_max = 40,
-	armor = 60,
-	skins = {"mobs_mese_monster_purple.png"},
-	immune_to = {
-		{"default:pick_wood", 0},
-		{"default:shovel_wood", 0},
-		{"default:axe_wood", 0},
-		{"default:sword_wood", 0},
-		{"default:pick_stone", 0},
-		{"default:shovel_stone", 0},
-		{"default:axe_stone", 0},
-		{"default:sword_stone", 0},
-		{"default:pick_bronze", 0},
-		{"default:shovel_bronze", 0},
-		{"default:axe_bronze", 0},
-		{"default:sword_bronze", 0},
-		{"default:pick_steel", 0},
-		{"default:shovel_steel", 0},
-		{"default:axe_steel", 0},
-		{"default:sword_steel", 0}
-	},
-	drops = {
-		{name = "default:mese", chance = 9, min = 0, max = 1},
-		{name = "default:mese_crystal", chance = 6, min = 0, max = 2},
-		{name = "default:mese_crystal_fragment", chance = 1, min = 0, max = 3}
-	},
-	arrow_override = function(self)
-		self.velocity = 8
-		self.damage = 4
-	end
-}}
-
+	{ -- purple
+		y_min = -3000,
+		y_max = -31000,
+		damage = 4,
+		reach = 5,
+		hp_min = 30,
+		hp_max = 40,
+		armor = 60,
+		skins = {"mobs_mese_monster_purple.png"},
+		immune_to = {
+			{"default:pick_wood", 0},
+			{"default:shovel_wood", 0},
+			{"default:axe_wood", 0},
+			{"default:sword_wood", 0},
+			{"default:pick_stone", 0},
+			{"default:shovel_stone", 0},
+			{"default:axe_stone", 0},
+			{"default:sword_stone", 0},
+			{"default:pick_bronze", 0},
+			{"default:shovel_bronze", 0},
+			{"default:axe_bronze", 0},
+			{"default:sword_bronze", 0},
+			{"default:pick_steel", 0},
+			{"default:shovel_steel", 0},
+			{"default:axe_steel", 0},
+			{"default:sword_steel", 0}
+		},
+		drops = {
+			{name = "default:mese", chance = 9, min = 0, max = 1},
+			{name = "default:mese_crystal", chance = 6, min = 0, max = 2},
+			{name = "default:mese_crystal_fragment", chance = 1, min = 0, max = 3}
+		},
+		arrow_override = function(self)
+			self.velocity = 8
+			self.damage = 4
+		end
+	}
+}
 
 -- Mese Monster by SirrobZeroone
+
 mobs:register_mob("mobs_monster:mese_monster", {
 	type = "monster",
 	visual_size = {x = 10, y = 10},  -- Got scale wrong in blender by factor of 10 - S01
@@ -155,9 +154,7 @@ mobs:register_mob("mobs_monster:mese_monster", {
 	collisionbox = {-0.75, -0.5, -0.75, 0.75, 2.5, 0.75},
 	visual = "mesh",
 	mesh = "mobs_mese_monster.b3d",
-	textures = {
-		{"mobs_mese_monster_purple.png"}
-	},
+	textures = {{"mobs_mese_monster_purple.png"}},
 	blood_texture = "default_mese_crystal_fragment.png",
 	makes_footstep_sound = false,
 	sounds = {
@@ -187,36 +184,21 @@ mobs:register_mob("mobs_monster:mese_monster", {
 	lava_damage = 1,
 	light_damage = 0,
 	animation = {
-		speed_normal = 18,
-		speed_run    = 18,
-		walk_start   = 10,
-		walk_end     = 41,
-		walk_speed   = 20,
-		run_start    = 10,
-		run_end      = 41,
-		run_speed    = 30,
-		stand_start  = 60,
-		stand_end    = 83,
-		shoot_start  = 100,
-		shoot_end    = 113,
-		die_start    = 125,
-		die_end      = 141,
-		death_speed  = 25,
-		die_loop     = false,
-		jump_start   = 150 ,
-		jump_end     = 168,
-		jump_loop    = false,
-		punch_start  = 175,
-		punch_end    = 189
+		speed_normal = 18, speed_run = 18,
+		walk_start = 10, walk_end = 41, walk_speed = 20,
+		run_start = 10, run_end = 41, run_speed = 30,
+		stand_start = 60, stand_end = 83,
+		shoot_start = 100, shoot_end = 113,
+		die_start = 125, die_end = 141, death_speed = 25, die_loop = false,
+		jump_start = 150 , jump_end = 168, jump_loop = false,
+		punch_start = 175, punch_end = 189
 	},
 
 	after_activate = function(self, staticdata, def, dtime)
 
 		local tex = self and self.textures and self.textures[1]
 
-		if tex == "zmobs_mese_monster.png" then
-			self.object:remove()
-		end
+		if tex == "zmobs_mese_monster.png" then self.object:remove() end
 	end,
 
 	on_spawn = function(self)
@@ -287,14 +269,15 @@ mobs:register_mob("mobs_monster:mese_monster", {
 	end
 })
 
+-- mese arrow item
 
--- mese arrow (weapon)
 minetest.register_craftitem("mobs_monster:mese_crystal_fragment_arrow", {
 	description = S("Mese Monster Arrow"),
 	inventory_image = "mobs_mese_arrow.png",
 	groups = {not_in_creative_inventory = 1}
 })
 
+-- mese arrow
 
 mobs:register_arrow("mobs_monster:mese_arrow", {
 	visual = "wielditem",
@@ -305,6 +288,7 @@ mobs:register_arrow("mobs_monster:mese_arrow", {
 	damage = 2,
 
 	hit_player = function(self, player)
+
 		player:punch(self.object, 1.0, {
 			full_punch_interval = 1.0,
 			damage_groups = {fleshy = self.damage}
@@ -312,6 +296,7 @@ mobs:register_arrow("mobs_monster:mese_arrow", {
 	end,
 
 	hit_mob = function(self, player)
+
 		player:punch(self.object, 1.0, {
 			full_punch_interval = 1.0,
 			damage_groups = {fleshy = self.damage}
@@ -322,6 +307,7 @@ mobs:register_arrow("mobs_monster:mese_arrow", {
 	end
 })
 
+-- where to spawn
 
 if not mobs.custom_spawn_monster then
 
@@ -335,14 +321,16 @@ if not mobs.custom_spawn_monster then
 	})
 end
 
+-- spawn egg
 
 mobs:register_egg("mobs_monster:mese_monster", S("Mese Monster"), "default_mese_block.png", 1)
 
+-- compatibility with older mobs mod
 
-mobs:alias_mob("mobs:mese_monster", "mobs_monster:mese_monster") -- compatiblity
+mobs:alias_mob("mobs:mese_monster", "mobs_monster:mese_monster")
 
+-- 9x mese crystal fragments = 1x mese crystal recipe
 
--- 9x mese crystal fragments = 1x mese crystal
 local f = "default:mese_crystal_fragment"
 
 minetest.register_craft({

@@ -1,4 +1,6 @@
--- Translation support
+
+-- translation and custom stone monster types
+
 local S = minetest.get_translator("mobs_monster")
 
 local stone_types = {
@@ -22,7 +24,6 @@ local stone_types = {
 	}
 }
 
-
 -- Stone Monster by PilzAdam
 
 mobs:register_mob("mobs_monster:stone_monster", {
@@ -43,9 +44,7 @@ mobs:register_mob("mobs_monster:stone_monster", {
 		{"mobs_stone_monster2.png"} -- by AMMOnym
 	},
 	makes_footstep_sound = true,
-	sounds = {
-		random = "mobs_stonemonster"
-	},
+	sounds = {random = "mobs_stonemonster"},
 	walk_velocity = 1,
 	run_velocity = 2,
 	jump_height = 0,
@@ -61,16 +60,11 @@ mobs:register_mob("mobs_monster:stone_monster", {
 	lava_damage = 1,
 	light_damage = 0,
 	animation = {
-		speed_normal = 15,
-		speed_run = 15,
-		stand_start = 0,
-		stand_end = 14,
-		walk_start = 15,
-		walk_end = 38,
-		run_start = 40,
-		run_end = 63,
-		punch_start = 40,
-		punch_end = 63
+		speed_normal = 15, speed_run = 15,
+		stand_start = 0, stand_end = 14,
+		walk_start = 15, walk_end = 38,
+		run_start = 40, run_end = 63,
+		punch_start = 40, punch_end = 63
 	},
 	immune_to = {
 		{"default:pick_wood", 0}, -- wooden pick doesnt hurt stone monster
@@ -96,9 +90,7 @@ mobs:register_mob("mobs_monster:stone_monster", {
 				self.base_texture = tmp.skins
 				self.object:set_properties({textures = tmp.skins})
 
-				if tmp.drops then
-					self.drops = tmp.drops
-				end
+				if tmp.drops then self.drops = tmp.drops end
 
 				return true
 			end
@@ -108,6 +100,7 @@ mobs:register_mob("mobs_monster:stone_monster", {
 	end
 })
 
+-- where to spawn
 
 if not mobs.custom_spawn_monster then
 
@@ -120,8 +113,10 @@ if not mobs.custom_spawn_monster then
 	})
 end
 
+-- spawn egg
 
 mobs:register_egg("mobs_monster:stone_monster", S("Stone Monster"), "default_stone.png", 1)
 
+-- compatibility with older mobs mod
 
-mobs:alias_mob("mobs:stone_monster", "mobs_monster:stone_monster") -- compatibility
+mobs:alias_mob("mobs:stone_monster", "mobs_monster:stone_monster")

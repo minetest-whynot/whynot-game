@@ -1,5 +1,7 @@
--- Translation support
+
 local S = minetest.get_translator("mobs_monster")
+
+-- custom dirt monster type
 
 local dirt_types = {
 
@@ -10,7 +12,6 @@ local dirt_types = {
 		}
 	}
 }
-
 
 -- Dirt Monster by PilzAdam
 
@@ -33,9 +34,7 @@ mobs:register_mob("mobs_monster:dirt_monster", {
 	},
 	blood_texture = "default_dirt.png",
 	makes_footstep_sound = true,
-	sounds = {
-		random = "mobs_dirtmonster"
-	},
+	sounds = {random = "mobs_dirtmonster"},
 	view_range = 15,
 	walk_velocity = 1,
 	run_velocity = 3,
@@ -48,16 +47,11 @@ mobs:register_mob("mobs_monster:dirt_monster", {
 	light_damage = 3,
 	fear_height = 4,
 	animation = {
-		speed_normal = 15,
-		speed_run = 15,
-		stand_start = 0,
-		stand_end = 14,
-		walk_start = 15,
-		walk_end = 38,
-		run_start = 40,
-		run_end = 63,
-		punch_start = 40,
-		punch_end = 63
+		speed_normal = 15, speed_run = 15,
+		stand_start = 0, stand_end = 14,
+		walk_start = 15, walk_end = 38,
+		run_start = 40, run_end = 63,
+		punch_start = 40, punch_end = 63
 	},
 
 	-- check surrounding nodes and spawn a specific monster
@@ -75,9 +69,7 @@ mobs:register_mob("mobs_monster:dirt_monster", {
 				self.base_texture = tmp.skins
 				self.object:set_properties({textures = tmp.skins})
 
-				if tmp.drops then
-					self.drops = tmp.drops
-				end
+				if tmp.drops then self.drops = tmp.drops end
 
 				return true
 			end
@@ -87,6 +79,7 @@ mobs:register_mob("mobs_monster:dirt_monster", {
 	end
 })
 
+-- where to spawn
 
 if not mobs.custom_spawn_monster then
 
@@ -102,8 +95,10 @@ if not mobs.custom_spawn_monster then
 	})
 end
 
+-- spawn egg
 
 mobs:register_egg("mobs_monster:dirt_monster", S("Dirt Monster"), "default_dirt.png", 1)
 
+-- compatibility with older mobs mod
 
-mobs:alias_mob("mobs:dirt_monster", "mobs_monster:dirt_monster") -- compatibility
+mobs:alias_mob("mobs:dirt_monster", "mobs_monster:dirt_monster")

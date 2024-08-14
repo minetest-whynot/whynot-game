@@ -1,4 +1,6 @@
--- Translation support
+
+-- transpation and drops
+
 local S = minetest.get_translator("mobs_monster")
 
 local mob_drops = {
@@ -26,9 +28,7 @@ mobs:register_mob("mobs_monster:fire_spirit", {
 	collisionbox = {-0.1, -0.1, -0.1, 0.1, 0.1, 0.1},
 	visual_scale = {x = 0.5, y = 0.5, z = 0.5},
 	visual = "sprite",
-	textures = {
-		{"mobs_fire_spirit.png"}
-	},
+	textures = {{"mobs_fire_spirit.png"}},
 	glow = 14,
 	blood_texture = "fire_basic_flame.png",
 	immune_to = {
@@ -67,9 +67,7 @@ mobs:register_mob("mobs_monster:fire_spirit", {
 
 		self.flame_timer = (self.flame_timer or 0) + dtime
 
-		if self.flame_timer < 0.25 then
-			return
-		end
+		if self.flame_timer < 0.25 then return end
 
 		self.flame_timer = 0
 
@@ -80,6 +78,7 @@ mobs:register_mob("mobs_monster:fire_spirit", {
 	end
 })
 
+-- where to spawn
 
 if not mobs.custom_spawn_monster then
 
@@ -95,5 +94,6 @@ if not mobs.custom_spawn_monster then
 	})
 end
 
+-- spawn egg
 
 mobs:register_egg("mobs_monster:fire_spirit", S("Fire Spirit"), "fire_basic_flame.png", 1)
