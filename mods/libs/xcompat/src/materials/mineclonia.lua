@@ -41,6 +41,7 @@ local materials = {
     dye_orange = "mcl_dyes:orange",
     dye_pink = "mcl_dyes:pink",
     dye_cyan = "mcl_dyes:cyan",
+    dye_magenta = "mcl_dyes:magenta",
     silicon = "mcl_core:iron_ingot",
     string = "mcl_mobitems:string",
     paper = "mcl_core:paper",
