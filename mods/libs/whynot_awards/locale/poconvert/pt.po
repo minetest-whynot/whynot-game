@@ -1,0 +1,268 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Minetest textdomain whynot_awards x.x.x\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: pt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: mtt_convert 0.1.0\n"
+
+msgid "@1/@2 collected"
+msgstr ""
+
+msgid "Collect: @1"
+msgstr ""
+
+msgid "Collect: @1×@2"
+msgstr ""
+
+msgid "Collect @1 items."
+msgstr ""
+
+msgid "@1/@2 eaten"
+msgstr ""
+
+msgid "Eat @1 wild food"
+msgstr ""
+
+msgid "Eat @1×@2 different wild foods"
+msgstr ""
+
+msgid "@1/@2 reached"
+msgstr ""
+
+msgid "Reach @1"
+msgstr ""
+
+msgid "Reach @1 @2"
+msgstr ""
+
+msgid "@1/@2 grains found"
+msgstr ""
+
+msgid "Find @1 wild seed"
+msgstr ""
+
+msgid "Find @1×@2 different wild seeds"
+msgstr ""
+
+msgid "@1/@2 fruits and vegetables found"
+msgstr ""
+
+msgid "Find @1 fruit or vegetable"
+msgstr ""
+
+msgid "Find @1×@2 different fruits and vegetables"
+msgstr ""
+
+msgid "@1/@2 plowed squares of soil"
+msgstr ""
+
+msgid "Plow @1 square of soil"
+msgstr ""
+
+msgid "Plow @1×@2 squares of soil"
+msgstr ""
+
+msgid "@1/@2 different crop types planted"
+msgstr ""
+
+msgid "Planted @1 crop"
+msgstr ""
+
+msgid "Planted @1×@2 different types of crops"
+msgstr ""
+
+msgid "Welcome to the WhyNot? game"
+msgstr ""
+
+msgid "You are embarking on a Minetest journey. Whether it's for the thrill of survival, the satisfaction of exploration, or the arts of crafting and creative designs, we hope you will find it enjoyable.\n"
+"\n"
+"Make sure to check your recipe book, awards or the help button in your inventory for more information and guidance."
+msgstr ""
+
+msgid "Gather and eat wild foodstuff"
+msgstr ""
+
+msgid "You need to eat to survive. The easiest food to find are wild mushrooms, blueberries and apples. Find and eat one of each to help secure your survival."
+msgstr ""
+
+msgid "Gather wild seeds"
+msgstr ""
+
+msgid "Harvesting various types of grass can sometimes give you seeds. These seeds can the be planted and farmed for food and materials."
+msgstr ""
+
+msgid "Gather wild fruits and vegetables"
+msgstr ""
+
+msgid "More common in temperate regions, but also found in various climates, wild fruits and vegetables can be harvested. Use them for food, or re-plant them as crops for agriculture."
+msgstr ""
+
+msgid "Cut a tree"
+msgstr ""
+
+msgid "Cut down a tree, karate-style."
+msgstr ""
+
+msgid "Craft planks"
+msgstr ""
+
+msgid "Chop some wood to make planks."
+msgstr ""
+
+msgid "Craft a raft"
+msgstr ""
+
+msgid "A simple boat will let you travel on water faster than walking on ground."
+msgstr ""
+
+msgid "Craft a chest"
+msgstr ""
+
+msgid "Chests are the most basic form of storage. They are very useful to gather more items than can fit in your character's inventory."
+msgstr ""
+
+msgid "Craft sticks"
+msgstr ""
+
+msgid "Split planks to make sticks."
+msgstr ""
+
+msgid "Craft wood tools"
+msgstr ""
+
+msgid "The first tools you can craft are made of wood. They are not very strong or durable, but will enable you to start mining rock and minerals to move up to better ones."
+msgstr ""
+
+msgid "Plow soil"
+msgstr ""
+
+msgid "To grow your own food, you must first plow soil. Make sure to be close to water so that the crops can grow."
+msgstr ""
+
+msgid "Plant crops"
+msgstr ""
+
+msgid "After your garden is prepared and plowed, it is time to plant. Find different crops and seeds and plant them in your garden to become self sufficient."
+msgstr ""
+
+msgid "Grave digger"
+msgstr ""
+
+msgid "Dig dirt to find bones."
+msgstr ""
+
+msgid "Collect cotton"
+msgstr ""
+
+msgid "Wild cotton can be found the savanna. Alternatively you can plant, grow and harvest seeds found in the jungle."
+msgstr ""
+
+msgid "Craft wool"
+msgstr ""
+
+msgid "Wool is a very useful material for crafting garments, beds, and many other items."
+msgstr ""
+
+msgid "Craft a backpack"
+msgstr ""
+
+msgid "Backpacks are very useful to help carry more stuff than the basic inventory lets you. It allows you keep mining longer and carry extra tools and food everywhere you go. Use dyed wools to create different coloured ones."
+msgstr ""
+
+msgid "Find your new home"
+msgstr ""
+
+msgid "Your home is the place with your bed. If you sleep once in bed, you always respawn at this position in case of death."
+msgstr ""
+
+msgid "Mine stone"
+msgstr ""
+
+msgid "Using a wood pick axe, start digging through stone. The cobblestone obtained from digging stone can then be used to craft sturdier tools."
+msgstr ""
+
+msgid "Mine coal"
+msgstr ""
+
+msgid "Coal is a common mineral found underground. Among other things, it can be used to craft torches for lighting your way, or as combustible in furnaces."
+msgstr ""
+
+msgid "Craft a campfire"
+msgstr ""
+
+msgid "If night falls and you have not found coal, build a campfire to make some light."
+msgstr ""
+
+msgid "Craft a furnace"
+msgstr ""
+
+msgid "Furnaces are central to advancing in this game. Use them to smelt ores, cook food, or both!"
+msgstr ""
+
+msgid "Dig deeper"
+msgstr ""
+
+msgid "Keep digging until you reach these depths."
+msgstr ""
+
+msgid "Fly higher"
+msgstr ""
+
+msgid "Fly higher and soar to new heights"
+msgstr ""
+
+msgid "Travel further"
+msgstr ""
+
+msgid "Sail the high seas and and explore lands far far away."
+msgstr ""
+
+msgid "Craft chocolate"
+msgstr ""
+
+msgid "Make some delicious chocolate. It can be eaten or incorporated in various recipes to make succulent treats. You can even build an edible armour from it!"
+msgstr ""
+
+msgid "Craft a well"
+msgstr ""
+
+msgid "Wells are not just pretty! They are very useful as an infinite source of water."
+msgstr ""
+
+msgid "Mine tin"
+msgstr ""
+
+msgid "Tin is one of the first metal you'll encounter when digging down. Smelt it in a furnace to form ingots. Then combine it with copper to make bronze."
+msgstr ""
+
+msgid "Mine copper"
+msgstr ""
+
+msgid "Copper is one of the first metal you'll encounter when digging down. Smelt it in a furnace to form ingots. Then combine it with tin to make bronze."
+msgstr ""
+
+msgid "Craft bronze"
+msgstr ""
+
+msgid "Bronze is the first versatile metal you'll be able to use to craft better tools, armor and other items."
+msgstr ""
+
+msgid "Craft steel"
+msgstr ""
+
+msgid "Steel is stronger than bronze. Use it to upgrade your tools and armor."
+msgstr ""
+
+msgid "Craft an airplane"
+msgstr ""
+
+msgid "Why not have airplanes? Build a Supercub and travel at high speeds and soar to new heights!"
+msgstr ""
