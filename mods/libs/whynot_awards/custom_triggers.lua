@@ -181,7 +181,7 @@ local function check_positions()
     player_index = player_index + player_index - end_index
     minetest.after(1, check_positions)
 end
-check_positions()
+minetest.after(1, check_positions)
 
 
 if (minetest.get_modpath("farming") and minetest.global_exists("farming") and farming.mod == "redo") then
