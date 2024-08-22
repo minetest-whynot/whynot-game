@@ -14,7 +14,6 @@ Speedometer=
 Map=
 Radar Mapper=
 GPS device=
-Binoculars=
 
 # Coordinates
 Coordinates: X@=@1, Y@=@2, Z@=@3=
@@ -31,8 +30,8 @@ Pitch: @1°=
 Time: noon=
 Time: midnight=
 # 12h format
-Time: @1:@2 a.m=
-Time: @1:@2 p.m=
+Time: @1:@2 a.m.=
+Time: @1:@2 p.m.=
 # 24h Format: hours:minutes
 Time: @1:@2=
 
