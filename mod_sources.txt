@@ -320,7 +320,7 @@ origin https://github.com/minetest-mods/orbs_of_time/ (fetch)
 Mod: tools/orbs_of_time
 
 origin https://codeberg.org/Dacmot/minetest_orienteering.git (fetch)
-* adf19d064af4f569f4db1e34f291c487ea970252 Merge remote-tracking branch 'origin/geographic_coordinates'
+* d510745b209c9a5cd37a52f35edadeb51aef027c Fix crash when changing time format
 Mod: tools/orienteering
 
 origin https://github.com/dkartaschew/minetest-rainbowswords (fetch)
