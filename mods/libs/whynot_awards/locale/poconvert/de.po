@@ -3,266 +3,332 @@ msgstr ""
 "Project-Id-Version: Minetest textdomain whynot_awards x.x.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2024-08-28 16:09+0000\n"
+"Last-Translator: Wuzzy <Wuzzy@disroot.org>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/"
+"whynot-game-for-minetest/whynot-awards/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: mtt_convert 0.1.0\n"
+"X-Generator: Weblate 5.7.1-dev\n"
 
 msgid "@1/@2 collected"
-msgstr ""
+msgstr "@1/@1 erhalten"
 
 msgid "Collect: @1"
-msgstr ""
+msgstr "Sammeln: @1"
 
 msgid "Collect: @1×@2"
-msgstr ""
+msgstr "Sammeln: @1×@2"
 
 msgid "Collect @1 items."
-msgstr ""
+msgstr "@1 Gegenstände aufsammeln."
 
 msgid "@1/@2 eaten"
-msgstr ""
+msgstr "@1/@2 gegessen"
 
 msgid "Eat @1 wild food"
-msgstr ""
+msgstr "@1 Wildnahrungsmittel essen"
 
 msgid "Eat @1×@2 different wild foods"
-msgstr ""
+msgstr "@1×@2 verschiedene Wildnahrungsmittel essen"
 
 msgid "@1/@2 reached"
-msgstr ""
+msgstr "@1/@2 erreicht"
 
 msgid "Reach @1"
-msgstr ""
+msgstr "@1 erreichen"
 
 msgid "Reach @1 @2"
-msgstr ""
+msgstr "@1 @2 erreichen"
 
 msgid "@1/@2 grains found"
-msgstr ""
+msgstr "@1/@2 Körner gefunden"
 
 msgid "Find @1 wild seed"
-msgstr ""
+msgstr "@1 Wildsamen finden"
 
 msgid "Find @1×@2 different wild seeds"
-msgstr ""
+msgstr "@1×@2 verschiedene Wildsamen finden"
 
 msgid "@1/@2 fruits and vegetables found"
-msgstr ""
+msgstr "@1/@2 Früchte und Gemüse gefunden"
 
 msgid "Find @1 fruit or vegetable"
-msgstr ""
+msgstr "@1 Frucht oder Gemüse finden"
 
 msgid "Find @1×@2 different fruits and vegetables"
-msgstr ""
+msgstr "@1×@2 verschiedene Früchte und Gemüse finden"
 
 msgid "@1/@2 plowed squares of soil"
-msgstr ""
+msgstr "@1/@2 bestellte Felder"
 
 msgid "Plow @1 square of soil"
-msgstr ""
+msgstr "@1 Felder bestellt"
 
 msgid "Plow @1×@2 squares of soil"
-msgstr ""
+msgstr "@1×@2 Felder bestellen"
 
 msgid "@1/@2 different crop types planted"
-msgstr ""
+msgstr "@1/@2 verschiedene Nutzpflanzenarten gepflanzt"
 
 msgid "Planted @1 crop"
-msgstr ""
+msgstr "@1 Nutzpflanze gepflanzt"
 
 msgid "Planted @1×@2 different types of crops"
-msgstr ""
+msgstr "@1×@2 verschiedene Nutzpflanzenarten gepflanzt"
 
 msgid "Welcome to the WhyNot? game"
-msgstr ""
+msgstr "Willkommen im „WhyNot?“-Spiel"
 
 msgid "You are embarking on a Minetest journey. Whether it's for the thrill of survival, the satisfaction of exploration, or the arts of crafting and creative designs, we hope you will find it enjoyable.\n"
 "\n"
 "Make sure to check your recipe book, awards or the help button in your inventory for more information and guidance."
 msgstr ""
+"Sie begeben sich auf eine Minetest-Reise. Ob es um den Kick des Überlebens "
+"geht, die Freude der Erkundung oder die Kunst des Fertigens und der "
+"Kreativität, hoffen wir, dass Sie damit Spaß haben werden.\n"
+"\n"
+"Schauen Sie sich Ihr Rezeptbuch an, sowie die Button für Auszeichnungen und "
+"die Hilfe in Ihrem Inventar, um mehr Informationen und Tipps zu erhalten."
 
 msgid "Gather and eat wild foodstuff"
-msgstr ""
+msgstr "Wilde Nahrungsmittel sammeln und essen"
 
 msgid "You need to eat to survive. The easiest food to find are wild mushrooms, blueberries and apples. Find and eat one of each to help secure your survival."
 msgstr ""
+"Sie müssen Essen zum Überleben. Das am einfachsten zu findende Essen sind "
+"wilde Pilze, Blaubeeren und Äpfel. Finden und essen Sie von jedem eines, um "
+"Ihr Überleben zu sichern."
 
 msgid "Gather wild seeds"
-msgstr ""
+msgstr "Wildsamen sammeln"
 
 msgid "Harvesting various types of grass can sometimes give you seeds. These seeds can the be planted and farmed for food and materials."
 msgstr ""
+"Die Ernte von verschiedenen Grasarten kann Ihnen manchmal Samen geben. Diese "
+"Samen können gepflanzt und anschließend gezüchtet werden, um Nahrung und "
+"Materialien zu erhalten."
 
 msgid "Gather wild fruits and vegetables"
-msgstr ""
+msgstr "Wildobst und -gemüse sammeln"
 
 msgid "More common in temperate regions, but also found in various climates, wild fruits and vegetables can be harvested. Use them for food, or re-plant them as crops for agriculture."
 msgstr ""
+"Wildobst und -gemüse kann abgeerntet werden. Man findet es häufiger in "
+"gemäßigten Regionen, es kommt aber auch in verschiedenen Klimazonen vor. "
+"Benutzen Sie es zum Essen, oder pflanzen Sie es erneut für die "
+"Landwirtschaft."
 
 msgid "Cut a tree"
-msgstr ""
+msgstr "Einen Baum fällen"
 
 msgid "Cut down a tree, karate-style."
-msgstr ""
+msgstr "Fällen Sie einen Baum, karatemäßig."
 
 msgid "Craft planks"
-msgstr ""
+msgstr "Planken fertigen"
 
 msgid "Chop some wood to make planks."
-msgstr ""
+msgstr "Hacken Sie etwas Holz, um Planzen zu fertigen."
 
 msgid "Craft a raft"
-msgstr ""
+msgstr "Ein Floß fertigen"
 
 msgid "A simple boat will let you travel on water faster than walking on ground."
 msgstr ""
+"Mit einem schlichten Boot können Sie auf Wasser schneller reisen, als Sie zu "
+"Fuß auf dem Boden laufen können."
 
 msgid "Craft a chest"
-msgstr ""
+msgstr "Eine Truhe fertigen"
 
 msgid "Chests are the most basic form of storage. They are very useful to gather more items than can fit in your character's inventory."
 msgstr ""
+"Truhen sind die einfachste Lagermöglichkeit. Sie sind sehr nützlich, um mehr "
+"Gegenstände, als in Ihrem Inventar passen, zu sammeln."
 
 msgid "Craft sticks"
-msgstr ""
+msgstr "Stöcke fertigen"
 
 msgid "Split planks to make sticks."
-msgstr ""
+msgstr "Zerteilen Sie Planken, um Stöcke herzustellen."
 
 msgid "Craft wood tools"
-msgstr ""
+msgstr "Holzwerkzeuge fertigen"
 
 msgid "The first tools you can craft are made of wood. They are not very strong or durable, but will enable you to start mining rock and minerals to move up to better ones."
 msgstr ""
+"Die ersten Werkzeuge, die Sie fertigen können, bestehen aus Holz. Sie sind "
+"nicht sehr stark oder haltbar, aber damit können Sie Gestein abbauen, sowie "
+"Mineralien, woraus Sie bessere Werkzeuge machen können."
 
 msgid "Plow soil"
-msgstr ""
+msgstr "Feld bestellen"
 
 msgid "To grow your own food, you must first plow soil. Make sure to be close to water so that the crops can grow."
 msgstr ""
+"Um Ihr eigenes Essen wachsen zu lassen, müssen Sie erst das Feld bestellen. "
+"Machen Sie das in der Nähe von Wasser, damit die Nutzpflanzen wachsen können."
 
 msgid "Plant crops"
-msgstr ""
+msgstr "Nutzpflanzen pflanzen"
 
 msgid "After your garden is prepared and plowed, it is time to plant. Find different crops and seeds and plant them in your garden to become self sufficient."
 msgstr ""
+"Nachdem Ihr Garten vorbereitet und gepflügt wurde, ist es an der Zeit zu "
+"pflanzen. Finden Sie verschiedene Nutzpflanzen und Samen und pflanzen Sie "
+"sie in Ihrem Garten ein, damit Sie sich selbst versorgen können."
 
 msgid "Grave digger"
-msgstr ""
+msgstr "Grabräuber"
 
 msgid "Dig dirt to find bones."
-msgstr ""
+msgstr "Graben Sie Erde aus, um Knochen zu finden."
 
 msgid "Collect cotton"
-msgstr ""
+msgstr "Baumwolle sammeln"
 
 msgid "Wild cotton can be found the savanna. Alternatively you can plant, grow and harvest seeds found in the jungle."
 msgstr ""
+"Wilde Baumwolle kann in der Savanne gefunden werden. Alternativ können Sie "
+"Samen, die man im Dschungel findet, pflanzen, wachsen lassen und ernten."
 
 msgid "Craft wool"
-msgstr ""
+msgstr "Wolle fertigen"
 
 msgid "Wool is a very useful material for crafting garments, beds, and many other items."
 msgstr ""
+"Wolle ist ein sehr nützliches Material, um Kleidung, Betten und viele andere "
+"Dinge zu fertigen."
 
 msgid "Craft a backpack"
-msgstr ""
+msgstr "Rucksack fertigen"
 
 msgid "Backpacks are very useful to help carry more stuff than the basic inventory lets you. It allows you keep mining longer and carry extra tools and food everywhere you go. Use dyed wools to create different coloured ones."
 msgstr ""
+"Rucksäcke können sehr nützlich sein, um mehr Dinge zu transportieren, als "
+"das normale Inventar zulässt. Damit kann man länger unter Tage verbringen "
+"und zusätzliche Werkzeuge und Nahrung tragen, wohin man auch geht. Benutzen "
+"Sie gefärbte Wolle, um Rucksäcke in verschiedenen Farben zu fertigen."
 
 msgid "Find your new home"
-msgstr ""
+msgstr "Ihr neues Zuhause finden"
 
 msgid "Your home is the place with your bed. If you sleep once in bed, you always respawn at this position in case of death."
 msgstr ""
+"Ihr Zuhause ist da, wo Ihr Bett ist. Wenn Sie einmal im Bett schlafen, "
+"werden Sie im Falle eines Todes immer dort wiederbelebt."
 
 msgid "Mine stone"
-msgstr ""
+msgstr "Stein abbauen"
 
 msgid "Using a wood pick axe, start digging through stone. The cobblestone obtained from digging stone can then be used to craft sturdier tools."
 msgstr ""
+"Benutzen Sie eine Holzspitzhacke und graben Sie sich durch Stein. Das "
+"Kopfsteinpflaster, das Sie vom Abbau von Stein erhalten, kann benutzt "
+"werden, um stabilere Werkzeuge zu fertigen."
 
 msgid "Mine coal"
-msgstr ""
+msgstr "Kohle abbauen"
 
 msgid "Coal is a common mineral found underground. Among other things, it can be used to craft torches for lighting your way, or as combustible in furnaces."
 msgstr ""
+"Kohle ist ein gewöhnliches Mineral, das man unter Tage finden kann. Man kann "
+"sie für die Fertigung von Fackeln, die Licht spenden, verwenden, oder in "
+"Öfen als Brennstoff, oder für viele andere Dinge."
 
 msgid "Craft a campfire"
-msgstr ""
+msgstr "Lagerfeuer fertigen"
 
 msgid "If night falls and you have not found coal, build a campfire to make some light."
 msgstr ""
+"Wenn die Nacht hereinbricht und Sie keine Kohle gefunden haben, bauen Sie "
+"ein Lagerfeuer, um etwas Licht zu machen."
 
 msgid "Craft a furnace"
-msgstr ""
+msgstr "Einen Ofen fertigen"
 
 msgid "Furnaces are central to advancing in this game. Use them to smelt ores, cook food, or both!"
 msgstr ""
+"Öfen sind wichtig, um in diesem Spiel voranzukommen. Benutzen Sie sie, um "
+"Erze zu schmelzen, Nahrung zu braten, oder beides!"
 
 msgid "Dig deeper"
-msgstr ""
+msgstr "Tiefer graben"
 
 msgid "Keep digging until you reach these depths."
-msgstr ""
+msgstr "Graben Sie weiter, bis Sie diese Tiefen erreichen."
 
 msgid "Fly higher"
-msgstr ""
+msgstr "Höher fliegen"
 
 msgid "Fly higher and soar to new heights"
-msgstr ""
+msgstr "Fliegen Sie höher und erreichen Sie ungeahnte Höhen"
 
 msgid "Travel further"
-msgstr ""
+msgstr "Weiterreisen"
 
 msgid "Sail the high seas and and explore lands far far away."
-msgstr ""
+msgstr "Segeln Sie auf hoher See und erkunden Sie weit entfernte Ländereien."
 
 msgid "Craft chocolate"
-msgstr ""
+msgstr "Schokolade fertigen"
 
 msgid "Make some delicious chocolate. It can be eaten or incorporated in various recipes to make succulent treats. You can even build an edible armour from it!"
 msgstr ""
+"Machen Sie leckere Schokolade. Man kann sie essen oder in verschiedenen "
+"Rezepten benutzen, um wohlschmeckende Leckereien zu machen. Man kann sogar "
+"eine essbare Rüstung daraus machen!"
 
 msgid "Craft a well"
-msgstr ""
+msgstr "Einen Brunnen fertigen"
 
 msgid "Wells are not just pretty! They are very useful as an infinite source of water."
 msgstr ""
+"Brunnen sind nicht nur schön, sie sind auch sehr nützlich als unendliche "
+"Wasserquelle."
 
 msgid "Mine tin"
-msgstr ""
+msgstr "Zinn abbauen"
 
 msgid "Tin is one of the first metal you'll encounter when digging down. Smelt it in a furnace to form ingots. Then combine it with copper to make bronze."
 msgstr ""
+"Zinn ist eines der ersten Metalle, das Sie beim nach unten Graben finden "
+"werden. Schmelzen Sie es in einem Ofen, um Barren zu formen. Dann "
+"kombinieren Sie es mit Kupfer, um Bronze herzustellen."
 
 msgid "Mine copper"
-msgstr ""
+msgstr "Kupfer abbauen"
 
 msgid "Copper is one of the first metal you'll encounter when digging down. Smelt it in a furnace to form ingots. Then combine it with tin to make bronze."
 msgstr ""
+"Kupfer ist eines der ersten Metalle, das Sie beim nach unten Graben finden "
+"werden. Schmelzen Sie es in einem Ofen, um Barren zu formen. Dann "
+"kombinieren Sie es mit Zinn, um Bronze herzustellen."
 
 msgid "Craft bronze"
-msgstr ""
+msgstr "Bronze herstellen"
 
 msgid "Bronze is the first versatile metal you'll be able to use to craft better tools, armor and other items."
 msgstr ""
+"Bronze ist das erste vielseitige Metall, aus dem Sie bessere Werkzeuge, "
+"Rüstung und andere Dinge fertigen können."
 
 msgid "Craft steel"
-msgstr ""
+msgstr "Stahl fertigen"
 
 msgid "Steel is stronger than bronze. Use it to upgrade your tools and armor."
 msgstr ""
+"Stahl ist stärker als Bronze. Benutzen Sie es, um Ihre Werkzeuge und Rüstung "
+"zu verbessern."
 
 msgid "Craft an airplane"
-msgstr ""
+msgstr "Ein Flugzeug fertigen"
 
 msgid "Why not have airplanes? Build a Supercub and travel at high speeds and soar to new heights!"
 msgstr ""
+"Wieso sollte man keine Flugzeuge haben? Bauen Sie ein Supercub und reisen "
+"Sie bei hohen Geschwindigkeiten und erreichen Sie ungeahnte Höhen!"
