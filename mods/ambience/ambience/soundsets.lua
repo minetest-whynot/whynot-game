@@ -2,9 +2,14 @@
 	Default Sound Sets
 	------------------
 
-	Order is very important when adding a sound set so it will play a certain
-	set of sounds before any another.
+	Order is very important when adding a sound set so it will play
+	certain sound sets before any another.
 --]]
+
+-- mod support
+
+local mod_def = minetest.get_modpath("default")
+local mod_mcl = minetest.get_modpath("mcl_core")
 
 -- Underwater sounds play when player head is submerged
 
@@ -18,8 +23,9 @@ ambience.add_set("underwater", {
 
 	sound_check = function(def)
 
-		if minetest.registered_nodes[def.head_node]
-		and minetest.registered_nodes[def.head_node].groups.water then
+		local nodef = minetest.registered_nodes[def.head_node]
+
+		if nodef and nodef.groups and nodef.groups.water then
 			return "underwater"
 		end
 	end
@@ -29,34 +35,42 @@ ambience.add_set("underwater", {
 
 if minetest.settings:get_bool("ambience_water_move") ~= false then
 
--- override default water sounds
-minetest.override_item("default:water_source", { sounds = {} })
-minetest.override_item("default:water_flowing", { sounds = {} })
-minetest.override_item("default:river_water_source", { sounds = {} })
-minetest.override_item("default:river_water_flowing", { sounds = {} })
+	-- override default water sounds
 
-ambience.add_set("splash", {
+	if mod_def then
+		minetest.override_item("default:water_source", { sounds = {} })
+		minetest.override_item("default:water_flowing", { sounds = {} })
+		minetest.override_item("default:river_water_source", { sounds = {} })
+		minetest.override_item("default:river_water_flowing", { sounds = {} })
+	elseif mod_mcl then
+		minetest.override_item("mcl_core:water_source", { sounds = {} })
+		minetest.override_item("mcl_core:water_flowing", { sounds = {} })
+		minetest.override_item("mclx_core:river_water_source", { sounds = {} })
+		minetest.override_item("mclx_core:river_water_flowing", { sounds = {} })
+	end
 
-	frequency = 1000,
+	ambience.add_set("splash", {
 
-	sounds = {
-		{name = "default_water_footstep", length = 2}
-	},
+		frequency = 1000,
 
-	sound_check = function(def)
+		sounds = {
+			{name = "default_water_footstep", length = 2}
+		},
 
-		if minetest.registered_nodes[def.feet_node]
-		and minetest.registered_nodes[def.feet_node].groups.water then
+		sound_check = function(def)
 
-			local control = def.player:get_player_control()
+			local nodef = minetest.registered_nodes[def.feet_node]
 
-			if control.up or control.down or control.left or control.right then
-				return "splash"
+			if nodef and nodef.groups and nodef.groups.water then
+
+				local control = def.player:get_player_control()
+
+				if control.up or control.down or control.left or control.right then
+					return "splash"
+				end
 			end
 		end
-	end
-})
-
+	})
 end
 
 -- check for env_sounds mod, if not found enable water flowing and lava sounds
@@ -72,18 +86,16 @@ ambience.add_set("flowing_water", {
 		{name = "waterfall", length = 6}
 	},
 
-	nodes = {"default:water_flowing"},
+	nodes = {"group:water"},
 
 	sound_check = function(def)
 
 		local c = (def.totals["default:water_flowing"] or 0)
+			+ (def.totals["mcl_core:water_flowing"] or 0)
 
-		if c > 40 then
-			return "flowing_water", 0.5
+		if c > 40 then return "flowing_water", 0.5
 
-		elseif c > 5 then
-			return "flowing_water"
-		end
+		elseif c > 5 then return "flowing_water" end
 	end
 })
 
@@ -97,18 +109,14 @@ ambience.add_set("river", {
 		{name = "river", length = 4, gain = 0.1}
 	},
 
-	nodes = {"default:river_water_flowing"},
-
 	sound_check = function(def)
 
 		local c = (def.totals["default:river_water_flowing"] or 0)
+			+ (def.totals["mclx_core:river_water_flowing"] or 0)
 
-		if c > 20 then
-			return "river", 0.5
+		if c > 20 then return "river", 0.5
 
-		elseif c > 5 then
-			return "river"
-		end
+		elseif c > 5 then return "river" end
 	end
 })
 
@@ -122,86 +130,23 @@ ambience.add_set("lava", {
 		{name = "lava", length = 7}
 	},
 
-	nodes = {"default:lava_source", "default:lava_flowing"},
+	nodes = {"group:lava"},
 
 	sound_check = function(def)
 
 		local c = (def.totals["default:lava_source"] or 0)
 			+ (def.totals["default:lava_flowing"] or 0)
+			+ (def.totals["mcl_core:lava_source"] or 0)
+			+ (def.totals["mcl_core:lava_flowing"] or 0)
 
-		if c > 20 then
-			return "lava", 0.5
+		if c > 20 then return "lava", 0.5
 
-		elseif c > 5 then
-			return "lava"
-		end
+		elseif c > 5 then return "lava" end
 	end
 })
 
 else
 	print ("[MOD] Ambience - found env_sounds, using for water and lava sounds.")
-end
-
--- Only add fire sounds set if flame_sound is disabled or fire redo active
-
-local flame_sound = minetest.settings:get_bool("flame_sound", true)
-local fire_redo = minetest.get_modpath("fire") and fire.mod and fire.mod == "redo"
-
-if flame_sound and not fire_redo then
-	print ("[MOD] Ambience - fire sounds not enabled, already active in fire mod.")
-else
-
--- Small fire sound plays when near lower than 9 flames
-
-ambience.add_set("smallfire", {
-
-	frequency = 1000,
-
-	sounds = {
-		{name = "fire_small", length = 6, gain = 0.1}
-	},
-
-	nodes = {"fire:basic_flame", "fire:permanent_flame"},
-
-	sound_check = function(def)
-
-		local c = (def.totals["fire:basic_flame"] or 0)
-			+ (def.totals["fire:permanent_flame"] or 0)
-
-		if c > 5 and c < 9 then
-			return "smallfire", 0.5
-
-		elseif c > 0 and c < 9 then
-			return "smallfire"
-		end
-	end
-})
-
--- Large fire sound plays when near more than 9 flames
-
-ambience.add_set("largefire", {
-
-	frequency = 1000,
-
-	sounds = {
-		{name = "fire_large", length = 8, gain = 0.4}
-	},
-
-	sound_check = function(def)
-
-		-- fire nodes were added in last set, so don't need to be added in this one
-		local c = (def.totals["fire:basic_flame"] or 0)
-			+ (def.totals["fire:permanent_flame"] or 0)
-
-		if c > 20 then
-			return "largefire", 0.5
-
-		elseif c > 8 then
-			return "largefire"
-		end
-	end
-})
-
 end
 
 -- Beach sounds play when below y-pos 6 and 150+ water source found
@@ -218,11 +163,10 @@ ambience.add_set("beach", {
 		{name = "beach_2", length = 6}
 	},
 
-	nodes = {"default:water_source"},
-
 	sound_check = function(def)
 
 		local c = (def.totals["default:water_source"] or 0)
+			+ (def.totals["mcl_core:water_source"] or 0)
 
 		if def.pos.y < 6 and def.pos.y > 0 and c > 150 then
 			return "beach"
@@ -242,15 +186,15 @@ ambience.add_set("ice", {
 		{name = "wind", length = 9}
 	},
 
-	nodes = {"default:ice"},
+	nodes = (mod_mcl and {"mcl_core:ice", "mcl_core:packed_ice"} or {"default:ice"}),
 
 	sound_check = function(def)
 
 		local c = (def.totals["default:ice"] or 0)
+			+(def.totals["mcl_core:ice"] or 0)
+			+ (def.totals["mcl_core:packed_ice"] or 0)
 
-		if c > 100 then
-			return "ice"
-		end
+		if c > 100 then return "ice" end
 	end
 })
 
@@ -266,16 +210,19 @@ ambience.add_set("desert", {
 		{name = "desertwind", length = 8}
 	},
 
-	nodes = {"default:desert_sand", "default:sand"},
+	nodes = {
+		(mod_mcl and "mcl_core:redsand" or "default:desert_sand"),
+		(mod_mcl and "mcl_core:sand" or "default:sand")
+	},
 
 	sound_check = function(def)
 
 		local c = (def.totals["default:desert_sand"] or 0)
 			+ (def.totals["default:sand"] or 0)
+			+ (def.totals["mcl_core:sand"] or 0)
+			+ (def.totals["mcl_core:redsand"] or 0)
 
-		if c > 150 and def.pos.y > 10 then
-			return "desert"
-		end
+		if c > 150 and def.pos.y > 10 then return "desert" end
 	end
 })
 
@@ -296,10 +243,9 @@ ambience.add_set("cave", {
 	sound_check = function(def)
 
 		local c = (def.totals["default:water_source"] or 0)
+			+ (def.totals["mcl_core:water_source"] or 0)
 
-		if c > 0 and def.pos.y < -25 then
-			return "cave"
-		end
+		if c > 0 and def.pos.y < -25 then return "cave" end
 	end
 })
 
@@ -318,15 +264,14 @@ ambience.add_set("jungle", {
 		{name = "peacock", length = 2, pitch = 1.2, ephemeral = true}
 	},
 
-	nodes = {"default:jungletree"},
+	nodes = {(mod_mcl and "mcl_trees:tree_jungle" or "default:jungletree")},
 
 	sound_check = function(def)
 
 		local c = (def.totals["default:jungletree"] or 0)
+			+ (def.totals["mcl_trees:tree_jungle"] or 0)
 
-		if def.tod > 0.2 and def.tod < 0.8 and c > 90 then
-			return "jungle"
-		end
+		if def.tod > 0.2 and def.tod < 0.8 and c > 79 then return "jungle" end
 	end
 })
 
@@ -348,10 +293,9 @@ ambience.add_set("jungle_night", {
 
 		-- jungle tree was added in last set, so doesnt need to be added in this one
 		local c = (def.totals["default:jungletree"] or 0)
+			+ (def.totals["mcl_trees:tree_jungle"] or 0)
 
-		if (def.tod < 0.2 or def.tod > 0.8) and c > 90 then
-			return "jungle_night"
-		end
+		if (def.tod < 0.2 or def.tod > 0.8) and c > 79 then return "jungle_night" end
 	end
 })
 
@@ -385,10 +329,13 @@ ambience.add_set("day", {
 			+ (def.totals["default:bush_leaves"] or 0)
 			+ (def.totals["default:pine_needles"] or 0)
 			+ (def.totals["default:aspen_leaves"] or 0)
+			+ (def.totals["mcl_trees:leaves_spruce"] or 0)
+			+ (def.totals["mcl_trees:leaves_oak"] or 0)
+			+ (def.totals["mcl_trees:leaves_mangrove"] or 0)
+			+ (def.totals["mcl_trees:leaves_birch"] or 0)
+			+ (def.totals["mcl_trees:leaves_acacia"] or 0)
 
-		if (def.tod > 0.2 and def.tod < 0.8)
-		and def.pos.y > -10
-		and c > 5 then
+		if (def.tod > 0.2 and def.tod < 0.8) and def.pos.y > -10 and c > 5 then
 			return "day"
 		end
 	end
@@ -417,10 +364,14 @@ ambience.add_set("night", {
 			+ (def.totals["default:bush_leaves"] or 0)
 			+ (def.totals["default:pine_needles"] or 0)
 			+ (def.totals["default:aspen_leaves"] or 0)
+			+ (def.totals["mcl_trees:leaves_spruce"] or 0)
+			+ (def.totals["mcl_trees:leaves_oak"] or 0)
+			+ (def.totals["mcl_trees:leaves_mangrove"] or 0)
+			+ (def.totals["mcl_trees:leaves_birch"] or 0)
+			+ (def.totals["mcl_trees:leaves_acacia"] or 0)
 
-		if (def.tod < 0.2 or def.tod > 0.8)
-		and def.pos.y > -10
-		and c > 5 then
+
+		if (def.tod < 0.2 or def.tod > 0.8) and def.pos.y > -10 and c > 5 then
 			return "night"
 		end
 	end
@@ -439,15 +390,13 @@ ambience.add_set("high_up", {
 		{name = "wind", length = 9, pitch = 1.4}
 	},
 
-	nodes = {"default:snowblock"},
+	nodes = {(mod_mcl and "mcl_core:snowblock" or "default:snowblock")},
 
 	sound_check = function(def)
 
 		local c = (def.totals["default:snowblock"] or 0)
+			+ (def.totals["mcl_core:snowblock"] or 0)
 
-		if def.pos.y > 50 or c > 150 then
-			return "high_up"
-		end
+		if def.pos.y > 50 or c > 100 then return "high_up" end
 	end
 })
-

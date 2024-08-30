@@ -1,7 +1,10 @@
 
+-- global
+
 ambience = {}
 
 -- settings
+
 local SOUNDVOLUME = 1.0
 local MUSICVOLUME = 0.6
 local MUSICINTERVAL = 60 * 20
@@ -13,14 +16,14 @@ local sound_set_order = {} -- needed because pairs loops randomly through tables
 local set_nodes = {} -- all the nodes needed for sets
 
 -- translation
+
 local S = minetest.get_translator("ambience")
 
 -- add set to list
+
 ambience.add_set = function(set_name, def)
 
-	if not set_name or not def then
-		return
-	end
+	if not set_name or not def then return end
 
 	sound_sets[set_name] = {
 		frequency = def.frequency or 50,
@@ -34,14 +37,10 @@ ambience.add_set = function(set_name, def)
 
 	for i = 1, #sound_set_order do
 
-		if sound_set_order[i] == set_name then
-			can_add = false
-		end
+		if sound_set_order[i] == set_name then can_add = false end
 	end
 
-	if can_add then
-		table.insert(sound_set_order, set_name)
-	end
+	if can_add then table.insert(sound_set_order, set_name) end
 
 	-- add any missing nodes to the set_nodes table
 	if def.nodes then
@@ -52,26 +51,22 @@ ambience.add_set = function(set_name, def)
 
 			for j = 1, #set_nodes do
 
-				if def.nodes[i] == set_nodes[j] then
-					can_add = false
-				end
+				if def.nodes[i] == set_nodes[j] then can_add = false end
 			end
 
-			if can_add then
-				table.insert(set_nodes, can_add)
-			end
+			if can_add then table.insert(set_nodes, can_add) end
 		end
 	end
 end
 
-
 -- return set from list using name
+
 ambience.get_set = function(set_name)
 	return sound_sets[set_name]
 end
 
-
 -- remove set from list
+
 ambience.del_set = function(set_name)
 
 	sound_sets[set_name] = nil
@@ -80,18 +75,14 @@ ambience.del_set = function(set_name)
 
 	for i = 1, #sound_set_order do
 
-		if sound_set_order[i] == set_name then
-			can_del = i
-		end
+		if sound_set_order[i] == set_name then can_del = i end
 	end
 
-	if can_del then
-		table.remove(sound_set_order, can_del)
-	end
+	if can_del then table.remove(sound_set_order, can_del) end
 end
 
-
 -- setup table when player joins
+
 minetest.register_on_joinplayer(function(player)
 
 	if player then
@@ -109,15 +100,14 @@ minetest.register_on_joinplayer(function(player)
 end)
 
 -- remove table when player leaves
+
 minetest.register_on_leaveplayer(function(player)
 
-	if player then
-		playing[player:get_player_name()] = nil
-	end
+	if player then playing[player:get_player_name()] = nil end
 end)
 
-
 -- plays music and selects sound set
+
 local get_ambience = function(player, tod, name)
 
 	-- if enabled and not already playing, play local/server music on interval check
@@ -183,9 +173,7 @@ local get_ambience = function(player, tod, name)
 			})
 
 			-- if conditions met return set name and gain value
-			if set_name then
-				return set_name, gain
-			end
+			if set_name then return set_name, gain end
 		end
 	end
 
@@ -197,6 +185,7 @@ local timer = 0
 local random = math.random
 
 -- players routine
+
 minetest.register_globalstep(function(dtime)
 
 	-- one second timer
@@ -268,9 +257,7 @@ minetest.register_globalstep(function(dtime)
 				minetest.after(ambience.length, function(handler, player_name)
 
 --print("-- timed stop", set_name, handler)
-					if handler then
-						minetest.sound_stop(handler)
-					end
+					if handler then minetest.sound_stop(handler) end
 
 					-- reset variables if handlers match
 					if playing[player_name]
@@ -288,8 +275,8 @@ minetest.register_globalstep(function(dtime)
 	end
 end)
 
-
 -- sound volume command
+
 minetest.register_chatcommand("svol", {
 	params = S("<svol>"),
 	description = S("set sound volume (0.1 to 1.0)"),
@@ -313,8 +300,8 @@ minetest.register_chatcommand("svol", {
 	end
 })
 
-
 -- music volume command (0 stops music)
+
 minetest.register_chatcommand("mvol", {
 	params = S("<mvol>"),
 	description = S("set music volume (0.1 to 1.0, 0 to stop music)"),
@@ -348,8 +335,8 @@ minetest.register_chatcommand("mvol", {
 	end
 })
 
-
 -- load default sound sets
+
 dofile(minetest.get_modpath("ambience") .. "/soundsets.lua")
 
 
