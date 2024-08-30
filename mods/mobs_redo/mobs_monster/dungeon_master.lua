@@ -1,5 +1,7 @@
--- Translation support
+
 local S = minetest.get_translator("mobs_monster")
+
+-- custom dungeon master types
 
 local master_types = {
 
@@ -10,7 +12,6 @@ local master_types = {
 		skins = {"mobs_dungeon_master_netherdeep.png"},
 	}
 }
-
 
 -- Dungeon Master by PilzAdam
 
@@ -59,16 +60,11 @@ mobs:register_mob("mobs_monster:dungeon_master", {
 	light_damage = 0,
 	fear_height = 3,
 	animation = {
-		stand_start = 0,
-		stand_end = 19,
-		walk_start = 20,
-		walk_end = 35,
-		punch_start = 36,
-		punch_end = 48,
-		shoot_start = 36,
-		shoot_end = 48,
-		speed_normal = 15,
-		speed_run = 15
+		stand_start = 0, stand_end = 19,
+		walk_start = 20, walk_end = 35,
+		punch_start = 36, punch_end = 48,
+		shoot_start = 36, shoot_end = 48,
+		speed_normal = 15, speed_run = 15
 	},
 
 	-- check surrounding nodes and spawn a specific monster
@@ -86,9 +82,7 @@ mobs:register_mob("mobs_monster:dungeon_master", {
 				self.base_texture = tmp.skins
 				self.object:set_properties({textures = tmp.skins})
 
-				if tmp.drops then
-					self.drops = tmp.drops
-				end
+				if tmp.drops then self.drops = tmp.drops end
 
 				return true
 			end
@@ -98,6 +92,7 @@ mobs:register_mob("mobs_monster:dungeon_master", {
 	end
 })
 
+-- where to spawn
 
 if not mobs.custom_spawn_monster then
 
@@ -111,14 +106,17 @@ if not mobs.custom_spawn_monster then
 	})
 end
 
+-- spawn egg
 
-mobs:register_egg("mobs_monster:dungeon_master", S("Dungeon Master"), "fire_basic_flame.png", 1, true)
+mobs:register_egg("mobs_monster:dungeon_master", S("Dungeon Master"),
+		"fire_basic_flame.png", 1, true)
 
+-- old mobs mod compatibility
 
-mobs:alias_mob("mobs:dungeon_master", "mobs_monster:dungeon_master") -- compatibility
+mobs:alias_mob("mobs:dungeon_master", "mobs_monster:dungeon_master")
 
+-- fireball arrow
 
--- fireball (weapon)
 mobs:register_arrow("mobs_monster:fireball", {
 	visual = "sprite",
 	visual_size = {x = 1, y = 1},
@@ -159,6 +157,7 @@ mobs:register_arrow("mobs_monster:fireball", {
 
 	-- direct hit, no fire... just plenty of pain
 	hit_player = function(self, player)
+
 		player:punch(self.object, 1.0, {
 			full_punch_interval = 1.0,
 			damage_groups = {fleshy = 8}
@@ -166,6 +165,7 @@ mobs:register_arrow("mobs_monster:fireball", {
 	end,
 
 	hit_mob = function(self, player)
+
 		player:punch(self.object, 1.0, {
 			full_punch_interval = 1.0,
 			damage_groups = {fleshy = 8}

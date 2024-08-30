@@ -66,8 +66,6 @@ mobs_can_hear (Enable Mob hearing) bool true
 [Pathfinding]
 #    Enable pathfinding (default Enabled)
 mob_pathfinding_enable (Enable pathfinding) bool true
-#    Use pathfinder mod if available (default Enabled)
-mob_pathfinder_enable (Use pathfinder mod if available) bool true
 #    How long before stuck mobs starts searching (default 3.0)
 mob_pathfinding_stuck_timeout (How long before stuck mobs start searching) float 3.0
 #    How long will mob follow path before giving up (default 5.0)

@@ -39,7 +39,8 @@ function orienteering.toggle_time_mode(itemstack, user, pointed_thing)
 	else
 		user:get_meta():set_string("orienteering:twelve", "true")
 	end
-	orienteering.update_hud_displays(user)
+	local active_tools = orienteering.active_tools(user)
+	orienteering.update_hud_displays(user, active_tools)
 end
 
 local use = S("Put this tool in your hotbar to see the data it provides.")

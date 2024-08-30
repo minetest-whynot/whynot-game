@@ -1,9 +1,32 @@
 
-local S = mobs.translate
+local S = minetest.get_translator("mobs")
 local FS = function(...) return minetest.formspec_escape(S(...)) end
 local mc2 = minetest.get_modpath("mcl_core")
+local mod_def = minetest.get_modpath("default")
+
+-- determine which sounds to use, default or mcl_sounds
+
+local function sound_helper(snd)
+
+	mobs[snd] = (mod_def and default[snd]) or (mc2 and mcl_sounds[snd])
+			or function() return {} end
+end
+
+sound_helper("node_sound_defaults")
+sound_helper("node_sound_stone_defaults")
+sound_helper("node_sound_dirt_defaults")
+sound_helper("node_sound_sand_defaults")
+sound_helper("node_sound_gravel_defaults")
+sound_helper("node_sound_wood_defaults")
+sound_helper("node_sound_leaves_defaults")
+sound_helper("node_sound_ice_defaults")
+sound_helper("node_sound_metal_defaults")
+sound_helper("node_sound_water_defaults")
+sound_helper("node_sound_snow_defaults")
+sound_helper("node_sound_glass_defaults")
 
 -- helper function to add {eatable} group to food items
+
 function mobs.add_eatable(item, hp)
 
 	local def = minetest.registered_items[item]
@@ -19,6 +42,7 @@ function mobs.add_eatable(item, hp)
 end
 
 -- recipe items
+
 local items = {
 	paper = mc2 and "mcl_core:paper" or "default:paper",
 	dye_black = mc2 and "mcl_dye:black" or "dye:black",
@@ -36,8 +60,8 @@ local items = {
 	meat_cooked = mc2 and "mcl_mobitems:cooked_beef" or "group:food_meat",
 }
 
-
 -- name tag
+
 minetest.register_craftitem("mobs:nametag", {
 	description = S("Name Tag") .. " " .. S("\nRight-click Mobs Redo mob to apply"),
 	inventory_image = "mobs_nametag.png",
@@ -52,6 +76,7 @@ minetest.register_craft({
 })
 
 -- leather
+
 minetest.register_craftitem("mobs:leather", {
 	description = S("Leather"),
 	inventory_image = "mobs_leather.png",
@@ -59,6 +84,7 @@ minetest.register_craftitem("mobs:leather", {
 })
 
 -- raw meat
+
 minetest.register_craftitem("mobs:meat_raw", {
 	description = S("Raw Meat"),
 	inventory_image = "mobs_meat_raw.png",
@@ -69,6 +95,7 @@ minetest.register_craftitem("mobs:meat_raw", {
 mobs.add_eatable("mobs:meat_raw", 3)
 
 -- cooked meat
+
 minetest.register_craftitem("mobs:meat", {
 	description = S("Meat"),
 	inventory_image = "mobs_meat.png",
@@ -86,6 +113,7 @@ minetest.register_craft({
 })
 
 -- lasso
+
 minetest.register_tool("mobs:lasso", {
 	description = S("Lasso (right-click animal to put in inventory)"),
 	inventory_image = "mobs_magic_lasso.png",
@@ -104,6 +132,7 @@ minetest.register_craft({
 minetest.register_alias("mobs:magic_lasso", "mobs:lasso")
 
 -- net
+
 minetest.register_tool("mobs:net", {
 	description = S("Net (right-click animal to put in inventory)"),
 	inventory_image = "mobs_net.png",
@@ -120,6 +149,7 @@ minetest.register_craft({
 })
 
 -- shears (right click to shear animal)
+
 minetest.register_tool("mobs:shears", {
 	description = S("Steel Shears (right-click to shear)"),
 	inventory_image = "mobs_shears.png",
@@ -135,6 +165,7 @@ minetest.register_craft({
 })
 
 -- protection rune
+
 minetest.register_craftitem("mobs:protector", {
 	description = S("Mob Protection Rune"),
 	inventory_image = "mobs_protector.png",
@@ -150,7 +181,8 @@ minetest.register_craft({
 	}
 })
 
--- level 2 protection rune
+-- protection rune (level 2)
+
 minetest.register_craftitem("mobs:protector2", {
 	description = S("Mob Protection Rune (Level 2)"),
 	inventory_image = "mobs_protector2.png",
@@ -167,6 +199,7 @@ minetest.register_craft({
 })
 
 -- saddle
+
 minetest.register_craftitem("mobs:saddle", {
 	description = S("Saddle"),
 	inventory_image = "mobs_saddle.png",
@@ -182,29 +215,25 @@ minetest.register_craft({
 	}
 })
 
-
--- make sure we can register fences
-local mod_def = minetest.get_modpath("default")
+-- register mob fence if default found
 
 if mod_def and default.register_fence then
 
--- mob fence (looks like normal fence but collision is 2 high)
-default.register_fence("mobs:fence_wood", {
-	description = S("Mob Fence"),
-	texture = "default_wood.png",
-	material = "default:fence_wood",
-	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
-	sounds = mod_def and default.node_sound_wood_defaults(),
-	collision_box = {
-		type = "fixed",
-		fixed = {
-			{-0.5, -0.5, -0.5, 0.5, 1.9, 0.5},
+	-- mob fence (looks like normal fence but collision is 2 high)
+	default.register_fence("mobs:fence_wood", {
+		description = S("Mob Fence"),
+		texture = "default_wood.png",
+		material = "default:fence_wood",
+		groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
+		sounds = mobs.node_sound_wood_defaults(),
+		collision_box = {
+			type = "fixed", fixed = {{-0.5, -0.5, -0.5, 0.5, 1.9, 0.5}}
 		}
-	}
-})
+	})
 end
 
 -- mob fence top (has enlarged collisionbox to stop mobs getting over)
+
 minetest.register_node("mobs:fence_top", {
 	description = S("Mob Fence Top"),
 	drawtype = "nodebox",
@@ -212,19 +241,10 @@ minetest.register_node("mobs:fence_top", {
 	paramtype = "light",
 	is_ground_content = false,
 	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2, axey = 1},
-	sounds = mod_def and default.node_sound_wood_defaults(),
-	node_box = {
-		type = "fixed",
-		fixed = {-0.2, -0.5, -0.2, 0.2, 0, 0.2}
-	},
-	collision_box = {
-		type = "fixed",
-		fixed = {-0.4, -1.5, -0.4, 0.4, 0, 0.4}
-	},
-	selection_box = {
-		type = "fixed",
-		fixed = {-0.4, -1.5, -0.4, 0.4, 0, 0.4}
-	}
+	sounds = mobs.node_sound_wood_defaults(),
+	node_box = {type = "fixed", fixed = {-0.2, -0.5, -0.2, 0.2, 0, 0.2}},
+	collision_box = {type = "fixed", fixed = {-0.4, -1.5, -0.4, 0.4, 0, 0.4}},
+	selection_box = {type = "fixed", fixed = {-0.4, -1.5, -0.4, 0.4, 0, 0.4}}
 })
 
 minetest.register_craft({
@@ -235,49 +255,15 @@ minetest.register_craft({
 	}
 })
 
-
 -- items that can be used as fuel
-minetest.register_craft({
-	type = "fuel",
-	recipe = "mobs:nametag",
-	burntime = 3
-})
 
-minetest.register_craft({
-	type = "fuel",
-	recipe = "mobs:lasso",
-	burntime = 7
-})
-
-minetest.register_craft({
-	type = "fuel",
-	recipe = "mobs:net",
-	burntime = 8
-})
-
-minetest.register_craft({
-	type = "fuel",
-	recipe = "mobs:leather",
-	burntime = 4
-})
-
-minetest.register_craft({
-	type = "fuel",
-	recipe = "mobs:saddle",
-	burntime = 7
-})
-
-minetest.register_craft({
-	type = "fuel",
-	recipe = "mobs:fence_wood",
-	burntime = 7
-})
-
-minetest.register_craft({
-	type = "fuel",
-	recipe = "mobs:fence_top",
-	burntime = 2
-})
+minetest.register_craft({type = "fuel", recipe = "mobs:nametag", burntime = 3})
+minetest.register_craft({type = "fuel", recipe = "mobs:lasso", burntime = 7})
+minetest.register_craft({type = "fuel", recipe = "mobs:net", burntime = 8})
+minetest.register_craft({type = "fuel", recipe = "mobs:leather", burntime = 4})
+minetest.register_craft({type = "fuel", recipe = "mobs:saddle", burntime = 7})
+minetest.register_craft({type = "fuel", recipe = "mobs:fence_wood", burntime = 7})
+minetest.register_craft({type = "fuel", recipe = "mobs:fence_top", burntime = 2})
 
 
 -- this tool spawns same mob and adds owner, protected, nametag info
@@ -294,12 +280,9 @@ minetest.register_tool(":mobs:mob_reset_stick", {
 
 	on_use = function(itemstack, user, pointed_thing)
 
-		if pointed_thing.type ~= "object" then
-			return
-		end
+		if pointed_thing.type ~= "object" then return end
 
 		local obj = pointed_thing.ref
-
 		local control = user:get_player_control()
 		local sneak = control and control.sneak
 
@@ -339,9 +322,7 @@ minetest.register_tool(":mobs:mob_reset_stick", {
 			-- get base texture
 			local bt = tex_obj:get_luaentity().base_texture[1]
 
-			if type(bt) ~= "string" then
-				bt = ""
-			end
+			if type(bt) ~= "string" then bt = "" end
 
 			local name = user:get_player_name()
 
@@ -357,27 +338,18 @@ minetest.register_tool(":mobs:mob_reset_stick", {
 minetest.register_on_player_receive_fields(function(player, formname, fields)
 
 	-- right-clicked with nametag and name entered?
-	if formname == "mobs_texture"
-	and fields.name
-	and fields.name ~= "" then
+	if formname == "mobs_texture" and fields.name and fields.name ~= "" then
 
 		-- does mob still exist?
-		if not tex_obj
-		or not tex_obj:get_luaentity() then
-			return
-		end
+		if not tex_obj or not tex_obj:get_luaentity() then return end
 
 		-- make sure nametag is being used to name mob
 		local item = player:get_wielded_item()
 
-		if item:get_name() ~= "mobs:mob_reset_stick" then
-			return
-		end
+		if item:get_name() ~= "mobs:mob_reset_stick" then return end
 
 		-- limit name entered to 64 characters long
-		if fields.name:len() > 64 then
-			fields.name = fields.name:sub(1, 64)
-		end
+		if fields.name:len() > 64 then fields.name = fields.name:sub(1, 64) end
 
 		-- update texture
 		local self = tex_obj:get_luaentity()
@@ -391,17 +363,15 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	end
 end)
 
-
 -- Meat Block
+
 minetest.register_node("mobs:meatblock", {
 	description = S("Meat Block"),
 	tiles = {"mobs_meat_top.png", "mobs_meat_bottom.png", "mobs_meat_side.png"},
 	paramtype2 = "facedir",
-	groups = {
-		choppy = 1, oddly_breakable_by_hand = 1, axey = 1, handy = 1
-	},
+	groups = {choppy = 1, oddly_breakable_by_hand = 1, axey = 1, handy = 1},
 	is_ground_content = false,
-	sounds = mod_def and default.node_sound_leaves_defaults(),
+	sounds = mobs.node_sound_dirt_defaults(),
 	on_place = minetest.rotate_node,
 	on_use = minetest.item_eat(20),
 	_mcl_hardness = 0.8,
@@ -420,15 +390,14 @@ minetest.register_craft({
 })
 
 -- Meat Block (raw)
+
 minetest.register_node("mobs:meatblock_raw", {
 	description = S("Raw Meat Block"),
 	tiles = {"mobs_meat_raw_top.png", "mobs_meat_raw_bottom.png", "mobs_meat_raw_side.png"},
 	paramtype2 = "facedir",
-	groups = {
-		choppy = 1, oddly_breakable_by_hand = 1, axey = 1, handy = 1
-	},
+	groups = {choppy = 1, oddly_breakable_by_hand = 1, axey = 1, handy = 1},
 	is_ground_content = false,
-	sounds = mod_def and default.node_sound_leaves_defaults(),
+	sounds = mobs.node_sound_dirt_defaults(),
 	on_place = minetest.rotate_node,
 	on_use = minetest.item_eat(20),
 	_mcl_hardness = 0.8,

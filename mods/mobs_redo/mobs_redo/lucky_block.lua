@@ -1,6 +1,7 @@
 
 local S = minetest.get_translator("mobs")
 
+-- add lucky blocks
 
 lucky_block:add_blocks({
 	{"dro", {"mobs:meat_raw"}, 5},
@@ -17,8 +18,7 @@ lucky_block:add_blocks({
 	{"lig"}
 })
 
-
--- pint sized rune
+-- pint sized rune, use on tamed mob to shrink to half-size
 
 minetest.register_craftitem(":mobs:pint_sized_rune", {
 	description = S("Pint Sized Rune"),
@@ -27,17 +27,13 @@ minetest.register_craftitem(":mobs:pint_sized_rune", {
 
 	on_use = function(itemstack, user, pointed_thing)
 
-		if pointed_thing.type ~= "object" then
-			return
-		end
+		if pointed_thing.type ~= "object" then return end
 
 		local name = user and user:get_player_name() or ""
 		local tool = user and user:get_wielded_item()
 		local tool_name = tool:get_name()
 
-		if tool_name ~= "mobs:pint_sized_rune" then
-			return
-		end
+		if tool_name ~= "mobs:pint_sized_rune" then return end
 
 		local self = pointed_thing.ref:get_luaentity()
 
@@ -82,11 +78,8 @@ minetest.register_craftitem(":mobs:pint_sized_rune", {
 
 		self.base_selbox = selbox
 
-		self.object:set_properties({
-			visual_size = vis_size,
-			collisionbox = colbox,
-			selectionbox = selbox
-		})
+		self.object:set_properties(
+				{visual_size = vis_size, collisionbox = colbox, selectionbox = selbox})
 
 		self.pint_size_potion = true
 
@@ -100,6 +93,5 @@ minetest.register_craftitem(":mobs:pint_sized_rune", {
 
 minetest.register_craft({
 	output = "lucky_block:pint_sized_rune",
-	recipe = {{ "lucky_block:pint_sized_potion", "mobs:protector" }}
+	recipe = {{"lucky_block:pint_sized_potion", "mobs:protector"}}
 })
-

@@ -1,7 +1,8 @@
--- Translation support
+
 local S = minetest.get_translator("mobs_monster")
 
 -- custom particle effects
+
 local effect = function(pos, amount, texture, min_size, max_size, radius, gravity, glow)
 
 	radius = radius or 2
@@ -28,7 +29,6 @@ local effect = function(pos, amount, texture, min_size, max_size, radius, gravit
 	})
 end
 
-
 -- Sand Monster by PilzAdam
 
 mobs:register_mob("mobs_monster:sand_monster", {
@@ -52,9 +52,7 @@ mobs:register_mob("mobs_monster:sand_monster", {
 	},
 	blood_texture = "default_desert_sand.png",
 	makes_footstep_sound = true,
-	sounds = {
-		random = "mobs_sandmonster"
-	},
+	sounds = {random = "mobs_sandmonster"},
 	walk_velocity = 1.5,
 	run_velocity = 4,
 	view_range = 8,
@@ -68,16 +66,11 @@ mobs:register_mob("mobs_monster:sand_monster", {
 	light_damage = 0,
 	fear_height = 4,
 	animation = {
-		speed_normal = 15,
-		speed_run = 15,
-		stand_start = 0,
-		stand_end = 39,
-		walk_start = 41,
-		walk_end = 72,
-		run_start = 74,
-		run_end = 105,
-		punch_start = 74,
-		punch_end = 105
+		speed_normal = 15, speed_run = 15,
+		stand_start = 0, stand_end = 39,
+		walk_start = 41, walk_end = 72,
+		run_start = 74, run_end = 105,
+		punch_start = 74, punch_end = 105
 	},
 	immune_to = {
 		{"default:shovel_wood", 3}, -- shovels deal more damage to sand monster
@@ -116,6 +109,8 @@ mobs:register_mob("mobs_monster:sand_monster", {
 ]]
 })
 
+-- where to spawn
+
 if not mobs.custom_spawn_monster then
 
 	mobs:spawn({
@@ -127,9 +122,11 @@ if not mobs.custom_spawn_monster then
 	})
 end
 
+-- spawn egg
 
 mobs:register_egg("mobs_monster:sand_monster", S("Sand Monster"),
 		"default_desert_sand.png", 1)
 
+-- compatibility with older mobs mod
 
-mobs:alias_mob("mobs:sand_monster", "mobs_monster:sand_monster") -- compatibility
+mobs:alias_mob("mobs:sand_monster", "mobs_monster:sand_monster")

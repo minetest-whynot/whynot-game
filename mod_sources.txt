@@ -156,7 +156,7 @@ origin https://github.com/dacmot/sfcraftguide.git (fetch)
 Mod: libs/sfcraftguide
 
 origin https://github.com/mt-mods/xcompat.git (fetch)
-* 688f12a970183c96b126a96a9a5ae715eb8a371c add material.stick (#36)
+* dc87e255b7f024ea94bc0ddbd3889a7a75bfac6a add missing magenta
 Mod: libs/xcompat
 
 origin https://github.com/Treer/cloudlands/ (fetch)
@@ -196,11 +196,11 @@ origin https://codeberg.org/tenplus1/mobs_ghost_redo (fetch)
 Mod: mobs_redo/mobs_ghost_redo
 
 origin https://github.com/minetest-mirrors/mobs_monster.git (fetch)
-* 68ae991ca6bbc24875d06789d1f271389a169211 add particle effect and sound when lava pick cooks node
+* 5c956edfe3c42f7e60506dac6de5f62c2bc5186d tweak and tidy code
 Mod: mobs_redo/mobs_monster
 
 origin https://github.com/minetest-mirrors/mobs_redo.git (fetch)
-* 1f6867bf25535afa6b89cb953e9a9e0527f9b321 alternative to using on_punch for hearing ability, remove food xp desc
+* dce2abfcfe4ddc18d2d8d683b176ddb74c6dd209 add missing glass sounds
 Mod: mobs_redo/mobs_redo
 
 origin https://github.com/minetest-mods/3d_armor (fetch)
@@ -236,7 +236,7 @@ origin https://github.com/minetest-mods/hbsprint (fetch)
 Mod: player/hbsprint
 
 origin https://codeberg.org/Wuzzy/minetest_hudbars.git (fetch)
-* 495ba23a7ab575065556dbf1a04176422f1ae6a7 Change N() to NS()
+* e4e48d475a7cd904e4e2908ea74781a46daee6ca Merge branch 'master' of https://codeberg.org/Wuzzy/minetest_hudbars
 Mod: player/hudbars
 
 origin https://github.com/dacmot/moarmour (fetch)
@@ -320,7 +320,7 @@ origin https://github.com/minetest-mods/orbs_of_time/ (fetch)
 Mod: tools/orbs_of_time
 
 origin https://codeberg.org/Dacmot/minetest_orienteering.git (fetch)
-* adf19d064af4f569f4db1e34f291c487ea970252 Merge remote-tracking branch 'origin/geographic_coordinates'
+* d510745b209c9a5cd37a52f35edadeb51aef027c Fix crash when changing time format
 Mod: tools/orienteering
 
 origin https://github.com/dkartaschew/minetest-rainbowswords (fetch)

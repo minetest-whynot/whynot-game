@@ -1,3 +1,6 @@
+
+-- web trap schematic
+
 local web = {name = "mobs:cobweb"}
 local web_trap = {
 	size = {x = 3, y = 3, z = 3},
@@ -19,6 +22,8 @@ local web_trap = {
 lucky_block:add_schematics({
 	{"webtrap", web_trap, {x = 1, y = 0, z = 1}},
 })
+
+-- add lucky blocks
 
 lucky_block:add_blocks({
 	{"sch", "webtrap", 1, true},

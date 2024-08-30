@@ -46,6 +46,7 @@ local materials = {
     dye_orange = "dye:orange",
     dye_pink = "dye:pink",
     dye_cyan = "dye:cyan",
+    dye_magenta = "dye:magenta",
     silicon = "hades_materials:silicon",
     string = "hades_farming:string",
     paper = "hades_core:paper",
