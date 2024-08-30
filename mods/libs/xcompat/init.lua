@@ -43,3 +43,8 @@ minetest.register_on_mods_loaded(function()
 end)
 
 dofile(modpath .. "/src/commands.lua")
+
+if minetest.get_modpath("mtt") and mtt.enabled then
+    -- register tests
+    dofile(modpath .. "/mtt.lua")
+end
