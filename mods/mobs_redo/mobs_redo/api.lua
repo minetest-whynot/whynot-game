@@ -18,7 +18,7 @@ end
 
 mobs = {
 	mod = "redo",
-	version = "20240810",
+	version = "20240823",
 	spawning_mobs = {},
 	translate = S,
 	invis = minetest.global_exists("invisibility") and invisibility or {},
@@ -1011,7 +1011,7 @@ function mob_class:do_env_damage()
 	local py = {x = pos.x, y = pos.y + prop.collisionbox[5], z = pos.z}
 	local nodef = minetest.registered_nodes[self.standing_in]
 
-	-- water
+	-- water damage
 	if self.water_damage ~= 0 and nodef.groups.water then
 
 		self.health = self.health - self.water_damage
@@ -1020,9 +1020,10 @@ function mob_class:do_env_damage()
 
 		if self:check_for_death({type = "environment",
 				pos = pos, node = self.standing_in}) then return true end
+	end
 
 	-- lava damage
-	elseif self.lava_damage ~= 0 and self:is_inside("group:lava") then
+	if self.lava_damage ~= 0 and nodef.groups.lava then
 
 		self.health = self.health - self.lava_damage
 
@@ -1030,9 +1031,10 @@ function mob_class:do_env_damage()
 
 		if self:check_for_death({type = "environment", pos = pos,
 				node = self.standing_in, hot = true}) then return true end
+	end
 
 	-- fire damage
-	elseif self.fire_damage ~= 0 and self:is_inside("group:fire") then
+	if self.fire_damage ~= 0 and nodef.groups.fire then
 
 		self.health = self.health - self.fire_damage
 
@@ -1040,9 +1042,10 @@ function mob_class:do_env_damage()
 
 		if self:check_for_death({type = "environment", pos = pos,
 				node = self.standing_in, hot = true}) then return true end
+	end
 
 	-- damage_per_second node check (not fire and lava)
-	elseif self.node_damage and nodef.damage_per_second and nodef.damage_per_second ~= 0
+	if self.node_damage and nodef.damage_per_second and nodef.damage_per_second ~= 0
 	and nodef.groups.lava == nil and nodef.groups.fire == nil then
 
 		self.health = self.health - nodef.damage_per_second
@@ -3921,6 +3924,7 @@ function mobs:spawn_specific(name, nodes, neighbors, min_light, max_light, inter
 			label = name .. " spawning",
 			nodenames = nodes,
 			run_at_every_load = false,
+			min_y = min_height, max_y = max_height,
 
 			action = function(pos, node)
 				spawn_action(pos, node)
@@ -3934,6 +3938,7 @@ function mobs:spawn_specific(name, nodes, neighbors, min_light, max_light, inter
 			interval = interval,
 			chance = max(1, (chance * mob_chance_multiplier)),
 			catch_up = false,
+			min_y = min_height, max_y = max_height,
 
 			action = function(pos, node, active_object_count, active_object_count_wider)
 				spawn_action(pos, node, active_object_count, active_object_count_wider)
