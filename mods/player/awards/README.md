@@ -197,6 +197,8 @@ end
 	* return true to cancel HUD from appearing.
 * `awards.unlock(player_name, award_name)`
 	* gives an award to a player
+* `awards.remove(player_name, award_name)`
+	* removes an award from a player
 * `awards.get_award_states(player_name)`
 	* Returns list of tables, sorted by `score`, each having the fields:
 

@@ -183,6 +183,21 @@ function awards.unlock(name, award)
 	end
 end
 
+function awards.remove(name, award)
+	local data  = awards.player(name)
+	local awdef = awards.registered_awards[award]
+	assert(awdef, "Unable to remove an award which doesn't exist!")
+
+	if data.disabled or
+			(not data.unlocked[award]) then
+		return
+	end
+
+	minetest.log("action", "Award " .. award .." has been removed from ".. name)
+	data.unlocked[award] = nil
+	awards.save()
+end
+
 function awards.get_award_states(name)
 	local hash_is_unlocked = {}
 	local retval = {}
