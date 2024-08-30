@@ -1,6 +1,10 @@
+
+-- global
+
 pie = {}
 
--- check for available hunger mods
+-- mod check and settings
+
 local hmod = minetest.get_modpath("hunger")
 local hbmod = minetest.global_exists("hbhunger")
 local stmod = minetest.global_exists("stamina")
@@ -10,20 +14,19 @@ local screwdriver_exists = minetest.get_modpath("screwdriver")
 local quarters = minetest.settings:get_bool("pie.quarters")
 
 -- sound support
+
 local cake_sound = defmod and default.node_sound_dirt_defaults()
 
 if minetest.get_modpath("mcl_sounds") then
 	cake_sound = mcl_sounds.node_sound_dirt_defaults()
 end
 
-
 -- eat pie slice function
+
 local function replace_pie(node, puncher, pos)
 
 	-- is this my pie?
-	if minetest.is_protected(pos, puncher:get_player_name()) then
-		return
-	end
+	if minetest.is_protected(pos, puncher:get_player_name()) then return end
 
 	-- which size of pie did we hit?
 	local pie = node.name:sub(1,-3)
@@ -31,6 +34,7 @@ local function replace_pie(node, puncher, pos)
 
 	-- are we using crystal shovel to pick up full pie using soft touch?
 	local tool = puncher:get_wielded_item():get_name()
+
 	if num == 0 and tool == "ethereal:shovel_crystal" then
 
 		local inv = puncher:get_inventory()
@@ -56,9 +60,7 @@ local function replace_pie(node, puncher, pos)
 
 	minetest.swap_node(pos, node)
 
-	if num == 3 then
-		minetest.check_for_falling(pos)
-	end
+	if num == 3 then minetest.check_for_falling(pos) end
 
 	-- default eat sound
 	local sound = "default_dig_crumbly"
@@ -116,20 +118,19 @@ local function replace_pie(node, puncher, pos)
 	minetest.sound_play(sound, {pos = pos, gain = 0.7, max_hear_distance = 5}, true)
 end
 
+-- pie registration function
 
--- register pie bits
 pie.register_pie = function(pie, desc)
 
 	-- full pie
 
 	local nodebox = {
 		type = "fixed",
-		fixed = {-0.45, -0.5, -0.45, 0.45, 0, 0.45}
-	}
+		fixed = {-0.45, -0.5, -0.45, 0.45, 0, 0.45}}
+
 	local tiles = {
 		pie .. "_top.png", pie .. "_bottom.png", pie .. "_side.png",
-		pie .. "_side.png", pie .. "_side.png", pie .. "_side.png"
-	}
+		pie .. "_side.png", pie .. "_side.png", pie .. "_side.png"}
 
 	minetest.register_node(":pie:" .. pie .. "_0", {
 		description = desc,
@@ -155,22 +156,21 @@ pie.register_pie = function(pie, desc)
 
 	nodebox = {
 		type = "fixed",
-		fixed = {-0.45, -0.5, -0.25, 0.45, 0, 0.45}
-	}
+		fixed = {-0.45, -0.5, -0.25, 0.45, 0, 0.45}}
+
 	tiles = {
 		pie .. "_top.png", pie .. "_bottom.png", pie .. "_side.png",
-		pie .. "_side.png", pie .. "_side.png", pie .. "_inside.png"
-	}
+		pie .. "_side.png", pie .. "_side.png", pie .. "_inside.png"}
 
 	if quarters then
+
 		nodebox.fixed = {
 			{-0.45, -0.5, -0.45, 0, 0, 0.45},
-			{-0.45, -0.5, 0, 0.45, 0, 0.45}
-		}
+			{-0.45, -0.5, 0, 0.45, 0, 0.45}}
+
 		tiles = {
 			pie .. "_top.png", pie .. "_bottom.png", pie .. "_side_inside.png^[transformFX",
-			pie .. "_side.png", pie .. "_side.png", pie .. "_side_inside.png"
-		}
+			pie .. "_side.png", pie .. "_side.png", pie .. "_side_inside.png"}
 	end
 
 	minetest.register_node(":pie:" .. pie .. "_1", {
@@ -197,19 +197,19 @@ pie.register_pie = function(pie, desc)
 
 	nodebox = {
 		type = "fixed",
-		fixed = {-0.45, -0.5, 0.0, 0.45, 0, 0.45}
-	}
+		fixed = {-0.45, -0.5, 0.0, 0.45, 0, 0.45}}
+
 	tiles = {
 		pie .. "_top.png", pie .. "_bottom.png", pie .. "_side.png",
-		pie .. "_side.png", pie .. "_side.png", pie .. "_inside.png"
-	}
+		pie .. "_side.png", pie .. "_side.png", pie .. "_inside.png"}
 
 	if quarters then
+
 		nodebox.fixed = {-0.45, -0.5, -.45, 0, 0, 0.45}
+
 		tiles = {
 			pie .. "_top.png", pie .. "_bottom.png", pie .. "_inside.png",
-			pie .. "_side.png", pie .. "_side.png", pie .. "_side.png"
-		}
+			pie .. "_side.png", pie .. "_side.png", pie .. "_side.png"}
 	end
 
 	minetest.register_node(":pie:" .. pie .. "_2", {
@@ -236,19 +236,19 @@ pie.register_pie = function(pie, desc)
 
 	tiles = {
 		pie .. "_top.png", pie .. "_bottom.png", pie .. "_side.png",
-		pie .. "_side.png", pie .. "_side.png", pie .. "_inside.png"
-	}
+		pie .. "_side.png", pie .. "_side.png", pie .. "_inside.png"}
+
 	nodebox = {
 		type = "fixed",
-		fixed = {-0.45, -0.5, 0.25, 0.45, 0, 0.45}
-	}
+		fixed = {-0.45, -0.5, 0.25, 0.45, 0, 0.45}}
 
 	if quarters then
+
 		nodebox.fixed = {-0.45, -0.5, 0.0, 0.0, 0, 0.45}
+
 		tiles = {
 			pie .. "_top.png", pie .. "_bottom.png", pie .. "_inside.png",
-			pie .. "_side.png", pie .. "_side.png", pie .. "_inside.png"
-		}
+			pie .. "_side.png", pie .. "_side.png", pie .. "_inside.png"}
 	end
 
 	minetest.register_node(":pie:" .. pie .. "_3", {
@@ -272,8 +272,8 @@ pie.register_pie = function(pie, desc)
 	})
 end
 
-
 -- register cakes
+
 pie.register_pie("pie", "Cake")
 pie.register_pie("choc", "Chocolate Cake")
 pie.register_pie("scsk", "Strawberry Cheesecake")
@@ -284,8 +284,8 @@ pie.register_pie("bana", "Banana Cake")
 pie.register_pie("brpd", "Bread Pudding")
 pie.register_pie("orange", "Orange Pie")
 
+-- ingredients
 
--- ingredient variables
 local mcl = minetest.get_modpath("mcl_dye")
 local i_sugar = mcl and "mcl_core:sugar" or "group:food_sugar"
 local i_wheat = mcl and "mcl_farming:wheat_item" or "group:food_wheat"
@@ -305,6 +305,7 @@ local i_bucket = mcl and "mcl_buckets:bucket_empty" or "bucket:bucket_empty"
 local i_bottle = mcl and "mcl_potions:glass_bottle" or "vessels:glass_bottle"
 
 -- replacement items
+
 local replace_these = {
 	{"mobs:bucket_milk", i_bucket},
 	{"mobs:wooden_bucket_milk", "wooden_bucket:bucket_wood_empty"},
@@ -314,6 +315,7 @@ local replace_these = {
 }
 
 -- normal cake recipe
+
 minetest.register_craft({
 	output = "pie:pie_0",
 	recipe = {
@@ -325,6 +327,7 @@ minetest.register_craft({
 })
 
 -- chocolate cake recipe
+
 minetest.register_craft({
 	output = "pie:choc_0",
 	recipe = {
@@ -336,6 +339,7 @@ minetest.register_craft({
 })
 
 -- strawberry cheesecake recipe
+
 minetest.register_craft({
 	output = "pie:scsk_0",
 	recipe = {
@@ -347,6 +351,7 @@ minetest.register_craft({
 })
 
 -- coffee cake recipe
+
 minetest.register_craft({
 	output = "pie:coff_0",
 	recipe = {
@@ -358,6 +363,7 @@ minetest.register_craft({
 })
 
 -- red velvet cake recipe
+
 minetest.register_craft({
 	output = "pie:rvel_0",
 	recipe = {
@@ -369,6 +375,7 @@ minetest.register_craft({
 })
 
 -- meat cake recipe
+
 minetest.register_craft({
 	output = "pie:meat_0",
 	recipe = {
@@ -378,6 +385,7 @@ minetest.register_craft({
 })
 
 -- banana cake recipe
+
 minetest.register_craft({
 	output = "pie:bana_0",
 	recipe = {
@@ -389,6 +397,7 @@ minetest.register_craft({
 })
 
 -- bread pudding recipe
+
 minetest.register_craft({
 	output = "pie:brpd_0",
 	recipe = {
@@ -400,6 +409,7 @@ minetest.register_craft({
 })
 
 -- orange pie
+
 minetest.register_craft({
 	output = "pie:orange_0",
 	recipe = {
@@ -410,8 +420,8 @@ minetest.register_craft({
 	replacements = replace_these
 })
 
-
 -- add lucky blocks
+
 if minetest.get_modpath("lucky_block") then
 
 	lucky_block:add_blocks({
@@ -430,8 +440,8 @@ if minetest.get_modpath("lucky_block") then
 	})
 end
 
-
 -- some aliases for older pie mod by Mitroman
+
 minetest.register_alias("pie:apie_0", "pie:pie_0")
 minetest.register_alias("pie:apie_1", "pie:pie_1")
 minetest.register_alias("pie:apie_2", "pie:pie_2")
@@ -442,6 +452,5 @@ minetest.register_alias("pie:amuffinbatter", "pie:pie_0")
 minetest.register_alias("pie:applemuffin", "pie:pie_0")
 minetest.register_alias("pie:sugar", "farming:sugar")
 minetest.register_alias("pie:knife", "default:sword_steel")
-
 
 print("[MOD] Pie loaded")
