@@ -385,8 +385,8 @@ function airutils.destroy(self, by_name, by_automation)
         child:remove()
     end
 
+    local destroyed_ent = nil
     if by_automation == false then
-        local destroyed_ent = nil
         if self._destroyed_ent then
             destroyed_ent = self._destroyed_ent
         end

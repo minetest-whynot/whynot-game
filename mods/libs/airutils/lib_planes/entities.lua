@@ -535,6 +535,19 @@ function airutils.logic(self)
         if h_vel_compensation > max_pitch then h_vel_compensation = max_pitch end
         --minetest.chat_send_all(h_vel_compensation)
         newpitch = newpitch + (velocity.y * math.rad(max_pitch - h_vel_compensation))
+
+        if airutils.use_water_particles == true and airutils.add_splash and self._splash_x_position and self.buoyancy then
+            local splash_frequency = 0.15
+            if self._last_splash == nil then self._last_splash = 0.5 else self._last_splash = self._last_splash + self.dtime end
+            if longit_speed >= 2.0 and self._last_vel and self._last_splash >= splash_frequency then
+                self._last_splash = 0
+                local splash_pos = vector.new(curr_pos)
+                local bellow_position = self.initial_properties.collisionbox[2]
+                local collision_height = self.initial_properties.collisionbox[5] - bellow_position
+                splash_pos.y = splash_pos.y + (bellow_position + (collision_height * self.buoyancy)) - (collision_height/10)
+                airutils.add_splash(splash_pos, newyaw, self._splash_x_position)
+            end
+        end
     end
 
     local new_accel = accel

@@ -60,6 +60,12 @@ if not minetest.settings:get_bool('airutils_disable_repair') then
     dofile(minetest.get_modpath("airutils") .. DIR_DELIM .. "airutils_repair.lua")
 end
 
+airutils.splash_texture = "airutils_splash.png"
+airutils.use_water_particles = false
+if minetest.settings:get_bool('airutils_enable_water_particles', false) then
+    airutils.use_water_particles = true
+end
+
 airutils._use_signs_api = true
 if not minetest.get_modpath("signs_lib") then airutils._use_signs_api = false end
 if minetest.settings:get_bool('airutils_disable_signs_api') then airutils._use_signs_api = false end
@@ -68,6 +74,7 @@ airutils.get_wind = dofile(minetest.get_modpath("airutils") .. DIR_DELIM ..'/win
 dofile(minetest.get_modpath("airutils") .. DIR_DELIM .. "uuid_manager.lua")
 dofile(minetest.get_modpath("airutils") .. DIR_DELIM .. "common_entities.lua")
 dofile(minetest.get_modpath("airutils") .. DIR_DELIM .. "airutils_wind.lua")
+dofile(minetest.get_modpath("airutils") .. DIR_DELIM .. "water_splash.lua")
 dofile(minetest.get_modpath("airutils") .. DIR_DELIM .. "inventory_management.lua")
 dofile(minetest.get_modpath("airutils") .. DIR_DELIM .. "light.lua")
 dofile(minetest.get_modpath("airutils") .. DIR_DELIM .. "physics_lib.lua")

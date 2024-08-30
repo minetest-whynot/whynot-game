@@ -18,3 +18,7 @@ airutils_debug_log (log of entity activation) bool false
 
 # disable the usage of signs_api by the vehicles
 airutils_disable_signs_api (no names writen on vehicles surface) bool false
+
+# enable water particles effect
+airutils_enable_water_particles (enable particles on water) bool false
+
