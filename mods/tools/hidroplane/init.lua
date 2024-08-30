@@ -95,6 +95,7 @@ hydroplane.plane_properties._have_manual = hydroplane.manual_formspec
 hydroplane.plane_properties.initial_properties = airutils.properties_copy(supercub.plane_properties.initial_properties)
 hydroplane.plane_properties.initial_properties.collisionbox = {-1.2, -2.3, -1.2, 1.2, 1, 1.2}
 hydroplane.plane_properties.initial_properties.selectionbox = {-2, -2.3, -2, 2, 1, 2}
+hydroplane.plane_properties._splash_x_position = 14
 
 dofile(minetest.get_modpath("hidroplane") .. DIR_DELIM .. "crafts.lua")
 dofile(minetest.get_modpath("hidroplane") .. DIR_DELIM .. "entities.lua")
