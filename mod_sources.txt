@@ -1,6 +1,6 @@
 
 origin https://github.com/minetest-mirrors/ambience.git (fetch)
-* c1a076ec8c5e378b64174087b2adc928457712e9 add biome name to sound_check, add additional sounds with pitch change
+* e55d4b8b62d880399677f1934ea499bba6ee2605 remove fire sounds, added Mineclone support.
 Mod: ambience/ambience
 
 origin https://github.com/minetest-mods/lightning (fetch)
@@ -116,7 +116,7 @@ origin https://github.com/minetest-mods/mtfoods (fetch)
 Mod: food/mtfoods
 
 origin https://github.com/minetest-mirrors/pie.git (fetch)
-* 72fd43b80561bd25c66254ba8479991b520c42cc 5.x
+* ec73079f3f61c019a0ce2a38a490838914cc5b96 tidy code
 Mod: food/pie
 
 origin https://github.com/GreenXenith/waffles (fetch)
@@ -124,7 +124,7 @@ origin https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin https://github.com/APercy/airutils.git (fetch)
-* f2e9c4881ced5335375f9a8a9e2c0f9bf5e6755a fix issue #19
+* 7c1335c7f144183d2c3cfd9f20716e4f8b77a038 fix undeclared variable
 Mod: libs/airutils
 
 origin https://repo.or.cz/minetest_doc.git (fetch)
@@ -156,7 +156,7 @@ origin https://github.com/dacmot/sfcraftguide.git (fetch)
 Mod: libs/sfcraftguide
 
 origin https://github.com/mt-mods/xcompat.git (fetch)
-* dc87e255b7f024ea94bc0ddbd3889a7a75bfac6a add missing magenta
+* 655486f465704a49e4bc5349a599e7f8761cca69 register tests only if enabled (#38)
 Mod: libs/xcompat
 
 origin https://github.com/Treer/cloudlands/ (fetch)
@@ -176,7 +176,7 @@ origin https://codeberg.org/Dacmot/minetest_mapgen_config.git (fetch)
 Mod: mapgen/minetest_mapgen_config
 
 origin https://github.com/minetest-mirrors/pbj_pup.git (fetch)
-* 54caa91c49db9ae770cd5d5cb3e818ac18a3f17d 5.x
+* 61372d0987bccc2f035ba653eb92e7338ae8edea add mineclone support, tweak & tidy code
 Mod: mapgen/pbj_pup
 
 origin https://github.com/GreenXenith/tac_nayn (fetch)
@@ -184,7 +184,7 @@ origin https://github.com/GreenXenith/tac_nayn (fetch)
 Mod: mapgen/tac_nayn
 
 origin https://github.com/minetest-mods/mesecons (fetch)
-* d52eac5a4afec3d68f39224a8da541b3ba52b561 Add documentation for Microcontroller (#603)
+* ff87cf3162750d50b74ae04b2298b896dad165e0 Add smoke test with engine using Docker
 Mod: mesecons/mesecons
 
 origin https://github.com/minetest/minetest_game (fetch)
@@ -192,7 +192,7 @@ origin https://github.com/minetest/minetest_game (fetch)
 Mod: minetest_game/minetest_game
 
 origin https://codeberg.org/tenplus1/mobs_ghost_redo (fetch)
-* 011f2c2b239b0daa22603c8a2cb44888c8e745a2 update mod.conf
+* 9ae8f7ff63d43306f9df6bdc0d61778763f3189a add custom spawn check and example
 Mod: mobs_redo/mobs_ghost_redo
 
 origin https://github.com/minetest-mirrors/mobs_monster.git (fetch)
@@ -200,7 +200,7 @@ origin https://github.com/minetest-mirrors/mobs_monster.git (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin https://github.com/minetest-mirrors/mobs_redo.git (fetch)
-* dce2abfcfe4ddc18d2d8d683b176ddb74c6dd209 add missing glass sounds
+* 26215cd221d6e5681630023e2e30a361488046d3 add min_y and max_y to spawning abm/lbm's
 Mod: mobs_redo/mobs_redo
 
 origin https://github.com/minetest-mods/3d_armor (fetch)
@@ -208,7 +208,7 @@ origin https://github.com/minetest-mods/3d_armor (fetch)
 Mod: player/3d_armor
 
 origin https://gitlab.com/dacmot/awards.git (fetch)
-* 9dbc5293745261d8c10be3cd86daf5b9929f4f28 Add formspec_escape for the icon string
+* 4c1d8cbf3a89a6c109d6a5a0aac6175e2be33d56 Merge remote-tracking branch 'upstream/master'
 Mod: player/awards
 
 origin https://github.com/minetest-mods/character_creator.git (fetch)
@@ -300,11 +300,11 @@ origin https://github.com/Ezhh/handholds (fetch)
 Mod: tools/handholds
 
 origin https://github.com/APercy/hidroplane.git (fetch)
-* f24640da25b9119740f591b264883ca3bb7cbff5 adjusted to work with mineclone
+* 7d5490ec029c78e9f24da095218c1138624cc5c9 added support for water splash
 Mod: tools/hidroplane
 
 origin https://github.com/minetest-mods/hopper (fetch)
-* c691f370b4ff6054b76cc7e4c2ea623012e99238 Configurable inventory log level (#17)
+* 18f37112d471d286909b36003175103cadcb8780 Offload CHANGELOG from README
 Mod: tools/hopper
 
 origin https://github.com/minetest-mods/jumping (fetch)
