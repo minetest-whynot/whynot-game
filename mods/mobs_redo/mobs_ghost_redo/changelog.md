@@ -10,7 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 	- Forked by TenPlus1 for addition to ContentDB
 	- Pig Iron Sword added to 'immune_to'
 	- General code tidy and tweak
-
+	- Removed unecessary groups for spawning
+	- Added Mineclone support
 
 ## [0.7.0] - 2019-10-31
 ### Added
