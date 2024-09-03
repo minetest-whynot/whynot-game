@@ -18,45 +18,33 @@ local function get_hopper_formspec(pos)
 	return formspec
 end
 
--- unfortunately param2 overrides are needed for side hoppers even in the non-single-craftable-item case
--- because they are literally *side* hoppers - their spouts point to the side rather than to the front, so
--- the default item_place_node orientation code will not orient them pointing toward the selected surface.
 local hopper_on_place = function(itemstack, placer, pointed_thing, node_name)
-	local returned_stack, success, _
+	local pos  = pointed_thing.under
+	local pos2 = pointed_thing.above
+	local x = pos.x - pos2.x
+	local z = pos.z - pos2.z
 
-	if not (hopper.config.single_craftable_item or node_name == "hopper:hopper_side") then
-		returned_stack, _ = minetest.item_place_node(itemstack, placer, pointed_thing)
-		return returned_stack
-	end
-
-	local pointed_pos = pointed_thing.under
-	local hopper_pos  = pointed_thing.above
-
-	local param2
-	local pointed_registered = hopper.get_registered(minetest.get_node(pointed_pos).name)
-	if pointed_registered and pointed_registered.extra.set_hopper_param2 then
-		param2 = pointed_registered.extra.set_hopper_param2(hopper_pos, pointed_pos)
-	else
-		local param2_by_offset = {
-			[vector.new(-1, 0, 0):to_string()] = 0,
-			[vector.new( 0, 0, 1):to_string()] = 1,
-			[vector.new( 1, 0, 0):to_string()] = 2,
-			[vector.new( 0, 0,-1):to_string()] = 3,
-		}
-		param2 = param2_by_offset[(pointed_pos - hopper_pos):to_string()]
-	end
-
-	if param2 then
-		_, success = minetest.item_place_node(ItemStack("hopper:hopper_side"), placer, pointed_thing, param2)
+	local returned_stack, success
+	-- unfortunately param2 overrides are needed for side hoppers even in the non-single-craftable-item case
+	-- because they are literally *side* hoppers - their spouts point to the side rather than to the front, so
+	-- the default item_place_node orientation code will not orient them pointing toward the selected surface.
+	if x == -1 and (hopper.config.single_craftable_item or node_name == "hopper:hopper_side") then
+		returned_stack, success = minetest.item_place_node(ItemStack("hopper:hopper_side"), placer, pointed_thing, 0)
+	elseif x == 1 and (hopper.config.single_craftable_item or node_name == "hopper:hopper_side") then
+		returned_stack, success = minetest.item_place_node(ItemStack("hopper:hopper_side"), placer, pointed_thing, 2)
+	elseif z == -1 and (hopper.config.single_craftable_item or node_name == "hopper:hopper_side")  then
+		returned_stack, success = minetest.item_place_node(ItemStack("hopper:hopper_side"), placer, pointed_thing, 3)
+	elseif z == 1 and (hopper.config.single_craftable_item or node_name == "hopper:hopper_side") then
+		returned_stack, success = minetest.item_place_node(ItemStack("hopper:hopper_side"), placer, pointed_thing, 1)
 	else
 		if hopper.config.single_craftable_item then
 			node_name = "hopper:hopper" -- For cases where single_craftable_item was set on an existing world and there are still side hoppers in player inventories
 		end
-		_, success = minetest.item_place_node(ItemStack(node_name), placer, pointed_thing)
+		returned_stack, success = minetest.item_place_node(ItemStack(node_name), placer, pointed_thing)
 	end
-
+	
 	if success then
-		local meta = minetest.get_meta(hopper_pos)
+		local meta = minetest.get_meta(pos2)
 		meta:set_string("placer", placer:get_player_name())
 		if not minetest.settings:get_bool("creative_mode") then
 			itemstack:take_item()
@@ -202,7 +190,7 @@ minetest.register_node("hopper:hopper_side", {
 			{-0.7, -0.3, -0.15, 0.15, 0.0, 0.15},
 		},
 	},
-
+	
 	on_construct = function(pos)
 		local inv = minetest.get_meta(pos):get_inventory()
 		inv:set_size("main", 4*4)
@@ -211,7 +199,7 @@ minetest.register_node("hopper:hopper_side", {
 	on_place = function(itemstack, placer, pointed_thing)
 		return hopper_on_place(itemstack, placer, pointed_thing, "hopper:hopper_side")
 	end,
-
+	
 	can_dig = function(pos,player)
 		local inv = minetest.get_meta(pos):get_inventory()
 		return inv:is_empty("main")
