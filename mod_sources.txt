@@ -304,7 +304,7 @@ origin https://github.com/APercy/hidroplane.git (fetch)
 Mod: tools/hidroplane
 
 origin https://github.com/minetest-mods/hopper (fetch)
-* 18f37112d471d286909b36003175103cadcb8780 Offload CHANGELOG from README
+* c691f370b4ff6054b76cc7e4c2ea623012e99238 Configurable inventory log level (#17)
 Mod: tools/hopper
 
 origin https://github.com/minetest-mods/jumping (fetch)
