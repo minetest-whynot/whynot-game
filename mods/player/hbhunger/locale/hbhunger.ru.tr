@@ -1,9 +1,9 @@
 # textdomain:hbhunger
-Hunger with HUD Bar=
-Adds a simple hunger meachanic with satiation, food poisoning and different healing.=
-Satiation=голод
-[<player>] <satiation>=
-Set satiation of player or yourself=
-Not possible, damage is disabled.=
-Invalid satiation!=
-Player @1 does not exist.=
+Hunger with HUD Bar=Голод с индикатором HUD
+Adds a simple hunger meachanic with satiation, food poisoning and different healing.=Добавлен простой способ борьбы с голодом, который включает в себя насыщение, пищевое отравление и различные виды лечения.
+Satiation=Голод
+[<player>] <satiation>=[<игрок>] <насыщение>
+Set satiation of player or yourself=Установить насыщение для игрока или для себя
+Not possible, damage is disabled.=Невозможно, урон отключен.
+Invalid satiation!=Недопустимое насыщение!
+Player @1 does not exist.=Игрок @1 не существует.
