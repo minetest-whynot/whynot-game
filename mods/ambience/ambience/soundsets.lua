@@ -181,7 +181,7 @@ ambience.add_set("ice", {
 	frequency = 250,
 
 	sounds = {
-		{name = "icecrack", length = 5, gain = 0.7},
+		{name = "icecrack", length = 5, gain = 1.1},
 		{name = "desertwind", length = 8},
 		{name = "wind", length = 9}
 	},
@@ -334,6 +334,12 @@ ambience.add_set("day", {
 			+ (def.totals["mcl_trees:leaves_mangrove"] or 0)
 			+ (def.totals["mcl_trees:leaves_birch"] or 0)
 			+ (def.totals["mcl_trees:leaves_acacia"] or 0)
+			+ (def.totals["ethereal:birch_leaves"] or 0)
+			+ (def.totals["ethereal:lemon_leaves"] or 0)
+			+ (def.totals["ethereal:olive_leaves"] or 0)
+			+ (def.totals["ethereal:redwood_leaves"] or 0)
+			+ (def.totals["ethereal:sakura_leaves"] or 0)
+			+ (def.totals["ethereal:sakura_leaves2"] or 0)
 
 		if (def.tod > 0.2 and def.tod < 0.8) and def.pos.y > -10 and c > 5 then
 			return "day"
@@ -369,7 +375,12 @@ ambience.add_set("night", {
 			+ (def.totals["mcl_trees:leaves_mangrove"] or 0)
 			+ (def.totals["mcl_trees:leaves_birch"] or 0)
 			+ (def.totals["mcl_trees:leaves_acacia"] or 0)
-
+			+ (def.totals["ethereal:birch_leaves"] or 0)
+			+ (def.totals["ethereal:lemon_leaves"] or 0)
+			+ (def.totals["ethereal:olive_leaves"] or 0)
+			+ (def.totals["ethereal:redwood_leaves"] or 0)
+			+ (def.totals["ethereal:sakura_leaves"] or 0)
+			+ (def.totals["ethereal:sakura_leaves2"] or 0)
 
 		if (def.tod < 0.2 or def.tod > 0.8) and def.pos.y > -10 and c > 5 then
 			return "night"
