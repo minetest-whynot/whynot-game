@@ -231,7 +231,6 @@ homedecor:kitchen_cabinet_colorable_marble_locked
 homedecor:kitchen_cabinet_colorable_marble
 pipeworks:lua_tube101001
 homedecor:banister_wood_diagonal_right_sapphire
-mcl_trees:sapling_bamboo
 homedecor:banister_wood_diagonal_right_blue
 pipeworks:lua_tube111001
 mcl_heads:steve_wall

@@ -25,7 +25,7 @@ local materials = {
     torch = "mcl_torches:torch",
     diamond = "mcl_core:diamond",
     clay_lump = "default:clay_lump",
-    water_bucket = "mcl_buckets:bucket:bucket_water",
+    water_bucket = "mcl_buckets:bucket_water",
     empty_bucket = "mcl_buckets:bucket_empty",
     dye_dark_grey = "mcl_dyes:dark_grey",
     dye_black = "mcl_dyes:black",
@@ -80,5 +80,17 @@ local materials = {
     bowl = "mcl_core:bowl",
     stick = "mcl_core:stick",
 }
+
+if minetest.get_modpath("moreores") then
+    materials.tin_ingot = "moreores:tin_ingot"
+    materials.tin_block = "moreores:tin_block"
+    materials.silver_ingot = "moreores:silver_ingot"
+end
+
+if minetest.get_modpath("technic") then
+    materials.lead_ingot = "technic:lead_ingot"
+    materials.carbon_steel_ingot = "technic:carbon_steel_ingot"
+    materials.stainless_steel_ingot = "technic:stainless_steel_ingot"
+end
 
 return materials
