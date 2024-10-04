@@ -421,3 +421,59 @@ minetest.register_craft({
 	recipe = "mobs:meatblock_raw",
 	cooktime = 30
 })
+
+-- hearing vines (if mesecons active it acts like blinkyplant)
+
+local mod_mese = minetest.get_modpath("mesecons")
+
+minetest.register_node("mobs:hearing_vines", {
+	description = S("Hearing Vines"),
+	drawtype = "firelike",
+	waving = 1,
+	tiles = {"mobs_hearing_vines.png"},
+	inventory_image = "mobs_hearing_vines.png",
+	wield_image = "mobs_hearing_vines.png",
+	paramtype = "light",
+	sunlight_propagates = true,
+	walkable = false,
+	buildable_to = true,
+	groups = {snappy = 3, flammable = 3, attached_node = 1, on_sound = 1},
+	sounds = mobs.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed", fixed = {-6 / 16, -0.5, -6 / 16, 6 / 16, -0.25, 6 / 16},
+	},
+	on_sound = function(pos, def)
+		if def.loudness > 0.5 then
+			minetest.set_node(pos, {name = "mobs:hearing_vines_active"})
+		end
+	end
+})
+
+minetest.register_node("mobs:hearing_vines_active", {
+	description = S("Active Hearing Vines"),
+	drawtype = "firelike",
+	waving = 1,
+	tiles = {"mobs_hearing_vines_active.png"},
+	inventory_image = "mobs_hearing_vines_active.png",
+	wield_image = "mobs_hearing_vines_active.png",
+	paramtype = "light",
+	sunlight_propagates = true,
+	walkable = false,
+	buildable_to = true,
+	light_source = 1,
+	damage_per_second = 4,
+	drop = "mobs:hearing_vines",
+	groups = {snappy = 3, flammable = 3, attached_node = 1, not_in_creative_inventory = 1},
+	sounds = mobs.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed", fixed = {-6 / 16, -0.5, -6 / 16, 6 / 16, -0.25, 6 / 16},
+	},
+	on_construct = function(pos)
+		minetest.get_node_timer(pos):start(1)
+		if mod_mese then mesecon.receptor_on(pos) end
+	end,
+	on_timer = function(pos)
+		minetest.set_node(pos, {name = "mobs:hearing_vines"})
+		if mod_mese then mesecon.receptor_off(pos) end
+	end
+})

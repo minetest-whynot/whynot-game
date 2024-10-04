@@ -348,14 +348,21 @@ enhance mob functionality and have them do many interesting things:
    'on_sound'       (self, def) called when mob is inside the hearing distance of
                     a sound, passes a def table containing:
       'sound'       the sound being played,
-      'pos'         position the sound originated,
+      'pos'         position the sound originated (only sounds with pos detected),
       'gain'        original gain of sound,
       'distance'    distance of mob from sound source,
-      'loudness'    how loud sound is to mob (0 = cant hear, 1.0 = near sound), this
-                    would be used as the main value inside on_sound function,
-      'player'      player name sound originated,
-      'object'      object reference sound originated,
+      'loudness'    how loud sound is to mob (percentage of gain heard at distance)
+      'player'      player name sound originated, [NOT IN USE]
+      'object'      object reference sound originated, [NOT IN USE]
       'max_hear_distance' max distance sound can be heard from source.
+
+
+Hearing Nodes
+-------------
+
+If a node has the {on_sound = 1} group and an on_sound() function set as above then
+nodes within 8 blocks of a sound will be activated and the function run.  Check the
+"mobs:hearing_vines" node as an example which has mesecons support when active.
 
 
 Internal Variables
@@ -560,7 +567,9 @@ This function registers a arrow for mobs with the attack type shoot.
        'textures'     same is in minetest.register_entity()
        'collide_with_objects'       same as above
        'velocity'     the velocity of the arrow
-       'drop'         if set to true any arrows hitting a node will drop as item
+       'drop'         if set to true any arrows hitting a node will drop as item,
+                      if number given then chance (1/num) of item dropping will
+                      be used.  arrow "mymob:myarrow" will use item of same name.
        'hit_player'   a function that is called when the arrow hits a player;
                       this function should hurt the player, the parameters are
                       (self, player)
