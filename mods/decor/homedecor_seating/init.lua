@@ -78,10 +78,18 @@ function lrfurn.fix_sofa_rotation_nsew(pos, placer, itemstack, pointed_thing)
 	minetest.swap_node(pos, { name = node.name, param2 = fdir+colorbits })
 end
 
+local physics_cache = {}
+
 function lrfurn.sit(pos, node, clicker, itemstack, pointed_thing, seats)
 	if not clicker:is_player() then
 		return itemstack
 	end
+
+	if physics_cache[clicker:get_player_name()] then
+		lrfurn.stand(clicker)
+		return itemstack
+	end
+
 	--conversion table for param2 to dir
 	local p2d = {
 		vector.new(0, 0, 0),
@@ -120,9 +128,24 @@ function lrfurn.sit(pos, node, clicker, itemstack, pointed_thing, seats)
 	end
 
 	--seat the player
-	sit_pos.y = sit_pos.y-0.5
 	clicker:set_pos(sit_pos)
+
+	xcompat.player.player_attached[clicker:get_player_name()] = true
+    xcompat.player.set_animation(clicker, "sit", 0)
+	physics_cache[clicker:get_player_name()] = table.copy(clicker:get_physics_override())
+	clicker:set_physics_override({speed = 0, jump = 0, gravity = 0})
+
 	return itemstack
+end
+
+function lrfurn.stand(clicker)
+	xcompat.player.player_attached[clicker:get_player_name()] = false
+	if physics_cache[clicker:get_player_name()] then
+		clicker:set_physics_override(physics_cache[clicker:get_player_name()])
+		physics_cache[clicker:get_player_name()] = nil
+	else --in case this is called and the cache is empty
+		clicker:set_physics_override({speed = 1, jump = 1, gravity = 1})
+	end
 end
 
 dofile(modpath.."/longsofas.lua")
