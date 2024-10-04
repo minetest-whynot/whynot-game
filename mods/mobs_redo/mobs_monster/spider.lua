@@ -1,9 +1,9 @@
--- Translation support
+
 local S = minetest.get_translator("mobs_monster")
 
 -- helper function
 
-local get_velocity = function(self)
+local function get_velocity(self)
 
 	local v = self.object:get_velocity()
 
@@ -232,7 +232,7 @@ if not mobs.custom_spawn_monster then
 		max_light = 8,
 		chance = 7000,
 		active_object_count = 1,
-		min_height = 25,
+		min_height = 2,
 		max_height = 31000
 	})
 

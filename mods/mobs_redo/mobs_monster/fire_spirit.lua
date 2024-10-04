@@ -1,5 +1,5 @@
 
--- transpation and drops
+-- translation and drops
 
 local S = minetest.get_translator("mobs_monster")
 

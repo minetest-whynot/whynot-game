@@ -178,7 +178,7 @@ function minetest.handle_node_drops(pos, drops, digger)
 			mobs:effect(pos, 1, "tnt_smoke.png", 3, 5, 2, 0.5, nil, false)
 
 			minetest.sound_play("fire_extinguish_flame",
-					{pos = pos, max_hear_distance = 8, gain = 0.15}, true)
+					{pos = pos, max_hear_distance = 5, gain = 0.05}, true)
 		end
 	end
 
@@ -270,6 +270,7 @@ mobs:register_mob("mobs_monster:obsidian_flan", {
 })
 
 -- spawn egg
+
 mobs:register_egg("mobs_monster:obsidian_flan", S("Obsidian Flan"),
 		"default_obsidian.png", 1)
 
