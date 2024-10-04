@@ -24,11 +24,11 @@ function sync_mods_folder {
 
         $RSYNC $exclusionlist $childmod/ $DSTPATH/$childname/
         if ls $SRC/$subm/[Ll][Ii][Cc][Ee][Nn][SsCc][Ee]* &> /dev/null; then
-          cp --no-clobber $VERBOSEONLY $SRC/$subm/[Ll][Ii][Cc][Ee][Nn][SsCc][Ee]* $DSTPATH/$childname/
+          cp --update=none $VERBOSEONLY $SRC/$subm/[Ll][Ii][Cc][Ee][Nn][SsCc][Ee]* $DSTPATH/$childname/
         elif ls $SRC/$subm/[Cc][Oo][Pp][Yy][Ii][Nn][Gg]* &> /dev/null; then
-          cp --no-clobber $VERBOSEONLY $SRC/$subm/[Cc][Oo][Pp][Yy][Ii][Nn][Gg]* $DSTPATH/$childname/
+          cp --update=none $VERBOSEONLY $SRC/$subm/[Cc][Oo][Pp][Yy][Ii][Nn][Gg]* $DSTPATH/$childname/
         elif ls $SRC/$subm/[Rr][Ee][Aa][Dd][Mm][Ee]* &> /dev/null; then
-          cp --no-clobber $VERBOSEONLY $SRC/$subm/[Rr][Ee][Aa][Dd][Mm][Ee]* $DSTPATH/$childname/
+          cp --update=none $VERBOSEONLY $SRC/$subm/[Rr][Ee][Aa][Dd][Mm][Ee]* $DSTPATH/$childname/
         fi
 
       else
