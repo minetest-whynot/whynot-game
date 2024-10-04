@@ -126,6 +126,9 @@ function airutils.on_activate(self, staticdata, dtime_s)
     if self._vehicle_name then airutils.setText(self, self._vehicle_name) end
 
     self._change_color = lib_change_color
+
+    --initialize array with seats
+    airutils.seats_create(self)
 end
 
 function airutils.on_step(self,dtime,colinfo)
@@ -955,35 +958,25 @@ function airutils.on_rightclick(self, clicker)
                 end
             end
 
-            if clicker:get_player_control().aux1 == true then --lets see the inventory
+            if clicker:get_player_control().sneak == true then --lets see the inventory
                 airutils.show_vehicle_trunk_formspec(self, clicker, self._trunk_slots)
             else
-                --[[if airutils.restricted == "true" and not minetest.check_player_privs(clicker, {flight_licence=true}) then
-                    minetest.show_formspec(name, "airutils:flightlicence",
-                        "size[4,2]" ..
-                        "label[0.0,0.0;Sorry ...]"..
-                        "label[0.0,0.7;You need a flight licence to fly it.]" ..
-                        "label[0.0,1.0;You must obtain it from server admin.]" ..
-                        "button_exit[1.5,1.9;0.9,0.1;e;Exit]")
-                    return
-                end]]--
-
                 if is_under_water then return end
 
                 --remove the passengers first                
                 local max_seats = table.getn(self._seats)
                 for i = max_seats,1,-1
                 do 
-                    if self._passengers[i] then
+                    if self._passengers[i] and self._passengers[i] ~= "" then
                         local passenger = minetest.get_player_by_name(self._passengers[i])
                         if passenger then airutils.dettach_pax(self, passenger) end
                     end
                 end
 
                 --attach player
-                airutils.seat_create(self, 1)
-                airutils.seat_create(self, 2)
-                if clicker:get_player_control().sneak == true and max_seats > 1 then
+                --airutils.seat_create(self, 1)
+                --airutils.seat_create(self, 2)
+                if clicker:get_player_control().aux1 == true and max_seats > 1 then
                     -- flight instructor mode
                     self._instruction_mode = true
                     self.co_pilot_seat_base = self._passengers_base[1]

@@ -340,12 +340,8 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
                             ent._instruction_mode = true
                         end
                     end
-                    airutils.dettachPlayer(ent, player)
-                elseif ent.owner == name then --just the owner too, but not driving
-                    airutils.dettachPlayer(ent, player)
-                else --anyone
-                    airutils.dettach_pax(ent, player)
                 end
+                airutils.dettach_pax(ent, player)
 		    end
             if fields.inventory then
                 if ent._trunk_slots then

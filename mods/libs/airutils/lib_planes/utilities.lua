@@ -73,21 +73,26 @@ function airutils.attach(self, player, instructor_mode)
 
     -- attach the driver
     local eye_y = 0
-    if instructor_mode == true and self._have_copilot then
+    if instructor_mode == true and self._have_copilot and self._passengers[2] == "" then
         eye_y = -4
-        airutils.seat_create(self, 2)
+        --airutils.seat_create(self, 1)
+        --airutils.seat_create(self, 2)
+        
         if not self.co_pilot_seat_base then
             self.co_pilot_seat_base = self._passengers_base[2]
         end
         player:set_attach(self.co_pilot_seat_base, "", {x = 0, y = 0, z = 0}, {x = 0, y = 0, z = 0})
+        self._passengers[2] = name
     else
         eye_y = -4
-        airutils.seat_create(self, 1)
+        --airutils.seat_create(self, 1)
         if not self.pilot_seat_base then
             self.pilot_seat_base = self._passengers_base[1]
         end
         player:set_attach(self.pilot_seat_base, "", {x = 0, y = 0, z = 0}, {x = 0, y = 0, z = 0})
+        self._passengers[1] = name
     end
+
     if airutils.detect_player_api(player) == 1 then
         eye_y = eye_y + 6.5
     end
@@ -101,11 +106,11 @@ end
 
 local function do_attach(self, player, slot)
     if slot == 0 then return end
-    if self._passengers[slot] == nil then
+    if self._passengers[slot] == "" then
         local name = player:get_player_name()
         --minetest.chat_send_all(self.driver_name)
         self._passengers[slot] = name
-        airutils.seat_create(self, slot)
+        --airutils.seat_create(self, slot)
         player:set_attach(self._passengers_base[slot], "", {x = 0, y = 0, z = 0}, {x = 0, y = 0, z = 0})
 
         local eye_y = -4
@@ -141,10 +146,14 @@ function airutils.dettachPlayer(self, player)
         player:set_detach()
         player:set_eye_offset({x=0,y=0,z=0},{x=0,y=0,z=0})
         if airutils.is_minetest then
-            player_api.player_attached[name] = nil
+            if player_api.player_attached[name] then
+                player_api.player_attached[name] = nil
+            end
             player_api.set_animation(player, "stand")
         elseif airutils.is_mcl then
-            mcl_player.player_attached[name] = nil
+            if mcl_player.player_attached[name] then
+                mcl_player.player_attached[name] = nil
+            end
             mcl_player.player_set_animation(player, "stand")
         end
     end
@@ -176,7 +185,7 @@ function airutils.check_passenger_is_attached(self, name)
 end
 
 local function attach_copilot(self, name, player, eye_y)
-    airutils.seat_create(self, 2)
+    --airutils.seat_create(self, 2)
     if not self.co_pilot_seat_base or not player then return end
     self.co_pilot = name
     self._passengers[2] = name
@@ -228,10 +237,10 @@ function airutils.attach_pax(self, player, is_copilot)
         local i = 0
         for k,v in ipairs(t) do
             i = t[k] + crew --jump the crew seats
-            if self._passengers[i] == nil then
+            if self._passengers[i] and self._passengers[i] == "" then
                 --minetest.chat_send_all(self.driver_name)
                 self._passengers[i] = name
-                airutils.seat_create(self, i)
+                --airutils.seat_create(self, i)
                 player:set_attach(self._passengers_base[i], "", {x = 0, y = 0, z = 0}, {x = 0, y = 0, z = 0})
                 player:set_eye_offset({x = 0, y = eye_y, z = 0}, {x = 0, y = 3, z = -30})
 
@@ -259,13 +268,13 @@ function airutils.dettach_pax(self, player, is_flying)
     -- passenger clicked the object => driver gets off the vehicle
     if self.co_pilot == name then
         self.co_pilot = nil
-        self._passengers[2] = nil
+        self._passengers[2] = ""
     else
         local max_seats = table.getn(self._seats)
         for i = max_seats,1,-1
         do 
             if self._passengers[i] == name then
-                self._passengers[i] = nil
+                self._passengers[i] = ""
                 break
             end
         end
@@ -360,7 +369,7 @@ function airutils.destroy(self, by_name, by_automation)
     local max_seats = table.getn(self._seats)
     for i = max_seats,2,-1
     do 
-        if self._passengers[i] then
+        if self._passengers[i] and self._passengers[i] ~= "" then
             local passenger = minetest.get_player_by_name(self._passengers[i])
             if passenger then airutils.dettach_pax(self, passenger) end
         end
@@ -614,14 +623,14 @@ function airutils.rescueConnectionFailedPassengers(self)
         self._disconnection_check_time = 0
         for i = max_seats,1,-1 
         do 
-            if self._passengers[i] then
+            if self._passengers[i] and self._passengers[i] ~= "" then
                 local player = minetest.get_player_by_name(self._passengers[i])
                 if player then --we have a player!
                     if player:get_attach() == nil then
                     --if player_api.player_attached[self._passengers[i]] == nil then --but isn't attached?
                         --minetest.chat_send_all("okay")
 		                if player:get_hp() > 0 then
-                            self._passengers[i] = nil --clear the slot first
+                            self._passengers[i] = "" --clear the slot first
                             do_attach(self, player, i) --attach
 		                end
                     end
@@ -640,19 +649,50 @@ function airutils.checkattachBug(self)
         if player then
 		    if player:get_hp() > 0 then
                 if player:get_attach() == nil then
+                    --no attach, lets recover
                     airutils.attach(self, player, self._instruction_mode)
+                    return
                 end
             else
+                --the player is dead, lets drop
                 airutils.dettachPlayer(self, player)
+                return
 		    end
         else
             if (self._passenger ~= nil or self.co_pilot ~= nil) and self._command_is_given == false then
+                --no pilot?! a passenger is the pilot now
                 self._autopilot = false
                 airutils.transfer_control(self, true)
+                return
             end
         end
     end
 
+    --force attach here to prevent desyncronization during fly (it happens in some map areas on my world)
+    local base_value = 1.0
+    if self._seat_check_interval == nil then self._seat_check_interval = base_value end
+    self._seat_check_interval = self._seat_check_interval + self.dtime
+    
+    if self._seat_check_interval >= base_value then
+        self._seat_check_interval = 0
+        local max_seats = table.getn(self._seats)
+        for i = max_seats,1,-1 
+        do
+            if self._passengers[i] and self._passengers[i] ~= "" then
+                local player = minetest.get_player_by_name(self._passengers[i])
+                if player then --we have a player!
+                    --minetest.chat_send_all(dump(i).." >> "..self._passengers[i].." >> "..dump(self._passengers).." >> instruction: "..dump(self._instruction_mode))
+                    if self._passengers[i] == self.driver_name and self._instruction_mode then
+                        player:set_attach(self.pilot_seat_base, "", {x = 0, y = 0, z = 0}, {x = 0, y = 0, z = 0})
+                    elseif self._passengers[i] == self.co_pilot and self._instruction_mode then
+                        player:set_attach(self.co_pilot_seat_base, "", {x = 0, y = 0, z = 0}, {x = 0, y = 0, z = 0})
+                    else
+                        player:set_attach(self._passengers_base[i], "", {x = 0, y = 0, z = 0}, {x = 0, y = 0, z = 0})
+                    end
+                end
+            end
+        end
+    end
 end
 
 function airutils.engineSoundPlay(self)
@@ -1088,10 +1128,12 @@ function airutils.seats_create(self)
     if self.object then
         local pos = self.object:get_pos()
         self._passengers_base = {}
+        self._passengers = {}
         if self._seats then 
             local max_seats = table.getn(self._seats)
             for i=1, max_seats do
                 self._passengers_base[i] = minetest.add_entity(pos,'airutils:seat_base')
+                self._passengers[i] = ""
                 if not self._seats_rot then
                     self._passengers_base[i]:set_attach(self.object,'',self._seats[i],{x=0,y=0,z=0})
                 else
