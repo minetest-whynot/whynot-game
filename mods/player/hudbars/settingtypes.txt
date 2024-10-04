@@ -57,6 +57,9 @@ hudbars_alignment_pattern (HUD bars alignment pattern) enum zigzag zigzag,stack_
 # of the default one.
 hudbars_sorting (HUD bars order) string
 
+# If enabled, hide the labels over the bars
+hudbars_hide_labels (Hide bar labels) bool false
+
 [Positions and offsets]
 # Horizontal (x) main position of the HUD bars over the entire screen.
 # 0.0 is left-most, 1.0 is right-most.
