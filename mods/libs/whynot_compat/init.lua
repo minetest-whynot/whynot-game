@@ -77,12 +77,6 @@ minetest.register_alias("mtfoods:sugar", "farming:sugar")
 -- Expired. See https://github.com/minetest-whynot/whynot-game/issues/95
 -- minetest.register_alias("endless_apples:apple_mark", "default:apple_mark")
 
--- Remove bonemeal recipe in favor of the heads
-minetest.clear_craft({
-	type = "shapeless",
-	recipe = {"bones:bones"}
-})
-
 -- https://github.com/rubenwardy/food/issues/32
 -- food_basic vs food_sweet
 -- Replace egg recipe by one with water to avoid conflict with lemon
