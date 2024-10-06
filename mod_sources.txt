@@ -92,7 +92,7 @@ origin https://github.com/mt-mods/unifieddyes (fetch)
 Mod: decor/unifieddyes
 
 origin https://github.com/minetest-mirrors/farming.git (fetch)
-* 0b06c7cd450c5ec9a76b3c22a9c57f06e4f8a7c2 add sound to hemp block
+* e302b83c4323b209a7ede8ef3f94f3ee5ae3c047 mortar and juicer now use group:stone
 Mod: flora_ores/farming
 
 origin https://codeberg.org/Dacmot/YellowCrystals.git (fetch)
