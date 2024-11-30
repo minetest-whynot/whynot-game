@@ -1,6 +1,6 @@
 
 origin https://github.com/minetest-mirrors/ambience.git (fetch)
-* d98e90656e4f3f5a87a8e911cbbce758b8b12181 add ethereal leaves check and tweak ice crack vol
+* 1b428c5a2c59a9dfdf0f61586fa055026f2c1cc4 remove need for minetest.after
 Mod: ambience/ambience
 
 origin https://github.com/minetest-mods/lightning (fetch)
@@ -48,7 +48,7 @@ origin https://github.com/mt-mods/home_workshop_modpack (fetch)
 Mod: decor/home_workshop_modpack
 
 origin https://github.com/mt-mods/homedecor_modpack (fetch)
-* 335559feb3946b43a321e3703f19236438959e6d fix seating only working once till server restarts
+* 94e25c21924cb705c952b5bc58231b88dae2fc1f free player when seat is dug (#84)
 Mod: decor/homedecor_modpack
 
 origin https://codeberg.org/Dacmot/minetest-laptop.git (fetch)
@@ -60,7 +60,7 @@ origin https://repo.or.cz/minetest_mtg_plus.git (fetch)
 Mod: decor/mtg_plus
 
 origin https://github.com/minetest-mods/mydoors (fetch)
-* 79547ede2608c009dc132bb69c1c636d204e0f2e Disallow rotation of various doors (#36)
+* 5d78183cf2d3eebc58dcbcd7cada378ca1004208 Make 'screwdriver' optional (#39)
 Mod: decor/mydoors
 
 origin https://github.com/minetest-mods/myroofs (fetch)
@@ -92,7 +92,7 @@ origin https://github.com/mt-mods/unifieddyes (fetch)
 Mod: decor/unifieddyes
 
 origin https://github.com/minetest-mirrors/farming.git (fetch)
-* e302b83c4323b209a7ede8ef3f94f3ee5ae3c047 mortar and juicer now use group:stone
+* 712005d2ac6c2c281c56685689675110e75cc8e2 tweak asparagus,ginger,spinach offset
 Mod: flora_ores/farming
 
 origin https://codeberg.org/Dacmot/YellowCrystals.git (fetch)
@@ -124,7 +124,7 @@ origin https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin https://github.com/APercy/airutils.git (fetch)
-* 0f729daf5e647318fbff8df86059f0bd20113529 model name changed and improved player recovery when server lags the position
+* 7008b02305f63811c92212276bffba1e7f21ee11 Merge pull request #27 from farribeiro/wind
 Mod: libs/airutils
 
 origin https://repo.or.cz/minetest_doc.git (fetch)
@@ -184,7 +184,7 @@ origin https://github.com/GreenXenith/tac_nayn (fetch)
 Mod: mapgen/tac_nayn
 
 origin https://github.com/minetest-mods/mesecons (fetch)
-* ff87cf3162750d50b74ae04b2298b896dad165e0 Add smoke test with engine using Docker
+* 31b56063a044677f96fd00275a7eccabd4a63f43 commandblock: replace deprecated formspec element "invsize"
 Mod: mesecons/mesecons
 
 origin https://github.com/minetest/minetest_game (fetch)
@@ -196,11 +196,11 @@ origin https://codeberg.org/tenplus1/mobs_ghost_redo (fetch)
 Mod: mobs_redo/mobs_ghost_redo
 
 origin https://github.com/minetest-mirrors/mobs_monster.git (fetch)
-* 6de7ee6b1152d461a2d7baefeae0a8d4665d0ffe tweak lava pick dig sound
+* 6ea38b5a16a7b1fd90d6c8599b1a4646c124f0b0 crystal spider immune to ethereal crystal spike node.
 Mod: mobs_redo/mobs_monster
 
 origin https://github.com/minetest-mirrors/mobs_redo.git (fetch)
-* 219db764bf434a217312d0f412ef10b480c28510 forgot def.loudness check
+* 58792311c737b9e3fd99b5db42e3e5da08bd5df5 add immune_to check to is_node_dangerous function
 Mod: mobs_redo/mobs_redo
 
 origin https://github.com/minetest-mods/3d_armor (fetch)
@@ -228,7 +228,7 @@ origin https://codeberg.org/Wuzzy/minetest_hbarmor.git (fetch)
 Mod: player/hbarmor
 
 origin https://codeberg.org/Wuzzy/minetest_hbhunger.git (fetch)
-* 71e29f22e9a75eb69a3ed997bdb635f6ea795550 Merge pull request 'Full translation into Russian' (#6) from adikalon/minetest_hbhunger:master into master
+* 92b601a380e446b56448e3d6b14375728c06ab8f Rename Minetest to Luanti
 Mod: player/hbhunger
 
 origin https://github.com/minetest-mods/hbsprint (fetch)
@@ -236,7 +236,7 @@ origin https://github.com/minetest-mods/hbsprint (fetch)
 Mod: player/hbsprint
 
 origin https://codeberg.org/Wuzzy/minetest_hudbars.git (fetch)
-* 370233759eb4914a02fa764cdb7ffb9b7a85275b Version 2.3.6
+* bd191abfcd38ffd7ad575620d9fd1c6bf1f2f7cf Rename Minetest to Luanti
 Mod: player/hudbars
 
 origin https://github.com/dacmot/moarmour (fetch)
