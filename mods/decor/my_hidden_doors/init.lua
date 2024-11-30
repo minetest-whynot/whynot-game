@@ -12,7 +12,7 @@ local hdoor_list = {   --Number , Description , default image
 
 local function add_door(img, desc)
 	-- Cannot add locked doors because the tooltip defies the purpose of being a hidden door
-	mydoors.register_door("my_hidden_doors:hidden_door"..img, {
+	doors.register_door("my_hidden_doors:hidden_door"..img, {
 		description = desc,
 		inventory_image = "mydoors_"..img.."_inv.png",
 		groups = {choppy=2,cracky=2,door=1},
@@ -26,7 +26,7 @@ for _,hdoor in ipairs(hdoor_list) do
 	add_door(unpack(hdoor))
 end
 
-mydoors.register_door("my_hidden_doors:hidden_door_grey", {
+doors.register_door("my_hidden_doors:hidden_door_grey", {
 	description = "Grey Door",
 	inventory_image = "mydoors_grey_inv.png",
 	groups = {choppy=2,cracky=2,door=1},

@@ -6,7 +6,7 @@ local cdoor_list = {   --Number , Description , Inven Image , Image
 }
 
 local function add_door(num, desc, img)
-	mydoors.register_door("my_old_doors:door"..num, {
+	doors.register_door("my_old_doors:door"..num, {
 		description = desc,
 		inventory_image = "mydoors_"..img.."_inv.png",
 		groups = {choppy=2,cracky=2,door=1},

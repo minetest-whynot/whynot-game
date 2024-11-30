@@ -1,3 +1,16 @@
+local rotate_disallow = rawget(_G, "screwdriver") and screwdriver.disallow or nil
+
+local nodebox = {
+	type = "fixed",
+	fixed = {
+		{-0.4375, -0.5, -0.0625, -0.3125, 0.5, 0.0625},
+		{-0.0625, -0.5, -0.0625,  0.0625, 0.5, 0.0625},
+		{ 0.3125, -0.5, -0.0625,  0.4375, 0.5, 0.0625},
+		{ 0.125,  -0.5, -0.0625,  0.25,   0.5, 0.0625},
+		{-0.25,   -0.5, -0.0625, -0.125,  0.5, 0.0625},
+	}
+}
+
 minetest.register_node("my_misc_doors:door2a", {
 	description = "Sliding Door",
 	inventory_image = "mydoors_bars.png",
@@ -13,23 +26,14 @@ minetest.register_node("my_misc_doors:door2a", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {cracky = 3},
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.4375, -0.5, -0.0625, -0.3125, 0.5, 0.0625},
-			{-0.0625, -0.5, -0.0625,  0.0625, 0.5, 0.0625},
-			{ 0.3125, -0.5, -0.0625,  0.4375, 0.5, 0.0625},
-			{ 0.125,  -0.5, -0.0625,  0.25,   0.5, 0.0625},
-			{-0.25,   -0.5, -0.0625, -0.125,  0.5, 0.0625},
-		}
-	},
+	node_box = table.copy(nodebox),
 	selection_box = {
 		type = "fixed",
 		fixed = {
 			{-0.4375, -0.5, -0.0625, 0.4375, 1.5, 0.0625},
 		}
 	},
-	on_rotate = screwdriver.disallow,
+	on_rotate = rotate_disallow,
 
 	on_place = function(itemstack, placer, pointed_thing)
 		local pos1 = pointed_thing.above
@@ -102,23 +106,14 @@ minetest.register_node("my_misc_doors:door2b", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {cracky = 1},
-	node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.4375, -0.5, -0.0625, -0.3125, 0.5, 0.0625},
-			{-0.0625, -0.5, -0.0625,  0.0625, 0.5, 0.0625},
-			{ 0.3125, -0.5, -0.0625,  0.4375, 0.5, 0.0625},
-			{ 0.125,  -0.5, -0.0625,  0.25,   0.5, 0.0625},
-			{-0.25,   -0.5, -0.0625, -0.125,  0.5, 0.0625},
-		}
-	},
+	node_box = table.copy(nodebox),
 	selection_box = {
 		type = "fixed",
 		fixed = {
 			{0, 0, 0, 0, 0, 0},
 		}
 	},
-	on_rotate = screwdriver.disallow,
+	on_rotate = rotate_disallow,
 })
 minetest.register_node("my_misc_doors:door2c", {
 	tiles = {
@@ -150,7 +145,7 @@ minetest.register_node("my_misc_doors:door2c", {
 		}
 	},
 	drop = "my_misc_doors:door2a",
-	on_rotate = screwdriver.disallow,
+	on_rotate = rotate_disallow,
 	after_place_node = function(pos, placer, itemstack, pointed_thing)
 		local node = minetest.get_node(pos)
 		local timer = minetest.get_node_timer(pos)
@@ -206,7 +201,7 @@ minetest.register_node("my_misc_doors:door2d", {
 			{0, 0, 0, 0, 0, 0},
 		}
 	},
-	on_rotate = screwdriver.disallow,
+	on_rotate = rotate_disallow,
 })
 minetest.register_craft({
 	output = "my_misc_doors:door2a 1",
