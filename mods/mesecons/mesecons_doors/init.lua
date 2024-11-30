@@ -22,6 +22,11 @@ end
 local function meseconify_door(name)
 	if minetest.registered_items[name .. "_b_1"] then
 		-- old style double-node doors
+		if minetest.registered_items[name .. "_b_1"].mesecons then
+			minetest.log("info", "[mesecons_doors] Not touching door " .. name)
+			return
+		end
+
 		local function toggle_state1 (pos)
 			on_rightclick(pos, 1, name.."_t_1", name.."_b_2", name.."_t_2", {1,2,3,0})
 		end
@@ -47,6 +52,10 @@ local function meseconify_door(name)
 		})
 	elseif minetest.registered_items[name .. "_a"] then
 		-- new style mesh node based doors
+		if minetest.registered_items[name .. "_a"].mesecons then
+			minetest.log("info", "[mesecons_doors] Not touching door " .. name)
+			return
+		end
 		local override = {
 			mesecons = {effector = {
 				action_on = function(pos)
@@ -72,15 +81,6 @@ local function meseconify_door(name)
 		end
 	end
 end
-
-local doors_list = {
-	"doors:door_wood",
-	"doors:door_steel",
-	"doors:door_glass",
-	"doors:door_obsidian_glass",
-	"xpanes:door_steel_bar",
-}
-for i=1,#doors_list do meseconify_door(doors_list[i]) end
 
 -- Trapdoor
 local function trapdoor_switch(name)
@@ -131,9 +131,15 @@ local function meseconify_trapdoor(name)
 	end
 end
 
-local trapdoors_list = {
-	"doors:trapdoor",
-	"doors:trapdoor_steel",
-	"xpanes:trapdoor_steel_bar"
-}
-for i=1,#trapdoors_list do meseconify_trapdoor(trapdoors_list[i]) end
+minetest.register_on_mods_loaded(function()
+	for k,_ in pairs(doors.registered_doors) do
+		if k:find("_a$") then
+			meseconify_door(k:sub(1,-3))
+		end
+	end
+	for k,_ in pairs(doors.registered_trapdoors) do
+		if not k:find("_open$") then
+			meseconify_trapdoor(k)
+		end
+	end
+end)
