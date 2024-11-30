@@ -7,10 +7,10 @@ function hbhunger.load_hunger(player)
 end
 
 -- HACK: We register our on_item_eat handler after the other mods have loaded
--- so their on_item_eat handlers run first. This is because Minetest refuses
+-- so their on_item_eat handlers run first. This is because Luanti refuses
 -- to run ANY further on_item_eat handler once one of the callback functions
--- has returned an itemstack. (as of Minetest 5.8.0)
--- FIXME: Remove the register_on_mods_loaded as soon Minetest handles
+-- has returned an itemstack. (as of Luanti 5.10.0)
+-- FIXME: Remove the register_on_mods_loaded as soon Luanti handles
 -- on_item_eat events in a less weird manner.
 minetest.register_on_mods_loaded(function()
 	minetest.register_on_item_eat(function(hp_change, replace_with_item, itemstack, user, pointed_thing)
