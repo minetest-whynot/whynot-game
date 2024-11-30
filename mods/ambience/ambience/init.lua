@@ -94,7 +94,8 @@ minetest.register_on_joinplayer(function(player)
 			mvol = tonumber(meta:get_string("ambience.mvol")) or MUSICVOLUME,
 			svol = tonumber(meta:get_string("ambience.svol")) or SOUNDVOLUME,
 			music = 0,
-			music_handler = nil
+			music_handler = nil,
+			timer = 0
 		}
 	end
 end)
@@ -113,7 +114,7 @@ local get_ambience = function(player, tod, name)
 	-- if enabled and not already playing, play local/server music on interval check
 	if play_music and playing[name] and playing[name].mvol > 0 then
 
-		-- increase music interval
+		-- increase music time interval
 		playing[name].music = playing[name].music + 1
 
 		-- play music on interval check
@@ -146,8 +147,8 @@ local get_ambience = function(player, tod, name)
 
 	-- get all set nodes around player
 	local ps, cn = minetest.find_nodes_in_area(
-		{x = pos.x - radius, y = pos.y - radius, z = pos.z - radius},
-		{x = pos.x + radius, y = pos.y + radius, z = pos.z + radius}, set_nodes)
+			{x = pos.x - radius, y = pos.y - radius, z = pos.z - radius},
+			{x = pos.x + radius, y = pos.y + radius, z = pos.z + radius}, set_nodes)
 
 	-- loop through sets in order and choose first that meets conditions set
 	for n = 1, #sound_set_order do
@@ -180,45 +181,67 @@ local get_ambience = function(player, tod, name)
 	return nil, nil
 end
 
+-- players routine
 
 local timer = 0
 local random = math.random
 
--- players routine
-
 minetest.register_globalstep(function(dtime)
 
-	-- one second timer
-	timer = timer + dtime
-	if timer < 1 then return end
-	timer = 0
+	local pname
 
-	local player_name, number, chance, ambience, handler, ok
+	-- reduce sound timer for each player and stop/reset when needed
+	for _, player in pairs(minetest.get_connected_players()) do
+
+		pname = player:get_player_name()
+
+		if playing[pname] and playing[pname].timer > 0 then
+
+			playing[pname].timer = playing[pname].timer - dtime
+
+			if playing[pname].timer <= 0 then
+
+				if playing[pname].handler then
+					minetest.sound_stop(playing[pname].handler)
+				end
+
+				playing[pname].set = nil
+				playing[pname].gain = nil
+				playing[pname].handler = nil
+			end
+		end
+	end
+
+	-- one second timer
+	timer = timer + dtime ; if timer < 1 then return end ; timer = 0
+
+	local number, chance, ambience, handler, ok
 	local tod = minetest.get_timeofday()
 
 	-- loop through players
 	for _, player in pairs(minetest.get_connected_players()) do
 
-		player_name = player:get_player_name()
+		pname = player:get_player_name()
 
-		local set_name, MORE_GAIN = get_ambience(player, tod, player_name)
+		local set_name, MORE_GAIN = get_ambience(player, tod, pname)
 
-		ok = playing[player_name] -- everything starts off ok if player found
+		ok = playing[pname] -- everything starts off ok if player found
 
 		-- are we playing something already?
-		if ok and playing[player_name].handler then
+		if ok and playing[pname].handler then
 
 			-- stop current sound if another set active or gain changed
-			if playing[player_name].set ~= set_name
-			or playing[player_name].gain ~= MORE_GAIN then
+			if playing[pname].set ~= set_name
+			or playing[pname].gain ~= MORE_GAIN then
 
---print ("-- change stop", set_name, playing[player_name].handler)
+--print ("-- change stop", set_name, playing[pname].handler)
 
-				minetest.sound_stop(playing[player_name].handler)
+				minetest.sound_stop(playing[pname].handler)
 
-				playing[player_name].set = nil
-				playing[player_name].gain = nil
-				playing[player_name].handler = nil
+				playing[pname].set = nil
+				playing[pname].gain = nil
+				playing[pname].handler = nil
+				playing[pname].timer = 0
 			else
 				ok = false -- sound set still playing, skip new sound
 			end
@@ -235,8 +258,8 @@ minetest.register_globalstep(function(dtime)
 
 			-- play sound
 			handler = minetest.sound_play(ambience.name, {
-				to_player = player_name,
-				gain = ((ambience.gain or 0.3) + (MORE_GAIN or 0)) * playing[player_name].svol,
+				to_player = pname,
+				gain = ((ambience.gain or 0.3) + (MORE_GAIN or 0)) * playing[pname].svol,
 				pitch = ambience.pitch or 1.0
 			}, ambience.ephemeral)
 
@@ -249,27 +272,10 @@ minetest.register_globalstep(function(dtime)
 --print("-- current handler", handler)
 
 				-- set what player is currently listening to
-				playing[player_name].set = set_name
-				playing[player_name].gain = MORE_GAIN
-				playing[player_name].handler = handler
-
-				-- set timer to stop sound
-				minetest.after(ambience.length, function(handler, player_name)
-
---print("-- timed stop", set_name, handler)
-					if handler then minetest.sound_stop(handler) end
-
-					-- reset variables if handlers match
-					if playing[player_name]
-					and playing[player_name].handler == handler then
-
---print("-- timed reset", handler, player_name)
-
-						playing[player_name].set = nil
-						playing[player_name].gain = nil
-						playing[player_name].handler = nil
-					end
-				end, handler, player_name)
+				playing[pname].set = set_name
+				playing[pname].gain = MORE_GAIN
+				playing[pname].handler = handler
+				playing[pname].timer = ambience.length
 			end
 		end
 	end
@@ -341,4 +347,3 @@ dofile(minetest.get_modpath("ambience") .. "/soundsets.lua")
 
 
 print("[MOD] Ambience Lite loaded")
-
