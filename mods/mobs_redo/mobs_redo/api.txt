@@ -85,8 +85,6 @@ functions needed for the mob to work properly which contains the following:
    'fire_damage'   holds the damage per second inflicted to mobs when standing
    'node_damage'   True by default, will harm mobs when inside damage_per_second
                    nodes.
-                   in fire.
-
    'light_damage'  holds the damage per second inflicted to mobs when light
                    level is between the min and max values below
    'light_damage_min' minimum light value when mob is affected (default: 14)
@@ -178,6 +176,9 @@ functions needed for the mob to work properly which contains the following:
       {"default:gold_lump", -10} -- heals by 10 health points.
       {"default:coal_block", 20} -- 20 damage when hit on head with coal blocks.
       {"all"} -- stops all weapons causing damage apart from those on list.
+                         nodes can also be added so that node_per_second damage
+                         does not affect the mob either e.g.
+      {"ethereal:crystal_spike", 0} -- causes no damage.
 
    'makes_footstep_sound' when true you can hear mobs walking.
    'sounds'               this is a table with sounds of the mob
@@ -289,11 +290,12 @@ eating.
                     y offset by using this instead:
                     {
                        {"group:grass", "air", 0},
-                       {"default:dirt_with_grass", "default:dirt", -1}
+                       {"default:dirt_with_grass", "default:dirt", -1, 0}
                     }
    'replace_with'   replace with what e.g. "air" or in chickens case "mobs:egg"
    'replace_rate'   how random should the replace rate be (typically 10)
-   'replace_offset' +/- value to check specific node to replace
+   'replace_offset' +/- y offset value to check specific node to replace
+   'reach'          horizontal reach around mob for replace, default is 0
 
    'on_replace(self, pos, oldnode, newnode)' is called when mob is about to
                                              replace a node.
@@ -618,11 +620,11 @@ Explosion Function
 
 mobs:explosion(pos, radius) -- DEPRECATED!!!  use mobs:boom() instead
 
-mobs:boom(self, pos, radius, damage_radius, texture)
+mobs:boom(self, pos, damage_radius, entity_radius, texture)
    'self' mob entity
    'pos' centre position of explosion
-   'radius' radius of explosion (typically set to 3)
-   'damage_radius' radius of damage around explosion
+   'damage_radius' radius of node damage (typically 3)
+   'entity_radius' radius of explosion to players and mobs
    'texture' particle texture during explosion, defaults to "tnt_smoke.png"
 
 This function generates an explosion which removes nodes in a specific radius
@@ -857,6 +859,12 @@ External Settings for "minetest.conf"
    'mob_pathfinding_searchdistance'     max search distance from search positions (default 16)
    'mob_pathfinding_max_jump'   max jump height for pathfinding (default 4)
    'mob_pathfinding_max_drop'   max drop height for pathfinding (default 6)
+   'mobs_can_hear'          Enabled by default, overrides minetest.sound_play and enables
+                            nearby mobs to run a custom on_sound function.
+   'mobs_can_hear_node'     Disabled by default, allows nearby nodes to hear and run a
+                            custom on_sound function.
+   'mobs_disable_damage_kb' Knockback is calculated by hit damage or uses knockback value
+                            from the weapon used, this setting lets you disable the former.
 
 Players can override the spawn chance for each mob registered by adding a line
 to their minetest.conf file with a new value, the lower the value the more each
@@ -897,3 +905,17 @@ Rideable Horse Example Mob
 --------------------------
 
 See mob_horse mod https://codeberg.org/tenplus1/mob_horse
+
+
+External Functions
+------------------
+
+These are a list of utility functions that can be called from 3rd party mods.
+
+mobs:alias_mob(old_name, new_name)
+mobs:is_invisible(self, player_name)
+mobs:is_dangerous(self, nodename)
+mobs:yaw_to_pos(self, target, rotation_steps)
+mobs:line_of_sight(self, pos1, pos2)
+mobs:set_animation(self, animation)
+mobs:yaw(self, yaw, rotation_steps)

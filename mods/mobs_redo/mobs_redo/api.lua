@@ -7,6 +7,7 @@ local use_cmi = minetest.global_exists("cmi")
 local use_mc2 = minetest.get_modpath("mcl_core") -- MineClonia support
 local use_vh1 = minetest.get_modpath("visual_harm_1ndicators")
 local use_tr = minetest.get_modpath("toolranks")
+local use_invisibility = minetest.get_modpath("invisibility")
 
 -- Node check helper
 
@@ -18,10 +19,9 @@ end
 
 mobs = {
 	mod = "redo",
-	version = "20241002",
+	version = "20241128",
 	spawning_mobs = {},
 	translate = S,
-	invis = minetest.global_exists("invisibility") and invisibility or {},
 	node_snow = has(minetest.registered_aliases["mapgen_snow"])
 			or has("mcl_core:snow") or has("default:snow") or "air",
 	node_dirt = has(minetest.registered_aliases["mapgen_dirt"])
@@ -914,7 +914,7 @@ end
 
 -- Returns true if node can deal damage to self
 
-function mobs:is_node_dangerous(mob_object, nodename)
+local function is_node_dangerous(mob_object, nodename)
 
 	if mob_object.water_damage > 0
 	and minetest.get_item_group(nodename, "water") ~= 0 then return true end
@@ -925,13 +925,26 @@ function mobs:is_node_dangerous(mob_object, nodename)
 	if mob_object.fire_damage > 0
 	and minetest.get_item_group(nodename, "fire") ~= 0 then return true end
 
-	if minetest.registered_nodes[nodename].damage_per_second > 0 then return true end
+	local def = minetest.registered_nodes[nodename]
 
-	return false
+	if mob_object.node_damage and def.damage_per_second > 0 then
+
+		-- check for node immunity or special damage
+		local damage = def.damage_per_second
+
+		for n = 1, #mob_object.immune_to do
+
+			if mob_object.immune_to[n][1] == nodename then
+				damage = mob_object.immune_to[n][2] or 0 ; break
+			end
+		end
+
+		if damage > 0 then return true end
+	end
 end
 
-local function is_node_dangerous(mob_object, nodename)
-	return mobs:is_node_dangerous(mob_object, nodename)
+function mobs:is_node_dangerous(mob_object, nodename)
+	return is_node_dangerous(mob_object, nodename)
 end
 
 -- is mob facing a cliff
@@ -1039,9 +1052,19 @@ function mob_class:do_env_damage()
 	if self.node_damage and nodef.damage_per_second and nodef.damage_per_second ~= 0
 	and nodef.groups.lava == nil and nodef.groups.fire == nil then
 
-		self.health = self.health - nodef.damage_per_second
+		local damage = nodef.damage_per_second
 
-		effect(py, 5, "tnt_smoke.png")
+		-- check for node immunity or special damage
+		for n = 1, #self.immune_to do
+
+			if self.immune_to[n][1] == self.standing_in then
+				damage = self.immune_to[n][2] or 0 ; break
+			end
+		end
+
+		self.health = self.health - damage
+
+		if damage > 0 then effect(py, 5, "tnt_smoke.png") end
 
 		if self:check_for_death({type = "environment",
 				pos = pos, node = self.standing_in}) then return true end
@@ -1211,7 +1234,14 @@ end
 
 local function is_invisible(self, player_name)
 
-	if mobs.invis[player_name] and not self.ignore_invisibility then return true end
+	if use_invisibility and not self.ignore_invisibility
+	and invisibility.is_visible and not invisibility.is_visible(player_name) then
+		return true
+	end
+end
+
+function mobs:is_invisible(self, player_name)
+	return is_invisible(self, player_name)
 end
 
 -- should mob follow what I'm holding ?
@@ -1351,8 +1381,8 @@ function mob_class:breed()
 					if not self.object:get_luaentity() then return end
 
 					-- reset parent movement
-					self.follow_stop = false
-					ent.follow_stop = false
+--					self.follow_stop = false
+--					ent.follow_stop = false
 
 					-- custom breed function
 					if self.on_breed then
@@ -1402,7 +1432,7 @@ function mob_class:replace(pos)
 		return
 	end
 
-	local what, with, y_offset
+	local what, with, y_offset, reach
 
 	if type(self.replace_what[1]) == "table" then
 
@@ -1411,15 +1441,23 @@ function mob_class:replace(pos)
 		what = self.replace_what[num][1] or ""
 		with = self.replace_what[num][2] or ""
 		y_offset = self.replace_what[num][3] or 0
+		reach = self.replace_what[num][4] or 0
 	else
 		what = self.replace_what
 		with = self.replace_with or ""
 		y_offset = self.replace_offset or 0
+		reach = 0
 	end
 
 	pos.y = pos.y + y_offset
 
-	if #minetest.find_nodes_in_area(pos, pos, what) > 0 then
+	local found = minetest.find_nodes_in_area(
+			{x = pos.x - reach, y = pos.y, z = pos.z - reach},
+			{x = pos.x + reach, y = pos.y, z = pos.z + reach}, what)
+
+	if #found > 0 then
+
+		pos = found[random(#found)]
 
 -- print("replace node = ".. minetest.get_node(pos).name, pos.y)
 
@@ -1437,6 +1475,8 @@ function mob_class:replace(pos)
 		end
 
 		minetest.set_node(pos, {name = with})
+
+		self:mob_sound(self.sounds.replace)
 	end
 end
 
@@ -1990,13 +2030,13 @@ function mob_class:follow_flop()
 				if dist >= self.reach and self.order ~= "stand" then
 
 					self:set_velocity(self.walk_velocity)
-					self.follow_stop = nil
+--					self.follow_stop = nil
 
 					if self.walk_chance ~= 0 then self:set_animation("walk") end
 				else
 					self:set_velocity(0)
 					self:set_animation("stand")
-					self.follow_stop = true
+--					self.follow_stop = true
 				end
 
 				return
@@ -2110,7 +2150,7 @@ function mob_class:do_states(dtime)
 		end
 	end
 
-	if self.state == "stand" and not self.follow_stop then
+	if self.state == "stand" then -- and not self.follow_stop then
 
 		if self.randomly_turn and random(4) == 1 then
 
@@ -2332,7 +2372,7 @@ function mob_class:do_states(dtime)
 
 					remove_mob(self, true)
 
-					mobs:boom(self, pos, entity_damage_radius, node_break_radius)
+					mobs:boom(self, pos, node_break_radius, entity_damage_radius)
 
 					return true
 				end
@@ -2600,6 +2640,8 @@ end
 
 -- deal damage and effects when mob punched
 
+local dis_damage_kb = settings:get_bool("mobs_disable_damage_kb")
+
 function mob_class:on_punch(hitter, tflp, tool_capabilities, dir, damage)
 
 	-- mob health check
@@ -2693,9 +2735,7 @@ function mob_class:on_punch(hitter, tflp, tool_capabilities, dir, damage)
 
 		if self.immune_to[n][1] == hit_item then
 
-			damage = self.immune_to[n][2] or 0
-
-			break
+			damage = self.immune_to[n][2] or 0 ; break
 
 		-- if "all" then no tools deal damage unless it's specified in list
 		elseif self.immune_to[n][1] == "all" then
@@ -2826,7 +2866,7 @@ function mob_class:on_punch(hitter, tflp, tool_capabilities, dir, damage)
 	if self.knock_back and tflp >= punch_interval then
 
 		local v = self.object:get_velocity() ; if not v then return true end
-		local kb = damage or 1
+		local kb = dis_damage_kb and 1 or (damage or 1)
 		local up = 2
 
 		-- if already in air then dont go up anymore when hit
@@ -3148,6 +3188,8 @@ function mob_class:mob_activate(staticdata, def, dtime)
 		self._cmi_components = cmi.activate_components(self.serialized_cmi_components)
 		cmi.notify_activate(self.object, dtime)
 	end
+
+	if use_vh1 then VH1.update_bar(self.object, self.health) end
 end
 
 -- handle mob lifetimer and expiration
@@ -3318,7 +3360,7 @@ function mob_class:on_step(dtime, moveresult)
 
 		self.pause_timer = self.pause_timer - dtime
 
-		if self.pause_timer < 0 and self.order == "stand" then
+		if self.pause_timer <= 0 and (self.order == "stand" or self.state == "stand") then
 
 			self.pause_timer = 0
 			self:set_velocity(0)
@@ -4161,20 +4203,22 @@ end
 
 -- make explosion with protection and tnt mod check
 
-function mobs:boom(self, pos, radius, damage_radius, texture)
+function mobs:boom(self, pos, node_damage_radius, entity_radius, texture)
+
+	texture = texture or "tnt_smoke.png"
 
 	if mobs_griefing and minetest.get_modpath("tnt") and tnt and tnt.boom
 	and not minetest.is_protected(pos, "") then
 
 		tnt.boom(pos, {
-			radius = radius,
-			damage_radius = damage_radius,
+			radius = node_damage_radius,
+			damage_radius = entity_radius,
 			sound = self.sounds and self.sounds.explode,
 			explode_center = true,
-			tiles = {(texture or "tnt_smoke.png")}
+			tiles = texture
 		})
 	else
-		mobs:safe_boom(self, pos, radius, texture)
+		mobs:safe_boom(self, pos, node_damage_radius, texture)
 	end
 end
 
@@ -4206,6 +4250,10 @@ function mobs:register_egg(mob, desc, background, addegg, no_creative)
 		print("[Mobs Redo] Spawn Egg cannot be created for " .. mob)
 		return
 	end
+
+	-- get mob collisionbox and determine y_offset when spawning
+	local _prop = is_mob and is_mob.initial_properties or {}
+	local _y = _prop and -_prop.collisionbox[2] or 1
 
 	-- register new spawn egg containing mob information (cannot be stacked)
 	-- these are only created for animals and npc's, not monsters
@@ -4244,7 +4292,7 @@ function mobs:register_egg(mob, desc, background, addegg, no_creative)
 						return
 					end
 
-					pos.y = pos.y + 1
+					pos.y = pos.y + _y
 
 					local data = itemstack:get_metadata()
 					local smob = minetest.add_entity(pos, mob, data)
@@ -4300,7 +4348,7 @@ function mobs:register_egg(mob, desc, background, addegg, no_creative)
 					return
 				end
 
-				pos.y = pos.y + 1
+				pos.y = pos.y + _y
 
 				local smob = minetest.add_entity(pos, mob)
 				local ent = smob and smob:get_luaentity()
@@ -4737,6 +4785,7 @@ minetest.register_chatcommand("clear_mobs", {
 
 if settings:get_bool("mobs_can_hear") ~= false then
 
+	local node_hear = settings:get_bool("mobs_can_hear_node")
 	local old_sound_play = minetest.sound_play
 
 	minetest.sound_play = function(spec, param, eph)
@@ -4771,6 +4820,7 @@ if settings:get_bool("mobs_can_hear") ~= false then
 
 --print("==", def.sound)
 
+		def.gain = def.gain or 1.0
 		def.max_hear_distance = param.max_hear_distance or 32
 
 		-- find mobs within sounds hearing range
@@ -4798,22 +4848,25 @@ if settings:get_bool("mobs_can_hear") ~= false then
 		end
 
 		-- find nodes that can hear up to 8 blocks away
-		local dist = min(def.max_hear_distance, 8)
-		local ps = minetest.find_nodes_in_area(
-				vector.subtract(def.pos, dist),
-				vector.add(def.pos, dist), {"group:on_sound"})
+		if node_hear then
 
-		if #ps > 0 then
+			local dist = min(def.max_hear_distance, 8)
+			local ps = minetest.find_nodes_in_area(
+					vector.subtract(def.pos, dist),
+					vector.add(def.pos, dist), {"group:on_sound"})
 
-			for n = 1, #ps do
+			if #ps > 0 then
 
-				local ndef = minetest.registered_nodes[minetest.get_node(ps[n]).name]
+				for n = 1, #ps do
 
-				def.distance = get_distance(def.pos, ps[n])
-				def.loudness = def.gain - (bit * def.distance)
+					local ndef = minetest.registered_nodes[minetest.get_node(ps[n]).name]
 
-				if def.loudness > 0 and ndef and ndef.on_sound then
-					ndef.on_sound(ps[n], def)
+					def.distance = get_distance(def.pos, ps[n])
+					def.loudness = def.gain - (bit * def.distance)
+
+					if def.loudness > 0 and ndef and ndef.on_sound then
+						ndef.on_sound(ps[n], def)
+					end
 				end
 			end
 		end
