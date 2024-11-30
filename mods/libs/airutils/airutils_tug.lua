@@ -5,7 +5,7 @@ function airutils.move_target(player, pointed_thing)
     local yaw = player:get_look_horizontal()
 
     local object = pointed_thing.ref
-    --minetest.chat_send_all(dump(object))
+    --core.chat_send_all(dump(object))
     if object then
         local obj_pos = object:get_pos()
 	if not obj_pos then return end
@@ -15,8 +15,8 @@ function airutils.move_target(player, pointed_thing)
         obj_pos.x = pos.x + pos_x
         obj_pos.z = pos.z + pos_z
 
-        local node = minetest.get_node(obj_pos).name
-        local nodedef = minetest.registered_nodes[node]
+        local node = core.get_node(obj_pos).name
+        local nodedef = core.registered_nodes[node]
         local is_airlike = nodedef.drawtype == "airlike"
         local is_liquid = (nodedef.drawtype == "flowingliquid" or nodedef.drawtype == "liquid")
 
@@ -31,17 +31,17 @@ function airutils.move_target(player, pointed_thing)
         end
         --[[if object:get_attach() then
             local dir = player:get_look_dir()
-            minetest.chat_send_all('detach')
+            core.chat_send_all('detach')
             object:set_detach()
             object:set_rotation(dir)
         else
-            minetest.chat_send_all('object found')
+            core.chat_send_all('object found')
             object:set_attach(player, "", {x=0, y=0, z=20})
         end]]--
     end
 end
 
-minetest.register_tool("airutils:tug", {
+core.register_tool("airutils:tug", {
 	description = S("Tug tool for airport"),
 	inventory_image = "airutils_tug.png",
 	stack_max=1,
@@ -50,24 +50,23 @@ minetest.register_tool("airutils:tug", {
 			return
 		end
 
-        local is_admin = false
-        is_admin = minetest.check_player_privs(player, {server=true})            
-            
+        local is_admin = core.check_player_privs(player, {server=true})
+
         local pos = player:get_pos()
         local pname = player:get_player_name()
 
         --[[if areas then
             if not areas:canInteract(pos, pname) then
 		        local owners = areas:getNodeOwners(pos)
-		        minetest.chat_send_player(pname,
+		        core.chat_send_player(pname,
 			        S("@1 is protected by @2.",
-				        minetest.pos_to_string(pos),
+				        core.pos_to_string(pos),
 				        table.concat(owners, ", ")))
 	        else
                 airutils.move_target(player, pointed_thing)
             end
         end]]--
-        local is_protected = minetest.is_protected
+        local is_protected = core.is_protected
         if is_protected then
             local owner = nil
             local object = pointed_thing.ref
@@ -80,9 +79,9 @@ minetest.register_tool("airutils:tug", {
             if not is_protected(pos, pname) or pname == owner or is_admin then
                 airutils.move_target(player, pointed_thing)
             else
-		        minetest.chat_send_player(pname,
+		        core.chat_send_player(pname,
 			        S("@1 is protected.",
-				        minetest.pos_to_string(pos)))
+				        core.pos_to_string(pos)))
             end
         end
 
@@ -96,7 +95,7 @@ minetest.register_tool("airutils:tug", {
 	sound = {breaks = "default_tool_breaks"},
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "airutils:tug",
 	recipe = {
 		{"", "", "default:steel_ingot"},

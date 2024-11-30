@@ -1,7 +1,7 @@
 -- Minetest 5.4.1 : airutils
 airutils = {}
 
-airutils.storage = minetest.get_mod_storage()
+airutils.storage = core.get_mod_storage()
 
 local storage = airutils.storage
 
@@ -25,8 +25,8 @@ airutils.colors ={
 
 airutils.S = nil
 
-if(minetest.get_translator ~= nil) then
-    airutils.S = minetest.get_translator(minetest.get_current_modname())
+if(core.get_translator ~= nil) then
+    airutils.S = core.get_translator(core.get_current_modname())
 
 else
     airutils.S = function ( s ) return s end
@@ -39,62 +39,62 @@ airutils.blast_damage = true
 -- 1 == true ---- 2 == false
 if load_blast_damage == 2 then airutils.blast_damage = false end
 
-airutils.is_minetest = minetest.get_modpath("player_api")
-airutils.is_mcl = minetest.get_modpath("mcl_player")
-airutils.is_repixture = minetest.get_modpath("rp_player")
+airutils.is_minetest = core.get_modpath("player_api")
+airutils.is_mcl = core.get_modpath("mcl_player")
+airutils.is_repixture = core.get_modpath("rp_player")
 
 airutils.fuel = {['biofuel:biofuel'] = 1,['biofuel:bottle_fuel'] = 1,
                 ['biofuel:phial_fuel'] = 0.25, ['biofuel:fuel_can'] = 10,
                 ['airutils:biofuel'] = 1,}
 
-airutils.protect_in_areas = minetest.settings:get_bool('airutils_protect_in_areas')
-airutils.debug_log = minetest.settings:get_bool('airutils_debug_log')
+airutils.protect_in_areas = core.settings:get_bool('airutils_protect_in_areas')
+airutils.debug_log = core.settings:get_bool('airutils_debug_log')
 
-if not minetest.settings:get_bool('airutils_disable_papi') then
-    dofile(minetest.get_modpath("airutils") .. DIR_DELIM .. "airutils_papi.lua")
+if not core.settings:get_bool('airutils_disable_papi') then
+    dofile(core.get_modpath("airutils") .. DIR_DELIM .. "airutils_papi.lua")
 end
-if not minetest.settings:get_bool('airutils_disable_tug') then
-    dofile(minetest.get_modpath("airutils") .. DIR_DELIM .. "airutils_tug.lua")
+if not core.settings:get_bool('airutils_disable_tug') then
+    dofile(core.get_modpath("airutils") .. DIR_DELIM .. "airutils_tug.lua")
 end
-if not minetest.settings:get_bool('airutils_disable_repair') then
-    dofile(minetest.get_modpath("airutils") .. DIR_DELIM .. "airutils_repair.lua")
+if not core.settings:get_bool('airutils_disable_repair') then
+    dofile(core.get_modpath("airutils") .. DIR_DELIM .. "airutils_repair.lua")
 end
 
 airutils.splash_texture = "airutils_splash.png"
 airutils.use_water_particles = false
-if minetest.settings:get_bool('airutils_enable_water_particles', false) then
+if core.settings:get_bool('airutils_enable_water_particles', false) then
     airutils.use_water_particles = true
 end
 
 airutils._use_signs_api = true
-if not minetest.get_modpath("signs_lib") then airutils._use_signs_api = false end
-if minetest.settings:get_bool('airutils_disable_signs_api') then airutils._use_signs_api = false end
+if not core.get_modpath("signs_lib") then airutils._use_signs_api = false end
+if core.settings:get_bool('airutils_disable_signs_api') then airutils._use_signs_api = false end
 
-airutils.get_wind = dofile(minetest.get_modpath("airutils") .. DIR_DELIM ..'/wind.lua')
-dofile(minetest.get_modpath("airutils") .. DIR_DELIM .. "uuid_manager.lua")
-dofile(minetest.get_modpath("airutils") .. DIR_DELIM .. "common_entities.lua")
-dofile(minetest.get_modpath("airutils") .. DIR_DELIM .. "airutils_wind.lua")
-dofile(minetest.get_modpath("airutils") .. DIR_DELIM .. "water_splash.lua")
-dofile(minetest.get_modpath("airutils") .. DIR_DELIM .. "inventory_management.lua")
-dofile(minetest.get_modpath("airutils") .. DIR_DELIM .. "light.lua")
-dofile(minetest.get_modpath("airutils") .. DIR_DELIM .. "physics_lib.lua")
-dofile(minetest.get_modpath("airutils") .. DIR_DELIM .. "lib_planes" .. DIR_DELIM .. "init.lua")
-dofile(minetest.get_modpath("airutils") .. DIR_DELIM .. "lib_copter" .. DIR_DELIM .. "init.lua")
-dofile(minetest.get_modpath("airutils") .. DIR_DELIM .. "texture_management.lua")
-dofile(minetest.get_modpath("airutils") .. DIR_DELIM .. "attach_extern_ent.lua")
-if airutils._use_signs_api then dofile(minetest.get_modpath("airutils") .. DIR_DELIM .. "text.lua") end
+airutils.get_wind = dofile(core.get_modpath("airutils") .. DIR_DELIM ..'/wind.lua')
+dofile(core.get_modpath("airutils") .. DIR_DELIM .. "uuid_manager.lua")
+dofile(core.get_modpath("airutils") .. DIR_DELIM .. "common_entities.lua")
+dofile(core.get_modpath("airutils") .. DIR_DELIM .. "airutils_wind.lua")
+dofile(core.get_modpath("airutils") .. DIR_DELIM .. "water_splash.lua")
+dofile(core.get_modpath("airutils") .. DIR_DELIM .. "inventory_management.lua")
+dofile(core.get_modpath("airutils") .. DIR_DELIM .. "light.lua")
+dofile(core.get_modpath("airutils") .. DIR_DELIM .. "physics_lib.lua")
+dofile(core.get_modpath("airutils") .. DIR_DELIM .. "lib_planes" .. DIR_DELIM .. "init.lua")
+dofile(core.get_modpath("airutils") .. DIR_DELIM .. "lib_copter" .. DIR_DELIM .. "init.lua")
+dofile(core.get_modpath("airutils") .. DIR_DELIM .. "texture_management.lua")
+dofile(core.get_modpath("airutils") .. DIR_DELIM .. "attach_extern_ent.lua")
+if airutils._use_signs_api then dofile(core.get_modpath("airutils") .. DIR_DELIM .. "text.lua") end
 
 local is_biofuel_installed = false
 if biomass then
     if biomass.convertible_groups then is_biofuel_installed = true end
 end
-local enable_internal_biofuel = minetest.settings:get_bool('airutils.force_enable_biofuel')
+local enable_internal_biofuel = core.settings:get_bool('airutils.force_enable_biofuel')
 if not is_biofuel_installed or enable_internal_biofuel then
-    dofile(minetest.get_modpath("airutils") .. DIR_DELIM .. "airutils_biofuel.lua")
+    dofile(core.get_modpath("airutils") .. DIR_DELIM .. "airutils_biofuel.lua")
 end
 
-if minetest.get_modpath("player_api") and not minetest.settings:get_bool('airutils.disable_uniforms') then
-    dofile(minetest.get_modpath("airutils") .. DIR_DELIM .. "pilot_skin_manager.lua")
+if core.get_modpath("player_api") and not core.settings:get_bool('airutils.disable_uniforms') then
+    dofile(core.get_modpath("airutils") .. DIR_DELIM .. "pilot_skin_manager.lua")
 end
 
 function airutils.remove(pos)
@@ -115,8 +115,8 @@ function airutils.check_node_below(obj, how_low)
     local pos_below = obj:get_pos()
     if pos_below then
         pos_below.y = pos_below.y - how_low
-        local node_below = minetest.get_node(pos_below).name
-        local nodedef = minetest.registered_nodes[node_below]
+        local node_below = core.get_node(pos_below).name
+        local nodedef = core.registered_nodes[node_below]
         local touching_ground = not nodedef or -- unknown nodes are solid
 		        nodedef.walkable or false
         local liquid_below = not touching_ground and nodedef.liquidtype ~= "none"
@@ -128,8 +128,8 @@ end
 function airutils.check_is_under_water(obj)
 	local pos_up = obj:get_pos()
 	pos_up.y = pos_up.y + 0.1
-	local node_up = minetest.get_node(pos_up).name
-	local nodedef = minetest.registered_nodes[node_up]
+	local node_up = core.get_node(pos_up).name
+	local nodedef = core.registered_nodes[node_up]
 	local liquid_up = nodedef.liquidtype ~= "none"
 	return liquid_up
 end
@@ -154,20 +154,20 @@ function airutils.transfer_control(self, status)
     if status == false then
         self._command_is_given = false
         if self.co_pilot then
-            minetest.chat_send_player(self.co_pilot,
+            core.chat_send_player(self.co_pilot,
                 core.colorize('#ff0000', S(" >>> The captain got the control.")))
         end
         if self.driver_name then
-            minetest.chat_send_player(self.driver_name,
+            core.chat_send_player(self.driver_name,
                 core.colorize('#00ff00', S(" >>> The control is with you now.")))
         end
     else
         self._command_is_given = true
         if self.co_pilot then
-            minetest.chat_send_player(self.co_pilot,
+            core.chat_send_player(self.co_pilot,
                 core.colorize('#00ff00', S(" >>> The control is with you now.")))
         end
-        if self.driver_name then minetest.chat_send_player(self.driver_name,S(" >>> The control was given.")) end
+        if self.driver_name then core.chat_send_player(self.driver_name,S(" >>> The control was given.")) end
     end
 end
 
@@ -176,22 +176,22 @@ function airutils.detect_player_api(player)
     local player_proterties = player:get_properties()
     --local mesh = "character.b3d"
     --if player_proterties.mesh == mesh then
-    if minetest.get_modpath("player_api") then
+    if core.get_modpath("player_api") then
         local models = player_api.registered_models
         local character = models[player_proterties.mesh]
-        --minetest.chat_send_all(dump(character));
+        --core.chat_send_all(dump(character));
         if character then
             if character.animations.sit.eye_height then
-                --minetest.chat_send_all(dump(character.animations.sit.eye_height));
+                --core.chat_send_all(dump(character.animations.sit.eye_height));
                 if character.animations.sit.eye_height == 0.8 then
-                    --minetest.chat_send_all("new model");
+                    --core.chat_send_all("new model");
                     return 1
                 else
-                    --minetest.chat_send_all("new height");
+                    --core.chat_send_all("new height");
                     return 2 --strange bug with armor ands skins returning 1.47
                 end
             else
-                --minetest.chat_send_all("old model");
+                --core.chat_send_all("old model");
                 return 0
             end
         end
@@ -201,22 +201,22 @@ function airutils.detect_player_api(player)
 end
 
 local function get_nodedef_field(nodename, fieldname)
-    if not minetest.registered_nodes[nodename] then
+    if not core.registered_nodes[nodename] then
         return nil
     end
-    return minetest.registered_nodes[nodename][fieldname]
+    return core.registered_nodes[nodename][fieldname]
 end
 
 --for
 function airutils.eval_vertical_interception(initial_pos, end_pos)
     local ret_y = nil
-	local cast = minetest.raycast(initial_pos, end_pos, true, true)
+	local cast = core.raycast(initial_pos, end_pos, true, true)
 	local thing = cast:next()
 	while thing do
 		if thing.type == "node" then
             local pos = thing.intersection_point
             if pos then
-                local nodename = minetest.get_node(thing.under).name
+                local nodename = core.get_node(thing.under).name
                 local drawtype = get_nodedef_field(nodename, "drawtype")
                 if drawtype ~= "plantlike" then
                     ret_y = pos.y
@@ -271,7 +271,7 @@ function airutils.get_ground_effect_lift(self, curr_pos, lift, wingspan)
         if ground_y then
             ground_distance = initial_pos.y - ground_y
         end
-        --minetest.chat_send_all(dump(ground_distance))
+        --core.chat_send_all(dump(ground_distance))
 
         --smooth the curve
         local distance_factor = ((ground_distance) * 1) / (wingspan)
@@ -300,15 +300,6 @@ end
 -- max_height: the max ceilling for the airplane
 -- wingspan: for ground effect calculation
 function airutils.getLiftAccel(self, velocity, accel, longit_speed, roll, curr_pos, in_lift, max_height, wingspan)
-    local new_velocity = vector.new(velocity)
-    if not self._min_collective then --ignore if it is an helicopter
-        --add wind to the lift calcs
-        local wind = airutils.get_wind(curr_pos, 5)
-        local accel_wind = vector.subtract(accel, wind)  --why? because I need to fake more speed when against the wind to gain lift
-        local vel_wind = vector.multiply(accel_wind, self.dtime)
-        new_velocity = vector.add(new_velocity, vel_wind)
-    end
-
     if longit_speed == nil then longit_speed = 0 end
     wingspan = wingspan or 10
     local lift = in_lift
@@ -336,7 +327,7 @@ function airutils.getLiftAccel(self, velocity, accel, longit_speed, roll, curr_p
     local angle_of_attack = math.rad(self._angle_of_attack + wing_config)
     --local acc = 0.8
     local daoa = math.deg(angle_of_attack)
-    --minetest.chat_send_all(dump(daoa))
+    --core.chat_send_all(dump(daoa))
 
     --to decrease the lift coefficient at hight altitudes
     local curr_percent_height = (100 - ((curr_pos.y * 100) / max_height))/100
@@ -365,16 +356,16 @@ function airutils.getLiftAccel(self, velocity, accel, longit_speed, roll, curr_p
     end
 
     if airutils.show_lift then
-        minetest.chat_send_player(airutils.show_lift,core.colorize('#ffff00', " >>> lift: "..lift_val))
+        core.chat_send_player(airutils.show_lift,core.colorize('#ffff00', " >>> lift: "..lift_val))
     end
 
     local lift_acc = vector.multiply(lift_dir,lift_val)
-    --lift_acc=vector.add(vector.multiply(minetest.yaw_to_dir(rotation.y),acc),lift_acc)
+    --lift_acc=vector.add(vector.multiply(core.yaw_to_dir(rotation.y),acc),lift_acc)
 
     retval = vector.add(retval,lift_acc)
     -----------------------------------------------------------
     -- end lift
-    
+
     return retval
 end
 
@@ -397,7 +388,7 @@ function airutils.adjust_attack_angle_by_speed(angle_of_attack, min_angle, max_a
     if angle_of_attack > max_angle then factor = -1 end
     if angle_of_attack < min_angle then factor = 1 end
     local correction = (limit*(longit_speed/5000)) * factor * (dtime/ideal_step)
-    --minetest.chat_send_all("angle: "..angle_of_attack.." - correction: "..correction)
+    --core.chat_send_all("angle: "..angle_of_attack.." - correction: "..correction)
     local new_angle_of_attack = angle_of_attack + correction
 
     return new_angle_of_attack
@@ -433,13 +424,13 @@ function airutils.set_paint(self, puncher, itmstck, texture_name)
         --painting with bike painter
         local meta = itmstck:get_meta()
 	    local colstr = meta:get_string("paint_color")
-        --minetest.chat_send_all(dump(colstr))
+        --core.chat_send_all(dump(colstr))
         airutils.paint(self, colstr, texture_name)
         return true
     else
         --painting with dyes
         local split = string.split(item_name, ":")
-        local color, indx, _
+        local indx, _
         if split[1] then _,indx = split[1]:find('dye') end
         if indx then
             --[[for clr,_ in pairs(airutils.colors) do
@@ -449,7 +440,7 @@ function airutils.set_paint(self, puncher, itmstck, texture_name)
             --lets paint!!!!
 	        local color = (item_name:sub(indx+1)):gsub(":", "")
 	        local colstr = airutils.colors[color]
-            --minetest.chat_send_all(color ..' '.. dump(colstr))
+            --core.chat_send_all(color ..' '.. dump(colstr))
 	        if colstr then
                 airutils.paint(self, colstr, texture_name)
                 if self._alternate_painting_texture and self._mask_painting_texture then
@@ -469,7 +460,7 @@ function airutils._set_name(self)
     if not airutils._use_signs_api then return end
     local l_textures = self.object:get_properties().textures   --self.initial_properties.textures
     for _, texture in ipairs(l_textures) do
-        indx = texture:find('airutils_name_canvas.png')
+        local indx = texture:find('airutils_name_canvas.png')
         if indx then
             l_textures[_] = "airutils_name_canvas.png^"..airutils.convert_text_to_texture(self._ship_name, self._name_color or 0, self._name_hor_aligment or 0.8)
         end
@@ -502,7 +493,7 @@ end
 function airutils.sit(player)
     --set_animation(frame_range, frame_speed, frame_blend, frame_loop)
     player:set_animation({x =  81, y = 160},30, 0, true)
-    if minetest.get_modpath("emote") then emote.start(player:get_player_name(), "sit") end
+    if core.get_modpath("emote") then emote.start(player:get_player_name(), "sit") end
 end
 
 local function get_norm_angle(angle)
@@ -517,7 +508,7 @@ function airutils.normalize_rotations(rotations)
     return {x = get_norm_angle(rotations.x), y = get_norm_angle(rotations.y), z = get_norm_angle(rotations.z)}
 end
 
-minetest.register_chatcommand("enable_blast_damage", {
+core.register_chatcommand("enable_blast_damage", {
     params = "<true/false>",
     description = S("Enable/disable explosion blast damage"),
     privs = {server=true},
@@ -526,10 +517,10 @@ minetest.register_chatcommand("enable_blast_damage", {
 
         if command == "false" then
             airutils.blast_damage = false
-            minetest.chat_send_player(name, S(">>> Blast damage by explosion is disabled"))
+            core.chat_send_player(name, S(">>> Blast damage by explosion is disabled"))
         else
             airutils.blast_damage = true
-            minetest.chat_send_player(name, S(">>> Blast damage by explosion is enabled"))
+            core.chat_send_player(name, S(">>> Blast damage by explosion is enabled"))
         end
         local save = 2
         if airutils.blast_damage == true then save = 1 end
@@ -537,13 +528,13 @@ minetest.register_chatcommand("enable_blast_damage", {
     end,
 })
 
-minetest.register_chatcommand("transfer_ownership", {
+core.register_chatcommand("transfer_ownership", {
     params = "<new_owner>",
     description = S("Transfer the property of a plane to another player"),
     privs = {interact=true},
 	func = function(name, param)
-        local player = minetest.get_player_by_name(name)
-        local target_player = minetest.get_player_by_name(param)
+        local player = core.get_player_by_name(name)
+        local target_player = core.get_player_by_name(param)
         local attached_to = player:get_attach()
 
 		if attached_to ~= nil then
@@ -552,30 +543,30 @@ minetest.register_chatcommand("transfer_ownership", {
                 if seat ~= nil then
                     local entity = seat:get_luaentity()
                     if entity then
-                        if entity.owner == name or minetest.check_player_privs(name, {protection_bypass=true}) then
+                        if entity.owner == name or core.check_player_privs(name, {protection_bypass=true}) then
                             entity.owner = param
-                            minetest.chat_send_player(name,core.colorize('#00ff00', S(" >>> This plane now is property of: ")..param))
+                            core.chat_send_player(name,core.colorize('#00ff00', S(" >>> This plane now is property of: ")..param))
                         else
-                            minetest.chat_send_player(name,core.colorize('#ff0000', S(" >>> only the owner or moderators can transfer this airplane")))
+                            core.chat_send_player(name,core.colorize('#ff0000', S(" >>> only the owner or moderators can transfer this airplane")))
                         end
                     end
                 end
             else
-                minetest.chat_send_player(name,core.colorize('#ff0000', S(" >>> the target player must be logged in")))
+                core.chat_send_player(name,core.colorize('#ff0000', S(" >>> the target player must be logged in")))
             end
 		else
-			minetest.chat_send_player(name,core.colorize('#ff0000', S(" >>> you are not inside a plane to perform the command")))
+			core.chat_send_player(name,core.colorize('#ff0000', S(" >>> you are not inside a plane to perform the command")))
 		end
 	end
 })
 
-minetest.register_chatcommand("eject_from_plane", {
+core.register_chatcommand("eject_from_plane", {
 	params = "",
 	description = S("Ejects from a plane"),
 	privs = {interact = true},
 	func = function(name, param)
         local colorstring = core.colorize('#ff0000', S(" >>> you are not inside a plane"))
-        local player = minetest.get_player_by_name(name)
+        local player = core.get_player_by_name(name)
         local attached_to = player:get_attach()
 
 		if attached_to ~= nil then
@@ -587,56 +578,54 @@ minetest.register_chatcommand("eject_from_plane", {
                         if entity.driver_name == name then
                             airutils.dettachPlayer(entity, player)
                         elseif entity._passenger == name then
-                            local passenger = minetest.get_player_by_name(entity._passenger)
+                            local passenger = core.get_player_by_name(entity._passenger)
                             airutils.dettach_pax(entity, passenger)
                         end
                     else
-			            minetest.chat_send_player(name,colorstring)
+			            core.chat_send_player(name,colorstring)
                     end
                 end
             end
 		else
-			minetest.chat_send_player(name,colorstring)
+			core.chat_send_player(name,colorstring)
 		end
 	end
 })
 
-minetest.register_chatcommand("ground_effect", {
+core.register_chatcommand("ground_effect", {
     params = "<on/off>",
     description = S("Enables/disables the ground effect (for debug purposes)"),
     privs = {server=true},
 	func = function(name, param)
-        local player = minetest.get_player_by_name(name)
-        if minetest.check_player_privs(name, {server=true}) then
+        if core.check_player_privs(name, {server=true}) then
             if param == "on" or param == "" then
                 airutils.ground_effect_is_disabled = nil
-                minetest.chat_send_player(name,core.colorize('#00ff00', S(" >>> Ground effect was turned on.")))
+                core.chat_send_player(name,core.colorize('#00ff00', S(" >>> Ground effect was turned on.")))
             elseif param == "off" then
                 airutils.ground_effect_is_disabled = true
-                minetest.chat_send_player(name,core.colorize('#0000ff', S(">>> Ground effect was turned off.")))
+                core.chat_send_player(name,core.colorize('#0000ff', S(">>> Ground effect was turned off.")))
             end
         else
-            minetest.chat_send_player(name,core.colorize('#ff0000', S(" >>> You need 'server' priv to run this command.")))
+            core.chat_send_player(name,core.colorize('#ff0000', S(" >>> You need 'server' priv to run this command.")))
         end
 	end
 })
 
-minetest.register_chatcommand("show_lift", {
+core.register_chatcommand("show_lift", {
     params = "<on/off>",
     description = S("Enables/disables the lift printing (for debug purposes)"),
     privs = {server=true},
 	func = function(name, param)
-        local player = minetest.get_player_by_name(name)
-        if minetest.check_player_privs(name, {server=true}) then
+        if core.check_player_privs(name, {server=true}) then
             if param == "on" or param == "" then
                 airutils.show_lift = name
-                minetest.chat_send_player(name,core.colorize('#0000ff', S(" >>> Lift printing turned on.")))
+                core.chat_send_player(name,core.colorize('#0000ff', S(" >>> Lift printing turned on.")))
             elseif param == "off" then
                 airutils.show_lift = nil
-                minetest.chat_send_player(name,core.colorize('#00ff00', S(" >>> Lift printing turned off.")))
+                core.chat_send_player(name,core.colorize('#00ff00', S(" >>> Lift printing turned off.")))
             end
         else
-            minetest.chat_send_player(name,core.colorize('#ff0000', S(" >>> You need 'server' priv to run this command.")))
+            core.chat_send_player(name,core.colorize('#ff0000', S(" >>> You need 'server' priv to run this command.")))
         end
 	end
 })
@@ -644,7 +633,7 @@ minetest.register_chatcommand("show_lift", {
 if airutils._use_signs_api then
     local function prefix_change(name, param)
         local colorstring = core.colorize('#ff0000', S(" >>> you are not inside a vehicle"))
-        local player = minetest.get_player_by_name(name)
+        local player = core.get_player_by_name(name)
         if not player then return end
         local attached_to = player:get_attach()
 
@@ -653,32 +642,32 @@ if airutils._use_signs_api then
             if seat ~= nil then
                 local entity = seat:get_luaentity()
                 if entity then
-                    if entity.owner == name or minetest.check_player_privs(name, {protection_bypass=true}) then
+                    if entity.owner == name or core.check_player_privs(name, {protection_bypass=true}) then
                         if param then
                             entity._ship_name = string.sub(param, 1, 40)
                         else
                             entity._ship_name = ""
                         end
                         airutils._set_name(entity)
-                        minetest.chat_send_player(name,core.colorize('#00ff00', S(" >>> the vehicle name was changed")))
+                        core.chat_send_player(name,core.colorize('#00ff00', S(" >>> the vehicle name was changed")))
                     else
-                        minetest.chat_send_player(name,core.colorize('#ff0000', S(" >>> only the owner or moderators can name this vehicle")))
+                        core.chat_send_player(name,core.colorize('#ff0000', S(" >>> only the owner or moderators can name this vehicle")))
                     end
                 end
             end
         else
-	        minetest.chat_send_player(name,colorstring)
+	        core.chat_send_player(name,colorstring)
         end
     end
 
-    minetest.register_chatcommand("set_vehicle_name", {
+    core.register_chatcommand("set_vehicle_name", {
 	    params = "<name>",
 	    description = S("this command is an alias for /set_prefix"),
 	    privs = {interact = true},
 	    func = prefix_change,
     })
 
-    minetest.register_chatcommand("set_prefix", {
+    core.register_chatcommand("set_prefix", {
 	    params = "<name>",
 	    description = S("Sets the vehicle prefix"),
 	    privs = {interact = true},

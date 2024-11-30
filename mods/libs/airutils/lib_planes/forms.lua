@@ -87,7 +87,7 @@ function airutils.pilot_formspec(name)
         ver_pos = ver_pos + 0.5
         expand_form = true
     end
-    
+
     if ent._have_copilot and name == ent.driver_name then
         basic_form = basic_form.."button[6,"..ver_pos..";4,1;copilot_form;" .. S("Co-pilot Manager") .. "]"
         ver_pos = ver_pos + 1.25
@@ -101,7 +101,7 @@ function airutils.pilot_formspec(name)
     end
 
     if ent._have_manual then
-    	basic_form = basic_form.."button[6,5.2;4,1;manual;" .. S("Manual") .. "]"
+        basic_form = basic_form.."button[6,5.2;4,1;manual;" .. S("Manual") .. "]"
         expand_form = true
     end
 
@@ -168,8 +168,6 @@ function airutils.adf_formspec(name)
                 z = math.floor(ent._adf_destiny.z)
             end
         end
-    else
-        --return
     end
 
     local basic_form = table.concat({
@@ -280,7 +278,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
                 airutils.attach_pax(ent, player)
 		    end
 		    if fields.go_out then
-                local touching_ground, liquid_below = airutils.check_node_below(plane_obj, 2.5)
+                local touching_ground, _ = airutils.check_node_below(plane_obj, 2.5)
                 if ent.isinliquid or touching_ground then --isn't flying?
                     airutils.dettach_pax(ent, player)
                 else
@@ -308,21 +306,20 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 		    if fields.go_out then
                 local touch_point = ent.initial_properties.collisionbox[2]-1.0
                 -----////
-                local is_on_ground = false
                 local pos = plane_obj:get_pos()
                 pos.y = pos.y + touch_point
                 local node_below = minetest.get_node(pos).name
                 local nodedef = minetest.registered_nodes[node_below]
-                is_on_ground = not nodedef or nodedef.walkable or false -- unknown nodes are solid
+                local is_on_ground = not nodedef or nodedef.walkable or false -- unknown nodes are solid
 
                 if ent.driver_name == name and ent.owner == ent.driver_name then --just the owner can do this
                     --minetest.chat_send_all(dump(noded))
                     if is_on_ground then --or clicker:get_player_control().sneak then
                         --minetest.chat_send_all(dump("is on ground"))
-                        --remove the passengers first                
+                        --remove the passengers first
                         local max_seats = table.getn(ent._seats)
                         for i = max_seats,1,-1
-                        do 
+                        do
                             --minetest.chat_send_all("index: "..i.." - "..dump(ent._passengers[i]))
                             if ent._passengers[i] then
                                 local passenger = minetest.get_player_by_name(ent._passengers[i])
@@ -409,8 +406,8 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	    if fields.copilot then
             --look for a free seat first
             local is_there_a_free_seat = false
-            for i = 2,1,-1 
-            do 
+            for i = 2,1,-1
+            do
                 if ent._passengers[i] == nil then
                     is_there_a_free_seat = true
                     break

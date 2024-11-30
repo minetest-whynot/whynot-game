@@ -73,7 +73,7 @@ function airutils.update_hud(player, climb, speed, power, fuel)
             scale     = { x = 0.5, y = 0.5},
             alignment = { x = 1, y = 0 },
         })
-        
+
         ids["clb_pt_1"] = player:hud_add({
             hud_elem_type = "image",
             position  = {x = 0, y = 1},

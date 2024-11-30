@@ -76,7 +76,7 @@ function airutils.on_activate(self, staticdata, dtime_s)
             return
         end
     end
-    
+
     self._climb_rate = 0
     self._yaw = 0
     self._roll = 0
@@ -99,7 +99,7 @@ function airutils.on_activate(self, staticdata, dtime_s)
     if self._anim_start_frame then
         start_frame = self._anim_start_frame
         end_frame = self._anim_start_frame + self._anim_frames
-    end    
+    end
 
     self.object:set_animation({x = start_frame, y = end_frame}, 0, 0, true)
     if self.wheels then
@@ -135,7 +135,7 @@ function airutils.on_step(self,dtime,colinfo)
     self.dtime = math.min(dtime,0.2)
     self.colinfo = colinfo
     self.height = airutils.get_box_height(self)
-    
+
 --  physics comes first
     local vel = self.object:get_velocity()
     local pos = self.object:get_pos()
@@ -154,8 +154,8 @@ function airutils.on_step(self,dtime,colinfo)
         props.show_on_minimap = false
         self.object:set_properties(props)
     end
-    
-    if colinfo then 
+
+    if colinfo then
 	    self.isonground = colinfo.touching_ground
     else
 	    if self.lastvelocity.y==0 and vel.y==0 then
@@ -164,7 +164,7 @@ function airutils.on_step(self,dtime,colinfo)
 		    self.isonground = false
 	    end
     end
-    
+
     if self.hp_max <= 0 then
         airutils.destroy(self)
     end
@@ -174,7 +174,7 @@ function airutils.on_step(self,dtime,colinfo)
     if self.logic then
 	    self:logic()
     end
-    
+
     self.lastvelocity = self.object:get_velocity()
     self.time_total=self.time_total+self.dtime
 end
@@ -205,7 +205,7 @@ local function ground_pitch(self, longit_speed, curr_pitch)
 
         if newpitch > math.rad(self._tail_angle) then newpitch = math.rad(self._tail_angle) end --não queremos arrastar o cauda no chão
     end
-    
+
     return newpitch
 end
 
@@ -280,7 +280,6 @@ function airutils.logic(self)
     local rotation = self.object:get_rotation()
     local yaw = rotation.y
 	local newyaw=yaw
-    local pitch = rotation.x
 	local roll = rotation.z
 	local newroll=roll
     newroll = math.floor(newroll/360)
@@ -411,11 +410,12 @@ function airutils.logic(self)
 
     --is an stall, force a recover
     if longit_speed < (self._min_speed+0.5) and climb_rate < -1.5 and is_flying then
+        --[[
         if player and self.driver_name then
-            --minetest.chat_send_player(self.driver_name,core.colorize('#ff0000', " >>> STALL"))
+            minetest.chat_send_player(self.driver_name,core.colorize('#ff0000', " >>> STALL"))
         end
+        ]]--
         self._elevator_angle = 0
-        actuator_angle = 0
         self._angle_of_attack = -1
         newpitch = math.rad(self._angle_of_attack)
     else
@@ -439,7 +439,7 @@ function airutils.logic(self)
             end --limiting the very high climb angle due to strange behavior]]--]]--
 
             if self._inverted_pitch_reaction then self._elevator_angle = -1*actuator_angle end --revert the reversion
-            
+
         end
     end
 
@@ -516,7 +516,7 @@ function airutils.logic(self)
     --end accell
 
     --get disconnected players
-    if not self._autoflymode == true then
+    if self._autoflymode ~= true then
         airutils.rescueConnectionFailedPassengers(self)
     end
 
@@ -557,7 +557,7 @@ function airutils.logic(self)
     if longit_speed > self._min_speed*0.66 then
         --[[lets do something interesting:
         here I'll fake the longit speed effect for takeoff, to force the airplane
-        to use more runway 
+        to use more runway
         ]]--
         local factorized_longit_speed = longit_speed
         if is_flying == false and airutils.quadBezier then
@@ -727,27 +727,26 @@ function airutils.on_punch(self, puncher, ttime, toolcaps, dir, damage)
     end
     if self._vehicle_name then airutils.setText(self, self._vehicle_name) end
 
-    if (string.find(puncher:get_wielded_item():get_name(), "rayweapon") or 
+    if (string.find(puncher:get_wielded_item():get_name(), "rayweapon") or
         toolcaps.damage_groups.vehicle) then
             damage_vehicle(self, toolcaps, ttime, damage)
     end
 
-    local is_admin = false
-    is_admin = minetest.check_player_privs(puncher, {server=true})
+    local is_admin = minetest.check_player_privs(puncher, {server=true})
     if self.owner == nil then
         self.owner = name
     end
     if self.owner and self.owner ~= name and self.owner ~= "" then
         if is_admin == false then return end
     end
-    
+
     if is_admin == false and minetest.check_player_privs(puncher, {protection_bypass=false})  then
         if self.driver_name and self.driver_name ~= name then
 		    -- do not allow other players to remove the object while there is a driver
 		    return
 	    end
     end
-    
+
     local is_attached = false
     local player_attach = puncher:get_attach()
     if player_attach then
@@ -758,7 +757,7 @@ function airutils.on_punch(self, puncher, ttime, toolcaps, dir, damage)
             is_attached = true
         end
     end
-    
+
     if puncher:get_attach() == self.object then is_attached = true end
     --if puncher:get_attach() == self.pilot_seat_base then is_attached = true end
 
@@ -831,9 +830,9 @@ local function get_vehicle(self, player)
         local lua_ent = self.object:get_luaentity()
         local staticdata = lua_ent:get_staticdata(self)
         local obj_name = lua_ent.name
+        local pos = self.object:get_pos()
 
         local stack = ItemStack(obj_name)
-        local max = stack:get_stack_max()
         local tool = false
         if stack:get_stack_max() == 1 then tool = true end
 
@@ -863,7 +862,7 @@ local function get_vehicle(self, player)
 
         return true
     end
-    
+
     return false
 end
 
@@ -886,8 +885,6 @@ function airutils.on_rightclick(self, clicker)
 
     --minetest.chat_send_all(dump(self.driver_name))
 
-    local touching_ground, liquid_below = airutils.check_node_below(self.object, 2.5)
-    local is_on_ground = self.isinliquid or touching_ground or liquid_below
     local is_under_water = airutils.check_is_under_water(self.object)
 
     --minetest.chat_send_all('name '.. dump(name) .. ' - pilot: ' .. dump(self.driver_name) .. ' - pax: ' .. dump(copilot_name))
@@ -900,7 +897,7 @@ function airutils.on_rightclick(self, clicker)
         local plane = seat:get_attach()
         if plane == self.object then is_attached = true end
     end
-    
+
     if name == self.driver_name then
         if is_attached then
             local itmstck=clicker:get_wielded_item()
@@ -946,8 +943,6 @@ function airutils.on_rightclick(self, clicker)
         if self.owner == name or minetest.check_player_privs(clicker, {protection_bypass=true}) then
 
             local itmstck=clicker:get_wielded_item()
-            local item_name = ""
-            if itmstck then item_name = itmstck:get_name() end
 
 	        if itmstck then
 		        if airutils.set_param_paint(self, clicker, itmstck, 2) == true then
@@ -963,10 +958,10 @@ function airutils.on_rightclick(self, clicker)
             else
                 if is_under_water then return end
 
-                --remove the passengers first                
+                --remove the passengers first
                 local max_seats = table.getn(self._seats)
                 for i = max_seats,1,-1
-                do 
+                do
                     if self._passengers[i] and self._passengers[i] ~= "" then
                         local passenger = minetest.get_player_by_name(self._passengers[i])
                         if passenger then airutils.dettach_pax(self, passenger) end

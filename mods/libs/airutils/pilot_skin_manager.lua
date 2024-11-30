@@ -3,8 +3,6 @@ local S = airutils.S
 airutils.pilot_textures = {"pilot_clothes1.png","pilot_clothes2.png","pilot_clothes3.png","pilot_clothes4.png",
         "pilot_novaskin_girl.png","pilot_novaskin_girl_steampunk.png","pilot_novaskin_girl_2.png","pilot_novaskin_girl_steampunk_2.png"}
 local skinsdb_mod_path = minetest.get_modpath("skinsdb")
-local backup = "airutils:bcp_last_skin"
-local curr_skin = "airutils:skin"
 
 minetest.register_chatcommand("au_uniform", {
     func = function(name, param)
@@ -99,11 +97,11 @@ function airutils.set_player_skin(player, skin)
         else
             --remove texture
             local old_texture = player_meta:get_string("backup")
-            if set_skin then
+            if minetest.global_exists(set_skin) then --checking if set_skin is available 
                 if player:get_attribute("set_skin:player_skin") ~= nil and player:get_attribute("set_skin:player_skin") ~= "" then
                     old_texture = player:get_attribute("set_skin:player_skin")
                 end
-            elseif wardrobe then
+            elseif minetest.global_exists(wardrobe) then --checking if wardrobe is available
                 if wardrobe.playerSkins then
                     if wardrobe.playerSkins[name] ~= nil then
                         old_texture = wardrobe.playerSkins[name]

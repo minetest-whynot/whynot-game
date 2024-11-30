@@ -11,7 +11,6 @@ function airutils.powerAdjust(self,dtime,factor,dir,max_power)
     local max = max_power or 100
     local add_factor = factor/2
     add_factor = add_factor * (dtime/airutils.ideal_step) --adjusting the command speed by dtime
-    local power_index = self._power_lever
 
     if dir == 1 then
         if self._power_lever < max then
@@ -46,7 +45,7 @@ function airutils.control(self, dtime, hull_direction, longit_speed, longit_drag
 
         if ctrl.aux1 and self._last_time_command > 0.5 then
             self._last_time_command = 0
-            
+
         end
         ----------------------------------
         -- flap operation
@@ -150,8 +149,7 @@ function airutils.control(self, dtime, hull_direction, longit_speed, longit_drag
 
     if longit_speed > 0 then
         if ctrl then
-            if ctrl.right or ctrl.left then
-            else
+            if not (ctrl.right or ctrl.left) then
                 airutils.rudder_auto_correction(self, longit_speed, dtime)
             end
         else
@@ -178,11 +176,9 @@ function airutils.set_pitch(self, dir, dtime)
     local multiplier = pitch_factor*(dtime/airutils.ideal_step)
 	if dir == -1 then
         --minetest.chat_send_all("cabrando")
-        if self._elevator_angle > 0 then pitch_factor = pitch_factor * 2 end
 		self._elevator_angle = math.max(self._elevator_angle-multiplier,-self._elevator_limit)
 	elseif dir == 1 then
         --minetest.chat_send_all("picando")
-        if self._angle_of_attack < 0 then pitch_factor = 1 end --lets reduce the command power to avoid accidents
 		self._elevator_angle = math.min(self._elevator_angle+multiplier,self._elevator_limit)
 	end
 end
@@ -192,11 +188,9 @@ function airutils.set_autopilot_pitch(self, dir, dtime)
     local multiplier = pitch_factor*(dtime/airutils.ideal_step)
 	if dir == -1 then
         --minetest.chat_send_all("cabrando")
-        if self._elevator_angle > 0 then pitch_factor = pitch_factor * 2 end
 		self._elevator_angle = math.max(self._elevator_angle-multiplier,-self._elevator_limit)
 	elseif dir == 1 then
         --minetest.chat_send_all("picando")
-        if self._angle_of_attack < 0 then pitch_factor = 1 end --lets reduce the command power to avoid accidents
 		self._elevator_angle = math.min(self._elevator_angle+multiplier,self._elevator_limit)
 	end
 end
@@ -204,7 +198,7 @@ end
 function airutils.set_yaw_by_mouse(self, dir)
     local rotation = self.object:get_rotation()
     local rot_y = math.deg(rotation.y)
-    
+
     local total = math.abs(math.floor(rot_y/360))
 
     if rot_y < 0 then rot_y = rot_y + (360*total) end
@@ -214,7 +208,7 @@ function airutils.set_yaw_by_mouse(self, dir)
 
     local intensity = self._yaw_intensity / 10
     local command = (rot_y - dir) * intensity
-    if command < -90 then command = -90 
+    if command < -90 then command = -90
     elseif command > 90 then command = 90 end
     --minetest.chat_send_all("rotation y: "..rot_y.." - dir: "..dir.." - command: "..command)
 
@@ -243,22 +237,12 @@ function airutils.rudder_auto_correction(self, longit_speed, dtime)
     end
 end
 
---obsolete, will be removed
-function getAdjustFactor(curr_y, desired_y)
-    local max_difference = 0.1
-    local adjust_factor = 0.5
-    local difference = math.abs(curr_y - desired_y)
-    if difference > max_difference then difference = max_difference end
-    return (difference * adjust_factor) / max_difference
-end
-
 function airutils.autopilot(self, dtime, hull_direction, longit_speed, accel, curr_pos)
 
     local retval_accel = accel
 
     if not self._have_auto_pilot then return end
 
-    local max_autopilot_power = 85
     local max_attack_angle = 1.8
 
     --climb

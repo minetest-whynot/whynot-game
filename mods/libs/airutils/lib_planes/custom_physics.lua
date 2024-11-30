@@ -30,7 +30,6 @@ function airutils.physics(self)
     end
 
     if self.isinliquid then
-        local accell = {x=0, y=0, z=0}
         self.water_drag = 0.2
         self.isinliquid = true
         local height = self.height
@@ -38,7 +37,7 @@ function airutils.physics(self)
 --		local balance = self.buoyancy*self.height
         local buoyacc = airutils.gravity*(self.buoyancy-submergence)
         --local buoyacc = self._baloon_buoyancy*(self.buoyancy-submergence)
-        accell = {
+        local accell = {
                     x=-vel.x*self.water_drag,
                     y=buoyacc-(vel.y*math.abs(vel.y)*0.4),
                     z=-vel.z*self.water_drag
@@ -53,7 +52,7 @@ function airutils.physics(self)
 	else
         --airutils.set_acceleration(self.object,{x=0,y=airutils.gravity,z=0})
 		self.isinliquid = false
-        
+
         if last_accel then
             last_accel.y = last_accel.y + airutils.gravity --gravity here
 
@@ -71,7 +70,7 @@ function airutils.physics(self)
         -- bounciness
         if self.springiness and self.springiness > 0 and self.buoyancy >= 1 then
             local vnew = vector.new(new_velocity)
-            
+
             if not self.collided then						-- ugly workaround for inconsistent collisions
 	            for _,k in ipairs({'y','z','x'}) do
 		            if new_velocity[k]==0 and math.abs(self.lastvelocity[k])> 0.1 then
@@ -79,7 +78,7 @@ function airutils.physics(self)
 		            end
 	            end
             end
-            
+
             if not vector.equals(new_velocity,vnew) then
 	            self.collided = true
             else

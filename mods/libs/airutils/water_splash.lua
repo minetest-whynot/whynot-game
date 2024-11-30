@@ -6,7 +6,7 @@ local function calculateVelocity(magnitude, angle)
         y = 0, -- Se a velocidade não tem componente z
         z = magnitude * math.sin(angle),
     }
-    
+
     return velocity
 end
 
@@ -30,14 +30,14 @@ end
 function airutils.add_splash(pos, yaw, x_pos)
     local direction = yaw
 
-    local spl_pos = vector.new(pos)  
+    local spl_pos = vector.new(pos)
     --water_particle(spl_pos, {x=0,y=0,z=0})
 
     --right
     local move = x_pos/10
     spl_pos.x = spl_pos.x + move * math.cos(direction)
     spl_pos.z = spl_pos.z + move * math.sin(direction)
-    
+
     local velocity = calculateVelocity(0.2, yaw)
     water_particle(spl_pos, velocity)
 
@@ -46,7 +46,7 @@ function airutils.add_splash(pos, yaw, x_pos)
     spl_pos = vector.new(pos)
     spl_pos.x = spl_pos.x + move * math.cos(direction)
     spl_pos.z = spl_pos.z + move * math.sin(direction)
-    
+
     velocity = calculateVelocity(0.2, yaw - math.rad(180))
     water_particle(spl_pos, velocity)
 end

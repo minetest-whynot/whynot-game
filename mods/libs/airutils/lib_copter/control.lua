@@ -4,33 +4,10 @@ local S = airutils.S
 
 dofile(minetest.get_modpath("airutils") .. DIR_DELIM .. "lib_planes" .. DIR_DELIM .. "utilities.lua")
 
-local function floating_auto_correction(self, dtime)
-    local factor = 1
-    local range = 0.03 --above and bellow
-
-    if self._wing_configuration > self._stable_collective + range or
-        self._wing_configuration < self._stable_collective - range then
-        return
-    end
-
-    --minetest.chat_send_player(self.driver_name, "antes: " .. self._air_float)
-    if self._wing_configuration > self._stable_collective then factor = -1 end
-    local time_correction = (dtime/airutils.ideal_step)
-    if time_correction < 1 then time_correction = 1 end
-    local intensity = 1
-    local correction = (intensity*factor) * time_correction
-
-    local new_wing_configuration = self._wing_configuration + correction
-
-    self._wing_configuration = new_wing_configuration
-
-    --minetest.chat_send_all(dump(self._wing_configuration))
-end
-
 local function set_yaw_by_mouse(self, dir)
     local rotation = self.object:get_rotation()
     local rot_y = math.deg(rotation.y)
-    
+
     local total = math.abs(math.floor(rot_y/360))
 
     if rot_y < 0 then rot_y = rot_y + (360*total) end
@@ -40,7 +17,7 @@ local function set_yaw_by_mouse(self, dir)
 
     local intensity = self._yaw_intensity / 10
     local command = (rot_y - dir) * intensity
-    if command < -90 then command = -90 
+    if command < -90 then command = -90
     elseif command > 90 then command = 90 end
     --minetest.chat_send_all("rotation y: "..rot_y.." - dir: "..dir.." - command: "..command)
 
@@ -62,7 +39,7 @@ function airutils.heli_control(self, dtime, hull_direction, longit_speed, longit
     local retval_accel = accel
 
     local stop = false
-    local ctrl = nil
+    local ctrl
 
     local time_correction = (dtime/airutils.ideal_step)
     if time_correction < 1 then time_correction = 1 end
@@ -78,12 +55,8 @@ function airutils.heli_control(self, dtime, hull_direction, longit_speed, longit
 
         if not self._acceleration then self._acceleration = 0 end
         if not self._lat_acceleration then self._lat_acceleration = 0 end
-        
+
         if self._engine_running then
-            --engine acceleration calc
-
-            local factor = 1
-
             --control lift
             local collective_up_max = 1.2
             local min_angle = self._min_collective
@@ -137,7 +110,7 @@ function airutils.heli_control(self, dtime, hull_direction, longit_speed, longit
                     end
                 elseif ctrl.left then
                     yaw_cmd = -1
-                    if later_speed > -self._max_speed and self._yaw_by_mouse then 
+                    if later_speed > -self._max_speed and self._yaw_by_mouse then
                         self._lat_acceleration = self._lat_acceleration + (-acc_fraction)
                     else
                         self._lat_acceleration = 0
@@ -187,7 +160,7 @@ function airutils.heli_control(self, dtime, hull_direction, longit_speed, longit
             end
         end
 	end
-    
+
     return retval_accel, stop
 end
 

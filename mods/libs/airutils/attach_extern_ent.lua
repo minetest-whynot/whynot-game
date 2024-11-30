@@ -29,12 +29,11 @@ function airutils.get_attached_entity(self)
     if not self._vehicle_custom_data then return nil, nil end
     if not self._vehicle_custom_data.simple_external_attach_entity then return nil, nil end
 
-    local entity_name = self._vehicle_custom_data.simple_external_attach_entity
     local inv_id = self._vehicle_custom_data.simple_external_attach_invid
 
     local pos = self.object:get_pos()
     local nearby_objects = minetest.get_objects_inside_radius(pos, 32)
-	for i,obj in ipairs(nearby_objects) do	
+	for i,obj in ipairs(nearby_objects) do
         local ent = obj:get_luaentity()
         if ent then
             if ent._inv_id then
@@ -85,12 +84,12 @@ function airutils.simple_external_attach(self, relative_pos, entity_name, radius
     attach_up = attach_up or false
     radius = radius or 12
     if self.object then
-        local curr_ent, curr_obj = airutils.get_attached_entity(self)
+        local curr_ent, _ = airutils.get_attached_entity(self)
         if curr_ent then return end
 
         local pos = self.object:get_pos()
         local nearby_objects = minetest.get_objects_inside_radius(pos, radius)
-		for i,obj in ipairs(nearby_objects) do	
+		for i,obj in ipairs(nearby_objects) do
 			if obj == self.object then
 				table.remove(nearby_objects,i)
 			end
@@ -98,7 +97,7 @@ function airutils.simple_external_attach(self, relative_pos, entity_name, radius
             if ent then
                 if ent.name == entity_name then
                     airutils.attach_external_object(self, nearby_objects[i], ent, pos, relative_pos, attach_up)
-                    return 
+                    return
                 end
             end
 		end
@@ -109,10 +108,9 @@ end
 function airutils.restore_external_attach(self)
     if not self._vehicle_custom_data then return end
     if not self._vehicle_custom_data.simple_external_attach_invid then return end
-    
+
     local pos = self.object:get_pos()
     local dest_pos = vector.new(pos)
-    local entity_name = self._vehicle_custom_data.simple_external_attach_entity
     local relative_pos = self._vehicle_custom_data.simple_external_attach_pos
     local inv_id = self._vehicle_custom_data.simple_external_attach_invid
     dest_pos = vector.add(dest_pos, relative_pos)
@@ -126,7 +124,7 @@ function airutils.restore_external_attach(self)
                 --minetest.chat_send_all(dump(ent.name))
                 if ent._inv_id then
                     --minetest.chat_send_all(">> "..dump(ent._inv_id).." >> "..dump(inv_id))
-                    if ent._inv_id == inv_id and (not (ent._inv_id == self._inv_id)) then
+                    if ent._inv_id == inv_id and ent._inv_id ~= self._inv_id then
                         --minetest.chat_send_all("++ "..dump(ent._inv_id).." ++ "..dump(inv_id))
                         local target_obj = nearby_objects[i]
                         target_obj:set_pos(dest_pos)
@@ -173,7 +171,7 @@ minetest.register_chatcommand("remove_hook", {
                         local velocity = rem_ent.object:get_velocity()
 
                         local move = 0
-                        if rem_ent._vehicle_custom_data.simple_external_attach_pos then 
+                        if rem_ent._vehicle_custom_data.simple_external_attach_pos then
                             move = -1*rem_ent._vehicle_custom_data.simple_external_attach_pos.z/10
                         end
                         pos.x = pos.x + move * math.sin(direction)

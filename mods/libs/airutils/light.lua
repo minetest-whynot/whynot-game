@@ -45,7 +45,7 @@ function airutils.swap_node(self, pos)
         count = count + 1
         target_pos.y = target_pos.y + 1
     end
-    
+
     if have_air then
         minetest.set_node(target_pos, {name='airutils:light'})
         airutils.remove_light(self)

@@ -58,20 +58,20 @@ local function clamp_characters(text, max_lenght)
     local c = ""
     for i = 1, #new_string, 1 do
         c = string.sub(new_string,i,i)
-        if not (c == control_char) then
+        if c ~= control_char then
             count = count + 1
         end
         curr_index = i
         if count == max_lenght then break end
     end
     local cutstring = string.sub(new_string,1,curr_index)
-    
+
     --now reconstruct the string
     local outputstring = ""
     local control_order_curr_intex = 0
     for i = 1, #cutstring, 1 do
         c = string.sub(cutstring,i,i)
-        if not (c == control_char) then
+        if c ~= control_char then
             outputstring = outputstring .. (c or "")
         else
             control_order_curr_intex = control_order_curr_intex + 1
@@ -92,10 +92,10 @@ local function file_exists(name, return_handle, mode)
 		if (return_handle) then
 			return f
 		end
-		io.close(f) 
-		return true 
-	else 
-		return false 
+		io.close(f)
+		return true
+	else
+		return false
 	end
 end
 
@@ -217,7 +217,7 @@ local function make_text_texture(text, default_color, line_width, line_height, c
 			table.insert(texture, (":%d,%d=%s"):format(xpos + ch.off, ypos, ch.tex))
 		end
 		table.insert(
-			texture, 
+			texture,
 			(":%d,%d="):format(xpos + word.w, ypos) .. char_tex(font_name, " ")
 		)
 		xpos = xpos + word.w + cwidth_tab[" "]

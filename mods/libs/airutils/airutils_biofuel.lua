@@ -4,7 +4,7 @@
 local S = airutils.S
 local module_name = "airutils"
 
-if minetest.get_modpath("technic") then
+if core.get_modpath("technic") then
     if technic then
 	    technic.register_extractor_recipe({input = {"farming:wheat 33"}, output = "biofuel:biofuel 1"})
 	    technic.register_extractor_recipe({input = {"farming:corn 33"}, output = "biofuel:biofuel 1"})
@@ -14,7 +14,7 @@ if minetest.get_modpath("technic") then
 end
 
 
-if minetest.get_modpath("basic_machines") then
+if core.get_modpath("basic_machines") then
     if basic_machines then
 	    basic_machines.grinder_recipes["farming:wheat"] = {50,"biofuel:biofuel",1}
 	    basic_machines.grinder_recipes["farming:corn"] = {50,"biofuel:biofuel",1}
@@ -23,8 +23,8 @@ if minetest.get_modpath("basic_machines") then
     end
 end
 
-if minetest.get_modpath("default") then
-	minetest.register_craft({
+if core.get_modpath("default") then
+	core.register_craft({
 		output = module_name .. ":biofuel_distiller",
 		recipe = {
 			{"default:copper_ingot", "default:copper_ingot", "default:copper_ingot"},
@@ -33,8 +33,8 @@ if minetest.get_modpath("default") then
 		},
 	})
 end
-if minetest.get_modpath("mcl_core") then
-	minetest.register_craft({
+if core.get_modpath("mcl_core") then
+	core.register_craft({
 		output = module_name .. ":biofuel_distiller",
 		recipe = {
 			{"mcl_copper:copper_ingot", "mcl_copper:copper_ingot", "mcl_copper:copper_ingot"},
@@ -47,18 +47,18 @@ end
 
 -- biofuel
 local new_gallon_id = "airutils:biofuel"
-minetest.register_craftitem(new_gallon_id,{
+core.register_craftitem(new_gallon_id,{
 	description = S("Bio Fuel"),
 	inventory_image = "airutils_biofuel_inv.png",
 })
 
-minetest.register_craft({
+core.register_craft({
 	type = "fuel",
 	recipe = new_gallon_id,
 	burntime = 50,
 })
 
-minetest.register_alias("biofuel:biofuel", new_gallon_id) --for the old biofuel
+core.register_alias("biofuel:biofuel", new_gallon_id) --for the old biofuel
 
 local ferment = {
 	{"default:papyrus", new_gallon_id},
@@ -75,14 +75,14 @@ local ferment_groups = {'flora', 'leaves', 'flower', 'sapling', 'tree', 'wood', 
 local biofueldistiller_formspec = "size[8,9]"
 	.. "list[current_name;src;2,1;1,1;]" .. airutils.get_itemslot_bg(2, 1, 1, 1)
 	.. "list[current_name;dst;5,1;1,1;]" .. airutils.get_itemslot_bg(5, 1, 1, 1)
-	.. "list[current_player;main;0,5;8,4;]" .. airutils.get_itemslot_bg(0, 5, 8, 4) 
+	.. "list[current_player;main;0,5;8,4;]" .. airutils.get_itemslot_bg(0, 5, 8, 4)
 	.. "listring[current_name;dst]"
 	.. "listring[current_player;main]"
 	.. "listring[current_name;src]"
 	.. "listring[current_player;main]"
 	.. "image[3.5,1;1,1;gui_furnace_arrow_bg.png^[transformR270]"
 
-minetest.register_node( module_name .. ":biofuel_distiller", {
+core.register_node( module_name .. ":biofuel_distiller", {
 	description = S("Biofuel Distiller"),
 	tiles = {"airutils_black.png", "airutils_aluminum.png", "airutils_copper.png" },
 	drawtype = "mesh",
@@ -94,11 +94,11 @@ minetest.register_node( module_name .. ":biofuel_distiller", {
 	},
 	legacy_facedir_simple = true,
 
-	on_place = minetest.rotate_node,
+	on_place = core.rotate_node,
 
 	on_construct = function(pos)
 
-		local meta = minetest.get_meta(pos)
+		local meta = core.get_meta(pos)
 
 		meta:set_string("formspec", biofueldistiller_formspec)
 		meta:set_string("infotext", S("Biofuel Distiller"))
@@ -112,7 +112,7 @@ minetest.register_node( module_name .. ":biofuel_distiller", {
 
 	can_dig = function(pos,player)
 
-		local meta = minetest.get_meta(pos)
+		local meta = core.get_meta(pos)
 		local inv = meta:get_inventory()
 
 		if not inv:is_empty("dst")
@@ -125,7 +125,7 @@ minetest.register_node( module_name .. ":biofuel_distiller", {
 
 	allow_metadata_inventory_take = function(pos, listname, index, stack, player)
 
-		if minetest.is_protected(pos, player:get_player_name()) then
+		if core.is_protected(pos, player:get_player_name()) then
 			return 0
 		end
 
@@ -134,12 +134,9 @@ minetest.register_node( module_name .. ":biofuel_distiller", {
 
 	allow_metadata_inventory_put = function(pos, listname, index, stack, player)
 
-		if minetest.is_protected(pos, player:get_player_name()) then
+		if core.is_protected(pos, player:get_player_name()) then
 			return 0
 		end
-
-		local meta = minetest.get_meta(pos)
-		local inv = meta:get_inventory()
 
 		if listname == "src" then
 			return stack:get_count()
@@ -150,13 +147,9 @@ minetest.register_node( module_name .. ":biofuel_distiller", {
 
 	allow_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)
 
-		if minetest.is_protected(pos, player:get_player_name()) then
+		if core.is_protected(pos, player:get_player_name()) then
 			return 0
 		end
-
-		local meta = minetest.get_meta(pos)
-		local inv = meta:get_inventory()
-		local stack = inv:get_stack(from_list, from_index)
 
 		if to_list == "src" then
 			return count
@@ -167,14 +160,14 @@ minetest.register_node( module_name .. ":biofuel_distiller", {
 
 	on_metadata_inventory_put = function(pos)
 
-		local timer = minetest.get_node_timer(pos)
+		local timer = core.get_node_timer(pos)
 
 		timer:start(5)
 	end,
 
 	on_timer = function(pos)
 
-		local meta = minetest.get_meta(pos) ; if not meta then return end
+		local meta = core.get_meta(pos) ; if not meta then return end
 		local inv = meta:get_inventory()
 
 		-- is barrel empty?
@@ -205,7 +198,7 @@ minetest.register_node( module_name .. ":biofuel_distiller", {
                 for k, v in pairs(inv_content) do
                     local item_name = v:get_name()
                     for n = 1, #ferment_groups do
-                        if minetest.get_item_group(item_name, ferment_groups[n]) == 1 then
+                        if core.get_item_group(item_name, ferment_groups[n]) == 1 then
 				            has_group = n
 				            break
                         end
@@ -259,18 +252,16 @@ minetest.register_node( module_name .. ":biofuel_distiller", {
 })
 
 --lets remove the old one
-minetest.register_node(":".."biofuel:biofuel_distiller", {
+core.register_node(":".."biofuel:biofuel_distiller", {
     groups = {old_biofuel=1},
 })
 
-minetest.register_abm({
+core.register_abm({
     nodenames = {"group:old_biofuel"},
     interval = 1,
     chance = 1,
     action = function(pos, node)
-        --minetest.remove_node(pos)
-        minetest.swap_node(pos,{name = module_name..":biofuel_distiller"})
+        --core.remove_node(pos)
+        core.swap_node(pos,{name = module_name..":biofuel_distiller"})
     end,
 })
-
-

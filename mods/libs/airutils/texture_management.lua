@@ -48,7 +48,7 @@ local function getTexturesFromItem(itemDef)
 end
 
 --function to remove duplicates and invalid for textlist
-function filter_texture_names(list_to_test)
+local function filter_texture_names(list_to_test)
     local hash = {}
     local result = {}
     for _,v in ipairs(list_to_test) do
@@ -63,7 +63,7 @@ function filter_texture_names(list_to_test)
 end
 
 -- Function to list all loaded textures
-function listLoadedTextures()
+local function listLoadedTextures()
     local loadedTextures = {}
 
     --nodes

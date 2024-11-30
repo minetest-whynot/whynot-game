@@ -48,7 +48,7 @@ function airutils.get_stand_pos(thing)	-- thing can be luaentity or objectref.
 		pos = thing:get_pos()
         if not thing:get_properties() then return false end
 		colbox = thing:get_properties().collisionbox
-	else 
+	else
 		return false
 	end
 	return airutils.pos_shift(pos,{y=colbox[2]+0.01}), pos
@@ -78,7 +78,7 @@ function airutils.set_acceleration(thing,vec,limit)
 	vec.x=airutils.minmax(vec.x,limit)
 	vec.y=airutils.minmax(vec.y,limit)
 	vec.z=airutils.minmax(vec.z,limit)
-	
+
 	thing:set_acceleration(vec)
 end
 
@@ -86,7 +86,7 @@ function airutils.actfunc(self, staticdata, dtime_s)
 
 	self.logic = self.logic or self.brainfunc
 	self.physics = self.physics or airutils.physics
-	
+
 	self.lqueue = {}
 	self.hqueue = {}
 	self.nearby_objects = {}
@@ -97,29 +97,29 @@ function airutils.actfunc(self, staticdata, dtime_s)
 	self.water_drag = self.water_drag or 1
 
 	local sdata = minetest.deserialize(staticdata)
-	if sdata then 
+	if sdata then
 		for k,v in pairs(sdata) do
 			self[k] = v
 		end
 	end
-	
+
 	if self.textures==nil then
 		local prop_tex = self.object:get_properties().textures
 		if prop_tex then self.textures=prop_tex end
 	end
-	
+
 	if not self.memory then 		-- this is the initial activation
-		self.memory = {} 
-		
+		self.memory = {}
+
 		-- texture variation
 		if #self.textures > 1 then self.texture_no = random(#self.textures) end
 	end
-	
+
 	if self.timeout and ((self.timeout>0 and dtime_s > self.timeout and next(self.memory)==nil) or
 	                     (self.timeout<0 and dtime_s > abs(self.timeout))) then
 		self.object:remove()
 	end
-	
+
 	-- apply texture
 	if self.textures and self.texture_no then
 		local props = {}
@@ -136,7 +136,7 @@ function airutils.actfunc(self, staticdata, dtime_s)
 	end
 	self.armor_groups.immortal = 1
 	self.object:set_armor_groups(self.armor_groups)
-	
+
 	self.buoyancy = self.buoyancy or 0
 	self.oxygen = self.oxygen or self.lung_capacity
 	self.lastvelocity = {x=0,y=0,z=0}
@@ -147,7 +147,7 @@ function airutils.get_box_height(self)
 	local colbox = self:get_properties().collisionbox
 	local height = 0.1
 	if colbox then height = colbox[5]-colbox[2] end
-	
+
 	return height > 0 and height or 0.1
 end
 
@@ -155,11 +155,11 @@ function airutils.stepfunc(self,dtime,colinfo)
 	self.dtime = min(dtime,0.2)
 	self.colinfo = colinfo
 	self.height = airutils.get_box_height(self)
-	
+
 --  physics comes first
 	local vel = self.object:get_velocity()
-	
-	if colinfo then 
+
+	if colinfo then
 		self.isonground = colinfo.touching_ground
 	else
 		if self.lastvelocity.y==0 and vel.y==0 then
@@ -168,15 +168,15 @@ function airutils.stepfunc(self,dtime,colinfo)
 			self.isonground = false
 		end
 	end
-	
+
 	self:physics()
 
 	if self.logic then
 		if self.view_range then self:sensefunc() end
 		self:logic()
-		execute_queues(self)
+		--execute_queues(self)
 	end
-	
+
 	self.lastvelocity = self.object:get_velocity()
 	self.time_total=self.time_total+self.dtime
 end

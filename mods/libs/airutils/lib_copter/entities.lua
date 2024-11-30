@@ -1,6 +1,6 @@
 dofile(minetest.get_modpath("airutils") .. DIR_DELIM .. "lib_planes" .. DIR_DELIM .. "global_definitions.lua")
 
-function engineSoundPlay(self, increment, base)
+local function engineSoundPlay(self, increment, base)
     increment = increment or 0.0
     --sound
     if self.sound_handle then minetest.sound_stop(self.sound_handle) end
@@ -17,14 +17,14 @@ end
 
 local function engine_set_sound_and_animation(self, is_flying, newpitch, newroll)
     is_flying = is_flying or false
-    
+
     if self._engine_running then --engine running
         if not self.sound_handle then
             engineSoundPlay(self, 0.0, 0.9)
         end
         --self._cmd_snd
         if self._snd_last_cmd ~= self._cmd_snd then
-            local increment = 0.0
+            local increment
             self._snd_last_cmd = self._cmd_snd
             if self._cmd_snd then increment = 0.1 else increment = 0.0 end
             engineSoundPlay(self, increment, 0.9)
@@ -34,7 +34,7 @@ local function engine_set_sound_and_animation(self, is_flying, newpitch, newroll
     else
         if is_flying then --autorotation here
             if self._snd_last_cmd ~= self._cmd_snd then
-                local increment = 0.0
+                local increment
                 self._snd_last_cmd = self._cmd_snd
                 if self._cmd_snd then increment = 0.1 else increment = 0.0 end
                 engineSoundPlay(self, increment, 0.6)
@@ -100,7 +100,6 @@ function airutils.logic_heli(self)
     local rotation = self.object:get_rotation()
     local yaw = rotation.y
 	local newyaw=yaw
-    local pitch = rotation.x
 	local roll = rotation.z
 
     local hull_direction = airutils.rot_to_dir(rotation) --minetest.yaw_to_dir(yaw)
@@ -118,7 +117,6 @@ function airutils.logic_heli(self)
     local accel = vector.add(longit_drag,later_drag)
     local stop = false
 
-    local node_bellow = airutils.nodeatpos(airutils.pos_shift(curr_pos,{y=-1.3}))
     local is_flying = true
     if self.colinfo then
         is_flying = (not self.colinfo.touching_ground)
@@ -290,7 +288,7 @@ function airutils.logic_heli(self)
         self._last_accell = new_accel
 	    self.object:move_to(curr_pos)
         --airutils.set_acceleration(self.object, new_accel)
-        local limit = self._climb_speed
+        --local limit = self._climb_speed
         --if new_accel.y > limit then new_accel.y = limit end --it isn't a rocket :/
 
     else
