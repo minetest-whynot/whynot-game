@@ -410,8 +410,8 @@ minetest.register_craft( {
 	type = "shapeless",
 	output = "homedecor:gate_half_door_closed 4",
 	recipe = {
-		"doors:homedecor_wood_plain_a",
-		"doors:homedecor_wood_plain_a"
+		"doors:homedecor_wood_plain",
+		"doors:homedecor_wood_plain"
 	},
 })
 
@@ -419,8 +419,8 @@ minetest.register_craft( {
 	type = "shapeless",
 	output = "homedecor:gate_half_door_white_closed 4",
 	recipe = {
-		"doors:homedecor_bedroom_a",
-		"doors:homedecor_bedroom_a"
+		"doors:homedecor_basic_panel",
+		"doors:homedecor_basic_panel"
 	},
 })
 

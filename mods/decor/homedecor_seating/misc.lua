@@ -22,7 +22,8 @@ homedecor.register("deckchair", {
 	on_rotate = minetest.get_modpath("screwdriver") and screwdriver.disallow or nil,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		return lrfurn.sit(pos, node, clicker, itemstack, pointed_thing, 1)
-	end
+	end,
+	on_destruct = lrfurn.on_seat_destruct,
 })
 
 minetest.register_alias("homedecor:deckchair_foot", "homedecor:deckchair")
@@ -42,7 +43,8 @@ homedecor.register("deckchair_striped_blue", {
 	on_rotate = minetest.get_modpath("screwdriver") and screwdriver.disallow or nil,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		return lrfurn.sit(pos, node, clicker, itemstack, pointed_thing, 1)
-	end
+	end,
+	on_destruct = lrfurn.on_seat_destruct,
 })
 
 homedecor.register("simple_bench", {
@@ -62,7 +64,8 @@ homedecor.register("simple_bench", {
 	},
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		return lrfurn.sit(pos, node, clicker, itemstack, pointed_thing, 1)
-	end
+	end,
+	on_destruct = lrfurn.on_seat_destruct,
 })
 
 local bl1_sbox = {
@@ -154,7 +157,8 @@ homedecor.register("kitchen_chair_wood", {
 	on_rotate = unifieddyes.fix_after_screwdriver_nsew,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		return lrfurn.sit(pos, node, clicker, itemstack, pointed_thing, 1)
-	end
+	end,
+	on_destruct = lrfurn.on_seat_destruct,
 })
 
 homedecor.register("kitchen_chair_padded", {
@@ -180,7 +184,8 @@ homedecor.register("kitchen_chair_padded", {
 	on_rotate = unifieddyes.fix_after_screwdriver_nsew,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		return lrfurn.sit(pos, node, clicker, itemstack, pointed_thing, 1)
-	end
+	end,
+	on_destruct = lrfurn.on_seat_destruct,
 })
 
 local ofchairs_sbox = {
@@ -219,7 +224,8 @@ for _, c in pairs(chairs) do
 		on_rotate = minetest.get_modpath("screwdriver") and screwdriver.rotate_simple or nil,
 		on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 			return lrfurn.sit(pos, node, clicker, itemstack, pointed_thing, 1)
-		end
+		end,
+		on_destruct = lrfurn.on_seat_destruct,
 	})
 end
 

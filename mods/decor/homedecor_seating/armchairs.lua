@@ -33,7 +33,8 @@ minetest.register_node(":lrfurn:armchair", {
 	on_rotate = unifieddyes.fix_after_screwdriver_nsew,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		return lrfurn.sit(pos, node, clicker, itemstack, pointed_thing, 1)
-	end
+	end,
+	on_destruct = lrfurn.on_seat_destruct,
 })
 
 homedecor.register("armchair", {
@@ -59,7 +60,8 @@ homedecor.register("armchair", {
 	on_rotate = unifieddyes.fix_after_screwdriver_nsew,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		return lrfurn.sit(pos, node, clicker, itemstack, pointed_thing, 1)
-	end
+	end,
+	on_destruct = lrfurn.on_seat_destruct,
 })
 
 -- crafts
