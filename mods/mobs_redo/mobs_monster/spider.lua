@@ -47,7 +47,7 @@ local spider_types = {
 
 	{	nodes = {"ethereal:crystal_dirt", "ethereal:crystal_spike"},
 		skins = {"mobs_spider_crystal.png"},
-		docile = true,
+		docile = true, immune_to = {{"ethereal:crystal_spike", 0}},
 		drops = {
 			{name = "farming:string", chance = 1, min = 0, max = 2},
 			{name = "ethereal:crystal_spike", chance = 15, min = 1, max = 2}}
@@ -67,7 +67,7 @@ mobs:register_mob("mobs_monster:spider", {
 	hp_min = 10,
 	hp_max = 30,
 	armor = 200,
-	collisionbox = {-0.8, -0.5, -0.8, 0.8, 0, 0.8},
+	collisionbox = {-0.7, -0.5, -0.7, 0.7, 0, 0.7},
 	visual_size = {x = 1, y = 1},
 	visual = "mesh",
 	mesh = "mobs_spider.b3d",
@@ -94,7 +94,7 @@ mobs:register_mob("mobs_monster:spider", {
 	water_damage = 5,
 	lava_damage = 5,
 	light_damage = 0,
-	node_damage = false, -- disable damage_per_second node damage
+--	node_damage = false, -- disable damage_per_second node damage
 	animation = {
 		speed_normal = 15, speed_run = 20,
 		stand_start = 0, stand_end = 0,
@@ -120,6 +120,8 @@ mobs:register_mob("mobs_monster:spider", {
 				self.docile_by_day = tmp.docile
 
 				if tmp.drops then self.drops = tmp.drops end
+
+				if tmp.immune_to then self.immune_to = tmp.immune_to end
 
 				if tmp.shoot then
 					self.attack_type = "dogshoot"

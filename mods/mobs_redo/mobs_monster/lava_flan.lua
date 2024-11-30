@@ -220,7 +220,7 @@ minetest.register_craft({
 if minetest.get_modpath("toolranks") then
 
 	minetest.override_item("mobs:pick_lava", {
-		original_description = "Lava Pickaxe",
+		original_description = S("Lava Pickaxe"),
 		description = toolranks.create_description("Lava Pickaxe", 0, 1),
 		after_use = toolranks.new_afteruse})
 end
