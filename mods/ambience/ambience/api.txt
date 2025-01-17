@@ -43,12 +43,20 @@ ambience.add_set("windy", {
 		{name = "crow", length = 3, ephemeral = true},
 	},
 	sound_check = function(def)
-		local number = totals["default:sand"] or 0 -- yep, can also be nil
+		local number = def.totals["default:sand"] or 0 -- yep, can also be nil
 		if number > 20 then
 			return "windy", 0.2 -- return set to play and optional gain volume
 		end
-	end,
+	end
 })
+
+
+Counting group: nodes
+---------------------
+
+Instead of counting each node total for things like leaves within the sound_check function, you could use the following helper function to return their total instead e.g.
+
+local number = ambience.group_totals(def.totals, "leaves") -- count all group:leaves
 
 
 Getting Sound Set

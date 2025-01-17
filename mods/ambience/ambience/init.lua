@@ -10,7 +10,7 @@ local MUSICVOLUME = 0.6
 local MUSICINTERVAL = 60 * 20
 local play_music = minetest.settings:get_bool("ambience_music") ~= false
 local radius = 6
-local playing = {}
+local playing = {} -- user settings, timers and current set playing
 local sound_sets = {} -- all the sounds and their settings
 local sound_set_order = {} -- needed because pairs loops randomly through tables
 local set_nodes = {} -- all the nodes needed for sets
@@ -21,7 +21,7 @@ local S = minetest.get_translator("ambience")
 
 -- add set to list
 
-ambience.add_set = function(set_name, def)
+function ambience.add_set(set_name, def)
 
 	if not set_name or not def then return end
 
@@ -61,13 +61,13 @@ end
 
 -- return set from list using name
 
-ambience.get_set = function(set_name)
+function ambience.get_set(set_name)
 	return sound_sets[set_name]
 end
 
 -- remove set from list
 
-ambience.del_set = function(set_name)
+function ambience.del_set(set_name)
 
 	sound_sets[set_name] = nil
 
@@ -79,6 +79,26 @@ ambience.del_set = function(set_name)
 	end
 
 	if can_del then table.remove(sound_set_order, can_del) end
+end
+
+-- return node total belonging to a specific group:
+
+function ambience.group_total(ntab, ngrp)
+
+	local tot = 0
+	local def, grp
+
+	for _,n in pairs(ntab) do
+
+		def = minetest.registered_nodes[_]
+		grp = def and def.groups and def.groups[ngrp]
+
+		if grp and grp > 0 then
+			tot = tot + n
+		end
+	end
+
+	return tot
 end
 
 -- setup table when player joins
@@ -93,9 +113,9 @@ minetest.register_on_joinplayer(function(player)
 		playing[name] = {
 			mvol = tonumber(meta:get_string("ambience.mvol")) or MUSICVOLUME,
 			svol = tonumber(meta:get_string("ambience.svol")) or SOUNDVOLUME,
+			timer = 0,
 			music = 0,
-			music_handler = nil,
-			timer = 0
+			music_handler = nil
 		}
 	end
 end)
@@ -109,7 +129,7 @@ end)
 
 -- plays music and selects sound set
 
-local get_ambience = function(player, tod, name)
+local function get_ambience(player, tod, name)
 
 	-- if enabled and not already playing, play local/server music on interval check
 	if play_music and playing[name] and playing[name].mvol > 0 then
@@ -161,7 +181,7 @@ local get_ambience = function(player, tod, name)
 			local bdata = minetest.get_biome_data(pos)
 			local biome = bdata and minetest.get_biome_name(bdata.biome) or ""
 
-			-- pass settings to function for condition check
+			-- pass settings to set function for condition check
 			local set_name, gain = set.sound_check({
 				player = player,
 				pos = pos,
@@ -188,10 +208,11 @@ local random = math.random
 
 minetest.register_globalstep(function(dtime)
 
+	local players = minetest.get_connected_players()
 	local pname
 
 	-- reduce sound timer for each player and stop/reset when needed
-	for _, player in pairs(minetest.get_connected_players()) do
+	for _, player in pairs(players) do
 
 		pname = player:get_player_name()
 
@@ -219,7 +240,7 @@ minetest.register_globalstep(function(dtime)
 	local tod = minetest.get_timeofday()
 
 	-- loop through players
-	for _, player in pairs(minetest.get_connected_players()) do
+	for _, player in pairs(players) do
 
 		pname = player:get_player_name()
 
@@ -266,12 +287,9 @@ minetest.register_globalstep(function(dtime)
 --print ("playing... " .. ambience.name .. " (" .. chance .. " < "
 --		.. sound_sets[set_name].frequency .. ") @ ", MORE_GAIN, handler)
 
-			-- only continue if sound playing returns handler
 			if handler then
 
---print("-- current handler", handler)
-
-				-- set what player is currently listening to
+				-- set what player is currently listening to if handler found
 				playing[pname].set = set_name
 				playing[pname].gain = MORE_GAIN
 				playing[pname].handler = handler

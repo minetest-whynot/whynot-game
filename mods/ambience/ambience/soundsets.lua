@@ -76,75 +76,74 @@ end
 -- check for env_sounds mod, if not found enable water flowing and lava sounds
 if not minetest.get_modpath("env_sounds") then
 
--- Water sound plays when near flowing water
+	-- Water sound plays when near flowing water
 
-ambience.add_set("flowing_water", {
+	ambience.add_set("flowing_water", {
 
-	frequency = 1000,
+		frequency = 1000,
 
-	sounds = {
-		{name = "waterfall", length = 6}
-	},
+		sounds = {
+			{name = "waterfall", length = 6}
+		},
 
-	nodes = {"group:water"},
+		nodes = {"group:water"},
 
-	sound_check = function(def)
+		sound_check = function(def)
 
-		local c = (def.totals["default:water_flowing"] or 0)
-			+ (def.totals["mcl_core:water_flowing"] or 0)
+			local c = (def.totals["default:water_flowing"] or 0)
+				+ (def.totals["mcl_core:water_flowing"] or 0)
 
-		if c > 40 then return "flowing_water", 0.5
+			if c > 40 then return "flowing_water", 0.5
 
-		elseif c > 5 then return "flowing_water" end
-	end
-})
+			elseif c > 5 then return "flowing_water" end
+		end
+	})
 
--- River sound plays when near flowing river
+	-- River sound plays when near flowing river
 
-ambience.add_set("river", {
+	ambience.add_set("river", {
 
-	frequency = 1000,
+		frequency = 1000,
 
-	sounds = {
-		{name = "river", length = 4, gain = 0.1}
-	},
+		sounds = {
+			{name = "river", length = 4, gain = 0.1}
+		},
 
-	sound_check = function(def)
+		sound_check = function(def)
 
-		local c = (def.totals["default:river_water_flowing"] or 0)
-			+ (def.totals["mclx_core:river_water_flowing"] or 0)
+			local c = (def.totals["default:river_water_flowing"] or 0)
+				+ (def.totals["mclx_core:river_water_flowing"] or 0)
 
-		if c > 20 then return "river", 0.5
+			if c > 20 then return "river", 0.5
 
-		elseif c > 5 then return "river" end
-	end
-})
+			elseif c > 5 then return "river" end
+		end
+	})
 
--- Lava sound plays when near lava
+	-- Lava sound plays when near lava
 
-ambience.add_set("lava", {
+	ambience.add_set("lava", {
 
-	frequency = 1000,
+		frequency = 1000,
 
-	sounds = {
-		{name = "lava", length = 7}
-	},
+		sounds = {
+			{name = "lava", length = 7}
+		},
 
-	nodes = {"group:lava"},
+		nodes = {"group:lava"},
 
-	sound_check = function(def)
+		sound_check = function(def)
 
-		local c = (def.totals["default:lava_source"] or 0)
-			+ (def.totals["default:lava_flowing"] or 0)
-			+ (def.totals["mcl_core:lava_source"] or 0)
-			+ (def.totals["mcl_core:lava_flowing"] or 0)
+			local c = (def.totals["default:lava_source"] or 0)
+				+ (def.totals["default:lava_flowing"] or 0)
+				+ (def.totals["mcl_core:lava_source"] or 0)
+				+ (def.totals["mcl_core:lava_flowing"] or 0)
 
-		if c > 20 then return "lava", 0.5
+			if c > 20 then return "lava", 0.5
 
-		elseif c > 5 then return "lava" end
-	end
-})
-
+			elseif c > 5 then return "lava" end
+		end
+	})
 else
 	print ("[MOD] Ambience - found env_sounds, using for water and lava sounds.")
 end
@@ -178,7 +177,7 @@ ambience.add_set("beach", {
 
 ambience.add_set("ice", {
 
-	frequency = 250,
+	frequency = 80,
 
 	sounds = {
 		{name = "icecrack", length = 5, gain = 1.1},
@@ -194,7 +193,7 @@ ambience.add_set("ice", {
 			+(def.totals["mcl_core:ice"] or 0)
 			+ (def.totals["mcl_core:packed_ice"] or 0)
 
-		if c > 100 then return "ice" end
+		if c > 400 then return "ice" end
 	end
 })
 
@@ -324,24 +323,10 @@ ambience.add_set("day", {
 
 	sound_check = function(def)
 
-		-- we used group:leaves but still need to specify actual nodes for total
-		local c = (def.totals["default:leaves"] or 0)
-			+ (def.totals["default:bush_leaves"] or 0)
-			+ (def.totals["default:pine_needles"] or 0)
-			+ (def.totals["default:aspen_leaves"] or 0)
-			+ (def.totals["mcl_trees:leaves_spruce"] or 0)
-			+ (def.totals["mcl_trees:leaves_oak"] or 0)
-			+ (def.totals["mcl_trees:leaves_mangrove"] or 0)
-			+ (def.totals["mcl_trees:leaves_birch"] or 0)
-			+ (def.totals["mcl_trees:leaves_acacia"] or 0)
-			+ (def.totals["ethereal:birch_leaves"] or 0)
-			+ (def.totals["ethereal:lemon_leaves"] or 0)
-			+ (def.totals["ethereal:olive_leaves"] or 0)
-			+ (def.totals["ethereal:redwood_leaves"] or 0)
-			+ (def.totals["ethereal:sakura_leaves"] or 0)
-			+ (def.totals["ethereal:sakura_leaves2"] or 0)
+		-- use handy function to count all nodes in group:leaves
+		local c = ambience.group_total(def.totals, "leaves")
 
-		if (def.tod > 0.2 and def.tod < 0.8) and def.pos.y > -10 and c > 5 then
+		if (def.tod > 0.2 and def.tod < 0.8) and def.pos.y > 0 and c > 50 then
 			return "day"
 		end
 	end
@@ -360,29 +345,16 @@ ambience.add_set("night", {
 		{name = "cricket", length = 6, ephemeral = true},
 		{name = "deer", length = 7, ephemeral = true},
 		{name = "frog", length = 1, ephemeral = true},
-		{name = "frog", length = 1, pitch = 1.2, ephemeral = true}
+		{name = "frog", length = 1, pitch = 1.2, ephemeral = true},
+		{name = "wind", length = 9}
 	},
 
 	sound_check = function(def)
 
-		-- leaves were added in last set, so don't need to be added to this one
-		local c = (def.totals["default:leaves"] or 0)
-			+ (def.totals["default:bush_leaves"] or 0)
-			+ (def.totals["default:pine_needles"] or 0)
-			+ (def.totals["default:aspen_leaves"] or 0)
-			+ (def.totals["mcl_trees:leaves_spruce"] or 0)
-			+ (def.totals["mcl_trees:leaves_oak"] or 0)
-			+ (def.totals["mcl_trees:leaves_mangrove"] or 0)
-			+ (def.totals["mcl_trees:leaves_birch"] or 0)
-			+ (def.totals["mcl_trees:leaves_acacia"] or 0)
-			+ (def.totals["ethereal:birch_leaves"] or 0)
-			+ (def.totals["ethereal:lemon_leaves"] or 0)
-			+ (def.totals["ethereal:olive_leaves"] or 0)
-			+ (def.totals["ethereal:redwood_leaves"] or 0)
-			+ (def.totals["ethereal:sakura_leaves"] or 0)
-			+ (def.totals["ethereal:sakura_leaves2"] or 0)
+		-- use handy function to count all nodes in group:leaves
+		local c = ambience.group_total(def.totals, "leaves")
 
-		if (def.tod < 0.2 or def.tod > 0.8) and def.pos.y > -10 and c > 5 then
+		if (def.tod < 0.2 or def.tod > 0.8) and def.pos.y > 0 and c > 50 then
 			return "night"
 		end
 	end
