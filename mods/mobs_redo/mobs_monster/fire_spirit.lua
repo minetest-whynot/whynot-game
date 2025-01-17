@@ -32,8 +32,8 @@ mobs:register_mob("mobs_monster:fire_spirit", {
 	glow = 14,
 	blood_texture = "fire_basic_flame.png",
 	immune_to = {
-		{"bucket:bucket_water", 1},
-		{"bucket:bucket_river_water", 1},
+		{"bucket:bucket_water", 2},
+		{"bucket:bucket_river_water", 2},
 		{"all"}
 	},
 	makes_footstep_sound = false,
@@ -48,7 +48,7 @@ mobs:register_mob("mobs_monster:fire_spirit", {
 	jump = true,
 	jump_height = 6,
 	drops = mob_drops,
-	water_damage = 1,
+	water_damage = 4,
 	lava_damage = 0,
 	fire_damage = 0,
 	light_damage = 0,
@@ -67,7 +67,7 @@ mobs:register_mob("mobs_monster:fire_spirit", {
 
 		self.flame_timer = (self.flame_timer or 0) + dtime
 
-		if self.flame_timer < 0.25 then return end
+		if self.flame_timer < 0.1 then return end
 
 		self.flame_timer = 0
 

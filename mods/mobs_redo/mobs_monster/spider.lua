@@ -13,6 +13,8 @@ local function get_velocity(self)
 	return (v.x * v.x + v.z * v.z) ^ 0.5
 end
 
+local math_cos, math_sin = math.cos, math.sin
+
 -- custom spider types
 
 local spider_types = {
@@ -66,7 +68,7 @@ mobs:register_mob("mobs_monster:spider", {
 	damage = 3,
 	hp_min = 10,
 	hp_max = 30,
-	armor = 200,
+	armor = 100,
 	collisionbox = {-0.7, -0.5, -0.7, 0.7, 0, 0.7},
 	visual_size = {x = 1, y = 1},
 	visual = "mesh",
@@ -168,8 +170,8 @@ mobs:register_mob("mobs_monster:spider", {
 
 		pos.y = pos.y + prop.collisionbox[2] - 0.2
 
-		local dir_x = -math.sin(yaw) * (prop.collisionbox[4] + 0.5)
-		local dir_z = math.cos(yaw) * (prop.collisionbox[4] + 0.5)
+		local dir_x = -math_sin(yaw) * (prop.collisionbox[4] + 0.5)
+		local dir_z = math_cos(yaw) * (prop.collisionbox[4] + 0.5)
 		local nod = minetest.get_node_or_nil({
 			x = pos.x + dir_x,
 			y = pos.y + 0.5,

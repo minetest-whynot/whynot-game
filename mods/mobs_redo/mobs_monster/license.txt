@@ -35,6 +35,7 @@ Textures by AMMOnym (WTFPL)
 Textures by TenPlus1 (MIT)
   mobs_stone_monster3.png
   mobs_fireball.png
+  mobs_obsidian_flan.png
 
 Textures by Sirrobzeroone (CC0 1.0 Universal)
   mobs_stone_monster4.png
@@ -71,10 +72,12 @@ AspireMint (CC BY-SA 3.0)
   mobs_spider_snowy.png
   mobs_spider_grey.png
   mobs_spider_crystal.png
+  zmobs_lava_flan.b3d
+  zmobs_lava_flan.png
+  zmobs_lava_flan2.png
+  zmobs_lava_flan3.png
 
 Zeg9 (CC BY-SA 3.0)
-  zmobs_lava_flan.x
-  zmobs_lava_flan.png
   zmobs_lava_orb.png
 
 Sounds by Cyberpangolin (WTFPL) https://forum.minetest.net/viewtopic.php?t=10798
