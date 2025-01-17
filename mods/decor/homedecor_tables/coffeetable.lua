@@ -57,7 +57,7 @@ minetest.register_node(":lrfurn:coffeetable", {
 	},
 	paramtype = "light",
 	paramtype2 = "facedir",
-	use_texture_alpha = "blend",
+	use_texture_alpha = "clip",
 	groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flammable=3, axey=5},
 	is_ground_content = false,
 	_mcl_hardness=1.6,

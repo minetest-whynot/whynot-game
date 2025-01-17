@@ -24,6 +24,7 @@ homedecor.register("deckchair", {
 		return lrfurn.sit(pos, node, clicker, itemstack, pointed_thing, 1)
 	end,
 	on_destruct = lrfurn.on_seat_destruct,
+	on_movenode = lrfurn.on_seat_movenode,
 })
 
 minetest.register_alias("homedecor:deckchair_foot", "homedecor:deckchair")
@@ -45,6 +46,7 @@ homedecor.register("deckchair_striped_blue", {
 		return lrfurn.sit(pos, node, clicker, itemstack, pointed_thing, 1)
 	end,
 	on_destruct = lrfurn.on_seat_destruct,
+	on_movenode = lrfurn.on_seat_movenode,
 })
 
 homedecor.register("simple_bench", {
@@ -66,6 +68,7 @@ homedecor.register("simple_bench", {
 		return lrfurn.sit(pos, node, clicker, itemstack, pointed_thing, 1)
 	end,
 	on_destruct = lrfurn.on_seat_destruct,
+	on_movenode = lrfurn.on_seat_movenode,
 })
 
 local bl1_sbox = {
@@ -159,6 +162,7 @@ homedecor.register("kitchen_chair_wood", {
 		return lrfurn.sit(pos, node, clicker, itemstack, pointed_thing, 1)
 	end,
 	on_destruct = lrfurn.on_seat_destruct,
+	on_movenode = lrfurn.on_seat_movenode,
 })
 
 homedecor.register("kitchen_chair_padded", {
@@ -186,6 +190,7 @@ homedecor.register("kitchen_chair_padded", {
 		return lrfurn.sit(pos, node, clicker, itemstack, pointed_thing, 1)
 	end,
 	on_destruct = lrfurn.on_seat_destruct,
+	on_movenode = lrfurn.on_seat_movenode,
 })
 
 local ofchairs_sbox = {
@@ -226,6 +231,7 @@ for _, c in pairs(chairs) do
 			return lrfurn.sit(pos, node, clicker, itemstack, pointed_thing, 1)
 		end,
 		on_destruct = lrfurn.on_seat_destruct,
+		on_movenode = lrfurn.on_seat_movenode,
 	})
 end
 

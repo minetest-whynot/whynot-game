@@ -19,6 +19,7 @@ local door_list = {
 		sounds = default.node_sound_wood_defaults(),
 		sound_open = "homedecor_door_open",
 		sound_close = "homedecor_door_close",
+		use_texture_alpha = "opaque",
 	},
 	{
 		name = "exterior_fancy",
@@ -26,25 +27,29 @@ local door_list = {
 		sounds = default.node_sound_wood_defaults(),
 		sound_open = "homedecor_door_open",
 		sound_close = "homedecor_door_close",
-		mesh = "homedecor_door_fancy"
+		mesh = "homedecor_door_fancy",
+		use_texture_alpha = "blend",
 	},
 	{
 		name = "french_oak",
 		description = S("French door, Oak-colored"),
 		sounds = default.node_sound_glass_defaults(),
-		mesh = "homedecor_door_french"
+		mesh = "homedecor_door_french",
+		use_texture_alpha = "blend",
 	},
 	{
 		name = "french_mahogany",
 		description = S("French door, Mahogany-colored"),
 		sounds = default.node_sound_glass_defaults(),
-		mesh = "homedecor_door_french"
+		mesh = "homedecor_door_french",
+		use_texture_alpha = "blend",
 	},
 	{
 		name = "french_white",
 		description = S("French door, White"),
 		sounds = default.node_sound_glass_defaults(),
-		mesh = "homedecor_door_french"
+		mesh = "homedecor_door_french",
+		use_texture_alpha = "blend",
 	},
 	{
 		name = "basic_panel",
@@ -52,6 +57,7 @@ local door_list = {
 		sounds = default.node_sound_wood_defaults(),
 		sound_open = "homedecor_door_open",
 		sound_close = "homedecor_door_close",
+		use_texture_alpha = "opaque",
 	},
 	{
 		name = "wrought_iron",
@@ -59,7 +65,8 @@ local door_list = {
 		sounds = default.node_sound_metal_defaults(),
 		sound_open = "doors_steel_door_open",
 		sound_close = "doors_steel_door_close",
-		mesh = "homedecor_door_wrought_iron"
+		mesh = "homedecor_door_wrought_iron",
+		use_texture_alpha = "clip",
 	},
 	{
 		name = "carolina",
@@ -67,6 +74,7 @@ local door_list = {
 		sounds = default.node_sound_wood_defaults(),
 		sound_open = "homedecor_door_open",
 		sound_close = "homedecor_door_close",
+		use_texture_alpha = "blend",
 	},
 	{
 		name = "woodglass",
@@ -74,19 +82,22 @@ local door_list = {
 		sounds = default.node_sound_wood_defaults(),
 		sound_open = "homedecor_door_open",
 		sound_close = "homedecor_door_close",
-		mesh = "homedecor_door_wood_glass_3"
+		mesh = "homedecor_door_wood_glass_3",
+		use_texture_alpha = "clip",
 	},
 	{
 		name = "closet_mahogany",
 		description = S("Mahogany Closet Door"),
 		sounds = default.node_sound_wood_defaults(),
-		mesh = "homedecor_door_closet"
+		mesh = "homedecor_door_closet",
+		use_texture_alpha = "clip",
 	},
 	{
 		name = "closet_oak",
 		description = S("Oak Closet Door"),
 		sounds = default.node_sound_wood_defaults(),
-		mesh = "homedecor_door_closet"
+		mesh = "homedecor_door_closet",
+		use_texture_alpha = "clip",
 	},
 }
 
@@ -99,7 +110,7 @@ local function generate_door(def)
 	local default_settings = {
 		tiles = {{ name = "homedecor_door_" .. def.name .. ".png", backface_culling = true }},
 		inventory_image = "homedecor_door_" .. def.name .. "_inv.png",
-		use_texture_alpha = "blend",
+		use_texture_alpha = def.use_texture_alpha or "blend",
 		groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
 		mesecons = {
 			effector = {

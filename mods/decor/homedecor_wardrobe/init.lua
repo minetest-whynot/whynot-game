@@ -71,9 +71,9 @@ local function set_player_skin(player, skin, save)
 	if save and not skinsdb_mod_path then
 
 		if skin == default_skin then
-			player:set_attribute("homedecor:player_skin", "")
+			player:get_meta():set_string("homedecor:player_skin", "")
 		else
-			player:set_attribute("homedecor:player_skin", skin)
+			player:get_meta():set_string("homedecor:player_skin", skin)
 		end
 	end
 end

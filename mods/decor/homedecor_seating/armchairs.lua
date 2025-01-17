@@ -35,6 +35,7 @@ minetest.register_node(":lrfurn:armchair", {
 		return lrfurn.sit(pos, node, clicker, itemstack, pointed_thing, 1)
 	end,
 	on_destruct = lrfurn.on_seat_destruct,
+	on_movenode = lrfurn.on_seat_movenode,
 })
 
 homedecor.register("armchair", {
@@ -62,6 +63,7 @@ homedecor.register("armchair", {
 		return lrfurn.sit(pos, node, clicker, itemstack, pointed_thing, 1)
 	end,
 	on_destruct = lrfurn.on_seat_destruct,
+	on_movenode = lrfurn.on_seat_movenode,
 })
 
 -- crafts

@@ -12,7 +12,7 @@ homedecor.register("window_quartered", {
 		"homedecor_window_quartered.png",
 		"homedecor_window_quartered.png"
 	},
-	use_texture_alpha = "blend",
+	use_texture_alpha = "clip",
 	groups = {snappy=3, dig_glass=2},
 	_sound_def = {
 		key = "node_sound_glass_defaults",

@@ -488,7 +488,6 @@ for brightness_level = 0, 14 do
 		description = S("Ground Lantern/Light"),
 		mesh = "homedecor_ground_lantern.obj",
 		tiles = { gen_ls_tex_yellow, "homedecor_generic_metal_wrought_iron.png" },
-		use_texture_alpha = "blend",
 		inventory_image = "homedecor_ground_lantern_inv.png",
 		wield_image = "homedecor_ground_lantern_inv.png",
 		groups = {snappy=3, not_in_creative_inventory = nici, dig_glass=1},
@@ -515,7 +514,6 @@ for brightness_level = 0, 14 do
 		description = S("Hanging Lantern/Light"),
 		mesh = "homedecor_hanging_lantern.obj",
 		tiles = { "homedecor_generic_metal_wrought_iron.png", gen_ls_tex_yellow },
-		use_texture_alpha = "blend",
 		inventory_image = "homedecor_hanging_lantern_inv.png",
 		wield_image = "homedecor_hanging_lantern_inv.png",
 		groups = {snappy=3, not_in_creative_inventory = nici, dig_glass=1},
@@ -951,7 +949,6 @@ for _, light_brightn_name in ipairs({"off", "on"}) do
 			gen_ls_tex_yellow,
 			"homedecor_generic_metal_wrought_iron.png"
 		},
-		use_texture_alpha = "blend",
 		inventory_image = "homedecor_wall_lamp_inv.png",
 		groups = {snappy=3, not_in_creative_inventory = nici, dig_glass=1},
 		light_source = onflag and (minetest.LIGHT_MAX - 3) or nil,

@@ -79,6 +79,7 @@ function lrfurn.fix_sofa_rotation_nsew(pos, placer, itemstack, pointed_thing)
 end
 
 local seated_cache = {}
+local offset_cache = {}
 
 minetest.register_entity("homedecor_seating:seat", {
 	initial_properties = {
@@ -161,14 +162,19 @@ function lrfurn.sit(pos, node, clicker, itemstack, pointed_thing, seats)
 
 	--see if we can find a non occupied seat
 	local sit_pos
+	local sit_hash
 	for hash, spos in pairs(valid_seats) do
 		local pstatus = false
 		for _, ref in pairs(minetest.get_objects_inside_radius(spos, 0.5)) do
-			if ref:is_player() then
+			if ref:is_player() and seated_cache[ref:get_player_name()] then
 				pstatus = true
 			end
 		end
-		if not pstatus then sit_pos = spos end
+		if not pstatus then
+			sit_pos = spos
+			sit_hash = hash
+			break;
+		end
 	end
 	if not sit_pos then
 		minetest.chat_send_player(name, "sorry, this seat is currently occupied")
@@ -194,6 +200,9 @@ function lrfurn.sit(pos, node, clicker, itemstack, pointed_thing, seats)
 	xcompat.player.player_attached[name] = true
     xcompat.player.set_animation(clicker, "sit", 0)
 	seated_cache[name] = minetest.hash_node_position(pos)
+	if seated_cache[name] ~= sit_hash then
+		offset_cache[name] = core.hash_node_position(vector.subtract(pos, sit_pos))
+	end
 
 	return itemstack
 end
@@ -203,19 +212,47 @@ function lrfurn.stand(clicker)
 	xcompat.player.player_attached[name] = false
 	if seated_cache[name] then
 		local attached_to = clicker:get_attach()
-		if attached_to then --check, a stupid clearobjects might have been called, etc
-			attached_to:remove() --removing also detaches
+		-- Check, clearobjects might have been called, etc
+		if attached_to then
+			-- Removing also detaches
+			attached_to:remove()
 		end
 		seated_cache[name] = nil
+		offset_cache[name] = nil
 	end
 end
 
-function lrfurn.on_seat_destruct(pos) --called when a seat is destroyed
+-- Called when a seat is destroyed
+function lrfurn.on_seat_destruct(pos)
 	for name, seatpos in pairs(seated_cache) do
 		if seatpos == minetest.hash_node_position(pos) then
 			local player = minetest.get_player_by_name(name)
 			if player then
 				lrfurn.stand(player)
+			end
+		end
+	end
+end
+
+function lrfurn.on_seat_movenode(from_pos, to_pos)
+	local hashed_from_pos = core.hash_node_position(from_pos)
+	local hashed_to_pos = core.hash_node_position(to_pos)
+	for name, seatpos in pairs(seated_cache) do
+		if seatpos == hashed_from_pos then
+			local player = core.get_player_by_name(name)
+			if player then
+				local attached_to = player:get_attach()
+				-- Check, clearobjects might have been called, etc
+				if attached_to then
+					if offset_cache[name] then
+						-- multi-seat node aka sofas
+						attached_to:set_pos(vector.subtract(to_pos,
+							core.get_position_from_hash(offset_cache[name])))
+					else
+						attached_to:set_pos(to_pos)
+					end
+					seated_cache[name] = hashed_to_pos
+				end
 			end
 		end
 	end

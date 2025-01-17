@@ -239,7 +239,6 @@ homedecor.register("toilet_open", {
 	selection_box = toilet_sbox,
 	collision_box = toilet_cbox,
 	drop = "homedecor:toilet",
-	use_texture_alpha = "blend",
 	groups = {cracky=3, dig_stone = 2},
 	_sound_def = {
 		key = "node_sound_stone_defaults",
