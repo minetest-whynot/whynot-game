@@ -1,6 +1,6 @@
 
 origin https://github.com/minetest-mirrors/ambience.git (fetch)
-* 1b428c5a2c59a9dfdf0f61586fa055026f2c1cc4 remove need for minetest.after
+* adecc1b95c38829f2fc6b8853c66753a010ac719 tweak icecrack and birds
 Mod: ambience/ambience
 
 origin https://github.com/minetest-mods/lightning (fetch)
@@ -48,7 +48,7 @@ origin https://github.com/mt-mods/home_workshop_modpack (fetch)
 Mod: decor/home_workshop_modpack
 
 origin https://github.com/mt-mods/homedecor_modpack (fetch)
-* 94e25c21924cb705c952b5bc58231b88dae2fc1f free player when seat is dug (#84)
+* b30d7b532bfe57ce157c59fbea82244f0684fcab Merge pull request #92 from AntumMT/player_meta
 Mod: decor/homedecor_modpack
 
 origin https://codeberg.org/Dacmot/minetest-laptop.git (fetch)
@@ -88,11 +88,11 @@ origin https://github.com/minetest-mods/ts_furniture (fetch)
 Mod: decor/ts_furniture
 
 origin https://github.com/mt-mods/unifieddyes (fetch)
-* de6e2e0e35f2f14390ef1d7ccdb0d7bc1acce2f8 Fix nil crash when calling `unifieddyes.on_dig()` w/o PlayerRef (#21)
+* 82f026fc7e7c77149803eb2bfb0a7297070f7865 Replace depracated use_texture_alpha boolean value with "opaque"... (#22)
 Mod: decor/unifieddyes
 
 origin https://github.com/minetest-mirrors/farming.git (fetch)
-* 712005d2ac6c2c281c56685689675110e75cc8e2 tweak asparagus,ginger,spinach offset
+* e247a3ea1348a6fdc8ea8113cebaa5419efdc0d3 hoe bomb's replace dry dirt
 Mod: flora_ores/farming
 
 origin https://codeberg.org/Dacmot/YellowCrystals.git (fetch)
@@ -124,7 +124,7 @@ origin https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin https://github.com/APercy/airutils.git (fetch)
-* 7008b02305f63811c92212276bffba1e7f21ee11 Merge pull request #27 from farribeiro/wind
+* a6e40eb557639f29965664d5fdc9b0435090c565 Merge pull request #28 from MoNTE48/global_exists
 Mod: libs/airutils
 
 origin https://repo.or.cz/minetest_doc.git (fetch)
@@ -184,7 +184,7 @@ origin https://github.com/GreenXenith/tac_nayn (fetch)
 Mod: mapgen/tac_nayn
 
 origin https://github.com/minetest-mods/mesecons (fetch)
-* 31b56063a044677f96fd00275a7eccabd4a63f43 commandblock: replace deprecated formspec element "invsize"
+* 1f9e86c3da08acb9e63e07c980a19097f6a125e2 Make the detector recipe from luacontroller optional (#696)
 Mod: mesecons/mesecons
 
 origin https://github.com/minetest/minetest_game (fetch)
@@ -196,15 +196,15 @@ origin https://codeberg.org/tenplus1/mobs_ghost_redo (fetch)
 Mod: mobs_redo/mobs_ghost_redo
 
 origin https://github.com/minetest-mirrors/mobs_monster.git (fetch)
-* 6ea38b5a16a7b1fd90d6c8599b1a4646c124f0b0 crystal spider immune to ethereal crystal spike node.
+* edc86fec21699463fa03d7fee121fe79a54e423b spider armor 100
 Mod: mobs_redo/mobs_monster
 
 origin https://github.com/minetest-mirrors/mobs_redo.git (fetch)
-* 58792311c737b9e3fd99b5db42e3e5da08bd5df5 add immune_to check to is_node_dangerous function
+* d7998a9ea76d7ec63fe3d2c4ee47731e7d80b615 abort on_step when mob expires (thx tour-ist)
 Mod: mobs_redo/mobs_redo
 
 origin https://github.com/minetest-mods/3d_armor (fetch)
-* ab1bec3be8be8caaef5a9cc4e73a879861af5a59 Added spanish translations to shields and stands, added "Shared Armor Stand" to template. (#147)
+* 082e866274632c96c713817683e07cdafff81c93 Update player_api model registration
 Mod: player/3d_armor
 
 origin https://gitlab.com/dacmot/awards.git (fetch)
@@ -304,7 +304,7 @@ origin https://github.com/APercy/hidroplane.git (fetch)
 Mod: tools/hidroplane
 
 origin https://github.com/minetest-mods/hopper (fetch)
-* e91bc6ef0c2149f874cdea43dce3883feb69403f Fix sorter filter and error in eject (#32)
+* eee0dc0f13459713e963b03ea9ae32cf004fa975 Fix error caused by rotated chutes
 Mod: tools/hopper
 
 origin https://github.com/minetest-mods/jumping (fetch)
