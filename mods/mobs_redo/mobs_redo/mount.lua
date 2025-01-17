@@ -22,35 +22,17 @@ local abs, cos, floor, sin, sqrt, pi =
 
 -- helper functions
 
-local node_ok = function(pos, fallback)
-
-	fallback = fallback or mobs.fallback_node
-
-	local node = minetest.get_node_or_nil(pos)
-
-	if node and minetest.registered_nodes[node.name] then return node end
-
-	return {name = fallback}
-end
-
-
 local function node_is(entity)
 
 	if not entity.standing_on then return "other" end
 
 	if entity.standing_on == "air" then return "air" end
 
-	if minetest.get_item_group(entity.standing_on, "lava") ~= 0 then
-		return "lava"
-	end
+	local def = minetest.registered_nodes[entity.standing_on]
 
-	if minetest.get_item_group(entity.standing_on, "liquid") ~= 0 then
-		return "liquid"
-	end
-
-	if minetest.registered_nodes[entity.standing_on].walkable == true then
-		return "walkable"
-	end
+	if def.groups.lava then return "lava" end
+	if def.groups.liquid then return "liquid" end
+	if def.groups.walkable then return "walkable" end
 
 	return "other"
 end
@@ -236,6 +218,10 @@ function mobs.detach(player)
 	end)
 end
 
+-- vars
+
+local damage_counter = 0
+
 -- ride mob like car or horse
 
 function mobs.drive(entity, moving_anim, stand_anim, can_fly, dtime)
@@ -321,6 +307,35 @@ function mobs.drive(entity, moving_anim, stand_anim, can_fly, dtime)
 		end
 	end
 
+	local ni = node_is(entity)
+
+	-- env damage
+	if ni == "liquid" or ni == "lava" then
+
+		damage_counter = damage_counter + dtime
+
+		if damage_counter > 1 then
+
+			local damage = 0
+
+			if entity.lava_damage > 0 and ni == "lava" then
+				damage = entity.lava_damage
+			elseif entity.water_damage > 0 and ni == "liquid" then
+				damage = entity.water_damage
+			end
+
+			if damage >= 1 then
+
+				entity.object:punch(entity.object, 1.0, {
+					full_punch_interval = 1.0,
+					damage_groups = {fleshy = damage}
+				}, nil)
+			end
+
+			damage_counter = 0
+		end
+	end
+
 	-- if not moving then set animation and return
 	if entity.v == 0 and velo.x == 0 and velo.y == 0 and velo.z == 0 then
 
@@ -361,12 +376,11 @@ function mobs.drive(entity, moving_anim, stand_anim, can_fly, dtime)
 
 	p.y = p.y - 0.5
 
-	local ni = node_is(entity)
 	local v = entity.v
 
 	if ni == "air" then
 
-		if can_fly == true then new_acce.y = 0 end
+		if can_fly then new_acce.y = 0 ; acce_y = 0 end
 
 	elseif ni == "liquid" or ni == "lava" then
 
@@ -454,7 +468,7 @@ function mobs.fly(entity, _, speed, shoots, arrow, moving_anim, stand_anim)
 		if ent then
 
 			ent.switch = 1 -- for mob specific arrows
-			ent.owner_id = tostring(entity.object) -- so arrows dont hurt entity you are riding
+			ent.owner_id = tostring(entity.object) -- so arrows dont hurt mob
 
 			local vec = {x = dir.x * 6, y = dir.y * 6, z = dir.z * 6}
 

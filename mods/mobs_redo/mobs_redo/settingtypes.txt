@@ -56,7 +56,7 @@ enable_peaceful_player (Mobs do not attack peaceful player without reason) bool 
 mob_smooth_rotate (Smooth rotation for mobs) bool true
 
 #   Fix Mob Height if too low so they cannot escape through specific nodes
-mob_height_fix (Fix Mob Height) bool true
+mob_height_fix (Fix Mob Height) bool false
 
 mob_log_spawn (Log Mob Spawning) bool false
 
