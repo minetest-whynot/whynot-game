@@ -254,7 +254,7 @@ local function hoe_area(pos, player)
 	res = minetest.find_nodes_in_area_under_air(
 		{x = pos.x - r, y = pos.y - 1, z = pos.z - r},
 		{x = pos.x + r, y = pos.y + 2, z = pos.z + r},
-		{"group:soil"})
+		{"group:soil", "ethereal:dry_dirt"})
 
 	for n = 1, #res do
 		minetest.swap_node(res[n], {name = "farming:soil"})
