@@ -85,8 +85,13 @@ local function get_container_inventory(node_pos, inv_info)
 	return inventory
 end
 
--- Used to remove items from the target block and put it into the hopper's inventory
+--- @param Removes items from the target node and puts them into the hopper's inventory
+--- @param target_inv_info : Inventory information where to take the ItemStacks
 hopper.take_item_from = function(hopper_pos, target_pos, target_node, target_inv_info)
+	if not target_inv_info then
+		return false -- Cannot move take from this direction
+	end
+
 	local target_def = minetest.registered_nodes[target_node.name]
 	if not target_def then
 		return
@@ -161,6 +166,9 @@ local function try_send_item_to_air(hopper_inv, target_pos)
 	return true
 end
 
+--- @brief Moves items from the hopper's inventory to the destination and triggers inventory actions
+--- @param placer          : (optional) PlayerRef
+--- @param target_def      : Target nodedef
 local function send_item_to_inv(hopper_inv, target_pos, filtered_items, placer, target_inv_info, target_def)
 	local target_inv_name = target_inv_info.inventory_name
 	local target_inv = get_container_inventory(target_pos, target_inv_info)
@@ -197,8 +205,14 @@ local function send_item_to_inv(hopper_inv, target_pos, filtered_items, placer, 
 	return true
 end
 
--- Used to put items from the hopper inventory into the target block
+--- @brief Used to put items from the hopper inventory into the target block
+--- @param target_inv_info : Inventory information where to put the ItemStacks
+--- @param filtered_items  : (optional) whitelist of item names { ["modname:itemname"] = true, ... }
 hopper.send_item_to = function(hopper_pos, target_pos, target_node, target_inv_info, filtered_items)
+	if not target_inv_info then
+		return false -- Cannot move item into this direction
+	end
+
 	local target_def = minetest.registered_nodes[target_node.name]
 	if not target_def then
 		return false
@@ -210,12 +224,8 @@ hopper.send_item_to = function(hopper_pos, target_pos, target_node, target_inv_i
 		return false
 	end
 
-	if target_inv_info then
-		local placer = get_placer(hopper_meta:get_string("placer"))
-		return send_item_to_inv(hopper_inv, target_pos, filtered_items, placer, target_inv_info, target_def)
-	end
-
-	return false
+	local placer = get_placer(hopper_meta:get_string("placer"))
+	return send_item_to_inv(hopper_inv, target_pos, filtered_items, placer, target_inv_info, target_def)
 end
 
 hopper.try_eject_item = function(hopper_pos, target_pos)
