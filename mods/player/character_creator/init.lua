@@ -4,8 +4,6 @@ if not minetest.get_translator then
 end
 
 character_creator = {}
--- Fill character_creator.skins
-dofile(minetest.get_modpath("character_creator") .. "/skins.lua")
 
 -- Update with /path/to/i18n.py -p -s .
 character_creator.S = minetest.get_translator("character_creator")
@@ -14,6 +12,12 @@ character_creator.FS = function(...)
 end
 --local S = character_creator.S
 local FS = character_creator.S
+character_creator.NS = function(s) return s end
+local NS = character_creator.NS
+
+
+-- Fill character_creator.skins
+dofile(minetest.get_modpath("character_creator") .. "/skins.lua")
 
 local skinsdb
 if minetest.get_modpath("skinsdb") and minetest.global_exists("skins") then
@@ -31,18 +35,18 @@ if minetest.get_modpath("skinsdb") and minetest.global_exists("skins") then
 end
 
 local skin_default = {
-	gender     = "Male",
+	gender     = NS("Male"),
 	height     = 1,
 	width      = 1,
 
-	skin       = "Fair Skin",
-	face       = "Human Face",
-	hair       = "Brown Hair",
-	hair_style = "Medium Hair",
-	eyes       = "Blue Eyes",
-	tshirt     = "Green T-Shirt",
-	pants      = "Blue Pants",
-	shoes      = "Leather Shoes"
+	skin       = NS("Fair Skin"),
+	face       = NS("Human Face"),
+	hair       = NS("Brown Hair"),
+	hair_style = NS("Medium Hair"),
+	eyes       = NS("Blue Eyes"),
+	tshirt     = NS("Green T-Shirt"),
+	pants      = NS("Blue Pants"),
+	shoes      = NS("Leather Shoes")
 }
 
 local skins_array = {}
@@ -94,7 +98,7 @@ local function show_formspec(player)
 	for _, part in ipairs(order) do
 		fs[#fs + 1] =
 			("button[%g,%g;1,.75;%s_back;<<]"):format(x - 1, y, part) ..
-			("button[%g,%g;3,.75;%s;%s]"     ):format(x + 0, y, part, skins_array[part][indexes[part]]) ..
+			("button[%g,%g;3,.75;%s;%s]"     ):format(x + 0, y, part, FS(skins_array[part][indexes[part]])) ..
 			("button[%g,%g;1,.75;%s_next;>>]"):format(x + 3, y, part)
 		y = y + 0.75
 	end
