@@ -25,6 +25,16 @@ sound_helper("node_sound_water_defaults")
 sound_helper("node_sound_snow_defaults")
 sound_helper("node_sound_glass_defaults")
 
+-- mob repellent node
+
+minetest.register_node("mobs:mob_repellent", {
+	description = S("Mob Repellent"),
+	tiles = {"mobs_repellent.png"},
+	is_ground_content = false,
+	groups = {handy = 1, cracky = 3},
+	sounds = mobs.node_sound_stone_defaults()
+})
+
 -- helper function to add {eatable} group to food items
 
 function mobs.add_eatable(item, hp)

@@ -1,4 +1,6 @@
 
+local S = minetest.get_translator("mobs")
+
 -- peaceful player privilege
 
 minetest.register_privilege("peaceful_player", {
@@ -9,12 +11,13 @@ minetest.register_privilege("peaceful_player", {
 -- fallback node
 
 minetest.register_node("mobs:fallback_node", {
-	description = "Fallback Node",
+	description = S("Fallback Node"),
 	tiles = {"mobs_fallback.png"},
 	is_ground_content = false,
 	groups = {handy = 1, crumbly = 3, not_in_creative_inventory = 1},
 	drop = ""
 })
+
 
 local path = minetest.get_modpath("mobs")
 

@@ -310,6 +310,25 @@ eating.
        properties. (DEPRECATED, use on_replace to make changes).
 
 
+Pickup Items
+------------
+
+   'pick_up'            table of itemstrings the mob will pick up.
+   'on_pick_up'         function that will be called on item pickup - arguments are
+                        (self, itemstring) and can return nil or a a modified itemstack e.g.
+
+on_pick_up = function(self, itemstring)
+
+		local istack = ItemStack(entity.itemstring)
+
+		print("-- took", istack:get_name())
+
+		istack:take_item(1)
+
+		return istack
+end,
+
+
 Custom Definition Functions
 ---------------------------
 
@@ -331,8 +350,9 @@ enhance mob functionality and have them do many interesting things:
    'on_grown'       is called when a child mob has grown up, only paramater is
                     (self).
    'do_punch'       called when mob is punched with paramaters (self, hitter,
-                    time_from_last_punch, tool_capabilities, direction), return
-                    false to stop punch damage and knockback from taking place.
+                    time_from_last_punch, tool_capabilities, direction, damage),
+                    return false to stop punch damage and knockback from taking
+                    place.
    'custom_attack'  when set this function is called instead of the normal mob
                     melee attack, parameters are (self, to_attack) and if true
                     is returned normal attack function continued.
@@ -566,6 +586,7 @@ This function registers a arrow for mobs with the attack type shoot.
     'definition'      is a table with the following values:
        'visual'       same is in minetest.register_entity()
        'visual_size'  same is in minetest.register_entity()
+       'mesh'         same is in minetest.register_entity()
        'textures'     same is in minetest.register_entity()
        'collide_with_objects'       same as above
        'velocity'     the velocity of the arrow

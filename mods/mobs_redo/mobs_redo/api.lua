@@ -18,7 +18,7 @@ end
 -- Global table
 
 mobs = {
-	mod = "redo", version = "20250109",
+	mod = "redo", version = "20250209",
 	spawning_mobs = {}, translate = S,
 	node_snow = has(minetest.registered_aliases["mapgen_snow"])
 			or has("mcl_core:snow") or has("default:snow") or "air",
@@ -1060,8 +1060,10 @@ function mob_class:do_jump()
 	if self.state == "stand" or self.order == "stand" or vel.y ~= 0
 	or self.fly or self.child then return false end
 
-	-- we can only jump if standing on solid node
-	if minetest.registered_nodes[self.standing_on].walkable == false then
+	-- we can only jump if standing on solid node that allows it
+	local ndef = minetest.registered_nodes[self.standing_on]
+
+	if ndef.walkable == false or (ndef.groups and ndef.groups.disable_jump == 1) then
 		return false
 	end
 
@@ -1071,12 +1073,13 @@ function mob_class:do_jump()
 	-- if mob can leap then remove blockages and let them try
 	if self.can_leap then blocked = false ; self.facing_fence = false end
 
+	-- what node are we looking at?
+	ndef = minetest.registered_nodes[self.looking_at]
+
 	-- jump if possible
 	if self.jump and self.jump_height > 0
-	and (self.walk_chance == 0 or minetest.registered_items[self.looking_at].walkable)
-	and not blocked	and not self.facing_fence
-	and self.standing_in ~= mobs.node_snow
-	and not self.standing_in:find("carpet") then
+	and (self.walk_chance == 0 or (ndef.walkable and ndef.drawtype == "normal"))
+	and not blocked	and not self.facing_fence then
 
 		vel.y = self.jump_height
 
@@ -1379,6 +1382,35 @@ function mob_class:replace(pos)
 		minetest.set_node(pos, {name = with})
 
 		self:mob_sound(self.sounds.replace)
+	end
+end
+
+-- look directly around mob to see if it can pickup any dropped items
+
+function mob_class:check_item_pickup(pos)
+
+	if not self.on_pick_up or not self.pick_up or #self.pick_up == 0 then return end
+
+	for _,o in pairs(minetest.get_objects_inside_radius(pos, 2)) do
+
+		local l = o:get_luaentity()
+
+		if l and l.name == "__builtin:item" then
+
+			for k,v in pairs(self.pick_up) do
+
+				if self.on_pick_up and l.itemstring:find(v) then
+
+					local r = self.on_pick_up(self, l)
+
+					if r and r.is_empty and not r:is_empty() then
+						l.itemstring = r:to_string()
+					elseif r and r.is_empty and r:is_empty() then
+						o:remove()
+					end
+				end
+			end
+		end
 	end
 end
 
@@ -2496,11 +2528,6 @@ function mob_class:on_punch(hitter, tflp, tool_capabilities, dir, damage)
 	-- mob health check
 	if self.health <= 0 then return true end
 
-	-- custom punch function (if false returned, do not continue and return true)
-	if self.do_punch and self:do_punch(hitter, tflp, tool_capabilities, dir) == false then
-		return true
-	end
-
 	-- error checking when mod profiling is enabled
 	if not tool_capabilities then
 		minetest.log("warning",	"[mobs] Mod profiling enabled, damage not enabled")
@@ -2539,15 +2566,6 @@ function mob_class:on_punch(hitter, tflp, tool_capabilities, dir, damage)
 
 	local weapon = hitter:get_wielded_item()
 	local weapon_def = weapon:get_definition() or {}
-
-	--- check for ehchantments when using mineclonia/voxelibre
-	local enchants = {}
-
-	if use_mc2 then
-
-		enchants = minetest.deserialize(
-				weapon:get_meta():get_string("mcl_enchanting:enchantments")) or {}
-	end
 
 	-- calculate mob damage
 	local damage = 0
@@ -2592,6 +2610,27 @@ function mob_class:on_punch(hitter, tflp, tool_capabilities, dir, damage)
 		end
 	end
 
+	--- check for ehchantments when using mineclonia/voxelibre
+	local enchants = {}
+
+	if use_mc2 then
+
+		-- get enchants
+		enchants = minetest.deserialize(
+				weapon:get_meta():get_string("mcl_enchanting:enchantments")) or {}
+
+		-- check for damage increasing enchantments
+		if enchants.sharpness then
+			damage = damage + (0.5 * enchants.sharpness) + 0.5
+		end
+	end
+
+	-- custom punch function (if false returned, do not continue and return true)
+	if self.do_punch and self:do_punch(
+			hitter, tflp, tool_capabilities, dir, damage) == false then
+		return true
+	end
+
 --print("Mob Damage is", damage)
 
 	-- healing
@@ -2631,11 +2670,6 @@ function mob_class:on_punch(hitter, tflp, tool_capabilities, dir, damage)
 	end
 
 	hitter:set_wielded_item(weapon)
-
-	-- check for damage increasing enchantments
-	if use_mc2 and enchants.sharpness then
-		damage = damage + (0.5 * enchants.sharpness) + 0.5
-	end
 
 	-- only play hit sound and show blood effects if damage is 1 or over
 	if damage >= 1 then
@@ -3167,6 +3201,9 @@ function mob_class:on_step(dtime, moveresult)
 
 		-- node replace check (cow eats grass etc.)
 		self:replace(pos)
+
+		-- dropped item pickup check
+		self:check_item_pickup(pos)
 	end
 
 	-- knockback timer
@@ -3326,6 +3363,8 @@ function mobs:register_mob(name, def)
 		replace_what = def.replace_what,
 		replace_with = def.replace_with,
 		replace_offset = def.replace_offset,
+		pick_up = def.pick_up,
+		on_pick_up = def.on_pick_up,
 		reach = def.reach,
 		texture_list = def.textures,
 		texture_mods = def.texture_mods or "",
@@ -3375,7 +3414,7 @@ function mobs:register_mob(name, def)
 		on_grown = def.on_grown,
 		on_sound = def.on_sound,
 
-		is_mob = true, _hittable_by_projectile = true, -- mineclone thing
+--		is_mob = true, _hittable_by_projectile = true, -- mineclone thing
 
 		on_activate = function(self, staticdata, dtime)
 			return self:mob_activate(staticdata, def, dtime)
@@ -3678,6 +3717,15 @@ function mobs:spawn_specific(name, nodes, neighbors, min_light, max_light, inter
 			end
 		end
 
+		-- is mob repellent nearby
+		if #minetest.find_nodes_in_area(
+				{x = pos.x - 16, y = pos.y - 16, z = pos.z - 16},
+				{x = pos.x + 16, y = pos.y + 16, z = pos.z + 16},
+				{"mobs:mob_repellent"}) > 0 then
+--print("--- mob repellent nearby")
+			return
+		end
+
 		-- change position to node above
 		pos.y = pos.y + 1
 
@@ -3826,6 +3874,7 @@ function mobs:register_arrow(name, def)
 			static_save = false,
 			visual = def.visual,
 			visual_size = def.visual_size,
+			mesh = def.mesh,
 			textures = def.textures,
 			collisionbox = def.collisionbox or {-.1, -.1, -.1, .1, .1, .1},
 			glow = def.glow,

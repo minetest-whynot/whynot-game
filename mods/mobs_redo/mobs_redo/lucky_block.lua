@@ -15,7 +15,8 @@ lucky_block:add_blocks({
 	{"dro", {"mobs:protector"}, 1},
 	{"dro", {"mobs:fence_wood"}, 10},
 	{"dro", {"mobs:fence_top"}, 12},
-	{"lig"}
+	{"lig"},
+	{"dro", {"mobs:mob_repellent"}, 1}
 })
 
 -- pint sized rune, use on tamed mob to shrink to half-size
