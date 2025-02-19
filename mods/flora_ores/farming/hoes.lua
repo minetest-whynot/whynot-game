@@ -244,7 +244,8 @@ local function hoe_area(pos, player)
 	-- remove flora (grass, flowers etc.)
 	local res = minetest.find_nodes_in_area(
 			{x = pos.x - r, y = pos.y - 1, z = pos.z - r},
-			{x = pos.x + r, y = pos.y + 2, z = pos.z + r}, {"group:flora"})
+			{x = pos.x + r, y = pos.y + 2, z = pos.z + r},
+			{"group:flora", "default:dry_shrub"})
 
 	for n = 1, #res do
 		minetest.swap_node(res[n], {name = "air"})
@@ -252,9 +253,9 @@ local function hoe_area(pos, player)
 
 	-- replace dirt with tilled soil
 	res = minetest.find_nodes_in_area_under_air(
-		{x = pos.x - r, y = pos.y - 1, z = pos.z - r},
-		{x = pos.x + r, y = pos.y + 2, z = pos.z + r},
-		{"group:soil", "ethereal:dry_dirt"})
+			{x = pos.x - r, y = pos.y - 1, z = pos.z - r},
+			{x = pos.x + r, y = pos.y + 2, z = pos.z + r},
+			{"group:soil", "ethereal:dry_dirt"})
 
 	for n = 1, #res do
 		minetest.swap_node(res[n], {name = "farming:soil"})

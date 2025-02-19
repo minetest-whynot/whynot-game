@@ -217,7 +217,7 @@ on an older map are enabled and growing properly.
 
 ### Changelog:
 
-- 1.49 - Added {eatable=1} groups to food items with the value giving HP when eaten, improved mineclone support, separated foods from crop files., hoes can deal damage.
+- 1.49 - Added {eatable=1} groups to food items with the value giving HP when eaten, improved mineclone support, separated foods from crop files, hoes can deal damage. Add weed and weed bale (with setting to disable weed growth).
 - 1.48 - added 'farming_use_utensils' setting to enable/disable utensils in recipes, added mayonnaise (thx felfa), added gingerbread man, Added MineClone2 compatibility
 - 1.47 - Now blueberries can make blue dye, tweak soil types to work better with older 0.4.x clients and add spanish translation (thx mckaygerhard), add trellis setting to registered_crops and fix pea and soy crop names (thx nixnoxus), add strawberries if ethereal mod not active, added asparagus; spinach; eggplant (thx Atlante for new textures), Sugar Cube
 - 1.46 - Added min/max default light settings, added lettuce and blackberries with food items (thanks OgelGames), added soya, vanilla and sunflowers (thanks Felfa), added tofu, added salt crystals (thanks gorlock)

@@ -34,12 +34,9 @@ else
 		sunlight_propagates = true,
 		walkable = false,
 		selection_box = {
-			type = "fixed",
-			fixed = {-0.2, -0.5, -0.2, 0.2, 0.2, 0.2}
+			type = "fixed", fixed = {-0.2, -0.5, -0.2, 0.2, 0.2, 0.2}
 		},
-		groups = {
-			food_banana = 1, fleshy = 3, dig_immediate = 3
-		},
+		groups = {food_banana = 1, fleshy = 3, dig_immediate = 3},
 		is_ground_content = false,
 		on_use = minetest.item_eat(2),
 		sounds = farming.node_sound_leaves_defaults()
@@ -101,12 +98,9 @@ else
 		sunlight_propagates = true,
 		walkable = false,
 		selection_box = {
-			type = "fixed",
-			fixed = {-0.2, -0.3, -0.2, 0.2, 0.2, 0.2}
+			type = "fixed", fixed = {-0.2, -0.3, -0.2, 0.2, 0.2, 0.2}
 		},
-		groups = {
-			food_orange = 1, fleshy = 3, dig_immediate = 3, flammable = 2
-		},
+		groups = {food_orange = 1, fleshy = 3, dig_immediate = 3, flammable = 2},
 		is_ground_content = false,
 		on_use = minetest.item_eat(4),
 		sounds = farming.node_sound_leaves_defaults()
@@ -165,7 +159,3 @@ alias("farming_plus:tomato_1", "farming:tomato_2")
 alias("farming_plus:tomato_2", "farming:tomato_4")
 alias("farming_plus:tomato_3", "farming:tomato_6")
 alias("farming_plus:tomato", "farming:tomato_8")
-
--- Weeds
-
-alias("farming:weed", "default:grass_2")

@@ -105,5 +105,6 @@ lucky_block:add_blocks({
 		{name = "farming:grapebush", max = 5},
 		{name = "farming:asparagus", max = 7}
 	}},
-	{"dro", {"farming:chili_powder"}, 5}
+	{"dro", {"farming:chili_powder"}, 5},
+	{"dro", {"farming:weed"}, 9},
 })

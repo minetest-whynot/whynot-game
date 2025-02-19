@@ -96,6 +96,42 @@ minetest.register_node("farming:straw", {
 	_mcl_blast_resistance = 1
 })
 
+-- weed
+
+minetest.register_node("farming:weed", {
+	description = S("Weed"),
+	drawtype = "plantlike",
+	tiles = {"farming_weed.png"},
+	inventory_image = "farming_weed.png",
+	paramtype = "light",
+	paramtype2 = "meshoptions",
+	place_param2 = 2,
+	sunlight_propagates = true,
+	walkable = false,
+	buildable_to = true,
+	waving = 1,
+	selection_box = farming.select,
+	groups = {snappy = 3, flammable = 4, plant = 1, attached_node = 1},
+	_mcl_hardness = farming.mcl_hardness,
+	is_ground_content = false,
+	sounds = farming.node_sound_leaves_defaults()
+})
+
+-- weed bale
+
+minetest.register_node("farming:weed_bale", {
+	description = S("Weed Bale"),
+	tiles = {
+		"farming_weed_bale_top.png", "farming_weed_bale_top.png",
+		"farming_weed_bale_side.png"
+	},
+	paramtype2 = "facedir",
+	groups = {handy = 1, snappy = 3, flammable = 4, fall_damage_add_percent = -30},
+	sounds = farming.node_sound_leaves_defaults(),
+	_mcl_hardness = 0.8,
+	_mcl_blast_resistance = 1
+})
+
 -- hemp oil
 
 minetest.register_node("farming:hemp_oil", {
@@ -108,8 +144,7 @@ minetest.register_node("farming:hemp_oil", {
 	is_ground_content = false,
 	walkable = false,
 	selection_box = {
-		type = "fixed",
-		fixed = {-0.25, -0.5, -0.25, 0.25, 0.3, 0.25}
+		type = "fixed", fixed = {-0.25, -0.5, -0.25, 0.25, 0.3, 0.25}
 	},
 	groups = {
 		food_oil = 1, vessel = 1, dig_immediate = 3, attached_node = 1,
@@ -161,8 +196,7 @@ minetest.register_node("farming:hemp_rope", {
 	is_ground_content = false,
 	sounds =  farming.node_sound_leaves_defaults(),
 	selection_box = {
-		type = "fixed",
-		fixed = {-1/7, -1/2, -1/7, 1/7, 1/2, 1/7}
+		type = "fixed", fixed = {-1/7, -1/2, -1/7, 1/7, 1/2, 1/7}
 	},
 	_mcl_hardness = 0.8,
 	_mcl_blast_resistance = 1

@@ -194,3 +194,30 @@ minetest.register_abm({
 		end
 	end
 })
+
+-- those darn weeds
+
+if minetest.settings:get_bool("farming_disable_weeds") ~= true then
+
+	minetest.register_abm({
+		nodenames = {"group:field"},
+		neighbors = {"air"},
+		interval = 50,
+		chance = 35,
+		catch_up = false,
+
+		action = function(pos, node)
+
+			if minetest.find_node_near(pos, 4, {"farming:scarecrow_bottom"}) then
+				return
+			end
+
+			pos.y = pos.y + 1
+
+			if minetest.get_node(pos).name == "air" then
+				minetest.set_node(pos, {name = "farming:weed", param2 = 2})
+			end
+		end
+	})
+end
+

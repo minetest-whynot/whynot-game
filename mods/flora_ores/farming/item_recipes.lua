@@ -1253,6 +1253,25 @@ minetest.register_craft({
 	recipe = {{"farming:straw"}}
 })
 
+
+-- weed bale
+
+local tmp = "farming:weed"
+
+minetest.register_craft({
+	output = "farming:weed_bale",
+	recipe = {
+		{tmp, tmp, tmp},
+		{tmp, tmp, tmp},
+		{tmp, tmp, tmp}
+	}
+})
+
+minetest.register_craft({
+	output = tmp .. " 9",
+	recipe = {{"farming:weed_bale"}}
+})
+
 --= Recipes we shouldn't add when using Mineclonia/VoxeLibre
 
 if not farming.mcl then
@@ -1400,6 +1419,8 @@ minetest.register_craft({output = a.dye_yellow, recipe = {{"group:food_onion"}}}
 
 minetest.register_craft({type = "fuel", recipe = "farming:straw", burntime = 3})
 minetest.register_craft({type = "fuel", recipe = "farming:wheat", burntime = 1})
+minetest.register_craft({type = "fuel", recipe = "farming:weed_bale", burntime = 3})
+minetest.register_craft({type = "fuel", recipe = "farming:weed", burntime = 1})
 minetest.register_craft({type = "fuel", recipe = "farming:bowl",burntime = 10})
 minetest.register_craft({type = "fuel", recipe = "farming:string", burntime = 1})
 minetest.register_craft({type = "fuel", recipe = "farming:cotton", burntime = 1})
