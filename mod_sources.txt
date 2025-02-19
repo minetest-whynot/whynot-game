@@ -304,7 +304,7 @@ origin https://github.com/APercy/hidroplane.git (fetch)
 Mod: tools/hidroplane
 
 origin https://github.com/minetest-mods/hopper (fetch)
-* eee0dc0f13459713e963b03ea9ae32cf004fa975 Fix error caused by rotated chutes
+* 52a6a0dcca11430b401afa570cce409267dec805 Fix `allow_metadata_inventory_put` item count check (#34)
 Mod: tools/hopper
 
 origin https://github.com/minetest-mods/jumping (fetch)
