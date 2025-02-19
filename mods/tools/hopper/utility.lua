@@ -193,7 +193,7 @@ local function send_item_to_inv(hopper_inv, target_pos, filtered_items, placer, 
 
 	local stack_to_put = stack:take_item(1)
 	if target_def.allow_metadata_inventory_put and placer -- backwards compatibility, older versions of this mod didn't record who placed the hopper
-			and target_def.allow_metadata_inventory_put(target_pos, target_inv_name, stack_num, stack_to_put, placer) < 0 then
+			and target_def.allow_metadata_inventory_put(target_pos, target_inv_name, stack_num, stack_to_put, placer) <= 0 then
 		return false
 	end
 
