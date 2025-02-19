@@ -1,4 +1,4 @@
-dofile(minetest.get_modpath("airutils") .. DIR_DELIM .. "lib_planes" .. DIR_DELIM .. "global_definitions.lua")
+dofile(core.get_modpath("airutils") .. DIR_DELIM .. "lib_planes" .. DIR_DELIM .. "global_definitions.lua")
 
 local S = airutils.S
 
@@ -7,7 +7,7 @@ local function lib_change_color(self, colstr)
 end
 
 function airutils.get_staticdata(self) -- unloaded/unloads ... is now saved
-    return minetest.serialize({
+    return core.serialize({
         --stored_sound_handle = self.sound_handle,
         stored_energy = self._energy or 0,
         stored_owner = self.owner or "",
@@ -32,17 +32,18 @@ function airutils.on_deactivate(self)
     airutils.save_inventory(self)
     local pos = self.object:get_pos()
     if airutils.debug_log then
-        minetest.log("action","deactivating: "..self._vehicle_name.." from "..self.owner.." at position "..math.floor(pos.x)..","..math.floor(pos.y)..","..math.floor(pos.z))
+        core.log("action","deactivating: "..self._vehicle_name.." from "..self.owner.." at position "..math.floor(pos.x)..","..math.floor(pos.y)..","..math.floor(pos.z))
     end
 end
 
 function airutils.on_activate(self, staticdata, dtime_s)
+    if not self.object then return end
     local pos = self.object:get_pos()
     airutils.actfunc(self, staticdata, dtime_s)
     self._flap = false
 
     if staticdata ~= "" and staticdata ~= nil then
-        local data = minetest.deserialize(staticdata) or {}
+        local data = core.deserialize(staticdata) or {}
         self._energy = data.stored_energy or 0
         self.owner = data.stored_owner or ""
         self.hp_max = data.stored_hp or 10
@@ -65,7 +66,7 @@ function airutils.on_activate(self, staticdata, dtime_s)
             -- o macete aqui eh inicializar mesmo que não exista no escopo da entity
             self._vehicle_custom_data = {} --initialize it
         end
-        --minetest.debug("loaded: ", self._energy)
+        --core.debug("loaded: ", self._energy)
         if self._engine_running then
             self._last_applied_power = -1 --signal to start
         end
@@ -83,7 +84,7 @@ function airutils.on_activate(self, staticdata, dtime_s)
     self._pitch = 0
 
     if airutils.debug_log then
-        minetest.log("action","activating: "..self._vehicle_name.." from "..self.owner.." at position "..math.floor(pos.x)..","..math.floor(pos.y)..","..math.floor(pos.z))
+        core.log("action","activating: "..self._vehicle_name.." from "..self.owner.." at position "..math.floor(pos.x)..","..math.floor(pos.y)..","..math.floor(pos.z))
     end
 
     if self._register_parts_method then
@@ -108,7 +109,7 @@ function airutils.on_activate(self, staticdata, dtime_s)
 
 	local inv = nil
     if self._inv_id then
-        inv = minetest.get_inventory({type = "detached", name = self._inv_id})
+        inv = core.get_inventory({type = "detached", name = self._inv_id})
     end
 	-- if the game was closed the inventories have to be made anew, instead of just reattached
 	if not inv then
@@ -135,6 +136,8 @@ function airutils.on_step(self,dtime,colinfo)
     self.dtime = math.min(dtime,0.2)
     self.colinfo = colinfo
     self.height = airutils.get_box_height(self)
+
+    if not self.object then return end
 
 --  physics comes first
     local vel = self.object:get_velocity()
@@ -165,8 +168,10 @@ function airutils.on_step(self,dtime,colinfo)
 	    end
     end
 
-    if self.hp_max <= 0 then
-        airutils.destroy(self)
+    if self.hp_max then
+        if self.hp_max <= 0 then
+            airutils.destroy(self)
+        end
     end
 
     self:physics()
@@ -225,9 +230,9 @@ function airutils.logic(self)
     if self._last_time_command > 1 then self._last_time_command = 1 end
 
     local player = nil
-    if self.driver_name then player = minetest.get_player_by_name(self.driver_name) end
+    if self.driver_name then player = core.get_player_by_name(self.driver_name) end
     local co_pilot = nil
-    if self.co_pilot and self._have_copilot then co_pilot = minetest.get_player_by_name(self.co_pilot) end
+    if self.co_pilot and self._have_copilot then co_pilot = core.get_player_by_name(self.co_pilot) end
 
     --test collision
     airutils.testImpact(self, velocity, curr_pos)
@@ -262,14 +267,22 @@ function airutils.logic(self)
                 if ctrl.sneak or ctrl.jump or ctrl.up or ctrl.down or ctrl.right or ctrl.left then
                     self._last_time_command = 0
                     self._autopilot = false
-                    minetest.chat_send_player(self.driver_name,S(" >>> Autopilot deactivated"))
+                    core.chat_send_player(self.driver_name,S(" >>> Autopilot deactivated"))
                 end
             else
                 if ctrl.sneak == true and ctrl.jump == true and self._have_auto_pilot then
                     self._last_time_command = 0
                     self._autopilot = true
                     self._auto_pilot_altitude = curr_pos.y
-                    minetest.chat_send_player(self.driver_name,core.colorize('#00ff00', S(" >>> Autopilot on")))
+                    core.chat_send_player(self.driver_name,core.colorize('#00ff00', S(" >>> Autopilot activated")))
+                    if self.driver_name then
+                        core.sound_play("airutils_beep", {
+                            to_player = self.driver_name,
+                            gain = 1.0,
+                            fade = 0.0,
+                            pitch = 0.7,
+                        }, true)
+                    end
                 end
             end
         end
@@ -285,21 +298,21 @@ function airutils.logic(self)
     newroll = math.floor(newroll/360)
     newroll = newroll * 360
 
-    local hull_direction = airutils.rot_to_dir(rotation) --minetest.yaw_to_dir(yaw)
+    local hull_direction = airutils.rot_to_dir(rotation) --core.yaw_to_dir(yaw)
     local nhdir = {x=hull_direction.z,y=0,z=-hull_direction.x}		-- lateral unit vector
 
     local longit_speed = vector.dot(velocity,hull_direction)
 
     if extern_ent then
         if extern_ent.curr_speed then longit_speed = extern_ent.curr_speed end
-        --minetest.chat_send_all(dump(longit_speed))
+        --core.chat_send_all(dump(longit_speed))
     end
 
     self._longit_speed = longit_speed
     local longit_drag = vector.multiply(hull_direction,longit_speed*
             longit_speed*self._longit_drag_factor*-1*airutils.sign(longit_speed))
 	local later_speed = airutils.dot(velocity,nhdir)
-    --minetest.chat_send_all('later_speed: '.. later_speed)
+    --core.chat_send_all('later_speed: '.. later_speed)
 	local later_drag = vector.multiply(nhdir,later_speed*later_speed*
             self._later_drag_factor*-1*airutils.sign(later_speed))
     local accel = vector.add(longit_drag,later_drag)
@@ -314,15 +327,15 @@ function airutils.logic(self)
             if not extern_ent.on_rightclick then
                 local touch_point = (self.initial_properties.collisionbox[2])-0.5
                 local node_bellow = airutils.nodeatpos(airutils.pos_shift(curr_pos,{y=touch_point}))
-                --minetest.chat_send_all(dump(node_bellow.drawtype))
+                --core.chat_send_all(dump(node_bellow.drawtype))
                 if (node_bellow and node_bellow.drawtype ~= 'airlike') then
 	                is_flying = false
                 end
             end
         end
     end
-    --minetest.chat_send_all(dump(is_flying))
-    --if is_flying then minetest.chat_send_all('is flying') end
+    --core.chat_send_all(dump(is_flying))
+    --if is_flying then core.chat_send_all('is flying') end
 
     local is_attached = airutils.checkAttach(self, player)
     if self._indicated_speed == nil then self._indicated_speed = 0 end
@@ -363,9 +376,9 @@ function airutils.logic(self)
     else
         if self._smoke_spawner and not self._smoke_semaphore then
             self._smoke_semaphore = 1 --to set it only one time
-            minetest.after(5, function()
+            core.after(5, function()
                 if self._smoke_spawner then
-                    minetest.delete_particlespawner(self._smoke_spawner)
+                    core.delete_particlespawner(self._smoke_spawner)
                     self._smoke_spawner = nil
                     self._smoke_semaphore = nil
                 end
@@ -412,7 +425,7 @@ function airutils.logic(self)
     if longit_speed < (self._min_speed+0.5) and climb_rate < -1.5 and is_flying then
         --[[
         if player and self.driver_name then
-            minetest.chat_send_player(self.driver_name,core.colorize('#ff0000', " >>> STALL"))
+            core.chat_send_player(self.driver_name,core.colorize('#ff0000', " >>> STALL"))
         end
         ]]--
         self._elevator_angle = 0
@@ -443,7 +456,7 @@ function airutils.logic(self)
         end
     end
 
-    --minetest.chat_send_all(self._angle_of_attack)
+    --core.chat_send_all(self._angle_of_attack)
 
     -- adjust pitch at ground
     if math.abs(longit_speed) > self._tail_lift_min_speed and is_flying == false then
@@ -467,7 +480,7 @@ function airutils.logic(self)
     local delta = 0.002
     if is_flying then
         local roll_reference = newyaw
-        local sdir = minetest.yaw_to_dir(roll_reference)
+        local sdir = core.yaw_to_dir(roll_reference)
         local snormal = {x=sdir.z,y=0,z=-sdir.x}	-- rightside, dot is negative
         local prsr = airutils.dot(snormal,nhdir)
         local rollfactor = -90
@@ -477,7 +490,7 @@ function airutils.logic(self)
         --[[local rollRotation = -self._rudder_angle * 0.1
         newroll = rollRotation]]--
 
-        --minetest.chat_send_all('newroll: '.. newroll)
+        --core.chat_send_all('newroll: '.. newroll)
     else
         delta = 0.2
         if roll > 0 then
@@ -536,7 +549,7 @@ function airutils.logic(self)
         local h_vel_compensation = ((ref_speed * 100)/max_pitch)/100
         if h_vel_compensation < 0 then h_vel_compensation = 0 end
         if h_vel_compensation > max_pitch then h_vel_compensation = max_pitch end
-        --minetest.chat_send_all(h_vel_compensation)
+        --core.chat_send_all(h_vel_compensation)
         newpitch = newpitch + (velocity.y * math.rad(max_pitch - h_vel_compensation))
 
         if airutils.use_water_particles == true and airutils.add_splash and self._splash_x_position and self.buoyancy then
@@ -566,7 +579,7 @@ function airutils.logic(self)
                 local scale = (longit_speed*1)/takeoff_speed --get a scale of current longit speed relative to takeoff speed
                 if scale == nil then scale = 0 end --lets avoid any nil
                 factorized_longit_speed = airutils.quadBezier(scale, self._min_speed, longit_speed, longit_speed) --here the magic happens using a bezier curve
-                --minetest.chat_send_all("factor: " .. factorized_longit_speed .. " - longit: " .. longit_speed .. " - scale: " .. scale)
+                --core.chat_send_all("factor: " .. factorized_longit_speed .. " - longit: " .. longit_speed .. " - scale: " .. scale)
                 if factorized_longit_speed < 0 then factorized_longit_speed = 0 end --lets avoid negative numbers
                 if factorized_longit_speed == nil then factorized_longit_speed = longit_speed end --and nil numbers
             end
@@ -631,7 +644,7 @@ function airutils.logic(self)
     --self.object:get_luaentity() --hack way to fix jitter on climb
 
     --GAUGES
-    --minetest.chat_send_all('rate '.. climb_rate)
+    --core.chat_send_all('rate '.. climb_rate)
     local climb_angle = airutils.get_gauge_angle(climb_rate)
     self._climb_rate = climb_rate
 
@@ -662,7 +675,7 @@ function airutils.logic(self)
     end
 
     if player and self._use_camera_relocation then
-        --minetest.chat_send_all(dump(newroll))
+        --core.chat_send_all(dump(newroll))
         local new_eye_offset = airutils.camera_reposition(player, newpitch, newroll)
         player:set_eye_offset(new_eye_offset, {x = 0, y = 1, z = -30})
     end
@@ -673,7 +686,7 @@ function airutils.logic(self)
 
     if (longit_speed / 2) > self._max_speed and self._flap == true then
         if is_attached and self.driver_name then
-            minetest.chat_send_player(self.driver_name, core.colorize('#ff0000', S(" >>> Flaps retracted due for overspeed")))
+            core.chat_send_player(self.driver_name, core.colorize('#ff0000', S(" >>> Flaps retracted due for overspeed")))
         end
         self._flap = false
     end
@@ -701,6 +714,7 @@ local function damage_vehicle(self, toolcaps, ttime, damage)
     end
     damage = damage + value / 10
     self.hp_max = self.hp_max - damage
+    if self.hp_max < 0 then self.hp_max = 0 end
     airutils.setText(self, self._vehicle_name)
 end
 
@@ -715,7 +729,7 @@ function airutils.on_punch(self, puncher, ttime, toolcaps, dir, damage)
     if (puncher:is_player()) then
 	    name = puncher:get_player_name()
         ppos = puncher:get_pos()
-        if (minetest.is_protected(ppos, name) and
+        if (core.is_protected(ppos, name) and
             airutils.protect_in_areas) then
             return
         end
@@ -732,7 +746,7 @@ function airutils.on_punch(self, puncher, ttime, toolcaps, dir, damage)
             damage_vehicle(self, toolcaps, ttime, damage)
     end
 
-    local is_admin = minetest.check_player_privs(puncher, {server=true})
+    local is_admin = core.check_player_privs(puncher, {server=true})
     if self.owner == nil then
         self.owner = name
     end
@@ -740,7 +754,7 @@ function airutils.on_punch(self, puncher, ttime, toolcaps, dir, damage)
         if is_admin == false then return end
     end
 
-    if is_admin == false and minetest.check_player_privs(puncher, {protection_bypass=false})  then
+    if is_admin == false and core.check_player_privs(puncher, {protection_bypass=false})  then
         if self.driver_name and self.driver_name ~= name then
 		    -- do not allow other players to remove the object while there is a driver
 		    return
@@ -783,7 +797,7 @@ function airutils.on_punch(self, puncher, ttime, toolcaps, dir, damage)
                     if self.hp_max > self._max_plane_hp then self.hp_max = self._max_plane_hp end
                     airutils.setText(self, self._vehicle_name)
                 else
-                    minetest.chat_send_player(puncher:get_player_name(), S("You need steel ingots in your inventory to perform this repair."))
+                    core.chat_send_player(puncher:get_player_name(), S("You need steel ingots in your inventory to perform this repair."))
                 end
             end
             return
@@ -797,7 +811,7 @@ function airutils.on_punch(self, puncher, ttime, toolcaps, dir, damage)
 				    --airutils.hurt(self,toolcaps.damage_groups.fleshy - 1)
 				    --airutils.make_sound(self,'hit')
                     damage_vehicle(self, toolcaps, ttime, damage)
-                    minetest.sound_play(self._collision_sound, {
+                    core.sound_play(self._collision_sound, {
                         object = self.object,
                         max_hear_distance = 5,
                         gain = 1.0,
@@ -846,10 +860,10 @@ local function get_vehicle(self, player)
             if inv:room_for_item("main", stack) then
                 inv:add_item("main", stack)
             else
-                minetest.add_item({x=pos.x+math.random()-0.5,y=pos.y,z=pos.z+math.random()-0.5}, stack)
+                core.add_item({x=pos.x+math.random()-0.5,y=pos.y,z=pos.z+math.random()-0.5}, stack)
             end
         else
-            minetest.add_item({x=pos.x+math.random()-0.5,y=pos.y,z=pos.z+math.random()-0.5}, stack)
+            core.add_item({x=pos.x+math.random()-0.5,y=pos.y,z=pos.z+math.random()-0.5}, stack)
         end
 
         airutils.seats_destroy(self)
@@ -883,11 +897,11 @@ function airutils.on_rightclick(self, clicker)
         copilot_name = self.co_pilot
     end
 
-    --minetest.chat_send_all(dump(self.driver_name))
+    --core.chat_send_all(dump(self.driver_name))
 
     local is_under_water = airutils.check_is_under_water(self.object)
 
-    --minetest.chat_send_all('name '.. dump(name) .. ' - pilot: ' .. dump(self.driver_name) .. ' - pax: ' .. dump(copilot_name))
+    --core.chat_send_all('name '.. dump(name) .. ' - pilot: ' .. dump(self.driver_name) .. ' - pax: ' .. dump(copilot_name))
     --=========================
     --  form to pilot
     --=========================
@@ -905,7 +919,7 @@ function airutils.on_rightclick(self, clicker)
             if itmstck then item_name = itmstck:get_name() end
             --adf program function
             if (item_name == "compassgps:cgpsmap_marked") then
-                local meta = minetest.deserialize(itmstck:get_metadata())
+                local meta = core.deserialize(itmstck:get_metadata())
                 if meta then
                     self._adf_destiny = {x=meta["x"], z=meta["z"]}
                 end
@@ -940,7 +954,7 @@ function airutils.on_rightclick(self, clicker)
     --  attach pilot
     --=========================
     elseif not self.driver_name and not self._autoflymode then
-        if self.owner == name or minetest.check_player_privs(clicker, {protection_bypass=true}) then
+        if self.owner == name or core.check_player_privs(clicker, {protection_bypass=true}) then
 
             local itmstck=clicker:get_wielded_item()
 
@@ -963,7 +977,7 @@ function airutils.on_rightclick(self, clicker)
                 for i = max_seats,1,-1
                 do
                     if self._passengers[i] and self._passengers[i] ~= "" then
-                        local passenger = minetest.get_player_by_name(self._passengers[i])
+                        local passenger = core.get_player_by_name(self._passengers[i])
                         if passenger then airutils.dettach_pax(self, passenger) end
                     end
                 end
@@ -987,7 +1001,7 @@ function airutils.on_rightclick(self, clicker)
             end
         else
             airutils.dettach_pax(self, clicker)
-            minetest.chat_send_player(name, core.colorize('#ff0000', S(" >>> You aren't the owner of this "..self.infotext..".")))
+            core.chat_send_player(name, core.colorize('#ff0000', S(" >>> You aren't the owner of this "..self.infotext..".")))
         end
 
     --=========================
@@ -996,7 +1010,7 @@ function airutils.on_rightclick(self, clicker)
     elseif self.driver_name ~= nil or self._autoflymode == true then
         local d_name = self.driver_name
         if d_name == nil then d_name = "" end
-        local player = minetest.get_player_by_name(d_name)
+        local player = core.get_player_by_name(d_name)
         if player or self._autoflymode == true then
             is_attached = airutils.check_passenger_is_attached(self, name)
 
@@ -1009,10 +1023,10 @@ function airutils.on_rightclick(self, clicker)
             end
 
         else
-            minetest.chat_send_player(clicker:get_player_name(), message)
+            core.chat_send_player(clicker:get_player_name(), message)
         end
     else
-        minetest.chat_send_player(clicker:get_player_name(), message)
+        core.chat_send_player(clicker:get_player_name(), message)
     end
 
 end

@@ -382,8 +382,10 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 		    if fields.turn_auto_pilot_on then
                 if ent._autopilot == true then
                     ent._autopilot = false
+                    core.chat_send_player(self.driver_name,S(" >>> Autopilot deactivated"))
                 else
                     ent._autopilot = true
+                    core.chat_send_player(self.driver_name,core.colorize('#00ff00', S(" >>> Autopilot activated")))
                 end
 		    end
             if fields.manual then

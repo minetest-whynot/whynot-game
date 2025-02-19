@@ -243,7 +243,9 @@ function airutils.autopilot(self, dtime, hull_direction, longit_speed, accel, cu
 
     if not self._have_auto_pilot then return end
 
-    local max_attack_angle = 1.8
+    local min_attack_angle = self._wing_angle_of_attack or 1.0
+    local flap = self._wing_angle_extra_flaps or 2
+    local max_attack_angle = min_attack_angle + flap --1.8
 
     --climb
     local velocity = self.object:get_velocity()
@@ -254,14 +256,15 @@ function airutils.autopilot(self, dtime, hull_direction, longit_speed, accel, cu
     end
 
     self._acceleration = 0
+    local climb_rate_min = 0.2
+    local factor = math.abs(climb_rate * 0.1)
     if self._engine_running then
         --engine acceleration calc
         local engineacc = (self._power_lever * self._max_engine_acc) / 100;
         --self.engine:set_animation_frame_speed(60 + self._power_lever)
 
-        local factor = math.abs(climb_rate * 0.1)
         --increase power lever
-        if climb_rate > 0.2 then
+        if climb_rate > climb_rate_min then
             airutils.powerAdjust(self, dtime, factor, -1)
         end
         --decrease power lever
@@ -271,7 +274,7 @@ function airutils.autopilot(self, dtime, hull_direction, longit_speed, accel, cu
         --do not exceed
         local max_speed = self._max_speed
         if longit_speed > max_speed then
-            engineacc = engineacc - (longit_speed-max_speed)
+            engineacc = 0
             if engineacc < 0 then engineacc = 0 end
         end
         self._acceleration = engineacc
@@ -280,20 +283,29 @@ function airutils.autopilot(self, dtime, hull_direction, longit_speed, accel, cu
     local hull_acc = vector.multiply(hull_direction,self._acceleration)
     retval_accel=vector.add(retval_accel,hull_acc)
 
-    --pitch
-    if self._angle_of_attack > max_attack_angle then
-        airutils.set_autopilot_pitch(self, 1, dtime)
-    elseif self._angle_of_attack < max_attack_angle then
+    --decrease power lever
+    if climb_rate < 0 then
         airutils.set_autopilot_pitch(self, -1, dtime)
+        --core.chat_send_all("cabrando: "..dump(climb_rate))
+    elseif climb_rate > climb_rate_min then
+        airutils.set_autopilot_pitch(self, 1, dtime)
+        --core.chat_send_all("picando: "..dump(climb_rate))
     end
+
+    --pitch
+    --[[if self._angle_of_attack > max_attack_angle then
+        airutils.set_autopilot_pitch(self, -1, dtime)
+    elseif self._angle_of_attack < min_attack_angle then
+        airutils.set_autopilot_pitch(self, 1, dtime)
+    end]]--
 
 	-- yaw
     airutils.set_yaw(self, 0, dtime)
 
-    if longit_speed > 0 then
+    if longit_speed > (self._min_speed or 0) then
         airutils.rudder_auto_correction(self, longit_speed, dtime)
         if airutils.elevator_auto_correction then
-            self._elevator_angle = airutils.elevator_auto_correction(self, longit_speed, self.dtime, self._max_speed, self._elevator_angle, self._elevator_limit, airutils.ideal_step, 500)
+            --self._elevator_angle = airutils.elevator_auto_correction(self, longit_speed, self.dtime, self._max_speed, self._elevator_angle, self._elevator_limit, airutils.ideal_step, 500)
         end
     end
 
