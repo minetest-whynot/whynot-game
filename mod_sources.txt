@@ -60,11 +60,11 @@ origin https://repo.or.cz/minetest_mtg_plus.git (fetch)
 Mod: decor/mtg_plus
 
 origin https://github.com/minetest-mods/mydoors (fetch)
-* 5d78183cf2d3eebc58dcbcd7cada378ca1004208 Make 'screwdriver' optional (#39)
+* eb371b550c0c8200d9316aa4659af69c4de4734b Remove dependency since `my_default_doors` doesn't depend on `my_door_wood` (#40)
 Mod: decor/mydoors
 
 origin https://github.com/minetest-mods/myroofs (fetch)
-* fe9846162626c7201ec227e2bf99153a1c7354e4 Merge pull request #7 from AntumMT/recipe_fixes
+* 92e0b770a551e1116873536642c4eb50620ee09a Add description, author, & dependencies to mod.conf
 Mod: decor/myroofs
 
 origin https://github.com/sbrl/plasticbox (fetch)
@@ -92,7 +92,7 @@ origin https://github.com/mt-mods/unifieddyes (fetch)
 Mod: decor/unifieddyes
 
 origin https://github.com/minetest-mirrors/farming.git (fetch)
-* e247a3ea1348a6fdc8ea8113cebaa5419efdc0d3 hoe bomb's replace dry dirt
+* 1416f6e6157b0307439831aebc4e380d13d73052 add setting to disable weeds
 Mod: flora_ores/farming
 
 origin https://codeberg.org/Dacmot/YellowCrystals.git (fetch)
@@ -124,7 +124,7 @@ origin https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin https://github.com/APercy/airutils.git (fetch)
-* a6e40eb557639f29965664d5fdc9b0435090c565 Merge pull request #28 from MoNTE48/global_exists
+* 125809583a4999ce7d9f0fdd3529ccfed3cf8f5d improved autopilot
 Mod: libs/airutils
 
 origin https://repo.or.cz/minetest_doc.git (fetch)
@@ -184,7 +184,7 @@ origin https://github.com/GreenXenith/tac_nayn (fetch)
 Mod: mapgen/tac_nayn
 
 origin https://github.com/minetest-mods/mesecons (fetch)
-* 1f9e86c3da08acb9e63e07c980a19097f6a125e2 Make the detector recipe from luacontroller optional (#696)
+* a0580f9f20fd63eba87c0b64eb381164c0a3d6aa mesecons_gamecompat: Fix Mineclonia support
 Mod: mesecons/mesecons
 
 origin https://github.com/minetest/minetest_game (fetch)
@@ -200,7 +200,7 @@ origin https://github.com/minetest-mirrors/mobs_monster.git (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin https://github.com/minetest-mirrors/mobs_redo.git (fetch)
-* d7998a9ea76d7ec63fe3d2c4ee47731e7d80b615 abort on_step when mob expires (thx tour-ist)
+* 0a62f05132b47462ca77e786bd978799d065fd46 add mob repellent
 Mod: mobs_redo/mobs_redo
 
 origin https://github.com/minetest-mods/3d_armor (fetch)
@@ -212,7 +212,7 @@ origin https://gitlab.com/dacmot/awards.git (fetch)
 Mod: player/awards
 
 origin https://github.com/minetest-mods/character_creator.git (fetch)
-* 65a15d720f4f216379a8e91421528efc1c51f151 Textures: Run optipng -o7 -strip all
+* a264c5c8d9decd7dbe2319d266ea6f027961b46a Add Bulgarian translation
 Mod: player/character_creator
 
 origin https://github.com/stujones11/clothing (fetch)
