@@ -18,7 +18,7 @@ end
 -- Global table
 
 mobs = {
-	mod = "redo", version = "20250209",
+	mod = "redo", version = "20250320",
 	spawning_mobs = {}, translate = S,
 	node_snow = has(minetest.registered_aliases["mapgen_snow"])
 			or has("mcl_core:snow") or has("default:snow") or "air",
@@ -70,6 +70,7 @@ local mob_smooth_rotate = settings:get_bool("mob_smooth_rotate") ~= false
 local mob_height_fix = settings:get_bool("mob_height_fix")
 local mob_log_spawn = settings:get_bool("mob_log_spawn") == true
 local active_mobs = 0
+local mob_infotext = settings:get_bool("mob_infotext") ~= false
 
 -- loop interval for node and main functions timers
 
@@ -622,7 +623,7 @@ function mob_class:update_tag(newname)
 		.. (self.owner == "" and "" or "\nOwner: " .. self.owner) .. text
 
 	-- set infotext changes
-	if self.infotext ~= prop.infotext then
+	if mob_infotext and self.infotext ~= prop.infotext then
 		self.object:set_properties({infotext = self.infotext})
 	end
 end
@@ -2525,8 +2526,8 @@ local dis_damage_kb = settings:get_bool("mobs_disable_damage_kb")
 
 function mob_class:on_punch(hitter, tflp, tool_capabilities, dir, damage)
 
-	-- mob health check
-	if self.health <= 0 then return true end
+	-- mob health and nil check
+	if self.health <= 0 or not hitter then return true end
 
 	-- error checking when mod profiling is enabled
 	if not tool_capabilities then
@@ -3726,7 +3727,7 @@ function mobs:spawn_specific(name, nodes, neighbors, min_light, max_light, inter
 			return
 		end
 
-		-- change position to node above
+		-- change position to above node
 		pos.y = pos.y + 1
 
 		-- are we spawning within height limits?
@@ -4609,6 +4610,8 @@ if settings:get_bool("mobs_can_hear") ~= false then
 	local old_sound_play = minetest.sound_play
 
 	minetest.sound_play = function(spec, param, eph)
+
+		if type(spec) == "table" then return old_sound_play(spec, param, eph) end
 
 		local def = {} ; param = param or {}
 

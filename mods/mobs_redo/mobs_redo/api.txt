@@ -886,6 +886,7 @@ External Settings for "minetest.conf"
                             custom on_sound function.
    'mobs_disable_damage_kb' Knockback is calculated by hit damage or uses knockback value
                             from the weapon used, this setting lets you disable the former.
+   'mob_infotext'          True by default, shows mob information when you hover over one.
 
 Players can override the spawn chance for each mob registered by adding a line
 to their minetest.conf file with a new value, the lower the value the more each

@@ -88,3 +88,6 @@ mob_pathfinding_searchdistance (path search distance) int 16
 mob_pathfinding_max_jump (path max jump height) int 4
 # max drop height for pathfinding (default 6)
 mob_pathfinding_max_drop (path max drop height) int 6
+
+#   Enable mob infotext on hover
+mob_infotext (Enable mob infotext on hover) bool true
