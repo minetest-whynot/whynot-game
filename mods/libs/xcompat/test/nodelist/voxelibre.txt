@@ -1,11 +1,9 @@
 mcl_maps:filled_map_character_male_crea
-mcl_potions:food_poisoning_arrow_box
 mcl_doors:spruce_trapdoor_ladder
 mcl_colorblocks:hardened_clay_white
 mcl_ocean:dead_tube_coral_block
 mcl_chests:green_shulker_box
 mcl_beehives:bee_nest
-mcl_potions:harming_arrow_box
 mcl_cauldrons:cauldron_3
 mcl_stairs:stair_copper_cut
 mcl_doors:birch_trapdoor_ladder
@@ -43,7 +41,6 @@ mcl_colorblocks:glazed_terracotta_pillar_silver
 mcl_core:ironblock
 mcl_end:dragon_egg
 mcl_stairs:stair_redsandstonesmooth2_outer
-mcl_potions:saturation_arrow_box
 mcl_brewing:stand_011
 mcl_walls:mudbrick_7
 mcl_stairs:stair_waxed_copper_oxidized_cut_inner
@@ -149,7 +146,6 @@ mcl_stairs:stair_sandstonesmooth2_inner
 mcl_walls:andesite_2
 mcl_core:stone_with_iron
 mcl_mushrooms:brown_mushroom_block_cap_011110
-mcl_potions:strength_arrow_box
 mcl_farming:melontige_7
 mcl_colorblocks:glazed_terracotta_pink
 mesecons_torch:redstoneblock
@@ -180,7 +176,6 @@ mcl_stairs:slab_andesite_double
 mcl_flowers:rose_bush_top
 mcl_flowers:allium
 mcl_ocean:brain_coral
-mcl_potions:leaping_arrow_box
 xpanes:pane_yellow_flat
 mcl_cherry_blossom:cherrytree
 mcl_stairs:stair_concrete_magenta_inner
@@ -215,7 +210,6 @@ mcl_chests:red_shulker_box_small
 mcl_farming:sweet_berry_bush_1
 mcl_composters:composter_2
 mcl_beehives:bee_nest_2
-mcl_potions:frost_arrow_box
 mcl_walls:redsandstone_11
 mcl_walls:mossycobble_7
 mesecons_lightstone:lightstone_on_blue
@@ -224,7 +218,6 @@ mcl_cherry_blossom:stripped_cherrytree_bark
 mcl_crimson:warped_hyphae_wood
 vl_hollow_logs:stripped_crimson_hyphae_hollow
 mcl_cauldrons:cauldron
-mcl_potions:resistance_arrow_box
 mcl_stairs:stair_mangrove_wood_outer
 mcl_copper:block_weathered_cut
 mcl_walls:stonebrickmossy_12
@@ -338,7 +331,6 @@ mcl_walls:stonebrickmossy_13
 mcl_stairs:slab_mossycobble_double
 mcl_doors:jungle_trapdoor_open
 mcl_flowerpots:flower_pot_dandelion
-mcl_potions:invisibility_arrow_box
 mcl_flowers:sunflower
 mcl_cherry_blossom:cherryleaves_orphan
 mcl_farming:pumpkin_face_light
@@ -445,7 +437,6 @@ mcl_nether:ancient_debris
 mcl_walls:mudbrick_1
 mcl_colorblocks:concrete_red
 mcl_stairs:stair_blackstone_chiseled_polished_inner
-mcl_potions:water_breathing_arrow_box
 mesecons_delayer:delayer_on_locked
 mcl_brewing:stand_101
 mcl_walls:granite_1
@@ -682,7 +673,6 @@ mesecons_pressureplates:pressure_plate_mangrove_wood_on
 mcl_mushrooms:red_mushroom_block_cap_111010
 mcl_stairs:stair_copper_oxidized_cut_outer
 mcl_farming:melontige_linked_b
-mcl_potions:swiftness_arrow_box
 mcl_ocean:horn_coral_fan
 mcl_crimson:crimson_hyphae_wood
 mcl_core:dirt_with_grass
@@ -699,7 +689,6 @@ mcl_wool:light_blue_carpet
 mcl_ocean:brain_coral_block
 mcl_colorblocks:hardened_clay_orange
 mcl_flowerpots:flower_pot_tulip_red
-mcl_potions:nausea_arrow_box
 mcl_signs:wall_sign
 mcl_stairs:stair_waxed_copper_oxidized_cut_outer
 mcl_crimson:warped_trapdoor_open
@@ -803,7 +792,6 @@ mcl_signs:wall_sign_darkwood
 mcl_crimson:warped_door_b_4
 mcl_bamboo:bamboo_door_t_3
 mcl_flowers:peony
-mcl_potions:weakness_arrow_box
 mcl_stairs:stair_prismarine
 mcl_nether:nether_wart_1
 mcl_portals:portal_end
@@ -863,7 +851,6 @@ mcl_stairs:slab_waxed_copper_exposed_cut
 mcl_stairs:slab_waxed_copper_exposed_cut_double
 mcl_crimson:warped_nylium
 mesecons_lightstone:lightstone_off_blue
-mcl_potions:slowness_arrow_box
 mcl_stairs:stair_concrete_grey_outer
 mcl_core:sprucetree_bark
 mcl_stairs:slab_crimson_hyphae_wood
@@ -937,7 +924,6 @@ mcl_signs:standing_sign_crimson_hyphae_wood
 mcl_doors:wooden_door_t_2
 mcl_walls:sandstone_12
 mcl_stairs:slab_birchtree_bark_top
-mcl_potions:health_boost_arrow_box
 mcl_walls:granite_5
 mcl_mangrove:mangrove_mud_roots
 mcl_stairs:slab_blackstone_polished_double
@@ -961,7 +947,6 @@ mcl_chests:lightblue_shulker_box_small
 mcl_signs:standing_sign_darkwood
 mcl_smoker:smoker
 mcl_stairs:stair_blackstone_brick_polished_outer
-mcl_potions:blindness_arrow_box
 mesecons_button:button_darkwood_on
 mcl_mangrove:mangrove_trapdoor
 mcl_ocean:dead_fire_coral_fan
@@ -1039,7 +1024,6 @@ mcl_jukebox:jukebox
 mcl_core:stone_with_coal
 vl_hollow_logs:darktree_hollow
 mcl_core:stripped_acacia
-mcl_potions:absorption_arrow_box
 mcl_monster_eggs:monster_egg_stone
 mcl_doors:birch_door_t_2
 mcl_flowerpots:flower_pot_acaciasapling
@@ -1143,7 +1127,6 @@ mesecons_torch:mesecon_torch_on_wall
 mcl_doors:iron_door_t_4
 mcl_walls:endbricks_9
 mesecons_solarpanel:solar_panel_on
-mcl_potions:haste_arrow_box
 mesecons_button:button_bamboo_on
 mcl_beacons:beacon
 mesecons_button:button_bamboo_off
@@ -1363,7 +1346,6 @@ mcl_end:end_rod_brown
 mcl_cocoas:cocoa_2
 mcl_stairs:slab_ironblock_top
 mcl_stairs:slab_ironblock
-mcl_potions:night_vision_arrow_box
 mcl_stairs:slab_goldblock_top
 mcl_doors:dark_oak_door_t_3
 mcl_mushrooms:brown_mushroom_block_cap_010101
@@ -1400,7 +1382,6 @@ mcl_core:sprucewood
 mcl_stairs:stair_acaciatree_bark_outer
 mcl_ocean:fire_coral
 mcl_stairs:stair_acaciatree_bark
-mcl_potions:darkness_arrow_box
 mcl_stairs:stair_jungletree_bark_outer
 mcl_stairs:slab_tree_bark_double
 mcl_stairs:slab_tree_bark_top
@@ -1440,7 +1421,6 @@ mcl_colorblocks:glazed_terracotta_blue
 mcl_walls:diorite_8
 mcl_colorblocks:concrete_blue
 mcl_stairs:stair_prismarine_inner
-mcl_potions:levitation_arrow_box
 mcl_colorblocks:glazed_terracotta_pillar_cyan
 mcl_colorblocks:glazed_terracotta_cyan
 mcl_colorblocks:concrete_cyan
@@ -1451,7 +1431,6 @@ mcl_colorblocks:glazed_terracotta_green
 mcl_colorblocks:concrete_green
 mcl_stairs:slab_junglewood_double
 mcl_colorblocks:glazed_terracotta_yellow
-mcl_potions:stone_cloak_arrow_box
 mcl_core:junglewood
 mcl_colorblocks:concrete_powder_yellow
 mcl_stairs:stair_birchwood
@@ -1516,7 +1495,6 @@ mesecons_button:button_cherrywood_on
 mcl_deepslate:deepslatebrickswall_12
 mcl_stairs:slab_waxed_copper_weathered_cut_top
 mesecons_button:button_cherrywood_off
-mcl_potions:trolling_arrow_box
 mcl_cherry_blossom:cherry_fence_gate_open
 mcl_observers:observer_off
 mcl_cherry_blossom:cherry_fence
@@ -1547,7 +1525,6 @@ mcl_cherry_blossom:cherry_door_t_3
 mcl_cherry_blossom:cherry_door_t_1
 mcl_cherry_blossom:cherrysapling
 mcl_stairs:slab_copper_oxidized_cut
-mcl_potions:fire_resistance_arrow_box
 mcl_stairs:stair_waxed_copper_cut
 mcl_cherry_blossom:cherrytree_bark
 mcl_stairs:stair_waxed_copper_oxidized_cut
@@ -1941,7 +1918,6 @@ mcl_deepslate:deepslatecobbledwall_7
 mcl_nether:quartz_pillar
 mcl_mushrooms:brown_mushroom_block_cap_100110
 mesecons:wire_11100010_on
-mcl_potions:poison_arrow_box
 mesecons:wire_01110100_off
 mcl_stairs:slab_diorite_smooth_top
 mcl_stairs:slab_concrete_magenta_double
@@ -1964,7 +1940,6 @@ mcl_stairs:slab_redsandstonesmooth2_double
 mcl_chests:white_shulker_box_small
 mcl_stairs:stair_bamboo_mosaic_inner
 mesecons:wire_10010000_off
-mcl_potions:slow_falling_arrow_box
 mcl_mushrooms:red_mushroom_block_cap_001100
 mcl_mushrooms:red_mushroom_block_cap_100000
 mcl_end:end_rod_black
@@ -1997,7 +1972,6 @@ mesecons:wire_10111000_on
 mcl_mangrove:mangrove_tree
 mcl_walls:cobble_3
 mcl_copper:block_cut
-mcl_potions:fatigue_arrow_box
 mcl_mushrooms:brown_mushroom_block_cap_010010
 mcl_fences:dark_oak_fence_gate_open
 mesecons:wire_11000100_off
@@ -2168,7 +2142,6 @@ mcl_maps:filled_map_mcl_skins_base_1B47A57FF_male_crea
 mcl_chests:yellow_shulker_box
 mcl_monster_eggs:monster_egg_stonebrickcracked
 mesecons:wire_00110010_on
-mcl_potions:withering_arrow_box
 mcl_stairs:slab_junglewood_top
 mcl_fences:spruce_fence
 mcl_stairs:slab_jungletree_bark_top
@@ -2181,12 +2154,10 @@ mesecons_pressureplates:pressure_plate_acaciawood_on
 mcl_stairs:stair_andesite
 mesecons:wire_01000000_off
 mesecons:wire_11100100_on
-mcl_potions:healing_arrow_box
 mcl_flowerpots:flower_pot_propagule
 mcl_stairs:stair_nether_brick
 mcl_core:podzol_snow
 mesecons:wire_10111001_off
-mcl_potions:luck_arrow_box
 mesecons:wire_11010001_on
 mcl_walls:granite_21
 mcl_flowerpots:flower_pot_warped_roots
@@ -2240,7 +2211,6 @@ mesecons:wire_11011001_on
 mcl_walls:stonebrickmossy_7
 mcl_ocean:seagrass_dirt
 mcl_crimson:crimson_trapdoor_open
-mcl_potions:bad_luck_arrow_box
 mcl_meshhand:character_male_surv
 mcl_flowerpots:flower_pot_crimson_roots
 mcl_ocean:sea_pickle_2_off_dead_brain_coral_block
@@ -2320,7 +2290,6 @@ mcl_walls:stonebrick_7
 mcl_walls:stonebrick_10
 mcl_cherry_blossom:pressure_plate_cherrywood_on
 mcl_stairs:stair_stonebrick
-mcl_potions:regeneration_arrow_box
 mcl_walls:stonebrick_13
 mcl_chests:magenta_shulker_box_small
 mcl_walls:stonebrickmossy_8
