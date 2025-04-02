@@ -11,7 +11,7 @@ This is a Minetest mod that adds mesh roofing nodes.
 - https://forum.minetest.net/viewtopic.php?f=11&t=11416
 
 ## Licensing
-- DWYWPL
+- MIT
 
 ## Dependencies
 - default
