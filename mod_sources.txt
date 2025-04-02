@@ -20,7 +20,7 @@ origin https://github.com/Ezhh/abriglass/ (fetch)
 Mod: decor/abriglass
 
 origin https://github.com/mt-mods/basic_materials (fetch)
-* 800310c0fa2522d04409d95676d1d0e9ed3964db nodes aren't ground content (#26)
+* b85e99ded01ba2dc8241a1b158a0e19610fd69ce Add Ukrainian localization (#29)
 Mod: decor/basic_materials
 
 origin https://github.com/Napiophelios/campfire (fetch)
@@ -60,11 +60,11 @@ origin https://repo.or.cz/minetest_mtg_plus.git (fetch)
 Mod: decor/mtg_plus
 
 origin https://github.com/minetest-mods/mydoors (fetch)
-* eb371b550c0c8200d9316aa4659af69c4de4734b Remove dependency since `my_default_doors` doesn't depend on `my_door_wood` (#40)
+* d007c577564f74e9cc2dcc8f33e6efa4dc1ffce2 Added wood
 Mod: decor/mydoors
 
 origin https://github.com/minetest-mods/myroofs (fetch)
-* 92e0b770a551e1116873536642c4eb50620ee09a Add description, author, & dependencies to mod.conf
+* a9d0fdc1004cdadf11e19c763b14f82117f92ac9 Added Chimneys
 Mod: decor/myroofs
 
 origin https://github.com/sbrl/plasticbox (fetch)
@@ -92,7 +92,7 @@ origin https://github.com/mt-mods/unifieddyes (fetch)
 Mod: decor/unifieddyes
 
 origin https://github.com/minetest-mirrors/farming.git (fetch)
-* 1416f6e6157b0307439831aebc4e380d13d73052 add setting to disable weeds
+* b8c3d40e88f2f01c8059c34e1e18fe42e8ddea37 fix next stage bug
 Mod: flora_ores/farming
 
 origin https://codeberg.org/Dacmot/YellowCrystals.git (fetch)
@@ -124,7 +124,7 @@ origin https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin https://github.com/APercy/airutils.git (fetch)
-* 125809583a4999ce7d9f0fdd3529ccfed3cf8f5d improved autopilot
+* 18338a333bb079659bb932db011bf5fc981a3308 fix issue #5
 Mod: libs/airutils
 
 origin https://repo.or.cz/minetest_doc.git (fetch)
@@ -156,7 +156,7 @@ origin https://github.com/dacmot/sfcraftguide.git (fetch)
 Mod: libs/sfcraftguide
 
 origin https://github.com/mt-mods/xcompat.git (fetch)
-* 7a136dc7393dcb8d50d34f55aa357b15811cbc59 fix mineclonia ci (#45)
+* 8d6e82cfdbbc84bdb63791caa05376c01bb83275 Fix typos in mcl item names and allow for mcl variant differences (#52)
 Mod: libs/xcompat
 
 origin https://github.com/Treer/cloudlands/ (fetch)
@@ -184,7 +184,7 @@ origin https://github.com/GreenXenith/tac_nayn (fetch)
 Mod: mapgen/tac_nayn
 
 origin https://github.com/minetest-mods/mesecons (fetch)
-* a0580f9f20fd63eba87c0b64eb381164c0a3d6aa mesecons_gamecompat: Fix Mineclonia support
+* 4bd59137a2b2304eaa88c13dcfca4b62a759e33a Add Ukrainian localization (#703)
 Mod: mesecons/mesecons
 
 origin https://github.com/minetest/minetest_game (fetch)
@@ -196,15 +196,15 @@ origin https://codeberg.org/tenplus1/mobs_ghost_redo (fetch)
 Mod: mobs_redo/mobs_ghost_redo
 
 origin https://github.com/minetest-mirrors/mobs_monster.git (fetch)
-* edc86fec21699463fa03d7fee121fe79a54e423b spider armor 100
+* a195057c8ad7b85b53ef67c97b6672916d2460cc add sand variation in sand monster drops, same with dirt monster
 Mod: mobs_redo/mobs_monster
 
 origin https://github.com/minetest-mirrors/mobs_redo.git (fetch)
-* 0a62f05132b47462ca77e786bd978799d065fd46 add mob repellent
+* 5fb7b91db0882843b012566e3d244d504e1ad035 fix typo
 Mod: mobs_redo/mobs_redo
 
 origin https://github.com/minetest-mods/3d_armor (fetch)
-* 082e866274632c96c713817683e07cdafff81c93 Update player_api model registration
+* a586aeee0c4e4d80766da3c096d80c024c40a29f Update mod.conf (#157)
 Mod: player/3d_armor
 
 origin https://gitlab.com/dacmot/awards.git (fetch)
@@ -236,7 +236,7 @@ origin https://github.com/minetest-mods/hbsprint (fetch)
 Mod: player/hbsprint
 
 origin https://codeberg.org/Wuzzy/minetest_hudbars.git (fetch)
-* bd191abfcd38ffd7ad575620d9fd1c6bf1f2f7cf Rename Minetest to Luanti
+* fc85005873574e96d511c7a96e5d8cbe3c6e16df Credit FromKaniv for Ukrainian translation
 Mod: player/hudbars
 
 origin https://github.com/dacmot/moarmour (fetch)
@@ -244,7 +244,7 @@ origin https://github.com/dacmot/moarmour (fetch)
 Mod: player/moarmour
 
 origin https://github.com/minetest-mods/playeranim (fetch)
-* f763ce648e81bb59e613ac46c1ec4c33f267d1fc Limit angle between head and body (#5)
+* cabc79de361144d10ffe6bf6d4675211566e730b Work around wrong character bone rotations on Luanti 5.11+ (#6)
 Mod: player/playeranim
 
 origin https://repo.or.cz/minetest_show_wielded_item.git (fetch)
@@ -252,7 +252,7 @@ origin https://repo.or.cz/minetest_show_wielded_item.git (fetch)
 Mod: player/show_wielded_item
 
 origin https://github.com/minetest-mods/skinsdb (fetch)
-* 3cf80c9272d1942587ce671c95236cca5c2c2cb7 skinlist: Allow textures containing '-' characters
+* 247bcdd05835886f307944cfa8c8ba1c9599df4b Fix client-side out-of-bounds '[combine' warnings
 Mod: player/skinsdb
 
 origin https://github.com/bell07/minetest-smart_sfinv (fetch)
@@ -272,7 +272,7 @@ origin https://github.com/Lokrates/Biofuel.git (fetch)
 Mod: tools/biofuel
 
 origin https://github.com/minetest-mirrors/bonemeal.git (fetch)
-* 0d852bff0ab1c870520f51d15d761aefe466e294 add coniferous litter deco, fix df_caverns saplings
+* c2d76b779dd25735ce3e2a14bf5be9d604fa15b5 add ukrainian translation (thx Fromkaniv)
 Mod: tools/bonemeal
 
 origin https://github.com/SmallJoker/boost_cart (fetch)
