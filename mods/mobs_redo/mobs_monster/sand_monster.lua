@@ -59,7 +59,10 @@ mobs:register_mob("mobs_monster:sand_monster", {
 	jump = true,
 	floats = 0,
 	drops = {
-		{name = "default:desert_sand", chance = 1, min = 3, max = 5}
+		{name = "default:silver_sand", chance = 2, min = 1, max = 2},
+		{name = "default:desert_sand", chance = 2, min = 1, max = 2},
+		{name = "default:sand", chance = 2, min = 1, max = 2},
+		{name = "default:clay_lump", chance = 2, min = 0, max = 1}
 	},
 	water_damage = 3,
 	lava_damage = 4,
