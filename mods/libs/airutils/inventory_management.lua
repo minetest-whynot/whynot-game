@@ -1,5 +1,5 @@
 local storage = airutils.storage
-airutils.modname = minetest.get_current_modname()
+airutils.modname = core.get_current_modname()
 
 --function to format formspec for mineclone. In case of minetest, just returns an empty string
 function airutils.get_itemslot_bg(a, b, c, d)
@@ -84,7 +84,7 @@ end
 
 function airutils.load_inventory(self)
 	if self._inv then
-		local inv_content = minetest.deserialize(storage:get_string(self._inv_id))
+		local inv_content = core.deserialize(storage:get_string(self._inv_id))
         if inv_content then
 		    self._inv:set_list("main", inv_content)
         end
@@ -99,7 +99,7 @@ function airutils.save_inventory(self)
 		        inv_content[k] = v:to_string()
 	        end
 
-	        local inv_content = minetest.serialize(inv_content)
+	        local inv_content = core.serialize(inv_content)
 	        storage:set_string(self._inv_id, inv_content)
         end
     end
@@ -109,7 +109,7 @@ function airutils.remove_inventory(self)
     local inventory = airutils.get_inventory(self)
     if inventory then
         if inventory:is_empty("main") then
-	        return minetest.remove_detached_inventory(self._inv_id)
+	        return core.remove_detached_inventory(self._inv_id)
         else
             local inv_content = inventory:get_list("main")
             if inv_content then
@@ -118,13 +118,13 @@ function airutils.remove_inventory(self)
                     local count = 0
                     for i = 0,v:get_count()-1,1
                     do
-                        minetest.add_item({x=pos.x+math.random()-0.5,y=pos.y,z=pos.z+math.random()-0.5},v:get_name())
+                        core.add_item({x=pos.x+math.random()-0.5,y=pos.y,z=pos.z+math.random()-0.5},v:get_name())
                         count = count + 1
                         if count >= 5 then break end
                     end
                 end
             end
-            return minetest.remove_detached_inventory(self._inv_id)
+            return core.remove_detached_inventory(self._inv_id)
         end
     end
     return false
@@ -138,7 +138,7 @@ end
 --show inventory form to user
 function airutils.show_vehicle_trunk_formspec(self, player, size)
     local form = get_formspec_by_size(self, size)
-    minetest.show_formspec(player:get_player_name(), airutils.modname .. ":inventory",
+    core.show_formspec(player:get_player_name(), airutils.modname .. ":inventory",
         form
     )
 end
@@ -146,21 +146,33 @@ end
 function airutils.create_inventory(self, size, owner)
     owner = owner or ""
     if owner == "" then owner = self.owner end
-    --minetest.chat_send_all("slots: " .. size)
+    --core.chat_send_all("slots: " .. size)
     if owner ~= nil and owner ~= "" then
         if self._inv_id == "" then
             self._inv_id = inventory_id(owner)
         end
-        local vehicle_inv = minetest.create_detached_inventory(self._inv_id, {
+        local vehicle_inv = core.create_detached_inventory(self._inv_id, {
             allow_move = function(inv, from_list, from_index, to_list, to_index, count, player)
+                local is_moderator = core.check_player_privs(player, {server=true}) or core.check_player_privs(player, {protection_bypass=true})
+                if player:get_player_name() ~= owner and is_moderator == false then
+                    return 0
+                end
                 return count -- allow moving
             end,
 
             allow_put = function(inv, listname, index, stack, player)
+                local is_moderator = core.check_player_privs(player, {server=true}) or core.check_player_privs(player, {protection_bypass=true})
+                if player:get_player_name() ~= owner and is_moderator == false then
+                    return 0
+                end
                 return stack:get_count() -- allow putting
             end,
 
             allow_take = function(inv, listname, index, stack, player)
+                local is_moderator = core.check_player_privs(player, {server=true}) or core.check_player_privs(player, {protection_bypass=true})
+                if player:get_player_name() ~= owner and is_moderator == false then
+                    return 0
+                end
                 return stack:get_count() -- allow taking
             end,
 	        on_put = function(inv, toList, toIndex, stack, player)
@@ -172,7 +184,7 @@ function airutils.create_inventory(self, size, owner)
             on_move = function(inv, from_list, from_index, to_list, to_index, count, player)
                 airutils.save_inventory(self)
             end,
-        })
+        }, owner)
         if size >= 8 then
             if vehicle_inv:set_size("main", size) then
 	            vehicle_inv:set_width("main", 8)
@@ -187,7 +199,7 @@ end
 
 function airutils.get_inventory(self)
     if self._inv then
-        return minetest.get_inventory({type="detached", name=self._inv_id})
+        return core.get_inventory({type="detached", name=self._inv_id})
     end
     return nil
 end
@@ -197,7 +209,7 @@ function airutils.list_inventory(self)
     if inventory then
         local list = inventory.get_list("main")
 
-        minetest.chat_send_all(dump(list))
+        core.chat_send_all(dump(list))
     end
 end
 
