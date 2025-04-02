@@ -12,7 +12,7 @@ local S = minetest.get_translator("farming")
 
 farming = {
 	mod = "redo",
-	version = "20240924",
+	version = "20250327",
 	path = minetest.get_modpath("farming"),
 	select = {type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5}},
 	select_final = {type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, -2.5/16, 0.5}},
@@ -516,7 +516,7 @@ end
 
 -- Function to register plants (default farming compatibility)
 
-farming.register_plant = function(name, def)
+function farming.register_plant(name, def)
 
 	if not def.steps then return nil end
 
@@ -556,7 +556,7 @@ farming.register_plant = function(name, def)
 			local def = minetest.registered_nodes[mname .. ":" .. pname .. "_1"]
 
 			if def then
-				minetest.swap_node(pos, {name = def.next_plant, param2 = def.place_param2})
+				minetest.set_node(pos, {name = def.name, param2 = def.place_param2})
 			end
 		end,
 
