@@ -1,4 +1,3 @@
-
 laptop.node_config = {}
 
 local have_technic = minetest.get_modpath("technic")
@@ -135,7 +134,7 @@ local function after_place_node(pos, placer, itemstack, pointed_thing)
 		local removable = mtos.bdev:get_removable_disk()
 		removable:reload(ItemStack(save.removable_disk))
 	end
-	
+
 	-- battery support
 	if have_technic or have_generator then
 		local node = minetest.get_node(pos)
@@ -198,19 +197,19 @@ local function laptop_run(pos, node, mtos)
 	local demand = hwdef.eu_demand or 0
 	-- support both technic and power_generators, demand should be always same, supply should be active only one
 	local supply = meta:get_int("LV_EU_input") + meta:get_int("generator_input")
-	
+
 	if have_generator and (supply>0) then
 		meta:set_int("generator_input", 0)
 	end
-	
+
 	-- powered off, nothing to do
 	if (demand==0) then
 		return
 	end
-	
+
 	if (supply<demand) and (demand>0) then
 		local power_off = true
-	
+
 		if hwdef.battery_capacity then
 			local battery = meta:get_int("battery")
 			if (battery>(demand-supply)) then
@@ -220,7 +219,7 @@ local function laptop_run(pos, node, mtos)
 				meta:set_int("battery", 0)
 			end
 		end
-		
+
 		if power_off then
 			local hwdef = laptop.node_config[node.name]
 			if hwdef.power_off_node then
@@ -242,7 +241,7 @@ local function laptop_run(pos, node, mtos)
 			meta:set_int("battery", battery)
 		end
 	end
-	
+
 end
 
 local function technic_run(pos, node)
@@ -250,7 +249,7 @@ local function technic_run(pos, node)
 	if not mtos then
 		return
 	end
-	
+
 	laptop_run(pos, node, mtos)
 end
 
@@ -258,7 +257,7 @@ local function technic_on_disable(pos, node)
 	local mtos = laptop.os_get(pos)
 	-- fix infotext for technic mod enable
 	mtos:set_infotext(mtos.hwdef.infotext)
-	
+
 	laptop_run(pos, node, mtos)
 end
 
@@ -277,6 +276,7 @@ function laptop.register_hardware(name, hwdef)
 		local nodename = name.."_"..variant
 		local def = table.copy(hwdef.node_defs[variant])
 		def.description = hwdef.description
+		def.use_texture_alpha = hwdef.use_texture_alpha
 
 		-- drop the item visible in inventory
 		if def.groups then
@@ -334,7 +334,7 @@ function laptop.register_hardware(name, hwdef)
 			end
 		end
 		minetest.register_node(nodename, def)
-		
+
 		if have_technic then
 			technic.register_machine("LV", nodename, technic.receiver)
 		end
@@ -347,7 +347,7 @@ function laptop.register_hardware(name, hwdef)
 			cable:add_secondary_node_names({nodename})
 			cable:set_valid_sides(nodename, sides)
 		end
-		
+
 		-- set node configuration for hooks
 		local merged_hwdef = table.copy(hwdef)
 		merged_hwdef.name = name
@@ -360,7 +360,7 @@ function laptop.register_hardware(name, hwdef)
 		if next_node ~= nodename then
 			merged_hwdef.next_node = next_node
 		end
-		
+
 		-- power off node
 		if def._power_off_seq then
 			local power_off_node = name.."_"..def._power_off_seq
@@ -381,7 +381,7 @@ function laptop.register_hardware(name, hwdef)
 		merged_hwdef.hw_capabilities =	merged_hwdef.hw_capabilities or {"hdd", "floppy", "usb", "net", "liveboot"}
 		laptop.node_config[nodename] = merged_hwdef
 	end
-	
+
 	if hwdef.battery_capacity then
 		if have_technic or have_generator then
 			local on_refill = nil
@@ -389,7 +389,7 @@ function laptop.register_hardware(name, hwdef)
 				technic.register_power_tool(name.."_item", hwdef.battery_capacity)
 				on_refill = technic.refill_RE_charge
 			end
-			
+
 			minetest.register_tool(name.."_item", {
 					description = hwdef.description,
 					inventory_image = hwdef.inventory_image,

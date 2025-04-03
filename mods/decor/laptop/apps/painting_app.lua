@@ -11,7 +11,7 @@ local hexcolors = {
 		purple = "800080",
 		teal = "008080",
 		silver = "C0C0C0",
-		
+
 		gray = "808080",
 		red = "FF0000",
 		lime = "00FF00",
@@ -37,12 +37,13 @@ laptop.register_app("painting", {
 	app_info = "Show/Edit Pictures",
 	formspec_func = function(app, mtos)
 		local data = mtos.bdev:get_app_storage('system', 'painting')
+		if not data then return end
 		data.files = data.files or {}
 		if not data.brush_color then
-			data.brush_color = "000000" 
+			data.brush_color = "000000"
 		end
 		if not data.resolution then
-			data.resolution = 16 
+			data.resolution = 16
 		end
 		if not data.grid then
 			data.grid = {}
@@ -104,6 +105,7 @@ laptop.register_app("painting", {
 	end,
 	receive_fields_func = function(app, mtos, sender, fields)
 		local data = mtos.bdev:get_app_storage('system', 'painting')
+		if not data then return end
 		if fields.text then
 			data.text = fields.text
 		end
@@ -123,7 +125,7 @@ laptop.register_app("painting", {
 			local store = mtos.bdev:get_app_storage(data.selected_disk_name, store_area)
 			if store then
 				data.grid = store[data.selected_file_name].content
-	  	  	  	  data.resolution = #data.grid
+				data.resolution = #data.grid
 			end
 		elseif fields.save then
 			mtos:select_file_dialog({
@@ -144,35 +146,27 @@ laptop.register_app("painting", {
 		elseif fields.new_16 then
 			data.selected_disk_name = nil
 			data.selected_file_name = nil
-			data.resolution = 16 
+			data.resolution = 16
 			data.grid = nil
 		elseif fields.new_32 then
 			data.selected_disk_name = nil
 			data.selected_file_name = nil
-			data.resolution = 32 
+			data.resolution = 32
 			data.grid = nil
 		elseif fields.print then
 			mtos:print_picture_dialog({
 				label = data.selected_file_name,
 				text = data.text,
 			})
-		elseif fields.set_hex then
+		elseif fields.set_hex and #fields.hex_color >= 6 then
 			local color = {
-				r = tonumber("00"..fields.hex_color:sub(1,2),16),
-				g = tonumber("00"..fields.hex_color:sub(3,4),16),
-				b = tonumber("00"..fields.hex_color:sub(5,6),16),
-				a = fields.hex_color:sub(7,8),
+				r = tonumber("00"..fields.hex_color:sub(1,2),16) or 255,
+				g = tonumber("00"..fields.hex_color:sub(3,4),16) or 255,
+				b = tonumber("00"..fields.hex_color:sub(5,6),16) or 255,
+				a = tonumber(fields.hex_color:sub(7,8),16) or 255,
 			}
-	  	  	  if color.a=="" then
-	  	  	  	  color.a = 255
-	  	  	  else
-				color.a = tonumber(color.a, 16)
-	  	  	  end
-	  	  	  if color.a==255 then
-	  	  	  	  data.brush_color = string.format("%02x%02x%02x", color.r, color.g, color.b)
-	  	  	  else
-	  	  	  	  data.brush_color = string.format("%02x%02x%02x%02x", color.r, color.g, color.b, color.a)
-	  	  	  end
+
+			data.brush_color = string.format("%02x%02x%02x%02x", color.r, color.g, color.b, color.a)
 		else
 			-- check for pixel click
 			for y = 1,data.resolution do
@@ -180,7 +174,7 @@ laptop.register_app("painting", {
 					local key = "pixel_"..y.."_"..x
 					if fields[key] then
 						local line = data.grid[y] or {}
-						  line[x] = data.brush_color..""
+						line[x] = data.brush_color..""
 						return
 					end
 				end

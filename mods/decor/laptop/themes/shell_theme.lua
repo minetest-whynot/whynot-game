@@ -4,7 +4,7 @@ laptop.register_theme("CS-BOS Shell", {
 	major_button = "laptop_theme_shell_major_button.png",
 	minor_button = "laptop_theme_shell_minor_button.png",
 	minor_textcolor = "#FFFFFF",
-	back_button = "laptop_theme_shell_back_button.png",	
+	back_button = "laptop_theme_shell_back_button.png",
 	back_textcolor = "#000000",
 	exit_button = "laptop_theme_shell_exit_button.png",
 	exit_character = " ",

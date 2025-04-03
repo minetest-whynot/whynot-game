@@ -199,7 +199,7 @@ end
 
 -- Power off the system
 function os_class:power_off(new_node_name)
-  local meta = minetest.get_meta(self.pos)
+	local meta = minetest.get_meta(self.pos)
 	meta:set_int("LV_EU_demand", 0)
 	meta:set_int("LV_EU_input", 0)
 	meta:set_int("generator_demand", 0)

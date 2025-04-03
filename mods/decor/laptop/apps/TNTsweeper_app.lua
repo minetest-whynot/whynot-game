@@ -60,6 +60,7 @@ end
 function sweeper_class:reveal(sel_w, sel_h)
 	local board = self.data.board
 	local sel = self:get(sel_w, sel_h)
+	if not sel then return end
 
 	-- unmark bomb
 	if sel.bomb_marked then
@@ -90,6 +91,7 @@ end
 
 function sweeper_class:toggle_bomb_mark(sel_w, sel_h)
 	local sel = self:get(sel_w, sel_h)
+	if not sel then return end
 	if sel.bomb_marked then
 		self.data.bomb_count = self.data.bomb_count - 1
 		sel.bomb_marked = nil
@@ -134,7 +136,7 @@ laptop.register_app("tntsweeper", {
 					formspec = formspec .. "image["..pos..";"..config.icon_size..","..config.icon_size..";"..mtos.theme:get_texture("laptop_boom.png").."]"
 				elseif field.count > 0 then
 					local lbpos = ((w+0.4)*config.icon_size*0.8)..','..((h+0.1)*config.icon_size*0.85)
-					formspec = formspec .. mtos.theme:get_label(lbpos, field.count)
+					formspec = formspec .. mtos.theme:get_label(lbpos, tostring(field.count))
 				end
 			end
 		end
@@ -161,7 +163,7 @@ laptop.register_app("tntsweeper", {
 		local sweeper = get_sweeper(data)
 		local config = level_config[sweeper.data.level]
 		for field, _ in pairs(fields) do
-			if field:sub(1,6) ==  'field:' then
+			if field:sub(1,6) == 'field:' then
 				local sel_w, sel_h
 				for str in field:gmatch("([^:]+)") do
 					if str ~= 'field' then

@@ -1,13 +1,13 @@
 # Laptop | Computers emulation for Minetest
 
-The Laptop mod is a group collaboration between bell07, Cross_over, Gerold55, Toby109tt, v-rob, veNext, Grizzly Adam  and Yours truly lol.
+The Laptop mod is a group collaboration between bell07, Cross_over, Gerold55, Toby109tt, v-rob, veNext, Grizzly Adam and Yours truly lol.
 We aim to make a working laptop inside of MineTest.
 There are different computers, apps which run on computers, media to store data and different themes to personalize the appearance.
 
 ![Screenshot](https://github.com/Gerold55/minetest-laptop/blob/master/screenshot.png)
 
-An [API.md](https://github.com/Gerold55/minetest-laptop/blob/master/API.md) is given to develop additional components. 
-The mod includes next components: 
+An [API.md](https://github.com/Gerold55/minetest-laptop/blob/master/API.md) is given to develop additional components.
+The mod includes next components:
 
 ## Hardware
 

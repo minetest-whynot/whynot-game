@@ -53,12 +53,15 @@ end
 
 -- load all themes
 local theme_path = minetest.get_modpath('laptop')..'/themes/'
-local theme_list = minetest.get_dir_list(theme_path, false)
+local theme_list = {
+	"ambershell", "argyle", "basic", "blue",
+	"boing", "bubbles", "circuit", "clouds",
+	"cubic", "freedom", "fruit", "greenshell",
+	"magma", "printer", "red", "shell", "snowpines"
+}
 
 for _, file in ipairs(theme_list) do
-	if file:sub(-10) == '_theme.lua' then
-		dofile(theme_path..file)
-	end
+	dofile(theme_path..file.."_theme.lua")
 end
 
 local theme_class = {}

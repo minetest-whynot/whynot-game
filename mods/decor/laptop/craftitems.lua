@@ -254,7 +254,8 @@ minetest.register_craftitem("laptop:printed_paper", {
 	on_use = function(itemstack, user)
 		local meta = itemstack:get_meta()
 		local data = meta:to_table().fields
-		local formspec = "size[8,8]" .. default.gui_bg .. default.gui_bg_img ..
+		local formspec = "size[8,8]" ..
+				laptop.close_btn("8.5,-0.4", user) ..
 				"label[0,0;" .. minetest.formspec_escape(data.title or "unnamed") ..
 				" by " .. (data.author or "unknown") .. " from " .. os.date("%c", data.timestamp) .. "]"..
 				"textarea[0.5,1;7.5,7;;" ..

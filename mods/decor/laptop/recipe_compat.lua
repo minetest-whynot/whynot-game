@@ -8,8 +8,8 @@ laptop.recipe_compat = {
 	fpga = '-unknown-', programmer = '-unknown-', delayer = '-unknown-',
 	controller = '-unknown-', light_red = '-unknown-', light_green = '-unknown-',
 	light_blue = '-unknown-',
-  plastic = '-unknown-', motor = '-unknown-',
-  battery = '-unknown-', lv_transformer = '-unknown-',
+	plastic = '-unknown-', motor = '-unknown-',
+	battery = '-unknown-', lv_transformer = '-unknown-',
 }
 
 local rc = laptop.recipe_compat
@@ -26,6 +26,12 @@ if minetest.get_modpath('default') then
 	rc.motor = 'default:steel_ingot'
 	rc.battery = 'default:steel_ingot'
 	rc.lv_transformer = 'default:copper_ingot'
+end
+
+if minetest.get_modpath('inv_themes') then
+	rc.tin = 'default:gold_ingot'
+	rc.copper = 'default:gold_ingot'
+	rc.lv_transformer = 'default:gold_ingot'
 end
 
 if minetest.get_modpath('homedecor') then
@@ -64,7 +70,9 @@ if minetest.get_modpath('mesecons_delayer') then
 	rc.delayer = 'mesecons_delayer:delayer_off_1'
 end
 
-if minetest.get_modpath('mesecons_luacontroller') then
+if minetest.get_modpath('mesecons_microcontroller') then
+	rc.controller = 'mesecons_microcontroller:microcontroller0000'
+elseif minetest.get_modpath('mesecons_luacontroller') then
 	rc.controller = 'mesecons_luacontroller:luacontroller0000'
 end
 
@@ -75,7 +83,7 @@ if minetest.get_modpath('mesecons_lightstone') then
 end
 
 if minetest.get_modpath('basic_materials') then
-  rc.plastic = 'basic_materials:plastic_sheet'
+	rc.plastic = 'basic_materials:plastic_sheet'
 	rc.motor = 'basic_materials:motor'
 end
 

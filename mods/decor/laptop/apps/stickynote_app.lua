@@ -6,6 +6,7 @@ laptop.register_app("stickynote", {
 	app_info = "Write Text Documents",
 	formspec_func = function(app, mtos)
 		local data = mtos.bdev:get_app_storage('system', 'stickynote')
+		if not data then return end
 		data.files = data.files or {}
 		data.text = data.text or ""
 
@@ -32,6 +33,7 @@ laptop.register_app("stickynote", {
 	end,
 	receive_fields_func = function(app, mtos, sender, fields)
 		local data = mtos.bdev:get_app_storage('system', 'stickynote')
+		if not data then return end
 		if fields.text then
 			data.text = fields.text
 		end

@@ -31,6 +31,7 @@
 [submodule "builder/mods_src/decor/laptop"]
 	path = builder/mods_src/decor/laptop
 	url = https://github.com/MoNTE48/laptop
+	branch = multicraft
 [submodule "builder/mods_src/decor/mtg_plus"]
 	path = builder/mods_src/decor/mtg_plus
 	url = https://repo.or.cz/minetest_mtg_plus.git

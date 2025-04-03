@@ -5,7 +5,7 @@ laptop.register_theme("Snow Pines", {
 	major_textcolor = "#FFFFFF",
 	minor_button = "laptop_theme_snowpines_minor_button.png",
 	minor_textcolor = "#FFFFFF",
-	back_button = "laptop_theme_snowpines_exit_button.png",	
+	back_button = "laptop_theme_snowpines_exit_button.png",
 	back_textcolor = "#000000",
 	exit_button = "laptop_theme_snowpines_exit_button.png",
 	exit_textcolor = "#000000",

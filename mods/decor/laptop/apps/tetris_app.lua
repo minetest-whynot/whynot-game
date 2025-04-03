@@ -194,10 +194,10 @@ function tetris_class:key(fields)
 		self:move(0, 1)
 	end
 	if fields.drop then
-	   while not self:stuck() do
+		while not self:stuck() do
 			t.score = t.score + 2
 			self:move(0, 1)
-	   end
+		end
 	end
 	if fields.rotateright then
 		self:rotate(1)
@@ -281,4 +281,3 @@ laptop.register_app("tetris", {
 		end
 	end,
 })
-

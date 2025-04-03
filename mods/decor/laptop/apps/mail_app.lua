@@ -20,6 +20,10 @@ laptop.register_app("mail", {
 			return false
 		end
 		local account = cloud[mtos.sysram.current_player]
+		if not account then
+			mtos:set_app() -- no player. Back to launcher
+			return false
+		end
 		account.selected_box = account.selected_box or "inbox"
 		account.selected_index = nil -- will be new determinated by selectedmessage
 		local box = account[account.selected_box] -- inbox or outbox
@@ -28,7 +32,7 @@ laptop.register_app("mail", {
 		local formspec =
 				mtos.theme:get_tableoptions()..
 				"tablecolumns[" ..
-						"image,align=center,1="..mtos.theme:get_texture('laptop_mail.png')..",2="..mtos.theme:get_texture('laptop_mail_read.png')..";"..  --icon column
+						"image,align=center,1="..mtos.theme:get_texture('laptop_mail.png')..",2="..mtos.theme:get_texture('laptop_mail_read.png')..";".. --icon column
 						"color;"..	-- subject and date color
 						"text;".. -- subject
 						"text,padding=1.5;".. -- sender
@@ -60,9 +64,9 @@ laptop.register_app("mail", {
 
 				-- set sender or receiver
 				if account.selected_box == "inbox" then
-					formspec = formspec..minetest.formspec_escape(message.sender or "") ..","  -- body
+					formspec = formspec..minetest.formspec_escape(message.sender or "") .."," -- body
 				else
-					formspec = formspec..minetest.formspec_escape(message.receiver or "") ..","  -- body
+					formspec = formspec..minetest.formspec_escape(message.receiver or "") .."," -- body
 				end
 
 				-- set date
@@ -162,7 +166,7 @@ laptop.register_app("mail", {
 			account.selected_box = "inbox"
 			account.selectedmessage = nil
 		elseif account.selected_index then
-			if fields.delete then 
+			if fields.delete then
 				table.remove(box, account.selected_index)
 				account.selectedmessage = nil
 			elseif fields.reply then
@@ -230,6 +234,10 @@ laptop.register_view("mail:compose", {
 	formspec_func = function(app, mtos)
 		local cloud = mtos.bdev:get_app_storage('cloud', 'mail')
 		local account = cloud[mtos.sysram.current_player]
+		if not account then
+			mtos:set_app() -- no player. Back to launcher
+			return false
+		end
 		account.newmessage = account.newmessage or {}
 		local message = account.newmessage
 
@@ -268,6 +276,10 @@ laptop.register_view("mail:compose", {
 
 		local cloud = mtos.bdev:get_app_storage('cloud', 'mail')
 		local account = cloud[mtos.sysram.current_player]
+		if not account then
+			mtos:set_app() -- no player. Back to launcher
+			return false
+		end
 		account.newmessage = account.newmessage or {}
 		local message = account.newmessage
 

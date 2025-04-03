@@ -464,8 +464,8 @@ function realchess.move(data, pos, from_list, from_index, to_list, to_index, _, 
 	end
 
 	if pieceTo:sub(11,14) == "king" then
-		data.messageWhite =  playerName.." won the game."
-		data.messageBlack =  playerName.." won the game."
+		data.messageWhite = playerName.." won the game."
+		data.messageBlack = playerName.." won the game."
 		data.winner = thisMove
 	end
 
@@ -474,6 +474,11 @@ end
 
 local function timeout_format(timeout_limit)
 	local time_remaining = timeout_limit - minetest.get_gametime()
+
+	if time_remaining < 0 then
+		time_remaining = 0
+	end
+
 	local minutes = math.floor(time_remaining / 60)
 	local seconds = time_remaining % 60
 
@@ -526,6 +531,7 @@ register_piece("king")
 				data.playerWhite = ""
 				data.lastMove = ""
 				data.winner = ""
+				data.lastMoveTime = minetest.get_gametime()
 
 				data.lastMoveTime = 0
 				data.castlingBlackL = 1
@@ -575,6 +581,7 @@ register_piece("king")
 			end
 			local formspec =
 					"bgcolor[#080808BB;true]background[3,1;8,8;laptop_realchess_chess_bg.png]"..
+					'style_type[list;bgimg=;bgimg_hovered=]' ..
 					mtos.theme:get_button('12,1;2,2', 'major', 'new', 'New Game', 'Start a new game')..
 					"list[context;board;3,1;8,8;]"..
 					"listcolors[#00000000;#00000000;#00000000;#30434C;#FFF]"
@@ -617,7 +624,7 @@ register_piece("king")
 			data.messageWhite = nil
 			data.messageOther = nil
 
-			local ret = realchess.move(data, mtos.pos, from_list, from_index, to_list, to_index, count, player), false  --reshow = true
+			local ret = realchess.move(data, mtos.pos, from_list, from_index, to_list, to_index, count, player), false --reshow = true
 			minetest.after(0, mtos.set_app, mtos, mtos.sysram.current_app) -- refresh screen
 			return ret
 		end,

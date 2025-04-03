@@ -7,7 +7,7 @@ laptop.class_lib.app = app_class
 -- internally used: get current app formspec
 function app_class:get_formspec()
 	local app_result
-	if  self.formspec_func then
+	if self.formspec_func then
 		app_result = self.formspec_func(self, self.os)
 	else
 		app_result = ""
@@ -16,16 +16,16 @@ function app_class:get_formspec()
 		return app_result
 	end
 
-	if app_result == false then
+	if not app_result then
 		return false
 	end
 
 	local launcher = self.os:get_app(self.os.hwdef.custom_launcher or "launcher")
-	local window_formspec = ""
+	local window_formspec, suffix
 	if launcher.appwindow_formspec_func then
-		window_formspec = launcher.appwindow_formspec_func(launcher, self, self.os)
+		window_formspec, suffix = launcher.appwindow_formspec_func(launcher, self, self.os)
 	end
-	return window_formspec..app_result
+	return (window_formspec or "") .. app_result .. (suffix or "")
 end
 
 -- internally used: process input
@@ -79,18 +79,20 @@ end
 
 -- load all apps
 local app_path = minetest.get_modpath('laptop')..'/apps/'
-local app_list = minetest.get_dir_list(app_path, false)
+local app_list = {
+	"browser", "calculator", "cs-bos", "launcher",
+	"launcher_settings", "mail", "os_dialogs", "os_print",
+	"painting", "realchess", "removable", "shell-os",
+	"stickynote", "tetris", "TNTsweeper"
+}
 
 for _, file in ipairs(app_list) do
-	if file:sub(-8) == '_app.lua' then
-		dofile(app_path..file)
-	end
+	dofile(app_path..file.."_app.lua")
 end
 
 dofile(app_path..'browser_app.lua')
 for _, file in ipairs(app_list) do
-    if file:sub(-8) == '_app.lua' and file ~= 'browser_app.lua' 
-then
-        dofile(app_path..file)
-    end
+	if file ~= 'browser' then
+		dofile(app_path..file.."_app.lua")
+	end
 end

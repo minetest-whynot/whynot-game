@@ -1,5 +1,4 @@
-laptop.browser_api  = {} -- Be useable from other mods
-
+laptop.browser_api = {} -- Be useable from other mods
 
 -- Helper function - navigate to page
 function laptop.browser_api.navigate(app, mtos, pagename)

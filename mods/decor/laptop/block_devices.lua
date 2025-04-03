@@ -5,7 +5,7 @@ local bdev = {}
 -- Check hardware capabilities { "hdd", "floppy", "usb", "net", "liveboot" }
 function bdev:is_hw_capability(hw_cap)
 	for i, cap in ipairs(self.os.hwdef.hw_capabilities) do
-		if cap == hw_cap or cap == hw_cap:sub(18, -1) then  --"laptop_removable_*"then
+		if cap == hw_cap or cap == hw_cap:sub(18, -1) then --"laptop_removable_*"then
 			return cap
 		end
 	end

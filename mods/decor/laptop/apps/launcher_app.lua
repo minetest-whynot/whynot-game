@@ -1,4 +1,3 @@
-
 laptop.register_app("launcher", {
 	app_name = "Main launcher",
 	app_info = "Desktop Enviroment",
@@ -9,9 +8,10 @@ laptop.register_app("launcher", {
 		-- no system found. Error
 		if not mtos.sysdata then
 			local formspec = "size[10,7]background[10,7;0,0;laptop_launcher_insert_floppy.png;true]"..
+					laptop.close_btn("10.5,-0.4")..
 					"listcolors[#00000069;#5A5A5A;#141318;#30434C;#FFF]"..
 					"list[nodemeta:"..mtos.pos.x..','..mtos.pos.y..','..mtos.pos.z..";main;2.5,3;1,1;]" ..
-					"list[current_player;main;0,6.5;8,1;]" ..
+					"list[current_player;main;0,6.5;9,1;]" ..
 					"listring[nodemeta:"..mtos.pos.x..','..mtos.pos.y..','..mtos.pos.z..";main]" ..
 					"listring[current_player;main]"
 
@@ -27,9 +27,11 @@ laptop.register_app("launcher", {
 		local c_row_count = 4
 
 		local i = 0
-		local out = "size[15,10]"
+		local out = "size[17,10]no_prepend[]bgcolor[#08080880;true]container[1,0]" ..
+			"listcolors[#00000069;#5A5A5A;#141318;#30434C;#FFF]" ..
+			laptop.close_btn("15.5,-0.4")
 		if mtos.theme.desktop_background then
-			out = out..'background[15,10;0,0;'..mtos.theme.desktop_background..';true]'
+			out = out..'background[-0.3,-0.325;15.6,10.9;'..mtos.theme.desktop_background..';false]'
 		end
 		local appslist_sorted = {}
 		for name, def in pairs(laptop.apps) do
@@ -45,12 +47,17 @@ laptop.register_app("launcher", {
 			mtos.theme:get_button((x-.5)..','..(y+1.08)..';2,.5', 'desktop_icon_label', e.name, e.def.app_name)
 		end
 		out = out..mtos.theme:get_button(mtos.theme.taskbar_clock_position_and_size, "major", "os_clock", os.date("%c"))
-		return out
+		return out .. "container_end[]"
 	end,
 	appwindow_formspec_func = function(launcher_app, app, mtos)
-		local formspec = 'size[15,10]'
+		local formspec = 'size[17,10]no_prepend[]bgcolor[#08080880;true]container[1,0]' ..
+			"listcolors[#00000069;#5A5A5A;#141318;#30434C;#FFF]" ..
+			'style_type[list;bgimg=formspec_cell.png;bgimg_hovered=formspec_cell_hovered.png]' ..
+			laptop.close_btn("15.5,-0.4")
 		if mtos.theme.app_background then
-			formspec = formspec..'background[0,0;15,10;'..mtos.theme.app_background..';true]'
+			-- This background is actually a different size to the main
+			-- background because why shouldn't it be different
+			formspec = formspec..'background[-0.2,-0.25;15.4,10.75;'..mtos.theme.app_background..';false]'
 		end
 		if #mtos.sysram.stack > 0 then
 			formspec = formspec..mtos.theme:get_button('-0.29,-0.31;1.09,0.61', 'back', 'os_back', '<', 'Return to previous screen')
@@ -63,7 +70,7 @@ laptop.register_app("launcher", {
 			end
 		end
 		formspec = formspec..mtos.theme:get_button('14.2,-0.31;1.09,0.61', 'exit', 'os_exit', mtos.theme.exit_character, 'Exit app')
-		return formspec
+		return formspec, "container_end[]"
 	end,
 	receive_fields_func = function(launcher_app, mtos, sender, fields)
 		for name, descr in pairs(fields) do

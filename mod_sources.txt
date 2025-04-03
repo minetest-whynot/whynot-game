@@ -51,8 +51,8 @@ origin https://github.com/mt-mods/homedecor_modpack (fetch)
 * b30d7b532bfe57ce157c59fbea82244f0684fcab Merge pull request #92 from AntumMT/player_meta
 Mod: decor/homedecor_modpack
 
-origin https://codeberg.org/Dacmot/minetest-laptop.git (fetch)
-* 03b33937def3f2537ee87a733ca35526efe599e4 Merge pull request #144 from sfence/sfence_painting
+origin https://github.com/MoNTE48/laptop (fetch)
+* 2929bbda89b66d3d7a0f7171c6cdd307b8a95f8d Fix inventory size
 Mod: decor/laptop
 
 origin https://repo.or.cz/minetest_mtg_plus.git (fetch)
