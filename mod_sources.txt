@@ -151,8 +151,8 @@ origin https://github.com/minetest-mods/intllib (fetch)
 * 6ebdc5388dd8583fbcbb556817769604a5a4cddf Add `modname.lang.tr` locales support (#32)
 Mod: libs/intllib
 
-origin https://github.com/dacmot/sfcraftguide.git (fetch)
-* ed75268b9e4a7b04df2c942c1bc389b31ecbde4a Add supported games
+origin https://codeberg.org/Dacmot/sfcraftguide.git (fetch)
+* c84b2f2430aaf8159922920c008bc0bff1867ecb Update ContentDB url to codeberg
 Mod: libs/sfcraftguide
 
 origin https://github.com/mt-mods/xcompat.git (fetch)

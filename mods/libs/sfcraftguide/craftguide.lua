@@ -138,8 +138,8 @@ local function get_craftable_recipes(output)
 		return nil
 	end
 
-  local groups_to_item = sfcg.groups_to_item
-  local reg_items = minetest.registered_items
+	local groups_to_item = sfcg.groups_to_item
+	local reg_items = minetest.registered_items
 	for i = #recipes, 1, -1 do
 		for _, item in pairs(recipes[i].items) do
 			local groups = extract_groups(item)
@@ -167,8 +167,8 @@ end
 local function cache_usages(recipe)
 
 	local added = {}
-  local usages_cache = sfcg.usages_cache
-  local reg_items = minetest.registered_items
+	local usages_cache = sfcg.usages_cache
+	local reg_items = minetest.registered_items
 
 	for _, item in pairs(recipe.items) do
 		if not added[item] then
@@ -241,8 +241,11 @@ function sfcg.on_receive_fields(player, fields)
 		data.items = sfcg.init_items
 		return true
 
-	elseif fields.key_enter_field == "filter" or fields.search then
-		local new = fields.filter:lower()
+	elseif (fields.key_enter_field == "filter" or fields.search)
+			and fields.filter then
+		local new = fields.filter:sub(1, 128) -- truncate to a sane length
+				:gsub("[%z\1-\8\11-\31\127]", "") -- strip naughty control characters (keeps \t and \n)
+				:lower() -- search is case insensitive
 		if data.filter == new then
 			return
 		end
@@ -306,15 +309,15 @@ function sfcg.update_for_player(playername)
 	if player then
 		sfcg.execute_search(sfcg.player_data[playername])
 	end
-  return player
+	return player
 end
 
 
 minetest.register_on_mods_loaded(function()
 
-  local recipes_cache = sfcg.recipes_cache
-  local usages_cache = sfcg.usages_cache
-  local init_items = sfcg.init_items
+	local recipes_cache = sfcg.recipes_cache
+	local usages_cache = sfcg.usages_cache
+	local init_items = sfcg.init_items
 	for name, def in pairs(minetest.registered_items) do
 		if show_item(def) then
 			local recipes = get_craftable_recipes(name)
@@ -342,14 +345,14 @@ minetest.register_on_joinplayer(function(player)
 	local info = minetest.get_player_information(name)
 
 	local data = {
-    playername = name,
+		playername = name,
 		filter = "",
 		pagenum = 1,
 		items = sfcg.init_items,
 		lang_code = info.lang_code
 	}
-  sfcg.player_data[name] = data
-  sfcg.execute_search(data)
+	sfcg.player_data[name] = data
+	sfcg.execute_search(data)
 end)
 
 

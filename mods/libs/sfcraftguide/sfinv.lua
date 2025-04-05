@@ -47,10 +47,10 @@ local function recipe_fs(fs, data)
 	local base_x = 3 - width
 	local base_y = rows == 1 and 1 or 0
 
-  -- Use local variables for faster execution in loop
-  local item_button_fs = sfcg.item_button_fs
-  local extract_groups = sfcg.extract_groups
-  local groups_to_item = sfcg.groups_to_item
+	-- Use local variables for faster execution in loop
+	local item_button_fs = sfcg.item_button_fs
+	local extract_groups = sfcg.extract_groups
+	local groups_to_item = sfcg.groups_to_item
 
 	for i, item in pairs(recipe.items) do
 		local x, y = coords(i - 1, width)
@@ -96,13 +96,14 @@ local function get_formspec(player)
 		"tooltip[clear;"..esc(S("Reset")).."]"..
 		"tooltip[prev;"..esc(S("Previous page")).."]"..
 		"tooltip[next;"..esc(S("Next page")).."]"..
+		"field_enter_after_edit[filter;true]"..
 		"field_close_on_enter[filter;false]")
 
 	if #data.items == 0 then
 		table.insert(fs, "label[3,2;"..esc(S("No items to show.")).."]")
 	else
 
-    local item_button_fs = sfcg.item_button_fs
+		local item_button_fs = sfcg.item_button_fs
 
 		local first_item = (data.pagenum - 1) * 32
 		for i = first_item, first_item + 31 do
