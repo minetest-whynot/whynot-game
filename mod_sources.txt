@@ -239,8 +239,8 @@ origin https://codeberg.org/Wuzzy/minetest_hudbars.git (fetch)
 * fc85005873574e96d511c7a96e5d8cbe3c6e16df Credit FromKaniv for Ukrainian translation
 Mod: player/hudbars
 
-origin https://github.com/dacmot/moarmour (fetch)
-* b62930ec41e3de2aba96125bac9c5f2e2350b004 Remove max line length
+origin https://codeberg.org/Dacmot/moarmour.git (fetch)
+* d959cf4e1a8ce6776e9854d1b17ade0c9a4ce29b Update README
 Mod: player/moarmour
 
 origin https://github.com/minetest-mods/playeranim (fetch)

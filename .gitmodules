@@ -145,7 +145,7 @@
 	url = https://codeberg.org/Wuzzy/minetest_hudbars.git
 [submodule "builder/mods_src/player/moarmour"]
 	path = builder/mods_src/player/moarmour
-	url = https://github.com/dacmot/moarmour
+	url = https://codeberg.org/Dacmot/moarmour.git
 [submodule "builder/mods_src/player/playeranim"]
 	path = builder/mods_src/player/playeranim
 	url = https://github.com/minetest-mods/playeranim
