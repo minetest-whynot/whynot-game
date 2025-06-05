@@ -3,8 +3,10 @@ airutils.modname = core.get_current_modname()
 
 --function to format formspec for mineclone. In case of minetest, just returns an empty string
 function airutils.get_itemslot_bg(a, b, c, d)
-    if mcl_formspec then
-        return mcl_formspec.get_itemslot_bg(a,b,c,d)
+    if airutils.is_mcl then
+        if mcl_formspec then
+            return mcl_formspec.get_itemslot_bg(a,b,c,d)
+        end
     end
     return ""
 end

@@ -82,6 +82,7 @@ dofile(core.get_modpath("airutils") .. DIR_DELIM .. "lib_planes" .. DIR_DELIM ..
 dofile(core.get_modpath("airutils") .. DIR_DELIM .. "lib_copter" .. DIR_DELIM .. "init.lua")
 dofile(core.get_modpath("airutils") .. DIR_DELIM .. "texture_management.lua")
 dofile(core.get_modpath("airutils") .. DIR_DELIM .. "attach_extern_ent.lua")
+dofile(core.get_modpath("airutils") .. DIR_DELIM .. "painter.lua")
 if airutils._use_signs_api then dofile(core.get_modpath("airutils") .. DIR_DELIM .. "text.lua") end
 
 local is_biofuel_installed = false

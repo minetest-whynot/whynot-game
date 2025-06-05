@@ -84,25 +84,25 @@ core.register_entity("airutils:wind_indicator",{
         if vel > 11 then
             b_b = get_smooth(65, 11, 0, vel)
         end
-        self.object:set_bone_position("b_b", {x=0,y=8.25,z=0}, {x=0,y=0,z=-b_b})
+        self.object:set_bone_position("b_b", {x=0,y=8.25,z=0}, {x=0,y=0,z=b_b})
 
         local b_c = 15
         if vel > 16 then
             b_c = get_smooth(15, 16, 11, vel)
         end
-        self.object:set_bone_position("b_c", {x=0,y=6.0,z=0}, {x=0,y=0,z=-b_c})
+        self.object:set_bone_position("b_c", {x=0,y=6.0,z=0}, {x=0,y=0,z=b_c})
 
         local b_d = 5
         if vel > 22 then
             b_d = get_smooth(5, 22, 16, vel)
         end
-        self.object:set_bone_position("b_d", {x=0,y=4.5,z=0}, {x=0,y=0,z=-b_d})
+        self.object:set_bone_position("b_d", {x=0,y=4.5,z=0}, {x=0,y=0,z=b_d})
 
         local b_e = 2
         if vel > 28 then
             b_e = get_smooth(2, 28, 22, vel)
         end
-        self.object:set_bone_position("b_e", {x=0,y=3,z=0}, {x=0,y=0,z=-b_e})
+        self.object:set_bone_position("b_e", {x=0,y=3,z=0}, {x=0,y=0,z=b_e})
 
         --core.chat_send_all("Wind Direction: "..math.deg(wind_yaw))
     end,	-- required
