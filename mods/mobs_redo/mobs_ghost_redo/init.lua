@@ -23,10 +23,10 @@
 
 -- Translation and settings
 
-local S = minetest.get_translator("mobs_ghost_redo")
-local ghost_daytime_check = minetest.settings:get_bool("mobs_ghost_redo_daytime_check")
-local ghost_bones_only = minetest.settings:get_bool("mobs_ghost_redo_bones_only")
-local ghost_difficulty = minetest.settings:get_bool("mobs_ghost_redo_difficulty")
+local S = core.get_translator("mobs_ghost_redo")
+local ghost_daytime_check = core.settings:get_bool("mobs_ghost_redo_daytime_check")
+local ghost_bones_only = core.settings:get_bool("mobs_ghost_redo_bones_only")
+local ghost_difficulty = core.settings:get_bool("mobs_ghost_redo_difficulty")
 
 if ghost_daytime_check == nil then
 	ghost_daytime_check = false
@@ -42,7 +42,7 @@ end
 
 -- Mineclone check
 
-local mod_mcl = minetest.get_modpath("mcl_core")
+local mod_mcl = core.get_modpath("mcl_core")
 
 -- Spawn settings (default, bones only, mineclone)
 
@@ -64,7 +64,7 @@ end
 
 local function is_daytime()
 
-	local time = minetest.get_timeofday() * 24000
+	local time = core.get_timeofday() * 24000
 
 	if time >= 4700 and time <= 19250 then return true end
 end
@@ -222,7 +222,7 @@ mobs:register_mob("mobs_ghost_redo:ghost", {
 
 -- Ghost spawn - Check for custom spawn.lua
 
-local MP = minetest.get_modpath(minetest.get_current_modname()) .. "/"
+local MP = core.get_modpath(core.get_current_modname()) .. "/"
 local input = io.open(MP .. "spawn.lua", "r")
 
 if input then
