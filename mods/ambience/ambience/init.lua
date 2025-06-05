@@ -8,7 +8,7 @@ ambience = {}
 local SOUNDVOLUME = 1.0
 local MUSICVOLUME = 0.6
 local MUSICINTERVAL = 60 * 20
-local play_music = minetest.settings:get_bool("ambience_music") ~= false
+local play_music = core.settings:get_bool("ambience_music") ~= false
 local radius = 6
 local playing = {} -- user settings, timers and current set playing
 local sound_sets = {} -- all the sounds and their settings
@@ -17,7 +17,7 @@ local set_nodes = {} -- all the nodes needed for sets
 
 -- translation
 
-local S = minetest.get_translator("ambience")
+local S = core.get_translator("ambience")
 
 -- add set to list
 
@@ -90,7 +90,7 @@ function ambience.group_total(ntab, ngrp)
 
 	for _,n in pairs(ntab) do
 
-		def = minetest.registered_nodes[_]
+		def = core.registered_nodes[_]
 		grp = def and def.groups and def.groups[ngrp]
 
 		if grp and grp > 0 then
@@ -103,7 +103,7 @@ end
 
 -- setup table when player joins
 
-minetest.register_on_joinplayer(function(player)
+core.register_on_joinplayer(function(player)
 
 	if player then
 
@@ -122,7 +122,7 @@ end)
 
 -- remove table when player leaves
 
-minetest.register_on_leaveplayer(function(player)
+core.register_on_leaveplayer(function(player)
 
 	if player then playing[player:get_player_name()] = nil end
 end)
@@ -140,7 +140,7 @@ local function get_ambience(player, tod, name)
 		-- play music on interval check
 		if playing[name].music > MUSICINTERVAL and playing[name].music_handler == nil then
 
-			playing[name].music_handler = minetest.sound_play("ambience_music", {
+			playing[name].music_handler = core.sound_play("ambience_music", {
 				to_player = name,
 				gain = playing[name].mvol
 			})
@@ -157,16 +157,16 @@ local function get_ambience(player, tod, name)
 
 	pos.y = pos.y + eyeh -- head level
 
-	local nod_head = minetest.get_node(pos).name
+	local nod_head = core.get_node(pos).name
 
 	pos.y = (pos.y - eyeh) + 0.2 -- foot level
 
-	local nod_feet = minetest.get_node(pos).name
+	local nod_feet = core.get_node(pos).name
 
 	pos.y = pos.y - 0.2 -- reset pos
 
 	-- get all set nodes around player
-	local ps, cn = minetest.find_nodes_in_area(
+	local ps, cn = core.find_nodes_in_area(
 			{x = pos.x - radius, y = pos.y - radius, z = pos.z - radius},
 			{x = pos.x + radius, y = pos.y + radius, z = pos.z + radius}, set_nodes)
 
@@ -178,8 +178,8 @@ local function get_ambience(player, tod, name)
 		if set and set.sound_check then
 
 			-- get biome data
-			local bdata = minetest.get_biome_data(pos)
-			local biome = bdata and minetest.get_biome_name(bdata.biome) or ""
+			local bdata = core.get_biome_data(pos)
+			local biome = bdata and core.get_biome_name(bdata.biome) or ""
 
 			-- pass settings to set function for condition check
 			local set_name, gain = set.sound_check({
@@ -206,9 +206,9 @@ end
 local timer = 0
 local random = math.random
 
-minetest.register_globalstep(function(dtime)
+core.register_globalstep(function(dtime)
 
-	local players = minetest.get_connected_players()
+	local players = core.get_connected_players()
 	local pname
 
 	-- reduce sound timer for each player and stop/reset when needed
@@ -223,7 +223,7 @@ minetest.register_globalstep(function(dtime)
 			if playing[pname].timer <= 0 then
 
 				if playing[pname].handler then
-					minetest.sound_stop(playing[pname].handler)
+					core.sound_stop(playing[pname].handler)
 				end
 
 				playing[pname].set = nil
@@ -237,7 +237,7 @@ minetest.register_globalstep(function(dtime)
 	timer = timer + dtime ; if timer < 1 then return end ; timer = 0
 
 	local number, chance, ambience, handler, ok
-	local tod = minetest.get_timeofday()
+	local tod = core.get_timeofday()
 
 	-- loop through players
 	for _, player in pairs(players) do
@@ -257,7 +257,7 @@ minetest.register_globalstep(function(dtime)
 
 --print ("-- change stop", set_name, playing[pname].handler)
 
-				minetest.sound_stop(playing[pname].handler)
+				core.sound_stop(playing[pname].handler)
 
 				playing[pname].set = nil
 				playing[pname].gain = nil
@@ -278,7 +278,7 @@ minetest.register_globalstep(function(dtime)
 			ambience = sound_sets[set_name].sounds[number] -- grab sound information
 
 			-- play sound
-			handler = minetest.sound_play(ambience.name, {
+			handler = core.sound_play(ambience.name, {
 				to_player = pname,
 				gain = ((ambience.gain or 0.3) + (MORE_GAIN or 0)) * playing[pname].svol,
 				pitch = ambience.pitch or 1.0
@@ -301,7 +301,7 @@ end)
 
 -- sound volume command
 
-minetest.register_chatcommand("svol", {
+core.register_chatcommand("svol", {
 	params = S("<svol>"),
 	description = S("set sound volume (0.1 to 1.0)"),
 	privs = {},
@@ -313,7 +313,7 @@ minetest.register_chatcommand("svol", {
 		if svol < 0.1 then svol = 0.1 end
 		if svol > 1.0 then svol = 1.0 end
 
-		local player = minetest.get_player_by_name(name)
+		local player = core.get_player_by_name(name)
 		local meta = player:get_meta()
 
 		meta:set_string("ambience.svol", svol)
@@ -326,7 +326,7 @@ minetest.register_chatcommand("svol", {
 
 -- music volume command (0 stops music)
 
-minetest.register_chatcommand("mvol", {
+core.register_chatcommand("mvol", {
 	params = S("<mvol>"),
 	description = S("set music volume (0.1 to 1.0, 0 to stop music)"),
 	privs = {},
@@ -338,17 +338,17 @@ minetest.register_chatcommand("mvol", {
 		-- stop music currently playing by setting volume to 0
 		if mvol == 0 and playing[name].music_handler then
 
-			minetest.sound_stop(playing[name].music_handler)
+			core.sound_stop(playing[name].music_handler)
 
 			playing[name].music_handler = nil
 
-			minetest.chat_send_player(name, S("Music stopped!"))
+			core.chat_send_player(name, S("Music stopped!"))
 		end
 
 		if mvol < 0 then mvol = 0 end
 		if mvol > 1.0 then mvol = 1.0 end
 
-		local player = minetest.get_player_by_name(name)
+		local player = core.get_player_by_name(name)
 		local meta = player:get_meta()
 
 		meta:set_string("ambience.mvol", mvol)
@@ -361,7 +361,7 @@ minetest.register_chatcommand("mvol", {
 
 -- load default sound sets
 
-dofile(minetest.get_modpath("ambience") .. "/soundsets.lua")
+dofile(core.get_modpath("ambience") .. "/soundsets.lua")
 
 
 print("[MOD] Ambience Lite loaded")

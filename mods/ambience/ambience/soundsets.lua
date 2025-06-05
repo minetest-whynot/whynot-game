@@ -8,8 +8,8 @@
 
 -- mod support
 
-local mod_def = minetest.get_modpath("default")
-local mod_mcl = minetest.get_modpath("mcl_core")
+local mod_def = core.get_modpath("default")
+local mod_mcl = core.get_modpath("mcl_core")
 
 -- Underwater sounds play when player head is submerged
 
@@ -23,7 +23,7 @@ ambience.add_set("underwater", {
 
 	sound_check = function(def)
 
-		local nodef = minetest.registered_nodes[def.head_node]
+		local nodef = core.registered_nodes[def.head_node]
 
 		if nodef and nodef.groups and nodef.groups.water then
 			return "underwater"
@@ -33,20 +33,20 @@ ambience.add_set("underwater", {
 
 -- Splashing sound plays when player walks inside water nodes (if enabled)
 
-if minetest.settings:get_bool("ambience_water_move") ~= false then
+if core.settings:get_bool("ambience_water_move") ~= false then
 
 	-- override default water sounds
 
 	if mod_def then
-		minetest.override_item("default:water_source", { sounds = {} })
-		minetest.override_item("default:water_flowing", { sounds = {} })
-		minetest.override_item("default:river_water_source", { sounds = {} })
-		minetest.override_item("default:river_water_flowing", { sounds = {} })
+		core.override_item("default:water_source", { sounds = {} })
+		core.override_item("default:water_flowing", { sounds = {} })
+		core.override_item("default:river_water_source", { sounds = {} })
+		core.override_item("default:river_water_flowing", { sounds = {} })
 	elseif mod_mcl then
-		minetest.override_item("mcl_core:water_source", { sounds = {} })
-		minetest.override_item("mcl_core:water_flowing", { sounds = {} })
-		minetest.override_item("mclx_core:river_water_source", { sounds = {} })
-		minetest.override_item("mclx_core:river_water_flowing", { sounds = {} })
+		core.override_item("mcl_core:water_source", { sounds = {} })
+		core.override_item("mcl_core:water_flowing", { sounds = {} })
+		core.override_item("mclx_core:river_water_source", { sounds = {} })
+		core.override_item("mclx_core:river_water_flowing", { sounds = {} })
 	end
 
 	ambience.add_set("splash", {
@@ -59,7 +59,7 @@ if minetest.settings:get_bool("ambience_water_move") ~= false then
 
 		sound_check = function(def)
 
-			local nodef = minetest.registered_nodes[def.feet_node]
+			local nodef = core.registered_nodes[def.feet_node]
 
 			if nodef and nodef.groups and nodef.groups.water then
 
@@ -74,7 +74,7 @@ if minetest.settings:get_bool("ambience_water_move") ~= false then
 end
 
 -- check for env_sounds mod, if not found enable water flowing and lava sounds
-if not minetest.get_modpath("env_sounds") then
+if not core.get_modpath("env_sounds") then
 
 	-- Water sound plays when near flowing water
 
