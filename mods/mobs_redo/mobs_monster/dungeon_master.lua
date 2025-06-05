@@ -1,5 +1,5 @@
 
-local S = minetest.get_translator("mobs_monster")
+local S = core.get_translator("mobs_monster")
 
 -- custom dungeon master types
 
@@ -77,7 +77,7 @@ mobs:register_mob("mobs_monster:dungeon_master", {
 
 			tmp = master_types[n]
 
-			if minetest.find_node_near(pos, 1, tmp.nodes) then
+			if core.find_node_near(pos, 1, tmp.nodes) then
 
 				self.base_texture = tmp.skins
 				self.object:set_properties({textures = tmp.skins})
@@ -178,4 +178,4 @@ mobs:register_arrow("mobs_monster:fireball", {
 	end
 })
 
---minetest.override_item("default:obsidian", {on_blast = function() end})
+--core.override_item("default:obsidian", {on_blast = function() end})

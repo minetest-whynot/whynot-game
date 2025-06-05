@@ -1,5 +1,5 @@
 
-local S = minetest.get_translator("mobs_monster")
+local S = core.get_translator("mobs_monster")
 
 -- Oerkki by PilzAdam
 

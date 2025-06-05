@@ -1,7 +1,7 @@
 
 -- translation and custom stone monster types
 
-local S = minetest.get_translator("mobs_monster")
+local S = core.get_translator("mobs_monster")
 
 local stone_types = {
 
@@ -85,7 +85,7 @@ mobs:register_mob("mobs_monster:stone_monster", {
 
 			tmp = stone_types[n]
 
-			if minetest.find_node_near(pos, 1, tmp.nodes) then
+			if core.find_node_near(pos, 1, tmp.nodes) then
 
 				self.base_texture = tmp.skins
 				self.object:set_properties({textures = tmp.skins})

@@ -37,6 +37,7 @@ lucky_block:add_blocks({
 	{"spw", "mobs:spider", 5},
 	{"spw", "mobs:mese_monster", 2},
 	{"spw", "mobs:lava_flan", 3},
+	{"spw", "mobs_monster:land_guard", 2},
 	{"nod", "default:chest", 0, {
 		{name = "mobs:lava_orb", max = 1}}},
 })

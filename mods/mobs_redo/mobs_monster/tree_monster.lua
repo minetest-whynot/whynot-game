@@ -1,7 +1,7 @@
 
 -- translation and custom tree monster types
 
-local S = minetest.get_translator("mobs_monster")
+local S = core.get_translator("mobs_monster")
 
 local tree_types = {
 
@@ -114,7 +114,7 @@ mobs:register_mob("mobs_monster:tree_monster", {
 
 			if tmp.explode and math.random(2) == 1 then return true end
 
-			if minetest.find_node_near(pos, 1, tmp.nodes) then
+			if core.find_node_near(pos, 1, tmp.nodes) then
 
 				self.base_texture = tmp.skins
 				self.object:set_properties({textures = tmp.skins})

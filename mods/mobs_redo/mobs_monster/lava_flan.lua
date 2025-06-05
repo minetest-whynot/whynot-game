@@ -1,5 +1,5 @@
 
-local S = minetest.get_translator("mobs_monster")
+local S = core.get_translator("mobs_monster")
 
 -- Lava Flan by Zeg9 (additional textures by JurajVajda)
 
@@ -39,9 +39,12 @@ mobs:register_mob("mobs_monster:lava_flan", {
 	fire_damage = 0,
 	light_damage = 0,
 	immune_to = {
-		{"mobs:pick_lava", -2} -- lava pick heals 2 health
+		{"mobs:pick_lava", -2}, -- lava pick heals 2 health
+		{"default:lava_source", 0}, -- so that damage per second doesnt affect mob
+		{"default:lava_flowing", 0},
+		{"nether:lava_source", 0},
 	},
-	fly_in = {"default:lava_source", "default:lava_flowing"},
+	fly_in = {"default:lava_source", "default:lava_flowing", "nether:lava_source"},
 	animation = {
 		speed_normal = 15,
 		speed_run = 15,
@@ -59,7 +62,7 @@ mobs:register_mob("mobs_monster:lava_flan", {
 	on_die = function(self, pos)
 
 		local cod = self.cause_of_death or {}
-		local def = cod.node and minetest.registered_nodes[cod.node]
+		local def = cod.node and core.registered_nodes[cod.node]
 
 		if def and def.groups and def.groups.water then
 
@@ -67,7 +70,7 @@ mobs:register_mob("mobs_monster:lava_flan", {
 
 			mobs:effect(pos, 40, "tnt_smoke.png", 3, 5, 2, 0.5, nil, false)
 
-			minetest.sound_play("fire_extinguish_flame",
+			core.sound_play("fire_extinguish_flame",
 					{pos = pos, max_hear_distance = 12, gain = 1.5}, true)
 
 			self.object:remove()
@@ -78,16 +81,16 @@ mobs:register_mob("mobs_monster:lava_flan", {
 		else
 			mobs:effect(pos, 40, "fire_basic_flame.png", 2, 3, 2, 5, 10, nil)
 
-			local nods = minetest.find_nodes_in_area(
+			local nods = core.find_nodes_in_area(
 					{x = pos.x, y = pos.y + 1, z = pos.z},
 					{x = pos.x, y = pos.y, z = pos.z}, "air")
 
 			 -- place flame if position empty and flame exists
 			if nods and #nods > 0
-			and minetest.registered_nodes["fire:basic_flame"] then
+			and core.registered_nodes["fire:basic_flame"] then
 
 				pos = nods[math.random(#nods)]
-				minetest.set_node(pos, {name = "fire:basic_flame"})
+				core.set_node(pos, {name = "fire:basic_flame"})
 			end
 
 			self.object:remove()
@@ -119,15 +122,15 @@ mobs:alias_mob("mobs:lava_flan", "mobs_monster:lava_flan")
 
 -- lava orb
 
-minetest.register_craftitem(":mobs:lava_orb", {
+core.register_craftitem(":mobs:lava_orb", {
 	description = S("Lava orb"),
 	inventory_image = "zmobs_lava_orb.png",
 	light_source = 14
 })
 
-minetest.register_alias("zmobs:lava_orb", "mobs:lava_orb")
+core.register_alias("zmobs:lava_orb", "mobs:lava_orb")
 
-minetest.register_craft({
+core.register_craft({
 	type = "fuel",
 	recipe = "mobs:lava_orb",
 	burntime = 80
@@ -135,9 +138,9 @@ minetest.register_craft({
 
 -- backup and replace old function
 
-local old_handle_node_drops = minetest.handle_node_drops
+local old_handle_node_drops = core.handle_node_drops
 
-function minetest.handle_node_drops(pos, drops, digger)
+function core.handle_node_drops(pos, drops, digger)
 
 	-- are we a player using the lava pick?
 	if digger and digger:get_wielded_item():get_name() == ("mobs:pick_lava") then
@@ -151,7 +154,7 @@ function minetest.handle_node_drops(pos, drops, digger)
 
 			while not stack:is_empty() do
 
-				local output, decremented_input = minetest.get_craft_result({
+				local output, decremented_input = core.get_craft_result({
 						method = "cooking", width = 1, items = {stack}})
 
 				if output.item:is_empty() then
@@ -177,7 +180,7 @@ function minetest.handle_node_drops(pos, drops, digger)
 
 			mobs:effect(pos, 1, "tnt_smoke.png", 3, 5, 2, 0.5, nil, false)
 
-			minetest.sound_play("fire_extinguish_flame",
+			core.sound_play("fire_extinguish_flame",
 					{pos = pos, max_hear_distance = 5, gain = 0.05}, true)
 		end
 	end
@@ -187,7 +190,7 @@ end
 
 -- lava pick, smelts nodes when you dig
 
-minetest.register_tool(":mobs:pick_lava", {
+core.register_tool(":mobs:pick_lava", {
 	description = S("Lava Pickaxe"),
 	inventory_image = "mobs_pick_lava.png",
 	tool_capabilities = {
@@ -206,7 +209,7 @@ minetest.register_tool(":mobs:pick_lava", {
 
 -- recipe
 
-minetest.register_craft({
+core.register_craft({
 	output = "mobs:pick_lava",
 	recipe = {
 		{"mobs:lava_orb", "mobs:lava_orb", "mobs:lava_orb"},
@@ -217,9 +220,9 @@ minetest.register_craft({
 
 -- Add [toolranks] mod support
 
-if minetest.get_modpath("toolranks") then
+if core.get_modpath("toolranks") then
 
-	minetest.override_item("mobs:pick_lava", {
+	core.override_item("mobs:pick_lava", {
 		original_description = S("Lava Pickaxe"),
 		description = toolranks.create_description("Lava Pickaxe", 0, 1),
 		after_use = toolranks.new_afteruse})
@@ -276,7 +279,7 @@ mobs:register_egg("mobs_monster:obsidian_flan", S("Obsidian Flan"),
 
 -- obsidian arrow and grief setting check
 
-local mobs_griefing = minetest.settings:get_bool("mobs_griefing") ~= false
+local mobs_griefing = core.settings:get_bool("mobs_griefing") ~= false
 
 mobs:register_arrow("mobs_monster:obsidian_arrow", {
 	visual = "sprite",
@@ -302,13 +305,13 @@ mobs:register_arrow("mobs_monster:obsidian_arrow", {
 
 	hit_node = function(self, pos, node)
 
-		if mobs_griefing == false or minetest.is_protected(pos, "") then
+		if mobs_griefing == false or core.is_protected(pos, "") then
 			return
 		end
 
 		local texture = "default_dirt.png" --fallback texture
 		local radius = 1
-		local def = node and minetest.registered_nodes[node.name]
+		local def = node and core.registered_nodes[node.name]
 
 		if not def then return end
 
@@ -322,7 +325,7 @@ mobs:register_arrow("mobs_monster:obsidian_arrow", {
 			return
 		end
 
-		minetest.add_particlespawner({
+		core.add_particlespawner({
 			amount = 32,
 			time = 0.1,
 			minpos = vector.subtract(pos, radius / 2),
@@ -341,10 +344,10 @@ mobs:register_arrow("mobs_monster:obsidian_arrow", {
 			collisiondetection = true
 		})
 
-		minetest.set_node(pos, {name = "air"})
+		core.set_node(pos, {name = "air"})
 
 		local snd = def.sounds and def.sounds.dug or "default_dig_crumbly"
 
-		minetest.sound_play(snd, {pos = pos, max_hear_distance = 8, gain = 1.0}, true)
+		core.sound_play(snd, {pos = pos, max_hear_distance = 8, gain = 1.0}, true)
 	end
 })

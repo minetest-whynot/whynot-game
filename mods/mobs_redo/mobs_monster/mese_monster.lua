@@ -1,7 +1,7 @@
 
 -- translation and custom mese monster types
 
-local S = minetest.get_translator("mobs_monster")
+local S = core.get_translator("mobs_monster")
 
 local mese_monster_types = {
 
@@ -238,11 +238,11 @@ mobs:register_mob("mobs_monster:mese_monster", {
 		-- direction sets type N = red, E = green, S = blue, W = purple
 		-- Just for fun - S01
 
-		local objects = minetest.get_objects_inside_radius(pos, 10)
+		local objects = core.get_objects_inside_radius(pos, 10)
 
 		for i, obj in ipairs(objects) do
 
-			if minetest.is_player(obj)
+			if core.is_player(obj)
 			and obj:get_wielded_item():get_name() == "mobs_monster:mese_monster" then
 
 				local degree = (360 + math.deg(obj:get_look_horizontal())) % 360
@@ -271,7 +271,7 @@ mobs:register_mob("mobs_monster:mese_monster", {
 
 -- mese arrow item
 
-minetest.register_craftitem("mobs_monster:mese_crystal_fragment_arrow", {
+core.register_craftitem("mobs_monster:mese_crystal_fragment_arrow", {
 	description = S("Mese Monster Arrow"),
 	inventory_image = "mobs_mese_arrow.png",
 	groups = {not_in_creative_inventory = 1}
@@ -333,7 +333,7 @@ mobs:alias_mob("mobs:mese_monster", "mobs_monster:mese_monster")
 
 local f = "default:mese_crystal_fragment"
 
-minetest.register_craft({
+core.register_craft({
 	output = "default:mese_crystal",
 	recipe = {{f, f, f}, {f, f, f}, {f, f, f}}
 })

@@ -1,5 +1,5 @@
 
-local S = minetest.get_translator("mobs_monster")
+local S = core.get_translator("mobs_monster")
 
 -- helper function
 
@@ -115,7 +115,7 @@ mobs:register_mob("mobs_monster:spider", {
 
 			tmp = spider_types[n]
 
-			if minetest.find_node_near(pos, 1, tmp.nodes) then
+			if core.find_node_near(pos, 1, tmp.nodes) then
 
 				self.base_texture = tmp.skins
 				self.object:set_properties({textures = tmp.skins})
@@ -172,7 +172,7 @@ mobs:register_mob("mobs_monster:spider", {
 
 		local dir_x = -math_sin(yaw) * (prop.collisionbox[4] + 0.5)
 		local dir_z = math_cos(yaw) * (prop.collisionbox[4] + 0.5)
-		local nod = minetest.get_node_or_nil({
+		local nod = core.get_node_or_nil({
 			x = pos.x + dir_x,
 			y = pos.y + 0.5,
 			z = pos.z + dir_z
@@ -182,8 +182,8 @@ mobs:register_mob("mobs_monster:spider", {
 		local v = self.object:get_velocity()
 
 		-- can only climb solid facings
-		if not nod or not minetest.registered_nodes[nod.name]
-		or not minetest.registered_nodes[nod.name].walkable then
+		if not nod or not core.registered_nodes[nod.name]
+		or not core.registered_nodes[nod.name].walkable then
 			self.disable_falling = nil
 			v.y = 0
 			self.object:set_velocity(v)
@@ -264,7 +264,7 @@ mobs:alias_mob("mobs:spider", "mobs_monster:spider")
 
 -- cobweb and recipe
 
-minetest.register_node(":mobs:cobweb", {
+core.register_node(":mobs:cobweb", {
 	description = S("Cobweb"),
 	drawtype = "plantlike",
 	visual_scale = 1.2,
@@ -285,7 +285,7 @@ minetest.register_node(":mobs:cobweb", {
 	sounds = mobs.node_sound_leaves_defaults()
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "mobs:cobweb",
 	recipe = {
 		{"farming:string", "", "farming:string"},
@@ -298,12 +298,12 @@ minetest.register_craft({
 
 local web_place = function(pos)
 
-	if minetest.find_node_near(pos, 1, {"ignore"}) then return end
+	if core.find_node_near(pos, 1, {"ignore"}) then return end
 
-	local pos2 = minetest.find_node_near(pos, 1, {"air", "group:leaves"}, true)
+	local pos2 = core.find_node_near(pos, 1, {"air", "group:leaves"}, true)
 
 	if pos2 then
-		minetest.swap_node(pos2, {name = "mobs:cobweb"})
+		core.swap_node(pos2, {name = "mobs:cobweb"})
 	end
 end
 

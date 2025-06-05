@@ -1,13 +1,13 @@
 
 -- translation and drops
 
-local S = minetest.get_translator("mobs_monster")
+local S = core.get_translator("mobs_monster")
 
 local mob_drops = {
 	{name = "fireflies:firefly", chance = 1, min = 1, max = 1}
 }
 
-if minetest.get_modpath("ethereal") then
+if core.get_modpath("ethereal") then
 
 	table.insert(mob_drops,
 			{name = "ethereal:fire_dust", chance = 1, min = 1, max = 1})

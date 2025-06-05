@@ -1,8 +1,8 @@
 
 -- translation and mod path
 
-local S = minetest.get_translator("mobs_monster")
-local path = minetest.get_modpath(minetest.get_current_modname()) .. "/"
+local S = core.get_translator("mobs_monster")
+local path = core.get_modpath(core.get_current_modname()) .. "/"
 
 -- Check for custom mob spawn file
 
@@ -18,7 +18,7 @@ end
 
 local function ddoo(mob)
 
-	if minetest.settings:get_bool("mobs_monster." .. mob) == false then
+	if core.settings:get_bool("mobs_monster." .. mob) == false then
 		print("[Mobs_Monster] " .. mob .. " disabled!")
 		return
 	end
@@ -48,7 +48,7 @@ end
 
 -- Lucky Blocks
 
-if minetest.get_modpath("lucky_block") then
+if core.get_modpath("lucky_block") then
 	dofile(path .. "lucky_block.lua")
 end
 

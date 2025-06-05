@@ -1,7 +1,7 @@
 
 -- translation and custom land guard types
 
-local S = minetest.get_translator("mobs_monster")
+local S = core.get_translator("mobs_monster")
 
 local guard_types = {
 
@@ -38,7 +38,7 @@ mobs:register_mob("mobs_monster:land_guard", {
 	attack_type = "dogfight",
 	group_attack = true,
 	reach = 3,
-	damage = 15,
+	damage = 12,
 	hp_min = 30,
 	hp_max = 65,
 	armor = 50,
@@ -85,7 +85,7 @@ mobs:register_mob("mobs_monster:land_guard", {
 
 			tmp = guard_types[n]
 
-			if minetest.find_node_near(pos, 1, tmp.nodes) then
+			if core.find_node_near(pos, 1, tmp.nodes) then
 
 				self.base_texture = { tmp.skins[math.random(#tmp.skins)] }
 				self.object:set_properties({textures = self.base_texture})

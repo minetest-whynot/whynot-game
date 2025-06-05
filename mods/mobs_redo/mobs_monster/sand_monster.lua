@@ -1,5 +1,5 @@
 
-local S = minetest.get_translator("mobs_monster")
+local S = core.get_translator("mobs_monster")
 
 -- custom particle effects
 
@@ -11,7 +11,7 @@ local function effect(pos, amount, texture, min_size, max_size, radius, gravity,
 	gravity = gravity or -10
 	glow = glow or 0
 
-	minetest.add_particlespawner({
+	core.add_particlespawner({
 		amount = amount,
 		time = 0.25,
 		minpos = pos,
@@ -86,7 +86,7 @@ mobs:register_mob("mobs_monster:sand_monster", {
 --[[
 	custom_attack = function(self, p)
 		local pos = self.object:get_pos()
-		minetest.add_item(pos, "default:sand")
+		core.add_item(pos, "default:sand")
 	end,
 ]]
 	on_die = function(self, pos)
