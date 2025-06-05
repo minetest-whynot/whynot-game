@@ -1,13 +1,13 @@
 
 -- mod check and sound settings
 
-local def = minetest.get_modpath("default")
-local mcl = minetest.get_modpath("mcl_core")
+local def = core.get_modpath("default")
+local mcl = core.get_modpath("mcl_core")
 local snd = mcl and mcl_sounds.node_sound_glass_defaults() or default.node_sound_glass_defaults()
 
 -- PB&J Pup node
 
-minetest.register_node("pbj_pup:pbj_pup", {
+core.register_node("pbj_pup:pbj_pup", {
 	description = "PB&J Pup",
 	tiles = {
 		"pbj_pup_sides.png", "pbj_pup_jelly.png", "pbj_pup_sides.png",
@@ -24,7 +24,7 @@ minetest.register_node("pbj_pup:pbj_pup", {
 
 -- Nyan Cat node
 
-minetest.register_node(":nyancat:nyancat", {
+core.register_node(":nyancat:nyancat", {
 	description = "Nyan Cat",
 	tiles = {
 		"nyancat_side.png", "nyancat_side.png", "nyancat_side.png",
@@ -41,7 +41,7 @@ minetest.register_node(":nyancat:nyancat", {
 
 -- MooGNU node
 
-minetest.register_node(":moognu:moognu", {
+core.register_node(":moognu:moognu", {
 	description = "MooGNU",
 	tiles = {
 		"moognu_side.png", "moognu_side.png", "moognu_side.png",
@@ -58,7 +58,7 @@ minetest.register_node(":moognu:moognu", {
 
 -- Rainbow node
 
-minetest.register_node(":nyancat:nyancat_rainbow", {
+core.register_node(":nyancat:nyancat_rainbow", {
 	description = "Rainbow",
 	tiles = {
 		"nyancat_rainbow.png^[transformR90",
@@ -76,25 +76,25 @@ minetest.register_node(":nyancat:nyancat_rainbow", {
 
 -- Fuels
 
-minetest.register_craft({
+core.register_craft({
 	type = "fuel",
 	recipe = "pbj_pup:pbj_pup",
 	burntime = 10
 })
 
-minetest.register_craft({
+core.register_craft({
 	type = "fuel",
 	recipe = "nyancat:nyancat",
 	burntime = 10
 })
 
-minetest.register_craft({
+core.register_craft({
 	type = "fuel",
 	recipe = "moognu:moognu",
 	burntime = 10
 })
 
-minetest.register_craft({
+core.register_craft({
 	type = "fuel",
 	recipe = "nyancat:nyancat_rainbow",
 	burntime = 10
@@ -108,24 +108,24 @@ local function place(pos, facedir, length)
 
 	if facedir > 3 then facedir = 0 end
 
-	local tailvec = minetest.facedir_to_dir(facedir)
+	local tailvec = core.facedir_to_dir(facedir)
 	local p = {x = pos.x, y = pos.y, z = pos.z}
 	local num = math.random(#types)
 
-	minetest.swap_node(p, {name = types[num], param2 = facedir})
+	core.swap_node(p, {name = types[num], param2 = facedir})
 
 	for i = 1, length do
 
 		p.x = p.x + tailvec.x
 		p.z = p.z + tailvec.z
 
-		minetest.swap_node(p, {name = "nyancat:nyancat_rainbow", param2 = facedir})
+		core.swap_node(p, {name = "nyancat:nyancat_rainbow", param2 = facedir})
 	end
 end
 
 -- Do we generate PB&J Pup and Nyan Cat's in world?
 
-if minetest.settings:get_bool("pbj_pup_generate") ~= false then
+if core.settings:get_bool("pbj_pup_generate") ~= false then
 
 	local function generate(minp, maxp, seed)
 
@@ -150,16 +150,16 @@ if minetest.settings:get_bool("pbj_pup_generate") ~= false then
 		end
 	end
 
-	minetest.register_on_generated(generate)
+	core.register_on_generated(generate)
 
 	if def then default.generate_nyancats = generate end --Legacy
 end
 
 -- Legacy
 
-minetest.register_alias("default:nyancat", "nyancat:nyancat")
-minetest.register_alias("default:nyancat_rainbow", "nyancat:nyancat_rainbow")
-minetest.register_alias("pbj_pup:pbj_pup_candies", "nyancat:nyancat_rainbow")
+core.register_alias("default:nyancat", "nyancat:nyancat")
+core.register_alias("default:nyancat_rainbow", "nyancat:nyancat_rainbow")
+core.register_alias("pbj_pup:pbj_pup_candies", "nyancat:nyancat_rainbow")
 
 if def then default.make_nyancat = place end
 
