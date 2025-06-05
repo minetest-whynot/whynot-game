@@ -50,7 +50,7 @@ functions needed for the mob to work properly which contains the following:
                    set to 0 for jumping mobs only.
    'randomly_turn' if set to false then mob will not turn to face player or
                    randomly turn while walking or standing.
-   'jump'          when true allows your mob to jump updwards.
+   'jump'          when true allows your mob to jump updwards[DEPRECATED].
    'jump_height'   holds the height your mob can jump, 0 to disable jumping.
    'can_leap'      when true obstacles like fences or pits wont stop a mob
                    from trying to jump out.
@@ -92,7 +92,7 @@ functions needed for the mob to work properly which contains the following:
                       When set to 16 then only natural light will kill mob.
    'suffocation'   when > 0 mobs will suffocate inside solid blocks and will be
                    hurt by the value given every second (0 to disable).
-   'floats'        when set to 1 mob will float in water, 0 has them sink.
+   'floats'        when True mob will float in water, otherwise they sink.
    'follow'        mobs follow player when holding any of the items which appear
                    on this table, the same items can be fed to a mob to tame or
                    breed e.g. {"farming:wheat", "default:apple", "group:fish"}
@@ -102,7 +102,8 @@ functions needed for the mob to work properly which contains the following:
    'docile_by_day'       when true has mobs wandering around during daylight
                          hours and only attacking player at night or when
                          provoked.
-   'attack_chance'       0 to 100 chance the mob will attack (default is 5).
+   'attack_chance'       0 to 100 chance the mob will attack (default is 5),
+                         set to 100 so that mob needs to be provoked to attack.
    'attack_patience'     Time in seconds before mob gives up attacking if
                          player isn't seen (Defaults to 11).
    'attack_monsters'     when true mob will attack monsters.
@@ -230,8 +231,6 @@ functions needed for the mob to work properly which contains the following:
    'rotate'            custom model rotation, 0 = front, 90 = side, 180 = back,
                        270 = other side.
    'glow'              has mob glow without light source, 0 to 15 or nil to disable
-   'double_melee_attack' when true has the api choose between 'punch' and
-                      'punch2' animations. [DEPRECATED]
 
    'animation'       holds a table containing animation names and settings for use with
                      mesh models:

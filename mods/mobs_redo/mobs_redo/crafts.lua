@@ -1,8 +1,8 @@
 
-local S = minetest.get_translator("mobs")
-local FS = function(...) return minetest.formspec_escape(S(...)) end
-local mc2 = minetest.get_modpath("mcl_core")
-local mod_def = minetest.get_modpath("default")
+local S = core.get_translator("mobs")
+local FS = function(...) return core.formspec_escape(S(...)) end
+local mc2 = core.get_modpath("mcl_core")
+local mod_def = core.get_modpath("default")
 
 -- determine which sounds to use, default or mcl_sounds
 
@@ -25,21 +25,11 @@ sound_helper("node_sound_water_defaults")
 sound_helper("node_sound_snow_defaults")
 sound_helper("node_sound_glass_defaults")
 
--- mob repellent node
-
-minetest.register_node("mobs:mob_repellent", {
-	description = S("Mob Repellent"),
-	tiles = {"mobs_repellent.png"},
-	is_ground_content = false,
-	groups = {handy = 1, cracky = 3},
-	sounds = mobs.node_sound_stone_defaults()
-})
-
 -- helper function to add {eatable} group to food items
 
 function mobs.add_eatable(item, hp)
 
-	local def = minetest.registered_items[item]
+	local def = core.registered_items[item]
 
 	if def then
 
@@ -47,7 +37,7 @@ function mobs.add_eatable(item, hp)
 
 		groups.eatable = hp ; groups.flammable = 2
 
-		minetest.override_item(item, {groups = groups})
+		core.override_item(item, {groups = groups})
 	end
 end
 
@@ -56,6 +46,7 @@ end
 local items = {
 	paper = mc2 and "mcl_core:paper" or "default:paper",
 	dye_black = mc2 and "mcl_dye:black" or "dye:black",
+	dye_red = mc2 and "mcl_dye:red" or "dye:red",
 	string = mc2 and "mcl_mobitems:string" or "farming:string",
 	stick = mc2 and "mcl_core:stick" or "default:stick",
 	diamond = mc2 and "mcl_core:diamond" or "default:diamond",
@@ -68,17 +59,18 @@ local items = {
 	fence_wood = mc2 and "group:fence_wood" or "default:fence_wood",
 	meat_raw = mc2 and "mcl_mobitems:beef" or "group:food_meat_raw",
 	meat_cooked = mc2 and "mcl_mobitems:cooked_beef" or "group:food_meat",
+	obsidian = mc2 and "mcl_core:obsidian" or "default:obsidian"
 }
 
 -- name tag
 
-minetest.register_craftitem("mobs:nametag", {
+core.register_craftitem("mobs:nametag", {
 	description = S("Name Tag") .. " " .. S("\nRight-click Mobs Redo mob to apply"),
 	inventory_image = "mobs_nametag.png",
 	groups = {flammable = 2, nametag = 1}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "mobs:nametag",
 	recipe = {
 		{ items.paper, items.dye_black, items.string }
@@ -87,7 +79,7 @@ minetest.register_craft({
 
 -- leather
 
-minetest.register_craftitem("mobs:leather", {
+core.register_craftitem("mobs:leather", {
 	description = S("Leather"),
 	inventory_image = "mobs_leather.png",
 	groups = {flammable = 2, leather = 1}
@@ -95,10 +87,10 @@ minetest.register_craftitem("mobs:leather", {
 
 -- raw meat
 
-minetest.register_craftitem("mobs:meat_raw", {
+core.register_craftitem("mobs:meat_raw", {
 	description = S("Raw Meat"),
 	inventory_image = "mobs_meat_raw.png",
-	on_use = minetest.item_eat(3),
+	on_use = core.item_eat(3),
 	groups = {food_meat_raw = 1}
 })
 
@@ -106,16 +98,16 @@ mobs.add_eatable("mobs:meat_raw", 3)
 
 -- cooked meat
 
-minetest.register_craftitem("mobs:meat", {
+core.register_craftitem("mobs:meat", {
 	description = S("Meat"),
 	inventory_image = "mobs_meat.png",
-	on_use = minetest.item_eat(8),
+	on_use = core.item_eat(8),
 	groups = {food_meat = 1}
 })
 
 mobs.add_eatable("mobs:meat", 8)
 
-minetest.register_craft({
+core.register_craft({
 	type = "cooking",
 	output = "mobs:meat",
 	recipe = "mobs:meat_raw",
@@ -124,13 +116,13 @@ minetest.register_craft({
 
 -- lasso
 
-minetest.register_tool("mobs:lasso", {
+core.register_tool("mobs:lasso", {
 	description = S("Lasso (right-click animal to put in inventory)"),
 	inventory_image = "mobs_magic_lasso.png",
 	groups = {flammable = 2}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "mobs:lasso",
 	recipe = {
 		{ items.string, "", items.string},
@@ -139,17 +131,17 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_alias("mobs:magic_lasso", "mobs:lasso")
+core.register_alias("mobs:magic_lasso", "mobs:lasso")
 
 -- net
 
-minetest.register_tool("mobs:net", {
+core.register_tool("mobs:net", {
 	description = S("Net (right-click animal to put in inventory)"),
 	inventory_image = "mobs_net.png",
 	groups = {flammable = 2}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "mobs:net",
 	recipe = {
 		{ items.stick, "", items.stick },
@@ -160,13 +152,13 @@ minetest.register_craft({
 
 -- shears (right click to shear animal)
 
-minetest.register_tool("mobs:shears", {
+core.register_tool("mobs:shears", {
 	description = S("Steel Shears (right-click to shear)"),
 	inventory_image = "mobs_shears.png",
 	groups = {flammable = 2}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "mobs:shears",
 	recipe = {
 		{ "", items.steel_ingot, "" },
@@ -176,13 +168,13 @@ minetest.register_craft({
 
 -- protection rune
 
-minetest.register_craftitem("mobs:protector", {
+core.register_craftitem("mobs:protector", {
 	description = S("Mob Protection Rune"),
 	inventory_image = "mobs_protector.png",
 	groups = {flammable = 2}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "mobs:protector",
 	recipe = {
 		{ items.stone, items.stone, items.stone },
@@ -193,13 +185,13 @@ minetest.register_craft({
 
 -- protection rune (level 2)
 
-minetest.register_craftitem("mobs:protector2", {
+core.register_craftitem("mobs:protector2", {
 	description = S("Mob Protection Rune (Level 2)"),
 	inventory_image = "mobs_protector2.png",
 	groups = {flammable = 2}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "mobs:protector2",
 	recipe = {
 		{ "mobs:protector", items.mese_crystal, "mobs:protector" },
@@ -208,15 +200,34 @@ minetest.register_craft({
 	}
 })
 
+-- mob repellent node
+
+core.register_node("mobs:mob_repellent", {
+	description = S("Mob Repellent (Stops mobs spawning within 16 block radius)"),
+	tiles = {"mobs_repellent.png"},
+	is_ground_content = false,
+	groups = {handy = 1, cracky = 3},
+	sounds = mobs.node_sound_stone_defaults()
+})
+
+core.register_craft({
+	output = "mobs:mob_repellent",
+	recipe = {
+		{ items.obsidian, items.dye_red, items.obsidian },
+		{ items.obsidian, "mobs:protector", items.obsidian },
+		{ items.obsidian, items.obsidian, items.obsidian }
+	}
+})
+
 -- saddle
 
-minetest.register_craftitem("mobs:saddle", {
+core.register_craftitem("mobs:saddle", {
 	description = S("Saddle"),
 	inventory_image = "mobs_saddle.png",
 	groups = {flammable = 2, saddle = 1}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "mobs:saddle",
 	recipe = {
 		{"group:leather", "group:leather", "group:leather"},
@@ -244,7 +255,7 @@ end
 
 -- mob fence top (has enlarged collisionbox to stop mobs getting over)
 
-minetest.register_node("mobs:fence_top", {
+core.register_node("mobs:fence_top", {
 	description = S("Mob Fence Top"),
 	drawtype = "nodebox",
 	tiles = {"default_wood.png"},
@@ -257,7 +268,7 @@ minetest.register_node("mobs:fence_top", {
 	selection_box = {type = "fixed", fixed = {-0.4, -1.5, -0.4, 0.4, 0, 0.4}}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "mobs:fence_top 12",
 	recipe = {
 		{"group:wood", "group:wood", "group:wood"},
@@ -267,13 +278,13 @@ minetest.register_craft({
 
 -- items that can be used as fuel
 
-minetest.register_craft({type = "fuel", recipe = "mobs:nametag", burntime = 3})
-minetest.register_craft({type = "fuel", recipe = "mobs:lasso", burntime = 7})
-minetest.register_craft({type = "fuel", recipe = "mobs:net", burntime = 8})
-minetest.register_craft({type = "fuel", recipe = "mobs:leather", burntime = 4})
-minetest.register_craft({type = "fuel", recipe = "mobs:saddle", burntime = 7})
-minetest.register_craft({type = "fuel", recipe = "mobs:fence_wood", burntime = 7})
-minetest.register_craft({type = "fuel", recipe = "mobs:fence_top", burntime = 2})
+core.register_craft({type = "fuel", recipe = "mobs:nametag", burntime = 3})
+core.register_craft({type = "fuel", recipe = "mobs:lasso", burntime = 7})
+core.register_craft({type = "fuel", recipe = "mobs:net", burntime = 8})
+core.register_craft({type = "fuel", recipe = "mobs:leather", burntime = 4})
+core.register_craft({type = "fuel", recipe = "mobs:saddle", burntime = 7})
+core.register_craft({type = "fuel", recipe = "mobs:fence_wood", burntime = 7})
+core.register_craft({type = "fuel", recipe = "mobs:fence_top", burntime = 2})
 
 
 -- this tool spawns same mob and adds owner, protected, nametag info
@@ -282,7 +293,7 @@ minetest.register_craft({type = "fuel", recipe = "mobs:fence_top", burntime = 2}
 
 local tex_obj
 
-minetest.register_tool(":mobs:mob_reset_stick", {
+core.register_tool(":mobs:mob_reset_stick", {
 	description = S("Mob Reset Stick"),
 	inventory_image = "default_stick.png^[colorize:#ff000050",
 	stack_max = 1,
@@ -300,7 +311,7 @@ minetest.register_tool(":mobs:mob_reset_stick", {
 		if obj and not sneak then
 
 			local self = obj:get_luaentity()
-			local obj2 = minetest.add_entity(obj:get_pos(), self.name)
+			local obj2 = core.add_entity(obj:get_pos(), self.name)
 
 			if obj2 then
 
@@ -336,7 +347,7 @@ minetest.register_tool(":mobs:mob_reset_stick", {
 
 			local name = user:get_player_name()
 
-			minetest.show_formspec(name, "mobs_texture", "size[8,4]"
+			core.show_formspec(name, "mobs_texture", "size[8,4]"
 			.. "field[0.5,1;7.5,0;name;"
 			.. FS("Enter texture:") .. ";" .. bt .. "]"
 			.. "button_exit[2.5,3.5;3,1;mob_texture_change;"
@@ -345,7 +356,7 @@ minetest.register_tool(":mobs:mob_reset_stick", {
 	end
 })
 
-minetest.register_on_player_receive_fields(function(player, formname, fields)
+core.register_on_player_receive_fields(function(player, formname, fields)
 
 	-- right-clicked with nametag and name entered?
 	if formname == "mobs_texture" and fields.name and fields.name ~= "" then
@@ -375,22 +386,22 @@ end)
 
 -- Meat Block
 
-minetest.register_node("mobs:meatblock", {
+core.register_node("mobs:meatblock", {
 	description = S("Meat Block"),
 	tiles = {"mobs_meat_top.png", "mobs_meat_bottom.png", "mobs_meat_side.png"},
 	paramtype2 = "facedir",
 	groups = {choppy = 1, oddly_breakable_by_hand = 1, axey = 1, handy = 1},
 	is_ground_content = false,
 	sounds = mobs.node_sound_dirt_defaults(),
-	on_place = minetest.rotate_node,
-	on_use = minetest.item_eat(20),
+	on_place = core.rotate_node,
+	on_use = core.item_eat(20),
 	_mcl_hardness = 0.8,
 	_mcl_blast_resistance = 1
 })
 
 mobs.add_eatable("mobs:meatblock", 20)
 
-minetest.register_craft({
+core.register_craft({
 	output = "mobs:meatblock",
 	recipe = {
 		{ items.meat_cooked, items.meat_cooked, items.meat_cooked },
@@ -401,22 +412,22 @@ minetest.register_craft({
 
 -- Meat Block (raw)
 
-minetest.register_node("mobs:meatblock_raw", {
+core.register_node("mobs:meatblock_raw", {
 	description = S("Raw Meat Block"),
 	tiles = {"mobs_meat_raw_top.png", "mobs_meat_raw_bottom.png", "mobs_meat_raw_side.png"},
 	paramtype2 = "facedir",
 	groups = {choppy = 1, oddly_breakable_by_hand = 1, axey = 1, handy = 1},
 	is_ground_content = false,
 	sounds = mobs.node_sound_dirt_defaults(),
-	on_place = minetest.rotate_node,
-	on_use = minetest.item_eat(20),
+	on_place = core.rotate_node,
+	on_use = core.item_eat(20),
 	_mcl_hardness = 0.8,
 	_mcl_blast_resistance = 1
 })
 
 mobs.add_eatable("mobs:meatblock_raw", 20)
 
-minetest.register_craft({
+core.register_craft({
 	output = "mobs:meatblock_raw",
 	recipe = {
 		{ items.meat_raw, items.meat_raw, items.meat_raw },
@@ -425,7 +436,7 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
 	type = "cooking",
 	output = "mobs:meatblock",
 	recipe = "mobs:meatblock_raw",
@@ -434,9 +445,9 @@ minetest.register_craft({
 
 -- hearing vines (if mesecons active it acts like blinkyplant)
 
-local mod_mese = minetest.get_modpath("mesecons")
+local mod_mese = core.get_modpath("mesecons")
 
-minetest.register_node("mobs:hearing_vines", {
+core.register_node("mobs:hearing_vines", {
 	description = S("Hearing Vines"),
 	drawtype = "firelike",
 	waving = 1,
@@ -454,12 +465,12 @@ minetest.register_node("mobs:hearing_vines", {
 	},
 	on_sound = function(pos, def)
 		if def.loudness > 0.5 then
-			minetest.set_node(pos, {name = "mobs:hearing_vines_active"})
+			core.set_node(pos, {name = "mobs:hearing_vines_active"})
 		end
 	end
 })
 
-minetest.register_node("mobs:hearing_vines_active", {
+core.register_node("mobs:hearing_vines_active", {
 	description = S("Active Hearing Vines"),
 	drawtype = "firelike",
 	waving = 1,
@@ -479,11 +490,11 @@ minetest.register_node("mobs:hearing_vines_active", {
 		type = "fixed", fixed = {-6 / 16, -0.5, -6 / 16, 6 / 16, -0.25, 6 / 16},
 	},
 	on_construct = function(pos)
-		minetest.get_node_timer(pos):start(1)
+		core.get_node_timer(pos):start(1)
 		if mod_mese then mesecon.receptor_on(pos) end
 	end,
 	on_timer = function(pos)
-		minetest.set_node(pos, {name = "mobs:hearing_vines"})
+		core.set_node(pos, {name = "mobs:hearing_vines"})
 		if mod_mese then mesecon.receptor_off(pos) end
 	end
 })

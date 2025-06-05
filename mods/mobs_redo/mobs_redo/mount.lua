@@ -1,11 +1,11 @@
 
 -- lib_mount by Blert2112 (edited by TenPlus1)
 
-local is_mc2 = minetest.get_modpath("mcl_mobs") -- MineClone2 check
+local is_mc2 = core.get_modpath("mcl_mobs") -- MineClone2 check
 
 -- one of these is needed to ride mobs, otherwise no riding for you
 
-if not minetest.get_modpath("player_api") and not is_mc2 then
+if not core.get_modpath("player_api") and not is_mc2 then
 
 	function mobs.attach() end
 	function mobs.detach() end
@@ -28,7 +28,7 @@ local function node_is(entity)
 
 	if entity.standing_on == "air" then return "air" end
 
-	local def = minetest.registered_nodes[entity.standing_on]
+	local def = core.registered_nodes[entity.standing_on]
 
 	if def.groups.lava then return "lava" end
 	if def.groups.liquid then return "liquid" end
@@ -90,15 +90,15 @@ end
 
 -- detach player on leaving
 
-minetest.register_on_leaveplayer(function(player)
+core.register_on_leaveplayer(function(player)
 	force_detach(player)
 end)
 
 -- detatch all players on shutdown
 
-minetest.register_on_shutdown(function()
+core.register_on_shutdown(function()
 
-	local players = minetest.get_connected_players()
+	local players = core.get_connected_players()
 
 	for i = 1, #players do
 		force_detach(players[i])
@@ -107,7 +107,7 @@ end)
 
 -- detatch player when dead
 
-minetest.register_on_dieplayer(function(player)
+core.register_on_dieplayer(function(player)
 	force_detach(player)
 	return true
 end)
@@ -125,11 +125,11 @@ local function find_free_pos(pos)
 	for _, c in pairs(check) do
 
 		local npos = {x = pos.x + c.x, y = pos.y + c.y, z = pos.z + c.z}
-		local node = minetest.get_node_or_nil(npos)
+		local node = core.get_node_or_nil(npos)
 
 		if node and node.name then
 
-			local def = minetest.registered_nodes[node.name]
+			local def = core.registered_nodes[node.name]
 
 			if def and not def.walkable and def.liquidtype == "none" then
 				return npos
@@ -144,7 +144,7 @@ end
 
 local function is_player(player)
 
-	if player and type(player) == "userdata" and minetest.is_player(player) then
+	if player and type(player) == "userdata" and core.is_player(player) then
 		return true
 	end
 end
@@ -184,7 +184,7 @@ function mobs.attach(entity, player)
 		visual_size = {x = entity.driver_scale.x, y = entity.driver_scale.y}
 	})
 
-	minetest.after(0.2, function()
+	core.after(0.2, function()
 
 		if is_player(player) then
 
@@ -205,7 +205,7 @@ function mobs.detach(player)
 
 	force_detach(player)
 
-	minetest.after(0.1, function()
+	core.after(0.1, function()
 
 		if player and player:is_player() then
 
@@ -299,7 +299,7 @@ function mobs.drive(entity, moving_anim, stand_anim, can_fly, dtime)
 
 				if velo.y == 0
 				and entity.standing_on ~= "air" and entity.standing_on ~= "ignore"
-				and minetest.get_item_group(entity.standing_on, "liquid") == 0 then
+				and core.get_item_group(entity.standing_on, "liquid") == 0 then
 					velo.y = velo.y + entity.jump_height
 					acce_y = acce_y + (acce_y * 3) + 1
 				end
@@ -391,7 +391,7 @@ function mobs.drive(entity, moving_anim, stand_anim, can_fly, dtime)
 			new_acce.y = 0
 			p.y = p.y + 1
 
-			if minetest.get_item_group(entity.standing_in, "liquid") ~= 0 then
+			if core.get_item_group(entity.standing_in, "liquid") ~= 0 then
 
 				if velo.y >= 5 then
 					velo.y = 5
@@ -458,7 +458,7 @@ function mobs.fly(entity, _, speed, shoots, arrow, moving_anim, stand_anim)
 	if ctrl.LMB and ctrl.sneak and shoots then
 
 		local pos = entity.object:get_pos()
-		local obj = minetest.add_entity({
+		local obj = core.add_entity({
 			x = pos.x + 0 + dir.x * 2.5,
 			y = pos.y + 1.5 + dir.y,
 			z = pos.z + 0 + dir.z * 2.5}, arrow)

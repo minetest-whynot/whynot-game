@@ -1,5 +1,5 @@
 
-local S = minetest.get_translator("mobs")
+local S = core.get_translator("mobs")
 
 -- add lucky blocks
 
@@ -21,7 +21,7 @@ lucky_block:add_blocks({
 
 -- pint sized rune, use on tamed mob to shrink to half-size
 
-minetest.register_craftitem(":mobs:pint_sized_rune", {
+core.register_craftitem(":mobs:pint_sized_rune", {
 	description = S("Pint Sized Rune"),
 	inventory_image = "mobs_pint_sized_rune.png",
 	groups = {flammable = 2},
@@ -39,17 +39,17 @@ minetest.register_craftitem(":mobs:pint_sized_rune", {
 		local self = pointed_thing.ref:get_luaentity()
 
 		if not self._cmi_is_mob then
-			minetest.chat_send_player(name, S("Not a Mobs Redo mob!"))
+			core.chat_send_player(name, S("Not a Mobs Redo mob!"))
 			return
 		end
 
 		if not self.tamed then
-			minetest.chat_send_player(name, S("Not tamed!"))
+			core.chat_send_player(name, S("Not tamed!"))
 			return
 		end
 
 		if self.pint_size_potion then
-			minetest.chat_send_player(name, S("Potion already applied!"))
+			core.chat_send_player(name, S("Potion already applied!"))
 			return
 		end
 
@@ -92,7 +92,7 @@ minetest.register_craftitem(":mobs:pint_sized_rune", {
 	end
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "lucky_block:pint_sized_rune",
 	recipe = {{"lucky_block:pint_sized_potion", "mobs:protector"}}
 })

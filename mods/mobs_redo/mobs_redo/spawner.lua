@@ -1,12 +1,12 @@
 
-local S = minetest.get_translator("mobs")
-local max_per_block = tonumber(minetest.settings:get("max_objects_per_block") or 99)
+local S = core.get_translator("mobs")
+local max_per_block = tonumber(core.settings:get("max_objects_per_block") or 99)
 
 -- helper functions
 
 local function is_player(player)
 
-	if player and type(player) == "userdata" and minetest.is_player(player) then
+	if player and type(player) == "userdata" and core.is_player(player) then
 		return true
 	end
 end
@@ -26,7 +26,7 @@ end
 
 local spawner_default = "mobs_animal:pumba 10 15 0 0 0"
 
-minetest.register_node("mobs:spawner", {
+core.register_node("mobs:spawner", {
 	tiles = {"mob_spawner.png"},
 	drawtype = "glasslike",
 	paramtype = "light",
@@ -40,7 +40,7 @@ minetest.register_node("mobs:spawner", {
 
 	on_construct = function(pos)
 
-		local meta = minetest.get_meta(pos)
+		local meta = core.get_meta(pos)
 
 		-- setup formspec
 		local head = S("(mob name) (min light) (max light) (amount)"
@@ -48,7 +48,7 @@ minetest.register_node("mobs:spawner", {
 
 		-- text entry formspec
 		meta:set_string("formspec", "size[10,3.5]"
-			.. "label[0.15,0.5;" .. minetest.formspec_escape(head) .. "]"
+			.. "label[0.15,0.5;" .. core.formspec_escape(head) .. "]"
 			.. "field[1,2.5;8.5,0.8;text;" .. S("Command:")
 			.. ";${command}]")
 
@@ -58,19 +58,19 @@ minetest.register_node("mobs:spawner", {
 
 	on_right_click = function(pos, placer)
 
-		if minetest.is_protected(pos, placer:get_player_name()) then return end
+		if core.is_protected(pos, placer:get_player_name()) then return end
 	end,
 
 	on_receive_fields = function(pos, formname, fields, sender)
 
 		if not fields.text or fields.text == "" then return end
 
-		local meta = minetest.get_meta(pos)
+		local meta = core.get_meta(pos)
 		local comm = fields.text:split(" ")
 		local name = sender:get_player_name()
 
-		if minetest.is_protected(pos, name) then
-			minetest.record_protection_violation(pos, name)
+		if core.is_protected(pos, name) then
+			core.record_protection_violation(pos, name)
 			return
 		end
 
@@ -88,8 +88,8 @@ minetest.register_node("mobs:spawner", {
 			meta:set_string("command", fields.text)
 			meta:set_string("infotext", S("Spawner Active (@1)", mob))
 		else
-			minetest.chat_send_player(name, S("Mob Spawner settings failed!"))
-			minetest.chat_send_player(name,
+			core.chat_send_player(name, S("Mob Spawner settings failed!"))
+			core.chat_send_player(name,
 				S("Syntax: “name min_light[0-14] max_light[0-14] "
 				.. "max_mobs_in_area[0 to disable] player_distance[1-20] "
 				.. "y_offset[-10 to 10]”"))
@@ -99,7 +99,7 @@ minetest.register_node("mobs:spawner", {
 
 -- spawner abm
 
-minetest.register_abm({
+core.register_abm({
 	label = "Mob spawner node",
 	nodenames = {"mobs:spawner"},
 	interval = 10,
@@ -112,7 +112,7 @@ minetest.register_abm({
 		if active_object_count_wider >= max_per_block then return end
 
 		-- get meta and command
-		local meta = minetest.get_meta(pos)
+		local meta = core.get_meta(pos)
 		local comm = meta:get_string("command"):split(" ")
 
 		-- get settings from command
@@ -133,7 +133,7 @@ minetest.register_abm({
 		end
 
 		-- check objects inside 9x9 area around spawner
-		local objs = minetest.get_objects_inside_radius(pos, 9)
+		local objs = core.get_objects_inside_radius(pos, 9)
 		local count = 0
 		local ent
 
@@ -152,7 +152,7 @@ minetest.register_abm({
 		if pla > 0 then
 
 			local in_range, player
-			local players = minetest.get_connected_players()
+			local players = core.get_connected_players()
 
 			for i = 1, #players do
 
@@ -171,12 +171,12 @@ minetest.register_abm({
 		end
 
 		-- set medium mob usually spawns in (defaults to air)
-		local reg = minetest.registered_entities[mob].fly_in
+		local reg = core.registered_entities[mob].fly_in
 
 		if not reg or type(reg) == "string" then reg = {(reg or "air")} end
 
 		-- find air blocks within 5 nodes of spawner
-		local air = minetest.find_nodes_in_area(
+		local air = core.find_nodes_in_area(
 				{x = pos.x - 5, y = pos.y + yof, z = pos.z - 5},
 				{x = pos.x + 5, y = pos.y + yof, z = pos.z + 5}, reg)
 
@@ -184,13 +184,13 @@ minetest.register_abm({
 		if air and #air > 0 then
 
 			local pos2 = air[math.random(#air)]
-			local lig = minetest.get_node_light(pos2) or 0
+			local lig = core.get_node_light(pos2) or 0
 
 			pos2.y = pos2.y + 0.5
 
 			-- only if light levels are within range
-			if lig >= mlig and lig <= xlig and minetest.registered_entities[mob] then
-				minetest.add_entity(pos2, mob)
+			if lig >= mlig and lig <= xlig and core.registered_entities[mob] then
+				core.add_entity(pos2, mob)
 			end
 		end
 	end
