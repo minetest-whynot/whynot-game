@@ -1,21 +1,23 @@
 
 -- craft bones from animalmaterials into bonemeal
-if minetest.get_modpath("animalmaterials") then
 
-	minetest.register_craft({
+if core.get_modpath("animalmaterials") then
+
+	core.register_craft({
 		output = "bonemeal:bonemeal 2",
 		recipe = {{"animalmaterials:bone"}}
 	})
 end
 
+-- default additions
 
-if minetest.get_modpath("default") then
+if core.get_modpath("default") then
 
 	-- saplings
 
 	local function pine_grow(pos)
 
-		if minetest.find_node_near(pos, 1,
+		if core.find_node_near(pos, 1,
 			{"default:snow", "default:snowblock", "default:dirt_with_snow"}) then
 
 			default.grow_new_snowy_pine_tree(pos)
@@ -25,11 +27,11 @@ if minetest.get_modpath("default") then
 	end
 
 	local function cactus_grow(pos)
-		default.grow_cactus(pos, minetest.get_node(pos))
+		default.grow_cactus(pos, core.get_node(pos))
 	end
 
 	local function papyrus_grow(pos)
-		default.grow_papyrus(pos, minetest.get_node(pos))
+		default.grow_papyrus(pos, core.get_node(pos))
 	end
 
 	bonemeal:add_sapling({
@@ -62,9 +64,10 @@ if minetest.get_modpath("default") then
 
 	local flowers = {}
 
-	minetest.after(0.1, function()
+	-- add flowers from other mods
+	core.after(0.1, function()
 
-		for node, def in pairs(minetest.registered_nodes) do
+		for node, def in pairs(core.registered_nodes) do
 
 			if def.groups
 			and def.groups.flower
@@ -92,6 +95,7 @@ if minetest.get_modpath("default") then
 	})
 end
 
+-- default farming crops
 
 if farming then
 
@@ -101,6 +105,7 @@ if farming then
 	})
 end
 
+-- farming redo crops
 
 if farming and farming.mod and farming.mod == "redo" then
 
@@ -148,8 +153,9 @@ if farming and farming.mod and farming.mod == "redo" then
 	})
 end
 
+-- ethereal crops, saplings and grass
 
-if minetest.get_modpath("ethereal") then
+if core.get_modpath("ethereal") then
 
 	bonemeal:add_crop({
 		{"ethereal:strawberry_", 8},
@@ -195,13 +201,14 @@ if minetest.get_modpath("ethereal") then
 	})
 end
 
+-- moretrees saplings
 
-if minetest.get_modpath("moretrees") then
+if core.get_modpath("moretrees") then
 
 	-- special fir check for snow
 	local function fir_grow(pos)
 
-		if minetest.find_node_near(pos, 1,
+		if core.find_node_near(pos, 1,
 			{"default:snow", "default:snowblock", "default:dirt_with_snow"}) then
 
 			moretrees.grow_fir_snow(pos)
@@ -228,23 +235,27 @@ if minetest.get_modpath("moretrees") then
 		{"moretrees:rubber_tree_sapling", moretrees.spawn_rubber_tree_object, "soil"},
 		{"moretrees:fir_sapling", fir_grow, "soil"}
 	})
+end
 
-elseif minetest.get_modpath("technic_worldgen") then
+-- technic rubber tree
+
+if core.get_modpath("technic_worldgen") then
 
 	bonemeal:add_sapling({
 		{"moretrees:rubber_tree_sapling", technic.rubber_tree_model, "soil"}
 	})
 end
 
+-- caverealms mushroom
 
-if minetest.get_modpath("caverealms") then
+if core.get_modpath("caverealms") then
 
-	local fil = minetest.get_modpath("caverealms") .. "/schematics/shroom.mts"
+	local fil = core.get_modpath("caverealms") .. "/schematics/shroom.mts"
 	local add_shroom = function(pos)
 
-		minetest.swap_node(pos, {name = "air"})
+		core.swap_node(pos, {name = "air"})
 
-		minetest.place_schematic(
+		core.place_schematic(
 			{x = pos.x - 5, y = pos.y, z = pos.z - 5}, fil, 0, nil, false)
 	end
 
@@ -253,6 +264,7 @@ if minetest.get_modpath("caverealms") then
 	})
 end
 
+-- helper
 
 local function y_func(grow_func)
 	return function(pos)
@@ -260,30 +272,38 @@ local function y_func(grow_func)
 	end
 end
 
-if minetest.get_modpath("ferns") then
+-- ferns
+
+if core.get_modpath("ferns") then
 
 	bonemeal:add_sapling({
-		{"ferns:sapling_giant_tree_fern", y_func(abstract_ferns.grow_giant_tree_fern), "soil"},
-		{"ferns:sapling_giant_tree_fern", y_func(abstract_ferns.grow_giant_tree_fern), "sand"},
-		{"ferns:sapling_tree_fern", y_func(abstract_ferns.grow_tree_fern), "soil"}
+		{"ferns:sapling_giant_tree_fern",
+				y_func(abstract_ferns.grow_giant_tree_fern), "soil"},
+		{"ferns:sapling_giant_tree_fern",
+				y_func(abstract_ferns.grow_giant_tree_fern), "sand"},
+		{"ferns:sapling_tree_fern",
+				y_func(abstract_ferns.grow_tree_fern), "soil"}
 	})
 end
 
-if minetest.get_modpath("dryplants") then
+-- dryplants sapling
+
+if core.get_modpath("dryplants") then
 
 	bonemeal:add_sapling({
 		{"dryplants:reedmace_sapling", y_func(abstract_dryplants.grow_reedmace), "soil"}
 	})
 end
 
+-- add bonemeal dyes
 
-if minetest.get_modpath("dye") then
+if core.get_modpath("dye") then
 
 	local bonemeal_dyes = {bonemeal = "white", fertiliser = "green", mulch = "brown"}
 
 	for mat, dye in pairs(bonemeal_dyes) do
 
-		minetest.register_craft({
+		core.register_craft({
 			output = "dye:" .. dye .. " 4",
 			recipe = {
 				{"bonemeal:" .. mat}
@@ -292,35 +312,36 @@ if minetest.get_modpath("dye") then
 	end
 end
 
+-- df_trees saplings
 
-if minetest.get_modpath("df_trees") then
+if core.get_modpath("df_trees") then
 
 	local function spore_tree_fix(pos)
-		minetest.remove_node(pos) ; df_trees.spawn_spore_tree(pos)
+		core.remove_node(pos) ; df_trees.spawn_spore_tree(pos)
 	end
 
 	local function fungiwood_fix(pos)
-		minetest.remove_node(pos) ; df_trees.spawn_fungiwood(pos)
+		core.remove_node(pos) ; df_trees.spawn_fungiwood(pos)
 	end
 
 	local function tunnel_fix(pos)
-		minetest.remove_node(pos) ; df_trees.spawn_tunnel_tube(pos)
+		core.remove_node(pos) ; df_trees.spawn_tunnel_tube(pos)
 	end
 
 	local function black_cap_fix(pos)
-		minetest.remove_node(pos) ; df_trees.spawn_black_cap(pos)
+		core.remove_node(pos) ; df_trees.spawn_black_cap(pos)
 	end
 
 	local function goblin_cap_fix(pos)
-		minetest.remove_node(pos) ; df_trees.spawn_goblin_cap(pos)
+		core.remove_node(pos) ; df_trees.spawn_goblin_cap(pos)
 	end
 
 	local function tower_cap_fix(pos)
-		minetest.remove_node(pos) ; df_trees.spawn_tower_cap(pos)
+		core.remove_node(pos) ; df_trees.spawn_tower_cap(pos)
 	end
 
 	local function nether_cap_fix(pos)
-		minetest.remove_node(pos) ; df_trees.spawn_nether_cap(pos)
+		core.remove_node(pos) ; df_trees.spawn_nether_cap(pos)
 	end
 
 	bonemeal:add_sapling({
@@ -335,8 +356,9 @@ if minetest.get_modpath("df_trees") then
 	})
 end
 
+-- df_farming crops
 
-if minetest.get_modpath("df_farming") then
+if core.get_modpath("df_farming") then
 
 	bonemeal:add_crop({
 		{"df_farming:cave_wheat_", 8, "df_farming:cave_wheat_seed", true},
@@ -348,24 +370,25 @@ if minetest.get_modpath("df_farming") then
 	})
 end
 
+-- df_primordial saplings and plants
 
-if minetest.get_modpath("df_primordial_items") then
+if core.get_modpath("df_primordial_items") then
 
 	local function mush_fix(pos)
-		minetest.set_node(pos, {name = "air"})
+		core.set_node(pos, {name = "air"})
 		mapgen_helper.place_schematic(pos,
 			df_primordial_items.get_primordial_mushroom(), (math.random(4) - 1) * 90)
 	end
 
 	local function fern_fix(pos)
-		minetest.set_node(pos, {name = "air"})
+		core.set_node(pos, {name = "air"})
 		local rotations = {0, 90, 180, 270}
 		mapgen_helper.place_schematic(pos,
 			df_primordial_items.get_fern_schematic(), rotations[math.random(#rotations)])
 	end
 
 	local function blood_fix(pos)
-		df_trees.grow_blood_thorn(pos, minetest.get_node(pos))
+		df_trees.grow_blood_thorn(pos, core.get_node(pos))
 	end
 
 	bonemeal:add_sapling({
@@ -417,8 +440,9 @@ if minetest.get_modpath("df_primordial_items") then
 	})
 end
 
+-- everness saplings
 
-if minetest.get_modpath("everness") then
+if core.get_modpath("everness") then
 
 	bonemeal:add_sapling({
 		{"everness:baobab_sapling", Everness.grow_baobab_tree, "soil"},
@@ -436,17 +460,18 @@ if minetest.get_modpath("everness") then
 	})
 end
 
+-- bush classic fruit
 
-if minetest.get_modpath("bushes_classic") then
+if core.get_modpath("bushes_classic") then
 
 	local function grow_bush(pos)
 
-		local meta = minetest.get_meta(pos)
+		local meta = core.get_meta(pos)
 		local bush_name = meta:get_string("bush_type")
 
 		-- only change if meta found
 		if meta and bush_name then
-			minetest.swap_node(pos, {name = "bushes:" .. bush_name .. "_bush"})
+			core.swap_node(pos, {name = "bushes:" .. bush_name .. "_bush"})
 		end
 	end
 
