@@ -1,13 +1,13 @@
 
-local S = minetest.get_translator("farming")
+local S = core.get_translator("farming")
 
 -- item/seed
 
-minetest.register_craftitem("farming:spinach", {
+core.register_craftitem("farming:spinach", {
 	description = S("Spinach"),
 	inventory_image = "farming_spinach.png",
 	groups = {compostability = 48, seed = 2, food_spinach = 1},
-	on_use = minetest.item_eat(1),
+	on_use = core.item_eat(1),
 
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:spinach_1")
@@ -40,12 +40,12 @@ local def = {
 
 -- stage 1
 
-minetest.register_node("farming:spinach_1", table.copy(def))
+core.register_node("farming:spinach_1", table.copy(def))
 
 -- stage 2
 
 def.tiles = {"farming_spinach_2.png"}
-minetest.register_node("farming:spinach_2", table.copy(def))
+core.register_node("farming:spinach_2", table.copy(def))
 
 -- stage 3
 
@@ -56,7 +56,7 @@ def.drop = {
 		{items = {"farming:spinach"}, rarity = 3}
 	}
 }
-minetest.register_node("farming:spinach_3", table.copy(def))
+core.register_node("farming:spinach_3", table.copy(def))
 
 -- stage 4
 
@@ -66,11 +66,12 @@ def.selection_box = farming.select_final
 def.drop = {
 	items = {
 		{items = {"farming:spinach 2"}, rarity = 1},
-		{items = {"farming:spinach 2"}, rarity = 2},
-		{items = {"farming:spinach 2"}, rarity = 3}
+		{items = {"farming:spinach"}, rarity = 2},
+		{items = {"farming:spinach"}, rarity = 3},
+		{items = {"farming:spinach"}, rarity = 4}
 	}
 }
-minetest.register_node("farming:spinach_4", table.copy(def))
+core.register_node("farming:spinach_4", table.copy(def))
 
 -- add to registered_plants
 
@@ -84,7 +85,7 @@ farming.registered_plants["farming:spinach"] = {
 
 -- mapgen
 
-minetest.register_decoration({
+core.register_decoration({
 	deco_type = "simple",
 	place_on = {"default:dirt_with_grass", "mcl_core:dirt_with_grass"},
 	sidelen = 16,
@@ -97,6 +98,6 @@ minetest.register_decoration({
 		persist = 0.6
 	},
 	y_min = 1, y_max = 100,
-	decoration = "farming:spinach_4",
+	decoration = "farming:spinach_3",
 	param2 = 3
 })

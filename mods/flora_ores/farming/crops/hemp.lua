@@ -1,9 +1,9 @@
 
-local S = minetest.get_translator("farming")
+local S = core.get_translator("farming")
 
 -- seed
 
-minetest.register_node("farming:seed_hemp", {
+core.register_node("farming:seed_hemp", {
 	description = S("Hemp Seed"),
 	tiles = {"farming_hemp_seed.png"},
 	inventory_image = "farming_hemp_seed.png",
@@ -27,13 +27,13 @@ minetest.register_node("farming:seed_hemp", {
 	end,
 
 	on_timer = function(pos, elapsed)
-		minetest.set_node(pos, {name = "farming:hemp_1", param2 = 1})
+		core.set_node(pos, {name = "farming:hemp_1", param2 = 1})
 	end
 })
 
 -- item
 
-minetest.register_craftitem("farming:hemp_leaf", {
+core.register_craftitem("farming:hemp_leaf", {
 	description = S("Hemp Leaf"),
 	inventory_image = "farming_hemp_leaf.png",
 	groups = {compostability = 35}
@@ -63,27 +63,27 @@ local def = {
 
 -- stage 1
 
-minetest.register_node("farming:hemp_1", table.copy(def))
+core.register_node("farming:hemp_1", table.copy(def))
 
 -- stage 2
 
 def.tiles = {"farming_hemp_2.png"}
-minetest.register_node("farming:hemp_2", table.copy(def))
+core.register_node("farming:hemp_2", table.copy(def))
 
 -- stage 3
 
 def.tiles = {"farming_hemp_3.png"}
-minetest.register_node("farming:hemp_3", table.copy(def))
+core.register_node("farming:hemp_3", table.copy(def))
 
 -- stage 4
 
 def.tiles = {"farming_hemp_4.png"}
-minetest.register_node("farming:hemp_4", table.copy(def))
+core.register_node("farming:hemp_4", table.copy(def))
 
 -- stage 5
 
 def.tiles = {"farming_hemp_5.png"}
-minetest.register_node("farming:hemp_5", table.copy(def))
+core.register_node("farming:hemp_5", table.copy(def))
 
 -- stage 6
 
@@ -94,7 +94,7 @@ def.drop = {
 		{items = {"farming:seed_hemp"}, rarity = 1}
 	}
 }
-minetest.register_node("farming:hemp_6", table.copy(def))
+core.register_node("farming:hemp_6", table.copy(def))
 
 -- stage 7
 
@@ -107,7 +107,7 @@ def.drop = {
 		{items = {"farming:seed_hemp"}, rarity = 3}
 	}
 }
-minetest.register_node("farming:hemp_7", table.copy(def))
+core.register_node("farming:hemp_7", table.copy(def))
 
 -- stage 8 (final)
 
@@ -118,11 +118,11 @@ def.drop = {
 	items = {
 		{items = {"farming:hemp_leaf 2"}, rarity = 1},
 		{items = {"farming:hemp_leaf"}, rarity = 2},
-		{items = {"farming:seed_hemp"}, rarity = 1},
+		{items = {"farming:seed_hemp 2"}, rarity = 1},
 		{items = {"farming:seed_hemp"}, rarity = 2}
 	}
 }
-minetest.register_node("farming:hemp_8", table.copy(def))
+core.register_node("farming:hemp_8", table.copy(def))
 
 -- add to registered_plants
 
@@ -136,7 +136,7 @@ farming.registered_plants["farming:hemp"] = {
 
 -- mapgen
 
-minetest.register_decoration({
+core.register_decoration({
 	deco_type = "simple",
 	place_on = {
 		"default:dirt_with_grass", "default:dirt_with_rainforest_litter",

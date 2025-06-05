@@ -1,5 +1,5 @@
 
-local S = minetest.get_translator("farming")
+local S = core.get_translator("farming")
 
 -- place cocoa
 local function place_cocoa(itemstack, placer, pointed_thing, plantname)
@@ -9,14 +9,14 @@ local function place_cocoa(itemstack, placer, pointed_thing, plantname)
 	-- check if pointing at a node
 	if not pt or pt.type ~= "node" then return end
 
-	local under = minetest.get_node(pt.under)
+	local under = core.get_node(pt.under)
 
 	-- return if any of the nodes are not registered
-	if not minetest.registered_nodes[under.name] then return end
+	if not core.registered_nodes[under.name] then return end
 
 	-- am I right-clicking on something that has a custom on_place set?
 	-- thanks to Krock for helping with this issue :)
-	local def = minetest.registered_nodes[under.name]
+	local def = core.registered_nodes[under.name]
 
 	if placer and itemstack and def and def.on_rightclick then
 		return def.on_rightclick(pt.under, under, placer, itemstack, pt)
@@ -24,7 +24,7 @@ local function place_cocoa(itemstack, placer, pointed_thing, plantname)
 
 	-- check if pointing at jungletree
 	if (under.name ~= "default:jungletree" and under.name ~= "mcl_core:jungletree")
-	or minetest.get_node(pt.above).name ~= "air" then
+	or core.get_node(pt.above).name ~= "air" then
 		return
 	end
 
@@ -32,12 +32,12 @@ local function place_cocoa(itemstack, placer, pointed_thing, plantname)
 	local name = placer and placer:get_player_name() or ""
 
 	-- check for protection
-	if minetest.is_protected(pt.above, name) then return end
+	if core.is_protected(pt.above, name) then return end
 
 	-- add the node and remove 1 item from the itemstack
-	minetest.set_node(pt.above, {name = plantname})
+	core.set_node(pt.above, {name = plantname})
 
-	minetest.sound_play("default_place_node", {pos = pt.above, gain = 1.0}, true)
+	core.sound_play("default_place_node", {pos = pt.above, gain = 1.0}, true)
 
 	if placer and not farming.is_creative(placer:get_player_name()) then
 
@@ -46,7 +46,7 @@ local function place_cocoa(itemstack, placer, pointed_thing, plantname)
 		-- check for refill
 		if itemstack:get_count() == 0 then
 
-			minetest.after(0.20, farming.refill_plant, placer,
+			core.after(0.20, farming.refill_plant, placer,
 					"farming:cocoa_beans_raw", placer:get_wield_index())
 		end
 	end
@@ -56,7 +56,7 @@ end
 
 -- item/seed
 
-minetest.register_craftitem("farming:cocoa_beans_raw", {
+core.register_craftitem("farming:cocoa_beans_raw", {
 	description = S("Raw Cocoa Beans"),
 	inventory_image = "farming_cocoa_beans.png^[brighten",
 	groups = {compostability = 48, seed = 1, flammable = 2},
@@ -90,7 +90,7 @@ local def = {
 	-- custom function that returns True when conditions are met
 	growth_check = function(pos, node_name)
 
-		if minetest.find_node_near(pos, 1,
+		if core.find_node_near(pos, 1,
 				{"default:jungletree", "mcl_core:jungletree"}) then
 			return true -- place next growth stage
 		end
@@ -101,22 +101,22 @@ local def = {
 
 -- stage 1
 
-minetest.register_node("farming:cocoa_1", table.copy(def))
+core.register_node("farming:cocoa_1", table.copy(def))
 
 -- stage 2
 
 def.tiles = {"farming_cocoa_2.png"}
-minetest.register_node("farming:cocoa_2", table.copy(def))
+core.register_node("farming:cocoa_2", table.copy(def))
 
 -- stage3
 
 def.tiles = {"farming_cocoa_3.png"}
 def.drop = {
 	items = {
-		{items = {"farming:cocoa_beans_raw 1"}, rarity = 1}
+		{items = {"farming:cocoa_beans_raw"}, rarity = 1}
 	}
 }
-minetest.register_node("farming:cocoa_3", table.copy(def))
+core.register_node("farming:cocoa_3", table.copy(def))
 
 -- stage 4 (final)
 
@@ -126,11 +126,11 @@ def.growth_check = nil
 def.drop = {
 	items = {
 		{items = {"farming:cocoa_beans_raw 2"}, rarity = 1},
-		{items = {"farming:cocoa_beans_raw 1"}, rarity = 2},
-		{items = {"farming:cocoa_beans_raw 1"}, rarity = 4}
+		{items = {"farming:cocoa_beans_raw"}, rarity = 2},
+		{items = {"farming:cocoa_beans_raw"}, rarity = 3}
 	}
 }
-minetest.register_node("farming:cocoa_4", table.copy(def))
+core.register_node("farming:cocoa_4", table.copy(def))
 
 -- add to registered_plants
 
@@ -147,19 +147,19 @@ farming.registered_plants["farming:cocoa_beans"] = {
 
 local random = math.random -- localise for speed
 
-minetest.register_on_generated(function(minp, maxp)
+core.register_on_generated(function(minp, maxp)
 
 	if maxp.y < 0 then return end
 
 	local pos, dir
-	local cocoa = minetest.find_nodes_in_area(minp, maxp,
+	local cocoa = core.find_nodes_in_area(minp, maxp,
 			{"default:jungletree", "mcl_core:jungletree"})
 
 	for n = 1, #cocoa do
 
 		pos = cocoa[n]
 
-		if minetest.find_node_near(pos, 1,
+		if core.find_node_near(pos, 1,
 			{"default:jungleleaves", "moretrees:jungletree_leaves_green",
 			"mcl_core:jungleleaves"}) then
 
@@ -172,12 +172,12 @@ minetest.register_on_generated(function(minp, maxp)
 			end
 
 			if dir < 5
-			and minetest.get_node(pos).name == "air"
-			and minetest.get_node_light(pos) > 12 then
+			and core.get_node(pos).name == "air"
+			and core.get_node_light(pos) > 12 then
 
---print ("Cocoa Pod added at " .. minetest.pos_to_string(pos))
+--print ("Cocoa Pod added at " .. core.pos_to_string(pos))
 
-				minetest.set_node(pos, {
+				core.set_node(pos, {
 					name = "farming:cocoa_" .. tostring(random(4))
 				})
 			end

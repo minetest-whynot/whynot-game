@@ -1,9 +1,9 @@
 
-local S = minetest.get_translator("farming")
+local S = core.get_translator("farming")
 
 -- seed
 
-minetest.register_craftitem("farming:pineapple_top", {
+core.register_craftitem("farming:pineapple_top", {
 	description = S("Pineapple Top"),
 	inventory_image = "farming_pineapple_top.png",
 	groups = {compostability = 48, seed = 2, flammable = 2},
@@ -15,7 +15,7 @@ minetest.register_craftitem("farming:pineapple_top", {
 
 -- item
 
-minetest.register_node("farming:pineapple", {
+core.register_node("farming:pineapple", {
 	description = S("Pineapple"),
 	drawtype = "plantlike",
 	tiles = {"farming_pineapple.png"},
@@ -60,37 +60,37 @@ local def = {
 
 -- stage 1
 
-minetest.register_node("farming:pineapple_1", table.copy(def))
+core.register_node("farming:pineapple_1", table.copy(def))
 
 -- stage 2
 
 def.tiles = {"farming_pineapple_2.png"}
-minetest.register_node("farming:pineapple_2", table.copy(def))
+core.register_node("farming:pineapple_2", table.copy(def))
 
 -- stage 3
 
 def.tiles = {"farming_pineapple_3.png"}
-minetest.register_node("farming:pineapple_3", table.copy(def))
+core.register_node("farming:pineapple_3", table.copy(def))
 
 -- stage 4
 
 def.tiles = {"farming_pineapple_4.png"}
-minetest.register_node("farming:pineapple_4", table.copy(def))
+core.register_node("farming:pineapple_4", table.copy(def))
 
 -- stage 5
 
 def.tiles = {"farming_pineapple_5.png"}
-minetest.register_node("farming:pineapple_5", table.copy(def))
+core.register_node("farming:pineapple_5", table.copy(def))
 
 -- stage 6
 
 def.tiles = {"farming_pineapple_6.png"}
-minetest.register_node("farming:pineapple_6", table.copy(def))
+core.register_node("farming:pineapple_6", table.copy(def))
 
 -- stage 7
 
 def.tiles = {"farming_pineapple_7.png"}
-minetest.register_node("farming:pineapple_7", table.copy(def))
+core.register_node("farming:pineapple_7", table.copy(def))
 
 -- stage 8 (final)
 
@@ -100,10 +100,10 @@ def.selection_box = farming.select_final
 def.drop = {
 	items = {
 		{items = {"farming:pineapple"}, rarity = 1},
-		{items = {"farming:pineapple"}, rarity = 2}
+		{items = {"farming:pineapple"}, rarity = 3}
 	}
 }
-minetest.register_node("farming:pineapple_8", table.copy(def))
+core.register_node("farming:pineapple_8", table.copy(def))
 
 -- add to registered_plants
 
@@ -126,7 +126,7 @@ if farming.mapgen == "v6" then
 	spawn_on = {"default:dirt_with_grass"}
 end
 
-minetest.register_decoration({
+core.register_decoration({
 	deco_type = "simple",
 	place_on = spawn_on,
 	sidelen = 16,

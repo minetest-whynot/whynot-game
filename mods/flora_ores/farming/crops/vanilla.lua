@@ -1,13 +1,13 @@
 
-local S = minetest.get_translator("farming")
+local S = core.get_translator("farming")
 
 -- item/seed
 
-minetest.register_craftitem("farming:vanilla", {
+core.register_craftitem("farming:vanilla", {
 	description = S("Vanilla"),
 	inventory_image = "farming_vanilla.png",
 	groups = {compostability = 48, seed = 2, food_vanilla = 1},
-	on_use = minetest.item_eat(1),
+	on_use = core.item_eat(1),
 
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:vanilla_1")
@@ -40,33 +40,33 @@ local def = {
 
 -- stage 1
 
-minetest.register_node("farming:vanilla_1", table.copy(def))
+core.register_node("farming:vanilla_1", table.copy(def))
 
 -- stage 2
 
 def.tiles = {"farming_vanilla_2.png"}
-minetest.register_node("farming:vanilla_2", table.copy(def))
+core.register_node("farming:vanilla_2", table.copy(def))
 
 -- stage 3
 
 def.tiles = {"farming_vanilla_3.png"}
-minetest.register_node("farming:vanilla_3", table.copy(def))
+core.register_node("farming:vanilla_3", table.copy(def))
 
 -- stage 4
 
 def.tiles = {"farming_vanilla_4.png"}
-minetest.register_node("farming:vanilla_4", table.copy(def))
+core.register_node("farming:vanilla_4", table.copy(def))
 
 -- stage 5
 
 def.tiles = {"farming_vanilla_5.png"}
-minetest.register_node("farming:vanilla_5", table.copy(def))
+core.register_node("farming:vanilla_5", table.copy(def))
 
 -- stage 6
 
 def.tiles = {"farming_vanilla_6.png"}
 def.visual_scale = 1.9
-minetest.register_node("farming:vanilla_6", table.copy(def))
+core.register_node("farming:vanilla_6", table.copy(def))
 
 -- stage 7
 
@@ -74,11 +74,10 @@ def.tiles = {"farming_vanilla_7.png"}
 def.drop = {
 	items = {
 		{items = {"farming:vanilla"}, rarity = 1},
-		{items = {"farming:vanilla"}, rarity = 2},
 		{items = {"farming:vanilla"}, rarity = 3}
 	}
 }
-minetest.register_node("farming:vanilla_7", table.copy(def))
+core.register_node("farming:vanilla_7", table.copy(def))
 
 -- stage 8 (final)
 
@@ -88,12 +87,12 @@ def.selection_box = farming.select_final
 def.drop = {
 	items = {
 		{items = {"farming:vanilla 2"}, rarity = 1},
-		{items = {"farming:vanilla 2"}, rarity = 2},
-		{items = {"farming:vanilla 2"}, rarity = 2},
-		{items = {"farming:vanilla 2"}, rarity = 3}
+		{items = {"farming:vanilla"}, rarity = 2},
+		{items = {"farming:vanilla"}, rarity = 3},
+		{items = {"farming:vanilla"}, rarity = 4}
 	}
 }
-minetest.register_node("farming:vanilla_8", table.copy(def))
+core.register_node("farming:vanilla_8", table.copy(def))
 
 -- add to registered_plants
 
@@ -107,7 +106,7 @@ farming.registered_plants["farming:vanilla"] = {
 
 -- mapgen
 
-minetest.register_decoration({
+core.register_decoration({
 	deco_type = "simple",
 	place_on = {
 		"default:dirt_with_grass", "mcl_core:dirt_with_grass", "ethereal:grove_dirt"

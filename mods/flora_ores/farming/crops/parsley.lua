@@ -1,13 +1,13 @@
 
-local S = minetest.get_translator("farming")
+local S = core.get_translator("farming")
 
 -- item/seed
 
-minetest.register_craftitem("farming:parsley", {
+core.register_craftitem("farming:parsley", {
 	description = S("Parsley"),
 	inventory_image = "farming_parsley.png",
 	groups = {compostability = 48, seed = 2, food_parsley = 1},
-	on_use = minetest.item_eat(1),
+	on_use = core.item_eat(1),
 
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:parsley_1")
@@ -40,12 +40,12 @@ local def = {
 
 -- stage 1
 
-minetest.register_node("farming:parsley_1", table.copy(def))
+core.register_node("farming:parsley_1", table.copy(def))
 
 -- stage 2
 
 def.tiles = {"farming_parsley_2.png"}
-minetest.register_node("farming:parsley_2", table.copy(def))
+core.register_node("farming:parsley_2", table.copy(def))
 
 -- stage 3 (final)
 
@@ -59,7 +59,7 @@ def.drop = {
 		{items = {"farming:parsley"}, rarity = 3}
 	}
 }
-minetest.register_node("farming:parsley_3", table.copy(def))
+core.register_node("farming:parsley_3", table.copy(def))
 
 -- add to registered_plants
 
@@ -73,7 +73,7 @@ farming.registered_plants["farming:parsley"] = {
 
 -- mapgen
 
-minetest.register_decoration({
+core.register_decoration({
 	deco_type = "simple",
 	place_on = {
 		"default:dirt_with_grass", "mcl_core:dirt_with_grass", "ethereal:prairie_dirt",

@@ -1,14 +1,14 @@
 
-local S = minetest.get_translator("farming")
+local S = core.get_translator("farming")
 local a = farming.recipe_items
 
 -- item/seed
 
-minetest.register_craftitem("farming:chili_pepper", {
+core.register_craftitem("farming:chili_pepper", {
 	description = S("Chili Pepper"),
 	inventory_image = "farming_chili_pepper.png",
 	groups = {compostability = 48, seed = 2, food_chili_pepper = 1},
-	on_use = minetest.item_eat(2),
+	on_use = core.item_eat(2),
 
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:chili_1")
@@ -41,37 +41,37 @@ local def = {
 
 -- stage 1
 
-minetest.register_node("farming:chili_1", table.copy(def))
+core.register_node("farming:chili_1", table.copy(def))
 
 -- stage 2
 
 def.tiles = {"farming_chili_2.png"}
-minetest.register_node("farming:chili_2", table.copy(def))
+core.register_node("farming:chili_2", table.copy(def))
 
 -- stage 3
 
 def.tiles = {"farming_chili_3.png"}
-minetest.register_node("farming:chili_3", table.copy(def))
+core.register_node("farming:chili_3", table.copy(def))
 
 -- stage 4
 
 def.tiles = {"farming_chili_4.png"}
-minetest.register_node("farming:chili_4", table.copy(def))
+core.register_node("farming:chili_4", table.copy(def))
 
 -- stage 5
 
 def.tiles = {"farming_chili_5.png"}
-minetest.register_node("farming:chili_5", table.copy(def))
+core.register_node("farming:chili_5", table.copy(def))
 
 -- stage 6
 
 def.tiles = {"farming_chili_6.png"}
-minetest.register_node("farming:chili_6", table.copy(def))
+core.register_node("farming:chili_6", table.copy(def))
 
 -- stage 7
 
 def.tiles = {"farming_chili_7.png"}
-minetest.register_node("farming:chili_7", table.copy(def))
+core.register_node("farming:chili_7", table.copy(def))
 
 -- stage 8 (final)
 
@@ -80,11 +80,13 @@ def.groups.growing = nil
 def.selection_box = farming.select_final
 def.drop = {
 	items = {
-		{items = {"farming:chili_pepper 3"}, rarity = 1},
-		{items = {"farming:chili_pepper 2"}, rarity = 2}
+		{items = {"farming:chili_pepper 2"}, rarity = 1},
+		{items = {"farming:chili_pepper"}, rarity = 2},
+		{items = {"farming:chili_pepper"}, rarity = 3},
+		{items = {"farming:chili_pepper"}, rarity = 4}
 	}
 }
-minetest.register_node("farming:chili_8", table.copy(def))
+core.register_node("farming:chili_8", table.copy(def))
 
 -- add to registered_plants
 
@@ -98,7 +100,7 @@ farming.registered_plants["farming:chili_pepper"] = {
 
 -- mapgen
 
-minetest.register_decoration({
+core.register_decoration({
 	deco_type = "simple",
 	place_on = {
 		"default:dirt_with_grass", "default:dirt_with_rainforest_litter",

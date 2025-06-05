@@ -1,9 +1,9 @@
 
-local S = minetest.get_translator("farming")
+local S = core.get_translator("farming")
 
 -- seed
 
-minetest.register_node("farming:seed_mint", {
+core.register_node("farming:seed_mint", {
 	description = S("Mint Seeds"),
 	tiles = {"farming_mint_seeds.png"},
 	inventory_image = "farming_mint_seeds.png",
@@ -27,13 +27,13 @@ minetest.register_node("farming:seed_mint", {
 	end,
 
 	on_timer = function(pos, elapsed)
-		minetest.set_node(pos, {name = "farming:mint_1", param2 = 1})
+		core.set_node(pos, {name = "farming:mint_1", param2 = 1})
 	end
 })
 
 -- item
 
-minetest.register_craftitem("farming:mint_leaf", {
+core.register_craftitem("farming:mint_leaf", {
 	description = S("Mint Leaf"),
 	inventory_image = "farming_mint_leaf.png",
 	groups = {food_mint = 1, flammable = 4, compostability = 48}
@@ -62,17 +62,17 @@ local def = {
 
 -- stage 1
 
-minetest.register_node("farming:mint_1", table.copy(def))
+core.register_node("farming:mint_1", table.copy(def))
 
 -- stage 2
 
 def.tiles = {"farming_mint_2.png"}
-minetest.register_node("farming:mint_2", table.copy(def))
+core.register_node("farming:mint_2", table.copy(def))
 
 -- stage 3
 
 def.tiles = {"farming_mint_3.png"}
-minetest.register_node("farming:mint_3", table.copy(def))
+core.register_node("farming:mint_3", table.copy(def))
 
 -- stage 4 (final)
 
@@ -82,12 +82,12 @@ def.selection_box = farming.select_final
 def.drop = {
 	items = {
 		{items = {"farming:mint_leaf 2"}, rarity = 1},
-		{items = {"farming:mint_leaf 2"}, rarity = 2},
-		{items = {"farming:seed_mint 1"}, rarity = 1},
-		{items = {"farming:seed_mint 2"}, rarity = 2}
+		{items = {"farming:mint_leaf"}, rarity = 2},
+		{items = {"farming:seed_mint 2"}, rarity = 1},
+		{items = {"farming:seed_mint"}, rarity = 2}
 	}
 }
-minetest.register_node("farming:mint_4", table.copy(def))
+core.register_node("farming:mint_4", table.copy(def))
 
 -- add to registered_plants
 
@@ -101,7 +101,7 @@ farming.registered_plants["farming:mint"] = {
 
 -- mapgen
 
-minetest.register_decoration({
+core.register_decoration({
 	deco_type = "simple",
 	place_on = {
 		"default:dirt_with_grass", "default:dirt_with_coniferous_litter",

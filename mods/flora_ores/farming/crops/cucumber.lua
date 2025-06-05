@@ -1,18 +1,18 @@
 
 --[[
 	Original textures from DocFarming mod
-	https://forum.minetest.net/viewtopic.php?id=3948
+	https://forum.core.net/viewtopic.php?id=3948
 ]]
 
-local S = minetest.get_translator("farming")
+local S = core.get_translator("farming")
 
 -- item/seed
 
-minetest.register_craftitem("farming:cucumber", {
+core.register_craftitem("farming:cucumber", {
 	description = S("Cucumber"),
 	inventory_image = "farming_cucumber.png",
 	groups = {compostability = 48, seed = 2, food_cucumber = 1},
-	on_use = minetest.item_eat(4),
+	on_use = core.item_eat(4),
 
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:cucumber_1")
@@ -43,17 +43,17 @@ local def = {
 
 -- stage 1
 
-minetest.register_node("farming:cucumber_1", table.copy(def))
+core.register_node("farming:cucumber_1", table.copy(def))
 
 -- stage 2
 
 def.tiles = {"farming_cucumber_2.png"}
-minetest.register_node("farming:cucumber_2", table.copy(def))
+core.register_node("farming:cucumber_2", table.copy(def))
 
 -- stage 3
 
 def.tiles = {"farming_cucumber_3.png"}
-minetest.register_node("farming:cucumber_3", table.copy(def))
+core.register_node("farming:cucumber_3", table.copy(def))
 
 -- stage 4 (final)
 
@@ -63,10 +63,10 @@ def.selection_box = farming.select_final
 def.drop = {
 	items = {
 		{items = {"farming:cucumber 2"}, rarity = 1},
-		{items = {"farming:cucumber 2"}, rarity = 2}
+		{items = {"farming:cucumber"}, rarity = 2}
 	}
 }
-minetest.register_node("farming:cucumber_4", table.copy(def))
+core.register_node("farming:cucumber_4", table.copy(def))
 
 -- add to registered_plants
 
@@ -80,7 +80,7 @@ farming.registered_plants["farming:cucumber"] = {
 
 -- mapgen
 
-minetest.register_decoration({
+core.register_decoration({
 	deco_type = "simple",
 	place_on = {
 		"default:dirt_with_grass", "mcl_core:dirt_with_grass", "ethereal:prairie_dirt"

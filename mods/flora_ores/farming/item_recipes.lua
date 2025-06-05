@@ -3,7 +3,7 @@ local a = farming.recipe_items
 
 -- flour recipes
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:flour",
 	recipe = {
 		{"farming:rye", "farming:rye", "farming:rye"},
@@ -12,7 +12,7 @@ minetest.register_craft({
 	replacements = {{"group:food_mortar_pestle", "farming:mortar_pestle"}}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:flour",
 	recipe = {
 		{"farming:barley", "farming:barley", "farming:barley"},
@@ -21,7 +21,7 @@ minetest.register_craft({
 	replacements = {{"group:food_mortar_pestle", "farming:mortar_pestle"}}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:flour",
 	recipe = {
 		{"farming:oat", "farming:oat", "farming:oat"},
@@ -32,7 +32,7 @@ minetest.register_craft({
 
 -- multigrain flour
 
-minetest.register_craft({
+core.register_craft({
 	type = "shapeless",
 	output = "farming:flour_multigrain",
 	recipe = {
@@ -44,7 +44,7 @@ minetest.register_craft({
 
 -- multigrain bread
 
-minetest.register_craft({
+core.register_craft({
 	type = "cooking",
 	cooktime = 15,
 	output = "farming:bread_multigrain",
@@ -53,7 +53,7 @@ minetest.register_craft({
 
 -- sliced bread
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:bread_slice 5",
 	recipe = {{"group:food_bread", a.cutting_board}},
 	replacements = {{"group:food_cutting_board", "farming:cutting_board"}}
@@ -61,7 +61,7 @@ minetest.register_craft({
 
 -- toast
 
-minetest.register_craft({
+core.register_craft({
 	type = "cooking",
 	cooktime = 3,
 	output = "farming:toast",
@@ -70,7 +70,7 @@ minetest.register_craft({
 
 -- toast sandwich
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:toast_sandwich",
 	recipe = {
 		{"farming:bread_slice"},
@@ -81,12 +81,12 @@ minetest.register_craft({
 
 -- garlic bulb
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:garlic_clove 8",
 	recipe = {{"farming:garlic"}}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:garlic",
 	recipe = {
 		{"farming:garlic_clove", "farming:garlic_clove", "farming:garlic_clove"},
@@ -97,7 +97,7 @@ minetest.register_craft({
 
 -- garlic braid
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:garlic_braid",
 	recipe = {
 		{"farming:garlic", "farming:garlic", "farming:garlic"},
@@ -106,7 +106,7 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
 	type = "shapeless",
 	output = "farming:garlic 9",
 	recipe = {"farming:garlic_braid"}
@@ -114,7 +114,7 @@ minetest.register_craft({
 
 -- corn on the cob
 
-minetest.register_craft({
+core.register_craft({
 	type = "cooking",
 	cooktime = 10,
 	output = "farming:corn_cob",
@@ -123,7 +123,7 @@ minetest.register_craft({
 
 -- popcorn
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:popcorn",
 	recipe = {
 		{"group:food_oil", "group:food_corn", a.pot}
@@ -136,7 +136,7 @@ minetest.register_craft({
 
 -- cornstarch
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:cornstarch",
 	recipe = {
 		{a.mortar_pestle, "group:food_corn_cooked", a.baking_tray},
@@ -150,7 +150,7 @@ minetest.register_craft({
 
 -- ethanol
 
-minetest.register_craft( {
+core.register_craft( {
 	output = "farming:bottle_ethanol",
 	recipe = {
 		{"group:food_corn", "group:food_corn", "group:food_corn"},
@@ -161,7 +161,7 @@ minetest.register_craft( {
 
 -- cup of coffee
 
-minetest.register_craft( {
+core.register_craft( {
 	output = "farming:coffee_cup",
 	recipe = {
 		{"group:food_coffee", "group:food_glass_water", a.saucepan}
@@ -173,7 +173,7 @@ minetest.register_craft( {
 
 -- bar of dark chocolate
 
-minetest.register_craft( {
+core.register_craft( {
 	output = "farming:chocolate_dark",
 	recipe = {
 		{"group:food_cocoa", "group:food_cocoa", "group:food_cocoa"}
@@ -182,7 +182,7 @@ minetest.register_craft( {
 
 -- chocolate block
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:chocolate_block",
 	recipe = {
 		{"farming:chocolate_dark", "farming:chocolate_dark", "farming:chocolate_dark"},
@@ -191,14 +191,14 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:chocolate_dark 9",
 	recipe = {{"farming:chocolate_block"}}
 })
 
 -- chili powder
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:chili_powder",
 	recipe = {
 		{"farming:chili_pepper", a.mortar_pestle}
@@ -208,7 +208,7 @@ minetest.register_craft({
 
 -- bowl of chili
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:chili_bowl",
 	recipe = {
 		{"group:food_chili_pepper", "group:food_rice", "group:food_tomato"},
@@ -218,7 +218,7 @@ minetest.register_craft({
 
 -- carrot juice
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:carrot_juice",
 	recipe = {
 		{a.juicer},
@@ -232,7 +232,7 @@ minetest.register_craft({
 
 -- blueberry pie
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:blueberry_pie",
 	recipe = {
 		{"group:food_flour", "group:food_sugar", "group:food_blueberries"},
@@ -243,7 +243,7 @@ minetest.register_craft({
 
 -- blueberry muffin
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:muffin_blueberry 2",
 	recipe = {
 		{"group:food_blueberries", "group:food_bread", "group:food_blueberries"}
@@ -252,7 +252,7 @@ minetest.register_craft({
 
 -- tomato soup
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:tomato_soup",
 	recipe = {
 		{"group:food_tomato"},
@@ -263,7 +263,7 @@ minetest.register_craft({
 
 -- filter sea water into river water
 
-minetest.register_craft({
+core.register_craft({
 	output = a.bucket_river_water,
 	recipe = {
 		{"farming:hemp_fibre"},
@@ -274,7 +274,7 @@ minetest.register_craft({
 
 if farming.mcl then
 
-	minetest.register_craft({
+	core.register_craft({
 		output = "mcl_potions:river_water",
 		recipe = {
 			{"farming:hemp_fibre"},
@@ -285,7 +285,7 @@ end
 
 -- glass of water
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:glass_water 4",
 	recipe = {
 		{a.drinking_glass, a.drinking_glass},
@@ -295,7 +295,7 @@ minetest.register_craft({
 	replacements = {{a.bucket_river_water, a.bucket_empty}}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:glass_water 4",
 	recipe = {
 		{a.drinking_glass, a.drinking_glass},
@@ -305,9 +305,9 @@ minetest.register_craft({
 	replacements = {{a.bucket_water, a.bucket_empty}}
 })
 
-if minetest.get_modpath("bucket_wooden") then
+if core.get_modpath("bucket_wooden") then
 
-	minetest.register_craft({
+	core.register_craft({
 		output = "farming:glass_water 4",
 		recipe = {
 			{a.drinking_glass, a.drinking_glass},
@@ -320,7 +320,7 @@ end
 
 -- sugar cube
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:sugar_cube",
 	recipe = {
 		{a.sugar, a.sugar, a.sugar},
@@ -329,14 +329,14 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = a.sugar .. " 9",
 	recipe = {{"farming:sugar_cube"}}
 })
 
 -- caramel
 
-minetest.register_craft({
+core.register_craft({
 	type = "cooking",
 	cooktime = 6,
 	output = "farming:caramel",
@@ -345,7 +345,7 @@ minetest.register_craft({
 
 -- salt
 
-minetest.register_craft({
+core.register_craft({
 	type = "cooking",
 	cooktime = 15,
 	output = "farming:salt",
@@ -355,7 +355,7 @@ minetest.register_craft({
 
 -- salt crystal
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:salt 9",
 	recipe = {
 		{"farming:salt_crystal", a.mortar_pestle}
@@ -363,7 +363,7 @@ minetest.register_craft({
 	replacements = {{"farming:mortar_pestle", "farming:mortar_pestle"}}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:salt_crystal",
 	recipe = {
 		{"farming:salt", "farming:salt", "farming:salt"},
@@ -374,7 +374,7 @@ minetest.register_craft({
 
 -- mayonnaise
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:mayonnaise",
 	recipe = {
 		{"group:food_olive_oil", "group:food_lemon"},
@@ -385,7 +385,7 @@ minetest.register_craft({
 
 -- rose water
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:rose_water",
 	recipe = {
 		{a.rose, a.rose, a.rose},
@@ -400,7 +400,7 @@ minetest.register_craft({
 
 -- turkish delight
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:turkish_delight 4",
 	recipe = {
 		{"group:food_gelatin", "group:food_sugar", "group:food_gelatin"},
@@ -416,7 +416,7 @@ minetest.register_craft({
 
 -- garlic bread
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:garlic_bread",
 	recipe = {
 		{"group:food_toast", "group:food_garlic_clove", "group:food_garlic_clove"}
@@ -425,7 +425,7 @@ minetest.register_craft({
 
 -- donuts
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:donut 3",
 	recipe = {
 		{"", "group:food_wheat", ""},
@@ -434,7 +434,7 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:donut_chocolate",
 	recipe = {
 		{"group:food_cocoa"},
@@ -442,7 +442,7 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:donut_apple",
 	recipe = {
 		{"group:food_apple"},
@@ -452,7 +452,7 @@ minetest.register_craft({
 
 -- porridge oats
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:porridge",
 	recipe = {
 		{"group:food_oats", "group:food_oats", "group:food_oats"},
@@ -466,7 +466,7 @@ minetest.register_craft({
 
 -- jaffa cake
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:jaffa_cake 3",
 	recipe = {
 		{a.baking_tray, "group:food_egg", "group:food_sugar"},
@@ -483,7 +483,7 @@ minetest.register_craft({
 
 -- apple pie
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:apple_pie",
 	recipe = {
 		{a.flour, "group:food_sugar", "group:food_apple"},
@@ -494,7 +494,7 @@ minetest.register_craft({
 
 -- cactus juice
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:cactus_juice",
 	recipe = {
 		{a.juicer},
@@ -508,7 +508,7 @@ minetest.register_craft({
 
 -- pasta
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:pasta",
 	recipe = {
 		{a.flour, "group:food_butter", a.mixing_bowl}
@@ -516,7 +516,7 @@ minetest.register_craft({
 	replacements = {{"group:food_mixing_bowl", "farming:mixing_bowl"}}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:pasta",
 	recipe = {
 		{a.flour, "group:food_oil", a.mixing_bowl}
@@ -529,7 +529,7 @@ minetest.register_craft({
 
 -- mac & cheese
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:mac_and_cheese",
 	recipe = {
 		{"group:food_pasta", "group:food_cheese", "group:food_bowl"}
@@ -538,7 +538,7 @@ minetest.register_craft({
 
 -- spaghetti
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:spaghetti",
 	recipe = {
 		{"group:food_pasta", "group:food_tomato", a.saucepan},
@@ -549,7 +549,7 @@ minetest.register_craft({
 
 -- korean bibimbap
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:bibimbap",
 	recipe = {
 		{a.skillet, "group:food_bowl", "group:food_egg"},
@@ -559,7 +559,7 @@ minetest.register_craft({
 	replacements = {{"group:food_skillet", "farming:skillet"}}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:bibimbap",
 	type = "shapeless",
 	recipe = {
@@ -572,7 +572,7 @@ minetest.register_craft({
 
 -- burger
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:burger",
 	recipe = {
 		{a.bread, "group:food_meat", "group:food_cheese"},
@@ -583,7 +583,7 @@ minetest.register_craft({
 
 -- salad
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:salad",
 	type = "shapeless",
 	recipe = {
@@ -594,7 +594,7 @@ minetest.register_craft({
 
 -- triple berry smoothie
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:smoothie_berry",
 	type = "shapeless",
 	recipe = {
@@ -606,7 +606,7 @@ minetest.register_craft({
 
 -- patatas a la importancia
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:spanish_potatoes",
 	recipe = {
 		{"group:food_potato", "group:food_parsley", "group:food_potato"},
@@ -618,7 +618,7 @@ minetest.register_craft({
 
 -- potato omelette
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:potato_omelet",
 	recipe = {
 		{"group:food_egg", "group:food_potato", "group:food_onion"},
@@ -629,7 +629,7 @@ minetest.register_craft({
 
 -- paella
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:paella",
 	recipe = {
 		{"group:food_rice", a.dye_orange, "farming:pepper_red"},
@@ -641,7 +641,7 @@ minetest.register_craft({
 
 -- vanilla flan
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:flan",
 	recipe = {
 		{"group:food_sugar", "group:food_milk", "farming:caramel"},
@@ -657,7 +657,7 @@ minetest.register_craft({
 
 -- vegan cheese
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:cheese_vegan",
 	recipe = {
 		{"farming:soy_milk", "farming:soy_milk", "farming:soy_milk"},
@@ -671,7 +671,7 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:cheese_vegan",
 	recipe = {
 		{"farming:soy_milk", "farming:soy_milk", "farming:soy_milk"},
@@ -686,7 +686,7 @@ minetest.register_craft({
 
 -- vegan butter
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:butter_vegan",
 	recipe = {
 		{"farming:soy_milk", "farming:sunflower_oil", "farming:soy_milk"},
@@ -701,7 +701,7 @@ minetest.register_craft({
 
 -- onigiri
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:onigiri",
 	recipe = {
 		{"group:food_rice", "group:food_salt", "group:food_rice"},
@@ -711,7 +711,7 @@ minetest.register_craft({
 
 -- gyoza
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:gyoza 4",
 	recipe = {
 		{"group:food_cabbage", "group:food_garlic_clove", "group:food_onion"},
@@ -726,7 +726,7 @@ minetest.register_craft({
 
 -- mochi
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:mochi",
 	recipe = {
 		{"", a.mortar_pestle, ""},
@@ -741,7 +741,7 @@ minetest.register_craft({
 
 -- gingerbread man
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:gingerbread_man 3",
 	recipe = {
 		{"", "group:food_egg", ""},
@@ -752,7 +752,7 @@ minetest.register_craft({
 
 -- mint tea
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:mint_tea",
 	recipe = {
 		{"group:food_mint", "group:food_mint", "group:food_mint"},
@@ -765,7 +765,7 @@ minetest.register_craft({
 
 -- onion soup
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:onion_soup",
 	recipe = {
 		{"group:food_onion", "group:food_onion", "group:food_onion"},
@@ -777,7 +777,7 @@ minetest.register_craft({
 
 -- pea soup
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:pea_soup",
 	recipe = {
 		{"group:food_peas"},
@@ -788,7 +788,7 @@ minetest.register_craft({
 
 -- ground pepper
 
-minetest.register_craft( {
+core.register_craft( {
 	output = "farming:pepper_ground",
 	recipe = {
 		{"group:food_peppercorn"},
@@ -800,7 +800,7 @@ minetest.register_craft( {
 
 -- pineapple ring
 
-minetest.register_craft( {
+core.register_craft( {
 	output = "farming:pineapple_ring 5",
 	recipe = {{"group:food_pineapple"}},
 	replacements = {{"farming:pineapple", "farming:pineapple_top"}}
@@ -808,7 +808,7 @@ minetest.register_craft( {
 
 -- pineapple juice
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:pineapple_juice",
 	recipe = {
 		{"group:food_pineapple_ring", "group:food_pineapple_ring",
@@ -821,7 +821,7 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:pineapple_juice 2",
 	recipe = {
 		{a.drinking_glass, "group:food_pineapple", a.drinking_glass},
@@ -834,7 +834,7 @@ minetest.register_craft({
 
 -- potato & cucumber salad
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:potato_salad",
 	recipe = {
 		{"group:food_cucumber"},
@@ -845,7 +845,7 @@ minetest.register_craft({
 
 -- melon slice / block
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:melon_8",
 	recipe = {
 		{"farming:melon_slice", "farming:melon_slice"},
@@ -853,7 +853,7 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:melon_slice 4",
 	recipe = {{"farming:melon_8", a.cutting_board}},
 	replacements = {{"farming:cutting_board", "farming:cutting_board"}}
@@ -861,7 +861,7 @@ minetest.register_craft({
 
 -- pumpkin slice / block
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:pumpkin",
 	recipe = {
 		{"farming:pumpkin_slice", "farming:pumpkin_slice"},
@@ -869,7 +869,7 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:pumpkin_slice 4",
 	recipe = {{"farming:pumpkin", a.cutting_board}},
 	replacements = {{"farming:cutting_board", "farming:cutting_board"}}
@@ -877,7 +877,7 @@ minetest.register_craft({
 
 -- pumpkin dough
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:pumpkin_dough",
 	recipe = {
 		{"group:food_pumpkin_slice", "group:food_flour", "group:food_pumpkin_slice"}
@@ -886,7 +886,7 @@ minetest.register_craft({
 
 -- pumpkin bread
 
-minetest.register_craft({
+core.register_craft({
 	type = "cooking",
 	output = "farming:pumpkin_bread",
 	recipe = "farming:pumpkin_dough",
@@ -895,7 +895,7 @@ minetest.register_craft({
 
 -- raspberry smoothie
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:smoothie_raspberry",
 	recipe = {
 		{a.snow},
@@ -906,7 +906,7 @@ minetest.register_craft({
 
 -- rhubarb pie
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:rhubarb_pie",
 	recipe = {
 		{a.baking_tray, "group:food_sugar", ""},
@@ -918,7 +918,7 @@ minetest.register_craft({
 
 -- rice flour
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:rice_flour",
 	recipe = {
 		{"farming:rice", "farming:rice", "farming:rice"},
@@ -929,7 +929,7 @@ minetest.register_craft({
 
 -- rice bread
 
-minetest.register_craft({
+core.register_craft({
 	type = "cooking",
 	cooktime = 15,
 	output = "farming:rice_bread",
@@ -938,7 +938,7 @@ minetest.register_craft({
 
 -- soy sauce
 
-minetest.register_craft( {
+core.register_craft( {
 	output = "farming:soy_sauce",
 	recipe = {
 		{"group:food_soy", "group:food_salt", "group:food_soy"},
@@ -952,7 +952,7 @@ minetest.register_craft( {
 
 -- soy milk
 
-minetest.register_craft( {
+core.register_craft( {
 	output = "farming:soy_milk",
 	recipe = {
 		{"group:food_soy", "group:food_soy", "group:food_soy"},
@@ -966,7 +966,7 @@ minetest.register_craft( {
 
 -- tofu
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:tofu",
 	recipe = {
 		{"group:food_soy", "group:food_soy", "group:food_soy"},
@@ -977,7 +977,7 @@ minetest.register_craft({
 
 -- cooked tofu
 
-minetest.register_craft({
+core.register_craft({
 	type = "cooking",
 	output = "farming:tofu_cooked",
 	recipe = "farming:tofu",
@@ -986,7 +986,7 @@ minetest.register_craft({
 
 -- vanilla extract
 
-minetest.register_craft( {
+core.register_craft( {
 	output = "farming:vanilla_extract",
 	recipe = {
 		{"group:food_vanilla", "group:food_vanilla", "group:food_vanilla"},
@@ -999,7 +999,7 @@ minetest.register_craft( {
 
 -- jerusalem artichokes
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:jerusalem_artichokes",
 	recipe = {
 		{"group:food_artichoke", "group:food_garlic_clove", "group:food_artichoke"},
@@ -1011,7 +1011,7 @@ minetest.register_craft({
 
 -- wooden scarecrow base
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:scarecrow_bottom",
 	recipe = {
 		{"", "group:stick", ""},
@@ -1022,7 +1022,7 @@ minetest.register_craft({
 
 -- beanpole
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:beanpole",
 	recipe = {
 		{"", "", ""},
@@ -1033,7 +1033,7 @@ minetest.register_craft({
 
 -- trellis
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:trellis",
 	recipe = {
 		{"group:stick", "group:stick", "group:stick"},
@@ -1044,7 +1044,7 @@ minetest.register_craft({
 
 -- cotton to wool
 
-minetest.register_craft({
+core.register_craft({
 	output = a.wool,
 	recipe = {
 		{"farming:cotton", "farming:cotton"},
@@ -1054,7 +1054,7 @@ minetest.register_craft({
 
 -- string
 
-minetest.register_craft({
+core.register_craft({
 	output = a.string .. " 2",
 	recipe = {
 		{"farming:cotton"},
@@ -1062,7 +1062,7 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft( {
+core.register_craft( {
 	output = "farming:cotton 3",
 	recipe = {
 		{"farming:hemp_fibre"},
@@ -1073,7 +1073,7 @@ minetest.register_craft( {
 
 -- saucepan
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:saucepan",
 	recipe = {
 		{a.steel_ingot, "", ""},
@@ -1083,7 +1083,7 @@ minetest.register_craft({
 
 -- cooking pot
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:pot",
 	recipe = {
 		{"group:stick", a.steel_ingot, a.steel_ingot},
@@ -1093,7 +1093,7 @@ minetest.register_craft({
 
 -- baking tray
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:baking_tray",
 	recipe = {
 		{a.clay_brick, a.clay_brick, a.clay_brick},
@@ -1104,7 +1104,7 @@ minetest.register_craft({
 
 -- skillet
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:skillet",
 	recipe = {
 		{a.steel_ingot, "", ""},
@@ -1115,7 +1115,7 @@ minetest.register_craft({
 
 -- mortar & pestle
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:mortar_pestle",
 	recipe = {
 		{"group:stone", "group:stick", "group:stone"},
@@ -1125,7 +1125,7 @@ minetest.register_craft({
 
 -- cutting board
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:cutting_board",
 	recipe = {
 		{a.steel_ingot, "", ""},
@@ -1136,7 +1136,7 @@ minetest.register_craft({
 
 -- juicer
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:juicer",
 	recipe = {
 		{"", "group:stone", ""},
@@ -1146,7 +1146,7 @@ minetest.register_craft({
 
 -- glass mixing bowl
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:mixing_bowl",
 	recipe = {
 		{a.glass, "group:stick", a.glass},
@@ -1154,14 +1154,14 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft( {
+core.register_craft( {
 	output = "vessels:glass_fragments",
 	recipe = {{"farming:mixing_bowl"}}
 })
 
 -- hemp oil
 
-minetest.register_craft( {
+core.register_craft( {
 	output = "farming:hemp_oil",
 	recipe = {
 		{"farming:hemp_leaf", "farming:hemp_leaf", "farming:hemp_leaf"},
@@ -1170,7 +1170,7 @@ minetest.register_craft( {
 	}
 })
 
-minetest.register_craft( {
+core.register_craft( {
 	output = "farming:hemp_oil",
 	recipe = {
 		{"farming:seed_hemp", "farming:seed_hemp", "farming:seed_hemp"},
@@ -1181,7 +1181,7 @@ minetest.register_craft( {
 
 -- hemp fibre
 
-minetest.register_craft( {
+core.register_craft( {
 	output = "farming:hemp_fibre 8",
 	recipe = {
 		{"farming:hemp_leaf", "farming:hemp_leaf", "farming:hemp_leaf"},
@@ -1191,9 +1191,9 @@ minetest.register_craft( {
 	replacements = {{"group:water_bucket", a.bucket_empty}}
 })
 
-if minetest.get_modpath("bucket_wooden") then
+if core.get_modpath("bucket_wooden") then
 
-	minetest.register_craft( {
+	core.register_craft( {
 		output = "farming:hemp_fibre 8",
 		recipe = {
 			{"farming:hemp_leaf", "farming:hemp_leaf", "farming:hemp_leaf"},
@@ -1206,7 +1206,7 @@ end
 
 -- hemp block
 
-minetest.register_craft( {
+core.register_craft( {
 	output = "farming:hemp_block",
 	recipe = {
 		{"farming:hemp_fibre", "farming:hemp_fibre", "farming:hemp_fibre"},
@@ -1217,7 +1217,7 @@ minetest.register_craft( {
 
 -- hemp rope
 
-minetest.register_craft( {
+core.register_craft( {
 	output = "farming:hemp_rope 6",
 	recipe = {
 		{"farming:hemp_fibre", "farming:hemp_fibre", "farming:hemp_fibre"},
@@ -1228,7 +1228,7 @@ minetest.register_craft( {
 
 -- paper
 
-minetest.register_craft( {
+core.register_craft( {
 	output = a.paper .. " 3",
 	recipe = {
 		{"farming:hemp_fibre", "farming:hemp_fibre", "farming:hemp_fibre"}
@@ -1239,7 +1239,7 @@ minetest.register_craft( {
 
 local tmp = farming.mcl and "farming:rye" or "farming:wheat"
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:straw 3",
 	recipe = {
 		{tmp, tmp, tmp},
@@ -1248,7 +1248,7 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = tmp .. " 3",
 	recipe = {{"farming:straw"}}
 })
@@ -1258,7 +1258,7 @@ minetest.register_craft({
 
 local tmp = "farming:weed"
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:weed_bale",
 	recipe = {
 		{tmp, tmp, tmp},
@@ -1267,7 +1267,7 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = tmp .. " 9",
 	recipe = {{"farming:weed_bale"}}
 })
@@ -1278,7 +1278,7 @@ if not farming.mcl then
 
 	-- Wheat flour
 
-	minetest.register_craft({
+	core.register_craft({
 		output = "farming:flour",
 		recipe = {
 			{"farming:wheat", "farming:wheat", "farming:wheat"},
@@ -1289,7 +1289,7 @@ if not farming.mcl then
 
 	-- Bread
 
-	minetest.register_craft({
+	core.register_craft({
 		type = "cooking",
 		cooktime = 15,
 		output = "farming:bread",
@@ -1298,7 +1298,7 @@ if not farming.mcl then
 
 	-- Cocoa beans
 
-	minetest.register_craft({
+	core.register_craft({
 		type = "cooking",
 		cooktime = 5,
 		output = "farming:cocoa_beans",
@@ -1307,7 +1307,7 @@ if not farming.mcl then
 
 	-- Chocolate cookie
 
-	minetest.register_craft( {
+	core.register_craft( {
 		output = "farming:cookie 8",
 		recipe = {
 			{"group:food_wheat", "group:food_cocoa", "group:food_wheat" }
@@ -1316,14 +1316,14 @@ if not farming.mcl then
 
 	-- Golden carrot
 
-	minetest.register_craft({
+	core.register_craft({
 		output = "farming:carrot_gold",
 		recipe = {{"group:food_carrot", "default:gold_lump"}}
 	})
 
 	-- Beetroot soup
 
-	minetest.register_craft({
+	core.register_craft({
 		output = "farming:beetroot_soup",
 		recipe = {
 			{"group:food_beetroot", "group:food_beetroot", "group:food_beetroot"},
@@ -1333,7 +1333,7 @@ if not farming.mcl then
 
 	-- Sugar
 
-	minetest.register_craft({
+	core.register_craft({
 		type = "cooking",
 		cooktime = 3,
 		output = "farming:sugar 2",
@@ -1342,7 +1342,7 @@ if not farming.mcl then
 
 	-- Baked potato
 
-	minetest.register_craft({
+	core.register_craft({
 		type = "cooking",
 		cooktime = 10,
 		output = "farming:baked_potato",
@@ -1351,7 +1351,7 @@ if not farming.mcl then
 
 	-- Toasted sunflower seeds
 
-	minetest.register_craft({
+	core.register_craft({
 		type = "cooking",
 		cooktime = 10,
 		output = "farming:sunflower_seeds_toasted",
@@ -1362,7 +1362,7 @@ if not farming.mcl then
 
 	local tmp = "group:food_sunflower_seeds"
 
-	minetest.register_craft( {
+	core.register_craft( {
 		output = "farming:sunflower_oil",
 		recipe = {
 			{tmp, tmp, tmp},
@@ -1373,7 +1373,7 @@ if not farming.mcl then
 
 	-- Sunflower seed bread
 
-	minetest.register_craft({
+	core.register_craft({
 		output = "farming:sunflower_bread",
 		recipe = {
 			{
@@ -1386,7 +1386,7 @@ if not farming.mcl then
 
 	-- Jack 'o lantern
 
-	minetest.register_craft({
+	core.register_craft({
 		output = "farming:jackolantern",
 		recipe = {
 			{"default:torch"},
@@ -1396,7 +1396,7 @@ if not farming.mcl then
 
 	-- Wooden bowl
 
-	minetest.register_craft({
+	core.register_craft({
 		output = "farming:bowl 4",
 		recipe = {
 			{"group:wood", "", "group:wood"},
@@ -1407,36 +1407,36 @@ end
 
 -- dye recipes
 
-minetest.register_craft({output = a.dye_green, recipe = {{"farming:beans"}}})
-minetest.register_craft({output = a.dye_red, recipe = {{"group:food_beetroot"}}})
-minetest.register_craft({output = a.dye_blue, recipe = {{"farming:blueberries"}}})
-minetest.register_craft({output = a.dye_red, recipe = {{"farming:chili_pepper"}}})
-minetest.register_craft({output = a.dye_brown, recipe = {{"farming:cocoa_beans"}}})
-minetest.register_craft({output = a.dye_violet, recipe = {{"farming:grapes"}}})
-minetest.register_craft({output = a.dye_yellow, recipe = {{"group:food_onion"}}})
+core.register_craft({output = a.dye_green, recipe = {{"farming:beans"}}})
+core.register_craft({output = a.dye_red, recipe = {{"group:food_beetroot"}}})
+core.register_craft({output = a.dye_blue, recipe = {{"farming:blueberries"}}})
+core.register_craft({output = a.dye_red, recipe = {{"farming:chili_pepper"}}})
+core.register_craft({output = a.dye_brown, recipe = {{"farming:cocoa_beans"}}})
+core.register_craft({output = a.dye_violet, recipe = {{"farming:grapes"}}})
+core.register_craft({output = a.dye_yellow, recipe = {{"group:food_onion"}}})
 
 -- fuel items
 
-minetest.register_craft({type = "fuel", recipe = "farming:straw", burntime = 3})
-minetest.register_craft({type = "fuel", recipe = "farming:wheat", burntime = 1})
-minetest.register_craft({type = "fuel", recipe = "farming:weed_bale", burntime = 3})
-minetest.register_craft({type = "fuel", recipe = "farming:weed", burntime = 1})
-minetest.register_craft({type = "fuel", recipe = "farming:bowl",burntime = 10})
-minetest.register_craft({type = "fuel", recipe = "farming:string", burntime = 1})
-minetest.register_craft({type = "fuel", recipe = "farming:cotton", burntime = 1})
-minetest.register_craft({type = "fuel", recipe = "farming:barley", burntime = 1})
-minetest.register_craft({type = "fuel", recipe = "farming:beanpole", burntime = 10})
-minetest.register_craft({type = "fuel", recipe = "farming:trellis", burntime = 15})
-minetest.register_craft({type = "fuel", recipe = "farming:rice", burntime = 1})
-minetest.register_craft({type = "fuel", recipe = "farming:rice_bread", burntime = 1})
-minetest.register_craft({type = "fuel", recipe = "farming:bread_multigrain", burntime = 1})
-minetest.register_craft({type = "fuel", recipe = "farming:rye", burntime = 1})
-minetest.register_craft({type = "fuel", recipe = "farming:oat", burntime = 1})
-minetest.register_craft({type = "fuel", recipe = "farming:hemp_oil",
+core.register_craft({type = "fuel", recipe = "farming:straw", burntime = 3})
+core.register_craft({type = "fuel", recipe = "farming:wheat", burntime = 1})
+core.register_craft({type = "fuel", recipe = "farming:weed_bale", burntime = 3})
+core.register_craft({type = "fuel", recipe = "farming:weed", burntime = 1})
+core.register_craft({type = "fuel", recipe = "farming:bowl",burntime = 10})
+core.register_craft({type = "fuel", recipe = "farming:string", burntime = 1})
+core.register_craft({type = "fuel", recipe = "farming:cotton", burntime = 1})
+core.register_craft({type = "fuel", recipe = "farming:barley", burntime = 1})
+core.register_craft({type = "fuel", recipe = "farming:beanpole", burntime = 10})
+core.register_craft({type = "fuel", recipe = "farming:trellis", burntime = 15})
+core.register_craft({type = "fuel", recipe = "farming:rice", burntime = 1})
+core.register_craft({type = "fuel", recipe = "farming:rice_bread", burntime = 1})
+core.register_craft({type = "fuel", recipe = "farming:bread_multigrain", burntime = 1})
+core.register_craft({type = "fuel", recipe = "farming:rye", burntime = 1})
+core.register_craft({type = "fuel", recipe = "farming:oat", burntime = 1})
+core.register_craft({type = "fuel", recipe = "farming:hemp_oil",
 		burntime = 20, replacements = {{"farming:hemp_oil", a.glass_bottle}}})
-minetest.register_craft({type = "fuel", recipe = "farming:bottle_ethanol",
+core.register_craft({type = "fuel", recipe = "farming:bottle_ethanol",
 		burntime = 80, replacements = {{"farming:bottle_ethanol", a.glass_bottle}}})
-minetest.register_craft({type = "fuel", recipe = "farming:sunflower_oil",
+core.register_craft({type = "fuel", recipe = "farming:sunflower_oil",
 		burntime = 30, replacements = {{"farming:sunflower_oil", a.glass_bottle}}})
-minetest.register_craft({type = "fuel", recipe = "farming:vanilla_extract",
+core.register_craft({type = "fuel", recipe = "farming:vanilla_extract",
 		burntime = 25, replacements = {{"farming:vanilla_extract", a.glass_bottle}}})

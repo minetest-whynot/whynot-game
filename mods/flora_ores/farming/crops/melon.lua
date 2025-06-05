@@ -1,13 +1,13 @@
 
-local S = minetest.get_translator("farming")
+local S = core.get_translator("farming")
 
 -- item/seed
 
-minetest.register_craftitem("farming:melon_slice", {
+core.register_craftitem("farming:melon_slice", {
 	description = S("Melon Slice"),
 	inventory_image = "farming_melon_slice.png",
 	groups = {compostability = 48, seed = 2, food_melon_slice = 1},
-	on_use = minetest.item_eat(2),
+	on_use = core.item_eat(2),
 
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:melon_1")
@@ -39,41 +39,41 @@ local def = {
 
 -- stage 1
 
-minetest.register_node("farming:melon_1", table.copy(def))
+core.register_node("farming:melon_1", table.copy(def))
 
 -- stage 2
 
 def.tiles = {"farming_melon_2.png"}
-minetest.register_node("farming:melon_2", table.copy(def))
+core.register_node("farming:melon_2", table.copy(def))
 
 -- stage 3
 
 def.tiles = {"farming_melon_3.png"}
-minetest.register_node("farming:melon_3", table.copy(def))
+core.register_node("farming:melon_3", table.copy(def))
 
 -- stage 4
 
 def.tiles = {"farming_melon_4.png"}
-minetest.register_node("farming:melon_4", table.copy(def))
+core.register_node("farming:melon_4", table.copy(def))
 
 -- stage 5
 
 def.tiles = {"farming_melon_5.png"}
-minetest.register_node("farming:melon_5", table.copy(def))
+core.register_node("farming:melon_5", table.copy(def))
 
 -- stage 6
 
 def.tiles = {"farming_melon_6.png"}
-minetest.register_node("farming:melon_6", table.copy(def))
+core.register_node("farming:melon_6", table.copy(def))
 
 -- stage 7
 
 def.tiles = {"farming_melon_7.png"}
-minetest.register_node("farming:melon_7", table.copy(def))
+core.register_node("farming:melon_7", table.copy(def))
 
 -- stage 8 (final)
 
-minetest.register_node("farming:melon_8", {
+core.register_node("farming:melon_8", {
 	description = S("Melon"),
 	tiles = {
 		"farming_melon_top.png",
@@ -88,7 +88,7 @@ minetest.register_node("farming:melon_8", {
 	drop = "farming:melon_8",
 	sounds = farming.node_sound_wood_defaults(),
 	paramtype2 = "facedir",
-	on_place = minetest.rotate_node,
+	on_place = core.rotate_node,
 	_mcl_hardness = 0.8,
 	_mcl_blast_resistance = 1
 })
@@ -105,7 +105,7 @@ farming.registered_plants["farming:melon"] = {
 
 -- mapgen
 
-minetest.register_decoration({
+core.register_decoration({
 	deco_type = "simple",
 	place_on = {
 		"default:dirt_with_grass", "default:dirt_with_dry_grass",

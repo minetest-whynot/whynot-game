@@ -1,7 +1,7 @@
 
 -- All textures by (C) Auke Kok <sofar@foo-projects.org> CC-BY-SA-3.0
 
-local S = minetest.get_translator("farming")
+local S = core.get_translator("farming")
 local a = farming.recipe_items
 
 -- place beans helper
@@ -13,14 +13,14 @@ local function place_beans(itemstack, placer, pointed_thing, plantname)
 	-- check if pointing at a node
 	if not pt or pt.type ~= "node" then return end
 
-	local under = minetest.get_node(pt.under)
+	local under = core.get_node(pt.under)
 
 	-- return if any of the nodes are not registered
-	if not minetest.registered_nodes[under.name] then return end
+	if not core.registered_nodes[under.name] then return end
 
 	-- am I right-clicking on something that has a custom on_place set?
 	-- thanks to Krock for helping with this issue :)
-	local def = minetest.registered_nodes[under.name]
+	local def = core.registered_nodes[under.name]
 
 	if placer and itemstack and def and def.on_rightclick then
 		return def.on_rightclick(pt.under, under, placer, itemstack, pt)
@@ -30,15 +30,15 @@ local function place_beans(itemstack, placer, pointed_thing, plantname)
 	local name = placer and placer:get_player_name() or ""
 
 	-- check for protection
-	if minetest.is_protected(pt.under, name) then return end
+	if core.is_protected(pt.under, name) then return end
 
 	-- check if pointing at bean pole
 	if under.name ~= "farming:beanpole" then return end
 
 	-- add the node and remove 1 item from the itemstack
-	minetest.set_node(pt.under, {name = plantname})
+	core.set_node(pt.under, {name = plantname})
 
-	minetest.sound_play("default_place_node", {pos = pt.under, gain = 1.0}, true)
+	core.sound_play("default_place_node", {pos = pt.under, gain = 1.0}, true)
 
 	if placer or not farming.is_creative(placer:get_player_name()) then
 
@@ -47,7 +47,7 @@ local function place_beans(itemstack, placer, pointed_thing, plantname)
 		-- check for refill
 		if itemstack:get_count() == 0 then
 
-			minetest.after(0.20,
+			core.after(0.20,
 				farming.refill_plant, placer, "farming:beans", placer:get_wield_index())
 		end
 	end
@@ -57,11 +57,11 @@ end
 
 -- item/seed
 
-minetest.register_craftitem("farming:beans", {
+core.register_craftitem("farming:beans", {
 	description = S("Green Beans"),
 	inventory_image = "farming_beans.png",
 	groups = {compostability = 48, seed = 2, food_beans = 1},
-	on_use = minetest.item_eat(1),
+	on_use = core.item_eat(1),
 
 	on_place = function(itemstack, placer, pointed_thing)
 		return place_beans(itemstack, placer, pointed_thing, "farming:beanpole_1")
@@ -72,7 +72,7 @@ farming.add_eatable("farming:beans", 1)
 
 -- beanpole
 
-minetest.register_node("farming:beanpole", {
+core.register_node("farming:beanpole", {
 	description = S("Bean Pole (place on soil before planting beans)"),
 	drawtype = "plantlike",
 	tiles = {"farming_beanpole.png"},
@@ -95,26 +95,26 @@ minetest.register_node("farming:beanpole", {
 		-- check if pointing at a node
 		if not pt or pt.type ~= "node" then return end
 
-		local under = minetest.get_node(pt.under)
+		local under = core.get_node(pt.under)
 
 		-- return if any of the nodes are not registered
-		if not minetest.registered_nodes[under.name] then return end
+		if not core.registered_nodes[under.name] then return end
 
 		-- am I right-clicking on something that has a custom on_place set?
 		-- thanks to Krock for helping with this issue :)
-		local def = minetest.registered_nodes[under.name]
+		local def = core.registered_nodes[under.name]
 
 		if def and def.on_rightclick then
 			return def.on_rightclick(pt.under, under, placer, itemstack, pt)
 		end
 
-		if minetest.is_protected(pt.above, placer:get_player_name()) then
+		if core.is_protected(pt.above, placer:get_player_name()) then
 			return
 		end
 
 		local nodename = under.name
 
-		if minetest.get_item_group(nodename, "soil") < 2 then return end
+		if core.get_item_group(nodename, "soil") < 2 then return end
 
 		local top = {
 			x = pointed_thing.above.x,
@@ -122,11 +122,11 @@ minetest.register_node("farming:beanpole", {
 			z = pointed_thing.above.z
 		}
 
-		nodename = minetest.get_node(top).name
+		nodename = core.get_node(top).name
 
 		if nodename ~= "air" then return end
 
-		minetest.set_node(pointed_thing.above, {name = "farming:beanpole"})
+		core.set_node(pointed_thing.above, {name = "farming:beanpole"})
 
 		if not farming.is_creative(placer:get_player_name()) then
 			itemstack:take_item()
@@ -164,22 +164,22 @@ local def = {
 
 -- stage 1
 
-minetest.register_node("farming:beanpole_1", table.copy(def))
+core.register_node("farming:beanpole_1", table.copy(def))
 
 -- stage2
 
 def.tiles = {"farming_beanpole_2.png"}
-minetest.register_node("farming:beanpole_2", table.copy(def))
+core.register_node("farming:beanpole_2", table.copy(def))
 
 -- stage 3
 
 def.tiles = {"farming_beanpole_3.png"}
-minetest.register_node("farming:beanpole_3", table.copy(def))
+core.register_node("farming:beanpole_3", table.copy(def))
 
 -- stage 4
 
 def.tiles = {"farming_beanpole_4.png"}
-minetest.register_node("farming:beanpole_4", table.copy(def))
+core.register_node("farming:beanpole_4", table.copy(def))
 
 -- stage 5 (final)
 
@@ -190,11 +190,11 @@ def.drop = {
 	items = {
 		{items = {"farming:beanpole"}, rarity = 1},
 		{items = {"farming:beans 3"}, rarity = 1},
-		{items = {"farming:beans 2"}, rarity = 2},
-		{items = {"farming:beans 2"}, rarity = 3}
+		{items = {"farming:beans"}, rarity = 2},
+		{items = {"farming:beans"}, rarity = 3}
 	}
 }
-minetest.register_node("farming:beanpole_5", table.copy(def))
+core.register_node("farming:beanpole_5", table.copy(def))
 
 -- add to registered_plants
 
@@ -209,7 +209,7 @@ farming.registered_plants["farming:beans"] = {
 
 -- wild green bean bush (this is what you find on the map)
 
-minetest.register_node("farming:beanbush", {
+core.register_node("farming:beanbush", {
 	drawtype = "plantlike",
 	tiles = {"farming_beanbush.png"},
 	paramtype = "light",
@@ -235,7 +235,7 @@ minetest.register_node("farming:beanbush", {
 
 -- mapgen
 
-minetest.register_decoration({
+core.register_decoration({
 	deco_type = "simple",
 	place_on = {"default:dirt_with_grass", "mcl_core:dirt_with_grass"},
 	sidelen = 16,

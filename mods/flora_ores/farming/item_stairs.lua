@@ -1,7 +1,7 @@
 
 -- check and register stairs
 
-if minetest.global_exists("stairs") then
+if core.global_exists("stairs") then
 
 	if stairs.mod and stairs.mod == "redo" then
 

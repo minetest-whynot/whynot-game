@@ -3,11 +3,11 @@
 
 local rarity_lookup = {[1] = 50, [2] = 50, [3] = 50, [4] = 5, [5] = 5}
 
-if minetest.registered_nodes["default:grass_1"] then
+if core.registered_nodes["default:grass_1"] then
 
 	for i = 1, 5 do
 
-		minetest.override_item("default:grass_" .. i, {
+		core.override_item("default:grass_" .. i, {
 			drop = {
 				max_items = 1,
 				items = {
@@ -22,11 +22,11 @@ end
 
 -- override dry grass to drop barley and rye seeds
 
-if minetest.registered_nodes["default:dry_grass_1"] then
+if core.registered_nodes["default:dry_grass_1"] then
 
 	for i = 1, 5 do
 
-		minetest.override_item("default:dry_grass_" .. i, {
+		core.override_item("default:dry_grass_" .. i, {
 			drop = {
 				max_items = 1,
 				items = {
@@ -41,9 +41,9 @@ end
 
 -- override jungle grass to drop cotton and rice seeds
 
-if minetest.registered_nodes["default:junglegrass"] then
+if core.registered_nodes["default:junglegrass"] then
 
-	minetest.override_item("default:junglegrass", {
+	core.override_item("default:junglegrass", {
 		drop = {
 			max_items = 1,
 			items = {
@@ -59,7 +59,7 @@ end
 
 if farming.mcl then
 
-	minetest.override_item("mcl_flowers:tallgrass", {
+	core.override_item("mcl_flowers:tallgrass", {
 		drop = {
 			max_items = 1,
 			items = {

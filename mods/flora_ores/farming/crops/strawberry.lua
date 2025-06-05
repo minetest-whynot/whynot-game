@@ -1,13 +1,13 @@
 
-local S = minetest.get_translator("farming")
+local S = core.get_translator("farming")
 
 -- item/seed
 
-minetest.register_craftitem(":ethereal:strawberry", {
+core.register_craftitem(":ethereal:strawberry", {
 	description = S("Strawberry"),
 	inventory_image = "ethereal_strawberry.png",
 	groups = {compostability = 48, seed = 2, food_strawberry = 1, food_berry = 1},
-	on_use = minetest.item_eat(1),
+	on_use = core.item_eat(1),
 
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "ethereal:strawberry_1")
@@ -43,49 +43,43 @@ local def = {
 
 --stage 1
 
-minetest.register_node(":ethereal:strawberry_1", table.copy(def))
+core.register_node(":ethereal:strawberry_1", table.copy(def))
 
 -- stage 2
 
 def.tiles = {"ethereal_strawberry_2.png"}
-minetest.register_node(":ethereal:strawberry_2", table.copy(def))
+core.register_node(":ethereal:strawberry_2", table.copy(def))
 
 -- stage 3
 
 def.tiles = {"ethereal_strawberry_3.png"}
-minetest.register_node(":ethereal:strawberry_3", table.copy(def))
+core.register_node(":ethereal:strawberry_3", table.copy(def))
 
 -- stage 4
 
 def.tiles = {"ethereal_strawberry_4.png"}
-minetest.register_node(":ethereal:strawberry_4", table.copy(def))
+core.register_node(":ethereal:strawberry_4", table.copy(def))
 
 -- stage 5
 
 def.tiles = {"ethereal_strawberry_5.png"}
-minetest.register_node(":ethereal:strawberry_5", table.copy(def))
+core.register_node(":ethereal:strawberry_5", table.copy(def))
 
 -- stage 6
 
 def.tiles = {"ethereal_strawberry_6.png"}
-def.drop = {
-	items = {
-		{items = {"ethereal:strawberry 1"}, rarity = 2},
-		{items = {"ethereal:strawberry 2"}, rarity = 3}
-	}
-}
-minetest.register_node(":ethereal:strawberry_6", table.copy(def))
+core.register_node(":ethereal:strawberry_6", table.copy(def))
 
 -- stage 7
 
 def.tiles = {"ethereal_strawberry_7.png"}
 def.drop = {
 	items = {
-		{items = {"ethereal:strawberry 1"}, rarity = 1},
-		{items = {"ethereal:strawberry 2"}, rarity = 3}
+		{items = {"ethereal:strawberry"}, rarity = 1},
+		{items = {"ethereal:strawberry"}, rarity = 3}
 	}
 }
-minetest.register_node(":ethereal:strawberry_7", table.copy(def))
+core.register_node(":ethereal:strawberry_7", table.copy(def))
 
 -- stage 8 (final)
 
@@ -95,10 +89,12 @@ def.selection_box = farming.select_final
 def.drop = {
 	items = {
 		{items = {"ethereal:strawberry 2"}, rarity = 1},
-		{items = {"ethereal:strawberry 3"}, rarity = 3}
+		{items = {"ethereal:strawberry"}, rarity = 2},
+		{items = {"ethereal:strawberry"}, rarity = 3},
+		{items = {"ethereal:strawberry"}, rarity = 4},
 	}
 }
-minetest.register_node(":ethereal:strawberry_8", table.copy(def))
+core.register_node(":ethereal:strawberry_8", table.copy(def))
 
 -- add to registered_plants
 
@@ -112,7 +108,7 @@ farming.registered_plants["ethereal:strawberry"] = {
 
 -- mapgen
 
-minetest.register_decoration({
+core.register_decoration({
 	deco_type = "simple",
 	place_on = {
 		"default:dirt_with_grass", "mcl_core:dirt_with_grass", "ethereal:prairie_dirt"

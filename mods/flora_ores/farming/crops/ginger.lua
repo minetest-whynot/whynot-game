@@ -1,13 +1,13 @@
 
-local S = minetest.get_translator("farming")
+local S = core.get_translator("farming")
 
 -- item/seed
 
-minetest.register_craftitem("farming:ginger", {
+core.register_craftitem("farming:ginger", {
 	description = S("Ginger"),
 	inventory_image = "farming_ginger.png",
 	groups = {compostability = 48, seed = 2, food_ginger = 1},
-	on_use = minetest.item_eat(1),
+	on_use = core.item_eat(1),
 
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:ginger_1")
@@ -40,12 +40,12 @@ local def = {
 
 -- stage 1
 
-minetest.register_node("farming:ginger_1", table.copy(def))
+core.register_node("farming:ginger_1", table.copy(def))
 
 -- stage 2
 
 def.tiles = {"farming_ginger_2.png"}
-minetest.register_node("farming:ginger_2", table.copy(def))
+core.register_node("farming:ginger_2", table.copy(def))
 
 -- stage 3
 
@@ -56,7 +56,7 @@ def.drop = {
 		{items = {"farming:ginger"}, rarity = 3}
 	}
 }
-minetest.register_node("farming:ginger_3", table.copy(def))
+core.register_node("farming:ginger_3", table.copy(def))
 
 -- stage 4 (final)
 
@@ -66,10 +66,11 @@ def.selection_box = farming.select_final
 def.drop = {
 	items = {
 		{items = {"farming:ginger 2"}, rarity = 1},
-		{items = {"farming:ginger 2"}, rarity = 2}
+		{items = {"farming:ginger"}, rarity = 2},
+		{items = {"farming:ginger"}, rarity = 3}
 	}
 }
-minetest.register_node("farming:ginger_4", table.copy(def))
+core.register_node("farming:ginger_4", table.copy(def))
 
 -- add to registered_plants
 
@@ -77,13 +78,13 @@ farming.registered_plants["farming:ginger"] = {
 	crop = "farming:ginger",
 	seed = "farming:ginger",
 	minlight = 5,
-	maxlight = minetest.LIGHT_MAX,
+	maxlight = core.LIGHT_MAX,
 	steps = 4
 }
 
 -- mapgen
 
-minetest.register_decoration({
+core.register_decoration({
 	name = "farming:ginger_4",
 	deco_type = "simple",
 	place_on = {

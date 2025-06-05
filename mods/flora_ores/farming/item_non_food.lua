@@ -1,9 +1,9 @@
 
-local S = minetest.get_translator("farming")
+local S = core.get_translator("farming")
 
 -- saucepan
 
-minetest.register_craftitem("farming:saucepan", {
+core.register_craftitem("farming:saucepan", {
 	description = S("Saucepan"),
 	inventory_image = "farming_saucepan.png",
 	groups = {food_saucepan = 1, flammable = 2}
@@ -11,7 +11,7 @@ minetest.register_craftitem("farming:saucepan", {
 
 -- cooking pot
 
-minetest.register_craftitem("farming:pot", {
+core.register_craftitem("farming:pot", {
 	description = S("Cooking Pot"),
 	inventory_image = "farming_pot.png",
 	groups = {food_pot = 1, flammable = 2}
@@ -19,7 +19,7 @@ minetest.register_craftitem("farming:pot", {
 
 -- baking tray
 
-minetest.register_craftitem("farming:baking_tray", {
+core.register_craftitem("farming:baking_tray", {
 	description = S("Baking Tray"),
 	inventory_image = "farming_baking_tray.png",
 	groups = {food_baking_tray = 1, flammable = 2}
@@ -27,7 +27,7 @@ minetest.register_craftitem("farming:baking_tray", {
 
 -- skillet
 
-minetest.register_craftitem("farming:skillet", {
+core.register_craftitem("farming:skillet", {
 	description = S("Skillet"),
 	inventory_image = "farming_skillet.png",
 	groups = {food_skillet = 1, flammable = 2}
@@ -35,7 +35,7 @@ minetest.register_craftitem("farming:skillet", {
 
 -- mortar & pestle
 
-minetest.register_craftitem("farming:mortar_pestle", {
+core.register_craftitem("farming:mortar_pestle", {
 	description = S("Mortar and Pestle"),
 	inventory_image = "farming_mortar_pestle.png",
 	groups = {food_mortar_pestle = 1, flammable = 2}
@@ -43,7 +43,7 @@ minetest.register_craftitem("farming:mortar_pestle", {
 
 -- cutting board
 
-minetest.register_craftitem("farming:cutting_board", {
+core.register_craftitem("farming:cutting_board", {
 	description = S("Cutting Board"),
 	inventory_image = "farming_cutting_board.png",
 	groups = {food_cutting_board = 1, flammable = 2}
@@ -51,7 +51,7 @@ minetest.register_craftitem("farming:cutting_board", {
 
 -- juicer
 
-minetest.register_craftitem("farming:juicer", {
+core.register_craftitem("farming:juicer", {
 	description = S("Juicer"),
 	inventory_image = "farming_juicer.png",
 	groups = {food_juicer = 1, flammable = 2}
@@ -59,7 +59,7 @@ minetest.register_craftitem("farming:juicer", {
 
 -- glass mixing bowl
 
-minetest.register_craftitem("farming:mixing_bowl", {
+core.register_craftitem("farming:mixing_bowl", {
 	description = S("Glass Mixing Bowl"),
 	inventory_image = "farming_mixing_bowl.png",
 	groups = {food_mixing_bowl = 1, flammable = 2}
@@ -67,7 +67,7 @@ minetest.register_craftitem("farming:mixing_bowl", {
 
 -- Ethanol (thanks to JKMurray for this idea)
 
-minetest.register_node("farming:bottle_ethanol", {
+core.register_node("farming:bottle_ethanol", {
 	description = S("Bottle of Ethanol"),
 	drawtype = "plantlike",
 	tiles = {"farming_bottle_ethanol.png"},
@@ -86,7 +86,7 @@ minetest.register_node("farming:bottle_ethanol", {
 
 -- straw
 
-minetest.register_node("farming:straw", {
+core.register_node("farming:straw", {
 	description = S("Straw"),
 	tiles = {"farming_straw.png"},
 	is_ground_content = false,
@@ -98,7 +98,7 @@ minetest.register_node("farming:straw", {
 
 -- weed
 
-minetest.register_node("farming:weed", {
+core.register_node("farming:weed", {
 	description = S("Weed"),
 	drawtype = "plantlike",
 	tiles = {"farming_weed.png"},
@@ -119,7 +119,7 @@ minetest.register_node("farming:weed", {
 
 -- weed bale
 
-minetest.register_node("farming:weed_bale", {
+core.register_node("farming:weed_bale", {
 	description = S("Weed Bale"),
 	tiles = {
 		"farming_weed_bale_top.png", "farming_weed_bale_top.png",
@@ -134,7 +134,7 @@ minetest.register_node("farming:weed_bale", {
 
 -- hemp oil
 
-minetest.register_node("farming:hemp_oil", {
+core.register_node("farming:hemp_oil", {
 	description = S("Bottle of Hemp Oil"),
 	drawtype = "plantlike",
 	tiles = {"farming_hemp_oil.png"},
@@ -155,7 +155,7 @@ minetest.register_node("farming:hemp_oil", {
 
 -- hemp fibre
 
-minetest.register_craftitem("farming:hemp_fibre", {
+core.register_craftitem("farming:hemp_fibre", {
 	description = S("Hemp Fibre"),
 	inventory_image = "farming_hemp_fibre.png",
 	groups = {compostability = 55}
@@ -163,7 +163,7 @@ minetest.register_craftitem("farming:hemp_fibre", {
 
 -- hemp block
 
-minetest.register_node("farming:hemp_block", {
+core.register_node("farming:hemp_block", {
 	description = S("Hemp Block"),
 	tiles = {"farming_hemp_block.png"},
 	paramtype = "light",
@@ -179,7 +179,7 @@ minetest.register_node("farming:hemp_block", {
 
 -- hemp rope
 
-minetest.register_node("farming:hemp_rope", {
+core.register_node("farming:hemp_rope", {
 	description = S("Hemp Rope"),
 	walkable = false,
 	climbable = true,
@@ -204,7 +204,7 @@ minetest.register_node("farming:hemp_rope", {
 
 --- Wooden scarecrow base
 
-minetest.register_node("farming:scarecrow_bottom", {
+core.register_node("farming:scarecrow_bottom", {
 	description = S("Scarecrow Bottom"),
 	paramtype = "light",
 	sunlight_propagates = true,
@@ -230,7 +230,7 @@ if not farming.mcl then
 
 	-- Wooden bowl
 
-	minetest.register_craftitem("farming:bowl", {
+	core.register_craftitem("farming:bowl", {
 		description = S("Wooden Bowl"),
 		inventory_image = "farming_bowl.png",
 		groups = {food_bowl = 1, flammable = 2}
@@ -238,7 +238,7 @@ if not farming.mcl then
 
 	-- String
 
-	minetest.register_craftitem("farming:string", {
+	core.register_craftitem("farming:string", {
 		description = S("String"),
 		inventory_image = "farming_string.png",
 		groups = {flammable = 2}
@@ -246,7 +246,7 @@ if not farming.mcl then
 
 	-- Jack 'O Lantern
 
-	minetest.register_node("farming:jackolantern", {
+	core.register_node("farming:jackolantern", {
 		description = S("Jack 'O Lantern (punch to turn on and off)"),
 		tiles = {
 			"farming_pumpkin_bottom.png^farming_pumpkin_top.png",
@@ -265,15 +265,15 @@ if not farming.mcl then
 
 		on_punch = function(pos, node, puncher)
 			local name = puncher:get_player_name() or ""
-			if minetest.is_protected(pos, name) then return end
+			if core.is_protected(pos, name) then return end
 			node.name = "farming:jackolantern_on"
-			minetest.swap_node(pos, node)
+			core.swap_node(pos, node)
 		end,
 		_mcl_hardness = 0.8,
 		_mcl_blast_resistance = 1
 	})
 
-	minetest.register_node("farming:jackolantern_on", {
+	core.register_node("farming:jackolantern_on", {
 		tiles = {
 			"farming_pumpkin_bottom.png^farming_pumpkin_top.png",
 			"farming_pumpkin_bottom.png",
@@ -282,7 +282,7 @@ if not farming.mcl then
 			"farming_pumpkin_side.png",
 			"farming_pumpkin_side.png^farming_pumpkin_face_on.png"
 		},
-		light_source = minetest.LIGHT_MAX - 1,
+		light_source = core.LIGHT_MAX - 1,
 		paramtype2 = "facedir",
 		groups = {
 			handy = 1, snappy = 2, choppy = 2, oddly_breakable_by_hand = 2, flammable = 2,
@@ -294,9 +294,9 @@ if not farming.mcl then
 
 		on_punch = function(pos, node, puncher)
 			local name = puncher:get_player_name() or ""
-			if minetest.is_protected(pos, name) then return end
+			if core.is_protected(pos, name) then return end
 			node.name = "farming:jackolantern"
-			minetest.swap_node(pos, node)
+			core.swap_node(pos, node)
 		end,
 		_mcl_hardness = 0.8,
 		_mcl_blast_resistance = 1

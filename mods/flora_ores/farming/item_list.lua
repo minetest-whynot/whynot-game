@@ -3,7 +3,7 @@
 
 local function add_groups(item, groups)
 
-	local def = minetest.registered_items[item]
+	local def = core.registered_items[item]
 
 	if def then
 
@@ -13,7 +13,7 @@ local function add_groups(item, groups)
 			grps[k] = v
 		end
 
-		minetest.override_item(item, {groups = grps})
+		core.override_item(item, {groups = grps})
 	end
 end
 

@@ -1,11 +1,11 @@
 
-local S = minetest.get_translator("farming")
+local S = core.get_translator("farming")
 
 --= Helpers
 
-local eth = minetest.get_modpath("ethereal")
+local eth = core.get_modpath("ethereal")
 local alias = function(orig, new)
-	minetest.register_alias(orig, new)
+	core.register_alias(orig, new)
 end
 
 --= Add {eatable} group to default food items if found
@@ -24,7 +24,7 @@ if eth then
 	alias("farming_plus:banana_leaves", "ethereal:bananaleaves")
 	alias("farming_plus:banana", "ethereal:banana")
 else
-	minetest.register_node(":ethereal:banana", {
+	core.register_node(":ethereal:banana", {
 		description = S("Banana"),
 		drawtype = "torchlike",
 		tiles = {"farming_banana_single.png"},
@@ -38,13 +38,13 @@ else
 		},
 		groups = {food_banana = 1, fleshy = 3, dig_immediate = 3},
 		is_ground_content = false,
-		on_use = minetest.item_eat(2),
+		on_use = core.item_eat(2),
 		sounds = farming.node_sound_leaves_defaults()
 	})
 
 	farming.add_eatable("ethereal:banana", 2)
 
-	minetest.register_node(":ethereal:bananaleaves", {
+	core.register_node(":ethereal:bananaleaves", {
 		description = S("Banana Leaves"),
 		tiles = {"ethereal_banana_leaf.png"},
 		inventory_image = "ethereal_banana_leaf.png",
@@ -88,7 +88,7 @@ if eth then
 	alias("farming_plus:orange", "ethereal:orange")
 	alias("farming_plus:orange_seed", "ethereal:orange_tree_sapling")
 else
-	minetest.register_node(":ethereal:orange", {
+	core.register_node(":ethereal:orange", {
 		description = S("Orange"),
 		drawtype = "plantlike",
 		tiles = {"farming_orange.png"},
@@ -102,7 +102,7 @@ else
 		},
 		groups = {food_orange = 1, fleshy = 3, dig_immediate = 3, flammable = 2},
 		is_ground_content = false,
-		on_use = minetest.item_eat(4),
+		on_use = core.item_eat(4),
 		sounds = farming.node_sound_leaves_defaults()
 	})
 

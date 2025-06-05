@@ -1,16 +1,16 @@
 
-local S = minetest.get_translator("farming")
+local S = core.get_translator("farming")
 
 -- item/seed
 
-minetest.register_craftitem("farming:blueberries", {
+core.register_craftitem("farming:blueberries", {
 	description = S("Wild Blueberries"),
 	inventory_image = "farming_blueberries.png",
 	groups = {
 		compostability = 48,seed = 2, food_blueberries = 1, food_blueberry = 1,
 		food_berry = 1
 	},
-	on_use = minetest.item_eat(1),
+	on_use = core.item_eat(1),
 
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:blueberry_1")
@@ -41,17 +41,17 @@ local def = {
 
 -- stage 1
 
-minetest.register_node("farming:blueberry_1", table.copy(def))
+core.register_node("farming:blueberry_1", table.copy(def))
 
 -- stage 2
 
 def.tiles = {"farming_blueberry_2.png"}
-minetest.register_node("farming:blueberry_2", table.copy(def))
+core.register_node("farming:blueberry_2", table.copy(def))
 
 -- stage 3
 
 def.tiles = {"farming_blueberry_3.png"}
-minetest.register_node("farming:blueberry_3", table.copy(def))
+core.register_node("farming:blueberry_3", table.copy(def))
 
 -- stage 4 (final)
 
@@ -65,7 +65,7 @@ def.drop = {
 		{items = {"farming:blueberries"}, rarity = 3}
 	}
 }
-minetest.register_node("farming:blueberry_4", table.copy(def))
+core.register_node("farming:blueberry_4", table.copy(def))
 
 -- add to registered_plants
 
@@ -79,7 +79,7 @@ farming.registered_plants["farming:blueberries"] = {
 
 -- mapgen
 
-minetest.register_decoration({
+core.register_decoration({
 	deco_type = "simple",
 	place_on = {
 		"default:dirt_with_grass", "mcl_core:dirt_with_grass", "ethereal:prairie_dirt"

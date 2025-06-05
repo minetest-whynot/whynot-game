@@ -1,9 +1,9 @@
 
-local S = minetest.get_translator("farming")
+local S = core.get_translator("farming")
 
 -- seed
 
-minetest.register_node("farming:seed_cotton", {
+core.register_node("farming:seed_cotton", {
 	description = S("Cotton Seed"),
 	tiles = {"farming_cotton_seed.png"},
 	inventory_image = "farming_cotton_seed.png",
@@ -27,13 +27,13 @@ minetest.register_node("farming:seed_cotton", {
 	end,
 
 	on_timer = function(pos, elapsed)
-		minetest.set_node(pos, {name = "farming:cotton_1", param2 = 1})
+		core.set_node(pos, {name = "farming:cotton_1", param2 = 1})
 	end
 })
 
 -- item
 
-minetest.register_craftitem("farming:cotton", {
+core.register_craftitem("farming:cotton", {
 	description = S("Cotton"),
 	inventory_image = "farming_cotton.png",
 	groups = {flammable = 4, compostability = 50}
@@ -63,22 +63,22 @@ local def = {
 
 -- stage 1
 
-minetest.register_node("farming:cotton_1", table.copy(def))
+core.register_node("farming:cotton_1", table.copy(def))
 
 -- stage 2
 
 def.tiles = {"farming_cotton_2.png"}
-minetest.register_node("farming:cotton_2", table.copy(def))
+core.register_node("farming:cotton_2", table.copy(def))
 
 -- stage 3
 
 def.tiles = {"farming_cotton_3.png"}
-minetest.register_node("farming:cotton_3", table.copy(def))
+core.register_node("farming:cotton_3", table.copy(def))
 
 -- stage 4
 
 def.tiles = {"farming_cotton_4.png"}
-minetest.register_node("farming:cotton_4", table.copy(def))
+core.register_node("farming:cotton_4", table.copy(def))
 
 -- stage 5
 
@@ -88,31 +88,23 @@ def.drop = {
 		{items = {"farming:seed_cotton"}, rarity = 1}
 	}
 }
-minetest.register_node("farming:cotton_5", table.copy(def))
+core.register_node("farming:cotton_5", table.copy(def))
 
 -- stage 6
 
 def.tiles = {"farming_cotton_6.png"}
-def.drop = {
-	items = {
-		{items = {"farming:cotton"}, rarity = 1},
-		{items = {"farming:cotton"}, rarity = 2}
-	}
-}
-minetest.register_node("farming:cotton_6", table.copy(def))
+core.register_node("farming:cotton_6", table.copy(def))
 
 -- stage 7
 
 def.tiles = {"farming_cotton_7.png"}
 def.drop = {
 	items = {
-		{items = {"farming:cotton"}, rarity = 1},
 		{items = {"farming:cotton"}, rarity = 2},
-		{items = {"farming:seed_cotton"}, rarity = 1},
-		{items = {"farming:seed_cotton"}, rarity = 2}
+		{items = {"farming:seed_cotton"}, rarity = 1}
 	}
 }
-minetest.register_node("farming:cotton_7", table.copy(def))
+core.register_node("farming:cotton_7", table.copy(def))
 
 -- stage 8 (final)
 
@@ -129,7 +121,7 @@ def.drop = {
 		{items = {"farming:seed_cotton"}, rarity = 3}
 	}
 }
-minetest.register_node("farming:cotton_8", table.copy(def))
+core.register_node("farming:cotton_8", table.copy(def))
 
 -- add to registered_plants
 
@@ -143,7 +135,7 @@ farming.registered_plants["farming:cotton"] = {
 
 -- wild cotton (this is what you find on the map)
 
-minetest.register_node("farming:cotton_wild", {
+core.register_node("farming:cotton_wild", {
 	description = S("Wild Cotton"),
 	drawtype = "plantlike",
 	waving = 1,
@@ -181,7 +173,7 @@ if farming.mapgen == "v6" then
 	spawn_on = {"default:dirt_with_grass"}
 end
 
-minetest.register_decoration({
+core.register_decoration({
 	name = "farming:cotton_wild",
 	deco_type = "simple",
 	place_on = spawn_on,

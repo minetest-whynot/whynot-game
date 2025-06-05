@@ -1,9 +1,9 @@
 
-local S = minetest.get_translator("farming")
+local S = core.get_translator("farming")
 
 -- seed
 
-minetest.register_node("farming:seed_sunflower", {
+core.register_node("farming:seed_sunflower", {
 	description = S("Sunflower Seeds"),
 	tiles = {"farming_sunflower_seeds.png"},
 	inventory_image = "farming_sunflower_seeds.png",
@@ -27,15 +27,15 @@ minetest.register_node("farming:seed_sunflower", {
 	end,
 
 	on_timer = function(pos, elapsed)
-		minetest.set_node(pos, {name = "farming:sunflower_1", param2 = 1})
+		core.set_node(pos, {name = "farming:sunflower_1", param2 = 1})
 	end
 })
 
-minetest.register_alias("farming:sunflower_seeds", "farming:seed_sunflower")
+core.register_alias("farming:sunflower_seeds", "farming:seed_sunflower")
 
 -- item
 
-minetest.register_craftitem("farming:sunflower", {
+core.register_craftitem("farming:sunflower", {
 	description = S("Sunflower"),
 	inventory_image = "farming_sunflower.png",
 	groups = {flammable = 2}
@@ -43,7 +43,7 @@ minetest.register_craftitem("farming:sunflower", {
 
 -- turn item into seeds
 
-minetest.register_craft({
+core.register_craft({
 	output = "farming:seed_sunflower 5",
 	recipe = {{"farming:sunflower"}}
 })
@@ -72,38 +72,38 @@ local def = {
 
 -- stage 1
 
-minetest.register_node("farming:sunflower_1", table.copy(def))
+core.register_node("farming:sunflower_1", table.copy(def))
 
 -- stage 2
 
 def.tiles = {"farming_sunflower_2.png"}
-minetest.register_node("farming:sunflower_2", table.copy(def))
+core.register_node("farming:sunflower_2", table.copy(def))
 
 -- stage 3
 
 def.tiles = {"farming_sunflower_3.png"}
-minetest.register_node("farming:sunflower_3", table.copy(def))
+core.register_node("farming:sunflower_3", table.copy(def))
 
 -- stage 4
 
 def.tiles = {"farming_sunflower_4.png"}
-minetest.register_node("farming:sunflower_4", table.copy(def))
+core.register_node("farming:sunflower_4", table.copy(def))
 
 -- stage 5
 
 def.tiles = {"farming_sunflower_5.png"}
-minetest.register_node("farming:sunflower_5", table.copy(def))
+core.register_node("farming:sunflower_5", table.copy(def))
 
 -- stage 6
 
 def.tiles = {"farming_sunflower_6.png"}
 def.visual_scale = 1.9
-minetest.register_node("farming:sunflower_6", table.copy(def))
+core.register_node("farming:sunflower_6", table.copy(def))
 
 -- stage 7
 
 def.tiles = {"farming_sunflower_7.png"}
-minetest.register_node("farming:sunflower_7", table.copy(def))
+core.register_node("farming:sunflower_7", table.copy(def))
 
 -- stage 8 (final)
 
@@ -116,7 +116,7 @@ def.drop = {
 		{items = {"farming:sunflower"}, rarity = 6}
 	}
 }
-minetest.register_node("farming:sunflower_8", table.copy(def))
+core.register_node("farming:sunflower_8", table.copy(def))
 
 -- add to registered_plants
 
@@ -130,7 +130,7 @@ farming.registered_plants["farming:sunflower"] = {
 
 -- mapgen
 
-minetest.register_decoration({
+core.register_decoration({
 	deco_type = "simple",
 	place_on = {
 		"default:dirt_with_grass", "mcl_core:dirt_with_grass", "ethereal:prairie_dirt"

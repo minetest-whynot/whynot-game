@@ -2,18 +2,18 @@
 --[[
 	Original textures from Crops Plus mod
 	Copyright (C) 2018 Grizzly Adam
-	https://forum.minetest.net/viewtopic.php?f=9&t=19488
+	https://forum.core.net/viewtopic.php?f=9&t=19488
 ]]
 
-local S = minetest.get_translator("farming")
+local S = core.get_translator("farming")
 
 -- item/seed
 
-minetest.register_craftitem("farming:onion", {
+core.register_craftitem("farming:onion", {
 	description = S("Onion"),
 	inventory_image = "crops_onion.png",
 	groups = {compostability = 48, seed = 2, food_onion = 1},
-	on_use = minetest.item_eat(1),
+	on_use = core.item_eat(1),
 
 	on_place = function(itemstack, placer, pointed_thing)
 		return farming.place_seed(itemstack, placer, pointed_thing, "farming:onion_1")
@@ -49,22 +49,22 @@ local def = {
 
 -- stage 1
 
-minetest.register_node("farming:onion_1", table.copy(def))
+core.register_node("farming:onion_1", table.copy(def))
 
 -- stage 2
 
 def.tiles = {"crops_onion_plant_2.png"}
-minetest.register_node("farming:onion_2", table.copy(def))
+core.register_node("farming:onion_2", table.copy(def))
 
 -- stage 3
 
 def.tiles = {"crops_onion_plant_3.png"}
-minetest.register_node("farming:onion_3", table.copy(def))
+core.register_node("farming:onion_3", table.copy(def))
 
 -- stage 4
 
 def.tiles = {"crops_onion_plant_4.png"}
-minetest.register_node("farming:onion_4", table.copy(def))
+core.register_node("farming:onion_4", table.copy(def))
 
 -- stage 5
 
@@ -72,15 +72,13 @@ def.tiles = {"crops_onion_plant_5.png"}
 def.groups.growing = nil
 def.selection_box = farming.select_final
 def.drop = {
-	max_items = 5, items = {
-		{items = {"farming:onion"}, rarity = 1},
-		{items = {"farming:onion"}, rarity = 1},
+	items = {
+		{items = {"farming:onion 2"}, rarity = 1},
 		{items = {"farming:onion"}, rarity = 2},
-		{items = {"farming:onion"}, rarity = 2},
-		{items = {"farming:onion"}, rarity = 5}
+		{items = {"farming:onion"}, rarity = 4}
 	}
 }
-minetest.register_node("farming:onion_5", table.copy(def))
+core.register_node("farming:onion_5", table.copy(def))
 
 -- add to registered_plants
 
@@ -94,7 +92,7 @@ farming.registered_plants["farming:onion"] = {
 
 -- mapgen
 
-minetest.register_decoration({
+core.register_decoration({
 	deco_type = "simple",
 	place_on = {
 		"default:dirt_with_grass", "mcl_core:dirt_with_grass", "ethereal:prairie_dirt"

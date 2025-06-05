@@ -1,14 +1,14 @@
 
 --[[
 	Original textures from DocFarming mod
-	https://forum.minetest.net/viewtopic.php?id=3948
+	https://forum.core.net/viewtopic.php?id=3948
 ]]
 
-local S = minetest.get_translator("farming")
+local S = core.get_translator("farming")
 
 -- item/seed
 
-minetest.register_craftitem("farming:potato", {
+core.register_craftitem("farming:potato", {
 	description = S("Potato"),
 	inventory_image = "farming_potato.png",
 	groups = {compostability = 48, seed = 2, food_potato = 1},
@@ -23,9 +23,9 @@ minetest.register_craftitem("farming:potato", {
 		if user then
 
 			if math.random(3) == 1 then
-				return minetest.do_item_eat(-1, nil, itemstack, user, pointed_thing)
+				return core.do_item_eat(-1, nil, itemstack, user, pointed_thing)
 			else
-				return minetest.do_item_eat(1, nil, itemstack, user, pointed_thing)
+				return core.do_item_eat(1, nil, itemstack, user, pointed_thing)
 			end
 		end
 	end
@@ -57,12 +57,12 @@ local def = {
 
 -- stage 1
 
-minetest.register_node("farming:potato_1", table.copy(def))
+core.register_node("farming:potato_1", table.copy(def))
 
 -- stage 2
 
 def.tiles = {"farming_potato_2.png"}
-minetest.register_node("farming:potato_2", table.copy(def))
+core.register_node("farming:potato_2", table.copy(def))
 
 -- stage 3
 
@@ -73,7 +73,7 @@ def.drop = {
 		{items = {"farming:potato"}, rarity = 3}
 	}
 }
-minetest.register_node("farming:potato_3", table.copy(def))
+core.register_node("farming:potato_3", table.copy(def))
 
 -- stage 4 (final)
 
@@ -83,10 +83,11 @@ def.selection_box = farming.select_final
 def.drop = {
 	items = {
 		{items = {"farming:potato 2"}, rarity = 1},
-		{items = {"farming:potato 3"}, rarity = 2}
+		{items = {"farming:potato"}, rarity = 2},
+		{items = {"farming:potato"}, rarity = 3}
 	}
 }
-minetest.register_node("farming:potato_4", table.copy(def))
+core.register_node("farming:potato_4", table.copy(def))
 
 -- add to registered_plants
 
@@ -100,7 +101,7 @@ farming.registered_plants["farming:potato"] = {
 
 -- mapgen
 
-minetest.register_decoration({
+core.register_decoration({
 	deco_type = "simple",
 	place_on = {
 		"default:dirt_with_grass", "default:dirt_with_rainforest_litter",
