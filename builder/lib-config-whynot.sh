@@ -5,6 +5,7 @@
   #
   declare -Ag BRANCHES=(
     [minetest_game/minetest_game]=origin/stable-5 # Stay on stable version
+    [decor/laptop]=multicraft
   )
 
   #
