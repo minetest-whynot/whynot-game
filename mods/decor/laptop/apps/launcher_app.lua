@@ -27,9 +27,14 @@ laptop.register_app("launcher", {
 		local c_row_count = 4
 
 		local i = 0
+<<<<<<< HEAD
 		local out = "size[17,10]no_prepend[]bgcolor[#08080880;true]container[1,0]" ..
 			"listcolors[#00000069;#5A5A5A;#141318;#30434C;#FFF]" ..
 			laptop.close_btn("15.5,-0.4")
+=======
+		local out = "size[15,10]"
+		out = out .. laptop.close_btn("15.5,-0.4")
+>>>>>>> origin/HEAD
 		if mtos.theme.desktop_background then
 			out = out..'background[-0.3,-0.325;15.6,10.9;'..mtos.theme.desktop_background..';false]'
 		end
@@ -50,10 +55,14 @@ laptop.register_app("launcher", {
 		return out .. "container_end[]"
 	end,
 	appwindow_formspec_func = function(launcher_app, app, mtos)
+<<<<<<< HEAD
 		local formspec = 'size[17,10]no_prepend[]bgcolor[#08080880;true]container[1,0]' ..
 			"listcolors[#00000069;#5A5A5A;#141318;#30434C;#FFF]" ..
 			'style_type[list;bgimg=formspec_cell.png;bgimg_hovered=formspec_cell_hovered.png]' ..
 			laptop.close_btn("15.5,-0.4")
+=======
+		local formspec = 'size[15,10]' .. laptop.close_btn("15.5,-0.4")
+>>>>>>> origin/HEAD
 		if mtos.theme.app_background then
 			-- This background is actually a different size to the main
 			-- background because why shouldn't it be different
