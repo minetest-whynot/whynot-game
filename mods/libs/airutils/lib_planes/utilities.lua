@@ -444,12 +444,17 @@ function airutils.testImpact(self, velocity, position)
     local impact_speed = 2
     local p = position --self.object:get_pos()
     local collision = false
-    if self._last_vel == nil then return end
+    if self._last_vel == nil then 
+        self._last_vel = velocity
+        return
+    end
     local touch_point = self.initial_properties.collisionbox[2]-0.5
     --lets calculate the vertical speed, to avoid the bug on colliding on floor with hard lag
-    if math.abs(velocity.y - self._last_vel.y) > impact_speed then
+    local impact_vel = math.abs(velocity.y - self._last_vel.y)
+    if impact_vel > impact_speed then
 		local noded = airutils.nodeatpos(airutils.pos_shift(p,{y=touch_point}))
 	    if (noded and noded.drawtype ~= 'airlike') then
+            --core.chat_send_all("imp "..impact_vel)
 		    collision = true
 	    else
             self.object:set_velocity(self._last_vel)
@@ -544,6 +549,7 @@ function airutils.testImpact(self, velocity, position)
     end
 
     if collision then
+        self._last_vel = velocity
         local damage = impact/2 --default for basic planes and trainers
         if self._hard_damage then
             damage = impact*3
