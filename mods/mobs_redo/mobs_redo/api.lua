@@ -18,7 +18,7 @@ end
 -- global table
 
 mobs = {
-	mod = "redo", version = "20250603",
+	mod = "redo", version = "20251011",
 	spawning_mobs = {}, translate = S,
 	node_snow = has(core.registered_aliases["mapgen_snow"])
 			or has("mcl_core:snow") or has("default:snow") or "air",
@@ -88,7 +88,7 @@ local pathfinding_stuck_timeout = tonumber(
 		settings:get("mob_pathfinding_stuck_timeout")) or 3.0
 local pathfinding_stuck_path_timeout = tonumber(
 		settings:get("mob_pathfinding_stuck_path_timeout")) or 5.0
-local pathfinding_algorithm = settings:get("mob_pathfinding_algorithm") or "Dijkstra"
+local pathfinding_algorithm = settings:get("mob_pathfinding_algorithm") or "A*_noprefetch"
 
 if pathfinding_algorithm == "AStar_noprefetch" then
 	pathfinding_algorithm = "A*_noprefetch"
@@ -579,27 +579,27 @@ function mob_class:update_tag(newname)
 	local text = ""
 
 	if self.horny then
-		text = "\nLoving: " .. (self.hornytimer - (HORNY_TIME + HORNY_AGAIN_TIME))
+		text = "\n" .. S("Loving: @1", (self.hornytimer - (HORNY_TIME + HORNY_AGAIN_TIME)))
 	elseif self.child then
-		text = "\nGrowing: " .. (self.hornytimer - CHILD_GROW_TIME)
+		text = "\n" .. S("Growing: @1", (self.hornytimer - CHILD_GROW_TIME))
 	elseif self._tame_countdown then
-		text = "\nTaming: " .. self._tame_countdown
+		text = "\n" .. S("Taming: @1", self._tame_countdown)
 	elseif self._breed_countdown then
-		text = "\nBreeding: " .. self._breed_countdown
+		text = "\n" .. S("Breeding: @1", self._breed_countdown)
 	end
 
 	if self.protected then
 
 		if self.protected == 2 then
-			text = text .. "\nProtection: Level 2"
+			text = text .. "\n" .. S("Protection: Level 2")
 		else
-			text = text .. "\nProtection: Level 1"
+			text = text .. "\n" .. S("Protection: Level 1")
 		end
 	end
 
-	self.infotext = "Entity: " .. self.name .. " | Type: " .. self.type
-		.. ("\nHealth: " .. self.health .. " / " .. prop.hp_max)
-		.. (self.owner == "" and "" or "\nOwner: " .. self.owner) .. text
+	self.infotext = S("Entity: @1", self.name) .. " | " .. S("Type: @1", self.type)
+		.. ("\n" .. S("Health: @1", self.health) .. " / " .. prop.hp_max)
+		.. (self.owner == "" and "" or "\n" .. S("Owner: @1", self.owner)) .. text
 
 	-- apply infotext changes
 	if mob_infotext and self.infotext ~= prop.infotext then
@@ -2943,6 +2943,11 @@ function mob_class:mob_activate(staticdata, def, dtime)
 	self:set_animation("stand")
 
 	-- apply texture mods
+	if type(self.texture_mods) ~= "string" then
+		print("[Mobs Redo API] Error: self.texture_mods not a string")
+		self.texture_mods = ""
+	end
+
 	self.object:set_texture_mod(self.texture_mods)
 
 	-- set 5.x flag to remove monsters when map area unloaded
@@ -3648,12 +3653,17 @@ function mobs:spawn_specific(name, nodes, neighbors, min_light, max_light, inter
 			return
 		end
 
-		if (spawn_protected == false
-		or (spawn_monster_protected == false
-		and core.registered_entities[name].type == "monster"))
-		and core.is_protected(pos, "") then
+		-- check if mob/monster can be spawned inside protected areas
+		if core.is_protected(pos, "") then
+
+			if core.registered_entities[name].type == "monster"
+			and spawn_monster_protected == false then
+--print("--- monster inside protected area", name)
+				return
+			elseif spawn_protected == false then
 --print("--- inside protected area", name)
-			return
+				return
+			end
 		end
 
 		for _,player in pairs(core.get_connected_players()) do
@@ -3762,8 +3772,8 @@ function mobs:register_arrow(name, def)
 	core.register_entity(":" .. name, {
 
 		initial_properties = {
-			physical = def.physical,
-			collide_with_objects = def.collide_with_objects or false,
+			physical = def.physical ~= false,
+			collide_with_objects = def.collide_with_objects ~= false,
 			static_save = false,
 			visual = def.visual,
 			visual_size = def.visual_size,
@@ -3781,6 +3791,7 @@ function mobs:register_arrow(name, def)
 		hit_mob = def.hit_mob,
 		hit_object = def.hit_object,
 		drop = def.drop, -- chance of dropping arrow as registered item
+		drop_item = def.drop_item, -- custom item drop
 		timer = 0,
 		lifetime = def.lifetime or 4.5,
 		owner_id = def.owner_id,
@@ -3791,15 +3802,15 @@ function mobs:register_arrow(name, def)
 		on_punch = def.on_punch or function(self, hitter, tflp, tool_capabilities, dir)
 		end,
 
-		on_step = def.on_step or function(self, dtime)
+		on_step = def.on_step or function(self, dtime, moveresult)
 
 			self.timer = self.timer + dtime
 
-			local pos = self.object:get_pos()
+			local pos = self.object:get_pos() ; self.lastpos = pos
 
 			if self.timer > self.lifetime then
 
-				self.object:remove() ; -- print("removed arrow")
+				self.object:remove() ; -- print("-- removed arrow")
 
 				return
 			end
@@ -3828,87 +3839,62 @@ function mobs:register_arrow(name, def)
 
 					if core.line_of_sight(self.object:get_pos(), p) then
 
-						self.object:set_velocity(
-							vector.direction(self.object:get_pos(), p) * self.velocity)
+						self.object:set_velocity(vector.direction(
+								self.object:get_pos(), p) * self.velocity)
 					end
 				else
 					self._homing_target = nil
 				end
 			end
 
-			self.lastpos = self.lastpos or pos
+			-- did a solid arrow hit a solid thing?
+			if moveresult and moveresult.collides then
 
-			local cast = core.raycast(self.lastpos, pos, true, true)
-			local thing = cast:next()
+				local def = moveresult.collisions and moveresult.collisions[1] or {}
 
-			while thing do -- loop through things
+				self.moveresult = moveresult -- pass moveresult into arrow entity
 
-				-- if inside object that isn't arrow
-				if thing.type == "object" and thing.ref ~= self.object
-				and tostring(thing.ref) ~= self.owner_id then
+				-- hit node
+				if def.type == "node" and self.hit_node then
 
-					if self.hit_player and is_player(thing.ref) then
+					local node = core.get_node(def.node_pos)
 
-						self:hit_player(thing.ref)
+					self:hit_node(pos, node) ; --print("-- hit node", node.name)
 
---print("hit player", thing.ref:get_player_name())
+					if (type(self.drop) == "boolean" and self.drop)
+					or (type(self.drop) == "number" and random(self.drop) == 1) then
 
-						self.object:remove() ; return
+						local drop = self.drop_item or self.object:get_luaentity().name
 
+						core.add_item(pos, drop) ; --print("-- arrow drop", drop)
 					end
-
-					local entity = thing.ref:get_luaentity()
-
-					if entity and self.hit_mob and entity._cmi_is_mob then
-
-						self:hit_mob(thing.ref)
-
---print("hit mob", entity.name)
-
-						self.object:remove() ; return
-					end
-
-					if entity and self.hit_object and (not entity._cmi_is_mob) then
-
-						self:hit_object(thing.ref)
-
---print("hit object", entity.name)
-
-						self.object:remove() ; return
-					end
-
 				end
 
-				-- if inside node
-				if thing.type == "node" and self.hit_node then
+				if def.type == "object" then
 
-					local node = core.get_node(pos)
-					local def = core.registered_nodes[node.name]
+					local obj = def.object
 
-					if def and def.walkable then
+					if is_player(obj) and self.hit_player then
+						self:hit_player(obj) ; --print("-- hit player", obj:get_player_name())
+					end
 
-						self:hit_node(pos, node)
+					local entity = obj:get_luaentity()
 
-						if (type(self.drop) == "boolean" and self.drop)
-						or (type(self.drop) == "number" and random(self.drop) == 1) then
+					if entity then
 
-							pos.y = pos.y + 1
+						if entity._cmi_is_mob and self.hit_mob then
 
-							core.add_item(self.lastpos,
-									self.object:get_luaentity().name)
+							self:hit_mob(obj) ; --print("-- hit mob", entity.name)
+
+						elseif self.hit_object then
+
+							self:hit_object(obj) ; --print("-- hit object", entity.name)
 						end
-
---print("hit node", node.name)
-
-						self.object:remove() ; return
 					end
 				end
 
-				thing = cast:next()
-
-			end -- end thing loop
-
-			self.lastpos = pos
+				self.object:remove() ; return -- remove arrow after hitting solid item
+			end
 		end
 	})
 end
@@ -3931,6 +3917,8 @@ end
 -- explosion with tnt mod checks
 
 function mobs:boom(self, pos, node_damage_radius, entity_radius, texture)
+
+	if not pos then return end
 
 	texture = texture or "mobs_tnt_smoke.png"
 

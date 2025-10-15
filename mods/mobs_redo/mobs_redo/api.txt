@@ -314,15 +314,15 @@ Pickup Items
 
    'pick_up'            table of itemstrings the mob will pick up.
    'on_pick_up'         function that will be called on item pickup - arguments are
-                        (self, itemstring) and can return nil or a a modified itemstack e.g.
+                        (self, itemtable) and can return nil or a a modified itemstack e.g.
 
-on_pick_up = function(self, itemstring)
+on_pick_up = function(self, itemtable)
 
-		local istack = ItemStack(entity.itemstring)
+		local istack = ItemStack(itemtable.itemstring)
 
 		print("-- took", istack:get_name())
 
-		istack:take_item(1)
+		istack:take_item()
 
 		return istack
 end,
@@ -592,6 +592,7 @@ This function registers a arrow for mobs with the attack type shoot.
        'drop'         if set to true any arrows hitting a node will drop as item,
                       if number given then chance (1/num) of item dropping will
                       be used.  arrow "mymob:myarrow" will use item of same name.
+       'drop_item'    name of custom item to drop instead of arrow.
        'hit_player'   a function that is called when the arrow hits a player;
                       this function should hurt the player, the parameters are
                       (self, player)
@@ -616,6 +617,9 @@ This function registers a arrow for mobs with the attack type shoot.
        'collisionbox' is hitbox table for arrow, {-.1,-.1,-.1,.1,.1,.1} by default.
        'lifetime'     contains float value for how many seconds arrow exists in
                       world before being removed (default is 4.5 seconds).
+
+Note: When an arrow hits a solid item moveresult is copied into the arrow
+      self.moveresult for use inside the hit functions.
 
 
 Spawn Eggs
@@ -874,7 +878,8 @@ External Settings for "minetest.conf"
    'mob_pathfinding_enable'     Enable pathfinding.
    'mob_pathfinding_stuck_timeout'      How long before stuck mobs start searching. (default 3.0)
    'mob_pathfinding_stuck_path_timeout'     How long will mob follow path before giving up. (default 5.0)
-   'mob_pathfinding_algorithm'  Which pathfinding algorithm to use Dijkstra (default), A*_noprefetch (AStar_noprefetch) or A* (AStar)
+   'mob_pathfinding_algorithm'  Which pathfinding algorithm to use Dijkstra, A*_noprefetch
+                                (AStar_noprefetch) [default] or A* (AStar)
                             (A* names differ cause Minetest doesn´t allow "*" in settings)
    'mob_pathfinding_searchdistance'     max search distance from search positions (default 16)
    'mob_pathfinding_max_jump'   max jump height for pathfinding (default 4)

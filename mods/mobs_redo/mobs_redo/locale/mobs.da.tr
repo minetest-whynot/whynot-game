@@ -1,0 +1,39 @@
+# textdomain: mobs
+** Peaceful Mode Active - No Monsters Will Spawn=** Fredelig tilstand aktiv - ingen monstre skabes **
+Active Mob Limit Reached!=Grænsen for aktive dyr er nået!
+Mob has been protected!=Dyret er nu beskyttet!
+@1 (Tamed)=@1 (Tæmmet)
+Not tamed!=Ikke tæmmet!
+@1 is owner!=@1 er ejeren!
+Missed!=Forbier!
+Already protected!=Allerede beskyttet!
+@1 has been tamed!=@1 er nu tæmmet!
+@1 follows:=@1 følger:
+@1 mobs removed.=@1 dyr fjernet.
+Enter name:=Skriv navn:
+Rename=Omdøb
+Name Tag=Navneskilt
+Leather=Læder
+Raw Meat=Rødt kød
+Meat=Kød
+Lasso (right-click animal to put in inventory)=Lasso (højreklik på dyret for at lægge i din beholdning)
+Net (right-click animal to put in inventory)=Net (højreklik på dyret for at lægge i din beholdning)
+Steel Shears (right-click to shear)=Ståltang (højreklik for at skære)
+Mob Protection Rune=Dyrebeskyttelsesrune
+Mob Protection Rune (Level 2)=Dyrebeskyttelsesrune (Niveau 2)
+Saddle=Saddel
+Mob Fence=Dyrehegn
+Mob Fence Top=Dyrehegntop
+Mob Reset Stick=Stok til nulstilling af dyr
+Meat Block=Kødblok
+Raw Meat Block=Råt kødblok
+Enter texture:=Skriv tekstur:
+Change=Ændre
+Mob Spawner=Dyreskaber
+(mob name) (min light) (max light) (amount) (player distance) (Y offset)=(Dyrenavn) (minimalt lys) (maksimalt lys) (antal) (spillerafstand) (Y-afstand)
+Command:=Kommando:
+Spawner Not Active (enter settings)=Ikke aktiv (angiv indstillinger)
+Spawner Active (@1)=Skaber aktiv (@1)
+Mob Spawner settings failed!=Indstillinger for dyre-skaber fejlede!
+Syntax: “name min_light[0-14] max_light[0-14] max_mobs_in_area[0 to disable] player_distance[1-20] y_offset[-10 to 10]”=Syntaks: “name min_light[0 til 14] max_light[0 til 14] max_mobs_in_area[0 for at deaktivere] player_distance[1 til 20] y_offset[-10 til 10]”=
+
