@@ -172,6 +172,10 @@ mobs:register_arrow("mobs_monster:fireball", {
 		}, nil)
 	end,
 
+	hit_object = function(self, player)
+		mobs:explosion(self.object:get_pos(), 2, 1, 0)
+	end,
+
 	-- node hit
 	hit_node = function(self, pos, node)
 		mobs:boom(self, pos, 1)
