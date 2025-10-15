@@ -88,11 +88,11 @@ origin https://github.com/minetest-mods/ts_furniture (fetch)
 Mod: decor/ts_furniture
 
 origin https://github.com/mt-mods/unifieddyes (fetch)
-* 82f026fc7e7c77149803eb2bfb0a7297070f7865 Replace depracated use_texture_alpha boolean value with "opaque"... (#22)
+* 3fc82f92455082ac783d19657a949b4cba943321 Add zh_CN translation (#24)
 Mod: decor/unifieddyes
 
 origin https://github.com/minetest-mirrors/farming.git (fetch)
-* 2b17abdcb8d492ac5db3e5e2ed1a0a17d8116616 hoe bomb removed grass on top of soil
+* 2d5720602369f3bc0f639e003ec8e2266d8d26e5 add Polish translation (thx BuszmoPL)
 Mod: flora_ores/farming
 
 origin https://codeberg.org/Dacmot/YellowCrystals.git (fetch)
@@ -124,7 +124,7 @@ origin https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin https://github.com/APercy/airutils.git (fetch)
-* 45d789850b16a67da1f3e33d712bbe4285386da6 added plane painter
+* 197b5b621013e92b7c89781bb56aea1e5a41870c fix damage over slabs
 Mod: libs/airutils
 
 origin https://repo.or.cz/minetest_doc.git (fetch)
@@ -156,7 +156,7 @@ origin https://codeberg.org/Dacmot/sfcraftguide.git (fetch)
 Mod: libs/sfcraftguide
 
 origin https://github.com/mt-mods/xcompat.git (fetch)
-* 8d6e82cfdbbc84bdb63791caa05376c01bb83275 Fix typos in mcl item names and allow for mcl variant differences (#52)
+* c024d0b6c84dbbf3c6f9709db31b2a3661b064c5 Add explanation and example of material usage (#54)
 Mod: libs/xcompat
 
 origin https://github.com/Treer/cloudlands/ (fetch)
@@ -184,7 +184,7 @@ origin https://github.com/GreenXenith/tac_nayn (fetch)
 Mod: mapgen/tac_nayn
 
 origin https://github.com/minetest-mods/mesecons (fetch)
-* 27072542cfc9c36e42290c76623119bb7d2db20f Replace on_rotate_horiz with on_rotate and paramtype2 = "4dir"
+* e2fc73da9893c2a2119f023bd1c79d77fc6eea7d Support for Hades Revisited (#710)
 Mod: mesecons/mesecons
 
 origin https://github.com/minetest/minetest_game (fetch)
@@ -196,15 +196,15 @@ origin https://codeberg.org/tenplus1/mobs_ghost_redo (fetch)
 Mod: mobs_redo/mobs_ghost_redo
 
 origin https://github.com/minetest-mirrors/mobs_monster.git (fetch)
-* ec80a22c1e832a98c5bbf6fe10496dfb002fe410 lava flan immune to nether lava
+* 7e7f87fa2c6b9dda2b1098dcc1f6cfe073cb3e5f add hit_object to dm arrow
 Mod: mobs_redo/mobs_monster
 
 origin https://github.com/minetest-mirrors/mobs_redo.git (fetch)
-* 507721749736b8084c68208b92c532c284acb55a in peaceful mode dont register monster abm's
+* db8fab6615a3c4c939c8d2e7cd46b2969efc9152 refactor spawn protected checks
 Mod: mobs_redo/mobs_redo
 
 origin https://github.com/minetest-mods/3d_armor (fetch)
-* dbc891a71195c1d90d166766b2f65b655241f902 Fix crash when right-clicking to equip a seventh armor element with a full armor inventory (#163)
+* 8f775a64f0a29afbcc63cbcd78938c17609ed187 Rework armor stand inventories (#165)
 Mod: player/3d_armor
 
 origin https://gitlab.com/dacmot/awards.git (fetch)
@@ -236,7 +236,7 @@ origin https://github.com/minetest-mods/hbsprint (fetch)
 Mod: player/hbsprint
 
 origin https://codeberg.org/Wuzzy/minetest_hudbars.git (fetch)
-* fc85005873574e96d511c7a96e5d8cbe3c6e16df Credit FromKaniv for Ukrainian translation
+* f38d5996983930ce0d00e3264aa955afb00e7967 Merge pull request 'Add zh_CN localization' (#17) from w0rr1z/minetest_hudbars:master into master
 Mod: player/hudbars
 
 origin https://codeberg.org/Dacmot/moarmour.git (fetch)
@@ -272,7 +272,7 @@ origin https://github.com/Lokrates/Biofuel.git (fetch)
 Mod: tools/biofuel
 
 origin https://github.com/minetest-mirrors/bonemeal.git (fetch)
-* be412804dfe447a9a56fd5e43e2991cc4c46d2f4 fix y_func
+* a200c9913eb4f2fd55a021e5e3137f30c50cbd69 add mangrove sapling and mud deco
 Mod: tools/bonemeal
 
 origin https://github.com/SmallJoker/boost_cart (fetch)
@@ -316,7 +316,7 @@ origin https://github.com/thePlasm/maidroid (fetch)
 Mod: tools/maidroid
 
 origin https://github.com/minetest-mods/orbs_of_time/ (fetch)
-* 2bf8783512ab16709f7ade333299c0939950104c switch to client-side translation
+* 770ce36af6012739fa616ca0b2315a4c25a88b68 Support creative mods
 Mod: tools/orbs_of_time
 
 origin https://codeberg.org/Dacmot/minetest_orienteering.git (fetch)
