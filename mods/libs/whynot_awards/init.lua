@@ -121,7 +121,7 @@ awards.register_award("whynot_planks",{
 
 
 awards.register_award("whynot_simple_boat",{
-	title = S("Craft a raft"),
+	title = S("Craft a boat"),
 	description = S("A simple boat will let you travel on water faster than walking on ground."),
 	icon = awards_combine_with_frame("boats_inventory.png"),
 	requires = {"whynot_planks"},
