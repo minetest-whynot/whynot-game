@@ -10,7 +10,7 @@ and crops which can be planted directly onto tilled soil without seeds.  Crops t
 require seeds like wheat and cotton are found when digging in long grasses, and will
 require player to stay nearby until they germinate before growing normally.
 
-![screenshot.png](screenshot.png)
+![screenshot.jpg](screenshot.jpg)
 
 Tech information
 ----------------
@@ -21,7 +21,7 @@ Crops grow by adding your new plant to the {growing = 1} group and numbering the
 * "farming:wheat_1"       through to   "farming:wheat_8"
 * "farming:cucumber_1"    through to   "farming:cucumber_4"
 
-https://forum.minetest.net/viewtopic.php?id=9019
+https://forum.luanti.org/viewtopic.php?t=9019
 
 Farming Redo also works with Bonemeal mod for quick growing crops and saplings which can
 be found at https://notabug.org/TenPlus1/bonemeal

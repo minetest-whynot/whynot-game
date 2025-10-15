@@ -1,6 +1,14 @@
 
 local S = core.get_translator("farming")
 
+-- water floorb
+
+core.register_craftitem("farming:water_floorb", {
+	description = S("Water Floorb"),
+	inventory_image = "farming_water_floorb.png",
+	groups = {flammable = 1}
+})
+
 -- saucepan
 
 core.register_craftitem("farming:saucepan", {

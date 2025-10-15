@@ -55,7 +55,7 @@ if core.registered_nodes["default:junglegrass"] then
 	})
 end
 
--- override mineclone tallgrass to drop all sof the above seeds
+-- override mineclone tallgrass to drop all of the above seeds
 
 if farming.mcl then
 

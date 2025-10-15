@@ -241,7 +241,7 @@ local function hoe_area(pos, player)
 	-- remove flora (grass, flowers etc.)
 	local res = core.find_nodes_in_area(
 			{x = pos.x - r, y = pos.y - 1, z = pos.z - r},
-			{x = pos.x + r, y = pos.y + 2, z = pos.z + r},
+			{x = pos.x + r, y = pos.y + 1, z = pos.z + r},
 			{"group:flora", "group:grass", "group:dry_grass", "default:dry_shrub"})
 
 	for n = 1, #res do
@@ -268,46 +268,23 @@ core.register_entity("farming:hoebomb_entity", {
 		visual = "sprite",
 		visual_size = {x = 1.0, y = 1.0},
 		textures = {"farming_hoe_bomb.png"},
-		collisionbox = {-0.1,-0.1,-0.1,0.1,0.1,0.1}
+		collisionbox = {-0.2,-0.2,-0.2,0.2,0.2,0.2}
 	},
 
-	lastpos = {},
-	player = "",
-
-	on_step = function(self, dtime)
+	on_step = function(self, dtime, moveresult)
 
 		if not self.player then
+			self.object:remove() ; return
+		end
+
+		if moveresult.collides then
+
+			local pos = vector.round(self.object:get_pos())
+
+			pos.y = pos.y - 1 ; hoe_area(pos, self.player)
 
 			self.object:remove()
-
-			return
 		end
-
-		local pos = self.object:get_pos()
-
-		if self.lastpos.x ~= nil then
-
-			local vel = self.object:get_velocity()
-
-			-- only when potion hits something physical
-			if vel.x == 0 or vel.y == 0 or vel.z == 0 then
-
-				if self.player ~= "" then
-
-					-- round up coords to fix glitching through doors
-					self.lastpos = vector.round(self.lastpos)
-
-					hoe_area(self.lastpos, self.player)
-				end
-
-				self.object:remove()
-
-				return
-
-			end
-		end
-
-		self.lastpos = pos
 	end
 })
 
@@ -342,7 +319,7 @@ core.register_craftitem("farming:hoe_bomb", {
 	on_use = function(itemstack, user, pointed_thing)
 
 		if pointed_thing.type == "node" then
-			hoe_area(pointed_thing.above, user)
+			hoe_area(pointed_thing.under, user)
 		else
 			throw_potion(itemstack, user)
 

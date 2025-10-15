@@ -208,7 +208,7 @@ if core.settings:get_bool("farming_disable_weeds") ~= true then
 
 		action = function(pos, node)
 
-			if core.find_node_near(pos, 4, {"farming:scarecrow_bottom"}) then
+			if core.find_node_near(pos, 8, {"farming:scarecrow_bottom"}) then
 				return
 			end
 

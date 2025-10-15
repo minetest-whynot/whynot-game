@@ -353,6 +353,25 @@ core.register_craft({
 	replacements = {{a.bucket_water, a.bucket_empty}}
 })
 
+core.register_craft({
+	type = "cooking",
+	cooktime = 10,
+	output = "farming:salt",
+	recipe = "farming:water_floorb"
+})
+
+-- water floorb
+
+core.register_craft({
+	output = "farming:water_floorb 8",
+	recipe = {
+		{a.bucket_water, a.bucket_water, a.bucket_water},
+		{a.bucket_water, "group:food_gelatin", a.bucket_water},
+		{a.bucket_water, a.bucket_water, a.bucket_water},
+	},
+	replacements = {{a.bucket_water, a.bucket_empty .. " 8"}}
+})
+
 -- salt crystal
 
 core.register_craft({

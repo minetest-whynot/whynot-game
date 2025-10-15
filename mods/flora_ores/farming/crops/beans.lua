@@ -2,7 +2,6 @@
 -- All textures by (C) Auke Kok <sofar@foo-projects.org> CC-BY-SA-3.0
 
 local S = core.get_translator("farming")
-local a = farming.recipe_items
 
 -- place beans helper
 

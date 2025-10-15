@@ -787,7 +787,7 @@ farming.add_eatable("farming:rhubarb_pie", 6)
 core.register_craftitem("farming:rice_flour", {
 	description = S("Rice Flour"),
 	inventory_image = "farming_rice_flour.png",
-	groups = {food_rice_flour = 1, flammable = 1, compostability = 65}
+	groups = {food_rice_flour = 1, food_flour = 1, flammable = 1, compostability = 65}
 })
 
 -- Rice bread
@@ -796,7 +796,7 @@ core.register_craftitem("farming:rice_bread", {
 	description = S("Rice Bread"),
 	inventory_image = "farming_rice_bread.png",
 	on_use = core.item_eat(5),
-	groups = {food_rice_bread = 1, compostability = 65}
+	groups = {food_rice_bread = 1, food_bread = 1, compostability = 65}
 })
 
 farming.add_eatable("farming:rice_bread", 5)
@@ -808,7 +808,6 @@ core.register_craftitem("farming:flour_multigrain", {
 	inventory_image = "farming_flour_multigrain.png",
 	groups = {food_flour = 1, flammable = 1},
 })
-
 
 -- Multigrain bread
 

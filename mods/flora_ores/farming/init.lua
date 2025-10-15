@@ -12,7 +12,7 @@ local S = core.get_translator("farming")
 
 farming = {
 	mod = "redo",
-	version = "20250504",
+	version = "20250717",
 	path = core.get_modpath("farming"),
 	select = {type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5}},
 	select_final = {type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, -2.5/16, 0.5}},
@@ -112,7 +112,7 @@ local STAGE_LENGTH_DEV = STAGE_LENGTH_AVG / 6
 
 -- quick start seed timer
 
-farming.start_seed_timer = function(pos)
+function farming.start_seed_timer(pos)
 
 	local timer = core.get_node_timer(pos)
 	local grow_time = floor(random(STAGE_LENGTH_DEV, STAGE_LENGTH_AVG))
@@ -311,47 +311,6 @@ core.register_lbm({
 	end
 })
 
---[[
-core.register_abm({
-	label = "Start crop timer",
-	nodenames = {"group:growing"},
-	interval = 300,
-	chance = 1,
-	catch_up = false,
-
-	action = function(pos, node)
-
-		-- skip if node timer already active
-		if core.get_node_timer(pos):is_started() then return end
-
-		-- check if group:growing node is a seed
-		local def = core.registered_nodes[node.name]
-
-		if def and def.groups and def.groups.seed then
-
-			if def.on_timer then -- start node timer if found
-
-				farming.start_seed_timer(pos)
-
-				return
-			end
-
-			local next_stage = def.next_plant
-
-			def = core.registered_nodes[next_stage]
-
-			if def then -- switch seed without timer to stage_1 of crop
-
-				local p2 = def.place_param2 or 1
-
-				core.set_node(pos, {name = next_stage, param2 = p2})
-			end
-		else
-			farming.handle_growth(pos, node) -- start normal crop timer
-		end
-	end
-})]]
-
 -- default check crop is on wet soil
 
 farming.can_grow = function(pos)
@@ -404,8 +363,8 @@ function farming.plant_growth_timer(pos, elapsed, node_name)
 
 		growth = 1
 	else
-		local night_light = (core.get_node_light(light_pos, 0) or 0)
-		local day_light = (core.get_node_light(light_pos, 0.5) or 0)
+		local night_light = core.get_node_light(light_pos, 0) or 0
+		local day_light = core.get_node_light(light_pos, 0.5) or 0
 		local night_growth = night_light >= MIN_LIGHT and night_light <= MAX_LIGHT
 		local day_growth = day_light >= MIN_LIGHT and day_light <= MAX_LIGHT
 
@@ -565,6 +524,7 @@ function farming.register_plant(name, def)
 		walkable = false,
 		sunlight_propagates = true,
 		selection_box = farming.select,
+		fertility = def.fertility or {},
 		place_param2 = 1, -- place seed flat
 		next_plant = mname .. ":" .. pname .. "_1",
 

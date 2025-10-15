@@ -3,7 +3,6 @@
 -- https://forum.core.net/viewtopic.php?id=4990
 
 local S = core.get_translator("farming")
-local a = farming.recipe_items
 
 -- item/seed
 
