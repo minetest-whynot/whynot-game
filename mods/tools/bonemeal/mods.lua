@@ -180,7 +180,8 @@ if core.get_modpath("ethereal") then
 		{"ethereal:sakura_sapling", ethereal.grow_sakura_tree, "soil"},
 		{"ethereal:lemon_tree_sapling", ethereal.grow_lemon_tree, "soil"},
 		{"ethereal:olive_tree_sapling", ethereal.grow_olive_tree, "soil"},
-		{"ethereal:basandra_bush_sapling", ethereal.grow_basandra_bush, "soil"}
+		{"ethereal:basandra_bush_sapling", ethereal.grow_basandra_bush, "soil"},
+		{"ethereal:mangrove_sapling", ethereal.grow_mangrove_tree, "soil"}
 	})
 
 	local grass = {"default:grass_3", "default:grass_4", "default:grass_5", ""}
@@ -197,7 +198,9 @@ if core.get_modpath("ethereal") then
 				"ethereal:spore_grass", "ethereal:spore_grass", "", "", ""}},
 		{"ethereal:jungle_dirt", grass, {"default:junglegrass", "", "", ""}},
 		{"ethereal:grove_dirt", grass, {"ethereal:fern", "", "", ""}},
-		{"ethereal:bamboo_dirt", grass, {}}
+		{"ethereal:bamboo_dirt", grass, {}},
+		{"ethereal:mud", {"default:fern_1", "default:fern_2", "default:fern_3", "", "",
+			"default:grass_5", "default:junglegrass"}, {"ethereal:bamboo"}}
 	})
 end
 
