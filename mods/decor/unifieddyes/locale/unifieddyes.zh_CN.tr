@@ -1,0 +1,91 @@
+# textdomain: unifieddyes
+
+# Translation by W0rr1z
+
+Lime Dye=柠檬黄染料
+Aqua Dye=水蓝染料
+Sky-blue Dye=天蓝染料
+Red-violet Dye=红紫染料
+Light Grey Dye=浅灰染料
+
+Dark Red Dye (low saturation)=深红染料（低饱和度）
+Dark Orange Dye (low saturation)=深橙染料（低饱和度）
+Dark Yellow Dye (low saturation)=深黄染料（低饱和度）
+Dark Lime Dye (low saturation)=深柠檬黄染料（低饱和度）
+Dark Green Dye (low saturation)=深绿染料（低饱和度）
+Dark Aqua Dye (low saturation)=深水蓝染料（低饱和度）
+Dark Cyan Dye (low saturation)=深青蓝染料（低饱和度）
+Dark Sky-blue Dye (low saturation)=深天蓝染料（低饱和度）
+Dark Blue Dye (low saturation)=深蓝染料（低饱和度）
+Dark Violet Dye (low saturation)=深紫染料（低饱和度）
+Dark Magenta Dye (low saturation)=深品红染料（低饱和度）
+Dark Red-violet Dye (low saturation)=深红紫染料（低饱和度）
+
+Dark Red Dye=深红染料
+Dark Orange Dye=深橙染料
+Dark Yellow Dye=深黄染料
+Dark Lime Dye=深柠檬黄染料
+Dark Green Dye=深绿染料
+Dark Aqua Dye=深水蓝染料
+Dark Cyan Dye=深青蓝染料
+Dark Sky-blue Dye=深天蓝染料
+Dark Blue Dye=深蓝染料
+Dark Violet Dye=深紫染料
+Dark Magenta Dye=深品红染料
+Dark Red-violet Dye=深红紫染料
+
+Medium Red Dye (low saturation)=中红染料（低饱和度）
+Medium Orange Dye (low saturation)=中橙染料（低饱和度）
+Medium Yellow Dye (low saturation)=中黄染料（低饱和度）
+Medium Lime Dye (low saturation)=中柠檬黄染料（低饱和度）
+Medium Green Dye (low saturation)=中绿染料（低饱和度）
+Medium Aqua Dye (low saturation)=中水蓝染料（低饱和度）
+Medium Cyan Dye (low saturation)=中青蓝染料（低饱和度）
+Medium Sky-blue Dye (low saturation)=中天蓝染料（低饱和度）
+Medium Blue Dye (low saturation)=中蓝染料（低饱和度）
+Medium Violet Dye (low saturation)=中紫染料（低饱和度）
+Medium Magenta Dye (low saturation)=中品红染料（低饱和度）
+Medium Red-violet Dye (low saturation)=中红紫染料（低饱和度）
+
+Medium Red Dye=中红染料
+Medium Orange Dye=中橙染料
+Medium Yellow Dye=中黄染料
+Medium Lime Dye=中柠檬黄染料
+Medium Green Dye=中绿染料
+Medium Aqua Dye=中水蓝染料
+Medium Cyan Dye=中青蓝染料
+Medium Sky-blue=中天蓝染料
+Medium Blue Dye=中蓝染料
+Medium Violet Dye=中紫染料
+Medium Magenta Dye=中品红染料
+Medium Red-violet Dye=中红紫染料
+
+Red Dye (low saturation)=红染料（低饱和度）
+Orange Dye (low saturation)=橙染料（低饱和度）
+Yellow Dye (low saturation)=黄染料（低饱和度）
+Lime Dye (low saturation)=柠檬黄染料（低饱和度）
+Green Dye (low saturation)=绿染料（低饱和度）
+Aqua Dye (low saturation)=水蓝染料（低饱和度）
+Cyan Dye (low saturation)=青蓝染料（低饱和度）
+Sky-blue Dye (low saturation)=天蓝染料（低饱和度）
+Blue Dye (low saturation)=蓝染料（低饱和度）
+Violet Dye (low saturation)=紫染料（低饱和度）
+Magenta Dye (low saturation)=品红染料（低饱和度）
+Red-violet Dye (low saturation)=红紫染料（低饱和度）
+
+[UnifiedDyes] Loaded!=[UnifiedDyes] 已加载！
+
+Dye Airbrush=染料喷枪
+
+Select a color:=选择颜色：
+(Right-clicked a node that supports all 256 colors, showing them all)=（已右键支持256色的方块，显示全部颜色）
+(Right-clicked a node not supported by the Airbrush, showing all colors)=（已右键不支持喷枪的方块，显示全部颜色）
+Dyes=染料
+Your selection=当前选择
+Your selection:=当前选择：
+Cancel=取消
+Accept=应用
+Show Available=显示可用颜色
+(Currently showing all 256 colors)=（当前显示全部256色）
+Show All Colors=显示所有颜色
+(Currently only showing what the right-clicked node can use)=（当前仅显示右键方块可用颜色）
