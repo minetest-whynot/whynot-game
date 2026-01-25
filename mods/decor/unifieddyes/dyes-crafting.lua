@@ -101,6 +101,22 @@ if minetest.get_modpath("dye") then
 		inventory_image = "unifieddyes_dye.png^[colorize:#cccccc:200",
 		groups = { dye=1, not_in_creative_inventory=1 },
 	})
+
+	-- Conflicting recipe: violet for dye; magenta for unifieddyes
+	minetest.clear_craft( {
+		type = "shapeless",
+		recipe = {
+			"dye:red", "dye:blue"
+		},
+	})
+
+	-- Conflicting recipe: dark green for dye; medium green for unifieddyes
+	minetest.clear_craft( {
+		type = "shapeless",
+		recipe = {
+			"dye:green", "dye:black"
+		},
+	})
 end
 
 -- build a table of color <-> palette associations to reduce the need for
@@ -208,16 +224,6 @@ for _,i in ipairs(unifieddyes.base_color_crafts) do
 	local color = i[1]
 	local yield = i[7]
 
-	minetest.clear_craft( {
-		type = "shapeless",
-		recipe = {
-			i[2],
-			i[3],
-			i[4],
-			i[5],
-			i[6],
-		},
-	})
 	minetest.register_craft( {
 		type = "shapeless",
 		output = "dye:"..color.." "..yield,
@@ -237,16 +243,6 @@ for _,i in ipairs(unifieddyes.base_color_crafts) do
 		-- ignore black, white, anything containing the word "grey"
 
 		if color ~= "black" and color ~= "white" and not string.find(color, "grey") then
-
-			minetest.clear_craft( {
-				type = "shapeless",
-				recipe = {
-					"dye:"..color,
-					firstdye,
-					j[4],
-					j[5]
-				},
-			})
 			minetest.register_craft( {
 				type = "shapeless",
 				output = "dye:"..j[1]..color..j[2].." "..j[6],
