@@ -19,6 +19,11 @@ ambience.add_set(set_name, def)
   'def' contains the following:
      'frequency' how often the sound set is played (1 to 1000) higher is more
      'nodes' contains a table of nodes needed for checks
+     'background' contains a table of sounds that play in the background when
+                  sound_check conditions are met.
+     'sounds' contains a table of sounds that play on top of any background
+              sounds that can stop when conditions are not met, or can be
+              ephemeral for shorter sounds.
      'sound_check(def)' function to check if sounds can be played, def contains:
         'player' player userdata
         'pos' position of player
@@ -34,17 +39,37 @@ function for it to play.  If ephemeral is true then no handler will be used and 
 
 e.g.
 
-ambience.add_set("windy", {
+ambience.add_set("village", {
 	frequency = 500,
+	nodes = {"mymod:village_sound_block"}, -- activates sounds when in range
+	background = {
+		{"name = "village_background", gain = 0.5, fade = 1.0},
+	},
+	sounds = {
+		{name = "dogbark", gain = 0.4, ephemeral = true, chance = 7}, -- quick sound effect
+		{name = "talking_villagers", gain = 0.3, chance = 3}, -- stops when out of range
+		{name = "chicken", gain = 0.6, ephemeral = true, chance = 5},
+		{name = "chicken", gain = 0.6, pitch = 1.2, ephemeral = true, chance = 5},
+	},
+	sound_check = function(def)
+		local number = def.totals["mymod:village_sound_block"] or 0
+		if number > 0 then
+			return "village"
+		end
+	end,
+})
+
+ambience.add_set("windy", {
+	frequency = 80,
 	nodes = {"default:sand"},
 	sounds = {
-		{name = "wind", length = 9, gain = 0.3},
+		{name = "wind", length = 9, gain = 0.3, fade = 1.0}, -- fade in sound
 		{name = "desertwind", length = 8, gain = 0.3},
 		{name = "crow", length = 3, ephemeral = true},
 	},
 	sound_check = function(def)
 		local number = def.totals["default:sand"] or 0 -- yep, can also be nil
-		if number > 20 then
+		if def.pos.y > 0 and number > 30 then -- above ground near plenty sand
 			return "windy", 0.2 -- return set to play and optional gain volume
 		end
 	end
@@ -57,6 +82,16 @@ Counting group: nodes
 Instead of counting each node total for things like leaves within the sound_check function, you could use the following helper function to return their total instead e.g.
 
 local number = ambience.group_totals(def.totals, "leaves") -- count all group:leaves
+
+
+Adding sound to existing Set
+----------------------------
+
+ambience.add_to_set(set_name, sound_table)
+
+e.g.
+
+ambience.add_to_set("cave", {name = "monster_whispers", pitch = 1.2, length = 8})
 
 
 Getting Sound Set

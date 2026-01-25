@@ -27,7 +27,8 @@ function ambience.add_set(set_name, def)
 
 	sound_sets[set_name] = {
 		frequency = def.frequency or 50,
-		sounds = def.sounds,
+		background = def.background or {},
+		sounds = def.sounds or {},
 		sound_check = def.sound_check,
 		nodes = def.nodes
 	}
@@ -57,6 +58,15 @@ function ambience.add_set(set_name, def)
 			if can_add then table.insert(set_nodes, can_add) end
 		end
 	end
+end
+
+-- add sound to existing set
+
+function ambience.add_to_set(set_name, def)
+
+	if not set_name or not def or not sound_sets[set_name] then return end
+
+	table.insert(sound_sets[set_name].sounds, def)
 end
 
 -- return set from list using name
@@ -216,7 +226,7 @@ core.register_globalstep(function(dtime)
 
 		pname = player:get_player_name()
 
-		if playing[pname] and playing[pname].timer > 0 then
+		if playing[pname] and playing[pname].timer and playing[pname].timer > 0 then
 
 			playing[pname].timer = playing[pname].timer - dtime
 
@@ -245,8 +255,40 @@ core.register_globalstep(function(dtime)
 		pname = player:get_player_name()
 
 		local set_name, MORE_GAIN = get_ambience(player, tod, pname)
+		local set_def = sound_sets[set_name]
 
 		ok = playing[pname] -- everything starts off ok if player found
+
+		-- are we playing any available background sounds?
+		if ok and not playing[pname].bg and set_def and #set_def.background > 0 then
+
+			-- choose a random sound from the background set
+			local bg_num = random(#set_def.background)
+			local bg_amb = set_def.background[bg_num]
+
+			-- only play sound if set differs from last one played
+			if set_name ~= playing[pname].bg_set then
+
+				playing[pname].bg = core.sound_play(bg_amb.name, {
+					to_player = pname,
+					gain = (bg_amb.gain or 0.3) * playing[pname].svol,
+					pitch = bg_amb.pitch, fade = bg_amb.fade, loop = true
+				})
+
+--print("-- bg start", playing[pname].bg, set_name)
+
+				playing[pname].bg_set = set_name
+			end
+
+		elseif ok and playing[pname].bg and set_name ~= playing[pname].bg_set then
+
+--print("-- bg stop", playing[pname].bg, set_name, playing[pname].bg_set)
+
+			core.sound_stop(playing[pname].bg)
+
+			playing[pname].bg = nil
+			playing[pname].bg_set = nil
+		end
 
 		-- are we playing something already?
 		if ok and playing[pname].handler then
@@ -272,20 +314,25 @@ core.register_globalstep(function(dtime)
 		chance = random(1000)
 
 		-- if chance is lower than set frequency then select set
-		if ok and set_name and chance < sound_sets[set_name].frequency then
+		if ok and set_name and chance < set_def.frequency
+		and set_def.sounds and #set_def.sounds > 0 then
 
-			number = random(#sound_sets[set_name].sounds) -- choose random sound from set
-			ambience = sound_sets[set_name].sounds[number] -- grab sound information
+			number = random(#set_def.sounds) -- choose random sound from set
+			ambience = set_def.sounds[number] -- grab sound information
 
-			-- play sound
-			handler = core.sound_play(ambience.name, {
-				to_player = pname,
-				gain = ((ambience.gain or 0.3) + (MORE_GAIN or 0)) * playing[pname].svol,
-				pitch = ambience.pitch or 1.0
-			}, ambience.ephemeral)
+			-- selected sound chance of playing from a set
+			if random((ambience.chance or 1)) == 1 then
+
+				-- play sound
+				handler = core.sound_play(ambience.name, {
+					to_player = pname,
+					gain = ((ambience.gain or 0.3) + (MORE_GAIN or 0)) * playing[pname].svol,
+					pitch = ambience.pitch or 1.0, fade = ambience.fade
+				}, ambience.ephemeral)
 
 --print ("playing... " .. ambience.name .. " (" .. chance .. " < "
 --		.. sound_sets[set_name].frequency .. ") @ ", MORE_GAIN, handler)
+			end
 
 			if handler then
 
@@ -293,7 +340,7 @@ core.register_globalstep(function(dtime)
 				playing[pname].set = set_name
 				playing[pname].gain = MORE_GAIN
 				playing[pname].handler = handler
-				playing[pname].timer = ambience.length
+				playing[pname].timer = (ambience.length or 5)
 			end
 		end
 	end

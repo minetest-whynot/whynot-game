@@ -71,6 +71,7 @@ ComboWind uses:
 
 --seagull, Attribution 3.0 License., hazure,  http://www.freesound.org/people/hazure/sounds/23707/,
 
+--seagull_2, DonnyDB -- https://freesound.org/s/765399/ -- License: Attribution NonCommercial 4.0
 desert:
 coyote2, Attribution License, rogerforeman, http://www.freesound.org/people/rogerforeman/sounds/68068/
 http://www.freesound.org/people/Proxima4/sounds/104319/
@@ -88,3 +89,5 @@ http://www.freesfx.co.uk/soundeffects/forests-jungles/
 icecrack.ogg by ecfike, Creative Commons 0 license (https://freesound.org/people/ecfike/sounds/177212/)
 
 big_splash.ogg by gubodup, Creative Commons 0 License (https://freesound.org/people/qubodup/sounds/442773/)
+
+wooden_frog, wooden frog e.WAV by ERH -- https://freesound.org/s/34512/ -- License: Attribution 4.0

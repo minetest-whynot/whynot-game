@@ -1,8 +1,24 @@
 Ambience Redo mod for Minetest
  by TenPlus1
 
-Based on Immersive Sounds .36 mod by Neuromancer and optimized to run on servers with new fire sounds added when Fire Redo mod is detected...
+Based on Immersive Sounds .36 mod by Neuromancer and optimized to run on servers with a brand new API to quickly and easily add sound sets to your world, it also has new fire sounds for use with Fire Redo mod...
 
+
+Four new functions are available to add and change sound sets, and two commands to adjust player volume for music and sounds (api.txt file shows detailed usage):
+
+ambience.add_set(set_name, def)
+
+ambience.add_to_set(set_name, sound_table)
+
+ambience.get_set(set_name)
+
+ambience.del_set(set_name)
+
+/mvol (volume)
+/svol (volume)
+
+
+Changelog:
 - 0.1 - Initial release
 - 0.2 - Code change and new water sounds added
 - 0.3 - Works with Fire Redo mod to provide fire sounds
@@ -24,5 +40,6 @@ Based on Immersive Sounds .36 mod by Neuromancer and optimized to run on servers
 - 1.9 - Tidy code, refactor music playing, add biome name to sound_check.
 - 2.0 - Add Mineclone support, add ethereal leaf check, remove minetest.after for custom timer, add Polish translation, tweak & tidy code.
 - 2.1 - Add ambience.group_total() function for easy counting of group: nodes inside a set.
+- 2.2 - Adds background sounds to sets that play looped in the background while normal sounds play on top (when conditions met), and sound chance.
 
 Code license: MIT
