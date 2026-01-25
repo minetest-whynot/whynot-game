@@ -52,7 +52,7 @@ origin https://github.com/mt-mods/homedecor_modpack (fetch)
 Mod: decor/homedecor_modpack
 
 origin https://github.com/MoNTE48/laptop (fetch)
-* f9fa4023d3d4734ec25befeb28f2b7e5ab7443b1 Add `nil` check
+* 2929bbda89b66d3d7a0f7171c6cdd307b8a95f8d Fix inventory size
 Mod: decor/laptop
 
 origin https://repo.or.cz/minetest_mtg_plus.git (fetch)
@@ -96,7 +96,7 @@ origin https://github.com/minetest-mirrors/farming.git (fetch)
 Mod: flora_ores/farming
 
 origin https://codeberg.org/Dacmot/YellowCrystals.git (fetch)
-* 8e423eadd1d94a7c6a1465c844e9a43ab0c9cd9f Update minetest calls to core. Luacheck.
+* 4ce1477c7516be08c68770cd3f6c3ba714b9efa9 Fix infinite recursion in get settings
 Mod: flora_ores/yellow_crystal
 
 origin https://github.com/h-v-smacker/canned_food (fetch)
