@@ -8,8 +8,9 @@ globals = {
 read_globals = {
     "DIR_DELIM", "INIT",
 
-    "minetest",
+    "core",
     "default",
+    "minetest",
 
     "Raycast",
     "Settings",
