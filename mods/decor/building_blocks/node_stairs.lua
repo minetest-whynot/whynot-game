@@ -1,4 +1,4 @@
-local S = minetest.get_translator("building_blocks")
+local S = core.get_translator("building_blocks")
 
 local function building_blocks_stairs(nodename, def)
 
@@ -15,15 +15,15 @@ local function building_blocks_stairs(nodename, def)
 
 	def.is_ground_content = def.is_ground_content == true
 
-	minetest.register_node(nodename, def)
-	if minetest.get_modpath("moreblocks") then
+	core.register_node(nodename, def)
+	if core.get_modpath("moreblocks") then
 		local mod, name = nodename:match("(.*):(.*)")
 		stairsplus:register_all(mod, name, nodename, def)
 
-		minetest.register_alias("stairs:slab_" .. name, mod .. ":slab_" .. name)
-		minetest.register_alias("stairs:stair_" .. name, mod .. ":stair_" .. name)
-		minetest.register_alias("stairs:stair_inner_" .. name, mod .. ":stair_" .. name .. "_inner")
-		minetest.register_alias("stairs:stair_outer_" .. name, mod .. ":stair_" .. name .. "_outer")
+		core.register_alias("stairs:slab_" .. name, mod .. ":slab_" .. name)
+		core.register_alias("stairs:stair_" .. name, mod .. ":stair_" .. name)
+		core.register_alias("stairs:stair_inner_" .. name, mod .. ":stair_" .. name .. "_inner")
+		core.register_alias("stairs:stair_outer_" .. name, mod .. ":stair_" .. name .. "_outer")
 	end
 end
 
@@ -127,7 +127,7 @@ building_blocks_stairs("building_blocks:Marble", {
 	},
 })
 
-minetest.register_node("building_blocks:brobble_spread", {
+core.register_node("building_blocks:brobble_spread", {
 	drawtype = "raillike",
 	-- Translators: "Brobble" is a portmanteau of "Brick" and "Cobble".
 	-- Translate however you see fit.
@@ -147,9 +147,9 @@ minetest.register_node("building_blocks:brobble_spread", {
 	_mcl_hardness=0.6
 })
 
-if not minetest.get_modpath("moreblocks") or not minetest.get_modpath("gloopblocks") then
+if not core.get_modpath("moreblocks") or not core.get_modpath("gloopblocks") then
 	local graveltex = homedecor.textures.gravel
-	minetest.register_node("building_blocks:gravel_spread", {
+	core.register_node("building_blocks:gravel_spread", {
 		drawtype = "raillike",
 		description = S("Gravel Spread"),
 		tiles = {graveltex},
@@ -171,7 +171,7 @@ if not minetest.get_modpath("moreblocks") or not minetest.get_modpath("gloopbloc
 	})
 end
 
-minetest.register_node("building_blocks:Tarmac_spread", {
+core.register_node("building_blocks:Tarmac_spread", {
 	drawtype = "raillike",
 	description = S("Tarmac Spread"),
 	tiles = {"building_blocks_tar.png"},
@@ -191,7 +191,7 @@ minetest.register_node("building_blocks:Tarmac_spread", {
 		key = "node_sound_dirt_defaults",
 	},
 })
-minetest.register_node("building_blocks:terrycloth_towel", {
+core.register_node("building_blocks:terrycloth_towel", {
 	drawtype = "raillike",
 	description = S("Terrycloth towel"),
 	tiles = {"building_blocks_towel.png"},
@@ -209,7 +209,7 @@ minetest.register_node("building_blocks:terrycloth_towel", {
 	_mcl_hardness=0.6
 })
 
-minetest.register_node("building_blocks:BWtile", {
+core.register_node("building_blocks:BWtile", {
 	drawtype = "nodebox",
 	description = S("Chess board tiling"),
 	tiles = {
@@ -233,7 +233,7 @@ minetest.register_node("building_blocks:BWtile", {
 	_mcl_hardness=0.6
 })
 
-minetest.register_node("building_blocks:Fireplace", {
+core.register_node("building_blocks:Fireplace", {
 	description = S("Fireplace"),
 	tiles = {
 		"building_blocks_cast_iron.png",
@@ -243,7 +243,7 @@ minetest.register_node("building_blocks:Fireplace", {
 	},
 	paramtype = "light",
 	paramtype2 = "facedir",
-	light_source = minetest.LIGHT_MAX,
+	light_source = core.LIGHT_MAX,
 	sunlight_propagates = true,
 	is_ground_content = false,
 	groups = {cracky=2, dig_generic=4, pickaxey=5},

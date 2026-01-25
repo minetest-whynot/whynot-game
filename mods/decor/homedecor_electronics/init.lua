@@ -1,6 +1,6 @@
 -- Various home electronics
 
-local S = minetest.get_translator("homedecor_electronics")
+local S = core.get_translator("homedecor_electronics")
 
 homedecor.register("speaker", {
 	description = S("Large Stereo Speaker"),
@@ -14,7 +14,7 @@ homedecor.register("speaker", {
 		key = "node_sound_wood_defaults",
 	},
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
-		minetest.set_node(pos, {name = "homedecor:speaker_open", param2 = node.param2})
+		core.set_node(pos, {name = "homedecor:speaker_open", param2 = node.param2})
 	end,
 	crafts = {
 		{
@@ -48,7 +48,7 @@ homedecor.register("speaker_open", {
 		key = "node_sound_wood_defaults",
 	},
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
-		minetest.set_node(pos, {name = "homedecor:speaker", param2 = node.param2})
+		core.set_node(pos, {name = "homedecor:speaker", param2 = node.param2})
 	end
 })
 
@@ -151,7 +151,7 @@ homedecor.register("television", {
 			  }
 		   }
 	},
-	light_source = minetest.LIGHT_MAX - 1,
+	light_source = core.LIGHT_MAX - 1,
 	groups = { snappy = 3, dig_tree = 2 },
 	_sound_def = {
 		key = "node_sound_wood_defaults",
@@ -250,24 +250,24 @@ homedecor.register("telephone", {
 
 -- craft items
 
-minetest.register_craftitem(":homedecor:vcr", {
+core.register_craftitem(":homedecor:vcr", {
 	description = S("VCR"),
 	inventory_image = "homedecor_vcr.png"
 })
 
-minetest.register_craftitem(":homedecor:dvd_player", {
+core.register_craftitem(":homedecor:dvd_player", {
 	description = S("DVD Player"),
 	inventory_image = "homedecor_dvd_player.png"
 })
 
-minetest.register_craftitem(":homedecor:speaker_driver", {
+core.register_craftitem(":homedecor:speaker_driver", {
 	description = S("Speaker driver"),
 	inventory_image = "homedecor_speaker_driver_inv.png"
 })
 
 --crafts
 
-minetest.register_craft( {
+core.register_craft( {
 	output = "basic_materials:ic 4",
 	recipe = {
 		{ "basic_materials:silicon", "basic_materials:silicon" },
@@ -275,7 +275,7 @@ minetest.register_craft( {
 	},
 })
 
-minetest.register_craft( {
+core.register_craft( {
 	output = "homedecor:speaker_driver 2",
 	recipe = {
 		{ "", homedecor.materials["steel_ingot"], "" },
@@ -284,7 +284,7 @@ minetest.register_craft( {
 	},
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "homedecor:vcr 2",
 	recipe = {
 		{ "basic_materials:ic", homedecor.materials["steel_ingot"], "basic_materials:plastic_sheet" },
@@ -293,7 +293,7 @@ minetest.register_craft({
 	},
 })
 
-minetest.register_craft({
+core.register_craft({
 	type = "fuel",
 	recipe = "homedecor:projection_screen",
 	burntime = 30,

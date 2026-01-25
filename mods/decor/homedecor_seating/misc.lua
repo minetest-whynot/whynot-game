@@ -1,7 +1,7 @@
 -- this component contains all of the random types of seating previously
 -- scattered among homedecor's other mods
 
-local S = minetest.get_translator("homedecor_seating")
+local S = core.get_translator("homedecor_seating")
 
 local dc_cbox = {
 	type = "fixed",
@@ -19,7 +19,7 @@ homedecor.register("deckchair", {
 	},
 	selection_box = dc_cbox,
 	collision_box = dc_cbox,
-	on_rotate = minetest.get_modpath("screwdriver") and screwdriver.disallow or nil,
+	on_rotate = core.get_modpath("screwdriver") and screwdriver.disallow or nil,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		return lrfurn.sit(pos, node, clicker, itemstack, pointed_thing, 1)
 	end,
@@ -27,8 +27,8 @@ homedecor.register("deckchair", {
 	on_movenode = lrfurn.on_seat_movenode,
 })
 
-minetest.register_alias("homedecor:deckchair_foot", "homedecor:deckchair")
-minetest.register_alias("homedecor:deckchair_head", "air")
+core.register_alias("homedecor:deckchair_foot", "homedecor:deckchair")
+core.register_alias("homedecor:deckchair_head", "air")
 
 homedecor.register("deckchair_striped_blue", {
 	mesh = "homedecor_deckchair.obj",
@@ -41,7 +41,7 @@ homedecor.register("deckchair_striped_blue", {
 	},
 	selection_box = dc_cbox,
 	collision_box = dc_cbox,
-	on_rotate = minetest.get_modpath("screwdriver") and screwdriver.disallow or nil,
+	on_rotate = core.get_modpath("screwdriver") and screwdriver.disallow or nil,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		return lrfurn.sit(pos, node, clicker, itemstack, pointed_thing, 1)
 	end,
@@ -99,11 +99,11 @@ homedecor.register("bench_large_1", {
 	},
 	selection_box = bl1_sbox,
 	node_box = bl1_cbox,
-	on_rotate = minetest.get_modpath("screwdriver") and screwdriver.disallow or nil,
+	on_rotate = core.get_modpath("screwdriver") and screwdriver.disallow or nil,
 })
 
-minetest.register_alias("homedecor:bench_large_1_left", "homedecor:bench_large_1")
-minetest.register_alias("homedecor:bench_large_1_right", "air")
+core.register_alias("homedecor:bench_large_1_left", "homedecor:bench_large_1")
+core.register_alias("homedecor:bench_large_1_right", "air")
 
 local bl2_sbox = {
 	type = "fixed",
@@ -130,11 +130,11 @@ homedecor.register("bench_large_2", {
 	_sound_def = {
 		key = "node_sound_wood_defaults",
 	},
-	on_rotate = minetest.get_modpath("screwdriver") and screwdriver.disallow or nil,
+	on_rotate = core.get_modpath("screwdriver") and screwdriver.disallow or nil,
 })
 
-minetest.register_alias("homedecor:bench_large_2_left", "homedecor:bench_large_2")
-minetest.register_alias("homedecor:bench_large_2_right", "air")
+core.register_alias("homedecor:bench_large_2_left", "homedecor:bench_large_2")
+core.register_alias("homedecor:bench_large_2_right", "air")
 
 local kc_cbox = {
 	type = "fixed",
@@ -226,7 +226,7 @@ for _, c in pairs(chairs) do
 		selection_box = ofchairs_sbox,
 		collision_box = ofchairs_cbox,
 		expand = { top = "placeholder" },
-		on_rotate = minetest.get_modpath("screwdriver") and screwdriver.rotate_simple or nil,
+		on_rotate = core.get_modpath("screwdriver") and screwdriver.rotate_simple or nil,
 		on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 			return lrfurn.sit(pos, node, clicker, itemstack, pointed_thing, 1)
 		end,
@@ -237,7 +237,7 @@ end
 
 -- crafts!
 
-minetest.register_craft( {
+core.register_craft( {
         output = "homedecor:bench_large_1",
         recipe = {
 			{ "group:wood", "group:wood", "group:wood" },
@@ -246,7 +246,7 @@ minetest.register_craft( {
         },
 })
 
-minetest.register_craft( {
+core.register_craft( {
         output = "homedecor:bench_large_2_left",
         recipe = {
 			{ "homedecor:shutter_oak", "homedecor:shutter_oak", "homedecor:shutter_oak" },
@@ -255,7 +255,7 @@ minetest.register_craft( {
         },
 })
 
-minetest.register_craft( {
+core.register_craft( {
         output = "homedecor:bench_large_2_left",
         recipe = {
 			{ "homedecor:shutter_oak", "homedecor:shutter_oak", "homedecor:shutter_oak" },
@@ -264,7 +264,7 @@ minetest.register_craft( {
         },
 })
 
-minetest.register_craft( {
+core.register_craft( {
         output = "homedecor:simple_bench",
         recipe = {
 			{ homedecor.materials.slab_wood, homedecor.materials.slab_wood, homedecor.materials.slab_wood },
@@ -272,7 +272,7 @@ minetest.register_craft( {
         },
 })
 
-minetest.register_craft( {
+core.register_craft( {
         output = "homedecor:simple_bench",
         recipe = {
 			{ "moreblocks:slab_wood", "moreblocks:slab_wood", "moreblocks:slab_wood" },
@@ -281,7 +281,7 @@ minetest.register_craft( {
 })
 
 
-minetest.register_craft({
+core.register_craft({
 	output = "homedecor:deckchair",
 	recipe = {
 		{ "group:stick", "building_blocks:terrycloth_towel", "group:stick" },
@@ -290,7 +290,7 @@ minetest.register_craft({
 	},
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "homedecor:deckchair_striped_blue",
 	type = "shapeless",
 	recipe = {
@@ -299,7 +299,7 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "homedecor:kitchen_chair_wood 2",
 	recipe = {
 		{ "group:stick",""},
@@ -308,7 +308,7 @@ minetest.register_craft({
 	},
 })
 
-minetest.register_craft({
+core.register_craft({
 	type = "shapeless",
 	output = "homedecor:kitchen_chair_padded",
 	recipe = {
@@ -328,20 +328,20 @@ unifieddyes.register_color_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
 	type = "fuel",
 	recipe = "homedecor:kitchen_chair_wood",
 	burntime = 15,
 })
 
-minetest.register_craft({
+core.register_craft({
 	type = "fuel",
 	recipe = "homedecor:kitchen_chair_padded",
 	burntime = 15,
 })
 
 
-minetest.register_craft({
+core.register_craft({
 	output = "homedecor:office_chair_basic",
 	recipe = {
 		{ "", "", homedecor.materials.wool_black },
@@ -350,7 +350,7 @@ minetest.register_craft({
 	},
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "homedecor:office_chair_upscale",
 	recipe = {
 		{ homedecor.materials.dye_black, "building_blocks:sticks", "group:wool" },
@@ -361,5 +361,5 @@ minetest.register_craft({
 
 -- aliases
 
-minetest.register_alias("3dforniture:chair", "homedecor:chair")
-minetest.register_alias('chair', 'homedecor:chair')
+core.register_alias("3dforniture:chair", "homedecor:chair")
+core.register_alias('chair', 'homedecor:chair')

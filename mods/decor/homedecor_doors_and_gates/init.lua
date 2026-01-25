@@ -1,15 +1,15 @@
 -- Node definitions for Homedecor doors
 
-if not minetest.get_modpath("doors") or not minetest.get_modpath("default") then
-	minetest.log(
+if not core.get_modpath("doors") or not core.get_modpath("default") then
+	core.log(
 		"action",
 		"[homedecor_doors_and_gates]: minetest game not detected, disabling as this mod is minetest game only at this time"
 	)
 	return
 end
 
-local S = minetest.get_translator("homedecor_doors_and_gates")
-local mesecons_mp = minetest.get_modpath("mesecons")
+local S = core.get_translator("homedecor_doors_and_gates")
+local mesecons_mp = core.get_modpath("mesecons")
 homedecor_doors_and_gates = {}
 
 local door_list = {
@@ -122,7 +122,7 @@ local function generate_door(def)
 					local door = doors.get(pos)
 					if door then door:close() end
 				end,
-				rules = minetest.global_exists("mesecon") and mesecon.rules.pplate or nil
+				rules = core.global_exists("mesecon") and mesecon.rules.pplate or nil
 			}
 		},
 	}
@@ -144,7 +144,7 @@ for _, door in ipairs(door_list) do
 	if mesh then
 		for _, v in pairs(door_types) do
 			if door_conversion[v] then v=door_conversion[v] end
-			minetest.override_item("doors:homedecor_" .. name .. v, {
+			core.override_item("doors:homedecor_" .. name .. v, {
 				mesh = mesh .. v .. ".obj"
 			})
 		end
@@ -154,8 +154,8 @@ for _, door in ipairs(door_list) do
 	old_doors[#old_doors + 1] = "homedecor:door_"..name.."_left"
 	old_doors[#old_doors + 1] = "homedecor:door_"..name.."_right"
 
-	minetest.register_alias("doors:"..name.."_a", "doors:homedecor_"..name.."_a")
-	minetest.register_alias("doors:"..name.."_b", "doors:homedecor_"..name.."_b")
+	core.register_alias("doors:"..name.."_a", "doors:homedecor_"..name.."_a")
+	core.register_alias("doors:"..name.."_b", "doors:homedecor_"..name.."_b")
 end
 
 -- Gates
@@ -287,7 +287,7 @@ for i, g in ipairs(gate_list) do
 
     -- gates when placed default to closed, closed.
 
-	minetest.register_node(":homedecor:gate_"..gate.."_closed", def)
+	core.register_node(":homedecor:gate_"..gate.."_closed", def)
 
     -- this is either a terrible idea or a great one
     def = table.copy(def)
@@ -315,17 +315,17 @@ for i, g in ipairs(gate_list) do
 		}
 	end
 
-	minetest.register_node(":homedecor:gate_"..gate.."_open", def)
+	core.register_node(":homedecor:gate_"..gate.."_open", def)
 end
 
-minetest.register_alias("homedecor:fence_barbed_wire_gate_open",    "homedecor:gate_barbed_wire_open")
-minetest.register_alias("homedecor:fence_barbed_wire_gate_closed",  "homedecor:gate_barbed_wire_closed")
-minetest.register_alias("homedecor:fence_chainlink_gate_open",      "homedecor:gate_chainlink_open")
-minetest.register_alias("homedecor:fence_chainlink_gate_closed",    "homedecor:gate_chainlink_closed")
-minetest.register_alias("homedecor:fence_picket_gate_open",         "homedecor:gate_picket_open")
-minetest.register_alias("homedecor:fence_picket_gate_closed",       "homedecor:gate_picket_closed")
-minetest.register_alias("homedecor:fence_picket_gate_white_open",   "homedecor:gate_picket_white_open")
-minetest.register_alias("homedecor:fence_picket_gate_white_closed", "homedecor:gate_picket_white_closed")
+core.register_alias("homedecor:fence_barbed_wire_gate_open",    "homedecor:gate_barbed_wire_open")
+core.register_alias("homedecor:fence_barbed_wire_gate_closed",  "homedecor:gate_barbed_wire_closed")
+core.register_alias("homedecor:fence_chainlink_gate_open",      "homedecor:gate_chainlink_open")
+core.register_alias("homedecor:fence_chainlink_gate_closed",    "homedecor:gate_chainlink_closed")
+core.register_alias("homedecor:fence_picket_gate_open",         "homedecor:gate_picket_open")
+core.register_alias("homedecor:fence_picket_gate_closed",       "homedecor:gate_picket_closed")
+core.register_alias("homedecor:fence_picket_gate_white_open",   "homedecor:gate_picket_white_open")
+core.register_alias("homedecor:fence_picket_gate_white_closed", "homedecor:gate_picket_white_closed")
 
 function homedecor_doors_and_gates.flip_gate(pos, node, player, gate, oc)
 
@@ -339,8 +339,8 @@ function homedecor_doors_and_gates.flip_gate(pos, node, player, gate, oc)
 		gateresult = "homedecor:gate_"..gate.."_closed"
 	end
 
-	minetest.set_node(pos, {name = gateresult, param2 = fdir})
-    minetest.sound_play("homedecor_gate_open_close", {
+	core.set_node(pos, {name = gateresult, param2 = fdir})
+    core.sound_play("homedecor_gate_open_close", {
 		pos=pos,
 		max_hear_distance = 5,
 		gain = 2,
@@ -350,15 +350,15 @@ function homedecor_doors_and_gates.flip_gate(pos, node, player, gate, oc)
 
     local above = {x=pos.x, y=pos.y+1, z=pos.z}
     local below = {x=pos.x, y=pos.y-1, z=pos.z}
-    local nodeabove = minetest.get_node(above)
-    local nodebelow = minetest.get_node(below)
+    local nodeabove = core.get_node(above)
+    local nodebelow = core.get_node(below)
 
 	if string.find(nodeabove.name, "homedecor:gate_"..gate) then
-        minetest.set_node(above, {name = gateresult, param2 = fdir})
+        core.set_node(above, {name = gateresult, param2 = fdir})
 	end
 
 	if string.find(nodebelow.name, "homedecor:gate_"..gate) then
-        minetest.set_node(below, {name = gateresult, param2 = fdir})
+        core.set_node(below, {name = gateresult, param2 = fdir})
 	end
 end
 
@@ -383,7 +383,7 @@ homedecor.register("door_japanese_closed", {
 	},
 	expand = { top = "placeholder" },
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
-		minetest.set_node(pos, {name = "homedecor:door_japanese_open", param2 = node.param2})
+		core.set_node(pos, {name = "homedecor:door_japanese_open", param2 = node.param2})
 		return itemstack
 	end
 })
@@ -396,7 +396,7 @@ homedecor.register("door_japanese_open", {
 	mesh = "homedecor_door_japanese_open.obj",
 	groups = { snappy = 3, not_in_creative_inventory = 1 },
 	sounds = default.node_sound_wood_defaults(),
-	on_rotate = minetest.get_modpath("screwdriver") and screwdriver.disallow or nil,
+	on_rotate = core.get_modpath("screwdriver") and screwdriver.disallow or nil,
 	selection_box = {
 		type = "fixed",
 		fixed = {-1.5, -0.5, -0.0625, 0.5, 1.5, 0},
@@ -407,7 +407,7 @@ homedecor.register("door_japanese_open", {
 	},
 	expand = { top = "placeholder" },
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
-		minetest.set_node(pos, {name = "homedecor:door_japanese_closed", param2 = node.param2})
+		core.set_node(pos, {name = "homedecor:door_japanese_closed", param2 = node.param2})
 		return itemstack
 	end,
 	drop = "homedecor:door_japanese_closed",
@@ -417,7 +417,7 @@ homedecor.register("door_japanese_open", {
 
 -- half-doors
 
-minetest.register_craft( {
+core.register_craft( {
 	type = "shapeless",
 	output = "homedecor:gate_half_door_closed 4",
 	recipe = {
@@ -426,7 +426,7 @@ minetest.register_craft( {
 	},
 })
 
-minetest.register_craft( {
+core.register_craft( {
 	type = "shapeless",
 	output = "homedecor:gate_half_door_white_closed 4",
 	recipe = {
@@ -437,7 +437,7 @@ minetest.register_craft( {
 
 -- Gates
 
-minetest.register_craft( {
+core.register_craft( {
 	type = "shapeless",
         output = "homedecor:gate_picket_white_closed",
         recipe = {
@@ -445,7 +445,7 @@ minetest.register_craft( {
         },
 })
 
-minetest.register_craft( {
+core.register_craft( {
 	type = "shapeless",
         output = "homedecor:fence_picket_white",
         recipe = {
@@ -453,7 +453,7 @@ minetest.register_craft( {
         },
 })
 
-minetest.register_craft( {
+core.register_craft( {
 	type = "shapeless",
         output = "homedecor:gate_picket_closed",
         recipe = {
@@ -461,7 +461,7 @@ minetest.register_craft( {
         },
 })
 
-minetest.register_craft( {
+core.register_craft( {
 	type = "shapeless",
         output = "homedecor:fence_picket",
         recipe = {
@@ -469,7 +469,7 @@ minetest.register_craft( {
         },
 })
 
-minetest.register_craft( {
+core.register_craft( {
 	type = "shapeless",
         output = "homedecor:gate_barbed_wire_closed",
         recipe = {
@@ -477,7 +477,7 @@ minetest.register_craft( {
         },
 })
 
-minetest.register_craft( {
+core.register_craft( {
 	type = "shapeless",
         output = "homedecor:fence_barbed_wire",
         recipe = {
@@ -485,7 +485,7 @@ minetest.register_craft( {
         },
 })
 
-minetest.register_craft( {
+core.register_craft( {
 	type = "shapeless",
         output = "homedecor:gate_chainlink_closed",
         recipe = {
@@ -493,7 +493,7 @@ minetest.register_craft( {
         },
 })
 
-minetest.register_craft( {
+core.register_craft( {
 	type = "shapeless",
         output = "homedecor:fence_chainlink",
         recipe = {
@@ -505,7 +505,7 @@ minetest.register_craft( {
 
 -- plain wood, non-windowed
 
-minetest.register_craft( {
+core.register_craft( {
         output = "doors:homedecor_wood_plain 2",
         recipe = {
 			{ "group:wood", "group:wood", "" },
@@ -516,7 +516,7 @@ minetest.register_craft( {
 
 -- fancy exterior
 
-minetest.register_craft( {
+core.register_craft( {
         output = "doors:homedecor_exterior_fancy 2",
         recipe = {
 			{ "group:wood", "default:glass" },
@@ -527,7 +527,7 @@ minetest.register_craft( {
 
 -- French style wood/glass
 
-minetest.register_craft( {
+core.register_craft( {
         output = "doors:homedecor_french_oak 2",
         recipe = {
 			{ "default:glass", "group:wood" },
@@ -536,7 +536,7 @@ minetest.register_craft( {
         },
 })
 
-minetest.register_craft( {
+core.register_craft( {
         output = "doors:homedecor_french_oak 2",
         recipe = {
 			{ "group:wood", "default:glass" },
@@ -545,7 +545,7 @@ minetest.register_craft( {
         },
 })
 
-minetest.register_craft( {
+core.register_craft( {
 	type = "shapeless",
         output = "doors:homedecor_french_mahogany 2",
         recipe = {
@@ -555,7 +555,7 @@ minetest.register_craft( {
         },
 })
 
-minetest.register_craft( {
+core.register_craft( {
 	type = "shapeless",
         output = "doors:homedecor_french_white 2",
         recipe = {
@@ -569,7 +569,7 @@ minetest.register_craft( {
 
 -- oak
 
-minetest.register_craft( {
+core.register_craft( {
         output = "doors:homedecor_closet_oak 2",
         recipe = {
 			{ "", "group:stick", "group:stick" },
@@ -580,7 +580,7 @@ minetest.register_craft( {
 
 -- mahogany
 
-minetest.register_craft( {
+core.register_craft( {
 	type = "shapeless",
         output = "doors:homedecor_closet_mahogany 2",
         recipe = {
@@ -592,7 +592,7 @@ minetest.register_craft( {
 
 -- wrought iron fence-like door
 
-minetest.register_craft( {
+core.register_craft( {
         output = "doors:homedecor_wrought_iron 2",
         recipe = {
 			{ "homedecor:pole_wrought_iron", "default:iron_lump" },
@@ -603,7 +603,7 @@ minetest.register_craft( {
 
 -- bedroom/panel door
 
-minetest.register_craft( {
+core.register_craft( {
 	output = "doors:homedecor_basic_panel",
 	recipe = {
 		{ "dye:white", "dye:white", "" },
@@ -614,7 +614,7 @@ minetest.register_craft( {
 
 -- basic wood/glass single-lite door
 
-minetest.register_craft( {
+core.register_craft( {
 	output = "doors:homedecor_woodglass",
 	recipe = {
 		{ "group:wood", "default:glass", "" },
@@ -625,7 +625,7 @@ minetest.register_craft( {
 
 -- "Carolina" door
 
-minetest.register_craft( {
+core.register_craft( {
 	output = "doors:homedecor_carolina",
 	recipe = {
 		{ "default:glass", "default:glass", "" },
@@ -635,7 +635,7 @@ minetest.register_craft( {
 })
 
 
-minetest.register_craft({
+core.register_craft({
 	output = "homedecor:door_japanese_closed",
 	recipe = {
 		{ "homedecor:japanese_wall_top" },
@@ -645,44 +645,44 @@ minetest.register_craft({
 
 -- aliases
 
-minetest.register_alias("homedecor:jpn_door_top",               "air")
-minetest.register_alias("homedecor:jpn_door_top_open",          "air")
+core.register_alias("homedecor:jpn_door_top",               "air")
+core.register_alias("homedecor:jpn_door_top_open",          "air")
 
-minetest.register_alias("homedecor:jpn_door_bottom",            "homedecor:door_japanese_closed")
-minetest.register_alias("homedecor:jpn_door_bottom_open",       "homedecor:door_japanese_open")
+core.register_alias("homedecor:jpn_door_bottom",            "homedecor:door_japanese_closed")
+core.register_alias("homedecor:jpn_door_bottom_open",       "homedecor:door_japanese_open")
 
-minetest.register_alias("homedecor:door_glass_right",           "doors:door_glass_b")
-minetest.register_alias("homedecor:door_glass_left",            "doors:door_glass_a")
+core.register_alias("homedecor:door_glass_right",           "doors:door_glass_b")
+core.register_alias("homedecor:door_glass_left",            "doors:door_glass_a")
 
-minetest.register_alias("doors:wood_glass_oak_a",               "doors:homedecor_french_oak_a")
-minetest.register_alias("doors:wood_glass_oak_b",               "doors:homedecor_french_oak_b")
+core.register_alias("doors:wood_glass_oak_a",               "doors:homedecor_french_oak_a")
+core.register_alias("doors:wood_glass_oak_b",               "doors:homedecor_french_oak_b")
 
-minetest.register_alias("doors:wood_glass_white_a",             "doors:homedecor_french_white_a")
-minetest.register_alias("doors:wood_glass_white_b",             "doors:homedecor_french_white_b")
+core.register_alias("doors:wood_glass_white_a",             "doors:homedecor_french_white_a")
+core.register_alias("doors:wood_glass_white_b",             "doors:homedecor_french_white_b")
 
-minetest.register_alias("doors:wood_glass_mahogany_a",          "doors:homedecor_french_mahogany_a")
-minetest.register_alias("doors:wood_glass_mahogany_b",          "doors:homedecor_french_mahogany_b")
+core.register_alias("doors:wood_glass_mahogany_a",          "doors:homedecor_french_mahogany_a")
+core.register_alias("doors:wood_glass_mahogany_b",          "doors:homedecor_french_mahogany_b")
 
-minetest.register_alias("doors:homedecor_wood_glass_oak_a",     "doors:homedecor_french_oak_a")
-minetest.register_alias("doors:homedecor_wood_glass_oak_b",     "doors:homedecor_french_oak_b")
+core.register_alias("doors:homedecor_wood_glass_oak_a",     "doors:homedecor_french_oak_a")
+core.register_alias("doors:homedecor_wood_glass_oak_b",     "doors:homedecor_french_oak_b")
 
-minetest.register_alias("doors:homedecor_wood_glass_white_a",   "doors:homedecor_french_white_a")
-minetest.register_alias("doors:homedecor_wood_glass_white_b",   "doors:homedecor_french_white_b")
+core.register_alias("doors:homedecor_wood_glass_white_a",   "doors:homedecor_french_white_a")
+core.register_alias("doors:homedecor_wood_glass_white_b",   "doors:homedecor_french_white_b")
 
-minetest.register_alias("doors:homedecor_wood_glass_mahogany_a", "doors:homedecor_french_mahogany_a")
-minetest.register_alias("doors:homedecor_wood_glass_mahogany_b", "doors:homedecor_french_mahogany_b")
+core.register_alias("doors:homedecor_wood_glass_mahogany_a", "doors:homedecor_french_mahogany_a")
+core.register_alias("doors:homedecor_wood_glass_mahogany_b", "doors:homedecor_french_mahogany_b")
 
-minetest.register_alias("doors:homedecor_woodglass2_a",         "doors:homedecor_carolina_a")
-minetest.register_alias("doors:homedecor_woodglass2_b",         "doors:homedecor_carolina_b")
+core.register_alias("doors:homedecor_woodglass2_a",         "doors:homedecor_carolina_a")
+core.register_alias("doors:homedecor_woodglass2_b",         "doors:homedecor_carolina_b")
 
-minetest.register_alias("doors:woodglass2_a",                   "doors:homedecor_carolina_a")
-minetest.register_alias("doors:woodglass2_b",                   "doors:homedecor_carolina_b")
+core.register_alias("doors:woodglass2_a",                   "doors:homedecor_carolina_a")
+core.register_alias("doors:woodglass2_b",                   "doors:homedecor_carolina_b")
 
-minetest.register_alias("doors:homedecor_bedroom_a",            "doors:homedecor_basic_panel_a")
-minetest.register_alias("doors:homedecor_bedroom_b",            "doors:homedecor_basic_panel_b")
+core.register_alias("doors:homedecor_bedroom_a",            "doors:homedecor_basic_panel_a")
+core.register_alias("doors:homedecor_bedroom_b",            "doors:homedecor_basic_panel_b")
 
-minetest.register_alias("doors:bedroom_a",                      "doors:homedecor_basic_panel_a")
-minetest.register_alias("doors:bedroom_b",                      "doors:homedecor_basic_panel_b")
+core.register_alias("doors:bedroom_a",                      "doors:homedecor_basic_panel_a")
+core.register_alias("doors:bedroom_b",                      "doors:homedecor_basic_panel_b")
 
 -- flip old homedecor doors around, since they use minetest_game doors API now
 
@@ -701,7 +701,7 @@ old_doors[#old_doors + 1] = "homedecor:door_woodglass2_right"
 old_doors[#old_doors + 1] = "homedecor:door_bedroom_left"
 old_doors[#old_doors + 1] = "homedecor:door_bedroom_right"
 
-minetest.register_lbm({
+core.register_lbm({
 	name = ":homedecor:convert_doors_3",
 	label = "Convert Homedecor doors to mtg doors API",
 	nodenames = old_doors,
@@ -714,11 +714,11 @@ minetest.register_lbm({
 		local newname = "doors:homedecor_"..string.sub(node.name, 16, e-1)
 		if dir == "right" then
 			print("Want to replace "..node.name.." with "..newname.."_a")
-			minetest.set_node(pos, {name = newname.."_a", param2 = newparam2 })
+			core.set_node(pos, {name = newname.."_a", param2 = newparam2 })
 		else
 			print("Want to replace "..node.name.." with "..newname.."_b")
-			minetest.set_node(pos, {name = newname.."_b", param2 = newparam2 })
+			core.set_node(pos, {name = newname.."_b", param2 = newparam2 })
 		end
-		minetest.set_node({x=pos.x, y=pos.y+1, z=pos.z}, {name = "doors:hidden"})
+		core.set_node({x=pos.x, y=pos.y+1, z=pos.z}, {name = "doors:hidden"})
 	end
 })

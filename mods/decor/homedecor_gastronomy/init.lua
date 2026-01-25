@@ -1,4 +1,4 @@
-local S = minetest.get_translator("homedecor_gastronomy")
+local S = core.get_translator("homedecor_gastronomy")
 
 local cutlery_cbox = {
 	type = "fixed",
@@ -14,14 +14,14 @@ local fdir_to_steampos = {
 }
 
 local function sfx(pos)
-	local node = minetest.get_node(pos)
+	local node = core.get_node(pos)
 	local fdir = node.param2
 	if fdir and fdir < 4 then
 
 		local steamx = fdir_to_steampos.x[fdir + 1]
 		local steamz = fdir_to_steampos.z[fdir + 1]
 
-		minetest.add_particlespawner({
+		core.add_particlespawner({
 			amount = 1,
 			time = 1,
 			minpos = {x=pos.x - steamx, y=pos.y - 0.35, z=pos.z - steamz},
@@ -171,7 +171,7 @@ homedecor.register("coffee_maker", {
 	groups = {snappy=3, dig_stone=3},
 	selection_box = cm_cbox,
 	node_box = cm_cbox,
-	on_rotate = minetest.get_modpath("screwdriver") and screwdriver.disallow or nil,
+	on_rotate = core.get_modpath("screwdriver") and screwdriver.disallow or nil,
 	crafts = {
 		{
 			recipe = {
@@ -183,7 +183,7 @@ homedecor.register("coffee_maker", {
 	},
 	on_timer = sfx,
 	on_construct = function(pos)
-		minetest.get_node_timer(pos):start(2)
+		core.get_node_timer(pos):start(2)
 	end
 })
 
@@ -202,8 +202,8 @@ homedecor.register("toaster", {
 	},
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		local fdir = node.param2
-		minetest.set_node(pos, { name = "homedecor:toaster_loaf", param2 = fdir })
-		minetest.sound_play("toaster", {
+		core.set_node(pos, { name = "homedecor:toaster_loaf", param2 = fdir })
+		core.sound_play("toaster", {
 			pos = pos,
 			gain = 1.0,
 			max_hear_distance = 5
@@ -242,7 +242,7 @@ homedecor.register("toaster_loaf", {
 	},
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		local fdir = node.param2
-		minetest.set_node(pos, { name = "homedecor:toaster", param2 = fdir })
+		core.set_node(pos, { name = "homedecor:toaster", param2 = fdir })
 		return itemstack
 	end,
 	drop = "homedecor:toaster"
@@ -250,21 +250,21 @@ homedecor.register("toaster_loaf", {
 
 -- crafting
 
-minetest.register_craft( {
+core.register_craft( {
         output = "homedecor:bottle_green",
         recipe = {
 			{ homedecor.materials["glass_bottle"], homedecor.materials["dye_green"] }
         },
 })
 
-minetest.register_craft( {
+core.register_craft( {
         output = "homedecor:bottle_brown",
         recipe = {
 			{ homedecor.materials["glass_bottle"], homedecor.materials["dye_brown"] }
         },
 })
 
-minetest.register_craft({
+core.register_craft({
 	type = "shapeless",
 	output = "homedecor:4_bottles_brown",
 	recipe = {
@@ -275,7 +275,7 @@ minetest.register_craft({
 	},
 })
 
-minetest.register_craft({
+core.register_craft({
 	type = "shapeless",
 	output = "homedecor:4_bottles_green",
 	recipe = {
@@ -286,7 +286,7 @@ minetest.register_craft({
 	},
 })
 
-minetest.register_craft({
+core.register_craft({
 	type = "shapeless",
 	output = "homedecor:4_bottles_multi",
 	recipe = {
@@ -297,7 +297,7 @@ minetest.register_craft({
 	},
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "homedecor:wine_rack",
 	recipe = {
 		{ "homedecor:4_bottles_brown", "group:wood", "homedecor:4_bottles_brown" },
@@ -306,11 +306,11 @@ minetest.register_craft({
 	},
 })
 
-minetest.register_lbm({
+core.register_lbm({
 	name = "homedecor_gastronomy:sfx_init",
 	nodenames = {"homedecor:coffee_maker"},
 	run_at_every_load = false,
 	action = function(pos)
-		minetest.get_node_timer(pos):start(2)
+		core.get_node_timer(pos):start(2)
 	end
 })

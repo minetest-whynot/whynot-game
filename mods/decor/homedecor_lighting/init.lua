@@ -1,19 +1,19 @@
 -- This file supplies the majority of homedecor's lighting
 
-local S = minetest.get_translator("homedecor_lighting")
+local S = core.get_translator("homedecor_lighting")
 
 homedecor_lighting = {}
 
 local function is_protected(pos, clicker)
-	if minetest.is_protected(pos, clicker:get_player_name()) then
-		minetest.record_protection_violation(pos,
+	if core.is_protected(pos, clicker:get_player_name()) then
+		core.record_protection_violation(pos,
 		clicker:get_player_name())
 		return true
 	end
 	return false
 end
 
-local hd_mesecons = minetest.get_modpath("mesecons")
+local hd_mesecons = core.get_modpath("mesecons")
 
 -- control and brightness for dimmable lamps
 
@@ -52,17 +52,17 @@ if hd_mesecons then
 	actions = {
 		action_off = function(pos, node)
 			local sep = string.find(node.name, "_", -5)
-			if minetest.get_meta(pos):get_int("toggled") > 0 then
-				minetest.swap_node(pos, {
+			if core.get_meta(pos):get_int("toggled") > 0 then
+				core.swap_node(pos, {
 					name = string.sub(node.name, 1, sep - 1).."_off",
 					param2 = node.param2
 				})
 			end
 		end,
 		action_on = function(pos, node)
-			minetest.get_meta(pos):set_int("toggled", 1)
+			core.get_meta(pos):set_int("toggled", 1)
 			local sep = string.find(node.name, "_", -5)
-			minetest.swap_node(pos, {
+			core.swap_node(pos, {
 				name = string.sub(node.name, 1, sep - 1).."_on",
 				param2 = node.param2
 			})
@@ -87,11 +87,11 @@ local player_last_clicked = {}
 
 local digiline_on_punch
 
-if minetest.get_modpath("digilines") then
+if core.get_modpath("digilines") then
 
 	local on_digiline_receive_string = function(pos, node, channel, msg)
 		if not msg or not channel then return end
-		local meta = minetest.get_meta(pos)
+		local meta = core.get_meta(pos)
 		local setchan = meta:get_string("channel")
 		if setchan ~= channel then return end
 
@@ -101,27 +101,27 @@ if minetest.get_modpath("digilines") then
 
 			local basename = string.sub(node.name, 1, string.find(node.name, "_", -5) - 1)
 
-			if minetest.registered_nodes[basename.."_"..msg] then
-				minetest.swap_node(pos, {name = basename.."_"..msg, param2 = node.param2})
-			elseif minetest.registered_nodes[basename.."_"..suff] then
-				minetest.swap_node(pos, {name = basename.."_"..suff, param2 = node.param2})
-			elseif minetest.registered_nodes[basename.."_on"]
+			if core.registered_nodes[basename.."_"..msg] then
+				core.swap_node(pos, {name = basename.."_"..msg, param2 = node.param2})
+			elseif core.registered_nodes[basename.."_"..suff] then
+				core.swap_node(pos, {name = basename.."_"..suff, param2 = node.param2})
+			elseif core.registered_nodes[basename.."_on"]
 			  and (msg == "med" or msg == "hi" or msg == "max" or (n and n > 3)) then
-				minetest.swap_node(pos, {name = basename.."_on", param2 = node.param2})
-			elseif minetest.registered_nodes[basename.."_off"]
+				core.swap_node(pos, {name = basename.."_on", param2 = node.param2})
+			elseif core.registered_nodes[basename.."_off"]
 			  and (msg == "low" or (n and n < 4)) then
-				minetest.swap_node(pos, {name = basename.."_off", param2 = node.param2})
+				core.swap_node(pos, {name = basename.."_off", param2 = node.param2})
 			end
 		end
 	end
 
-	minetest.register_on_player_receive_fields(function(player, formname, fields)
+	core.register_on_player_receive_fields(function(player, formname, fields)
 		local name = player:get_player_name()
 		local pos = player_last_clicked[name]
 		if pos and formname == "homedecor:lamp_set_channel" then
 			if is_protected(pos, player) then return end
 			if (fields.channel) then
-				local meta = minetest.get_meta(pos)
+				local meta = core.get_meta(pos)
 				meta:set_string("channel", fields.channel)
 			end
 		end
@@ -166,7 +166,7 @@ if minetest.get_modpath("digilines") then
 					"size[8,4]"..
 					"button_exit[3,2.5;2,0.5;proceed;Proceed]"..
 					"field[1.75,1.5;4.5,0.5;channel;Channel;]"
-			minetest.show_formspec(name, "homedecor:lamp_set_channel", form)
+			core.show_formspec(name, "homedecor:lamp_set_channel", form)
 		end
 	end
 end
@@ -190,7 +190,7 @@ function homedecor_lighting.toggle_light(pos, node, clicker, itemstack, pointed_
 		newsuff = "_14"
 	end
 
-	minetest.swap_node(pos, {name = string.sub(node.name, 1, sep - 1)..newsuff, param2 = node.param2})
+	core.swap_node(pos, {name = string.sub(node.name, 1, sep - 1)..newsuff, param2 = node.param2})
 end
 
 ------------------
@@ -259,7 +259,7 @@ for brightness_level = 0, 14 do
 		overlay = nil
 	end
 
-	minetest.register_node(":homedecor:glowlight_half_"..brightness_level, {
+	core.register_node(":homedecor:glowlight_half_"..brightness_level, {
 		description = S("Thick Glowlight"),
 		tiles = tiles,
 		overlay_tiles = overlay,
@@ -329,7 +329,7 @@ for brightness_level = 0, 14 do
 		overlay = nil
 	end
 
-	minetest.register_node(":homedecor:glowlight_quarter_"..brightness_level, {
+	core.register_node(":homedecor:glowlight_quarter_"..brightness_level, {
 		description = S("Thin Glowlight"),
 		tiles = tiles,
 		overlay_tiles = overlay,
@@ -400,7 +400,7 @@ for brightness_level = 0, 14 do
 		overlay = nil
 	end
 
-	minetest.register_node(":homedecor:glowlight_small_cube_"..brightness_level, {
+	core.register_node(":homedecor:glowlight_small_cube_"..brightness_level, {
 		description = S("Small Glowlight Cube"),
 		tiles = tiles,
 		overlay_tiles = overlay,
@@ -558,7 +558,7 @@ for brightness_level = 0, 14 do
 		on_punch = digiline_on_punch
 	})
 
-	if not minetest.get_modpath("darkage") then
+	if not core.get_modpath("darkage") then
 		homedecor.register("lattice_lantern_large_"..brightness_level, {
 			description = S("Lattice lantern/Light (large)"),
 			tiles = { gen_ls_tex_yellow.."^homedecor_lattice_lantern_large_overlay.png" },
@@ -612,7 +612,7 @@ for brightness_level = 0, 14 do
 		_sound_def = {
 			key = "node_sound_glass_defaults",
 		},
-		on_place = minetest.rotate_node,
+		on_place = core.rotate_node,
 		on_rightclick = homedecor_lighting.toggle_light,
 		drop = {
 			items = {
@@ -755,7 +755,7 @@ for brightness_level = 0, 14 do
 		_sound_def = {
 			key = "node_sound_wood_defaults",
 		},
-		on_rotate = minetest.get_modpath("screwdriver") and screwdriver.rotate_simple or nil,
+		on_rotate = core.get_modpath("screwdriver") and screwdriver.rotate_simple or nil,
 		--expand = { top="air" },
 		drop = {
 			items = {
@@ -816,7 +816,7 @@ for _, light_brightn_name in ipairs({"off", "on"}) do
 		},
 		walkable = false,
 		use_texture_alpha = "blend",
-		light_source = onflag and (minetest.LIGHT_MAX - 5) or nil,
+		light_source = onflag and (core.LIGHT_MAX - 5) or nil,
 		sunlight_propagates = true,
 		groups = {cracky=3, oddly_breakable_by_hand=3, not_in_creative_inventory = nici},
 		_sound_def = {
@@ -840,7 +840,7 @@ for _, light_brightn_name in ipairs({"off", "on"}) do
 
 	-- rope lighting
 
-	minetest.register_node(":homedecor:rope_light_on_floor_"..light_brightn_name, {
+	core.register_node(":homedecor:rope_light_on_floor_"..light_brightn_name, {
 		description = S("Rope lighting (on floor)"),
 		inventory_image =  "homedecor_rope_light_on_floor.png",
 		paramtype = "light",
@@ -890,7 +890,7 @@ for _, light_brightn_name in ipairs({"off", "on"}) do
 		} or nil,
 	})
 
-	minetest.register_node(":homedecor:rope_light_on_ceiling_"..light_brightn_name, {
+	core.register_node(":homedecor:rope_light_on_ceiling_"..light_brightn_name, {
 		description = S("Rope lighting (on ceiling)"),
 		inventory_image =  "homedecor_rope_light_on_ceiling.png",
 		paramtype = "light",
@@ -951,7 +951,7 @@ for _, light_brightn_name in ipairs({"off", "on"}) do
 		},
 		inventory_image = "homedecor_wall_lamp_inv.png",
 		groups = {snappy=3, not_in_creative_inventory = nici, dig_glass=1},
-		light_source = onflag and (minetest.LIGHT_MAX - 3) or nil,
+		light_source = onflag and (core.LIGHT_MAX - 3) or nil,
 		selection_box = wl_cbox,
 		walkable = false,
 		drop = {
@@ -988,7 +988,7 @@ homedecor.register("candle", {
 	walkable = false,
 	use_texture_alpha = "clip",
 	groups = { snappy = 3, dig_glass=1 },
-	light_source = minetest.LIGHT_MAX-4,
+	light_source = core.LIGHT_MAX-4,
 })
 
 local c_cbox = {
@@ -1010,7 +1010,7 @@ homedecor.register("candle_thin", {
 	walkable = false,
 	use_texture_alpha = "clip",
 	groups = { snappy = 3, dig_glass=1 },
-	light_source = minetest.LIGHT_MAX-4,
+	light_source = core.LIGHT_MAX-4,
 })
 
 local cs_cbox = {
@@ -1033,7 +1033,7 @@ homedecor.register("candlestick_wrought_iron", {
 	walkable = false,
 	use_texture_alpha = "clip",
 	groups = { snappy = 3, dig_glass=1 },
-	light_source = minetest.LIGHT_MAX-4,
+	light_source = core.LIGHT_MAX-4,
 })
 
 homedecor.register("candlestick_brass", {
@@ -1049,7 +1049,7 @@ homedecor.register("candlestick_brass", {
 	walkable = false,
 	use_texture_alpha = "clip",
 	groups = { snappy = 3, dig_glass=1 },
-	light_source = minetest.LIGHT_MAX-4,
+	light_source = core.LIGHT_MAX-4,
 })
 
 homedecor.register("wall_sconce", {
@@ -1069,7 +1069,7 @@ homedecor.register("wall_sconce", {
 	walkable = false,
 	use_texture_alpha = "clip",
 	groups = { snappy = 3, dig_glass=1 },
-	light_source = minetest.LIGHT_MAX-4,
+	light_source = core.LIGHT_MAX-4,
 })
 
 local ol_cbox = {
@@ -1095,7 +1095,7 @@ homedecor.register("oil_lamp", {
 	selection_box = ol_cbox,
 	walkable = false,
 	groups = { snappy = 3, dig_glass=1 },
-	light_source = minetest.LIGHT_MAX-3,
+	light_source = core.LIGHT_MAX-3,
 	_sound_def = {
 		key = "node_sound_glass_defaults",
 	},
@@ -1109,7 +1109,7 @@ homedecor.register("oil_lamp_tabletop", {
 	selection_box = ol_cbox,
 	collision_box = ol_cbox,
 	groups = { snappy = 3, dig_glass=1 },
-	light_source = minetest.LIGHT_MAX-3,
+	light_source = core.LIGHT_MAX-3,
 	_sound_def = {
 		key = "node_sound_glass_defaults",
 	},
@@ -1123,7 +1123,7 @@ local topchains_sbox = {
 	}
 }
 
-minetest.register_node(":homedecor:chain_steel_top", {
+core.register_node(":homedecor:chain_steel_top", {
 	description = S("Hanging chain (ceiling mount, steel)"),
 	drawtype = "mesh",
 	mesh = "homedecor_chains_top.obj",
@@ -1139,7 +1139,7 @@ minetest.register_node(":homedecor:chain_steel_top", {
 	selection_box = topchains_sbox,
 })
 
-minetest.register_node(":homedecor:chain_brass_top", {
+core.register_node(":homedecor:chain_brass_top", {
 	description = S("Hanging chain (ceiling mount, brass)"),
 	drawtype = "mesh",
 	mesh = "homedecor_chains_top.obj",
@@ -1155,7 +1155,7 @@ minetest.register_node(":homedecor:chain_brass_top", {
 	selection_box = topchains_sbox,
 })
 
-minetest.register_node(":homedecor:chandelier_steel", {
+core.register_node(":homedecor:chandelier_steel", {
 	description = S("Chandelier (steel)"),
 	paramtype = "light",
 	light_source = 12,
@@ -1186,7 +1186,7 @@ minetest.register_node(":homedecor:chandelier_steel", {
 	},
 })
 
-minetest.register_node(":homedecor:chandelier_brass", {
+core.register_node(":homedecor:chandelier_brass", {
 	description = S("Chandelier (brass)"),
 	paramtype = "light",
 	light_source = 12,
@@ -1276,7 +1276,7 @@ for _, power in ipairs(lamp_power) do
 	end
 end
 
-minetest.register_lbm({
+core.register_lbm({
 	name = ":homedecor:convert_lighting",
 	label = "Convert homedecor glowlights, table lamps, and standing lamps to use param2 color",
 	run_at_every_load = false,
@@ -1361,13 +1361,13 @@ minetest.register_lbm({
 			param2 = paletteidx
 		end
 
-		local meta = minetest.get_meta(pos)
+		local meta = core.get_meta(pos)
 
 		if string.find(name, "table_lamp") or string.find(name, "standing_lamp") then
 			meta:set_string("palette", "ext")
 		end
 
-		minetest.set_node(pos, { name = new_node, param2 = param2 })
+		core.set_node(pos, { name = new_node, param2 = param2 })
 		meta:set_string("dye", "unifieddyes:"..color)
 	end
 })
@@ -1381,7 +1381,7 @@ homedecor_lighting.old_static_desk_lamps = {
 	"homedecor:desk_lamp_violet",
 }
 
-minetest.register_lbm({
+core.register_lbm({
 	name = ":homedecor:convert_desk_lamps",
 	label = "Convert homedecor desk lamps to use param2 color",
 	run_at_every_load = false,
@@ -1412,81 +1412,81 @@ minetest.register_lbm({
 
 		local param2 = paletteidx + new_fdir
 
-		minetest.set_node(pos, { name = "homedecor:desk_lamp", param2 = param2 })
-		local meta = minetest.get_meta(pos)
+		core.set_node(pos, { name = "homedecor:desk_lamp", param2 = param2 })
+		local meta = core.get_meta(pos)
 		meta:set_string("dye", "unifieddyes:"..color)
 	end
 })
 
 -- aliases
 
-minetest.register_alias("chains:chain_top",                    "homedecor:chain_steel_top")
-minetest.register_alias("chains:chain_top_brass",              "homedecor:chain_brass_top")
+core.register_alias("chains:chain_top",                    "homedecor:chain_steel_top")
+core.register_alias("chains:chain_top_brass",              "homedecor:chain_brass_top")
 
-minetest.register_alias("chains:chandelier",                   "homedecor:chandelier_steel")
-minetest.register_alias("chains:chandelier_steel",             "homedecor:chandelier_steel")
-minetest.register_alias("chains:chandelier_brass",             "homedecor:chandelier_brass")
+core.register_alias("chains:chandelier",                   "homedecor:chandelier_steel")
+core.register_alias("chains:chandelier_steel",             "homedecor:chandelier_steel")
+core.register_alias("chains:chandelier_brass",             "homedecor:chandelier_brass")
 
-minetest.register_alias("homedecor:glowlight_half",            "homedecor:glowlight_half_14")
-minetest.register_alias("homedecor:glowlight_quarter",         "homedecor:glowlight_quarter_14")
-minetest.register_alias("homedecor:glowlight_small_cube",      "homedecor:glowlight_small_cube_14")
-minetest.register_alias("homedecor:plasma_lamp",               "homedecor:plasma_lamp_14")
-minetest.register_alias("homedecor:ground_lantern",            "homedecor:ground_lantern_14")
-minetest.register_alias("homedecor:hanging_lantern",           "homedecor:hanging_lantern_14")
-minetest.register_alias("homedecor:ceiling_lantern",           "homedecor:ceiling_lantern_14")
-minetest.register_alias("homedecor:lattice_lantern_large",     "homedecor:lattice_lantern_large_14")
-minetest.register_alias("homedecor:lattice_lantern_small",     "homedecor:lattice_lantern_small_14")
-minetest.register_alias("homedecor:desk_lamp",                 "homedecor:desk_lamp_14")
-minetest.register_alias("homedecor:ceiling_lamp",              "homedecor:ceiling_lamp_14")
-minetest.register_alias("homedecor:table_lamp",                "homedecor:table_lamp_14")
-minetest.register_alias("homedecor:standing_lamp",             "homedecor:standing_lamp_14")
-minetest.register_alias("3dforniture:table_lamp",              "homedecor:table_lamp_14")
+core.register_alias("homedecor:glowlight_half",            "homedecor:glowlight_half_14")
+core.register_alias("homedecor:glowlight_quarter",         "homedecor:glowlight_quarter_14")
+core.register_alias("homedecor:glowlight_small_cube",      "homedecor:glowlight_small_cube_14")
+core.register_alias("homedecor:plasma_lamp",               "homedecor:plasma_lamp_14")
+core.register_alias("homedecor:ground_lantern",            "homedecor:ground_lantern_14")
+core.register_alias("homedecor:hanging_lantern",           "homedecor:hanging_lantern_14")
+core.register_alias("homedecor:ceiling_lantern",           "homedecor:ceiling_lantern_14")
+core.register_alias("homedecor:lattice_lantern_large",     "homedecor:lattice_lantern_large_14")
+core.register_alias("homedecor:lattice_lantern_small",     "homedecor:lattice_lantern_small_14")
+core.register_alias("homedecor:desk_lamp",                 "homedecor:desk_lamp_14")
+core.register_alias("homedecor:ceiling_lamp",              "homedecor:ceiling_lamp_14")
+core.register_alias("homedecor:table_lamp",                "homedecor:table_lamp_14")
+core.register_alias("homedecor:standing_lamp",             "homedecor:standing_lamp_14")
+core.register_alias("3dforniture:table_lamp",              "homedecor:table_lamp_14")
 
-minetest.register_alias("3dforniture:torch_wall",              "homedecor:torch_wall")
-minetest.register_alias("torch_wall",                          "homedecor:torch_wall")
+core.register_alias("3dforniture:torch_wall",              "homedecor:torch_wall")
+core.register_alias("torch_wall",                          "homedecor:torch_wall")
 
-minetest.register_alias("homedecor:plasma_ball",               "homedecor:plasma_ball_on")
-minetest.register_alias("homedecor:wall_lamp",                 "homedecor:wall_lamp_on")
+core.register_alias("homedecor:plasma_ball",               "homedecor:plasma_ball_on")
+core.register_alias("homedecor:wall_lamp",                 "homedecor:wall_lamp_on")
 
-minetest.register_alias("homedecor:rope_light_on_floor_0",     "homedecor:rope_light_on_floor_off")
-minetest.register_alias("homedecor:rope_light_on_floor_14",    "homedecor:rope_light_on_floor_on")
+core.register_alias("homedecor:rope_light_on_floor_0",     "homedecor:rope_light_on_floor_off")
+core.register_alias("homedecor:rope_light_on_floor_14",    "homedecor:rope_light_on_floor_on")
 
-minetest.register_alias("homedecor:rope_light_on_ceiling_0",   "homedecor:rope_light_on_ceiling_off")
-minetest.register_alias("homedecor:rope_light_on_ceiling_14",  "homedecor:rope_light_on_ceiling_on")
+core.register_alias("homedecor:rope_light_on_ceiling_0",   "homedecor:rope_light_on_ceiling_off")
+core.register_alias("homedecor:rope_light_on_ceiling_14",  "homedecor:rope_light_on_ceiling_on")
 
 for name, level in pairs(word_to_bright) do
-	minetest.register_alias("homedecor:glowlight_half_"..name,        "homedecor:glowlight_half_"..level)
-	minetest.register_alias("homedecor:glowlight_quarter_"..name,     "homedecor:glowlight_quarter_"..level)
-	minetest.register_alias("homedecor:glowlight_small_cube_"..name,  "homedecor:glowlight_small_cube_"..level)
-	minetest.register_alias("homedecor:rope_light_on_floor_"..name,   "homedecor:rope_light_on_floor_"..level)
-	minetest.register_alias("homedecor:rope_light_on_ceiling_"..name, "homedecor:rope_light_on_ceiling_"..level)
-	minetest.register_alias("homedecor:plasma_lamp_"..name,           "homedecor:plasma_lamp_"..level)
-	minetest.register_alias("homedecor:plasma_ball_"..name,           "homedecor:plasma_ball_"..level)
-	minetest.register_alias("homedecor:ground_lantern_"..name,        "homedecor:ground_lantern_"..level)
-	minetest.register_alias("homedecor:hanging_lantern_"..name,       "homedecor:hanging_lantern_"..level)
-	minetest.register_alias("homedecor:ceiling_lantern_"..name,       "homedecor:ceiling_lantern_"..level)
-	minetest.register_alias("homedecor:lattice_lantern_large_"..name, "homedecor:lattice_lantern_large_"..level)
-	minetest.register_alias("homedecor:lattice_lantern_small_"..name, "homedecor:lattice_lantern_small_"..level)
-	minetest.register_alias("homedecor:desk_lamp_"..name,             "homedecor:desk_lamp_"..level)
-	minetest.register_alias("homedecor:ceiling_lamp_"..name,          "homedecor:ceiling_lamp_"..level)
-	minetest.register_alias("homedecor:table_lamp_"..name,            "homedecor:table_lamp_"..level)
-	minetest.register_alias("homedecor:standing_lamp_"..name,         "homedecor:standing_lamp_"..level)
-	minetest.register_alias("3dforniture:table_lamp_"..name,          "homedecor:table_lamp_"..level)
+	core.register_alias("homedecor:glowlight_half_"..name,        "homedecor:glowlight_half_"..level)
+	core.register_alias("homedecor:glowlight_quarter_"..name,     "homedecor:glowlight_quarter_"..level)
+	core.register_alias("homedecor:glowlight_small_cube_"..name,  "homedecor:glowlight_small_cube_"..level)
+	core.register_alias("homedecor:rope_light_on_floor_"..name,   "homedecor:rope_light_on_floor_"..level)
+	core.register_alias("homedecor:rope_light_on_ceiling_"..name, "homedecor:rope_light_on_ceiling_"..level)
+	core.register_alias("homedecor:plasma_lamp_"..name,           "homedecor:plasma_lamp_"..level)
+	core.register_alias("homedecor:plasma_ball_"..name,           "homedecor:plasma_ball_"..level)
+	core.register_alias("homedecor:ground_lantern_"..name,        "homedecor:ground_lantern_"..level)
+	core.register_alias("homedecor:hanging_lantern_"..name,       "homedecor:hanging_lantern_"..level)
+	core.register_alias("homedecor:ceiling_lantern_"..name,       "homedecor:ceiling_lantern_"..level)
+	core.register_alias("homedecor:lattice_lantern_large_"..name, "homedecor:lattice_lantern_large_"..level)
+	core.register_alias("homedecor:lattice_lantern_small_"..name, "homedecor:lattice_lantern_small_"..level)
+	core.register_alias("homedecor:desk_lamp_"..name,             "homedecor:desk_lamp_"..level)
+	core.register_alias("homedecor:ceiling_lamp_"..name,          "homedecor:ceiling_lamp_"..level)
+	core.register_alias("homedecor:table_lamp_"..name,            "homedecor:table_lamp_"..level)
+	core.register_alias("homedecor:standing_lamp_"..name,         "homedecor:standing_lamp_"..level)
+	core.register_alias("3dforniture:table_lamp_"..name,          "homedecor:table_lamp_"..level)
 end
 
-if minetest.get_modpath("darkage") then
-	minetest.register_alias("homedecor:lattice_lantern_large",        "darkage:lamp")
+if core.get_modpath("darkage") then
+	core.register_alias("homedecor:lattice_lantern_large",        "darkage:lamp")
 	for n = 0, 14 do
-		minetest.register_alias("homedecor:lattice_lantern_large_"..n, "darkage:lamp")
+		core.register_alias("homedecor:lattice_lantern_large_"..n, "darkage:lamp")
 	end
 	for name, level in pairs(word_to_bright) do
-		minetest.register_alias("homedecor:lattice_lantern_large_"..name, "darkage:lamp")
+		core.register_alias("homedecor:lattice_lantern_large_"..name, "darkage:lamp")
 	end
 end
 
 -- crafting
 
-minetest.register_craft({
+core.register_craft({
 	output = 'homedecor:chain_steel_top',
 	recipe = {
 		{'default:steel_ingot'},
@@ -1494,7 +1494,7 @@ minetest.register_craft({
 	},
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = 'homedecor:chandelier_steel',
 	recipe = {
 		{'', 'basic_materials:chainlink_steel', ''},
@@ -1505,7 +1505,7 @@ minetest.register_craft({
 
 -- brass versions
 
-minetest.register_craft({
+core.register_craft({
 	output = 'homedecor:chain_brass_top',
 	recipe = {
 		{'basic_materials:brass_ingot'},
@@ -1513,7 +1513,7 @@ minetest.register_craft({
 	},
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = 'homedecor:chandelier_brass',
 	recipe = {
 		{'', 'basic_materials:chainlink_brass', ''},
@@ -1524,7 +1524,7 @@ minetest.register_craft({
 
 -- candles
 
-minetest.register_craft({
+core.register_craft({
 	output = "homedecor:candle_thin 4",
 	recipe = {
 		{"farming:string" },
@@ -1532,7 +1532,7 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "homedecor:candle 2",
 	recipe = {
 		{"farming:string" },
@@ -1541,7 +1541,7 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "homedecor:wall_sconce 2",
 	recipe = {
 		{"default:iron_lump", "", ""},
@@ -1550,7 +1550,7 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "homedecor:candlestick_wrought_iron",
 	recipe = {
 		{""},
@@ -1559,7 +1559,7 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "homedecor:candlestick_brass",
 	recipe = {
 		{""},
@@ -1568,7 +1568,7 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "homedecor:oil_lamp",
 	recipe = {
 		{ "", "vessels:glass_bottle", "" },
@@ -1577,7 +1577,7 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "homedecor:oil_lamp_tabletop",
 	recipe = {
 		{ "", "vessels:glass_bottle", "" },
@@ -1588,7 +1588,7 @@ minetest.register_craft({
 
 -- Wrought-iron wall latern
 
-minetest.register_craft({
+core.register_craft({
 	output = "homedecor:ground_lantern",
 	recipe = {
 		{ "default:iron_lump", "default:iron_lump", "default:iron_lump" },
@@ -1599,15 +1599,15 @@ minetest.register_craft({
 
 -- wood-lattice lamps
 
-if minetest.get_modpath("darkage") then
-	minetest.register_craft( {
+if core.get_modpath("darkage") then
+	core.register_craft( {
 		output = "homedecor:lattice_lantern_small 8",
 		recipe = {
 			{ "darkage:lamp" },
 		},
 	})
 
-	minetest.register_craft( {
+	core.register_craft( {
 		output = "darkage:lamp",
 		type = "shapeless",
 		recipe = {
@@ -1622,7 +1622,7 @@ if minetest.get_modpath("darkage") then
 		},
 	})
 else
-	minetest.register_craft( {
+	core.register_craft( {
 			output = "homedecor:lattice_lantern_large 2",
 			recipe = {
 				{ "dye:black", "dye:yellow", "dye:black" },
@@ -1631,14 +1631,14 @@ else
 			},
 	})
 
-	minetest.register_craft( {
+	core.register_craft( {
 		output = "homedecor:lattice_lantern_small 8",
 		recipe = {
 			{ "homedecor:lattice_lantern_large" },
 		},
 	})
 
-	minetest.register_craft( {
+	core.register_craft( {
 		output = "homedecor:lattice_lantern_large",
 		type = "shapeless",
 		recipe = {
@@ -1667,21 +1667,21 @@ unifieddyes.register_color_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "homedecor:glowlight_half 6",
 	recipe = {
 		{ "default:glass", "basic_materials:energy_crystal_simple", "default:glass", },
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
         output = "homedecor:glowlight_half 6",
         recipe = {
 		{"moreblocks:super_glow_glass", "moreblocks:glow_glass", "moreblocks:super_glow_glass", },
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
         output = "homedecor:glowlight_half",
         recipe = {
 		{"homedecor:glowlight_small_cube","homedecor:glowlight_small_cube"},
@@ -1689,7 +1689,7 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
 		output = "homedecor:glowlight_half",
 		type = "shapeless",
 		recipe = {
@@ -1709,7 +1709,7 @@ unifieddyes.register_color_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
         output = "homedecor:glowlight_quarter 6",
         recipe = {
 		{"homedecor:glowlight_half", "homedecor:glowlight_half", "homedecor:glowlight_half", },
@@ -1727,7 +1727,7 @@ unifieddyes.register_color_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "homedecor:glowlight_small_cube 8",
 	recipe = {
 		{ "dye:white" },
@@ -1736,7 +1736,7 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
         output = "homedecor:glowlight_small_cube 8",
         recipe = {
 		{"dye:white" },
@@ -1744,7 +1744,7 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
         output = "homedecor:glowlight_small_cube 4",
         recipe = {
 		{"homedecor:glowlight_half" },
@@ -1753,7 +1753,7 @@ minetest.register_craft({
 
 ----
 
-minetest.register_craft({
+core.register_craft({
     output = "homedecor:plasma_lamp",
     recipe = {
 		{"", "default:glass", ""},
@@ -1762,7 +1762,7 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
     output = "homedecor:plasma_ball 2",
     recipe = {
 		{"", "default:glass", ""},
@@ -1782,7 +1782,7 @@ unifieddyes.register_color_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "homedecor:desk_lamp 2",
 	recipe = {
 		{ "", "default:steel_ingot", "homedecor:glowlight_small_cube" },
@@ -1791,7 +1791,7 @@ minetest.register_craft({
 	},
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "homedecor:hanging_lantern 2",
 	recipe = {
 		{ "default:iron_lump", "default:iron_lump", "" },
@@ -1800,7 +1800,7 @@ minetest.register_craft({
 	},
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "homedecor:ceiling_lantern 2",
 	recipe = {
 		{ "default:iron_lump", "default:iron_lump", "default:iron_lump" },
@@ -1809,7 +1809,7 @@ minetest.register_craft({
 	},
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "homedecor:wall_lamp 2",
 	recipe = {
 		{ "", "homedecor:lattice_lantern_large", "" },
@@ -1818,7 +1818,7 @@ minetest.register_craft({
 	},
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "homedecor:ceiling_lamp",
 	recipe = {
 		{ "", "basic_materials:brass_ingot", ""},
@@ -1827,7 +1827,7 @@ minetest.register_craft({
 	},
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "homedecor:rope_light_on_floor_off",
 	type= "shapeless",
 	recipe = {
@@ -1835,7 +1835,7 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "homedecor:rope_light_on_ceiling_off",
 	type= "shapeless",
 	recipe = {
@@ -1843,7 +1843,7 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "homedecor:ceiling_lamp",
 	recipe = {
 		{ "", "basic_materials:chain_steel_top_brass", ""},
@@ -1862,7 +1862,7 @@ unifieddyes.register_color_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "homedecor:standing_lamp_hi",
 	recipe = {
 		{"homedecor:table_lamp_hi"},
@@ -1882,13 +1882,13 @@ unifieddyes.register_color_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
 	type = "fuel",
 	recipe = "homedecor:table_lamp_hi",
 	burntime = 10,
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "homedecor:table_lamp_hi",
 	recipe = {
 		{ "wool:white", "default:torch", "wool:white"},
@@ -1897,7 +1897,7 @@ minetest.register_craft({
 	},
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "homedecor:table_lamp_hi",
 	recipe = {
 		{ "cottages:wool", "default:torch", "cottages:wool"},
@@ -1906,7 +1906,7 @@ minetest.register_craft({
 	},
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "homedecor:table_lamp_hi",
 	recipe = {
 		{ "wool:white", "default:torch", "wool:white"},
@@ -1915,7 +1915,7 @@ minetest.register_craft({
 	},
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "homedecor:table_lamp_hi",
 	recipe = {
 		{ "cottages:wool", "default:torch", "cottages:wool"},
@@ -1924,7 +1924,7 @@ minetest.register_craft({
 	},
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "homedecor:torch_wall 10",
 	recipe = {
 		{ "default:coal_lump" },

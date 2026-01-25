@@ -1,4 +1,4 @@
-local S = minetest.get_translator("homedecor_laundry")
+local S = core.get_translator("homedecor_laundry")
 -- laundry devices
 
 homedecor.register("washing_machine", {

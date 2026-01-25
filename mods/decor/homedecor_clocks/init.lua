@@ -1,4 +1,4 @@
-local S = minetest.get_translator("homedecor_clocks")
+local S = core.get_translator("homedecor_clocks")
 
 local wood = homedecor.textures.wood.apple.planks
 
@@ -144,7 +144,7 @@ homedecor.register("grandfather_clock", {
 		key = "node_sound_wood_defaults",
 	},
 	expand = { top="placeholder" },
-	on_rotate = minetest.get_modpath("screwdriver") and screwdriver.rotate_simple or nil,
+	on_rotate = core.get_modpath("screwdriver") and screwdriver.rotate_simple or nil,
 	crafts = {
 		{
 			recipe = {
@@ -158,5 +158,5 @@ homedecor.register("grandfather_clock", {
 
 -- aliases
 
-minetest.register_alias("homedecor:grandfather_clock_bottom", "homedecor:grandfather_clock")
-minetest.register_alias("homedecor:grandfather_clock_top", "air")
+core.register_alias("homedecor:grandfather_clock_bottom", "homedecor:grandfather_clock")
+core.register_alias("homedecor:grandfather_clock_top", "air")

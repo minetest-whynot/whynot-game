@@ -21,4 +21,4 @@ Recipe:
 Mod dependencies: wool, bucket
 
 See also:
-http://minetest.net/
+https://www.luanti.org/

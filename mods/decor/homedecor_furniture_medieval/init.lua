@@ -1,4 +1,4 @@
-local S = minetest.get_translator("homedecor_furniture_medieval")
+local S = core.get_translator("homedecor_furniture_medieval")
 
 homedecor.register("bars", {
 	description = S("Bars"),
@@ -90,10 +90,10 @@ homedecor.register("chains", {
 	}
 })
 
-minetest.register_alias("3dforniture:bars", "homedecor:bars")
-minetest.register_alias("3dforniture:L_binding_bars", "homedecor:L_binding_bars")
-minetest.register_alias("3dforniture:chains", "homedecor:chains")
+core.register_alias("3dforniture:bars", "homedecor:bars")
+core.register_alias("3dforniture:L_binding_bars", "homedecor:L_binding_bars")
+core.register_alias("3dforniture:chains", "homedecor:chains")
 
-minetest.register_alias('bars', 'homedecor:bars')
-minetest.register_alias('binding_bars', 'homedecor:L_binding_bars')
-minetest.register_alias('chains', 'homedecor:chains')
+core.register_alias('bars', 'homedecor:bars')
+core.register_alias('binding_bars', 'homedecor:L_binding_bars')
+core.register_alias('chains', 'homedecor:chains')

@@ -7,7 +7,7 @@
 -- The code for ovens, nightstands, refrigerators are basically modified
 -- copies of the code for chests and furnaces.
 
-local S = minetest.get_translator("homedecor_misc")
+local S = core.get_translator("homedecor_misc")
 
 homedecor_misc = {}
 
@@ -106,7 +106,7 @@ for _, pot in ipairs(pot_colors) do
 	})
 end
 
-if minetest.get_modpath("flowers") then
+if core.get_modpath("flowers") then
 	local flowers_list = {
 		{ S("Rose"),				"rose",				"flowers:rose" },
 		{ S("Tulip"),				"tulip",			"flowers:tulip" },
@@ -141,15 +141,15 @@ if minetest.get_modpath("flowers") then
 			}
 		})
 
-		minetest.register_craft({
+		core.register_craft({
 			type = "shapeless",
 			output = "homedecor:potted_"..flower,
 			recipe = { craftwith, "homedecor:flower_pot_small" }
 		})
 
-		minetest.register_alias("flowers:flower_"..flower.."_pot", "homedecor:potted_"..flower)
-		minetest.register_alias("flowers:potted_"..flower, "homedecor:potted_"..flower)
-		minetest.register_alias("flowers:flower_pot", "homedecor:flower_pot_small")
+		core.register_alias("flowers:flower_"..flower.."_pot", "homedecor:potted_"..flower)
+		core.register_alias("flowers:potted_"..flower, "homedecor:potted_"..flower)
+		core.register_alias("flowers:flower_pot", "homedecor:flower_pot_small")
 	end
 end
 
@@ -217,7 +217,7 @@ homedecor.register("fishtank", {
 		key = "node_sound_glass_defaults",
 	},
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
-		minetest.set_node(pos, {name = "homedecor:fishtank_lighted", param2 = node.param2})
+		core.set_node(pos, {name = "homedecor:fishtank_lighted", param2 = node.param2})
 		return itemstack
 	end
 })
@@ -233,7 +233,7 @@ homedecor.register("fishtank_lighted", {
 		"homedecor_fishtank_water_top_lighted.png",
 		"homedecor_fishtank_sides_lighted.png",
 	},
-	light_source = minetest.LIGHT_MAX-4,
+	light_source = core.LIGHT_MAX-4,
 	use_texture_alpha = "blend",
 	selection_box = ft_cbox,
 	collision_box = ft_cbox,
@@ -242,7 +242,7 @@ homedecor.register("fishtank_lighted", {
 		key = "node_sound_glass_defaults",
 	},
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
-		minetest.set_node(pos, {name = "homedecor:fishtank", param2 = node.param2})
+		core.set_node(pos, {name = "homedecor:fishtank", param2 = node.param2})
 		return itemstack
 	end,
 	drop = "homedecor:fishtank",
@@ -330,10 +330,10 @@ homedecor.register("pool_table", {
 	_sound_def = {
 		key = "node_sound_wood_defaults",
 	},
-	on_rotate = minetest.get_modpath("screwdriver") and screwdriver.disallow or nil,
+	on_rotate = core.get_modpath("screwdriver") and screwdriver.disallow or nil,
 })
 
-minetest.register_alias("homedecor:pool_table_2", "air")
+core.register_alias("homedecor:pool_table_2", "air")
 
 local piano_cbox = {
 	type = "fixed",
@@ -356,11 +356,11 @@ homedecor.register("piano", {
 	_sound_def = {
 		key = "node_sound_wood_defaults",
 	},
-	on_rotate = minetest.get_modpath("screwdriver") and screwdriver.disallow or nil,
+	on_rotate = core.get_modpath("screwdriver") and screwdriver.disallow or nil,
 })
 
-minetest.register_alias("homedecor:piano_left", "homedecor:piano")
-minetest.register_alias("homedecor:piano_right", "air")
+core.register_alias("homedecor:piano_left", "homedecor:piano")
+core.register_alias("homedecor:piano_right", "air")
 
 local tr_cbox = {
 	type = "fixed",
@@ -421,7 +421,7 @@ homedecor.register("skateboard", {
 	_sound_def = {
 		key = "node_sound_wood_defaults",
 	},
-	on_place = minetest.rotate_node
+	on_place = core.rotate_node
 })
 
 homedecor_misc.banister_materials = {
@@ -518,7 +518,7 @@ for _, side in ipairs({"diagonal_left", "diagonal_right", "horizontal"}) do
 
 		if name == "wood" then
 			local nn = "homedecor:"..nodename
-			local def2 = table.copy(minetest.registered_items[nn])
+			local def2 = table.copy(core.registered_items[nn])
 			def2.tiles = {
 				homedecor.white_wood,
 				homedecor.white_wood
@@ -569,9 +569,9 @@ homedecor.register("spiral_staircase", {
 	_sound_def = {
 		key = "node_sound_wood_defaults",
 	},
-	on_rotate = minetest.get_modpath("screwdriver") and screwdriver.rotate_simple or nil,
+	on_rotate = core.get_modpath("screwdriver") and screwdriver.rotate_simple or nil,
 	after_place_node = function(pos, placer, itemstack, pointed_thing)
-		local fdir = minetest.dir_to_facedir(placer:get_look_dir())
+		local fdir = core.dir_to_facedir(placer:get_look_dir())
 		local leftx =  homedecor.fdir_to_left[fdir+1][1]
 		local leftz =  homedecor.fdir_to_left[fdir+1][2]
 		local revx  = -homedecor.fdir_to_fwd[fdir+1][1]
@@ -588,43 +588,43 @@ homedecor.register("spiral_staircase", {
 		               y = math.max(corner1.y, corner2.y),
 		               z = math.max(corner1.z, corner2.z) }
 
-		if #minetest.find_nodes_in_area(minp, maxp, "air") < 11 then
-			minetest.set_node(pos, {name = "air"})
-			minetest.chat_send_player(placer:get_player_name(), S("not enough space"))
+		if #core.find_nodes_in_area(minp, maxp, "air") < 11 then
+			core.set_node(pos, {name = "air"})
+			core.chat_send_player(placer:get_player_name(), S("not enough space"))
 			return true
 		end
 
-		local belownode = minetest.get_node({ x = pos.x, y = pos.y - 1, z = pos.z })
+		local belownode = core.get_node({ x = pos.x, y = pos.y - 1, z = pos.z })
 
 		if belownode and belownode.name == "homedecor:spiral_staircase" then
 			local newpos = { x = pos.x, y = pos.y + 2, z = pos.z }
-			minetest.set_node(pos, { name = "air" })
-			minetest.set_node(newpos, { name = "homedecor:spiral_staircase", param2 = belownode.param2 })
+			core.set_node(pos, { name = "air" })
+			core.set_node(newpos, { name = "homedecor:spiral_staircase", param2 = belownode.param2 })
 		end
 	end
 })
 
-minetest.register_on_placenode(function(pos, newnode, placer, oldnode, itemstack, pointed_thing)
-	local belownode = minetest.get_node({ x = pos.x, y = pos.y - 1, z = pos.z })
+core.register_on_placenode(function(pos, newnode, placer, oldnode, itemstack, pointed_thing)
+	local belownode = core.get_node({ x = pos.x, y = pos.y - 1, z = pos.z })
 
 	if newnode.name ~= "homedecor:spiral_staircase"
 	  and belownode
 	  and belownode.name == "homedecor:spiral_staircase" then
-		minetest.set_node(pos, { name = "air" })
+		core.set_node(pos, { name = "air" })
 
 		local newpos = { x = pos.x, y = pos.y + 2, z = pos.z }
-		local checknode = minetest.get_node(newpos)
+		local checknode = core.get_node(newpos)
 
 		if checknode and checknode.name == "air" then
-			local fdir = minetest.dir_to_facedir(placer:get_look_dir())
-			minetest.set_node(newpos, { name = newnode.name, param2 = fdir })
+			local fdir = core.dir_to_facedir(placer:get_look_dir())
+			core.set_node(newpos, { name = newnode.name, param2 = fdir })
 		else
 			return true
 		end
 	end
 end)
 
-minetest.register_node(":homedecor:tatami_mat", {
+core.register_node(":homedecor:tatami_mat", {
 	tiles = {
 		"homedecor_tatami.png",
 		"homedecor_tatami.png",
@@ -671,7 +671,7 @@ homedecor.register("dartboard", {
 --
 -- Mostly my own code; overall template borrowed from game default
 
-minetest.register_craft( {
+core.register_craft( {
 	output = "homedecor:flower_pot_terracotta",
 	recipe = {
 		{ "homedecor:roof_tile_terracotta", homedecor.materials.dirt, "homedecor:roof_tile_terracotta" },
@@ -679,7 +679,7 @@ minetest.register_craft( {
 	},
 })
 
-minetest.register_craft( {
+core.register_craft( {
 	output = "homedecor:flower_pot_green",
 	recipe = {
 		{ "", "dye:dark_green", "" },
@@ -688,7 +688,7 @@ minetest.register_craft( {
 	},
 })
 
-minetest.register_craft( {
+core.register_craft( {
 	output = "homedecor:flower_pot_black",
 	recipe = {
 		{ homedecor.materials.dye_black, homedecor.materials.dye_black, homedecor.materials.dye_black },
@@ -697,7 +697,7 @@ minetest.register_craft( {
 	},
 })
 
-minetest.register_craft( {
+core.register_craft( {
 	type = "shapeless",
 	output = "homedecor:ceiling_paint 20",
 	recipe = {
@@ -709,7 +709,7 @@ minetest.register_craft( {
 	replacements = { { homedecor.materials.water_bucket,homedecor.materials.empty_bucket } }
 })
 
-minetest.register_craft( {
+core.register_craft( {
 	output = "homedecor:ceiling_tile 10",
 	recipe = {
 		{ "", homedecor.materials.dye_white, "" },
@@ -717,14 +717,14 @@ minetest.register_craft( {
 	},
 })
 
-minetest.register_craft( {
+core.register_craft( {
 	output = "homedecor:drawer_small",
 	recipe = {
 		{ "group:wood", homedecor.materials.steel_ingot, "group:wood" },
 	},
 })
 
-minetest.register_craft({
+core.register_craft({
 	type = "fuel",
 	recipe = "homedecor:drawer_small",
 	burntime = 30,
@@ -732,7 +732,7 @@ minetest.register_craft({
 
 -- vertical poles/lampposts
 
-minetest.register_craft( {
+core.register_craft( {
 	output = "homedecor:pole_brass 4",
 	recipe = {
 		{ "", "basic_materials:brass_ingot", "" },
@@ -741,7 +741,7 @@ minetest.register_craft( {
 	},
 })
 
-minetest.register_craft( {
+core.register_craft( {
 	output = "homedecor:pole_wrought_iron 4",
 	recipe = {
 		{ homedecor.materials.iron_lump, },
@@ -753,7 +753,7 @@ minetest.register_craft( {
 -- ===========================================================
 -- Recipes that require materials from wool (cotton alternate)
 
-minetest.register_craft( {
+core.register_craft( {
 	type = "shapeless",
 	output = "homedecor:rug_small 8",
 	recipe = {
@@ -764,7 +764,7 @@ minetest.register_craft( {
 	},
 })
 
-minetest.register_craft( {
+core.register_craft( {
 	output = "homedecor:rug_persian 8",
 	recipe = {
 		{ "", "wool:yellow", "" },
@@ -775,7 +775,7 @@ minetest.register_craft( {
 
 -- cotton versions:
 
-minetest.register_craft( {
+core.register_craft( {
 	type = "shapeless",
 	output = "homedecor:rug_small 8",
 	recipe = {
@@ -786,7 +786,7 @@ minetest.register_craft( {
 	},
 })
 
-minetest.register_craft( {
+core.register_craft( {
 	output = "homedecor:rug_persian 8",
 	recipe = {
 		{ "", "cotton:yellow", "" },
@@ -797,13 +797,13 @@ minetest.register_craft( {
 
 -- fuel recipes for same
 
-minetest.register_craft({
+core.register_craft({
 	type = "fuel",
 	recipe = "homedecor:rug_small",
 	burntime = 30,
 })
 
-minetest.register_craft( {
+core.register_craft( {
 	type = "shapeless",
 	output = "homedecor:rug_large 2",
 	recipe = {
@@ -812,13 +812,13 @@ minetest.register_craft( {
 	},
 })
 
-minetest.register_craft({
+core.register_craft({
 	type = "fuel",
 	recipe = "homedecor:rug_large",
 	burntime = 30,
 })
 
-minetest.register_craft({
+core.register_craft({
 	type = "fuel",
 	recipe = "homedecor:rug_persian",
 	burntime = 30,
@@ -826,7 +826,7 @@ minetest.register_craft({
 
 -- more misc stuff here
 
-minetest.register_craft({
+core.register_craft({
 	output = "homedecor:fishtank",
 	recipe = {
 		{ "basic_materials:plastic_sheet", "homedecor:glowlight_small_cube", "basic_materials:plastic_sheet" },
@@ -836,7 +836,7 @@ minetest.register_craft({
 	replacements = { {homedecor.materials.water_bucket, homedecor.materials.empty_bucket} }
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "homedecor:cardboard_box 2",
 	recipe = {
 		{ homedecor.materials.paper, "", homedecor.materials.paper },
@@ -844,7 +844,7 @@ minetest.register_craft({
 	},
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "homedecor:cardboard_box_big 2",
 	recipe = {
 		{ homedecor.materials.paper, "", homedecor.materials.paper },
@@ -855,7 +855,7 @@ minetest.register_craft({
 
 -- japanese walls and mat
 
-minetest.register_craft( {
+core.register_craft( {
 	output = "homedecor:japanese_wall_top",
 	recipe = {
 		{"group:stick", homedecor.materials.paper},
@@ -864,7 +864,7 @@ minetest.register_craft( {
 	},
 })
 
-minetest.register_craft( {
+core.register_craft( {
 	output = "homedecor:japanese_wall_top",
 	recipe = {
 		{homedecor.materials.paper, "group:stick"},
@@ -873,35 +873,35 @@ minetest.register_craft( {
 	},
 })
 
-minetest.register_craft( {
+core.register_craft( {
 	output = "homedecor:japanese_wall_middle",
 	recipe = {
 		{"homedecor:japanese_wall_top"}
 	},
 })
 
-minetest.register_craft( {
+core.register_craft( {
 	output = "homedecor:japanese_wall_bottom",
 	recipe = {
 		{"homedecor:japanese_wall_middle"}
 	},
 })
 
-minetest.register_craft( {
+core.register_craft( {
 	output = "homedecor:japanese_wall_top",
 	recipe = {
 		{"homedecor:japanese_wall_bottom"}
 	},
 })
 
-minetest.register_craft( {
+core.register_craft( {
 	output = "homedecor:tatami_mat",
 	recipe = {
 		{"farming:wheat", "farming:wheat", "farming:wheat"}
 	},
 })
 
-minetest.register_craft( {
+core.register_craft( {
 	output = "homedecor:pool_table",
 	recipe = {
 		{ "wool:dark_green", "wool:dark_green", "wool:dark_green" },
@@ -910,7 +910,7 @@ minetest.register_craft( {
 	},
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "homedecor:dartboard",
 	recipe = {
 		{"dye:black", "basic_materials:plastic_sheet", "dye:white"},
@@ -919,7 +919,7 @@ minetest.register_craft({
 	},
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "homedecor:piano",
 	recipe = {
 		{ "", "basic_materials:steel_wire", "building_blocks:hardwood" },
@@ -928,14 +928,14 @@ minetest.register_craft({
 	},
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "homedecor:wall_shelf 2",
 	recipe = {
 		{ "homedecor:wood_table_small_square", "homedecor:curtainrod_wood", "homedecor:curtainrod_wood" },
 	},
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "homedecor:trophy 3",
 	recipe = {
 		{ "default:gold_ingot","","default:gold_ingot" },
@@ -944,7 +944,7 @@ minetest.register_craft({
 	},
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "homedecor:sportbench",
 	recipe = {
 		{ "stairs:slab_steelblock","basic_materials:steel_bar","stairs:slab_steelblock" },
@@ -953,7 +953,7 @@ minetest.register_craft({
 	},
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "homedecor:skateboard",
 	recipe = {
 		{ "dye:yellow","dye:green","dye:blue" },
@@ -962,7 +962,7 @@ minetest.register_craft({
 	},
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "homedecor:spiral_staircase",
 	recipe = {
 		{ "default:steelblock", "homedecor:pole_wrought_iron", "" },
@@ -971,12 +971,12 @@ minetest.register_craft({
 	},
 })
 
-minetest.register_craftitem(":homedecor:flower_pot_small", {
+core.register_craftitem(":homedecor:flower_pot_small", {
 	description = S("Small Flower Pot"),
 	inventory_image = "homedecor_flowerpot_small_inv.png"
 })
 
-minetest.register_craft( {
+core.register_craft( {
 	output = "homedecor:flower_pot_small",
 	recipe = {
 		{ "default:clay_brick", "", "default:clay_brick" },
@@ -984,7 +984,7 @@ minetest.register_craft( {
 	}
 })
 
-minetest.register_craft( {
+core.register_craft( {
 	output = "homedecor:flower_pot_small 3",
 	recipe = { { "homedecor:flower_pot_terracotta" } }
 })
@@ -997,7 +997,7 @@ for i in ipairs(homedecor_misc.banister_materials) do
 	local dye1    = homedecor_misc.banister_materials[i][7]
 	local dye2    = homedecor_misc.banister_materials[i][8]
 
-	minetest.register_craft({
+	core.register_craft({
 		output = "homedecor:banister_"..name.."_horizontal 2",
 		recipe = {
 			{ topmat,  "",      dye1   },
@@ -1027,7 +1027,7 @@ local jp_cbox = {
 	fixed = {-0.5, -0.5, 0, 0.5, 0.5, 0.0625},
 }
 
-minetest.register_node(":homedecor:japanese_wall_top", {
+core.register_node(":homedecor:japanese_wall_top", {
 	description = S("Japanese wall (top)"),
 	drawtype = "mesh",
 	mesh = "homedecor_wall_japanese_top.obj",
@@ -1047,7 +1047,7 @@ minetest.register_node(":homedecor:japanese_wall_top", {
 	},
 })
 
-minetest.register_node(":homedecor:japanese_wall_middle", {
+core.register_node(":homedecor:japanese_wall_middle", {
 	description = S("Japanese wall"),
 	drawtype = "mesh",
 	mesh = "homedecor_wall_japanese_middle.obj",
@@ -1067,7 +1067,7 @@ minetest.register_node(":homedecor:japanese_wall_middle", {
 	},
 })
 
-minetest.register_node(":homedecor:japanese_wall_bottom", {
+core.register_node(":homedecor:japanese_wall_bottom", {
 	description = S("Japanese wall (bottom)"),
 	drawtype = "mesh",
 	mesh = "homedecor_wall_japanese_bottom.obj",

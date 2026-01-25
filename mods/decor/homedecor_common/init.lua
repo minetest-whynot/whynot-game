@@ -1,7 +1,7 @@
 -- Home Decor API/functions, and common textures and models
 -- by VanessaE
 
-local modpath = minetest.get_modpath("homedecor_common")
+local modpath = core.get_modpath("homedecor_common")
 
 homedecor = {}
 homedecor.modpath = modpath
@@ -63,6 +63,6 @@ dofile(modpath.."/registration.lua")
 dofile(modpath.."/water_particles.lua")
 dofile(modpath.."/crafts.lua")
 
-if minetest.settings:get_bool("log_mod") then
-	minetest.log("action", "[HomeDecor API] Loaded!")
+if core.settings:get_bool("log_mod") then
+	core.log("action", "[HomeDecor API] Loaded!")
 end

@@ -1,4 +1,4 @@
-local S = minetest.get_translator("homedecor_cobweb")
+local S = core.get_translator("homedecor_cobweb")
 homedecor_cobweb = {}
 
 homedecor.register("cobweb_corner", {
@@ -115,10 +115,10 @@ homedecor.register("cobweb_plantlike", {
 -- helper function to rotate the cobweb after it's placed
 
 function homedecor_cobweb.rotate(pos)
-	local wall_xm = minetest.get_node({ x=pos.x-1, y=pos.y, z=pos.z }).name
-	local wall_xp = minetest.get_node({ x=pos.x+1, y=pos.y, z=pos.z }).name
-	local wall_zm = minetest.get_node({ x=pos.x,   y=pos.y, z=pos.z-1}).name
-	local wall_zp = minetest.get_node({ x=pos.x,   y=pos.y, z=pos.z+1}).name
+	local wall_xm = core.get_node({ x=pos.x-1, y=pos.y, z=pos.z }).name
+	local wall_xp = core.get_node({ x=pos.x+1, y=pos.y, z=pos.z }).name
+	local wall_zm = core.get_node({ x=pos.x,   y=pos.y, z=pos.z-1}).name
+	local wall_zp = core.get_node({ x=pos.x,   y=pos.y, z=pos.z+1}).name
 
 	local iswall_xm = (wall_xm ~= "air" and not string.find(wall_xm, "homedecor:cobweb"))
 	local iswall_xp = (wall_xp ~= "air" and not string.find(wall_xp, "homedecor:cobweb"))
@@ -129,43 +129,43 @@ function homedecor_cobweb.rotate(pos)
 
 	if (iswall_xm and iswall_zp and not iswall_xp and not iswall_zm)
 	or (iswall_xp and iswall_zm and not iswall_xm and not iswall_zp) then
-		minetest.set_node(pos, {name = "homedecor:cobweb_corner", param2 = 1})
+		core.set_node(pos, {name = "homedecor:cobweb_corner", param2 = 1})
 
 	-- only xm+zm, or only xp+zp means on-ceiling torchlike
 
 	elseif (iswall_xm and iswall_zm and not iswall_xp and not iswall_zp)
 	or (iswall_xp and iswall_zp and not iswall_xm and not iswall_zm) then
-		minetest.set_node(pos, {name = "homedecor:cobweb_corner", param2 = 0})
+		core.set_node(pos, {name = "homedecor:cobweb_corner", param2 = 0})
 
 	-- only xm+xp means nodebox (not rotated, 0 degrees)
 
 	elseif iswall_xm and iswall_xp and not iswall_zm and not iswall_zp then
-		minetest.set_node(pos, {name = "homedecor:cobweb_centered", param2 = 0})
+		core.set_node(pos, {name = "homedecor:cobweb_centered", param2 = 0})
 
 	-- only zm+zp means nodebox rotated to 90 degrees
 
 	elseif iswall_zm and iswall_zp and not iswall_xm and not iswall_xp then
-		minetest.set_node(pos, {name = "homedecor:cobweb_centered", param2 = 1})
+		core.set_node(pos, {name = "homedecor:cobweb_centered", param2 = 1})
 
 	-- ok, there aren't any simple two-wall corners or opposing walls.
 	-- Are there any standalone walls?
 
 	elseif iswall_xm and not iswall_xp and not iswall_zm and not iswall_zp then
-		minetest.set_node(pos, {name = "homedecor:cobweb_flat", param2 = 3})
+		core.set_node(pos, {name = "homedecor:cobweb_flat", param2 = 3})
 
 	elseif iswall_xp and not iswall_xm and not iswall_zm and not iswall_zp then
-		minetest.set_node(pos, {name = "homedecor:cobweb_flat", param2 = 1})
+		core.set_node(pos, {name = "homedecor:cobweb_flat", param2 = 1})
 
 	elseif iswall_zm and not iswall_xm and not iswall_xp and not iswall_zp then
-		minetest.set_node(pos, {name = "homedecor:cobweb_flat", param2 = 2})
+		core.set_node(pos, {name = "homedecor:cobweb_flat", param2 = 2})
 
 	elseif iswall_zp and not iswall_xm and not iswall_xp and not iswall_zm then
-		minetest.set_node(pos, {name = "homedecor:cobweb_flat", param2 = 0})
+		core.set_node(pos, {name = "homedecor:cobweb_flat", param2 = 0})
 
 	-- if all else fails, place the plantlike version as a fallback.
 
 	else
-		minetest.set_node(pos, {name = "homedecor:cobweb_plantlike", param2 = 0})
+		core.set_node(pos, {name = "homedecor:cobweb_plantlike", param2 = 0})
 	end
 
 end

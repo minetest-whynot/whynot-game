@@ -1,6 +1,6 @@
 -- Nodes that would affect the local temperature e.g. fans, heater, A/C
 
-local S = minetest.get_translator("homedecor_climate_control")
+local S = core.get_translator("homedecor_climate_control")
 
 homedecor.register("air_conditioner", {
 	description = S("Air Conditioner"),
@@ -35,7 +35,7 @@ homedecor.register("air_conditioner", {
 
 -- fans
 
-minetest.register_entity(":homedecor:mesh_desk_fan", {
+core.register_entity(":homedecor:mesh_desk_fan", {
 	initial_properties = {
 		collisionbox = homedecor.nodebox.null,
 		visual = "mesh",
@@ -46,13 +46,13 @@ minetest.register_entity(":homedecor:mesh_desk_fan", {
 })
 
 local add_mesh_desk_fan_entity = function(pos)
-	local param2 = minetest.get_node(pos).param2
-	local entity = minetest.add_entity(pos, "homedecor:mesh_desk_fan")
+	local param2 = core.get_node(pos).param2
+	local entity = core.add_entity(pos, "homedecor:mesh_desk_fan")
 	if param2 == 0 then
 		entity:set_yaw(3.142) -- 180 degrees
-	elseif minetest.get_node(pos).param2 == 1 then
+	elseif core.get_node(pos).param2 == 1 then
 		entity:set_yaw(3.142/2) -- 90 degrees
-	elseif minetest.get_node(pos).param2 == 3 then
+	elseif core.get_node(pos).param2 == 3 then
 		entity:set_yaw((-3.142/2)) -- 270 degrees
 	else
 		entity:set_yaw(0)
@@ -73,15 +73,15 @@ homedecor.register("desk_fan", {
 	inventory_image = "homedecor_desk_fan_inv.png",
 	wield_image = "homedecor_desk_fan_inv.png",
 	selection_box = { type = "regular" },
-	on_rotate = minetest.get_modpath("screwdriver") and screwdriver.disallow or nil,
+	on_rotate = core.get_modpath("screwdriver") and screwdriver.disallow or nil,
 	on_construct = function(pos)
-		local meta = minetest.get_meta(pos)
+		local meta = core.get_meta(pos)
 		meta:set_string("active", "no")
 		add_mesh_desk_fan_entity(pos)
 	end,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
-		local meta = minetest.get_meta(pos)
-		local entities = minetest.get_objects_inside_radius(pos, 0.1)
+		local meta = core.get_meta(pos)
+		local entities = core.get_objects_inside_radius(pos, 0.1)
 		local entity = entities[1] or add_mesh_desk_fan_entity(pos)
 		if meta:get_string("active") == "no" then
 			meta:set_string("active", "yes")
@@ -92,7 +92,7 @@ homedecor.register("desk_fan", {
 		end
 	end,
 	after_dig_node = function(pos)
-		local entities = minetest.get_objects_inside_radius(pos, 0.1)
+		local entities = core.get_objects_inside_radius(pos, 0.1)
 		if entities[1] then entities[1]:remove() end
 	end,
 	crafts = {
@@ -126,7 +126,7 @@ homedecor.register("ceiling_fan", {
 	},
 	use_texture_alpha = "clip",
 	groups = { snappy = 3, dig_stone = 3 },
-	light_source = minetest.LIGHT_MAX-1,
+	light_source = core.LIGHT_MAX-1,
 	_sound_def = {
 		key = "node_sound_glass_defaults",
 	},
@@ -213,12 +213,12 @@ homedecor.register("radiator", {
 })
 
 -- crafting
-minetest.register_craftitem(":homedecor:fan_blades", {
+core.register_craftitem(":homedecor:fan_blades", {
 	description = S("Fan blades"),
 	inventory_image = "homedecor_fan_blades.png"
 })
 
-minetest.register_craft( {
+core.register_craft( {
     output = "homedecor:fan_blades 2",
     recipe = {
 		{ "", "basic_materials:plastic_sheet", "" },

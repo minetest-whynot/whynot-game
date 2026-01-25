@@ -1,27 +1,27 @@
-if not minetest.get_modpath("player_api") then
-	minetest.log(
+if not core.get_modpath("player_api") then
+	core.log(
 		"action",
 		"[homedecor_wardrobe]: minetest game not detected, disabling as this mod is minetest game only at this time"
 	)
 	return
 end
 
-local S = minetest.get_translator("homedecor_wardrobe")
-local modpath = minetest.get_modpath("homedecor_wardrobe")
+local S = core.get_translator("homedecor_wardrobe")
+local modpath = core.get_modpath("homedecor_wardrobe")
 
 local wd_cbox = {type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, 1.5, 0.5}}
 
 -- cache set_textures function (fallback to old version)
 -- default.player_set_textures is deprecated and will be removed in future
 local set_player_textures =
-	minetest.get_modpath("player_api") and player_api.set_textures
+	core.get_modpath("player_api") and player_api.set_textures
 	or default.player_set_textures
 
-local armor_mod_path = minetest.get_modpath("3d_armor")
+local armor_mod_path = core.get_modpath("3d_armor")
 
 local skinslist = {"male1", "male2", "male3", "male4", "male5"}
 local default_skin = "character.png"
-local skinsdb_mod_path = minetest.get_modpath("skinsdb")
+local skinsdb_mod_path = core.get_modpath("skinsdb")
 
 if skinsdb_mod_path then
 
@@ -100,7 +100,7 @@ local def = {
 	collision_box = wd_cbox,
 	sounds = default.node_sound_wood_defaults(),
 
-	on_rotate = minetest.get_modpath("screwdriver") and screwdriver.rotate_simple or nil,
+	on_rotate = core.get_modpath("screwdriver") and screwdriver.rotate_simple or nil,
 
 	on_place = function(itemstack, placer, pointed_thing)
 
@@ -110,14 +110,14 @@ local def = {
 
 	can_dig = function(pos,player)
 
-		local meta = minetest.get_meta(pos)
+		local meta = core.get_meta(pos)
 
 		return meta:get_inventory():is_empty("main")
 	end,
 
 	on_construct = function(pos)
 
-		local meta = minetest.get_meta(pos)
+		local meta = core.get_meta(pos)
 
 		meta:set_string("infotext", S("Wardrobe"))
 
@@ -139,10 +139,10 @@ local def = {
 
 		meta:set_string("formspec",  "size[5.5,8.5]" ..
 			default.gui_bg .. default.gui_bg_img .. default.gui_slots ..
-			"vertlabel[0,0.5;" .. minetest.formspec_escape(S("Clothes")) .. "]" ..
+			"vertlabel[0,0.5;" .. core.formspec_escape(S("Clothes")) .. "]" ..
 			"button_exit[0,3.29;0.6,0.6;default;x]" ..
 			clothes_strings ..
-			"vertlabel[0,5.2;" .. minetest.formspec_escape(S("Storage")) .. "]" ..
+			"vertlabel[0,5.2;" .. core.formspec_escape(S("Storage")) .. "]" ..
 			"list[current_name;main;0.5,4.5;5,2;]" ..
 			"list[current_player;main;0.5,6.8;5,2;]" ..
 			"listring[]"
@@ -177,28 +177,28 @@ local def = {
 }
 
 -- register the actual minetest node
-minetest.register_node(":homedecor:wardrobe", def)
+core.register_node(":homedecor:wardrobe", def)
 
-minetest.register_alias("homedecor:wardrobe_bottom", "homedecor:wardrobe")
-minetest.register_alias("homedecor:wardrobe_top", "air")
+core.register_alias("homedecor:wardrobe_bottom", "homedecor:wardrobe")
+core.register_alias("homedecor:wardrobe_top", "air")
 
 if not skinsdb_mod_path then -- If not managed by skinsdb
 
-	minetest.register_on_joinplayer(function(player)
+	core.register_on_joinplayer(function(player)
 
 		local skin = player:get_meta():get("homedecor:player_skin")
 
 		if skin and skin ~= "" then
 
 			-- setting player skin on connect has no effect, so delay skin change
-			minetest.after(1, function(player1, skin1)
+			core.after(1, function(player1, skin1)
 				set_player_skin(player1, skin1)
 			end, player, skin)
 		end
 	end)
 end
 
-minetest.register_craft( {
+core.register_craft( {
 	output = "homedecor:wardrobe",
 	recipe = {
 		{ "homedecor:drawer_small", "homedecor:kitchen_cabinet_colorable" },

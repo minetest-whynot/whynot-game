@@ -1,6 +1,6 @@
 -- formerly lrfurn coffee table component
 
-local S = minetest.get_translator("homedecor_tables")
+local S = core.get_translator("homedecor_tables")
 
 local fdir_to_right = {
 	{  1,  0 },
@@ -15,25 +15,25 @@ local function check_right(pos, fdir, long, placer)
 	local pos2 = { x = pos.x + fdir_to_right[fdir+1][1],     y=pos.y, z = pos.z + fdir_to_right[fdir+1][2]     }
 	local pos3 = { x = pos.x + fdir_to_right[fdir+1][1] * 2, y=pos.y, z = pos.z + fdir_to_right[fdir+1][2] * 2 }
 
-	local node2 = minetest.get_node(pos2)
+	local node2 = core.get_node(pos2)
 	if node2 and node2.name ~= "air" then
 		return false
-	elseif minetest.is_protected(pos2, placer:get_player_name()) then
+	elseif core.is_protected(pos2, placer:get_player_name()) then
 		if not long then
-			minetest.chat_send_player(placer:get_player_name(), S("Someone else owns the spot where the other end goes!"))
+			core.chat_send_player(placer:get_player_name(), S("Someone else owns the spot where the other end goes!"))
 		else
-			minetest.chat_send_player(placer:get_player_name(),
+			core.chat_send_player(placer:get_player_name(),
 				S("Someone else owns the spot where the middle or far end goes!"))
 		end
 		return false
 	end
 
 	if long then
-		local node3 = minetest.get_node(pos3)
+		local node3 = core.get_node(pos3)
 		if node3 and node3.name ~= "air" then
 			return false
-		elseif minetest.is_protected(pos3, placer:get_player_name()) then
-			minetest.chat_send_player(placer:get_player_name(), S("Someone else owns the spot where the other end goes!"))
+		elseif core.is_protected(pos3, placer:get_player_name()) then
+			core.chat_send_player(placer:get_player_name(), S("Someone else owns the spot where the other end goes!"))
 			return false
 		end
 	end
@@ -41,10 +41,10 @@ local function check_right(pos, fdir, long, placer)
 	return true
 end
 
-minetest.register_alias("lrfurn:coffeetable_back", "lrfurn:coffeetable")
-minetest.register_alias("lrfurn:coffeetable_front", "air")
+core.register_alias("lrfurn:coffeetable_back", "lrfurn:coffeetable")
+core.register_alias("lrfurn:coffeetable_front", "air")
 
-minetest.register_node(":lrfurn:coffeetable", {
+core.register_node(":lrfurn:coffeetable", {
 	description = S("Coffee Table"),
 	drawtype = "nodebox",
 	tiles = {
@@ -84,22 +84,22 @@ minetest.register_node(":lrfurn:coffeetable", {
 	},
 
 	after_place_node = function(pos, placer, itemstack, pointed_thing)
-		if minetest.is_protected(pos, placer:get_player_name()) then return true end
-		local node = minetest.get_node(pos)
+		if core.is_protected(pos, placer:get_player_name()) then return true end
+		local node = core.get_node(pos)
 		local fdir = node.param2
 
 		if check_right(pos, fdir, false, placer) then
-			minetest.set_node(pos, { name = node.name, param2 = (fdir + 1) % 4 })
+			core.set_node(pos, { name = node.name, param2 = (fdir + 1) % 4 })
 		else
-			minetest.chat_send_player(placer:get_player_name(),
+			core.chat_send_player(placer:get_player_name(),
 			  S("No room to place the coffee table!"))
-			minetest.set_node(pos, {name = "air"})
+			core.set_node(pos, {name = "air"})
 			return true
 		end
 	end,
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "lrfurn:coffeetable",
 	type = "shapeless",
 	recipe = {
@@ -108,7 +108,7 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "lrfurn:coffeetable",
 	recipe = {
 		{"", "", "", },
@@ -117,7 +117,7 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "lrfurn:coffeetable",
 	recipe = {
 		{"", "", "", },
@@ -126,6 +126,6 @@ minetest.register_craft({
 	}
 })
 
-if minetest.settings:get("log_mods") then
-	minetest.log("action", "[lrfurn/coffeetable] Loaded!")
+if core.settings:get("log_mods") then
+	core.log("action", "[lrfurn/coffeetable] Loaded!")
 end

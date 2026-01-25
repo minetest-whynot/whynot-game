@@ -1,4 +1,4 @@
-local S = minetest.get_translator("homedecor_office")
+local S = core.get_translator("homedecor_office")
 
 homedecor.register("filing_cabinet", {
 	description = S("Filing cabinet"),
@@ -69,7 +69,7 @@ homedecor.register("desk", {
 		}
 	}
 })
-minetest.register_alias("homedecor:desk_r", "air")
+core.register_alias("homedecor:desk_r", "air")
 
 local globe_cbox = {
 	type = "fixed",
@@ -132,7 +132,7 @@ homedecor.register("calendar", {
 	},
 	infotext = S("Date (right-click to update):\n@1", os.date("%Y-%m-%d")), -- ISO 8601 format
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
-		local meta = minetest.get_meta(pos)
+		local meta = core.get_meta(pos)
 		local date = os.date("%Y-%m-%d")
 		meta:set_string("infotext", S("Date (right-click to update):\n@1", date))
 		return itemstack

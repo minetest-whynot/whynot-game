@@ -1,12 +1,12 @@
 -- This code supplies an oven/stove. Basically it's just a copy of the default furnace with different textures.
 
-local S = minetest.get_translator("homedecor_common")
+local S = core.get_translator("homedecor_common")
 
 local function swap_node(pos, name)
-	local node = minetest.get_node(pos)
+	local node = core.get_node(pos)
 	if node.name == name then return end
 	node.name = name
-	minetest.swap_node(pos, node)
+	core.swap_node(pos, node)
 end
 
 local function make_formspec(furnacedef, percent)
@@ -73,7 +73,7 @@ local function make_tiles(tiles, fmt, active)
 end
 
 local furnace_can_dig = function(pos,player)
-	local meta = minetest.get_meta(pos);
+	local meta = core.get_meta(pos);
 	local inv = meta:get_inventory()
 	return inv:is_empty("fuel")
 		and inv:is_empty("dst")
@@ -92,10 +92,10 @@ function homedecor.register_furnace(name, furnacedef)
 	local description = furnacedef.description or S("Furnace")
 
 	local furnace_allow_put = function(pos, listname, index, stack, player)
-		local meta = minetest.get_meta(pos)
+		local meta = core.get_meta(pos)
 		local inv = meta:get_inventory()
 		if listname == "fuel" then
-			if minetest.get_craft_result({method="fuel",width=1,items={stack}}).time ~= 0 then
+			if core.get_craft_result({method="fuel",width=1,items={stack}}).time ~= 0 then
 				if inv:is_empty("src") then
 					meta:set_string("infotext", S("@1 (empty)", description))
 				end
@@ -110,11 +110,11 @@ function homedecor.register_furnace(name, furnacedef)
 		end
 	end
 	local furnace_allow_move = function(pos, from_list, from_index, to_list, to_index, count, player)
-		local meta = minetest.get_meta(pos)
+		local meta = core.get_meta(pos)
 		local inv = meta:get_inventory()
 		local stack = inv:get_stack(from_list, from_index)
 		if to_list == "fuel" then
-			if minetest.get_craft_result({method="fuel",width=1,items={stack}}).time ~= 0 then
+			if core.get_craft_result({method="fuel",width=1,items={stack}}).time ~= 0 then
 				if inv:is_empty("src") then
 					meta:set_string("infotext", S("@1 (empty)", description))
 				end
@@ -136,7 +136,7 @@ function homedecor.register_furnace(name, furnacedef)
 		--
 		-- Initialize metadata
 		--
-		local meta = minetest.get_meta(pos)
+		local meta = core.get_meta(pos)
 		local fuel_time = meta:get_float("fuel_time") or 0
 		local src_time = meta:get_float("src_time") or 0
 		local fuel_totaltime = meta:get_float("fuel_totaltime") or 0
@@ -164,7 +164,7 @@ function homedecor.register_furnace(name, furnacedef)
 
 			-- Check if we have cookable content
 			local aftercooked
-			cooked, aftercooked = minetest.get_craft_result({method = "cooking", width = 1, items = srclist})
+			cooked, aftercooked = core.get_craft_result({method = "cooking", width = 1, items = srclist})
 			cookable = cooked.time ~= 0
 
 			local el = math.min(elapsed, fuel_totaltime - fuel_time)
@@ -199,7 +199,7 @@ function homedecor.register_furnace(name, furnacedef)
 				if cookable then
 					-- We need to get new fuel
 					local afterfuel
-					fuel, afterfuel = minetest.get_craft_result({method = "fuel", width = 1, items = fuellist})
+					fuel, afterfuel = core.get_craft_result({method = "fuel", width = 1, items = fuellist})
 
 					if fuel.time == 0 then
 						-- No valid fuel in fuel list
@@ -207,7 +207,7 @@ function homedecor.register_furnace(name, furnacedef)
 						src_time = 0
 					else
 						-- prevent blocking of fuel inventory (for automatization mods)
-						local is_fuel = minetest.get_craft_result({method = "fuel", width = 1, items = {afterfuel.items[1]:to_string()}})
+						local is_fuel = core.get_craft_result({method = "fuel", width = 1, items = {afterfuel.items[1]:to_string()}})
 						if is_fuel.time == 0 then
 							table.insert(fuel.replacements, afterfuel.items[1])
 							inv:set_stack("fuel", 1, "")
@@ -221,8 +221,8 @@ function homedecor.register_furnace(name, furnacedef)
 							local leftover = inv:add_item("dst", replacements[1])
 							if not leftover:is_empty() then
 								local above = vector.new(pos.x, pos.y + 1, pos.z)
-								local drop_pos = minetest.find_node_near(above, 1, {"air"}) or above
-								minetest.item_drop(replacements[1], nil, drop_pos)
+								local drop_pos = core.find_node_near(above, 1, {"air"}) or above
+								core.item_drop(replacements[1], nil, drop_pos)
 							end
 						end
 						update = true
@@ -256,9 +256,9 @@ function homedecor.register_furnace(name, furnacedef)
 
 		local result = false
 
-		local node = minetest.get_node(pos)
+		local node = core.get_node(pos)
 		local locked = node.name:find("_locked$") and "_locked" or ""
-		local desc = minetest.registered_nodes[nname..locked].description
+		local desc = core.registered_nodes[nname..locked].description
 
 		if fuel_totaltime ~= 0 then
 			formspec = make_formspec(furnacedef, percent)
@@ -270,7 +270,7 @@ function homedecor.register_furnace(name, furnacedef)
 			infotext = S("@1 (out of fuel)", desc)
 			swap_node(pos, nname .. locked)
 			-- stop timer on the inactive furnace
-			minetest.get_node_timer(pos):stop()
+			core.get_node_timer(pos):stop()
 			meta:set_int("timer_elapsed", 0)
 		end
 
@@ -284,7 +284,7 @@ function homedecor.register_furnace(name, furnacedef)
 			formspec = make_formspec(furnacedef, 0)
 			swap_node(pos, nname .. locked)
 			-- stop timer on the inactive furnace
-			minetest.get_node_timer(pos):stop()
+			core.get_node_timer(pos):stop()
 			meta:set_int("timer_elapsed", 0)
 			fuel_totaltime, fuel_time, src_time = 0, 0, 0
 		end
@@ -306,7 +306,7 @@ function homedecor.register_furnace(name, furnacedef)
 	end
 
 	local furnace_construct = function(pos)
-		local meta = minetest.get_meta(pos)
+		local meta = core.get_meta(pos)
 		local inv = meta:get_inventory()
 		inv:set_size("fuel", 1)
 		inv:set_size("src", 1)
@@ -330,15 +330,15 @@ function homedecor.register_furnace(name, furnacedef)
 		is_furnace = true,
 		on_timer = furnace_node_timer,
 		on_metadata_inventory_move = function(pos)
-			minetest.get_node_timer(pos):start(1.0)
+			core.get_node_timer(pos):start(1.0)
 		end,
 		on_metadata_inventory_put = function(pos)
 			-- start timer function, it will sort out whether furnace can burn or not.
-			minetest.get_node_timer(pos):start(1.0)
+			core.get_node_timer(pos):start(1.0)
 		end,
 		on_metadata_inventory_take = function(pos)
 			-- check whether the furnace is empty or not.
-			minetest.get_node_timer(pos):start(1.0)
+			core.get_node_timer(pos):start(1.0)
 		end
 	}
 
@@ -360,15 +360,15 @@ function homedecor.register_furnace(name, furnacedef)
 		is_furnace = true,
 		on_timer = furnace_node_timer,
 		on_metadata_inventory_move = function(pos)
-			minetest.get_node_timer(pos):start(1.0)
+			core.get_node_timer(pos):start(1.0)
 		end,
 		on_metadata_inventory_put = function(pos)
 			-- start timer function, it will sort out whether furnace can burn or not.
-			minetest.get_node_timer(pos):start(1.0)
+			core.get_node_timer(pos):start(1.0)
 		end,
 		on_metadata_inventory_take = function(pos)
 			-- check whether the furnace is empty or not.
-			minetest.get_node_timer(pos):start(1.0)
+			core.get_node_timer(pos):start(1.0)
 		end
 	}
 

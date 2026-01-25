@@ -1,8 +1,8 @@
 -- Home decor seating
 -- forked from the previous lrfurn mod
 
-local S = minetest.get_translator("homedecor_seating")
-local modpath = minetest.get_modpath("homedecor_seating")
+local S = core.get_translator("homedecor_seating")
+local modpath = core.get_modpath("homedecor_seating")
 
 lrfurn = {}
 
@@ -43,25 +43,25 @@ function lrfurn.check_right(pos, fdir, long, placer)
 		y = pos.y, z = pos.z + lrfurn.fdir_to_right[fdir+1][2] * 2
 	}
 
-	local node2 = minetest.get_node(pos2)
+	local node2 = core.get_node(pos2)
 	if node2 and node2.name ~= "air" then
 		return false
-	elseif minetest.is_protected(pos2, placer:get_player_name()) then
+	elseif core.is_protected(pos2, placer:get_player_name()) then
 		if not long then
-			minetest.chat_send_player(placer:get_player_name(), S("Someone else owns the spot where the other end goes!"))
+			core.chat_send_player(placer:get_player_name(), S("Someone else owns the spot where the other end goes!"))
 		else
-			minetest.chat_send_player(placer:get_player_name(),
+			core.chat_send_player(placer:get_player_name(),
 				S("Someone else owns the spot where the middle or far end goes!"))
 		end
 		return false
 	end
 
 	if long then
-		local node3 = minetest.get_node(pos3)
+		local node3 = core.get_node(pos3)
 		if node3 and node3.name ~= "air" then
 			return false
-		elseif minetest.is_protected(pos3, placer:get_player_name()) then
-			minetest.chat_send_player(placer:get_player_name(), S("Someone else owns the spot where the other end goes!"))
+		elseif core.is_protected(pos3, placer:get_player_name()) then
+			core.chat_send_player(placer:get_player_name(), S("Someone else owns the spot where the other end goes!"))
 			return false
 		end
 	end
@@ -70,18 +70,18 @@ function lrfurn.check_right(pos, fdir, long, placer)
 end
 
 function lrfurn.fix_sofa_rotation_nsew(pos, placer, itemstack, pointed_thing)
-	local node = minetest.get_node(pos)
+	local node = core.get_node(pos)
 	local colorbits = node.param2 - (node.param2 % 8)
 	local yaw = placer:get_look_horizontal()
-	local dir = minetest.yaw_to_dir(yaw)
-	local fdir = minetest.dir_to_wallmounted(dir)
-	minetest.swap_node(pos, { name = node.name, param2 = fdir+colorbits })
+	local dir = core.yaw_to_dir(yaw)
+	local fdir = core.dir_to_wallmounted(dir)
+	core.swap_node(pos, { name = node.name, param2 = fdir+colorbits })
 end
 
 local seated_cache = {}
 local offset_cache = {}
 
-minetest.register_entity("homedecor_seating:seat", {
+core.register_entity("homedecor_seating:seat", {
 	initial_properties = {
 		visual = "cube",
 		--comment out the following when testing so you can see it
@@ -151,12 +151,12 @@ function lrfurn.sit(pos, node, clicker, itemstack, pointed_thing, seats)
 	}
 
 	--generate posible seat positions
-	local valid_seats = {[minetest.hash_node_position(pos)] = pos}
+	local valid_seats = {[core.hash_node_position(pos)] = pos}
 	if seats > 1 then
 		for i=1,seats-1 do
 			--since this are hardware colored nodes, node.param2 gives us a actual param to get a dir from
 			local npos = vector.add(pos, vector.multiply(p2d[node.param2 % 8], i))
-			valid_seats[minetest.hash_node_position(npos)] = npos
+			valid_seats[core.hash_node_position(npos)] = npos
 		end
 	end
 
@@ -165,7 +165,7 @@ function lrfurn.sit(pos, node, clicker, itemstack, pointed_thing, seats)
 	local sit_hash
 	for hash, spos in pairs(valid_seats) do
 		local pstatus = false
-		for _, ref in pairs(minetest.get_objects_inside_radius(spos, 0.5)) do
+		for _, ref in pairs(core.get_objects_inside_radius(spos, 0.5)) do
 			if ref:is_player() and seated_cache[ref:get_player_name()] then
 				pstatus = true
 			end
@@ -177,18 +177,18 @@ function lrfurn.sit(pos, node, clicker, itemstack, pointed_thing, seats)
 		end
 	end
 	if not sit_pos then
-		minetest.chat_send_player(name, "sorry, this seat is currently occupied")
+		core.chat_send_player(name, "sorry, this seat is currently occupied")
 		return itemstack
 	end
 
 	--seat the player
 	clicker:set_pos(sit_pos)
 
-	local entity = minetest.add_entity(sit_pos, "homedecor_seating:seat")
+	local entity = core.add_entity(sit_pos, "homedecor_seating:seat")
 	if not entity then return itemstack end --catch for when the entity fails to spawn just in case
 
 	clicker:set_attach(entity, "", {x = 0, y = 0, z = 0}, {x = 0, y = 0, z = 0}, true)
-	local nodedef = minetest.registered_nodes[node.name]
+	local nodedef = core.registered_nodes[node.name]
 	if nodedef.paramtype2 == "facedir" then
 		entity:set_rotation({x = 0, y = p2r_facedir[node.param2 % 4], z = 0})
 	elseif string.find(node.name, "sofa") then
@@ -199,7 +199,7 @@ function lrfurn.sit(pos, node, clicker, itemstack, pointed_thing, seats)
 
 	xcompat.player.player_attached[name] = true
     xcompat.player.set_animation(clicker, "sit", 0)
-	seated_cache[name] = minetest.hash_node_position(pos)
+	seated_cache[name] = core.hash_node_position(pos)
 	if seated_cache[name] ~= sit_hash then
 		offset_cache[name] = core.hash_node_position(vector.subtract(pos, sit_pos))
 	end
@@ -225,8 +225,8 @@ end
 -- Called when a seat is destroyed
 function lrfurn.on_seat_destruct(pos)
 	for name, seatpos in pairs(seated_cache) do
-		if seatpos == minetest.hash_node_position(pos) then
-			local player = minetest.get_player_by_name(name)
+		if seatpos == core.hash_node_position(pos) then
+			local player = core.get_player_by_name(name)
 			if player then
 				lrfurn.stand(player)
 			end
@@ -259,7 +259,7 @@ function lrfurn.on_seat_movenode(from_pos, to_pos)
 end
 
 --if the player gets killed in the seat, handle it
-minetest.register_on_dieplayer(function(player)
+core.register_on_dieplayer(function(player)
 	if seated_cache[player:get_player_name()] then
 		lrfurn.stand(player)
 	end

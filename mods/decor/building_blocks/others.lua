@@ -1,16 +1,16 @@
-local S = minetest.get_translator("building_blocks")
+local S = core.get_translator("building_blocks")
 
-minetest.register_craftitem("building_blocks:sticks", {
+core.register_craftitem("building_blocks:sticks", {
 	description = S("Small bundle of sticks"),
 	inventory_image = "building_blocks_sticks.png",
-	on_place_on_ground = minetest.craftitem_place_item,
+	on_place_on_ground = core.craftitem_place_item,
 })
-minetest.register_craftitem("building_blocks:tar_base", {
+core.register_craftitem("building_blocks:tar_base", {
 	description = S("Tar base"),
 	inventory_image = "building_blocks_tar_base.png",
 })
 
-minetest.register_tool("building_blocks:knife", {
+core.register_tool("building_blocks:knife", {
 	description = S("Tar Knife"),
 	inventory_image = "building_blocks_knife.png",
 	tool_capabilities = {

@@ -1,6 +1,6 @@
 -- formerly homedecor's misc tables component
 
-local S = minetest.get_translator("homedecor_tables")
+local S = core.get_translator("homedecor_tables")
 
 -- Various kinds of table legs
 
@@ -46,8 +46,8 @@ for _, t in ipairs(leg_materials) do
 	})
 end
 
-minetest.register_alias("homedecor:utility_table_legs", "homedecor:table_legs_wood")
-minetest.register_alias("homedecor:utility_table_top",  "homedecor:wood_table_small_square")
+core.register_alias("homedecor:utility_table_legs", "homedecor:table_legs_wood")
+core.register_alias("homedecor:utility_table_top",  "homedecor:wood_table_small_square")
 
 -- table tops and combined tables
 
@@ -88,18 +88,18 @@ for i, mat in ipairs(tabletop_materials) do
 			collision_box = tables_cbox,
 			on_place = function(itemstack, placer, pointed_thing)
 				local player_name = placer:get_player_name()
-				if minetest.is_protected(pointed_thing.under, player_name) then return end
-				local node = minetest.get_node(pointed_thing.under)
+				if core.is_protected(pointed_thing.under, player_name) then return end
+				local node = core.get_node(pointed_thing.under)
 				if string.find(node.name, "homedecor:table_legs") then
 					local newname = string.format("homedecor:%s_table_%s_with_%s_legs",
 						m, shape, string.sub(node.name, 22))
-					minetest.set_node(pointed_thing.under, {name = newname})
+					core.set_node(pointed_thing.under, {name = newname})
 					if not creative.is_enabled_for(player_name) then
 						itemstack:take_item()
 						return itemstack
 					end
 				else
-					return minetest.rotate_node(itemstack, placer, pointed_thing)
+					return core.rotate_node(itemstack, placer, pointed_thing)
 				end
 			end
 		})
@@ -126,10 +126,10 @@ for i, mat in ipairs(tabletop_materials) do
 		end
 	end
 
-	minetest.register_alias('homedecor:'..m..'_table_large_square_b', 'homedecor:'..m..'_table_large_square')
-	minetest.register_alias('homedecor:'..m..'_table_small_square_b', 'homedecor:'..m..'_table_small_square')
-	minetest.register_alias('homedecor:'..m..'_table_small_round_b', 'homedecor:'..m..'_table_small_round')
-	minetest.register_alias('homedecor:'..m..'_table_large', 'homedecor:'..m..'_table_large_square')
+	core.register_alias('homedecor:'..m..'_table_large_square_b', 'homedecor:'..m..'_table_large_square')
+	core.register_alias('homedecor:'..m..'_table_small_square_b', 'homedecor:'..m..'_table_small_square')
+	core.register_alias('homedecor:'..m..'_table_small_round_b', 'homedecor:'..m..'_table_small_round')
+	core.register_alias('homedecor:'..m..'_table_large', 'homedecor:'..m..'_table_large_square')
 
 end
 
@@ -170,7 +170,7 @@ end
 
 -- crafting
 
-minetest.register_craft( {
+core.register_craft( {
         output = "homedecor:glass_table_small_round_b 15",
         recipe = {
 			{ "", homedecor.materials.glass_block, "" },
@@ -179,21 +179,21 @@ minetest.register_craft( {
         },
 })
 
-minetest.register_craft( {
+core.register_craft( {
         output = "homedecor:glass_table_small_square_b 2",
         recipe = {
 		{"homedecor:glass_table_small_round", "homedecor:glass_table_small_round" },
 	}
 })
 
-minetest.register_craft( {
+core.register_craft( {
         output = "homedecor:glass_table_large_square_b 2",
         recipe = {
 		{ "homedecor:glass_table_small_square", "homedecor:glass_table_small_square" },
 	}
 })
 
-minetest.register_craft( {
+core.register_craft( {
         output = "homedecor:wood_table_small_round_b 15",
         recipe = {
                 { "", "group:wood", "" },
@@ -202,14 +202,14 @@ minetest.register_craft( {
         },
 })
 
-minetest.register_craft( {
+core.register_craft( {
         output = "homedecor:wood_table_small_square_b 2",
         recipe = {
 		{ "homedecor:wood_table_small_round","homedecor:wood_table_small_round" },
 	}
 })
 
-minetest.register_craft( {
+core.register_craft( {
         output = "homedecor:wood_table_large_square_b 2",
         recipe = {
 		{ "homedecor:wood_table_small_square", "homedecor:wood_table_small_square" },
@@ -218,26 +218,26 @@ minetest.register_craft( {
 
 --
 
-minetest.register_craft({
+core.register_craft({
         type = "fuel",
         recipe = "homedecor:wood_table_small_round_b",
         burntime = 30,
 })
 
-minetest.register_craft({
+core.register_craft({
         type = "fuel",
         recipe = "homedecor:wood_table_small_square_b",
         burntime = 30,
 })
 
-minetest.register_craft({
+core.register_craft({
         type = "fuel",
         recipe = "homedecor:wood_table_large_square_b",
         burntime = 30,
 })
 
 
-minetest.register_craft( {
+core.register_craft( {
         output = "homedecor:table_legs_wrought_iron 3",
         recipe = {
                 { "", homedecor.materials.iron_lump, "" },
@@ -246,7 +246,7 @@ minetest.register_craft( {
         },
 })
 
-minetest.register_craft( {
+core.register_craft( {
         output = "homedecor:table_legs_brass 3",
 	recipe = {
 		{ "", "basic_materials:brass_ingot", "" },
@@ -255,7 +255,7 @@ minetest.register_craft( {
 	},
 })
 
-minetest.register_craft( {
+core.register_craft( {
         output = "homedecor:utility_table_legs",
         recipe = {
                 { "group:stick", "group:stick", "group:stick" },
@@ -264,7 +264,7 @@ minetest.register_craft( {
         },
 })
 
-minetest.register_craft({
+core.register_craft({
         type = "fuel",
         recipe = "homedecor:utility_table_legs",
         burntime = 30,
@@ -273,7 +273,7 @@ minetest.register_craft({
 for _, shape in ipairs (table_shapes) do
 	for _, leg in ipairs(leg_materials) do
 		for _, mat in ipairs(tabletop_materials) do
-			minetest.register_craft({
+			core.register_craft({
 				output = "homedecor:"..mat[1].."_table_"..shape.."_with_"..leg[1].."_legs",
 				type = "shapeless",
 				recipe = {
@@ -285,7 +285,7 @@ for _, shape in ipairs (table_shapes) do
 	end
 end
 
-minetest.register_craft({
+core.register_craft({
 	output = "homedecor:table",
 	recipe = {
 		{ "group:wood","group:wood", "group:wood" },
@@ -293,7 +293,7 @@ minetest.register_craft({
 	},
 })
 
-minetest.register_craft({
+core.register_craft({
 	type = "shapeless",
 	output = "homedecor:table_mahogany",
 	recipe = {
@@ -302,7 +302,7 @@ minetest.register_craft({
 	},
 })
 
-minetest.register_craft({
+core.register_craft({
 	type = "shapeless",
 	output = "homedecor:table_mahogany",
 	recipe = {
@@ -311,7 +311,7 @@ minetest.register_craft({
 	},
 })
 
-minetest.register_craft({
+core.register_craft({
 	type = "shapeless",
 	output = "homedecor:table_white",
 	recipe = {
@@ -320,19 +320,19 @@ minetest.register_craft({
 	},
 })
 
-minetest.register_craft({
+core.register_craft({
 	type = "fuel",
 	recipe = "homedecor:table",
 	burntime = 30,
 })
 
-minetest.register_craft({
+core.register_craft({
 	type = "fuel",
 	recipe = "homedecor:table_mahogany",
 	burntime = 30,
 })
 
-minetest.register_craft({
+core.register_craft({
 	type = "fuel",
 	recipe = "homedecor:table_white",
 	burntime = 30,
@@ -340,7 +340,7 @@ minetest.register_craft({
 
 -- recycling
 
-minetest.register_craft({
+core.register_craft({
         type = "shapeless",
         output = "vessels:glass_fragments",
         recipe = {
@@ -350,7 +350,7 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
         type = "shapeless",
         output = "vessels:glass_fragments",
         recipe = {
@@ -360,7 +360,7 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
         type = "shapeless",
         output = "vessels:glass_fragments",
         recipe = {
@@ -370,7 +370,7 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
         type = "shapeless",
         output = "default:stick 4",
         recipe = {
@@ -380,7 +380,7 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
         type = "shapeless",
         output = "default:stick 4",
         recipe = {
@@ -390,7 +390,7 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
         type = "shapeless",
         output = "default:stick 4",
         recipe = {
@@ -402,5 +402,5 @@ minetest.register_craft({
 
 -- Aliases for the above 3dforniture-like tables
 
-minetest.register_alias("3dforniture:table", "homedecor:table")
-minetest.register_alias('table', 'homedecor:table')
+core.register_alias("3dforniture:table", "homedecor:table")
+core.register_alias('table', 'homedecor:table')

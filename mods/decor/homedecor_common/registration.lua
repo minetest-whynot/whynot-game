@@ -2,7 +2,7 @@ homedecor = homedecor or {}
 
 local placeholder_node = "homedecor:expansion_placeholder"
 
---wrapper around minetest.register_node that sets sane defaults and interprets some specialized settings
+--wrapper around core.register_node that sets sane defaults and interprets some specialized settings
 function homedecor.register(name, original_def)
 	local def = table.copy(original_def)
 
@@ -45,7 +45,7 @@ function homedecor.register(name, original_def)
 	if infotext then
 		local on_construct = def.on_construct
 		def.on_construct = function(pos)
-			local meta = minetest.get_meta(pos)
+			local meta = core.get_meta(pos)
 			meta:set_string("infotext", infotext)
 			if on_construct then on_construct(pos) end
 		end
@@ -60,7 +60,7 @@ function homedecor.register(name, original_def)
 		-- dissallow rotating only half the expanded node by default
 		-- unless we know better
 		def.on_rotate = def.on_rotate or (
-			minetest.get_modpath("screwdriver") and (
+			core.get_modpath("screwdriver") and (
 				(def.mesh and expand.top and screwdriver.rotate_simple) or
 				screwdriver.disallow
 			)
@@ -78,9 +78,9 @@ function homedecor.register(name, original_def)
 		def.after_dig_node = def.after_dig_node or function(pos, oldnode, oldmetadata, digger)
 			if expand.top and expand.forward ~= "air" then
 				local top_pos = { x=pos.x, y=pos.y+1, z=pos.z }
-				local node = minetest.get_node(top_pos).name
+				local node = core.get_node(top_pos).name
 				if node == expand.top or node == placeholder_node then
-					minetest.remove_node(top_pos)
+					core.remove_node(top_pos)
 				end
 			end
 
@@ -93,16 +93,16 @@ function homedecor.register(name, original_def)
 					y = pos.y,
 					z = pos.z + homedecor.fdir_to_right[fdir+1][2]
 				}
-				local node = minetest.get_node(right_pos).name
+				local node = core.get_node(right_pos).name
 				if node == expand.right or node == placeholder_node then
-					minetest.remove_node(right_pos)
+					core.remove_node(right_pos)
 				end
 			end
 			if expand.forward and expand.forward ~= "air" then
 				local forward_pos = { x=pos.x+homedecor.fdir_to_fwd[fdir+1][1], y=pos.y, z=pos.z+homedecor.fdir_to_fwd[fdir+1][2] }
-				local node = minetest.get_node(forward_pos).name
+				local node = core.get_node(forward_pos).name
 				if node == expand.forward or node == placeholder_node then
-					minetest.remove_node(forward_pos)
+					core.remove_node(forward_pos)
 				end
 			end
 
@@ -116,7 +116,7 @@ function homedecor.register(name, original_def)
 	def.crafts = nil
 
 	-- register the actual minetest node
-	minetest.register_node(":homedecor:" .. name, def)
+	core.register_node(":homedecor:" .. name, def)
 
 	for _, cdef in pairs(crafts) do
 		if cdef.recipe then
@@ -137,6 +137,6 @@ function homedecor.register(name, original_def)
 			cdef.output = "homedecor:" .. name
 		end
 
-		minetest.register_craft(cdef)
+		core.register_craft(cdef)
 	end
 end

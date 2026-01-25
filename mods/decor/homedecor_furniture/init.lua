@@ -1,4 +1,4 @@
-local S = minetest.get_translator("homedecor_furniture")
+local S = core.get_translator("homedecor_furniture")
 
 local ob_cbox = {
 	type = "fixed",

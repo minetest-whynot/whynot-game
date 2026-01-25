@@ -1,23 +1,23 @@
-local S = minetest.get_translator("homedecor_electrical")
+local S = core.get_translator("homedecor_electrical")
 
 homedecor_electrical = {}
 
 function homedecor_electrical.toggle_switch(pos, node, clicker, itemstack, pointed_thing)
 	if not clicker then return false end
 	local playername = clicker:get_player_name()
-	if minetest.is_protected(pos, playername) then
-		minetest.record_protection_violation(pos, playername)
+	if core.is_protected(pos, playername) then
+		core.record_protection_violation(pos, playername)
 		return false
 	end
 	local sep = string.find(node.name, "_o", -5)
 	local onoff = string.sub(node.name, sep + 1)
 	local newname = string.sub(node.name, 1, sep - 1)..((onoff == "off") and "_on" or "_off")
-	minetest.swap_node(pos, {name = newname, param2 = node.param2})
+	core.swap_node(pos, {name = newname, param2 = node.param2})
 	return true
 end
 
 local on_rc
-if minetest.get_modpath("mesecons") then
+if core.get_modpath("mesecons") then
 	on_rc = function(pos, node, clicker, itemstack, pointed_thing)
 		local t = homedecor_electrical.toggle_switch(pos, node, clicker, itemstack, pointed_thing)
 		if not t then return end
@@ -68,7 +68,7 @@ homedecor.register("power_outlet", {
 for _, onoff in ipairs ({"on", "off"}) do
 
 	local switch_receptor
-	if minetest.get_modpath("mesecons") then
+	if core.get_modpath("mesecons") then
 		switch_receptor = {
 			receptor = {
 				state = mesecon.state[onoff],
@@ -139,7 +139,7 @@ homedecor.register("doorbell", {
 		}
 	},
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
-		minetest.sound_play("homedecor_doorbell", {
+		core.sound_play("homedecor_doorbell", {
 			pos = pos,
 			gain = 1.0,
 			max_hear_distance = 15
@@ -156,7 +156,7 @@ homedecor.register("doorbell", {
 
 -- crafting
 
-minetest.register_craft( {
+core.register_craft( {
         output = "homedecor:light_switch_off",
         recipe = {
 			{"", "basic_materials:plastic_sheet", "basic_materials:copper_strip"},
@@ -167,4 +167,4 @@ minetest.register_craft( {
 
 -- aliases
 
-minetest.register_alias("homedecor:light_switch", "homedecor:light_switch_on")
+core.register_alias("homedecor:light_switch", "homedecor:light_switch_on")

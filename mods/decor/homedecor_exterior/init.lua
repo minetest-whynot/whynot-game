@@ -1,4 +1,4 @@
-local S = minetest.get_translator("homedecor_exterior")
+local S = core.get_translator("homedecor_exterior")
 homedecor_exterior = {}
 
 local bbq_cbox = {
@@ -41,7 +41,7 @@ homedecor.register("barbecue", {
 	}
 })
 
-minetest.register_alias("homedecor:barbecue_meat", "air")
+core.register_alias("homedecor:barbecue_meat", "air")
 
 local wood_tex = homedecor.textures.wood.apple.planks
 
@@ -61,7 +61,7 @@ homedecor.register("doghouse", {
 	_sound_def = {
 		key = "node_sound_wood_defaults",
 	},
-	on_rotate = minetest.get_modpath("screwdriver") and screwdriver.rotate_simple or nil,
+	on_rotate = core.get_modpath("screwdriver") and screwdriver.rotate_simple or nil,
 	crafts = {
 		{
 			recipe = {
@@ -73,13 +73,13 @@ homedecor.register("doghouse", {
 	}
 })
 
-minetest.register_alias("homedecor:doghouse_roof", "air")
-minetest.register_alias("homedecor:doghouse_base", "homedecor:doghouse")
+core.register_alias("homedecor:doghouse_roof", "air")
+core.register_alias("homedecor:doghouse_base", "homedecor:doghouse")
 
 homedecor.register("stonepath", {
 	description = S("Garden stone path"),
 	tiles = {
-		minetest.registered_nodes["mapgen_stone"].tiles[1],
+		core.registered_nodes["mapgen_stone"].tiles[1],
 	},
 	inventory_image = "homedecor_stonepath_inv.png",
 	groups = { snappy=3, dig_stone = 2 },
@@ -182,7 +182,7 @@ homedecor.register("swing", {
 		key = "node_sound_wood_defaults",
 	},
 	walkable = false,
-	on_rotate = minetest.get_modpath("screwdriver") and screwdriver.disallow or nil,
+	on_rotate = core.get_modpath("screwdriver") and screwdriver.disallow or nil,
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -207,12 +207,12 @@ homedecor.register("swing", {
 			for i = 0, 4 do	-- search up to 5 spaces downward from the ceiling for the first non-buildable-to node...
 				height = i
 				local testpos = { x=pos.x, y=pos.y-i-1, z=pos.z }
-				local testnode = minetest.get_node_or_nil(testpos)
+				local testnode = core.get_node_or_nil(testpos)
 				local testreg = testnode and core.registered_nodes[testnode.name]
 
 				if not testreg or not testreg.buildable_to then
 					if i < 1 then
-						minetest.chat_send_player(placer_name, S("No room under there to hang a swing."))
+						core.chat_send_player(placer_name, S("No room under there to hang a swing."))
 						return itemstack
 					else
 						break
@@ -220,19 +220,19 @@ homedecor.register("swing", {
 				end
 			end
 
-			local fdir = minetest.dir_to_facedir(placer:get_look_dir())
+			local fdir = core.dir_to_facedir(placer:get_look_dir())
 			for j = 0, height do -- then fill that space with ropes...
 				local testpos = { x=pos.x, y=pos.y-j, z=pos.z }
-				minetest.set_node(testpos, { name = "homedecor:swing_rope", param2 = fdir })
+				core.set_node(testpos, { name = "homedecor:swing_rope", param2 = fdir })
 			end
 
-			minetest.set_node({ x=pos.x, y=pos.y-height, z=pos.z }, { name = "homedecor:swing", param2 = fdir })
+			core.set_node({ x=pos.x, y=pos.y-height, z=pos.z }, { name = "homedecor:swing", param2 = fdir })
 
-			if not minetest.is_creative_enabled(placer_name) then
+			if not core.is_creative_enabled(placer_name) then
 				itemstack:take_item()
 			end
 		else
-			minetest.chat_send_player(placer_name,
+			core.chat_send_player(placer_name,
 				S("You have to point at the bottom side of an overhanging object to place a swing."))
 		end
 		return itemstack
@@ -240,8 +240,8 @@ homedecor.register("swing", {
 	after_dig_node = function(pos, oldnode, oldmetadata, digger)
 		for i = 0, 4 do
 			local testpos = { x=pos.x, y=pos.y+i+1, z=pos.z }
-			if minetest.get_node(testpos).name == "homedecor:swing_rope" then
-				minetest.remove_node(testpos)
+			if core.get_node(testpos).name == "homedecor:swing_rope" then
+				core.remove_node(testpos)
 			else
 				return
 			end
@@ -289,12 +289,12 @@ homedecor.register("swing_rope", {
 })
 
 local water_tex = homedecor.textures.water.tile
-local cobble_tex = minetest.registered_nodes["mapgen_stone"].tiles[1]
-local stone_drop = minetest.registered_nodes["mapgen_stone"].drop
+local cobble_tex = core.registered_nodes["mapgen_stone"].tiles[1]
+local stone_drop = core.registered_nodes["mapgen_stone"].drop
 if stone_drop and type(stone_drop) == "string" then
-	cobble_tex = minetest.registered_nodes[stone_drop].tiles[1]
+	cobble_tex = core.registered_nodes[stone_drop].tiles[1]
 elseif stone_drop and type(stone_drop) == "table" then
-	cobble_tex = minetest.registered_nodes[stone_drop.items[1].items[1]].tiles[1]
+	cobble_tex = core.registered_nodes[stone_drop.items[1].items[1]].tiles[1]
 end
 
 homedecor.register("well", {
@@ -317,7 +317,7 @@ homedecor.register("well", {
 	_sound_def = {
 		key = "node_sound_wood_defaults",
 	},
-	on_rotate = minetest.get_modpath("screwdriver") and screwdriver.rotate_simple or nil,
+	on_rotate = core.get_modpath("screwdriver") and screwdriver.rotate_simple or nil,
 	crafts = {
 		{
 			recipe = {
@@ -330,18 +330,18 @@ homedecor.register("well", {
 })
 
 --because the engine of all people cant follow right to a name, need to verify bucket empty
-if minetest.get_modpath("bucket") and minetest.registered_items["bucket:bucket_empty"] then
-	local original_bucket_on_use = minetest.registered_items["bucket:bucket_empty"].on_use
-	minetest.override_item("bucket:bucket_empty", {
+if core.get_modpath("bucket") and core.registered_items["bucket:bucket_empty"] then
+	local original_bucket_on_use = core.registered_items["bucket:bucket_empty"].on_use
+	core.override_item("bucket:bucket_empty", {
 		on_use = function(itemstack, user, pointed_thing)
 			local inv = user:get_inventory()
 
-			if pointed_thing.type == "node" and minetest.get_node(pointed_thing.under).name == "homedecor:well" then
+			if pointed_thing.type == "node" and core.get_node(pointed_thing.under).name == "homedecor:well" then
 				if inv:room_for_item("main", "bucket:bucket_water 1") then
 					itemstack:take_item()
 					inv:add_item("main", "bucket:bucket_water 1")
 				else
-					minetest.chat_send_player(user:get_player_name(), S("No room in your inventory to add a filled bucket!"))
+					core.chat_send_player(user:get_player_name(), S("No room in your inventory to add a filled bucket!"))
 				end
 				return itemstack
 			else if original_bucket_on_use then
@@ -412,7 +412,7 @@ for color, color_loc in pairs(homedecor_exterior.shrub_colors) do
 	})
 
 	if color ~= "green" then
-		minetest.register_craft({
+		core.register_craft({
 			type = "shapeless",
 			output = "homedecor:shrubbery_large_"..color,
 			recipe = {
@@ -421,7 +421,7 @@ for color, color_loc in pairs(homedecor_exterior.shrub_colors) do
 			}
 		})
 
-		minetest.register_craft({
+		core.register_craft({
 			type = "shapeless",
 			output = "homedecor:shrubbery_"..color,
 			recipe = {
@@ -435,7 +435,7 @@ end
 
 -- crafting
 
-minetest.register_craft({
+core.register_craft({
 	output = "homedecor:lattice_wood 8",
 	recipe = {
 		{"group:stick", "group:wood", "group:stick"},
@@ -444,7 +444,7 @@ minetest.register_craft({
 	},
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "homedecor:lattice_white_wood 8",
 	recipe = {
 		{"group:stick", "group:wood", "group:stick"},
@@ -453,7 +453,7 @@ minetest.register_craft({
 	},
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "homedecor:lattice_wood_vegetal 8",
 	recipe = {
 		{"group:stick", "group:wood", "group:stick"},
@@ -462,7 +462,7 @@ minetest.register_craft({
 	},
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "homedecor:lattice_white_wood_vegetal 8",
 	recipe = {
 		{"group:stick", "group:wood", "group:stick"},
@@ -472,7 +472,7 @@ minetest.register_craft({
 })
 
 
-minetest.register_craft({
+core.register_craft({
 	output = "homedecor:shrubbery_green 3",
 	recipe = {
 		{ "group:leaves", "group:leaves", "group:leaves" },
@@ -483,8 +483,8 @@ minetest.register_craft({
 
 -- aliases
 
-minetest.register_alias("homedecor:well_top", "air")
-minetest.register_alias("homedecor:well_base", "homedecor:well")
+core.register_alias("homedecor:well_top", "air")
+core.register_alias("homedecor:well_base", "homedecor:well")
 
-minetest.register_alias("gloopblocks:shrubbery", "homedecor:shrubbery_green")
-minetest.register_alias("gloopblocks:shrubbery_large", "homedecor:shrubbery_large_green")
+core.register_alias("gloopblocks:shrubbery", "homedecor:shrubbery_green")
+core.register_alias("gloopblocks:shrubbery_large", "homedecor:shrubbery_large_green")

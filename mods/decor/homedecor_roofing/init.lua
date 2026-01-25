@@ -1,8 +1,8 @@
-local S = minetest.get_translator("homedecor_roofing")
+local S = core.get_translator("homedecor_roofing")
 
 homedecor_roofing = {}
 
-minetest.register_node(":homedecor:skylight", {
+core.register_node(":homedecor:skylight", {
 	description = S("Glass Skylight"),
 	drawtype = "raillike",
 	tiles = { homedecor.textures.glass.pane },
@@ -19,7 +19,7 @@ minetest.register_node(":homedecor:skylight", {
 	collision_box = homedecor.nodebox.slab_y(0.1),
 })
 
-minetest.register_node(":homedecor:skylight_frosted", {
+core.register_node(":homedecor:skylight_frosted", {
 	description = S("Glass Skylight Frosted"),
 	drawtype = "raillike",
 	tiles = { "homedecor_skylight_frosted.png" },
@@ -38,7 +38,7 @@ minetest.register_node(":homedecor:skylight_frosted", {
 })
 
 for s, s_loc in pairs({ ["asphalt"] = S("asphalt"), ["terracotta"] = S("terracotta"), ["wood"] = S("wood") }) do
-	minetest.register_node(":homedecor:shingles_"..s, {
+	core.register_node(":homedecor:shingles_"..s, {
 		description = S("Shingles (@1)", s_loc),
 		drawtype = "raillike",
 		tiles = { "homedecor_shingles_"..s..".png" },
@@ -97,7 +97,7 @@ homedecor_roofing.register_outer_corner = function(modname, subname, groups, slo
 	end
 	groups.axey=5
 
-	minetest.register_node(":"..modname..":shingle_outer_corner_" .. subname, {
+	core.register_node(":"..modname..":shingle_outer_corner_" .. subname, {
 		description = S("@1 (outer corner)", description),
 		drawtype = "mesh",
 		mesh = "homedecor_slope_outer_corner.obj",
@@ -109,7 +109,7 @@ homedecor_roofing.register_outer_corner = function(modname, subname, groups, slo
 		groups = groups,
 		is_ground_content = false,
 		_mcl_hardness=1.6,
-		on_place = minetest.rotate_node,
+		on_place = core.rotate_node,
 		_sound_def = {
 			key = "node_sound_wood_defaults",
 		},
@@ -124,7 +124,7 @@ homedecor_roofing.register_inner_corner = function(modname, subname, groups, slo
 	end
 	groups.axey=5
 
-	minetest.register_node(":"..modname..":shingle_inner_corner_" .. subname, {
+	core.register_node(":"..modname..":shingle_inner_corner_" .. subname, {
 		description = S("@1 (inner corner)", description),
 		drawtype = "mesh",
 		mesh = "homedecor_slope_inner_corner.obj",
@@ -135,7 +135,7 @@ homedecor_roofing.register_inner_corner = function(modname, subname, groups, slo
 		groups = groups,
 		is_ground_content = false,
 		_mcl_hardness=1.6,
-		on_place = minetest.rotate_node,
+		on_place = core.rotate_node,
 		_sound_def = {
 			key = "node_sound_wood_defaults",
 		},
@@ -150,7 +150,7 @@ homedecor_roofing.register_slope = function(modname, subname, recipeitem, groups
 	end
 	groups.axey=5
 
-	minetest.register_node(":"..modname..":shingle_side_" .. subname, {
+	core.register_node(":"..modname..":shingle_side_" .. subname, {
 		description = description,
 		drawtype = "mesh",
 		mesh = "homedecor_slope.obj",
@@ -163,7 +163,7 @@ homedecor_roofing.register_slope = function(modname, subname, recipeitem, groups
 		groups = groups,
 		is_ground_content = false,
 		_mcl_hardness=1.6,
-		on_place = minetest.rotate_node,
+		on_place = core.rotate_node,
 		_sound_def = {
 			key = "node_sound_wood_defaults",
 		},
@@ -171,14 +171,14 @@ homedecor_roofing.register_slope = function(modname, subname, recipeitem, groups
 
 	-- convert between flat shingles and slopes
 
-	minetest.register_craft({
+	core.register_craft({
 		output = modname..":shingle_side_"..subname.." 3",
 		recipe = {
 			{recipeitem, recipeitem, recipeitem}
 		}
 	})
 
-	minetest.register_craft({
+	core.register_craft({
 		output = recipeitem.." 3",
 		recipe = {
 			{modname..":shingle_side_"..subname, modname..":shingle_side_"..subname, modname..":shingle_side_"..subname},
@@ -187,7 +187,7 @@ homedecor_roofing.register_slope = function(modname, subname, recipeitem, groups
 
 	-- craft outer corners
 
-	minetest.register_craft({
+	core.register_craft({
 		output = modname..":shingle_outer_corner_"..subname.." 3",
 		recipe = {
 			{ "", recipeitem, "" },
@@ -195,7 +195,7 @@ homedecor_roofing.register_slope = function(modname, subname, recipeitem, groups
 		}
 	})
 
-	minetest.register_craft({
+	core.register_craft({
 		output = modname..":shingle_outer_corner_"..subname.." 3",
 		recipe = {
 			{ "", modname..":shingle_side_"..subname, "" },
@@ -205,7 +205,7 @@ homedecor_roofing.register_slope = function(modname, subname, recipeitem, groups
 
 	-- craft inner corners
 
-	minetest.register_craft({
+	core.register_craft({
 		output = modname..":shingle_inner_corner_"..subname.." 3",
 		recipe = {
 			{recipeitem, recipeitem},
@@ -213,7 +213,7 @@ homedecor_roofing.register_slope = function(modname, subname, recipeitem, groups
 		}
 	})
 
-	minetest.register_craft({
+	core.register_craft({
 		output = modname..":shingle_inner_corner_"..subname.." 3",
 		recipe = {
 			{modname..":shingle_side_"..subname, modname..":shingle_side_"..subname},
@@ -222,60 +222,60 @@ homedecor_roofing.register_slope = function(modname, subname, recipeitem, groups
 	})
 	-- convert between flat shingles and inner/outer corners
 
-	minetest.register_craft({
+	core.register_craft({
 		type = "shapeless",
 		output = recipeitem.." 1",
 		recipe = { modname..":shingle_outer_corner_"..subname }
 	})
 
-	minetest.register_craft({
+	core.register_craft({
 		type = "shapeless",
 		output = recipeitem.." 1",
 		recipe = { modname..":shingle_inner_corner_"..subname }
 	})
 end
 
-minetest.register_craft( {
+core.register_craft( {
 	output = "homedecor:shingle_side_glass",
 	recipe = {
 		{ "homedecor:skylight", "homedecor:skylight", "homedecor:skylight" }
 	}
 })
 
-minetest.register_craft( {
+core.register_craft( {
 	output = "homedecor:roof_tile_terracotta 8",
 	recipe = {
 		{ "homedecor:shingle_outer_corner_terracotta", "homedecor:shingle_outer_corner_terracotta" }
 	}
 })
 
-minetest.register_craft( {
+core.register_craft( {
 	output = "homedecor:roof_tile_terracotta 8",
 	recipe = {
 		{ "homedecor:shingle_inner_corner_terracotta", "homedecor:shingle_inner_corner_terracotta" }
 	}
 })
 
-minetest.register_craft( {
+core.register_craft( {
 	output = "homedecor:roof_tile_terracotta 8",
 	recipe = {
 		{ "homedecor:shingle_side_terracotta", "homedecor:shingle_side_terracotta" }
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
 	type = "fuel",
 	recipe = "homedecor:shingle_inner_corner_wood",
 	burntime = 30,
 })
 
-minetest.register_craft({
+core.register_craft({
 	type = "fuel",
 	recipe = "homedecor:shingle_outer_corner_wood",
 	burntime = 30,
 })
 
-minetest.register_craft({
+core.register_craft({
 	type = "fuel",
 	recipe = "homedecor:shingle_side_wood",
 	burntime = 30,
@@ -353,7 +353,7 @@ homedecor.register("chimney", {
 })
 
 -- crafting
-minetest.register_craft({
+core.register_craft({
 	output = "homedecor:chimney 2",
 	recipe = {
 		{ "default:clay_brick", "", "default:clay_brick" },
@@ -362,7 +362,7 @@ minetest.register_craft({
 	},
 })
 
-minetest.register_craft( {
+core.register_craft( {
         output = "homedecor:skylight 4",
         recipe = {
 		{ "homedecor:glass_table_large", "homedecor:glass_table_large" },
@@ -370,7 +370,7 @@ minetest.register_craft( {
         },
 })
 
-minetest.register_craft( {
+core.register_craft( {
 	type = "shapeless",
         output = "homedecor:skylight_frosted",
         recipe = {
@@ -379,7 +379,7 @@ minetest.register_craft( {
 		},
 })
 
-minetest.register_craft({
+core.register_craft({
         type = "cooking",
         output = "homedecor:skylight",
         recipe = "homedecor:skylight_frosted",
@@ -387,7 +387,7 @@ minetest.register_craft({
 
 -- recycling
 
-minetest.register_craft({
+core.register_craft({
         type = "shapeless",
         output = "vessels:glass_fragments 2",
         recipe = {

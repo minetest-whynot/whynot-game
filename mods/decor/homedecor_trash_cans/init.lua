@@ -1,4 +1,4 @@
-local S = minetest.get_translator("homedecor_trash_cans")
+local S = core.get_translator("homedecor_trash_cans")
 
 local tg_cbox = {
 	type = "fixed",
@@ -17,7 +17,7 @@ homedecor.register("trash_can_green", {
 	selection_box = tg_cbox,
 	collision_box = tg_cbox,
 	on_punch = function(pos, node, puncher, pointed_thing)
-		minetest.set_node(pos, {name = "homedecor:trash_can_green_open", param2 = node.param2})
+		core.set_node(pos, {name = "homedecor:trash_can_green_open", param2 = node.param2})
 	end,
 	crafts = {
 		{
@@ -39,7 +39,7 @@ homedecor.register("trash_can_green_open", {
 	collision_box = tg_cbox,
 	drop = "homedecor:trash_can_green",
 	on_punch = function(pos, node, puncher, pointed_thing)
-		minetest.set_node(pos, {name = "homedecor:trash_can_green", param2 = node.param2})
+		core.set_node(pos, {name = "homedecor:trash_can_green", param2 = node.param2})
 	end,
 	infotext=S("Trash Can"),
 	inventory= {
@@ -52,9 +52,9 @@ homedecor.register("trash_can_green_open", {
 	},
 	on_receive_fields = function(pos, formname, fields, sender)
 		if fields.empty then
-			local meta = minetest.get_meta(pos)
+			local meta = core.get_meta(pos)
 			meta:get_inventory():set_list("main", {})
-			minetest.sound_play("homedecor_trash_all", {to_player=sender:get_player_name(), gain = 1.0})
+			core.sound_play("homedecor_trash_all", {to_player=sender:get_player_name(), gain = 1.0})
 		end
 	end
 })

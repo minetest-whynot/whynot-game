@@ -1,6 +1,6 @@
 -- This file supplies Kitchen stuff like refrigerators, sinks, etc.
 
-local S = minetest.get_translator("homedecor_kitchen")
+local S = core.get_translator("homedecor_kitchen")
 
 -- steel-textured fridge
 homedecor.register("refrigerator_steel", {
@@ -20,7 +20,7 @@ homedecor.register("refrigerator_steel", {
 		size=50,
 		lockable=true,
 	},
-	on_rotate = minetest.get_modpath("screwdriver") and screwdriver.rotate_simple or nil,
+	on_rotate = core.get_modpath("screwdriver") and screwdriver.rotate_simple or nil,
 })
 
 -- white, enameled fridge
@@ -41,21 +41,21 @@ homedecor.register("refrigerator_white", {
 		size=50,
 		lockable=true,
 	},
-	on_rotate = minetest.get_modpath("screwdriver") and screwdriver.rotate_simple or nil,
+	on_rotate = core.get_modpath("screwdriver") and screwdriver.rotate_simple or nil,
 })
 
-minetest.register_alias("homedecor:refrigerator_white_bottom", "homedecor:refrigerator_white")
-minetest.register_alias("homedecor:refrigerator_white_top", "air")
+core.register_alias("homedecor:refrigerator_white_bottom", "homedecor:refrigerator_white")
+core.register_alias("homedecor:refrigerator_white_top", "air")
 
-minetest.register_alias("homedecor:refrigerator_steel_bottom", "homedecor:refrigerator_steel")
-minetest.register_alias("homedecor:refrigerator_steel_top", "air")
+core.register_alias("homedecor:refrigerator_steel_bottom", "homedecor:refrigerator_steel")
+core.register_alias("homedecor:refrigerator_steel_top", "air")
 
-minetest.register_alias("homedecor:refrigerator_white_bottom_locked", "homedecor:refrigerator_white_locked")
-minetest.register_alias("homedecor:refrigerator_white_top_locked", "air")
-minetest.register_alias("homedecor:refrigerator_locked", "homedecor:refrigerator_white_locked")
+core.register_alias("homedecor:refrigerator_white_bottom_locked", "homedecor:refrigerator_white_locked")
+core.register_alias("homedecor:refrigerator_white_top_locked", "air")
+core.register_alias("homedecor:refrigerator_locked", "homedecor:refrigerator_white_locked")
 
-minetest.register_alias("homedecor:refrigerator_steel_bottom_locked", "homedecor:refrigerator_steel_locked")
-minetest.register_alias("homedecor:refrigerator_steel_top_locked", "air")
+core.register_alias("homedecor:refrigerator_steel_bottom_locked", "homedecor:refrigerator_steel_locked")
+core.register_alias("homedecor:refrigerator_steel_top_locked", "air")
 
 -- kitchen "furnaces"
 homedecor.register_furnace("oven", {
@@ -476,7 +476,7 @@ homedecor.register("copper_pans", {
 	groups = { snappy=3, dig_stone=1 },
 	selection_box = cp_cbox,
 	walkable = false,
-	on_place = minetest.rotate_node
+	on_place = core.rotate_node
 })
 
 local kf_cbox = {
@@ -492,9 +492,9 @@ homedecor.register("kitchen_faucet", {
 	groups = {snappy=3, dig_stone=1},
 	selection_box = kf_cbox,
 	walkable = false,
-	on_rotate = minetest.get_modpath("screwdriver") and screwdriver.disallow or nil,
+	on_rotate = core.get_modpath("screwdriver") and screwdriver.disallow or nil,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
-		local below = minetest.get_node_or_nil({x=pos.x, y=pos.y-1, z=pos.z})
+		local below = core.get_node_or_nil({x=pos.x, y=pos.y-1, z=pos.z})
 		if below and string.find(below.name, "homedecor:.*sink") then
 			local particledef = {
 				outlet      = { x = 0, y = -0.19, z = 0.13 },
@@ -529,7 +529,7 @@ homedecor.register("paper_towel", {
 -- crafting
 
 
-minetest.register_craft({
+core.register_craft({
         output = "homedecor:oven_steel",
         recipe = {
 		{"basic_materials:heating_element", homedecor.materials.steel_ingot, "basic_materials:heating_element", },
@@ -538,7 +538,7 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
         output = "homedecor:oven_steel",
         recipe = {
 		{"basic_materials:heating_element", homedecor.materials.steel_ingot, "basic_materials:heating_element", },
@@ -547,7 +547,7 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
 	type = "shapeless",
 	output = "homedecor:oven",
 	recipe = {
@@ -557,7 +557,7 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
         output = "homedecor:microwave_oven 2",
         recipe = {
 		{homedecor.materials.steel_ingot, homedecor.materials.steel_ingot, homedecor.materials.steel_ingot, },
@@ -566,7 +566,7 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
         output = "homedecor:microwave_oven 2",
         recipe = {
 		{homedecor.materials.steel_ingot, homedecor.materials.steel_ingot, homedecor.materials.steel_ingot, },
@@ -575,7 +575,7 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "homedecor:refrigerator_steel",
 	recipe = {
 		{homedecor.materials.steel_ingot, "homedecor:glowlight_small_cube", homedecor.materials.steel_ingot, },
@@ -584,7 +584,7 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
 	type = "shapeless",
 	output = "homedecor:refrigerator_white",
 	recipe = {
@@ -595,7 +595,7 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
         output = "homedecor:kitchen_cabinet_colorable",
         recipe = {
 		{"group:wood", "group:stick", "group:wood", },
@@ -604,7 +604,7 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "homedecor:kitchen_cabinet_colorable_with_drawers",
 	recipe = {
 		{"homedecor:kitchen_cabinet_colorable", },
@@ -615,7 +615,7 @@ minetest.register_craft({
 local cabinet_types = { "homedecor:kitchen_cabinet_colorable", "homedecor:kitchen_cabinet_colorable_with_drawers" }
 
 for _, cabinet in ipairs(cabinet_types) do
-	minetest.register_craft({
+	core.register_craft({
 		output = cabinet.."_steel",
 		recipe = {
 			{homedecor.materials.steel_ingot, homedecor.materials.steel_ingot, homedecor.materials.steel_ingot},
@@ -623,7 +623,7 @@ for _, cabinet in ipairs(cabinet_types) do
 		}
 	})
 
-	minetest.register_craft({
+	core.register_craft({
 		output = cabinet.."_steel",
 		recipe = {
 			{"moreblocks:slab_steelblock_1"},
@@ -631,7 +631,7 @@ for _, cabinet in ipairs(cabinet_types) do
 		}
 	})
 
-	minetest.register_craft({
+	core.register_craft({
 		output = cabinet.."_marble",
 		recipe = {
 			{"building_blocks:slab_marble"},
@@ -639,7 +639,7 @@ for _, cabinet in ipairs(cabinet_types) do
 		}
 	})
 
-	minetest.register_craft({
+	core.register_craft({
 		output = cabinet.."_marble",
 		recipe = {
 			{"technic:slab_marble_1"},
@@ -647,7 +647,7 @@ for _, cabinet in ipairs(cabinet_types) do
 		}
 	})
 
-	minetest.register_craft({
+	core.register_craft({
 		output = cabinet.."_granite",
 		recipe = {
 			{"technic:slab_granite_1"},
@@ -656,13 +656,13 @@ for _, cabinet in ipairs(cabinet_types) do
 	})
 end
 
-minetest.register_craft({
+core.register_craft({
 	type = "shapeless",
         output = "homedecor:kitchen_cabinet_colorable_half 2",
         recipe = { "homedecor:kitchen_cabinet_colorable" }
 })
 
-minetest.register_craft({
+core.register_craft({
         output = "homedecor:kitchen_cabinet_colorable_with_sink",
         recipe = {
 		{"group:wood", homedecor.materials.steel_ingot, "group:wood", },
@@ -671,7 +671,7 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft( {
+core.register_craft( {
     output = "homedecor:dishwasher",
     recipe = {
 		{ "basic_materials:ic",  "building_blocks:slab_grate_1",    homedecor.materials.steel_ingot,  },
@@ -680,7 +680,7 @@ minetest.register_craft( {
     },
 })
 
-minetest.register_craft( {
+core.register_craft( {
     output = "homedecor:dishwasher",
     recipe = {
 		{ "basic_materials:ic", "homedecor:fence_chainlink", homedecor.materials.steel_ingot,  },
@@ -689,7 +689,7 @@ minetest.register_craft( {
     },
 })
 
-minetest.register_craft( {
+core.register_craft( {
     output = "homedecor:dishwasher_wood",
     recipe = {
 		{ "stairs:slab_wood" },
@@ -697,7 +697,7 @@ minetest.register_craft( {
     },
 })
 
-minetest.register_craft( {
+core.register_craft( {
     output = "homedecor:dishwasher_wood",
     recipe = {
 		{ "moreblocks:slab_wood" },
@@ -705,7 +705,7 @@ minetest.register_craft( {
     },
 })
 
-minetest.register_craft( {
+core.register_craft( {
     output = "homedecor:dishwasher_wood",
     recipe = {
 		{ "moreblocks:slab_wood_1" },
@@ -713,7 +713,7 @@ minetest.register_craft( {
     },
 })
 
-minetest.register_craft( {
+core.register_craft( {
     output = "homedecor:dishwasher_steel",
     recipe = {
 		{ homedecor.materials.steel_ingot, homedecor.materials.steel_ingot, homedecor.materials.steel_ingot },
@@ -721,7 +721,7 @@ minetest.register_craft( {
     },
 })
 
-minetest.register_craft( {
+core.register_craft( {
     output = "homedecor:dishwasher_steel",
     recipe = {
 		{ "moreblocks:slab_steelblock_1" },
@@ -729,7 +729,7 @@ minetest.register_craft( {
     },
 })
 
-minetest.register_craft( {
+core.register_craft( {
     output = "homedecor:dishwasher_marble",
     recipe = {
 		{ "building_blocks:slab_marble" },
@@ -737,7 +737,7 @@ minetest.register_craft( {
     },
 })
 
-minetest.register_craft( {
+core.register_craft( {
     output = "homedecor:dishwasher_marble",
     recipe = {
 		{ "technic:slab_marble_1" },
@@ -745,7 +745,7 @@ minetest.register_craft( {
     },
 })
 
-minetest.register_craft( {
+core.register_craft( {
     output = "homedecor:dishwasher_granite",
     recipe = {
 		{ "technic:slab_granite_1" },
@@ -753,7 +753,7 @@ minetest.register_craft( {
     },
 })
 
-minetest.register_craft( {
+core.register_craft( {
         output = "homedecor:kitchen_faucet",
         recipe = {
 			{ "", homedecor.materials.steel_ingot },
@@ -762,7 +762,7 @@ minetest.register_craft( {
         },
 })
 
-minetest.register_craft( {
+core.register_craft( {
         output = "homedecor:kitchen_faucet",
         recipe = {
 			{ homedecor.materials.steel_ingot,"" },
@@ -771,7 +771,7 @@ minetest.register_craft( {
         },
 })
 
-minetest.register_craft( {
+core.register_craft( {
         output = "homedecor:cutlery_set",
         recipe = {
 			{ "", "vessels:drinking_glass", "" },
@@ -779,7 +779,7 @@ minetest.register_craft( {
         },
 })
 
-minetest.register_craft( {
+core.register_craft( {
         output = "homedecor:cutlery_set",
         recipe = {
 			{ "", "vessels:drinking_glass", "" },
@@ -787,7 +787,7 @@ minetest.register_craft( {
         },
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "homedecor:copper_pans",
 	recipe = {
 		{ "basic_materials:copper_strip","","basic_materials:copper_strip" },
@@ -796,14 +796,14 @@ minetest.register_craft({
 	},
 })
 
-minetest.register_craft({
+core.register_craft({
     output = "homedecor:paper_towel",
     recipe = {
 		{ "homedecor:toilet_paper", "homedecor:toilet_paper" }
     },
 })
 
-minetest.register_lbm({
+core.register_lbm({
 	name = ":homedecor:convert_kitchen_cabinets",
 	label = "Convert homedecor kitchen cabinets to use [color]wallmounted",
 	run_at_every_load = false,
@@ -825,6 +825,6 @@ minetest.register_lbm({
 			new_fdir = 5
 		end
 
-		minetest.swap_node(pos, { name = newname, param2 = new_fdir })
+		core.swap_node(pos, { name = newname, param2 = new_fdir })
 	end
 })

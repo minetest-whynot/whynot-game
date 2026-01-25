@@ -1,4 +1,4 @@
-local S = minetest.get_translator("homedecor_pictures_and_paintings")
+local S = core.get_translator("homedecor_pictures_and_paintings")
 
 local wood_tex = homedecor.textures.wood.apple.planks
 
@@ -55,14 +55,14 @@ end
 
 -- crafting
 
-minetest.register_craftitem(":homedecor:blank_canvas", {
+core.register_craftitem(":homedecor:blank_canvas", {
 	description = S("Blank Canvas"),
 	inventory_image = "homedecor_blank_canvas.png"
 })
 
 -- paintings
 
-minetest.register_craft({
+core.register_craft({
     output = "homedecor:blank_canvas",
     recipe = {
 		{ "", "group:stick", "" },
@@ -142,7 +142,7 @@ for i,recipe in pairs(painting_patterns) do
 	local item5 = homedecor.materials["dye_"..recipe[2][2]]
 	local item6 = homedecor.materials["dye_"..recipe[2][3]]
 
-	minetest.register_craft({
+	core.register_craft({
 		output = "homedecor:painting_"..i,
 		recipe = {
 			{ item1, item2, item3 },
@@ -158,7 +158,7 @@ local picture_dyes = {
 }
 
 for i in ipairs(picture_dyes) do
-	minetest.register_craft({
+	core.register_craft({
 		output = "homedecor:picture_frame"..i,
 		recipe = {
 			{ homedecor.materials[picture_dyes[i][1]], homedecor.materials[picture_dyes[i][2]] },
@@ -172,7 +172,7 @@ for i = 2,20 do
 	table.insert(numbers, i)
 end
 
-if minetest.get_modpath("i3") then
+if core.get_modpath("i3") then
 	i3.compress("homedecor:painting_1", {
 		replace = "1",
 		by = numbers

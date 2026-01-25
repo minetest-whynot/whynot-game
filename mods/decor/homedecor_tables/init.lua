@@ -1,4 +1,4 @@
-local modpath = minetest.get_modpath("homedecor_tables")
+local modpath = core.get_modpath("homedecor_tables")
 
 dofile(modpath.."/misc.lua")
 dofile(modpath.."/endtable.lua")
