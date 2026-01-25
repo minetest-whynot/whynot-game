@@ -25,36 +25,36 @@ SOFTWARE.
 local get_wind
 
 if core.get_modpath("climate_api") then
-	get_wind = function(pos, multiplier)
+    get_wind = function(pos, multiplier)
         multiplier = multiplier or 0.1
-		local wind = climate_api.environment.get_wind({x=0,y=0,z=0})
-		return vector.multiply(wind, multiplier)
-	end
+        local wind = climate_api.environment.get_wind({x=0,y=0,z=0})
+        return vector.multiply(wind, multiplier)
+    end
 
 else
-	local yaw = math.random()*math.pi*2-math.pi
+    local yaw = math.random()*math.pi*2-math.pi
     local speed = math.random()*4.0
-	airutils.wind={}
-	airutils.wind.wind = vector.multiply(core.yaw_to_dir(yaw),speed)
-	airutils.wind.timer = 0
-	airutils.wind.ttime = math.random()*5*60+1*60
+    airutils.wind={}
+    airutils.wind.wind = vector.multiply(core.yaw_to_dir(yaw),speed)
+    airutils.wind.timer = 0
+    airutils.wind.ttime = math.random()*5*60+1*60
 
-	get_wind = function(pos, multiplier)
+    get_wind = function(pos, multiplier)
         local retVal = vector.multiply(airutils.wind.wind, multiplier)
-		return retVal
-	end
+        return retVal
+    end
 
-	core.register_globalstep(
-	function(dtime)
-		airutils.wind.timer=airutils.wind.timer+dtime
-		if airutils.wind.timer >= airutils.wind.ttime then
-			local yaw = core.dir_to_yaw(airutils.wind.wind)
-			yaw = yaw+math.random()-0.5
+    core.register_globalstep(
+    function(dtime)
+        airutils.wind.timer=airutils.wind.timer+dtime
+        if airutils.wind.timer >= airutils.wind.ttime then
+            local yaw = core.dir_to_yaw(airutils.wind.wind)
+            yaw = yaw+math.random()-0.5
             local speed = math.random()*4.0
-			airutils.wind.wind = vector.multiply(minetest.yaw_to_dir(yaw),speed)
-			airutils.wind.ttime = airutils.wind.timer+math.random()*5*60+1*60
-		end
-	end)
+            airutils.wind.wind = vector.multiply(minetest.yaw_to_dir(yaw),speed)
+            airutils.wind.ttime = airutils.wind.timer+math.random()*5*60+1*60
+        end
+    end)
 end
 
 return get_wind

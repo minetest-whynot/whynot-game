@@ -14,17 +14,17 @@ local function water_particle(pos, accell)
     if airutils.splash_texture == nil then return end
     if airutils.splash_texture == "" then return end
 
-	core.add_particle({
-		pos = pos,
-		velocity = {x = 0, y = 0, z = 0},
-		acceleration = accell, --{x = 0, y = 0, z = 0},
-		expirationtime = 2.0,
-		size = 4.8,
-		collisiondetection = false,
-		collision_removal = false,
-		vertical = false,
-		texture = airutils.splash_texture,
-	})
+    core.add_particle({
+        pos = pos,
+        velocity = {x = 0, y = 0, z = 0},
+        acceleration = accell, --{x = 0, y = 0, z = 0},
+        expirationtime = 2.0,
+        size = 4.8,
+        collisiondetection = false,
+        collision_removal = false,
+        vertical = false,
+        texture = airutils.splash_texture,
+    })
 end
 
 function airutils.add_splash(pos, yaw, x_pos)

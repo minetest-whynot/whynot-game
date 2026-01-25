@@ -39,9 +39,9 @@ function airutils.control(self, dtime, hull_direction, longit_speed, longit_drag
     local stop = false
     local ctrl = nil
 
-	-- player control
-	if player then
-		ctrl = player:get_player_control()
+    -- player control
+    if player then
+        ctrl = player:get_player_control()
 
         if ctrl.aux1 and self._last_time_command > 0.5 then
             self._last_time_command = 0
@@ -96,14 +96,14 @@ function airutils.control(self, dtime, hull_direction, longit_speed, longit_drag
             end
             self._acceleration = engineacc
         else
-	        local paddleacc = 0
-	        if longit_speed < 1.0 then
+            local paddleacc = 0
+            if longit_speed < 1.0 then
                 if ctrl.jump then paddleacc = 0.5 end
             end
-	        if longit_speed > -1.0 then
+            if longit_speed > -1.0 then
                 if ctrl.sneak then paddleacc = -0.5 end
-	        end
-	        self._acceleration = paddleacc
+            end
+            self._acceleration = paddleacc
         end
 
         local hull_acc = vector.multiply(hull_direction,self._acceleration)
@@ -118,10 +118,10 @@ function airutils.control(self, dtime, hull_direction, longit_speed, longit_drag
             airutils.set_pitch(self, pitch_cmd, dtime)
         end
 
-		-- yaw
+        -- yaw
         local yaw_cmd = 0
         if self._yaw_by_mouse == true then
-	        local rot_y = math.deg(player:get_look_horizontal())
+            local rot_y = math.deg(player:get_look_horizontal())
             airutils.set_yaw_by_mouse(self, rot_y)
         else
             if ctrl.right then yaw_cmd = 1 elseif ctrl.left then yaw_cmd = -1 end
@@ -145,7 +145,7 @@ function airutils.control(self, dtime, hull_direction, longit_speed, longit_drag
                 self._yaw_by_mouse = true
             end
         end
-	end
+    end
 
     if longit_speed > 0 then
         if ctrl then
@@ -166,7 +166,7 @@ end
 function airutils.set_pitch_by_mouse(self, player)
     local vehicle_rot = self.object:get_rotation()
     local rot_x = player:get_look_vertical()-vehicle_rot.x
-	self._elevator_angle = -(rot_x * self._elevator_limit)*(self._pitch_intensity*10)
+    self._elevator_angle = -(rot_x * self._elevator_limit)*(self._pitch_intensity*10)
     if self._elevator_angle > self._elevator_limit then self._elevator_angle = self._elevator_limit end
     if self._elevator_angle < -self._elevator_limit then self._elevator_angle = -self._elevator_limit end
 end
@@ -174,25 +174,25 @@ end
 function airutils.set_pitch(self, dir, dtime)
     local pitch_factor = self._pitch_intensity or 0.6
     local multiplier = pitch_factor*(dtime/airutils.ideal_step)
-	if dir == -1 then
+    if dir == -1 then
         --core.chat_send_all("cabrando")
-		self._elevator_angle = math.max(self._elevator_angle-multiplier,-self._elevator_limit)
-	elseif dir == 1 then
+        self._elevator_angle = math.max(self._elevator_angle-multiplier,-self._elevator_limit)
+    elseif dir == 1 then
         --core.chat_send_all("picando")
-		self._elevator_angle = math.min(self._elevator_angle+multiplier,self._elevator_limit)
-	end
+        self._elevator_angle = math.min(self._elevator_angle+multiplier,self._elevator_limit)
+    end
 end
 
 function airutils.set_autopilot_pitch(self, dir, dtime)
     local pitch_factor = 0.05
     local multiplier = pitch_factor*(dtime/airutils.ideal_step)
-	if dir == -1 then
+    if dir == -1 then
         --core.chat_send_all("cabrando")
-		self._elevator_angle = math.max(self._elevator_angle-multiplier,-self._elevator_limit)
-	elseif dir == 1 then
+        self._elevator_angle = math.max(self._elevator_angle-multiplier,-self._elevator_limit)
+    elseif dir == 1 then
         --core.chat_send_all("picando")
-		self._elevator_angle = math.min(self._elevator_angle+multiplier,self._elevator_limit)
-	end
+        self._elevator_angle = math.min(self._elevator_angle+multiplier,self._elevator_limit)
+    end
 end
 
 function airutils.set_yaw_by_mouse(self, dir)
@@ -212,16 +212,16 @@ function airutils.set_yaw_by_mouse(self, dir)
     elseif command > 90 then command = 90 end
     --core.chat_send_all("rotation y: "..rot_y.." - dir: "..dir.." - command: "..command)
 
-	self._rudder_angle = (-command * self._rudder_limit)/90
+    self._rudder_angle = (-command * self._rudder_limit)/90
 end
 
 function airutils.set_yaw(self, dir, dtime)
     local yaw_factor = self._yaw_intensity or 25
-	if dir == 1 then
-		self._rudder_angle = math.max(self._rudder_angle-(yaw_factor*dtime),-self._rudder_limit)
-	elseif dir == -1 then
-		self._rudder_angle = math.min(self._rudder_angle+(yaw_factor*dtime),self._rudder_limit)
-	end
+    if dir == 1 then
+        self._rudder_angle = math.max(self._rudder_angle-(yaw_factor*dtime),-self._rudder_limit)
+    elseif dir == -1 then
+        self._rudder_angle = math.min(self._rudder_angle+(yaw_factor*dtime),self._rudder_limit)
+    end
 end
 
 function airutils.rudder_auto_correction(self, longit_speed, dtime)
@@ -299,7 +299,7 @@ function airutils.autopilot(self, dtime, hull_direction, longit_speed, accel, cu
         airutils.set_autopilot_pitch(self, 1, dtime)
     end]]--
 
-	-- yaw
+    -- yaw
     airutils.set_yaw(self, 0, dtime)
 
     if longit_speed > (self._min_speed or 0) then

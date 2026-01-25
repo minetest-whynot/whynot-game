@@ -8,19 +8,19 @@ function airutils.get_xz_from_hipotenuse(orig_x, orig_z, yaw, distance)
 end
 
 core.register_node("airutils:light", {
-	drawtype = "airlike",
-	--tile_images = {"airutils_light.png"},
-	inventory_image = core.inventorycube("airutils_light.png"),
-	paramtype = "light",
-	walkable = false,
-	is_ground_content = true,
-	light_propagates = true,
-	sunlight_propagates = true,
-	light_source = 14,
-	selection_box = {
-		type = "fixed",
-		fixed = {0, 0, 0, 0, 0, 0},
-	},
+    drawtype = "airlike",
+    --tile_images = {"airutils_light.png"},
+    inventory_image = core.inventorycube("airutils_light.png"),
+    paramtype = "light",
+    walkable = false,
+    is_ground_content = true,
+    light_propagates = true,
+    sunlight_propagates = true,
+    light_source = 14,
+    selection_box = {
+        type = "fixed",
+        fixed = {0, 0, 0, 0, 0, 0},
+    },
 })
 
 function airutils.remove_light(self)
@@ -62,11 +62,11 @@ function airutils.put_light(self)
     local lx, lz = airutils.get_xz_from_hipotenuse(pos.x, pos.z, yaw, 10)
     local light_pos = {x=lx, y=pos.y, z=lz}
 
-	local cast = core.raycast(pos, light_pos, false, false)
-	local thing = cast:next()
+    local cast = core.raycast(pos, light_pos, false, false)
+    local thing = cast:next()
     local was_set = false
-	while thing do
-		if thing.type == "node" then
+    while thing do
+        if thing.type == "node" then
             local ipos = thing.intersection_point
             if ipos then
                 was_set = airutils.swap_node(self, ipos)

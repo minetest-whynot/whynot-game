@@ -1,16 +1,16 @@
 local S = airutils.S
 
 local function check_protection(pos, name)
-	if core.is_protected(pos, name) then
-		core.log("action", name
-			.. " tried to place a Wind Indicator"
-			.. " at protected position "
-			.. core.pos_to_string(pos)
+    if core.is_protected(pos, name) then
+        core.log("action", name
+            .. " tried to place a Wind Indicator"
+            .. " at protected position "
+            .. core.pos_to_string(pos)
         )
-		core.record_protection_violation(pos, name)
-		return true
-	end
-	return false
+        core.record_protection_violation(pos, name)
+        return true
+    end
+    return false
 end
 
 function airutils.WindDplace(player,pos)
@@ -18,30 +18,30 @@ function airutils.WindDplace(player,pos)
         return
     end
 
-	local dir = core.dir_to_facedir(vector.new())
-	local pos1 = vector.new(pos)
+    local dir = core.dir_to_facedir(vector.new())
+    local pos1 = vector.new(pos)
 
     local player_name = player:get_player_name()
-	if check_protection(pos, player_name) then
-		return
-	end
+    if check_protection(pos, player_name) then
+        return
+    end
 
-	core.set_node(pos1, {name="airutils:wind", param2=dir})
-	local meta = core.get_meta(pos)
-	meta:set_string("infotext", S("Wind Indicator") .. "\r" .. S("Owned by: @1",player_name))
-	meta:set_string("owner", player_name)
-	meta:set_string("dont_destroy", "false")
-	return true
+    core.set_node(pos1, {name="airutils:wind", param2=dir})
+    local meta = core.get_meta(pos)
+    meta:set_string("infotext", S("Wind Indicator") .. "\r" .. S("Owned by: @1",player_name))
+    meta:set_string("owner", player_name)
+    meta:set_string("dont_destroy", "false")
+    return true
 end
 
 airutils.wind_collision_box = {
-	type = "fixed",
-	fixed={{-0.5,0,-0.5,0.5,5.0,0.5},},
+    type = "fixed",
+    fixed={{-0.5,0,-0.5,0.5,5.0,0.5},},
 }
 
 airutils.wind_selection_box = {
-	type = "fixed",
-	fixed={{-0.5,0,-0.5,0.5,5.0,0.5},},
+    type = "fixed",
+    fixed={{-0.5,0,-0.5,0.5,5.0,0.5},},
 }
 
 local function get_smooth(angle_initial, reference, last_ref, value)
@@ -53,23 +53,23 @@ local function get_smooth(angle_initial, reference, last_ref, value)
 end
 
 core.register_entity("airutils:wind_indicator",{
-											-- common props
-	physical = true,
-	stepheight = 0.5,
-	collide_with_objects = true,
-	collisionbox = {-0.5, 0, -0.5, 0.5, 5.0, 0.5},
-	visual = "mesh",
-	mesh = "airutils_wind.b3d",
-	textures = {"airutils_red.png", "airutils_black.png", "airutils_white.png", "airutils_metal.png"},
-	static_save = true,
-	makes_footstep_sound = false,
+                                            -- common props
+    physical = true,
+    stepheight = 0.5,
+    collide_with_objects = true,
+    collisionbox = {-0.5, 0, -0.5, 0.5, 5.0, 0.5},
+    visual = "mesh",
+    mesh = "airutils_wind.b3d",
+    textures = {"airutils_red.png", "airutils_black.png", "airutils_white.png", "airutils_metal.png"},
+    static_save = true,
+    makes_footstep_sound = false,
     _pos = nil,
 
     on_activate = function(self, staticdata, dtime_s)
         self._pos = self.object:get_pos()
     end,
 
-	on_step = function(self,dtime,colinfo)
+    on_step = function(self,dtime,colinfo)
         self.object:set_pos(self._pos)
 
         local wind = airutils.get_wind(self._pos, 1.0)
@@ -105,20 +105,20 @@ core.register_entity("airutils:wind_indicator",{
         self.object:set_bone_position("b_e", {x=0,y=3,z=0}, {x=0,y=0,z=b_e})
 
         --core.chat_send_all("Wind Direction: "..math.deg(wind_yaw))
-    end,	-- required
-	--on_activate = mobkit.actfunc,		-- required
-	--get_staticdata = mobkit.statfunc,
-	max_hp = 65535,
-	timeout = 0,
+    end,    -- required
+    --on_activate = mobkit.actfunc,        -- required
+    --get_staticdata = mobkit.statfunc,
+    max_hp = 65535,
+    timeout = 0,
     on_punch=function(self, puncher)
-		return
-	end,
+        return
+    end,
 
     on_rightclick = function(self, clicker)
         local wind = airutils.get_wind(self.object:get_pos(), 2.0)
         local wind_yaw = core.dir_to_yaw(wind)
         core.chat_send_player(clicker:get_player_name(),core.colorize('#00ff00', S(" >>> The wind direction now is @1", math.deg(wind_yaw))))
-		return
+        return
     end,
 })
 
@@ -126,68 +126,68 @@ core.register_entity("airutils:wind_indicator",{
 
 -- Wind Indicator node (default left)
 core.register_node("airutils:wind",{
-	description = S("Wind Direction Indicator"),
-	waving = 1,
-	tiles = {"default_steel_block.png","default_steel_block.png","default_steel_block.png","default_steel_block.png","default_steel_block.png","default_steel_block.png"},
-	paramtype = "light",
-	paramtype2 = "leveled",
-	is_ground_content = false,
-	groups = {cracky = 1, level = 2},
-	walkable = true,
-	selection_box = {
-		type = "fixed",
-		fixed = {
-				{-0.5, -0.5, -0.5, 0.5, 0.5, 0.5},
-				{-0.1,  0.5, -0.1, 0.1, 2.0, 0.1}
-		}
-	},
+    description = S("Wind Direction Indicator"),
+    waving = 1,
+    tiles = {"default_steel_block.png","default_steel_block.png","default_steel_block.png","default_steel_block.png","default_steel_block.png","default_steel_block.png"},
+    paramtype = "light",
+    paramtype2 = "leveled",
+    is_ground_content = false,
+    groups = {cracky = 1, level = 2},
+    walkable = true,
+    selection_box = {
+        type = "fixed",
+        fixed = {
+                {-0.5, -0.5, -0.5, 0.5, 0.5, 0.5},
+                {-0.1,  0.5, -0.1, 0.1, 2.0, 0.1}
+        }
+    },
 
-	node_dig_prediction = "default:dirt",
-	node_placement_prediction = "airutils:wind",
+    node_dig_prediction = "default:dirt",
+    node_placement_prediction = "airutils:wind",
 
-	on_place = function(itemstack, placer, pointed_thing)
+    on_place = function(itemstack, placer, pointed_thing)
 
-		local pos = pointed_thing.above
+        local pos = pointed_thing.above
 
-			local player_name = placer:get_player_name()
-
-
-			if not core.is_protected(pos, player_name) and not core.is_protected(pos, player_name) then
-				core.set_node(pos, {name = "airutils:wind",param2 = 1 })
-				core.add_entity({x=pos.x, y=pos.y, z=pos.z},"airutils:wind_indicator")
-				if not (creative and creative.is_enabled_for and creative.is_enabled_for(player_name)) then
-					itemstack:take_item()
-				end
-			else
-				core.chat_send_player(player_name, S("Node is protected"))
-				core.record_protection_violation(pos, player_name)
-			end
+            local player_name = placer:get_player_name()
 
 
-		return itemstack
-	end,
+            if not core.is_protected(pos, player_name) and not core.is_protected(pos, player_name) then
+                core.set_node(pos, {name = "airutils:wind",param2 = 1 })
+                core.add_entity({x=pos.x, y=pos.y, z=pos.z},"airutils:wind_indicator")
+                if not (creative and creative.is_enabled_for and creative.is_enabled_for(player_name)) then
+                    itemstack:take_item()
+                end
+            else
+                core.chat_send_player(player_name, S("Node is protected"))
+                core.record_protection_violation(pos, player_name)
+            end
 
-	on_destruct = function(pos)
-		local meta=core.get_meta(pos)
-		if meta then
-		    local cpos = {x=pos.x, y= pos.y, z=pos.z}
-		    local object = core.get_objects_inside_radius(cpos, 1)
-		    for _,obj in ipairs(object) do
-			    local entity = obj:get_luaentity()
-			    if entity and entity.name == "airutils:wind_indicator" then
-				    obj:remove()
-			    end
-		    end
-		end
-	end,
+
+        return itemstack
+    end,
+
+    on_destruct = function(pos)
+        local meta=core.get_meta(pos)
+        if meta then
+            local cpos = {x=pos.x, y= pos.y, z=pos.z}
+            local object = core.get_objects_inside_radius(cpos, 1)
+            for _,obj in ipairs(object) do
+                local entity = obj:get_luaentity()
+                if entity and entity.name == "airutils:wind_indicator" then
+                    obj:remove()
+                end
+            end
+        end
+    end,
 })
 
 -- WIND craft
 core.register_craft({
-	output = 'airutils:wind',
-	recipe = {
-		{'wool:white', 'wool:white', 'wool:white'},
-		{'wool:white', 'default:steel_ingot' , 'wool:white'},
-		{''             , 'default:steel_ingot' , ''},
-	}
+    output = 'airutils:wind',
+    recipe = {
+        {'wool:white', 'wool:white', 'wool:white'},
+        {'wool:white', 'default:steel_ingot' , 'wool:white'},
+        {''             , 'default:steel_ingot' , ''},
+    }
 })

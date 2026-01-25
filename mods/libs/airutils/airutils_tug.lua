@@ -8,7 +8,7 @@ function airutils.move_target(player, pointed_thing)
     --core.chat_send_all(dump(object))
     if object then
         local obj_pos = object:get_pos()
-	if not obj_pos then return end
+    if not obj_pos then return end
         local hip = math.sqrt(math.pow(obj_pos.x - pos.x,2)+math.pow(obj_pos.z - pos.z,2)) + 1
         local pos_x = math.sin(yaw) * -hip
         local pos_z = math.cos(yaw) * hip
@@ -42,13 +42,13 @@ function airutils.move_target(player, pointed_thing)
 end
 
 core.register_tool("airutils:tug", {
-	description = S("Tug tool for airport"),
-	inventory_image = "airutils_tug.png",
-	stack_max=1,
-	on_use = function(itemstack, player, pointed_thing)
-		if not player then
-			return
-		end
+    description = S("Tug tool for airport"),
+    inventory_image = "airutils_tug.png",
+    stack_max=1,
+    on_use = function(itemstack, player, pointed_thing)
+        if not player then
+            return
+        end
 
         local is_admin = core.check_player_privs(player, {server=true})
 
@@ -57,12 +57,12 @@ core.register_tool("airutils:tug", {
 
         --[[if areas then
             if not areas:canInteract(pos, pname) then
-		        local owners = areas:getNodeOwners(pos)
-		        core.chat_send_player(pname,
-			        S("@1 is protected by @2.",
-				        core.pos_to_string(pos),
-				        table.concat(owners, ", ")))
-	        else
+                local owners = areas:getNodeOwners(pos)
+                core.chat_send_player(pname,
+                    S("@1 is protected by @2.",
+                        core.pos_to_string(pos),
+                        table.concat(owners, ", ")))
+            else
                 airutils.move_target(player, pointed_thing)
             end
         end]]--
@@ -79,9 +79,9 @@ core.register_tool("airutils:tug", {
             if not is_protected(pos, pname) or pname == owner or is_admin then
                 airutils.move_target(player, pointed_thing)
             else
-		        core.chat_send_player(pname,
-			        S("@1 is protected.",
-				        core.pos_to_string(pos)))
+                core.chat_send_player(pname,
+                    S("@1 is protected.",
+                        core.pos_to_string(pos)))
             end
         end
 
@@ -90,16 +90,16 @@ core.register_tool("airutils:tug", {
         end
 
 
-	end,
+    end,
 
-	sound = {breaks = "default_tool_breaks"},
+    sound = {breaks = "default_tool_breaks"},
 })
 
 core.register_craft({
-	output = "airutils:tug",
-	recipe = {
-		{"", "", "default:steel_ingot"},
-		{"", "default:steel_ingot", ""},
-		{"default:steel_ingot", "default:stick", "default:diamond"},
-	}
+    output = "airutils:tug",
+    recipe = {
+        {"", "", "default:steel_ingot"},
+        {"", "default:steel_ingot", ""},
+        {"default:steel_ingot", "default:stick", "default:diamond"},
+    }
 })

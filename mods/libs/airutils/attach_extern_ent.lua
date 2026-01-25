@@ -33,7 +33,7 @@ function airutils.get_attached_entity(self)
 
     local pos = self.object:get_pos()
     local nearby_objects = core.get_objects_inside_radius(pos, 32)
-	for i,obj in ipairs(nearby_objects) do
+    for i,obj in ipairs(nearby_objects) do
         local ent = obj:get_luaentity()
         if ent then
             if ent._inv_id then
@@ -89,10 +89,10 @@ function airutils.simple_external_attach(self, relative_pos, entity_name, radius
 
         local pos = self.object:get_pos()
         local nearby_objects = core.get_objects_inside_radius(pos, radius)
-		for i,obj in ipairs(nearby_objects) do
-			if obj == self.object then
-				table.remove(nearby_objects,i)
-			end
+        for i,obj in ipairs(nearby_objects) do
+            if obj == self.object then
+                table.remove(nearby_objects,i)
+            end
             local ent = obj:get_luaentity()
             if ent then
                 if ent.name == entity_name then
@@ -100,7 +100,7 @@ function airutils.simple_external_attach(self, relative_pos, entity_name, radius
                     return
                 end
             end
-		end
+        end
     end
 end
 
@@ -118,7 +118,7 @@ function airutils.restore_external_attach(self)
     core.after(0.3, function()
         local nearby_objects = core.get_objects_inside_radius(pos, 32)
         local ent
-	    for i,obj in ipairs(nearby_objects) do
+        for i,obj in ipairs(nearby_objects) do
             ent = obj:get_luaentity()
             if ent then
                 --core.chat_send_all(dump(ent.name))
@@ -134,7 +134,7 @@ function airutils.restore_external_attach(self)
                     end
                 end
             end
-	    end
+        end
     end)
 
     --clear
@@ -147,12 +147,12 @@ core.register_chatcommand("remove_hook", {
     params = "",
     description = S("Dettach current vehicle from another"),
     privs = {interact=true},
-	func = function(name, param)
+    func = function(name, param)
         local colorstring = core.colorize('#ff0000', S(" >>> you are not inside a plane"))
         local player = core.get_player_by_name(name)
         local attached_to = player:get_attach()
 
-		if attached_to ~= nil then
+        if attached_to ~= nil then
             local seat = attached_to:get_attach()
             if seat ~= nil then
                 local entity = seat:get_luaentity()
@@ -186,12 +186,12 @@ core.register_chatcommand("remove_hook", {
                         rem_ent._vehicle_custom_data.simple_external_attach_pos = nil
                         rem_ent._vehicle_custom_data.simple_external_attach_invid = nil
                     else
-			            core.chat_send_player(name,colorstring)
+                        core.chat_send_player(name,colorstring)
                     end
                 end
             end
-		else
-			core.chat_send_player(name,colorstring)
-		end
-	end
+        else
+            core.chat_send_player(name,colorstring)
+        end
+    end
 })

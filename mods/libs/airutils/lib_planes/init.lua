@@ -1,5 +1,3 @@
-
-
 dofile(core.get_modpath("airutils") .. DIR_DELIM .. "lib_planes" .. DIR_DELIM .. "global_definitions.lua")
 dofile(core.get_modpath("airutils") .. DIR_DELIM .. "lib_planes" .. DIR_DELIM .. "control.lua")
 dofile(core.get_modpath("airutils") .. DIR_DELIM .. "lib_planes" .. DIR_DELIM .. "fuel_management.lua")
@@ -12,7 +10,6 @@ dofile(core.get_modpath("airutils") .. DIR_DELIM .. "lib_planes" .. DIR_DELIM ..
 --
 -- helpers and co.
 --
-
 
 --
 -- items

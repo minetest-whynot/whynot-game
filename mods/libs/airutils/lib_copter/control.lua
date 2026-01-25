@@ -21,16 +21,16 @@ local function set_yaw_by_mouse(self, dir)
     elseif command > 90 then command = 90 end
     --core.chat_send_all("rotation y: "..rot_y.." - dir: "..dir.." - command: "..command)
 
-	self._rudder_angle = (-command * self._rudder_limit)/90
+    self._rudder_angle = (-command * self._rudder_limit)/90
 end
 
 local function set_yaw(self, dir, dtime)
     local yaw_factor = self._yaw_intensity or 25
-	if dir == 1 then
-		self._rudder_angle = math.max(self._rudder_angle-(yaw_factor*dtime),-self._rudder_limit)
-	elseif dir == -1 then
-		self._rudder_angle = math.min(self._rudder_angle+(yaw_factor*dtime),self._rudder_limit)
-	end
+    if dir == 1 then
+        self._rudder_angle = math.max(self._rudder_angle-(yaw_factor*dtime),-self._rudder_limit)
+    elseif dir == -1 then
+        self._rudder_angle = math.min(self._rudder_angle+(yaw_factor*dtime),self._rudder_limit)
+    end
 end
 
 function airutils.heli_control(self, dtime, hull_direction, longit_speed, longit_drag, nhdir,
@@ -45,9 +45,9 @@ function airutils.heli_control(self, dtime, hull_direction, longit_speed, longit
     if time_correction < 1 then time_correction = 1 end
     self._vehicle_acc = self._vehicle_acc or 0
 
-	-- player control
-	if player then
-		ctrl = player:get_player_control()
+    -- player control
+    if player then
+        ctrl = player:get_player_control()
 
         if self._last_time_command > 0.5 then
             self._last_time_command = 0.5
@@ -61,16 +61,16 @@ function airutils.heli_control(self, dtime, hull_direction, longit_speed, longit
             local collective_up_max = 1.2
             local min_angle = self._min_collective
             local collective_up = collective_up_max / 10
-		    if ctrl.jump then
+            if ctrl.jump then
                 self._wing_configuration = self._wing_configuration + collective_up
                 --end
                 self._is_going_up = true
-		    elseif ctrl.sneak then
+            elseif ctrl.sneak then
                 self._wing_configuration = self._wing_configuration - collective_up
                 --end
             else
                 self._wing_configuration = self._stable_collective
-		    end
+            end
             if self._wing_configuration < min_angle then self._wing_configuration = min_angle end
             local up_limit = (self._wing_angle_of_attack+collective_up_max)
             if self._wing_configuration > up_limit then self._wing_configuration = up_limit end
@@ -135,7 +135,7 @@ function airutils.heli_control(self, dtime, hull_direction, longit_speed, longit
         retval_accel=vector.add(retval_accel,hull_acc)
         retval_accel=vector.add(retval_accel,lat_hull_acc)
 
-		-- yaw
+        -- yaw
         if self._yaw_by_mouse then
             local rot_y = math.deg(player:get_look_horizontal())
             set_yaw_by_mouse(self, rot_y)
@@ -159,9 +159,7 @@ function airutils.heli_control(self, dtime, hull_direction, longit_speed, longit
                 self._yaw_by_mouse = true
             end
         end
-	end
+    end
 
     return retval_accel, stop
 end
-
-

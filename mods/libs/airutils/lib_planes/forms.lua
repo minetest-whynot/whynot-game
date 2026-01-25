@@ -54,18 +54,18 @@ function airutils.pilot_formspec(name)
 
     local ver_pos = 1.0
     local basic_form = ""
-	--basic_form = basic_form.."button[1,"..ver_pos..";4,1;turn_on;Start/Stop Engines]"
+    --basic_form = basic_form.."button[1,"..ver_pos..";4,1;turn_on;Start/Stop Engines]"
     basic_form = basic_form.."checkbox[1,"..ver_pos..";turn_on;"..core.colorize(eng_status_color, S("Start/Stop Engines"))..";"..eng_status.."]"
     ver_pos = ver_pos + 1.1
-	basic_form = basic_form.."button[1,"..ver_pos..";4,1;hud;" .. S("Show/Hide Gauges") .. "]"
+    basic_form = basic_form.."button[1,"..ver_pos..";4,1;hud;" .. S("Show/Hide Gauges") .. "]"
     ver_pos = ver_pos + 1.1
-	basic_form = basic_form.."button[1,"..ver_pos..";4,1;inventory;" .. S("Show Inventory") .. "]"
+    basic_form = basic_form.."button[1,"..ver_pos..";4,1;inventory;" .. S("Show Inventory") .. "]"
     ver_pos = ver_pos + 1.5
 
     basic_form = basic_form.."checkbox[1,"..ver_pos..";yaw;" .. S("Yaw by mouse") .. ";"..yaw.."]"
     ver_pos = ver_pos + 0.5
 
-	basic_form = basic_form.."button[1,"..ver_pos..";4,1;go_out;" .. S("Go Out!") .. "]"
+    basic_form = basic_form.."button[1,"..ver_pos..";4,1;go_out;" .. S("Go Out!") .. "]"
 
     --form second part
     local expand_form = false
@@ -110,7 +110,7 @@ function airutils.pilot_formspec(name)
     local form = table.concat({
         "formspec_version[3]",
         "size["..form_width..",7.2]",
-	}, "")
+    }, "")
 
     core.show_formspec(name, "lib_planes:pilot_main", form..basic_form)
 end
@@ -125,13 +125,15 @@ function airutils.manage_copilot_formspec(name)
 
     local pass_list = ""
     for k, v in pairs(ent._passengers) do
-        pass_list = pass_list .. v .. ","
+        if v ~= ent._passengers[1] and v ~= ent.co_pilot then
+            pass_list = pass_list .. v .. ","
+        end
     end
 
     local basic_form = table.concat({
         "formspec_version[3]",
         "size[6,4.5]",
-	}, "")
+    }, "")
 
     basic_form = basic_form.."label[1,1.0;" .. S("Bring a copilot") .. ":]"
 
@@ -173,7 +175,7 @@ function airutils.adf_formspec(name)
     local basic_form = table.concat({
         "formspec_version[3]",
         "size[6,3.5]",
-	}, "")
+    }, "")
 
     basic_form = basic_form.."checkbox[1.0,1.0;adf;" .. S("Auto Direction Find") .. ";"..adf.."]"
     basic_form = basic_form.."field[1.0,1.7;1.5,0.6;adf_x;pos x;"..x.."]"
@@ -187,10 +189,10 @@ function airutils.pax_formspec(name)
     local basic_form = table.concat({
         "formspec_version[3]",
         "size[6,5]",
-	}, "")
+    }, "")
 
-	basic_form = basic_form.."button[1,1.0;4,1;new_seat;" .. S("Change Seat") .. "]"
-	basic_form = basic_form.."button[1,2.5;4,1;go_out;" .. S("Go Offboard") .. "]"
+    basic_form = basic_form.."button[1,1.0;4,1;new_seat;" .. S("Change Seat") .. "]"
+    basic_form = basic_form.."button[1,2.5;4,1;go_out;" .. S("Go Offboard") .. "]"
 
     core.show_formspec(name, "lib_planes:passenger_main", basic_form)
 end
@@ -199,11 +201,11 @@ function airutils.go_out_confirmation_formspec(name)
     local basic_form = table.concat({
         "formspec_version[3]",
         "size[7,2.2]",
-	}, "")
+    }, "")
 
     basic_form = basic_form.."label[0.5,0.5;" .. S("Do you really want to go offboard now?") .. "]"
-	basic_form = basic_form.."button[1.3,1.0;2,0.8;no;" .. S("No") .. "]"
-	basic_form = basic_form.."button[3.6,1.0;2,0.8;yes;" .. S("Yes") .. "]"
+    basic_form = basic_form.."button[1.3,1.0;2,0.8;no;" .. S("No") .. "]"
+    basic_form = basic_form.."button[3.6,1.0;2,0.8;yes;" .. S("Yes") .. "]"
 
     core.show_formspec(name, "lib_planes:go_out_confirmation_form", basic_form)
 end
@@ -218,13 +220,13 @@ core.register_on_player_receive_fields(function(player, formname, fields)
         end
         local ent = plane_obj:get_luaentity()
         if ent then
-		    if fields.yes then
+            if fields.yes then
                 airutils.dettach_pax(ent, player, true)
-		    end
+            end
         end
         core.close_formspec(name, "lib_planes:go_out_confirmation_form")
     end
-	if formname == "lib_planes:adf_main" then
+    if formname == "lib_planes:adf_main" then
         local name = player:get_player_name()
         local plane_obj = airutils.getPlaneFromPlayer(player)
         if plane_obj == nil then
@@ -263,8 +265,8 @@ core.register_on_player_receive_fields(function(player, formname, fields)
             core.chat_send_player(name, core.colorize('#ff0000', S(" >>> There is something wrong on ADF saving...")))
         end
         core.close_formspec(name, "lib_planes:adf_main")
-	end
-	if formname == "lib_planes:passenger_main" then
+    end
+    if formname == "lib_planes:passenger_main" then
         local name = player:get_player_name()
         local plane_obj = airutils.getPlaneFromPlayer(player)
         if plane_obj == nil then
@@ -273,29 +275,29 @@ core.register_on_player_receive_fields(function(player, formname, fields)
         end
         local ent = plane_obj:get_luaentity()
         if ent then
-		    if fields.new_seat then
+            if fields.new_seat then
                 airutils.dettach_pax(ent, player)
                 airutils.attach_pax(ent, player)
-		    end
-		    if fields.go_out then
+            end
+            if fields.go_out then
                 local touching_ground, _ = airutils.check_node_below(plane_obj, 2.5)
                 if ent.isinliquid or touching_ground then --isn't flying?
                     airutils.dettach_pax(ent, player)
                 else
                     airutils.go_out_confirmation_formspec(name)
                 end
-		    end
+            end
         end
         core.close_formspec(name, "lib_planes:passenger_main")
-	end
-	if formname == "lib_planes:pilot_main" then
+    end
+    if formname == "lib_planes:pilot_main" then
         local name = player:get_player_name()
         local plane_obj = airutils.getPlaneFromPlayer(player)
         if plane_obj then
             local ent = plane_obj:get_luaentity()
-		    if fields.turn_on then
+            if fields.turn_on then
                 airutils.start_engine(ent)
-		    end
+            end
             if fields.hud then
                 if ent._show_hud == true then
                     ent._show_hud = false
@@ -303,7 +305,7 @@ core.register_on_player_receive_fields(function(player, formname, fields)
                     ent._show_hud = true
                 end
             end
-		    if fields.go_out then
+            if fields.go_out then
                 local touch_point = ent.initial_properties.collisionbox[2]-1.0
                 -----////
                 local pos = plane_obj:get_pos()
@@ -339,7 +341,7 @@ core.register_on_player_receive_fields(function(player, formname, fields)
                     end
                 end
                 airutils.dettach_pax(ent, player)
-		    end
+            end
             if fields.inventory then
                 if ent._trunk_slots then
                     airutils.show_vehicle_trunk_formspec(ent, player, ent._trunk_slots)
@@ -379,7 +381,7 @@ core.register_on_player_receive_fields(function(player, formname, fields)
             if fields.adf_form then
                 airutils.adf_formspec(name)
             end
-		    if fields.turn_auto_pilot_on then
+            if fields.turn_auto_pilot_on then
                 if ent._autopilot == true then
                     ent._autopilot = false
                     core.chat_send_player(ent.driver_name,S(" >>> Autopilot deactivated"))
@@ -387,7 +389,7 @@ core.register_on_player_receive_fields(function(player, formname, fields)
                     ent._autopilot = true
                     core.chat_send_player(ent.driver_name,core.colorize('#00ff00', S(" >>> Autopilot activated")))
                 end
-		    end
+            end
             if fields.manual then
                 if ent._have_manual then
                     ent._have_manual(name)
@@ -405,21 +407,18 @@ core.register_on_player_receive_fields(function(player, formname, fields)
         end
         local ent = plane_obj:get_luaentity()
 
-	    if fields.copilot then
-            --look for a free seat first
-            local is_there_a_free_seat = false
-            for i = 2,1,-1
-            do
-                if ent._passengers[i] == nil then
-                    is_there_a_free_seat = true
-                    break
-                end
-            end
-            --then move the current copilot to a free seat
-            if ent.co_pilot and is_there_a_free_seat then
+        if fields.copilot then
+            if ent.co_pilot then --and is_there_a_free_seat then
                 local copilot_player_obj = core.get_player_by_name(ent.co_pilot)
                 if copilot_player_obj then
                     airutils.dettach_pax(ent, copilot_player_obj)
+
+                    local new_copilot_player_obj = core.get_player_by_name(fields.copilot)
+                    if new_copilot_player_obj then
+                        airutils.dettach_pax(ent, new_copilot_player_obj)
+                        airutils.attach_pax(ent, new_copilot_player_obj, true)
+                    end
+
                     airutils.attach_pax(ent, copilot_player_obj)
                 else
                     ent.co_pilot = nil
@@ -433,16 +432,16 @@ core.register_on_player_receive_fields(function(player, formname, fields)
                     airutils.attach_pax(ent, new_copilot_player_obj, true)
                 end
             end
-	    end
-	    if fields.pass_control then
+        end
+        if fields.pass_control then
             if ent._command_is_given == true then
-			    --take the control
-			    airutils.transfer_control(ent, false)
+                --take the control
+                airutils.transfer_control(ent, false)
             else
-			    --trasnfer the control to student
-			    airutils.transfer_control(ent, true)
+                --trasnfer the control to student
+                airutils.transfer_control(ent, true)
             end
-	    end
+        end
         core.close_formspec(name, "lib_planes:manage_copilot")
     end
 

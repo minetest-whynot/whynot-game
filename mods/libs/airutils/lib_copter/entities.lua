@@ -99,20 +99,20 @@ function airutils.logic_heli(self)
     local accel_y = self.object:get_acceleration().y
     local rotation = self.object:get_rotation()
     local yaw = rotation.y
-	local newyaw=yaw
-	local roll = rotation.z
+    local newyaw=yaw
+    local roll = rotation.z
 
     local hull_direction = airutils.rot_to_dir(rotation) --core.yaw_to_dir(yaw)
-    local nhdir = {x=hull_direction.z,y=0,z=-hull_direction.x}		-- lateral unit vector
+    local nhdir = {x=hull_direction.z,y=0,z=-hull_direction.x}        -- lateral unit vector
 
     local longit_speed = vector.dot(velocity,hull_direction)
     self._longit_speed = longit_speed
 
     local longit_drag = vector.multiply(hull_direction,longit_speed*
             longit_speed*self._longit_drag_factor*-1*airutils.sign(longit_speed))
-	local later_speed = airutils.dot(velocity,nhdir)
+    local later_speed = airutils.dot(velocity,nhdir)
     --core.chat_send_all('later_speed: '.. later_speed)
-	local later_drag = vector.multiply(nhdir,later_speed*later_speed*
+    local later_drag = vector.multiply(nhdir,later_speed*later_speed*
             self._later_drag_factor*-1*airutils.sign(later_speed))
     local accel = vector.add(longit_drag,later_drag)
     local stop = false
@@ -130,7 +130,7 @@ function airutils.logic_heli(self)
     local is_attached = airutils.checkAttach(self, player)
     if self._indicated_speed == nil then self._indicated_speed = 0 end
 
-	if not is_attached then
+    if not is_attached then
         -- for some engine error the player can be detached from the machine, so lets set him attached again
         airutils.checkattachBug(self)
     end
@@ -211,11 +211,11 @@ function airutils.logic_heli(self)
     end
 
     -- new yaw
-	if math.abs(self._rudder_angle)>1.5 then
+    if math.abs(self._rudder_angle)>1.5 then
         local turn_rate = math.rad(self._yaw_turn_rate)
         local yaw_turn = self.dtime * math.rad(self._rudder_angle) * turn_rate * 4
-		newyaw = yaw + yaw_turn
-	end
+        newyaw = yaw + yaw_turn
+    end
 
     ---------------------------------
     -- end roll
@@ -247,8 +247,8 @@ function airutils.logic_heli(self)
     accel.y = accel_y
 
     --lets apply some bob in water
-	if self.isinliquid then
-        local bob = airutils.minmax(airutils.dot(accel,hull_direction),0.02)	-- vertical bobbing
+    if self.isinliquid then
+        local bob = airutils.minmax(airutils.dot(accel,hull_direction),0.02)    -- vertical bobbing
         if bob < 0 then bob = 0 end
         accel.y = accel.y + bob
         local max_pitch = 6
@@ -286,7 +286,7 @@ function airutils.logic_heli(self)
 
     if stop ~= true then --maybe == nil
         self._last_accell = new_accel
-	    self.object:move_to(curr_pos)
+        self.object:move_to(curr_pos)
         --airutils.set_acceleration(self.object, new_accel)
         --local limit = self._climb_speed
         --if new_accel.y > limit then new_accel.y = limit end --it isn't a rocket :/
@@ -356,7 +356,7 @@ function airutils.logic_heli(self)
     end
 
     if is_flying == false then
-	    newyaw = yaw
+        newyaw = yaw
     end
 
     if player and self._use_camera_relocation then
