@@ -1,7 +1,5 @@
 -- Based on https://github.com/minetest-mods/homedecor_modpack/blob/master/computer/tetris.lua
 
-local S = laptop.S
-
 local shapes = {
    {  { x = {0, 1, 0, 1}, y = {0, 0, 1, 1} } },
 
@@ -234,15 +232,15 @@ end
 
 
 laptop.register_app("tetris", {
-	app_name = S("Tetris"),
+	app_name = "Tetris",
 	app_icon = "laptop_tetris_icon.png",
-	app_info = S("Falling Tile Game"),
+	app_info = "Falling Tile Game",
 
 	formspec_func = function(app, mtos)
 		local data = mtos.bdev:get_app_storage('ram', 'tetris')
 		local tetris = get_tetris(app, data)
 		if not data.t then
-			return mtos.theme:get_button('2,4;2,2', 'major', 'new', S('New Game'), S('Start a new game'))
+			return mtos.theme:get_button('2,4;2,2', 'major', 'new', 'New Game', 'Start a new game')
 		end
 
 		local buttons = mtos.theme:get_button('6,6;1,1', 'minor', 'left', '<')..
@@ -251,14 +249,14 @@ laptop.register_app("tetris", {
 						mtos.theme:get_button('7,6;1,1', 'minor', 'drop', 'V')..
 						mtos.theme:get_button('8,5;1,1', 'minor', 'rotateright', 'R')..
 						mtos.theme:get_button('8,6;1,1', 'minor', 'right', '>')..
-						mtos.theme:get_button('6,3.5;3,1', 'major', 'new', S('New Game'), S('Start a new game'))
+						mtos.theme:get_button('6,3.5;3,1', 'major', 'new', 'New Game', 'Start a new game')
 
 		local t = tetris.data.t
 		return 'container[3,1]background[0,-0.05;4.35,9;'.. mtos.theme.contrast_background .. ']' ..
 			t.boardstring .. t.previewstring ..
 			tetris:draw_shape(t.cur, t.x, t.y, t.rot, boardx, boardy) ..
-			mtos.theme:get_label('6.5,0.1', S('Next:')) ..
-			mtos.theme:get_label('6.5,2.7', S('Score: @1', t.score)) ..
+			mtos.theme:get_label('6.5,0.1', 'Next...') ..
+			mtos.theme:get_label('6.5,2.7', 'Score:...'..t.score) ..
 			buttons .. 'container_end[]'
 	end,
 

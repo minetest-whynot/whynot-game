@@ -1,5 +1,3 @@
-local S = laptop.S
-
 local store_area = 'painting:files'
 
 local have_painting = minetest.get_modpath("painting")
@@ -34,9 +32,9 @@ for color, hex in pairs(hexcolors) do
 end
 
 laptop.register_app("painting", {
-	app_name = S("Painting"),
+	app_name = "Painting",
 	app_icon = "laptop_painting.png",
-	app_info = S("Show/Edit Pictures"),
+	app_info = "Show/Edit Pictures",
 	formspec_func = function(app, mtos)
 		local data = mtos.bdev:get_app_storage('system', 'painting')
 		if not data then return end

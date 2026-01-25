@@ -1,8 +1,6 @@
-local S = laptop.S
-
 laptop.register_app("shell", {
-	app_name = S("Shell"),
-	app_info = S("CS-BOS Graphic Shell"),
+	app_name = "Shell",
+	app_info = "CS-BOS Graphic Shell",
 	fullscreen = true,
 	app_icon = "laptop_????.png",
 	os_min_version = '1.00',

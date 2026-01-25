@@ -1,8 +1,6 @@
 -- Based on https://github.com/minetest-mods/realchess
 -- WTFPL by kilbith
 
-local S = laptop.S
-
 local realchess = {}
 
 local function index_to_xy(idx)
@@ -520,9 +518,9 @@ register_piece("king")
 
 -- Laptop app registration
 	laptop.register_app("realchess", {
-		app_name = S("Realchess"),
+		app_name = "Realchess",
 		app_icon = "laptop_realchess_chessboard_icon.png",
-		app_info = S("A Chess game"),
+		app_info = "A Chess game",
 		os_min_version = "5.51",
 		formspec_func = function(app, mtos)
 			local data = mtos.bdev:get_app_storage('ram', 'realchess')

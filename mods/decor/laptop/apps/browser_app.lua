@@ -1,5 +1,3 @@
-local S = laptop.S
-
 laptop.browser_api = {} -- Be useable from other mods
 
 -- Helper function - navigate to page
@@ -48,9 +46,9 @@ end
 -- Browser home page
 --------------------------------------------
 laptop.register_app("browser", {
-	app_name = S("MineBrowse"),
+	app_name = "MineBrowse",
 	app_icon = "laptop_browser.png",
-	app_info = S("Web Browser"),
+	app_info = "Web Browser",
 	os_min_version = "5.51",
 	formspec_func = function(app, mtos)
 		local formspec = laptop.browser_api.header_formspec_func(app, mtos) ..

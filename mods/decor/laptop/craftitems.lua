@@ -1,6 +1,3 @@
-local S = laptop.S
-local len8 = utf8.len
-
 local rc = laptop.recipe_compat -- Recipe items from other mods
 
 ----------------------------
@@ -8,7 +5,7 @@ local rc = laptop.recipe_compat -- Recipe items from other mods
 ----------------------------
 
 minetest.register_craftitem("laptop:cpu_c6", {
-	description = S('Ziram c6 Processor'),
+	description = 'Ziram c6 Processor',
 	inventory_image = "laptop_cpu_c6.png",
 })
 
@@ -22,7 +19,7 @@ minetest.register_craft({
 })
 
 minetest.register_craftitem("laptop:cpu_d75a", {
-	description = S('Interlink D75A Processor'),
+	description = 'Interlink D75A Processor',
 	inventory_image = "laptop_cpu_d75a.png",
 })
 
@@ -36,7 +33,7 @@ minetest.register_craft({
 })
 
 minetest.register_craftitem("laptop:cpu_jetcore", {
-	description = S('Interlink jetCore Processor'),
+	description = 'Interlink jetCore Processor',
 	inventory_image = "laptop_cpu_jetcore.png",
 })
 
@@ -50,7 +47,7 @@ minetest.register_craft({
 })
 
 minetest.register_craftitem("laptop:cpu_65536", {
-	description = S('Transpose 65536 Processor'),
+	description = 'Transpose 65536 Processor',
 	inventory_image = "laptop_cpu_65536.png",
 })
 
@@ -64,7 +61,7 @@ minetest.register_craft({
 })
 
 minetest.register_craftitem("laptop:bat", {
-	description = S('Battery'),
+	description = 'Battery',
 	inventory_image = "laptop_bat.png",
 })
 
@@ -78,7 +75,7 @@ minetest.register_craft({
 })
 
 minetest.register_craftitem("laptop:case", {
-	description = S('Case'),
+	description = 'Case',
 	inventory_image = "laptop_case.png",
 })
 
@@ -92,7 +89,7 @@ minetest.register_craft({
 })
 
 minetest.register_craftitem("laptop:crt", {
-	description = S('CRT Screen'),
+	description = 'CRT Screen',
 	inventory_image = "laptop_crt.png",
 })
 
@@ -106,7 +103,7 @@ minetest.register_craft({
 })
 
 minetest.register_craftitem("laptop:crt_amber", {
-	description = S('Amber CRT Screen'),
+	description = 'Amber CRT Screen',
 	inventory_image = "laptop_crt_amber.png",
 })
 
@@ -120,7 +117,7 @@ minetest.register_craft({
 })
 
 minetest.register_craftitem("laptop:crt_green", {
-	description = S('Green CRT Screen'),
+	description = 'Green CRT Screen',
 	inventory_image = "laptop_crt_green.png",
 })
 
@@ -134,7 +131,7 @@ minetest.register_craft({
 })
 
 minetest.register_craftitem("laptop:lcd", {
-	description = S('LCD Screen'),
+	description = 'LCD Screen',
 	inventory_image = "laptop_lcd.png",
 })
 
@@ -148,7 +145,7 @@ minetest.register_craft({
 })
 
 minetest.register_craftitem("laptop:gpu", {
-	description = S('GPU'),
+	description = 'GPU',
 	inventory_image = "laptop_gpu.png",
 })
 
@@ -162,7 +159,7 @@ minetest.register_craft({
 })
 
 minetest.register_craftitem("laptop:HDD", {
-	description = S('Hard Drive'),
+	description = 'Hard Drive',
 	inventory_image = "laptop_harddrive.png",
 })
 
@@ -176,7 +173,7 @@ minetest.register_craft({
 })
 
 minetest.register_craftitem("laptop:motherboard", {
-	description = S('Motherboard'),
+	description = 'Motherboard',
 	inventory_image = "laptop_motherboard.png",
 })
 
@@ -190,7 +187,7 @@ minetest.register_craft({
 })
 
 minetest.register_craftitem("laptop:fan", {
-	description = S('Fan'),
+	description = 'Fan',
 	inventory_image = "laptop_fan.png",
 })
 
@@ -204,7 +201,7 @@ minetest.register_craft({
 })
 
 minetest.register_craftitem("laptop:psu", {
-	description = S('PSU'),
+	description = 'PSU',
 	inventory_image = "laptop_psu.png",
 })
 
@@ -218,7 +215,7 @@ minetest.register_craft({
 })
 
 minetest.register_craftitem("laptop:floppy", {
-	description = S('High density floppy'),
+	description = 'High density floppy',
 	inventory_image = "laptop_diskette.png",
 	groups = {laptop_removable_floppy = 1},
 	stack_max = 1,
@@ -234,7 +231,7 @@ minetest.register_craft({
 })
 
 minetest.register_craftitem("laptop:usbstick", {
-	description = S('USB storage stick'),
+	description = 'USB storage stick',
 	inventory_image = "laptop_usb.png",
 	groups = {laptop_removable_usb = 1},
 	stack_max = 1,
@@ -250,7 +247,7 @@ minetest.register_craft({
 })
 
 minetest.register_craftitem("laptop:printed_paper", {
-	description = S('Printed paper'),
+	description = 'Printed paper',
 	inventory_image = "laptop_printed_paper.png",
 	groups = {not_in_creative_inventory = 1},
 	stack_max = 1,
@@ -262,8 +259,9 @@ minetest.register_craftitem("laptop:printed_paper", {
 				"label[0,0;" .. minetest.formspec_escape(data.title or "unnamed") ..
 				" by " .. (data.author or "unknown") .. " from " .. os.date("%c", data.timestamp) .. "]"..
 				"textarea[0.5,1;7.5,7;;" ..
-				minetest.formspec_escape(data.text or "") .. ";]"
+				minetest.formspec_escape(data.text or "test text") .. ";]"
 	minetest.show_formspec(user:get_player_name(), "laptop:printed_paper", formspec)
 	return itemstack
 	end
+
 })

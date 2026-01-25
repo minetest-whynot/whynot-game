@@ -103,11 +103,6 @@ laptop.register_view('os:select_file', {
 
 		-- Buttons
 		if param.mode == 'save' then
-			if param.disk_full_err then
-				formspec = formspec .. mtos.theme:get_label('1.5,9.55',
-					core.colorize("yellow", "Storage is full, you cannot create a new file"))
-			end
-
 			formspec = formspec .. mtos.theme:get_bgcolor_box('1.5,8.8;11,1.2', 'contrast')..
 					mtos.theme:get_label("1.6,9.1", "File name:", "contrast").."field[3.2,9.3;5.5,0.8;filename;;"..(param.selected_file_name or "").."]"
 		else
@@ -130,7 +125,7 @@ laptop.register_view('os:select_file', {
 		local param = st.param
 
 		if fields.filename then
-			param.selected_file_name = laptop.truncate_text(fields.filename, laptop.max_filename_size)
+			param.selected_file_name = fields.filename
 		end
 
 		for field, value in pairs(fields) do
@@ -151,22 +146,6 @@ laptop.register_view('os:select_file', {
 
 		elseif fields.select and param.selected_file_name and param.selected_file_name ~= ""
 				and param.selected_disk_name and param.selected_disk_name ~= "" then
-			if param.mode == "save" and #param.files_list >= laptop.max_files then
-				-- Allow overwriting existing files
-				local existing_file = false
-				for _, file in ipairs(param.files_list) do
-					if file.name == param.selected_file_name then
-						existing_file = true
-						break
-					end
-				end
-
-				if not existing_file then
-					param.disk_full_err = true
-					return
-				end
-			end
-
 			param.prefix = param.prefix or ""
 			local pass_fields = {
 					[param.prefix..'selected_disk'] = param.selected_disk_name,
@@ -178,7 +157,6 @@ laptop.register_view('os:select_file', {
 			local store = mtos.bdev:get_app_storage(param.selected_disk_name, param.store_name)
 			if store then
 				store[param.selected_file_name] = nil
-				param.disk_full_err = nil
 			end
 		end
 	end
