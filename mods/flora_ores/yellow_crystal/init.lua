@@ -21,7 +21,7 @@
 
 -- Add logs when accessing settings. Useful for debugging.
 local function get_setting(name, default)
-    local value = get_setting(name)
+    local value = core.settings:get(name)
     if (not value) then
         core.log("info", "Mapgen Config: Setting '"..name.."' could not be found")
         value = default
