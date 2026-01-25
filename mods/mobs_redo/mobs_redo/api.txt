@@ -947,3 +947,4 @@ mobs:yaw_to_pos(self, target, rotation_steps)
 mobs:line_of_sight(self, pos1, pos2)
 mobs:set_animation(self, animation)
 mobs:yaw(self, yaw, rotation_steps)
+mobs:scale_mob(self, width, height, permanent) -- scale by w,h

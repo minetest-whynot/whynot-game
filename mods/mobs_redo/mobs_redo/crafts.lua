@@ -27,7 +27,7 @@ sound_helper("node_sound_glass_defaults")
 
 -- helper function to add {eatable} group to food items
 
-function mobs.add_eatable(item, hp)
+function mobs.add_eatable(item, hp, ftype)
 
 	local def = core.registered_items[item]
 
@@ -35,7 +35,7 @@ function mobs.add_eatable(item, hp)
 
 		local groups = table.copy(def.groups) or {}
 
-		groups.eatable = hp ; groups.flammable = 2
+		groups.eatable = hp ; groups.flammable = 2 ; groups.food = ftype or 2
 
 		core.override_item(item, {groups = groups})
 	end

@@ -18,7 +18,7 @@ end
 -- global table
 
 mobs = {
-	mod = "redo", version = "20251205",
+	mod = "redo", version = "20260124",
 	spawning_mobs = {}, translate = S,
 	node_snow = has(core.registered_aliases["mapgen_snow"])
 			or has("mcl_core:snow") or has("default:snow") or "air",
@@ -213,7 +213,8 @@ end
 
 function mob_class:do_attack(player, force)
 
-	if self.state == "attack" and not force then return end
+	if (self.state == "attack" or self.state == "die" or self.state == "runaway")
+	and not force then return end
 
 	self.attack = player ; self.state = "attack"
 
@@ -264,6 +265,36 @@ function mob_class:collision()
 	end
 
 	return x, z
+end
+
+-- helper function to scale mob
+
+function mobs:scale_mob(self, w, h, perma)
+
+	local prop = self and self.object:get_properties()
+
+	if not self or not w or not h then return end
+
+	local vis_size = {x = self.base_size.x * w, y = self.base_size.y * h}
+
+	local colbox = {
+		self.base_colbox[1] * w, self.base_colbox[2] * h,
+		self.base_colbox[3] * w, self.base_colbox[4] * w,
+		self.base_colbox[5] * h, self.base_colbox[6] * w}
+
+	local selbox = {
+		self.base_selbox[1] * w, self.base_selbox[2] * h,
+		self.base_selbox[3] * w, self.base_selbox[4] * w,
+		self.base_selbox[5] * h, self.base_selbox[6] * w}
+
+	if perma then -- makes new scale permanent by overriding base values
+		self.base_size = vis_size
+		self.base_colbox = colbox
+		self.base_selbox = selbox
+	end
+
+	self.object:set_properties(
+			{visual_size = vis_size, collisionbox = colbox, selectionbox = selbox})
 end
 
 -- check for string inside table or string
@@ -1414,11 +1445,9 @@ local function can_dig_drop(pos)
 	end
 end
 
--- pathfinder mod check and settings
+-- pathfinder mod check
 
 local pathfinder_mod = core.get_modpath("pathfinder")
-local los_switcher = false
-local height_switcher = false
 
 -- path finding and smart mob routine by rnd, line_of_sight and other edits by Elkien3
 
@@ -1444,13 +1473,13 @@ function mob_class:smart_mobs(s, p, dist, dtime)
 	-- im stuck, search for path
 	if not has_lineofsight then
 
-		if los_switcher then
-			use_pathfind = true ; los_switcher = false
+		if self.path.los_switcher then
+			use_pathfind = true ; self.path.los_switcher = false
 		end -- cannot see target!
 	else
-		if not los_switcher then
+		if not self.path.los_switcher then
 
-			los_switcher = true ; use_pathfind = false
+			self.path.los_switcher = true ; use_pathfind = false
 
 			core.after(1, function(self)
 
@@ -1491,13 +1520,18 @@ function mob_class:smart_mobs(s, p, dist, dtime)
 
 	if abs(s.y - target_pos.y) > prop.stepheight then
 
-		if height_switcher then use_pathfind = true ; height_switcher = false end
+		if self.path.height_switcher then
+				use_pathfind = true ; self.path.height_switcher = false end
 	else
-		if not height_switcher then use_pathfind = false ; height_switcher = true end
+		if not self.path.height_switcher then
+				use_pathfind = false ; self.path.height_switcher = true end
 	end
 
 	-- try to find a path
 	if use_pathfind then
+
+		local cb = self.initial_properties.collisionbox
+		local sheight = cb[5] - cb[2]
 
 		-- round position to avoid getting stuck in walls
 		s.x = floor(s.x + 0.5) ; s.z = floor(s.z + 0.5)
@@ -1508,11 +1542,10 @@ function mob_class:smart_mobs(s, p, dist, dtime)
 		-- determine node above ground (adjust height for player models)
 		if not ssight then s.y = sground.y + 1 end
 
-		local p1 = self.attack and self.attack:get_pos()
-
-		if not p1 then return end
-
-		p1.x = floor(p1.x + 0.5) ; p1.y = floor(p1.y + 0.5) ; p1.z = floor(p1.z + 0.5)
+		local p1 = {
+			x = floor(target_pos.x + 0.5),
+			y = floor(target_pos.y + 0.5),
+			z = floor(target_pos.z + 0.5)}
 
 		local dropheight = pathfinding_max_drop
 
@@ -1520,7 +1553,7 @@ function mob_class:smart_mobs(s, p, dist, dtime)
 
 		local jumpheight = 0
 
-		if self.jump_height >= pathfinding_max_jump then
+		if self.jump and self.jump_height >= pathfinding_max_jump then
 
 			jumpheight = min(ceil(
 					self.jump_height / pathfinding_max_jump), pathfinding_max_jump)
@@ -2837,8 +2870,7 @@ function mob_class:mob_activate(staticdata, def, dtime)
 	-- anything higher means it is respawning (thx SorceryKid)
 	if dtime == 0 and active_limit > 0 then self.active_toggle = 1 end
 
-	-- remove mob if not tamed and mob total reached
-	if at_limit() and not self.tamed then
+	if at_limit() and not self.tamed then -- remove any mobs not tamed when total reached
 
 		remove_mob(self)
 --print("-- mob limit reached, removing " .. self.name)
@@ -2868,22 +2900,24 @@ function mob_class:mob_activate(staticdata, def, dtime)
 
 	local prop = self.object:get_properties()
 
-	-- select random texture
-	if not self.base_texture then
+	if not self.base_texture then -- select random texture
 
 		-- compatiblity with old simple mobs textures
 		if def.textures and type(def.textures[1]) == "string" then
 			def.textures = {def.textures}
 		end
 
-		-- backup a few base settings
+		-- backup to base settings
 		self.base_texture = def.textures and def.textures[random(#def.textures)]
 	end
 
 	-- get texture, model and size
 	local textures = self.base_texture
-	local mesh, vis_size  = self.base_mesh, self.base_size
+	local mesh, vis_size = self.base_mesh, self.base_size
 	local colbox, selbox = self.base_colbox, self.base_selbox
+
+	self.object:set_properties({visual_size = vis_size,
+			collisionbox = colbox, selectionbox = selbox})
 
 	-- is there a specific texture if gotten
 	if self.gotten and def.gotten_texture then textures = def.gotten_texture end
@@ -2894,37 +2928,25 @@ function mob_class:mob_activate(staticdata, def, dtime)
 	-- set child objects to half size
 	if self.child then
 
-		vis_size = {x = self.base_size.x * .5, y = self.base_size.y * .5}
+		mobs:scale_mob(self, .5, .5)
 
 		if def.child_texture then textures = def.child_texture[1] end
-
-		colbox = {
-			self.base_colbox[1] * .5, self.base_colbox[2] * .5,
-			self.base_colbox[3] * .5, self.base_colbox[4] * .5,
-			self.base_colbox[5] * .5, self.base_colbox[6] * .5}
-
-		selbox = {
-			self.base_selbox[1] * .5, self.base_selbox[2] * .5,
-			self.base_selbox[3] * .5, self.base_selbox[4] * .5,
-			self.base_selbox[5] * .5, self.base_selbox[6] * .5}
 	end
 
 	-- set mob size and textures
-	self.object:set_properties({textures = textures, visual_size = vis_size,
-			collisionbox = colbox, selectionbox = selbox})
+	self.object:set_properties({textures = textures})
 
 	if self.health == 0 then self.health = random(self.hp_min, prop.hp_max) end
 
-	-- pathfinding init
-	self.path = {}
-	self.path.way = {} -- path to follow, table of positions
-	self.path.lastpos = {x = 0, y = 0, z = 0}
-	self.path.stuck = false
-	self.path.following = false -- currently following path?
-	self.path.stuck_timer = 0 -- if stuck for too long search for path
+	self.path = { -- pathfinding init
+		way = {}, -- path to follow, table of positions
+		lastpos = {x = 0, y = 0, z = 0},
+		stuck = false,
+		stuck_timer = 0, -- if stuck for too long search for path
+		following = false -- currently following path?
+	}
 
-	-- Armor groups (immortal = 1 for custom damage handling)
-	local armor
+	local armor -- Armor groups (immortal = 1 for custom damage handling)
 
 	if type(self.armor) == "table" then
 		armor = table_copy(self.armor)
@@ -2934,25 +2956,22 @@ function mob_class:mob_activate(staticdata, def, dtime)
 
 	self.object:set_armor_groups(armor)
 
-	-- var defaults
-	self.old_y = self.object:get_pos().y
+	self.old_y = self.object:get_pos().y -- var defaults
 	self.old_health = self.health
 	self.textures = textures
 	self.standing_in = "air"
 	self.standing_on = "air"
 	self.state = self.state or "stand"
 
-	-- set random yaw and stand
-	self:set_yaw((random(0, 360) - 180) / 180 * pi, 6)
+	self:set_yaw((random(0, 360) - 180) / 180 * pi, 6) -- set random yaw and stand
 	self:set_animation("stand")
 
-	-- apply texture mods
 	if type(self.texture_mods) ~= "string" then
 		print("[Mobs Redo API] Error: self.texture_mods not a string")
 		self.texture_mods = ""
 	end
 
-	self.object:set_texture_mod(self.texture_mods)
+	self.object:set_texture_mod(self.texture_mods) -- apply texture mods
 
 	-- set 5.x flag to remove monsters when map area unloaded
 	if remove_far and self.type == "monster" and not self.tamed then
@@ -3480,33 +3499,13 @@ function mobs:add_mob(pos, def)
 		ent.mommy_tex = new_texture -- how baby looks when grown
 		ent.base_texture = new_texture
 
-		-- using specific child texture (if found)
-		if ent.child_texture then
+		if ent.child_texture then -- using specific child texture (if found)
 			new_texture = ent.child_texture[1]
 		end
 
-		-- and resize to half height (multiplication is faster than division)
-		mob:set_properties({
-			textures = new_texture,
-			visual_size = {
-				x = ent.base_size.x * .5, y = ent.base_size.y * .5
-			},
-			collisionbox = {
-				ent.base_colbox[1] * .5, ent.base_colbox[2] * .5,
-				ent.base_colbox[3] * .5, ent.base_colbox[4] * .5,
-				ent.base_colbox[5] * .5, ent.base_colbox[6] * .5
-			},
-			selectionbox = {
-				ent.base_selbox[1] * .5, ent.base_selbox[2] * .5,
-				ent.base_selbox[3] * .5, ent.base_selbox[4] * .5,
-				ent.base_selbox[5] * .5, ent.base_selbox[6] * .5
-			}
-		})
-
 		ent.child = true
 
-	-- if not child set new texture
-	elseif def.texture then
+	elseif def.texture then -- if not child set new texture
 
 		ent.base_texture = new_texture
 
@@ -3519,8 +3518,7 @@ function mobs:add_mob(pos, def)
 
 	if def.nametag then
 
-		-- limit name entered to 64 characters
-		if def.nametag:len() > 64 then
+		if def.nametag:len() > 64 then -- limit name entered to 64 characters
 			def.nametag = def.nametag:sub(1, 64)
 		end
 
