@@ -97,7 +97,7 @@ core.register_node("farming:coffee_cup", {
 	sounds = farming.node_sound_glass_defaults()
 })
 
-farming.add_eatable("farming:coffee_cup", 2)
+farming.add_eatable("farming:coffee_cup", 2, 3)
 
 core.register_alias("farming:coffee_cup_hot", "farming:coffee_cup")
 core.register_alias("farming:drinking_cup", "vessels:drinking_glass")
@@ -151,7 +151,7 @@ core.register_craftitem("farming:carrot_juice", {
 	groups = {vessel = 1, drink = 1}
 })
 
-farming.add_eatable("farming:carrot_juice", 4)
+farming.add_eatable("farming:carrot_juice", 4, 3)
 
 -- Blueberry Pie
 
@@ -184,7 +184,7 @@ core.register_craftitem("farming:tomato_soup", {
 	on_use = core.item_eat(8, "farming:bowl")
 })
 
-farming.add_eatable("farming:tomato_soup", 8)
+farming.add_eatable("farming:tomato_soup", 8, 3)
 
 -- sliced bread
 
@@ -350,7 +350,7 @@ core.register_node("farming:mayonnaise", {
 	sounds = farming.node_sound_glass_defaults()
 })
 
-farming.add_eatable("farming:mayonnaise", 3)
+farming.add_eatable("farming:mayonnaise", 3, 1)
 
 -- Rose Water
 
@@ -475,7 +475,7 @@ core.register_craftitem("farming:cactus_juice", {
 	end
 })
 
-farming.add_eatable("farming:cactus_juice", 1)
+farming.add_eatable("farming:cactus_juice", 1, 3)
 
 -- Pasta
 
@@ -549,7 +549,7 @@ core.register_craftitem("farming:smoothie_berry", {
 	groups = {vessel = 1, drink = 1, compostability = 65}
 })
 
-farming.add_eatable("farming:smoothie_berry", 6)
+farming.add_eatable("farming:smoothie_berry", 6, 3)
 
 -- Patatas a la importancia
 
@@ -666,7 +666,7 @@ core.register_craftitem("farming:mint_tea", {
 	groups = {drink = 1}
 })
 
-farming.add_eatable("farming:mint_tea", 2)
+farming.add_eatable("farming:mint_tea", 2, 3)
 
 -- Onion soup
 core.register_craftitem("farming:onion_soup", {
@@ -676,7 +676,7 @@ core.register_craftitem("farming:onion_soup", {
 	on_use = core.item_eat(6, a.bowl)
 })
 
-farming.add_eatable("farming:onion_soup", 6)
+farming.add_eatable("farming:onion_soup", 6, 3)
 
 -- Pea soup
 
@@ -687,7 +687,7 @@ core.register_craftitem("farming:pea_soup", {
 	on_use = core.item_eat(4, a.bowl)
 })
 
-farming.add_eatable("farming:pea_soup", 4)
+farming.add_eatable("farming:pea_soup", 4, 3)
 
 -- Ground pepper
 
@@ -730,7 +730,7 @@ core.register_craftitem("farming:pineapple_juice", {
 	groups = {vessel = 1, drink = 1, compostability = 35}
 })
 
-farming.add_eatable("farming:pineapple_juice", 4)
+farming.add_eatable("farming:pineapple_juice", 4, 3)
 
 -- Potato & cucumber Salad
 
@@ -769,7 +769,7 @@ core.register_craftitem("farming:smoothie_raspberry", {
 	groups = {vessel = 1, drink = 1, compostability = 65}
 })
 
-farming.add_eatable("farming:smoothie_raspberry", 2)
+farming.add_eatable("farming:smoothie_raspberry", 2, 3)
 
 -- Rhubarb pie
 
@@ -863,7 +863,7 @@ core.register_node("farming:soy_milk", {
 	sounds = farming.node_sound_glass_defaults()
 })
 
-farming.add_eatable("farming:soy_milk", 2)
+farming.add_eatable("farming:soy_milk", 2, 3)
 
 -- Tofu
 
@@ -1012,7 +1012,7 @@ if not farming.mcl then
 		groups = {drink = 1}
 	})
 
-	farming.add_eatable("farming:beetroot_soup", 6)
+	farming.add_eatable("farming:beetroot_soup", 6, 3)
 
 	-- Sugar
 

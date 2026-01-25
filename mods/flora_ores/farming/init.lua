@@ -12,7 +12,7 @@ local S = core.get_translator("farming")
 
 farming = {
 	mod = "redo",
-	version = "20251114",
+	version = "20260122",
 	path = core.get_modpath("farming"),
 	select = {type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5}},
 	select_final = {type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, -2.5/16, 0.5}},
@@ -688,7 +688,7 @@ if input then dofile(worldpath .. "/farming.conf") ; input:close() end
 
 -- helper function to add {eatable} group to food items, also {flammable}
 
-function farming.add_eatable(item, hp)
+function farming.add_eatable(item, hp, ftype)
 
 	local def = core.registered_items[item]
 
@@ -696,7 +696,7 @@ function farming.add_eatable(item, hp)
 
 		local groups = table.copy(def.groups) or {}
 
-		groups.eatable = hp ; groups.flammable = 2
+		groups.eatable = hp ; groups.flammable = 2 ; groups.food = ftype or 2
 
 		core.override_item(item, {groups = groups})
 	end

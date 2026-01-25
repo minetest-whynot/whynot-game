@@ -203,7 +203,7 @@ if core.settings:get_bool("farming_disable_weeds") ~= true then
 		nodenames = {"group:field"},
 		neighbors = {"air"},
 		interval = 50,
-		chance = 50,
+		chance = 70,
 		catch_up = false,
 
 		action = function(pos, node)

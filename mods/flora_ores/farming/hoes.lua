@@ -36,19 +36,14 @@ farming.register_hoe = function(name, def)
 	})
 
 	-- Register its recipe
-	if def.recipe then
-		core.register_craft({ output = name:sub(2), recipe = def.recipe })
+	local recipe = def.recipe or (def.material and {
+		{def.material, def.material},
+		{"", "group:stick"},
+		{"", "group:stick"}
+	})
 
-	elseif def.material then
-
-		core.register_craft({
-			output = name:sub(2),
-			recipe = {
-				{def.material, def.material, ""},
-				{"", "group:stick", ""},
-				{"", "group:stick", ""}
-			}
-		})
+	if recipe then
+		core.register_craft({ output = name:sub(2), recipe = recipe })
 	end
 end
 
