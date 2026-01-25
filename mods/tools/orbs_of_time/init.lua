@@ -5,9 +5,9 @@ local S = minetest.get_translator(minetest.get_current_modname())
 minetest.register_alias("castle:orb_day", "orbs_of_time:orb_day")
 minetest.register_alias("castle:orb_night", "orbs_of_time:orb_night")
 
-local function generic_on_use(itemstack, user, sound2)
+local function generic_on_use(itemstack, user, time_of_day, sound2)
 	core.sound_play("orbs_ding", {pos=user:get_pos(), loop=false})
-	core.set_timeofday(0.5)
+	core.set_timeofday(time_of_day)
 	core.sound_play(sound2, {pos=user:get_pos(), loop=false})
 	if not core.is_creative_enabled(user:get_player_name()) then
 		itemstack:add_wear(65535/8)
@@ -29,7 +29,7 @@ minetest.register_tool("orbs_of_time:orb_day", {
 	stack_max=1,
 	groups = { tool=1 },
 	on_use = function(itemstack, user)
-		return generic_on_use(itemstack, user, "orbs_birds")
+		return generic_on_use(itemstack, user, 0.5, "orbs_birds")
 	end,
 })
 
@@ -46,7 +46,7 @@ minetest.register_tool("orbs_of_time:orb_night",{
 	stack_max=1,
 	groups = { tool=1 },
 	on_use = function(itemstack, user)
-		return generic_on_use(itemstack, user, "orbs_owl")
+		return generic_on_use(itemstack, user, 0, "orbs_owl")
 	end,
 })
 
@@ -63,7 +63,7 @@ minetest.register_tool("orbs_of_time:orb_dawn", {
 	wield_image = "orbs_orb_day_weild.png^[lowpart:75:orbs_orb_night_weild.png",
 	stack_max=1,
 	on_use = function(itemstack, user)
-		return generic_on_use(itemstack, user, "orbs_birds")
+		return generic_on_use(itemstack, user, 0.2, "orbs_birds")
 	end,
 })
 
@@ -78,7 +78,7 @@ minetest.register_tool("orbs_of_time:orb_dusk",{
 	wield_image = "orbs_orb_night_weild.png^[lowpart:75:orbs_orb_day_weild.png",
 	stack_max=1,
 	on_use = function(itemstack, user)
-		return generic_on_use(itemstack, user, "orbs_owl")
+		return generic_on_use(itemstack, user, 0.8, "orbs_owl")
 	end,
 })
 
