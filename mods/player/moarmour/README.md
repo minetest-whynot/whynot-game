@@ -5,7 +5,7 @@ MOAR! ARMOURS!
 
 (yes, that's how it's spelled!)
 
-![MOAR! ARMOURS!](https://codeberg.org/Dacmot/moarmour/src/branch/main/screenshot_20240116_214411.png)
+![MOAR! ARMOURS!](https://codeberg.org/Dacmot/moarmour/raw/branch/main/screenshot_20240116_214411.png)
 
 Forked from [armor_addon](https://forum.luanti.org/viewtopic.php?t=18403) ([Github](https://github.com/Chemguy99/armor_addon)) to bring it into the new decade! MT v5 translation support, French translation, and a modified craft chain to be able to use both dead player bones (MTG's bones) and the bonemeal-mod bones found while digging dirt to create the skeletal armour!
 
