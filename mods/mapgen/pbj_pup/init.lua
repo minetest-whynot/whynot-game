@@ -67,7 +67,7 @@ core.register_node(":nyancat:nyancat_rainbow", {
 		"nyancat_rainbow.png"
 	},
 	paramtype = "light",
-	light_source = 15,
+	light_source = 14,
 	paramtype2 = "facedir",
 	groups = {cracky = 2, handy = 1},
 	is_ground_content = false,
