@@ -1399,10 +1399,6 @@ mcl_colorblocks:glazed_terracotta_brown
 mcl_walls:prismarine_13
 mcl_colorblocks:glazed_terracotta_pink
 mcl_bamboo:bamboo
-mcl_bamboo:bamboo_endcap
-mcl_bamboo:bamboo_1
-mcl_bamboo:bamboo_2
-mcl_bamboo:bamboo_3
 mcl_stairs:stair_deepslate_tiles_cracked
 mcl_bamboo:scaffolding
 mcl_beds:bed_black_top

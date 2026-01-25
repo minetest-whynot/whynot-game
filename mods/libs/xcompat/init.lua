@@ -44,7 +44,9 @@ minetest.register_on_mods_loaded(function()
     end
 end)
 
-dofile(modpath .. "/src/commands.lua")
+if minetest.is_singleplayer() then
+	dofile(modpath .. "/src/commands.lua")
+end
 
 if minetest.get_modpath("mtt") and mtt.enabled then
     -- register tests

@@ -12,12 +12,12 @@ for _, texture in ipairs(textures_list) do
     textures[gameid] = dofile(xcompat.modpath.."/src/textures/"..texture)
 end
 
-local sounds_list = minetest.get_dir_list(xcompat.modpath.."/src/sounds", false)
+--[[ local sounds_list = minetest.get_dir_list(xcompat.modpath.."/src/sounds", false)
 local sounds = {}
 for _, sound in ipairs(sounds_list) do
     local gameid = sound:sub(1, -5)
     sounds[gameid] = dofile(xcompat.modpath.."/src/sounds/"..sound)
-end
+end ]]
 
 minetest.register_chatcommand("xcompat_test_materials", {
     description = "Test materials",
@@ -57,7 +57,7 @@ minetest.register_chatcommand("xcompat_test_textures", {
     end
 })
 
-minetest.register_chatcommand("xcompat_test_sounds", {
+--[[ minetest.register_chatcommand("xcompat_test_sounds", {
     description = "Test sounds",
     privs = {server=true},
     func = function(name, _)
@@ -73,4 +73,4 @@ minetest.register_chatcommand("xcompat_test_sounds", {
 
         minetest.chat_send_player(name, "Sounds test complete")
     end
-})
+}) ]]
