@@ -1,0 +1,73 @@
+# textdomain: laptop
+Ziram c6 Processor=Процессор Ziram c6
+Interlink D75A Processor=Процессор Interlink D75A
+Interlink jetCore Processor=Процессор Interlink jetCore
+Transpose 65536 Processor=Процессор Transpose 65536
+Battery=Батарея
+Case=Корпус
+CRT Screen=CRT-монитор
+Amber CRT Screen=Янтарный CRT-монитор
+Green CRT Screen=Зелёный CRT-монитор
+LCD Screen=LCD-монитор
+GPU=Графический процессор
+Hard Drive=Жесткий диск
+Motherboard=Материнская плата
+Fan=Кулер
+PSU=Блок питания
+High density floppy=Дискета большой ёмкости
+USB storage stick=USB-накопитель
+Printed paper=Бумага для печати
+
+CP Core=CP Ядро
+Flash Printex=Флэш-принтер
+#CUBE PC=CUBE PC
+#Fruit Zero=Fruit Zero
+#Bell CrossOver=Bell CrossOver
+#Kodiak 1000=Kodiak 1000
+Portable Workstation 2=Портативная Станция 2
+
+MineBrowse=Майн-Браузер
+Web Browser=Веб-браузер
+Browser settings=Настройки браузера
+
+Calculator=Калькулятор
+Perform Mathematical Calculations=Выполнение математических вычислений
+
+#CS-BOS Prompt=CS-BOS Prompt
+Command Line Interface=Интерфейс командной строки
+
+Main launcher=Главный лаунчер
+Desktop Enviroment=Окружение Рабочего стола
+
+Settings=Настройки
+Desktop settings=Настройки Рабочего стола
+
+Mail=Почта
+Send Electronic Mail=Отправка Электронной Почты
+
+#TNT Sweeper=TNT Sweeper
+Avoid hitting TNT=Избегайте попадания в TNT
+
+Tetris=Тетрис
+Falling Tile Game=Игра с падающей плиткой
+Next:=Далее:
+Score: @1=Счёт: @1
+New Game=Новая Игра
+Start a new game=Начать новую игру
+
+Notepad=Блокнот
+Write Text Documents=Написание текстовых документов
+
+#Shell=Shell
+#CS-BOS Graphic Shell=Графическая оболочка CS-BOS
+
+Removable Storage=Съемное хранилища
+Interface with Removable Media=Интерфейс со Cъемными носителями
+
+Realchess=Шахматы
+A Chess game=Игра в Шахматы
+
+Painting=Рисование
+Show/Edit Pictures=Отображение/Редактирование Рисунков
+
+Printer firmware=Прошивка принтера

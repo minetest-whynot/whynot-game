@@ -1,6 +1,8 @@
+local S = laptop.S
+
 laptop.register_hardware("laptop:core", {
-	description = "CP Core",
-	infotext = 'CP Core',
+	description = S("CP Core"),
+	infotext = S("CP Core"),
 	sequence = { "closed", "open", "open_on" },
 	custom_theme = "Red",
 	hw_capabilities = { 'hdd', 'usb', 'net' },
@@ -87,8 +89,8 @@ minetest.register_craft({
 })
 
 laptop.register_hardware("laptop:printer", {
-	description = "Flash Printex",
-	infotext = 'Flash Printex',
+	description = S("Flash Printex"),
+	infotext = S("Flash Printex"),
 	sequence = { "off", "powersave", "on" },
 	custom_theme = "PrintOS",
 	custom_launcher = "printer_launcher",
@@ -179,8 +181,8 @@ minetest.register_craft({
 })
 
 laptop.register_hardware("laptop:cube", {
-	description = "CUBE PC",
-	infotext = "CUBE PC",
+	description = S("CUBE PC"),
+	infotext = S("CUBE PC"),
 	os_version = '5.02',
 	sequence = { "off", "on"},
 	hw_capabilities = { "hdd", "floppy", "net", "liveboot" },
@@ -248,8 +250,8 @@ minetest.register_craft({
 })
 
 laptop.register_hardware("laptop:fruit_zero", {
-	description = "Fruit Zero",
-	infotext = "Fruit Zero",
+	description = S("Fruit Zero"),
+	infotext = S("Fruit Zero"),
 	sequence = { "off", "on"},
 	custom_theme = "Magma",
 	use_texture_alpha = "clip",
@@ -318,8 +320,8 @@ minetest.register_craft({
 })
 
 laptop.register_hardware("laptop:bell_crossover", {
-	description = "Bell CrossOver",
-	infotext = "Bell CrossOver",
+	description = S("Bell CrossOver"),
+	infotext = S("Bell CrossOver"),
 	os_version = "6.33",
 	sequence = { "off", "on"},
 	use_texture_alpha = "clip",
@@ -391,8 +393,8 @@ minetest.register_craft({
 
 --Kodiak 1000--
 laptop.register_hardware("laptop:kodiak_1000", {
-	description = "Kodiak 1000",
-	infotext = "Kodiak 1000",
+	description = S("Kodiak 1000"),
+	infotext = S("Kodiak 1000"),
 	sequence = { "off", "on"},
 	os_version = "3.31",
 	hw_capabilities = { "floppy", "liveboot" },
@@ -461,8 +463,8 @@ minetest.register_craft({
 
 -- Portable Workstation
 laptop.register_hardware("laptop:portable_workstation_2", {
-	description = "Portable Workstation 2",
-	infotext = "Portable Workstation 2",
+	description = S("Portable Workstation 2"),
+	infotext = S("Portable Workstation 2"),
 	os_version = "5.02",
 	custom_theme = "Argyle",
 	sequence = { "closed", "open", "open_on"},

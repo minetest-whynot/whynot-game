@@ -1,9 +1,11 @@
+local S = laptop.S
+
 local store_area = 'stickynote:files'
 
 laptop.register_app("stickynote", {
-	app_name = "Notepad",
+	app_name = S("Notepad"),
 	app_icon = "laptop_notes_pad.png",
-	app_info = "Write Text Documents",
+	app_info = S("Write Text Documents"),
 	formspec_func = function(app, mtos)
 		local data = mtos.bdev:get_app_storage('system', 'stickynote')
 		if not data then return end
@@ -35,7 +37,7 @@ laptop.register_app("stickynote", {
 		local data = mtos.bdev:get_app_storage('system', 'stickynote')
 		if not data then return end
 		if fields.text then
-			data.text = fields.text
+			data.text = laptop.truncate_text(fields.text, laptop.max_text_size)
 		end
 
 		if fields.load then
@@ -52,7 +54,7 @@ laptop.register_app("stickynote", {
 			data.selected_file_name = fields.open_selected_file
 			local store = mtos.bdev:get_app_storage(data.selected_disk_name, store_area)
 			if store then
-				data.text = store[data.selected_file_name].content
+				data.text = store[data.selected_file_name] and store[data.selected_file_name].content
 			end
 		elseif fields.save then
 			mtos:select_file_dialog({

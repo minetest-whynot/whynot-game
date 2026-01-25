@@ -1,6 +1,8 @@
+local S = laptop.S
+
 laptop.register_app("launcher", {
-	app_name = "Main launcher",
-	app_info = "Desktop Enviroment",
+	app_name = S("Main launcher"),
+	app_info = S("Desktop Enviroment"),
 	fullscreen = true,
 	os_min_version = '5.00',
 	formspec_func = function(launcher_app, mtos)

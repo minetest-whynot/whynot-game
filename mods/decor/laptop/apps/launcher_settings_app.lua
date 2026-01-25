@@ -1,7 +1,9 @@
+local S = laptop.S
+
 laptop.register_app("launcher_settings", {
-	app_name = "Settings",
+	app_name = S("Settings"),
 	app_icon = "laptop_setting_wrench.png",
-	app_info = "Desktop settings.",
+	app_info = S("Desktop settings"),
 	os_min_version = '5.00',
 	formspec_func = function(app, mtos)
 		local settings_data = mtos.bdev:get_app_storage('ram', 'launcher_settings')

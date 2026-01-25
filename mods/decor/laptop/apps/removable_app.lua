@@ -1,7 +1,9 @@
+local S = laptop.S
+
 laptop.register_app("removable", {
-	app_name = "Removable Storage",
+	app_name = S("Removable Storage"),
 	app_icon = "laptop_removable.png",
-	app_info = "Interface with Removable Media",
+	app_info = S("Interface with Removable Media"),
 	formspec_func = function(app, mtos)
 		local formspec =
 				"list[nodemeta:"..mtos.pos.x..','..mtos.pos.y..','..mtos.pos.z..";main;0,0.3;1,1;]" ..
@@ -41,7 +43,7 @@ laptop.register_app("removable", {
 		local idata = mtos.bdev:get_removable_disk()
 		if idata.stack then
 			if fields.set_label then
-				idata.label = fields.label
+				idata.label = laptop.truncate_text(fields.label, laptop.max_filename_size)
 			elseif fields.format_wipe then
 				idata:format_disk()
 			elseif fields.format_data then

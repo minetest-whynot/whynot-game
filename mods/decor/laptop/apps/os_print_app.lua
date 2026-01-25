@@ -1,3 +1,5 @@
+local S = laptop.S
+
 local printer_range = 10
 
 local function trigger_queue(app, mtos)
@@ -64,7 +66,7 @@ local function sync_stack_values(mtos)
 end
 
 laptop.register_app("printer_launcher", {
-	app_name = "Printer firmware",
+	app_name = S("Printer firmware"),
 	view = true, -- to be hidden in "usual" OS
 	fullscreen = true,
 	formspec_func = function(launcher_app, mtos)
@@ -302,7 +304,12 @@ laptop.register_view("printer:app", {
 			if hw_os and minetest.registered_items[hw_os.node.name].groups.laptop_printer then
 				hw_os.sysdata.print_queue = hw_os.sysdata.print_queue or {}
 				sync_stack_values(hw_os)
-				table.insert(hw_os.sysdata.print_queue, { title = param.label, text = param.text, author = param.author or sender:get_player_name(), timestamp = param.timestamp or os.time() })
+				table.insert(hw_os.sysdata.print_queue, {
+					title = laptop.truncate_text(param.label, laptop.max_filename_size),
+					text = laptop.truncate_text(param.text, laptop.max_text_size),
+					author = param.author or sender:get_player_name(),
+					timestamp = param.timestamp or os.time()
+				})
 				hw_os:set_app() --update page
 				app:back_app()
 			end

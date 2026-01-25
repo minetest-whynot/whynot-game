@@ -1,9 +1,11 @@
 -- based on https://github.com/cheapie/mail
 
+local S = laptop.S
+
 laptop.register_app("mail", {
-	app_name = "Mail",
+	app_name = S("Mail"),
 	app_icon = "laptop_email_letter.png",
-	app_info = "Send Electronic Mail",
+	app_info = S("Send Electronic Mail"),
 	formspec_func = function(app, mtos)
 		local cloud = mtos.bdev:get_app_storage('cloud', 'mail')
 		if not cloud then
@@ -130,6 +132,10 @@ laptop.register_app("mail", {
 		end
 
 		local cloud = mtos.bdev:get_app_storage('cloud', 'mail')
+		if not cloud then
+			mtos:set_app("mail:nonet")
+			return
+		end
 		local account = cloud[mtos.sysram.current_player]
 		if not account then
 			mtos:set_app() -- wrong player. Back to launcher
@@ -209,6 +215,10 @@ laptop.register_view("mail:newplayer", {
 		end
 		if fields.create then
 			local cloud = mtos.bdev:get_app_storage('cloud', 'mail')
+			if not cloud then
+				mtos:set_app("mail:nonet")
+				return
+			end
 			cloud[mtos.sysram.current_player] = {
 				inbox = {},
 				sentbox = {}
@@ -233,6 +243,10 @@ laptop.register_view("mail:nonet", {
 laptop.register_view("mail:compose", {
 	formspec_func = function(app, mtos)
 		local cloud = mtos.bdev:get_app_storage('cloud', 'mail')
+		if not cloud then
+			mtos:set_app("mail:nonet")
+			return false
+		end
 		local account = cloud[mtos.sysram.current_player]
 		if not account then
 			mtos:set_app() -- no player. Back to launcher
@@ -275,6 +289,10 @@ laptop.register_view("mail:compose", {
 		end
 
 		local cloud = mtos.bdev:get_app_storage('cloud', 'mail')
+		if not cloud then
+			mtos:set_app("mail:nonet")
+			return false
+		end
 		local account = cloud[mtos.sysram.current_player]
 		if not account then
 			mtos:set_app() -- no player. Back to launcher

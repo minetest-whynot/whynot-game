@@ -1,3 +1,5 @@
+local S = laptop.S
+
 local level_config = {
 	['Small'] = { w = 9, h = 9, bomb = 10, icon_size = 0.9 },
 	['Small hard'] = { w = 9, h = 9, bomb = 35, icon_size = 0.9},
@@ -109,9 +111,9 @@ end
 
 
 laptop.register_app("tntsweeper", {
-	app_name = "TNT Sweeper",
+	app_name = S("TNT Sweeper"),
 	app_icon = "laptop_tnt.png",
-	app_info = "Avoid hitting TNT",
+	app_info = S("Avoid hitting TNT"),
 	formspec_func = function(app, mtos)
 		local data = mtos.bdev:get_app_storage('ram', 'tntsweeper')
 		local sweeper = get_sweeper(data)
