@@ -22,6 +22,7 @@ initial_properties = {
 	
     on_activate = function(self,std)
 	    self.sdata = minetest.deserialize(std) or {}
+        self.object:set_armor_groups({immortal=1})
 	    if self.sdata.remove then self.object:remove() end
     end,
 	    
