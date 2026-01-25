@@ -1,6 +1,6 @@
 
 origin https://github.com/minetest-mirrors/ambience.git (fetch)
-* bc5d9367bb628187df9d8a2bd8cd7b427f6aa65f add big splash effect when jumping in water
+* 07ce39066bb5e4deb52d518d7fdf64a2733e6afc update api.txt, tidy code, move scuba back to sounds instead of background set.
 Mod: ambience/ambience
 
 origin https://github.com/minetest-mods/lightning (fetch)
@@ -48,11 +48,11 @@ origin https://github.com/mt-mods/home_workshop_modpack (fetch)
 Mod: decor/home_workshop_modpack
 
 origin https://github.com/mt-mods/homedecor_modpack (fetch)
-* aa5571a18f22ddd8d6bae75187ead85a7fcd1abb Replace deprecated `image` fields in crafitem definitions
+* bad710b094776fe028ae1b6f3da6d12e1d0b61f1 use nondeprecated namespace - minetest to core (#98)
 Mod: decor/homedecor_modpack
 
 origin https://github.com/MoNTE48/laptop (fetch)
-* 2929bbda89b66d3d7a0f7171c6cdd307b8a95f8d Fix inventory size
+* f9fa4023d3d4734ec25befeb28f2b7e5ab7443b1 Add `nil` check
 Mod: decor/laptop
 
 origin https://repo.or.cz/minetest_mtg_plus.git (fetch)
@@ -88,15 +88,15 @@ origin https://github.com/minetest-mods/ts_furniture (fetch)
 Mod: decor/ts_furniture
 
 origin https://github.com/mt-mods/unifieddyes (fetch)
-* 52f18389b8cf1ae36df281e4a4938fdfa3092213 Clear existing/conflicting dye recipes (#27)
+* 26b2e5f9f801f31706a1993e81cd813cee8f23d3 explicitly clear conflicting recipes (#29)
 Mod: decor/unifieddyes
 
 origin https://github.com/minetest-mirrors/farming.git (fetch)
-* 9cb83d03b59138a7933d79073ca0f26402bf6a87 have scythe pick up items
+* 61cd1f43d3441c6a8f194c72e43378626092a867 add {food=[1=other,2=food,3=drink} groups to food items for additional mod support.
 Mod: flora_ores/farming
 
 origin https://codeberg.org/Dacmot/YellowCrystals.git (fetch)
-* 49064255fddd1aaf61efcff2e32eed9319f04367 Adjusting crystal generation depth
+* 8e423eadd1d94a7c6a1465c844e9a43ab0c9cd9f Update minetest calls to core. Luacheck.
 Mod: flora_ores/yellow_crystal
 
 origin https://github.com/h-v-smacker/canned_food (fetch)
@@ -124,7 +124,7 @@ origin https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin https://github.com/APercy/airutils.git (fetch)
-* d58353a22a4249b936e51793c1b39b80eb529b76 added fix when the mask option is removed
+* 0c48af8f883b1a3bee032f3138c575493ac1b1cb fix co_pilot management form
 Mod: libs/airutils
 
 origin https://repo.or.cz/minetest_doc.git (fetch)
@@ -156,7 +156,7 @@ origin https://codeberg.org/Dacmot/sfcraftguide.git (fetch)
 Mod: libs/sfcraftguide
 
 origin https://github.com/mt-mods/xcompat.git (fetch)
-* 7e0cff68d04c2fffbb61133a15afd01a13e82bfe Add obsidian material (#58)
+* 5d6769f316963c54eabd997762c84fc88b2c743d fix #62 - disable sounds chat command test for now
 Mod: libs/xcompat
 
 origin https://github.com/Treer/cloudlands/ (fetch)
@@ -168,7 +168,7 @@ origin https://codeberg.org/Dacmot/maple.git (fetch)
 Mod: mapgen/maple
 
 origin https://github.com/minetest-mods/meseor (fetch)
-* b0a99d3acb25007b840741db6216c00337eba247 Update
+* b4355b2de49857601939f8ba4be009f84b78fc11 Update licensing according to ContentDB requirement
 Mod: mapgen/meseor
 
 origin https://codeberg.org/Dacmot/minetest_mapgen_config.git (fetch)
@@ -176,7 +176,7 @@ origin https://codeberg.org/Dacmot/minetest_mapgen_config.git (fetch)
 Mod: mapgen/minetest_mapgen_config
 
 origin https://github.com/minetest-mirrors/pbj_pup.git (fetch)
-* 4044527c80552ca9b9f4c70157730ab8682c4f3e tweak light levels and tidy code
+* 4b86456193dbf77c11700404281421a1708425e2 fix wrong light value
 Mod: mapgen/pbj_pup
 
 origin https://github.com/GreenXenith/tac_nayn (fetch)
@@ -200,7 +200,7 @@ origin https://github.com/minetest-mirrors/mobs_monster.git (fetch)
 Mod: mobs_redo/mobs_monster
 
 origin https://github.com/minetest-mirrors/mobs_redo.git (fetch)
-* 92cbeaba55bec22eacffac3806767a1f74f852f2 add 'can_spawn_protect' flag to mobs:register_egg
+* 7e1f662854d94df8ee9ada250b1a9b4a213bddb2 tidy api, add mobs:scale_mob function
 Mod: mobs_redo/mobs_redo
 
 origin https://github.com/minetest-mods/3d_armor (fetch)
@@ -300,7 +300,7 @@ origin https://github.com/Ezhh/handholds (fetch)
 Mod: tools/handholds
 
 origin https://github.com/APercy/hidroplane.git (fetch)
-* 7d5490ec029c78e9f24da095218c1138624cc5c9 added support for water splash
+* 1452b1d1a69e46cfd8618a5a053d55f87491db67 fix non immortal entity
 Mod: tools/hidroplane
 
 origin https://github.com/minetest-mods/hopper (fetch)
@@ -316,7 +316,7 @@ origin https://github.com/thePlasm/maidroid (fetch)
 Mod: tools/maidroid
 
 origin https://github.com/minetest-mods/orbs_of_time/ (fetch)
-* 770ce36af6012739fa616ca0b2315a4c25a88b68 Support creative mods
+* 7ac02f0c542bd70af93d33e5b83da44142bd30ea Fix all orbs setting same time (#9)
 Mod: tools/orbs_of_time
 
 origin https://codeberg.org/Dacmot/minetest_orienteering.git (fetch)
@@ -332,7 +332,7 @@ origin https://github.com/minetest-mods/subspacewalker (fetch)
 Mod: tools/subspacewalker
 
 origin https://github.com/APercy/supercub.git (fetch)
-* cfed37b7a08d5a5c17178b2033b3a6e567ba85a0 fix fuel indicator
+* 490e586b8dfe56f8417ac7a04b2b6fbeeffa3c81 fix non immortal entity
 Mod: tools/supercub
 
 origin https://github.com/lisacvuk/minetest-toolranks (fetch)
