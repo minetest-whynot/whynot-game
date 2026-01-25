@@ -2,8 +2,15 @@
 ========
 
 Compatible with Minetest 5.0.0 and later
+
 Dependencies: default
-License: LGPL-2.1
+
+Licenses:
+
+ * Code: LGPL-2.1
+ * See [LICENSE](LICENSE) file
+
+Mod usage notes:
 
 * Warning, this mod can seriously damage maps, it is not 'on generated', instead impact is triggered by abm on dirt, grass, desert sand and sand. Unless testing in a new world you should edit the impact area and safe area in the init.lua.
 

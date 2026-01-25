@@ -1,5 +1,4 @@
 -- meseor 0.2.0 by paramat.
--- License WTFPL, see license.txt.
 
 -- Parameters.
 
@@ -244,8 +243,8 @@ if ABM then
 			"default:dirt_with_grass",
 			"default:desert_sand",
 			"default:sand",
-		},    
-		interval = ABMINT,	
+		},
+		interval = ABMINT,
 		chance = ABMCHA,
 		action = function(pos, node, _, _)
 			local x = pos.x
