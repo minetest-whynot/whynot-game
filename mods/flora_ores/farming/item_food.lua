@@ -300,6 +300,9 @@ core.register_node("farming:salt", {
 
 				core.add_item(pos, "farming:salt_crystal")
 
+				core.sound_play("default_glass_footstep",
+						{pos = pos, gain = 0.5, pitch = 1.5}, true)
+
 				return false -- return with no further action
 			end
 		end

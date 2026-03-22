@@ -118,7 +118,7 @@ function farming.hoe_on_use(itemstack, user, pointed_thing, uses)
 	-- only when used on soil top or external entity
 	if is_used then
 
-		-- cretive doesnt wear tools but toolranks registers uses with wear so set to 1
+		-- creative doesnt wear tools but toolranks registers uses with wear so set to 1
 		if farming.is_creative(user:get_player_name()) then
 			if mod_tr then wear = 1 else wear = 0 end
 		end
@@ -236,8 +236,9 @@ local function hoe_area(pos, player)
 	-- remove flora (grass, flowers etc.)
 	local res = core.find_nodes_in_area(
 			{x = pos.x - r, y = pos.y - 1, z = pos.z - r},
-			{x = pos.x + r, y = pos.y + 1, z = pos.z + r},
-			{"group:flora", "group:grass", "group:dry_grass", "default:dry_shrub"})
+			{x = pos.x + r, y = pos.y + 1, z = pos.z + r}, {
+				"group:flora", "group:grass", "group:dry_grass",
+				"default:dry_shrub", "farming:weed"})
 
 	for n = 1, #res do
 		core.swap_node(res[n], {name = "air"})

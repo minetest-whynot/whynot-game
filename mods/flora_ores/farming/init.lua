@@ -12,7 +12,7 @@ local S = core.get_translator("farming")
 
 farming = {
 	mod = "redo",
-	version = "20260122",
+	version = "20260320",
 	path = core.get_modpath("farming"),
 	select = {type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5}},
 	select_final = {type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, -2.5/16, 0.5}},
@@ -192,10 +192,20 @@ local function reg_plant_stages(plant_name, stage, force_last)
 
 		if #stages_left > 0 then
 
+			-- next_plant name
+			local next_name = plant_name .. "_" .. (stage + 1)
+			local next_add
+
+			if core.registered_nodes[next_name] then
+				next_add = next_name
+			end
+
 			local old_constr = node_def.on_construct
 			local old_destr  = node_def.on_destruct
 
 			core.override_item(node_name, {
+
+				next_plant = next_add,
 
 				on_construct = function(pos)
 
@@ -284,12 +294,31 @@ function farming.handle_growth(pos, node)
 	if stages_left then set_growing(pos, stages_left) end
 end
 
--- register crops nodes and add timer functions
+-- are crops floodable?
+
+local floodable = core.settings:get_bool("farming_floodable_crops")
+
+-- register crops nodes, add timer functions and drop when flooded
 
 core.after(0, function()
 
-	for _, node_def in pairs(core.registered_nodes) do
+	for node, node_def in pairs(core.registered_nodes) do
+
 		register_plant_node(node_def)
+
+		if floodable then
+
+			if core.get_item_group(node, "plant") >= 1
+			or core.get_item_group(node, "seed") >= 1 and not node_def.on_flood then
+
+				minetest.override_item(node, {
+					floodable = true,
+					on_flood = function(pos, oldnode, newnode)
+						core.dig_node(pos)
+					end
+				})
+			end
+		end
 	end
 end)
 
@@ -397,6 +426,18 @@ function farming.plant_growth_timer(pos, elapsed, node_name)
 	return growth ~= max_growth
 end
 
+-- Compatibility function for default farming mod, forces a growth step
+
+function farming.grow_plant(pos, elapsed)
+
+	local node = core.get_node(pos)
+	local def = core.registered_nodes[node.name]
+
+	elapsed = elapsed or STAGE_LENGTH_AVG
+
+	farming.plant_growth_timer(pos, elapsed, node.name)
+end
+
 -- refill placed plant by crabman (26/08/2015) updated by TenPlus1
 
 function farming.refill_plant(player, plantname, index)
@@ -444,7 +485,7 @@ function farming.place_seed(itemstack, placer, pointed_thing, plantname)
 	-- check if pointing at the top of the node
 	if pt.above.y ~= pt.under.y + 1 then return end
 
-	-- return if any of the nodes is not registered
+	-- return if any of the nodes arent registered
 	if not core.registered_nodes[under.name]
 	or not core.registered_nodes[above.name] then return end
 
@@ -465,7 +506,7 @@ function farming.place_seed(itemstack, placer, pointed_thing, plantname)
 
 		farming.start_seed_timer(pt.above)
 
-		core.sound_play("default_place_node", {pos = pt.above, gain = 1.0})
+		core.sound_play("default_place_node", {pos = pt.above}, true)
 
 		core.log("action", string.format("%s planted %s at %s",
 			(placer and placer:is_player() and placer:get_player_name() or "A mod"),
