@@ -105,7 +105,7 @@ if not mobs.custom_spawn_monster then
 
 	mobs:spawn({
 		name = "mobs_monster:lava_flan",
-		nodes = {"default:lava_source"},
+		nodes = {"default:lava_source", "nether:lava_source"},
 		chance = 1500,
 		active_object_count = 1,
 		max_height = 0
