@@ -1145,10 +1145,12 @@ function airutils.seats_create(self)
             for i=1, max_seats do
                 self._passengers_base[i] = core.add_entity(pos,'airutils:seat_base')
                 self._passengers[i] = ""
-                if not self._seats_rot then
-                    self._passengers_base[i]:set_attach(self.object,'',self._seats[i],{x=0,y=0,z=0})
-                else
-                    self._passengers_base[i]:set_attach(self.object,'',self._seats[i],{x=0,y=self._seats_rot[i],z=0})
+                if self._passengers_base and self._passengers_base[i] then
+                    if not self._seats_rot then
+                        self._passengers_base[i]:set_attach(self.object,'',self._seats[i],{x=0,y=0,z=0})
+                    else
+                        self._passengers_base[i]:set_attach(self.object,'',self._seats[i],{x=0,y=self._seats_rot[i],z=0})
+                    end
                 end
             end
 
