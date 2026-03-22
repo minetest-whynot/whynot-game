@@ -1,6 +1,6 @@
 
 origin https://github.com/minetest-mirrors/ambience.git (fetch)
-* 07ce39066bb5e4deb52d518d7fdf64a2733e6afc update api.txt, tidy code, move scuba back to sounds instead of background set.
+* 5680710a765e44a7dedc0ae80495a2ecb6f132f5 localize get_node
 Mod: ambience/ambience
 
 origin https://github.com/minetest-mods/lightning (fetch)
@@ -48,7 +48,7 @@ origin https://github.com/mt-mods/home_workshop_modpack (fetch)
 Mod: decor/home_workshop_modpack
 
 origin https://github.com/mt-mods/homedecor_modpack (fetch)
-* bad710b094776fe028ae1b6f3da6d12e1d0b61f1 use nondeprecated namespace - minetest to core (#98)
+* 992739d532808b6e671a0a4a618f9ed5cb41bdcd Use `unifieddyes.preserve_metadata` instead of `on_dig` (#103)
 Mod: decor/homedecor_modpack
 
 origin https://github.com/MoNTE48/laptop (fetch)
@@ -88,11 +88,11 @@ origin https://github.com/minetest-mods/ts_furniture (fetch)
 Mod: decor/ts_furniture
 
 origin https://github.com/mt-mods/unifieddyes (fetch)
-* 26b2e5f9f801f31706a1993e81cd813cee8f23d3 explicitly clear conflicting recipes (#29)
+* 8d907591e412b8dd6e5ba98f16397e059ed97fe6 Replace `on_dig` with `preserve_metadata` (#31)
 Mod: decor/unifieddyes
 
 origin https://github.com/minetest-mirrors/farming.git (fetch)
-* 61cd1f43d3441c6a8f194c72e43378626092a867 add {food=[1=other,2=food,3=drink} groups to food items for additional mod support.
+* 439f6e12a09a498679d6e19a4d0b5405d1849a73 replace anyhoo
 Mod: flora_ores/farming
 
 origin https://codeberg.org/Dacmot/YellowCrystals.git (fetch)
@@ -124,7 +124,7 @@ origin https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin https://github.com/APercy/airutils.git (fetch)
-* 0c48af8f883b1a3bee032f3138c575493ac1b1cb fix co_pilot management form
+* bdf5032e42e4a84cd14a8cf18cf29aca1341511e fix gauges racing condition
 Mod: libs/airutils
 
 origin https://repo.or.cz/minetest_doc.git (fetch)
@@ -156,7 +156,7 @@ origin https://codeberg.org/Dacmot/sfcraftguide.git (fetch)
 Mod: libs/sfcraftguide
 
 origin https://github.com/mt-mods/xcompat.git (fetch)
-* 5d6769f316963c54eabd997762c84fc88b2c743d fix #62 - disable sounds chat command test for now
+* 9b18ad4b4887d1f0a2c6e9c12693406554b300ab add devtest (#63)
 Mod: libs/xcompat
 
 origin https://github.com/Treer/cloudlands/ (fetch)
@@ -196,11 +196,11 @@ origin https://codeberg.org/tenplus1/mobs_ghost_redo (fetch)
 Mod: mobs_redo/mobs_ghost_redo
 
 origin https://github.com/minetest-mirrors/mobs_monster.git (fetch)
-* 616e556cb71a7a075e592d0ca4e5e015c00efbde increase fireball damage to 2
+* 8ad8f66cd37cec57c6a8f122d57e79c5f2af241f had lava flan spawn in nether lava source
 Mod: mobs_redo/mobs_monster
 
 origin https://github.com/minetest-mirrors/mobs_redo.git (fetch)
-* 7e1f662854d94df8ee9ada250b1a9b4a213bddb2 tidy api, add mobs:scale_mob function
+* 489917a94def9d9dc4a587cdef57eb52982c5401 maybelline
 Mod: mobs_redo/mobs_redo
 
 origin https://github.com/minetest-mods/3d_armor (fetch)
@@ -236,7 +236,7 @@ origin https://github.com/minetest-mods/hbsprint (fetch)
 Mod: player/hbsprint
 
 origin https://codeberg.org/Wuzzy/minetest_hudbars.git (fetch)
-* f38d5996983930ce0d00e3264aa955afb00e7967 Merge pull request 'Add zh_CN localization' (#17) from w0rr1z/minetest_hudbars:master into master
+* b5a6b3975c05c5026a6cffe6afb73bc1c09f406f Fix typos in API.md
 Mod: player/hudbars
 
 origin https://codeberg.org/Dacmot/moarmour.git (fetch)
@@ -252,7 +252,7 @@ origin https://repo.or.cz/minetest_show_wielded_item.git (fetch)
 Mod: player/show_wielded_item
 
 origin https://github.com/minetest-mods/skinsdb (fetch)
-* bc69b03d0b8447a582ca38e9eebb8565d2b07f29 Update hand overrides to v5.12.0-dev changes
+* 139cf48fa1c28f52145861d46594fab5eed8bc52 Reduce environment attack surface
 Mod: player/skinsdb
 
 origin https://github.com/bell07/minetest-smart_sfinv (fetch)
@@ -272,7 +272,7 @@ origin https://github.com/Lokrates/Biofuel.git (fetch)
 Mod: tools/biofuel
 
 origin https://github.com/minetest-mirrors/bonemeal.git (fetch)
-* a200c9913eb4f2fd55a021e5e3137f30c50cbd69 add mangrove sapling and mud deco
+* e0a7115c680348bb22762d95001191886a96dbe4 add custom lucky block to grow everything within reach
 Mod: tools/bonemeal
 
 origin https://github.com/SmallJoker/boost_cart (fetch)
