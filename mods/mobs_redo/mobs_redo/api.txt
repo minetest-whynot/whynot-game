@@ -195,6 +195,9 @@ functions needed for the mob to work properly which contains the following:
       'fuse'              sound played when mob explode timer starts.
       'explode'           sound played when mob explodes.
 
+      Each sound can be either a string or sound table e.g. "mobs_chicken" or
+      {name = "mobs_chicken", pitch = 1.2, gain = 1.3, max_hear_distance = 8}
+
    'drops'     table of items that are dropped when mob is killed, fields are:
       'name'   name of item to drop.
       'chance' chance of drop, 1 for always, 2 for 1-in-2 chance etc.

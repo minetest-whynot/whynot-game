@@ -1,4 +1,3 @@
-
 -- translation & mod checks
 
 local S = core.get_translator("mobs")
@@ -18,7 +17,7 @@ end
 -- global table
 
 mobs = {
-	mod = "redo", version = "20260124",
+	mod = "redo", version = "20260318",
 	spawning_mobs = {}, translate = S,
 	node_snow = has(core.registered_aliases["mapgen_snow"])
 			or has("mcl_core:snow") or has("default:snow") or "air",
@@ -197,16 +196,19 @@ end
 
 function mob_class:mob_sound(sound)
 
-	if not sound then return end
+	if not sound or not self.sounds then return end
 
-	local pitch = self.child and 1.5 or 1.0 -- higher pitch for a child
+	if type(sound) == "string" then sound = {name = sound} end
 
-	pitch = pitch + random(-10, 10) * 0.005 -- random pitch difference
+	sound.pitch = (sound.pitch or 1.0) + random(-10, 10) * 0.005 -- random differences
 
-	core.sound_play(sound, {
-		object = self.object, gain = 1.0, pitch = pitch,
-		max_hear_distance = (self.sounds and self.sounds.distance) or 10
-	}, true)
+	sound.pitch = self.child and sound.pitch + .3 or sound.pitch -- higher for a child
+
+	sound.max_hear_distance = sound.max_hear_distance or self.sounds.distance or 10
+
+	sound.object = self.object -- bind sound to mob
+
+	core.sound_play(sound.name, sound, true)
 end
 
 -- set attack
@@ -427,6 +429,35 @@ function mob_class:set_animation(anim, force)
 		0, self.animation[anim .. "_loop"] ~= false)
 end
 
+-- use new functions if available
+
+local get_id = core.get_node_raw
+local get_id_name = core.get_name_from_content_id
+local get_node = core.get_node
+
+if get_id then get_node = function(pos)
+
+		local id, p1, p2, pos_ok = get_id(pos.x, pos.y, pos.z)
+
+		return {name = get_id_name(id), param1 = p1, param2 = p2, loaded = pos_ok}
+	end
+end
+
+-- get node at pos, return fallback for unknown
+
+local function node_ok(pos, fallback)
+
+	local node = get_node(pos)
+
+	if core.registered_nodes[node.name] then return node end
+
+	return core.registered_nodes[(fallback or mobs.fallback_node)]
+end
+
+function mobs:node_ok(pos, fallback)
+	return node_ok(pos, fallback)
+end
+
 -- check line of sight using raycasting (thx Astrobe)
 
 function mob_class:line_of_sight(pos1, pos2)
@@ -439,7 +470,7 @@ function mob_class:line_of_sight(pos1, pos2)
 
 		if thing.type == "node" then
 
-			name = core.get_node(thing.under).name
+			name = get_node(thing.under).name
 			nodedef = core.registered_items[name]
 
 			if nodedef and nodedef.walkable then return false end
@@ -577,7 +608,7 @@ local CHILD_GROW_TIME = 60 * 20 -- 20 minutes
 function mob_class:update_tag(newname)
 
 	local col
-	local prop = self.object:get_properties()
+	local prop = self.object:get_properties() ; if not prop then return end
 	local qua = prop.hp_max / 6
 	local old_nametag = prop.nametag
 	local old_nametag_color = self.nametag_col
@@ -831,21 +862,6 @@ function mob_class:check_for_death(cmi_cause)
 	return true
 end
 
--- get node, use fallback for nil or unknown
-
-local function node_ok(pos, fallback)
-
-	local node = core.get_node_or_nil(pos)
-
-	if node and core.registered_nodes[node.name] then return node end
-
-	return core.registered_nodes[(fallback or mobs.fallback_node)]
-end
-
-function mobs:node_ok(pos, fallback)
-	return node_ok(pos, fallback)
-end
-
 -- return true if node can deal damage
 
 local function is_node_dangerous(self, nodename)
@@ -1027,7 +1043,7 @@ function mob_class:do_env_damage()
 	end
 
 	--- suffocation
-	if (self.suffocation and self.suffocation ~= 0)
+	if (self.suffocation and self.suffocation ~= 0) and self.protected ~= 2
 	and (nodef.walkable == nil or nodef.walkable)
 	and (nodef.collision_box == nil or nodef.collision_box.type == "regular")
 	and (nodef.node_box == nil or nodef.node_box.type == "regular")
@@ -1310,6 +1326,7 @@ function mob_class:breed()
 						ent2.mommy_tex = self.base_texture -- when grown
 						ent2.object:set_properties({textures = textures})
 						ent2.base_texture = textures
+						mobs:scale_mob(ent2, .5, .5)
 					end
 				end, self, ent)
 
@@ -1366,7 +1383,7 @@ function mob_class:replace(pos)
 
 			-- pass node name when using table or groups
 			if type(oldnode) == "table" or oldnode:find("group:") then
-				oldnode = core.get_node(pos).name
+				oldnode = get_node(pos).name
 			end
 
 			if self:on_replace(pos, oldnode, newnode) == false then return end
@@ -2155,7 +2172,9 @@ function mob_class:do_states(dtime)
 
 			self.target_time_lost = (self.target_time_lost or 0) + dtime
 
-			if self.target_time_lost > self.attack_patience then self:stop_attack() end
+			if self.target_time_lost > self.attack_patience then
+				self:stop_attack() ; return
+			end
 		else
 			self.target_time_lost = 0
 		end
@@ -3860,7 +3879,7 @@ function mobs:register_arrow(name, def)
 				-- hit node
 				if def.type == "node" and self.hit_node then
 
-					local node = core.get_node(def.node_pos)
+					local node = get_node(def.node_pos)
 
 					self:hit_node(pos, node) ; --print("-- hit node", node.name)
 
@@ -3925,7 +3944,7 @@ function mobs:boom(self, pos, node_damage_radius, entity_radius, texture)
 
 	texture = texture or "mobs_tnt_smoke.png"
 
-	if mobs_griefing then
+	if mobs_griefing and not minetest.is_protected(pos, "") then
 
 		if core.get_modpath("mcl_explosions") then
 
@@ -3991,7 +4010,7 @@ function mobs:register_egg(mob, desc, background, addegg, no_creative, can_spawn
 				local pos = pointed_thing.above
 
 				-- does existing on_rightclick function exist?
-				local under = core.get_node(pointed_thing.under)
+				local under = get_node(pointed_thing.under)
 				local def = core.registered_nodes[under.name]
 
 				if def and def.on_rightclick then
@@ -4051,7 +4070,7 @@ function mobs:register_egg(mob, desc, background, addegg, no_creative, can_spawn
 			local pos = pointed_thing.above
 
 			-- does existing on_rightclick function exist?
-			local under = core.get_node(pointed_thing.under)
+			local under = get_node(pointed_thing.under)
 			local def = core.registered_nodes[under.name]
 
 			if def and def.on_rightclick then
@@ -4561,7 +4580,7 @@ if settings:get_bool("mobs_can_hear") ~= false then
 
 				for n = 1, #ps do
 
-					local ndef = core.registered_nodes[core.get_node(ps[n]).name]
+					local ndef = core.registered_nodes[get_node(ps[n]).name]
 
 					def.distance = get_distance(def.pos, ps[n])
 					def.loudness = def.gain - (bit * def.distance)
