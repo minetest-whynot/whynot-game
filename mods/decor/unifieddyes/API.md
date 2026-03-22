@@ -11,9 +11,9 @@ minetest.register_node("mymod:colored_node", {
 	paramtype = "light",
 	paramtype2 = "color",
 	palette = "unifieddyes_palette_extended.png",
-	groups = {snappy = 1, cracky = 2, ud_param2_colorable = 1}
+	groups = {snappy = 1, cracky = 2, ud_param2_colorable = 1},
 	airbrush_replacement_node = "mymod:my_other_colored_node",
-	on_dig = unifieddyes.on_dig
+	preserve_metadata = unifieddyes.preserve_metadata
 })
 ```
 
@@ -36,9 +36,9 @@ If your node if of the kind where you need the split palette, but you need to pu
 
 #### Function calls
 
-**`unifieddyes.on_dig(pos, node, digger)`**
+**`unifieddyes.preserve_metadata(pos, oldnode, oldmeta, drops)`**
 
-Set in a node definition's `on_dig` callback, this makes sure that if the player digs a neutral node, i.e. a colorable node that was left uncolored/white after placing, they receive a version of that item that has been stripped of its itemstack color setting, so that it is identical to what would have been in their inventory when that node was originally placed.  This prevents the engine splitting stacks of that item due to technically-different but visually-identical itemstack coloring.  This function is only needed in the definition of colorable versions of a node, not any uncolored counterparts.  For example, if you have a mod that has a simple, wooden chair, and the mod turns it into one with a colored seat cushion when you airbrush or craft it with dye, then only that latter colored-seat version needs this function.
+Set in a node definition's `preserve_metadata` callback, this makes sure that if the player digs a neutral node, i.e. a colorable node that was left uncolored/white after placing, they receive a version of that item that has been stripped of its itemstack color setting, so that it is identical to what would have been in their inventory when that node was originally placed.  This prevents the engine splitting stacks of that item due to technically-different but visually-identical itemstack coloring.  This function is only needed in the definition of colorable versions of a node, not any uncolored counterparts.  For example, if you have a mod that has a simple, wooden chair, and the mod turns it into one with a colored seat cushion when you airbrush or craft it with dye, then only that latter colored-seat version needs this function.
 
 **`unifieddyes.fix_rotation(pos, placer, itemstack, pointed_thing)`
 `unifieddyes.fix_rotation_nsew(pos, placer, itemstack, pointed_thing)`**
@@ -123,7 +123,11 @@ Makes a colored itemstack out of the given `itemstack` and `color` (as a dye, e.
 
 **`unifieddyes.generate_split_palette_nodes(name, def, drop)`**
 
-Does just what it sounds like - it registers all the nodes that are needed for a given base node (`def`) to be able to use the split palette, each named according to `name`, with the palette hue appended.  If a custom drop is needed, it can be passed along (only a string is allowed here, specifying a single item).  
+Does just what it sounds like - it registers all the nodes that are needed for a given base node (`def`) to be able to use the split palette, each named according to `name`, with the palette hue appended.  If a custom drop is needed, it can be passed along (only a string is allowed here, specifying a single item).
+
+**`unifieddyes.on_dig(pos, node, digger)`** _(Deprecated)_
+
+Don't use this. It is superseded by `unifieddyes.preserve_metadata`.
 
 #### Tables
 

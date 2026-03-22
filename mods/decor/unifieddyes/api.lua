@@ -74,7 +74,8 @@ local function node_dig_without_color(pos, node, digger)
 		.. node.name .. " at " .. minetest.pos_to_string(pos))
 
 	local wielded = digger and digger:get_wielded_item()
-	local drops = {node.name}  -- this is instead of asking minetest to generate the node drops
+	local drops = core.get_node_drops(node, wielded and wielded:get_name(),
+		wielded and ItemStack(wielded), digger, vector.copy(pos))
 
 	if wielded then
 		local wdef = wielded:get_definition()
@@ -98,17 +99,21 @@ local function node_dig_without_color(pos, node, digger)
 	end
 
 	-- Check to see if metadata should be preserved.
-	if def and def.preserve_metadata then
+	if def then
 		local oldmeta = minetest.get_meta(pos):to_table().fields
 		-- Copy pos and node because the callback can modify them.
 		local pos_copy = vector.copy(pos)
 		local node_copy = { name = node.name, param1 = node.param1, param2 = node.param2 }
 		local drop_stacks = {}
 		for k, v in pairs(drops) do
-			drop_stacks[k] = ItemStack(v)
+			local stack = ItemStack(v)
+			stack:get_meta():set_string("palette_index", "")
+			drop_stacks[k] = stack
 		end
 		drops = drop_stacks
-		def.preserve_metadata(pos_copy, node_copy, oldmeta, drops)
+		if def.preserve_metadata then
+			def.preserve_metadata(pos_copy, node_copy, oldmeta, drops)
+		end
 	end
 
 	-- Handle drops
@@ -152,6 +157,15 @@ local function node_dig_without_color(pos, node, digger)
 	return true
 end
 
+minetest.after(0, function()
+	for k, v in pairs(minetest.registered_nodes) do
+		if v.on_dig == unifieddyes.on_dig then
+			minetest.log("warning", "["..k.."] `on_dig = unifieddyes.on_dig` is deprecated. "
+				.."Use `preserve_metadata = unifieddyes.preserve_metadata` instead.")
+		end
+	end
+end)
+
 function unifieddyes.on_dig(pos, node, digger)
 	local param2 = minetest.get_node(pos).param2
 	local def = minetest.registered_items[node.name]
@@ -170,6 +184,27 @@ function unifieddyes.on_dig(pos, node, digger)
 		return node_dig_without_color(pos, node, digger)
 	else
 		return minetest.node_dig(pos, node, digger)
+	end
+end
+
+function unifieddyes.preserve_metadata(pos, oldnode, oldmeta, drops)
+	local param2 = oldnode.param2
+	local def = minetest.registered_items[oldnode.name]
+	local del_color
+
+	if def.paramtype2 == "color" and param2 == 240 and def.palette == "unifieddyes_palette_extended.png" then
+		del_color = true
+	elseif (def.paramtype2 == "colorwallmounted" or def.paramtype2 == "colorfacedir")
+		and minetest.strip_param2_color(param2, def.paramtype2) == 0
+		and string.find(def.palette, "unifieddyes_palette_")
+	then
+		del_color = true
+	end
+
+	if del_color then
+		for i, stack in ipairs(drops) do
+			stack:get_meta():set_string("palette_index", "")
+		end
 	end
 end
 
