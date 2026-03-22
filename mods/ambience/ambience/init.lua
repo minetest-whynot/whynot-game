@@ -15,9 +15,10 @@ local sound_sets = {} -- all the sounds and their settings
 local sound_set_order = {} -- needed because pairs loops randomly through tables
 local set_nodes = {} -- all the nodes needed for sets
 
--- translation
+-- translation and local
 
 local S = core.get_translator("ambience")
+local get_node = core.get_node
 
 -- add set to list
 
@@ -167,11 +168,11 @@ local function get_ambience(player, tod, name)
 
 	pos.y = pos.y + eyeh -- head level
 
-	local nod_head = core.get_node(pos).name
+	local nod_head = get_node(pos).name
 
 	pos.y = (pos.y - eyeh) + 0.2 -- foot level
 
-	local nod_feet = core.get_node(pos).name
+	local nod_feet = get_node(pos).name
 
 	pos.y = pos.y - 0.2 -- reset pos
 
@@ -412,3 +413,4 @@ dofile(core.get_modpath("ambience") .. "/soundsets.lua")
 
 
 print("[MOD] Ambience Lite loaded")
+
