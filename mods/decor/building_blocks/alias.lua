@@ -8,10 +8,8 @@ if core.get_modpath("moreblocks") or core.get_modpath("stairs") then
 end
 
 if core.get_modpath("moreblocks") then
-	core.register_alias_force("moreblocks:tar", "building_blocks:Tar")
 	stairsplus:register_alias_all("building_blocks", "tar", "building_blocks", "Tar")
 	stairsplus:register_alias_all("building_blocks", "marble", "building_blocks", "Marble")
-	stairsplus:register_alias_all("moreblocks", "tar", "building_blocks", "Tar")
 
 	if core.get_modpath("gloopblocks") then
 		core.register_alias("building_blocks:gravel_spread", "gloopblocks:slab_gravel_1")
@@ -26,7 +24,7 @@ core.register_alias("marble", "building_blocks:Marble")
 core.register_alias("building_blocks_roofing", "building_blocks:Roofing")
 core.register_alias("sticks", "building_blocks:sticks")
 core.register_alias("building_blocks:faggot", "building_blocks:sticks")
-core.register_alias("tar", "building_blocks:Tar")
+core.register_alias("Tar", "building_blocks:Tar")
 
 if not core.get_modpath("technic") then
 	core.register_node( ":technic:granite", {

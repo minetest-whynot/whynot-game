@@ -184,7 +184,7 @@ homedecor.register("kitchen_chair_padded", {
 	after_place_node = function(pos, placer, itemstack, pointed_thing)
 		unifieddyes.fix_rotation_nsew(pos, placer, itemstack, pointed_thing)
 	end,
-	on_dig = unifieddyes.on_dig,
+	preserve_metadata = unifieddyes.preserve_metadata,
 	on_rotate = unifieddyes.fix_after_screwdriver_nsew,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		return lrfurn.sit(pos, node, clicker, itemstack, pointed_thing, 1)

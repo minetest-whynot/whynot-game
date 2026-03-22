@@ -44,7 +44,7 @@ core.register_node(":lrfurn:longsofa", {
 		end
 		return itemstack
 	end,
-	on_dig = unifieddyes.on_dig,
+	preserve_metadata = unifieddyes.preserve_metadata,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		return lrfurn.sit(pos, node, clicker, itemstack, pointed_thing, 3)
 	end,

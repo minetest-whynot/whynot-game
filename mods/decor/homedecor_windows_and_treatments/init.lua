@@ -1,5 +1,9 @@
 local S = core.get_translator("homedecor_windows_and_treatments")
 
+if unifieddyes and not unifieddyes.preserve_metadata then
+	error("Incompatible version of unifieddyes found. Please update it to the latest version.")
+end
+
 homedecor_windows_and_treatments = {}
 
 homedecor.register("window_quartered", {
@@ -126,7 +130,7 @@ homedecor.register("curtain_closed", {
 	after_place_node = function(pos, placer, itemstack, pointed_thing)
 		unifieddyes.fix_rotation(pos, placer, itemstack, pointed_thing)
 	end,
-	on_dig = unifieddyes.on_dig,
+	preserve_metadata = unifieddyes.preserve_metadata,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		core.set_node(pos, { name = "homedecor:curtain_open", param2 = node.param2 })
 		return itemstack
@@ -151,7 +155,7 @@ homedecor.register("curtain_open", {
 	after_place_node = function(pos, placer, itemstack, pointed_thing)
 		unifieddyes.fix_rotation(pos, placer, itemstack, pointed_thing)
 	end,
-	on_dig = unifieddyes.on_dig,
+	preserve_metadata = unifieddyes.preserve_metadata,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		core.set_node(pos, { name = "homedecor:curtain_closed", param2 = node.param2 })
 		return itemstack
@@ -265,7 +269,7 @@ homedecor.register("shutter", {
 	after_place_node = function(pos, placer, itemstack, pointed_thing)
 		unifieddyes.fix_rotation(pos, placer, itemstack, pointed_thing)
 	end,
-	on_dig = unifieddyes.on_dig,
+	preserve_metadata = unifieddyes.preserve_metadata,
 })
 
 homedecor.register("shutter_colored", {
@@ -285,7 +289,7 @@ homedecor.register("shutter_colored", {
 	after_place_node = function(pos, placer, itemstack, pointed_thing)
 		unifieddyes.fix_rotation(pos, placer, itemstack, pointed_thing)
 	end,
-	on_dig = unifieddyes.on_dig,
+	preserve_metadata = unifieddyes.preserve_metadata,
 })
 
 core.register_alias("homedecor:shutter_purple", "homedecor:shutter_violet")

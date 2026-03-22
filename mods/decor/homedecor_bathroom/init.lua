@@ -1,5 +1,9 @@
 local S = core.get_translator("homedecor_bathroom")
 
+if unifieddyes and not unifieddyes.preserve_metadata then
+	error("Incompatible version of unifieddyes found. Please update it to the latest version.")
+end
+
 local sc_disallow = core.get_modpath("screwdriver") and screwdriver.disallow or nil
 
 local wood_tex = homedecor.textures.wood.apple.planks
@@ -21,7 +25,7 @@ homedecor.register("bathroom_tiles_dark", {
 		key = "node_sound_stone_defaults",
 	},
 	on_construct = unifieddyes.on_construct,
-	on_dig = unifieddyes.on_dig,
+	preserve_metadata = unifieddyes.preserve_metadata,
 	crafts = {
 		{
 			output = "homedecor:bathroom_tiles_dark 4",
@@ -49,7 +53,7 @@ homedecor.register("bathroom_tiles_medium", {
 		key = "node_sound_stone_defaults",
 	},
 	on_construct = unifieddyes.on_construct,
-	on_dig = unifieddyes.on_dig,
+	preserve_metadata = unifieddyes.preserve_metadata,
 	crafts = {
 		{
 			output = "homedecor:bathroom_tiles_medium 4",
@@ -77,7 +81,7 @@ homedecor.register("bathroom_tiles_light", {
 		key = "node_sound_stone_defaults",
 	},
 	on_construct = unifieddyes.on_construct,
-	on_dig = unifieddyes.on_dig,
+	preserve_metadata = unifieddyes.preserve_metadata,
 	crafts = {
 		{
 			output = "homedecor:bathroom_tiles_light 4",

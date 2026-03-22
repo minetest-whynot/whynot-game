@@ -1,5 +1,9 @@
 local S = core.get_translator("lavalamp")
 
+if unifieddyes and not unifieddyes.preserve_metadata then
+	error("Incompatible version of unifieddyes found. Please update it to the latest version.")
+end
+
 lavalamp = {}
 
 core.register_node("lavalamp:lavalamp", {
@@ -40,7 +44,7 @@ core.register_node("lavalamp:lavalamp", {
 		key = "node_sound_glass_defaults",
 	},
 	on_construct = unifieddyes.on_construct,
-	on_dig = unifieddyes.on_dig,
+	preserve_metadata = unifieddyes.preserve_metadata,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		node.name = "lavalamp:lavalamp_off"
 		core.swap_node(pos, node)

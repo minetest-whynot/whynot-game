@@ -1,5 +1,9 @@
 local S = core.get_translator("homedecor_bedroom")
 
+if unifieddyes and not unifieddyes.preserve_metadata then
+	error("Incompatible version of unifieddyes found. Please update it to the latest version.")
+end
+
 local sc_disallow = core.get_modpath("screwdriver") and screwdriver.disallow or nil
 
 local wood_tex, wool_tex = homedecor.textures.wood.apple.planks, homedecor.textures.wool.white
@@ -66,7 +70,7 @@ homedecor.register("bed_regular", {
 	after_dig_node = function(pos, oldnode, oldmetadata, digger)
 		homedecor.unextend_bed(pos)
 	end,
-	on_dig = unifieddyes.on_dig,
+	preserve_metadata = unifieddyes.preserve_metadata,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		local itemname = itemstack:get_name()
 		if itemname == "homedecor:bed_regular" then
@@ -110,7 +114,7 @@ homedecor.register("bed_extended", {
 	after_dig_node = function(pos, oldnode, oldmetadata, digger)
 		homedecor.unextend_bed(pos)
 	end,
-	on_dig = unifieddyes.on_dig,
+	preserve_metadata = unifieddyes.preserve_metadata,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		if bed_on_rightclick then
 			bed_on_rightclick(pos, node, clicker)
@@ -151,7 +155,7 @@ homedecor.register("bed_kingsize", {
 			inv:add_item("main", "homedecor:bed_regular 2")
 		end
 	end,
-	on_dig = unifieddyes.on_dig,
+	preserve_metadata = unifieddyes.preserve_metadata,
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
 		if bed_on_rightclick then
 			bed_on_rightclick(pos, node, clicker)

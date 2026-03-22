@@ -4,6 +4,10 @@
 local S = core.get_translator("homedecor_seating")
 local modpath = core.get_modpath("homedecor_seating")
 
+if unifieddyes and not unifieddyes.preserve_metadata then
+	error("Incompatible version of unifieddyes found. Please update it to the latest version.")
+end
+
 lrfurn = {}
 
 lrfurn.fdir_to_right = {
