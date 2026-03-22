@@ -1,13 +1,24 @@
 
+local S = core.get_translator("bonemeal")
+
 -- helper function
 
 local function growy(pos, player)
 
-	local dpos = core.find_node_near(pos, 1, "group:soil")
+	local nods = core.find_nodes_in_area(
+		{x = pos.x - 6, y = pos.y - 2, z = pos.z - 6},
+		{x = pos.x + 6, y = pos.y + 2, z = pos.z + 6},
+		{"group:soil", "group:sand", "group:plant", "group:seed", "group:sapling"})
 
-	if dpos then
-		bonemeal:on_use(dpos, 5)
+	if nods and #nods > 0 then
+
+		for n = 1, #nods do
+			bonemeal:on_use(nods[n], 5)
+		end
 	end
+
+	core.chat_send_player(player:get_player_name(),
+			lucky_block.green .. S("Blooming Wonderful!"))
 end
 
 -- add lucky blocks

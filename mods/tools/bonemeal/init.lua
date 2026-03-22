@@ -630,13 +630,8 @@ if core.registered_items[a.dirt] then
 		drop = {
 			max_items = 1,
 			items = {
-				{
-					items = {"bonemeal:bone"},
-					rarity = 40
-				},
-				{
-					items = {a.dirt}
-				}
+				{items = {"bonemeal:bone"}, rarity = 40},
+				{items = {a.dirt}}
 			}
 		}
 	})

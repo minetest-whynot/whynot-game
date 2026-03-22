@@ -74,7 +74,8 @@ if core.get_modpath("default") then
 			and not node:find("waterlily")
 			and not node:find("seaweed")
 			and not node:find("xdecor:potted_")
-			and not node:find("df_farming:") then
+			and not node:find("df_farming:")
+			and not node:find("xnether:") then
 				flowers[#flowers + 1] = node
 			end
 		end
