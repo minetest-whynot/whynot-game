@@ -36,7 +36,7 @@ To make a new HUD bar known to this mod, you need …
 ### Bar image
 The image for the bar will be repeated horizontally to denote the “value” of the HUD bar.
 It **must** be of size 2×16.
-If neccessary, the image will be split vertically in half, and only the left half of the image
+If necessary, the image will be split vertically in half, and only the left half of the image
 is displayed. So the final HUD bar will always be displayed on a per-pixel basis.
 
 The default bar images are single-colored, but you can use other styles as well, for instance,
@@ -50,7 +50,7 @@ This function registers a new custom HUD bar definition to the HUD bars mod, so 
 and unhidden on a per-player basis.
 Note this does not yet display the HUD bar.
 
-The HUD bars will be displayed in a “first come, first serve” order. This API does not allow fow a custom order or a way to set it
+The HUD bars will be displayed in a “first come, first serve” order. This API does not allow for a custom order or a way to set it
 manually in a reliable way. However, you can use the setting `hudbars_sorting` for this. See the advanced setting menu in Luanti
 for more information.
 
@@ -93,7 +93,7 @@ explicitly initialized on a per-player basis.
 You probably want to do this in the `minetest.register_on_joinplayer`.
 
 ### `hb.init_hudbar(player, identifier, start_value, start_max, start_hidden)`
-This function initialzes and activates a previously registered HUD bar and assigns it to a
+This function initializes and activates a previously registered HUD bar and assigns it to a
 certain client/player. This has only to be done once per player and after that, you can change
 the values using `hb.change_hudbar`.
 
@@ -155,7 +155,7 @@ such network optimization for the “styling” parameters, so keep this in mind
 You can also hide custom HUD bars, meaning they will not be displayed for a certain player. You can still
 use `hb.change_hudbar` on a hidden HUD bar, the new values will be correctly displayed after the HUD bar
 has been unhidden. Both functions will only call `hud_change` if there has been an actual change to avoid
-unneccessary traffic.
+unnecessary traffic.
 
 Note that the hidden state of a HUD bar will *not* be saved by this mod on server shutdown, so you may need
 to write your own routines for this or by setting the correct value for `start_hidden` when calling
@@ -202,7 +202,7 @@ hold by the table is only true for the moment you called this function. The fiel
 * `max`: Current maximum value of HUD bar.
 * `hidden`: Boolean denoting whether the HUD bar is hidden.
 * `barlength`: The length of the HUD bar in pixels. This field is meaningless if the HUD bar is currently hidden.
-* `text`: The text shown on the HUD bar. This fiels is meaningless if the HUD bar is currently hidden.
+* `text`: The text shown on the HUD bar. This field is meaningless if the HUD bar is currently hidden.
 
 If the player does not exist, returns `nil` instead.
 
