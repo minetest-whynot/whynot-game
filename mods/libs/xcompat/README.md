@@ -25,6 +25,7 @@ See the respective sub apis doc file in /doc for detailed documentation.
 | Exile             | x         |           |           |        |        |
 | KSurvive 2        | x         |           |           |        |        |
 | Forgotten Lands   | x         |           |           |        |        |
+| Development Test  |           | x         | x         |        |        |
 
 For functions see /doc/functions.md for the specifics relating to the function
 

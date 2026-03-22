@@ -9,6 +9,7 @@ local game_modnames = {
     hades = "hades_core",
     exile = "exile_env_sounds",
     ksurvive2 = "ks_metals",
+    devtest = "basenodes",
 }
 
 local gameid = "xcompat_unknown_gameid"
