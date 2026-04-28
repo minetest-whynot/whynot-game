@@ -3,16 +3,16 @@ msgstr ""
 "Project-Id-Version: Minetest textdomain whynot_awards x.x.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2025-10-07 04:01+0000\n"
+"PO-Revision-Date: 2026-04-29 15:09+0000\n"
 "Last-Translator: Thiago Carmona <Thiago_Carmona@tuta.io>\n"
-"Language-Team: Portuguese <https://hosted.weblate.org/projects/"
-"whynot-game-for-minetest/whynot-awards/pt/>\n"
+"Language-Team: Portuguese <https://hosted.weblate.org/projects/whynot-game-"
+"for-minetest/whynot-awards/pt/>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.14-dev\n"
+"X-Generator: Weblate 5.17.1-dev\n"
 
 msgid "@1/@2 collected"
 msgstr "@1/@2 coletado"
@@ -48,7 +48,7 @@ msgid "@1/@2 grains found"
 msgstr "@1/@2 grãos encontrados"
 
 msgid "Find @1 wild seed"
-msgstr ""
+msgstr "Encontre @1 semente selvagem"
 
 msgid "Find @1×@2 different wild seeds"
 msgstr ""
@@ -57,7 +57,7 @@ msgid "@1/@2 fruits and vegetables found"
 msgstr ""
 
 msgid "Find @1 fruit or vegetable"
-msgstr ""
+msgstr "Encontre @1 fruta ou vegetal"
 
 msgid "Find @1×@2 different fruits and vegetables"
 msgstr ""
@@ -131,13 +131,13 @@ msgid "Chests are the most basic form of storage. They are very useful to gather
 msgstr ""
 
 msgid "Craft sticks"
-msgstr ""
+msgstr "Construa gravetos"
 
 msgid "Split planks to make sticks."
 msgstr ""
 
 msgid "Craft wood tools"
-msgstr ""
+msgstr "Construa ferramentas de madeira"
 
 msgid "The first tools you can craft are made of wood. They are not very strong or durable, but will enable you to start mining rock and minerals to move up to better ones."
 msgstr ""
@@ -173,13 +173,13 @@ msgid "Wool is a very useful material for crafting garments, beds, and many othe
 msgstr ""
 
 msgid "Craft a backpack"
-msgstr ""
+msgstr "Crie uma mochila"
 
 msgid "Backpacks are very useful to help carry more stuff than the basic inventory lets you. It allows you keep mining longer and carry extra tools and food everywhere you go. Use dyed wools to create different coloured ones."
 msgstr ""
 
 msgid "Find your new home"
-msgstr ""
+msgstr "Encontre sua casa nova"
 
 msgid "Your home is the place with your bed. If you sleep once in bed, you always respawn at this position in case of death."
 msgstr ""
@@ -197,13 +197,13 @@ msgid "Coal is a common mineral found underground. Among other things, it can be
 msgstr ""
 
 msgid "Craft a campfire"
-msgstr ""
+msgstr "Faça uma fogueira"
 
 msgid "If night falls and you have not found coal, build a campfire to make some light."
 msgstr ""
 
 msgid "Craft a furnace"
-msgstr ""
+msgstr "Construa uma fornalha"
 
 msgid "Furnaces are central to advancing in this game. Use them to smelt ores, cook food, or both!"
 msgstr ""
@@ -215,7 +215,7 @@ msgid "Keep digging until you reach these depths."
 msgstr ""
 
 msgid "Fly higher"
-msgstr ""
+msgstr "Voe mais alto"
 
 msgid "Fly higher and soar to new heights"
 msgstr ""
@@ -227,7 +227,7 @@ msgid "Sail the high seas and and explore lands far far away."
 msgstr ""
 
 msgid "Craft chocolate"
-msgstr ""
+msgstr "Faça chocolate"
 
 msgid "Make some delicious chocolate. It can be eaten or incorporated in various recipes to make succulent treats. You can even build an edible armour from it!"
 msgstr ""
@@ -251,19 +251,19 @@ msgid "Copper is one of the first metal you'll encounter when digging down. Smel
 msgstr ""
 
 msgid "Craft bronze"
-msgstr ""
+msgstr "Construa bronze"
 
 msgid "Bronze is the first versatile metal you'll be able to use to craft better tools, armor and other items."
 msgstr ""
 
 msgid "Craft steel"
-msgstr ""
+msgstr "Construa aço"
 
 msgid "Steel is stronger than bronze. Use it to upgrade your tools and armor."
 msgstr ""
 
 msgid "Craft an airplane"
-msgstr ""
+msgstr "Construa um avião"
 
 msgid "Why not have airplanes? Build a Supercub and travel at high speeds and soar to new heights!"
 msgstr ""
