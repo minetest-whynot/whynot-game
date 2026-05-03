@@ -82,7 +82,7 @@ if core.get_modpath("default") then
 	end)
 
 	bonemeal:add_deco({
-		{"default:dirt", bonemeal.green_grass, flowers},
+		{"default:dirt", green_grass, flowers},
 		{"default:dirt_with_grass", green_grass, flowers},
 		{"default:dry_dirt", dry_grass, {}},
 		{"default:dry_dirt_with_dry_grass", dry_grass, {}},
@@ -151,6 +151,10 @@ if farming and farming.mod and farming.mod == "redo" then
 		{"farming:spinach_", 4},
 		{"farming:ginger_", 4},
 		{"ethereal:strawberry_", 8}
+	})
+
+	bonemeal:add_sapling({
+		{"farming:kiwi_sapling", farming.grow_kiwi_vine, "soil"}
 	})
 end
 
