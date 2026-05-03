@@ -1,7 +1,5 @@
-#    If enabled will play a random music file from ./minetest/sounds at midnight
-ambience_music (Ambience music) bool true
+ambience_music_interval (Ambience music interval [0 to disable]) int 1200
 
-#    If enabled then ambience will take over sounds when moving in water
 ambience_water_move (Ambience water movement) bool true
 
 ambience_water_splash (Big splash when jumping in water) bool false

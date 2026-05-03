@@ -15,14 +15,24 @@ local mod_mcl = core.get_modpath("mcl_core")
 
 if core.settings:get_bool("ambience_water_splash") == true then
 
-	local in_water = {}
+	local players = {}
+
+	core.register_on_joinplayer(function(player)
+		players[player:get_player_name()] = {in_water = nil, old_pos = -31000}
+	end)
+
+	core.register_on_leaveplayer(function(player)
+		players[player:get_player_name()] = nil
+	end)
 
 	ambience.add_set("big_splash", {
 
 		frequency = 1000,
 
 		sounds = {
-			{name = "big_splash", gain = 0.3, length = 4, ephemeral = true}
+			{name = "big_splash", gain = 0.3, length = 4, ephemeral = true},
+			{name = "big_splash", gain = 0.3, length = 4, ephemeral = true, pitch = 0.9},
+			{name = "big_splash", gain = 0.3, length = 4, ephemeral = true, pitch = 1.1}
 		},
 
 		sound_check = function(def)
@@ -30,28 +40,28 @@ if core.settings:get_bool("ambience_water_splash") == true then
 			local hdef = core.registered_nodes[def.head_node]
 			local fdef = core.registered_nodes[def.feet_node]
 			local name = def.player:get_player_name()
-			local vel
 
-			if core.has_feature("direct_velocity_on_players") then
-				vel = def.player:get_velocity()
-			else
-				vel = def.player:get_player_velocity()
-			end
+			if hdef and hdef.groups.water and fdef and fdef.groups.water then
 
-			if  hdef and hdef.groups and hdef.groups.water
-			and fdef and fdef.groups and fdef.groups.water then
+				local diff = players[name].old_pos - def.pos.y
 
-				if not in_water[name] and vel.y < -0.15 then
-					in_water[name] = 2
+				if not players[name].in_water and diff > 1 then
+
+					players[name].in_water = 2
+
 					return "big_splash"
 				end
+
+				players[name].in_water = 2
 			else
-				if fdef and fdef.groups and fdef.groups.water then
-					in_water[name] = 1
+				if fdef and fdef.groups.water then
+					players[name].in_water = 1
 				else
-					in_water[name] = nil
+					players[name].in_water = nil
 				end
 			end
+
+			players[name].old_pos = def.pos.y
 		end
 	})
 end
@@ -69,14 +79,14 @@ ambience.add_set("underwater", {
 --	},
 
 	sounds = {
-		{name = "scuba", length = 8}
+		{name = "scuba", length = 8, loop = true}
 	},
 
 	sound_check = function(def)
 
 		local nodef = core.registered_nodes[def.head_node]
 
-		if nodef and nodef.groups and nodef.groups.water then
+		if nodef and nodef.groups.water then
 			return "underwater"
 		end
 	end
@@ -84,7 +94,7 @@ ambience.add_set("underwater", {
 
 -- add new sound to above set
 
-ambience.add_to_set("underwater", {name = "scuba", pitch = 1.2, length = 8})
+ambience.add_to_set("underwater", {name = "scuba", pitch = 1.2, length = 8, loop = true})
 
 -- Splashing sound plays when player walks inside water nodes (if enabled)
 
@@ -116,7 +126,7 @@ if core.settings:get_bool("ambience_water_move") ~= false then
 
 			local nodef = core.registered_nodes[def.feet_node]
 
-			if nodef and nodef.groups and nodef.groups.water then
+			if nodef and nodef.groups.water then
 
 				local control = def.player:get_player_control()
 
@@ -200,19 +210,25 @@ if not core.get_modpath("env_sounds") then
 		end
 	})
 else
-	print ("[MOD] Ambience - found env_sounds, using for water and lava sounds.")
+	print ("[MOD] Ambience - Using env_sounds for water and lava sounds.")
 end
 
--- Beach sounds play when below y-pos 6 and 150+ water source found
+-- Beach sounds play when pos above 0 and below 6 and 100+ water source found
+
+local water_level = tonumber(core.settings:get("water_level"))
 
 ambience.add_set("beach", {
+
+	background = {
+		{name = "beach", length = 13, fade = 0.2}, -- length isnt needed, just info here
+	},
 
 	frequency = 40,
 
 	sounds = {
 		{name = "seagull", length = 4.5, ephemeral = true},
 		{name = "seagull", length = 4.5, pitch = 1.2, ephemeral = true},
-		{name = "beach", length = 13},
+		--{name = "beach", length = 13},
 		{name = "gull", length = 1, ephemeral = true},
 		{name = "seagull_2", length = 4, ephemeral = true}
 	},
@@ -224,7 +240,7 @@ ambience.add_set("beach", {
 		local c = (def.totals["default:water_source"] or 0)
 			+ (def.totals["mcl_core:water_source"] or 0)
 
-		if def.pos.y < 6 and def.pos.y > 0 and c > 130 then
+		if def.pos.y > water_level - 1 and def.pos.y < water_level + 5 and c > 100 then
 			return "beach"
 		end
 	end
@@ -328,7 +344,9 @@ ambience.add_set("jungle", {
 		local c = (def.totals["default:jungletree"] or 0)
 			+ (def.totals["mcl_trees:tree_jungle"] or 0)
 
-		if def.tod > 0.2 and def.tod < 0.8 and c > 79 then return "jungle" end
+		if def.pos.y > 0 and def.tod > 0.2 and def.tod < 0.8 and c > 79 then
+			return "jungle"
+		end
 	end
 })
 
@@ -353,7 +371,9 @@ ambience.add_set("jungle_night", {
 		local c = (def.totals["default:jungletree"] or 0)
 			+ (def.totals["mcl_trees:tree_jungle"] or 0)
 
-		if (def.tod < 0.2 or def.tod > 0.8) and c > 79 then return "jungle_night" end
+		if def.pos.y > 0 and (def.tod < 0.2 or def.tod > 0.8) and c > 79 then
+			return "jungle_night"
+		end
 	end
 })
 
@@ -469,7 +489,7 @@ if core.get_modpath("caverealms") then
 		end
 	})
 
-	-- stone area rumble
+	-- moss, algae, lichen area rumble
 
 	ambience.add_set("caverealms_rumble", {
 
@@ -490,7 +510,7 @@ if core.get_modpath("caverealms") then
 					(def.totals["caverealms:stone_with_algae"] or 0) +
 					(def.totals["caverealms:stone_with_lichen"] or 0)
 
-			if c > 150 then return "caverealms_rumble" end
+			if def.pos.y < -50 and c > 150 then return "caverealms_rumble" end
 		end
 	})
 end

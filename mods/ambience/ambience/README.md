@@ -41,5 +41,7 @@ Changelog:
 - 2.0 - Add Mineclone support, add ethereal leaf check, remove minetest.after for custom timer, add Polish translation, tweak & tidy code.
 - 2.1 - Add ambience.group_total() function for easy counting of group: nodes inside a set.
 - 2.2 - Adds background sounds to sets that play looped in the background while normal sounds play on top (when conditions met), and sound chance.
+- 2.3 - Add 'ambience_music_interval' setting [default is 1200, 0 to disable]. Optimize code.
+
 
 Code license: MIT

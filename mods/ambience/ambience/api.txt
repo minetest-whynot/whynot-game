@@ -17,18 +17,23 @@ Adding Sound Set
 ambience.add_set(set_name, def)
   'set_name' contains the name of the sound set to add
   'def' contains the following:
-     'frequency' how often the sound set is played (1 to 1000) higher is more
-     'nodes' contains a table of nodes needed for checks
      'background' contains a table of sounds that play in the background when
                   sound_check conditions are met.
+     'music'      contains a table of music that has a chance to play when
+                  the music interval is reached.
+                  sound_check conditions are met.
+     'frequency' how often a sound in the set is played (1 to 1000) higher is more
+                 frequent.
+     'nodes' contains a table of nodes needed for checks
      'sounds' contains a table of sounds that play on top of any background
               sounds that can stop when conditions are not met, or can be
               ephemeral for shorter sounds.
-     'sound_check(def)' function to check if sounds can be played, def contains:
+     'sound_check(def)' function to check conditions so that sounds can be played,
+                        def contains:
         'player' player userdata
         'pos' position of player
         'tod' time of day
-        'totals' totals for each node e.g. def.totals["default:sand"]
+        'totals' totals for each node e.g. def.totals["default:sand"] (can be nil)
         'positions' position data for every node found
         'head_node' name of node at player head level
         'feet_node' nameof node at player foot level
@@ -46,10 +51,10 @@ ambience.add_set("village", {
 		{"name = "village_background", gain = 0.5, fade = 1.0},
 	},
 	sounds = {
-		{name = "dogbark", gain = 0.4, ephemeral = true, chance = 7}, -- quick sound effect
-		{name = "talking_villagers", gain = 0.3, chance = 3}, -- stops when out of range
-		{name = "chicken", gain = 0.6, ephemeral = true, chance = 5},
-		{name = "chicken", gain = 0.6, pitch = 1.2, ephemeral = true, chance = 5},
+		{name = "dogbark", gain = 0.4, ephemeral = true, chance = 3}, -- quick sound effect
+		{name = "talking_villagers", gain = 0.3, chance = 2}, -- stops when out of range
+		{name = "chicken", gain = 0.6, ephemeral = true},
+		{name = "chicken", gain = 0.6, pitch = 1.2, ephemeral = true, chance = 2},
 	},
 	sound_check = function(def)
 		local number = def.totals["mymod:village_sound_block"] or 0
@@ -63,7 +68,7 @@ ambience.add_set("windy", {
 	frequency = 80,
 	nodes = {"default:sand"},
 	sounds = {
-		{name = "wind", length = 9, gain = 0.3, fade = 1.0}, -- fade in sound
+		{name = "wind", length = 9, gain = 0.3, fade = 0.2}, -- fade in 0.2 at a time
 		{name = "desertwind", length = 8, gain = 0.3},
 		{name = "crow", length = 3, ephemeral = true},
 	},

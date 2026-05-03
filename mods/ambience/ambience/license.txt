@@ -91,3 +91,5 @@ icecrack.ogg by ecfike, Creative Commons 0 license (https://freesound.org/people
 big_splash.ogg by gubodup, Creative Commons 0 License (https://freesound.org/people/qubodup/sounds/442773/)
 
 wooden_frog, wooden frog e.WAV by ERH -- https://freesound.org/s/34512/ -- License: Attribution 4.0
+
+screenshot.jpg created using https://www.textstudio.com/ image by swvrsy (cc0)
