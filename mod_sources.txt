@@ -1,6 +1,6 @@
 
 origin https://github.com/minetest-mirrors/ambience.git (fetch)
-* 5680710a765e44a7dedc0ae80495a2ecb6f132f5 localize get_node
+* 48a2e0ace443d010e59f90e4125703b7e0ef7917 wee tidy
 Mod: ambience/ambience
 
 origin https://github.com/minetest-mods/lightning (fetch)
@@ -92,7 +92,7 @@ origin https://github.com/mt-mods/unifieddyes (fetch)
 Mod: decor/unifieddyes
 
 origin https://github.com/minetest-mirrors/farming.git (fetch)
-* 439f6e12a09a498679d6e19a4d0b5405d1849a73 replace anyhoo
+* e102dd773ab103c5950f882c42856364fbdd710b kiwi sorbet texture
 Mod: flora_ores/farming
 
 origin https://codeberg.org/Dacmot/YellowCrystals.git (fetch)
@@ -124,7 +124,7 @@ origin https://github.com/GreenXenith/waffles (fetch)
 Mod: food/waffles
 
 origin https://github.com/APercy/airutils.git (fetch)
-* bdf5032e42e4a84cd14a8cf18cf29aca1341511e fix gauges racing condition
+* 43444013b5b9f962c128b254408d8dabde950735 Ensure object position is valid before distance calc
 Mod: libs/airutils
 
 origin https://repo.or.cz/minetest_doc.git (fetch)
@@ -192,15 +192,15 @@ origin https://github.com/minetest/minetest_game (fetch)
 Mod: minetest_game/minetest_game
 
 origin https://codeberg.org/tenplus1/mobs_ghost_redo (fetch)
-* 449feb49fcc50832358b67e4661aa777c68b4ac3 change minetest. to core.
+* 55b48ad151098c8c490c6cac1dd59b82656e3233 add French locale (thx Syl)
 Mod: mobs_redo/mobs_ghost_redo
 
 origin https://github.com/minetest-mirrors/mobs_monster.git (fetch)
-* 8ad8f66cd37cec57c6a8f122d57e79c5f2af241f had lava flan spawn in nether lava source
+* a55ec52e1609a8d530acccef7297afbbc8d5d839 remove cobweb arrow tail
 Mod: mobs_redo/mobs_monster
 
 origin https://github.com/minetest-mirrors/mobs_redo.git (fetch)
-* 489917a94def9d9dc4a587cdef57eb52982c5401 maybelline
+* 1aa724afafaadd795813afa4244f03004b8b40ed tweak find_free_pos and spawner abm
 Mod: mobs_redo/mobs_redo
 
 origin https://github.com/minetest-mods/3d_armor (fetch)
@@ -228,7 +228,7 @@ origin https://codeberg.org/Wuzzy/minetest_hbarmor.git (fetch)
 Mod: player/hbarmor
 
 origin https://codeberg.org/Wuzzy/minetest_hbhunger.git (fetch)
-* 92b601a380e446b56448e3d6b14375728c06ab8f Rename Minetest to Luanti
+* 508e730430ed182b68ed94b9a510b47e63d15481 Version 1.1.7
 Mod: player/hbhunger
 
 origin https://github.com/minetest-mods/hbsprint (fetch)
@@ -236,7 +236,7 @@ origin https://github.com/minetest-mods/hbsprint (fetch)
 Mod: player/hbsprint
 
 origin https://codeberg.org/Wuzzy/minetest_hudbars.git (fetch)
-* b5a6b3975c05c5026a6cffe6afb73bc1c09f406f Fix typos in API.md
+* 2806c7f34622afe3452ba68d83c906c2cd0009be Merge branch 'master' of https://codeberg.org/Wuzzy/minetest_hudbars
 Mod: player/hudbars
 
 origin https://codeberg.org/Dacmot/moarmour.git (fetch)
@@ -260,7 +260,7 @@ origin https://github.com/bell07/minetest-smart_sfinv (fetch)
 Mod: player/smart_sfinv_modpack
 
 origin https://github.com/minetest-mods/wielded_light (fetch)
-* 3dfc2623598e095954b0a97f6bac6da7096cdf10 Fix error when 'default' is disabled (#28)
+* eaa06a3a29aa6cefa5869ac7be885cc95399bb91 Fix error caused by floating-point light levels
 Mod: player/wielded_light
 
 origin https://codeberg.org/minenux/minetest-mod-backpacks.git (fetch)
@@ -272,7 +272,7 @@ origin https://github.com/Lokrates/Biofuel.git (fetch)
 Mod: tools/biofuel
 
 origin https://github.com/minetest-mirrors/bonemeal.git (fetch)
-* e0a7115c680348bb22762d95001191886a96dbe4 add custom lucky block to grow everything within reach
+* 1b4b7ffb10ba6a7e76480ff48ab8d9f1647993bd fix nil checks, tweak deco addition to existing
 Mod: tools/bonemeal
 
 origin https://github.com/SmallJoker/boost_cart (fetch)
