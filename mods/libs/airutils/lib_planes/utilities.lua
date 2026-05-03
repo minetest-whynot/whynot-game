@@ -1023,6 +1023,7 @@ function airutils.add_blast_damage(pos, radius, damage_cal)
     local objs = core.get_objects_inside_radius(pos, radius)
     for _, obj in pairs(objs) do
         local obj_pos = obj:get_pos()
+        if not obj_pos then return end
         local dist = math.max(1, vector.distance(pos, obj_pos))
         local damage = (damage_cal / dist) * radius
 
