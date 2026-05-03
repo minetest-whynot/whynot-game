@@ -41,3 +41,6 @@ mobs_spell.ogg by littlerobotsoundfactory (CC0)
 
 mobs_punch.ogg by Merrick079 (CC0)
  - https://freesound.org/people/Merrick079/sounds/566436/
+
+
+screenshot.jpg created using https://www.textstudio.com/

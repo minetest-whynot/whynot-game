@@ -13,7 +13,7 @@ end
 
 local square = math.sqrt
 
-local get_distance = function(a, b)
+local function get_distance(a, b)
 
 	if not a or not b then return 50 end -- nil check and default distance
 
@@ -127,7 +127,7 @@ core.register_abm({
 		if num == 0 then return end
 
 		-- are we spawning a registered mob?
-		if not mobs.spawning_mobs[mob] then
+		if not mobs.spawning_mobs[mob] or not core.registered_entities[mob] then
 			--print ("--- mob doesn't exist", mob)
 			return
 		end
@@ -159,10 +159,7 @@ core.register_abm({
 				player = players[i]
 
 				if get_distance(player:get_pos(), pos) <= pla then
-
-					in_range = true
-
-					break
+					in_range = true ; break
 				end
 			end
 
@@ -173,7 +170,7 @@ core.register_abm({
 		-- set medium mob usually spawns in (defaults to air)
 		local reg = core.registered_entities[mob].fly_in
 
-		if not reg or type(reg) == "string" then reg = {(reg or "air")} end
+		if type(reg) ~= "table" then reg = {reg or "air"} end
 
 		-- find air blocks within 5 nodes of spawner
 		local air = core.find_nodes_in_area(
@@ -186,10 +183,11 @@ core.register_abm({
 			local pos2 = air[math.random(#air)]
 			local lig = core.get_node_light(pos2) or 0
 
-			pos2.y = pos2.y + 0.5
-
 			-- only if light levels are within range
-			if lig >= mlig and lig <= xlig and core.registered_entities[mob] then
+			if lig >= mlig and lig <= xlig  then
+
+				pos2.y = pos2.y + 0.5
+
 				core.add_entity(pos2, mob)
 			end
 		end

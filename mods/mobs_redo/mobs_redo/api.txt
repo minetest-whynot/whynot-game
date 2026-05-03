@@ -51,7 +51,9 @@ functions needed for the mob to work properly which contains the following:
    'randomly_turn' if set to false then mob will not turn to face player or
                    randomly turn while walking or standing.
    'jump'          when true allows your mob to jump updwards[DEPRECATED].
-   'jump_height'   holds the height your mob can jump, 0 to disable jumping.
+   'jump_height'   velocity your mob can jump, 0 to disable jumping.
+   'jump_chance'   has a 0-100 chance value your jumping only mob will jump
+                   from standing.
    'can_leap'      when true obstacles like fences or pits wont stop a mob
                    from trying to jump out.
    'stepheight'    height of a block that your mob can easily walk up onto,
@@ -73,8 +75,8 @@ functions needed for the mob to work properly which contains the following:
                    or default when enabled is "^[colorize:#c9900070".
    'knock_back'    when true has mobs falling backwards when hit, the greater
                    the damage the more they move back.
-   'fear_height'   is how high a cliff or edge has to be before the mob stops
-                   walking, 0 to turn off height fear.
+   'fear_height'   is how many nodes high a cliff or edge has to be before the mob
+                   stops walking, 0 to turn off height fear.
    'fall_speed'    has the maximum speed the mob can fall at, default is -10.
    'fall_damage'   when true causes falling to inflict damage.
    'water_damage'  holds the damage per second infliced to mobs when standing in
@@ -360,16 +362,20 @@ enhance mob functionality and have them do many interesting things:
                     melee attack, parameters are (self, to_attack) and if true
                     is returned normal attack function continued.
    'on_die'         a function that is called when mob is killed (self, pos), also
-                    has access to self.cause_of_death table.
+                    has access to self.cause_of_death table, if True is returned
+                    then mob will not be removed (for special features).
    'on_death'       Official engine version of above when mob killed (self, killer),
                     'killer' is only returned if player killed the mob.
    'on_flop'        function called when flying or swimmimng mob is no longer in
                     air/water, (self) paramater and return true to skip the built
                     in api flop feature.
    'do_custom'      a custom function that is called every tick while mob is
-                    active and which has access to all of the self.* variables
-                    e.g. (self.health for health or self.standing_in for node
-                    status), return with 'false' to skip remainder of mob API.
+                    active (self, dtime, moveresult) and which has access to all
+                    of the self.* variables e.g. (self.health for health or
+                    self.standing_in for node status), return with 'false' to skip
+                    remainder of mob functions.
+   'do_mount_action' a custom function used only when riding a mob and holding the
+                     sneak key while pressing LMB (self, dtime)
    'on_sound'       (self, def) called when mob is inside the hearing distance of
                     a sound, passes a def table containing:
       'sound'       the sound being played,
@@ -452,6 +458,8 @@ mob_class:collision() -- checks for player collision with mob and returns {x, z}
 mob_class:set_velocity(velocity) -- move at velocity in the facing direction
 mob_class:get_velocity() -- returns mob speed value
 mob_class:set_yaw(yaw, delay) -- change mob yaw, delay is for smooth rotation (default:0)
+mob:class_set_pitch(pitch) -- change mob pitch in radians
+mob:class_set_roll(roll) -- change mob roll in radians
 mob_class:yaw_to_pos(pos, delay) -- rotates mod to look at position and returns new yaw
 mob_class:set_animation(animation, force) -- set mob animation
 mob_class:line_of_sight(pos1, pos2) -- internal line of sight function
@@ -466,6 +474,7 @@ mob_class:on_blast(damage) -- function called when mob in blast area
 mob_class:is_inside(itemtable) -- returns True is mob collisionbox inside any node/group
 in table
 mob_class:go_to(pos) -- makes mob go to that position or nearby
+mob_class:death_anim() -- plays mob death animation if found before removing mob
 
 
 Adding Mobs in World
@@ -621,6 +630,9 @@ This function registers a arrow for mobs with the attack type shoot.
        'collisionbox' is hitbox table for arrow, {-.1,-.1,-.1,.1,.1,.1} by default.
        'lifetime'     contains float value for how many seconds arrow exists in
                       world before being removed (default is 4.5 seconds).
+       'do_custom'    a custom function that is called every tick while arrow is
+                      active (self, dtime, moveresult), return with 'false' to
+                      skip remainder of arrow functions.
 
 Note: When an arrow hits a solid item moveresult is copied into the arrow
       self.moveresult for use inside the hit functions.
@@ -764,8 +776,8 @@ controls.
    'self'            mob information
    'dtime'           tick time used inside fly function
    'speed'           speed of flight
-   'can_shoot'       true if mob can fire arrow (sneak and left mouse button
-                     fires)
+   'can_shoot'       true if mob can fire an arrow (sneak and left mouse button
+                     fires) which is limited to 1 per second.
    'arrow_entity'    name of arrow entity used for firing
    'move_animation'  string containing name of pre-defined animation e.g. "walk"
                      or "fly" etc.
@@ -787,16 +799,14 @@ found.
 
 Certain variables need to be set before using the above functions:
 
-   'self.v2'                toggle switch used to define below values for the
-                            first time
    'self.max_speed_forward' max speed mob can move forward
    'self.max_speed_reverse' max speed mob can move backwards
    'self.accel'             acceleration speed
-   'self.terrain_type'      integer containing terrain mob can walk on
-                            (1 = water, 2 or 3 = land)
    'self.driver_attach_at'  position offset for attaching player to mob
    'self.driver_eye_offset' position offset for attached player view
    'self.driver_scale'      sets driver scale for mobs larger than {x=1, y=1}
+   'self.alt_turn'          defaults to looking in mouse direction but when
+                            True requires left and right keys to look around
 
 
 mobs:line_of_sight(self, pos1, pos2, stepsize) [DEPRECATED]

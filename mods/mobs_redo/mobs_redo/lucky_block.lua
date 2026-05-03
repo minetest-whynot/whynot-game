@@ -39,8 +39,7 @@ core.register_craftitem(":mobs:pint_sized_rune", {
 		local self = pointed_thing.ref:get_luaentity()
 
 		if not self._cmi_is_mob then
-			core.chat_send_player(name, S("Not a Mobs Redo mob!"))
-			return
+			core.chat_send_player(name, S("Not a Mobs Redo mob!")) ; return
 		end
 
 		if not self.tamed then
@@ -49,8 +48,7 @@ core.register_craftitem(":mobs:pint_sized_rune", {
 		end
 
 		if self.pint_size_potion then
-			core.chat_send_player(name, S("Potion already applied!"))
-			return
+			core.chat_send_player(name, S("Potion already applied!")) ; return
 		end
 
 		if not mobs.is_creative(user:get_player_name()) then

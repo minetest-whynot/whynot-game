@@ -411,9 +411,9 @@ mobs.add_eatable("mobs:meatblock", 20)
 core.register_craft({
 	output = "mobs:meatblock",
 	recipe = {
-		{ items.meat_cooked, items.meat_cooked, items.meat_cooked },
-		{ items.meat_cooked, items.meat_cooked, items.meat_cooked },
-		{ items.meat_cooked, items.meat_cooked, items.meat_cooked }
+		{items.meat_cooked, items.meat_cooked, items.meat_cooked},
+		{items.meat_cooked, items.meat_cooked, items.meat_cooked},
+		{items.meat_cooked, items.meat_cooked, items.meat_cooked}
 	}
 })
 
@@ -437,9 +437,9 @@ mobs.add_eatable("mobs:meatblock_raw", 20)
 core.register_craft({
 	output = "mobs:meatblock_raw",
 	recipe = {
-		{ items.meat_raw, items.meat_raw, items.meat_raw },
-		{ items.meat_raw, items.meat_raw, items.meat_raw },
-		{ items.meat_raw, items.meat_raw, items.meat_raw }
+		{items.meat_raw, items.meat_raw, items.meat_raw},
+		{items.meat_raw, items.meat_raw, items.meat_raw},
+		{items.meat_raw, items.meat_raw, items.meat_raw}
 	}
 })
 

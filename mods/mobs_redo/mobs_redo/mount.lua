@@ -22,22 +22,6 @@ local abs, cos, floor, sin, sqrt, pi =
 
 -- helper functions
 
-local function node_is(entity)
-
-	if not entity.standing_on then return "other" end
-
-	if entity.standing_on == "air" then return "air" end
-
-	local def = core.registered_nodes[entity.standing_on]
-
-	if def.groups.lava then return "lava" end
-	if def.groups.liquid then return "liquid" end
-	if def.groups.walkable then return "walkable" end
-
-	return "other"
-end
-
-
 local function get_sign(i)
 
 	if not i or i == 0 then return 0 end
@@ -114,26 +98,21 @@ end)
 
 -- find free position to detach player
 
-local function find_free_pos(pos)
+local check = {
+	{x = 1,  y = 0, z =  0}, {x = 1,  y = 1, z =  0}, {x = -1, y = 0, z =  0},
+	{x = -1, y = 1, z =  0}, {x = 0,  y = 0, z =  1}, {x = 0,  y = 1, z =  1},
+	{x = 0,  y = 0, z = -1}, {x = 0,  y = 1, z = -1}
+}
 
-	local check = {
-		{x = 1,  y = 0, z =  0}, {x = 1,  y = 1, z =  0}, {x = -1, y = 0, z =  0},
-		{x = -1, y = 1, z =  0}, {x = 0,  y = 0, z =  1}, {x = 0,  y = 1, z =  1},
-		{x = 0,  y = 0, z = -1}, {x = 0,  y = 1, z = -1}
-	}
+local function find_free_pos(pos)
 
 	for _, c in pairs(check) do
 
 		local npos = {x = pos.x + c.x, y = pos.y + c.y, z = pos.z + c.z}
-		local node = core.get_node_or_nil(npos)
+		local def = core.registered_nodes[core.get_node(npos).name] or {}
 
-		if node and node.name then
-
-			local def = core.registered_nodes[node.name]
-
-			if def and not def.walkable and def.liquidtype == "none" then
-				return npos
-			end
+		if def.liquidtype == "none" and not def.walkable and def.name ~= "ignore" then
+			return npos
 		end
 	end
 
@@ -218,11 +197,7 @@ function mobs.detach(player)
 	end)
 end
 
--- vars
-
-local damage_counter = 0
-
--- ride mob like car or horse
+-- ride mob like horse or even a car
 
 function mobs.drive(entity, moving_anim, stand_anim, can_fly, dtime)
 
@@ -267,6 +242,11 @@ function mobs.drive(entity, moving_anim, stand_anim, can_fly, dtime)
 
 		entity.object:set_yaw(horz - entity.rotate)
 
+		-- firing arrows
+		if ctrl.LMB and ctrl.sneak and entity.do_mount_action then
+			entity.do_mount_action(entity, dtime)
+		end
+
 		if can_fly then
 
 			if ctrl.jump then -- fly up
@@ -307,41 +287,10 @@ function mobs.drive(entity, moving_anim, stand_anim, can_fly, dtime)
 		end
 	end
 
-	local ni = node_is(entity)
-
-	-- env damage
-	if ni == "liquid" or ni == "lava" then
-
-		damage_counter = damage_counter + dtime
-
-		if damage_counter > 1 then
-
-			local damage = 0
-
-			if entity.lava_damage > 0 and ni == "lava" then
-				damage = entity.lava_damage
-			elseif entity.water_damage > 0 and ni == "liquid" then
-				damage = entity.water_damage
-			end
-
-			if damage >= 1 then
-
-				entity.object:punch(entity.object, 1.0, {
-					full_punch_interval = 1.0,
-					damage_groups = {fleshy = damage}
-				}, nil)
-			end
-
-			damage_counter = 0
-		end
-	end
-
 	-- if not moving then set animation and return
 	if entity.v == 0 and velo.x == 0 and velo.y == 0 and velo.z == 0 then
 
-		if stand_anim then entity:set_animation(stand_anim) end
-
-		return
+		if stand_anim then entity:set_animation(stand_anim) end ; return
 	end
 
 	-- set moving animation
@@ -368,9 +317,7 @@ function mobs.drive(entity, moving_anim, stand_anim, can_fly, dtime)
 	end
 
 	-- Set position, velocity and acceleration
-	local p = entity.object:get_pos()
-
-	if not p then return end
+	local p = entity.object:get_pos() ; if not p then return end
 
 	local new_acce = {x = 0, y = entity.fall_speed, z = 0}
 
@@ -378,58 +325,17 @@ function mobs.drive(entity, moving_anim, stand_anim, can_fly, dtime)
 
 	local v = entity.v
 
-	if ni == "air" then
-
-		if can_fly then new_acce.y = 0 ; acce_y = 0 end
-
-	elseif ni == "liquid" or ni == "lava" then
-
-		local terrain_type = entity.terrain_type
-
-		if terrain_type == 2 or terrain_type == 3 then
-
-			new_acce.y = 0
-			p.y = p.y + 1
-
-			if core.get_item_group(entity.standing_in, "liquid") ~= 0 then
-
-				if velo.y >= 5 then
-					velo.y = 5
-				elseif velo.y < 0 then
-					new_acce.y = 20
-				else
-					new_acce.y = 5
-				end
-			else
-				if abs(velo.y) < 1 then
-
-					local pos = entity.object:get_pos()
-
-					if not pos then return end
-
-					pos.y = floor(pos.y) + 0.5
-					entity.object:set_pos(pos)
-					velo.y = 0
-				end
-			end
-		else
-			v = v * 0.25
-		end
-	end
-
 	local new_velo = get_velocity(v, yaw - rot_view, velo.y)
 
 	new_acce.y = new_acce.y + acce_y
 
 	entity.object:set_velocity(new_velo)
 	entity.object:set_acceleration(new_acce)
-
-	entity.v2 = v
 end
 
 -- fly mob in facing direction (by D00Med, edited by TenPlus1)
 
-function mobs.fly(entity, _, speed, shoots, arrow, moving_anim, stand_anim)
+function mobs.fly(entity, dtime, speed, shoots, arrow, moving_anim, stand_anim)
 
 	local ctrl = entity.driver:get_player_control() ; if not ctrl then return end
 	local velo = entity.object:get_velocity() ; if not velo then return end
@@ -454,30 +360,45 @@ function mobs.fly(entity, _, speed, shoots, arrow, moving_anim, stand_anim)
 
 	entity.object:set_yaw(yaw + pi + pi / 2 - entity.rotate)
 
-	-- firing arrows
-	if ctrl.LMB and ctrl.sneak and shoots then
+	-- shooting feature
+	if ctrl.LMB and ctrl.sneak then
 
-		local pos = entity.object:get_pos()
-		local obj = core.add_entity({
-			x = pos.x + 0 + dir.x * 2.5,
-			y = pos.y + 1.5 + dir.y,
-			z = pos.z + 0 + dir.z * 2.5}, arrow)
+		-- custom function if found
+		if entity.do_mount_action then
 
-		local ent = obj:get_luaentity()
+			entity.do_mount_action(entity, dtime)
 
-		if ent then
+		-- old arrow method for compatibility
+		elseif shoots and arrow then
 
-			ent.switch = 1 -- for mob specific arrows
-			ent.owner_id = tostring(entity.object) -- so arrows dont hurt mob
+			entity.arrow_shoot_timer = entity.arrow_shoot_timer or 0
 
-			local vec = {x = dir.x * 6, y = dir.y * 6, z = dir.z * 6}
+			-- 1 second timer between shots
+			if (os.time() - entity.arrow_shoot_timer) >= 1 then
 
-			yaw = entity.driver:get_look_horizontal()
+				local pos = entity.object:get_pos()
+				local obj = core.add_entity({
+					x = pos.x + 0 + dir.x * 2.5,
+					y = pos.y + 1.5 + dir.y,
+					z = pos.z + 0 + dir.z * 2.5}, arrow)
 
-			obj:set_yaw(yaw + pi / 2)
-			obj:set_velocity(vec)
-		else
-			obj:remove()
+				local ent = obj:get_luaentity()
+
+				if ent then
+
+					ent.switch = 1 -- for mob specific arrows
+					ent.owner_id = tostring(entity.object) -- so arrows dont hurt mob
+
+					local vec = {x = dir.x * 12, y = dir.y * 12, z = dir.z * 12}
+
+					yaw = entity.driver:get_look_horizontal()
+
+					obj:set_yaw(yaw + pi / 2)
+					obj:set_velocity(vec)
+				end
+
+				entity.arrow_shoot_timer = os.time()
+			end
 		end
 	end
 

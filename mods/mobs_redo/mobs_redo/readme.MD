@@ -25,6 +25,20 @@ https://forum.minetest.net/viewtopic.php?f=11&t=9917
 
 ## Changelog
 
+### Version 1.63
+
+* Optimized get_nodes
+* Added death_anim() mob function.
+* Level 2 protected mobs no longer suffocate.
+* Added {food} groups for 3rd party mod support
+* Tweak pathfinding.
+* Added mobs:mob_scale() function
+* Updated spawn egg metadata functions
+* Added jump_chance for non walking mobs (slimes)
+* Use self.animation_current
+* Simplify mob riding to use existing physics and env_damage
+* Many tweaks and code tidy
+
 ### Version 1.62
 
 * Added ability for mobs to hear using self.on_sound() function

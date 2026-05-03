@@ -23,7 +23,7 @@ local path = core.get_modpath("mobs")
 
 dofile(path .. "/api.lua") -- mob API
 
-dofile(path .. "/mount.lua") -- rideable mobs
+dofile(path .. "/mount.lua") -- rideable mob api
 
 dofile(path .. "/crafts.lua") -- items and crafts
 
