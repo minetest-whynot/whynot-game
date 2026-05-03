@@ -27,6 +27,7 @@ local stone_types = {
 -- Stone Monster by PilzAdam
 
 mobs:register_mob("mobs_monster:stone_monster", {
+	description = S("Stone Monster"),
 	type = "monster",
 	passive = false,
 	attack_type = "dogfight",
@@ -36,7 +37,7 @@ mobs:register_mob("mobs_monster:stone_monster", {
 	hp_min = 12,
 	hp_max = 35,
 	armor = 80,
-	collisionbox = {-0.4, -1, -0.4, 0.4, 0.9, 0.4},
+	collisionbox = {-0.3, -1, -0.3, 0.3, 0.7, 0.3},
 	visual = "mesh",
 	mesh = "mobs_stone_monster.b3d",
 	textures = {
@@ -64,7 +65,7 @@ mobs:register_mob("mobs_monster:stone_monster", {
 		speed_normal = 15, speed_run = 15,
 		stand_start = 0, stand_end = 14,
 		walk_start = 15, walk_end = 38,
-		run_start = 40, run_end = 63,
+		run_start = 40, run_end = 63, run_speed = 40,
 		punch_start = 40, punch_end = 63
 	},
 	immune_to = {

@@ -72,6 +72,7 @@ AspireMint (CC BY-SA 3.0)
   mobs_spider_snowy.png
   mobs_spider_grey.png
   mobs_spider_crystal.png
+  mobs_spider_dark.png [edited by SkyBuilder1717]
   zmobs_lava_flan.b3d
   zmobs_lava_flan.png
   zmobs_lava_flan2.png
@@ -79,6 +80,10 @@ AspireMint (CC BY-SA 3.0)
 
 Zeg9 (CC BY-SA 3.0)
   zmobs_lava_orb.png
+
+SkyBuilder1717 (CC BY-SA 4.0)
+  mobs_dungeon_master4.png
+  mobs_oerkki4.png
 
 Sounds by Cyberpangolin (WTFPL) https://forum.minetest.net/viewtopic.php?t=10798
   mobs_dirtmonster.ogg

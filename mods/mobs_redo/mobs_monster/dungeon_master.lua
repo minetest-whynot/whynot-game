@@ -16,6 +16,7 @@ local master_types = {
 -- Dungeon Master by PilzAdam
 
 mobs:register_mob("mobs_monster:dungeon_master", {
+	description = S("Dungeon Master"),
 	type = "monster",
 	passive = false,
 	damage = 6,
@@ -31,13 +32,14 @@ mobs:register_mob("mobs_monster:dungeon_master", {
 	hp_min = 42,
 	hp_max = 75,
 	armor = 60,
-	collisionbox = {-0.7, -1, -0.7, 0.7, 1.6, 0.7},
+	collisionbox = {-0.5, -1, -0.5, 0.5, 1.6, 0.5},
 	visual = "mesh",
-	mesh = "mobs_dungeon_master.b3d",
+	mesh = "mobs_dungeon_master.b3d", glow = 1,
 	textures = {
 		{"mobs_dungeon_master.png"},
 		{"mobs_dungeon_master2.png"},
-		{"mobs_dungeon_master3.png"}
+		{"mobs_dungeon_master3.png"},
+		{"mobs_dungeon_master4.png"}
 	},
 	makes_footstep_sound = true,
 	sounds = {
@@ -46,7 +48,6 @@ mobs:register_mob("mobs_monster:dungeon_master", {
 	},
 	walk_velocity = 1,
 	run_velocity = 3,
-	jump = true,
 	view_range = 15,
 	drops = {
 		{name = "default:mese_crystal_fragment", chance = 1, min = 0, max = 2},
@@ -62,6 +63,7 @@ mobs:register_mob("mobs_monster:dungeon_master", {
 	animation = {
 		stand_start = 0, stand_end = 19,
 		walk_start = 20, walk_end = 35,
+		run_start = 20, run_end = 35, run_speed = 40,
 		punch_start = 36, punch_end = 48,
 		shoot_start = 36, shoot_end = 48,
 		speed_normal = 15, speed_run = 15

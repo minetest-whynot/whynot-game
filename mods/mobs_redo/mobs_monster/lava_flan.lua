@@ -4,6 +4,7 @@ local S = core.get_translator("mobs_monster")
 -- Lava Flan by Zeg9 (additional textures by JurajVajda)
 
 mobs:register_mob("mobs_monster:lava_flan", {
+	description = S("Lava Flan"),
 	type = "monster",
 	passive = false,
 	attack_type = "dogfight",
@@ -12,7 +13,7 @@ mobs:register_mob("mobs_monster:lava_flan", {
 	hp_min = 20,
 	hp_max = 35,
 	armor = 80,
-	collisionbox = {-0.5, -0.5, -0.5, 0.5, 1.5, 0.5},
+	collisionbox = {-0.5, -0.5, -0.5, 0.5, 1.2, 0.5},
 	visual = "mesh",
 	mesh = "zmobs_lava_flan.b3d",
 	textures = {
@@ -28,7 +29,6 @@ mobs:register_mob("mobs_monster:lava_flan", {
 	},
 	walk_velocity = 0.5,
 	run_velocity = 2,
-	jump = true,
 	view_range = 10,
 	floats = 1,
 	drops = {
@@ -86,8 +86,7 @@ mobs:register_mob("mobs_monster:lava_flan", {
 					{x = pos.x, y = pos.y, z = pos.z}, "air")
 
 			 -- place flame if position empty and flame exists
-			if nods and #nods > 0
-			and core.registered_nodes["fire:basic_flame"] then
+			if #nods > 0 and core.registered_nodes["fire:basic_flame"] then
 
 				pos = nods[math.random(#nods)]
 				core.set_node(pos, {name = "fire:basic_flame"})
@@ -231,6 +230,7 @@ end
 -- obsidian flan
 
 mobs:register_mob("mobs_monster:obsidian_flan", {
+	description = S("Obsidian Flan"),
 	type = "monster",
 	passive = false,
 	attack_type = "shoot",
@@ -252,7 +252,7 @@ mobs:register_mob("mobs_monster:obsidian_flan", {
 	sounds = {random = "mobs_lavaflan"},
 	walk_velocity = 0.1,
 	run_velocity = 0.5,
-	jump = false,
+	jump_height = 0,
 	view_range = 10,
 	floats = 0,
 	drops = {
@@ -348,6 +348,6 @@ mobs:register_arrow("mobs_monster:obsidian_arrow", {
 
 		local snd = def.sounds and def.sounds.dug or "default_dig_crumbly"
 
-		core.sound_play(snd, {pos = pos, max_hear_distance = 8, gain = 1.0}, true)
+		core.sound_play(snd, {pos = pos, max_hear_distance = 8}, true)
 	end
 })

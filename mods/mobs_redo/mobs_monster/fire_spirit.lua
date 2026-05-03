@@ -16,6 +16,7 @@ end
 -- Fire Spirit
 
 mobs:register_mob("mobs_monster:fire_spirit", {
+	description = S("Fire Spirit"),
 	type = "monster",
 	passive = false,
 	attack_type = "dogfight",
@@ -25,15 +26,15 @@ mobs:register_mob("mobs_monster:fire_spirit", {
 	hp_min = 25,
 	hp_max = 45,
 	armor = 100,
-	collisionbox = {-0.1, -0.1, -0.1, 0.1, 0.1, 0.1},
+	collisionbox = {-0.2, -0.2, -0.2, 0.2, 0.2, 0.2},
 	visual_scale = {x = 0.5, y = 0.5, z = 0.5},
 	visual = "sprite",
 	textures = {{"mobs_fire_spirit.png"}},
 	glow = 14,
 	blood_texture = "fire_basic_flame.png",
 	immune_to = {
-		{"bucket:bucket_water", 2},
-		{"bucket:bucket_river_water", 2},
+		{"bucket:bucket_water", 4},
+		{"bucket:bucket_river_water", 4},
 		{"all"}
 	},
 	makes_footstep_sound = false,
@@ -45,7 +46,6 @@ mobs:register_mob("mobs_monster:fire_spirit", {
 	view_range = 14,
 	walk_velocity = 2,
 	run_velocity = 3,
-	jump = true,
 	jump_height = 6,
 	drops = mob_drops,
 	water_damage = 4,
@@ -74,7 +74,7 @@ mobs:register_mob("mobs_monster:fire_spirit", {
 		local pos = self.object:get_pos()
 
 		-- pos, amount, texture, min_size, max_size, radius, gravity, glow, fall
-		mobs:effect(pos, 5, "fire_basic_flame.png", 1, 2, 0.1, 0.2, 14, nil)
+		mobs:effect(pos, 5, "fire_basic_flame.png", 2, 3, 0.1, 0, 14, nil)
 	end
 })
 

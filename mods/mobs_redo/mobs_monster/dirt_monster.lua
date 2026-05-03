@@ -17,6 +17,7 @@ local dirt_types = {
 -- Dirt Monster by PilzAdam
 
 mobs:register_mob("mobs_monster:dirt_monster", {
+	description = S("Dirt Monster"),
 	type = "monster",
 	passive = false,
 	attack_type = "dogfight",
@@ -26,7 +27,7 @@ mobs:register_mob("mobs_monster:dirt_monster", {
 	hp_min = 3,
 	hp_max = 27,
 	armor = 100,
-	collisionbox = {-0.4, -1, -0.4, 0.4, 0.8, 0.4},
+	collisionbox = {-0.3, -1, -0.3, 0.3, 0.7, 0.3},
 	visual = "mesh",
 	mesh = "mobs_stone_monster.b3d",
 	textures = {
@@ -39,7 +40,6 @@ mobs:register_mob("mobs_monster:dirt_monster", {
 	view_range = 15,
 	walk_velocity = 1,
 	run_velocity = 3,
-	jump = true,
 	drops = {
 		{name = "default:dirt", chance = 1, min = 0, max = 2},
 		{name = "default:clay_lump", chance = 2, min = 0, max = 1}
@@ -52,7 +52,7 @@ mobs:register_mob("mobs_monster:dirt_monster", {
 		speed_normal = 15, speed_run = 15,
 		stand_start = 0, stand_end = 14,
 		walk_start = 15, walk_end = 38,
-		run_start = 40, run_end = 63,
+		run_start = 40, run_end = 63, run_speed = 45,
 		punch_start = 40, punch_end = 63
 	},
 

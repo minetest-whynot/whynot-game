@@ -135,6 +135,7 @@ local mese_monster_types = {
 -- Mese Monster by SirrobZeroone
 
 mobs:register_mob("mobs_monster:mese_monster", {
+	description = S("Mese Monster"),
 	type = "monster",
 	visual_size = {x = 10, y = 10},  -- Got scale wrong in blender by factor of 10 - S01
 	passive = false,
@@ -151,7 +152,7 @@ mobs:register_mob("mobs_monster:mese_monster", {
 	hp_min = 10,
 	hp_max = 25,
 	armor = 80,
-	collisionbox = {-0.75, -0.5, -0.75, 0.75, 2.5, 0.75},
+	collisionbox = {-0.6, -0.5, -0.6, 0.6, 1.8, 0.6},
 	visual = "mesh",
 	mesh = "mobs_mese_monster.b3d",
 	textures = {{"mobs_mese_monster_purple.png"}},
@@ -164,7 +165,6 @@ mobs:register_mob("mobs_monster:mese_monster", {
 	view_range = 10,
 	walk_velocity = 1,
 	run_velocity = 3,
-	jump = true,
 	jump_height = 8,
 	can_leap = true,
 	fall_damage = 0,

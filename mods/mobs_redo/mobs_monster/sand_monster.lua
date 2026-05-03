@@ -32,6 +32,7 @@ end
 -- Sand Monster by PilzAdam
 
 mobs:register_mob("mobs_monster:sand_monster", {
+	description = S("Sand Monster"),
 	type = "monster",
 	passive = false,
 	attack_type = "dogfight",
@@ -43,7 +44,7 @@ mobs:register_mob("mobs_monster:sand_monster", {
 	hp_min = 4,
 	hp_max = 20,
 	armor = 100,
-	collisionbox = {-0.4, -1, -0.4, 0.4, 0.8, 0.4},
+	collisionbox = {-0.3, -1, -0.3, 0.3, 0.8, 0.3},
 	visual = "mesh",
 	mesh = "mobs_sand_monster.b3d",
 	textures = {
@@ -56,7 +57,6 @@ mobs:register_mob("mobs_monster:sand_monster", {
 	walk_velocity = 1.5,
 	run_velocity = 4,
 	view_range = 8,
-	jump = true,
 	floats = 0,
 	drops = {
 		{name = "default:silver_sand", chance = 2, min = 1, max = 2},
@@ -72,7 +72,7 @@ mobs:register_mob("mobs_monster:sand_monster", {
 		speed_normal = 15, speed_run = 15,
 		stand_start = 0, stand_end = 39,
 		walk_start = 41, walk_end = 72,
-		run_start = 74, run_end = 105,
+		run_start = 74, run_end = 105, run_speed = 45,
 		punch_start = 74, punch_end = 105
 	},
 	immune_to = {
