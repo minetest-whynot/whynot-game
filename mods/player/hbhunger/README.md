@@ -1,6 +1,6 @@
 # Hunger with HUD Bar [`hbhunger`]
 
-* Version: 1.1.6
+* Version: 1.1.7
 
 ## Using the mod
 
@@ -35,7 +35,7 @@ You gain health at 5.5 symbols or more, as 5.5 symbols correspond to 16 satiatio
 You *may* lose health at exactly 0.5 symbols, as 0.5 symbols correspond to 1-2 satiation points.
 
 ## Supported food
-All mods which add food through standard measures (`minetest.item_eat`) are already
+All mods which add food through standard measures (`core.item_eat`) are already
 supported automatically. Poisoned food needs special support.
 
 ### Known supported food mods

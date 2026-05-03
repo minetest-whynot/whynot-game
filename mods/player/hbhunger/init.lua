@@ -1,6 +1,6 @@
-local S = minetest.get_translator("hbhunger")
+local S = core.get_translator("hbhunger")
 
-if minetest.settings:get_bool("enable_damage") then
+if core.settings:get_bool("enable_damage") then
 
 hbhunger = {}
 hbhunger.food = {}
@@ -31,9 +31,9 @@ hbhunger.SAT_HEAL = 15 -- required satiation points to start healing
 
 
 --load custom settings
-local set = io.open(minetest.get_modpath("hbhunger").."/hbhunger.conf", "r")
+local set = io.open(core.get_modpath("hbhunger").."/hbhunger.conf", "r")
 if set then 
-	dofile(minetest.get_modpath("hbhunger").."/hbhunger.conf")
+	dofile(core.get_modpath("hbhunger").."/hbhunger.conf")
 	set:close()
 end
 
@@ -41,8 +41,8 @@ local function custom_hud(player)
 	hb.init_hudbar(player, "satiation", hbhunger.get_hunger_raw(player))
 end
 
-dofile(minetest.get_modpath("hbhunger").."/hunger.lua")
-dofile(minetest.get_modpath("hbhunger").."/register_foods.lua")
+dofile(core.get_modpath("hbhunger").."/hunger.lua")
+dofile(core.get_modpath("hbhunger").."/register_foods.lua")
 
 -- register satiation hudbar
 hb.register_hudbar("satiation", 0xFFFFFF, S("Satiation"), { icon = "hbhunger_icon.png", bgicon = "hbhunger_bgicon.png",  bar = "hbhunger_bar.png" }, hbhunger.SAT_INIT, hbhunger.SAT_MAX, false, nil, { format_value = "%.1f", format_max_value = "%d" })
@@ -85,7 +85,7 @@ hbhunger.set_hunger_raw = function(player)
 	return true
 end
 
-minetest.register_on_joinplayer(function(player)
+core.register_on_joinplayer(function(player)
 	local name = player:get_player_name()
 	local inv = player:get_inventory()
 	inv:set_size("hunger",1)
@@ -97,7 +97,7 @@ minetest.register_on_joinplayer(function(player)
 	hbhunger.set_hunger_raw(player)
 end)
 
-minetest.register_on_respawnplayer(function(player)
+core.register_on_respawnplayer(function(player)
 	-- reset hunger (and save)
 	local name = player:get_player_name()
 	hbhunger.hunger[name] = hbhunger.SAT_INIT
@@ -108,13 +108,13 @@ end)
 local main_timer = 0
 local timer = 0
 local timer2 = 0
-minetest.register_globalstep(function(dtime)
+core.register_globalstep(function(dtime)
 	main_timer = main_timer + dtime
 	timer = timer + dtime
 	timer2 = timer2 + dtime
 	if main_timer > hbhunger.HUD_TICK or timer > 4 or timer2 > hbhunger.HUNGER_TICK then
 		if main_timer > hbhunger.HUD_TICK then main_timer = 0 end
-		for _,player in ipairs(minetest.get_connected_players()) do
+		for _,player in ipairs(core.get_connected_players()) do
 		local name = player:get_player_name()
 
 		local h = tonumber(hbhunger.hunger[name])
@@ -151,12 +151,12 @@ minetest.register_globalstep(function(dtime)
 	if timer2 > hbhunger.HUNGER_TICK then timer2 = 0 end
 end)
 
-minetest.register_chatcommand("satiation", {
+core.register_chatcommand("satiation", {
 	privs = {["server"]=true},
 	params = S("[<player>] <satiation>"),
 	description = S("Set satiation of player or yourself"),
 	func = function(name, param)
-		if minetest.settings:get_bool("enable_damage") == false then
+		if core.settings:get_bool("enable_damage") == false then
 			return false, S("Not possible, damage is disabled.")
 		end
 		local targetname, satiation = string.match(param, "(%S+) (%S+)")
@@ -170,7 +170,7 @@ minetest.register_chatcommand("satiation", {
 		if not targetname then
 			targetname = name
 		end
-		local target = minetest.get_player_by_name(targetname)
+		local target = core.get_player_by_name(targetname)
 		if target == nil then
 			return false, S("Player @1 does not exist.", targetname)
 		end

@@ -12,8 +12,8 @@ end
 -- has returned an itemstack. (as of Luanti 5.10.0)
 -- FIXME: Remove the register_on_mods_loaded as soon Luanti handles
 -- on_item_eat events in a less weird manner.
-minetest.register_on_mods_loaded(function()
-	minetest.register_on_item_eat(function(hp_change, replace_with_item, itemstack, user, pointed_thing)
+core.register_on_mods_loaded(function()
+	core.register_on_item_eat(function(hp_change, replace_with_item, itemstack, user, pointed_thing)
 		-- Our own item eat handler
 		return hbhunger.eat(hp_change, replace_with_item, ItemStack(itemstack), user, pointed_thing)
 	end)
@@ -38,7 +38,7 @@ function hbhunger.eat(hp_change, replace_with_item, itemstack, user, pointed_thi
 		def = {}
 		if type(hp_change) ~= "number" then
 			hp_change = 1
-			minetest.log("error", "Wrong on_use() definition for item '" .. item .. "'")
+			core.log("error", "Wrong on_use() definition for item '" .. item .. "'")
 		end
 		def.saturation = hp_change * 1.3
 		def.replace = replace_with_item
@@ -55,7 +55,7 @@ local function poisenp(tick, time, time_left, player)
 	end
 	time_left = time_left + tick
 	if time_left < time then
-		minetest.after(tick, poisenp, tick, time, time_left, player)
+		core.after(tick, poisenp, tick, time, time_left, player)
 	else
 		hbhunger.poisonings[player:get_player_name()] = hbhunger.poisonings[player:get_player_name()] - 1
 		if hbhunger.poisonings[player:get_player_name()] <= 0 then
@@ -86,7 +86,7 @@ function hbhunger.item_eat(hunger_change, replace_with_item, poisen, heal, sound
 				else
 					object_pos = user:get_pos()
 				end
-				minetest.sound_play(
+				core.sound_play(
 					{name = sound or "hbhunger_eat_generic",
 					gain = 1},
 					{object=object,
@@ -105,7 +105,7 @@ function hbhunger.item_eat(hunger_change, replace_with_item, poisen, heal, sound
 				hbhunger.set_hunger_raw(user)
 			end
 			-- Healing
-			local hp_max = user:get_properties().hp_max or minetest.PLAYER_MAX_HP_DEFAULT or 20
+			local hp_max = user:get_properties().hp_max or core.PLAYER_MAX_HP_DEFAULT or 20
 			if hp < hp_max and heal then
 				hp = hp + heal
 				if hp > hp_max then hp = hp_max end
@@ -126,7 +126,7 @@ function hbhunger.item_eat(hunger_change, replace_with_item, poisen, heal, sound
 				if inv:room_for_item("main", replace_with_item) then
 					inv:add_item("main", replace_with_item)
 				else
-					minetest.add_item(user:get_pos(), replace_with_item)
+					core.add_item(user:get_pos(), replace_with_item)
 				end
 			end
 		end
@@ -164,5 +164,5 @@ function hbhunger.handle_node_actions(pos, oldnode, player, ext)
 	hbhunger.exhaustion[name] = exhaus
 end
 
-minetest.register_on_placenode(hbhunger.handle_node_actions)
-minetest.register_on_dignode(hbhunger.handle_node_actions)
+core.register_on_placenode(hbhunger.handle_node_actions)
+core.register_on_dignode(hbhunger.handle_node_actions)

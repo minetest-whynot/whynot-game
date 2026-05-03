@@ -1,0 +1,15 @@
+# textdomain:hbhunger
+
+# Translated by Taras Lavrentiev
+# Luanti Ukrainian Translation Organization
+# 30.03.2026
+
+Hunger with HUD Bar=Голод із індикатором HUD
+Adds a simple hunger meachanic with satiation, food poisoning and different healing.=Додає просту механіку голоду із ситістю, харчового отруєння та різних видів лікування.
+
+Satiation=Ситість
+[<player>] <satiation>=[<гравець>] <ситість>
+Set satiation of player or yourself=Встановити ситість для гравця або себе
+Not possible, damage is disabled.=Неможливо, поранення вимкнене.
+Invalid satiation!=Недопустима ситість!
+Player @1 does not exist.=Гравця @1 не існує.
