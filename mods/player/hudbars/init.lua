@@ -1,10 +1,10 @@
-local S = minetest.get_translator("hudbars")
+local S = core.get_translator("hudbars")
 local NS = function(s) return s end
 
 -- Boilerplate for compatibiliity with pre-5.9.0
--- versions of minetest
+-- versions of Luanti/Minetest
 local hud_def_type_field
-if minetest.features.hud_def_type_field then
+if core.features.hud_def_type_field then
 	hud_def_type_field = "type"
 else
 	hud_def_type_field = "hud_elem_type"
@@ -25,11 +25,11 @@ hb.settings = {}
 function hb.load_setting(sname, stype, defaultval, valid_values)
 	local sval
 	if stype == "string" then
-		sval = minetest.settings:get(sname)
+		sval = core.settings:get(sname)
 	elseif stype == "bool" then
-		sval = minetest.settings:get_bool(sname)
+		sval = core.settings:get_bool(sname)
 	elseif stype == "number" then
-		sval = tonumber(minetest.settings:get(sname))
+		sval = tonumber(core.settings:get(sname))
 	end
 	if sval ~= nil then
 		if valid_values ~= nil then
@@ -40,7 +40,7 @@ function hb.load_setting(sname, stype, defaultval, valid_values)
 				end
 			end
 			if not valid then
-				minetest.log("error", "[hudbars] Invalid value for "..sname.."! Using default value ("..tostring(defaultval)..").")
+				core.log("error", "[hudbars] Invalid value for "..sname.."! Using default value ("..tostring(defaultval)..").")
 				return defaultval
 			else
 				return sval
@@ -54,7 +54,7 @@ function hb.load_setting(sname, stype, defaultval, valid_values)
 end
 
 -- Load default settings
-dofile(minetest.get_modpath("hudbars").."/default_settings.lua")
+dofile(core.get_modpath("hudbars").."/default_settings.lua")
 
 local function player_exists(player)
 	return player ~= nil and player:is_player()
@@ -85,8 +85,8 @@ local function make_label(format_string, format_string_config, label, start_valu
 		end
 	end
 	local ret
-	if format_string_config.textdomain and minetest.translate then
-		ret = minetest.translate(format_string_config.textdomain, format_string, unpack(params))
+	if format_string_config.textdomain and core.translate then
+		ret = core.translate(format_string_config.textdomain, format_string, unpack(params))
 	else
 		ret = S(format_string, unpack(params))
 	end
@@ -133,7 +133,7 @@ function hb.get_hudbar_position_index(identifier)
 end
 
 function hb.register_hudbar(identifier, text_color, label, textures, default_start_value, default_start_max, default_start_hidden, format_string, format_string_config)
-	minetest.log("action", "hb.register_hudbar: "..tostring(identifier))
+	core.log("action", "hb.register_hudbar: "..tostring(identifier))
 	local hudtable = {}
 	local pos, offset
 	local index = math.floor(hb.get_hudbar_position_index(identifier))
@@ -278,13 +278,13 @@ function hb.register_hudbar(identifier, text_color, label, textures, default_sta
 			"[hudbars] Bad initial values of HUD bar identifier “"..tostring(identifier).."” for player "..name..". "
 
 		if start_max < start_value then
-			minetest.log("error", main_error_text.."start_max ("..start_max..") is smaller than start_value ("..start_value..")!")
+			core.log("error", main_error_text.."start_max ("..start_max..") is smaller than start_value ("..start_value..")!")
 		end
 		if start_max < 0 then
-			minetest.log("error", main_error_text.."start_max ("..start_max..") is smaller than 0!")
+			core.log("error", main_error_text.."start_max ("..start_max..") is smaller than 0!")
 		end
 		if start_value < 0 then
-			minetest.log("error", main_error_text.."start_value ("..start_value..") is smaller than 0!")
+			core.log("error", main_error_text.."start_value ("..start_value..") is smaller than 0!")
 		end
 
 		hb.hudtables[identifier].hudids[name] = ids
@@ -375,13 +375,13 @@ function hb.change_hudbar(player, identifier, new_value, new_max_value, new_icon
 	local main_error_text =
 		"[hudbars] Bad call to hb.change_hudbar, identifier: “"..tostring(identifier).."”, player name: “"..name.."”. "
 	if new_max_value < new_value then
-		minetest.log("error", main_error_text.."new_max_value ("..new_max_value..") is smaller than new_value ("..new_value..")!")
+		core.log("error", main_error_text.."new_max_value ("..new_max_value..") is smaller than new_value ("..new_value..")!")
 	end
 	if new_max_value < 0 then
-		minetest.log("error", main_error_text.."new_max_value ("..new_max_value..") is smaller than 0!")
+		core.log("error", main_error_text.."new_max_value ("..new_max_value..") is smaller than 0!")
 	end
 	if new_value < 0 then
-		minetest.log("error", main_error_text.."new_value ("..new_value..") is smaller than 0!")
+		core.log("error", main_error_text.."new_value ("..new_value..") is smaller than 0!")
 	end
 
 	if hudtable.hudstate[name].hidden == false then
@@ -480,7 +480,7 @@ function hb.get_hudbar_identifiers()
 end
 
 --register built-in HUD bars
-if minetest.settings:get_bool("enable_damage") or hb.settings.forceload_default_hudbars then
+if core.settings:get_bool("enable_damage") or hb.settings.forceload_default_hudbars then
 	hb.register_hudbar("health", 0xFFFFFF, S("Health"), { bar = "hudbars_bar_health.png", icon = "hudbars_icon_health.png", bgicon = "hudbars_bgicon_health.png" }, 20, 20, false)
 	hb.register_hudbar("breath", 0xFFFFFF, S("Breath"), { bar = "hudbars_bar_breath.png", icon = "hudbars_icon_breath.png", bgicon = "hudbars_bgicon_breath.png" }, 10, 10, true)
 end
@@ -494,9 +494,9 @@ end
 
 
 local function custom_hud(player)
-	if minetest.settings:get_bool("enable_damage") or hb.settings.forceload_default_hudbars then
+	if core.settings:get_bool("enable_damage") or hb.settings.forceload_default_hudbars then
 		local hide
-		if minetest.settings:get_bool("enable_damage") then
+		if core.settings:get_bool("enable_damage") then
 			hide = false
 		else
 			hide = true
@@ -521,7 +521,7 @@ end
 -- update built-in HUD bars
 local function update_hud(player)
 	if not player_exists(player) then return end
-	if minetest.settings:get_bool("enable_damage") then
+	if core.settings:get_bool("enable_damage") then
 		if hb.settings.forceload_default_hudbars then
 			hb.unhide_hudbar(player, "health")
 		end
@@ -543,36 +543,36 @@ local function update_hud(player)
 	end
 end
 
-minetest.register_on_player_hpchange(function(player)
+core.register_on_player_hpchange(function(player)
 	if hb.players[player:get_player_name()] ~= nil then
 		update_health(player)
 	end
 end)
 
-minetest.register_on_respawnplayer(function(player)
+core.register_on_respawnplayer(function(player)
 	update_health(player)
 	hb.hide_hudbar(player, "breath")
 end)
 
-minetest.register_on_joinplayer(function(player)
+core.register_on_joinplayer(function(player)
 	hide_builtin(player)
 	custom_hud(player)
 	hb.players[player:get_player_name()] = player
 end)
 
-minetest.register_on_leaveplayer(function(player)
+core.register_on_leaveplayer(function(player)
 	hb.players[player:get_player_name()] = nil
 end)
 
 local main_timer = 0
 local timer = 0
-minetest.register_globalstep(function(dtime)
+core.register_globalstep(function(dtime)
 	main_timer = main_timer + dtime
 	timer = timer + dtime
 	if main_timer > hb.settings.tick or timer > 4 then
 		if main_timer > hb.settings.tick then main_timer = 0 end
 		-- only proceed if damage is enabled
-		if minetest.settings:get_bool("enable_damage") or hb.settings.forceload_default_hudbars then
+		if core.settings:get_bool("enable_damage") or hb.settings.forceload_default_hudbars then
 			for _, player in pairs(hb.players) do
 				-- update all hud elements
 				update_hud(player)
