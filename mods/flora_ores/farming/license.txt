@@ -28,6 +28,20 @@ Created by TenPlus1 (CC0):
   alt_textures/ethereal_strawberry*.png
   farming_spanish_potatoes.png
 
+Created by Parmat (CC BY-SA 3.0):
+  x_farming_kiwi_leaves.png [edited]
+
+Created by SaKeL (CC BY-SA 4.0):
+  x_farming_kiwi.png
+  x_farming_kiwi_fruit.png
+  x_farming_kiwi_sapling.png
+  x_farming_kiwi_wood.png
+
+Created by SkyBuilder1717 (CC BY-SA 4.0):
+  farming_mixing_bowl.png
+  farming_pot.png [edited]
+  farming_saucepan.png [edited]
+
 Created by Hugues Ross (CC BY-SA 4.0):
   ethereal_strawberry*.png
 

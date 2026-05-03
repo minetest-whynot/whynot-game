@@ -31,7 +31,7 @@ be found at https://notabug.org/TenPlus1/bonemeal
 * default
 * mcl_core, mcl_sounds, mcl_farming, mcl_stairs
 * stairs
-* lucky_block (adds 47 lucky blocks)
+* lucky_block (adds 49 lucky blocks)
 * toolranks
 
 #### Configuration

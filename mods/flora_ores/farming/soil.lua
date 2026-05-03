@@ -1,5 +1,6 @@
 
 local S = core.get_translator("farming")
+local get_node = core.get_node
 
 -- default dry soil node
 
@@ -154,11 +155,7 @@ core.register_abm({
 		if not ndef or not ndef.soil or not ndef.soil.wet
 		or not ndef.soil.base or not ndef.soil.dry then return end
 
-		pos.y = pos.y + 1
-		local nn = core.get_node_or_nil(pos)
-		pos.y = pos.y - 1
-
-		if nn then nn = nn.name else return end
+		local nn = get_node({x = pos.x, y = pos.y + 1, z = pos.z}).name
 
 		-- what's on top of soil, if solid/not plant change soil to dirt
 		if core.registered_nodes[nn]
@@ -166,9 +163,7 @@ core.register_abm({
 		and core.get_item_group(nn, "plant") == 0
 		and core.get_item_group(nn, "growing") == 0 then
 
-			core.set_node(pos, {name = ndef.soil.base})
-
-			return
+			core.set_node(pos, {name = ndef.soil.base}) ; return
 		end
 
 		-- check if water is within 3 nodes
@@ -185,7 +180,7 @@ core.register_abm({
 			if node.name == ndef.soil.wet then
 				core.set_node(pos, {name = ndef.soil.dry})
 
-			-- if crop or seed found don't turn to dry soil
+			-- if crop or seed found don't turn into base soil
 			elseif node.name == ndef.soil.dry
 			and core.get_item_group(nn, "plant") == 0
 			and core.get_item_group(nn, "growing") == 0 then

@@ -93,6 +93,21 @@ lucky_block:add_blocks({
 		{"default:dirt", (mcl and "mcl_core:dirt" or "default:dirt")},
 		{"default:water_source", (mcl and "mcl_core:water_source" or "default:water_source")},
 	}},
+		{"sch", "instafarm", 0, true, {
+		{"farming:wheat_8", "farming:parsley_3"},
+		{"farming:cotton_8", "farming:mint_4"},
+		{"farming:soil_wet", (mcl and "mcl_farming:soil_wet" or "farming:soil_wet")},
+		{"default:dirt", (mcl and "mcl_core:dirt" or "default:dirt")},
+		{"default:water_source", (mcl and "mcl_core:water_source" or "default:water_source")},
+	}},
+		{"sch", "instafarm", 0, true, {
+		{"farming:wheat_8", "farming:soy_7"},
+		{"farming:cotton_8", "farming:ginger_4"},
+		{"farming:soil_wet", (mcl and "mcl_farming:soil_wet" or "farming:soil_wet")},
+		{"default:dirt", (mcl and "mcl_core:dirt" or "default:dirt")},
+		{"default:water_source", (mcl and "mcl_core:water_source" or
+				"default:river_water_source")},
+	}},
 	{"nod", "default:chest", 0, {
 		{name = (mcl and "mcl_farming:wheat_seeds" or "farming:seed_wheat"), max = 15},
 		{name = "farming:seed_barley", max = 15},
@@ -107,4 +122,6 @@ lucky_block:add_blocks({
 	}},
 	{"dro", {"farming:chili_powder"}, 5},
 	{"dro", {"farming:weed"}, 9},
+	{"dro", {"farming:kiwi", "ethereal:orange", "farming:kiwi_sorbet",
+		"farming:turkish_delight"}, 5}
 })

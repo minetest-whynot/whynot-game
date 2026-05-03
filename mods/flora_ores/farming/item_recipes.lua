@@ -1028,6 +1028,21 @@ core.register_craft({
 	replacements = {{"group:food_skillet", "farming:skillet"}}
 })
 
+-- kiwi sorbet
+
+local lemon = "group:food_kiwi"
+
+if core.get_modpath("ethereal") then lemon = "group:food_lemon" end
+
+core.register_craft({
+	output = "farming:kiwi_sorbet",
+	recipe = {
+		{"group:food_kiwi", lemon, "group:food_kiwi"},
+		{"group:food_sugar", a.bowl, "group:food_sugar"},
+		{a.snow, a.snow, a.snow}
+	}
+})
+
 -- wooden scarecrow base
 
 core.register_craft({

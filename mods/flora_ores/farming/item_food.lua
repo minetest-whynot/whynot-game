@@ -961,7 +961,17 @@ core.register_craftitem("farming:jerusalem_artichokes", {
 	on_use = core.item_eat(11, a.bowl)
 })
 
-farming.add_eatable("ethereal:jerusalem_artichokes", 11)
+farming.add_eatable("farming:jerusalem_artichokes", 11)
+
+-- Kiwi Sorbet
+
+core.register_craftitem("farming:kiwi_sorbet", {
+	description = S("Kiwi Sorbet"),
+	inventory_image = "farming_kiwi_sorbet.png",
+	on_use = core.item_eat(8, a.bowl)
+})
+
+farming.add_eatable("farming:kiwi_sorbet", 8)
 
 --= Foods we shouldn't add when using Mineclonia/VoxeLibre
 

@@ -12,7 +12,7 @@ local S = core.get_translator("farming")
 
 farming = {
 	mod = "redo",
-	version = "20260320",
+	version = "20260427",
 	path = core.get_modpath("farming"),
 	select = {type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5}},
 	select_final = {type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, -2.5/16, 0.5}},
@@ -172,71 +172,53 @@ local function reg_plant_stages(plant_name, stage, force_last)
 	local node_name = plant_name and plant_name .. "_" .. stage
 	local node_def = node_name and core.registered_nodes[node_name]
 
-	if not node_def then return nil end
+	if not node_def or plant_stages[node_name] then
+		return plant_stages[node_name] -- no node or already in table
+	end
 
-	local stages = plant_stages[node_name]
+	local is_growing = core.get_item_group(node_name, "growing") > 0
 
-	if stages then return stages end
+	if not is_growing and not force_last then return nil end
 
-	if core.get_item_group(node_name, "growing") > 0 then
+	local ns = is_growing and reg_plant_stages(plant_name, stage + 1, true)
+	local stages_left = (ns and { ns.name, unpack(ns.stages_left) }) or {}
 
-		local ns = reg_plant_stages(plant_name, stage + 1, true)
-		local stages_left = (ns and { ns.name, unpack(ns.stages_left) }) or {}
+	local stages = {
+		plant_name = plant_name,
+		name = node_name,
+		stage = stage,
+		stages_left = stages_left
+	}
 
-		stages = {
-			plant_name = plant_name,
-			name = node_name,
-			stage = stage,
-			stages_left = stages_left
-		}
+	if #stages_left > 0 then
 
-		if #stages_left > 0 then
+		local next_name = plant_name .. "_" .. (stage + 1) -- next plant name
 
-			-- next_plant name
-			local next_name = plant_name .. "_" .. (stage + 1)
-			local next_add
+		local old_constr = node_def.on_construct
+		local old_destr  = node_def.on_destruct
 
-			if core.registered_nodes[next_name] then
-				next_add = next_name
-			end
+		core.override_item(node_name, {
 
-			local old_constr = node_def.on_construct
-			local old_destr  = node_def.on_destruct
+			next_plant = core.registered_nodes[next_name] and next_name,
 
-			core.override_item(node_name, {
+			on_construct = function(pos)
 
-				next_plant = next_add,
+				if old_constr then old_constr(pos) end
 
-				on_construct = function(pos)
+				farming.handle_growth(pos)
+			end,
 
-					if old_constr then old_constr(pos) end
+			on_destruct = function(pos)
 
-					farming.handle_growth(pos)
-				end,
+				core.get_node_timer(pos):stop()
 
-				on_destruct = function(pos)
+				if old_destr then old_destr(pos) end
+			end,
 
-					core.get_node_timer(pos):stop()
-
-					if old_destr then old_destr(pos) end
-				end,
-
-				on_timer = function(pos, elapsed)
-					return farming.plant_growth_timer(pos, elapsed, node_name)
-				end,
-			})
-		end
-
-	elseif force_last then
-
-		stages = {
-			plant_name = plant_name,
-			name = node_name,
-			stage = stage,
-			stages_left = {}
-		}
-	else
-		return nil
+			on_timer = function(pos, elapsed)
+				return farming.plant_growth_timer(pos, elapsed, node_name)
+			end,
+		})
 	end
 
 	plant_stages[node_name] = stages
@@ -471,26 +453,25 @@ function farming.place_seed(itemstack, placer, pointed_thing, plantname)
 	if not itemstack or not pt or pt.type ~= "node" then return end
 
 	local under = core.get_node(pt.under)
+	local under_def = core.registered_nodes[under.name]
 
 	-- am I right-clicking on something that has a custom on_place set?
 	-- thanks to Krock for helping with this issue :)
-	local def = core.registered_nodes[under.name]
-
-	if placer and itemstack and def and def.on_rightclick then
-		return def.on_rightclick(pt.under, under, placer, itemstack, pt)
+	if placer and itemstack and under_def and under_def.on_rightclick then
+		return under_def.on_rightclick(pt.under, under, placer, itemstack, pt)
 	end
-
-	local above = core.get_node(pt.above)
 
 	-- check if pointing at the top of the node
 	if pt.above.y ~= pt.under.y + 1 then return end
 
+	local above = core.get_node(pt.above)
+	local above_def = core.registered_nodes[above.name]
+
 	-- return if any of the nodes arent registered
-	if not core.registered_nodes[under.name]
-	or not core.registered_nodes[above.name] then return end
+	if not under_def or not above_def then return end
 
 	-- can I replace above node, and am I pointing directly at soil
-	if not core.registered_nodes[above.name].buildable_to
+	if not above_def.buildable_to
 	or core.get_item_group(under.name, "soil") < 2
 	or core.get_item_group(above.name, "plant") ~= 0 then return end
 
@@ -501,6 +482,7 @@ function farming.place_seed(itemstack, placer, pointed_thing, plantname)
 	if not core.is_protected(pt.above, name) then
 
 		local p2 = core.registered_nodes[plantname].place_param2 or 1
+		local item_name = itemstack:get_name()
 
 		core.set_node(pt.above, {name = plantname, param2 = p2})
 
@@ -509,22 +491,18 @@ function farming.place_seed(itemstack, placer, pointed_thing, plantname)
 		core.sound_play("default_place_node", {pos = pt.above}, true)
 
 		core.log("action", string.format("%s planted %s at %s",
-			(placer and placer:is_player() and placer:get_player_name() or "A mod"),
-			itemstack:get_name(), core.pos_to_string(pt.above)
+			(placer and placer:is_player() and name or "A mod"),
+			item_name, core.pos_to_string(pt.above)
 		))
 
-		if placer and itemstack
-		and not farming.is_creative(placer:get_player_name()) then
-
-			local name = itemstack:get_name()
+		if placer and itemstack and not farming.is_creative(name) then
 
 			itemstack:take_item()
 
 			-- check for refill
 			if itemstack:get_count() == 0 then
-
-				core.after(0.2, farming.refill_plant,
-						placer, name, placer:get_wield_index())
+				core.after(0.2, farming.refill_plant, placer, item_name,
+						placer:get_wield_index())
 			end
 		end
 
@@ -710,6 +688,7 @@ farming.sunflower = 0.002
 farming.ginger = 0.002
 farming.strawberry = 0.002
 farming.cotton = 0.003
+farming.kiwi = 0.001
 farming.grains = true
 farming.rice = true
 
@@ -751,10 +730,10 @@ dofile(farming.path .. "/item_list.lua")
 
 if core.get_modpath("default") then
 	dofile(farming.path .. "/soil.lua")
-	dofile(farming.path .. "/hoes.lua")
 end
 
-dofile(farming.path.."/grass.lua")
+dofile(farming.path .. "/hoes.lua")
+dofile(farming.path .. "/grass.lua")
 
 -- disable crops Mineclone already has
 
@@ -819,6 +798,7 @@ ddoo("asparagus.lua", farming.asparagus)
 ddoo("eggplant.lua", farming.eggplant)
 ddoo("spinach.lua", farming.eggplant)
 ddoo("ginger.lua", farming.ginger)
+ddoo("kiwi.lua", farming.kiwi)
 
 -- register food items, non-food items, recipes and stairs
 

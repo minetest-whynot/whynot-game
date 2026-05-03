@@ -199,7 +199,7 @@ core.register_node("farming:hemp_rope", {
 	drawtype = "plantlike",
 	groups = {
 		handy = 1, axey = 1, swordy = 1, flammable = 2, choppy = 3,
-		oddly_breakable_by_hand = 3, compostability = 55
+		oddly_breakable_by_hand = 3, compostability = 55, rope = 1
 	},
 	is_ground_content = false,
 	sounds =  farming.node_sound_leaves_defaults(),
