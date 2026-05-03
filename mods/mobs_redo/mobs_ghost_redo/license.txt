@@ -1,3 +1,48 @@
+TenPlus1 (MIT License):
+  init.lua [refactored]
+
+SkyBuider1717 (MIT Licence):
+  mobs_ghost_redo_ghost2.png
+
+TenPlus1 (MIT Licence):
+  mobs_ghost_redo_egg_ghost.png
+
+BlockMen (Creative Commons Attribution ShareAlike 4.0 International Public License):
+  mobs_ghost_redo_ghost.png
+  mobs_ghost_redo_ghost_1.b3d
+  mobs_ghost_redo_ghost_2.b3d
+  mobs_ghost_redo_ghost_1.ogg
+  mobs_ghost_redo_ghost_2.ogg
+  mobs_ghost_redo_ghost_death.ogg
+  mobs_ghost_redo_ghost_hit.ogg
+
+---
+
+The MIT License (MIT)
+
+Copyright © 2025 SkyBuilder1717
+
+Permission is hereby granted, free of charge, to any person
+obtaining a copy of this software and associated documentation
+files (the “Software”), to deal in the Software without restriction,
+including without limitation the rights to use, copy, modify, merge,
+publish, distribute, sublicense, and/or sell copies of the Software,
+and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall
+be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
+OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+---
+
 (c) Copyright (2014-2016) BlockMen <blockmen2015@gmail.com>
 
 Attribution-ShareAlike 4.0 International
@@ -427,4 +472,3 @@ the avoidance of doubt, this paragraph does not form part of the
 public licenses.
 
 Creative Commons may be contacted at creativecommons.org.
-

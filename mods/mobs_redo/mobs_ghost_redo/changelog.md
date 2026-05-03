@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.7.2] - 2026-04-21
+
+	- Refactored code (now MIT license)
+	- Added new ghost skin and spawn egg texture
+	- Added translation support
+	- Added lucky block support
 
 ## [0.7.1] - 2023-07-07
 
