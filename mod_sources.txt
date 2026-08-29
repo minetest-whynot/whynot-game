@@ -1,6 +1,6 @@
 
 origin https://github.com/minetest-mirrors/ambience.git (fetch)
-* 6a3a1f0b86333624d4688aa6e14245e40c0550b1 lil tidy
+* 36794fe2c88646f0e7ee1a404a3276aa90b625bd tweak code, separate into functions
 Mod: ambience/ambience
 
 origin https://github.com/minetest-mods/lightning (fetch)
@@ -20,7 +20,7 @@ origin https://github.com/Ezhh/abriglass/ (fetch)
 Mod: decor/abriglass
 
 origin https://github.com/mt-mods/basic_materials (fetch)
-* b85e99ded01ba2dc8241a1b158a0e19610fd69ce Add Ukrainian localization (#29)
+* fbb83f312999b9ccef39eeec682892825134bd29 weblate: update French translation (#35)
 Mod: decor/basic_materials
 
 origin https://github.com/Napiophelios/campfire (fetch)
@@ -88,11 +88,11 @@ origin https://github.com/minetest-mods/ts_furniture (fetch)
 Mod: decor/ts_furniture
 
 origin https://github.com/mt-mods/unifieddyes (fetch)
-* 8d907591e412b8dd6e5ba98f16397e059ed97fe6 Replace `on_dig` with `preserve_metadata` (#31)
+* f7ea0d55b01ec14d6f9c001d0386afb5c1a141ee Standardize (#34)
 Mod: decor/unifieddyes
 
 origin https://github.com/minetest-mirrors/farming.git (fetch)
-* da0a4f2ffd9908de95395a082f8ad1bc5975708f fix acv typo
+* 3ed745d43bde9e1e7b8e1f9a7bc31192729234dd add 'farming_weeds_chance'
 Mod: flora_ores/farming
 
 origin https://codeberg.org/Dacmot/YellowCrystals.git (fetch)
@@ -119,12 +119,12 @@ origin https://github.com/minetest-mirrors/pie.git (fetch)
 * 056ed21ebd7477b276245b17a218c232a0d00239 new screenshot
 Mod: food/pie
 
-alternate https://github.com/C-C-Minetest-Server/waffles.git (fetch) origin https://codeberg.org/Dacmot/waffles.git (fetch)
+origin https://codeberg.org/Dacmot/waffles.git (fetch)
 * 20ab4ea56c51fe693843054675be319307636e4b Fix names of translation files and textdomain headers
 Mod: food/waffles
 
 origin https://github.com/APercy/airutils.git (fetch)
-* 5172b9cd302f48569795bef6277b352931a4b217 fix bug issue #82
+* 5c21c9249a5de3e976fb2720d34b04f7a969233d added option to change painting function
 Mod: libs/airutils
 
 origin https://repo.or.cz/minetest_doc.git (fetch)
@@ -147,8 +147,8 @@ origin https://github.com/Lazerbeak12345/ediblestuff_api.git (fetch)
 * 63791798d1b5b8bae1e885a95f5d962ce679cf28 Don't use `hbhunger` if damage is disabled
 Mod: libs/ediblestuff_api
 
-fsfcraftguide https://iris.radicle.network/z21MxmXaKJhGMGnNKsZ6fzzi4ZsZi.git (fetch) origin https://codeberg.org/Dacmot/sfcraftguide.git (fetch)
-* 1d1e5c8b8d8cf88ba55c923c94539b6d57f88557 fix(licenses): all media now conforms to the REUSE specification
+origin https://codeberg.org/Dacmot/sfcraftguide.git (fetch)
+* ed558f41b52b75c0e2398d580f044a62e536965d Remove github luacheck badge
 Mod: libs/sfcraftguide
 
 origin https://github.com/mt-mods/xcompat.git (fetch)
@@ -172,7 +172,7 @@ origin https://codeberg.org/Dacmot/minetest_mapgen_config.git (fetch)
 Mod: mapgen/minetest_mapgen_config
 
 origin https://github.com/minetest-mirrors/pbj_pup.git (fetch)
-* 8c5d383f04bd42c57eaf0e617116b7c35b00d666 add new screenshot
+* b018ae16fa75985e773b86ee242f4401c99c0cf1 improve moognu textures (thx philipmi)
 Mod: mapgen/pbj_pup
 
 origin https://github.com/GreenXenith/tac_nayn (fetch)
@@ -192,15 +192,15 @@ origin https://codeberg.org/tenplus1/mobs_ghost_redo (fetch)
 Mod: mobs_redo/mobs_ghost_redo
 
 origin https://github.com/minetest-mirrors/mobs_monster.git (fetch)
-* adc76336bf596ea49b86cb45b852848f108e1ebd tweak dungeon master and mese monster dogshoot times
+* 09b6231b24d55f31f6d79287e8890e3889081e0e replace stone monsters pathfinding with increased fear height
 Mod: mobs_redo/mobs_monster
 
 origin https://github.com/minetest-mirrors/mobs_redo.git (fetch)
-* 646ba60a9962b2948a41ee8d56552318d1bc751e fix fall damage modifier check
+* 9b6902d819baa1d32b442122be016964d651a676 fix dupe glitch for nametag (thx monk-afk)
 Mod: mobs_redo/mobs_redo
 
 origin https://github.com/minetest-mods/3d_armor (fetch)
-* 6ceec0b75be4cf066cc4e25a7947917bee8d48cf Improve fire_nodes damage (#176)
+* a4f311cbcf8125b4b83ba884d1d0d12f018021da Stop chat spamming on break (#177)
 Mod: player/3d_armor
 
 origin https://gitlab.com/dacmot/awards.git (fetch)
@@ -208,7 +208,7 @@ origin https://gitlab.com/dacmot/awards.git (fetch)
 Mod: player/awards
 
 origin https://github.com/minetest-mods/character_creator.git (fetch)
-* a264c5c8d9decd7dbe2319d266ea6f027961b46a Add Bulgarian translation
+* a4c3d9ef2b532cc313d40d21d766174b33cf34a3 Add luacheck workflow, update mod.conf
 Mod: player/character_creator
 
 origin https://github.com/stujones11/clothing (fetch)
@@ -248,7 +248,7 @@ origin https://repo.or.cz/minetest_show_wielded_item.git (fetch)
 Mod: player/show_wielded_item
 
 origin https://github.com/minetest-mods/skinsdb (fetch)
-* 1984bc2dd554a019e3960adfed295b3907d13d73 Replace insecure env for downloading skins with dynamic media (#117)
+* aa6a08b641db4585a7a526a47e3adc0c8816d991 Update Minetest references (#120)
 Mod: player/skinsdb
 
 origin https://github.com/bell07/minetest-smart_sfinv (fetch)
@@ -264,11 +264,11 @@ origin https://codeberg.org/minenux/minetest-mod-backpacks.git (fetch)
 Mod: tools/backpacks
 
 origin https://github.com/Lokrates/Biofuel.git (fetch)
-* 0385884e58d4a1c4aad650cb70c2fa617e697689 Update 20240801
+* e32a611ed23bf53e1ea2363a37e6bd63cd9cf5e2 add some compostable items
 Mod: tools/biofuel
 
 origin https://github.com/minetest-mirrors/bonemeal.git (fetch)
-* d8c7c9418866f76c7a6bacc54b2f32b3c6f2011f mulch is fuel
+* 3873cd73ca2c5ec312defcacce37852d6a81406a added technic as optional_dependency to fix technic_worldgen issue.
 Mod: tools/bonemeal
 
 origin https://github.com/SmallJoker/boost_cart (fetch)
