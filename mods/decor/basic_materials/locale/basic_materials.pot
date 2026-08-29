@@ -1,0 +1,170 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-31 10:11-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: craftitems.lua:4
+msgid "Plastic sheet"
+msgstr ""
+
+#: craftitems.lua:9
+msgid "Plastic strips"
+msgstr ""
+
+#: craftitems.lua:15
+msgid "Empty wire spool"
+msgstr ""
+
+#: craftitems.lua:20
+msgid "Oil extract"
+msgstr ""
+
+#: craftitems.lua:25
+msgid "Unprocessed paraffin"
+msgstr ""
+
+#: craftitems.lua:30
+msgid "Uncooked Terracotta Base"
+msgstr ""
+
+#: craftitems.lua:35
+msgid "Wet Cement"
+msgstr ""
+
+#: craftitems.lua:40
+msgid "Silicon lump"
+msgstr ""
+
+#: craftitems.lua:45
+msgid "Simple Integrated Circuit"
+msgstr ""
+
+#: craftitems.lua:50
+msgid "Simple Motor"
+msgstr ""
+
+#: craftitems.lua:55
+msgid "Heating element"
+msgstr ""
+
+#: craftitems.lua:60
+msgid "Simple energy crystal"
+msgstr ""
+
+#: craftitems.lua:65
+msgid "Spool of steel wire"
+msgstr ""
+
+#: craftitems.lua:71
+msgid "Spool of copper wire"
+msgstr ""
+
+#: craftitems.lua:77
+msgid "Spool of silver wire"
+msgstr ""
+
+#: craftitems.lua:83
+msgid "Spool of gold wire"
+msgstr ""
+
+#: craftitems.lua:89
+msgid "Spool of stainless steel wire"
+msgstr ""
+
+#: craftitems.lua:95
+msgid "Spool of aluminum wire"
+msgstr ""
+
+#: craftitems.lua:101
+msgid "Steel Strip"
+msgstr ""
+
+#: craftitems.lua:107
+msgid "Copper Strip"
+msgstr ""
+
+#: craftitems.lua:113
+msgid "Lead Strip"
+msgstr ""
+
+#: craftitems.lua:119
+msgid "Gold Strip"
+msgstr ""
+
+#: craftitems.lua:125
+msgid "Stainless Steel Strip"
+msgstr ""
+
+#: craftitems.lua:131
+msgid "Aluminum Strip"
+msgstr ""
+
+#: craftitems.lua:137
+msgid "Steel Bar"
+msgstr ""
+
+#: craftitems.lua:142
+msgid "Carbon Steel Bar"
+msgstr ""
+
+#: craftitems.lua:147
+msgid "Stainless Steel Bar"
+msgstr ""
+
+#: craftitems.lua:152
+msgid "Aluminum Bar"
+msgstr ""
+
+#: craftitems.lua:157
+msgid "Chainlinks (brass)"
+msgstr ""
+
+#: craftitems.lua:163
+msgid "Chainlinks (steel)"
+msgstr ""
+
+#: craftitems.lua:169
+msgid "Brass Ingot"
+msgstr ""
+
+#: craftitems.lua:174
+msgid "Steel gear"
+msgstr ""
+
+#: craftitems.lua:179
+msgid "Padlock"
+msgstr ""
+
+#: nodes.lua:6
+msgid "Cement"
+msgstr ""
+
+#: nodes.lua:15
+msgid "Concrete Block"
+msgstr ""
+
+#: nodes.lua:24
+msgid "Chain (steel, hanging)"
+msgstr ""
+
+#: nodes.lua:40
+msgid "Chain (brass, hanging)"
+msgstr ""
+
+#: nodes.lua:56
+msgid "Brass Block"
+msgstr ""

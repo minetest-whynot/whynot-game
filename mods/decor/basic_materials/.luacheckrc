@@ -1,7 +1,12 @@
 globals = {
-    "minetest", "basic_materials", "crafting",
+	"basic_materials"
 }
 
 read_globals = {
-    "default", "xcompat",
+	-- Luanti
+	"minetest", "core",
+
+	-- Dependencies
+	"default", "xcompat",
+	"crafting"
 }

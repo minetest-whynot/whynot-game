@@ -1,23 +1,17 @@
 # Basic Materials mod
 
-mod that adds basic material nodes and items
+[![ContentDB](https://content.luanti.org/packages/mt-mods/basic_materials/shields/downloads/)](https://content.luanti.org/packages/mt-mods/basic_materials/)
+[![License: LGPL v3](https://img.shields.io/badge/License-LGPL%20v3-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0)
+_[Forum Topic](https://forum.luanti.org/viewtopic.php?t=21000)_
 
-## Install
+Provides a small selection of "basic" materials and items, things like steel bars and chains, wire, plastic strips and sheets, and more.
 
-### Option 1: use content tab in minetest
+## Dependencies
 
-* click the content tab
-* search for basic materials
-* click install on basic materials
+- Luanti/Minetest v5.10
+- [Xcompat](https://github.com/mt-mods/xcompat)
 
-### Option 2: download from [ContentDB](https://content.minetest.net/packages/VanessaE/basic_materials/)
+## License
 
-* click the above link or search for basic materials on ContentDB
-* select the download button on the basic materials page
-* extract the zip downloaded from the previous step
-* place in your mods folder
-
-### Option 3: use git
-
-* `git clone https://github.com/mt-mods/basic_materials.git`
-* `cd basic_materials`
+Code: [LGPL v3](https://www.gnu.org/licenses/lgpl-3.0#license-text)
+Media: [CC-by-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/legalcode.txt)

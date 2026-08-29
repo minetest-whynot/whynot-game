@@ -1,0 +1,172 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-31 10:11-0500\n"
+"PO-Revision-Date: 2026-08-24 13:58+0000\n"
+"Last-Translator: Jouni Järvinen <rautajunk@gmail.com>\n"
+"Language-Team: Finnish <https://translate.luanti.ch/projects/mt-mods/"
+"basic_materials/fi/>\n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2026.8.1\n"
+
+#: craftitems.lua:4
+msgid "Plastic sheet"
+msgstr "Muovilevy"
+
+#: craftitems.lua:9
+msgid "Plastic strips"
+msgstr "Muovinauhat"
+
+#: craftitems.lua:15
+msgid "Empty wire spool"
+msgstr "Tyhjä lankakela"
+
+#: craftitems.lua:20
+msgid "Oil extract"
+msgstr "Öljyuute"
+
+#: craftitems.lua:25
+msgid "Unprocessed paraffin"
+msgstr "Käsittelemätön parafiini"
+
+#: craftitems.lua:30
+msgid "Uncooked Terracotta Base"
+msgstr "Kypsentämätön terrakottapohja"
+
+#: craftitems.lua:35
+msgid "Wet Cement"
+msgstr "Märkä sementti"
+
+#: craftitems.lua:40
+msgid "Silicon lump"
+msgstr "Piimöykky"
+
+#: craftitems.lua:45
+msgid "Simple Integrated Circuit"
+msgstr "Yksinkertainen integroitu piiri"
+
+#: craftitems.lua:50
+msgid "Simple Motor"
+msgstr "Yksinkertainen moottori"
+
+#: craftitems.lua:55
+msgid "Heating element"
+msgstr "Lämmityselementti"
+
+#: craftitems.lua:60
+msgid "Simple energy crystal"
+msgstr "Yksinkertainen energiakide"
+
+#: craftitems.lua:65
+msgid "Spool of steel wire"
+msgstr "Teräslankakela"
+
+#: craftitems.lua:71
+msgid "Spool of copper wire"
+msgstr "Kuparilankakela"
+
+#: craftitems.lua:77
+msgid "Spool of silver wire"
+msgstr "Hopealankakela"
+
+#: craftitems.lua:83
+msgid "Spool of gold wire"
+msgstr "Kultalankakela"
+
+#: craftitems.lua:89
+msgid "Spool of stainless steel wire"
+msgstr "Ruostumaton teräslankakela"
+
+#: craftitems.lua:95
+msgid "Spool of aluminum wire"
+msgstr "Alumiinilankakela"
+
+#: craftitems.lua:101
+msgid "Steel Strip"
+msgstr "Teräsnauha"
+
+#: craftitems.lua:107
+msgid "Copper Strip"
+msgstr "Kuparinauha"
+
+#: craftitems.lua:113
+msgid "Lead Strip"
+msgstr "Lyijynauha"
+
+#: craftitems.lua:119
+msgid "Gold Strip"
+msgstr "Kultanauha"
+
+#: craftitems.lua:125
+msgid "Stainless Steel Strip"
+msgstr "Ruostumaton teräsnauha"
+
+#: craftitems.lua:131
+msgid "Aluminum Strip"
+msgstr "Alumiininauha"
+
+#: craftitems.lua:137
+msgid "Steel Bar"
+msgstr "Terästanko"
+
+#: craftitems.lua:142
+msgid "Carbon Steel Bar"
+msgstr "Hiiliterästanko"
+
+#: craftitems.lua:147
+msgid "Stainless Steel Bar"
+msgstr "Ruostumaton terästanko"
+
+#: craftitems.lua:152
+msgid "Aluminum Bar"
+msgstr "Alumiinitanko"
+
+#: craftitems.lua:157
+msgid "Chainlinks (brass)"
+msgstr "Ketjulenkit (messinki)"
+
+#: craftitems.lua:163
+msgid "Chainlinks (steel)"
+msgstr "Ketjulenkit (teräs)"
+
+#: craftitems.lua:169
+msgid "Brass Ingot"
+msgstr "Messinkiharkot"
+
+#: craftitems.lua:174
+msgid "Steel gear"
+msgstr "Teräshammasratas"
+
+#: craftitems.lua:179
+msgid "Padlock"
+msgstr "Riippulukko"
+
+#: nodes.lua:6
+msgid "Cement"
+msgstr "Sementti"
+
+#: nodes.lua:15
+msgid "Concrete Block"
+msgstr "Betonikuutio"
+
+#: nodes.lua:24
+msgid "Chain (steel, hanging)"
+msgstr "Ketju (teräs, riippuva)"
+
+#: nodes.lua:40
+msgid "Chain (brass, hanging)"
+msgstr "Ketju (messinki, riippuva)"
+
+#: nodes.lua:56
+msgid "Brass Block"
+msgstr "Messinkikuutio"

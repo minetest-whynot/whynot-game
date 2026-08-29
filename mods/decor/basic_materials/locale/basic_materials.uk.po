@@ -1,0 +1,169 @@
+# Ukrainian translations for basic_materials package.
+# Copyright (C) 2026 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the basic_materials package.
+# Automatically generated from basic_materials.uk.tr
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: basic_materials\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-31 10:11-0500\n"
+"PO-Revision-Date: 2026-07-31 10:11-0500\n"
+"Last-Translator: \n"
+"Language-Team: Ukrainian\n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: craftitems.lua:20
+msgid "Oil extract"
+msgstr "Олійний екстракт"
+
+#: craftitems.lua:25
+msgid "Unprocessed paraffin"
+msgstr "Необроблений парафін"
+
+#: craftitems.lua:30
+msgid "Uncooked Terracotta Base"
+msgstr "Сира теракотова основа"
+
+#: craftitems.lua:35
+msgid "Wet Cement"
+msgstr "Мокрий цемент"
+
+#: craftitems.lua:40
+msgid "Silicon lump"
+msgstr "Шмат Кремнію"
+
+#: craftitems.lua:45
+msgid "Simple Integrated Circuit"
+msgstr "Мікросхема"
+
+#: craftitems.lua:50
+msgid "Simple Motor"
+msgstr "Двигун"
+
+#: craftitems.lua:55
+msgid "Heating element"
+msgstr "Нагрівательний елемент"
+
+#: craftitems.lua:60
+msgid "Simple energy crystal"
+msgstr "Енергетичний кристал"
+
+#: craftitems.lua:65
+msgid "Spool of steel wire"
+msgstr "Катушка сталевої проволки"
+
+#: craftitems.lua:71
+msgid "Spool of copper wire"
+msgstr "Катушка мідної проволки"
+
+#: craftitems.lua:77
+msgid "Spool of silver wire"
+msgstr "Катушка срібної проволки"
+
+#: craftitems.lua:83
+msgid "Spool of gold wire"
+msgstr "Катушка золотої проволки"
+
+#: craftitems.lua:89
+msgid "Spool of stainless steel wire"
+msgstr "Котушка дроту з нержавіючої сталі"
+
+#: craftitems.lua:95
+msgid "Spool of aluminum wire"
+msgstr "Котушка алюмінієвого дроту"
+
+#: craftitems.lua:101
+msgid "Steel Strip"
+msgstr "Сталева стрічка"
+
+#: craftitems.lua:107
+msgid "Copper Strip"
+msgstr "Мідна стрічка"
+
+#: craftitems.lua:113
+msgid "Lead Strip"
+msgstr "Свинцева смужка"
+
+#: craftitems.lua:119
+msgid "Gold Strip"
+msgstr "Золота смужка"
+
+#: craftitems.lua:125
+msgid "Stainless Steel Strip"
+msgstr "Смужка з нержавіючої сталі"
+
+#: craftitems.lua:131
+msgid "Aluminum Strip"
+msgstr "Алюмінієва смужка"
+
+#: craftitems.lua:137
+msgid "Steel Bar"
+msgstr "Сталевий Прут"
+
+#: craftitems.lua:142
+msgid "Carbon Steel Bar"
+msgstr "Брусок вуглецевої сталі"
+
+#: craftitems.lua:147
+msgid "Stainless Steel Bar"
+msgstr "Брусок нержавіючої сталі"
+
+#: craftitems.lua:152
+msgid "Aluminum Bar"
+msgstr "Алюмінієвий брусок"
+
+#: craftitems.lua:157
+msgid "Chainlinks (brass)"
+msgstr "Латунний ланцюг"
+
+#: craftitems.lua:163
+msgid "Chainlinks (steel)"
+msgstr "Сталевий ланцюг"
+
+#: craftitems.lua:169
+msgid "Brass Ingot"
+msgstr "Латунний злиток"
+
+#: craftitems.lua:174
+msgid "Steel gear"
+msgstr "Сталева шестерня"
+
+#: craftitems.lua:179
+msgid "Padlock"
+msgstr "Навісний замок"
+
+#: craftitems.lua:4
+msgid "Plastic sheet"
+msgstr "Лист пластику"
+
+#: craftitems.lua:9
+msgid "Plastic strips"
+msgstr "Стрічка пластику"
+
+#: craftitems.lua:15
+msgid "Empty wire spool"
+msgstr "Порожня катушка"
+
+#: nodes.lua:6
+msgid "Cement"
+msgstr "Цемент"
+
+#: nodes.lua:15
+msgid "Concrete Block"
+msgstr "Бетонний блок"
+
+#: nodes.lua:24
+msgid "Chain (steel, hanging)"
+msgstr "Ланцюг (сталевий, підвісний)"
+
+#: nodes.lua:40
+msgid "Chain (brass, hanging)"
+msgstr "Ланцюг (латунь, підвісна)"
+
+#: nodes.lua:56
+msgid "Brass Block"
+msgstr "Латунний блок"

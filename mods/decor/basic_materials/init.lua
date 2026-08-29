@@ -6,7 +6,7 @@
 
 basic_materials = {}
 basic_materials.mod = { author = "Vanessa Dannenberg" }
-basic_materials.modpath = minetest.get_modpath("basic_materials")
+basic_materials.modpath = core.get_modpath("basic_materials")
 
 dofile(basic_materials.modpath .. "/nodes.lua")
 dofile(basic_materials.modpath .. "/craftitems.lua")
