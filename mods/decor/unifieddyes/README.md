@@ -1,16 +1,28 @@
-VanessaE's Unified Dyes
-=======================
+# VanessaE's Unified Dyes
 
-The purpose of this mod originally was to supply a complete set of colors for Minetest mod authors to use for colorized nodes, or to reference in recipes. Since the advent of the default dyes mod in minetest_game, this mod has become more of an extension of the default mod.  Since the advent of param2 colorization, it has also become a library for general color handling.
-
-Unified Dyes expands the standard dye set from 15 colors to 32, 89, or 256 (see the API and usage info).
-
-Dependencies: Minetest engine version 0.4.16 or higher and a corresponding copy of minetest_game.
+[![ContentDB](https://content.luanti.org/packages/mt-mods/unifieddyes/shields/downloads/)](https://content.luanti.org/packages/mt-mods/unifieddyes/)
+[![luacheck](https://github.com/mt-mods/unifieddyes/actions/workflows/luacheck.yml/badge.svg)](https://github.com/mt-mods/unifieddyes/actions/workflows/luacheck.yml)
+[![Translation status](https://translate.luanti.ch/widget/mt-mods/unifieddyes/svg-badge.svg?capitalize=1)](https://translate.luanti.ch/engage/mt-mods/)
 
 License: GPL 2.0 or higher.
 
-Install: Unzip the distribution file, rename the resultant folder to just "unifieddyes", move it into Minetest's mods folder, and enable it in your world configuration.
+The purpose of this mod originally was to supply a complete set of colors for
+Luanti/Minetest mod authors to use for colorized nodes, or to reference in recipes.
+Since the advent of the default dyes mod in minetest game, this mod has become more
+of an extension of the default mod. Since the advent of param2 colorization,
+it has also become a library for general color handling.
 
-Usage: for detailed usage information, please see [the Unified Dyes Thread](https://forum.minetest.net/viewtopic.php?f=11&t=2178&p=28399) on the Minetest forum.
+Unified Dyes expands the standard dye set from 15 colors to 32, 89, or 256 (see the API and usage info).
 
-API: the full API is documented here: https://github.com/mt-mods/unifieddyes/blob/master/API.md
+## Dependencies
+
+- Luanti/Minetest v5.10+
+- Minetest Game
+
+## Usage
+
+For detailed usage information, please see the [Unified Dyes Forum Topic](https://forum.luanti.org/viewtopic.php?f=11&t=2178&p=28399) on the Luanti forum.
+
+## API
+
+The full API is documented in [API.md](/API.md)

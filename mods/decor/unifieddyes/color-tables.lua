@@ -1,36 +1,35 @@
-
 -- the names of the various colors here came from http://www.procato.com/rgb+index/
 
 unifieddyes.HUES_EXTENDED = {
-	{ "red",        0xff, 0x00, 0x00 },
-	{ "vermilion",  0xff, 0x40, 0x00 },
-	{ "orange",     0xff, 0x80, 0x00 },
-	{ "amber",      0xff, 0xbf, 0x00 },
-	{ "yellow",     0xff, 0xff, 0x00 },
-	{ "lime",       0xbf, 0xff, 0x00 },
+	{ "red", 0xff, 0x00, 0x00 },
+	{ "vermilion", 0xff, 0x40, 0x00 },
+	{ "orange", 0xff, 0x80, 0x00 },
+	{ "amber", 0xff, 0xbf, 0x00 },
+	{ "yellow", 0xff, 0xff, 0x00 },
+	{ "lime", 0xbf, 0xff, 0x00 },
 	{ "chartreuse", 0x80, 0xff, 0x00 },
-	{ "harlequin",  0x40, 0xff, 0x00 },
-	{ "green",      0x00, 0xff, 0x00 },
-	{ "malachite",  0x00, 0xff, 0x40 },
-	{ "spring",     0x00, 0xff, 0x80 },
-	{ "turquoise",  0x00, 0xff, 0xbf },
-	{ "cyan",       0x00, 0xff, 0xff },
-	{ "cerulean",   0x00, 0xbf, 0xff },
-	{ "azure",      0x00, 0x80, 0xff },
-	{ "sapphire",   0x00, 0x40, 0xff },
-	{ "blue",       0x00, 0x00, 0xff },
-	{ "indigo",     0x40, 0x00, 0xff },
-	{ "violet",     0x80, 0x00, 0xff },
-	{ "mulberry",   0xbf, 0x00, 0xff },
-	{ "magenta",    0xff, 0x00, 0xff },
-	{ "fuchsia",    0xff, 0x00, 0xbf },
-	{ "rose",       0xff, 0x00, 0x80 },
-	{ "crimson",    0xff, 0x00, 0x40 }
+	{ "harlequin", 0x40, 0xff, 0x00 },
+	{ "green", 0x00, 0xff, 0x00 },
+	{ "malachite", 0x00, 0xff, 0x40 },
+	{ "spring", 0x00, 0xff, 0x80 },
+	{ "turquoise", 0x00, 0xff, 0xbf },
+	{ "cyan", 0x00, 0xff, 0xff },
+	{ "cerulean", 0x00, 0xbf, 0xff },
+	{ "azure", 0x00, 0x80, 0xff },
+	{ "sapphire", 0x00, 0x40, 0xff },
+	{ "blue", 0x00, 0x00, 0xff },
+	{ "indigo", 0x40, 0x00, 0xff },
+	{ "violet", 0x80, 0x00, 0xff },
+	{ "mulberry", 0xbf, 0x00, 0xff },
+	{ "magenta", 0xff, 0x00, 0xff },
+	{ "fuchsia", 0xff, 0x00, 0xbf },
+	{ "rose", 0xff, 0x00, 0x80 },
+	{ "crimson", 0xff, 0x00, 0x40 },
 }
 
 unifieddyes.HUES_WITH_GREY = {}
 
-for _,i in ipairs(unifieddyes.HUES_EXTENDED) do
+for _, i in ipairs(unifieddyes.HUES_EXTENDED) do
 	table.insert(unifieddyes.HUES_WITH_GREY, i[1])
 end
 table.insert(unifieddyes.HUES_WITH_GREY, "grey")
@@ -43,18 +42,18 @@ unifieddyes.HUES_WALLMOUNTED = {
 	"cyan",
 	"blue",
 	"violet",
-	"magenta"
+	"magenta",
 }
 
 unifieddyes.SATS = {
 	"",
-	"_s50"
+	"_s50",
 }
 
 unifieddyes.VALS = {
 	"",
 	"medium_",
-	"dark_"
+	"dark_",
 }
 
 unifieddyes.VALS_SPLIT = {
@@ -62,7 +61,7 @@ unifieddyes.VALS_SPLIT = {
 	"light_",
 	"",
 	"medium_",
-	"dark_"
+	"dark_",
 }
 
 unifieddyes.VALS_EXTENDED = {
@@ -72,7 +71,7 @@ unifieddyes.VALS_EXTENDED = {
 	"bright_",
 	"",
 	"medium_",
-	"dark_"
+	"dark_",
 }
 
 unifieddyes.GREYS = {
@@ -80,14 +79,14 @@ unifieddyes.GREYS = {
 	"light_grey",
 	"grey",
 	"dark_grey",
-	"black"
+	"black",
 }
 
 unifieddyes.GREYS_EXTENDED = table.copy(unifieddyes.GREYS)
 
 for i = 1, 14 do
 	if i ~= 0 and i ~= 4 and i ~= 8 and i ~= 11 and i ~= 15 then
-		table.insert(unifieddyes.GREYS_EXTENDED, "grey_"..i)
+		table.insert(unifieddyes.GREYS_EXTENDED, "grey_" .. i)
 	end
 end
 
@@ -96,7 +95,7 @@ end
 unifieddyes.gpidx_aliases = {
 	["pink"] = "light_red",
 	["brown"] = "medium_orange",
-	["azure"] = "light_blue"
+	["azure"] = "light_blue",
 }
 
 unifieddyes.gpidx_grayscale = {
@@ -175,7 +174,7 @@ unifieddyes.gpidx_hues_wallmounted = {
 	["cyan"] = 4,
 	["blue"] = 5,
 	["violet"] = 6,
-	["magenta"] = 7
+	["magenta"] = 7,
 }
 
 unifieddyes.gpidx_shades = {
@@ -209,11 +208,11 @@ unifieddyes.gpidx_shades_extended = {
 	["medium"] = 6,
 	["mediums50"] = 7,
 	["dark"] = 8,
-	["darks50"] = 9
+	["darks50"] = 9,
 }
 
 unifieddyes.gpidx_shades_wallmounted = {
 	[""] = 1,
 	["medium"] = 2,
-	["dark"] = 3
+	["dark"] = 3,
 }

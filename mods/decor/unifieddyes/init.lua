@@ -31,13 +31,13 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 unifieddyes = {}
 
-local modpath=minetest.get_modpath(minetest.get_current_modname())
+local modpath = core.get_modpath(core.get_current_modname())
 
-dofile(modpath.."/color-tables.lua")
-dofile(modpath.."/api.lua")
-dofile(modpath.."/airbrush.lua")
-dofile(modpath.."/dyes-crafting.lua")
-dofile(modpath.."/aliases.lua")
+dofile(modpath .. "/color-tables.lua")
+dofile(modpath .. "/api.lua")
+dofile(modpath .. "/airbrush.lua")
+dofile(modpath .. "/dyes-crafting.lua")
+dofile(modpath .. "/aliases.lua")
 
 print("[UnifiedDyes] Loaded!")
 unifieddyes.init = true

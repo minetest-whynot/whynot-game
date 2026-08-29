@@ -1,0 +1,933 @@
+# Translation of the unifieddyes mod to Chinese (Simplified).
+# Based on the original .tr translation by W0rr1z.
+msgid ""
+msgstr ""
+"Project-Id-Version: unifieddyes\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-08-21 18:00-0500\n"
+"PO-Revision-Date: 2026-08-21 18:00-0500\n"
+"Last-Translator: W0rr1z\n"
+"Language-Team: Chinese (Simplified)\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: airbrush.lua:228
+msgid "Select a color:"
+msgstr "选择颜色："
+#: airbrush.lua:240
+msgid "(Right-clicked a node that supports all 256 colors, showing them all)"
+msgstr "（已右键支持256色的方块，显示全部颜色）"
+#: airbrush.lua:251
+msgid "(Right-clicked an undefined node, showing all colors)"
+msgstr ""
+#: airbrush.lua:256
+msgid "(Right-clicked a node not supported by the Airbrush, showing all colors)"
+msgstr "（已右键不支持喷枪的方块，显示全部颜色）"
+#: airbrush.lua:356
+msgid "Dyes"
+msgstr "染料"
+#: airbrush.lua:371
+msgid "Your selection:"
+msgstr "当前选择："
+#: airbrush.lua:384
+msgid "Your selection"
+msgstr "当前选择"
+#: airbrush.lua:387
+msgid "Cancel"
+msgstr "取消"
+#: airbrush.lua:387
+msgid "Accept"
+msgstr "应用"
+#: airbrush.lua:392
+msgid "Show Available"
+msgstr "显示可用颜色"
+#: airbrush.lua:393
+msgid "(Currently showing all 256 colors)"
+msgstr "（当前显示全部256色）"
+#: airbrush.lua:395
+msgid "Show All Colors"
+msgstr "显示所有颜色"
+#: airbrush.lua:396
+msgid "(Currently only showing what the right-clicked node can use)"
+msgstr "（当前仅显示右键方块可用颜色）"
+#: airbrush.lua:474
+msgid "Dye Airbrush"
+msgstr "染料喷枪"
+
+#: init.lua:42
+msgid "[UnifiedDyes] Loaded!"
+msgstr "[UnifiedDyes] 已加载！"
+
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Faint Red Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Faint Vermilion Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Faint Orange Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Faint Amber Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Faint Yellow Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Faint Lime Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Faint Chartreuse Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Faint Harlequin Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Faint Green Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Faint Malachite Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Faint Spring Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Faint Turquoise Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Faint Cyan Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Faint Cerulean Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Faint Azure Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Faint Sapphire Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Faint Blue Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Faint Indigo Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Faint Violet Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Faint Mulberry Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Faint Magenta Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Faint Fuchsia Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Faint Rose Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Faint Crimson Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Pastel Red Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Pastel Vermilion Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Pastel Orange Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Pastel Amber Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Pastel Yellow Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Pastel Lime Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Pastel Chartreuse Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Pastel Harlequin Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Pastel Green Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Pastel Malachite Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Pastel Spring Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Pastel Turquoise Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Pastel Cyan Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Pastel Cerulean Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Pastel Azure Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Pastel Sapphire Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Pastel Blue Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Pastel Indigo Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Pastel Violet Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Pastel Mulberry Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Pastel Magenta Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Pastel Fuchsia Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Pastel Rose Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Pastel Crimson Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Light Red Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Light Vermilion Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Light Orange Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Light Amber Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Light Yellow Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Light Lime Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Light Chartreuse Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Light Harlequin Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Light Green Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Light Malachite Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Light Spring Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Light Turquoise Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Light Cyan Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Light Cerulean Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Light Azure Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Light Sapphire Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Light Blue Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Light Indigo Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Light Violet Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Light Mulberry Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Light Magenta Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Light Fuchsia Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Light Rose Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Light Crimson Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Bright Red Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Bright Vermilion Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Bright Orange Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Bright Amber Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Bright Yellow Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Bright Lime Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Bright Chartreuse Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Bright Harlequin Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Bright Green Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Bright Malachite Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Bright Spring Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Bright Turquoise Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Bright Cyan Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Bright Cerulean Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Bright Azure Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Bright Sapphire Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Bright Blue Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Bright Indigo Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Bright Violet Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Bright Mulberry Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Bright Magenta Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Bright Fuchsia Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Bright Rose Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Bright Crimson Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Red Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Vermilion Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Orange Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Amber Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Yellow Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Lime Dye"
+msgstr "柠檬黄染料"
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Chartreuse Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Harlequin Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Green Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Malachite Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Spring Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Turquoise Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Cyan Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Cerulean Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Azure Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Sapphire Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Blue Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Indigo Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Violet Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Mulberry Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Magenta Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Fuchsia Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Rose Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Crimson Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Medium Red Dye"
+msgstr "中红染料"
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Medium Vermilion Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Medium Orange Dye"
+msgstr "中橙染料"
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Medium Amber Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Medium Yellow Dye"
+msgstr "中黄染料"
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Medium Lime Dye"
+msgstr "中柠檬黄染料"
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Medium Chartreuse Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Medium Harlequin Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Medium Green Dye"
+msgstr "中绿染料"
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Medium Malachite Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Medium Spring Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Medium Turquoise Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Medium Cyan Dye"
+msgstr "中青蓝染料"
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Medium Cerulean Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Medium Azure Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Medium Sapphire Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Medium Blue Dye"
+msgstr "中蓝染料"
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Medium Indigo Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Medium Violet Dye"
+msgstr "中紫染料"
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Medium Mulberry Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Medium Magenta Dye"
+msgstr "中品红染料"
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Medium Fuchsia Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Medium Rose Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Medium Crimson Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Dark Red Dye"
+msgstr "深红染料"
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Dark Vermilion Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Dark Orange Dye"
+msgstr "深橙染料"
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Dark Amber Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Dark Yellow Dye"
+msgstr "深黄染料"
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Dark Lime Dye"
+msgstr "深柠檬黄染料"
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Dark Chartreuse Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Dark Harlequin Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Dark Green Dye"
+msgstr "深绿染料"
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Dark Malachite Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Dark Spring Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Dark Turquoise Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Dark Cyan Dye"
+msgstr "深青蓝染料"
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Dark Cerulean Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Dark Azure Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Dark Sapphire Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Dark Blue Dye"
+msgstr "深蓝染料"
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Dark Indigo Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Dark Violet Dye"
+msgstr "深紫染料"
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Dark Mulberry Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Dark Magenta Dye"
+msgstr "深品红染料"
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Dark Fuchsia Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Dark Rose Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:40
+msgid "Dark Crimson Dye"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Red Dye (low saturation)"
+msgstr "红染料（低饱和度）"
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Vermilion Dye (low saturation)"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Orange Dye (low saturation)"
+msgstr "橙染料（低饱和度）"
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Amber Dye (low saturation)"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Yellow Dye (low saturation)"
+msgstr "黄染料（低饱和度）"
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Lime Dye (low saturation)"
+msgstr "柠檬黄染料（低饱和度）"
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Chartreuse Dye (low saturation)"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Harlequin Dye (low saturation)"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Green Dye (low saturation)"
+msgstr "绿染料（低饱和度）"
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Malachite Dye (low saturation)"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Spring Dye (low saturation)"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Turquoise Dye (low saturation)"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Cyan Dye (low saturation)"
+msgstr "青蓝染料（低饱和度）"
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Cerulean Dye (low saturation)"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Azure Dye (low saturation)"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Sapphire Dye (low saturation)"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Blue Dye (low saturation)"
+msgstr "蓝染料（低饱和度）"
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Indigo Dye (low saturation)"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Violet Dye (low saturation)"
+msgstr "紫染料（低饱和度）"
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Mulberry Dye (low saturation)"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Magenta Dye (low saturation)"
+msgstr "品红染料（低饱和度）"
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Fuchsia Dye (low saturation)"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Rose Dye (low saturation)"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Crimson Dye (low saturation)"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Medium Red Dye (low saturation)"
+msgstr "中红染料（低饱和度）"
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Medium Vermilion Dye (low saturation)"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Medium Orange Dye (low saturation)"
+msgstr "中橙染料（低饱和度）"
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Medium Amber Dye (low saturation)"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Medium Yellow Dye (low saturation)"
+msgstr "中黄染料（低饱和度）"
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Medium Lime Dye (low saturation)"
+msgstr "中柠檬黄染料（低饱和度）"
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Medium Chartreuse Dye (low saturation)"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Medium Harlequin Dye (low saturation)"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Medium Green Dye (low saturation)"
+msgstr "中绿染料（低饱和度）"
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Medium Malachite Dye (low saturation)"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Medium Spring Dye (low saturation)"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Medium Turquoise Dye (low saturation)"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Medium Cyan Dye (low saturation)"
+msgstr "中青蓝染料（低饱和度）"
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Medium Cerulean Dye (low saturation)"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Medium Azure Dye (low saturation)"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Medium Sapphire Dye (low saturation)"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Medium Blue Dye (low saturation)"
+msgstr "中蓝染料（低饱和度）"
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Medium Indigo Dye (low saturation)"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Medium Violet Dye (low saturation)"
+msgstr "中紫染料（低饱和度）"
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Medium Mulberry Dye (low saturation)"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Medium Magenta Dye (low saturation)"
+msgstr "中品红染料（低饱和度）"
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Medium Fuchsia Dye (low saturation)"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Medium Rose Dye (low saturation)"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Medium Crimson Dye (low saturation)"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Dark Red Dye (low saturation)"
+msgstr "深红染料（低饱和度）"
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Dark Vermilion Dye (low saturation)"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Dark Orange Dye (low saturation)"
+msgstr "深橙染料（低饱和度）"
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Dark Amber Dye (low saturation)"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Dark Yellow Dye (low saturation)"
+msgstr "深黄染料（低饱和度）"
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Dark Lime Dye (low saturation)"
+msgstr "深柠檬黄染料（低饱和度）"
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Dark Chartreuse Dye (low saturation)"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Dark Harlequin Dye (low saturation)"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Dark Green Dye (low saturation)"
+msgstr "深绿染料（低饱和度）"
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Dark Malachite Dye (low saturation)"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Dark Spring Dye (low saturation)"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Dark Turquoise Dye (low saturation)"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Dark Cyan Dye (low saturation)"
+msgstr "深青蓝染料（低饱和度）"
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Dark Cerulean Dye (low saturation)"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Dark Azure Dye (low saturation)"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Dark Sapphire Dye (low saturation)"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Dark Blue Dye (low saturation)"
+msgstr "深蓝染料（低饱和度）"
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Dark Indigo Dye (low saturation)"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Dark Violet Dye (low saturation)"
+msgstr "深紫染料（低饱和度）"
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Dark Mulberry Dye (low saturation)"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Dark Magenta Dye (low saturation)"
+msgstr "深品红染料（低饱和度）"
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Dark Fuchsia Dye (low saturation)"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Dark Rose Dye (low saturation)"
+msgstr ""
+#: airbrush.lua:189 dyes-crafting.lua:62
+msgid "Dark Crimson Dye (low saturation)"
+msgstr ""
+
+#: dyes-crafting.lua:79
+msgid "Grey Dye #1"
+msgstr ""
+#: dyes-crafting.lua:79
+msgid "Grey Dye #2"
+msgstr ""
+#: dyes-crafting.lua:79
+msgid "Grey Dye #3"
+msgstr ""
+#: dyes-crafting.lua:79
+msgid "Grey Dye #4"
+msgstr ""
+#: dyes-crafting.lua:79
+msgid "Grey Dye #5"
+msgstr ""
+#: dyes-crafting.lua:79
+msgid "Grey Dye #6"
+msgstr ""
+#: dyes-crafting.lua:79
+msgid "Grey Dye #7"
+msgstr ""
+#: dyes-crafting.lua:79
+msgid "Grey Dye #8"
+msgstr ""
+#: dyes-crafting.lua:79
+msgid "Grey Dye #9"
+msgstr ""
+#: dyes-crafting.lua:79
+msgid "Grey Dye #10"
+msgstr ""
+#: dyes-crafting.lua:79
+msgid "Grey Dye #11"
+msgstr ""
+#: dyes-crafting.lua:79
+msgid "Grey Dye #12"
+msgstr ""
+#: dyes-crafting.lua:79
+msgid "Grey Dye #13"
+msgstr ""
+#: dyes-crafting.lua:79
+msgid "Grey Dye #14"
+msgstr ""
+
+#: airbrush.lua:189
+msgid "White Dye"
+msgstr ""
+#: airbrush.lua:189
+msgid "Light Grey Dye"
+msgstr "浅灰染料"
+#: airbrush.lua:189
+msgid "Grey Dye"
+msgstr ""
+#: airbrush.lua:189
+msgid "Dark Grey Dye"
+msgstr ""
+#: airbrush.lua:189
+msgid "Black Dye"
+msgstr ""
+#: airbrush.lua:189
+msgid "Grey 1 Dye"
+msgstr ""
+#: airbrush.lua:189
+msgid "Grey 2 Dye"
+msgstr ""
+#: airbrush.lua:189
+msgid "Grey 3 Dye"
+msgstr ""
+#: airbrush.lua:189
+msgid "Grey 5 Dye"
+msgstr ""
+#: airbrush.lua:189
+msgid "Grey 6 Dye"
+msgstr ""
+#: airbrush.lua:189
+msgid "Grey 7 Dye"
+msgstr ""
+#: airbrush.lua:189
+msgid "Grey 9 Dye"
+msgstr ""
+#: airbrush.lua:189
+msgid "Grey 10 Dye"
+msgstr ""
+#: airbrush.lua:189
+msgid "Grey 12 Dye"
+msgstr ""
+#: airbrush.lua:189
+msgid "Grey 13 Dye"
+msgstr ""
+#: airbrush.lua:189
+msgid "Grey 14 Dye"
+msgstr ""
+
+#: dyes-crafting.lua:100
+msgid "Light grey Dye"
+msgstr ""
+
+#: template.txt
+msgid "Aqua Dye"
+msgstr "水蓝染料"
+#: template.txt
+msgid "Sky-blue Dye"
+msgstr "天蓝染料"
+#: template.txt
+msgid "Red-violet Dye"
+msgstr "红紫染料"
+#: template.txt
+msgid "Dark Aqua Dye (low saturation)"
+msgstr "深水蓝染料（低饱和度）"
+#: template.txt
+msgid "Dark Sky-blue Dye (low saturation)"
+msgstr "深天蓝染料（低饱和度）"
+#: template.txt
+msgid "Dark Red-violet Dye (low saturation)"
+msgstr "深红紫染料（低饱和度）"
+#: template.txt
+msgid "Dark Aqua Dye"
+msgstr "深水蓝染料"
+#: template.txt
+msgid "Dark Sky-blue Dye"
+msgstr "深天蓝染料"
+#: template.txt
+msgid "Dark Red-violet Dye"
+msgstr "深红紫染料"
+#: template.txt
+msgid "Medium Aqua Dye (low saturation)"
+msgstr "中水蓝染料（低饱和度）"
+#: template.txt
+msgid "Medium Sky-blue Dye (low saturation)"
+msgstr "中天蓝染料（低饱和度）"
+#: template.txt
+msgid "Medium Red-violet Dye (low saturation)"
+msgstr "中红紫染料（低饱和度）"
+#: template.txt
+msgid "Medium Aqua Dye"
+msgstr "中水蓝染料"
+#: template.txt
+msgid "Medium Sky-blue"
+msgstr "中天蓝染料"
+#: template.txt
+msgid "Medium Red-violet Dye"
+msgstr "中红紫染料"
+#: template.txt
+msgid "Aqua Dye (low saturation)"
+msgstr "水蓝染料（低饱和度）"
+#: template.txt
+msgid "Sky-blue Dye (low saturation)"
+msgstr "天蓝染料（低饱和度）"
+#: template.txt
+msgid "Red-violet Dye (low saturation)"
+msgstr "红紫染料（低饱和度）"
