@@ -194,11 +194,13 @@ core.register_abm({
 
 if core.settings:get_bool("farming_disable_weeds") ~= true then
 
+	local chance = tonumber(core.settings:get("farming_weeds_chance") or 70)
+
 	core.register_abm({
 		nodenames = {"group:field"},
 		neighbors = {"air"},
 		interval = 50,
-		chance = 70,
+		chance = chance,
 		catch_up = false,
 
 		action = function(pos, node)
