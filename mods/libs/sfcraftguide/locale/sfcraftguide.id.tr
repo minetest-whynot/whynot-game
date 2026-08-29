@@ -1,5 +1,9 @@
 # textdomain: sfcraftguide
 
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2022-2026
+# SPDX-FileContributor: dacmot
+
 ##[ craftguide.lua ]##
 Any coal=Batu bara apa pun
 Any sand=Pasir apa pun

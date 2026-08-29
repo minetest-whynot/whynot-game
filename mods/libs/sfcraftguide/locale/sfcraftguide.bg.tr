@@ -1,5 +1,9 @@
 # textdomain: sfcraftguide
 
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2022-2026
+# SPDX-FileContributor: dacmot
+
 ##[ craftguide.lua ]##
 Any coal=Всякакви въглища
 Any sand=Всякакъв пясък

@@ -1,4 +1,12 @@
-![luacheck](https://github.com/dacmot/sfcraftguide/actions/workflows/luacheck.yml/badge.svg)
+<!--
+SPDX-License-Identifier: MIT
+SPDX-FileCopyrightText: 2016-2019
+SPDX-FileContributor: Jean-Patrick Guerrero and contributors
+SPDX-FileCopyrightText: 2020-2022
+SPDX-FileContributor: pauloue
+SPDX-FileCopyrightText: 2022-2026
+SPDX-FileContributor: dacmot
+-->
 
 sfcraftguide
 ============

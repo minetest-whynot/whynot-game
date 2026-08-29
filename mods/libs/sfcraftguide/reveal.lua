@@ -1,3 +1,7 @@
+-- SPDX-License-Identifier: MIT
+-- SPDX-FileCopyrightText: 2022-2026
+-- SPDX-FileContributor: dacmot
+
 local revealed_cache = {}
 
 
