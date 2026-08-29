@@ -11,3 +11,7 @@ refinery_output (bottle output) bool false
 #Enables the conversion of food into fuel
 #Default is disabled
 food_fuel (food waste) bool false
+
+#Activate logging function
+#Default is disabled
+refinery_log (logging) bool false

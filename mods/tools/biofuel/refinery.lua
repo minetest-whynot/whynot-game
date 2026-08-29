@@ -3,7 +3,7 @@
 --License: General Public License, version 3 or later
 --Original Work Copyright (C) 2016 cd2 (cdqwertz) <cdqwertz@gmail.com>
 --Modified Work Copyright (C) 2017 Vitalie Ciubotaru <vitalie at ciubotaru dot tk>
---Modified Work Copyright (C) 2018 - 2024 Lokrates
+--Modified Work Copyright (C) 2018 - 2026 Lokrates
 --Modified Work Copyright (C) 2018 naturefreshmilk
 --Modified Work Copyright (C) 2019 OgelGames
 --Modified Work Copyright (C) 2020 6r1d
@@ -11,10 +11,10 @@
 --Modified Work Copyright (C) 2021 Niklp09
 
 -- Load support for MT game translation.
-local S = minetest.get_translator("biofuel")
+local S = core.get_translator("biofuel")
 
 -- hopper compat
-if minetest.get_modpath("hopper") then
+if core.get_modpath("hopper") then
 	hopper:add_container({
 		{"top", "biofuel:refinery", "dst"},
 		{"bottom", "biofuel:refinery", "src"},
@@ -27,7 +27,7 @@ end
 
 
 -- pipeworks compat
-local has_pipeworks = minetest.get_modpath("pipeworks")
+local has_pipeworks = core.get_modpath("pipeworks")
 local tube_entry = ""
 
 if has_pipeworks then
@@ -35,83 +35,117 @@ if has_pipeworks then
 end
 
 
-minetest.log('action', 'MOD: Biofuel ' .. "loading...")
-biofuel_version = '0.9'
+refinery_log = core.settings:get_bool("refinery_log")								-- Enables logging function (settingtypes.txt)
+if refinery_log == nil then refinery_log = false end 									-- default false
 
-food_fuel = minetest.settings:get_bool("food_fuel")				-- Enables the conversion of food into fuel (settingtypes.txt)
-if food_fuel == nil then food_fuel = false end 					-- default false
+if refinery_log then core.log('action', 'MOD: Biofuel ' .. "loading...") end
+biofuel_version = '0.10'
 
+food_fuel = core.settings:get_bool("food_fuel")										-- Enables the conversion of food into fuel (settingtypes.txt)
+if food_fuel == nil then food_fuel = false end 											-- default false
 
 biomass = {}
 biomass.convertible_groups = {
-								'flora', 'leaves', 'flower', 'sapling', 'tree', 'wood', 'stick', 'plant', 'seed',
-								'leafdecay', 'leafdecay_drop', 'mushroom', 'vines'
-							  }
+	'flora', 'leaves', 'flower', 'sapling', 'tree', 'wood', 'stick', 'plant', 'seed',							-- default
+	'leafdecay', 'leafdecay_drop', 'mushroom', 'vines', 'grass', 
+	'simple_bush', 'bark', 'cactus', 'papyrus', 'sugarcane',													-- hades
+	'material_wood', 'compostability',																			-- mineclone
+	'plank', 'trunk', 																							-- farlands reloaded
+	}
 biomass.convertible_nodes = {
-							'default:cactus', 'default:large_cactus_seedling',												-- default cactus
-							'default:bush_stem', 'default:pine_bush_stem', 'default:acacia_bush_stem',						-- default bush stem
-							'farming:cotton', 'farming:string', 'farming:wheat', 'farming:straw',							-- farming
-							'farming:hemp_leaf', 'farming:hemp_block', 'farming:hemp_fibre', 'farming:hemp_rope', 			-- farming_redo hemp
-							'farming:mint_leaf','farming:garlic', 'farming:peas', 'farming:pepper', 						-- farming_redo
-							'farming:barley', 'farming:jackolantern', 'farming:rye', 'farming:oat', 'farming:rice', 
-							'default:papyrus', 'default:dry_shrub', 'default:marram_grass_1', 'default:sand_with_kelp',		-- default
-							'pooper:poop_turd', 'pooper:poop_pile',															-- pooper
-							'cucina_vegana:flax', 'cucina_vegana:flax_roasted', 'cucina_vegana:sunflower',					-- cucina_vegana
-							'cucina_vegana:soy', 'cucina_vegana:chives', 'cucina_vegana:corn', 'cucina_vegana:chili',
-							'cucina_vegana:onion', 'cucina_vegana:banana', 'cucina_vegana:carrot', 'cucina_vegana:garlic',
-							'cucina_vegana:potato', 'cucina_vegana:tomato', 'cucina_vegana:cucumber', 'cucina_vegana:strawberry',
-							'cucina_vegana:vine_grape', 'cucina_vegana:coffee_beans_raw',
-							'vines:vines', 'vines:vine', 'vines:rope', 'vines:rope_block',									-- Vines
-							'trunks:moss_plain_0', 'trunks:moss_with_fungus_0', 'trunks:twig_1', 
-							'bushes:BushLeaves1', 'bushes:BushLeaves2', 
-							'dryplants:grass', 'dryplants:hay', 'dryplants:reed', 'dryplants:reedmace_sapling', 'dryplants:wetreed',
-							'poisonivy:climbing', 'poisonivy:seedling', 'poisonivy:sproutling',
-							}
+	'default:papyrus', 'default:dry_shrub', 'default:marram_grass_1', 'default:sand_with_kelp',					-- default
+	'default:cactus', 'default:large_cactus_seedling',															-- default cactus
+	'default:bush_stem', 'default:pine_bush_stem', 'default:acacia_bush_stem',									-- default bush stem
+							
+	'farming:cotton', 'farming:string', 'farming:wheat', 'farming:straw',										-- farming
+							
+	'hades_bushes:branch_bush','hades_bushes:dead', 															-- hades bushes
+	'hades_core:cactus', 'hades_core:large_cactus_seedling',													-- hades cactus
+	'hades_core:bush_stem', 'hades_core:pine_bush_stem', 'hades_core:acacia_bush_stem',							-- hades bush stem
+	'hades_farming:cotton', 'hades_farming:wheat', 'hades_farming:straw',										-- hades farming
+	'hades_core:dry_shrub', 'hades_core:marram_grass_1', 'hades_flowers:dead', 'hades_vines:vines_block',		-- hades core
+	'hades_waterplants:seaweed', 'hades_waterplants:waterlily', 'hades_core:sand_with_kelp',					-- hades waterplants
+							
+	'fl_agriculture:carrot', 'fl_agriculture:potato', 'fl_plantlife:raw_mushroom_leaves', 						-- farlands reloaded
+	'fl_plantlife:red_mushroom_leaves', 'fl_plantlife:brown_mushroom_leaves', 'fl_plantlife:mushroom_trunk',
+	'fl_plantlife:cactus', 																						-- farlands cactus
+							
+	'farming:mint_leaf','farming:garlic', 'farming:peas', 'farming:pepper', 'farming:weed_bale',				-- farming_redo
+	'farming:barley', 'farming:jackolantern', 'farming:rye', 'farming:oat', 'farming:rice', 
+	'farming:hemp_leaf', 'farming:hemp_block', 'farming:hemp_fibre', 'farming:hemp_rope', 						-- farming_redo hemp
+
+	'pooper:poop_turd', 'pooper:poop_pile',																		-- pooper
+	'cucina_vegana:flax', 'cucina_vegana:flax_roasted', 'cucina_vegana:sunflower',								-- cucina_vegana
+	'cucina_vegana:soy', 'cucina_vegana:chives', 'cucina_vegana:corn', 'cucina_vegana:chili',
+	'cucina_vegana:onion', 'cucina_vegana:banana', 'cucina_vegana:carrot', 'cucina_vegana:garlic',
+	'cucina_vegana:potato', 'cucina_vegana:tomato', 'cucina_vegana:cucumber', 'cucina_vegana:strawberry',
+	'cucina_vegana:vine_grape', 'cucina_vegana:coffee_beans_raw',
+	'vines:vines', 'vines:vine', 'vines:rope', 'vines:rope_block',												-- Vines
+	'trunks:moss_plain_0', 'trunks:moss_with_fungus_0', 'trunks:twig_1', 										-- Plantlife
+	'bushes:BushLeaves1', 'bushes:BushLeaves2', 
+	'dryplants:grass', 'dryplants:hay', 'dryplants:reed', 'dryplants:reedmace_sapling', 'dryplants:wetreed',
+	'poisonivy:climbing', 'poisonivy:seedling', 'poisonivy:sproutling',
+	'mcl_cocoas:cocoa_beans', 'mcl_farming:potato_item_poison',	'mcl_mobitems:rotten_flesh', 					-- mineclone
+							
+	'ethereal:bush', 'ethereal:pine_nuts', 'ethereal:vine', 'ethereal:bush2', 'ethereal:seaweed',				-- ethereal
+	'ethereal:mushroom', 'ethereal:slime_mold', 'ethereal:bamboo', 'ethereal:wild_onion_plant',
+	'ethereal:mangrove_roots',  'ethereal:cactus_flower', 'ethereal:fern_tubers',
+	'ethereal:bamboo_moss', 'ethereal:green_moss', 'ethereal:basandra_bush_stem',
+	}
 
 biomass.convertible_food = {
-							'farming:bread', 'farming:flour',																-- default food
-							'farming:pineapple', 'farming:pineapple_ring', 'farming:potato',
-							'farming:rice_flour', 'farming:blueberry_pie',
-							'farming:bread_multigrain', 'farming:flour_multigrain', 'farming:baked_potato',					-- farming_redo
-							'farming:beetroot_soup', 'farming:bread_slice', 'farming:chili_bowl', 'farming:chocolate_block',
-							'farming:chocolate_dark', 'farming:cookie', 'farming:corn_cob', 'farming:cornstarch',
-							'farming:muffin_blueberry', 'farming:pea_soup', 'farming:potato_salad', 'farming:pumpkin_bread',
-							'farming:pumpkin_dough', 'farming:rhubarb_pie', 'farming:rice_bread', 'farming:toast',
-							'farming:toast_sandwich', 'farming:garlic_braid', 'farming:onion_soup', 
-							'farming:sugar', 'farming:turkish_delight', 'farming:garlic_bread', 'farming:donut',
-							'farming:donut_chocolate', 'farming:donut_apple', 'farming:porridge', 'farming:jaffa_cake',
-							'farming:apple_pie', 'farming:pasta', 'farming:spaghetti', 'farming:bibimbap', 'farming:flan',
-							'farming:tofu', 'farming:gyoza', 'farming:mochi', 'farming:salad', 'farming:burger', 'farming:paella',
-							'farming:caramel', 'farming:onigiri', 'farming:popcorn', 'farming:sugar_cube', 'farming:carrot_gold',
-							'farming:tofu_cooked', 'farming:tomato_soup', 'farming:cheese_vegan', 'farming:chili_powder',
-							'farming:potato_omelet', 'farming:mac_and_cheese', 'farming:gingerbread_man', 'farming:sunflower_bread',
-							'farming:spanish_potatoes', 'farming:sunflower_seeds_toasted', 
-							'wine:agave_syrup', 																			-- Wine
-							'cucina_vegana:asparagus', 'cucina_vegana:asparagus_hollandaise', 								-- cucina_vegana
-							'cucina_vegana:asparagus_hollandaise_cooked', 'cucina_vegana:asparagus_rice', 'cucina_vegana:asparagus_rice_cooked',
-							'cucina_vegana:asparagus_soup_cooked', 'cucina_vegana:asparagus_soup', 'cucina_vegana:blueberry_jam',
-							'cucina_vegana:blueberry_pot', 'cucina_vegana:blueberry_pot_cooked', 'cucina_vegana:blueberry_puree',
-							'cucina_vegana:bowl_rice', 'cucina_vegana:bowl_rice_cooked', 'cucina_vegana:ciabatta_bread', 
-							'cucina_vegana:ciabatta_dough', 'cucina_vegana:dandelion_honey', 'cucina_vegana:dandelion_suds',
-							'cucina_vegana:dandelion_suds_cooking', 'cucina_vegana:edamame', 'cucina_vegana:edamame_cooked',
-							'cucina_vegana:fish_parsley_rosemary', 'cucina_vegana:fish_parsley_rosemary_cooked', 'cucina_vegana:fryer',
-							'cucina_vegana:fryer_raw', 'cucina_vegana:imitation_butter', 'cucina_vegana:imitation_cheese',
-							'cucina_vegana:imitation_fish', 'cucina_vegana:imitation_meat', 'cucina_vegana:imitation_poultry',
-							'cucina_vegana:kohlrabi', 'cucina_vegana:kohlrabi_roasted', 'cucina_vegana:kohlrabi_soup',
-							'cucina_vegana:kohlrabi_soup_cooked', 'cucina_vegana:lettuce', 'cucina_vegana:molasses', 'cucina_vegana:parsley',
-							'cucina_vegana:peanut', 'cucina_vegana:peanut_butter', 'cucina_vegana:pizza_dough', 'cucina_vegana:pizza_funghi',
-							'cucina_vegana:pizza_funghi_raw', 'cucina_vegana:pizza_vegana', 'cucina_vegana:pizza_vegana_raw',
-							'cucina_vegana:rice', 'cucina_vegana:rice_flour', 'cucina_vegana:rosemary', 'cucina_vegana:salad_bowl', 
-							'cucina_vegana:salad_hollandaise', 'cucina_vegana:sauce_hollandaise', 'cucina_vegana:soy_milk',
-							'cucina_vegana:soy_soup', 'cucina_vegana:soy_soup_cooked', 'cucina_vegana:sunflower_seeds_bread',
-							'cucina_vegana:sunflower_seeds_dough', 'cucina_vegana:sunflower_seeds_flour', 'cucina_vegana:sunflower_seeds_roasted',
-							'cucina_vegana:tofu', 'cucina_vegana:tofu_cooked', 'cucina_vegana:tofu_chives_rosemary',
-							'cucina_vegana:tofu_chives_rosemary_cooked', 'cucina_vegana:vegan_sushi'
-}
+	'farming:bread', 'farming:flour',																			-- default food
+							
+	'hades_farming:flour', 'hades_farming:bread', 'hades_farming:rice', 'hades_farming:cabbage',				-- hades farming
+	'hades_farming:parsnip', 'hades_farming:tomato', 'hades_farming:potato','hades_farming:strawberry',
+	'hades_farming:bell_pepper', 'hades_farming:spice', 
+	'hades_food:pie_strawberry_raw', 'hades_food:pie_strawberry', 'hades_food:tomatosalad',
+	'hades_food:tomato_potato_salad', 'hades_food:spiced_potato', 'hades_food:baked_potato',
+	'hades_food:pie_apple_raw', 'hades_food:pie_apple', 
+							
+	'farming:pineapple', 'farming:pineapple_ring', 'farming:potato', 											-- farming_redo
+	'farming:rice_flour', 'farming:blueberry_pie', 'farming:butter_vegan', 'farming:cinnamon_roll', 
+	'farming:bread_multigrain', 'farming:flour_multigrain', 'farming:baked_potato', 'farming:egg_vegan',
+	'farming:beetroot_soup', 'farming:bread_slice', 'farming:chili_bowl', 'farming:chocolate_block',
+	'farming:chocolate_dark', 'farming:cookie', 'farming:corn_cob', 'farming:cornstarch',
+	'farming:muffin_blueberry', 'farming:pea_soup', 'farming:potato_salad', 'farming:pumpkin_bread',
+	'farming:pumpkin_dough', 'farming:rhubarb_pie', 'farming:rice_bread', 'farming:toast',
+	'farming:toast_sandwich', 'farming:garlic_braid', 'farming:onion_soup', 
+	'farming:sugar', 'farming:turkish_delight', 'farming:garlic_bread', 'farming:donut',
+	'farming:donut_chocolate', 'farming:donut_apple', 'farming:porridge', 'farming:jaffa_cake',
+	'farming:apple_pie', 'farming:pasta', 'farming:spaghetti', 'farming:bibimbap', 'farming:flan',
+	'farming:tofu', 'farming:gyoza', 'farming:mochi', 'farming:salad', 'farming:burger', 'farming:paella',
+	'farming:caramel', 'farming:onigiri', 'farming:popcorn', 'farming:sugar_cube', 'farming:carrot_gold',
+	'farming:tofu_cooked', 'farming:tomato_soup', 'farming:cheese_vegan', 'farming:chili_powder',
+	'farming:potato_omelet', 'farming:mac_and_cheese', 'farming:gingerbread_man', 'farming:sunflower_bread',
+	'farming:spanish_potatoes', 'farming:sunflower_seeds_toasted', 'farming:jerusalem_artichokes', 
+	'farming:kiwi_sorbet', 
 
-
-
-
+	'cucina_vegana:asparagus', 'cucina_vegana:asparagus_hollandaise', 											-- cucina_vegana
+	'cucina_vegana:asparagus_hollandaise_cooked', 'cucina_vegana:asparagus_rice', 'cucina_vegana:asparagus_rice_cooked',
+	'cucina_vegana:asparagus_soup_cooked', 'cucina_vegana:asparagus_soup', 'cucina_vegana:blueberry_jam',
+	'cucina_vegana:blueberry_pot', 'cucina_vegana:blueberry_pot_cooked', 'cucina_vegana:blueberry_puree',
+	'cucina_vegana:bowl_rice', 'cucina_vegana:bowl_rice_cooked', 'cucina_vegana:ciabatta_bread', 
+	'cucina_vegana:ciabatta_dough', 'cucina_vegana:dandelion_honey', 'cucina_vegana:dandelion_suds',
+	'cucina_vegana:dandelion_suds_cooking', 'cucina_vegana:edamame', 'cucina_vegana:edamame_cooked',
+	'cucina_vegana:fish_parsley_rosemary', 'cucina_vegana:fish_parsley_rosemary_cooked', 'cucina_vegana:fryer',
+	'cucina_vegana:fryer_raw', 'cucina_vegana:imitation_butter', 'cucina_vegana:imitation_cheese',
+	'cucina_vegana:imitation_fish', 'cucina_vegana:imitation_meat', 'cucina_vegana:imitation_poultry',
+	'cucina_vegana:kohlrabi', 'cucina_vegana:kohlrabi_roasted', 'cucina_vegana:kohlrabi_soup',
+	'cucina_vegana:kohlrabi_soup_cooked', 'cucina_vegana:lettuce', 'cucina_vegana:molasses', 'cucina_vegana:parsley',
+	'cucina_vegana:peanut', 'cucina_vegana:peanut_butter', 'cucina_vegana:pizza_dough', 'cucina_vegana:pizza_funghi',
+	'cucina_vegana:pizza_funghi_raw', 'cucina_vegana:pizza_vegana', 'cucina_vegana:pizza_vegana_raw',
+	'cucina_vegana:rice', 'cucina_vegana:rice_flour', 'cucina_vegana:rosemary', 'cucina_vegana:salad_bowl', 
+	'cucina_vegana:salad_hollandaise', 'cucina_vegana:sauce_hollandaise', 'cucina_vegana:soy_milk',
+	'cucina_vegana:soy_soup', 'cucina_vegana:soy_soup_cooked', 'cucina_vegana:sunflower_seeds_bread',
+	'cucina_vegana:sunflower_seeds_dough', 'cucina_vegana:sunflower_seeds_flour', 'cucina_vegana:sunflower_seeds_roasted',
+	'cucina_vegana:tofu', 'cucina_vegana:tofu_cooked', 'cucina_vegana:tofu_chives_rosemary',
+	'cucina_vegana:tofu_chives_rosemary_cooked', 'cucina_vegana:vegan_sushi', 
+					
+	'wine:agave_syrup', 																						-- Wine
+							
+	'ethereal:candied_lemon', 'ethereal:strawberry', 'ethereal:banana_bread',									-- ethereal
+	}
 
 biomass.convertible_items = {}
 for _, v in pairs(biomass.convertible_nodes) do
@@ -135,51 +169,89 @@ local function is_convertible(input)
 		end
 	end
 	for _, v in pairs(biomass.convertible_groups) do
-		if minetest.get_item_group(input, v) > 0 then
+		if core.get_item_group(input, v) > 0 then
 			return true
 		end
 	end
 	return false
 end
 
-plants_input = tonumber(minetest.settings:get("biomass_input")) or 4		-- The number of biomass required for fuel production (settingtypes.txt)
+plants_input = tonumber(core.settings:get("biomass_input")) or 4		-- The number of biomass required for fuel production (settingtypes.txt)
 
-local bottle_output = minetest.settings:get_bool("refinery_output")				-- Change of refinery output between vial or bottle (settingtypes.txt)
-if bottle_output == nil then bottle_output = false end 					-- default false
+local bottle_output = core.settings:get_bool("refinery_output")			-- Change of refinery output between vial or bottle (settingtypes.txt)
+if bottle_output == nil then bottle_output = false end 						-- default false
 
 
 local function formspec(pos)
 	local spos = pos.x..','..pos.y..','..pos.z
-	local formspec =
-		'size[8,8.5]'..
-		default.gui_bg..
-		default.gui_bg_img..
-		default.gui_slots..
-		'list[nodemeta:'..spos..';src;0.5,0.5;3,3;]'..
-		'list[nodemeta:'..spos..';dst;5,1;2,2;]'..
-		'list[current_player;main;0,4.25;8,1;]'..
-		'list[current_player;main;0,5.5;8,3;8]'..
-		'listring[nodemeta:'..spos ..';dst]'..
-		'listring[current_player;main]'..
-		'listring[nodemeta:'..spos ..';src]'..
-		'listring[current_player;main]'..
-		default.get_hotbar_bg(0, 4.25)
-	return formspec
+	if core.get_modpath("mcl_core") then								-- Formspec for Minelonia, Mineclone2, Voxelibre
+		local formspec =
+			'size[9,8.5]'..
+			"listcolors[#9D9D9D;#CBCBCB;#474747;#000000;#FFF]"..
+			'list[nodemeta:'..spos..';src;0.5,0.5;3,3;]'..
+			'list[nodemeta:'..spos..';dst;5,1;2,2;]'..
+			'list[current_player;main;0,4.25;9,3;9]'..
+			'list[current_player;main;0,7.5;9,1;]'..
+			'listring[nodemeta:'..spos ..';dst]'..
+			'listring[current_player;main]'..
+			'listring[nodemeta:'..spos ..';src]'..
+			'listring[current_player;main]'
+		return formspec
+	elseif core.get_modpath("hades_core") then							-- Formspec for Hades Revisitet
+		local formspec =
+			'size[10,8.5]'..
+			"background[5,5;1,1;hades_gui_inventory.png;true]"..
+			'list[nodemeta:'..spos..';src;0.5,0.5;3,3;]'..
+			'list[nodemeta:'..spos..';dst;5,1;2,2;]'..
+			'list[current_player;main;0,4.25;10,1;]'..
+			'list[current_player;main;0,5.5;10,3;10]'..
+			'listring[nodemeta:'..spos ..';dst]'..
+			'listring[current_player;main]'..
+			'listring[nodemeta:'..spos ..';src]'..
+			'listring[current_player;main]'
+		return formspec
+	elseif core.get_modpath("fl_core") then								-- Formspec for Farlands Reloaded
+		local formspec =
+			'size[9,8.5]'..
+			"background[5,5;1,1;i3_bg_full.png;true]"..
+			"listcolors[#77777750;#777777;#777777;#777;#FFF]"..
+			'list[nodemeta:'..spos..';src;0.5,0.5;3,3;]'..
+			'list[nodemeta:'..spos..';dst;5,1;2,2;]'..
+			'list[current_player;main;0,4.25;9,1;]'..
+			'list[current_player;main;0,5.5;9,3;9]'..
+			'listring[nodemeta:'..spos ..';dst]'..
+			'listring[current_player;main]'..
+			'listring[nodemeta:'..spos ..';src]'..
+			'listring[current_player;main]'
+		return formspec
+	elseif core.get_modpath("default") then								-- Formspec for Minetest and Derviates
+		local formspec =
+			'size[8,8.5]'..
+			'list[nodemeta:'..spos..';src;0.5,0.5;3,3;]'..
+			'list[nodemeta:'..spos..';dst;5,1;2,2;]'..
+			'list[current_player;main;0,4.25;8,1;]'..
+			'list[current_player;main;0,5.5;8,3;8]'..
+			'listring[nodemeta:'..spos ..';dst]'..
+			'listring[current_player;main]'..
+			'listring[nodemeta:'..spos ..';src]'..
+			'listring[current_player;main]'
+		return formspec
+	end
 end
 
 
 local function swap_node(pos, name)
-	local node = minetest.get_node(pos)
+	local node = core.get_node(pos)
 	if node.name == name then
 		return
 	end
 	node.name = name
-	minetest.swap_node(pos, node)
+	core.swap_node(pos, node)
 end
 
 local function count_input(pos)
 	local q = 0
-	local meta = minetest.get_meta(pos)
+	local meta = core.get_meta(pos)
 	local inv = meta:get_inventory()
 	local stacks = inv:get_list('src')
 	for k in pairs(stacks) do
@@ -190,7 +262,7 @@ end
 
 local function count_output(pos)
 	local q = 0
-	local meta = minetest.get_meta(pos)
+	local meta = core.get_meta(pos)
 	local inv = meta:get_inventory()
 	local stacks = inv:get_list('dst')
 	for k in pairs(stacks) do
@@ -200,7 +272,7 @@ local function count_output(pos)
 end
 
 local function is_empty(pos)
-	local meta = minetest.get_meta(pos)
+	local meta = core.get_meta(pos)
 	local inv = meta:get_inventory()
 	local stacks = inv:get_list('src')
 	for k in pairs(stacks) do
@@ -227,8 +299,8 @@ end
 
 
 local function update_timer(pos)
-	local timer = minetest.get_node_timer(pos)
-	local meta = minetest.get_meta(pos)
+	local timer = core.get_node_timer(pos)
+	local meta = core.get_meta(pos)
 	local has_output_space = (4 * 99) > count_output(pos)
 	if not has_output_space then
 		if timer:is_started() then
@@ -239,7 +311,7 @@ local function update_timer(pos)
 		return
 	end
 	local count = count_input(pos)
-	local refinery_time = minetest.settings:get("fuel_production_time") or 10 		-- Timebase (settingtypes.txt)
+	local refinery_time = core.settings:get("fuel_production_time") or 10 		-- Timebase (settingtypes.txt)
 	if not timer:is_started() and count >= plants_input then        	  			-- Input
 		timer:start((refinery_time)/5)   											-- Timebase
 		meta:set_int('progress', 0)
@@ -255,7 +327,7 @@ end
 
 local function create_biofuel(pos)
 	local q = plants_input															-- Input
-	local meta = minetest.get_meta(pos)
+	local meta = core.get_meta(pos)
 	local inv = meta:get_inventory()
 	local stacks = inv:get_list('src')
 	for k in pairs(stacks) do
@@ -287,8 +359,8 @@ local function create_biofuel(pos)
 end
 
 local function on_timer(pos)
-	local timer = minetest.get_node_timer(pos)
-	local meta = minetest.get_meta(pos)
+	local timer = core.get_node_timer(pos)
+	local meta = core.get_meta(pos)
 	local progress = meta:get_int('progress') + 20  							--Progresss in %
 	if progress >= 100 then
 		create_biofuel(pos)
@@ -314,7 +386,7 @@ local function on_timer(pos)
 end
 
 local function on_construct(pos)
-	local meta = minetest.get_meta(pos)
+	local meta = core.get_meta(pos)
 	local inv = meta:get_inventory()
 	inv:set_size('src', 9)                                     					-- Input Fields
 	inv:set_size('dst', 4)                                     					-- Output Fields
@@ -323,7 +395,7 @@ local function on_construct(pos)
 end
 
 local function on_rightclick(pos, node, clicker, itemstack)
-	minetest.show_formspec(
+	core.show_formspec(
 		clicker:get_player_name(),
 		'biofuel:refinery',
 		formspec(pos)
@@ -332,12 +404,12 @@ end
 
 local function can_dig(pos,player)
 
-	if player and player:is_player() and minetest.is_protected(pos, player:get_player_name()) then
+	if player and player:is_player() and core.is_protected(pos, player:get_player_name()) then
 		-- protected
 		return false
 	end
 
-	local meta = minetest.get_meta(pos)
+	local meta = core.get_meta(pos)
 	local inv  = meta:get_inventory()
 	if inv:is_empty('src') and inv:is_empty('dst') then
 		return true
@@ -348,7 +420,7 @@ end
 
 local tube = {
 	insert_object = function(pos, node, stack, direction)
-		local meta = minetest.get_meta(pos)
+		local meta = core.get_meta(pos)
 		local inv = meta:get_inventory()
 		local convertible = is_convertible(stack:get_name())
 		if not convertible then
@@ -361,7 +433,7 @@ local tube = {
 		return result
 	end,
 	can_insert = function(pos, node, stack, direction)
-		local meta = minetest.get_meta(pos)
+		local meta = core.get_meta(pos)
 		local inv = meta:get_inventory()
 		stack = stack:peek_item(1)
 
@@ -373,7 +445,7 @@ local tube = {
 
 
 local function allow_metadata_inventory_take(pos, listname, index, stack, player)
-	if player and player:is_player() and minetest.is_protected(pos, player:get_player_name()) then
+	if player and player:is_player() and core.is_protected(pos, player:get_player_name()) then
 		-- protected
 		return 0
 	end
@@ -383,7 +455,7 @@ end
 
 local function allow_metadata_inventory_put(pos, listname, index, stack, player)
 
-	if player and player:is_player() and minetest.is_protected(pos, player:get_player_name()) then
+	if player and player:is_player() and core.is_protected(pos, player:get_player_name()) then
 		-- protected
 		return 0
 	end
@@ -398,25 +470,25 @@ end
 local function on_metadata_inventory_put(pos, listname, index, stack, player)
 	update_timer(pos)
 	update_nodebox(pos)
-	minetest.log('action', player:get_player_name() .. " moves stuff to refinery at " .. minetest.pos_to_string(pos))
+	if refinery_log then core.log('action', player:get_player_name() .. " moves stuff to refinery at " .. core.pos_to_string(pos)) end
 	return
 end
 
 local function on_metadata_inventory_take(pos, listname, index, stack, player)
 	update_timer(pos)
 	update_nodebox(pos)
-	minetest.log('action', player:get_player_name() .. " takes stuff from refinery at " .. minetest.pos_to_string(pos))
+	if refinery_log then core.log('action', player:get_player_name() .. " takes stuff from refinery at " .. core.pos_to_string(pos)) end
 	return
 end
 
 local function allow_metadata_inventory_move(pos, from_list, from_index, to_list, to_index, count, player)
 
-	if player and player:is_player() and minetest.is_protected(pos, player:get_player_name()) then
+	if player and player:is_player() and core.is_protected(pos, player:get_player_name()) then
 		-- protected
 		return 0
 	end
 
-	local inv = minetest.get_meta(pos):get_inventory()
+	local inv = core.get_meta(pos):get_inventory()
 	if from_list == to_list then
 		return inv:get_stack(from_list, from_index):get_count()
 	else
@@ -424,7 +496,7 @@ local function allow_metadata_inventory_move(pos, from_list, from_index, to_list
 	end
 end
 
-minetest.register_node("biofuel:refinery", {
+core.register_node("biofuel:refinery", {
 	description = S("Biofuel Refinery"),
 	drawtype = "nodebox",
 		tiles = {
@@ -466,7 +538,7 @@ minetest.register_node("biofuel:refinery", {
 	paramtype2 = "facedir",
 	is_ground_content = false,
 	groups = {cracky = 3, oddly_breakable_by_hand=1, tubedevice=1, tubedevice_receiver=1},
-	sounds = default.node_sound_metal_defaults(),
+	sounds = biofuel_sfx.node_sound_refinery_defaults(),
 	on_timer = on_timer,
 	on_construct = on_construct,
 	on_rightclick = on_rightclick,
@@ -479,7 +551,7 @@ minetest.register_node("biofuel:refinery", {
 	on_metadata_inventory_take = on_metadata_inventory_take,
 })
 
-minetest.register_node("biofuel:refinery_active", {
+core.register_node("biofuel:refinery_active", {
 	description = S("Biofuel Refinery Active"),
 	drawtype = "nodebox",
 		tiles = {
@@ -521,7 +593,7 @@ minetest.register_node("biofuel:refinery_active", {
 	paramtype2 = "facedir",
 	is_ground_content = false,
 	groups = {cracky = 3, oddly_breakable_by_hand=1, not_in_creative_inventory = 1, tubedevice=1, tubedevice_receiver=1},
-	sounds = default.node_sound_metal_defaults(),
+	sounds = biofuel_sfx.node_sound_refinery_defaults(),
 	on_timer = on_timer,
 	on_construct = on_construct,
 	on_rightclick = on_rightclick,
@@ -534,14 +606,44 @@ minetest.register_node("biofuel:refinery_active", {
 	on_metadata_inventory_take = on_metadata_inventory_take,
 })
 
-minetest.register_craft({
-	output = "biofuel:refinery",
-	recipe = {
-		{"default:tin_ingot", "default:tin_ingot", "default:tin_ingot"},
-		{"default:glass", "default:glass", "default:glass"},
-		{"default:tin_ingot", "default:tin_ingot", "default:tin_ingot"}
-	}
-})
+
+if core.get_modpath("mcl_core") then
+	core.register_craft({
+		output = "biofuel:refinery",
+		recipe = {
+			{"mcl_core:iron_ingot", "mcl_core:iron_ingot", "mcl_core:iron_ingot"},
+			{"mcl_core:glass", "mcl_core:glass", "mcl_core:glass"},
+			{"mcl_core:iron_ingot", "mcl_core:iron_ingot", "mcl_core:iron_ingot"}
+		}
+	})
+elseif core.get_modpath("hades_core") then
+	core.register_craft({
+		output = "biofuel:refinery",
+		recipe = {
+			{"hades_core:tin_ingot", "hades_core:tin_ingot", "hades_core:tin_ingot"},
+			{"hades_core:glass", "hades_core:glass", "hades_core:glass"},
+			{"hades_core:tin_ingot", "hades_core:tin_ingot", "hades_core:tin_ingot"}
+		}
+	})
+elseif core.get_modpath("fl_core") then
+	core.register_craft({
+		output = "biofuel:refinery",
+		recipe = {
+			{"fl_ores:tin_ingot", "fl_ores:tin_ingot", "fl_ores:tin_ingot"},
+			{"fl_glass:framed_glass", "fl_glass:framed_glass", "fl_glass:framed_glass"},
+			{"fl_ores:tin_ingot", "fl_ores:tin_ingot", "fl_ores:tin_ingot"}
+		}
+	})
+elseif core.get_modpath("default") then
+	core.register_craft({
+		output = "biofuel:refinery",
+		recipe = {
+			{"default:tin_ingot", "default:tin_ingot", "default:tin_ingot"},
+			{"default:glass", "default:glass", "default:glass"},
+			{"default:tin_ingot", "default:tin_ingot", "default:tin_ingot"}
+		}
+	})
+end
 
 
-minetest.log('action', "MOD: Biofuel version " .. biofuel_version .. " loaded.")
+if refinery_log then core.log('action', "MOD: Biofuel version " .. biofuel_version .. " loaded.") end

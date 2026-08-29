@@ -88,3 +88,18 @@ ru Translation added (Cpyte-Engine-Developer)
 
 Updates for Farming_redo and Cucina_vegana	(Lokrates)
 
+Version 0.10
+------------
+Add Polish Translation (Spageektti)
+
+Logging can be switched on and off	(Lokrates)
+
+Custom sound effects built in	(Lokrates)
+
+Compatibility for:	
+- Minetest-Game and Derivatives
+- Voxelibre; Mineclonia and Derivatives
+- Hades Revisitet
+- Farlands Reloaded
+
+Adds support for Ethereal mod	(Lokrates)

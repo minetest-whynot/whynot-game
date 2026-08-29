@@ -1,0 +1,4 @@
+plop_01.ogg				=	biofuel_refinery_footstep
+microwave_door_close	=	biofuel_place_refinery
+tools_03				=	biofuel_dug_refinery
+wooded_box_open			=	biofuel_dig_refinery
