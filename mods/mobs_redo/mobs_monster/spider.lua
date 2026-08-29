@@ -112,7 +112,6 @@ mobs:register_mob("mobs_monster:spider", {
 			if core.find_node_near(pos, 1, tmp.nodes) then
 
 				self.base_texture = tmp.skins
-				self.object:set_properties({textures = tmp.skins})
 				self.docile_by_day = tmp.docile
 
 				if tmp.drops then self.drops = tmp.drops end
@@ -129,15 +128,14 @@ mobs:register_mob("mobs_monster:spider", {
 					self.shoot_offset = 2
 				end
 
-				if tmp.small then
+				local props = {textures = tmp.skins}
 
-					self.object:set_properties({
-						collisionbox = {-0.2, -0.2, -0.2, 0.2, 0, 0.2},
-						visual_size = {x = 0.25, y = 0.25}
-					})
+				if tmp.small then
+					props.collisionbox = {-0.2, -0.15, -0.2, 0.2, 0, 0.2}
+					props.visual_size = {x = 0.25, y = 0.25}
 				end
 
-				break
+				self.object:set_properties(props) ; break
 			end
 		end
 
@@ -154,8 +152,8 @@ mobs:register_mob("mobs_monster:spider", {
 
 --print ("----", self.looking_at, self.looking_above, self.disable_falling, dtime)
 
-		local def1 = core.registered_nodes[self.looking_at]
-		local def2 = core.registered_nodes[self.looking_above]
+		local def1 = core.registered_nodes[self.looking_at] or {}
+		local def2 = core.registered_nodes[self.looking_above] or {}
 
 		if not def1.walkable or not def2.walkable then
 			self:set_pitch() -- reset back on ground
