@@ -1,6 +1,6 @@
-if not minetest.get_translator then
-	error("[character_creator] Translator API not found. "
-		.. "Please update Minetest to a recent version.")
+if not core.features.httpfetch_additional_methods then
+	-- For player:set_camera()
+	error("[character_creator] Unsupported Luanti version. Please update to 5.12.0 or newer.")
 end
 
 character_creator = {}
@@ -49,7 +49,16 @@ local skin_default = {
 	shoes      = NS("Leather Shoes")
 }
 
-local skins_array = {}
+local skins_array = {
+	--[[
+		Global lookup of customizable parts
+		key: string, part of the skin
+		value: {
+			key: string, human-readable description
+			value: string or table
+		}
+	]]
+}
 
 minetest.after(0, function()
 	local function table_keys_to_array(associative)
@@ -66,8 +75,30 @@ minetest.after(0, function()
 	end
 end)
 
--- Saved skins_array indexes in this
-local skin_indexes = {}
+-- Applied part indices (used to store in player meta)
+local skin_indexes = {
+	--[[
+		[PlayerRef] = {
+			key:   string, part of the skin (hair, pants, ...)
+			value: number, selected index (red, blue, ...)
+		}
+	]]
+}
+
+-- Original values in case the customization [formspec] is aborted
+local skin_temp = {
+	--[[
+		[PlayerRef] = {
+			gender = string,
+			width  = number,
+			height = number,
+			indexes = {
+				key:   string, part of the skin (hair, pants, ...)
+				value: number, selected index (red, blue, ...)
+			}
+		}
+	]]
+}
 
 local function show_formspec(player)
 	local indexes = skin_indexes[player]
@@ -106,6 +137,33 @@ local function show_formspec(player)
 		"button_exit[10,9.2;2.5,.75;done;" .. FS("Done") .. "]" ..
 		"button_exit[12.5,9.2;2.5,.75;cancel;" .. FS("Cancel") .. "]")
 
+	if not skin_temp[player] then
+		-- Values needed as long the formspec is open
+		local player_meta = player:get_meta()
+		skin_temp[player] = {
+			gender = player_meta:get_string("character_creator:gender"),
+			width = player_meta:get_float("character_creator:width"),
+			height = player_meta:get_float("character_creator:height"),
+			indexes = table.copy(indexes)
+		}
+
+		local old_camera_mode = player:get_camera().mode
+		player:set_camera({
+			mode = "third_front"
+		})
+		player:set_look_vertical(math.pi * -0.08)
+
+		-- Restore. Hopefully the client rendered 1 frame in the meantime to apply the mode.
+		core.after(1, function()
+			-- Ensure the player has not already left.
+			if player:get_player_name() then
+				player:set_camera({
+					mode = old_camera_mode
+				})
+			end
+		end)
+	end
+
 	minetest.show_formspec(player:get_player_name(), "character_creator", table.concat(fs))
 end
 
@@ -126,15 +184,15 @@ local function load_skin(player)
 		player_meta:set_float("character_creator:height", skin_default.height)
 	end
 
-	local function load_data(data_name)
-		local key   = player_meta:get_string("character_creator:" .. data_name)
-		local index = table.indexof(skins_array[data_name], key)
+	local function load_data(part)
+		local key   = player_meta:get_string("character_creator:" .. part)
+		-- ^ e.g. "White T-Shirt"
+		local index = table.indexof(skins_array[part], key)
 		if index == -1 then
-			index = table.indexof(skins_array[data_name], skin_default[data_name])
+			index = table.indexof(skins_array[part], skin_default[part])
 		end
 
-		local indexes = skin_indexes[player]
-		indexes[data_name] = index
+		skin_indexes[player][part] = index
 	end
 
 	load_data("skin")
@@ -251,7 +309,7 @@ end
 
 if skinsdb then
 	--change skin redefinition for skinsdb
-	function change_skin(player)
+	change_skin = function(player)
 		local player_meta = player:get_meta()
 		if player_meta == nil then
 			-- The player disconnected before this function was dispatched
@@ -316,9 +374,25 @@ minetest.register_on_leaveplayer(function(player)
 		skinsdb.meta[skinname] = nil
 	end
 	skin_indexes[player] = nil
+	skin_temp[player] = nil
 end)
 
-local skin_temp = {}
+local function abort_undo_changes(player)
+	local temp = skin_temp[player]
+	if not temp then
+		return
+	end
+	skin_temp[player] = nil
+
+	local player_meta = player:get_meta()
+	player_meta:set_string("character_creator:gender", temp.gender)
+	player_meta:set_float("character_creator:width", temp.width)
+	player_meta:set_float("character_creator:height", temp.height)
+	skin_indexes[player] = temp.indexes
+
+	change_skin(player)
+end
+
 minetest.register_on_player_receive_fields(function(player, formname, fields)
 	if formname ~= "character_creator" then
 		return
@@ -326,15 +400,6 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 
 	local player_meta = player:get_meta()
 	local indexes = skin_indexes[player]
-
-	if not skin_temp[player] then
-		skin_temp[player] = {
-			gender = player_meta:get_string("character_creator:gender"),
-			width = player_meta:get_float("character_creator:width"),
-			height = player_meta:get_float("character_creator:height"),
-			indexes = table.copy(indexes)
-		}
-	end
 
 	-- Gender
 	do
@@ -379,14 +444,14 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 
 	-- Switch skin
 	do
-		local function switch_skin(data_name, next_index)
-			if not indexes[data_name]
-					or not skins_array[data_name] then
+		local function switch_skin(part, dir)
+			if not indexes[part]
+					or not skins_array[part] then
 				return -- Supplied invalid data
 			end
 
-			local index = indexes[data_name] + next_index
-			local max = #skins_array[data_name]
+			local index = indexes[part] + dir
+			local max = #skins_array[part]
 
 			if index == 0 then
 				index = max
@@ -394,38 +459,31 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 				index = 1
 			end
 
-			indexes[data_name] = index
+			indexes[part] = index
 		end
 
 		for field in pairs(fields) do
-			if field:find("_back$") then
-				local data_name = field:match("(.+)_back$")
-				switch_skin(data_name, -1)
-			elseif field:find("_next$") then
-				local data_name = field:match("(.+)_next$")
-				switch_skin(data_name, 1)
+			local part = field:match("(.+)_back$")
+			if part then
+				switch_skin(part, -1)
+				break
+			end
+			part = field:match("(.+)_next$")
+			if part then
+				switch_skin(part, 1)
+				break
 			end
 		end
 	end
 
 	-- Close or update
 	do
-		local quit = false
-
-		if fields.cancel then
-			local temp = skin_temp[player]
-			player_meta:set_string("character_creator:gender", temp.gender)
-			player_meta:set_float("character_creator:width", temp.width)
-			player_meta:set_float("character_creator:height", temp.height)
-			skin_indexes[player] = table.copy(temp.indexes)
-			skin_temp[player] = nil
-			quit = true
-		elseif fields.quit then
-			skin_temp[player] = nil
-			quit = true
+		if fields.quit and not fields.done then
+			abort_undo_changes(player)
+			return
 		end
 
-		if not quit then
+		if not fields.quit then
 			show_formspec(player)
 		end
 	end
