@@ -17,8 +17,8 @@ end
 
 -- Localise some functions
 
-local abs, cos, floor, sin, sqrt, pi =
-		math.abs, math.cos, math.floor, math.sin, math.sqrt, math.pi
+local abs, cos, floor, sin, pi = math.abs, math.cos, math.floor, math.sin, math.pi
+local min, max, sqrt = math.min, math.max, math.sqrt
 
 -- helper functions
 
@@ -31,11 +31,7 @@ end
 
 
 local function get_velocity(v, yaw, y)
-
-	local x = -sin(yaw) * v
-	local z =  cos(yaw) * v
-
-	return {x = x, y = y, z = z}
+	return {x = -sin(yaw) * v, y = y, z =  cos(yaw) * v}
 end
 
 
@@ -82,10 +78,8 @@ end)
 
 core.register_on_shutdown(function()
 
-	local players = core.get_connected_players()
-
-	for i = 1, #players do
-		force_detach(players[i])
+	for _, player in ipairs(core.get_connected_players()) do
+		force_detach(player)
 	end
 end)
 
@@ -132,17 +126,14 @@ end
 
 function mobs.attach(entity, player)
 
-	if not player then return end
+	if not player or not entity then return end
 
 	entity.player_rotation = entity.player_rotation or {x = 0, y = 0, z = 0}
 	entity.driver_attach_at = entity.driver_attach_at or {x = 0, y = 0, z = 0}
 	entity.driver_eye_offset = entity.driver_eye_offset or {x = 0, y = 0, z = 0}
 	entity.driver_scale = entity.driver_scale or {x = 1, y = 1}
 
-	local rot_view = 0
-
-	if entity.player_rotation.y == 90 then rot_view = pi / 2 end
-
+	local rot_view = (entity.player_rotation.y == 90) and (pi / 2) or 0
 	local attach_at = entity.driver_attach_at
 	local eye_offset = entity.driver_eye_offset
 
@@ -201,11 +192,8 @@ end
 
 function mobs.drive(entity, moving_anim, stand_anim, can_fly, dtime)
 
-	local yaw = entity.object:get_yaw() or 0
-	local rot_view = 0
-
-	if entity.player_rotation.y == 90 then rot_view = pi / 2 end
-
+	local yaw = entity.object:get_yaw() ; if not yaw then return end
+	local rot_view = (entity.player_rotation.y == 90) and (pi / 2) or 0
 	local acce_y = 0
 	local velo = entity.object:get_velocity() ; if not velo then return end
 
@@ -218,26 +206,22 @@ function mobs.drive(entity, moving_anim, stand_anim, can_fly, dtime)
 
 		if ctrl.up then -- move forwards
 
-			entity.v = entity.v + entity.accel * dtime
+			entity.v = entity.v + (entity.accel * dtime)
 
 		elseif ctrl.down then -- move backwards
 
-			if entity.max_speed_reverse == 0 and entity.v == 0 then return end
-
-			entity.v = entity.v - entity.accel * dtime
+			if entity.max_speed_reverse ~= 0 then
+				entity.v = entity.v - (entity.accel * dtime)
+			end
 		end
 
 		-- mob rotation
-		local horz
+		local horz = entity.alt_turn and yaw or (entity.driver:get_look_horizontal() or 0)
 
-		if entity.alt_turn == true then
-
-			horz = yaw
+		if entity.alt_turn then
 
 			if ctrl.left then horz = horz + 0.05
 			elseif ctrl.right then horz = horz - 0.05 end
-		else
-			horz = entity.driver:get_look_horizontal() or 0
 		end
 
 		entity.object:set_yaw(horz - entity.rotate)
@@ -251,38 +235,28 @@ function mobs.drive(entity, moving_anim, stand_anim, can_fly, dtime)
 
 			if ctrl.jump then -- fly up
 
-				velo.y = velo.y + 1
-
-				if velo.y > entity.accel then velo.y = entity.accel end
+				velo.y = min(velo.y + 1, entity.accel)
 
 			elseif velo.y > 0 then
 
-				velo.y = velo.y - dtime
-
-				if velo.y < 0 then velo.y = 0 end
+				velo.y = max(velo.y - dtime, 0)
 			end
 
 			if ctrl.sneak then -- fly down
 
-				velo.y = velo.y - 1
-
-				if velo.y < -entity.accel then velo.y = -entity.accel end
+				velo.y = max(velo.y - 1, -entity.accel)
 
 			elseif velo.y < 0 then
 
-				velo.y = velo.y + dtime
-
-				if velo.y > 0 then velo.y = 0 end
+				velo.y = min(velo.y + dtime, 0)
 			end
 		else
-			if ctrl.jump then -- jump (only when standing on solid surface)
-
-				if velo.y == 0
-				and entity.standing_on ~= "air" and entity.standing_on ~= "ignore"
-				and core.get_item_group(entity.standing_on, "liquid") == 0 then
-					velo.y = velo.y + entity.jump_height
-					acce_y = acce_y + (acce_y * 3) + 1
-				end
+			-- jump (only when standing on solid surface)
+			if ctrl.jump and velo.y == 0 and entity.standing_on ~= "air"
+			and entity.standing_on ~= "ignore"
+			and core.get_item_group(entity.standing_on, "liquid") == 0 then
+				velo.y = velo.y + entity.jump_height
+				acce_y = acce_y + (acce_y * 3) + 1
 			end
 		end
 	end
@@ -299,7 +273,7 @@ function mobs.drive(entity, moving_anim, stand_anim, can_fly, dtime)
 	-- Stop!
 	local s = get_sign(entity.v)
 
-	entity.v = entity.v - 0.02 * s
+	entity.v = entity.v - (0.02 * s)
 
 	if s ~= get_sign(entity.v) then
 
@@ -318,24 +292,21 @@ function mobs.drive(entity, moving_anim, stand_anim, can_fly, dtime)
 
 	-- Set position, velocity and acceleration
 	local p = entity.object:get_pos() ; if not p then return end
-
-	local new_acce = {x = 0, y = entity.fall_speed, z = 0}
-
-	p.y = p.y - 0.5
-
 	local v = entity.v
-
 	local new_velo = get_velocity(v, yaw - rot_view, velo.y)
+	local fall_speed = can_fly and 0 or entity.fall_speed
 
-	new_acce.y = new_acce.y + acce_y
+	new_velo.y = new_velo.y  + acce_y
 
 	entity.object:set_velocity(new_velo)
-	entity.object:set_acceleration(new_acce)
+	entity.object:set_acceleration({x = 0, y = fall_speed, z = 0})
 end
 
 -- fly mob in facing direction (by D00Med, edited by TenPlus1)
 
 function mobs.fly(entity, dtime, speed, shoots, arrow, moving_anim, stand_anim)
+
+	if not entity.driver then return end -- player check
 
 	local ctrl = entity.driver:get_player_control() ; if not ctrl then return end
 	local velo = entity.object:get_velocity() ; if not velo then return end
@@ -358,7 +329,7 @@ function mobs.fly(entity, dtime, speed, shoots, arrow, moving_anim, stand_anim)
 		entity.object:set_velocity({x = 0, y = -2, z = 0})
 	end
 
-	entity.object:set_yaw(yaw + pi + pi / 2 - entity.rotate)
+	entity.object:set_yaw(yaw + pi + (pi / 2) - entity.rotate)
 
 	-- shooting feature
 	if ctrl.LMB and ctrl.sneak then

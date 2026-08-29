@@ -23,6 +23,28 @@ local function get_distance(a, b)
 	return square(x * x + y * y + z * z)
 end
 
+-- check spawner settings
+
+local function check_string(txt)
+
+	if not txt or txt == "" then return end
+
+	local comm = txt:split(" ")
+
+	local mob = comm[1] or "" -- mob to spawn
+	local mlig = tonumber(comm[2]) or 0 -- min light
+	local xlig = tonumber(comm[3]) or 15 -- max light
+	local num = tonumber(comm[4]) or 0 -- total mobs in area
+	local pla = tonumber(comm[5]) or 0 -- player distance (0 to disable)
+	local yof = tonumber(comm[6]) or 0 -- Y offset to spawn mob
+
+	if mob == "" or not mobs.spawning_mobs[mob] or num < 0 or num > 10
+	or mlig < 0 or mlig > 15 or xlig < 0 or xlig > 15 or pla < 0 or pla > 20
+	or yof < -10 or yof > 10 then return end
+
+	return {mob = mob, mlig = mlig, xlig = xlig, num = num, pla = pla, yof = yof}
+end
+
 -- mob spawner
 
 local spawner_default = "mobs_animal:pumba 10 15 0 0 0"
@@ -69,28 +91,20 @@ core.register_node("mobs:spawner", {
 
 		if not fields.text or fields.text == "" then return end
 
+		local tmp =  fields.text:gsub("%s+", " ") -- remove any extra spaces
 		local meta = core.get_meta(pos)
-		local comm = fields.text:split(" ")
 		local name = sender:get_player_name()
 
 		if core.is_protected(pos, name) then
-			core.record_protection_violation(pos, name)
-			return
+			core.record_protection_violation(pos, name) ; return
 		end
 
-		local mob = comm[1] or "" -- mob to spawn
-		local mlig = tonumber(comm[2]) -- min light
-		local xlig = tonumber(comm[3]) -- max light
-		local num = tonumber(comm[4]) -- total mobs in area
-		local pla = tonumber(comm[5]) -- player distance (0 to disable)
-		local yof = tonumber(comm[6]) or 0 -- Y offset to spawn mob
+		local def = check_string(tmp)
 
-		if mob ~= "" and mobs.spawning_mobs[mob] and num and num >= 0 and num <= 10
-		and mlig and mlig >= 0 and mlig <= 15 and xlig and xlig >= 0 and xlig <= 15
-		and pla and pla >= 0 and pla <= 20 and yof and yof > -10 and yof < 10 then
+		if def then
 
-			meta:set_string("command", fields.text)
-			meta:set_string("infotext", S("Spawner Active (@1)", mob))
+			meta:set_string("command", tmp)
+			meta:set_string("infotext", S("Spawner Active (@1)", def.mob))
 		else
 			core.chat_send_player(name, S("Mob Spawner settings failed!"))
 			core.chat_send_player(name,
@@ -116,51 +130,40 @@ core.register_abm({
 		if active_object_count_wider >= max_per_block then return end
 
 		-- get meta and command
-		local meta = core.get_meta(pos)
-		local comm = meta:get_string("command"):split(" ")
-
-		-- get settings from command
-		local mob = comm[1]
-		local mlig = tonumber(comm[2])
-		local xlig = tonumber(comm[3])
-		local num = tonumber(comm[4])
-		local pla = tonumber(comm[5]) or 0
-		local yof = tonumber(comm[6]) or 0
+		local meta = core.get_meta(pos) ; if not meta then return end
+		local def = check_string(meta:get_string("command")) ; if not def then return end
+		local mob = def.mob
+		local mlig = def.mlig
+		local xlig = def.xlig
+		local num = def.num
+		local pla = def.pla
+		local yof = def.yof
 
 		-- if amount is 0 then do nothing
 		if num == 0 then return end
 
-		-- are we spawning a registered mob?
-		if not mobs.spawning_mobs[mob] or not core.registered_entities[mob] then
-			--print ("--- mob doesn't exist", mob)
-			return
-		end
-
 		-- check objects inside 9x9 area around spawner
-		local objs = core.get_objects_inside_radius(pos, 9)
 		local count = 0
-		local ent
 
 		-- count mob objects of same type in area
-		for _, obj in ipairs(objs) do
+		for _, obj in ipairs(core.get_objects_inside_radius(pos, 9)) do
 
-			ent = obj:get_luaentity()
+			local ent = obj:get_luaentity()
 
-			if ent and ent.name and ent.name == mob then count = count + 1 end
+			if ent and ent.name and ent.name == mob then
+
+				count = count + 1
+
+				if count >= num then return end -- too many of same type
+			end
 		end
-
-		-- is there too many of same type?
-		if count >= num then return end
 
 		-- when player distance above 0, spawn mob if player detected and in range
 		if pla > 0 then
 
-			local in_range, player
-			local players = core.get_connected_players()
+			local in_range
 
-			for i = 1, #players do
-
-				player = players[i]
+			for _, player in ipairs(core.get_connected_players()) do
 
 				if get_distance(player:get_pos(), pos) <= pla then
 					in_range = true ; break

@@ -67,7 +67,10 @@ functions needed for the mob to work properly which contains the following:
       'chance'     chance of searching for above node(s), default is 10.
    'runaway'       if true causes animals to turn and run away when hit.
    'pushable'      when true mobs can be pushed by player or other mobs.
-   'view_range'    how many nodes in distance the mob can see a player.
+   'view_range'    how many nodes in distance the mob can see a player to follow
+                   or initiate an attack.
+   'view_range_attacking'  how many nodes in distance the mob will continue
+                   to attack player once started.
    'damage'        how many health points the mob does to a player or another
                    mob when melee attacking.
    'damage_group'  group in which damage is dealt, dedaults to "fleshy".
@@ -152,8 +155,10 @@ functions needed for the mob to work properly which contains the following:
    'dogshoot_count2_max' contains how many seconds before switching from shoot
                          to dogfight.
    'shoot_interval'      has the number of seconds between shots.
-   'shoot_offset'         holds the y position added as to where the
-                         arrow/fireball appears on mob.
+   'shoot_chance'        chance out of 100 that mob will shoot arrow every shot,
+                         Default is 80.
+   'shoot_offset'        holds the y position offset as to where the arrow or
+                         fireball aims towards target.
    'homing'              When True arrows will follow player when visible.
    'punch_interval'      the number of seconds between punches (default: 1)
    'specific_attack'     has a table of entity names that mob can also attack
@@ -179,7 +184,7 @@ functions needed for the mob to work properly which contains the following:
       {"default:sword_wood",  0} -- causes no damage.
       {"default:gold_lump", -10} -- heals by 10 health points.
       {"default:coal_block", 20} -- 20 damage when hit on head with coal blocks.
-      {"all"} -- stops all weapons causing damage apart from those on list.
+      {"all"} -- stops all weapons causing damage apart from those on list before it.
                          nodes can also be added so that node_per_second damage
                          does not affect the mob either e.g.
       {"ethereal:crystal_spike", 0} -- causes no damage.

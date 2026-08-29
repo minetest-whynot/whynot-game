@@ -8,7 +8,7 @@ local mod_def = core.get_modpath("default")
 
 local function sound_helper(snd)
 
-	mobs[snd] = (mod_def and default[snd]) or (mc2 and mcl_sounds[snd])
+	mobs[snd] = (mod_def and default[snd]) or (mc2 and mcl_sounds and mcl_sounds[snd])
 			or function() return {} end
 end
 
@@ -300,7 +300,7 @@ core.register_craft({type = "fuel", recipe = "mobs:fence_top", burntime = 2})
 
 local tex_obj
 
-core.register_tool(":mobs:mob_reset_stick", {
+core.register_tool("mobs:mob_reset_stick", {
 	description = S("Mob Reset Stick"),
 	inventory_image = "default_stick.png^[colorize:#ff000050",
 	stack_max = 1,
@@ -498,10 +498,10 @@ core.register_node("mobs:hearing_vines_active", {
 	},
 	on_construct = function(pos)
 		core.get_node_timer(pos):start(1)
-		if mod_mese then mesecon.receptor_on(pos) end
+		if mod_mese and mesecon then mesecon.receptor_on(pos) end
 	end,
 	on_timer = function(pos)
 		core.set_node(pos, {name = "mobs:hearing_vines"})
-		if mod_mese then mesecon.receptor_off(pos) end
+		if mod_mese and mesecon then mesecon.receptor_off(pos) end
 	end
 })
