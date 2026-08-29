@@ -1,3 +1,10 @@
+function checkIsFinite(mynumber)
+    if math.isfinite(mynumber) then
+        return mynumber
+    end
+    return 0
+end
+
 function airutils.physics(self)
     local friction = self._ground_friction or 0.99
     local vel=self.object:get_velocity()
@@ -113,8 +120,10 @@ function airutils.physics(self)
     end
 
     --if it's not NaN, add velocity
-    if new_velocity.x == new_velocity.x and new_velocity.y == new_velocity.y and new_velocity.z == new_velocity.z then
-        self.object:add_velocity(new_velocity)
-    end
+    new_velocity.x = checkIsFinite(new_velocity.x)
+    new_velocity.y = checkIsFinite(new_velocity.y)
+    new_velocity.z = checkIsFinite(new_velocity.z)
+    self.object:add_velocity(new_velocity)
+
 end
 

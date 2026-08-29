@@ -387,7 +387,9 @@ core.register_on_player_receive_fields(function(player, formname, fields)
                     core.chat_send_player(ent.driver_name,S(" >>> Autopilot deactivated"))
                 else
                     ent._autopilot = true
-                    core.chat_send_player(ent.driver_name,core.colorize('#00ff00', S(" >>> Autopilot activated")))
+                    if ent.driver_name then
+                        core.chat_send_player(ent.driver_name,core.colorize('#00ff00', S(" >>> Autopilot activated")))
+                    end
                 end
             end
             if fields.manual then
