@@ -501,3 +501,47 @@ if core.get_modpath("bushes_classic") then
 		{"bushes:fruitless_bush", grow_bush, "soil"},
 	})
 end
+
+-- helper function to reduce node timer to 1 second
+
+local function reduce_timer(pos)
+	core.get_node_timer(pos):start(1) -- reduce timer to 1 second for quick grow
+end
+
+-- nether (custom function for xnether trees for both separate mod and xanadu)
+
+if core.get_modpath("nether") then
+
+	bonemeal:add_sapling({
+		{"xnether:purple_sapling", reduce_timer, "nether:rack", true},
+		{"xnether:blue_sapling", reduce_timer, "nether:rack_deep", true}
+	})
+end
+
+-- natural biomes
+
+if core.get_modpath("naturalbiomes") then
+
+	bonemeal:add_sapling({
+		{"naturalbiomes:alder_sapling", reduce_timer, "soil"},
+		{"naturalbiomes:palm_sapling", reduce_timer, "soil"},
+		{"naturalbiomes:pine_sapling", reduce_timer, "soil"},
+		{"naturalbiomes:birch_sapling", reduce_timer, "soil"},
+		{"naturalbiomes:olive_sapling", reduce_timer, "soil"},
+		{"naturalbiomes:acacia_sapling", reduce_timer, "soil"},
+		{"naturalbiomes:bamboo_sapling", reduce_timer, "soil"},
+		{"naturalbiomes:banana_sapling", reduce_timer, "soil"},
+		{"naturalbiomes:willow_sapling", reduce_timer, "soil"},
+		{"naturalbiomes:junpier_sapling", reduce_timer, "soil"},
+		{"naturalbiomes:outback_sapling", reduce_timer, "soil"},
+		{"naturalbiomes:alppine1_sapling", reduce_timer, "soil"},
+		{"naturalbiomes:alppine2_sapling", reduce_timer, "soil"},
+		{"naturalbiomes:med_bush_sapling", reduce_timer, "soil"},
+		{"naturalbiomes:beach_bush_sapling", reduce_timer, "sand"},
+		{"naturalbiomes:outback_buch_sapling", reduce_timer, "soil"},
+		{"naturalbiomes:alpine_cowberry_sapling", reduce_timer, "soil"},
+		{"naturalbiomes:bushland_hazelnutbush_sapling", reduce_timer, "soil"},
+		{"naturalbiomes:bushland_wildrosebush_sapling", reduce_timer, "soil"},
+		{"naturalbiomes:bushland_blackberrybush_sapling", reduce_timer, "soil"}
+	})
+end
