@@ -1,0 +1,245 @@
+# textdomain: mtg_plus
+
+
+### awards.lua ###
+
+Build 100 papyrus blocks.=Contruit 100 bloc de papyrus.
+Can't dig me!=Indestructible !
+Craft 100 goldwood.=Assemble 100 morceau de bois doré.
+Craft 128 dense ice tiles.=Assemble 128 tuile de glace condensée.
+Craft 4 small gold-framed diamond blocks.=Assemble 4 quatre petits blocs de diamant encadrés d'or.
+Craft 400 cobbled gravel.=Assemble 400 pavés de gravier.
+Craft 512 cobbled sandstone.=Assemble 512 pavés de grès.
+Craft 512 jungle cobblestone.=Assemble 512 pavés de la jungle.
+Green Jungle=Jungle pavée
+Historic City=Ville historique
+Ice Crazy=Fou de glace
+Let's build an igloo!=Batissons un igloo!
+Luxurious Adornment=Luxe ornemental
+Papyrus Panic=Panique au papyrus
+Place 225 hard snow bricks.=Mettre 225 briques de neige compactées.
+Place a aggregated diamond block.=Mettre un agrégat de diamant.
+Rich Carpenter=Carpentier riche
+Yellow Desert=Désert pavé
+
+### brickblocks.lua ###
+
+Bronze Brick=Brique de bronze
+Copper Brick=Brique de cuivre
+Dense Ice Tile=Tuile de glace condensée
+Desert Sandstone Brick with Golden Edges=Brique de grès du désert encadrée d'or
+Desert Stone Brick with Golden Edges=Roche du désert encadrée d'or
+Flint Block=Bloc de silex
+Gold Brick=Brique d'or
+Hard Snow Brick=Brique de neige compactée
+Hardened Dirt Brick=Brique de terre durcie
+Ice Block=Bloc de glace
+Ice Brick=Brique de glace
+Ice Tile=Tuile de glace
+Icy Snow Brick=Brique de neige glacée
+Obsidian Brick with Golden Edges=Brique d'obsidienne encadrée d'or
+Papyrus Block=Bloc de papyrus
+Sandstone Brick with Golden Edges=Brique de grès encadrée d'or
+Silver Sandstone Brick with Golden Edges=Brique de grès argenté encadrée d'or
+Small Gold-framed Diamond Block=Petit bloc de diamant encadré d'or
+Soft Dirt Brick=Brique de terre
+Soft Snow Brick=Brique de neige
+Steel Brick=Brique d'acier
+Stone Brick with Golden Edges=Brique de pierre encadrée d'or
+Tin Brick=Brique d'étain
+
+### cobble.lua ###
+
+Cobbled gravel is solidified gravel, carefully arranged in a mosaic-like pattern. It makes a nice building material.=
+
+
+### cobble.lua ###
+### extras.lua ###
+
+Cobbled Desert Sandstone=Pavé de grès du désert
+Cobbled Gravel=Pavé de gravier
+Cobbled Sandstone=Pavé de grès
+Cobbled Silver Sandstone=Pavé de grès argenté
+Jungle Cobblestone=Pavé de la jungle
+
+### doors.lua ###
+
+A door covers a vertical area of two blocks to block the way. It can be opened and closed by any player.=Une porte obstrue deux blocs d'espace vertical. Elle peut être ouverte et fermée par n'importe quel joueur.
+
+A fence gate made from precious goldwood. It blocks the path, but it can be opened and easily jumped over. Other fence posts will neatly connect to this fence gate.=Un portail de bois doré précieux. Il bloque le passage mais peut être ouvert et sauté par-dessus facilement. Les autres poteaux de clôture se joignent parfaitement à ce portail.
+
+An ice trapdoor covers the floor and can be opened and closed by anyone. Ice trapdoors are solid, but some light can pass through nonetheless.=Une trappe de glace bouche un trou de plancher et peut être ouverte ou fermé par n'importe qui. La trappe solide mais translucide.
+
+An icy steel trapdoor is a combination of an ice trapdoor and a steel trapdoor. It covers the floor and can only be opened and closed by its placer. Icy steel trapdoors are solid, but some light can pass through nonetheless.=Une trappe d'acier gelé est une combinaison d'une trappe de glace et d'une d'acier. Elle bouche un trou de plancher et ne peut être ouverte et fermée que par son propriétaire. La trappe solide mais translucide.
+
+Goldwood Fence Gate=Portail de bois doré
+Ice Door=Porte de glace
+Ice Trapdoor=Trappe de glace
+
+Ice doors can be opened and closed. They are solid, but some of the light hitting ice doors can still go through, making them an interesting decoration in icy areas.=Les portes de glaces peuvent être ouvertes et fermeés. Elles laissent passer la lumière, et donc forme un élément de décoration intéressant dans les endroits glacés.
+
+Icy Steel Door=Porte d'acier gelée
+Icy Steel Trapdoor=Trappe d'acier gelée
+
+Icy steel doors are a combination of ice doors and steel doors which can only be opened and closed by their owners. They are solid, but some of the light hitting icy steel doors can still go through.=Les portes d'acier gelée combinent une porte d'acier et une porte de glace, lesquelles ne peuvent être ouvertes ou fermeés par leur propriétaire. Elles sont solides mais translucides.
+
+Papyrus Door=Porte de papyrus
+
+Point the door to see who owns it. Use the use key on the door to open or close it (if you own it).=Pointez sur la porte pour en connaître le propriétaire. Utilisez la clef sur la porte pour l'ouvrir ou fermer (si vous l'avez).
+
+Point the icy steel trapdoor to see who owns it. Use the use key on it to open or close it (if you own it).=Pointez sur la trappe d'acier gelé pour en connaître le propriétaire. Utilisez la clef sur la porte pour l'ouvrir ou fermer (si vous l'avez).
+
+Right-click the gate to open or close it.=Clic droit sur le portillon pour l'ouvrir ou le fermer.
+Use the use key on it to open or close it.=Utilisez la clef dessus pour l'ouvrir ou la fermer.
+Wooden Bar Door=Porte de barreaux de bois
+
+### extras.lua ###
+
+Cobbled Desert Sandstone Stool=Tabouret en pavé de grès du désert
+Cobbled Desert Sandstone Table=Table en pavé de grès du désert
+Cobbled Gravel Stool=Tabouret en pavé de gravier
+Cobbled Gravel Table=Table en pavé de gravier
+Cobbled Sandstone Stool=Tabouret en pavé de grès
+Cobbled Sandstone Table=Table en pavé de grès
+Cobbled Silver Sandstone Stool=Tabouret en pavé de grès argenté
+Cobbled Silver Sandstone Table=Table en pavé de grès argenté
+Goldwood Chair=Chaise de bois doré
+Goldwood Stool=Tabouret de bois doré
+Goldwood Table=Table de bois doré
+Jungle Cobblestone Stool=Tabouret en pavé de la jungle
+Jungle Cobblestone Table=Table en pavé de la jungle
+
+### extras.lua ###
+### specials.lua ###
+
+Goldwood=Bois doré
+
+### ladders.lua ###
+
+A luxurious piece of ladder which allows you to move vertically.=
+
+A particulary strong piece of ladder which allows you to move vertically.=
+
+A piece of ladder which allows you to move vertically.=Un morceau d'échelle qui permet de grimper.
+Acacia Wood Ladder=Échelle d'acacia
+Apple Wood Ladder=Échelle de pommier
+Aspen Wood Ladder=Échelle de tremble
+Bronze Ladder=Échelle de bronze
+Copper Ladder=Échelle de cuivre
+Golden Ladder=Échelle d'or
+Goldwood Ladder=Échelle de bois doré
+Jungle Wood Ladder=Échelle de bois de la jungle
+Papyrus Ladder=Échelle de papyrus
+Pine Wood Ladder=Échelle de pin
+Tin Ladder=Échelle d'étain
+
+### seethrough.lua ###
+
+# textdomain:mtg_plus
+A decorative, semitransparent block. The dirt makes it hard for the sunlight to pass through.=
+
+A ornamental and mostly transparent block, made by combining glass with gold.=Un bloc ornemental transparent, assemblé de verre et d'or.
+
+Dirty Glass=Verre sale
+Goldglass=Verre doré
+Ice Window=Fenêtre de glace
+
+This decorational ice tile has been crafted in a way that it is partially transparent and looks like a real window.=Cette pièce de glace décorative a été confectionnée pour ressemblé à une vrai fenêtre.
+
+
+### specials.lua ###
+
+Aggregated Diamond Block=Agrégat de diamant
+
+Goldwood is a precious artificial kind of wood made by enriching wood with gold. Goldwood is fireproof and notable for its bright yellowy appearance.=Le bois doré est un bois artificel précieux créé en injectant de l'or. Le bois doré est ininflammable et remarquable de son apparence jaune brillant.
+
+Gravel Dirt=Gravier terreux
+
+Gravel dirt is a type of dirt consisting of equal parts of gravel and dirt. It combines some of the properties of gravel and dirt.=Le gravier terreux est un mélange à parts égales de gravier et de terre. Il combine certaines propriétés des deux.
+
+This block is even harder than diamond; diamond pickaxes can't break it. TNT is able to destroy this block.=Ce bloc est encore plus endurci que le diamant ; même les pioches de diamant ne peuvent le faire craquer. Seul le TNT peut le détruire.
+
+
+### stairslabs.lua ###
+
+Bronze Brick Slab=Dalle en brique de bronze
+Bronze Brick Stair=Marche en brique de bronze
+Cobbled Desert Sandstone Slab=Dalle en pavé de grès du désert
+Cobbled Desert Sandstone Stair=Marche en pavé de grès du désert
+Cobbled Gravel Slab=Dalle en pavé de gravier
+Cobbled Gravel Stair=Marche en pavé de gravier
+Cobbled Sandstone Slab=Dalle en pavé de grès
+Cobbled Sandstone Stair=Marche en pavé de grès
+Cobbled Silver Sandstone Slab=Dalle en pavé de grès argenté
+Cobbled Silver Sandstone Stair=Marche en pavé de grès argenté
+Copper Brick Slab=Dalle en brique de cuivre
+Copper Brick Stair=Marche en brique de cuivre
+Flint Block Slab=Dalle en silex
+Flint Block Stair=Marche en silex
+Gold Brick Slab=Dalle en brique d'or
+Gold Brick Stair=Marche en brique d'or
+Goldwood Slab=Dalle en bois doré
+Goldwood Stair=Marche en bois doré
+Hard Snow Brick Slab=Dalle en brique de neige compactée
+Hard Snow Brick Stair=Marche en brique de neige compactée
+Hardened Dirt Brick Slab=Dalle en terre durcie
+Hardened Dirt Brick Stair=Marche en terre durcie
+Ice Block Slab=Dalle de glace
+Ice Block Stair=Marche de glace
+Ice Brick Slab=Dalle en brique de glace
+Ice Brick Stair=Marche en brique de glace
+Ice Tile Slab=Dalle en tuile de glace
+Ice Tile Stair=Marche en tuile de glace
+Icy Snow Brick Slab=Dalle en brique de neige glacée
+Icy Snow Brick Stair=Marche en brique de neige glacée
+Jungle Cobblestone Slab=Dalle en pavé de la jungle
+Jungle Cobblestone Stair=Marche en pavé de la jungle
+Soft Snow Brick Slab=Dalle en brique de neige
+Soft Snow Brick Stair=Marche en brique de neige
+Steel Brick Slab=Dalle en brique d'acier
+Steel Brick Stair=Marche en brique d'acier
+Tin Brick Slab=Dalle en brique d'étain
+Tin Brick Stair=Marche en brique d'étain
+
+### wallfences.lua ###
+
+A piece of wall creates simple barriers that connect to neighbor blocks. Walls can be jumped over.=Un morceau de mur sert de simple barrière qui s'agence aux blocs voisins. Vous pouvez sauter par dessus les murs.
+
+Cobbled Desert Sandstone Wall=Mur en pavé de grès du désert
+Cobbled Gravel Wall=Mur en pavé de gravier
+Cobbled Sandstone Wall=Mur en pavé de grès
+Cobbled Silver Sandstone Wall=Mur en pavé de grès argenté
+Dense Ice Tile Wall=Mur en tuile de glace condensée
+Goldwood Fence=Barrière de bois doré
+Goldwood Fence Rail=Clôture de bois doré
+Jungle Cobblestone Wall=Mur en pavé de la jungle
+
+This is a fence made out of precious goldwood. The fence will neatly connect to its neighbors, making it easy to build nice-looking fence structures. The fence can be jumped over.=Cette barrière est faite de bois doré précieux. Elle s'agence proprement aux blocs voisins, ce qui rend la construction de belle clôture simple. Il est possible de sauter par dessus.
+
+This is a fence rail made out of precious goldwood. It will neatly connect to its neighbors, but without creating fence posts. It can be jumped over.=Cette clôture est faite de bois doré précieux. Elle s'agence proprement aux blocs voisins, ce qui rend la construction de belle clôture simple. Il est possible de sauter par dessus.
+
+### xpanes.lua ###
+
+Golden Window=Fenêtre dorée
+
+Golden windows are decorative blocks which can be placed into holes for nice-looking windows. Golden windows automatically connect to their neighbors as you build them.=Les fenêtres dorées sont des blocs décoratifs qui penvent être placé dans des trous pour obtenir de jolies fenêtres. Elles s'agencent automatiquement avec leurs nœuds avoisiants durant la construction.
+
+Goldglass Pane=Panneau de verre doré
+
+Goldglass panes are thin layers of goldglass which neatly connect to their neighbors as you build them.=Les panneaux de verre dorés sont de mince couche de verre doré qui s'agencent bien avec leurs nœuds avoisiants durant la construction.
+
+Ice Window Pane=Panneau en verre de glace
+
+Ice window panes are thinner than the full ice windows and neatly connect to each other as you build them=Les panneaux en verre de glace sont plus mince que les fenêtres complète et s'agencent bien avec leurs nœuds avoisiants durant la construction.
+
+Paper Barrier=Barrière de papier
+
+Papier barriers are thin solid layers of paper which neatly connect to their neighbors as you build them. They could be useful to separate rooms.=Les barrières de papier sont de minces couches solides qui s'agencent bien avec leurs nœuds avoisiants durant la construction. Elles penvent être utiles pour séparer des pièces dans une bâtisse.
+
+Papyrus Lattice=Trellis de papyrus
+
+Papyrus lattices are strong barriers which neatly connect to their neighbors as you build them.=Les trellis de papyrus sont forment des barrières solides et s'agencent bien avec leur nœuds avoisiants durant la construction.
+
+Wooden Bars=Barreaux de bois.
+
+Wooden bars are barriers which neatly connect to their neighbors as you build them.=Les barreaux de bois forment une cloison qui s'agencent bien avec leurs nœuds avoisiants durant la construction.

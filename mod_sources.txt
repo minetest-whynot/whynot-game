@@ -55,7 +55,7 @@ origin https://github.com/MoNTE48/laptop (fetch)
 * ddf9c547afedbd19fbb46e9ff949b56f9d6c63ec More minor fixes
 Mod: decor/laptop
 
-origin https://repo.or.cz/minetest_mtg_plus.git (fetch)
+origin https://codeberg.org/Wuzzy/minetest_mtg_plus.git (fetch)
 * 55424498f11eba9e1b6bb966a4e3ba7a7434d914 Add translator credits
 Mod: decor/mtg_plus
 
