@@ -74,15 +74,6 @@
 [submodule "builder/mods_src/food/waffles"]
 	path = builder/mods_src/food/waffles
 	url = https://codeberg.org/Dacmot/waffles.git
-[submodule "builder/mods_src/libs/doc"]
-	path = builder/mods_src/libs/doc
-	url = https://repo.or.cz/minetest_doc.git
-[submodule "builder/mods_src/libs/doc_basics"]
-	path = builder/mods_src/libs/doc_basics
-	url = https://repo.or.cz/minetest_doc_basics.git
-[submodule "builder/mods_src/libs/doc_items"]
-	path = builder/mods_src/libs/doc_items
-	url = https://repo.or.cz/minetest_doc_items.git
 [submodule "builder/mods_src/libs/doc_reveal_chest"]
 	path = builder/mods_src/libs/doc_reveal_chest
 	url = https://github.com/minetest-mods/doc_reveal_chest
