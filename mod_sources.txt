@@ -1,6 +1,6 @@
 
 origin https://github.com/minetest-mirrors/ambience.git (fetch)
-* 36794fe2c88646f0e7ee1a404a3276aa90b625bd tweak code, separate into functions
+* 4587abc9c2f611b71bb4d6313ca5f16a0292032f lower volume of beach waves at night
 Mod: ambience/ambience
 
 origin https://github.com/minetest-mods/lightning (fetch)
@@ -20,7 +20,7 @@ origin https://github.com/Ezhh/abriglass/ (fetch)
 Mod: decor/abriglass
 
 origin https://github.com/mt-mods/basic_materials (fetch)
-* fbb83f312999b9ccef39eeec682892825134bd29 weblate: update French translation (#35)
+* f626da067a39206b7d60c1122843cd951ffb7081 weblate: update Ukrainian translation
 Mod: decor/basic_materials
 
 origin https://github.com/Napiophelios/campfire (fetch)
@@ -56,7 +56,7 @@ origin https://github.com/MoNTE48/laptop (fetch)
 Mod: decor/laptop
 
 origin https://codeberg.org/Wuzzy/minetest_mtg_plus.git (fetch)
-* 55424498f11eba9e1b6bb966a4e3ba7a7434d914 Add translator credits
+* b99454154e0b1b971a5a85ddb0616ec5c9b5e07c Update locale files + German translation
 Mod: decor/mtg_plus
 
 origin https://github.com/minetest-mods/mydoors (fetch)
@@ -92,7 +92,7 @@ origin https://github.com/mt-mods/unifieddyes (fetch)
 Mod: decor/unifieddyes
 
 origin https://github.com/minetest-mirrors/farming.git (fetch)
-* 3ed745d43bde9e1e7b8e1f9a7bc31192729234dd add 'farming_weeds_chance'
+* fbe17a9fbe2a95003b8b71b98d6bb49d5079dd37 remove shapeless recipes
 Mod: flora_ores/farming
 
 origin https://codeberg.org/Dacmot/YellowCrystals.git (fetch)
@@ -144,7 +144,7 @@ origin https://codeberg.org/Dacmot/sfcraftguide.git (fetch)
 Mod: libs/sfcraftguide
 
 origin https://github.com/mt-mods/xcompat.git (fetch)
-* ddc57ae60df0dedcba8e8a3ec0139a7d19fba530 documentation cleanup (#74)
+* 758684dac8875d06d8c1565e323ee52c9d4daf7f Add support for stack_max (#76)
 Mod: libs/xcompat
 
 origin https://github.com/Treer/cloudlands/ (fetch)
@@ -164,7 +164,7 @@ origin https://codeberg.org/Dacmot/minetest_mapgen_config.git (fetch)
 Mod: mapgen/minetest_mapgen_config
 
 origin https://github.com/minetest-mirrors/pbj_pup.git (fetch)
-* b018ae16fa75985e773b86ee242f4401c99c0cf1 improve moognu textures (thx philipmi)
+* e9142248ffc8718555d98f8bc2aeb740bae5dbcb add y limit setting and clamping
 Mod: mapgen/pbj_pup
 
 origin https://github.com/GreenXenith/tac_nayn (fetch)
@@ -172,7 +172,7 @@ origin https://github.com/GreenXenith/tac_nayn (fetch)
 Mod: mapgen/tac_nayn
 
 origin https://github.com/minetest-mods/mesecons (fetch)
-* 3a2d6916ee090353b69bd019f9954971ddc8f4a9 Futureproof luacontrollers against additional arguments in on_construct (#725)
+* aca87dbd448637d2dc80e59e909425932acd6c84 prevent extended pistons from getting only partially removed by explosions
 Mod: mesecons/mesecons
 
 origin https://github.com/minetest/minetest_game (fetch)
@@ -184,11 +184,11 @@ origin https://codeberg.org/tenplus1/mobs_ghost_redo (fetch)
 Mod: mobs_redo/mobs_ghost_redo
 
 origin https://github.com/minetest-mirrors/mobs_monster.git (fetch)
-* 09b6231b24d55f31f6d79287e8890e3889081e0e replace stone monsters pathfinding with increased fear height
+* 9f995382eea7abd49d6396850a5fe658dbee6e8d increase mese monster fear height
 Mod: mobs_redo/mobs_monster
 
 origin https://github.com/minetest-mirrors/mobs_redo.git (fetch)
-* 9b6902d819baa1d32b442122be016964d651a676 fix dupe glitch for nametag (thx monk-afk)
+* 11df844b014237c555fe30bd2d958fb75411cdb8 add child_mesh option to mob definition
 Mod: mobs_redo/mobs_redo
 
 origin https://github.com/minetest-mods/3d_armor (fetch)
@@ -256,11 +256,11 @@ origin https://codeberg.org/minenux/minetest-mod-backpacks.git (fetch)
 Mod: tools/backpacks
 
 origin https://github.com/Lokrates/Biofuel.git (fetch)
-* e32a611ed23bf53e1ea2363a37e6bd63cd9cf5e2 add some compostable items
+* 959aa0da7e077bcfe643bf4a33fecd521de652ef Update biofuel.zh_TW.tr
 Mod: tools/biofuel
 
 origin https://github.com/minetest-mirrors/bonemeal.git (fetch)
-* 3873cd73ca2c5ec312defcacce37852d6a81406a added technic as optional_dependency to fix technic_worldgen issue.
+* 5b411548d0d33e83a4c931381309a6814041f258 tweak ethereal dirt deco, add node check
 Mod: tools/bonemeal
 
 origin https://github.com/SmallJoker/boost_cart (fetch)
@@ -316,7 +316,7 @@ origin https://github.com/dkartaschew/minetest-rainbowswords (fetch)
 Mod: tools/rainbowswords
 
 origin https://github.com/minetest-mods/subspacewalker (fetch)
-* 245cca91d172f3ab00ad7f056bea9462fd938620 Update README.md
+* b43792cb4792c0c4dc4a7763d3c5e69b31f080b4 Update mod.conf
 Mod: tools/subspacewalker
 
 origin https://github.com/APercy/supercub.git (fetch)
