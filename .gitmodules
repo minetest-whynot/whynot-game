@@ -248,3 +248,6 @@
 [submodule "builder/mods_src/libs/doc_modpack"]
 	path = builder/mods_src/libs/doc_modpack
 	url = https://codeberg.org/Wuzzy/minetest_doc_modpack.git
+[submodule "builder/mods_src/player/show_wielded_item"]
+	path = builder/mods_src/player/show_wielded_item
+	url = https://codeberg.org/Wuzzy/minetest_show_wielded_item.git
