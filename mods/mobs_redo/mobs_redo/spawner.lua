@@ -40,7 +40,7 @@ local function check_string(txt)
 
 	if mob == "" or not mobs.spawning_mobs[mob] or num < 0 or num > 10
 	or mlig < 0 or mlig > 15 or xlig < 0 or xlig > 15 or pla < 0 or pla > 20
-	or yof < -10 or yof > 10 then return end
+	or yof < -10 or yof > 10 or mlig > xlig then return end
 
 	return {mob = mob, mlig = mlig, xlig = xlig, num = num, pla = pla, yof = yof}
 end
@@ -175,7 +175,8 @@ core.register_abm({
 		end
 
 		-- set medium mob usually spawns in (defaults to air)
-		local reg = core.registered_entities[mob].fly_in
+		local ent = core.registered_entities[mob]
+		local reg = ent and ent.fly_in
 
 		if type(reg) ~= "table" then reg = {reg or "air"} end
 

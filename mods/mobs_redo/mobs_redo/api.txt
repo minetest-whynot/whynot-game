@@ -232,6 +232,7 @@ functions needed for the mob to work properly which contains the following:
                        could use multiple lists inside another table for random
                        selection e.g. { {"texture1.png"}, {"texture2.png"} }
    'child_texture'     holds the texture table for when baby mobs are used.
+   'child_mesh'        the object used for child mobs.
    'gotten_texture'    holds the texture table for when self.gotten value is
                        true, used for milking cows or shearing sheep.
    'texture_mods'      holds a string which overlays a texture on top of the
@@ -258,6 +259,9 @@ functions needed for the mob to work properly which contains the following:
       'fly_start'    when a mob is flying.
       'fly_end'
       'fly_speed'
+      'glide_start'  Used for flying mobs not touching the ground instead of walk/stand
+      'glide_end'
+      'glide_speed'
       'jump_start'   when a mob is jumping
       'jump_end'
       'jump_speed'
@@ -273,6 +277,12 @@ functions needed for the mob to work properly which contains the following:
       'injured_start' when hit or damaged > 1 hp (if not set then 'walk' is used)
       'injured_end'
       'injured_speed'
+      'falling_start' falling animation when mob is plummeting
+      'falling_end'
+      'falling_speed'
+      'flop_start'    when flying/swimming mob out of their respective nodess.
+      'flop_end'
+      'flop_speed'
       'die_start'    death animation
       'die_end'
       'die_speed'
@@ -468,6 +478,7 @@ mob:class_set_pitch(pitch) -- change mob pitch in radians
 mob:class_set_roll(roll) -- change mob roll in radians
 mob_class:yaw_to_pos(pos, delay) -- rotates mod to look at position and returns new yaw
 mob_class:set_animation(animation, force) -- set mob animation
+mob_class:ground_animation(anim1, anim2) -- uses anim1 when touching ground or anim2
 mob_class:line_of_sight(pos1, pos2) -- internal line of sight function
 mob_class:attempt_flight_correction(override) -- check for stuck flying mobs and fix
 mob_class:update_tag(newname) -- update nametag or give new name
@@ -538,6 +549,8 @@ default setting and can be omitted:
     'on_map_load'         when true mobs will have a chance of spawning only
                           when new areas of map are loaded, interval will not be
                           used.
+    'biomes'              a table containing a list of biomes the mob can spawn
+                          in, leave as nil to disable check.
 
 The older spawn functions are still active and working but have no defaults like
 the mobs:spawn, so it is recommended to use the above instead.
@@ -623,8 +636,8 @@ This function registers a arrow for mobs with the attack type shoot.
        'hit_node'     a function that is called when the arrow hits a node, the
                       parameters are (self, pos, node), pos is the arrow position
                       and self.node_pos is the node position it hit.
-       'tail'         when set to 1 adds a trail or tail to mob arrows
-       'tail_texture' texture string used for above effect
+       'tail'         when set to 1 adds a trail or tail to mob arrows [DEPRECATED]
+       'tail_texture' If texture string given, a tail is added to arrows
        'tail_size'    has size for above texture (defaults to between 5 and 10)
        'expire'       contains float value for how long tail appears for
                       (defaults to 0.25)

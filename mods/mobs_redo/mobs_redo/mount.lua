@@ -103,9 +103,10 @@ local function find_free_pos(pos)
 	for _, c in pairs(check) do
 
 		local npos = {x = pos.x + c.x, y = pos.y + c.y, z = pos.z + c.z}
-		local def = core.registered_nodes[core.get_node(npos).name] or {}
+		local nod = core.get_node(npos)
+		local def = core.registered_nodes[nod.name] or {}
 
-		if def.liquidtype == "none" and not def.walkable and def.name ~= "ignore" then
+		if def.liquidtype == "none" and not def.walkable and nod.name ~= "ignore" then
 			return npos
 		end
 	end
@@ -256,7 +257,6 @@ function mobs.drive(entity, moving_anim, stand_anim, can_fly, dtime)
 			and entity.standing_on ~= "ignore"
 			and core.get_item_group(entity.standing_on, "liquid") == 0 then
 				velo.y = velo.y + entity.jump_height
-				acce_y = acce_y + (acce_y * 3) + 1
 			end
 		end
 	end
@@ -273,7 +273,7 @@ function mobs.drive(entity, moving_anim, stand_anim, can_fly, dtime)
 	-- Stop!
 	local s = get_sign(entity.v)
 
-	entity.v = entity.v - (0.02 * s)
+	entity.v = entity.v - (s * dtime)
 
 	if s ~= get_sign(entity.v) then
 
@@ -318,15 +318,14 @@ function mobs.fly(entity, dtime, speed, shoots, arrow, moving_anim, stand_anim)
 	if ctrl.up then
 
 		entity.object:set_velocity(
-				{x = dir.x * speed, y = dir.y * speed + 2, z = dir.z * speed})
+				{x = dir.x * speed, y = dir.y * speed, z = dir.z * speed})
 
 	elseif ctrl.down then
 
 		entity.object:set_velocity(
-				{x = -dir.x * speed, y =  dir.y * speed + 2, z = -dir.z * speed})
-
-	elseif not ctrl.down or ctrl.up or ctrl.jump then
-		entity.object:set_velocity({x = 0, y = -2, z = 0})
+				{x = -dir.x * speed, y =  dir.y * speed, z = -dir.z * speed})
+	else
+		entity.object:set_velocity({x = 0, y = -1, z = 0}) -- decend when stationary
 	end
 
 	entity.object:set_yaw(yaw + pi + (pi / 2) - entity.rotate)

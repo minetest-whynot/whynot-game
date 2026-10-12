@@ -25,6 +25,13 @@ https://forum.minetest.net/viewtopic.php?f=11&t=9917
 
 ## Changelog
 
+### Version 1.64
+
+* Refactor mob functions.
+* Optimize mob functions.
+* Deprecate register_arrow's tail=1 setting, use tail_texture to enable.
+* Deprecate mob jump setting, use jump_height=0 to disable.
+
 ### Version 1.63
 
 * Optimized get_nodes
