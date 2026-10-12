@@ -105,21 +105,28 @@ local function place(pos, facedir, length)
 	end
 end
 
+-- locals
+
+local math_min, math_max = math.min, math.max
+
 -- Do we generate PB&J Pup and Nyan Cat's in world?
 
 if core.settings:get_bool("pbj_pup_generate") ~= false then
 
 	local chance = tonumber(core.settings:get("pbj_pup_chance") or 1000)
+	local height_min = tonumber(core.settings:get("pbj_pup_ymin") or -31000)
+	local height_max = tonumber(core.settings:get("pbj_pup_ymax") or -32)
+
+	if height_max < height_min then
+		height_min, height_max = height_max, height_min
+	end
 
 	local function generate(minp, maxp, seed)
 
-		local height_min = -31000
-		local height_max = -32
-
 		if maxp.y < height_min or minp.y > height_max then return end
 
-		local y_min = math.max(minp.y, height_min)
-		local y_max = math.min(maxp.y, height_max)
+		local y_min = math_max(minp.y, height_min)
+		local y_max = math_min(maxp.y, height_max)
 		local pr = PseudoRandom(seed + 9324342)
 
 		if pr:next(0, chance) == 0 then

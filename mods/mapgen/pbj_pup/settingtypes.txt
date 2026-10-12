@@ -1,5 +1,9 @@
 # If enabled generates PB&J Pup and Nyan Cats in world
-pbj_pup_generate (Enable PBJ Pup and Nyan) bool true
+pbj_pup_generate (Enable PBJ Pup and Friends) bool true
 
 # Chance of spawning one in your world (Default is 1000)
-pbj_pup_chance (Chance of spawning PBJ Pup or Nyan) int 1000
+pbj_pup_chance (Chance of spawning PBJ Pup or Friend) int 1000 0 5000
+
+# Y level to spawn your new friends
+pbj_pup_ymin (Lowest Y level to spawn PBJ Pub) int -31000 -31000 31000
+pbj_pup_ymax (Highest Y level to spawn PBJ Pub) int -32 -31000 31000
