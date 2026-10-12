@@ -8,13 +8,17 @@ msgstr ""
 "Project-Id-Version: basic_materials\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-07-31 10:11-0500\n"
-"PO-Revision-Date: 2026-07-31 10:11-0500\n"
-"Last-Translator: \n"
-"Language-Team: Ukrainian\n"
+"PO-Revision-Date: 2026-09-14 11:43+0000\n"
+"Last-Translator: Andrii Nemchenko <andriyndev@gmail.com>\n"
+"Language-Team: Ukrainian <https://translate.luanti.ch/projects/mt-mods/"
+"basic_materials/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 2026.8.1\n"
 
 #: craftitems.lua:20
 msgid "Oil extract"
@@ -50,23 +54,23 @@ msgstr "Нагрівательний елемент"
 
 #: craftitems.lua:60
 msgid "Simple energy crystal"
-msgstr "Енергетичний кристал"
+msgstr "Простий енергетичний кристал"
 
 #: craftitems.lua:65
 msgid "Spool of steel wire"
-msgstr "Катушка сталевої проволки"
+msgstr "Котушка сталевого дроту"
 
 #: craftitems.lua:71
 msgid "Spool of copper wire"
-msgstr "Катушка мідної проволки"
+msgstr "Котушка мідного дроту"
 
 #: craftitems.lua:77
 msgid "Spool of silver wire"
-msgstr "Катушка срібної проволки"
+msgstr "Котушка срібного дроту"
 
 #: craftitems.lua:83
 msgid "Spool of gold wire"
-msgstr "Катушка золотої проволки"
+msgstr "Котушка золотого дроту"
 
 #: craftitems.lua:89
 msgid "Spool of stainless steel wire"
@@ -78,11 +82,11 @@ msgstr "Котушка алюмінієвого дроту"
 
 #: craftitems.lua:101
 msgid "Steel Strip"
-msgstr "Сталева стрічка"
+msgstr "Сталева смужка"
 
 #: craftitems.lua:107
 msgid "Copper Strip"
-msgstr "Мідна стрічка"
+msgstr "Мідна смужка"
 
 #: craftitems.lua:113
 msgid "Lead Strip"
@@ -102,7 +106,7 @@ msgstr "Алюмінієва смужка"
 
 #: craftitems.lua:137
 msgid "Steel Bar"
-msgstr "Сталевий Прут"
+msgstr "Сталевий брусок"
 
 #: craftitems.lua:142
 msgid "Carbon Steel Bar"
@@ -142,7 +146,7 @@ msgstr "Лист пластику"
 
 #: craftitems.lua:9
 msgid "Plastic strips"
-msgstr "Стрічка пластику"
+msgstr "Смужки пластику"
 
 #: craftitems.lua:15
 msgid "Empty wire spool"
