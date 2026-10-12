@@ -14,3 +14,18 @@ supports
 
 * minetest game default if present
 * else polyfill
+
+## `get_default_stack_max()`
+
+returns `number`
+
+checks the current game against a table of games with their default stack_max
+
+supports
+
+* minetest game
+* mineclonia
+* farlands reloaded
+* hades revisited
+* exile
+* devtest

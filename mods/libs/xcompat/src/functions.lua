@@ -52,4 +52,18 @@ function functions.sapling_on_place(
 	return itemstack
 end
 
+function functions.get_default_stack_max()
+    local game_stack_table = {
+        -- Only include games that use a different default stack_max
+        mineclonia = 64,
+        exile = 288,
+    }
+    for game, stack in pairs(game_stack_table) do
+        if game == xcompat.gameid then
+            return stack
+        end
+    end
+    return tonumber(core.settings:get("default_stack_max")) or 99
+end
+
 return functions
