@@ -170,6 +170,7 @@ mobs:register_mob("mobs_monster:mese_monster", {
 	run_velocity = 3,
 	jump_height = 8,
 	can_leap = true,
+	fear_height = 5,
 	fall_damage = 0,
 	fall_speed = -6,
 	stepheight = 2.1,

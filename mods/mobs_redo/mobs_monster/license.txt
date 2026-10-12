@@ -94,3 +94,6 @@ Sounds by Cyberpangolin (WTFPL) https://forum.minetest.net/viewtopic.php?t=10798
   mobs_sandmonster.ogg
   mobs_stonemonster.ogg
   mobs_treemonster.ogg
+
+
+screenshot.jpg created using https://www.textstudio.com/
