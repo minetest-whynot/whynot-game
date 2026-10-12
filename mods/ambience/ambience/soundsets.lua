@@ -11,6 +11,12 @@
 local mod_def = core.get_modpath("default")
 local mod_mcl = core.get_modpath("mcl_core")
 
+-- check for daytime helper
+
+local function is_day(tod)
+	if tod > 0.2 and tod < 0.8 then return true end
+end
+
 -- Big Splash jumping in water
 
 if core.settings:get_bool("ambience_water_splash") == true then
@@ -237,11 +243,42 @@ ambience.add_set("beach", {
 
 	sound_check = function(def)
 
+		if not is_day(def.tod) then return end
+
 		local c = (def.totals["default:water_source"] or 0)
 			+ (def.totals["mcl_core:water_source"] or 0)
 
 		if def.pos.y > water_level - 1 and def.pos.y < water_level + 4 and c > 100 then
 			return "beach"
+		end
+	end
+})
+
+-- Beach night
+
+ambience.add_set("beach_night", {
+
+	background = {
+		{name = "beach", length = 13, gain = 0.2, fade = 0.2},
+	},
+
+	frequency = 40,
+
+	sounds = {
+		{name = "wind", length = 9},
+	},
+
+	nodes = {"group:water"},
+
+	sound_check = function(def)
+
+		if is_day(def.tod) then return end
+
+		local c = (def.totals["default:water_source"] or 0)
+			+ (def.totals["mcl_core:water_source"] or 0)
+
+		if def.pos.y > water_level - 1 and def.pos.y < water_level + 4 and c > 100 then
+			return "beach_night"
 		end
 	end
 })
@@ -341,10 +378,12 @@ ambience.add_set("jungle", {
 
 	sound_check = function(def)
 
+		if not is_day(def.tod) then return end
+
 		local c = (def.totals["default:jungletree"] or 0)
 			+ (def.totals["mcl_trees:tree_jungle"] or 0)
 
-		if def.pos.y > 0 and def.tod > 0.2 and def.tod < 0.8 and c > 79 then
+		if def.pos.y > 0 and c > 79 then
 			return "jungle"
 		end
 	end
@@ -367,11 +406,13 @@ ambience.add_set("jungle_night", {
 
 	sound_check = function(def)
 
+		if is_day(def.tod) then return end
+
 		-- jungle tree was added in last set, so doesnt need to be added in this one
 		local c = (def.totals["default:jungletree"] or 0)
 			+ (def.totals["mcl_trees:tree_jungle"] or 0)
 
-		if def.pos.y > 0 and (def.tod < 0.2 or def.tod > 0.8) and c > 79 then
+		if def.pos.y > 0 and c > 79 then
 			return "jungle_night"
 		end
 	end
@@ -402,10 +443,12 @@ ambience.add_set("day", {
 
 	sound_check = function(def)
 
+		if not is_day(def.tod) then return end
+
 		-- use handy function to count all nodes in group:leaves
 		local c = ambience.group_total(def.totals, "leaves")
 
-		if (def.tod > 0.2 and def.tod < 0.8) and def.pos.y > 0 and c > 50 then
+		if def.pos.y > 0 and c > 50 then
 			return "day"
 		end
 	end
@@ -430,10 +473,12 @@ ambience.add_set("night", {
 
 	sound_check = function(def)
 
+		if is_day(def.tod) then return end
+
 		-- use handy function to count all nodes in group:leaves
 		local c = ambience.group_total(def.totals, "leaves")
 
-		if (def.tod < 0.2 or def.tod > 0.8) and def.pos.y > 0 and c > 50 then
+		if def.pos.y > 0 and c > 50 then
 			return "night"
 		end
 	end

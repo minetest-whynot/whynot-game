@@ -7,6 +7,9 @@ local SOUNDVOLUME = 1.0
 local MUSICVOLUME = 0.6
 local MUSICINTERVAL = tonumber(core.settings:get("ambience_music_interval")) or (60 * 20)
 local radius = 6
+
+-- tables
+
 local playing = {} -- user settings, timers and current set playing
 local sound_sets = {} -- all the sounds and their settings
 local sound_set_order = {} -- needed because pairs loops randomly through tables
@@ -143,7 +146,7 @@ end)
 local function background_music(p, pname)
 
 	-- if enabled, play local/server music on interval check
-	if MUSICINTERVAL <= 0 and p.mvol <= 0 then return end
+	if MUSICINTERVAL <= 0 or p.mvol <= 0 then return end
 
 	-- increase music time interval
 	p.music = p.music + 1
@@ -336,7 +339,7 @@ core.register_globalstep(function(dtime)
 						p.handler = core.sound_play(amb.name, {
 							to_player = pname,
 							gain = ((amb.gain or 0.3) + (MORE_GAIN or 0)) * p.svol,
-							pitch = amb.pitch or 1.0, fade = amb.fade
+							pitch = amb.pitch, fade = amb.fade
 						}, amb.ephemeral)
 
 						-- save what player is currently listening to if handler found
