@@ -1,0 +1,5 @@
+# textdomain:doc_encyclopedia
+Adds an encyclopedia item which allows you to access the help.=
+Encyclopedia=
+Allows you to access the help.=
+Use the punch key to access the help.=

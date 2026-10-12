@@ -1,0 +1,157 @@
+# textdomain:doc_items
+# Autor: ksandr from minetestserver.ru
+Item Help=
+Adds automatically generated help texts for items.=
+This is a decorative block.=Это декоративный блок.
+This block is a building block for creating various buildings.=Этот блок является строительным блоком для создания различных зданий.
+This item is primarily used for crafting other items.=Этот предмет в основном используется для создания других предметов.
+Hold it in your hand, then leftclick to eat it.=Подержите его в руке, затем щелкните левой кнопкой мыши, чтобы съесть.
+Hold it in your hand, then leftclick to eat it. But why would you want to do this?=Подержите его в руке, затем щелкните левой кнопкой мыши, чтобы съесть. Но зачем вам это нужно?
+This block's rotation is affected by the way you place it: Place it on the floor or ceiling for a vertical orientation; place it at the side for a horizontal orientation. Sneaking while placing it leads to a perpendicular orientation instead.=На вращение этого блока влияет способ его размещения: расположите его на полу или потолке для вертикальной ориентации; расположите сбоку для горизонтальной ориентации. Перемещение при размещении приводит к перпендикулярной ориентации.
+Hand=Рукой
+Yes=Да
+No=Нет
+# List separator (e.g. “one, two, three”)
+, =, 
+Unknown item (@1)=Неизвестный предмет (@1)
+unknown=неизвестный
+1 second=1 секунду
+@1 seconds=@1 секунд
+• @1: @2=• @1: @2
+• @1, rating @2: @3 s - @4 s=• @1, шанс @2: @3 с - @4 с
+• @1, rating @2: @3 s=• @1, шанс @2: @3 с
+• @1, level @2: @3 uses=• @1, уровень @2: @3 использований
+• @1, level @2: Unlimited=• @1, уровень @2: Неограниченно
+This tool is capable of mining.=Этот инструмент предназначен для выкапывания/добычи других блоков.
+Maximum toughness levels:=Максимальный уровни прочности:
+Mining times:=Время добычи полезных ископаемых:
+Mining durability:=Долговечность при добычи полезных ископаемых:
+This is a melee weapon which deals damage by punching.=Это оружие ближнего боя, которое наносит урон при ударе.
+Maximum damage per hit:=Максимальный урон за попадание:
+• @1: @2 HP=• @1: @2 ОЗ
+Full punch interval: @1 s=Полный интервал пробивки: @1 с
+This block can be mined by any mining tool in half a second.=Этот блок может быть выкопан любым инструментом для добычи полезных ископаемых за полсекунды.
+This block can be mined by any mining tool immediately.=Этот блок может быть немедленно выкопан любым инструментом для добычи полезных ископаемых.
+This block can not be mined by ordinary mining tools.=Этот блок не может быть выкопан обычными инструментами для добычи полезных ископаемых.
+This block can be destroyed by any mining tool in half a second.=Этот блок может быть уничтожен любым инструментом для добычи полезных ископаемых за полсекунды.
+This block can be destroyed by any mining tool immediately.=Этот блок может быть немедленно уничтожен любым инструментом для добычи полезных ископаемых.
+This block can not be destroyed by ordinary mining tools.=Этот блок не может быть уничтожен обычными инструментами для добычи полезных ископаемых.
+This block can be mined by mining tools which match any of the following mining ratings and its toughness level.=Этот блок может быть добыт с помощью инструментов для добычи полезных ископаемых, которые соответствуют любому из следующих рейтингов добычи полезных ископаемых и уровню его твёрдости.
+Mining ratings:=Рейтинги добычи полезных ископаемых:
+Toughness level: @1=Уровень прочности: @1
+Range: @1=Можно дотянуться: @1
+Range: 4=Можно дотянуться: 4
+# Range: <Hand> (<Range>)
+Range: @1 (@2)=Можно дотянуться: @1 за (@2) блоков
+This tool can serve as a smelting fuel with a burning time of @1.=Этот инструмент может служить топливом для плавки со временем горения @1.
+This block can serve as a smelting fuel with a burning time of @1.=Этот блок может служить топливом для плавки со временем горения @1.
+This item can serve as a smelting fuel with a burning time of @1.=Этот элемент может служить топливом для плавки со временем горения @1.
+ Using it as fuel turns it into: @1.=
+Itemstring: "@1"=Название предмета: "@1"
+Description: @1=Описание: @1
+Usage help: @1=Справка по использованию: @1
+Maximum stack size: @1=Максимальный размер стака: @1
+This block points to liquids.=Этот блок является жидкостью.
+This tool points to liquids.=Это инструмент для хранения жидкости.
+This item points to liquids.=Этот предмет является жидкостью.
+Punches with this block don't work as usual; melee combat and mining are either not possible or work differently.=Удары этим блоком работают не так, как обычно; атака и добыча полезных ископаемых либо невозможны, либо работают по-другому.
+Punches with this tool don't work as usual; melee combat and mining are either not possible or work differently.=Удары этим инструментом работают не так, как обычно; атака и добыча полезных ископаемых либо невозможны, либо работают по-другому.
+Punches with this item don't work as usual; melee combat and mining are either not possible or work differently.=Удары этим предметом работают не так, как обычно; атака и добыча полезных ископаемых либо невозможны, либо работают по-другому.
+This block belongs to the @1 group.=Этот блок принадлежит к группе @1.
+This tool belongs to the @1 group.=Этот инструмент относится к группе @1.
+This item belongs to the @1 group.=Этот элемент принадлежит к группе @1.
+This block belongs to these groups: @1.=Этот блок принадлежит к следующим группам: @1.
+This tool belongs to these groups: @1.=Этот инструмент относится к следующим группам: @1.
+This item belongs to these groups: @1.=Этот элемент принадлежит к следующим группам: @1.
+Blocks=Блоки
+Item reference of blocks and other things which are capable of occupying space=Предметная ссылка на блоки и другие предметы, способные занимать пространство
+Collidable: @1=Возможность столкновения: @1
+Pointable: Yes=Поддающийся покраске: Да
+Pointable: Only by special items=Поддающийся покраске: Только специальным предметом
+Pointable: No=Поддающийся покраске: Нет
+This block is a liquid with these properties:=Этот блок представляет собой жидкость со следующими свойствами:
+• Renewable=• Можно поставить
+• Not renewable=• Обратно не поставить
+• No flowing=• Не текучий
+• Flowing range: @1=• Уровень текучести: @1
+• Viscosity: @1=• Вязкость: @1
+This block causes a damage of @1 hit points per second.=Этот блок наносит урон в размере @1 очков здоровья в секунду.
+This block causes a damage of @1 hit point per second.=Этот блок наносит урон в размере @1 очка здоровья в секунду.
+This block heals @1 hit point per second.=
+This block heals @1 hit points per second.=
+This block decreases your breath and causes a drowning damage of @1 hit points every 2 seconds.=Этот блок понижает ваш уровень кислорода и наносит урон в размере @1 очков здоровья каждые 2 секунды, когда кислород закончится.
+This block decreases your breath and causes a drowning damage of @1 hit point every 2 seconds.=Этот блок понижает ваш уровень кислорода и наносит урон в размере @1 очка здоровья каждые 2 секунды, когда кислород закончится.
+The fall damage on this block is increased by @1%.=Урон от падения на этот блок увеличивается на @1%.
+This block negates all fall damage.=Этот блок сводит на нет все повреждения при падении.
+The fall damage on this block is reduced by @1%.=Урон от падения на этот блок уменьшен на @1%.
+You can not jump while standing on this block.=Стоя на этом блоке, вы не можете прыгать.
+You can not jump while inside this block.=
+This block slows down your movement.=
+This block can be climbed, but only horizontally.=
+This block can be climbed, but only downwards.=
+This block can be climbed, but only upwards.=
+This block can be climbed.=На этот блок можно взобраться.
+This block will make you bounce off with an elasticity of @1%.=Этот блок заставит вас отскакивать с эластичностью в @1%.
+This block is slippery.=Этот блок скользкий.
+This block is completely silent when walked on, mined or built.=Этот блок абсолютно бесшумен, когда по нему ходят, добывают или строят.
+This block is completely silent when mined or built.=Этот блок абсолютно бесшумный при добыче или строительстве.
+Walking on this block is completely silent.=Движение по этому блоку бесшумно.
+Mining this block is completely silent.=Выкапывание этого блока происходит абсолютно бесшумно.
+Building this block is completely silent.=Строительство этого блока присходит совершенно бесшумно.
+This block is affected by gravity and can fall.=Этот блок подвержен воздействию силы тяжести и может упасть.
+Building another block at this block will place it inside and replace it.=Построение другого блока на месте этого блока поместит его внутрь и заменит его.
+Falling blocks can go through this block; they destroy it when doing so.=Падающие блоки могут проходить сквозь этот блок; при этом они разрушают его.
+This block will drop as an item when a falling block ends up inside it.=Этот блок выпадет как элемент, когда падающий блок окажется внутри него.
+This block is destroyed when a falling block ends up inside it.=Этот блок разрушается, когда падающий блок оказывается внутри него.
+This block will drop as an item when it is not attached to a surrounding block.=Этот блок упадёт как элемент, если он не прикреплен к соседним блокам.
+This block will drop as an item when no collidable block is below it.=Этот блок упадёт как элемент, если под ним не будет твёрдого блока.
+Liquids can flow into this block and destroy it.=Жидкости могут попасть в этот блок и разрушить его.
+This block is a light source with a light level of @1.=Этот блок представляет собой источник света с уровнем освещенности @1.
+This block glows faintly with a light level of @1.=Этот блок слабо светится с уровнем освещенности @1.
+This block allows light to propagate with a small loss of brightness, and sunlight can even go through losslessly.=Этот блок позволяет свету распространяться с небольшой потерей яркости, и солнечный свет может даже проходить без потерь.
+This block allows light to propagate with a small loss of brightness.=Этот блок позволяет свету распространяться с небольшой потерей яркости.
+This block allows sunlight to propagate without loss in brightness.=Этот блок позволяет солнечному свету распространяться без потери яркости.
+Unknown Node=Неизвестный узел
+This block connects to this block: @1.=Этот блок соединяется с этим блоком: @1.
+This block connects to these blocks: @1.=Этот блок соединяется с этими блоками: @1.
+This block connects to blocks of the @1 group.=Этот блок соединяется с блоками группы @1.
+This block connects to blocks of the following groups: @1.=Этот блок соединяется с блоками следующих групп: @1.
+This block won't drop anything when mined.=Из этого блока ничего не выпадает при выкапывании.
+This block will drop the following when mined: @1×@2.=При выкапывании из этого блока выпадет следующее: @1×@2.
+This block will drop the following when mined: @1.=При выкапывании из этого блока выпадет следующее: @1.
+This block will drop the following items when mined: @1.=При выкапывании из этого блока могут выпасть следующие предметы: @1.
+This block will randomly drop one of the following when mined: @1.=При выкапывании из этого блока случайным образом выпадет один из следующих предметов: @1.
+This block will randomly drop up to @1 drops of the following possible drops when mined: @2.=При выкапывании из этого блока случайным образом выпадет до @1 предметов из следующих возможных: @2.
+# Final list separator (e.g. “One, two and three”)
+ and = и 
+@1×@2=
+# Itemname (<0.5%)
+@1 (<0.5%)=@1 (<0.5%)
+# Itemname (ca. 25%)
+@1 (ca. @2%)=@1 (прибл. @2%)
+# Itemname (25%)
+@1 (@2%)=@1 (@2%)
+Tools and weapons=Инструменты и оружие
+Item reference of all wieldable tools and weapons=Список всех доступных инструментов и оружия
+Durability: @1 uses=Долговечность: @1 использований
+Durability: @1=Долговечность: @1
+Miscellaneous items=Прочие предметы
+Item reference of items which are neither blocks, tools or weapons (esp. crafting items)=Ссылка на предметы, которые не являются ни блоками, ни инструментами, ни оружием (особенно предметы для крафта)
+A transparent block, basically empty space. It is usually left behind after digging something.=Прозрачный блок, по сути, пустое пространство. Его обычно оставляют после того, как что-то выкапывают.
+Whenever you are not wielding any item, you use the hand which acts as a tool with its own capabilities. When you are wielding an item which is not a mining tool or a weapon it will behave as if it would be the hand.=Всякий раз, когда вы не владеете каким-либо предметом, вы используете руку, которая действует как инструмент со своими собственными возможностями. Когда вы владеете предметом, который не является инструментом для добычи полезных ископаемых или оружием, он будет вести себя так, как если бы это была рука.
+
+
+##### not used anymore #####
+
+Using it as fuel turns it into: @1.=Использование его в качестве топлива превращает его в: @1.
+# Item count times item name
+%@1×@2=%@1×@2
+Mining level: @1=Сложность выкапывания: @1
+# Rating used for digging times
+Rating @1=Рейтинг @1
+# @1 is minimal rating, @2 is maximum rating
+Rating @1-@2=Рейтинг @1-@2
+any level=любой уровень
+level 0=уровень 0
+level 0-@1=уровень 0-@1
+• @1: @2, @3=• @1: @2, @3

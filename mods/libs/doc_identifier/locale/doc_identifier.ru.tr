@@ -1,0 +1,19 @@
+# textdomain:doc_identifier
+# autor: ksandr from minetestserver.ru
+Lookup Tool=Инструмент лупа
+Adds a tool which shows help entries about almost anything which it punches.=
+Error: This node, item or object is undefined. This is always an error.=Ошибка: Этот узел, элемент или объект не определен. Это всегда ошибка.
+This can happen for the following reasons:=Это может произойти по следующим причинам:
+• The mod which is required for it is not enabled=• Мод, который требуется для этого, не включен
+• The author of the game or a mod has made a mistake=• Автор игры или мода допустил ошибку
+It appears to originate from the mod “@1”, which is enabled.=Похоже, что это происходит в моде “@1”, который включен.
+It appears to originate from the mod “@1”, which is not enabled!=Похоже, что это происходит в моде “@1”, который не включен!
+Its identifier is “@1”.=Его идентификатор - “@1”.
+No help entry for this block could be found.=Не удалось найти запись в справке для этого блока.
+No help entry for this item could be found.=Не удалось найти запись в справке для этого предмета.
+No help entry for this object could be found.=Не удалось найти запись в справке для этого объекта.
+OK=Ок
+Punch any block, item or other thing about you wish to learn more about. This will open up the appropriate help entry. The tool comes in two modes which are changed by using. In liquid mode, this tool points to liquids as well while in solid mode this is not the case.=Ударьте любой блок, элемент или другую вещь, о которой вы хотите узнать больше. Откроется соответствующая запись справки. Инструмент работает в двух режимах, которые можно переключать нажимая на кнопку "использовать". В "жидком" режиме этот инструмент работает с жидкостями, в "твёрдом" с блоками не являющимися жидкостями.
+This block cannot be identified because the world has not materialized at this point yet. Try again in a few seconds.=Этот блок не может быть идентифицирован, поскольку мир на данный момент еще не материализовался. Повторите попытку через несколько секунд.
+This is a player.=Это игрок.
+This useful little helper can be used to quickly learn more about about one's closer environment. It identifies and analyzes blocks, items and other things and it shows extensive information about the thing on which it is used.=Этот полезный маленький помощник можно использовать, чтобы быстро узнать больше о своем ближайшем окружении. Он идентифицирует и анализирует блоки, предметы и другие объекты и показывает обширную информацию о предмете, на котором он используется.

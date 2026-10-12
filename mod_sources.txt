@@ -127,17 +127,9 @@ origin https://github.com/APercy/airutils.git (fetch)
 * 5c21c9249a5de3e976fb2720d34b04f7a969233d added option to change painting function
 Mod: libs/airutils
 
-origin https://repo.or.cz/minetest_doc.git (fetch)
-* 1e3d464620e042de2812ec691145252d3f21b417 Version 1.3.0
-Mod: libs/doc
-
-origin https://repo.or.cz/minetest_doc_basics.git (fetch)
-* d64d9d4e0d5fd4685fa2233cfeb252136da8bb95 Update Minetest IRC channel
-Mod: libs/doc_basics
-
-origin https://repo.or.cz/minetest_doc_items.git (fetch)
-* 642da2e83c7c3c7cfb4dc5f62fd850bc6404117f Remove item name override of air
-Mod: libs/doc_items
+origin https://codeberg.org/Wuzzy/minetest_doc_modpack.git (fetch)
+* 2dd0154541739a99b23982c9dd63c7f33e7f92b9 Update doc submodule
+Mod: libs/doc_modpack
 
 origin https://github.com/minetest-mods/doc_reveal_chest (fetch)
 * d487a9a390cb7331d67495a0b83610a4262ee2cb initial commit
