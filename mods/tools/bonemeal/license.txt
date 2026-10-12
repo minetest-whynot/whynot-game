@@ -26,6 +26,12 @@ Textures by TenPlus1 (CC0)
 Texture by Shqug (Attribution-ShareAlike 4.0 International):
   bonemeal_particle*.png
 
+Textures by alerikaisattera (CC0):
+  bonemeal_bone_block.png
+  bonemeal_bone_block_top.png
+  bonemeal_bone_brick.png
+  bonemeal_bone_tile.png
+
 Sound by neagesoup (CC0 - https://freesound.org/people/newagesoup/sounds/351408/)
   bonemeal_chime.ogg
 

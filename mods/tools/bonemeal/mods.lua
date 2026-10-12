@@ -25,6 +25,8 @@ end
 
 -- default additions
 
+local flowers = {}
+
 if core.get_modpath("default") then
 
 	-- saplings
@@ -75,8 +77,6 @@ if core.get_modpath("default") then
 		"default:dry_grass_2", "default:dry_grass_3", "default:dry_grass_4",
 		"default:dry_grass_5", "", ""
 	}
-
-	local flowers = {}
 
 	-- add flowers from other mods
 	core.after(0.1, function()
@@ -200,26 +200,34 @@ if core.get_modpath("ethereal") then
 		{"ethereal:lemon_tree_sapling", ethereal.grow_lemon_tree, "soil"},
 		{"ethereal:olive_tree_sapling", ethereal.grow_olive_tree, "soil"},
 		{"ethereal:basandra_bush_sapling", ethereal.grow_basandra_bush, "soil"},
-		{"ethereal:mangrove_sapling", ethereal.grow_mangrove_tree, "soil"}
+		{"ethereal:mangrove_sapling", ethereal.grow_mangrove_tree, "soil"},
+		{"ethereal:poplar_sapling", ethereal.grow_poplar_tree, "soil"}
 	})
 
 	local grass = {"default:grass_3", "default:grass_4", "default:grass_5", ""}
 
 	bonemeal:add_deco({
-		{"ethereal:crystal_dirt", {"ethereal:crystalgrass", "", "", "", ""}, {}},
-		{"ethereal:fiery_dirt", {"ethereal:dry_shrub", "", "", "", ""}, {}},
-		{"ethereal:prairie_dirt", grass, {"flowers:dandelion_white",
-			"flowers:dandelion_yellow", "flowers:geranium", "flowers:rose",
-			"flowers:tulip", "flowers:viola", "ethereal:strawberry_7"}},
-		{"ethereal:gray_dirt", {}, {"ethereal:snowygrass", "", ""}},
-		{"ethereal:cold_dirt", {}, {"ethereal:snowygrass", "", ""}},
+		{"ethereal:crystal_dirt", {}, {"ethereal:crystalgrass"}},
+		{"ethereal:fiery_dirt", {}, {"ethereal:dry_shrub"}},
+		{"ethereal:prairie_dirt", grass, {"flowers:rose", "bakedclay:thistle",
+			"flowers:dandelion_yellow", "flowers:viola", "ethereal:strawberry_7"}},
+		{"ethereal:gray_dirt", {"ethereal:snowygrass", "", ""},
+			{"", "", "", "flowers:chrysanthemum_green", "flowers:dandelion_white"}},
+		{"ethereal:cold_dirt", {"default:grass_4", "default:fern_1", "default:fern_2",
+			"default:fern_3", ""}, {"flowers:viola", "bakedclay:delphinium", "", ""}},
 		{"ethereal:mushroom_dirt", {}, {"flowers:mushroom_red", "flowers:mushroom_brown",
-				"ethereal:spore_grass", "ethereal:spore_grass", "", "", ""}},
-		{"ethereal:jungle_dirt", grass, {"default:junglegrass", "", "", ""}},
-		{"ethereal:grove_dirt", grass, {"ethereal:fern", "", "", ""}},
-		{"ethereal:bamboo_dirt", grass, {}},
+			"ethereal:spore_grass", "ethereal:spore_grass", "", "", ""}},
+		{"ethereal:jungle_dirt", {"default:junglegrass", "", "", ""},
+			{"flowers:geranium", "", ""}},
+		{"ethereal:grove_dirt", grass, {"ethereal:fern", "", "flowers:tulip",
+			"flowers:geranium"}},
+		{"ethereal:bamboo_dirt", grass, {"ethereal:lilac", "flowers:geranium", "", ""}},
 		{"ethereal:mud", {"default:fern_1", "default:fern_2", "default:fern_3", "", "",
-			"default:grass_5", "default:junglegrass"}, {"ethereal:bamboo"}}
+			"default:grass_5", "default:junglegrass", "bakedclay:mannagrass"},
+			{"", "", "flowers:geranium"}},
+		{"ethereal:tawny_dirt", {"ethereal:tawny_grass", "", ""}, {"ethereal:shrub_red",
+			"flowers:viola", "flowers:dandelion_yellow"}},
+		{"ethereal:magical_dirt", {"ethereal:magical_grass", "", "", ""}, flowers}
 	})
 end
 
@@ -489,17 +497,14 @@ if core.get_modpath("bushes_classic") then
 	local function grow_bush(pos)
 
 		local meta = core.get_meta(pos)
-		local bush_name = meta:get_string("bush_type")
+		local bush_name = meta and meta:get_string("bush_type")
 
-		-- only change if meta found
-		if meta and bush_name then
-			core.swap_node(pos, {name = "bushes:" .. bush_name .. "_bush"})
-		end
+		if not bush_name or bush_name == "" then bush_name = "blueberry" end
+
+		core.swap_node(pos, {name = "bushes:" .. bush_name .. "_bush"})
 	end
 
-	bonemeal:add_sapling({
-		{"bushes:fruitless_bush", grow_bush, "soil"},
-	})
+	bonemeal:add_sapling({ {"bushes:fruitless_bush", grow_bush, "soil"} })
 end
 
 -- helper function to reduce node timer to 1 second

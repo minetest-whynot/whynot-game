@@ -8,7 +8,7 @@ local mcl = core.get_modpath("mcl_core")
 bonemeal = {
 	item_list = {
 		bucket_water = mcl and "mcl_buckets:bucket_water" or "bucket:bucket_water",
-		bucket_empty = mcl and "mcl_buckets:bucker_empty" or "bucket:bucket_empty",
+		bucket_empty = mcl and "mcl_buckets:bucket_empty" or "bucket:bucket_empty",
 		dirt = mcl and "mcl_core:dirt" or "default:dirt",
 		torch = mcl and "mcl_torches:torch" or "default:torch",
 		coral = mcl and "mcl_ocean:dead_horn_coral_block" or "default:coral_skeleton"
@@ -234,7 +234,7 @@ local function check_soil(pos, nodename, strength)
 			local def = core.registered_nodes[nod]
 			local p2 = (def and def.place_param2) or 0
 
-			core.set_node(p, {name = nod, param2 = p2})
+			if def then core.set_node(p, {name = nod, param2 = p2}) end
 
 			particle_effect(p)
 		end
@@ -596,6 +596,10 @@ end
 -- add support for mods
 
 dofile(path .. "/mods.lua")
+
+-- bone blocks
+
+dofile(path .. "/nodes.lua")
 
 -- lucky block support
 

@@ -6,8 +6,8 @@ local S = core.get_translator("bonemeal")
 local function growy(pos, player)
 
 	local nods = core.find_nodes_in_area(
-		{x = pos.x - 6, y = pos.y - 2, z = pos.z - 6},
-		{x = pos.x + 6, y = pos.y + 2, z = pos.z + 6},
+		{x = pos.x - 8, y = pos.y - 2, z = pos.z - 8},
+		{x = pos.x + 8, y = pos.y + 2, z = pos.z + 8},
 		{"group:soil", "group:sand", "group:plant", "group:seed", "group:sapling"})
 
 	if nods and #nods > 0 then
@@ -32,6 +32,8 @@ lucky_block:add_blocks({
 	{"nod", "default:chest", 0, {
 		{name = "bonemeal:mulch", max = 20},
 		{name = "bonemeal:bonemeal", max = 15},
-		{name = "bonemeal:fertiliser", max = 10}
-	}}
+		{name = "bonemeal:fertiliser", max = 10},
+		{name = "bonemeal:bone", max = 15}
+	}},
+	{"dro", {"bonemeal:bone_block", "bonemeal:bone_brick", "bonemeal:bone_brick"}, 10}
 })

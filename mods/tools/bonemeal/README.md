@@ -37,7 +37,7 @@ Dependencies: default
 
 Optional Dependencies: farming, ethereal, moretrees, lucky_block, moretrees, flowers, dye, ferns, dryplants, df_trees, df_farming, df_primordial_items, everness
 
-Lucky Blocks: 6
+Lucky Blocks: 7
 
 #### API
 
