@@ -9,12 +9,12 @@ local c_restricted_mode = true
 
 local compatible_nodes = {
 	"default:stone",
-	"default:dirt"
+	"default:dirt",
 }
 
 -- Check if the subspace still enabled for user (or can be disabled)
 local function ssw_get_wielded(playername)
-	local user = minetest.get_player_by_name(playername)
+	local user = core.get_player_by_name(playername)
 	-- if user leave the game, disable them
 	if not user then
 		return false
@@ -34,25 +34,25 @@ local subspacewalker = {
 }
 
 -- tool definition
-minetest.register_tool("subspacewalker:walker", {
+core.register_tool("subspacewalker:walker", {
 	description = "Subspace Walker",
 	inventory_image = "subspace_walker.png",
 	wield_image = "subspace_walker.png",
 	tool_capabilities = {},
 	range = 0,
 	on_use = function(itemstack, user, pointed_thing)
-		subspacewalker.users_in_subspace[user:get_player_name()] = {timer = 1}
+		subspacewalker.users_in_subspace[user:get_player_name()] = { timer = 1 }
 	end,
 	on_place = function(itemstack, user, pointed_thing)
 		subspacewalker.users_in_subspace[user:get_player_name()] = nil
 	end,
 	on_secondary_use = function(itemstack, user, pointed_thing)
 		subspacewalker.users_in_subspace[user:get_player_name()] = nil
-	end
+	end,
 })
 
 -- Globalstep check for nodes to hide
-minetest.register_globalstep(function(dtime)
+core.register_globalstep(function(dtime)
 	-- check each player with walker active
 	for playername, ssw in pairs(subspacewalker.users_in_subspace) do
 		ssw.timer = ssw.timer + dtime
@@ -60,71 +60,77 @@ minetest.register_globalstep(function(dtime)
 		if not ssw_stack then
 			subspacewalker.users_in_subspace[playername] = nil
 		else
-			local user = minetest.get_player_by_name(playername)
+			local user = core.get_player_by_name(playername)
 			local control = user:get_player_control()
-			local userpos = user:getpos()
+			local userpos = user:get_pos()
 
 			--regular step, once each second
-			if ssw.timer > 0.2 or --0.5
-					--sneaking but not in air
-					(control.sneak and userpos.y - 0.5 == math.floor(userpos.y)) then
+			if
+				ssw.timer > 0.2 --0.5
+				--sneaking but not in air
+				or (control.sneak and userpos.y - 0.5 == math.floor(userpos.y))
+			then
 				ssw.timer = 0
 
 				-- set offset for jump or sneak
-				userpos.y = math.floor(userpos.y+0.5)
+				userpos.y = math.floor(userpos.y + 0.5)
 				if control.jump then
 					userpos.y = userpos.y + 1
 				elseif control.sneak then
-					userpos.y = userpos.y -1
+					userpos.y = userpos.y - 1
 				end
 				userpos = vector.round(userpos)
 
 				--voxel_manip magic
-				local pos1 = {x=userpos.x-c_subspacesize, y=userpos.y, z=userpos.z-c_subspacesize}
-				local pos2 = {x=userpos.x+c_subspacesize, y=userpos.y+c_subspacesize, z=userpos.z+c_subspacesize}
+				local pos1 = { x = userpos.x - c_subspacesize, y = userpos.y, z = userpos.z - c_subspacesize }
+				local pos2 = {
+					x = userpos.x + c_subspacesize,
+					y = userpos.y + c_subspacesize,
+					z = userpos.z + c_subspacesize,
+				}
 
-				local manip = minetest.get_voxel_manip()
+				local manip = core.get_voxel_manip()
 				local min_c, max_c = manip:read_from_map(pos1, pos2)
-				local area = VoxelArea:new({MinEdge=min_c, MaxEdge=max_c})
+				local area = VoxelArea:new({ MinEdge = min_c, MaxEdge = max_c })
 
 				local data = manip:get_data()
 				local changed = false
 
-				local ssw_id = minetest.get_content_id("subspacewalker:subspace")
-				local air_id = minetest.get_content_id("air")
+				local ssw_id = core.get_content_id("subspacewalker:subspace")
+				local air_id = core.get_content_id("air")
 
 				local transform_count = 0
 
 				-- check each node in the area
 				for i in area:iterp(pos1, pos2) do
-					local nodepos = area:position(i)
---					if math.random(0, vector.distance(userpos, nodepos)) < 2 then
-						local cur_id = data[i]
-						if cur_id and cur_id ~= ssw_id and cur_id ~= air_id then
-							local cur_name = minetest.get_name_from_content_id(cur_id)
-							if c_restricted_mode then
-								for _, compat in ipairs(compatible_nodes) do
-									if compat == cur_name then
-										data[i] = ssw_id
-										minetest.get_meta(area:position(i)):set_string("subspacewalker", cur_name)
-										changed = true
-										transform_count = transform_count + 1
-									end
+					-- local nodepos = area:position(i)
+					-- if math.random(0, vector.distance(userpos, nodepos)) < 2 then
+					local cur_id = data[i]
+					if cur_id and cur_id ~= ssw_id and cur_id ~= air_id then
+						local cur_name = core.get_name_from_content_id(cur_id)
+						if c_restricted_mode then
+							for _, compat in ipairs(compatible_nodes) do
+								if compat == cur_name then
+									data[i] = ssw_id
+									core.get_meta(area:position(i)):set_string("subspacewalker", cur_name)
+									changed = true
+									transform_count = transform_count + 1
 								end
-							else
-								data[i] = ssw_id
-								minetest.get_meta(area:position(i)):set_string("subspacewalker", cur_name)
-								changed = true
-								transform_count = transform_count + 1
 							end
+						else
+							data[i] = ssw_id
+							core.get_meta(area:position(i)):set_string("subspacewalker", cur_name)
+							changed = true
+							transform_count = transform_count + 1
 						end
---					end
+					end
+					--					end
 				end
 				-- save changes if needed
 				if changed then
 					manip:set_data(data)
 					manip:write_to_map()
-					local wear = ssw_stack:get_wear()
+					-- local wear = ssw_stack:get_wear()
 					ssw_stack:add_wear(transform_count)
 					user:set_wielded_item(ssw_stack)
 				end
@@ -132,16 +138,16 @@ minetest.register_globalstep(function(dtime)
 
 			-- jump special handling. Restore node under the player
 			if control.jump then
-				local userpos = user:getpos()
-				userpos.y = math.floor(userpos.y-0.5)
-				local node = minetest.get_node(userpos)
-				local meta = minetest.get_meta(userpos)
+				userpos = user:get_pos()
+				userpos.y = math.floor(userpos.y - 0.5)
+				local node = core.get_node(userpos)
+				local meta = core.get_meta(userpos)
 				local data = meta:to_table()
 				if data.fields.subspacewalker then
 					node.name = data.fields.subspacewalker
 					data.fields.subspacewalker = nil
 					meta:from_table(data)
-					minetest.swap_node(userpos, node)
+					core.swap_node(userpos, node)
 				end
 			end
 		end
@@ -149,26 +155,26 @@ minetest.register_globalstep(function(dtime)
 end)
 
 -- node to hide the original one
-minetest.register_node("subspacewalker:subspace", {
+core.register_node("subspacewalker:subspace", {
 	drawtype = "airlike",
 	paramtype = "light",
 	sunlight_propagates = true,
 	light_source = 5,
 	diggable = false,
 	walkable = false,
-	groups = {not_in_creative_inventory=1},
+	groups = { not_in_creative_inventory = 1 },
 	pointable = false,
-	drop = ""
+	drop = "",
 })
 
 -- ABM on hidden blocks checks if there can be restored again
-minetest.register_abm({
+core.register_abm({
 	nodenames = { "subspacewalker:subspace" },
 	interval = 0.5,
 	chance = c_randomize_restore,
 	action = function(pos, node)
-		if node.name == 'ignore' then 
-			return 
+		if node.name == "ignore" then
+			return
 		end
 
 		local can_be_restored = true
@@ -178,12 +184,15 @@ minetest.register_abm({
 			if not ssw_stack then
 				subspacewalker.users_in_subspace[playername] = nil
 			else
-				local user = minetest.get_player_by_name(playername)
-				local userpos = user:getpos()
-				userpos.y = math.floor(userpos.y+0.5)
-				if ( pos.x >= userpos.x-c_subspacesize-1 and pos.x <= userpos.x+c_subspacesize+1) and  -- "+1" is to avoid flickering of nodes. restoring range is higher then the effect range
-						( pos.y >= userpos.y and pos.y <= userpos.y+c_subspacesize+1 ) and
-						( pos.z >= userpos.z-c_subspacesize-1 and pos.z <= userpos.z+c_subspacesize+1) then
+				local user = core.get_player_by_name(playername)
+				local userpos = user:get_pos()
+				userpos.y = math.floor(userpos.y + 0.5)
+				if
+					-- "+1" is to avoid flickering of nodes. restoring range is higher then the effect range
+					(pos.x >= userpos.x - c_subspacesize - 1 and pos.x <= userpos.x + c_subspacesize + 1)
+					and (pos.y >= userpos.y and pos.y <= userpos.y + c_subspacesize + 1)
+					and (pos.z >= userpos.z - c_subspacesize - 1 and pos.z <= userpos.z + c_subspacesize + 1)
+				then
 					can_be_restored = false --active user in range
 				end
 			end
@@ -191,23 +200,23 @@ minetest.register_abm({
 
 		--restore them
 		if can_be_restored then
-			local node = minetest.get_node(pos)
-			local meta = minetest.get_meta(pos)
+			node = core.get_node(pos)
+			local meta = core.get_meta(pos)
 			local data = meta:to_table()
 			node.name = data.fields.subspacewalker
 			data.fields.subspacewalker = nil
 			meta:from_table(data)
-			minetest.swap_node(pos, node)
+			core.swap_node(pos, node)
 		end
-	end
+	end,
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "subspacewalker:walker",
 	width = 1,
 	recipe = {
-			{"default:diamond"},
-			{"default:mese_crystal"},
-			{"group:stick"}
-	}
+		{ "default:diamond" },
+		{ "default:mese_crystal" },
+		{ "group:stick" },
+	},
 })

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://content.luanti.org/api/cdb_schema/",
+  "title": "Subspace Walker",
+  "tags": ["transport", "oneofakind__original", "player_effects"],
+  "type": "MOD",
+  "dev_state": "MAINTENANCE_ONLY",
+  "ai_disclosure": "NONE",
+  "license": "GPL-3.0-only",
+  "repo": "https://github.com/minetest-mods/subspacewalker",
+  "issue_tracker": "https://github.com/minetest-mods/subspacewalker/issues/new/choose/",
+  "forum_url": "https://forum.luanti.org/viewtopic.php?t=15564",
+  "short_description": "Go through walls, rock or lava using Subspace Walker tool "
+}
