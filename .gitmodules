@@ -134,9 +134,6 @@
 [submodule "builder/mods_src/player/playeranim"]
 	path = builder/mods_src/player/playeranim
 	url = https://github.com/minetest-mods/playeranim
-[submodule "builder/mods_src/player/show_wielded_item"]
-	path = builder/mods_src/player/show_wielded_item
-	url = https://repo.or.cz/minetest_show_wielded_item.git
 [submodule "builder/mods_src/player/wielded_light"]
 	path = builder/mods_src/player/wielded_light
 	url = https://github.com/minetest-mods/wielded_light
