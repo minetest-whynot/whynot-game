@@ -339,7 +339,9 @@ core.register_tool("farming:scythe_mithril", {
 
 		-- if punching entity/object
 		if pointed_thing.type == "object" then
-			pointed_thing.ref:punch(placer, 1, {full_punch_interval = 1.0})
+			pointed_thing.ref:punch(placer, 1, {full_punch_interval = 1.0,
+					damage_groups = {fleshy = 1}
+			})
 			return itemstack
 		end
 

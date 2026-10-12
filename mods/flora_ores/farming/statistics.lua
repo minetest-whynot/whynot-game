@@ -43,7 +43,7 @@ local function std_normal(u)
 end
 
 
-local function generate_cdf(lambda_index, lambda)
+local function generate_cdf(lambda)
 
 	local max = ceil(4 * lambda)
 	local pdf = exp(-lambda)
@@ -63,7 +63,7 @@ end
 local cdf_table = {}
 
 for li = 1, 100 do
-	cdf_table[li] = generate_cdf(li, 0.25 * li)
+	cdf_table[li] = generate_cdf(0.25 * li)
 end
 
 
@@ -156,6 +156,8 @@ statistics.poisson = function(lambda, max)
 	lambda, max = tonumber(lambda), tonumber(max)
 
 	if not lambda or not max or lambda <= 0 or max < 1 then return 0 end
+
+	max = floor(max)
 
 	return poisson(lambda, max)
 end

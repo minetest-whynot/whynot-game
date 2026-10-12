@@ -55,11 +55,10 @@ core.register_craft({
 -- multigrain flour
 
 core.register_craft({
-	type = "shapeless",
 	output = "farming:flour_multigrain",
 	recipe = {
-		"group:food_wheat", "group:food_barley", "group:food_oats",
-		"group:food_rye", a.mortar_pestle
+		{"group:food_wheat", "group:food_barley", "group:food_oats"},
+		{"group:food_rye", a.mortar_pestle, ""}
 	},
 	replacements = {{"group:food_mortar_pestle", "farming:mortar_pestle"}}
 })
@@ -235,9 +234,8 @@ core.register_craft({
 })
 
 core.register_craft({
-	type = "shapeless",
 	output = "farming:garlic 9",
-	recipe = {"farming:garlic_braid"}
+	recipe = {{"farming:garlic_braid"}}
 })
 
 -- corn on the cob
@@ -718,11 +716,10 @@ core.register_craft({
 
 core.register_craft({
 	output = "farming:bibimbap",
-	type = "shapeless",
 	recipe = {
-		a.skillet, "group:food_bowl", "group:food_mushroom",
-		"group:food_rice", "group:food_cabbage", "group:food_carrot",
-		"group:food_mushroom", "group:food_chili_pepper"
+		{a.skillet, "group:food_bowl", "group:food_mushroom"},
+		{"group:food_rice", "group:food_cabbage", "group:food_carrot"},
+		{"group:food_mushroom", "group:food_chili_pepper", ""}
 	},
 	replacements = {{"group:food_skillet", "farming:skillet"}}
 })
@@ -742,10 +739,9 @@ core.register_craft({
 
 core.register_craft({
 	output = "farming:salad",
-	type = "shapeless",
 	recipe = {
-		"group:food_bowl", "group:food_tomato", "group:food_cucumber",
-		"group:food_lettuce", "group:food_oil"
+		{"group:food_bowl", "group:food_tomato", "group:food_cucumber"},
+		{"group:food_lettuce", "group:food_oil", ""}
 	}
 })
 
@@ -753,11 +749,10 @@ core.register_craft({
 
 core.register_craft({
 	output = "farming:smoothie_berry",
-	type = "shapeless",
 	recipe = {
-		"group:food_raspberries", "group:food_blackberries",
-		"group:food_strawberry", "group:food_banana",
-		a.drinking_glass
+		{"group:food_raspberries", "group:food_blackberries"},
+		{"group:food_strawberry", "group:food_banana"},
+		{a.drinking_glass, ""}
 	}
 })
 

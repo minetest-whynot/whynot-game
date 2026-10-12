@@ -197,7 +197,7 @@ end
 
 -- mapgen
 
-def = {
+local def = {
 	name = 'farming:kiwi_tree',
 	deco_type = 'schematic',
 	sidelen = 16,

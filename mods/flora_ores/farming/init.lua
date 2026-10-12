@@ -12,7 +12,7 @@ local S = core.get_translator("farming")
 
 farming = {
 	mod = "redo",
-	version = "20260515",
+	version = "20260930",
 	path = core.get_modpath("farming"),
 	select = {type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5}},
 	select_final = {type = "fixed", fixed = {-0.5, -0.5, -0.5, 0.5, -2.5/16, 0.5}},
@@ -288,12 +288,12 @@ core.after(0, function()
 
 		register_plant_node(node_def)
 
-		if floodable then
+		if floodable and not node:find("mcl_", 1, true) then
 
 			if core.get_item_group(node, "plant") >= 1
 			or core.get_item_group(node, "seed") >= 1 and not node_def.on_flood then
 
-				minetest.override_item(node, {
+				core.override_item(node, {
 					floodable = true,
 					on_flood = function(pos, oldnode, newnode)
 						core.dig_node(pos)
@@ -411,7 +411,7 @@ end
 function farming.grow_plant(pos, elapsed)
 
 	local node = core.get_node(pos)
-	local def = core.registered_nodes[node.name]
+	local def = core.registered_nodes[node.name] ; if not def then return end
 
 	elapsed = elapsed or STAGE_LENGTH_AVG
 
@@ -433,8 +433,7 @@ function farming.refill_plant(player, plantname, index)
 		if stack:get_name() == plantname and i ~= index then
 
 			inv:set_stack("main", index, stack)
-			stack:clear()
-			inv:set_stack("main", i, stack)
+			inv:set_stack("main", i, ItemStack(""))
 
 			return
 		end
@@ -499,7 +498,8 @@ function farming.place_seed(itemstack, placer, pointed_thing, plantname)
 
 			-- check for refill
 			if itemstack:get_count() == 0 then
-				core.after(0.2, farming.refill_plant, placer, item_name,
+
+				core.after(0.1, farming.refill_plant, placer, item_name,
 						placer:get_wield_index())
 			end
 		end
@@ -797,7 +797,7 @@ ddoo("sunflower", farming.sunflower)
 ddoo("strawberry", farming.strawberry)
 ddoo("asparagus", farming.asparagus)
 ddoo("eggplant", farming.eggplant)
-ddoo("spinach", farming.eggplant)
+ddoo("spinach", farming.spinach)
 ddoo("ginger", farming.ginger)
 ddoo("kiwi", farming.kiwi)
 ddoo("rye_oat", farming.grains)
