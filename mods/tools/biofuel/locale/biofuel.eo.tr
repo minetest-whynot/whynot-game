@@ -1,9 +1,10 @@
 # textdomain: biofuel
-A Minetest Mod to produce biofuel from unused plants.=Minetest Mod por produkti biofuelon el neuzataj plantoj.
+A Luanti-Mod to produce biofuel from biomass.=Luanti-Mod por produkti biofuelon el biomaso.
 progress: @1%=progreso: @1%
-To start fuel production add biomass =Por komenci Brulaĵproduktadon aldonu organikan mason
+To start fuel production add biomass=Por komenci Brulaĵproduktadon aldonu organikan mason
 Biofuel Refinery=Organika Brulaĵa Rafinejo
 Biofuel Refinery Active=Organika Brulaĵa Rafinejo Aktiva
 Bottle of Biofuel=Botelo da Organika Brulaĵo
 Canister of Biofuel=Kanistro da Organika Brulaĵo
+Output is full=La eligo estas plena
 Vial of Biofuel=Fiolo da Organika Brulaĵo

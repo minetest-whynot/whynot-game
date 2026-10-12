@@ -1,5 +1,5 @@
 --File name: init.lua
---Project name: Biofuel, a Mod for Minetest
+--Project name: Biofuel, a Mod for Luanti
 --License: General Public License, version 3 or later
 --Original Work Copyright (C) 2016 cd2 (cdqwertz) <cdqwertz@gmail.com>
 --Modified Work Copyright (C) 2017 Vitalie Ciubotaru <vitalie at ciubotaru dot tk>
@@ -10,7 +10,7 @@
 --Modified Work Copyright (C) 2021 nixnoxus
 --Modified Work Copyright (C) 2021 Niklp09
 
--- Load support for MT game translation.
+-- Load support for Luanti translation.
 local S = core.get_translator("biofuel")
 
 -- hopper compat
@@ -35,13 +35,13 @@ if has_pipeworks then
 end
 
 
-refinery_log = core.settings:get_bool("refinery_log")								-- Enables logging function (settingtypes.txt)
+refinery_log = core.settings:get_bool("refinery_log")									-- Enables logging function (settingtypes.txt)
 if refinery_log == nil then refinery_log = false end 									-- default false
 
 if refinery_log then core.log('action', 'MOD: Biofuel ' .. "loading...") end
 biofuel_version = '0.10'
 
-food_fuel = core.settings:get_bool("food_fuel")										-- Enables the conversion of food into fuel (settingtypes.txt)
+food_fuel = core.settings:get_bool("food_fuel")											-- Enables the conversion of food into fuel (settingtypes.txt)
 if food_fuel == nil then food_fuel = false end 											-- default false
 
 biomass = {}
@@ -179,7 +179,7 @@ end
 plants_input = tonumber(core.settings:get("biomass_input")) or 4		-- The number of biomass required for fuel production (settingtypes.txt)
 
 local bottle_output = core.settings:get_bool("refinery_output")			-- Change of refinery output between vial or bottle (settingtypes.txt)
-if bottle_output == nil then bottle_output = false end 						-- default false
+if bottle_output == nil then bottle_output = false end 					-- default false
 
 
 local function formspec(pos)
@@ -305,13 +305,13 @@ local function update_timer(pos)
 	if not has_output_space then
 		if timer:is_started() then
 			timer:stop()
-			meta:set_string('infotext', S("Output is full "))
+			meta:set_string('infotext', S("Output is full"))
 			meta:set_int('progress', 0)
 		end
 		return
 	end
 	local count = count_input(pos)
-	local refinery_time = core.settings:get("fuel_production_time") or 10 		-- Timebase (settingtypes.txt)
+	local refinery_time = core.settings:get("fuel_production_time") or 10 			-- Timebase (settingtypes.txt)
 	if not timer:is_started() and count >= plants_input then        	  			-- Input
 		timer:start((refinery_time)/5)   											-- Timebase
 		meta:set_int('progress', 0)
@@ -320,7 +320,7 @@ local function update_timer(pos)
 	end
 	if timer:is_started() and count < plants_input then     		        		-- Input
 		timer:stop()
-		meta:set_string('infotext', S("To start fuel production add biomass "))
+		meta:set_string('infotext', S("To start fuel production add biomass"))
 		meta:set_int('progress', 0)
 	end
 end
@@ -370,7 +370,7 @@ local function on_timer(pos)
 	end
 	if (4 * 99) <= count_output(pos) then
 		timer:stop()
-		meta:set_string('infotext', S("Output is full "))
+		meta:set_string('infotext', S("Output is full"))
 		meta:set_int('progress', 0)
 		return false
 	end
@@ -379,7 +379,7 @@ local function on_timer(pos)
 		return true
 	else
 		timer:stop()
-		meta:set_string('infotext', S("To start fuel production add biomass "))
+		meta:set_string('infotext', S("To start fuel production add biomass"))
 		meta:set_int('progress', 0)
 		return false
 	end
@@ -390,7 +390,7 @@ local function on_construct(pos)
 	local inv = meta:get_inventory()
 	inv:set_size('src', 9)                                     					-- Input Fields
 	inv:set_size('dst', 4)                                     					-- Output Fields
-	meta:set_string('infotext', S("To start fuel production add biomass "))
+	meta:set_string('infotext', S("To start fuel production add biomass"))
 	meta:set_int('progress', 0)
 end
 

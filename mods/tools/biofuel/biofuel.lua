@@ -1,5 +1,5 @@
--- Load support for MT game translation.
-local S = minetest.get_translator("biofuel")
+-- Load support for Luanti translation.
+local S = core.get_translator("biofuel")
 
 
 --Biofuel:
@@ -7,18 +7,18 @@ local S = minetest.get_translator("biofuel")
 
 
 --Vial of Biofuel
-minetest.register_craftitem("biofuel:phial_fuel", {
+core.register_craftitem("biofuel:phial_fuel", {
 	description = S("Vial of Biofuel"),
 	inventory_image = "biofuel_phial_fuel.png"
 })
 
-minetest.register_craft({
+core.register_craft({
 	type = "fuel",
 	recipe = "biofuel:phial_fuel",
 	burntime = 10,
 })
 
-minetest.register_craft({
+core.register_craft({
     output = "biofuel:phial_fuel 4",
     recipe = {{"biofuel:bottle_fuel"}}
 })
@@ -26,26 +26,26 @@ minetest.register_craft({
 
 --Bottle of Biofuel
 
-minetest.register_craftitem("biofuel:bottle_fuel", {
+core.register_craftitem("biofuel:bottle_fuel", {
 	description = S("Bottle of Biofuel"),
 	inventory_image = "biofuel_bottle_fuel.png",
 	groups = {biofuel = 1}
 })
 
-minetest.register_craft({
+core.register_craft({
     type = "shapeless",
     output = "biofuel:bottle_fuel",
     recipe = {"biofuel:phial_fuel", "biofuel:phial_fuel", "biofuel:phial_fuel", "biofuel:phial_fuel"}
 })
 
 
-minetest.register_craft({
+core.register_craft({
 	type = "fuel",
 	recipe = "biofuel:bottle_fuel",
 	burntime = 40,
 })
 
-minetest.register_craft({
+core.register_craft({
 	type = "shapeless",
     output = "biofuel:bottle_fuel 9",
     recipe = {"biofuel:fuel_can"}
@@ -54,18 +54,18 @@ minetest.register_craft({
 
 --Canister of Biofuel
 
-minetest.register_craftitem("biofuel:fuel_can", {
+core.register_craftitem("biofuel:fuel_can", {
 	description = S("Canister of Biofuel"),
 	inventory_image = "biofuel_fuel_can.png"
 })
 
-minetest.register_craft({
+core.register_craft({
 	type = "fuel",
 	recipe = "biofuel:fuel_can",
 	burntime = 370,
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "biofuel:fuel_can",
 	recipe = {
 			{"group:biofuel", "group:biofuel", "group:biofuel"},
@@ -79,14 +79,14 @@ minetest.register_craft({
 --------------------
 
 local register_biofuel = function(name, burntime)
-	if not minetest.registered_items[name] then
+	if not core.registered_items[name] then
 		return;
 	end
-	local groups = table.copy(minetest.registered_items[name].groups)
+	local groups = table.copy(core.registered_items[name].groups)
 	groups.biofuel = 1
-	minetest.override_item(name, { groups = groups })
+	core.override_item(name, { groups = groups })
 	if burntime and burntime >= 0 then
-		minetest.register_craft({
+		core.register_craft({
 			type = "fuel",
 			recipe = name,
 			burntime = burntime,
@@ -120,9 +120,9 @@ register_biofuel("farming:sunflower_oil")
 --Basic Materials
 register_biofuel("basic_materials:oil_extract")
 
-if minetest.get_modpath("basic_materials") then
+if core.get_modpath("basic_materials") then
 
-minetest.register_craft({
+core.register_craft({
 	type = "shapeless",
 	output = "basic_materials:oil_extract 2",
 	recipe = {"biofuel:bottle_fuel", "biofuel:bottle_fuel"}

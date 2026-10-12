@@ -1,9 +1,10 @@
 # textdomain: biofuel
-A Minetest Mod to produce biofuel from unused plants.=Eine Minetest-Mod zur Herstellung von Biokraftstoff aus ungenutzten Pflanzen.
+A Luanti-Mod to produce biofuel from biomass.=Eine Luanti-Mod zur Herstellung von Biokraftstoff aus Biomasse.
 progress: @1%=Fortschritt: @1%
-To start fuel production add biomass =Zur Treibstoffproduktion mit organischem Material befüllen
+To start fuel production add biomass=Zur Treibstoffproduktion mit organischem Material befüllen
 Biofuel Refinery=Biotreibstoff Raffinerie
 Biofuel Refinery Active=Biotreibstoff Raffinerie arbeitet
 Bottle of Biofuel=Treibstofflasche
 Canister of Biofuel=Treibstoffkanister
+Output is full=Ausgabe ist voll
 Vial of Biofuel=Treibstoffphiole

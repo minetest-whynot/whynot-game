@@ -1,9 +1,10 @@
 # textdomain: biofuel
-A Minetest Mod to produce biofuel from unused plants.=
+A Luanti-Mod to produce biofuel from biomass.=
 progress: @1%=
-To start fuel production add biomass =
+To start fuel production add biomass=
 Biofuel Refinery=
 Biofuel Refinery Active=
 Bottle of Biofuel=
 Canister of Biofuel=
+Output is full=
 Vial of Biofuel=

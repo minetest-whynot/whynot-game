@@ -1,0 +1,10 @@
+# textdomain: biofuel
+A Luanti-Mod to produce biofuel from biomass.=Luanti мод для виготовлення біопалива з біомаси
+progress: @1%=прогрес: @1%
+To start fuel production add biomass=Додайте біомасу, щоб розпочати виготовлення палива
+Biofuel Refinery=Переробник біопалива
+Biofuel Refinery Active=Переробник біопалива активний
+Bottle of Biofuel=Пляшка біопалива
+Canister of Biofuel=Каністра біопалива
+Output is full=Вихідні слоти заповнені
+Vial of Biofuel=Флакон біопалива

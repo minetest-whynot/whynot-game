@@ -72,9 +72,9 @@ Additional trunks support (nixnoxus)
 
 Version 0.8
 -----------
-zh_TW Translation added (Emojigit)
+Add zh_TW Translation (Emojigit)
 
-es Translation added (Jolesh)
+Add Esperanto Translation (Jolesh)
 
 New Screenshots (Lokrates)
 
@@ -84,7 +84,7 @@ Version 0.9
 -----------
 Make "bottle_output" a local variable (Niklp09)
 
-ru Translation added (Cpyte-Engine-Developer)
+Add Russian Translation (Cpyte-Engine-Developer)
 
 Updates for Farming_redo and Cucina_vegana	(Lokrates)
 
@@ -103,3 +103,7 @@ Compatibility for:
 - Farlands Reloaded
 
 Adds support for Ethereal mod	(Lokrates)
+
+Add Ukrainian translation	(andriyndev)
+
+"minetest." replaced by "core." (Lokrates)
