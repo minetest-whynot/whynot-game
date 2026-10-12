@@ -31,7 +31,7 @@ origin https://github.com/pithydon/curtain (fetch)
 * 10775abcfcbaf7bcf193c72b167336a5d0419438 switch license to CC0
 Mod: decor/curtain
 
-origin https://repo.or.cz/minetest_dice2.git (fetch)
+origin https://codeberg.org/Dacmot/dice2.git (fetch)
 * 1feb5bbf1ef2d579f8df05e937bd0a9edc031a06 Add TRUE ephemeral sounds
 Mod: decor/dice2
 
@@ -235,7 +235,7 @@ origin https://github.com/minetest-mods/playeranim (fetch)
 * cabc79de361144d10ffe6bf6d4675211566e730b Work around wrong character bone rotations on Luanti 5.11+ (#6)
 Mod: player/playeranim
 
-origin https://repo.or.cz/minetest_show_wielded_item.git (fetch)
+origin https://codeberg.org/Wuzzy/minetest_show_wielded_item.git (fetch)
 * 6f40e88b40d8d24673d33e375c651944e7ccdcb1 Version 1.2.0
 Mod: player/show_wielded_item
 
