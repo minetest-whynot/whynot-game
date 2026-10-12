@@ -248,3 +248,6 @@
 [submodule "builder/mods_src/decor/mtg_plus"]
 	path = builder/mods_src/decor/mtg_plus
 	url = https://codeberg.org/Wuzzy/minetest_mtg_plus.git
+[submodule "builder/mods_src/libs/doc_modpack"]
+	path = builder/mods_src/libs/doc_modpack
+	url = https://codeberg.org/Wuzzy/minetest_doc_modpack.git
